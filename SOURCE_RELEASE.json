@@ -1,0 +1,18 @@
+{
+  "first_party_license": "Apache-2.0",
+  "original_artwork_license": "CC0-1.0",
+  "product": "Superbench Figure Tool",
+  "release_status": "release-artifact",
+  "release_tag": "v1.0.0-beta.6",
+  "schema": "superbench.figureSourceRelease.v2",
+  "source_archive": "https://github.com/ian-mersich/superbench-figure-tool/releases/download/v1.0.0-beta.6/figure-tool-source.zip",
+  "source_repository": "https://github.com/ian-mersich/superbench-figure-tool",
+  "source_revision": "6e35da30ce7fdf21f40956318abee691ddff26f0",
+  "upstream_compiler_rebuild_qualified": false,
+  "vendor_source_materials": {
+    "instructions": "vendor/SOURCE_MATERIALS.md",
+    "lock": "vendor/source-lock.json",
+    "status": "fetch-and-verify-from-lock"
+  },
+  "version": "1.0.0-beta.6"
+}

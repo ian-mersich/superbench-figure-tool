@@ -1,0 +1,10 @@
+node_modules/
+qa_artifacts/
+__pycache__/
+.pytest_cache/
+*.py[cod]
+.venv/
+venv/
+.coverage
+.DS_Store
+Thumbs.db

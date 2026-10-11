@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Proteasome</title>
+  <desc id="desc">Editable 26s proteasome schematic with stacked regulatory caps and cylindrical proteolytic core.</desc>
+  <g data-region="structure" fill="#8EC8FF" stroke="none"><path d="M38 34h52v60H38z"/><ellipse cx="64" cy="34" rx="26" ry="10"/><ellipse cx="64" cy="94" rx="26" ry="10"/></g>
+  <g data-region="functional_detail" fill="none" stroke="#7B78C9" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M38 49h52M38 64h52M38 79h52M47 39v50M58 42v47M70 42v47M81 39v50"/></g>
+  <g data-region="accent" fill="#F4A261" stroke="none"><path d="M46 24l18-10 18 10M46 104l18 10 18-10"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M38 34h52v60H38z"/><ellipse cx="64" cy="34" rx="26" ry="10"/><ellipse cx="64" cy="94" rx="26" ry="10"/><path d="M46 24l18-10 18 10M46 104l18 10 18-10"/></g>
+</svg>

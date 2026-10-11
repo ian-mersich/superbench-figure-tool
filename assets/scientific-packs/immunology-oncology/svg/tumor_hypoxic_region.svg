@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Tumor Hypoxic Region</title>
+  <desc id="desc">Editable tumor hypoxic region schematic with intact cells in a low-oxygen region farther from a vessel; shading is schematic and does not indicate necrosis or measured oxygen levels.</desc>
+  <g data-region="perfusion_context" fill="#E8EEF7" stroke="none"><path d="M13 20h19v91H13z"/></g>
+  <g data-region="viable_tumor_rim" fill="#F2B9C5" stroke="none"><path d="M49 29c15-11 38-9 52 3 15 13 18 36 10 53-9 20-33 28-52 19-18-8-27-30-20-49 2-10 4-19 10-26z"/></g>
+  <g data-region="hypoxic_core" fill="#D9A4BC" stroke="none"><path d="M78 28c14-1 28 10 32 25 6 20-3 41-20 47-10 4-14-1-12-10 2-12-5-19-3-32 1-11 0-20 3-30z"/></g>
+  <g data-region="oxygen_cues" fill="none" stroke="#5EA9DD" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="21" cy="35" r="3"/><circle cx="21" cy="57" r="3"/><circle cx="21" cy="80" r="3"/><path d="M36 47h7M36 72h6"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M49 29c15-11 38-9 52 3 15 13 18 36 10 53-9 20-33 28-52 19-18-8-27-30-20-49 2-10 4-19 10-26z"/><path d="M13 20h19v91H13z"/><circle cx="57" cy="43" r="9"/><circle cx="57" cy="43" r="2" fill="#26323D" stroke="none"/><circle cx="57" cy="67" r="9"/><circle cx="57" cy="67" r="2" fill="#26323D" stroke="none"/><circle cx="61" cy="91" r="9"/><circle cx="61" cy="91" r="2" fill="#26323D" stroke="none"/><circle cx="88" cy="46" r="9"/><circle cx="88" cy="46" r="2" fill="#26323D" stroke="none"/><circle cx="96" cy="69" r="9"/><circle cx="96" cy="69" r="2" fill="#26323D" stroke="none"/><circle cx="89" cy="91" r="9"/><circle cx="89" cy="91" r="2" fill="#26323D" stroke="none"/></g>
+  <text data-region="outline" x="89" y="17" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#26323D" stroke="none">Low O₂</text>
+</svg>

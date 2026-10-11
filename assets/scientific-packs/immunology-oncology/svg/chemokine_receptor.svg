@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Chemokine Receptor</title>
+  <desc id="desc">Editable chemokine receptor schematic with seven-pass serpentine receptor with extracellular chemokine and intracellular coupling cue.</desc>
+  <g data-region="membrane" fill="#DCE4EC" stroke="none"><path d="M8 48h112v34H8z"/></g>
+  <g data-region="receptor" fill="#C7F2EC" stroke="none"><path d="M38 43v44h7V43zM48 43v44h7V43zM58 43v44h7V43zM68 43v44h7V43zM78 43v44h7V43zM88 43v44h7V43zM98 43v44h7V43z"/></g>
+  <g data-region="chemokine" fill="#F4A261" stroke="none"><path d="M53 20c5-8 17-8 22 0 8-2 14 7 9 13-4 6-14 6-20 2-6 4-16 4-20-2-5-6 1-15 9-13z"/></g>
+  <g data-region="coupling_complex" fill="#B8B5FF" stroke="none"><circle cx="64" cy="106" r="10"/><circle cx="78" cy="109" r="7"/><circle cx="51" cy="111" r="6"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M8 48h112v34H8zM38 43v44h7V43zM48 43v44h7V43zM58 43v44h7V43zM68 43v44h7V43zM78 43v44h7V43zM88 43v44h7V43zM98 43v44h7V43z"/><path d="M41 43c8-14 16 14 24 0s16 14 24 0 12 8 16 0M41 87c8 14 16-14 24 0s16-14 24 0 12-8 16 0"/><path d="M53 20c5-8 17-8 22 0 8-2 14 7 9 13-4 6-14 6-20 2-6 4-16 4-20-2-5-6 1-15 9-13z"/><circle cx="64" cy="106" r="10"/><circle cx="78" cy="109" r="7"/><circle cx="51" cy="111" r="6"/></g>
+</svg>

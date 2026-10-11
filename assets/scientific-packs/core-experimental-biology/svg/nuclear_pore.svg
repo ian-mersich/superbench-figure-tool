@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Nuclear Pore Complex</title>
+  <desc id="desc">Editable nuclear pore complex schematic with eightfold ring spanning a double nuclear membrane.</desc>
+  <g data-region="structure" fill="#8EC8FF" stroke="none"><path d="M14 44h100v12H14zM14 72h100v12H14z"/></g>
+  <g data-region="functional_detail" fill="none" stroke="#7B78C9" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="64" cy="64" r="29"/><circle cx="64" cy="64" r="15"/></g>
+  <g data-region="accent" fill="#F4A261" stroke="none"><circle cx="64" cy="35" r="5"/><circle cx="84" cy="44" r="5"/><circle cx="93" cy="64" r="5"/><circle cx="84" cy="84" r="5"/><circle cx="64" cy="93" r="5"/><circle cx="44" cy="84" r="5"/><circle cx="35" cy="64" r="5"/><circle cx="44" cy="44" r="5"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M14 44h100M14 56h100M14 72h100M14 84h100"/><circle cx="64" cy="64" r="29"/><circle cx="64" cy="64" r="15"/></g>
+</svg>

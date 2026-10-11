@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Automated Cell Counter</title>
+  <desc id="desc">Editable automated cell-counting instrument schematic with compact optical counter with sample-slide port.</desc>
+  <g data-region="instrument_body" fill="#DCE4EC" stroke="none"><path d="M18 42h92v66c0 6-5 10-11 10H29c-6 0-11-4-11-10z"/><path d="M28 17h72l10 25H18z"/></g>
+  <g data-region="instrument_detail" fill="#8EC8FF" stroke="none"><rect x="35" y="52" width="58" height="34" rx="4"/><path d="M42 77c5-10 11-11 16-3 5 7 11 6 16-4 4-7 9-8 14-2"/></g>
+  <g data-region="operational_cue" fill="none" stroke="#7B78C9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M39 96h34M73 92l17 7-17 7M40 64h46M46 58v12M57 58v12M68 58v12M79 58v12"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 42h92v66c0 6-5 10-11 10H29c-6 0-11-4-11-10zM28 17h72l10 25H18zM35 52h58v34H35z"/></g>
+</svg>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Phagocytosis</title>
+  <desc id="desc">Editable phagocytosis schematic with open phagocytic cup advancing around a particle.</desc>
+  <g data-region="phagocyte" fill="#C7F2EC" stroke="none"><path d="M9 88c8-30 28-50 51-52 14-1 25 6 31 17l-15 9c-5-7-12-10-20-8C42 56 32 69 30 86c-1 10 2 20 8 28H13C8 105 6 96 9 88z"/></g>
+  <g data-region="engulfed_cargo" fill="#F4A261" stroke="none"><circle cx="93" cy="63" r="17"/><circle cx="88" cy="58" r="4"/><circle cx="99" cy="68" r="3"/></g>
+  <g data-region="phagocytic_cup" fill="none" stroke="#58B8AE" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"><path d="M38 114c-7-10-10-22-8-33 3-16 13-26 28-28 8-1 15 2 20 8M76 62c7-4 14-3 20 1"/><path d="M112 47L102 58M102.757 50.4778L102 58L109.416 56.5319"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 88c8-30 28-50 51-52 14-1 25 6 31 17l-15 9c-5-7-12-10-20-8C42 56 32 69 30 86c-1 10 2 20 8 28H13C8 105 6 96 9 88z"/><circle cx="93" cy="63" r="17"/></g>
+</svg>

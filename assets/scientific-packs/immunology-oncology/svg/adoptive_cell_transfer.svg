@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Adoptive Cell Transfer</title>
+  <desc id="desc">Editable adoptive cell transfer schematic with cell-containing infusion bag connected to a tumor-bearing tissue context.</desc>
+  <g data-region="cell_product_bag" fill="#C7F2EC" stroke="none"><path d="M11 18h43l4 14v42c0 8-6 14-14 14H21c-8 0-14-6-14-14V32z"/><path d="M18 8h29v10H18z"/></g>
+  <g data-region="transferred_cells" fill="#8EC8FF" stroke="none"><circle cx="23" cy="47" r="7"/><circle cx="41" cy="45" r="7"/><circle cx="31" cy="66" r="7"/></g>
+  <g data-region="tumor_context" fill="#F2B9C5" stroke="none"><path d="M81 69c4-14 22-20 33-10 13 4 15 21 5 29 4 13-12 24-23 17-12 5-24-8-18-19-5-6-3-13 3-17z"/></g>
+  <g data-region="infusion_route" fill="none" stroke="#7B78C9" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M32 88v17c0 8 8 12 16 7l24-16"/><path d="M72 96L83 88M80.7337 95.2125L83 88L75.4402 87.9338"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M11 18h43l4 14v42c0 8-6 14-14 14H21c-8 0-14-6-14-14V32z"/><path d="M18 8h29v10H18z"/><circle cx="23" cy="47" r="7"/><circle cx="41" cy="45" r="7"/><circle cx="31" cy="66" r="7"/><path d="M81 69c4-14 22-20 33-10 13 4 15 21 5 29 4 13-12 24-23 17-12 5-24-8-18-19-5-6-3-13 3-17z"/></g>
+</svg>

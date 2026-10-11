@@ -1,0 +1,312 @@
+{
+  "schema": "figureStudio.vendorManifest.v1",
+  "installed": true,
+  "policy": "figure_studio_curated_local_vendor.v1",
+  "hosted_external_scripts_allowed": false,
+  "source": "Curated third-party runtime files for Figure Tool.",
+  "packages": {
+    "fabric": "7.3.1",
+    "jspdf": "4.2.1",
+    "pdf-lib": "1.17.1",
+    "pdfjs-dist": "5.7.284",
+    "pdfjs-svg-legacy": "3.11.174",
+    "svg2pdf.js": "2.7.0",
+    "polygon-clipping": "0.15.7",
+    "dejavu-sans": "2.35"
+  },
+  "source_receipts": [
+    {
+      "package": "fabric",
+      "version": "7.3.1",
+      "retrieved_on": "2026-07-22",
+      "registry": "npm",
+      "tarball_url": "https://registry.npmjs.org/fabric/-/fabric-7.3.1.tgz",
+      "tarball_integrity_sha512": "sha512-RoLAQzUX+/3RNMYKliuN0P2HXdSDEGzyjS7FnmEbo3nhb8LFh59T+l3f6ApIu5LT4YB49YfMNrEajeIbutmD7Q==",
+      "tarball_shasum_sha1": "1dee1b68bb793aca68c0d31936b3897f330ef47b",
+      "tarball_bytes": 4934943,
+      "tarball_sha256": "1c8402379b356934b921fc90bc8d6e3d0d28166480649e31c1618c7d231a7a39",
+      "release_tag": "v731",
+      "release_tag_url": "https://github.com/fabricjs/fabric.js/releases/tag/v731",
+      "release_commit": "b305406837c50b5638ce32c7558fc83e9c8c4159",
+      "upstream_runtime_path": "package/dist/index.min.js",
+      "upstream_runtime_bytes": 298256,
+      "upstream_runtime_sha256": "fd2ef30a5b5fa361bc00d4ee56dd57afc4b07f640eeea6764a99123f984be805",
+      "upstream_license_path": "package/LICENSE",
+      "upstream_license_url": "https://raw.githubusercontent.com/fabricjs/fabric.js/b305406837c50b5638ce32c7558fc83e9c8c4159/LICENSE",
+      "upstream_license_bytes": 1243,
+      "upstream_license_sha256": "eda412692b7398293a049ecf913319da26eb8f7fe27f10709821dd187b517e0b",
+      "checkout_materialization": "crlf",
+      "verification": "Replacing the 439 CRLF sequences in the checked-out runtime with LF produces the exact npm package bytes; no other byte differs.",
+      "identity_receipt_not_ownership_determination": true
+    },
+    {
+      "package": "polygon-clipping",
+      "version": "0.15.7",
+      "retrieved_on": "2026-08-08",
+      "registry": "npm",
+      "tarball_url": "https://registry.npmjs.org/polygon-clipping/-/polygon-clipping-0.15.7.tgz",
+      "tarball_integrity_sha512": "sha512-nhfdr83ECBg6xtqOAJab1tbksbBAOMUltN60bU+llHVOL0e5Onm1WpAXXWXVB39L8AJFssoIhEVuy/S90MmotA==",
+      "tarball_shasum_sha1": "3823ca1e372566f350795ce9dd9a7b19e97bdaad",
+      "tarball_bytes": 91226,
+      "tarball_sha256": "23bdea671a65011107d91536881f527c8e2e6820f59e4bc1408a94d7cc11d5b7",
+      "release_tag": "v0.15.7",
+      "release_tag_url": "https://github.com/mfogel/polygon-clipping/releases/tag/v0.15.7",
+      "release_commit": "25f2a460ca7bd750d958d3d83b0037a32fcf75f6",
+      "upstream_runtime_path": "package/dist/polygon-clipping.umd.min.js",
+      "upstream_runtime_bytes": 29106,
+      "upstream_runtime_sha256": "7f8619e84a86ce8dd400c9b50430e9c8cf8f26027b19eeb479f109f5c1a9d688",
+      "upstream_license_path": "package/LICENSE.md",
+      "upstream_license_url": "https://raw.githubusercontent.com/mfogel/polygon-clipping/25f2a460ca7bd750d958d3d83b0037a32fcf75f6/LICENSE.md",
+      "upstream_license_bytes": 1327,
+      "upstream_license_sha256": "864ae9e4ed75e1571a3bcf5dc9070264213445b32e7e2af5bf60eba46fb656d0",
+      "checkout_materialization": "exact-npm-package-bytes",
+      "verification": "The checked-in runtime and license are exact members of the pinned npm 0.15.7 tarball.",
+      "identity_receipt_not_ownership_determination": true
+    }
+  ],
+  "required_core_files": [
+    "vendor/fabric/index.min.js",
+    "vendor/jspdf/jspdf.umd.min.js",
+    "vendor/svg2pdf/svg2pdf.umd.min.js",
+    "vendor/polygon-clipping/polygon-clipping.umd.min.js",
+    "vendor/fonts/dejavu-sans/DejaVuSans.ttf",
+    "vendor/fonts/dejavu-sans/DejaVuSans-Bold.ttf",
+    "vendor/fonts/dejavu-sans/DejaVuSans-Oblique.ttf",
+    "vendor/fonts/dejavu-sans/DejaVuSans-BoldOblique.ttf"
+  ],
+  "optional_pdf_files": [
+    "vendor/pdf-lib/pdf-lib.min.js",
+    "vendor/pdfjs/pdf.mjs",
+    "vendor/pdfjs/pdf.worker.mjs",
+    "vendor/pdfjs-legacy/pdf.js",
+    "vendor/pdfjs-legacy/pdf.worker.js"
+  ],
+  "runtime_files": [
+    {
+      "id": "fabric",
+      "package": "fabric",
+      "version": "7.3.1",
+      "path": "vendor/fabric/index.min.js",
+      "global": "fabric",
+      "bytes": 298695,
+      "sha256": "6aa6f34043486b265c89347f59df9f1c28489269694bd93f6a4915b77e811bfe",
+      "crlf_count": 439,
+      "upstream_lf_bytes": 298256,
+      "upstream_lf_sha256": "fd2ef30a5b5fa361bc00d4ee56dd57afc4b07f640eeea6764a99123f984be805"
+    },
+    {
+      "id": "jspdf",
+      "package": "jspdf",
+      "version": "4.2.1",
+      "path": "vendor/jspdf/jspdf.umd.min.js",
+      "global": "jspdf",
+      "bytes": 420165,
+      "sha256": "e6551fcdc32f09d6853b2c5126d18d01d9447e0da618a41a11ebeee0f6c20d54"
+    },
+    {
+      "id": "svg2pdf",
+      "package": "svg2pdf.js",
+      "version": "2.7.0",
+      "path": "vendor/svg2pdf/svg2pdf.umd.min.js",
+      "global": "jsPDF.svg",
+      "bytes": 87557,
+      "sha256": "483a688ce22e3fb1905dd2a4e23831ee50c4d8fe1d5772027554b6062f723024",
+      "local_patch": {
+        "schema": "figureStudio.vendorLocalPatch.v1",
+        "id": "figure-studio-current-source-text-and-paint-observers-v1",
+        "upstream_runtime_bytes": 87158,
+        "upstream_runtime_sha256": "7c91b939405364524ccda0eafac0b42b456594504acfa7de0eac83d1b6347723",
+        "optional_instance_property": "__figureStudioLogicalTextObserver",
+        "review_scope": "Two retained optional per-instance before/after source-owner observations surrounding unchanged native pdf.text calls, plus one optional per-instance current resolved source path paint observation immediately before unchanged native fill/stroke calls. The app-owned paint observer reasserts current solid RGB through existing native string-channel setters and current cap through the existing native cap setter. No global/prototype formatter, native path/text arguments, fonts, geometry, clips, order, package version, or license change.",
+        "anchors": [
+          {
+            "rawBeforeAnchor": "e.pdf.text(this.texts[i],l[i]-y,u[i],{baseline:q(b),angle:e.transform,renderingMode:\"fill\"===x?void 0:x,charSpace:0===r?void 0:r})",
+            "rawAfterAnchor": "e.pdf.__figureStudioLogicalTextObserver?.beforeText(this.textNode.element,n,this.texts[i]),e.pdf.text(this.texts[i],l[i]-y,u[i],{baseline:q(b),angle:e.transform,renderingMode:\"fill\"===x?void 0:x,charSpace:0===r?void 0:r}),e.pdf.__figureStudioLogicalTextObserver?.afterText(this.textNode.element,n)"
+          },
+          {
+            "rawBeforeAnchor": "t.pdf.text(d,a+l-e,o+u,{baseline:q(m),angle:t.transform,renderingMode:\"fill\"===v?void 0:v,charSpace:0===r?void 0:r})",
+            "rawAfterAnchor": "t.pdf.__figureStudioLogicalTextObserver?.beforeText(this.element,this.element,d),t.pdf.text(d,a+l-e,o+u,{baseline:q(m),angle:t.transform,renderingMode:\"fill\"===v?void 0:v,charSpace:0===r?void 0:r}),t.pdf.__figureStudioLogicalTextObserver?.afterText(this.element,this.element)"
+          },
+          {
+            "rawBeforeAnchor": "case 3:return i=n,a=\"evenodd\"===t.attributeState.fillRule,e&&r||t.withinUse?a?t.pdf.fillStrokeEvenOdd(i):t.pdf.fillStroke(i):e?a?t.pdf.fillEvenOdd(i):t.pdf.fill(i):r?t.pdf.stroke():t.pdf.discardPath(),[2]",
+            "rawAfterAnchor": "case 3:return t.pdf.__figureStudioSourcePaintObserver?.beforePathPaint(this.element,t),i=n,a=\"evenodd\"===t.attributeState.fillRule,e&&r||t.withinUse?a?t.pdf.fillStrokeEvenOdd(i):t.pdf.fillStroke(i):e?a?t.pdf.fillEvenOdd(i):t.pdf.fill(i):r?t.pdf.stroke():t.pdf.discardPath(),[2]"
+          }
+        ],
+        "raw_inverse_exact": true,
+        "default_without_observer": "Exact unchanged native calls and PDF content; no global/prototype state.",
+        "upstream_identity_changed": false,
+        "optional_instance_properties": [
+          "__figureStudioLogicalTextObserver",
+          "__figureStudioSourcePaintObserver"
+        ]
+      }
+    },
+    {
+      "id": "pdf-lib",
+      "package": "pdf-lib",
+      "version": "1.17.1",
+      "path": "vendor/pdf-lib/pdf-lib.min.js",
+      "global": "PDFLib",
+      "bytes": 525099,
+      "sha256": "0f9a5cad07941f0826586c94e089d89b918c46e5c17cf2d5a3c6f666e3bc694f"
+    },
+    {
+      "id": "polygon-clipping",
+      "package": "polygon-clipping",
+      "version": "0.15.7",
+      "path": "vendor/polygon-clipping/polygon-clipping.umd.min.js",
+      "global": "polygonClipping",
+      "bytes": 29106,
+      "sha256": "7f8619e84a86ce8dd400c9b50430e9c8cf8f26027b19eeb479f109f5c1a9d688"
+    },
+    {
+      "id": "dejavu-sans-regular",
+      "package": "dejavu-sans",
+      "version": "2.35",
+      "path": "vendor/fonts/dejavu-sans/DejaVuSans.ttf",
+      "font_style": "normal",
+      "upstream_container": "matplotlib 3.10.9 mpl-data/fonts/ttf",
+      "bytes": 756072,
+      "sha256": "3fdf69cabf06049ea70a00b5919340e2ce1e6d02b0cc3c4b44fb6801bd1e0d22"
+    },
+    {
+      "id": "dejavu-sans-bold",
+      "package": "dejavu-sans",
+      "version": "2.35",
+      "path": "vendor/fonts/dejavu-sans/DejaVuSans-Bold.ttf",
+      "font_style": "bold",
+      "upstream_container": "matplotlib 3.10.9 mpl-data/fonts/ttf",
+      "bytes": 704128,
+      "sha256": "b184b89e3c1075f22f6b71575b6fc20d4972b3cfd3b23322ca6fd596dcaef167"
+    },
+    {
+      "id": "dejavu-sans-italic",
+      "package": "dejavu-sans",
+      "version": "2.35",
+      "path": "vendor/fonts/dejavu-sans/DejaVuSans-Oblique.ttf",
+      "font_style": "italic",
+      "upstream_container": "matplotlib 3.10.9 mpl-data/fonts/ttf",
+      "bytes": 633840,
+      "sha256": "ccdf74b350f11fd3dd5774de50e5e6346a1a5da1f5b7d5fb83590665e97a5213"
+    },
+    {
+      "id": "dejavu-sans-bolditalic",
+      "package": "dejavu-sans",
+      "version": "2.35",
+      "path": "vendor/fonts/dejavu-sans/DejaVuSans-BoldOblique.ttf",
+      "font_style": "bolditalic",
+      "upstream_container": "matplotlib 3.10.9 mpl-data/fonts/ttf",
+      "bytes": 641720,
+      "sha256": "6edf0283160186af451cbee71e7b845f2e4cabf264bb992ce668c83c25465e6f"
+    },
+    {
+      "id": "pdfjs",
+      "package": "pdfjs-dist",
+      "version": "5.7.284",
+      "path": "vendor/pdfjs/pdf.mjs",
+      "module": true,
+      "bytes": 817035,
+      "sha256": "f36805aa525535f968b9df66c9925bb1410f71b76f16822a783dd2b2c54c14ee"
+    },
+    {
+      "id": "pdfjs-worker",
+      "package": "pdfjs-dist",
+      "version": "5.7.284",
+      "path": "vendor/pdfjs/pdf.worker.mjs",
+      "worker": true,
+      "bytes": 2161149,
+      "sha256": "535304b72e8a4354480292070ffc0574be1106f571a6c3949768bd46f3923af6"
+    },
+    {
+      "id": "pdfjs-svg-legacy",
+      "package": "pdfjs-svg-legacy",
+      "version": "3.11.174",
+      "path": "vendor/pdfjs-legacy/pdf.js",
+      "global": "pdfjsLib.SVGGraphics",
+      "bytes": 711553,
+      "sha256": "8c6a4a46bd1d58c32417f3bbd526ed1a221283214018cdef60ad483c35cceb00",
+      "source": "Exact package/legacy/build/pdf.js member from npm pdfjs-dist-3.11.174.tgz",
+      "tarball_shasum_sha1": "5ff47b80f2d58c8dd0d74f615e7c6a7e7e704c4b"
+    },
+    {
+      "id": "pdfjs-svg-legacy-worker",
+      "package": "pdfjs-svg-legacy",
+      "version": "3.11.174",
+      "path": "vendor/pdfjs-legacy/pdf.worker.js",
+      "worker": true,
+      "bytes": 2103752,
+      "sha256": "343e858b9e2e5353e0476ece39272e9c1e79f44f34bf845ca104f4189e7dc24c",
+      "source": "Exact package/legacy/build/pdf.worker.js member from npm pdfjs-dist-3.11.174.tgz",
+      "tarball_shasum_sha1": "5ff47b80f2d58c8dd0d74f615e7c6a7e7e704c4b"
+    }
+  ],
+  "license_files": [
+    {
+      "package": "fabric",
+      "path": "vendor/licenses/fabric-LICENSE",
+      "bytes": 1243,
+      "sha256": "eda412692b7398293a049ecf913319da26eb8f7fe27f10709821dd187b517e0b"
+    },
+    {
+      "package": "jspdf",
+      "path": "vendor/licenses/jspdf-LICENSE",
+      "bytes": 1142,
+      "sha256": "dc388ec35ff463288cdde3588a36fd4ed12a45deff053243b37309acc9ef583b"
+    },
+    {
+      "package": "pdf-lib",
+      "path": "vendor/licenses/pdf-lib-LICENSE.md",
+      "bytes": 1070,
+      "sha256": "f2c9fc00fdb66eb99ac156ba52d734af66d8d309f65753ae809ad34ee2883bcb"
+    },
+    {
+      "package": "pdfjs-dist",
+      "path": "vendor/licenses/pdfjs-dist-LICENSE",
+      "bytes": 10174,
+      "sha256": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594"
+    },
+    {
+      "package": "pdfjs-svg-legacy",
+      "path": "vendor/licenses/pdfjs-svg-legacy-LICENSE",
+      "bytes": 10174,
+      "sha256": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594"
+    },
+    {
+      "package": "svg2pdf.js",
+      "path": "vendor/licenses/svg2pdf-LICENSE",
+      "bytes": 1126,
+      "sha256": "c56fccd1f9b617c44b9e83477cabcbbbceef1d4adea859cfcd34442a8e3b91bd"
+    },
+    {
+      "package": "polygon-clipping",
+      "path": "vendor/licenses/polygon-clipping-LICENSE.md",
+      "bytes": 1327,
+      "sha256": "864ae9e4ed75e1571a3bcf5dc9070264213445b32e7e2af5bf60eba46fb656d0"
+    },
+    {
+      "package": "dejavu-sans",
+      "path": "vendor/licenses/dejavu-sans-LICENSE.txt",
+      "bytes": 4814,
+      "sha256": "a6ed0d41ebee3ca53d22f4d55be20d64291a4f5fa8e303468839993343a830eb"
+    }
+  ],
+  "source_metadata_files": [
+    {
+      "path": "vendor/source-lock.json",
+      "bytes": 10044,
+      "sha256": "d44b312f8f185ded21629d29fd424ca5b6762f9d7244204f8830a0db6fe50d35"
+    },
+    {
+      "path": "vendor/SOURCE_MATERIALS.md",
+      "bytes": 6276,
+      "sha256": "86705cf0b54123e84cf5617b56651d374f16a1ec45e9ef000598d8fc0edaaa60"
+    }
+  ],
+  "notice_files": [
+    {
+      "path": "vendor/NOTICE",
+      "bytes": 121132,
+      "sha256": "f6320a7800a65f53c49db053d965901de1df64bdedd406b397b63a329823552e"
+    }
+  ]
+}

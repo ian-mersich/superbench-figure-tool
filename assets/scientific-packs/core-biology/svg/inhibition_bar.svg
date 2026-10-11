@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Inhibition Bar</title>
+  <desc id="desc">Original vector negative-regulation connector with a perpendicular terminal bar, source node, and editable semantic regions.</desc>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="7" stroke-linecap="round">
+    <path d="M20 64h78"/>
+    <path d="M98 45v38"/>
+  </g>
+  <path data-region="stroke" d="M20 64h78" fill="none" stroke="#E76F51" stroke-width="3.5" stroke-linecap="round"/>
+  <path data-region="terminal_bar" d="M98 45v38" fill="none" stroke="#E76F51" stroke-width="3.5" stroke-linecap="round"/>
+  <circle data-region="accent" cx="20" cy="64" r="5" fill="#F4A261"/>
+  <circle data-region="outline" cx="20" cy="64" r="5" fill="none" stroke="#26323D" stroke-width="2.8"/>
+</svg>

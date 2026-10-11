@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Conversion Arrow</title>
+  <desc id="desc">Editable biochemical conversion relation schematic with directed substrate-to-product relation with reaction node.</desc>
+  <g data-region="relation" fill="none" stroke="#5EA9DD" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M23 64h80m-9-10 10 10-10 10"/></g>
+  <g data-region="molecular_state" fill="#B8B5FF" stroke="none"><circle cx="18" cy="64" r="11"/><circle cx="110" cy="64" r="11"/></g>
+  <g data-region="relation_cue" fill="none" stroke="#E76F51" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M57 55l7-7 7 7-7 7z"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="64" r="11"/><circle cx="110" cy="64" r="11"/></g>
+</svg>

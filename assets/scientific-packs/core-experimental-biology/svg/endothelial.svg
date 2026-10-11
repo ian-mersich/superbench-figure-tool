@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Endothelial Cell</title>
+  <desc id="desc">Editable vascular endothelial cell schematic with a flattened vessel-lining cell beside an open lumen and adjacent lining cells; no vascular subtype is implied.</desc>
+  <g data-region="vessel_context" fill="#E8EEF7" stroke="none"><path d="M13 35c29-10 71-10 102 0v11c-31-10-73-10-102 0zM13 80c9-2 18-3 26-3v19c-9 0-18 1-26 3zM91 77c9 0 17 1 24 3v19c-8-2-16-3-24-3z"/></g>
+  <g data-region="cell_body" fill="#C7F2EC" stroke="none"><path d="M39 77c17-2 35-2 52 0v19c-17-2-35-2-52 0z"/></g>
+  <g data-region="nuclear_region" fill="#B8B5FF" stroke="none"><ellipse cx="65" cy="85" rx="16" ry="5"/></g>
+  <g data-region="cell_feature" fill="none" stroke="#F4A261" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M39 78v17M91 78v17"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M13 35c29-10 71-10 102 0M13 46c29-10 71-10 102 0M13 80c29-5 71-5 102 0M13 99c29-5 71-5 102 0"/><ellipse cx="65" cy="85" rx="16" ry="5"/></g>
+  <text data-region="outline" x="64" y="63" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#26323D" stroke="none">Lumen</text>
+</svg>

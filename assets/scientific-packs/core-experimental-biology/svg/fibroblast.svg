@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Fibroblast</title>
+  <desc id="desc">Editable fibroblast schematic with spindle-shaped stromal cell with extended processes.</desc>
+  <g data-region="cell_body" fill="#C7F2EC" stroke="none"><path d="M9 79c19-7 27-20 39-32 11-11 24-14 35-7 10 6 13 17 36 24-23 8-31 18-43 25-13 7-27 2-37-3-10-5-18-8-30-7z"/></g>
+  <g data-region="nuclear_region" fill="#B8B5FF" stroke="none"><path d="M45 62c8-12 26-15 36-5 9 9 4 21-8 25-13 4-28-2-31-11-1-3 0-6 3-9z"/></g>
+  <g data-region="cell_feature" fill="none" stroke="#F4A261" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 76L8 62M33 55L22 42M94 58l18-12M91 79l20 9M34 82l-13 13"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 79c19-7 27-20 39-32 11-11 24-14 35-7 10 6 13 17 36 24-23 8-31 18-43 25-13 7-27 2-37-3-10-5-18-8-30-7z"/><path d="M45 62c8-12 26-15 36-5 9 9 4 21-8 25-13 4-28-2-31-11-1-3 0-6 3-9z"/><path d="M18 76L8 62M33 55L22 42M94 58l18-12M91 79l20 9M34 82l-13 13"/></g>
+</svg>

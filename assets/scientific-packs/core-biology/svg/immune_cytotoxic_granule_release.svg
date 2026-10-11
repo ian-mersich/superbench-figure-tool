@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Cytotoxic Granule Release</title>
+  <desc id="desc">Original vector cytotoxic-granule exocytosis with intracellular cargo-rich granules, a membrane-fused omega profile, released extracellular cargo, a restrained outward path, and editable semantic regions.</desc>
+
+  <g data-region="membrane" fill="#C7F2EC">
+    <rect x="13" y="58" width="102" height="7" rx="3.5"/><rect x="13" y="69" width="102" height="7" rx="3.5"/>
+  </g>
+
+  <g data-region="granule" fill="#B8B5FF">
+    <circle cx="33" cy="31" r="14"/><circle cx="91" cy="28" r="11"/>
+    <path d="M46 61c0-13 8-23 18-23s18 10 18 23c0 5-2 9-5 13-3-5-7-8-13-8s-10 3-13 8c-3-4-5-8-5-13z"/>
+  </g>
+
+  <g data-region="cargo" fill="#E76F51">
+    <circle cx="28" cy="29" r="3"/><circle cx="37" cy="34" r="3"/><circle cx="89" cy="26" r="2.7"/>
+    <circle cx="58" cy="51" r="3"/><circle cx="68" cy="53" r="3.2"/>
+    <circle cx="57" cy="82" r="3.2"/><circle cx="66" cy="91" r="3"/><circle cx="74" cy="101" r="2.8"/><circle cx="65" cy="112" r="2.7"/>
+  </g>
+
+  <path data-region="release_path" fill="none" stroke="#8EC8FF" stroke-dasharray="3 5" stroke-linecap="round" stroke-width="2.5" d="M64 76c0 12 8 20 4 34"/>
+
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke-width="2.4" d="M13 61h34M81 61h34M13 72h38M77 72h38"/>
+    <path stroke-width="2.6" d="M19 31a14 14 0 1 0 28 0 14 14 0 1 0-28 0M80 28a11 11 0 1 0 22 0 11 11 0 1 0-22 0M46 61c0-13 8-23 18-23s18 10 18 23c0 5-2 9-5 13-3-5-7-8-13-8s-10 3-13 8c-3-4-5-8-5-13z"/>
+  </g>
+</svg>

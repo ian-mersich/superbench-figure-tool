@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Ion Channel</title>
+  <desc id="desc">Original vector ion channel with a continuous aqueous pore, paired channel walls, membrane bilayer, permeating ions, and editable semantic regions.</desc>
+
+  <g data-region="membrane" fill="#C7F2EC">
+    <rect x="13" y="55" width="43" height="9" rx="4.5"/><rect x="72" y="55" width="43" height="9" rx="4.5"/>
+    <rect x="13" y="78" width="43" height="9" rx="4.5"/><rect x="72" y="78" width="43" height="9" rx="4.5"/>
+  </g>
+
+  <g data-region="channel" fill="#8EC8FF">
+    <path d="M38 25h11c7 0 11 5 10 12l-3 18c-2 10-2 20 0 30l3 17c1 7-4 13-11 13h-9c-7 0-12-5-12-12V39c0-8 4-14 11-14z"/>
+    <path d="M90 25H79c-7 0-11 5-10 12l3 18c2 10 2 20 0 30l-3 17c-1 7 4 13 11 13h9c7 0 12-5 12-12V39c0-8-4-14-11-14z"/>
+  </g>
+
+  <g data-region="ion" fill="#F4A261">
+    <circle cx="64" cy="18" r="4.5"/><circle cx="64" cy="47" r="4"/><circle cx="64" cy="70" r="4"/><circle cx="64" cy="94" r="4"/><circle cx="64" cy="121" r="4.5"/>
+  </g>
+
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M13 59h43M72 59h43M13 82h43M72 82h43" stroke-width="2.75"/>
+    <path d="M38 25h11c7 0 11 5 10 12l-3 18c-2 10-2 20 0 30l3 17c1 7-4 13-11 13h-9c-7 0-12-5-12-12V39c0-8 4-14 11-14zM90 25H79c-7 0-11 5-10 12l3 18c2 10 2 20 0 30l-3 17c-1 7 4 13 11 13h9c7 0 12-5 12-12V39c0-8-4-14-11-14z" stroke-width="3.25"/>
+  </g>
+</svg>

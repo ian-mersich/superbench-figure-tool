@@ -1,0 +1,22 @@
+name: Figure Tool source checks
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - name: Install the qualified test runner
+        run: python3 -m pip install pytest==8.4.2
+      - name: Check portable vendor files and source tooling
+        run: python3 -m pytest tests/test_vendor_fabric_portability.py tests/test_vendor_source_tools.py
+      - name: Check dependency files and notices
+        run: python3 scripts/validate-vendor-bundle.py
+      - name: Check reviewed scientific assets
+        run: python3 scripts/validate-scientific-assets.py --library assets/scientific-packs/library.json --require-public-release
+      - name: Check the vector editor
+        run: node --test tests/vectorEngine.test.mjs

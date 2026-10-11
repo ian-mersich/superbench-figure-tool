@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Tumor Cell Cluster</title>
+  <desc id="desc">Editable tumor cell cluster schematic with cohesive cluster of heterogeneous malignant cells.</desc>
+  <g data-region="cell_body" fill="#C7F2EC" stroke="none"><path d="M22 45c2-16 16-26 31-22 10 2 15 9 16 18 4-12 15-20 28-16 15 5 20 20 14 33 10 2 17 12 16 24-2 16-17 25-31 20-5 12-18 20-31 16-9-3-15-10-17-18-10 7-25 4-32-6-9-13-4-30 8-37-2-4-3-8-2-12z"/></g>
+  <g data-region="nuclear_region" fill="#B8B5FF" stroke="none"><path d="M36 47c2-9 12-13 20-8 7 5 7 15 0 21-8 6-19 1-20-8v-5zM77 43c5-8 16-8 21-1 6 8 1 19-8 21-9 2-18-7-13-20zM87 78c3-9 15-12 22-5 7 7 4 18-5 22-9 4-20-5-17-17zM50 88c5-9 17-10 23-2 6 8 1 19-9 21-10 2-20-9-14-19zM23 76c3-8 13-11 20-5 7 6 4 17-4 21-9 4-20-6-16-16z"/></g>
+  <g data-region="cell_feature" fill="none" stroke="#F4A261" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="51" cy="47" r="3"/><circle cx="92" cy="43" r="3"/><circle cx="100" cy="80" r="3"/><circle cx="62" cy="91" r="3"/><path d="M69 41c3 7 3 14 0 21M48 99c4-5 7-9 9-14"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M22 45c2-16 16-26 31-22 10 2 15 9 16 18 4-12 15-20 28-16 15 5 20 20 14 33 10 2 17 12 16 24-2 16-17 25-31 20-5 12-18 20-31 16-9-3-15-10-17-18-10 7-25 4-32-6-9-13-4-30 8-37-2-4-3-8-2-12z"/></g>
+</svg>

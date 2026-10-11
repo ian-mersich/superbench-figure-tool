@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Blot Transfer Unit</title>
+  <desc id="desc">Editable electroblot transfer apparatus schematic with transfer cassette submerged between electrodes.</desc>
+  <g data-region="instrument_body" fill="#DCE4EC" stroke="none"><rect x="13" y="32" width="102" height="71" rx="6"/><rect x="36" y="39" width="56" height="57" rx="3"/></g>
+  <g data-region="instrument_detail" fill="#8EC8FF" stroke="none"><path d="M43 45h42v45H43zM50 45v45M57 45v45M64 45v45M71 45v45M78 45v45"/></g>
+  <g data-region="operational_cue" fill="none" stroke="#7B78C9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M23 48v38M18 67h10M105 48v38M100 58h10M100 76h10M29 24v8M99 24v8"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 32h102v71H13zM36 39h56v57H36zM43 45h42v45H43z"/></g>
+</svg>

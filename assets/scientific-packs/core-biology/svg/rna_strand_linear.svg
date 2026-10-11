@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">RNA Strand — Linear Form</title>
+  <desc id="desc">Original vector open single-stranded RNA schematic with one continuous backbone, distributed unpaired base marks, terminal accents, and editable semantic regions.</desc>
+
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M22 94Q30 28 44 48Q56 108 67 82Q76 18 89 35Q101 94 106 66" stroke-width="8"/>
+    <path d="M31.5 49.5 23 42M44 48l4-12M55.75 86.5 50 103M67 82l6 24M77 38.75 72 26M89 35l5-12M99.25 72.25 109 78" stroke-width="5.5"/>
+    <circle cx="22" cy="94" r="4.5" stroke-width="2.5"/><circle cx="106" cy="66" r="4.5" stroke-width="2.5"/>
+  </g>
+
+  <path data-region="backbone" d="M22 94Q30 28 44 48Q56 108 67 82Q76 18 89 35Q101 94 106 66" fill="none" stroke="#5EA9DD" stroke-linecap="round" stroke-linejoin="round" stroke-width="4.5"/>
+
+  <path data-region="base" d="M31.5 49.5 23 42M44 48l4-12M55.75 86.5 50 103M67 82l6 24M77 38.75 72 26M89 35l5-12M99.25 72.25 109 78" fill="none" stroke="#F4A261" stroke-linecap="round" stroke-width="3"/>
+
+  <g data-region="accent" fill="#B8B5FF">
+    <circle cx="22" cy="94" r="4.5"/><circle cx="106" cy="66" r="4.5"/>
+  </g>
+</svg>

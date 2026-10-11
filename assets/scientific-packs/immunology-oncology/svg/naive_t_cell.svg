@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Naïve T Cell</title>
+  <desc id="desc">Editable naïve t cell schematic with small smooth lymphocyte with a large nucleus and sparse surface features.</desc>
+  <g data-region="cell_body" fill="#C7F2EC" stroke="none"><circle cx="64" cy="66" r="38"/></g>
+  <g data-region="nucleus" fill="#B8B5FF" stroke="none"><circle cx="61" cy="67" r="27"/></g>
+  <g data-region="state_features" fill="#E76F51" stroke="none"><circle cx="93" cy="51" r="3.5"/><circle cx="96" cy="68" r="3.5"/><circle cx="88" cy="83" r="3.5"/></g>
+  <g data-region="functional_cues" fill="none" stroke="#58B8AE" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M93 51l8-4m-5 21h9m-17 15 7 6"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="64" cy="66" r="38"/><circle cx="61" cy="67" r="27"/><path d="M93 51l8-4m-5 21h9m-17 15 7 6"/></g>
+</svg>

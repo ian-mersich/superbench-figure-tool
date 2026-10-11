@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Dose–Response Curve</title>
+  <desc id="desc">Editable concentration-response curve schematic with sigmoidal concentration-response trace with midpoint cue.</desc>
+  <g data-region="assay_surface" fill="#F7F9FC" stroke="none"><rect x="10" y="13" width="108" height="102" rx="7"/></g>
+  <g data-region="measured_signal" fill="#B8B5FF" stroke="none"><circle cx="27" cy="30" r="4"/><circle cx="42" cy="32" r="4"/><circle cx="56" cy="41" r="4"/><circle cx="69" cy="65" r="4"/><circle cx="83" cy="89" r="4"/><circle cx="102" cy="99" r="4"/></g>
+  <g data-region="signal_trace" fill="none" stroke="#E76F51" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round"><path d="M24 30c23 0 32 2 40 17 9 17 10 40 44 52"/></g>
+  <g data-region="axes_or_structure" fill="none" stroke="#5EA9DD" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 105h91M21 105V23M69 65v40M21 65h48" stroke-dasharray="5 5"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="13" width="108" height="102" rx="7"/></g>
+</svg>

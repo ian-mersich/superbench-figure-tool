@@ -1,0 +1,154 @@
+:root {
+  /* Application chrome only. Editors retain their content/canvas typography. */
+  --bsd-standalone-font-family-ui: "Segoe UI Variable Text", "Segoe UI", system-ui, sans-serif;
+  --bsd-standalone-font-family-mono: "Cascadia Mono", "Segoe UI Mono", Consolas, monospace;
+  --bsd-standalone-font-size: 14px;
+  --bsd-standalone-line-height: 1.4;
+  --bsd-standalone-font-weight-regular: 400;
+  --bsd-standalone-font-weight-medium: 600;
+  --bsd-standalone-font-weight-strong: 700;
+
+  --bsd-standalone-workspace: #d4dbe1;
+  --bsd-standalone-surface: #edf2f4;
+  --bsd-standalone-surface-raised: #e7ecef;
+  --bsd-standalone-surface-muted: #dce5ea;
+  --bsd-standalone-surface-inset: #f8faf9;
+  --bsd-standalone-surface-selected: #f3e7d3;
+  --bsd-standalone-control-surface: #edf2f4;
+  --bsd-standalone-control-surface-hover: #e5ecef;
+  --bsd-standalone-control-surface-active: #dbe4e9;
+  --bsd-standalone-control-surface-selected: #f3e7d3;
+  --bsd-standalone-overlay-backdrop: rgba(23, 35, 42, 0.22);
+
+  --bsd-standalone-border: #c8d3da;
+  --bsd-standalone-border-strong: #aebdc6;
+  --bsd-standalone-divider: #d4dde2;
+
+  --bsd-standalone-text: #17232a;
+  --bsd-standalone-text-strong: #07151c;
+  --bsd-standalone-text-muted: #4f5d66;
+  --bsd-standalone-text-subtle: #525f68;
+  --bsd-standalone-text-disabled: #87939b;
+
+  --bsd-standalone-accent: #b7791f;
+  --bsd-standalone-accent-hover: #966315;
+  --bsd-standalone-accent-active: #7a4f11;
+  --bsd-standalone-accent-soft: rgba(183, 121, 31, 0.16);
+  --bsd-standalone-accent-line: rgba(183, 121, 31, 0.48);
+  --bsd-standalone-accent-contrast: #07151c;
+  --bsd-standalone-accent-hover-contrast: #ffffff;
+  --bsd-standalone-accent-active-contrast: #ffffff;
+  --bsd-standalone-focus: #7a4f11;
+  --bsd-standalone-focus-ring-width: 2px;
+  --bsd-standalone-focus-ring-offset: 2px;
+  --bsd-standalone-control-height: 30px;
+  --bsd-standalone-control-padding-inline: 10px;
+  --bsd-standalone-ribbon-command-width: 64px;
+  --bsd-standalone-ribbon-command-height: 54px;
+  --bsd-standalone-ribbon-icon-size: 24px;
+  --bsd-standalone-panel-padding: 12px;
+
+  --bsd-standalone-status-success: #256a47;
+  --bsd-standalone-status-success-soft: #e0f0e7;
+  --bsd-standalone-status-warning: #844900;
+  --bsd-standalone-status-warning-soft: #f7ead8;
+  --bsd-standalone-status-danger: #99352e;
+  --bsd-standalone-status-danger-soft: #f7e2df;
+  --bsd-standalone-status-info: #3267b1;
+  --bsd-standalone-status-info-soft: #e1eaf6;
+
+  --bsd-standalone-radius-control: 6px;
+  --bsd-standalone-radius-menu: 6px;
+  --bsd-standalone-radius-panel: 8px;
+  --bsd-standalone-radius-dialog: 10px;
+  --bsd-standalone-radius-round: 999px;
+
+  --bsd-standalone-shadow-menu: 0 10px 28px rgba(23, 35, 42, 0.18);
+  --bsd-standalone-shadow-dialog: 0 24px 64px rgba(23, 35, 42, 0.24);
+  --bsd-standalone-shadow-toast: 0 12px 36px rgba(23, 35, 42, 0.22);
+  --bsd-standalone-disabled-opacity: 0.48;
+
+  --bsd-standalone-context-row-height: 28px;
+  --bsd-standalone-menubar-height: 34px;
+  --bsd-standalone-menu-trigger-height: 30px;
+  --bsd-standalone-menu-trigger-padding-inline: 10px;
+  --bsd-standalone-menu-row-height: 28px;
+  --bsd-standalone-menu-row-padding-inline: 10px;
+  --bsd-standalone-menu-icon-size: 18px;
+  --bsd-standalone-menu-shortcut-gap: 24px;
+  --bsd-standalone-menu-separator-margin-block: 4px;
+  --bsd-standalone-menu-viewport-gutter: 8px;
+
+  --bsd-standalone-z-base: 0;
+  --bsd-standalone-z-sticky: 100;
+  --bsd-standalone-z-menu: 1000;
+  --bsd-standalone-z-popover: 1100;
+  --bsd-standalone-z-modal-backdrop: 2000;
+  --bsd-standalone-z-modal: 2010;
+  --bsd-standalone-z-toast: 3000;
+  --bsd-standalone-z-tooltip: 4000;
+
+  --bsd-standalone-motion-fast: 100ms;
+  --bsd-standalone-motion-standard: 160ms;
+  --bsd-standalone-motion-slow: 220ms;
+  --bsd-standalone-easing-standard: cubic-bezier(0.2, 0, 0, 1);
+  --bsd-standalone-easing-emphasized: cubic-bezier(0.2, 0, 0, 1.2);
+}
+
+html[data-bsd-effective-theme="dark"],
+:root[data-bsd-effective-theme="dark"],
+.bioplot-studio-root[data-bsd-effective-theme="dark"],
+.figure-studio-root[data-bsd-effective-theme="dark"],
+html[data-bsd-effective-theme="dark-graphite"],
+:root[data-bsd-effective-theme="dark-graphite"],
+.bioplot-studio-root[data-bsd-effective-theme="dark-graphite"],
+.figure-studio-root[data-bsd-effective-theme="dark-graphite"] {
+  color-scheme: dark;
+  --bsd-standalone-workspace: #111820;
+  --bsd-standalone-surface: #182129;
+  --bsd-standalone-surface-raised: #202a33;
+  --bsd-standalone-surface-muted: #121a21;
+  --bsd-standalone-surface-inset: #0f151b;
+  --bsd-standalone-surface-selected: #352812;
+  --bsd-standalone-control-surface: #202a33;
+  --bsd-standalone-control-surface-hover: #26333d;
+  --bsd-standalone-control-surface-active: #2b3945;
+  --bsd-standalone-control-surface-selected: #3a2b13;
+  --bsd-standalone-overlay-backdrop: rgba(5, 10, 14, 0.52);
+  --bsd-standalone-border: #2d3944;
+  --bsd-standalone-border-strong: #3e4d59;
+  --bsd-standalone-divider: #26323d;
+  --bsd-standalone-text: #ecf2f1;
+  --bsd-standalone-text-strong: #ffffff;
+  --bsd-standalone-text-muted: #a6b4bc;
+  --bsd-standalone-text-subtle: #8fa1ad;
+  --bsd-standalone-text-disabled: #687884;
+  --bsd-standalone-accent: #d18a24;
+  --bsd-standalone-accent-hover: #efad4d;
+  --bsd-standalone-accent-active: #f3bf6f;
+  --bsd-standalone-accent-soft: rgba(209, 138, 36, 0.2);
+  --bsd-standalone-accent-line: rgba(209, 138, 36, 0.56);
+  --bsd-standalone-accent-contrast: #10161b;
+  --bsd-standalone-accent-hover-contrast: #10161b;
+  --bsd-standalone-accent-active-contrast: #10161b;
+  --bsd-standalone-focus: #f0b35a;
+  --bsd-standalone-status-success: #65d589;
+  --bsd-standalone-status-success-soft: #163824;
+  --bsd-standalone-status-warning: #f0b35a;
+  --bsd-standalone-status-warning-soft: #33260f;
+  --bsd-standalone-status-danger: #e18b6b;
+  --bsd-standalone-status-danger-soft: #3a1f1a;
+  --bsd-standalone-status-info: #80b7ff;
+  --bsd-standalone-status-info-soft: #14263d;
+  --bsd-standalone-shadow-menu: 0 14px 32px rgba(0, 0, 0, 0.42);
+  --bsd-standalone-shadow-dialog: 0 28px 72px rgba(0, 0, 0, 0.52);
+  --bsd-standalone-shadow-toast: 0 14px 36px rgba(0, 0, 0, 0.42);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --bsd-standalone-motion-fast: 0.01ms;
+    --bsd-standalone-motion-standard: 0.01ms;
+    --bsd-standalone-motion-slow: 0.01ms;
+  }
+}

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Adaptor Protein</title>
+  <desc id="desc">Editable signaling adaptor protein schematic with multi-domain protein bridging two partners.</desc>
+  <g data-region="protein_body" fill="#8EC8FF" stroke="none"><path d="M42 49c0-14 11-25 25-25h12c14 0 25 11 25 25v13c0 14-11 25-25 25H67c-14 0-25-11-25-25z"/><circle cx="73" cy="55" r="14"/></g>
+  <g data-region="interaction_site" fill="none" stroke="#7B78C9" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M42 55H28L17 41M104 55h12M73 87v19M58 32l-9-10M88 32l9-10"/></g>
+  <g data-region="molecular_feature" fill="none" stroke="#F4A261" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="15" cy="38" r="9"/><circle cx="116" cy="55" r="9"/><circle cx="73" cy="109" r="9"/><circle cx="46" cy="19" r="7"/><circle cx="100" cy="19" r="7"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M42 49c0-14 11-25 25-25h12c14 0 25 11 25 25v13c0 14-11 25-25 25H67c-14 0-25-11-25-25z"/><circle cx="73" cy="55" r="14"/><path d="M42 55H28L17 41M104 55h12M73 87v19M58 32l-9-10M88 32l9-10"/><circle cx="15" cy="38" r="9"/><circle cx="116" cy="55" r="9"/><circle cx="73" cy="109" r="9"/><circle cx="46" cy="19" r="7"/><circle cx="100" cy="19" r="7"/></g>
+</svg>

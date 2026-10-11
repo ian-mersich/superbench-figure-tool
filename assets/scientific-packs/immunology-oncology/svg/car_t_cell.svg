@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Chimeric Antigen Receptor T Cell</title>
+  <desc id="desc">Editable chimeric antigen receptor t cell schematic with T cell bearing several large modular chimeric antigen receptors.</desc>
+  <g data-region="cell_body" fill="#C7F2EC" stroke="none"><circle cx="64" cy="69" r="38"/></g>
+  <g data-region="nucleus" fill="#B8B5FF" stroke="none"><ellipse cx="61" cy="70" rx="22" ry="24"/></g>
+  <g data-region="state_features" fill="none" stroke="#E76F51" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><path d="M31 47l-8-10-7 5m7-5 2-9M55 33l-3-13-8-2m8 2 7-5M84 35l5-13-6-6m6 6 9-1M98 52l11-8 7 4m-7-4 2-9"/></g>
+  <g data-region="functional_cues" fill="none" stroke="#58B8AE" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M30 48l7 7m18-22 3 9m26-7-5 9m19 8-8 6"/><path d="M45 91l7-6 7 7 8-7 8 6"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="64" cy="69" r="38"/><ellipse cx="61" cy="70" rx="22" ry="24"/><path d="M31 47l-8-10-7 5m7-5 2-9M55 33l-3-13-8-2m8 2 7-5M84 35l5-13-6-6m6 6 9-1M98 52l11-8 7 4m-7-4 2-9"/></g>
+</svg>

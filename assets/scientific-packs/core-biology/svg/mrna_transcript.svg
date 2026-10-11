@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">mRNA Transcript</title>
+  <desc id="desc">Original vector mature mRNA with a 5-prime cap, untranslated regions, segmented coding sequence, poly(A) tail, and editable semantic regions.</desc>
+  <g data-region="utr" fill="none" stroke="#8EC8FF" stroke-linecap="round" stroke-width="5">
+    <path d="M27 64h19M89 64h13"/>
+  </g>
+  <g data-region="coding_region" fill="#F4A261">
+    <rect x="45" y="53" width="17" height="22" rx="4"/>
+    <rect x="64" y="53" width="24" height="22" rx="4"/>
+  </g>
+  <g data-region="cap_tail" fill="#B8B5FF">
+    <path d="M16 54h8l5 10-5 10h-8l-5-10z"/>
+    <circle cx="106" cy="64" r="3.2"/><circle cx="113" cy="64" r="3.2"/><circle cx="120" cy="64" r="3.2"/>
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M27 64h18M89 64h13M102 64h20" stroke-width="3"/>
+    <rect x="45" y="53" width="17" height="22" rx="4" stroke-width="3"/>
+    <rect x="64" y="53" width="24" height="22" rx="4" stroke-width="3"/>
+    <path d="M16 54h8l5 10-5 10h-8l-5-10z" stroke-width="2.75"/>
+    <path d="M50 49v-5M83 49v-5" stroke-width="2.5"/>
+  </g>
+</svg>

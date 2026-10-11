@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Transwell Culture — Monoculture</title>
+  <desc id="desc">Editable monoculture form of permeable-support culture, shown with monoculture and co-culture permeable-insert forms.</desc>
+  <g data-region="model_context" fill="#C7F2EC" stroke="none"><path d="M12 31h104v83H12z"/><path d="M20 73h88v35H20z"/></g>
+  <g data-region="primary_population" fill="#8EC8FF" stroke="none"><circle cx="38" cy="60" r="7"/><circle cx="58" cy="59" r="7"/><circle cx="78" cy="61" r="7"/><circle cx="96" cy="59" r="7"/></g>
+  <g data-region="secondary_feature" fill="#B8B5FF" stroke="none"><circle cx="44" cy="91" r="3"/><circle cx="64" cy="98" r="3"/><circle cx="84" cy="89" r="3"/></g>
+  <g data-region="model_structure" fill="none" stroke="#F4A261" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M25 39h78l-8 37H33zM33 76h62M42 76v15m22-15v22m20-22v13M42 86l-5-7m5 7 5-7M64 93l-5-7m5 7 5-7M84 84l-5-7m5 7 5-7"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 31h104v83H12zM25 39h78l-8 37H33z"/></g>
+</svg>

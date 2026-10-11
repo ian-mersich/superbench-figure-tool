@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">CO₂ Incubator</title>
+  <desc id="desc">Editable carbon-dioxide cell-culture incubator schematic with insulated culture chamber with shelves and gas display.</desc>
+  <g data-region="instrument_body" fill="#DCE4EC" stroke="none"><rect x="20" y="10" width="88" height="108" rx="7"/><rect x="30" y="29" width="68" height="78" rx="3"/></g>
+  <g data-region="instrument_detail" fill="#8EC8FF" stroke="none"><path d="M36 48h56M36 69h56M36 90h56"/><rect x="32" y="16" width="42" height="9" rx="2"/></g>
+  <g data-region="operational_cue" fill="none" stroke="#7B78C9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M80 20h10M86 17l4 3-4 3M99 47v45M103 52v14M103 74v14"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10h88v108H20zM30 29h68v78H30z"/></g>
+</svg>

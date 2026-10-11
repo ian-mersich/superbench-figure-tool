@@ -1,0 +1,74 @@
+{
+  "schema": "figureStudio.pptxCompatibility.v1",
+  "version": "pptx.v1",
+  "productVersion": "1.0.0-beta.6",
+  "direction": "Common scientific-deck PPTX interchange",
+  "googleSlides": "Use the exported PPTX, PDF, SVG, or PNG files. Direct cloud integration is not included.",
+  "fidelityClaim": "Bounded editable interchange; not universal PowerPoint or Google Slides round-trip fidelity.",
+  "supported": {
+    "document": [
+      "slide order",
+      "one uniform slide size",
+      "plain speaker notes",
+      "simple solid backgrounds from slide, layout, or master"
+    ],
+    "text": [
+      "editable text boxes",
+      "ordinary title/body placeholder geometry and text defaults",
+      "theme major/minor Latin font families",
+      "font family",
+      "font size",
+      "bold",
+      "italic",
+      "underline",
+      "alignment",
+      "solid text color",
+      "supported run-level spans"
+    ],
+    "shapes": [
+      "rectangle",
+      "rounded rectangle",
+      "ellipse",
+      "triangle",
+      "solid fill",
+      "solid stroke",
+      "editable groups of supported shapes, text, images, and straight connectors"
+    ],
+    "lines": [
+      "straight lines",
+      "straight connectors",
+      "solid/dashed/dotted strokes",
+      "basic arrowheads"
+    ],
+    "images": [
+      "embedded PNG",
+      "embedded JPEG",
+      "embedded SVG"
+    ]
+  },
+  "approximated": [
+    "Per-slide Figure Tool geometry is scaled to the presentation's uniform slide size.",
+    "Theme colors are resolved to solid RGB colors. Supported directly drawn master/layout artwork is copied onto each slide; master/layout editing is not preserved.",
+    "Ordinary title/body placeholders become independent text. Direct fields retain cached text; date and slide-number fields no longer update automatically.",
+    "Supported run-level text spans remain editable. Superscript, subscript, baseline shift, strike, highlight, and text effects are approximated with warnings.",
+    "Gradient and pattern paints use the first supported solid color when available; otherwise they are omitted with a warning.",
+    "Groups containing unsupported Figure Tool vector children are embedded as one editable-position SVG image.",
+    "Elbow and curved connectors are reduced to straight connectors."
+  ],
+  "unsupported": [
+    "SmartArt and diagrams",
+    "charts and embedded workbooks",
+    "tables",
+    "audio and video",
+    "animations and transitions",
+    "macros, OLE objects, and embedded files",
+    "3D models",
+    "comments, collaboration metadata, and cloud links",
+    "custom geometry/freeform PowerPoint paths",
+    "theme, slide-master, and layout round-trip fidelity beyond simple copied artwork",
+    "advanced typography, WordArt, equations, and text effects",
+    "gradients, patterns, artistic effects, blend modes, and advanced transparency",
+    "direct Google Slides cloud integration"
+  ],
+  "warningPolicy": "Import and export return structured warnings. Unsupported content is never reported as editable or silently claimed as preserved."
+}

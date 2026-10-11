@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Endosome</title>
+  <desc id="desc">Original vector sorting endosome with an asymmetric tubular compartment, intraluminal cargo vesicles, a membrane accent, and editable semantic regions.</desc>
+
+  <path data-region="lumen" fill="#E8FAF6" d="M55 25c20-5 39 7 45 25 3 9 2 18-3 26 8 3 14 7 20 14 4 5-1 12-7 9-7-4-13-9-22-11-9 10-23 16-38 13-17-3-29-14-31-30-2-15 5-30 18-39 5-3 11-6 18-7z"/>
+  <path data-region="membrane" d="M55 25c20-5 39 7 45 25 3 9 2 18-3 26 8 3 14 7 20 14 4 5-1 12-7 9-7-4-13-9-22-11-9 10-23 16-38 13-17-3-29-14-31-30-2-15 5-30 18-39 5-3 11-6 18-7z" fill="none" stroke="#7DD3C7" stroke-linecap="round" stroke-linejoin="round" stroke-width="7"/>
+
+  <g data-region="cargo" fill="#F4A261">
+    <circle cx="48" cy="55" r="6"/><circle cx="69" cy="46" r="4.5"/><circle cx="80" cy="66" r="7"/>
+    <circle cx="53" cy="79" r="4"/><circle cx="69" cy="84" r="3"/>
+    <path d="M35 67l9-4 7 6-3 9-9 1-6-6z"/>
+  </g>
+
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M55 25c20-5 39 7 45 25 3 9 2 18-3 26 8 3 14 7 20 14 4 5-1 12-7 9-7-4-13-9-22-11-9 10-23 16-38 13-17-3-29-14-31-30-2-15 5-30 18-39 5-3 11-6 18-7z" stroke-width="3.5"/>
+    <circle cx="48" cy="55" r="6"/><circle cx="69" cy="46" r="4.5"/><circle cx="80" cy="66" r="7"/><path d="M35 67l9-4 7 6-3 9-9 1-6-6z"/>
+  </g>
+</svg>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Smooth Muscle Cell</title>
+  <desc id="desc">Editable vascular smooth muscle cell schematic with elongated contractile cell with central cigar-shaped nucleus.</desc>
+  <g data-region="cell_body" fill="#C7F2EC" stroke="none"><path d="M10 65c24-28 42-36 60-29 17 6 30 23 48 29-18 7-31 24-48 29-18 7-36-1-60-29z"/></g>
+  <g data-region="nuclear_region" fill="#B8B5FF" stroke="none"><ellipse cx="65" cy="65" rx="25" ry="8"/></g>
+  <g data-region="cell_feature" fill="none" stroke="#F4A261" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M24 65h18M88 65h17"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M10 65c24-28 42-36 60-29 17 6 30 23 48 29-18 7-31 24-48 29-18 7-36-1-60-29z"/><ellipse cx="65" cy="65" rx="25" ry="8"/></g>
+</svg>

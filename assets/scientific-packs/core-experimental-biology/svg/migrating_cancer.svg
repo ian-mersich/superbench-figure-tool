@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Migrating Cancer Cell</title>
+  <desc id="desc">Editable migrating malignant cell schematic with polarized malignant cell with a leading edge and trailing tail.</desc>
+  <g data-region="cell_body" fill="#C7F2EC" stroke="none"><path d="M18 69c12-25 34-38 57-29 14 5 20 15 36 14-10 9-10 20 0 28-17-1-28 10-47 9-23-1-38-9-46-22z"/></g>
+  <g data-region="nuclear_region" fill="#B8B5FF" stroke="none"><ellipse cx="62" cy="65" rx="19" ry="23" transform="rotate(-15 62 65)"/></g>
+  <g data-region="cell_feature" fill="none" stroke="#F4A261" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 64L8 54M21 73L7 83M91 51l23-8M91 79l24 9"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M18 69c12-25 34-38 57-29 14 5 20 15 36 14-10 9-10 20 0 28-17-1-28 10-47 9-23-1-38-9-46-22z"/><ellipse cx="62" cy="65" rx="19" ry="23" transform="rotate(-15 62 65)"/><path d="M20 64L8 54M21 73L7 83M91 51l23-8M91 79l24 9"/></g>
+</svg>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Microtubule Network</title>
+  <desc id="desc">Editable microtubule cytoskeleton schematic with radial hollow filaments from a perinuclear organizing center.</desc>
+  <g data-region="structure" fill="#8EC8FF" stroke="none"><circle cx="64" cy="64" r="10"/></g>
+  <g data-region="functional_detail" fill="none" stroke="#7B78C9" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M64 54C53 39 40 26 22 18M57 58C40 51 25 50 10 54M55 68C38 73 24 82 13 98M61 73c-3 15-1 29 3 43M69 73c10 14 23 23 41 31M73 66c16 1 30-3 44-12M71 58c11-12 18-24 22-40"/></g>
+  <g data-region="accent" fill="#F4A261" stroke="none"><circle cx="22" cy="18" r="4"/><circle cx="10" cy="54" r="4"/><circle cx="13" cy="98" r="4"/><circle cx="64" cy="116" r="4"/><circle cx="110" cy="104" r="4"/><circle cx="117" cy="54" r="4"/><circle cx="93" cy="18" r="4"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="64" cy="64" r="10"/><path d="M64 54C53 39 40 26 22 18M57 58C40 51 25 50 10 54M55 68C38 73 24 82 13 98M61 73c-3 15-1 29 3 43M69 73c10 14 23 23 41 31M73 66c16 1 30-3 44-12M71 58c11-12 18-24 22-40"/></g>
+</svg>

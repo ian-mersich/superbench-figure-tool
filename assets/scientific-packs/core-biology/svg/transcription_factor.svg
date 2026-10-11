@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Transcription Factor</title>
+  <desc id="desc">Original vector DNA-bound transcription factor with paired protein lobes, a DNA-gripping domain, and a flexible activation domain.</desc>
+  <g data-region="body" fill="#8EC8FF">
+    <path d="M27 57c0-14 11-25 25-25 12 0 22 8 24 19 2 10-5 19-16 23-14 5-33-2-33-17z"/>
+    <path d="M61 53c2-14 14-23 28-20 15 3 23 17 18 30-5 13-22 18-35 11-8-4-12-12-11-21z"/>
+  </g>
+  <g data-region="dna_binding" fill="#5EA9DD">
+    <path d="M43 68c5-4 11-4 16 0l-2 20H45z"/>
+    <path d="M70 68c5-4 11-4 16 0l-2 20H72z"/>
+  </g>
+  <g data-region="activation_domain" fill="#F4A261">
+    <circle cx="93" cy="27" r="6"/>
+    <circle cx="105" cy="22" r="4"/>
+    <circle cx="111" cy="32" r="3"/>
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M27 57c0-14 11-25 25-25 12 0 22 8 24 19 2 10-5 19-16 23-14 5-33-2-33-17z" stroke-width="3.5"/>
+    <path d="M61 53c2-14 14-23 28-20 15 3 23 17 18 30-5 13-22 18-35 11-8-4-12-12-11-21z" stroke-width="3.5"/>
+    <path d="M43 68c5-4 11-4 16 0l-2 20H45zM70 68c5-4 11-4 16 0l-2 20H72z" stroke-width="2.75"/>
+    <path d="M17 91c10-8 20-8 30 0s20 8 30 0 20-8 34 0" stroke-width="3"/>
+    <path d="M17 103c10-8 20-8 30 0s20 8 30 0 20-8 34 0" stroke-width="3"/>
+    <path d="m26 88 4 17m11-18 3 18m14-16 4 13m11-13 4 14m12-16 3 18m11-17 3 16" stroke-width="1.75"/>
+    <path d="M88 35c4-3 6-5 8-7" stroke-width="2.75"/>
+    <circle cx="93" cy="27" r="6" stroke-width="2.75"/>
+  </g>
+</svg>

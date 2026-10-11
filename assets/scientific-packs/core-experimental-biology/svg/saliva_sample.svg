@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Saliva Sample</title>
+  <desc id="desc">Editable saliva biospecimen schematic with sealed collection tube with clear oral-fluid sample.</desc>
+  <g data-region="sample_container" fill="#DCE4EC" stroke="none"><path d="M42 27h44l-4 88H46z"/><rect x="38" y="12" width="52" height="17" rx="4"/></g>
+  <g data-region="sample_material" fill="#C7F2EC" stroke="none"><path d="M47 76h34l-2 34H49z"/></g>
+  <g data-region="sample_label" fill="#8EC8FF" stroke="none"><rect x="50" y="45" width="28" height="22" rx="3"/><path d="M57 56h14"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M42 27h44l-4 88H46zM38 12h52v17H38zM47 76h34l-2 34H49z"/></g>
+</svg>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Actin Cytoskeleton — Bundle</title>
+  <desc id="desc">Editable bundle form of filamentous actin network, shown with parallel bundle and branched meshwork forms.</desc>
+  <g data-region="structure" fill="#8EC8FF" stroke="none"><path d="M14 45c24 5 42 4 59-3s28-5 41 2v40c-14-7-28-8-44-1s-34 8-56 2z"/></g>
+  <g data-region="functional_detail" fill="none" stroke="#7B78C9" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 51c24 4 42 3 57-4s26-6 39 1M16 62c24 4 43 3 58-4s26-6 39 1M16 73c24 4 43 3 58-4s26-6 39 1M16 84c23 3 40 2 55-5s28-5 42 1"/></g>
+  <g data-region="accent" fill="#F4A261" stroke="none"><circle cx="25" cy="52" r="3"/><circle cx="47" cy="59" r="3"/><circle cx="73" cy="56" r="3"/><circle cx="95" cy="65" r="3"/><circle cx="58" cy="78" r="3"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M14 45c24 5 42 4 59-3s28-5 41 2v40c-14-7-28-8-44-1s-34 8-56 2z"/><path d="M17 51c24 4 42 3 57-4s26-6 39 1M16 62c24 4 43 3 58-4s26-6 39 1M16 73c24 4 43 3 58-4s26-6 39 1M16 84c23 3 40 2 55-5s28-5 42 1"/></g>
+</svg>

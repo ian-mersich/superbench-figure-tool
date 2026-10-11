@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Sequencing Instrument</title>
+  <desc id="desc">Editable nucleic-acid sequencing instrument schematic with benchtop sequencer with flow-cell bay and run display.</desc>
+  <g data-region="instrument_body" fill="#DCE4EC" stroke="none"><rect x="15" y="13" width="98" height="103" rx="10"/><path d="M24 23h80v48H24z"/></g>
+  <g data-region="instrument_detail" fill="#8EC8FF" stroke="none"><rect x="33" y="32" width="39" height="29" rx="4"/><rect x="82" y="32" width="13" height="29" rx="3"/><circle cx="88" cy="47" r="4"/></g>
+  <g data-region="operational_cue" fill="none" stroke="#7B78C9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M39 53l8-9 7 5 11-12M29 85h69M29 97h49M90 91l8 6-8 6"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 13h98v103H15zM24 23h80v48H24zM33 32h39v29H33zM82 32h13v29H82z"/></g>
+</svg>

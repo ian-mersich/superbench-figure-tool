@@ -1,0 +1,21 @@
+{
+  "dependencies": {
+    "fabric": "7.3.1",
+    "jspdf": "4.2.1",
+    "pdf-lib": "1.17.1",
+    "pdfjs-dist": "5.7.284",
+    "svg2pdf.js": "2.7.0"
+  },
+  "description": "Superbench Figure Tool scientific figure and presentation browser editor.",
+  "devDependencies": {},
+  "license": "Apache-2.0",
+  "name": "@superbench/figure-tool",
+  "private": true,
+  "scripts": {
+    "qa:vector-engine": "node --test tests/vectorEngine.test.mjs",
+    "start": "python -m http.server 4173 --bind 127.0.0.1",
+    "validate:assets": "python scripts/validate-scientific-assets.py --library assets/scientific-packs/library.json --require-public-release",
+    "validate:vendor": "python scripts/validate-vendor-bundle.py"
+  },
+  "version": "1.0.0-beta.6"
+}

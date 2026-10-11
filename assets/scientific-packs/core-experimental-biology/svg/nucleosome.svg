@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Nucleosome</title>
+  <desc id="desc">Editable nucleosome core particle schematic with DNA wrapped around a histone core.</desc>
+  <g data-region="structure" fill="#8EC8FF" stroke="none"><circle cx="64" cy="64" r="28"/><circle cx="54" cy="55" r="12"/><circle cx="74" cy="55" r="12"/><circle cx="54" cy="74" r="12"/><circle cx="74" cy="74" r="12"/></g>
+  <g data-region="functional_detail" fill="none" stroke="#7B78C9" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 45c19-15 37-17 57-8 23 10 36 31 26 48-9 15-34 17-48 4-15-14-12-35 4-44 17-10 40-3 51 14 9 14 13 20 19 21"/></g>
+  <g data-region="accent" fill="#F4A261" stroke="none"><circle cx="64" cy="64" r="4"/><path d="M16 39l-5 6 7 4M115 74l5 6-7 4"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="64" cy="64" r="28"/><path d="M11 45c19-15 37-17 57-8 23 10 36 31 26 48-9 15-34 17-48 4-15-14-12-35 4-44 17-10 40-3 51 14 9 14 13 20 19 21"/></g>
+</svg>

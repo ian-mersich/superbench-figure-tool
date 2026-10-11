@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Thermal Cycler</title>
+  <desc id="desc">Editable polymerase chain reaction thermal cycler schematic with heated block instrument with hinged lid.</desc>
+  <g data-region="instrument_body" fill="#DCE4EC" stroke="none"><path d="M19 55h90v51c0 6-5 11-11 11H30c-6 0-11-5-11-11z"/><path d="M26 25h76l7 30H19z"/></g>
+  <g data-region="instrument_detail" fill="#8EC8FF" stroke="none"><rect x="34" y="68" width="60" height="30" rx="4"/><path d="M39 72h50v16H39z"/></g>
+  <g data-region="operational_cue" fill="none" stroke="#7B78C9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M42 77h18M70 77h14M42 84h10M31 106h66M38 43h52"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 55h90v51c0 6-5 11-11 11H30c-6 0-11-5-11-11zM26 25h76l7 30H19zM34 68h60v30H34z"/></g>
+</svg>

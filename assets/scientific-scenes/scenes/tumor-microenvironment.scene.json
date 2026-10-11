@@ -1,0 +1,59 @@
+{
+  "schema": "figureStudio.scientificScene.v1",
+  "id": "tumor-microenvironment",
+  "name": "Tumor microenvironment",
+  "summary": "Tumor, immune, stromal, and vascular cells arranged around editable intercellular signals.",
+  "source_record_id": "source.figure-studio-scientific-scenes.2026-08-30",
+  "rights_record_id": "rights.figure-studio-scientific-scenes.cc0.2026-08-30",
+  "canvas": {"width": 960, "height": 540, "width_in": 10, "height_in": 5.625, "background_role": "background"},
+  "palette": {
+    "background": "#F7F9FC",
+    "surface": "#FFFFFF",
+    "ink": "#26323D",
+    "muted": "#667085",
+    "tumor": "#E76F51",
+    "immune": "#4F7CAC",
+    "stroma": "#C7A26A",
+    "vascular": "#2A9D8F",
+    "signal": "#8D7CC1"
+  },
+  "layers": [
+    {"id": "context", "name": "Tissue context"},
+    {"id": "biology", "name": "Cells and signals"},
+    {"id": "relationships", "name": "Cell-cell relationships"},
+    {"id": "labels", "name": "Editable labels"}
+  ],
+  "nodes": [
+    {"id": "niche", "type": "shape", "shape": "rounded_rect", "layer_id": "context", "x": 76, "y": 72, "width": 808, "height": 414, "radius": 34, "fill_role": "surface", "stroke_role": "muted", "stroke_width": 1.5},
+    {"id": "tumor_cell", "type": "asset", "layer_id": "biology", "asset_id": "exp.cell.cancer_cell.round", "top_level": true, "x": 402, "y": 204, "width": 152, "height": 142, "palette_overrides": {"cell_body": "tumor", "cell_feature": "signal"}},
+    {"id": "t_cell", "type": "asset", "layer_id": "biology", "asset_id": "core.cell.t_cell", "top_level": true, "x": 148, "y": 104, "width": 112, "height": 104, "palette_overrides": {"cytoplasm": "immune", "receptor": "signal"}},
+    {"id": "nk_cell", "type": "asset", "layer_id": "biology", "asset_id": "core.cell.nk_cell", "top_level": true, "x": 154, "y": 334, "width": 112, "height": 104, "palette_overrides": {"cytoplasm": "immune", "granule": "tumor"}},
+    {"id": "macrophage", "type": "asset", "layer_id": "biology", "asset_id": "core.cell.macrophage", "top_level": true, "x": 682, "y": 102, "width": 118, "height": 108, "palette_overrides": {"cytoplasm": "immune", "vacuole": "signal"}},
+    {"id": "fibroblast", "type": "asset", "layer_id": "biology", "asset_id": "exp.cell.fibroblast", "top_level": true, "x": 681, "y": 328, "width": 132, "height": 112, "palette_overrides": {"cell_body": "stroma", "cell_feature": "signal"}},
+    {"id": "endothelium", "type": "asset", "layer_id": "biology", "asset_id": "exp.cell.endothelial", "top_level": true, "x": 412, "y": 382, "width": 140, "height": 70, "palette_overrides": {"cell_body": "vascular"}},
+    {"id": "chemokine", "type": "asset", "layer_id": "biology", "asset_id": "exp.protein.chemokine", "top_level": true, "x": 300, "y": 370, "width": 66, "height": 58, "palette_overrides": {"protein_body": "signal", "interaction_site": "immune"}},
+    {"id": "title", "type": "text", "layer_id": "labels", "x": 42, "y": 18, "width": 650, "height": 34, "text": "Tumor–immune–stromal microenvironment", "placeholder": true, "editable": true, "font_size": 25, "fill_role": "ink", "align": "left"},
+    {"id": "tumor_label", "type": "text", "layer_id": "labels", "x": 394, "y": 350, "width": 170, "height": 24, "text": "Tumor cell", "placeholder": true, "editable": true, "font_size": 16, "fill_role": "tumor", "align": "center"},
+    {"id": "t_cell_label", "type": "text", "layer_id": "labels", "x": 142, "y": 211, "width": 124, "height": 24, "text": "CD8 T cell", "placeholder": true, "editable": true, "font_size": 14, "fill_role": "immune", "align": "center"},
+    {"id": "nk_label", "type": "text", "layer_id": "labels", "x": 142, "y": 440, "width": 136, "height": 24, "text": "NK cell", "placeholder": true, "editable": true, "font_size": 14, "fill_role": "immune", "align": "center"},
+    {"id": "macrophage_label", "type": "text", "layer_id": "labels", "x": 666, "y": 211, "width": 150, "height": 24, "text": "Macrophage", "placeholder": true, "editable": true, "font_size": 14, "fill_role": "immune", "align": "center"},
+    {"id": "fibroblast_label", "type": "text", "layer_id": "labels", "x": 674, "y": 440, "width": 146, "height": 24, "text": "Fibroblast", "placeholder": true, "editable": true, "font_size": 14, "fill_role": "stroma", "align": "center"},
+    {"id": "endothelium_label", "type": "text", "layer_id": "labels", "x": 398, "y": 456, "width": 168, "height": 24, "text": "Endothelium", "placeholder": true, "editable": true, "font_size": 14, "fill_role": "vascular", "align": "center"},
+    {"id": "chemokine_label", "type": "text", "layer_id": "labels", "x": 273, "y": 431, "width": 120, "height": 22, "text": "Chemokine", "placeholder": true, "editable": true, "font_size": 13, "fill_role": "signal", "align": "center"}
+  ],
+  "groups": [
+    {"id": "tumor_compartment", "name": "Tumor compartment", "layer_id": "biology", "members": ["tumor_cell", "tumor_label"]},
+    {"id": "immune_compartment", "name": "Immune compartment", "layer_id": "biology", "members": ["t_cell", "nk_cell", "macrophage", "t_cell_label", "nk_label", "macrophage_label"]},
+    {"id": "stromal_compartment", "name": "Stromal and vascular compartment", "layer_id": "biology", "members": ["fibroblast", "endothelium", "chemokine", "fibroblast_label", "endothelium_label", "chemokine_label"]}
+  ],
+  "connectors": [
+    {"id": "t_cell_kills_tumor", "layer_id": "relationships", "from": {"node_id": "t_cell", "anchor": "right"}, "to": {"node_id": "tumor_cell", "anchor": "left"}, "relation": "inhibition", "label": "cytotoxicity", "style": {"stroke_role": "immune", "stroke_width": 2.5, "line": "solid", "terminator": "bar", "label_offset": {"x": 18, "y": 24}}},
+    {"id": "nk_cell_kills_tumor", "layer_id": "relationships", "from": {"node_id": "nk_cell", "anchor": "right"}, "to": {"node_id": "tumor_cell", "anchor": "left"}, "relation": "inhibition", "label": "granule release", "style": {"stroke_role": "immune", "stroke_width": 2.5, "line": "solid", "terminator": "bar"}},
+    {"id": "tumor_suppresses_t_cell", "layer_id": "relationships", "from": {"node_id": "tumor_cell", "anchor": "top"}, "to": {"node_id": "t_cell", "anchor": "top"}, "relation": "inhibition", "label": "checkpoint", "style": {"stroke_role": "tumor", "stroke_width": 2.5, "line": "dashed", "terminator": "bar", "label_offset": {"x": -10, "y": -18}}},
+    {"id": "macrophage_supports_tumor", "layer_id": "relationships", "from": {"node_id": "macrophage", "anchor": "left"}, "to": {"node_id": "tumor_cell", "anchor": "right"}, "relation": "activation", "label": "trophic signal", "style": {"stroke_role": "signal", "stroke_width": 2.5, "line": "solid", "terminator": "arrow"}},
+    {"id": "fibroblast_supports_tumor", "layer_id": "relationships", "from": {"node_id": "fibroblast", "anchor": "left"}, "to": {"node_id": "tumor_cell", "anchor": "right"}, "relation": "activation", "label": "matrix support", "style": {"stroke_role": "stroma", "stroke_width": 2.5, "line": "solid", "terminator": "arrow", "label_offset": {"x": 8, "y": -28}}},
+    {"id": "tumor_activates_fibroblast", "layer_id": "relationships", "from": {"node_id": "tumor_cell", "anchor": "right"}, "to": {"node_id": "fibroblast", "anchor": "left"}, "relation": "secretion", "label": "paracrine factor", "style": {"stroke_role": "tumor", "stroke_width": 2.5, "line": "dashed", "terminator": "arrow", "label_offset": {"x": 8, "y": 28}}},
+    {"id": "chemokine_recruits_t_cell", "layer_id": "relationships", "from": {"node_id": "chemokine", "anchor": "left"}, "to": {"node_id": "t_cell", "anchor": "bottom"}, "relation": "activation", "label": "recruitment", "style": {"stroke_role": "signal", "stroke_width": 2.5, "line": "dashed", "terminator": "arrow"}},
+    {"id": "endothelium_supplies_tumor", "layer_id": "relationships", "from": {"node_id": "endothelium", "anchor": "top"}, "to": {"node_id": "tumor_cell", "anchor": "bottom"}, "relation": "transport", "label": "vascular supply", "style": {"stroke_role": "vascular", "stroke_width": 2.5, "line": "solid", "terminator": "arrow", "label_offset": {"x": 92, "y": 18}}}
+  ]
+}

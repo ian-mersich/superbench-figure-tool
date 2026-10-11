@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Tumor-Glia Co-Culture</title>
+  <desc id="desc">Original vector co-culture model with a shared matrix compartment, a central tumor-like cell cluster, three separated glial-like cells, nuclei, and editable outlines.</desc>
+
+  <path data-region="matrix" fill="#FAEDEB" d="M17 36c8-16 25-22 40-17 13-8 31-4 39 9 16 3 24 18 19 32 8 13 1 30-13 35-6 15-23 21-37 14-15 7-33 0-38-15-14-7-19-24-10-37-4-7-4-14 0-21z"/>
+
+  <path data-region="tumor_cell" fill="#B89CD9" d="M62 39c12-2 23 5 27 15 9 5 12 17 7 26-3 10-13 17-24 17-9 6-21 3-27-5-11-3-17-14-14-24-2-10 5-20 15-23 4-4 10-6 16-6z"/>
+
+  <g data-region="glial_cell" fill="#7DD3C7" stroke="#7DD3C7" stroke-linecap="round" stroke-linejoin="round">
+    <g fill="none" stroke-width="4">
+      <path d="M31 39 18 30M31 39 17 44M31 39 29 22M31 39 43 27M31 39 43 43"/>
+      <path d="M96 38 110 28M96 38 111 43M96 38 99 21M96 38 84 27M96 38 84 43"/>
+      <path d="M96 91 110 101M96 91 111 85M96 91 98 108M96 91 83 102M96 91 82 87"/>
+    </g>
+    <circle cx="31" cy="39" r="7" stroke="none"/>
+    <circle cx="96" cy="38" r="7" stroke="none"/>
+    <circle cx="96" cy="91" r="7" stroke="none"/>
+  </g>
+
+  <g data-region="nucleus" fill="#592E91">
+    <ellipse cx="31" cy="39" rx="2.8" ry="2.4"/>
+    <ellipse cx="96" cy="38" rx="2.8" ry="2.4"/>
+    <ellipse cx="96" cy="91" rx="2.8" ry="2.4"/>
+    <ellipse cx="52" cy="55" rx="3.4" ry="2.8"/>
+    <ellipse cx="72" cy="52" rx="3.4" ry="2.8"/>
+    <ellipse cx="84" cy="68" rx="3.4" ry="2.8"/>
+    <ellipse cx="70" cy="84" rx="3.4" ry="2.8"/>
+    <ellipse cx="49" cy="78" rx="3.4" ry="2.8"/>
+  </g>
+
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke-width="3.25" d="M17 36c8-16 25-22 40-17 13-8 31-4 39 9 16 3 24 18 19 32 8 13 1 30-13 35-6 15-23 21-37 14-15 7-33 0-38-15-14-7-19-24-10-37-4-7-4-14 0-21z"/>
+    <path stroke-width="2.5" d="M62 39c12-2 23 5 27 15 9 5 12 17 7 26-3 10-13 17-24 17-9 6-21 3-27-5-11-3-17-14-14-24-2-10 5-20 15-23 4-4 10-6 16-6z"/>
+    <g stroke-width="1.8">
+      <path d="M59 41c1 9-1 15-6 21-4 6-5 14-2 24"/>
+      <path d="M79 46c-7 5-9 11-7 18 3 8 1 17-5 27"/>
+      <path d="M36 59c10 3 18 2 26-2 7-4 16-3 27 2"/>
+      <path d="M35 77c10-3 19-2 27 3 8 5 17 5 29 1"/>
+    </g>
+    <g stroke-width="2">
+      <circle cx="31" cy="39" r="7"/>
+      <circle cx="96" cy="38" r="7"/>
+      <circle cx="96" cy="91" r="7"/>
+    </g>
+  </g>
+</svg>

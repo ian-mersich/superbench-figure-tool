@@ -1,0 +1,178 @@
+{
+  "schema": "figureStudio.scientificScene.v1",
+  "id": "apc-t-cell-immune-synapse",
+  "name": "APC–T-cell immune synapse",
+  "summary": "Opposing APC and T-cell membranes with antigen recognition, CD28 costimulation, PD-1 checkpoint context, and a bounded signaling handoff.",
+  "source_record_id": "source.figure-studio-apc-tcell-immune-synapse.2026-09-12",
+  "rights_record_id": "rights.figure-studio-apc-tcell-immune-synapse.cc0.2026-09-12",
+  "scientific_record": {
+    "id": "science.figure-studio.apc-t-cell-immune-synapse.2026-09-12",
+    "verified_on": "2026-09-12",
+    "scope": "A locally authored, editable orientation schematic of an antigen-presenting-cell–T-cell interface with selected recognition, costimulatory, checkpoint, and proximal-signaling relationships.",
+    "relationships": [
+      {
+        "claim": "The immune synapse is represented as a specialized interface between an antigen-presenting cell and a T cell, with peptide–MHC/TCR recognition shown at the contact.",
+        "source_ids": ["grakoui-1999", "courtney-2018"]
+      },
+      {
+        "claim": "CD28 engagement by B7-family ligands is represented as a costimulatory input alongside antigen recognition.",
+        "source_ids": ["esensten-2016"]
+      },
+      {
+        "claim": "PD-1/PD-L1 engagement is shown as checkpoint context that can recruit SHP2 and preferentially attenuate CD28 signaling in the experimental systems studied.",
+        "source_ids": ["yokosuka-2012", "hui-2017"]
+      },
+      {
+        "claim": "LCK, ZAP-70, and LAT are shown only as a selected proximal handoff downstream of TCR engagement.",
+        "source_ids": ["courtney-2018"]
+      }
+    ],
+    "sources": [
+      {
+        "id": "grakoui-1999",
+        "citation": "Grakoui A et al. The immunological synapse: a molecular machine controlling T cell activation. Science. 1999;285:221–227.",
+        "doi": "10.1126/science.285.5425.221",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/10398592/",
+        "role": "Primary experimental precedent for treating the APC–T-cell contact as an organized immune-synapse interface. The starter does not reproduce its concentric molecular pattern or kinetics."
+      },
+      {
+        "id": "courtney-2018",
+        "citation": "Courtney AH, Lo W-L, Weiss A. TCR Signaling: Mechanisms of Initiation and Propagation. Trends Biochem Sci. 2018;43:108–123.",
+        "doi": "10.1016/j.tibs.2017.11.008",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/29269020/",
+        "role": "Authoritative review supporting the selected TCR–LCK–ZAP-70–LAT proximal handoff."
+      },
+      {
+        "id": "esensten-2016",
+        "citation": "Esensten JH et al. CD28 costimulation: from mechanism to therapy. Immunity. 2016;44:973–988.",
+        "doi": "10.1016/j.immuni.2016.04.020",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4932896/",
+        "role": "Authoritative review supporting CD28–B7 costimulation as a parallel input to antigen recognition."
+      },
+      {
+        "id": "yokosuka-2012",
+        "citation": "Yokosuka T et al. Programmed cell death 1 forms negative costimulatory microclusters that directly inhibit T cell receptor signaling by recruiting phosphatase SHP2. J Exp Med. 2012;209:1201–1217.",
+        "doi": "10.1084/jem.20112741",
+        "url": "https://rupress.org/jem/article/209/6/1201/41299/Programmed-cell-death-1-forms-negative",
+        "role": "Primary experimental evidence for PD-1 microclusters, SHP2 recruitment, and proximal inhibitory context."
+      },
+      {
+        "id": "hui-2017",
+        "citation": "Hui E et al. T cell costimulatory receptor CD28 is a primary target for PD-1-mediated inhibition. Science. 2017;355:1428–1433.",
+        "doi": "10.1126/science.aaf1292",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6286077/",
+        "role": "Primary biochemical and intact-cell evidence that CD28 is preferentially dephosphorylated by PD-1-recruited SHP2 in the tested systems."
+      }
+    ],
+    "design_precedents": [
+      {
+        "source_id": "grakoui-1999",
+        "figure": "Experimental synapse series",
+        "decision": "Make the APC–T-cell interface the visual anchor while avoiding a claim that this orientation schematic reproduces a mature concentric synapse."
+      },
+      {
+        "source_id": "courtney-2018",
+        "figure": "Figure 1B",
+        "decision": "Keep the LCK–ZAP-70–LAT handoff compact and visually subordinate to receptor engagement."
+      },
+      {
+        "source_id": "esensten-2016",
+        "figure": "Conceptual pathway discussion",
+        "decision": "Show CD28–B7 costimulation alongside peptide–MHC/TCR recognition rather than as a downstream TCR node."
+      },
+      {
+        "source_id": "yokosuka-2012",
+        "figure": "Figures 6–8",
+        "decision": "Use a distinct PD-1/SHP2 branch and an inhibition-bar terminator without implying therapy or response magnitude."
+      },
+      {
+        "source_id": "hui-2017",
+        "figure": "Figures 2–3",
+        "decision": "Aim the qualified checkpoint branch toward CD28 and state that the preference is specific to the cited experimental systems."
+      }
+    ],
+    "limitations": [
+      "This starter is a qualitative orientation schematic, not a canonical or complete immune-synapse receptor catalog.",
+      "Relationships are not quantitative, stoichiometric, kinetic, temporal, or causal-inference claims.",
+      "The side-by-side overview and separated contact details do not claim molecular scale, abundance, colocalization, simultaneous occupancy, or a mature concentric synapse pattern.",
+      "APC subtype, T-cell lineage or state, MHC class, peptide identity, ligand density, species, and experimental context are intentionally unspecified.",
+      "The LCK–ZAP-70–LAT sequence is a selected proximal handoff, not a complete or computable signaling pathway.",
+      "The PD-1/SHP2-to-CD28 relationship is limited to the cited experimental contexts and is not a clinical or treatment-response claim."
+    ],
+    "authorship": "Original Figure Studio scene recipe and preview assembled from already released Figure Studio vector assets and original primitives; no third-party artwork, database diagram, or commercial visual content was copied, traced, or embedded."
+  },
+  "canvas": {
+    "width": 960,
+    "height": 540,
+    "width_in": 10,
+    "height_in": 5.625,
+    "background_role": "background"
+  },
+  "palette": {
+    "background": "#F6F8FB",
+    "surface": "#FFFFFF",
+    "ink": "#26323D",
+    "muted": "#667085",
+    "border": "#D9E4EC",
+    "apc": "#C7F2EC",
+    "tcell": "#D8E9FA",
+    "recognition": "#4F7CAC",
+    "costimulation": "#2A9D8F",
+    "checkpoint": "#B85C73",
+    "inhibition": "#C84C3A",
+    "signal": "#7B78C9",
+    "highlight": "#F4A261"
+  },
+  "layers": [
+    {"id": "cell_context", "name": "APC and T-cell context"},
+    {"id": "synapse_contacts", "name": "Selected synapse contacts"},
+    {"id": "proximal_signaling", "name": "Selected proximal signaling"},
+    {"id": "molecular_relationships", "name": "Molecular relationships"},
+    {"id": "editable_labels", "name": "Editable labels"}
+  ],
+  "nodes": [
+    {"id": "overview_panel", "type": "shape", "shape": "rounded_rect", "layer_id": "cell_context", "x": 38, "y": 88, "width": 292, "height": 360, "radius": 18, "fill_role": "surface", "stroke_role": "border", "stroke_width": 2},
+    {"id": "detail_panel", "type": "shape", "shape": "rounded_rect", "layer_id": "cell_context", "x": 348, "y": 88, "width": 574, "height": 360, "radius": 18, "fill_role": "surface", "stroke_role": "border", "stroke_width": 2},
+    {"id": "signal_output", "type": "shape", "shape": "rounded_rect", "layer_id": "proximal_signaling", "x": 654, "y": 342, "width": 130, "height": 50, "radius": 13, "fill_role": "surface", "stroke_role": "costimulation", "stroke_width": 2.4},
+    {"id": "synapse_overview", "type": "asset", "layer_id": "cell_context", "asset_id": "immuno.pathway.apc_t_cell_immune_synapse", "top_level": true, "x": 71, "y": 143, "width": 226, "height": 226, "palette_overrides": {"antigen_presenting_cell": "apc", "t_cell": "tcell", "antigen_recognition": "recognition", "costimulatory_contacts": "highlight", "outline": "ink"}},
+    {"id": "tcr_pmhc", "type": "asset", "layer_id": "synapse_contacts", "asset_id": "core.immune.tcr_engagement", "top_level": true, "x": 370, "y": 164, "width": 135, "height": 112, "palette_overrides": {"membrane": "border", "pmhc": "recognition", "peptide": "highlight", "tcr": "signal", "outline": "ink"}},
+    {"id": "cd28_b7", "type": "asset", "layer_id": "synapse_contacts", "asset_id": "immuno.membrane_signaling.cd28_b7_costimulatory_interaction", "top_level": true, "x": 539, "y": 164, "width": 135, "height": 112, "palette_overrides": {"membranes": "border", "receptor": "costimulation", "ligand": "recognition", "interaction_cues": "highlight", "outline": "ink"}},
+    {"id": "pd1_pdl1", "type": "asset", "layer_id": "synapse_contacts", "asset_id": "core.immune.pd1_pdl1_checkpoint", "top_level": true, "x": 708, "y": 164, "width": 135, "height": 112, "palette_overrides": {"membrane": "border", "pdl1": "recognition", "pd1": "checkpoint", "outline": "ink"}},
+    {"id": "lck", "type": "asset", "layer_id": "proximal_signaling", "asset_id": "core.protein.kinase", "top_level": true, "x": 378, "y": 342, "width": 56, "height": 50, "palette_overrides": {"body": "recognition", "active_site": "signal", "phosphate": "highlight"}},
+    {"id": "zap70", "type": "asset", "layer_id": "proximal_signaling", "asset_id": "core.protein.kinase", "top_level": true, "x": 469, "y": 342, "width": 56, "height": 50, "palette_overrides": {"body": "signal", "active_site": "recognition", "phosphate": "highlight"}},
+    {"id": "lat", "type": "asset", "layer_id": "proximal_signaling", "asset_id": "exp.protein.adaptor", "top_level": true, "x": 560, "y": 342, "width": 56, "height": 50, "palette_overrides": {"protein_body": "signal", "interaction_site": "recognition", "molecular_feature": "highlight"}},
+    {"id": "shp2", "type": "asset", "layer_id": "proximal_signaling", "asset_id": "exp.protein.phosphatase", "top_level": true, "x": 816, "y": 342, "width": 56, "height": 50, "palette_overrides": {"protein_body": "checkpoint", "interaction_site": "inhibition", "molecular_feature": "highlight"}},
+    {"id": "title", "type": "text", "role": "scene-title", "include_scientific_record": true, "layer_id": "editable_labels", "x": 40, "y": 18, "width": 700, "height": 32, "text": "APC–T-cell immune synapse", "placeholder": true, "editable": true, "font_size": 25, "fill_role": "ink", "align": "left"},
+    {"id": "subtitle", "type": "text", "role": "scene-subtitle", "layer_id": "editable_labels", "x": 40, "y": 53, "width": 860, "height": 20, "text": "Selected cell–cell contacts with a qualified proximal T-cell signaling handoff", "placeholder": true, "editable": true, "font_size": 15, "fill_role": "muted", "align": "left"},
+    {"id": "overview_heading", "type": "text", "layer_id": "editable_labels", "x": 58, "y": 104, "width": 240, "height": 24, "text": "Cell–cell interface", "placeholder": true, "editable": true, "font_size": 16, "fill_role": "ink", "align": "left"},
+    {"id": "apc_label", "type": "text", "layer_id": "editable_labels", "x": 48, "y": 390, "width": 162, "height": 34, "text": "Antigen-presenting cell", "placeholder": true, "editable": true, "font_size": 15, "fill_role": "costimulation", "align": "center"},
+    {"id": "tcell_label", "type": "text", "layer_id": "editable_labels", "x": 215, "y": 390, "width": 98, "height": 34, "text": "T cell", "placeholder": true, "editable": true, "font_size": 15, "fill_role": "recognition", "align": "center"},
+    {"id": "contacts_heading", "type": "text", "layer_id": "editable_labels", "x": 370, "y": 104, "width": 420, "height": 24, "text": "Selected synapse contacts", "placeholder": true, "editable": true, "font_size": 16, "fill_role": "ink", "align": "left"},
+    {"id": "tcr_label", "type": "text", "layer_id": "editable_labels", "x": 360, "y": 132, "width": 155, "height": 28, "text": "peptide–MHC · αβ TCR", "placeholder": true, "editable": true, "font_size": 15, "fill_role": "recognition", "align": "center"},
+    {"id": "cd28_label", "type": "text", "layer_id": "editable_labels", "x": 527, "y": 132, "width": 159, "height": 28, "text": "B7 (CD80/CD86) · CD28", "placeholder": true, "editable": true, "font_size": 15, "fill_role": "costimulation", "align": "center"},
+    {"id": "pd1_label", "type": "text", "layer_id": "editable_labels", "x": 704, "y": 132, "width": 143, "height": 28, "text": "PD-L1 · PD-1", "placeholder": true, "editable": true, "font_size": 15, "fill_role": "checkpoint", "align": "center"},
+    {"id": "lck_label", "type": "text", "layer_id": "editable_labels", "x": 371, "y": 400, "width": 70, "height": 24, "text": "LCK", "placeholder": true, "editable": true, "font_size": 15, "fill_role": "ink", "align": "center"},
+    {"id": "zap70_label", "type": "text", "layer_id": "editable_labels", "x": 457, "y": 400, "width": 80, "height": 24, "text": "ZAP-70", "placeholder": true, "editable": true, "font_size": 15, "fill_role": "ink", "align": "center"},
+    {"id": "lat_label", "type": "text", "layer_id": "editable_labels", "x": 548, "y": 400, "width": 80, "height": 24, "text": "LAT", "placeholder": true, "editable": true, "font_size": 15, "fill_role": "ink", "align": "center"},
+    {"id": "signal_output_label", "type": "text", "layer_id": "editable_labels", "x": 663, "y": 353, "width": 112, "height": 28, "text": "Proximal handoff", "placeholder": true, "editable": true, "font_size": 15, "fill_role": "ink", "align": "center"},
+    {"id": "shp2_label", "type": "text", "layer_id": "editable_labels", "x": 809, "y": 400, "width": 70, "height": 24, "text": "SHP2", "placeholder": true, "editable": true, "font_size": 15, "fill_role": "checkpoint", "align": "center"},
+    {"id": "checkpoint_qualifier", "type": "text", "layer_id": "editable_labels", "x": 760, "y": 420, "width": 142, "height": 26, "text": "checkpoint context", "placeholder": true, "editable": true, "font_size": 15, "fill_role": "muted", "align": "center"},
+    {"id": "limitations_note", "type": "text", "role": "limitations-note", "layer_id": "editable_labels", "x": 45, "y": 480, "width": 870, "height": 32, "text": "Qualitative orientation only — no complete receptor catalog, quantitative pathway, causal analysis, or clinical claim.", "placeholder": true, "editable": true, "font_size": 15, "fill_role": "muted", "align": "center"}
+  ],
+  "groups": [
+    {"id": "synapse_orientation", "name": "APC–T-cell interface orientation", "layer_id": "cell_context", "members": ["synapse_overview", "overview_heading", "apc_label", "tcell_label"]},
+    {"id": "antigen_recognition", "name": "Antigen recognition (pMHC–TCR)", "layer_id": "synapse_contacts", "members": ["tcr_pmhc", "tcr_label", "lck", "lck_label", "zap70", "zap70_label"]},
+    {"id": "costimulatory_contact", "name": "CD28–B7 costimulation", "layer_id": "synapse_contacts", "members": ["cd28_b7", "cd28_label", "signal_output", "signal_output_label"]},
+    {"id": "checkpoint_context", "name": "PD-1/PD-L1 checkpoint context", "layer_id": "synapse_contacts", "members": ["pd1_pdl1", "pd1_label", "shp2", "shp2_label", "checkpoint_qualifier"]},
+    {"id": "proximal_handoff", "name": "Selected LCK–ZAP-70–LAT handoff", "layer_id": "proximal_signaling", "members": ["lck", "lck_label", "zap70", "zap70_label", "lat", "lat_label", "signal_output", "signal_output_label"]}
+  ],
+  "connectors": [
+    {"id": "tcr_activates_lck", "layer_id": "molecular_relationships", "from": {"node_id": "tcr_pmhc", "anchor": "bottom"}, "to": {"node_id": "lck", "anchor": "top"}, "relation": "activation", "label": "initiates", "style": {"stroke_role": "recognition", "stroke_width": 2.3, "line": "solid", "terminator": "arrow", "label_offset": {"x": -92, "y": -22}}},
+    {"id": "lck_activates_zap70", "layer_id": "molecular_relationships", "from": {"node_id": "lck", "anchor": "right"}, "to": {"node_id": "zap70", "anchor": "left"}, "relation": "activation", "label": "activates", "style": {"stroke_role": "recognition", "stroke_width": 2.3, "line": "solid", "terminator": "arrow", "label_offset": {"x": 0, "y": -42}}},
+    {"id": "zap70_phosphorylates_lat", "layer_id": "molecular_relationships", "from": {"node_id": "zap70", "anchor": "right"}, "to": {"node_id": "lat", "anchor": "left"}, "relation": "activation", "label": "phosphorylates", "style": {"stroke_role": "signal", "stroke_width": 2.3, "line": "solid", "terminator": "arrow", "label_offset": {"x": 0, "y": -58}}},
+    {"id": "lat_supports_handoff", "layer_id": "molecular_relationships", "from": {"node_id": "lat", "anchor": "right"}, "to": {"node_id": "signal_output", "anchor": "left"}, "relation": "activation", "label": "handoff", "style": {"stroke_role": "signal", "stroke_width": 2.3, "line": "solid", "terminator": "arrow", "label_offset": {"x": 8, "y": -44}}},
+    {"id": "cd28_supports_handoff", "layer_id": "molecular_relationships", "from": {"node_id": "cd28_b7", "anchor": "bottom"}, "to": {"node_id": "signal_output", "anchor": "top"}, "relation": "activation", "label": "co-stimulates", "style": {"stroke_role": "costimulation", "stroke_width": 2.3, "line": "solid", "terminator": "arrow", "label_offset": {"x": 18, "y": -5}}},
+    {"id": "pd1_recruits_shp2", "layer_id": "molecular_relationships", "from": {"node_id": "pd1_pdl1", "anchor": "bottom"}, "to": {"node_id": "shp2", "anchor": "top"}, "relation": "binding", "label": "recruits", "style": {"stroke_role": "checkpoint", "stroke_width": 2.3, "line": "solid", "terminator": "arrow", "label_offset": {"x": 28, "y": -5}}},
+    {"id": "shp2_attenuates_costimulatory_handoff", "layer_id": "molecular_relationships", "from": {"node_id": "shp2", "anchor": "left"}, "to": {"node_id": "signal_output", "anchor": "right"}, "relation": "inhibition", "label": "attenuates CD28", "style": {"stroke_role": "inhibition", "stroke_width": 2.5, "line": "dashed", "terminator": "bar", "label_offset": {"x": 0, "y": -30}}}
+  ]
+}

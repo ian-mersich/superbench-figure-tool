@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Pericyte</title>
+  <desc id="desc">Editable pericyte schematic with elongated mural cell wrapping a short capillary segment.</desc>
+  <g data-region="cell_body" fill="#C7F2EC" stroke="none"><path d="M13 57c12 6 19 21 35 21 9 0 12-9 19-10 9-1 12 10 23 10 10 0 19-11 25-21v17c-9 15-18 21-29 21-9 0-14-5-20-11-8 8-17 11-27 10C27 93 18 85 13 74z"/></g>
+  <g data-region="nucleus" fill="#B8B5FF" stroke="none"><ellipse cx="48" cy="84" rx="12" ry="7"/></g>
+  <g data-region="state_features" fill="#8EC8FF" stroke="none"><path d="M13 40h102v27H13z"/></g>
+  <g data-region="functional_cues" fill="none" stroke="#58B8AE" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M21 53h86M24 68c13 16 22 18 36 9M77 76c14 10 23 2 27-9"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M13 57c12 6 19 21 35 21 9 0 12-9 19-10 9-1 12 10 23 10 10 0 19-11 25-21v17c-9 15-18 21-29 21-9 0-14-5-20-11-8 8-17 11-27 10C27 93 18 85 13 74z"/><ellipse cx="48" cy="84" rx="12" ry="7"/><path d="M13 40h102v27H13z"/></g>
+</svg>

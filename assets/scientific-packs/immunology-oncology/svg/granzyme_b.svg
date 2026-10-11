@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Granzyme B</title>
+  <desc id="desc">Editable granzyme b schematic with compact protease globule with a deep substrate cleft and catalytic-pocket cues.</desc>
+  <g data-region="protease_body" fill="#B8B5FF" stroke="none"><path d="M25 59c-8-14 1-30 17-34 8-13 29-13 38 0 16-4 31 10 27 26 13 10 11 30-3 38-2 17-22 26-36 17-13 9-31 0-31-15-15-3-21-20-12-32z"/></g>
+  <g data-region="catalytic_pocket" fill="#E76F51" stroke="none"><circle cx="67" cy="72" r="7"/><circle cx="77" cy="82" r="4"/></g>
+  <g data-region="substrate_cleft" fill="none" stroke="#7B78C9" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M61 43c-9 11-8 22 3 30 8 6 9 15 3 25"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M25 59c-8-14 1-30 17-34 8-13 29-13 38 0 16-4 31 10 27 26 13 10 11 30-3 38-2 17-22 26-36 17-13 9-31 0-31-15-15-3-21-20-12-32z"/><circle cx="67" cy="72" r="7"/><circle cx="77" cy="82" r="4"/></g>
+</svg>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">APC–T-cell Immune Synapse</title>
+  <desc id="desc">Editable antigen-presenting-cell–t-cell immune synapse schematic with opposing cell margins with central recognition and separate costimulatory pairs.</desc>
+  <g data-region="antigen_presenting_cell" fill="#C7F2EC" stroke="none"><path d="M5 64c0-28 17-49 40-49 11 0 19 5 25 13-8 10-12 22-12 36s4 26 12 36c-6 8-14 13-25 13-23 0-40-21-40-49z"/></g>
+  <g data-region="t_cell" fill="#8EC8FF" stroke="none"><path d="M123 64c0-28-17-49-40-49-11 0-19 5-25 13 8 10 12 22 12 36s-4 26-12 36c6 8 14 13 25 13 23 0 40-21 40-49z"/></g>
+  <g data-region="antigen_recognition" fill="none" stroke="#7B78C9" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M53 56h8l3 5 3-5h8M54 49v14M74 49v14"/><path d="M57 70h14l-2 7H59z"/></g>
+  <g data-region="costimulatory_contacts" fill="none" stroke="#F4A261" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M53 39c4-5 8-5 11 0 3-5 7-5 11 0M53 88c4-5 8-5 11 0 3-5 7-5 11 0"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 64c0-28 17-49 40-49 11 0 19 5 25 13-8 10-12 22-12 36s4 26 12 36c-6 8-14 13-25 13-23 0-40-21-40-49z"/><path d="M123 64c0-28-17-49-40-49-11 0-19 5-25 13 8 10 12 22 12 36s-4 26-12 36c6 8 14 13 25 13 23 0 40-21 40-49z"/><path d="M58 29c-7 11-10 22-10 35s3 24 10 35M70 29c7 11 10 22 10 35s-3 24-10 35"/></g>
+</svg>

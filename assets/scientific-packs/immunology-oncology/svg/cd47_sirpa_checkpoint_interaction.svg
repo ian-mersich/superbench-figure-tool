@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">CD47–SIRPα Checkpoint Interaction</title>
+  <desc id="desc">Editable cd47–sirpα checkpoint interaction schematic with compact CD47 platform contacting a multi-domain SIRPα receptor.</desc>
+  <g data-region="membranes" fill="#DCE4EC" stroke="none"><path d="M7 10h114v12H7zM7 106h114v12H7z"/></g>
+  <g data-region="receptor" fill="#C7F2EC" stroke="none"><path d="M39 106V82l-9-10 9-10-7-9 10-11 10 11-7 9 9 10-9 10v24z"/></g>
+  <g data-region="ligand" fill="#B8B5FF" stroke="none"><path d="M79 22v19l-12 12 12 12 12-12-12-12V22z"/></g>
+  <g data-region="interaction_cues" fill="none" stroke="#E76F51" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M54 69l12-11m-24 48v12m0-5 7 3m-7 2-6-3"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M39 106V82l-9-10 9-10-7-9 10-11 10 11-7 9 9 10-9 10v24z"/><path d="M79 22v19l-12 12 12 12 12-12-12-12V22z"/><path d="M7 10h114v12H7zM7 106h114v12H7z"/></g>
+</svg>

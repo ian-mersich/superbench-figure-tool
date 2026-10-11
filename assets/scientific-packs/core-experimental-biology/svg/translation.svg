@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Translation</title>
+  <desc id="desc">Editable ribosome-mediated translation schematic with ribosome moving along mRNA with an emerging polypeptide.</desc>
+  <g data-region="nucleic_acid" fill="none" stroke="#5EA9DD" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 89c20-7 38-7 54-1 18 7 37 6 56-2"/></g>
+  <g data-region="regulatory_feature" fill="none" stroke="#7B78C9" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M32 70c1-21 17-36 39-36 20 0 35 12 39 31 2 7-1 12-8 14H40c-6-1-9-4-8-9zM43 81h57c8 0 14 6 14 13 0 8-7 14-16 14H43c-10 0-16-6-16-14 0-7 6-13 16-13z"/></g>
+  <g data-region="process_feature" fill="none" stroke="#F4A261" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M67 53v30m0-30c-8-8-14-3-14 5 0 7 6 12 14 12m0-17c8-8 14-3 14 5 0 7-6 12-14 12M67 46c0-10 4-17 12-22m0 0 6-8m-6 8 9 2M18 89l9-6m-9 6 9 5"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 89c20-7 38-7 54-1 18 7 37 6 56-2M32 70c1-21 17-36 39-36 20 0 35 12 39 31 2 7-1 12-8 14H40c-6-1-9-4-8-9zM43 81h57c8 0 14 6 14 13 0 8-7 14-16 14H43c-10 0-16-6-16-14 0-7 6-13 16-13z"/></g>
+</svg>

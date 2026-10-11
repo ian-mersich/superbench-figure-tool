@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">qPCR Instrument</title>
+  <desc id="desc">Editable real-time pcr instrument schematic with thermal block instrument with fluorescence readout display.</desc>
+  <g data-region="instrument_body" fill="#DCE4EC" stroke="none"><path d="M17 53h94v54c0 6-5 11-11 11H28c-6 0-11-5-11-11z"/><path d="M24 20h80l7 33H17z"/></g>
+  <g data-region="instrument_detail" fill="#8EC8FF" stroke="none"><rect x="31" y="64" width="66" height="34" rx="4"/><path d="M38 88c7-1 9-3 13-13 4-11 8-9 11 4 3 12 7 10 10-3 3-13 9-17 18-5"/></g>
+  <g data-region="operational_cue" fill="none" stroke="#7B78C9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M37 91h54M37 91V69M35 42h58M44 32v10M56 32v10M68 32v10M80 32v10"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 53h94v54c0 6-5 11-11 11H28c-6 0-11-5-11-11zM24 20h80l7 33H17zM31 64h66v34H31z"/></g>
+</svg>

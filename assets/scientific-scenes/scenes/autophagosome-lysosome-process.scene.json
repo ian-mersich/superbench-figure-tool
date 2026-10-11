@@ -1,0 +1,189 @@
+{
+  "schema": "figureStudio.scientificScene.v1",
+  "id": "autophagosome-lysosome-process",
+  "name": "Autophagosome–lysosome process",
+  "summary": "A qualitative macroautophagy sequence from phagophore formation and selected cargo capture through autophagosome closure, lysosomal fusion, and cargo degradation.",
+  "source_record_id": "source.figure-studio-autophagosome-lysosome-process.2026-09-13",
+  "rights_record_id": "rights.figure-studio-autophagosome-lysosome-process.cc0.2026-09-13",
+  "scientific_record": {
+    "id": "science.figure-studio.autophagosome-lysosome-process.2026-09-13",
+    "verified_on": "2026-09-13",
+    "scope": "A locally authored, editable orientation schematic of selected mammalian macroautophagy stages from an open phagophore to lysosomal degradation.",
+    "relationships": [
+      {
+        "claim": "A phagophore expands around cytoplasmic material, closes as a double-membrane autophagosome, and can fuse with a lysosome to form an autolysosome where sequestered material is degraded.",
+        "source_ids": ["mizushima-komatsu-2011", "itakura-2012"]
+      },
+      {
+        "claim": "Processed, lipidated LC3 is represented on selected phagophore and autophagosome membranes as a membrane-associated marker, not as a quantitative readout.",
+        "source_ids": ["kabeya-2000", "klionsky-2021"]
+      },
+      {
+        "claim": "SQSTM1/p62 is shown only as one cargo-receptor example that can bind LC3 and ubiquitinated protein cargo and can itself be delivered for autophagic degradation.",
+        "source_ids": ["pankiv-2007", "klionsky-2021"]
+      },
+      {
+        "claim": "A static arrangement of LC3, SQSTM1/p62, autophagosomes, or autolysosomes cannot establish autophagic flux without appropriate turnover or lysosomal-blockade comparisons.",
+        "source_ids": ["klionsky-2021"]
+      }
+    ],
+    "sources": [
+      {
+        "id": "mizushima-komatsu-2011",
+        "citation": "Mizushima N, Komatsu M. Autophagy: renovation of cells and tissues. Cell. 2011;147:728–741.",
+        "doi": "10.1016/j.cell.2011.10.026",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/22078875/",
+        "role": "Authoritative review supporting the qualitative sequence from cargo sequestration through lysosomal degradation and recycling."
+      },
+      {
+        "id": "kabeya-2000",
+        "citation": "Kabeya Y et al. LC3, a mammalian homologue of yeast Apg8p, is localized in autophagosome membranes after processing. EMBO J. 2000;19:5720–5728.",
+        "doi": "10.1093/emboj/19.21.5720",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC305793/",
+        "role": "Primary experimental evidence supporting restrained LC3 membrane cues on phagophores and autophagosomes."
+      },
+      {
+        "id": "pankiv-2007",
+        "citation": "Pankiv S et al. p62/SQSTM1 binds directly to Atg8/LC3 to facilitate degradation of ubiquitinated protein aggregates by autophagy. J Biol Chem. 2007;282:24131–24145.",
+        "doi": "10.1074/jbc.M702824200",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/17580304/",
+        "role": "Primary biochemical and cell evidence supporting one SQSTM1/p62-linked ubiquitinated-cargo example."
+      },
+      {
+        "id": "itakura-2012",
+        "citation": "Itakura E, Kishi-Itakura C, Mizushima N. The hairpin-type tail-anchored SNARE syntaxin 17 targets to autophagosomes for fusion with endosomes/lysosomes. Cell. 2012;151:1256–1269.",
+        "doi": "10.1016/j.cell.2012.11.001",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/23217709/",
+        "role": "Primary evidence that completed autophagosomes, rather than open isolation membranes, become competent for lysosomal fusion. The starter does not depict the complete fusion machinery."
+      },
+      {
+        "id": "klionsky-2021",
+        "citation": "Klionsky DJ et al. Guidelines for the use and interpretation of assays for monitoring autophagy (4th edition). Autophagy. 2021;17:1–382.",
+        "doi": "10.1080/15548627.2020.1797280",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/33634751/",
+        "role": "Consensus guidance supporting the explicit boundary between static marker or compartment depictions and experimental measurement of autophagic flux."
+      }
+    ],
+    "design_precedents": [
+      {
+        "source_id": "mizushima-komatsu-2011",
+        "figure": "Figure 1 overview",
+        "decision": "Use a left-to-right organelle sequence with phagophore, closed autophagosome, lysosomal fusion, and autolysosomal degradation as distinct stages."
+      },
+      {
+        "source_id": "kabeya-2000",
+        "figure": "Figures 3–5",
+        "decision": "Use sparse LC3 membrane dots as a marker cue without implying puncta counts, concentration, or flux."
+      },
+      {
+        "source_id": "pankiv-2007",
+        "figure": "Figures 5–7",
+        "decision": "Keep SQSTM1/p62 beside one selected cargo example and connect it to LC3 rather than presenting p62 as universal cargo."
+      },
+      {
+        "source_id": "itakura-2012",
+        "figure": "Figure 7 model",
+        "decision": "Place fusion after membrane closure and keep the unspecified fusion step visually separate from the earlier phagophore."
+      },
+      {
+        "source_id": "klionsky-2021",
+        "figure": "Assay-interpretation overview",
+        "decision": "Give the static-versus-flux limitation a persistent, visible position beneath the process."
+      }
+    ],
+    "limitations": [
+      "This starter is a qualitative macroautophagy orientation schematic, not a complete or canonical pathway map.",
+      "The depicted sequence is not a measurement of autophagic flux; LC3, SQSTM1/p62, compartment abundance, or morphology at one time point cannot establish delivery and turnover rates.",
+      "Relationships are not quantitative, stoichiometric, kinetic, temporal-resolution, or causal-inference claims.",
+      "SQSTM1/p62 is one selected ubiquitinated-cargo receptor example and does not represent all selective or nonselective autophagy cargo capture.",
+      "Membrane sources, ATG machinery, fusion proteins, lysosomal enzymes, recycling routes, organelle contacts, cell type, species, stimulus, and experimental context are intentionally incomplete or unspecified.",
+      "The scene makes no disease-specific causal, therapeutic-response, biomarker, diagnostic, prognostic, or clinical claim."
+    ],
+    "authorship": "Original Figure Studio scene recipe and preview assembled from already released Figure Studio organelle assets and original editable vector primitives; no publication artwork, database diagram, commercial illustration, screenshot, or third-party visual content was copied, traced, or embedded."
+  },
+  "canvas": {
+    "width": 960,
+    "height": 540,
+    "width_in": 10,
+    "height_in": 5.625,
+    "background_role": "background"
+  },
+  "palette": {
+    "background": "#F6F8FB",
+    "surface": "#FFFFFF",
+    "ink": "#26323D",
+    "muted": "#667085",
+    "border": "#D9E4EC",
+    "membrane": "#2A9D8F",
+    "membrane_light": "#D9F4E5",
+    "cargo": "#7B78C9",
+    "cargo_light": "#D9D7FF",
+    "lc3": "#4F7CAC",
+    "p62": "#F4A261",
+    "lysosome": "#6AA9E9",
+    "acidic_lumen": "#E4DFFF",
+    "enzyme": "#E76F51",
+    "product": "#E9B44C"
+  },
+  "layers": [
+    {"id": "process_compartments", "name": "Autophagy compartments"},
+    {"id": "selected_cargo_markers", "name": "Selected cargo and markers"},
+    {"id": "process_relationships", "name": "Process relationships"},
+    {"id": "stage_labels", "name": "Process stage labels"},
+    {"id": "interpretation_notes", "name": "Interpretation and limits"}
+  ],
+  "nodes": [
+    {"id": "process_panel", "type": "shape", "shape": "rounded_rect", "layer_id": "process_compartments", "x": 30, "y": 90, "width": 900, "height": 365, "radius": 22, "fill_role": "surface", "stroke_role": "border", "stroke_width": 2},
+    {"id": "phagophore_outer", "name": "Open phagophore outer membrane", "type": "shape", "shape": "path", "path": "M 146 22 C 82 2 20 46 20 91 C 20 137 78 171 148 145", "layer_id": "process_compartments", "x": 45, "y": 160, "width": 165, "height": 155, "fill_role": "surface", "stroke_role": "membrane", "stroke_width": 4},
+    {"id": "phagophore_inner", "name": "Open phagophore inner membrane", "type": "shape", "shape": "path", "path": "M 137 39 C 87 24 41 55 41 91 C 41 124 84 148 137 130", "layer_id": "process_compartments", "x": 63, "y": 176, "width": 138, "height": 125, "fill_role": "surface", "stroke_role": "membrane", "stroke_width": 3},
+    {"id": "cargo_cluster", "name": "Selected ubiquitinated cargo cluster", "type": "shape", "shape": "ellipse", "layer_id": "selected_cargo_markers", "x": 112, "y": 205, "width": 48, "height": 36, "fill_role": "cargo_light", "stroke_role": "cargo", "stroke_width": 2.2},
+    {"id": "cargo_fragment", "name": "Selected cargo fragment", "type": "shape", "shape": "ellipse", "layer_id": "selected_cargo_markers", "x": 153, "y": 233, "width": 32, "height": 24, "fill_role": "cargo_light", "stroke_role": "cargo", "stroke_width": 2.2},
+    {"id": "p62_adapter", "name": "SQSTM1 p62 cargo receptor example", "type": "shape", "shape": "rounded_rect", "layer_id": "selected_cargo_markers", "x": 100, "y": 276, "width": 110, "height": 30, "radius": 8, "fill_role": "p62", "stroke_role": "ink", "stroke_width": 1.8},
+    {"id": "lc3_marker_one", "name": "LC3 membrane cue one", "type": "shape", "shape": "ellipse", "layer_id": "selected_cargo_markers", "x": 58, "y": 190, "width": 13, "height": 13, "fill_role": "lc3", "stroke_role": "lc3", "stroke_width": 1.2},
+    {"id": "lc3_marker_two", "name": "LC3 membrane cue two", "type": "shape", "shape": "ellipse", "layer_id": "selected_cargo_markers", "x": 52, "y": 222, "width": 13, "height": 13, "fill_role": "lc3", "stroke_role": "lc3", "stroke_width": 1.2},
+    {"id": "lc3_marker_three", "name": "LC3 membrane cue three", "type": "shape", "shape": "ellipse", "layer_id": "selected_cargo_markers", "x": 60, "y": 254, "width": 13, "height": 13, "fill_role": "lc3", "stroke_role": "lc3", "stroke_width": 1.2},
+    {"id": "sealed_autophagosome", "type": "asset", "layer_id": "process_compartments", "asset_id": "core.organelle.autophagosome", "top_level": true, "x": 278, "y": 170, "width": 145, "height": 145, "palette_overrides": {"vesicle": "membrane_light", "cargo": "cargo_light", "outline": "ink"}},
+    {"id": "sealed_lc3_one", "name": "Sealed autophagosome LC3 cue one", "type": "shape", "shape": "ellipse", "layer_id": "selected_cargo_markers", "x": 294, "y": 195, "width": 13, "height": 13, "fill_role": "lc3", "stroke_role": "lc3", "stroke_width": 1.2},
+    {"id": "sealed_lc3_two", "name": "Sealed autophagosome LC3 cue two", "type": "shape", "shape": "ellipse", "layer_id": "selected_cargo_markers", "x": 395, "y": 232, "width": 13, "height": 13, "fill_role": "lc3", "stroke_role": "lc3", "stroke_width": 1.2},
+    {"id": "fusion_autophagosome", "type": "asset", "layer_id": "process_compartments", "asset_id": "core.organelle.autophagosome", "top_level": true, "x": 466, "y": 183, "width": 118, "height": 118, "palette_overrides": {"vesicle": "membrane_light", "cargo": "cargo_light", "outline": "ink"}},
+    {"id": "fusion_lysosome", "type": "asset", "layer_id": "process_compartments", "asset_id": "core.lysosome.basic", "top_level": true, "x": 615, "y": 183, "width": 118, "height": 118, "palette_overrides": {"lumen": "acidic_lumen", "membrane": "lysosome", "enzyme": "enzyme", "outline": "ink"}},
+    {"id": "autolysosome", "type": "asset", "layer_id": "process_compartments", "asset_id": "core.lysosome.basic", "top_level": true, "x": 790, "y": 170, "width": 135, "height": 135, "palette_overrides": {"lumen": "membrane_light", "membrane": "membrane", "enzyme": "enzyme", "outline": "ink"}},
+    {"id": "degraded_piece_one", "name": "Selected degradation product one", "type": "shape", "shape": "ellipse", "layer_id": "selected_cargo_markers", "x": 817, "y": 395, "width": 22, "height": 16, "fill_role": "product", "stroke_role": "ink", "stroke_width": 1.4},
+    {"id": "degraded_piece_two", "name": "Selected degradation product two", "type": "shape", "shape": "ellipse", "layer_id": "selected_cargo_markers", "x": 849, "y": 388, "width": 17, "height": 17, "fill_role": "product", "stroke_role": "ink", "stroke_width": 1.4},
+    {"id": "degraded_piece_three", "name": "Selected degradation product three", "type": "shape", "shape": "ellipse", "layer_id": "selected_cargo_markers", "x": 878, "y": 397, "width": 21, "height": 15, "fill_role": "product", "stroke_role": "ink", "stroke_width": 1.4},
+    {"id": "title", "type": "text", "role": "scene-title", "include_scientific_record": true, "layer_id": "interpretation_notes", "x": 40, "y": 18, "width": 760, "height": 32, "text": "Autophagosome–lysosome process", "placeholder": true, "editable": true, "font_size": 25, "fill_role": "ink", "align": "left"},
+    {"id": "subtitle", "type": "text", "role": "scene-subtitle", "layer_id": "interpretation_notes", "x": 40, "y": 53, "width": 870, "height": 22, "text": "Selected macroautophagy stages from phagophore formation to lysosomal cargo degradation", "placeholder": true, "editable": true, "font_size": 15, "fill_role": "muted", "align": "left"},
+    {"id": "stage_one_heading", "type": "text", "layer_id": "stage_labels", "x": 45, "y": 105, "width": 190, "height": 25, "text": "1  Phagophore formation", "placeholder": true, "editable": true, "font_size": 16, "fill_role": "ink", "align": "left"},
+    {"id": "stage_one_subheading", "type": "text", "layer_id": "stage_labels", "x": 45, "y": 132, "width": 190, "height": 22, "text": "Cargo sequestration", "placeholder": true, "editable": true, "font_size": 15, "fill_role": "membrane", "align": "left"},
+    {"id": "stage_two_heading", "type": "text", "layer_id": "stage_labels", "x": 260, "y": 105, "width": 185, "height": 44, "text": "2  Sealed\nautophagosome", "placeholder": true, "editable": true, "font_size": 16, "fill_role": "ink", "align": "left"},
+    {"id": "stage_three_heading", "type": "text", "layer_id": "stage_labels", "x": 455, "y": 105, "width": 275, "height": 25, "text": "3  Lysosomal fusion", "placeholder": true, "editable": true, "font_size": 16, "fill_role": "ink", "align": "left"},
+    {"id": "stage_four_heading", "type": "text", "layer_id": "stage_labels", "x": 760, "y": 105, "width": 170, "height": 44, "text": "4  Autolysosome", "placeholder": true, "editable": true, "font_size": 16, "fill_role": "ink", "align": "left"},
+    {"id": "lc3_label", "type": "text", "layer_id": "stage_labels", "x": 42, "y": 283, "width": 52, "height": 22, "text": "LC3", "placeholder": true, "editable": true, "font_size": 15, "fill_role": "lc3", "align": "center"},
+    {"id": "p62_label", "type": "text", "layer_id": "stage_labels", "x": 104, "y": 282, "width": 102, "height": 20, "text": "SQSTM1/p62", "placeholder": true, "editable": true, "font_size": 15, "fill_role": "ink", "align": "center"},
+    {"id": "cargo_label", "type": "text", "layer_id": "stage_labels", "x": 165, "y": 315, "width": 55, "height": 22, "text": "cargo", "placeholder": true, "editable": true, "font_size": 15, "fill_role": "cargo", "align": "center"},
+    {"id": "stage_one_note", "type": "text", "layer_id": "stage_labels", "x": 45, "y": 350, "width": 185, "height": 48, "text": "Open membrane grows around a selected cargo example", "placeholder": true, "editable": true, "font_size": 15, "fill_role": "muted", "align": "center"},
+    {"id": "stage_two_note", "type": "text", "layer_id": "stage_labels", "x": 260, "y": 338, "width": 185, "height": 48, "text": "A double membrane encloses the sequestered material", "placeholder": true, "editable": true, "font_size": 15, "fill_role": "muted", "align": "center"},
+    {"id": "fusion_autophagosome_label", "type": "text", "layer_id": "stage_labels", "x": 462, "y": 306, "width": 126, "height": 22, "text": "autophagosome", "placeholder": true, "editable": true, "font_size": 15, "fill_role": "membrane", "align": "center"},
+    {"id": "lysosome_label", "type": "text", "layer_id": "stage_labels", "x": 612, "y": 306, "width": 124, "height": 22, "text": "lysosome", "placeholder": true, "editable": true, "font_size": 15, "fill_role": "lysosome", "align": "center"},
+    {"id": "stage_three_note", "type": "text", "layer_id": "stage_labels", "x": 475, "y": 338, "width": 245, "height": 48, "text": "A completed autophagosome becomes competent for fusion", "placeholder": true, "editable": true, "font_size": 15, "fill_role": "muted", "align": "center"},
+    {"id": "stage_four_note", "type": "text", "layer_id": "stage_labels", "x": 770, "y": 140, "width": 150, "height": 22, "text": "Lysosomal enzymes act on cargo", "placeholder": true, "editable": true, "font_size": 15, "fill_role": "muted", "align": "center"},
+    {"id": "products_label", "type": "text", "layer_id": "stage_labels", "x": 775, "y": 416, "width": 150, "height": 28, "text": "selected breakdown products", "placeholder": true, "editable": true, "font_size": 15, "fill_role": "product", "align": "center"},
+    {"id": "limitations_note", "type": "text", "role": "limitations-note", "layer_id": "interpretation_notes", "x": 40, "y": 480, "width": 880, "height": 36, "text": "Static schematic only — LC3 or SQSTM1/p62 placement does not measure autophagic flux.", "placeholder": true, "editable": true, "font_size": 15, "fill_role": "muted", "align": "center"}
+  ],
+  "groups": [
+    {"id": "phagophore_cargo_capture", "name": "Phagophore formation and selected cargo capture", "layer_id": "process_compartments", "members": ["phagophore_outer", "phagophore_inner", "cargo_cluster", "cargo_fragment", "p62_adapter", "lc3_marker_one", "lc3_marker_two", "lc3_marker_three", "lc3_label", "p62_label", "cargo_label", "stage_one_heading", "stage_one_subheading", "stage_one_note"]},
+    {"id": "sealed_autophagosome_stage", "name": "Sealed double-membrane autophagosome", "layer_id": "process_compartments", "members": ["sealed_autophagosome", "sealed_lc3_one", "sealed_lc3_two", "stage_two_heading", "stage_two_note"]},
+    {"id": "lysosomal_fusion_stage", "name": "Completed autophagosome and lysosomal fusion", "layer_id": "process_compartments", "members": ["fusion_autophagosome", "fusion_lysosome", "fusion_autophagosome_label", "lysosome_label", "stage_three_heading", "stage_three_note"]},
+    {"id": "autolysosome_degradation_stage", "name": "Autolysosome cargo degradation", "layer_id": "process_compartments", "members": ["autolysosome", "degraded_piece_one", "degraded_piece_two", "degraded_piece_three", "stage_four_heading", "stage_four_note", "products_label"]},
+    {"id": "scene_interpretation", "name": "Process title and flux limitation", "layer_id": "interpretation_notes", "members": ["title", "subtitle", "limitations_note"]}
+  ],
+  "connectors": [
+    {"id": "p62_binds_selected_cargo", "layer_id": "process_relationships", "from": {"node_id": "p62_adapter", "anchor": "top"}, "to": {"node_id": "cargo_cluster", "anchor": "bottom"}, "relation": "binding", "label": "binds cargo", "style": {"stroke_role": "p62", "stroke_width": 2.1, "line": "solid", "terminator": "arrow", "label_offset": {"x": 50, "y": -2}}},
+    {"id": "p62_binds_lc3", "layer_id": "process_relationships", "from": {"node_id": "p62_adapter", "anchor": "left"}, "to": {"node_id": "lc3_marker_three", "anchor": "right"}, "relation": "binding", "label": "binds LC3", "style": {"stroke_role": "lc3", "stroke_width": 2.1, "line": "dashed", "terminator": "arrow", "label_offset": {"x": -60, "y": 58}}},
+    {"id": "phagophore_closes", "layer_id": "process_relationships", "from": {"node_id": "phagophore_outer", "anchor": "right"}, "to": {"node_id": "sealed_autophagosome", "anchor": "left"}, "relation": "conversion", "label": "membrane closure", "style": {"stroke_role": "membrane", "stroke_width": 2.4, "line": "solid", "terminator": "arrow", "label_offset": {"x": 0, "y": 72}}},
+    {"id": "sealed_autophagosome_progresses", "layer_id": "process_relationships", "from": {"node_id": "sealed_autophagosome", "anchor": "right"}, "to": {"node_id": "fusion_autophagosome", "anchor": "left"}, "relation": "transport", "label": "completed", "style": {"stroke_role": "membrane", "stroke_width": 2.4, "line": "solid", "terminator": "arrow", "label_offset": {"x": 0, "y": 72}}},
+    {"id": "autophagosome_meets_lysosome", "layer_id": "process_relationships", "from": {"node_id": "fusion_autophagosome", "anchor": "right"}, "to": {"node_id": "fusion_lysosome", "anchor": "left"}, "relation": "conversion", "label": "outer-membrane fusion", "style": {"stroke_role": "lysosome", "stroke_width": 2.4, "line": "solid", "terminator": "arrow", "label_offset": {"x": -52, "y": -86}}},
+    {"id": "fusion_forms_autolysosome", "layer_id": "process_relationships", "from": {"node_id": "fusion_lysosome", "anchor": "right"}, "to": {"node_id": "autolysosome", "anchor": "left"}, "relation": "conversion", "label": "forms autolysosome", "style": {"stroke_role": "membrane", "stroke_width": 2.4, "line": "solid", "terminator": "arrow", "label_offset": {"x": 0, "y": 72}}},
+    {"id": "autolysosome_degrades_cargo", "layer_id": "process_relationships", "from": {"node_id": "autolysosome", "anchor": "bottom"}, "to": {"node_id": "degraded_piece_two", "anchor": "top"}, "relation": "conversion", "label": "cargo degradation", "style": {"stroke_role": "enzyme", "stroke_width": 2.4, "line": "solid", "terminator": "arrow", "label_offset": {"x": -58, "y": 2}}}
+  ]
+}

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">ELISA Assay</title>
+  <desc id="desc">Editable enzyme-linked immunosorbent assay schematic with capture and detection layers in a colorimetric well.</desc>
+  <g data-region="assay_surface" fill="#F7F9FC" stroke="none"><path d="M18 37h92l-11 70H29z"/></g>
+  <g data-region="measured_signal" fill="#B8B5FF" stroke="none"><circle cx="40" cy="73" r="4"/><circle cx="55" cy="65" r="4"/><circle cx="72" cy="72" r="4"/><circle cx="88" cy="64" r="4"/><circle cx="62" cy="88" r="4"/><circle cx="82" cy="89" r="4"/></g>
+  <g data-region="signal_trace" fill="none" stroke="#E76F51" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round"><path d="M34 95V74m0 0-8-10m8 10 8-10M58 95V70m0 0-8-10m8 10 8-10M82 95V73m0 0-8-10m8 10 8-10M106 26L90 45m16-19-3 13m3-13-13 2"/></g>
+  <g data-region="axes_or_structure" fill="none" stroke="#5EA9DD" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"><path d="M18 37h92M29 107h70M25 54h78"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 37h92l-11 70H29z"/></g>
+</svg>

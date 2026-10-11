@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">96-Well Plate</title>
+  <desc id="desc">Original vector 96-well microplate with an exact 8-by-12 well grid, selected media wells, and editable semantic regions.</desc>
+  <rect data-region="plate" x="13" y="22" width="102" height="84" rx="8" fill="#E8EEF7"/>
+  <g data-region="well" fill="#FFFFFF">
+    <g><circle cx="25" cy="35" r="2.5"/><circle cx="32" cy="35" r="2.5"/><circle cx="39" cy="35" r="2.5"/><circle cx="46" cy="35" r="2.5"/><circle cx="53" cy="35" r="2.5"/><circle cx="60" cy="35" r="2.5"/><circle cx="67" cy="35" r="2.5"/><circle cx="74" cy="35" r="2.5"/><circle cx="81" cy="35" r="2.5"/><circle cx="88" cy="35" r="2.5"/><circle cx="95" cy="35" r="2.5"/><circle cx="102" cy="35" r="2.5"/></g>
+    <g><circle cx="25" cy="43" r="2.5"/><circle cx="32" cy="43" r="2.5"/><circle cx="39" cy="43" r="2.5"/><circle cx="46" cy="43" r="2.5"/><circle cx="53" cy="43" r="2.5"/><circle cx="60" cy="43" r="2.5"/><circle cx="67" cy="43" r="2.5"/><circle cx="74" cy="43" r="2.5"/><circle cx="81" cy="43" r="2.5"/><circle cx="88" cy="43" r="2.5"/><circle cx="95" cy="43" r="2.5"/><circle cx="102" cy="43" r="2.5"/></g>
+    <g><circle cx="25" cy="51" r="2.5"/><circle cx="32" cy="51" r="2.5"/><circle cx="39" cy="51" r="2.5"/><circle cx="46" cy="51" r="2.5"/><circle cx="53" cy="51" r="2.5"/><circle cx="60" cy="51" r="2.5"/><circle cx="67" cy="51" r="2.5"/><circle cx="74" cy="51" r="2.5"/><circle cx="81" cy="51" r="2.5"/><circle cx="88" cy="51" r="2.5"/><circle cx="95" cy="51" r="2.5"/><circle cx="102" cy="51" r="2.5"/></g>
+    <g><circle cx="25" cy="59" r="2.5"/><circle cx="32" cy="59" r="2.5"/><circle cx="39" cy="59" r="2.5"/><circle cx="46" cy="59" r="2.5"/><circle cx="53" cy="59" r="2.5"/><circle cx="60" cy="59" r="2.5"/><circle cx="67" cy="59" r="2.5"/><circle cx="74" cy="59" r="2.5"/><circle cx="81" cy="59" r="2.5"/><circle cx="88" cy="59" r="2.5"/><circle cx="95" cy="59" r="2.5"/><circle cx="102" cy="59" r="2.5"/></g>
+    <g><circle cx="25" cy="67" r="2.5"/><circle cx="32" cy="67" r="2.5"/><circle cx="39" cy="67" r="2.5"/><circle cx="46" cy="67" r="2.5"/><circle cx="53" cy="67" r="2.5"/><circle cx="60" cy="67" r="2.5"/><circle cx="67" cy="67" r="2.5"/><circle cx="74" cy="67" r="2.5"/><circle cx="81" cy="67" r="2.5"/><circle cx="88" cy="67" r="2.5"/><circle cx="95" cy="67" r="2.5"/><circle cx="102" cy="67" r="2.5"/></g>
+    <g><circle cx="25" cy="75" r="2.5"/><circle cx="32" cy="75" r="2.5"/><circle cx="39" cy="75" r="2.5"/><circle cx="46" cy="75" r="2.5"/><circle cx="53" cy="75" r="2.5"/><circle cx="60" cy="75" r="2.5"/><circle cx="67" cy="75" r="2.5"/><circle cx="74" cy="75" r="2.5"/><circle cx="81" cy="75" r="2.5"/><circle cx="88" cy="75" r="2.5"/><circle cx="95" cy="75" r="2.5"/><circle cx="102" cy="75" r="2.5"/></g>
+    <g><circle cx="25" cy="83" r="2.5"/><circle cx="32" cy="83" r="2.5"/><circle cx="39" cy="83" r="2.5"/><circle cx="46" cy="83" r="2.5"/><circle cx="53" cy="83" r="2.5"/><circle cx="60" cy="83" r="2.5"/><circle cx="67" cy="83" r="2.5"/><circle cx="74" cy="83" r="2.5"/><circle cx="81" cy="83" r="2.5"/><circle cx="88" cy="83" r="2.5"/><circle cx="95" cy="83" r="2.5"/><circle cx="102" cy="83" r="2.5"/></g>
+    <g><circle cx="25" cy="91" r="2.5"/><circle cx="32" cy="91" r="2.5"/><circle cx="39" cy="91" r="2.5"/><circle cx="46" cy="91" r="2.5"/><circle cx="53" cy="91" r="2.5"/><circle cx="60" cy="91" r="2.5"/><circle cx="67" cy="91" r="2.5"/><circle cx="74" cy="91" r="2.5"/><circle cx="81" cy="91" r="2.5"/><circle cx="88" cy="91" r="2.5"/><circle cx="95" cy="91" r="2.5"/><circle cx="102" cy="91" r="2.5"/></g>
+  </g>
+  <g data-region="media" fill="#D9F4E5">
+    <circle cx="102" cy="35" r="2"/><circle cx="39" cy="43" r="2"/><circle cx="74" cy="59" r="2"/>
+    <circle cx="25" cy="67" r="2"/><circle cx="95" cy="75" r="2"/><circle cx="53" cy="91" r="2"/>
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="13" y="22" width="102" height="84" rx="8" stroke-width="3.25"/>
+    <path d="M20 30h88v68H20zM20 39h88M20 47h88M20 55h88M20 63h88M20 71h88M20 79h88M20 87h88M29 30v68M36 30v68M43 30v68M50 30v68M57 30v68M64 30v68M71 30v68M78 30v68M85 30v68M92 30v68M99 30v68" stroke-width=".9" opacity=".72"/>
+  </g>
+</svg>

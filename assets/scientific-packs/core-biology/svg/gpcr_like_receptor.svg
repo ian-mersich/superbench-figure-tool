@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">GPCR-Like Receptor</title>
+  <desc id="desc">Original vector GPCR-like receptor with seven connected transmembrane segments, alternating extracellular and cytosolic loops, ligand, and editable semantic regions.</desc>
+
+  <g data-region="membrane" fill="#C7F2EC">
+    <rect x="13" y="53" width="102" height="8" rx="4"/><rect x="13" y="82" width="102" height="8" rx="4"/>
+  </g>
+
+  <path data-region="receptor" d="M35 96V47c0-8 10-8 10 0v42c0 10 9 10 9 0V47c0-8 10-8 10 0v42c0 10 9 10 9 0V47c0-8 10-8 10 0v42c0 10 9 10 9 0V47" fill="none" stroke="#8EC8FF" stroke-linecap="round" stroke-linejoin="round" stroke-width="7"/>
+  <path data-region="ligand" fill="#F4A261" d="M42 25c9-8 21-5 26 6-7 9-19 12-29 5z"/>
+
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M13 57h102M13 86h102" stroke-width="2.5"/>
+    <path d="M35 96V47c0-8 10-8 10 0v42c0 10 9 10 9 0V47c0-8 10-8 10 0v42c0 10 9 10 9 0V47c0-8 10-8 10 0v42c0 10 9 10 9 0V47" stroke-width="2.75"/>
+    <path d="M42 25c9-8 21-5 26 6-7 9-19 12-29 5z" stroke-width="2.5"/>
+    <path d="M88 101c5 4 9 8 13 14" stroke-width="2"/>
+  </g>
+</svg>

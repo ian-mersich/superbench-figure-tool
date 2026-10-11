@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">LAG-3–MHC Class II Checkpoint Interaction</title>
+  <desc id="desc">Editable lag-3–mhc class ii checkpoint interaction schematic with multi-domain LAG-3 receptor contacting an MHC class II platform.</desc>
+  <g data-region="membranes" fill="#DCE4EC" stroke="none"><path d="M7 10h114v12H7zM7 106h114v12H7z"/></g>
+  <g data-region="receptor" fill="#C7F2EC" stroke="none"><path d="M47 106V88l-8-8 8-8-7-8 8-8-6-8 10-9 10 9-6 8 8 8-7 8 8 8-8 8v18z"/></g>
+  <g data-region="ligand" fill="#B8B5FF" stroke="none"><path d="M70 22v18l-8 9 8 8-7 9 9 9 9-9-7-9 8-8-8-9V22zM84 22v19l8 8-8 8 7 9-9 9"/></g>
+  <g data-region="interaction_cues" fill="none" stroke="#E76F51" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M59 44l8-3m-6 11 7-1M62 61l6 2"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M47 106V88l-8-8 8-8-7-8 8-8-6-8 10-9 10 9-6 8 8 8-7 8 8 8-8 8v18z"/><path d="M70 22v18l-8 9 8 8-7 9 9 9 9-9-7-9 8-8-8-9V22zM84 22v19l8 8-8 8 7 9-9 9"/><path d="M7 10h114v12H7zM7 106h114v12H7z"/></g>
+</svg>

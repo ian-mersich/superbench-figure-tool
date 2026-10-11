@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Neuron-Like Cell</title>
+  <desc id="desc">Original vector neuron-like cell with a tapered soma, branched dendrite-like processes, a long axon-like process, and editable semantic regions.</desc>
+
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round" stroke-width="8">
+    <path d="M48 57C37 49 28 40 18 31M31 44l-14 2M27 39l-4-12"/>
+    <path d="M53 47C51 35 46 25 38 16M48 30l8-12"/>
+    <path d="M47 72C35 79 26 90 17 106M31 84l-14 1M27 91l4 15"/>
+    <path d="M72 62c17-2 31-10 44-23M95 51l8-14M102 49l14 2"/>
+    <path d="M72 72c15 8 27 20 39 35M92 92l1 15"/>
+  </g>
+  <g data-region="neurite" fill="none" stroke="#7DD3C7" stroke-linecap="round" stroke-linejoin="round" stroke-width="4.5">
+    <path d="M48 57C37 49 28 40 18 31M31 44l-14 2M27 39l-4-12"/>
+    <path d="M53 47C51 35 46 25 38 16M48 30l8-12"/>
+    <path d="M47 72C35 79 26 90 17 106M31 84l-14 1M27 91l4 15"/>
+    <path d="M72 62c17-2 31-10 44-23M95 51l8-14M102 49l14 2"/>
+    <path d="M72 72c15 8 27 20 39 35M92 92l1 15"/>
+  </g>
+
+  <path data-region="cytoplasm" fill="#D9F4E5" d="M41 64c-1-13 8-24 21-26 14-2 27 7 29 20 2 14-7 28-21 32-14 4-28-4-29-19v-7z"/>
+  <path data-region="nucleus" fill="#B8B5FF" d="M53 64c0-7 5-12 12-13 8 0 13 5 13 12 1 8-5 14-12 14-8 1-13-5-13-13z"/>
+
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M41 64c-1-13 8-24 21-26 14-2 27 7 29 20 2 14-7 28-21 32-14 4-28-4-29-19v-7z" stroke-width="3.5"/>
+    <path d="M53 64c0-7 5-12 12-13 8 0 13 5 13 12 1 8-5 14-12 14-8 1-13-5-13-13z" stroke-width="2.5"/>
+  </g>
+</svg>

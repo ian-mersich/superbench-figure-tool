@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Ciliated Epithelial Cell</title>
+  <desc id="desc">Editable ciliated epithelial cell schematic with polarized columnar cell with an apical ciliary border.</desc>
+  <g data-region="cell_body" fill="#C7F2EC" stroke="none"><path d="M32 28h64l-5 82H37z"/></g>
+  <g data-region="nuclear_region" fill="#B8B5FF" stroke="none"><ellipse cx="64" cy="76" rx="16" ry="22"/></g>
+  <g data-region="cell_feature" fill="none" stroke="#F4A261" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M34 28L28 15M43 28l-2-15M52 28l2-16M61 28l5-15M70 28l7-15M79 28l10-13M88 28l13-11"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M32 28h64l-5 82H37z"/><ellipse cx="64" cy="76" rx="16" ry="22"/><path d="M34 28L28 15M43 28l-2-15M52 28l2-16M61 28l5-15M70 28l7-15M79 28l10-13M88 28l13-11"/></g>
+</svg>

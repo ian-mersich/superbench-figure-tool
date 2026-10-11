@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">T Cell — Manuscript Line</title>
+  <desc id="desc">Restrained thin-line companion to the T-cell asset with identical geometry, compact receptor cues, and editable semantic regions.</desc>
+
+  <path data-region="cytoplasm" fill="#F2F7F6" d="M64 18c25 0 44 18 46 42 2 25-15 46-40 50-25 3-47-13-51-37-4-25 12-48 37-54 3-1 5-1 8-1z"/>
+  <path data-region="nucleus" fill="#D8D4E8" d="M59 30c19-2 35 10 39 28 4 19-7 37-25 42-19 5-37-6-42-24-6-18 4-37 22-44 2-1 4-1 6-2z"/>
+
+  <g data-region="receptor" fill="none" stroke="#C58F8C" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.1">
+    <path d="M48 20v-6m6 7v-7M46 14h10"/>
+    <path d="M107 49l7-2m-6 8l7-2m-1-7l2 8"/>
+    <path d="M35 97l-5 5m10 0l-5 6m-6-7l8 8"/>
+  </g>
+
+  <g data-region="outline" fill="none" stroke="#66707A" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke-width="2.15" d="M64 18c25 0 44 18 46 42 2 25-15 46-40 50-25 3-47-13-51-37-4-25 12-48 37-54 3-1 5-1 8-1z"/>
+    <path stroke-width="1.45" d="M59 30c19-2 35 10 39 28 4 19-7 37-25 42-19 5-37-6-42-24-6-18 4-37 22-44 2-1 4-1 6-2z"/>
+  </g>
+</svg>

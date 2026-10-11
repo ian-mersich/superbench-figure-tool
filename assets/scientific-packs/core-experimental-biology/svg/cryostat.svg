@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Cryostat</title>
+  <desc id="desc">Editable tissue-sectioning cryostat schematic with enclosed chilled microtome with specimen chuck, blade, and section tray.</desc>
+  <g data-region="instrument_body" fill="#DCE4EC" stroke="none"><rect x="14" y="19" width="100" height="96" rx="7"/><rect x="23" y="30" width="82" height="63" rx="4"/></g>
+  <g data-region="specimen_chuck" fill="#8EC8FF" stroke="none"><path d="M30 48h29v30H30zM29 82h34v8H29zM69 80h32v10H69z"/></g>
+  <g data-region="microtome_blade" fill="#F4A261" stroke="none"><path d="M65 43l40 12-37 24z"/></g>
+  <g data-region="sectioning_motion" fill="none" stroke="#7B78C9" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M96 35l10 9-12 3M69 77l35-22"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><rect x="14" y="19" width="100" height="96" rx="7"/><rect x="23" y="30" width="82" height="63" rx="4"/><path d="M30 48h29v30H30zM65 43l40 12-37 24zM29 82h34v8H29zM69 80h32v10H69z"/></g>
+</svg>

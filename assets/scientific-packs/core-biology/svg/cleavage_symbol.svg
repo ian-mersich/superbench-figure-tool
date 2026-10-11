@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Cleavage Symbol</title>
+  <desc id="desc">Original vector cleavage cue with restrained shears above a separated substrate and a clearly marked processing site.</desc>
+  <g data-region="blade" fill="#E8EEF7">
+    <path d="M49 53l34-18-24 25z"/>
+    <path d="M50 56l34 18-25-25z"/>
+  </g>
+  <g data-region="handle" fill="#8EC8FF">
+    <circle cx="34" cy="39" r="10"/>
+    <circle cx="34" cy="70" r="10"/>
+  </g>
+  <g data-region="cut_line" fill="none" stroke="#E76F51" stroke-linecap="round" stroke-width="5">
+    <path d="M18 91h38M72 91h38"/>
+    <path d="M59 85l5 6-5 6M69 85l-5 6 5 6" stroke-width="3"/>
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.8">
+    <path d="M49 53l34-18-24 25z"/>
+    <path d="M50 56l34 18-25-25z"/>
+    <circle cx="34" cy="39" r="10"/>
+    <circle cx="34" cy="70" r="10"/>
+    <circle cx="34" cy="39" r="4" fill="#F7F9FC"/>
+    <circle cx="34" cy="70" r="4" fill="#F7F9FC"/>
+    <path d="M42 46l17 9M42 63l17-9"/>
+    <circle cx="51" cy="55" r="3" fill="#F7F9FC"/>
+  </g>
+</svg>

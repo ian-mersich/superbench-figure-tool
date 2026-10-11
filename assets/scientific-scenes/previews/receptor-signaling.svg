@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-labelledby="title desc">
+  <title id="title">Receptor signaling scene preview</title>
+  <desc id="desc">A ligand activates a membrane receptor, a molecular cascade, two response branches, and an inhibitory phosphatase.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#2A9D8F"/></marker>
+  </defs>
+  <rect width="960" height="540" rx="28" fill="#F7F9FC"/>
+  <text x="44" y="48" fill="#26323D" font-family="system-ui, sans-serif" font-size="26" font-weight="650">Receptor signaling pathway</text>
+  <path d="M80 148H880M80 178H880" stroke="#4F7CAC" stroke-width="7" stroke-linecap="round" opacity=".65"/>
+  <g stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M194 105c-18-15-8-39 12-30 20-9 31 15 12 30-7 7-17 7-24 0Z" fill="#F4A261"/>
+    <path d="M190 135v68m32-68v68M181 135h50M185 204h42" fill="none"/>
+    <path d="M205 204V270" fill="none" stroke="#2A9D8F" marker-end="url(#arrow)"/>
+    <path d="M280 310H382M466 310H516M618 310H676" fill="none" stroke="#2A9D8F" marker-end="url(#arrow)"/>
+    <path d="M760 310C800 310 800 275 830 275M760 310C800 310 800 380 830 380" fill="none" stroke="#2A9D8F" marker-end="url(#arrow)"/>
+    <path d="M710 440V362" fill="none" stroke="#E76F51" stroke-dasharray="8 7"/>
+    <path d="M694 362h32" stroke="#E76F51" stroke-width="5"/>
+  </g>
+  <g stroke="#26323D" stroke-width="3" stroke-linejoin="round">
+    <path d="M220 286c20-24 54-12 54 17 0 31-39 46-62 25-20-19-10-38 8-42Z" fill="#4F7CAC"/>
+    <path d="M398 285c19-13 52-7 62 19-15 30-47 36-70 12Z" fill="#8D7CC1"/>
+    <path d="M530 279h86v62h-86Z" rx="14" fill="#DCE7F5"/>
+    <path d="M690 286c20-24 54-12 54 17 0 31-39 46-62 25-20-19-10-38 8-42Z" fill="#2A9D8F"/>
+    <path d="M682 421c18-18 47-8 55 14-10 27-40 34-60 14Z" fill="#E76F51"/>
+    <rect x="830" y="245" width="102" height="60" rx="14" fill="#FFFFFF" stroke="#2A9D8F"/>
+    <rect x="830" y="350" width="102" height="60" rx="14" fill="#FFFFFF" stroke="#4F7CAC"/>
+  </g>
+  <g fill="#26323D" font-family="system-ui, sans-serif" font-size="14" text-anchor="middle">
+    <text x="205" y="126">Ligand</text><text x="206" y="230">Receptor</text>
+    <text x="245" y="370">Kinase A</text><text x="425" y="370">Adaptor</text><text x="573" y="370">Scaffold</text><text x="713" y="370">Kinase B</text>
+    <text x="710" y="484" fill="#E76F51">Phosphatase</text><text x="881" y="281">Response A</text><text x="881" y="386">Response B</text>
+  </g>
+</svg>

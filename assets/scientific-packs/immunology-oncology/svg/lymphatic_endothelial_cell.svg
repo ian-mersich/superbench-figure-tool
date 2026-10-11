@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Lymphatic Endothelial Cell</title>
+  <desc id="desc">Editable lymphatic endothelial cell schematic with flattened overlapping endothelial cell with button-like junction geometry.</desc>
+  <g data-region="cell_body" fill="#C7F2EC" stroke="none"><path d="M12 54c18-18 45-25 69-17 15 5 26 17 35 35-20 16-46 22-70 14-16-5-27-16-34-32z"/><path d="M17 68c20-14 45-17 67-8 12 5 21 13 27 24-22 12-48 15-69 5-11-5-19-12-25-21z"/></g>
+  <g data-region="nucleus" fill="#B8B5FF" stroke="none"><ellipse cx="62" cy="61" rx="19" ry="9" transform="rotate(9 62 61)"/></g>
+  <g data-region="state_features" fill="#E76F51" stroke="none"><circle cx="29" cy="64" r="3.5"/><circle cx="42" cy="76" r="3.5"/><circle cx="79" cy="76" r="3.5"/><circle cx="96" cy="66" r="3.5"/></g>
+  <g data-region="functional_cues" fill="none" stroke="#58B8AE" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M31 64l8 7m39 5 10-6"/><path d="M20 82c22 13 63 14 87-1"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 54c18-18 45-25 69-17 15 5 26 17 35 35-20 16-46 22-70 14-16-5-27-16-34-32z"/><path d="M17 68c20-14 45-17 67-8 12 5 21 13 27 24-22 12-48 15-69 5-11-5-19-12-25-21z"/><ellipse cx="62" cy="61" rx="19" ry="9" transform="rotate(9 62 61)"/></g>
+</svg>

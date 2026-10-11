@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Protein Dimer — Homodimer</title>
+  <desc id="desc">Editable homodimer form of dimeric protein complex, shown with paired homodimer and heterodimer forms.</desc>
+  <g data-region="protein_body" fill="#8EC8FF" stroke="none"><path d="M17 63c0-22 16-39 38-39 21 0 37 17 37 39 0 21-16 38-37 38-22 0-38-17-38-38zM55 63c0-22 16-39 38-39 21 0 37 17 37 39 0 21-16 38-37 38-22 0-38-17-38-38z"/></g>
+  <g data-region="interaction_site" fill="none" stroke="#7B78C9" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M67 39c-8 8-12 16-12 24 0 9 4 17 12 24"/></g>
+  <g data-region="molecular_feature" fill="#F4A261" stroke="none"><circle cx="47" cy="61" r="6"/><circle cx="101" cy="61" r="6"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M17 63c0-22 16-39 38-39 21 0 37 17 37 39 0 21-16 38-37 38-22 0-38-17-38-38zM55 63c0-22 16-39 38-39 21 0 37 17 37 39 0 21-16 38-37 38-22 0-38-17-38-38z"/></g>
+</svg>

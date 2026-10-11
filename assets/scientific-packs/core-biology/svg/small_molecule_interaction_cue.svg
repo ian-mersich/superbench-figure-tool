@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Small-Molecule Interaction Cue</title>
+  <desc id="desc">Original vector binding cue with a linked small molecule, short interaction vector, fitted target pocket, and editable semantic regions.</desc>
+  <g data-region="molecule" fill="#F4A261">
+    <circle cx="24" cy="58" r="8"/><circle cx="39" cy="47" r="7"/><circle cx="41" cy="67" r="7"/>
+  </g>
+  <path data-region="target" d="M82 31c18-2 31 12 30 31-1 21-16 36-36 35-13-1-19-10-15-20 3-7 11-7 17-11 6-3 7-8 1-12-6-4-15-5-17-12-2-7 8-10 20-11z" fill="#8EC8FF"/>
+  <path data-region="connector" d="M50 58h25" fill="none" stroke="#2A9D8F" stroke-width="3.5" stroke-dasharray="4 5" stroke-linecap="round"/>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.8">
+    <circle cx="24" cy="58" r="8"/><circle cx="39" cy="47" r="7"/><circle cx="41" cy="67" r="7"/>
+    <path d="M30 53l4-3M31 63l5 2"/>
+    <path d="M82 31c18-2 31 12 30 31-1 21-16 36-36 35-13-1-19-10-15-20 3-7 11-7 17-11 6-3 7-8 1-12-6-4-15-5-17-12-2-7 8-10 20-11z"/>
+    <path d="M91 42c8 4 11 12 9 20M82 84c7-1 13-5 16-11"/>
+  </g>
+</svg>

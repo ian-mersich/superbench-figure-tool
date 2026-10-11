@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Lymphatic Vessel Segment</title>
+  <desc id="desc">Editable lymphatic vessel segment schematic with blind-ended tapered vessel with button-like junctions and sparse lymph cargo.</desc>
+  <g data-region="lymphatic_wall" fill="#C7F2EC" stroke="none"><path d="M9 45c22-9 48-11 71-6 20 4 32 11 42 23-11 14-24 22-45 26 -25 5-49 0-68-10z"/></g>
+  <g data-region="lymphatic_lumen" fill="#F7F9FC" stroke="none"><path d="M15 56c23-7 45-8 64-4 13 3 22 7 31 12-9 6-19 10-34 13-22 4-42 1-61-7z"/></g>
+  <g data-region="lymph_cargo" fill="#8EC8FF" stroke="none"><circle cx="34" cy="63" r="4"/><circle cx="58" cy="67" r="4"/><circle cx="82" cy="63" r="4"/></g>
+  <g data-region="button_junctions" fill="none" stroke="#58B8AE" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><path d="M24 49l4 8M48 43l3 10M72 43l2 10M96 50l-4 9M30 77l3-8M57 84v-10M84 80l-2-9"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 45c22-9 48-11 71-6 20 4 32 11 42 23-11 14-24 22-45 26 -25 5-49 0-68-10z"/><path d="M15 56c23-7 45-8 64-4 13 3 22 7 31 12-9 6-19 10-34 13-22 4-42 1-61-7z"/><circle cx="34" cy="63" r="4"/><circle cx="58" cy="67" r="4"/><circle cx="82" cy="63" r="4"/><path d="M24 49l4 8M48 43l3 10M72 43l2 10M96 50l-4 9M30 77l3-8M57 84v-10M84 80l-2-9"/></g>
+</svg>

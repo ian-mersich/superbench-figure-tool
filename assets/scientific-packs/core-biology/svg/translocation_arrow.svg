@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Translocation Arrow</title>
+  <desc id="desc">Original vector translocation cue with paired compartment boundaries, a cargo ring visibly crossing the boundary, a directional head, and editable semantic regions.</desc>
+  <g data-region="boundary" fill="#C7F2EC">
+    <rect x="56" y="17" width="8" height="94" rx="4"/>
+    <rect x="70" y="17" width="8" height="94" rx="4"/>
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M19 64h83"/>
+    <circle cx="49" cy="64" r="10"/>
+  </g>
+  <g data-region="stroke" fill="#F7F9FC" stroke="#2A9D8F" stroke-width="3.5" stroke-linecap="round">
+    <path d="M19 64h83" fill="none"/>
+    <circle cx="49" cy="64" r="10"/>
+  </g>
+  <path data-region="head" d="M96 48l18 16-18 16z" fill="#2A9D8F"/>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.8">
+    <rect x="56" y="17" width="8" height="94" rx="4"/>
+    <rect x="70" y="17" width="8" height="94" rx="4"/>
+    <path d="M96 48l18 16-18 16z"/>
+  </g>
+</svg>

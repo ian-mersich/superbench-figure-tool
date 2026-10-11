@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">MicroRNA</title>
+  <desc id="desc">Editable microrna schematic with short regulatory RNA duplex with guide-strand cue.</desc>
+  <g data-region="nucleic_acid" fill="none" stroke="#5EA9DD" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M17 52c20-15 39-15 57 0s31 15 38 0M17 76c20-15 39-15 57 0s31 15 38 0"/></g>
+  <g data-region="regulatory_feature" fill="none" stroke="#7B78C9" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M28 48v24M40 42v24M52 43v24M64 49v24M77 57v24M90 62v22M102 60v20"/></g>
+  <g data-region="process_feature" fill="none" stroke="#F4A261" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 39v50M17 39l-6 7m6-7 6 7M112 65l8 6-8 6"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 52c20-15 39-15 57 0s31 15 38 0M17 76c20-15 39-15 57 0s31 15 38 0"/></g>
+</svg>

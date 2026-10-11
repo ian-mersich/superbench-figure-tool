@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Rod-Shaped Bacterium</title>
+  <desc id="desc">Original vector generic rod-shaped bacterium with a rounded cell envelope, unbound central nucleoid, sparse ribosome dots, and editable semantic regions.</desc>
+
+  <path data-region="cell_body" fill="#C7F2EC" d="M39 31h50c19 0 32 14 32 33S108 97 89 97H39C20 97 7 83 7 64s13-33 32-33z"/>
+
+  <path data-region="nucleoid" fill="none" stroke="#7B78C9" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M37 67c8-20 17 15 26-5 8-18 18 15 29-4"/>
+
+  <g data-region="ribosome" fill="#F4A261">
+    <circle cx="29" cy="50" r="3"/>
+    <circle cx="48" cy="44" r="2.7"/>
+    <circle cx="72" cy="47" r="2.8"/>
+    <circle cx="98" cy="52" r="3"/>
+    <circle cx="25" cy="77" r="2.8"/>
+    <circle cx="48" cy="84" r="3"/>
+    <circle cx="78" cy="81" r="2.7"/>
+    <circle cx="101" cy="75" r="2.8"/>
+  </g>
+
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke-width="3.5" d="M39 31h50c19 0 32 14 32 33S108 97 89 97H39C20 97 7 83 7 64s13-33 32-33z"/>
+    <path stroke-width="1.8" opacity="0.72" d="M38 39h51c14 0 24 10 24 25 0 14-10 25-24 25H38c-14 0-23-11-23-25 0-15 9-25 23-25z"/>
+  </g>
+</svg>

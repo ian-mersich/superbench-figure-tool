@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">B7 Costimulatory Ligand</title>
+  <desc id="desc">Editable b7 costimulatory ligand schematic with paired immunoglobulin-like extracellular domains on a single membrane anchor.</desc>
+  <g data-region="membrane" fill="#DCE4EC" stroke="none"><path d="M9 91h110v14H9z"/></g>
+  <g data-region="ligand_domains" fill="#B8B5FF" stroke="none"><path d="M52 91V76l-10-11 10-11-8-12 12-13 12 13-8 12 10 11-10 11v15z"/></g>
+  <g data-region="membrane_anchor" fill="#C7F2EC" stroke="none"><path d="M55 76h10v15H55z"/></g>
+  <g data-region="domain_hinges" fill="none" stroke="#E76F51" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M47 42h18m-15 23h15"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 91h110v14H9z"/><path d="M52 91V76l-10-11 10-11-8-12 12-13 12 13-8 12 10 11-10 11v15z"/><path d="M55 76h10v15H55z"/></g>
+</svg>

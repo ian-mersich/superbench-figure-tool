@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Protease</title>
+  <desc id="desc">Editable proteolytic enzyme schematic with cleft-shaped enzyme cutting a peptide substrate.</desc>
+  <g data-region="protein_body" fill="#8EC8FF" stroke="none"><path d="M20 65c0-26 19-45 45-45 25 0 44 17 44 40 0 27-18 47-44 48-27 1-45-17-45-43z"/></g>
+  <g data-region="interaction_site" fill="none" stroke="#7B78C9" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M48 38c13 8 19 17 17 27-1 11-9 19-23 25M80 38c-12 8-18 17-16 27 1 11 8 19 22 25"/></g>
+  <g data-region="molecular_feature" fill="none" stroke="#F4A261" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M17 36l25 19M9 27l8 9m25 19 13 10"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 65c0-26 19-45 45-45 25 0 44 17 44 40 0 27-18 47-44 48-27 1-45-17-45-43z"/><path d="M48 38c13 8 19 17 17 27-1 11-9 19-23 25M80 38c-12 8-18 17-16 27 1 11 8 19 22 25"/></g>
+</svg>

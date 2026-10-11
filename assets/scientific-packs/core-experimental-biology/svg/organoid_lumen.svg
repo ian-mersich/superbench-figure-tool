@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Lumen-forming Organoid</title>
+  <desc id="desc">Editable lumen-forming epithelial organoid schematic with polarized epithelial shell surrounding a central lumen.</desc>
+  <g data-region="model_context" fill="#C7F2EC" stroke="none"><circle cx="64" cy="64" r="49"/></g>
+  <g data-region="primary_population" fill="#8EC8FF" stroke="none"><circle cx="64" cy="24" r="10"/><circle cx="88" cy="32" r="10"/><circle cx="103" cy="53" r="10"/><circle cx="103" cy="78" r="10"/><circle cx="87" cy="98" r="10"/><circle cx="64" cy="105" r="10"/><circle cx="40" cy="98" r="10"/><circle cx="25" cy="78" r="10"/><circle cx="25" cy="52" r="10"/><circle cx="41" cy="31" r="10"/></g>
+  <g data-region="secondary_feature" fill="#B8B5FF" stroke="none"><circle cx="64" cy="64" r="25"/></g>
+  <g data-region="model_structure" fill="none" stroke="#F4A261" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M64 34v10M85 42l-7 8M94 64H84M85 86l-7-8M64 94V84M43 86l7-8M34 64h10M43 42l7 8"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="64" cy="64" r="49"/><circle cx="64" cy="64" r="25"/></g>
+</svg>

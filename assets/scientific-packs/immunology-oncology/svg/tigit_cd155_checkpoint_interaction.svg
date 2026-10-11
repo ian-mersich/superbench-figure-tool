@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">TIGIT–CD155 Checkpoint Interaction</title>
+  <desc id="desc">Editable tigit–cd155 checkpoint interaction schematic with single-domain TIGIT receptor contacting a three-domain CD155 ligand.</desc>
+  <g data-region="membranes" fill="#DCE4EC" stroke="none"><path d="M7 10h114v12H7zM7 106h114v12H7z"/></g>
+  <g data-region="receptor" fill="#C7F2EC" stroke="none"><path d="M45 106V83l-10-14 12-13 12 13-10 14v23z"/></g>
+  <g data-region="ligand" fill="#B8B5FF" stroke="none"><path d="M78 22v18l-9 10 9 9-8 10 11 11 11-11-8-10 9-9-9-10V22z"/></g>
+  <g data-region="interaction_cues" fill="none" stroke="#E76F51" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M57 66l11-8m-21 48v12m0-5 7 3"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M45 106V83l-10-14 12-13 12 13-10 14v23z"/><path d="M78 22v18l-9 10 9 9-8 10 11 11 11-11-8-10 9-9-9-10V22z"/><path d="M7 10h114v12H7zM7 106h114v12H7z"/></g>
+</svg>

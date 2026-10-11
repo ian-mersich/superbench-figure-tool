@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Ribosome</title>
+  <desc id="desc">Editable cytosolic ribosome schematic with joined large and small ribosomal subunits.</desc>
+  <g data-region="structure" fill="#8EC8FF" stroke="none"><path d="M24 67c1-23 18-39 42-40 21-1 38 11 43 31 2 8 0 14-7 18H31c-6-2-8-5-7-9z"/><path d="M35 78h59c9 0 15 6 15 14 0 9-7 15-17 15H36c-11 0-18-6-18-15 0-8 7-14 17-14z"/></g>
+  <g data-region="functional_detail" fill="none" stroke="#7B78C9" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 88c20-5 36-5 51 0 17 6 35 5 54-2M49 66c7-10 16-15 27-15 10 0 18 4 24 12M63 52v31m0-31c-8-8-14-3-14 5 0 7 6 12 14 12m0-17c8-8 14-3 14 5 0 7-6 12-14 12"/></g>
+  <g data-region="accent" fill="#F4A261" stroke="none"><circle cx="63" cy="44" r="4"/><circle cx="69" cy="35" r="4"/><circle cx="65" cy="25" r="4"/><path d="M58 93l6-5 6 5-6 6z"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M24 67c1-23 18-39 42-40 21-1 38 11 43 31 2 8 0 14-7 18H31c-6-2-8-5-7-9z"/><path d="M35 78h59c9 0 15 6 15 14 0 9-7 15-17 15H36c-11 0-18-6-18-15 0-8 7-14 17-14z"/></g>
+</svg>

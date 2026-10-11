@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Polyubiquitin Chain</title>
+  <desc id="desc">Editable polyubiquitin chain schematic with linked series of compact ubiquitin units.</desc>
+  <g data-region="protein_body" fill="#8EC8FF" stroke="none"><path d="M23 31c0-10 8-18 18-18s18 8 18 18-8 18-18 18-18-8-18-18zM50 59c0-10 8-18 18-18s18 8 18 18-8 18-18 18-18-8-18-18zM76 87c0-10 8-18 18-18s18 8 18 18-8 18-18 18-18-8-18-18z"/></g>
+  <g data-region="interaction_site" fill="none" stroke="#7B78C9" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M52 43l8 8M79 71l8 8"/></g>
+  <g data-region="molecular_feature" fill="none" stroke="#F4A261" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M35 26h12M62 54h12M88 82h12"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M23 31c0-10 8-18 18-18s18 8 18 18-8 18-18 18-18-8-18-18zM50 59c0-10 8-18 18-18s18 8 18 18-8 18-18 18-18-8-18-18zM76 87c0-10 8-18 18-18s18 8 18 18-8 18-18 18-18-8-18-18zM52 43l8 8M79 71l8 8"/></g>
+</svg>

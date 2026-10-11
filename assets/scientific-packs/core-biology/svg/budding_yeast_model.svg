@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Budding Yeast Model</title>
+  <desc id="desc">Original vector budding yeast model with an oval mother cell, attached daughter bud, narrow bud neck, vacuole, nucleus, and editable semantic regions.</desc>
+
+  <path data-region="cell_body" fill="#F4E8C1" d="M30 69c0-25 13-43 33-43 20 0 34 18 34 43 0 24-14 42-34 42-20 0-33-18-33-42z"/>
+  <path data-region="bud" fill="#F4A261" d="M89 42c5-12 17-17 27-12 10 5 13 18 7 29-6 11-18 15-28 9-8-5-11-16-6-26z"/>
+
+  <ellipse data-region="vacuole" fill="#E8EEF7" cx="60" cy="76" rx="16" ry="20"/>
+  <ellipse data-region="nucleus" fill="#7B78C9" cx="69" cy="52" rx="7" ry="6"/>
+
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke-width="3.5" d="M30 69c0-25 13-43 33-43 20 0 34 18 34 43 0 24-14 42-34 42-20 0-33-18-33-42z"/>
+    <path stroke-width="3.25" d="M89 42c5-12 17-17 27-12 10 5 13 18 7 29-6 11-18 15-28 9-8-5-11-16-6-26z"/>
+    <path stroke-width="2.4" d="M90 47c-5 2-8 6-9 11M94 66c-5-2-9-1-13 1"/>
+    <ellipse stroke-width="2.25" cx="60" cy="76" rx="16" ry="20"/>
+  </g>
+</svg>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Mouse Xenograft Model</title>
+  <desc id="desc">Editable mouse xenograft model schematic with lateral mouse silhouette with a localized graft site.</desc>
+  <g data-region="model_context" fill="#C7F2EC" stroke="none"><path d="M22 70c0-23 21-39 50-37 23 1 41 15 42 34 1 20-20 35-49 35-25 0-43-12-43-32z"/></g>
+  <g data-region="primary_population" fill="#8EC8FF" stroke="none"><circle cx="82" cy="64" r="13"/></g>
+  <g data-region="secondary_feature" fill="#B8B5FF" stroke="none"><circle cx="26" cy="53" r="11"/><circle cx="32" cy="68" r="4"/><circle cx="18" cy="67" r="3"/></g>
+  <g data-region="model_structure" fill="none" stroke="#F4A261" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M22 79C5 85 5 103 25 108M50 99l-8 14M88 97l8 15M103 84l12 9M82 47V29m0 0-6 8m6-8 6 8"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 70c0-23 21-39 50-37 23 1 41 15 42 34 1 20-20 35-49 35-25 0-43-12-43-32zM15 53a11 11 0 1 0 22 0 11 11 0 1 0-22 0z"/></g>
+</svg>

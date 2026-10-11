@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Cryovial</title>
+  <desc id="desc">Original vector cryovial with a ribbed screw cap, short flat-base vial, blank label field, restrained sample volume, and editable semantic regions.</desc>
+
+  <path data-region="vial" fill="#E8EEF7" d="M38 34h52v70c0 7-6 12-13 12H51c-7 0-13-5-13-12z"/>
+  <rect data-region="cap" x="32" y="13" width="64" height="25" rx="6" fill="#AEB9C4"/>
+  <path data-region="sample" fill="#B8B5FF" d="M43 79h42v24c0 5-4 8-9 8H52c-5 0-9-3-9-8z"/>
+  <rect data-region="label" x="43" y="45" width="42" height="29" rx="4" fill="#F7F9FC"/>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke-width="3.4" d="M38 34h52v70c0 7-6 12-13 12H51c-7 0-13-5-13-12z"/>
+    <rect x="32" y="13" width="64" height="25" rx="6" stroke-width="3.2"/>
+    <rect x="43" y="45" width="42" height="29" rx="4" stroke-width="2"/>
+    <path stroke-width="2.2" d="M43 79h42M43 111h42"/>
+    <path stroke-width="1.7" d="M38 19h52M38 26h52M38 33h52"/>
+  </g>
+</svg>

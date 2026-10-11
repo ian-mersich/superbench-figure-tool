@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Cell Pellet Tube</title>
+  <desc id="desc">Original vector cell-pellet tube with a closed cap, clear supernatant, compact pellet at the conical base, and editable semantic regions.</desc>
+
+  <path data-region="tube" fill="#E8EEF7" d="M42 32h44v55l-16 29H58L42 87z"/>
+  <rect data-region="cap" x="37" y="15" width="54" height="19" rx="5" fill="#AEB9C4"/>
+  <path data-region="supernatant" fill="#D7EFF3" d="M46 54h36v31l-14 26h-8L46 85z"/>
+  <path data-region="pellet" fill="#E8A98F" d="M56 104c5-5 12-5 17 0l-5 9h-7z"/>
+
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke-width="3.4" d="M42 32h44v55l-16 29H58L42 87z"/>
+    <rect x="37" y="15" width="54" height="19" rx="5" stroke-width="3.1"/>
+    <path stroke-width="2.2" d="M42 31h44M46 54h36"/>
+    <path stroke-width="2" d="M56 104c5-5 12-5 17 0"/>
+    <path stroke-width="1.7" d="M43 21h42M43 27h42"/>
+  </g>
+</svg>

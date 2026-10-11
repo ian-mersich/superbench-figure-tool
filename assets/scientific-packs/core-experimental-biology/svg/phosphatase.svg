@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Protein Phosphatase</title>
+  <desc id="desc">Editable protein phosphatase schematic with enzyme pocket releasing a phosphate group.</desc>
+  <g data-region="protein_body" fill="#8EC8FF" stroke="none"><path d="M20 69c-1-22 13-42 35-48 17-5 29 2 43 12 15 11 17 33 6 49-12 18-33 28-53 21-18-6-30-18-31-34z"/></g>
+  <g data-region="interaction_site" fill="none" stroke="#7B78C9" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M57 43c11-7 27-2 32 9-11 1-18 6-20 17-10-2-17-12-12-26zM69 69c6 8 14 12 24 11"/></g>
+  <g data-region="molecular_feature" fill="none" stroke="#F4A261" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="101" cy="82" r="10"/><path d="M96 82h10M101 77v10M91 80l-9-4m9 4-7 5"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 69c-1-22 13-42 35-48 17-5 29 2 43 12 15 11 17 33 6 49-12 18-33 28-53 21-18-6-30-18-31-34z"/><path d="M57 43c11-7 27-2 32 9-11 1-18 6-20 17-10-2-17-12-12-26z"/></g>
+</svg>

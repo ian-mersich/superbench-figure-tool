@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Dashed Arrow</title>
+  <desc id="desc">Original vector indirect-relation connector with evenly spaced dashes, a directional head, source node, and editable semantic regions.</desc>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-width="7">
+    <path d="M20 64h14M46 64h14M72 64h25"/>
+  </g>
+  <g data-region="stroke" fill="none" stroke="#2A9D8F" stroke-linecap="round" stroke-width="3.5">
+    <path d="M20 64h14M46 64h14M72 64h25"/>
+  </g>
+  <path data-region="head" fill="#2A9D8F" d="M92 48l18 16-18 16z"/>
+  <circle data-region="accent" cx="20" cy="64" r="5" fill="#F4A261"/>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.8">
+    <path d="M92 48l18 16-18 16z"/>
+    <circle cx="20" cy="64" r="5"/>
+  </g>
+</svg>

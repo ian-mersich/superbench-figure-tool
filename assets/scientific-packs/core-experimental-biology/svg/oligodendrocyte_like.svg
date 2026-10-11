@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Oligodendrocyte-like Cell</title>
+  <desc id="desc">Editable oligodendrocyte-like cell schematic with compact soma with several myelinating processes.</desc>
+  <g data-region="cell_body" fill="#C7F2EC" stroke="none"><ellipse cx="64" cy="62" rx="24" ry="28"/></g>
+  <g data-region="nuclear_region" fill="#B8B5FF" stroke="none"><ellipse cx="64" cy="62" rx="13" ry="16"/></g>
+  <g data-region="cell_feature" fill="none" stroke="#F4A261" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M47 43L30 25 17 24M81 43l18-17 13 2M88 66l20 5M78 84l13 20M49 84l-15 19M41 65l-22 7"/><path d="M13 18h22v12H13zM94 20h22v12H94zM101 65h19v12h-19zM84 99h14v10H84zM27 99h14v10H27zM8 67h18v12H8z"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="64" cy="62" rx="24" ry="28"/><ellipse cx="64" cy="62" rx="13" ry="16"/><path d="M47 43L30 25 17 24M81 43l18-17 13 2M88 66l20 5M78 84l13 20M49 84l-15 19M41 65l-22 7"/></g>
+</svg>

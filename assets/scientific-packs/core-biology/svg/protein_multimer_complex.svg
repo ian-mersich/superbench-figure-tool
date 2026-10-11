@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Protein multimer complex</title>
+  <desc id="desc">Original interlocking multimeric protein complex with two subunit classes and a central active-site pocket.</desc>
+  <g data-region="subunit_a" fill="#8EC8FF">
+    <path d="M23 54c-3-17 10-31 27-32 13-1 24 7 29 18l-13 16c-6-4-14-4-20 0-7 5-10 13-8 21-8-3-13-11-15-23z"/>
+    <path d="M41 81c4-8 12-13 21-13 8 0 15 4 20 10l12 16c-9 12-26 17-40 10-10-5-15-14-13-23z"/>
+  </g>
+  <path data-region="subunit_b" fill="#C7F2EC" d="M77 31c13-8 30-2 36 12 6 13 1 29-10 36-8 5-17 5-25 1L66 63c7-5 11-13 9-22-1-4 0-8 2-10z"/>
+  <path data-region="active_site" fill="#F4A261" d="m57 58 9-4 9 6-1 11-10 5-9-6z"/>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M23 54c-3-17 10-31 27-32 13-1 24 7 29 18l-13 16c-6-4-14-4-20 0-7 5-10 13-8 21-8-3-13-11-15-23z" stroke-width="3.5"/>
+    <path d="M41 81c4-8 12-13 21-13 8 0 15 4 20 10l12 16c-9 12-26 17-40 10-10-5-15-14-13-23z" stroke-width="3.5"/>
+    <path d="M77 31c13-8 30-2 36 12 6 13 1 29-10 36-8 5-17 5-25 1L66 63c7-5 11-13 9-22-1-4 0-8 2-10z" stroke-width="3.5"/>
+    <path d="m57 58 9-4 9 6-1 11-10 5-9-6z" stroke-width="2.75"/>
+  </g>
+</svg>

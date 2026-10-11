@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Cell Spheroid Cluster</title>
+  <desc id="desc">Original vector three-dimensional cell spheroid with one coherent outer contour, a denser inner compartment, nuclei, and restrained cell boundaries.</desc>
+
+  <path data-region="outer_cell" fill="#D9D7FF" d="M64 17c22 0 39 11 47 29 8 18 4 39-10 52-13 12-35 17-53 11-20-6-33-22-34-42-1-19 9-36 25-44 8-4 16-6 25-6z"/>
+
+  <path data-region="inner_cell" fill="#8F6BB8" d="M63 40c13-1 24 7 27 19 4 13-1 26-12 32-11 6-25 4-34-5-8-9-10-22-4-32 5-9 13-13 23-14z"/>
+
+  <g data-region="nucleus" fill="#592E91">
+    <ellipse cx="44" cy="29" rx="3.6" ry="3"/>
+    <ellipse cx="69" cy="27" rx="3.6" ry="3"/>
+    <ellipse cx="91" cy="39" rx="3.6" ry="3"/>
+    <ellipse cx="101" cy="62" rx="3.6" ry="3"/>
+    <ellipse cx="91" cy="88" rx="3.6" ry="3"/>
+    <ellipse cx="69" cy="101" rx="3.6" ry="3"/>
+    <ellipse cx="43" cy="94" rx="3.6" ry="3"/>
+    <ellipse cx="27" cy="73" rx="3.6" ry="3"/>
+    <ellipse cx="30" cy="48" rx="3.6" ry="3"/>
+    <ellipse cx="55" cy="53" rx="4" ry="3.3"/>
+    <ellipse cx="74" cy="52" rx="4" ry="3.3"/>
+    <ellipse cx="78" cy="72" rx="4" ry="3.3"/>
+    <ellipse cx="58" cy="79" rx="4" ry="3.3"/>
+  </g>
+
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke-width="3.25" d="M64 17c22 0 39 11 47 29 8 18 4 39-10 52-13 12-35 17-53 11-20-6-33-22-34-42-1-19 9-36 25-44 8-4 16-6 25-6z"/>
+    <path stroke-width="2.25" d="M63 40c13-1 24 7 27 19 4 13-1 26-12 32-11 6-25 4-34-5-8-9-10-22-4-32 5-9 13-13 23-14z"/>
+    <g stroke-width="1.9">
+      <path d="M49 22c-2 8-2 13 0 20"/>
+      <path d="M75 20c2 8 2 13 0 21"/>
+      <path d="M98 35c-8 4-12 8-15 14"/>
+      <path d="M108 61c-8 0-13 1-18 4"/>
+      <path d="M99 90c-7-5-11-8-16-11"/>
+      <path d="M74 106c0-8 0-12-2-17"/>
+      <path d="M46 103c3-8 5-12 8-17"/>
+      <path d="M20 78c9-3 14-5 20-9"/>
+      <path d="M21 49c8 3 13 5 19 8"/>
+      <path d="M59 41c1 8-1 14-6 19-5 5-7 11-5 19"/>
+      <path d="M79 45c-7 4-10 10-8 17 2 7-1 15-8 22"/>
+      <path d="M41 58c8 3 15 2 22-1 7-3 14-2 24 2"/>
+      <path d="M43 76c9-3 17-2 24 2 6 3 12 4 18 1"/>
+    </g>
+  </g>
+</svg>

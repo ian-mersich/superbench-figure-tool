@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Conical Tube</title>
+  <desc id="desc">Original vector conical centrifuge tube with ribbed screw cap, graduated cylindrical body, conical base, sample, and editable semantic regions.</desc>
+  <path data-region="body" fill="#E8EEF7" d="M43 34h42v52l-14 27H57L43 86z"/>
+  <rect data-region="cap" x="38" y="18" width="52" height="18" rx="5" fill="#8EC8FF"/>
+  <path data-region="fluid" fill="#D9F4E5" d="M46 67h36v18l-13 25H59L46 85z"/>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M43 34h42v52l-14 27H57L43 86z" stroke-width="3.5"/>
+    <rect x="38" y="18" width="52" height="18" rx="5" stroke-width="3.25"/>
+    <path d="M46 67h36" stroke-width="2.5"/>
+    <path d="M44 23h40M44 29h40" stroke-width="1.75"/>
+    <path d="M49 47h12M49 55h8M49 63h12M79 47h-7M79 55h-11M79 63h-7" stroke-width="2"/>
+  </g>
+</svg>

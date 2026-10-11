@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Zebrafish Model</title>
+  <desc id="desc">Original vector lateral zebrafish model with a slender body, tapered tail base, fan tail, restrained fins and stripes, single eye, and editable semantic regions.</desc>
+
+  <path data-region="body" fill="#C7F2EC" d="M14 64c8-18 29-28 55-24 13 2 24 8 32 18l7 6-7 6c-8 10-19 16-32 18-26 4-47-6-55-24z"/>
+
+  <g data-region="fin" fill="#8EC8FF">
+    <path d="M99 57 117 42l-5 22 5 22-18-16z"/>
+    <path d="M54 42 66 27l11 17z"/>
+    <path d="M58 84 72 101l8-19z"/>
+    <path d="M47 67 62 74l-16 8z"/>
+  </g>
+
+  <circle data-region="eye" fill="#26323D" cx="29" cy="57" r="3.4"/>
+
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke-width="3.25" d="M14 64c8-18 29-28 55-24 13 2 24 8 32 18l7 6-7 6c-8 10-19 16-32 18-26 4-47-6-55-24z"/>
+    <g stroke-width="2.25">
+      <path d="M99 57 117 42l-5 22 5 22-18-16"/>
+      <path d="M54 42 66 27l11 17"/>
+      <path d="M58 84 72 101l8-19"/>
+      <path d="M47 67 62 74l-16 8"/>
+    </g>
+    <g stroke-width="1.8" opacity="0.8">
+      <path d="M40 52c18-4 37 0 52 9"/>
+      <path d="M37 62c20-3 38 1 54 7"/>
+      <path d="M40 73c17 3 33 2 48-3"/>
+    </g>
+    <path stroke-width="1.7" d="M22 68c5 3 10 3 15 0"/>
+  </g>
+</svg>

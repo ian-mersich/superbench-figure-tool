@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Blood Sample Tube</title>
+  <desc id="desc">Original vector blood sample tube with a rounded collection vessel, stopper, whole-blood fill, writable label band, and editable semantic regions.</desc>
+
+  <path data-region="tube" fill="#E8EEF7" d="M40 31h48v63c0 15-10 25-24 25S40 109 40 94z"/>
+  <rect data-region="stopper" x="34" y="14" width="60" height="20" rx="6" fill="#AEB9C4"/>
+  <path data-region="blood" fill="#D96C57" d="M44 66h40v28c0 12-8 20-20 20s-20-8-20-20z"/>
+  <rect data-region="label" x="43" y="43" width="42" height="21" rx="4" fill="#F7F9FC"/>
+
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke-width="3.4" d="M40 31h48v63c0 15-10 25-24 25S40 109 40 94z"/>
+    <rect x="34" y="14" width="60" height="20" rx="6" stroke-width="3.2"/>
+    <path stroke-width="2.2" d="M41 30h46M44 66h40"/>
+    <rect x="43" y="43" width="42" height="21" rx="4" stroke-width="2"/>
+  </g>
+</svg>

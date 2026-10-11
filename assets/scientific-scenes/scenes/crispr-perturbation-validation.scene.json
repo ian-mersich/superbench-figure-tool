@@ -1,0 +1,66 @@
+{
+  "schema": "figureStudio.scientificScene.v1",
+  "id": "crispr-perturbation-validation",
+  "name": "CRISPR perturbation and validation",
+  "summary": "Guide delivery and genome editing followed by PCR, gel, and protein-level validation.",
+  "source_record_id": "source.figure-studio-scientific-scenes.2026-08-30",
+  "rights_record_id": "rights.figure-studio-scientific-scenes.cc0.2026-08-30",
+  "canvas": {"width": 960, "height": 540, "width_in": 10, "height_in": 5.625, "background_role": "background"},
+  "palette": {
+    "background": "#F7F9FC",
+    "surface": "#FFFFFF",
+    "ink": "#26323D",
+    "muted": "#667085",
+    "delivery": "#4F7CAC",
+    "editing": "#E76F51",
+    "cell": "#2A9D8F",
+    "validation": "#8D7CC1",
+    "highlight": "#F4A261"
+  },
+  "layers": [
+    {"id": "context", "name": "Workflow stages"},
+    {"id": "biology", "name": "Perturbation and validation objects"},
+    {"id": "relationships", "name": "Workflow relationships"},
+    {"id": "labels", "name": "Editable labels"}
+  ],
+  "nodes": [
+    {"id": "workflow_band", "type": "shape", "shape": "rounded_rect", "layer_id": "context", "x": 26, "y": 92, "width": 908, "height": 390, "radius": 26, "fill_role": "surface", "stroke_role": "muted", "stroke_width": 1.5},
+    {"id": "plasmid", "type": "asset", "layer_id": "biology", "asset_id": "core.nucleic_acid.plasmid_vector", "top_level": true, "x": 48, "y": 166, "width": 100, "height": 92, "palette_overrides": {"backbone": "delivery", "insert": "editing", "marker": "highlight"}},
+    {"id": "cas9_complex", "type": "asset", "layer_id": "biology", "asset_id": "core.nucleic_acid.crispr_cas9", "top_level": true, "x": 184, "y": 156, "width": 112, "height": 106, "palette_overrides": {"protein": "editing", "guide_rna": "delivery", "dna": "highlight"}},
+    {"id": "edited_cell", "type": "asset", "layer_id": "biology", "asset_id": "core.cell.generic", "top_level": true, "x": 332, "y": 150, "width": 118, "height": 112, "palette_overrides": {"cytoplasm": "cell", "nucleus": "validation", "accent": "editing"}},
+    {"id": "target_locus", "type": "shape", "shape": "rounded_rect", "layer_id": "biology", "x": 330, "y": 326, "width": 124, "height": 54, "radius": 12, "fill_role": "surface", "stroke_role": "editing", "stroke_width": 2.5},
+    {"id": "thermal_cycler", "type": "asset", "layer_id": "biology", "asset_id": "exp.lab_equipment.thermal_cycler", "top_level": true, "x": 500, "y": 152, "width": 102, "height": 102, "palette_overrides": {"instrument_body": "validation", "operational_cue": "highlight"}},
+    {"id": "amplicon", "type": "asset", "layer_id": "biology", "asset_id": "exp.nucleic_acid.pcr_amplicon", "top_level": true, "x": 506, "y": 326, "width": 92, "height": 62, "palette_overrides": {"nucleic_acid": "validation", "process_feature": "highlight"}},
+    {"id": "gel_apparatus", "type": "asset", "layer_id": "biology", "asset_id": "exp.lab_equipment.gel_electrophoresis", "top_level": true, "x": 646, "y": 152, "width": 104, "height": 102, "palette_overrides": {"instrument_body": "validation", "operational_cue": "highlight"}},
+    {"id": "gel_result", "type": "asset", "layer_id": "biology", "asset_id": "exp.assay_workflow.pcr_gel_result", "top_level": true, "x": 798, "y": 142, "width": 120, "height": 112, "palette_overrides": {"assay_surface": "surface", "measured_signal": "validation", "signal_trace": "editing"}},
+    {"id": "protein_result", "type": "asset", "layer_id": "biology", "asset_id": "exp.assay_workflow.western_blot_result", "top_level": true, "x": 798, "y": 316, "width": 120, "height": 112, "palette_overrides": {"assay_surface": "surface", "measured_signal": "validation", "signal_trace": "editing"}},
+    {"id": "title", "type": "text", "layer_id": "labels", "x": 42, "y": 24, "width": 650, "height": 34, "text": "CRISPR perturbation and validation", "placeholder": true, "editable": true, "font_size": 25, "fill_role": "ink", "align": "left"},
+    {"id": "subtitle", "type": "text", "layer_id": "labels", "x": 42, "y": 58, "width": 760, "height": 24, "text": "Replace target, guide, cell model, and validation endpoints", "placeholder": true, "editable": true, "font_size": 14, "fill_role": "muted", "align": "left"},
+    {"id": "plasmid_label", "type": "text", "layer_id": "labels", "x": 42, "y": 270, "width": 112, "height": 38, "text": "Guide plasmid", "placeholder": true, "editable": true, "font_size": 13, "fill_role": "delivery", "align": "center"},
+    {"id": "cas9_label", "type": "text", "layer_id": "labels", "x": 178, "y": 270, "width": 124, "height": 38, "text": "Cas9–guide RNP", "placeholder": true, "editable": true, "font_size": 13, "fill_role": "editing", "align": "center"},
+    {"id": "cell_label", "type": "text", "layer_id": "labels", "x": 326, "y": 270, "width": 130, "height": 38, "text": "Edited cells", "placeholder": true, "editable": true, "font_size": 13, "fill_role": "cell", "align": "center"},
+    {"id": "target_label", "type": "text", "layer_id": "labels", "x": 340, "y": 340, "width": 104, "height": 24, "text": "Target locus", "placeholder": true, "editable": true, "font_size": 12, "fill_role": "editing", "align": "center"},
+    {"id": "pcr_label", "type": "text", "layer_id": "labels", "x": 492, "y": 270, "width": 118, "height": 38, "text": "PCR validation", "placeholder": true, "editable": true, "font_size": 13, "fill_role": "validation", "align": "center"},
+    {"id": "amplicon_label", "type": "text", "layer_id": "labels", "x": 492, "y": 396, "width": 120, "height": 24, "text": "Target amplicon", "placeholder": true, "editable": true, "font_size": 12, "fill_role": "validation", "align": "center"},
+    {"id": "gel_label", "type": "text", "layer_id": "labels", "x": 636, "y": 270, "width": 124, "height": 38, "text": "Gel separation", "placeholder": true, "editable": true, "font_size": 13, "fill_role": "validation", "align": "center"},
+    {"id": "dna_result_label", "type": "text", "layer_id": "labels", "x": 790, "y": 260, "width": 136, "height": 38, "text": "DNA validation", "placeholder": true, "editable": true, "font_size": 13, "fill_role": "validation", "align": "center"},
+    {"id": "protein_result_label", "type": "text", "layer_id": "labels", "x": 788, "y": 434, "width": 140, "height": 38, "text": "Protein validation", "placeholder": true, "editable": true, "font_size": 13, "fill_role": "validation", "align": "center"}
+  ],
+  "groups": [
+    {"id": "delivery_stage", "name": "Guide delivery", "layer_id": "biology", "members": ["plasmid", "cas9_complex", "plasmid_label", "cas9_label"]},
+    {"id": "editing_stage", "name": "Genome editing", "layer_id": "biology", "members": ["edited_cell", "target_locus", "cell_label", "target_label"]},
+    {"id": "dna_validation_stage", "name": "DNA-level validation", "layer_id": "biology", "members": ["thermal_cycler", "amplicon", "gel_apparatus", "gel_result", "pcr_label", "amplicon_label", "gel_label", "dna_result_label"]},
+    {"id": "protein_validation_stage", "name": "Protein-level validation", "layer_id": "biology", "members": ["protein_result", "protein_result_label"]}
+  ],
+  "connectors": [
+    {"id": "plasmid_loads_cas9", "layer_id": "relationships", "from": {"node_id": "plasmid", "anchor": "right"}, "to": {"node_id": "cas9_complex", "anchor": "left"}, "relation": "binding", "label": "guide loading", "style": {"stroke_role": "delivery", "stroke_width": 2.5, "line": "solid", "terminator": "arrow"}},
+    {"id": "cas9_enters_cell", "layer_id": "relationships", "from": {"node_id": "cas9_complex", "anchor": "right"}, "to": {"node_id": "edited_cell", "anchor": "left"}, "relation": "transport", "label": "transfection", "style": {"stroke_role": "delivery", "stroke_width": 2.5, "line": "solid", "terminator": "arrow"}},
+    {"id": "cas9_cleaves_target", "layer_id": "relationships", "from": {"node_id": "cas9_complex", "anchor": "bottom"}, "to": {"node_id": "target_locus", "anchor": "left"}, "relation": "cleavage", "label": "targeted cleavage", "style": {"stroke_role": "editing", "stroke_width": 2.5, "line": "dashed", "terminator": "arrow"}},
+    {"id": "cell_to_target_locus", "layer_id": "relationships", "from": {"node_id": "edited_cell", "anchor": "bottom"}, "to": {"node_id": "target_locus", "anchor": "top"}, "relation": "localization", "label": "edited locus", "style": {"stroke_role": "editing", "stroke_width": 2, "line": "dashed", "terminator": "arrow"}},
+    {"id": "cell_to_pcr", "layer_id": "relationships", "from": {"node_id": "edited_cell", "anchor": "right"}, "to": {"node_id": "thermal_cycler", "anchor": "left"}, "relation": "sampling", "label": "genomic DNA", "style": {"stroke_role": "validation", "stroke_width": 2.5, "line": "solid", "terminator": "arrow"}},
+    {"id": "pcr_makes_amplicon", "layer_id": "relationships", "from": {"node_id": "thermal_cycler", "anchor": "bottom"}, "to": {"node_id": "amplicon", "anchor": "top"}, "relation": "conversion", "label": "amplify", "style": {"stroke_role": "validation", "stroke_width": 2.5, "line": "solid", "terminator": "arrow"}},
+    {"id": "amplicon_to_gel", "layer_id": "relationships", "from": {"node_id": "amplicon", "anchor": "right"}, "to": {"node_id": "gel_apparatus", "anchor": "bottom"}, "relation": "measurement", "label": "separate", "style": {"stroke_role": "validation", "stroke_width": 2.5, "line": "solid", "terminator": "arrow"}},
+    {"id": "gel_to_dna_result", "layer_id": "relationships", "from": {"node_id": "gel_apparatus", "anchor": "right"}, "to": {"node_id": "gel_result", "anchor": "left"}, "relation": "measurement", "label": "genotype", "style": {"stroke_role": "validation", "stroke_width": 2.5, "line": "solid", "terminator": "arrow"}},
+    {"id": "cell_to_protein_result", "layer_id": "relationships", "from": {"node_id": "edited_cell", "anchor": "right"}, "to": {"node_id": "protein_result", "anchor": "left"}, "relation": "measurement", "label": "protein abundance", "style": {"stroke_role": "validation", "stroke_width": 2.5, "line": "dashed", "terminator": "arrow"}}
+  ]
+}

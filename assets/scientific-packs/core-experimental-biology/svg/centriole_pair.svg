@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Centriole Pair</title>
+  <desc id="desc">Editable paired centrioles schematic with orthogonal striped cylinders.</desc>
+  <g data-region="structure" fill="#8EC8FF" stroke="none"><path d="M25 39l43-18 13 29-43 18zM61 70l22-36 25 15-22 36z"/></g>
+  <g data-region="functional_detail" fill="none" stroke="#7B78C9" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M34 35l13 29M45 31l13 29M56 26l13 29M70 56l25 15M76 47l25 15M82 38l25 15"/></g>
+  <g data-region="accent" fill="#F4A261" stroke="none"><ellipse cx="31" cy="54" rx="8" ry="16" transform="rotate(-23 31 54)"/><ellipse cx="74" cy="78" rx="13" ry="8" transform="rotate(-58 74 78)"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M25 39l43-18 13 29-43 18zM61 70l22-36 25 15-22 36z"/><ellipse cx="31" cy="54" rx="8" ry="16" transform="rotate(-23 31 54)"/><ellipse cx="74" cy="78" rx="13" ry="8" transform="rotate(-58 74 78)"/></g>
+</svg>

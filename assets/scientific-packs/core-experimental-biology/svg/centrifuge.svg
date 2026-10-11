@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Benchtop Centrifuge</title>
+  <desc id="desc">Editable laboratory benchtop centrifuge schematic with closed benchtop instrument with angled rotor and tube positions.</desc>
+  <g data-region="instrument_body" fill="#DCE4EC" stroke="none"><path d="M20 45h88v56c0 7-6 13-13 13H33c-7 0-13-6-13-13z"/><path d="M27 24h74l7 21H20z"/></g>
+  <g data-region="instrument_detail" fill="#8EC8FF" stroke="none"><circle cx="64" cy="70" r="25"/><circle cx="64" cy="70" r="8"/><path d="M64 62l-17-9-5 9 18 8M72 70l14 13 8-7-16-14M61 78l-4 20h11l3-20"/></g>
+  <g data-region="operational_cue" fill="none" stroke="#7B78C9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="40" cy="35" r="4"/><path d="M50 35h31M91 31v8"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 45h88v56c0 7-6 13-13 13H33c-7 0-13-6-13-13zM27 24h74l7 21H20zM39 70a25 25 0 1 0 50 0 25 25 0 1 0-50 0z"/></g>
+</svg>

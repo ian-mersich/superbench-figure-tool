@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Platelet</title>
+  <desc id="desc">Editable thrombocyte schematic with small discoid blood element with activation projections.</desc>
+  <g data-region="cell_body" fill="#C7F2EC" stroke="none"><path d="M31 47c11-14 37-20 55-10 17 9 19 31 6 44-13 14-38 17-54 7-17-10-19-27-7-41z"/></g>
+  <g data-region="nuclear_region" fill="#B8B5FF" stroke="none"><circle cx="49" cy="59" r="5"/><circle cx="70" cy="48" r="4"/><circle cx="79" cy="69" r="5"/><circle cx="57" cy="77" r="3.5"/></g>
+  <g data-region="cell_feature" fill="none" stroke="#F4A261" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M31 47L17 39M91 43l15-11M95 77l14 8M39 88l-8 15"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M31 47c11-14 37-20 55-10 17 9 19 31 6 44-13 14-38 17-54 7-17-10-19-27-7-41z"/><path d="M31 47L17 39M91 43l15-11M95 77l14 8M39 88l-8 15"/></g>
+</svg>

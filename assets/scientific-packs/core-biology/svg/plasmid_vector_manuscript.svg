@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Plasmid Vector — Manuscript Line</title>
+  <desc id="desc">Restrained thin-line circular plasmid-map companion with matched backbone, insert, marker, direction cues, and editable semantic regions.</desc>
+
+  <circle data-region="backbone" cx="64" cy="64" r="40" fill="none" stroke="#7E9DB2" stroke-width="4.2"/>
+  <path data-region="insert" d="M45 29a40 40 0 0 1 49 10" fill="none" stroke="#C58F8C" stroke-width="4.5" stroke-linecap="round"/>
+  <path data-region="marker" d="M94 88a40 40 0 0 1-45 13" fill="none" stroke="#AFA8D2" stroke-width="4.3" stroke-linecap="round"/>
+
+  <g data-region="outline" fill="none" stroke="#66707A" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="64" cy="64" r="40" stroke-width="2"/>
+    <path d="M45 29a40 40 0 0 1 49 10M94 88a40 40 0 0 1-45 13" stroke-width="1.8"/>
+    <path d="m54 27-8-5-2 9M87 97l9 4-1-10M99 51l8 5-8 5M30 72l-8-5 1 10" stroke-width="1.9"/>
+    <circle cx="64" cy="64" r="11" stroke-width="1.7" stroke-dasharray="2.5 4"/>
+  </g>
+</svg>

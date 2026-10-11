@@ -1,0 +1,63 @@
+{
+  "schema": "figureStudio.scientificScene.v1",
+  "id": "microscopy-flow-readout",
+  "name": "Microscopy and flow cytometry readout",
+  "summary": "One prepared sample branching into fluorescence microscopy and flow-cytometry readouts.",
+  "source_record_id": "source.figure-studio-scientific-scenes.2026-08-30",
+  "rights_record_id": "rights.figure-studio-scientific-scenes.cc0.2026-08-30",
+  "canvas": {"width": 960, "height": 540, "width_in": 10, "height_in": 5.625, "background_role": "background"},
+  "palette": {
+    "background": "#F7F9FC",
+    "surface": "#FFFFFF",
+    "ink": "#26323D",
+    "muted": "#667085",
+    "sample": "#2A9D8F",
+    "microscopy": "#8D7CC1",
+    "flow": "#4F7CAC",
+    "signal": "#E76F51",
+    "highlight": "#F4A261"
+  },
+  "layers": [
+    {"id": "context", "name": "Readout branches"},
+    {"id": "biology", "name": "Samples, instruments, and results"},
+    {"id": "relationships", "name": "Measurement relationships"},
+    {"id": "labels", "name": "Editable labels"}
+  ],
+  "nodes": [
+    {"id": "microscopy_lane", "type": "shape", "shape": "rounded_rect", "layer_id": "context", "x": 246, "y": 74, "width": 682, "height": 202, "radius": 22, "fill_role": "surface", "stroke_role": "microscopy", "stroke_width": 2},
+    {"id": "flow_lane", "type": "shape", "shape": "rounded_rect", "layer_id": "context", "x": 246, "y": 304, "width": 682, "height": 202, "radius": 22, "fill_role": "surface", "stroke_role": "flow", "stroke_width": 2},
+    {"id": "sample_tube", "type": "asset", "layer_id": "biology", "asset_id": "core.lab.microcentrifuge_tube", "top_level": true, "x": 42, "y": 216, "width": 74, "height": 92, "palette_overrides": {"body": "surface", "fluid": "sample"}},
+    {"id": "cell_population", "type": "asset", "layer_id": "biology", "asset_id": "core.cell.generic", "top_level": true, "x": 136, "y": 210, "width": 100, "height": 100, "palette_overrides": {"cytoplasm": "sample", "nucleus": "microscopy", "accent": "signal"}},
+    {"id": "sample_slide", "type": "asset", "layer_id": "biology", "asset_id": "core.sample.tissue_section_slide", "top_level": true, "x": 284, "y": 126, "width": 98, "height": 86, "palette_overrides": {"slide": "surface", "tissue": "sample"}},
+    {"id": "microscope", "type": "asset", "layer_id": "biology", "asset_id": "core.lab.microscope", "top_level": true, "x": 438, "y": 118, "width": 104, "height": 104, "palette_overrides": {"frame": "microscopy", "accent": "highlight"}},
+    {"id": "fluorescence_field", "type": "asset", "layer_id": "biology", "asset_id": "exp.assay_workflow.microscopy_field.fluorescence", "top_level": true, "x": 626, "y": 110, "width": 128, "height": 112, "palette_overrides": {"assay_surface": "surface", "measured_signal": "microscopy", "signal_trace": "signal"}},
+    {"id": "flow_cytometer", "type": "asset", "layer_id": "biology", "asset_id": "exp.lab_equipment.flow_cytometer", "top_level": true, "x": 288, "y": 350, "width": 104, "height": 104, "palette_overrides": {"instrument_body": "flow", "operational_cue": "highlight"}},
+    {"id": "dot_plot", "type": "asset", "layer_id": "biology", "asset_id": "exp.assay_workflow.flow_cytometry_readout.dot_plot", "top_level": true, "x": 478, "y": 342, "width": 124, "height": 112, "palette_overrides": {"assay_surface": "surface", "measured_signal": "flow", "signal_trace": "signal"}},
+    {"id": "histogram", "type": "asset", "layer_id": "biology", "asset_id": "exp.assay_workflow.flow_cytometry_readout.histogram", "top_level": true, "x": 682, "y": 342, "width": 124, "height": 112, "palette_overrides": {"assay_surface": "surface", "measured_signal": "flow", "signal_trace": "signal"}},
+    {"id": "title", "type": "text", "layer_id": "labels", "x": 42, "y": 22, "width": 650, "height": 34, "text": "Microscopy and flow-cytometry readouts", "placeholder": true, "editable": true, "font_size": 25, "fill_role": "ink", "align": "left"},
+    {"id": "sample_label", "type": "text", "layer_id": "labels", "x": 38, "y": 316, "width": 84, "height": 40, "text": "Prepared sample", "placeholder": true, "editable": true, "font_size": 13, "fill_role": "sample", "align": "center"},
+    {"id": "population_label", "type": "text", "layer_id": "labels", "x": 126, "y": 316, "width": 120, "height": 40, "text": "Cell population", "placeholder": true, "editable": true, "font_size": 13, "fill_role": "sample", "align": "center"},
+    {"id": "microscopy_lane_label", "type": "text", "layer_id": "labels", "x": 266, "y": 86, "width": 160, "height": 24, "text": "Fluorescence microscopy", "placeholder": true, "editable": true, "font_size": 15, "fill_role": "microscopy", "align": "left"},
+    {"id": "slide_label", "type": "text", "layer_id": "labels", "x": 274, "y": 224, "width": 118, "height": 32, "text": "Stained slide", "placeholder": true, "editable": true, "font_size": 13, "fill_role": "sample", "align": "center"},
+    {"id": "microscope_label", "type": "text", "layer_id": "labels", "x": 428, "y": 224, "width": 124, "height": 32, "text": "Acquire images", "placeholder": true, "editable": true, "font_size": 13, "fill_role": "microscopy", "align": "center"},
+    {"id": "field_label", "type": "text", "layer_id": "labels", "x": 618, "y": 224, "width": 144, "height": 32, "text": "Image readout", "placeholder": true, "editable": true, "font_size": 13, "fill_role": "microscopy", "align": "center"},
+    {"id": "flow_lane_label", "type": "text", "layer_id": "labels", "x": 266, "y": 316, "width": 160, "height": 24, "text": "Flow cytometry", "placeholder": true, "editable": true, "font_size": 15, "fill_role": "flow", "align": "left"},
+    {"id": "cytometer_label", "type": "text", "layer_id": "labels", "x": 278, "y": 458, "width": 124, "height": 32, "text": "Acquire events", "placeholder": true, "editable": true, "font_size": 13, "fill_role": "flow", "align": "center"},
+    {"id": "dot_plot_label", "type": "text", "layer_id": "labels", "x": 470, "y": 458, "width": 140, "height": 32, "text": "Gate populations", "placeholder": true, "editable": true, "font_size": 13, "fill_role": "flow", "align": "center"},
+    {"id": "histogram_label", "type": "text", "layer_id": "labels", "x": 674, "y": 458, "width": 140, "height": 32, "text": "Quantify intensity", "placeholder": true, "editable": true, "font_size": 13, "fill_role": "flow", "align": "center"}
+  ],
+  "groups": [
+    {"id": "sample_preparation", "name": "Prepared sample", "layer_id": "biology", "members": ["sample_tube", "cell_population", "sample_label", "population_label"]},
+    {"id": "microscopy_branch", "name": "Microscopy branch", "layer_id": "biology", "members": ["sample_slide", "microscope", "fluorescence_field", "microscopy_lane_label", "slide_label", "microscope_label", "field_label"]},
+    {"id": "flow_branch", "name": "Flow-cytometry branch", "layer_id": "biology", "members": ["flow_cytometer", "dot_plot", "histogram", "flow_lane_label", "cytometer_label", "dot_plot_label", "histogram_label"]}
+  ],
+  "connectors": [
+    {"id": "tube_to_population", "layer_id": "relationships", "from": {"node_id": "sample_tube", "anchor": "right"}, "to": {"node_id": "cell_population", "anchor": "left"}, "relation": "sampling", "label": "prepare", "style": {"stroke_role": "sample", "stroke_width": 2.5, "line": "solid", "terminator": "arrow"}},
+    {"id": "population_to_slide", "layer_id": "relationships", "from": {"node_id": "cell_population", "anchor": "right"}, "to": {"node_id": "sample_slide", "anchor": "left"}, "relation": "sampling", "label": "fix and stain", "style": {"stroke_role": "microscopy", "stroke_width": 2.5, "line": "solid", "terminator": "arrow"}},
+    {"id": "slide_to_microscope", "layer_id": "relationships", "from": {"node_id": "sample_slide", "anchor": "right"}, "to": {"node_id": "microscope", "anchor": "left"}, "relation": "transport", "label": "image", "style": {"stroke_role": "microscopy", "stroke_width": 2.5, "line": "solid", "terminator": "arrow"}},
+    {"id": "microscope_to_field", "layer_id": "relationships", "from": {"node_id": "microscope", "anchor": "right"}, "to": {"node_id": "fluorescence_field", "anchor": "left"}, "relation": "measurement", "label": "acquire", "style": {"stroke_role": "microscopy", "stroke_width": 2.5, "line": "solid", "terminator": "arrow"}},
+    {"id": "population_to_cytometer", "layer_id": "relationships", "from": {"node_id": "cell_population", "anchor": "right"}, "to": {"node_id": "flow_cytometer", "anchor": "left"}, "relation": "sampling", "label": "stain in suspension", "style": {"stroke_role": "flow", "stroke_width": 2.5, "line": "solid", "terminator": "arrow", "label_offset": {"x": -128, "y": 38}}},
+    {"id": "cytometer_to_dot_plot", "layer_id": "relationships", "from": {"node_id": "flow_cytometer", "anchor": "right"}, "to": {"node_id": "dot_plot", "anchor": "left"}, "relation": "measurement", "label": "gate", "style": {"stroke_role": "flow", "stroke_width": 2.5, "line": "solid", "terminator": "arrow"}},
+    {"id": "dot_plot_to_histogram", "layer_id": "relationships", "from": {"node_id": "dot_plot", "anchor": "right"}, "to": {"node_id": "histogram", "anchor": "left"}, "relation": "measurement", "label": "quantify", "style": {"stroke_role": "flow", "stroke_width": 2.5, "line": "dashed", "terminator": "arrow", "label_offset": {"x": 0, "y": -10}}}
+  ]
+}

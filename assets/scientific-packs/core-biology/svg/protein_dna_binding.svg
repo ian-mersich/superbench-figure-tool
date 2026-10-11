@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Protein-DNA Binding</title>
+  <desc id="desc">Original vector DNA-binding protein seated over a double-stranded DNA groove with visible contact points and editable semantic regions.</desc>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M15 86c18-11 34-11 51 0s31 11 47 0M15 99c18-11 34-11 51 0s31 11 47 0" stroke-width="7"/>
+    <path d="m28 82 4 20m15-22 4 21m15-16 4 13m15-18 4 21m14-19 4 19" stroke-width="4.75"/>
+  </g>
+  <path data-region="dna" fill="none" stroke="#5EA9DD" stroke-linecap="round" stroke-width="4" d="M15 86c18-11 34-11 51 0s31 11 47 0M15 99c18-11 34-11 51 0s31 11 47 0"/>
+  <path data-region="protein" fill="#8EC8FF" d="M34 54c0-17 14-29 31-29 18 0 32 12 32 28 0 11-7 20-17 25-6-7-12-10-17-10-6 0-12 3-18 10-7-5-11-13-11-24z"/>
+  <g data-region="contact" fill="none" stroke="#F4A261" stroke-linecap="round" stroke-width="3.25">
+    <path d="M51 74v11M63 70v14M75 74v11"/>
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M34 54c0-17 14-29 31-29 18 0 32 12 32 28 0 11-7 20-17 25-6-7-12-10-17-10-6 0-12 3-18 10-7-5-11-13-11-24z" stroke-width="3.5"/>
+    <path d="M51 74v11M63 70v14M75 74v11" stroke-width="2.25"/>
+  </g>
+</svg>

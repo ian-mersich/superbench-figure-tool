@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Apoptotic Cell</title>
+  <desc id="desc">Original vector apoptotic cell with membrane blebbing, condensed nuclear fragments, a detached apoptotic body, and editable semantic regions.</desc>
+
+  <path data-region="cytoplasm" fill="#D9F4E5" d="M28 65c0-21 15-38 36-41 21-3 41 9 47 29 6 20-5 42-25 51-20 9-44 1-53-18-3-7-5-14-5-21z"/>
+
+  <g data-region="bleb" fill="#F4A261">
+    <path d="M31 45c-8-2-13 5-10 12 2 6 8 8 13 4z"/>
+    <path d="M85 29c2-8 12-10 17-4 5 6 1 14-6 16z"/>
+    <path d="M104 72c8-2 14 5 11 12-2 7-10 9-16 4z"/>
+    <circle cx="103" cy="104" r="8"/><circle cx="20" cy="92" r="5"/>
+  </g>
+
+  <g data-region="nucleus" fill="#B8B5FF">
+    <path d="M48 52c6-8 17-8 23-1 1 8-8 14-17 11-4-1-6-5-6-10z"/>
+    <path d="M60 72c7-5 17-1 18 7-4 7-14 9-20 3-2-4-1-8 2-10z"/>
+    <path d="M42 76c5-3 11 0 11 6-3 4-10 4-12 0-1-2 0-4 1-6z"/>
+  </g>
+
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M28 65c0-21 15-38 36-41 21-3 41 9 47 29 6 20-5 42-25 51-20 9-44 1-53-18-3-7-5-14-5-21z" stroke-width="3.5"/>
+    <path d="M31 45c-8-2-13 5-10 12 2 6 8 8 13 4M85 29c2-8 12-10 17-4 5 6 1 14-6 16M104 72c8-2 14 5 11 12-2 7-10 9-16 4" stroke-width="2.5"/>
+    <circle cx="103" cy="104" r="8" stroke-width="2.5"/>
+    <path d="M48 52c6-8 17-8 23-1 1 8-8 14-17 11-4-1-6-5-6-10zM60 72c7-5 17-1 18 7-4 7-14 9-20 3-2-4-1-8 2-10z" stroke-width="2"/>
+  </g>
+</svg>

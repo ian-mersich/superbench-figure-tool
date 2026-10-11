@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Adipocyte</title>
+  <desc id="desc">Editable white adipocyte schematic with large lipid droplet displacing a peripheral nucleus.</desc>
+  <g data-region="cell_body" fill="#C7F2EC" stroke="none"><circle cx="64" cy="64" r="48"/></g>
+  <g data-region="nuclear_region" fill="#B8B5FF" stroke="none"><circle cx="61" cy="61" r="37"/></g>
+  <g data-region="cell_feature" fill="none" stroke="#F4A261" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="94" cy="89" rx="10" ry="13"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="64" cy="64" r="48"/><circle cx="61" cy="61" r="37"/><ellipse cx="94" cy="89" rx="10" ry="13"/></g>
+</svg>

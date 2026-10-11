@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Integrin Receptor</title>
+  <desc id="desc">Editable integrin heterodimer schematic with bent alpha-beta adhesion heterodimer spanning a membrane.</desc>
+  <g data-region="biological_context" fill="#C7F2EC" stroke="none"><path d="M8 81h112v14H8z"/></g>
+  <g data-region="receptor_or_vesicle" fill="none" stroke="#5EA9DD" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M50 83c-2-17-4-32 2-44 5-10 14-13 25-10M75 83c1-18 0-32-8-44M52 39c-8-3-16 1-20 9M67 39c5-9 14-14 25-13M51 50c8 5 15 5 23 0"/></g>
+  <g data-region="cargo_or_signal" fill="none" stroke="#F4A261" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="30" cy="50" rx="10" ry="7"/><ellipse cx="94" cy="25" rx="11" ry="7"/><path d="M51 95l-8 19M75 95l9 19M43 114h-9M84 114h9"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M8 81h112M8 95h112M50 83c-2-17-4-32 2-44 5-10 14-13 25-10M75 83c1-18 0-32-8-44M52 39c-8-3-16 1-20 9M67 39c5-9 14-14 25-13M51 50c8 5 15 5 23 0M51 95l-8 19M75 95l9 19"/></g>
+</svg>

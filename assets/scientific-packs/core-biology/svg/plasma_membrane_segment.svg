@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Plasma Membrane Segment</title>
+  <desc id="desc">Original vector phospholipid bilayer with hydrophilic heads, paired hydrophobic tails, cholesterol-like accents, and editable semantic regions.</desc>
+
+  <g data-region="membrane" fill="#C7F2EC">
+    <rect x="15" y="47" width="98" height="34" rx="5" opacity="0.45"/>
+    <rect x="24" y="48" width="3" height="15" rx="1.5"/><rect x="30" y="48" width="3" height="15" rx="1.5"/>
+    <rect x="38" y="48" width="3" height="15" rx="1.5"/><rect x="44" y="48" width="3" height="15" rx="1.5"/>
+    <rect x="52" y="48" width="3" height="15" rx="1.5"/><rect x="58" y="48" width="3" height="15" rx="1.5"/>
+    <rect x="66" y="48" width="3" height="15" rx="1.5"/><rect x="72" y="48" width="3" height="15" rx="1.5"/>
+    <rect x="80" y="48" width="3" height="15" rx="1.5"/><rect x="86" y="48" width="3" height="15" rx="1.5"/>
+    <rect x="94" y="48" width="3" height="15" rx="1.5"/><rect x="100" y="48" width="3" height="15" rx="1.5"/>
+    <rect x="24" y="65" width="3" height="15" rx="1.5"/><rect x="30" y="65" width="3" height="15" rx="1.5"/>
+    <rect x="38" y="65" width="3" height="15" rx="1.5"/><rect x="44" y="65" width="3" height="15" rx="1.5"/>
+    <rect x="52" y="65" width="3" height="15" rx="1.5"/><rect x="58" y="65" width="3" height="15" rx="1.5"/>
+    <rect x="66" y="65" width="3" height="15" rx="1.5"/><rect x="72" y="65" width="3" height="15" rx="1.5"/>
+    <rect x="80" y="65" width="3" height="15" rx="1.5"/><rect x="86" y="65" width="3" height="15" rx="1.5"/>
+    <rect x="94" y="65" width="3" height="15" rx="1.5"/><rect x="100" y="65" width="3" height="15" rx="1.5"/>
+  </g>
+
+  <g data-region="lipid_head" fill="#7DD3C7">
+    <circle cx="28" cy="43" r="5"/><circle cx="42" cy="43" r="5"/><circle cx="56" cy="43" r="5"/><circle cx="70" cy="43" r="5"/><circle cx="84" cy="43" r="5"/><circle cx="98" cy="43" r="5"/>
+    <circle cx="28" cy="85" r="5"/><circle cx="42" cy="85" r="5"/><circle cx="56" cy="85" r="5"/><circle cx="70" cy="85" r="5"/><circle cx="84" cy="85" r="5"/><circle cx="98" cy="85" r="5"/>
+  </g>
+
+  <g data-region="accent" fill="#F4A261">
+    <path d="M48 57l5-4 5 4-2 10h-6z"/><path d="M76 71l5-4 5 4-2 10h-6z"/>
+  </g>
+
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round">
+    <g stroke-width="1.75">
+      <circle cx="28" cy="43" r="5"/><circle cx="42" cy="43" r="5"/><circle cx="56" cy="43" r="5"/><circle cx="70" cy="43" r="5"/><circle cx="84" cy="43" r="5"/><circle cx="98" cy="43" r="5"/>
+      <circle cx="28" cy="85" r="5"/><circle cx="42" cy="85" r="5"/><circle cx="56" cy="85" r="5"/><circle cx="70" cy="85" r="5"/><circle cx="84" cy="85" r="5"/><circle cx="98" cy="85" r="5"/>
+      <path d="M25 48v15M31 48v15M39 48v15M45 48v15M53 48v15M59 48v15M67 48v15M73 48v15M81 48v15M87 48v15M95 48v15M101 48v15"/>
+      <path d="M25 65v15M31 65v15M39 65v15M45 65v15M53 65v15M59 65v15M67 65v15M73 65v15M81 65v15M87 65v15M95 65v15M101 65v15"/>
+    </g>
+  </g>
+</svg>

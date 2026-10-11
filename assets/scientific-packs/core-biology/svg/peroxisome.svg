@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Peroxisome</title>
+  <desc id="desc">Original vector peroxisome with a single membrane, granular matrix, paracrystalline enzyme core, and editable semantic regions.</desc>
+
+  <path data-region="lumen" fill="#D9F4E5" d="M25 68c-1-23 14-43 36-47 23-4 43 10 45 33 3 24-11 47-34 53-23 5-45-9-47-32v-7z"/>
+  <path data-region="membrane" d="M25 68c-1-23 14-43 36-47 23-4 43 10 45 33 3 24-11 47-34 53-23 5-45-9-47-32v-7z" fill="none" stroke="#7DD3C7" stroke-linecap="round" stroke-linejoin="round" stroke-width="7"/>
+
+  <g data-region="core" fill="#F4A261">
+    <path d="M48 51l20-10 17 14-5 24-21 9-17-15z"/>
+    <circle cx="43" cy="40" r="2.75"/><circle cx="88" cy="39" r="2.5"/><circle cx="91" cy="86" r="3"/><circle cx="42" cy="91" r="2.5"/>
+  </g>
+
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M25 68c-1-23 14-43 36-47 23-4 43 10 45 33 3 24-11 47-34 53-23 5-45-9-47-32v-7z" stroke-width="3.5"/>
+    <path d="M48 51l20-10 17 14-5 24-21 9-17-15z" stroke-width="2.25"/>
+    <path d="M49 57l29 16M44 69l37-13M59 46l18 36" stroke-width="1.6"/>
+  </g>
+</svg>

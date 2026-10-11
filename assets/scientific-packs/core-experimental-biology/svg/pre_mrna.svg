@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Pre-mRNA</title>
+  <desc id="desc">Editable precursor messenger rna schematic with capped transcript with alternating exon and intron segments.</desc>
+  <g data-region="nucleic_acid" fill="none" stroke="#5EA9DD" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M13 64h104"/></g>
+  <g data-region="regulatory_feature" fill="none" stroke="#7B78C9" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><rect x="22" y="51" width="20" height="26" rx="3"/><rect x="57" y="51" width="21" height="26" rx="3"/><rect x="94" y="51" width="20" height="26" rx="3"/></g>
+  <g data-region="process_feature" fill="none" stroke="#F4A261" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13" cy="64" r="9"/><path d="M42 64c5-9 10-9 15 0M78 64c5 9 11 9 16 0M117 64l7 8M117 64l7-8"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 64h104M22 51h20v26H22zM57 51h21v26H57zM94 51h20v26H94z"/></g>
+</svg>

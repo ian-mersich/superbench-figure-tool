@@ -1,0 +1,120 @@
+{
+  "schema": "figureStudio.vendorSourceLock.v1",
+  "source_packages": [
+    {
+      "id": "fabric-7.3.1",
+      "name": "fabric",
+      "version": "7.3.1",
+      "repository": "https://github.com/fabricjs/fabric.js",
+      "commit": "b305406837c50b5638ce32c7558fc83e9c8c4159",
+      "archive_url": "https://codeload.github.com/fabricjs/fabric.js/tar.gz/b305406837c50b5638ce32c7558fc83e9c8c4159",
+      "archive_bytes": 25340437,
+      "archive_sha256": "2b15f9094e68f5484bb1c70374c48cf41bc9ec7d5f32e16eb01196e7f86a5875",
+      "archive_root": "fabric.js-b305406837c50b5638ce32c7558fc83e9c8c4159"
+    },
+    {
+      "id": "jspdf-4.2.1",
+      "name": "jspdf",
+      "version": "4.2.1",
+      "repository": "https://github.com/parallax/jsPDF",
+      "commit": "4562ce8aa35bd5ecd98cd5e262e3da2af96476f6",
+      "archive_url": "https://codeload.github.com/parallax/jsPDF/tar.gz/4562ce8aa35bd5ecd98cd5e262e3da2af96476f6",
+      "archive_bytes": 13587845,
+      "archive_sha256": "148bfb42554d9168191672e110c747f74385498102eb450402cbdf833f0389f5",
+      "archive_root": "jsPDF-4562ce8aa35bd5ecd98cd5e262e3da2af96476f6"
+    },
+    {
+      "id": "pdf-lib-1.17.1",
+      "name": "pdf-lib",
+      "version": "1.17.1",
+      "repository": "https://github.com/Hopding/pdf-lib",
+      "commit": "4beebbef7a261ed0be089bb1d63a5b6e28cc488a",
+      "archive_url": "https://codeload.github.com/Hopding/pdf-lib/tar.gz/4beebbef7a261ed0be089bb1d63a5b6e28cc488a",
+      "archive_bytes": 60702209,
+      "archive_sha256": "836f2a95e2d5a6b9804c429fb93d6738575c033c549c6d1e1c3f304d6fc20709",
+      "archive_root": "pdf-lib-4beebbef7a261ed0be089bb1d63a5b6e28cc488a"
+    },
+    {
+      "id": "pdfjs-5.7.284",
+      "name": "pdfjs-dist",
+      "version": "5.7.284",
+      "repository": "https://github.com/mozilla/pdf.js",
+      "commit": "7e5b36c2d572ba82e1e3adeb1c266f0052746c73",
+      "archive_url": "https://codeload.github.com/mozilla/pdf.js/tar.gz/7e5b36c2d572ba82e1e3adeb1c266f0052746c73",
+      "archive_bytes": 108591132,
+      "archive_sha256": "1a91132835abae874c325ce3adff40e2b26626cd5337ce6019e8faf670db5636",
+      "archive_root": "pdf.js-7e5b36c2d572ba82e1e3adeb1c266f0052746c73"
+    },
+    {
+      "id": "pdfjs-3.11.174",
+      "name": "pdfjs-dist",
+      "version": "3.11.174",
+      "repository": "https://github.com/mozilla/pdf.js",
+      "commit": "ce87167432819f85df49b6b16c7a78556e9a4ee0",
+      "archive_url": "https://codeload.github.com/mozilla/pdf.js/tar.gz/ce87167432819f85df49b6b16c7a78556e9a4ee0",
+      "archive_bytes": 76360614,
+      "archive_sha256": "0604d1e5169f53125e2a0581fc4832169a08ed299bfb7c4afc12f0873a511ef8",
+      "archive_root": "pdf.js-ce87167432819f85df49b6b16c7a78556e9a4ee0"
+    },
+    {
+      "id": "svg2pdf.js-2.7.0",
+      "name": "svg2pdf.js",
+      "version": "2.7.0",
+      "repository": "https://github.com/yWorks/svg2pdf.js",
+      "commit": "886439cd56a4de05db4e92d2afc264e51b1d6a16",
+      "archive_url": "https://codeload.github.com/yWorks/svg2pdf.js/tar.gz/886439cd56a4de05db4e92d2afc264e51b1d6a16",
+      "archive_bytes": 8490808,
+      "archive_sha256": "7571275bdbef9decbcab0b950df6dbce02e7bfb844ad4739ac940b03b0f77e34",
+      "archive_root": "svg2pdf.js-886439cd56a4de05db4e92d2afc264e51b1d6a16"
+    },
+    {
+      "id": "polygon-clipping-0.15.7",
+      "name": "polygon-clipping",
+      "version": "0.15.7",
+      "repository": "https://github.com/mfogel/polygon-clipping",
+      "commit": "25f2a460ca7bd750d958d3d83b0037a32fcf75f6",
+      "archive_url": "https://codeload.github.com/mfogel/polygon-clipping/tar.gz/25f2a460ca7bd750d958d3d83b0037a32fcf75f6",
+      "archive_bytes": 1673580,
+      "archive_sha256": "b2adfb3f83df73bc80bc3e2400d4be060a8ff5ca1a984528a87a750e3c879fa9",
+      "archive_root": "polygon-clipping-25f2a460ca7bd750d958d3d83b0037a32fcf75f6"
+    },
+    {
+      "id": "dejavu-fonts-2.35",
+      "name": "dejavu-fonts",
+      "version": "2.35",
+      "repository": "https://github.com/dejavu-fonts/dejavu-fonts",
+      "commit": "e055422f2643c8dc4718fb2269daeb3f707ccc4b",
+      "archive_url": "https://codeload.github.com/dejavu-fonts/dejavu-fonts/tar.gz/e055422f2643c8dc4718fb2269daeb3f707ccc4b",
+      "archive_bytes": 13024073,
+      "archive_sha256": "14ce47a6106c688aac6b23e481460537f4a03e22582bebb90b8221b14e254d49",
+      "archive_root": "dejavu-fonts-e055422f2643c8dc4718fb2269daeb3f707ccc4b"
+    }
+  ],
+  "npm_packages": [
+    {"name":"fabric","version":"7.3.1","integrity":"sha512-RoLAQzUX+/3RNMYKliuN0P2HXdSDEGzyjS7FnmEbo3nhb8LFh59T+l3f6ApIu5LT4YB49YfMNrEajeIbutmD7Q==","license":"MIT","embedded_in":["fabric runtime; package source and source map"]},
+    {"name":"jspdf","version":"4.2.1","integrity":"sha512-YyAXyvnmjTbR4bHQRLzex3CuINCDlQnBqoSYyjJwTP2x9jDLuKDzy7aKUl0hgx3uhcl7xzg32agn5vlie6HIlQ==","license":"MIT","embedded_in":["jsPDF runtime; package source map and module headers"]},
+    {"name":"pdf-lib","version":"1.17.1","integrity":"sha512-V/mpyJAoTsN4cnP31vc0wfNA1+p20evqqnap0KLoRUN0Yk/p3wN52DOEsL4oBFcLdb76hlpKPtzJIgo67j/XLw==","license":"MIT","embedded_in":["pdf-lib runtime and source map"]},
+    {"name":"pdfjs-dist","version":"5.7.284","integrity":"sha512-h4EdYQczmGhbOlqc3PPZwxevn7ApdWPbovAuWXOB/DjIyigSnwfy2oze7c6mRcSr9XgLp3eN3EeL4DyySTPMFw==","license":"Apache-2.0","embedded_in":["current PDF.js runtime and worker"]},
+    {"name":"pdfjs-dist","version":"3.11.174","integrity":"sha512-TdTZPf1trZ8/UFu5Cx/GXB7GZM30LT+wWUNfsi6Bq8ePLnb+woNKtDymI2mxZYBpMbonNFqKmiz684DIfnd8dA==","license":"Apache-2.0","embedded_in":["legacy PDF.js SVG runtime and worker"]},
+    {"name":"svg2pdf.js","version":"2.7.0","integrity":"sha512-nXK4Wx28H0KtOktanm5nsphl1KMEoLNMelAT/776qxPAj9DshwYcqgdpKuBnY1nrcYOriQFHVQLE4tIag+aDJA==","license":"MIT","embedded_in":["svg2pdf runtime; package source map"]},
+    {"name":"polygon-clipping","version":"0.15.7","integrity":"sha512-nhfdr83ECBg6xtqOAJab1tbksbBAOMUltN60bU+llHVOL0e5Onm1WpAXXWXVB39L8AJFssoIhEVuy/S90MmotA==","license":"MIT","embedded_in":["polygon-clipping runtime; package source map"]},
+    {"name":"@babel/runtime","version":"7.28.6","integrity":"sha512-05WQkdpL9COIMz4LjTxGpPNCdlpyimKppYNoJ5Di5EUObifl8t4tuLuUBBZEpoLYOmfvIWrsp9fCl0HoPRVTdA==","license":"MIT","embedded_in":["jsPDF generated bundle helpers"]},
+    {"name":"fflate","version":"0.8.1","integrity":"sha512-/exOvEuc+/iaUm105QIiOt4LpBdMTWsXxqR0HDF35vx3fmaKzw7354gTilCh5rkzEt8WYyG//ku3h3nRmd7CHQ==","license":"MIT","embedded_in":["jsPDF generated bundle"]},
+    {"name":"fast-png","version":"6.4.0","integrity":"sha512-kAqZq1TlgBjZcLr5mcN6NP5Rv4V2f22z00c3g8vRrwkcqjerx7BEhPbOnWCPqaHUl2XWQBJQvOT/FQhdMT7X/Q==","license":"MIT","embedded_in":["jsPDF generated bundle"]},
+    {"name":"iobuffer","version":"5.4.0","integrity":"sha512-DRebOWuqDvxunfkNJAlc3IzWIPD5xVxwUNbHr7xKB8E6aLJxIPfNX3CoMJghcFjpv6RWQsrcJbghtEwSPoJqMA==","license":"MIT","embedded_in":["fast-png source map and jsPDF generated bundle"]},
+    {"name":"pako","version":"2.1.0","integrity":"sha512-w+eufiZ1WuJYgPXbV/PO3NCMEc3xqylkKHzp8bxp1uW4qaSNQUkwmLLEc3kKsfz8lpV1F8Ht3U1Cm+9Srog2ug==","license":"MIT AND Zlib","embedded_in":["jsPDF generated bundle; fast-png dependency"]},
+    {"name":"@pdf-lib/standard-fonts","version":"1.0.0","integrity":"sha512-hU30BK9IUN/su0Mn9VdlVKsWBS6GyhVfqjwl1FjZN4TxP6cCw0jP2w7V3Hf5uX7M0AZJ16vey9yE0ny7Sa59ZA==","license":"MIT","embedded_in":["pdf-lib generated bundle"]},
+    {"name":"@pdf-lib/upng","version":"1.0.1","integrity":"sha512-dQK2FUMQtowVP00mtIksrlZhdFXQZPC+taih1q4CvPZ5vqdxR/LKBaFg0oAfzd1GlHZXXSPdQfzQnt+ViGvEIQ==","license":"MIT","embedded_in":["pdf-lib generated bundle"]},
+    {"name":"pako","version":"1.0.10","integrity":"sha512-0DTvPVU3ed8+HNXOu5Bs+o//Mbdj9VNQMUOe9oKCwh8l0GNwpTDMKCWbRjgtD291AWnkAgkqA/LOnQS8AmS1tw==","license":"MIT AND Zlib","embedded_in":["pdf-lib standard-fonts generated bundle"]},
+    {"name":"pako","version":"1.0.11","integrity":"sha512-4hLB8Py4zZce5s4yd9XzopqwVv/yGNhV1Bl8NTmCq1763HeK2+EwVTv+leGeL13Dnh2wfbqowVPXCIO0z4taYw==","license":"MIT AND Zlib","embedded_in":["pdf-lib generated bundle"]},
+    {"name":"tslib","version":"1.11.1","integrity":"sha512-aZW88SY8kQbU7gpV19lN24LtXh/yD4ZZg6qieAJDDg+YBsJcSmLGK9QpnUjAKVG/xefmvJGd1WUmfpT/g6AJGA==","license":"Apache-2.0","embedded_in":["pdf-lib and svg2pdf generated bundles"]},
+    {"name":"core-js","version":"3.32.2","integrity":"sha512-pxXSw1mYZPDGvTQqEc5vgIb83jGQKFGYWY76z4a7weZXUolw3G+OvpZqSRcfYOoOVUQJYEPsWeQK8pKEnUtWxQ==","license":"MIT","embedded_in":["legacy PDF.js runtime and worker"]},
+    {"name":"cssesc","version":"3.0.0","integrity":"sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==","license":"MIT","embedded_in":["svg2pdf generated bundle"]},
+    {"name":"font-family-papandreou","version":"0.2.0-patch1","integrity":"sha512-l6WMbeh7+Zd4TTu3yUUPR5KOepiuGLd/QAPfTIoX8ipTko0IF7PU6dsM4YM2zCDToEPIPSyCBKEJnKlSdYMgaA==","license":"MIT","embedded_in":["svg2pdf generated bundle"]},
+    {"name":"specificity","version":"0.4.1","integrity":"sha512-1klA3Gi5PD1Wv9Q0wUoOQN1IWAuPu0D1U03ThXTr0cJ20+/iq2tHSDnK7Kk/0LXJ1ztUB2/1Os0wKmfyNgUQfg==","license":"MIT","embedded_in":["svg2pdf generated bundle"]},
+    {"name":"svgpath","version":"2.5.0","integrity":"sha512-o/vohwqjUO9nDAh4rcjE3KaW/v//At8UJu2LJMybXidf5QLQLVA4bxH0//4YCsr+1H4Gw1Wi/Jc62ynzSBYidw==","license":"MIT","embedded_in":["svg2pdf generated bundle"]},
+    {"name":"robust-predicates","version":"3.0.2","integrity":"sha512-IXgzBWvWQwE6PrDI05OvmXUIruQTcoMDzRsOd5CDvHCVLcLHMTSYvOK5Cm46kWqlV3yAbuSpBZdJ5oP5OUoStg==","license":"Unlicense","embedded_in":["polygon-clipping generated bundle"]},
+    {"name":"splaytree","version":"3.1.2","integrity":"sha512-4OM2BJgC5UzrhVnnJA4BkHKGtjXNzzUfpQjCO8I05xYPsfS/VuQDwjCGGMi8rYQilHEV4j8NBqTFbls/PZEE7A==","license":"MIT","embedded_in":["polygon-clipping generated bundle"]}
+  ],
+  "font_source_note": "The DejaVu source repository is included for editable glyph sources. The distributed TTFs originate from matplotlib 3.10.9 mpl-data/fonts/ttf; this repository archive is not claimed to rebuild those exact TTF bytes."
+}

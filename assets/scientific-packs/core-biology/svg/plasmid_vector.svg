@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Plasmid vector</title>
+  <desc id="desc">Original circular plasmid map with directional backbone, inserted sequence, marker cassette, and editable semantic regions.</desc>
+  <circle data-region="backbone" cx="64" cy="64" r="40" fill="none" stroke="#8EC8FF" stroke-width="9"/>
+  <path data-region="insert" d="M45 29a40 40 0 0 1 49 10" fill="none" stroke="#F4A261" stroke-width="10" stroke-linecap="round"/>
+  <path data-region="marker" d="M94 88a40 40 0 0 1-45 13" fill="none" stroke="#B8B5FF" stroke-width="9" stroke-linecap="round"/>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="64" cy="64" r="40" stroke-width="3.5"/>
+    <path d="M45 29a40 40 0 0 1 49 10M94 88a40 40 0 0 1-45 13" stroke-width="2.5"/>
+    <path d="m54 27-8-5-2 9M87 97l9 4-1-10M99 51l8 5-8 5M30 72l-8-5 1 10" stroke-width="2.75"/>
+    <circle cx="64" cy="64" r="11" stroke-width="2.25" stroke-dasharray="3 4"/>
+  </g>
+</svg>

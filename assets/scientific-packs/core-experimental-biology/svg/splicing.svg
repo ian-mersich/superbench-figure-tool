@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">RNA Splicing</title>
+  <desc id="desc">Editable pre-mrna splicing schematic with pre-mRNA loop-out and joined mature exons.</desc>
+  <g data-region="nucleic_acid" fill="none" stroke="#5EA9DD" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 40h110M17 91h94"/></g>
+  <g data-region="regulatory_feature" fill="none" stroke="#7B78C9" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><rect x="14" y="29" width="22" height="22" rx="3"/><rect x="54" y="29" width="22" height="22" rx="3"/><rect x="94" y="29" width="22" height="22" rx="3"/><rect x="22" y="80" width="29" height="22" rx="3"/><rect x="51" y="80" width="29" height="22" rx="3"/><rect x="80" y="80" width="25" height="22" rx="3"/></g>
+  <g data-region="process_feature" fill="none" stroke="#F4A261" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M36 40c7 22 25 24 31 9 5-12-10-17-15-7-5 10 8 20 24 11 8-5 12-9 18-13M65 59v12m0 0-6-7m6 7 6-7"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 40h110M17 91h94M14 29h22v22H14zM54 29h22v22H54zM94 29h22v22H94zM22 80h83v22H22z"/></g>
+</svg>

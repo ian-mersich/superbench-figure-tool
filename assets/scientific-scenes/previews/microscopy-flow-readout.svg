@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-labelledby="title desc">
+  <title id="title">Microscopy and flow cytometry readout scene preview</title>
+  <desc id="desc">A prepared cell sample branches to fluorescence microscopy and flow-cytometry workflows with editable image, dot-plot, and histogram readouts.</desc>
+  <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="context-stroke"/></marker></defs>
+  <rect width="960" height="540" rx="28" fill="#F7F9FC"/>
+  <text x="44" y="48" fill="#26323D" font-family="system-ui, sans-serif" font-size="26" font-weight="650">Microscopy and flow-cytometry readouts</text>
+  <rect x="246" y="74" width="682" height="202" rx="22" fill="#FFFFFF" stroke="#8D7CC1" stroke-width="2"/>
+  <rect x="246" y="304" width="682" height="202" rx="22" fill="#FFFFFF" stroke="#4F7CAC" stroke-width="2"/>
+  <g fill="#667085" font-family="system-ui, sans-serif" font-size="14" font-weight="650"><text x="266" y="101">FLUORESCENCE MICROSCOPY</text><text x="266" y="331">FLOW CYTOMETRY</text></g>
+  <g stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M55 206h58l-8 99H63Z" fill="#FFFFFF"/><path d="M64 264h41" stroke="#2A9D8F" stroke-width="12"/>
+    <path d="M151 216c28-27 75-5 74 34 0 41-52 60-83 30-19-19-15-45 9-64Z" fill="#2A9D8F"/><circle cx="184" cy="248" r="17" fill="#DCD6F4"/>
+    <rect x="282" y="130" width="100" height="75" rx="8" fill="#FFFFFF"/><path d="M292 144h80v47h-80Z" fill="#D8F2EA"/>
+    <path d="M438 132h42l15 27v48h-69v-28h26v-28h-14Z" fill="#8D7CC1"/><circle cx="462" cy="160" r="12" fill="#F4A261"/>
+    <rect x="626" y="112" width="128" height="110" rx="12" fill="#26323D"/>
+    <g fill="#E76F51" stroke="none"><circle cx="648" cy="136" r="5"/><circle cx="675" cy="153" r="7"/><circle cx="711" cy="133" r="5"/><circle cx="729" cy="176" r="7"/><circle cx="659" cy="190" r="6"/><circle cx="698" cy="188" r="4"/></g>
+    <path d="M288 351h96v104h-96Z" fill="#4F7CAC"/><rect x="304" y="368" width="64" height="38" rx="5" fill="#FFFFFF"/><path d="M316 394c12-20 25 13 40-8" fill="none" stroke="#F4A261"/>
+    <rect x="478" y="342" width="124" height="112" rx="12" fill="#FFFFFF" stroke="#4F7CAC"/><path d="M499 432V364m0 68h82" fill="none"/>
+    <g fill="#E76F51" stroke="none"><circle cx="518" cy="412" r="4"/><circle cx="527" cy="400" r="4"/><circle cx="537" cy="407" r="4"/><circle cx="548" cy="387" r="4"/><circle cx="556" cy="395" r="4"/><circle cx="566" cy="378" r="4"/></g>
+    <rect x="682" y="342" width="124" height="112" rx="12" fill="#FFFFFF" stroke="#4F7CAC"/><path d="M702 432V364m0 68h84" fill="none"/><path d="M708 424c15-1 16-22 27-25 14-4 16 20 31 19 8-1 11-11 16-17" fill="none" stroke="#E76F51" stroke-width="4"/>
+  </g>
+  <g fill="none" stroke-width="3" marker-end="url(#arrow)">
+    <path d="M114 256h28" stroke="#2A9D8F"/>
+    <path d="M225 246C260 235 254 167 281 167" stroke="#8D7CC1"/><path d="M383 167h41M496 167h128" stroke="#8D7CC1"/>
+    <path d="M225 264C260 285 252 402 286 402" stroke="#4F7CAC"/><path d="M385 402h91M602 402h78" stroke="#4F7CAC"/>
+  </g>
+  <g fill="#26323D" font-family="system-ui, sans-serif" font-size="13" text-anchor="middle">
+    <text x="84" y="330">Prepared sample</text><text x="184" y="330">Cell population</text>
+    <text x="332" y="236">Stained slide</text><text x="461" y="236">Acquire images</text><text x="690" y="250">Image readout</text>
+    <text x="336" y="480">Acquire events</text><text x="540" y="480">Gate populations</text><text x="744" y="480">Quantify intensity</text>
+  </g>
+</svg>

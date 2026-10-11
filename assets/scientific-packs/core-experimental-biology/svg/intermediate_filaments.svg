@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Intermediate Filaments</title>
+  <desc id="desc">Editable intermediate filament network schematic with rope-like cytoplasmic filament mesh.</desc>
+  <g data-region="structure" fill="#8EC8FF" stroke="none"><circle cx="64" cy="64" r="16"/></g>
+  <g data-region="functional_detail" fill="none" stroke="#7B78C9" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 32c26 3 26 29 52 32s26 29 52 32M15 96c22-5 24-27 49-32s28-27 49-32M23 15c5 25 25 28 41 49s38 17 45 47M105 15c-7 24-26 30-41 49s-37 18-45 47"/></g>
+  <g data-region="accent" fill="#F4A261" stroke="none"><path d="M56 56l16 16M72 56L56 72"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="64" cy="64" r="16"/><path d="M12 32c26 3 26 29 52 32s26 29 52 32M15 96c22-5 24-27 49-32s28-27 49-32M23 15c5 25 25 28 41 49s38 17 45 47M105 15c-7 24-26 30-41 49s-37 18-45 47"/></g>
+</svg>

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Nematode Model</title>
+  <desc id="desc">Original vector generic nematode model with a smooth C-shaped tapered body path, differentiated head cue, restrained internal tract, and editable semantic regions.</desc>
+
+  <path data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round" stroke-width="18" d="M24 96C20 59 41 27 72 27c24 0 40 16 36 37-4 22-27 38-49 31-15-5-22-18-16-29 4-8 13-12 23-9"/>
+  <path data-region="body" fill="none" stroke="#F4E8C1" stroke-linecap="round" stroke-linejoin="round" stroke-width="12" d="M24 96C20 59 41 27 72 27c24 0 40 16 36 37-4 22-27 38-49 31-15-5-22-18-16-29 4-8 13-12 23-9"/>
+
+  <path data-region="internal_tract" fill="none" stroke="#B89CD9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" d="M27 91C27 60 44 34 71 34c18 0 31 12 29 28-3 16-20 27-37 23-10-3-15-10-13-17 2-5 7-7 13-6"/>
+
+  <g data-region="head" fill="#F4A261">
+    <ellipse cx="24" cy="96" rx="6" ry="6.5"/>
+  </g>
+  <ellipse data-region="outline" fill="none" stroke="#26323D" stroke-width="2.2" cx="24" cy="96" rx="6" ry="6.5"/>
+  <path data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-width="1.8" d="M19 98h3"/>
+</svg>

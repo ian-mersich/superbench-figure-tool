@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Senescent Cell</title>
+  <desc id="desc">Editable senescent cell schematic with enlarged flattened cell with lysosomal and secretory cues.</desc>
+  <g data-region="cell_body" fill="#C7F2EC" stroke="none"><path d="M15 71c2-30 19-44 50-45 28-1 47 16 48 42 1 28-20 39-50 39-31 0-50-10-48-36z"/></g>
+  <g data-region="nuclear_region" fill="#B8B5FF" stroke="none"><path d="M45 49c12-10 31-6 37 7 7 13 0 30-14 35-15 5-31-4-33-19-1-9 3-17 10-23z"/></g>
+  <g data-region="cell_feature" fill="none" stroke="#F4A261" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="91" cy="47" r="6"/><circle cx="94" cy="82" r="5"/><circle cx="29" cy="86" r="4"/><path d="M83 27l9-12M97 31l13-7M99 40l13 2"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M15 71c2-30 19-44 50-45 28-1 47 16 48 42 1 28-20 39-50 39-31 0-50-10-48-36z"/><path d="M45 49c12-10 31-6 37 7 7 13 0 30-14 35-15 5-31-4-33-19-1-9 3-17 10-23z"/></g>
+</svg>

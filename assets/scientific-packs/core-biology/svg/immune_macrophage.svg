@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Macrophage</title>
+  <desc id="desc">Original vector macrophage with a large irregular cell body, broad lobopod-like extensions, eccentric kidney-shaped nucleus, restrained vacuoles, and editable semantic regions.</desc>
+
+  <path data-region="cytoplasm" fill="#D9F4E5" d="M25 58C17 49 20 38 31 34C39 31 43 25 48 20C53 15 61 17 65 25C75 19 86 24 91 33C95 41 104 42 113 41C123 40 126 49 121 58C117 65 119 72 124 80C126 88 122 97 113 98C104 99 101 107 94 114C84 120 74 117 68 109C59 119 46 118 39 109C34 102 24 103 16 105C8 107 5 99 8 91C10 83 16 79 22 75C17 68 18 61 25 58Z"/>
+  <path data-region="nucleus" fill="#B8B5FF" d="M43 43c10-8 26-6 33 4 6 9 3 21-6 27-7 5-17 5-24 0 6-2 9-6 8-11-1-6-6-9-12-8-4 1-7-1-7-5 1-3 4-5 8-7z"/>
+
+  <g data-region="vacuole" fill="#F4A261">
+    <circle cx="86" cy="59" r="7"/>
+    <circle cx="78" cy="84" r="5"/>
+    <circle cx="97" cy="79" r="3.5"/>
+  </g>
+
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke-width="3.4" d="M25 58C17 49 20 38 31 34C39 31 43 25 48 20C53 15 61 17 65 25C75 19 86 24 91 33C95 41 104 42 113 41C123 40 126 49 121 58C117 65 119 72 124 80C126 88 122 97 113 98C104 99 101 107 94 114C84 120 74 117 68 109C59 119 46 118 39 109C34 102 24 103 16 105C8 107 5 99 8 91C10 83 16 79 22 75C17 68 18 61 25 58Z"/>
+    <path stroke-width="2.5" d="M43 43c10-8 26-6 33 4 6 9 3 21-6 27-7 5-17 5-24 0 6-2 9-6 8-11-1-6-6-9-12-8-4 1-7-1-7-5 1-3 4-5 8-7z"/>
+    <circle cx="86" cy="59" r="7" stroke-width="1.8"/>
+    <circle cx="78" cy="84" r="5" stroke-width="1.8"/>
+    <circle cx="97" cy="79" r="3.5" stroke-width="1.6"/>
+  </g>
+</svg>

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Activation Arrow</title>
+  <desc id="desc">Original vector positive-regulation connector with a directional head, source node, and editable semantic regions.</desc>
+  <path data-region="outline" d="M20 64h78" fill="none" stroke="#26323D" stroke-width="7" stroke-linecap="round"/>
+  <path data-region="stroke" d="M20 64h78" fill="none" stroke="#2A9D8F" stroke-width="3.5" stroke-linecap="round"/>
+  <path data-region="head" d="M92 47l18 17-18 17z" fill="#2A9D8F"/>
+  <circle data-region="accent" cx="20" cy="64" r="5" fill="#F4A261"/>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="2.8" stroke-linejoin="round">
+    <path d="M92 47l18 17-18 17z"/>
+    <circle cx="20" cy="64" r="5"/>
+  </g>
+</svg>

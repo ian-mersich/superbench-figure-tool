@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Actin Cytoskeleton — Branched</title>
+  <desc id="desc">Editable branched form of filamentous actin network, shown with parallel bundle and branched meshwork forms.</desc>
+  <g data-region="structure" fill="#8EC8FF" stroke="none"><circle cx="64" cy="68" r="9"/></g>
+  <g data-region="functional_detail" fill="none" stroke="#7B78C9" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M64 68L43 49 25 35M43 49l-1-20M43 49L22 57M64 68l25-16 17-18M89 52l2-20M89 52l22 8M64 68L44 88l-15 17M44 88l-21-1M44 88l4 22M64 68l22 22 17 15M86 90l22-2M86 90l-3 22"/></g>
+  <g data-region="accent" fill="#F4A261" stroke="none"><circle cx="25" cy="35" r="3"/><circle cx="42" cy="29" r="3"/><circle cx="22" cy="57" r="3"/><circle cx="106" cy="34" r="3"/><circle cx="91" cy="32" r="3"/><circle cx="111" cy="60" r="3"/><circle cx="29" cy="105" r="3"/><circle cx="23" cy="87" r="3"/><circle cx="48" cy="110" r="3"/><circle cx="103" cy="105" r="3"/><circle cx="108" cy="88" r="3"/><circle cx="83" cy="112" r="3"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="64" cy="68" r="9"/><path d="M64 68L43 49 25 35M43 49l-1-20M43 49L22 57M64 68l25-16 17-18M89 52l2-20M89 52l22 8M64 68L44 88l-15 17M44 88l-21-1M44 88l4 22M64 68l22 22 17 15M86 90l22-2M86 90l-3 22"/></g>
+</svg>

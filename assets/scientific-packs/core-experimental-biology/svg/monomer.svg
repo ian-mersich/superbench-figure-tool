@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Protein Monomer</title>
+  <desc id="desc">Editable monomeric protein schematic with single folded globular protein.</desc>
+  <g data-region="protein_body" fill="#8EC8FF" stroke="none"><path d="M29 72c-9-18 1-39 20-44 13-4 20 5 31 3 16-3 28 10 25 25-2 12 7 18 1 31-7 15-25 12-35 18-15 9-35 0-38-16-1-7 0-12-4-17z"/></g>
+  <g data-region="interaction_site" fill="none" stroke="#7B78C9" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M47 56c10-9 21-10 31-2M45 77c13 10 27 10 41 0"/></g>
+  <g data-region="molecular_feature" fill="none" stroke="#F4A261" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="82" cy="48" r="6"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M29 72c-9-18 1-39 20-44 13-4 20 5 31 3 16-3 28 10 25 25-2 12 7 18 1 31-7 15-25 12-35 18-15 9-35 0-38-16-1-7 0-12-4-17z"/><circle cx="82" cy="48" r="6"/></g>
+</svg>

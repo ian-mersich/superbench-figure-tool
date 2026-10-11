@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Gene Promoter Segment</title>
+  <desc id="desc">Original vector promoter-to-gene cassette with an upstream promoter, directional gene body, nascent transcript cue, and editable semantic regions.</desc>
+  <path data-region="gene" fill="#8EC8FF" d="M49 51h45l17 13-17 13H49z"/>
+  <path data-region="promoter" fill="#F4A261" d="M22 51h22v26H22L12 64z"/>
+  <path data-region="transcript" fill="none" stroke="#7B78C9" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M42 91c17-8 37-8 55 0l-8-8m8 8-10 5"/>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 43h103M12 85h103" stroke-width="2.5"/>
+    <path d="M22 51h22v26H22L12 64z" stroke-width="3.25"/>
+    <path d="M49 51h45l17 13-17 13H49z" stroke-width="3.25"/>
+    <path d="M61 51v26M80 51v26" stroke-width="2.25" opacity=".75"/>
+    <path d="M42 91c17-8 37-8 55 0l-8-8m8 8-10 5" stroke-width="2.75"/>
+  </g>
+</svg>

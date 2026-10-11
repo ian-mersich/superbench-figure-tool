@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Tissue Section Slide</title>
+  <desc id="desc">Original vector microscope slide with a mounted tissue section, coverslip, writable label area, and editable semantic regions.</desc>
+
+  <rect data-region="slide" x="12" y="29" width="104" height="70" rx="7" fill="#E8EEF7"/>
+  <rect data-region="coverslip" x="42" y="38" width="62" height="52" rx="4" fill="#F7F9FC"/>
+  <path data-region="tissue" fill="#E8A98F" d="M51 58c4-7 13-10 21-6 8-4 18-1 22 6 4 8-2 15-11 18-10 3-23 1-30-4-7-5-9-12-2-14z"/>
+  <rect data-region="label" x="19" y="38" width="17" height="52" rx="3" fill="#B8B5FF"/>
+
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="12" y="29" width="104" height="70" rx="7" stroke-width="3.2"/>
+    <rect x="42" y="38" width="62" height="52" rx="4" stroke-width="2.4"/>
+    <path stroke-width="2.5" d="M51 58c4-7 13-10 21-6 8-4 18-1 22 6 4 8-2 15-11 18-10 3-23 1-30-4-7-5-9-12-2-14z"/>
+    <rect x="19" y="38" width="17" height="52" rx="3" stroke-width="2"/>
+    <path stroke-width="1.6" d="M23 47h9M23 54h9M23 61h9"/>
+  </g>
+</svg>

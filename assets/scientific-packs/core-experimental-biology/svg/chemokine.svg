@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Chemokine</title>
+  <desc id="desc">Editable chemotactic cytokine schematic with small secreted chemotactic protein with a gradient cue.</desc>
+  <g data-region="protein_body" fill="#8EC8FF" stroke="none"><path d="M38 67c-6-15 2-31 17-36 11-4 18 2 27 1 13-2 23 7 23 19 0 9 6 15 2 24-5 13-18 15-29 19-14 5-31-2-35-15-1-4-2-8-5-12z"/></g>
+  <g data-region="interaction_site" fill="none" stroke="#7B78C9" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M51 50c11 6 21 6 32 0M50 70c12-6 24-5 36 2M59 84c8-4 16-4 24-1"/></g>
+  <g data-region="molecular_feature" fill="none" stroke="#F4A261" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="28" cy="89" r="3"/><circle cx="19" cy="100" r="3.5"/><circle cx="12" cy="112" r="4"/><path d="M38 83c-9 4-15 10-19 17"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M38 67c-6-15 2-31 17-36 11-4 18 2 27 1 13-2 23 7 23 19 0 9 6 15 2 24-5 13-18 15-29 19-14 5-31-2-35-15-1-4-2-8-5-12z"/></g>
+</svg>

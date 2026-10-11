@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Flow Cytometry Readout — Dot Plot</title>
+  <desc id="desc">Editable dot plot form of flow cytometry result, shown with dot-plot and histogram result forms.</desc>
+  <g data-region="assay_surface" fill="#F7F9FC" stroke="none"><rect x="10" y="13" width="108" height="102" rx="7"/></g>
+  <g data-region="measured_signal" fill="#B8B5FF" stroke="none"><circle cx="29" cy="89" r="3"/><circle cx="35" cy="78" r="3"/><circle cx="41" cy="84" r="3"/><circle cx="47" cy="71" r="3"/><circle cx="54" cy="75" r="3"/><circle cx="60" cy="62" r="3"/><circle cx="66" cy="66" r="3"/><circle cx="72" cy="51" r="3"/><circle cx="78" cy="56" r="3"/><circle cx="85" cy="43" r="3"/><circle cx="92" cy="37" r="3"/><circle cx="99" cy="45" r="3"/><circle cx="92" cy="83" r="3"/><circle cx="101" cy="89" r="3"/></g>
+  <g data-region="signal_trace" fill="none" stroke="#E76F51" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round"><path d="M36 80c4-18 22-38 41-48 15-8 29-1 30 12 1 14-14 31-33 41-18 10-36 8-38-5z"/></g>
+  <g data-region="axes_or_structure" fill="none" stroke="#5EA9DD" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 103h91M21 103V24M43 103V24M21 77h91" opacity="0.75"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="13" width="108" height="102" rx="7"/></g>
+</svg>

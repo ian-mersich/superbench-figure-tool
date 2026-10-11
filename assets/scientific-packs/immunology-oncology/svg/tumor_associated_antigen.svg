@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Tumor-associated Antigen</title>
+  <desc id="desc">Editable tumor-associated antigen schematic with a labeled protein within cellular context; tumor association depends on biological context rather than protein shape.</desc>
+  <g data-region="cell_context" fill="#C7F2EC" stroke="none"><path d="M19 68c-3-24 15-46 40-47 28-2 50 18 51 45 2 26-18 46-44 46-26 0-44-18-47-44z"/></g>
+  <g data-region="antigen_body" fill="#B8B5FF" stroke="none"><path d="M36 51c-4-8 2-15 10-15 5-6 14-4 17 2 9-1 15 7 11 14 7 5 4 15-3 17-2 9-12 13-18 7-8 4-17-2-16-10-8-4-9-11-1-15z"/></g>
+  <g data-region="exposed_epitopes" fill="#F4A261" stroke="none"><circle cx="39" cy="48" r="3"/><circle cx="70" cy="51" r="3"/><circle cx="56" cy="75" r="3"/></g>
+  <g data-region="domain_structure" fill="none" stroke="#7B78C9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M45 45c6 1 9 5 9 10M66 46c-5 3-6 8-2 13M48 68c5-4 10-5 16-2"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 68c-3-24 15-46 40-47 28-2 50 18 51 45 2 26-18 46-44 46-26 0-44-18-47-44z"/><path d="M36 51c-4-8 2-15 10-15 5-6 14-4 17 2 9-1 15 7 11 14 7 5 4 15-3 17-2 9-12 13-18 7-8 4-17-2-16-10-8-4-9-11-1-15z"/><circle cx="39" cy="48" r="3"/><circle cx="70" cy="51" r="3"/><circle cx="56" cy="75" r="3"/><path d="M87 24L73 39"/></g>
+  <text data-region="outline" x="90" y="19" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#26323D" stroke="none">TAA</text>
+</svg>

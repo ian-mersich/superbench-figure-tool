@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Neoantigen Vaccine</title>
+  <desc id="desc">Editable neoantigen vaccine concept schematic with peptide-containing vial directed toward an antigen-presenting cell.</desc>
+  <g data-region="vaccine_vial" fill="#C7F2EC" stroke="none"><path d="M12 28h35v12l-5 8v54c0 7-6 12-13 12s-13-5-13-12V48l-4-8z"/><path d="M11 20h37v10H11z"/></g>
+  <g data-region="neoantigen_peptides" fill="none" stroke="#E76F51" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 62l8-5 8 5M21 75l8 5 8-5M21 91l8-5 8 5"/></g>
+  <g data-region="antigen_presenting_cell" fill="#8EC8FF" stroke="none"><path d="M76 47c-8-11 2-25 15-22 6-12 23-8 23 5 12 2 14 18 4 24 8 11-2 24-14 22-5 13-23 13-29 2-14 2-20-15-10-25z"/></g>
+  <g data-region="delivery_route" fill="none" stroke="#7B78C9" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M90 31v-9M101 31v-11M111 39l8-7M112 56l10 3"/><path d="M48 66L70 58M65.3651 65.0057L70 58L61.9477 55.6078"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 28h35v12l-5 8v54c0 7-6 12-13 12s-13-5-13-12V48l-4-8z"/><path d="M11 20h37v10H11z"/><path d="M76 47c-8-11 2-25 15-22 6-12 23-8 23 5 12 2 14 18 4 24 8 11-2 24-14 22-5 13-23 13-29 2-14 2-20-15-10-25z"/></g>
+</svg>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Sequencing Reads — Paired End</title>
+  <desc id="desc">Editable paired end form of sequencing-read alignment, shown with single-end and paired-end read-alignment forms.</desc>
+  <g data-region="assay_surface" fill="#F7F9FC" stroke="none"><rect x="10" y="13" width="108" height="102" rx="7"/></g>
+  <g data-region="measured_signal" fill="#B8B5FF" stroke="none"><path d="M22 34h24v8H22zM77 34h25v8H77zM31 61h27v8H31zM83 61h24v8H83zM18 88h24v8H18zM68 88h28v8H68z"/></g>
+  <g data-region="signal_trace" fill="none" stroke="#E76F51" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round"><path d="M46 38c13-18 18-18 31 0M58 65c10-17 15-17 25 0M42 92c10-20 16-20 26 0"/></g>
+  <g data-region="axes_or_structure" fill="none" stroke="#5EA9DD" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"><path d="M17 48h94M17 75h94M17 102h94"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="13" width="108" height="102" rx="7"/></g>
+</svg>

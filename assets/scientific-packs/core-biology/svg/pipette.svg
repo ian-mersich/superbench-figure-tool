@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Pipette</title>
+  <desc id="desc">Original vector single-channel micropipette with thumb plunger, volume window, tip cone, disposable tip, droplet, and editable semantic regions.</desc>
+  <g transform="rotate(-32 64 64)">
+    <path data-region="barrel" fill="#E8EEF7" d="M49 22h30v48l-7 13H56l-7-13z"/>
+    <path data-region="plunger" fill="#8EC8FF" d="M55 10h18l4 7-4 8H55l-4-8z"/>
+    <path data-region="tip" fill="#F7F9FC" d="M56 82h16l-5 33c-1 4-5 4-6 0z"/>
+    <path data-region="fluid" fill="#5EA9DD" d="M64 111c5 6 5 10 0 12-5-2-5-6 0-12z"/>
+    <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M49 22h30v48l-7 13H56l-7-13z" stroke-width="3.5"/>
+      <path d="M55 10h18l4 7-4 8H55l-4-8z" stroke-width="3"/>
+      <path d="M56 82h16l-5 33c-1 4-5 4-6 0z" stroke-width="3"/>
+      <rect x="55" y="35" width="18" height="13" rx="3" stroke-width="2.5"/>
+      <path d="M58 57h12M58 65h12" stroke-width="2"/>
+      <path d="M64 111c5 6 5 10 0 12-5-2-5-6 0-12z" stroke-width="2.25"/>
+    </g>
+  </g>
+</svg>

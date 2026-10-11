@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Tissue Biopsy Core</title>
+  <desc id="desc">Original vector solid cylindrical tissue biopsy core with two planar cut faces, restrained tissue texture, a mildly irregular contour, and editable semantic regions.</desc>
+
+  <g transform="rotate(-10 64 64)">
+    <path data-region="tissue" fill="#F0C8A8" d="M23 45C43 44 76 45 103 47c7 0 11 6 11 15 0 8-5 14-12 14-27-2-58-2-79-1-7 0-11-6-11-15 0-8 4-14 11-15z"/>
+    <g data-region="cut_surface" fill="#E8A98F">
+      <path d="M23 45c-7 0-11 6-11 15 0 9 4 15 11 15 7 0 11-6 11-15 0-8-4-15-11-15z"/>
+      <path d="M103 47c7 0 11 6 11 15 0 8-5 14-12 14-6 0-10-6-10-15 0-8 4-14 11-14z"/>
+    </g>
+    <g data-region="structure" fill="none" stroke="#C97F72" stroke-linecap="round" stroke-width="2.2">
+      <path d="M47 54l10 3"/>
+      <path d="M65 66l11-4"/>
+      <path d="M80 53l8 5"/>
+    </g>
+
+    <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke-width="3.4" d="M23 45C43 44 76 45 103 47c7 0 11 6 11 15 0 8-5 14-12 14-27-2-58-2-79-1-7 0-11-6-11-15 0-8 4-14 11-15z"/>
+      <path stroke-width="2.4" d="M23 45c7 0 11 7 11 15 0 9-4 15-11 15M103 47c-7 0-11 6-11 14 0 9 4 15 10 15"/>
+    </g>
+  </g>
+</svg>

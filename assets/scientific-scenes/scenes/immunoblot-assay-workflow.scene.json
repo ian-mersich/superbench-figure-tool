@@ -1,0 +1,192 @@
+{
+  "schema": "figureStudio.scientificScene.v1",
+  "id": "immunoblot-assay-workflow",
+  "name": "Immunoblot assay workflow",
+  "summary": "An editable immunoblot workflow from sample collection and lysis through SDS-PAGE, membrane transfer, antibody probing, signal detection, and one illustrative target/loading-control result.",
+  "source_record_id": "source.figure-studio-immunoblot-assay-workflow.2026-09-13",
+  "rights_record_id": "rights.figure-studio-immunoblot-assay-workflow.cc0.2026-09-13",
+  "scientific_record": {
+    "id": "science.figure-studio.immunoblot-assay-workflow.2026-09-13",
+    "verified_on": "2026-09-13",
+    "scope": "A locally authored, editable orientation schematic of one ordinary immunoblot workflow from sample preparation through an illustrative target and loading-control result.",
+    "relationships": [
+      {
+        "claim": "A conventional immunoblot workflow can proceed from sample collection and lysate preparation through protein separation by SDS-PAGE, transfer to a membrane, blocking, primary and secondary antibody probing, and signal detection.",
+        "source_ids": ["bass-2017", "towbin-1979"]
+      },
+      {
+        "claim": "Total-protein assessment informs planned loading, but equal nominal loading does not by itself establish equal transfer, valid normalization, or quantitative comparability.",
+        "source_ids": ["gilda-gomes-2013", "taylor-2013"]
+      },
+      {
+        "claim": "A loading control must be validated for the experimental sample and treatment context rather than assumed to be invariant.",
+        "source_ids": ["gilda-gomes-2013", "bass-2017"]
+      },
+      {
+        "claim": "Quantitative interpretation requires evidence that target and normalization signals are measured within suitable response ranges and are not saturated.",
+        "source_ids": ["taylor-2013"]
+      },
+      {
+        "claim": "Antibody specificity and performance require application- and context-appropriate validation.",
+        "source_ids": ["uhlen-2016"]
+      }
+    ],
+    "sources": [
+      {
+        "id": "towbin-1979",
+        "citation": "Towbin H, Staehelin T, Gordon J. Electrophoretic transfer of proteins from polyacrylamide gels to nitrocellulose sheets: procedure and some applications. Proc Natl Acad Sci U S A. 1979;76:4350–4354.",
+        "doi": "10.1073/pnas.76.9.4350",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/388439/",
+        "role": "Primary methodological evidence for membrane transfer, blocking, primary-antibody binding, labeled secondary detection, and the explicit warning that SDS-gel transfer was not quantitative in the reported conditions."
+      },
+      {
+        "id": "bass-2017",
+        "citation": "Bass JJ et al. An overview of technical considerations for Western blotting applications to physiological research. Scand J Med Sci Sports. 2017;27:4–25.",
+        "doi": "10.1111/sms.12702",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/27263489/",
+        "role": "Authoritative workflow review supporting the sequential assay stages and the need for quality control from sample preparation through detection and interpretation."
+      },
+      {
+        "id": "taylor-2013",
+        "citation": "Taylor SC, Berkelman T, Yadav G, Hammond M. A defined methodology for reliable quantification of Western blot data. Mol Biotechnol. 2013;55:217–226.",
+        "doi": "10.1007/s12033-013-9672-6",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/23709336/",
+        "role": "Methodological guidance supporting explicit linear-response, saturation, normalization, replicate, and statistical boundaries for quantitative claims."
+      },
+      {
+        "id": "gilda-gomes-2013",
+        "citation": "Gilda JE, Gomes AV. Stain-Free total protein staining is a superior loading control to β-actin for Western blots. Anal Biochem. 2013;440:186–188.",
+        "doi": "10.1016/j.ab.2013.05.027",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/23747530/",
+        "role": "Primary comparison supporting the separation of total-protein assessment from an unvalidated housekeeping-protein assumption."
+      },
+      {
+        "id": "uhlen-2016",
+        "citation": "Uhlén M et al. A proposal for validation of antibodies. Nat Methods. 2016;13:823–827.",
+        "doi": "10.1038/nmeth.3995",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/27595404/",
+        "role": "Consensus proposal supporting application-specific antibody validation and the boundary against inferring specificity from a single band depiction."
+      }
+    ],
+    "design_precedents": [
+      {
+        "source_id": "bass-2017",
+        "figure": "Figure 1 sequential process overview",
+        "decision": "Use a numbered process sequence from sample handling through detection, with sample preparation, separation, transfer, probing, and detection kept as distinct editable stages."
+      },
+      {
+        "source_id": "towbin-1979",
+        "figure": "Experimental procedure",
+        "decision": "Place membrane transfer before blocking and primary/secondary antibody probing and avoid any visual claim that transfer is complete or quantitative."
+      },
+      {
+        "source_id": "gilda-gomes-2013",
+        "figure": "Figure 1 loading-control comparison",
+        "decision": "Show total-protein assessment before loading and label the loading-control band generically so authors must choose and validate an appropriate control."
+      },
+      {
+        "source_id": "taylor-2013",
+        "figure": "Quantification workflow",
+        "decision": "Keep the result illustrative and place detector linearity, saturation, normalization, fold-change, replicate, and statistical interpretation outside the starter's claims."
+      },
+      {
+        "source_id": "uhlen-2016",
+        "figure": "Figure 1 antibody-validation strategies",
+        "decision": "Use generic primary/secondary antibody placeholders and state that the scene does not establish antibody specificity."
+      }
+    ],
+    "limitations": [
+      "The depicted bands are editable placeholders, not experimental data.",
+      "The loading-control placeholder must be replaced with a control validated for the sample type, treatment, target, and intended comparison.",
+      "The scene does not establish detector linearity, absence of saturation, transfer efficiency, antibody specificity, normalization validity, or quantitative comparability.",
+      "Band appearance does not support a fold-change, statistical-significance, biological-mechanism, or reproducibility claim.",
+      "One illustrative blot alone is not a complete quantitative analysis; appropriate controls, response-range checks, independent biological replicates, transparent image handling, and statistical analysis remain the author's responsibility.",
+      "Reagents, buffer chemistry, membrane type, molecular-mass markers, incubation conditions, wash steps, detection chemistry, species, cell type, tissue, treatment, and acquisition settings are intentionally generic or omitted."
+    ],
+    "authorship": "Original Figure Studio scene recipe and preview assembled from already released Figure Studio laboratory and assay assets plus original editable vector primitives; no publication artwork, commercial template, screenshot, database diagram, or third-party visual content was copied, traced, or embedded."
+  },
+  "canvas": {
+    "width": 960,
+    "height": 540,
+    "width_in": 10,
+    "height_in": 5.625,
+    "background_role": "background"
+  },
+  "palette": {
+    "background": "#F6F8FB",
+    "surface": "#FFFFFF",
+    "ink": "#26323D",
+    "muted": "#667085",
+    "border": "#D9E4EC",
+    "sample": "#2A9D8F",
+    "sample_light": "#D9F4E5",
+    "separation": "#4F7CAC",
+    "separation_light": "#DCE7F5",
+    "transfer": "#7B78C9",
+    "transfer_light": "#E4DFFF",
+    "probe": "#E76F51",
+    "probe_light": "#FCE0D8",
+    "signal": "#E9B44C",
+    "caution": "#8A5A18"
+  },
+  "layers": [
+    {"id": "workflow_stages", "name": "Immunoblot workflow stages"},
+    {"id": "samples_equipment", "name": "Samples and assay equipment"},
+    {"id": "membrane_antibodies", "name": "Membrane and antibody probing"},
+    {"id": "workflow_relationships", "name": "Workflow relationships"},
+    {"id": "editable_labels_limits", "name": "Editable labels and interpretation limits"}
+  ],
+  "nodes": [
+    {"id": "workflow_panel", "type": "shape", "shape": "rounded_rect", "layer_id": "workflow_stages", "x": 24, "y": 90, "width": 912, "height": 370, "radius": 22, "fill_role": "surface", "stroke_role": "border", "stroke_width": 2},
+    {"id": "sample_tube", "name": "Collected sample or cell pellet", "type": "asset", "layer_id": "samples_equipment", "asset_id": "core.sample.cell_pellet_tube", "top_level": true, "x": 44, "y": 137, "width": 58, "height": 78, "palette_overrides": {"tube": "surface", "cap": "muted", "supernatant": "sample_light", "pellet": "probe", "outline": "ink"}},
+    {"id": "lysate_tube", "name": "Lysed sample", "type": "asset", "layer_id": "samples_equipment", "asset_id": "core.lab.microcentrifuge_tube", "top_level": true, "x": 116, "y": 137, "width": 58, "height": 78, "palette_overrides": {"body": "surface", "cap": "sample", "fluid": "sample", "outline": "ink"}},
+    {"id": "centrifuge", "name": "Lysate clarification centrifuge", "type": "asset", "layer_id": "samples_equipment", "asset_id": "exp.lab_equipment.centrifuge", "top_level": true, "x": 241, "y": 133, "width": 86, "height": 84, "palette_overrides": {"instrument_body": "sample_light", "instrument_detail": "surface", "operational_cue": "sample", "outline": "ink"}},
+    {"id": "clarified_lysate", "name": "Clarified lysate", "type": "asset", "layer_id": "samples_equipment", "asset_id": "core.lab.microcentrifuge_tube", "top_level": true, "x": 345, "y": 137, "width": 58, "height": 78, "palette_overrides": {"body": "surface", "cap": "sample", "fluid": "sample_light", "outline": "ink"}},
+    {"id": "total_protein_plate", "name": "Total-protein assessment", "type": "asset", "layer_id": "samples_equipment", "asset_id": "core.lab.plate_96_well", "top_level": true, "x": 490, "y": 139, "width": 92, "height": 76, "palette_overrides": {"plate": "separation_light", "well": "surface", "media": "signal", "outline": "ink"}},
+    {"id": "gel_apparatus", "name": "SDS-PAGE apparatus", "type": "asset", "layer_id": "samples_equipment", "asset_id": "exp.lab_equipment.gel_electrophoresis", "top_level": true, "x": 726, "y": 133, "width": 94, "height": 84, "palette_overrides": {"instrument_body": "separation_light", "instrument_detail": "surface", "operational_cue": "separation", "outline": "ink"}},
+    {"id": "blot_transfer", "name": "Membrane transfer apparatus", "type": "asset", "layer_id": "samples_equipment", "asset_id": "exp.lab_equipment.blot_transfer", "top_level": true, "x": 726, "y": 315, "width": 94, "height": 84, "palette_overrides": {"instrument_body": "transfer_light", "instrument_detail": "surface", "operational_cue": "transfer", "outline": "ink"}},
+    {"id": "probing_membrane", "name": "Blocked membrane", "type": "shape", "shape": "rounded_rect", "layer_id": "membrane_antibodies", "x": 619, "y": 342, "width": 45, "height": 30, "radius": 5, "fill_role": "transfer_light", "stroke_role": "transfer", "stroke_width": 2.2},
+    {"id": "primary_antibody", "name": "Primary antibody placeholder", "type": "asset", "layer_id": "membrane_antibodies", "asset_id": "core.antibody.igg", "top_level": true, "x": 548, "y": 315, "width": 52, "height": 72, "palette_overrides": {"heavy_chain": "probe", "binding_tip": "signal", "hinge": "transfer", "outline": "ink"}},
+    {"id": "secondary_antibody", "name": "Secondary antibody placeholder", "type": "asset", "layer_id": "membrane_antibodies", "asset_id": "core.antibody.igg", "top_level": true, "x": 476, "y": 315, "width": 52, "height": 72, "palette_overrides": {"heavy_chain": "transfer", "binding_tip": "signal", "hinge": "probe", "outline": "ink"}},
+    {"id": "blot_imager", "name": "Signal detector", "type": "asset", "layer_id": "samples_equipment", "asset_id": "exp.lab_equipment.blot_imager", "top_level": true, "x": 278, "y": 315, "width": 94, "height": 84, "palette_overrides": {"instrument_body": "separation_light", "instrument_detail": "surface", "operational_cue": "signal", "outline": "ink"}},
+    {"id": "blot_result", "name": "Illustrative target and loading-control result", "type": "asset", "layer_id": "samples_equipment", "asset_id": "exp.assay_workflow.western_blot_result", "top_level": true, "x": 112, "y": 307, "width": 110, "height": 94, "palette_overrides": {"assay_surface": "surface", "measured_signal": "transfer", "signal_trace": "probe", "axes_or_structure": "separation", "outline": "ink"}},
+    {"id": "title", "type": "text", "layer_id": "editable_labels_limits", "x": 40, "y": 22, "width": 650, "height": 32, "text": "Immunoblot assay workflow", "placeholder": true, "editable": true, "font_size": 25, "fill_role": "ink", "align": "left", "include_scientific_record": true},
+    {"id": "subtitle", "type": "text", "layer_id": "editable_labels_limits", "x": 40, "y": 57, "width": 820, "height": 23, "text": "Replace sample, target, control, treatment, and detection labels for your experiment", "placeholder": true, "editable": true, "font_size": 15, "fill_role": "muted", "align": "left"},
+    {"id": "sample_stage_label", "type": "text", "layer_id": "editable_labels_limits", "x": 35, "y": 224, "width": 150, "height": 22, "text": "1  Collect + lyse", "placeholder": true, "editable": true, "font_size": 15, "fill_role": "sample", "align": "center"},
+    {"id": "sample_context_label", "type": "text", "layer_id": "editable_labels_limits", "x": 35, "y": 249, "width": 150, "height": 22, "text": "Sample / treatment", "placeholder": true, "editable": true, "font_size": 15, "fill_role": "muted", "align": "center"},
+    {"id": "clarification_stage_label", "type": "text", "layer_id": "editable_labels_limits", "x": 229, "y": 224, "width": 186, "height": 22, "text": "2  Clarify lysate", "placeholder": true, "editable": true, "font_size": 15, "fill_role": "sample", "align": "center"},
+    {"id": "clarified_label", "type": "text", "layer_id": "editable_labels_limits", "x": 229, "y": 249, "width": 186, "height": 22, "text": "Retain clarified lysate", "placeholder": true, "editable": true, "font_size": 15, "fill_role": "muted", "align": "center"},
+    {"id": "protein_stage_label", "type": "text", "layer_id": "editable_labels_limits", "x": 450, "y": 224, "width": 172, "height": 38, "text": "3  Assess total protein", "placeholder": true, "editable": true, "font_size": 15, "fill_role": "separation", "align": "center"},
+    {"id": "gel_stage_label", "type": "text", "layer_id": "editable_labels_limits", "x": 685, "y": 224, "width": 176, "height": 38, "text": "4  Load + SDS-PAGE", "placeholder": true, "editable": true, "font_size": 15, "fill_role": "separation", "align": "center"},
+    {"id": "transfer_stage_label", "type": "text", "layer_id": "editable_labels_limits", "x": 682, "y": 411, "width": 182, "height": 24, "text": "5  Transfer to membrane", "placeholder": true, "editable": true, "font_size": 15, "fill_role": "transfer", "align": "center"},
+    {"id": "probe_stage_label", "type": "text", "layer_id": "editable_labels_limits", "x": 457, "y": 411, "width": 220, "height": 24, "text": "6  Block + primary / secondary", "placeholder": true, "editable": true, "font_size": 15, "fill_role": "probe", "align": "center"},
+    {"id": "detection_stage_label", "type": "text", "layer_id": "editable_labels_limits", "x": 245, "y": 411, "width": 160, "height": 24, "text": "7  Detect signal", "placeholder": true, "editable": true, "font_size": 15, "fill_role": "separation", "align": "center"},
+    {"id": "target_label", "type": "text", "layer_id": "editable_labels_limits", "x": 34, "y": 322, "width": 78, "height": 22, "text": "Target", "placeholder": true, "editable": true, "font_size": 15, "fill_role": "probe", "align": "right"},
+    {"id": "control_label", "type": "text", "layer_id": "editable_labels_limits", "x": 30, "y": 365, "width": 82, "height": 36, "text": "Loading control", "placeholder": true, "editable": true, "font_size": 15, "fill_role": "transfer", "align": "right"},
+    {"id": "result_stage_label", "type": "text", "layer_id": "editable_labels_limits", "x": 37, "y": 411, "width": 192, "height": 24, "text": "8  Illustrative result", "placeholder": true, "editable": true, "font_size": 15, "fill_role": "transfer", "align": "center"},
+    {"id": "limitations_note_one", "type": "text", "layer_id": "editable_labels_limits", "x": 38, "y": 474, "width": 884, "height": 24, "text": "Bands are placeholders, not data. Validate the loading control for this sample and treatment context.", "placeholder": true, "editable": true, "font_size": 15, "fill_role": "caution", "align": "center"},
+    {"id": "limitations_note_two", "type": "text", "layer_id": "editable_labels_limits", "x": 28, "y": 500, "width": 904, "height": 36, "text": "One blot alone is not a complete quantitative analysis; no linearity, transfer, specificity, normalization, fold-change, significance, mechanism, or reproducibility claim.", "placeholder": true, "editable": true, "font_size": 15, "fill_role": "muted", "align": "center"}
+  ],
+  "groups": [
+    {"id": "sample_collection_lysis", "name": "Sample collection and lysis", "layer_id": "samples_equipment", "members": ["sample_tube", "lysate_tube", "sample_stage_label", "sample_context_label"]},
+    {"id": "clarified_lysate_stage", "name": "Clarified lysate", "layer_id": "samples_equipment", "members": ["centrifuge", "clarified_lysate", "clarification_stage_label", "clarified_label"]},
+    {"id": "total_protein_loading", "name": "Total-protein assessment and planned loading", "layer_id": "samples_equipment", "members": ["total_protein_plate", "protein_stage_label"]},
+    {"id": "separation_transfer", "name": "SDS-PAGE and membrane transfer", "layer_id": "samples_equipment", "members": ["gel_apparatus", "blot_transfer", "gel_stage_label", "transfer_stage_label"]},
+    {"id": "antibody_probing", "name": "Blocking and primary/secondary antibody probing", "layer_id": "membrane_antibodies", "members": ["probing_membrane", "primary_antibody", "secondary_antibody", "probe_stage_label"]},
+    {"id": "signal_detection_result", "name": "Signal detection and illustrative result", "layer_id": "samples_equipment", "members": ["blot_imager", "blot_result", "detection_stage_label", "target_label", "control_label", "result_stage_label"]},
+    {"id": "workflow_title_limits", "name": "Workflow title and quantitative boundaries", "layer_id": "editable_labels_limits", "members": ["title", "subtitle", "limitations_note_one", "limitations_note_two"]}
+  ],
+  "connectors": [
+    {"id": "sample_to_lysate", "layer_id": "workflow_relationships", "from": {"node_id": "sample_tube", "anchor": "right"}, "to": {"node_id": "lysate_tube", "anchor": "left"}, "relation": "conversion", "label": "lyse", "style": {"stroke_role": "sample", "stroke_width": 2.4, "line": "solid", "terminator": "arrow", "label_offset": {"x": 0, "y": 28}}},
+    {"id": "lysate_to_centrifuge", "layer_id": "workflow_relationships", "from": {"node_id": "lysate_tube", "anchor": "right"}, "to": {"node_id": "centrifuge", "anchor": "left"}, "relation": "transport", "label": "clarify", "style": {"stroke_role": "sample", "stroke_width": 2.4, "line": "solid", "terminator": "arrow", "label_offset": {"x": 0, "y": 28}}},
+    {"id": "centrifuge_to_clarified", "layer_id": "workflow_relationships", "from": {"node_id": "centrifuge", "anchor": "right"}, "to": {"node_id": "clarified_lysate", "anchor": "left"}, "relation": "transport", "label": "supernatant", "style": {"stroke_role": "sample", "stroke_width": 2.4, "line": "solid", "terminator": "arrow", "label_offset": {"x": 0, "y": 28}}},
+    {"id": "clarified_to_total_protein", "layer_id": "workflow_relationships", "from": {"node_id": "clarified_lysate", "anchor": "right"}, "to": {"node_id": "total_protein_plate", "anchor": "left"}, "relation": "measurement", "label": "assess", "style": {"stroke_role": "separation", "stroke_width": 2.4, "line": "solid", "terminator": "arrow", "label_offset": {"x": 0, "y": 28}}},
+    {"id": "total_protein_to_gel", "layer_id": "workflow_relationships", "from": {"node_id": "total_protein_plate", "anchor": "right"}, "to": {"node_id": "gel_apparatus", "anchor": "left"}, "relation": "transport", "label": "load planned amount", "style": {"stroke_role": "separation", "stroke_width": 2.4, "line": "solid", "terminator": "arrow", "label_offset": {"x": 0, "y": 28}}},
+    {"id": "gel_to_transfer", "layer_id": "workflow_relationships", "from": {"node_id": "gel_apparatus", "anchor": "bottom"}, "to": {"node_id": "blot_transfer", "anchor": "right"}, "relation": "transport", "label": "transfer", "style": {"stroke_role": "transfer", "stroke_width": 2.4, "line": "solid", "terminator": "arrow", "label_offset": {"x": 44, "y": 0}}},
+    {"id": "transfer_to_membrane", "layer_id": "workflow_relationships", "from": {"node_id": "blot_transfer", "anchor": "left"}, "to": {"node_id": "probing_membrane", "anchor": "right"}, "relation": "transport", "label": "membrane", "style": {"stroke_role": "transfer", "stroke_width": 2.4, "line": "solid", "terminator": "arrow", "label_offset": {"x": 0, "y": -52}}},
+    {"id": "membrane_to_primary", "layer_id": "workflow_relationships", "from": {"node_id": "probing_membrane", "anchor": "left"}, "to": {"node_id": "primary_antibody", "anchor": "right"}, "relation": "binding", "label": "primary", "style": {"stroke_role": "probe", "stroke_width": 2.2, "line": "solid", "terminator": "arrow", "label_offset": {"x": 0, "y": -70}}},
+    {"id": "primary_to_secondary", "layer_id": "workflow_relationships", "from": {"node_id": "primary_antibody", "anchor": "left"}, "to": {"node_id": "secondary_antibody", "anchor": "right"}, "relation": "binding", "label": "secondary", "style": {"stroke_role": "probe", "stroke_width": 2.2, "line": "solid", "terminator": "arrow", "label_offset": {"x": 0, "y": -52}}},
+    {"id": "secondary_to_imager", "layer_id": "workflow_relationships", "from": {"node_id": "secondary_antibody", "anchor": "left"}, "to": {"node_id": "blot_imager", "anchor": "right"}, "relation": "measurement", "label": "detect", "style": {"stroke_role": "separation", "stroke_width": 2.4, "line": "solid", "terminator": "arrow", "label_offset": {"x": 0, "y": -70}}},
+    {"id": "imager_to_result", "layer_id": "workflow_relationships", "from": {"node_id": "blot_imager", "anchor": "left"}, "to": {"node_id": "blot_result", "anchor": "right"}, "relation": "measurement", "label": "signal image", "style": {"stroke_role": "separation", "stroke_width": 2.4, "line": "solid", "terminator": "arrow", "label_offset": {"x": 0, "y": -52}}}
+  ]
+}

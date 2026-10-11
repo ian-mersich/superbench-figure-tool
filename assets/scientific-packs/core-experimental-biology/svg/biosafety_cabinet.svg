@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Biosafety Cabinet</title>
+  <desc id="desc">Editable class ii biological safety cabinet schematic with enclosed sterile work zone with sash and airflow cues.</desc>
+  <g data-region="instrument_body" fill="#DCE4EC" stroke="none"><path d="M15 12h98v104H15z"/><path d="M23 22h82v62H23z"/></g>
+  <g data-region="instrument_detail" fill="#8EC8FF" stroke="none"><path d="M29 61h70v17H29zM31 91h66v16H31z"/></g>
+  <g data-region="operational_cue" fill="none" stroke="#7B78C9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M31 28v23m0 0-6-8m6 8 6-8M64 28v23m0 0-6-8m6 8 6-8M97 28v23m0 0-6-8m6 8 6-8M23 60h82"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 12h98v104H15zM23 22h82v62H23zM29 61h70v17H29z"/></g>
+</svg>

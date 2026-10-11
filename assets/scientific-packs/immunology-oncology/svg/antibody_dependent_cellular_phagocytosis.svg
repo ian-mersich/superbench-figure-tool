@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Antibody-dependent Cellular Phagocytosis</title>
+  <desc id="desc">Editable antibody-dependent cellular phagocytosis schematic with antibody-coated target entering an Fc-receptor-bearing phagocytic cup.</desc>
+  <g data-region="phagocyte_and_target" fill="#C7F2EC" stroke="none"><path d="M5 70c0-31 21-55 49-55 19 0 34 10 42 25L78 52c-5-8-13-12-22-12-15 0-26 13-26 30s11 31 26 31c10 0 19-6 24-15l18 10c-8 18-24 29-44 29C26 125 5 101 5 70z"/><circle cx="88" cy="69" r="23"/><circle cx="94" cy="64" r="7"/></g>
+  <g data-region="target_antibodies" fill="none" stroke="#7B78C9" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><g transform="rotate(-70 73 38)"><path d="M73 45.2L73 38M73 40.52L67.24 32.24M73 40.52L78.76 32.24"/></g><g transform="rotate(-80 78 55)"><path d="M78 62.2L78 55M78 57.52L72.24 49.24M78 57.52L83.76 49.24"/></g><g transform="rotate(-100 78 74)"><path d="M78 81.2L78 74M78 76.52L72.24 68.24M78 76.52L83.76 68.24"/></g><g transform="rotate(-110 73 91)"><path d="M73 98.2L73 91M73 93.52L67.24 85.24M73 93.52L78.76 85.24"/></g></g>
+  <g data-region="fc_receptor_interface" fill="none" stroke="#F4A261" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M66 45l7 7-8 4M63 63l8 5-7 5M65 82l8-4-1 9"/></g>
+  <g data-region="engulfment_direction" fill="none" stroke="#58B8AE" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M114 69L100 69M106.75 64L100 69L106.75 74"/><path d="M78 49c-9 10-11 27-3 39"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 70c0-31 21-55 49-55 19 0 34 10 42 25L78 52c-5-8-13-12-22-12-15 0-26 13-26 30s11 31 26 31c10 0 19-6 24-15l18 10c-8 18-24 29-44 29C26 125 5 101 5 70z"/><circle cx="88" cy="69" r="23"/><circle cx="94" cy="64" r="7"/></g>
+</svg>

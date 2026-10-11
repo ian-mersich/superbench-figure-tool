@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Blot Imager</title>
+  <desc id="desc">Editable chemiluminescence blot imager schematic with enclosed imaging chamber with illuminated membrane tray.</desc>
+  <g data-region="instrument_body" fill="#DCE4EC" stroke="none"><rect x="17" y="14" width="94" height="101" rx="8"/><rect x="27" y="25" width="74" height="48" rx="4"/></g>
+  <g data-region="instrument_detail" fill="#8EC8FF" stroke="none"><rect x="34" y="32" width="60" height="34" rx="3"/><path d="M42 42h18M69 42h17M39 52h27M75 52h13M46 61h19M73 61h12"/></g>
+  <g data-region="operational_cue" fill="none" stroke="#7B78C9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M35 88h58M35 98h36M89 91l8 5-8 5"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 14h94v101H17zM27 25h74v48H27zM34 32h60v34H34z"/></g>
+</svg>

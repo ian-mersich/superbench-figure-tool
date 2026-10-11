@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Basophil</title>
+  <desc id="desc">Editable basophilic granulocyte schematic with lobed nucleus partly obscured by dense granules.</desc>
+  <g data-region="cell_body" fill="#C7F2EC" stroke="none"><circle cx="64" cy="64" r="47"/></g>
+  <g data-region="nuclear_region" fill="#B8B5FF" stroke="none"><path d="M43 45c18-12 41 2 39 18-1 8-8 10-7 18 1 7-7 13-15 11-18-4-29-17-27-31 1-7 4-12 10-16z"/></g>
+  <g data-region="cell_feature" fill="none" stroke="#F4A261" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="34" cy="39" r="5"/><circle cx="55" cy="31" r="5"/><circle cx="78" cy="37" r="5"/><circle cx="96" cy="53" r="5"/><circle cx="35" cy="63" r="5"/><circle cx="56" cy="58" r="5"/><circle cx="84" cy="61" r="5"/><circle cx="99" cy="78" r="5"/><circle cx="43" cy="88" r="5"/><circle cx="66" cy="96" r="5"/><circle cx="87" cy="86" r="5"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="64" cy="64" r="47"/><path d="M43 45c18-12 41 2 39 18-1 8-8 10-7 18 1 7-7 13-15 11-18-4-29-17-27-31 1-7 4-12 10-16z"/></g>
+</svg>

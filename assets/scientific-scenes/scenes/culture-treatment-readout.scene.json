@@ -1,0 +1,68 @@
+{
+  "schema": "figureStudio.scientificScene.v1",
+  "id": "culture-treatment-readout",
+  "name": "Culture to quantitative readout",
+  "summary": "Cell culture, treatment, plate-based assay, and quantitative dose-response readout.",
+  "source_record_id": "source.figure-studio-scientific-scenes.2026-08-30",
+  "rights_record_id": "rights.figure-studio-scientific-scenes.cc0.2026-08-30",
+  "canvas": {"width": 960, "height": 540, "width_in": 10, "height_in": 5.625, "background_role": "background"},
+  "palette": {
+    "background": "#F7F9FC",
+    "surface": "#FFFFFF",
+    "ink": "#26323D",
+    "muted": "#667085",
+    "culture": "#2A9D8F",
+    "treatment": "#E76F51",
+    "assay": "#4F7CAC",
+    "readout": "#8D7CC1",
+    "highlight": "#F4A261"
+  },
+  "layers": [
+    {"id": "context", "name": "Workflow stages"},
+    {"id": "biology", "name": "Experimental objects"},
+    {"id": "relationships", "name": "Workflow relationships"},
+    {"id": "labels", "name": "Editable labels"}
+  ],
+  "nodes": [
+    {"id": "workflow_band", "type": "shape", "shape": "rounded_rect", "layer_id": "context", "x": 26, "y": 100, "width": 908, "height": 360, "radius": 26, "fill_role": "surface", "stroke_role": "muted", "stroke_width": 1.5},
+    {"id": "incubator", "type": "asset", "layer_id": "biology", "asset_id": "exp.lab_equipment.co2_incubator", "top_level": true, "x": 42, "y": 174, "width": 92, "height": 92, "palette_overrides": {"instrument_body": "culture", "operational_cue": "highlight"}},
+    {"id": "culture_flask", "type": "asset", "layer_id": "biology", "asset_id": "core.lab.tissue_culture_flask", "top_level": true, "x": 166, "y": 174, "width": 94, "height": 92, "palette_overrides": {"vessel": "surface", "media": "culture", "cell": "highlight"}},
+    {"id": "pipette", "type": "asset", "layer_id": "biology", "asset_id": "core.lab.pipette", "top_level": true, "x": 288, "y": 174, "width": 86, "height": 92, "palette_overrides": {"barrel": "assay", "fluid": "treatment"}},
+    {"id": "treatment", "type": "asset", "layer_id": "biology", "asset_id": "core.symbol.drug_inhibition_badge", "top_level": true, "x": 402, "y": 174, "width": 88, "height": 88, "palette_overrides": {"badge": "surface", "drug": "treatment", "bar": "treatment"}},
+    {"id": "time_course", "type": "asset", "layer_id": "biology", "asset_id": "exp.pathway_symbol.time_course", "top_level": true, "x": 410, "y": 322, "width": 84, "height": 68, "palette_overrides": {"relation": "treatment", "relation_cue": "highlight"}},
+    {"id": "assay_plate", "type": "asset", "layer_id": "biology", "asset_id": "core.lab.plate_96_well", "top_level": true, "x": 526, "y": 168, "width": 108, "height": 100, "palette_overrides": {"plate": "surface", "well": "assay", "media": "treatment"}},
+    {"id": "plate_reader", "type": "asset", "layer_id": "biology", "asset_id": "core.lab.plate_reader", "top_level": true, "x": 670, "y": 168, "width": 104, "height": 100, "palette_overrides": {"instrument": "assay", "signal": "highlight"}},
+    {"id": "dose_response", "type": "asset", "layer_id": "biology", "asset_id": "exp.assay_workflow.dose_response_curve", "top_level": true, "x": 808, "y": 158, "width": 118, "height": 112, "palette_overrides": {"assay_surface": "surface", "measured_signal": "readout", "signal_trace": "treatment"}},
+    {"id": "control_arm", "type": "shape", "shape": "rounded_rect", "layer_id": "biology", "x": 538, "y": 334, "width": 122, "height": 52, "radius": 12, "fill_role": "surface", "stroke_role": "assay", "stroke_width": 2},
+    {"id": "treated_arm", "type": "shape", "shape": "rounded_rect", "layer_id": "biology", "x": 694, "y": 334, "width": 122, "height": 52, "radius": 12, "fill_role": "surface", "stroke_role": "treatment", "stroke_width": 2},
+    {"id": "title", "type": "text", "layer_id": "labels", "x": 42, "y": 26, "width": 650, "height": 34, "text": "Culture → treatment → assay → readout", "placeholder": true, "editable": true, "font_size": 25, "fill_role": "ink", "align": "left"},
+    {"id": "subtitle", "type": "text", "layer_id": "labels", "x": 42, "y": 62, "width": 720, "height": 24, "text": "Replace treatment, timing, assay, and endpoint labels for your experiment", "placeholder": true, "editable": true, "font_size": 14, "fill_role": "muted", "align": "left"},
+    {"id": "incubator_label", "type": "text", "layer_id": "labels", "x": 32, "y": 276, "width": 112, "height": 40, "text": "37 °C, 5% CO₂", "placeholder": true, "editable": true, "font_size": 13, "fill_role": "culture", "align": "center"},
+    {"id": "culture_label", "type": "text", "layer_id": "labels", "x": 156, "y": 276, "width": 114, "height": 40, "text": "Cell culture", "placeholder": true, "editable": true, "font_size": 13, "fill_role": "culture", "align": "center"},
+    {"id": "dose_label", "type": "text", "layer_id": "labels", "x": 278, "y": 276, "width": 106, "height": 40, "text": "Dose cells", "placeholder": true, "editable": true, "font_size": 13, "fill_role": "treatment", "align": "center"},
+    {"id": "treatment_label", "type": "text", "layer_id": "labels", "x": 390, "y": 276, "width": 114, "height": 40, "text": "Treatment", "placeholder": true, "editable": true, "font_size": 13, "fill_role": "treatment", "align": "center"},
+    {"id": "time_label", "type": "text", "layer_id": "labels", "x": 390, "y": 395, "width": 122, "height": 36, "text": "0–72 h", "placeholder": true, "editable": true, "font_size": 13, "fill_role": "treatment", "align": "center"},
+    {"id": "plate_label", "type": "text", "layer_id": "labels", "x": 516, "y": 276, "width": 128, "height": 40, "text": "Endpoint assay", "placeholder": true, "editable": true, "font_size": 13, "fill_role": "assay", "align": "center"},
+    {"id": "reader_label", "type": "text", "layer_id": "labels", "x": 660, "y": 276, "width": 124, "height": 40, "text": "Measure signal", "placeholder": true, "editable": true, "font_size": 13, "fill_role": "assay", "align": "center"},
+    {"id": "curve_label", "type": "text", "layer_id": "labels", "x": 802, "y": 276, "width": 130, "height": 40, "text": "Dose response", "placeholder": true, "editable": true, "font_size": 13, "fill_role": "readout", "align": "center"},
+    {"id": "control_label", "type": "text", "layer_id": "labels", "x": 548, "y": 348, "width": 102, "height": 24, "text": "Vehicle control", "placeholder": true, "editable": true, "font_size": 12, "fill_role": "assay", "align": "center"},
+    {"id": "treated_label", "type": "text", "layer_id": "labels", "x": 704, "y": 348, "width": 102, "height": 24, "text": "Treated", "placeholder": true, "editable": true, "font_size": 12, "fill_role": "treatment", "align": "center"}
+  ],
+  "groups": [
+    {"id": "culture_stage", "name": "Culture stage", "layer_id": "biology", "members": ["incubator", "culture_flask", "incubator_label", "culture_label"]},
+    {"id": "treatment_stage", "name": "Treatment stage", "layer_id": "biology", "members": ["pipette", "treatment", "time_course", "dose_label", "treatment_label", "time_label"]},
+    {"id": "assay_stage", "name": "Assay stage", "layer_id": "biology", "members": ["assay_plate", "plate_reader", "control_arm", "treated_arm", "plate_label", "reader_label", "control_label", "treated_label"]},
+    {"id": "readout_stage", "name": "Readout stage", "layer_id": "biology", "members": ["dose_response", "curve_label"]}
+  ],
+  "connectors": [
+    {"id": "incubator_to_culture", "layer_id": "relationships", "from": {"node_id": "incubator", "anchor": "right"}, "to": {"node_id": "culture_flask", "anchor": "left"}, "relation": "transport", "label": "expand", "style": {"stroke_role": "culture", "stroke_width": 2.5, "line": "solid", "terminator": "arrow"}},
+    {"id": "culture_to_dosing", "layer_id": "relationships", "from": {"node_id": "culture_flask", "anchor": "right"}, "to": {"node_id": "pipette", "anchor": "left"}, "relation": "transport", "label": "seed", "style": {"stroke_role": "culture", "stroke_width": 2.5, "line": "solid", "terminator": "arrow"}},
+    {"id": "pipette_adds_treatment", "layer_id": "relationships", "from": {"node_id": "pipette", "anchor": "right"}, "to": {"node_id": "treatment", "anchor": "left"}, "relation": "treatment", "label": "dose", "style": {"stroke_role": "treatment", "stroke_width": 2.5, "line": "solid", "terminator": "arrow"}},
+    {"id": "treatment_sets_time_course", "layer_id": "relationships", "from": {"node_id": "treatment", "anchor": "bottom"}, "to": {"node_id": "time_course", "anchor": "top"}, "relation": "treatment", "label": "incubate", "style": {"stroke_role": "treatment", "stroke_width": 2.5, "line": "dashed", "terminator": "arrow"}},
+    {"id": "treatment_to_assay", "layer_id": "relationships", "from": {"node_id": "treatment", "anchor": "right"}, "to": {"node_id": "assay_plate", "anchor": "left"}, "relation": "sampling", "label": "assay", "style": {"stroke_role": "assay", "stroke_width": 2.5, "line": "solid", "terminator": "arrow"}},
+    {"id": "plate_to_reader", "layer_id": "relationships", "from": {"node_id": "assay_plate", "anchor": "right"}, "to": {"node_id": "plate_reader", "anchor": "left"}, "relation": "measurement", "label": "read", "style": {"stroke_role": "assay", "stroke_width": 2.5, "line": "solid", "terminator": "arrow"}},
+    {"id": "reader_to_curve", "layer_id": "relationships", "from": {"node_id": "plate_reader", "anchor": "right"}, "to": {"node_id": "dose_response", "anchor": "left"}, "relation": "measurement", "label": "quantify", "style": {"stroke_role": "readout", "stroke_width": 2.5, "line": "solid", "terminator": "arrow"}},
+    {"id": "plate_to_control", "layer_id": "relationships", "from": {"node_id": "assay_plate", "anchor": "bottom"}, "to": {"node_id": "control_arm", "anchor": "top"}, "relation": "sampling", "label": "control", "style": {"stroke_role": "assay", "stroke_width": 2, "line": "dashed", "terminator": "arrow"}},
+    {"id": "plate_to_treated", "layer_id": "relationships", "from": {"node_id": "assay_plate", "anchor": "bottom"}, "to": {"node_id": "treated_arm", "anchor": "top"}, "relation": "sampling", "label": "treated", "style": {"stroke_role": "treatment", "stroke_width": 2, "line": "dashed", "terminator": "arrow"}}
+  ]
+}

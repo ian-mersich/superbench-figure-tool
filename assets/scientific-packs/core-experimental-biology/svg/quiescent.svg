@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Quiescent Cell</title>
+  <desc id="desc">Editable quiescent cell schematic with small resting cell with a compact nucleus and low activity cues.</desc>
+  <g data-region="cell_body" fill="#C7F2EC" stroke="none"><circle cx="64" cy="66" r="39"/></g>
+  <g data-region="nuclear_region" fill="#B8B5FF" stroke="none"><circle cx="64" cy="66" r="24"/></g>
+  <g data-region="cell_feature" fill="none" stroke="#F4A261" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M85 25c7-8 15-8 22-2-7 2-11 6-12 13-5-1-8-5-10-11z"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="64" cy="66" r="39"/><circle cx="64" cy="66" r="24"/><path d="M85 25c7-8 15-8 22-2-7 2-11 6-12 13-5-1-8-5-10-11z"/></g>
+</svg>

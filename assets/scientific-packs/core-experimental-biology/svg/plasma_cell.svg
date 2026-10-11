@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Plasma Cell</title>
+  <desc id="desc">Editable antibody-secreting plasma cell schematic with eccentric nucleus and prominent perinuclear secretory zone.</desc>
+  <g data-region="cell_body" fill="#C7F2EC" stroke="none"><path d="M22 67c-2-25 14-45 38-50 25-4 48 12 51 38 4 27-14 50-41 55-26 4-46-16-48-43z"/></g>
+  <g data-region="nuclear_region" fill="#B8B5FF" stroke="none"><ellipse cx="47" cy="66" rx="20" ry="25"/><circle cx="47" cy="66" r="5"/></g>
+  <g data-region="cell_feature" fill="none" stroke="#F4A261" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M75 39c17 7 22 18 20 38M70 47c13 6 17 15 15 28M72 86c9-2 15-6 20-13"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M22 67c-2-25 14-45 38-50 25-4 48 12 51 38 4 27-14 50-41 55-26 4-46-16-48-43z"/><ellipse cx="47" cy="66" rx="20" ry="25"/></g>
+</svg>

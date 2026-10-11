@@ -1,0 +1,13 @@
+Superbench Figure Tool
+Copyright 2026 Ian Mersich
+
+First-party application code, documentation, and build/test tooling in this
+repository are licensed under Apache License 2.0. See LICENSE and LICENSE_POLICY.md.
+
+Original scientific artwork and scene recipes have a separate CC0-1.0 dedication;
+see assets/LICENSE-ORIGINAL-ASSETS-CC0-1.0.md and the individual provenance records.
+Third-party libraries and fonts retain their own licenses, copyright notices,
+and attribution requirements. See vendor/NOTICE and vendor/licenses/.
+
+The license does not claim ownership of imported user figures, data, or media,
+or grant rights to third-party material or trademarks.

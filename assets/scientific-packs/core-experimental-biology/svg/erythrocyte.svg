@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Erythrocyte</title>
+  <desc id="desc">Editable erythrocyte schematic with biconcave disc with central pallor.</desc>
+  <g data-region="cell_body" fill="#F2B9C5" stroke="none"><ellipse cx="64" cy="64" rx="47" ry="34"/></g>
+  <g data-region="central_pallor" fill="#F7F9FC" stroke="none"><ellipse cx="64" cy="64" rx="25" ry="14"/></g>
+  <g data-region="biconcave_contour" fill="none" stroke="#E76F51" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M27 53c10-9 23-13 37-13s27 4 37 13M27 75c10 9 23 13 37 13s27-4 37-13"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="64" cy="64" rx="47" ry="34"/><ellipse cx="64" cy="64" rx="25" ry="14"/></g>
+</svg>

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Natural Killer Cell</title>
+  <desc id="desc">Original vector natural-killer cell with a broad cytoplasmic rim, mildly indented nucleus, restrained intracellular granules, and editable semantic regions.</desc>
+
+  <path data-region="cytoplasm" fill="#C7F2EC" d="M64 16c27 0 48 19 49 46 2 27-17 49-43 52-27 3-50-15-54-42-3-26 14-50 40-55 3-1 5-1 8-1z"/>
+  <path data-region="nucleus" fill="#B8B5FF" d="M50 34c15-7 34 0 40 15 5 13 1 28-10 36-11 8-27 8-38 0-11-8-15-22-10-34 3-7 8-12 15-15 4 4 8 5 12 3 2-1 2-4-1-7-3 0-5 1-8 2z"/>
+
+  <g data-region="granule" fill="#E76F51">
+    <circle cx="91" cy="55" r="3.2"/><circle cx="94" cy="69" r="2.7"/>
+    <circle cx="83" cy="94" r="3.5"/><circle cx="65" cy="99" r="2.6"/>
+    <circle cx="100" cy="82" r="2.3"/>
+  </g>
+
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke-width="3.4" d="M64 16c27 0 48 19 49 46 2 27-17 49-43 52-27 3-50-15-54-42-3-26 14-50 40-55 3-1 5-1 8-1z"/>
+    <path stroke-width="2.5" d="M50 34c15-7 34 0 40 15 5 13 1 28-10 36-11 8-27 8-38 0-11-8-15-22-10-34 3-7 8-12 15-15 4 4 8 5 12 3 2-1 2-4-1-7-3 0-5 1-8 2z"/>
+  </g>
+</svg>

@@ -1,0 +1,47 @@
+{
+  "id": "figure-studio-scientific-library",
+  "name": "Superbench Figure Tool Scientific Library",
+  "packs": [
+    {
+      "asset_count": 108,
+      "concept_count": 90,
+      "description": "Foundational cells, structures, pathway notation, labware, and model organisms.",
+      "enabled": true,
+      "id": "core-biology",
+      "modes": [
+        "figure",
+        "presentation"
+      ],
+      "name": "Core Biology",
+      "path": "core-biology/asset-pack.json"
+    },
+    {
+      "asset_count": 111,
+      "concept_count": 103,
+      "description": "Common experimental cells, molecular processes, assays, instruments, and model systems.",
+      "enabled": true,
+      "id": "core-experimental-biology",
+      "modes": [
+        "figure",
+        "presentation"
+      ],
+      "name": "Core Experimental Biology",
+      "path": "core-experimental-biology/asset-pack.json"
+    },
+    {
+      "asset_count": 75,
+      "concept_count": 74,
+      "description": "Immune-cell states, antigen recognition, checkpoint mechanisms, tumor ecology, immunotherapies, and oncology readouts.",
+      "enabled": true,
+      "id": "immunology-oncology",
+      "modes": [
+        "figure",
+        "presentation"
+      ],
+      "name": "Immunology & Oncology",
+      "path": "immunology-oncology/asset-pack.json",
+      "version": "1.0.0"
+    }
+  ],
+  "schema_version": "1.0.0"
+}

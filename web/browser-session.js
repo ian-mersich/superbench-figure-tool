@@ -1,0 +1,297 @@
+(function () {
+  "use strict";
+  const frame = document.getElementById("figure-editor-frame");
+  const status = document.getElementById("browser-save-status");
+  const library = document.getElementById("browser-library");
+  const list = document.getElementById("browser-projects");
+  const store = window.FigureBrowserStore;
+  const localFile = window.location.protocol === "file:";
+  // The web host keeps its own appearance preference, separate from saved artwork
+  // and the installed Superbench settings. Keep the legacy engine namespace stable.
+  const themeStorageKey = "figureStudio.webTheme.v1";
+  const themeButtons = document.querySelectorAll("[data-browser-theme]");
+  let themePreference = null, activeTheme = "light", appliedTheme = null;
+  const api = () => {
+    try { return frame.contentWindow?.FigureStudio?.app; }
+    catch { return null; }
+  };
+  let systemTheme;
+  try { systemTheme = window.matchMedia?.("(prefers-color-scheme: dark)"); }
+  catch { /* Light remains usable when system appearance cannot be queried. */ }
+  if (!localFile) {
+    try {
+      const savedTheme = window.localStorage.getItem(themeStorageKey);
+      if (["light", "dark-graphite"].includes(savedTheme)) themePreference = savedTheme;
+    } catch { /* Appearance can still be changed for this visit without storage. */ }
+  }
+  function applyEditorTheme() {
+    try {
+      const app = api();
+      if (!app?.applyProjectAppearance) return;
+      app.applyProjectAppearance({ theme: activeTheme, effectiveTheme: activeTheme });
+      appliedTheme = activeTheme;
+    } catch { /* Retry when the editor has finished opening. */ }
+  }
+  function setTheme(theme, remember = false) {
+    activeTheme = theme === "dark-graphite" ? "dark-graphite" : "light";
+    document.documentElement.dataset.webTheme = activeTheme;
+    for (const button of themeButtons) {
+      const selected = button.dataset.browserTheme === activeTheme;
+      button.setAttribute("aria-pressed", String(selected));
+      const name = button.textContent.trim();
+      button.title = selected ? `${name} appearance selected` : `Use ${name.toLowerCase()} appearance`;
+    }
+    if (remember) {
+      themePreference = activeTheme;
+      if (!localFile) {
+        try { window.localStorage.setItem(themeStorageKey, activeTheme); }
+        catch { /* A blocked preference write must not interrupt editing or saving. */ }
+      }
+    }
+    applyEditorTheme();
+  }
+  setTheme(themePreference || (systemTheme?.matches ? "dark-graphite" : "light"));
+  themeButtons.forEach(button => button.addEventListener("click", () => setTheme(button.dataset.browserTheme, true)));
+  const followSystemTheme = event => {
+    if (!themePreference) setTheme(event.matches ? "dark-graphite" : "light");
+  };
+  if (systemTheme?.addEventListener) systemTheme.addEventListener("change", followSystemTheme);
+  else systemTheme?.addListener?.(followSystemTheme);
+  frame.addEventListener("load", () => { appliedTheme = null; applyEditorTheme(); });
+  let timer;
+  function launchFailure(message, localFile = false) {
+    clearInterval(timer);
+    frame.hidden = true;
+    status.textContent = localFile ? "Open the local browser preview to continue" : "The editor could not open";
+    status.dataset.state = "startup-error";
+    document.getElementById("browser-launch-error").hidden = false;
+    document.getElementById("browser-launch-title").textContent = localFile ? "Open the browser preview" : "The editor could not open";
+    document.getElementById("browser-launch-message").textContent = message;
+    document.getElementById("browser-local-server-help").hidden = !localFile;
+    document.getElementById("browser-local-launch").hidden = !localFile;
+    document.getElementById("browser-launch-retry").hidden = localFile;
+  }
+  document.getElementById("browser-launch-retry").addEventListener("click", () => window.location.reload());
+  // A file URL cannot fetch the shared editor assets or access its iframe as a
+  // same-origin document. Do not start the editor or storage under that origin.
+  if (localFile) {
+    launchFailure("Opening the HTML file directly prevents this browser from loading the editor and its saved-work library. Use the local browser preview below.", true);
+    return;
+  }
+  const editorUrl = new URL(frame.dataset.editorSrc, document.baseURI);
+  editorUrl.searchParams.set("bsd_theme", activeTheme);
+  editorUrl.searchParams.set("bsd_effective_theme", activeTheme);
+  frame.src = editorUrl.href;
+  const openingStarted = Date.now();
+  let currentId = crypto.randomUUID(), revision = null, customName = "";
+  let observedKey = "", savedKey = "", failed = false, busy = false, started = false;
+  let saving = null;
+  const metadata = () => api()?.getBrowserSessionState?.();
+  function feedback(message, state = "ready") {
+    status.textContent = message;
+    status.dataset.state = state;
+    if (state === "saved") status.dataset.sessionKey = savedKey;
+    document.getElementById("browser-retry").hidden = state !== "error";
+    document.getElementById("browser-save-copy").hidden = state !== "conflict";
+  }
+  function failure(error) {
+    failed = true;
+    feedback(error.name === "ConflictError" ? error.message
+      : error.name === "QuotaExceededError" ? "Browser storage is full. Download your work, remove an older browser copy, then retry."
+      : "Could not save in this browser. Your current work is still open; download a file and retry.",
+    error.name === "ConflictError" ? "conflict" : "error");
+  }
+  async function save(force = false) {
+    if (saving) { await saving; return force ? save(true) : !failed; }
+    const state = metadata();
+    if (!state?.ready) return false;
+    if (!force && (state.key === savedKey || (!savedKey && state.key === observedKey))) return !failed;
+    if (state.busy) return false;
+    saving = (async () => {
+      try {
+        feedback("Saving in this browser…", "saving");
+        const snapshot = api().captureBrowserSession();
+        const record = await store.save(currentId, snapshot, customName, revision);
+        revision = record.revision;
+        savedKey = snapshot.key;
+        observedKey = savedKey;
+        const current = api().acknowledgeBrowserSession(savedKey);
+        failed = false;
+        feedback(current
+          ? `Saved in this browser · ${new Date(record.updatedAt).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}`
+          : "New edits waiting for browser save…", current ? "saved" : "pending");
+        if (library.open) await renderLibrary();
+        return true;
+      } catch (error) { failure(error); return false; }
+    })();
+    try { return await saving; } finally { saving = null; }
+  }
+  async function resume(id, previousIndex = null) {
+    if (busy) return;
+    busy = true;
+    try {
+      if (!await save() && !window.confirm("Current edits could not be saved in this browser. Download them before continuing. Discard the current edits and reopen this saved work?")) return;
+      const record = await store.get(id);
+      if (!record) throw new Error("Browser save no longer exists.");
+      const snapshot = previousIndex === null ? record.current : record.previous[previousIndex];
+      if (!snapshot) throw new Error("That earlier save is no longer available.");
+      const restored = await api().restoreBrowserSession(snapshot.workspace);
+      currentId = previousIndex === null ? id : crypto.randomUUID();
+      revision = previousIndex === null ? record.revision : null;
+      customName = previousIndex === null ? record.name : `${record.name} — recovered`;
+      observedKey = restored.key;
+      savedKey = previousIndex === null ? restored.key : "";
+      failed = false;
+      library.close();
+      if (previousIndex !== null) await save(true);
+      else feedback(`Saved in this browser · ${record.name}`, "saved");
+      frame.focus();
+    } catch (error) { failure(error); } finally { busy = false; }
+  }
+  function button(label, action) {
+    const node = document.createElement("button");
+    node.type = "button";
+    node.textContent = label;
+    node.addEventListener("click", async () => {
+      node.disabled = true;
+      try { await action(); } catch (error) { failure(error); }
+      finally { node.disabled = false; }
+    });
+    return node;
+  }
+  function download(workspace, name) {
+    const blob = new Blob([JSON.stringify(workspace, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `${name.replace(/[<>:"/\\|?*]+/g, "-") || "figure-project"}.fsproject`;
+    link.click();
+    setTimeout(() => URL.revokeObjectURL(url), 30000);
+  }
+  async function renderLibrary() {
+    const entries = await store.list();
+    list.replaceChildren();
+    document.getElementById("browser-library-empty").hidden = entries.length > 0;
+    for (const entry of entries) {
+      const row = document.createElement("article");
+      row.className = "browser-project";
+      row.dataset.projectId = entry.id;
+      if (entry.thumbnail.startsWith("data:image/png;")) {
+        const image = document.createElement("img");
+        image.src = entry.thumbnail;
+        image.alt = "";
+        row.append(image);
+      }
+      const content = document.createElement("div");
+      const heading = document.createElement("h3");
+      heading.textContent = entry.name;
+      const info = document.createElement("p");
+      info.textContent = `${entry.documentCount} document${entry.documentCount === 1 ? "" : "s"} · ${new Date(entry.updatedAt).toLocaleString()}`;
+      const actions = document.createElement("div");
+      actions.className = "browser-project-actions";
+      actions.append(button("Resume", () => resume(entry.id)));
+      actions.append(button("Download project", async () => {
+        if (entry.id === currentId && !await save()) return;
+        const record = await store.get(entry.id);
+        if (record) download(record.current.workspace, record.name);
+      }));
+      actions.append(button("Rename", async () => {
+        const name = window.prompt("Name this browser save:", entry.name);
+        if (!name?.trim()) return;
+        if (entry.id === currentId) { customName = name.trim(); await save(true); }
+        else {
+          const record = await store.get(entry.id);
+          if (!record) return;
+          await store.save(entry.id, record.current, name.trim(), record.revision);
+          await renderLibrary();
+        }
+      }));
+      const removeButton = button("Remove", async () => {
+        if (!window.confirm(`Remove “${entry.name}” and its earlier saves from this browser? Downloaded files are kept.`)) return;
+        if (saving) await saving;
+        await store.remove(entry.id, entry.id === currentId ? revision : entry.revision);
+        if (entry.id === currentId) {
+          currentId = crypto.randomUUID(); revision = null; customName = "";
+          savedKey = ""; observedKey = metadata()?.key || "";
+          feedback("Browser copy removed. Download this open work or edit it to start another browser save.");
+        }
+        await renderLibrary();
+      });
+      removeButton.disabled = entry.id === currentId;
+      if (removeButton.disabled) removeButton.title = "Open another project before removing this current browser save.";
+      actions.append(removeButton);
+      if (entry.recoveryCount) actions.append(button("Earlier saves", async () => {
+        const record = await store.get(entry.id);
+        if (!record) return;
+        const recovery = document.createElement("div");
+        recovery.className = "browser-recovery";
+        recovery.append("Reopening an earlier save creates a separate copy. ");
+        record.previous.forEach((snapshot, index) => recovery.append(button(
+          `Recover ${new Date(snapshot.savedAt).toLocaleTimeString()}`, () => resume(entry.id, index)
+        )));
+        content.querySelector(".browser-recovery")?.remove();
+        content.append(recovery);
+      }));
+      content.append(heading, info, actions);
+      row.append(content);
+      list.append(row);
+    }
+  }
+  async function showLibrary() {
+    try { await renderLibrary(); if (!library.open) library.showModal(); }
+    catch (error) { failure(error); }
+  }
+  document.getElementById("browser-library-open").addEventListener("click", showLibrary);
+  document.getElementById("browser-library-close").addEventListener("click", () => library.close());
+  document.getElementById("browser-download").addEventListener("click", () => api()?.saveProject());
+  document.getElementById("browser-open").addEventListener("click", () => api()?.openBrowserFile());
+  document.getElementById("browser-retry").addEventListener("click", () => { failed = false; save(true); });
+  document.getElementById("browser-save-copy").addEventListener("click", () => {
+    currentId = crypto.randomUUID(); revision = null;
+    customName = `${customName || metadata()?.title || "Figure"} — copy`;
+    failed = false; save(true);
+  });
+  document.getElementById("browser-persist").addEventListener("click", async () => {
+    const result = document.getElementById("browser-persistence-status");
+    try {
+      const granted = await navigator.storage?.persist?.();
+      result.textContent = granted ? "Persistent storage enabled. Clearing site data still removes these saves."
+        : "Persistent storage was not granted. Keep downloaded backups.";
+    } catch { result.textContent = "Persistent storage is unavailable. Keep downloaded backups."; }
+  });
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "hidden" && !busy && !failed) save();
+  });
+  window.addEventListener("beforeunload", event => {
+    const state = metadata();
+    if (state?.ready && state.key !== (savedKey || observedKey)) { event.preventDefault(); event.returnValue = ""; }
+  });
+  async function tick() {
+    if (appliedTheme !== activeTheme) applyEditorTheme();
+    if (!started) {
+      let editorFailed = false;
+      try { editorFailed = frame.contentDocument?.getElementById("figureStudioRoot")?.dataset.qaState === "error"; }
+      catch { /* A failed or cross-origin frame still reaches the bounded timeout. */ }
+      if (editorFailed || Date.now() - openingStarted > 60000) {
+        launchFailure("The editor could not load all of its files. Reload the page. If it still fails, restart the local preview. Your browser saves have not been changed.");
+        return;
+      }
+    }
+    const state = metadata();
+    if (!state?.ready || busy) return;
+    if (!started) {
+      started = true;
+      applyEditorTheme();
+      observedKey = state.key;
+      document.querySelectorAll(".browser-toolbar button").forEach(node => { node.disabled = false; });
+      try {
+        await store.open();
+        feedback("Autosave ready · Stored only in this browser");
+        if ((await store.list()).length) await showLibrary();
+      } catch (error) { failure(error); }
+    } else if (!state.busy && !failed) await save();
+  }
+  timer = setInterval(tick, 1200);
+  window.addEventListener("pagehide", () => clearInterval(timer));
+  window.addEventListener("pageshow", event => { if (event.persisted) timer = setInterval(tick, 1200); });
+})();

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Tumor-cell Extravasation</title>
+  <desc id="desc">Editable tumor-cell extravasation schematic with circulating tumor cell crossing out through a vessel wall toward tissue.</desc>
+  <g data-region="vascular_wall" fill="#C7F2EC" stroke="none"><path d="M5 75c12-8 25-8 37 0 13-8 26-8 39 0 13-8 26-8 42 0v32H5z"/><path d="M5 75h118M5 107h118"/></g>
+  <g data-region="tumor_cells" fill="#E76F51" stroke="none"><circle cx="29" cy="91" r="14"/><circle cx="43" cy="96" r="10"/><path d="M48 55c0-12 7-21 16-21s16 9 16 21-7 28-16 35c-9-7-16-23-16-35z"/></g>
+  <g data-region="endothelial_junction" fill="none" stroke="#5EA9DD" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M55 76l8 9 8-9M55 106l8-9 8 9"/></g>
+  <g data-region="crossing_direction" fill="none" stroke="#7B78C9" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M49 91L59 78M58.8628 85.5589L59 78L51.7292 80.0715"/><path d="M65 65L76 40M77.8581 48.1921L76 40L68.7049 44.1647"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 75c12-8 25-8 37 0 13-8 26-8 39 0 13-8 26-8 42 0v32H5z"/><path d="M5 75h118M5 107h118"/><circle cx="29" cy="91" r="14"/><circle cx="43" cy="96" r="10"/><path d="M48 55c0-12 7-21 16-21s16 9 16 21-7 28-16 35c-9-7-16-23-16-35z"/></g>
+</svg>

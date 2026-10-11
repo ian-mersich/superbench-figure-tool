@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Centrosome and Mitotic Spindle</title>
+  <desc id="desc">Editable bipolar mitotic spindle schematic with bipolar asters connected by spindle microtubules.</desc>
+  <g data-region="structure" fill="#8EC8FF" stroke="none"><circle cx="25" cy="64" r="10"/><circle cx="103" cy="64" r="10"/></g>
+  <g data-region="functional_detail" fill="none" stroke="#7B78C9" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M25 64C43 32 83 32 103 64M25 64c18 32 58 32 78 0M25 64h78M25 64c25-16 53-16 78 0M25 64c25 16 53 16 78 0"/></g>
+  <g data-region="accent" fill="#F4A261" stroke="none"><path d="M58 48l6 8 6-8 6 8-6 8 6 8-6 8-6-8-6 8-6-8 6-8-6-8z"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="25" cy="64" r="10"/><circle cx="103" cy="64" r="10"/><path d="M15 64H7m18-10V46m0 36v-8m-7-17-6-6m6 20-6 6M113 64h8m-18-10v-8m0 36v-8m7-17 6-6m-6 20 6 6"/></g>
+</svg>

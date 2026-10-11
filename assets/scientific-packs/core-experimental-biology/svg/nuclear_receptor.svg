@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Nuclear Receptor</title>
+  <desc id="desc">Editable ligand-activated nuclear receptor schematic with ligand-bound receptor dimer engaging DNA.</desc>
+  <g data-region="biological_context" fill="#C7F2EC" stroke="none"><path d="M10 92c25-13 44-14 58-4s32 10 50-2"/></g>
+  <g data-region="receptor_or_vesicle" fill="none" stroke="#5EA9DD" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M36 57c0-15 12-27 27-27s27 12 27 27-12 27-27 27-27-12-27-27zM55 30V18M72 30V18"/></g>
+  <g data-region="cargo_or_signal" fill="none" stroke="#F4A261" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="55" cy="16" r="7"/><circle cx="72" cy="16" r="7"/><path d="M54 88l9-10 9 10"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M10 92c25-13 44-14 58-4s32 10 50-2M36 57c0-15 12-27 27-27s27 12 27 27-12 27-27 27-27-12-27-27z"/></g>
+</svg>

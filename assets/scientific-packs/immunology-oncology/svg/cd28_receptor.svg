@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">CD28 Receptor</title>
+  <desc id="desc">Editable cd28 receptor schematic with disulfide-linked costimulatory receptor dimer with compact extracellular heads.</desc>
+  <g data-region="membrane" fill="#DCE4EC" stroke="none"><path d="M9 89h110v14H9z"/></g>
+  <g data-region="receptor" fill="#C7F2EC" stroke="none"><path d="M42 89V66l-10-13 11-15 12 15-9 13v23zM81 89V66l-9-13 12-15 11 15-10 13v23z"/></g>
+  <g data-region="dimer_bridge" fill="none" stroke="#E76F51" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M52 59c7 7 17 7 24 0M58 55l-3-7m15 7 3-7"/></g>
+  <g data-region="cytoplasmic_tails" fill="none" stroke="#7B78C9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M44 103v15m39-15v15"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 89h110v14H9z"/><path d="M42 89V66l-10-13 11-15 12 15-9 13v23zM81 89V66l-9-13 12-15 11 15-10 13v23z"/></g>
+</svg>

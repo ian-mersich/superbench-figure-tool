@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">LAG-3 Receptor</title>
+  <desc id="desc">Editable lymphocyte activating 3 receptor schematic with four stacked extracellular immunoglobulin-like domains and an extended cytoplasmic tail.</desc>
+  <g data-region="membrane" fill="#DCE4EC" stroke="none"><path d="M9 91h110v14H9z"/></g>
+  <g data-region="receptor_domains" fill="#C7F2EC" stroke="none"><path d="M52 91V80l-10-9 9-10-8-9 9-10-7-9 11-11 11 11-7 9 9 10-8 9 9 10-10 9v11z"/></g>
+  <g data-region="domain_hinges" fill="none" stroke="#5EA9DD" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M49 42h14m-14 19h14m-12 19h10"/></g>
+  <g data-region="cytoplasmic_tail" fill="none" stroke="#E76F51" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M57 105v14m0-6 9 3m-9 2-8-3"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 91h110v14H9z"/><path d="M52 91V80l-10-9 9-10-8-9 9-10-7-9 11-11 11 11-7 9 9 10-8 9 9 10-10 9v11z"/></g>
+</svg>

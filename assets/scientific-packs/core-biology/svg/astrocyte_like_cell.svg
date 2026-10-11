@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Astrocyte-Like Cell</title>
+  <desc id="desc">Original vector astrocyte-like glial cell with editable cytoplasm, nucleus, process accent, and outline regions.</desc>
+
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round" stroke-width="8">
+    <path d="M56 57C48 45 39 36 27 28M43 40C34 40 25 45 18 51"/>
+    <path d="M65 54C75 42 86 32 101 24M85 34C92 34 100 37 108 42"/>
+    <path d="M73 61C87 55 101 55 114 59M96 57C103 50 109 47 116 45"/>
+    <path d="M73 70C86 79 96 91 103 106M91 87C101 87 110 92 116 99"/>
+    <path d="M63 76C63 90 59 104 54 116M61 96C69 103 73 109 75 116"/>
+    <path d="M53 73C42 84 31 92 18 96M36 88C31 99 25 106 17 111"/>
+    <path d="M49 65C37 62 25 61 14 64M31 62C25 56 19 54 13 54"/>
+    <path d="M58 53C55 40 56 28 61 15M57 33C50 27 46 21 44 15"/>
+  </g>
+  <g data-region="cytoplasm" fill="none" stroke="#D9F4E5" stroke-linecap="round" stroke-linejoin="round" stroke-width="4.5">
+    <path d="M56 57C48 45 39 36 27 28M43 40C34 40 25 45 18 51"/>
+    <path d="M65 54C75 42 86 32 101 24M85 34C92 34 100 37 108 42"/>
+    <path d="M73 61C87 55 101 55 114 59M96 57C103 50 109 47 116 45"/>
+    <path d="M73 70C86 79 96 91 103 106M91 87C101 87 110 92 116 99"/>
+    <path d="M63 76C63 90 59 104 54 116M61 96C69 103 73 109 75 116"/>
+    <path d="M53 73C42 84 31 92 18 96M36 88C31 99 25 106 17 111"/>
+    <path d="M49 65C37 62 25 61 14 64M31 62C25 56 19 54 13 54"/>
+    <path d="M58 53C55 40 56 28 61 15M57 33C50 27 46 21 44 15"/>
+  </g>
+  <path data-region="cytoplasm" fill="#D9F4E5" d="M45 65c-1-11 5-21 15-24 12-4 24 3 27 14 4 12-3 25-15 30-12 4-25-2-27-20z"/>
+  <g data-region="accent" fill="none" stroke="#7DD3C7" stroke-linecap="round" stroke-width="3.25">
+    <path d="M27 28 22 22M18 51 13 55M101 24 107 18M108 42 114 46M114 59 120 60M116 45 120 40"/>
+    <path d="M103 106 106 114M116 99 121 103M54 116 52 122M75 116 79 122M18 96 11 98M17 111 12 117"/>
+    <path d="M14 64 8 66M13 54 8 50M61 15 63 8M44 15 40 9"/>
+  </g>
+  <path data-region="nucleus" fill="#B8B5FF" d="M54 64c0-7 5-12 12-12 8 0 13 5 13 12 0 8-5 13-13 13-7 0-12-5-12-13z"/>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke-width="3.5" d="M45 65c-1-11 5-21 15-24 12-4 24 3 27 14 4 12-3 25-15 30-12 4-25-2-27-20z"/>
+    <path stroke-width="2.75" d="M54 64c0-7 5-12 12-12 8 0 13 5 13 12 0 8-5 13-13 13-7 0-12-5-12-13z"/>
+  </g>
+</svg>

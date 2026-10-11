@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">MHC-I Peptide Complex — Manuscript Line</title>
+  <desc id="desc">Restrained thin-line companion for the MHC class I peptide complex with geometry and editable regions matched to the soft-line asset.</desc>
+
+  <g data-region="membrane" fill="#EEF4F2">
+    <rect x="14" y="91" width="100" height="8" rx="4"/>
+    <rect x="14" y="104" width="100" height="8" rx="4"/>
+  </g>
+
+  <g data-region="mhc" fill="#D7E6EF">
+    <path d="M38 43c0-10 8-18 18-18 7 0 12 4 15 9 3-5 8-9 15-9 10 0 18 8 18 18 0 9-7 16-16 17H55c-10 0-17-8-17-17z"/>
+    <path d="M59 58c0-8 6-14 14-14 9 0 15 7 15 15 0 7-4 12-10 14v39H66V73c-5-2-7-8-7-15z"/>
+  </g>
+
+  <path data-region="beta2m" fill="#DDD9EA" d="M36 60c4-7 13-9 20-5 7 4 9 12 5 19-4 7-13 9-20 5-7-4-9-12-5-19z"/>
+  <path data-region="peptide" fill="none" stroke="#C58F8C" stroke-linecap="round" stroke-width="3.5" d="M48 33c8-4 18-4 27 0 7 3 13 3 19-1"/>
+
+  <g data-region="outline" fill="none" stroke="#66707A" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke-width="1.6" d="M14 95h100M14 108h100"/>
+    <path stroke-width="2" d="M38 43c0-10 8-18 18-18 7 0 12 4 15 9 3-5 8-9 15-9 10 0 18 8 18 18 0 9-7 16-16 17H55c-10 0-17-8-17-17zM59 58c0-8 6-14 14-14 9 0 15 7 15 15 0 7-4 12-10 14v39H66V73c-5-2-7-8-7-15z"/>
+    <path stroke-width="1.7" d="M36 60c4-7 13-9 20-5 7 4 9 12 5 19-4 7-13 9-20 5-7-4-9-12-5-19z"/>
+  </g>
+</svg>

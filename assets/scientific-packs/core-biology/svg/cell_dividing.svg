@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Dividing Cell</title>
+  <desc id="desc">Original vector mitotic cell with bipolar spindle poles, metaphase chromosomes, spindle fibers, and editable semantic regions.</desc>
+
+  <path data-region="cytoplasm" fill="#C7F2EC" d="M19 65c0-25 19-44 45-44s45 19 45 44-19 44-45 44-45-19-45-44z"/>
+
+  <g data-region="spindle" fill="none" stroke="#F4A261" stroke-linecap="round" stroke-linejoin="round">
+    <g stroke-width="2.25">
+      <path d="M34 42c13 8 21 14 30 23M34 88c13-9 22-16 30-23M94 42C82 50 73 57 64 65M94 88C82 79 73 72 64 65"/>
+      <path d="M34 42c19 2 40 2 60 0M34 88c19-2 40-2 60 0" opacity="0.75"/>
+    </g>
+    <circle cx="32" cy="41" r="4" fill="#F4A261" stroke="none"/><circle cx="96" cy="89" r="4" fill="#F4A261" stroke="none"/>
+    <circle cx="32" cy="89" r="4" fill="#F4A261" stroke="none"/><circle cx="96" cy="41" r="4" fill="#F4A261" stroke="none"/>
+  </g>
+
+  <g data-region="chromosome" fill="#B8B5FF">
+    <path d="M52 49l6 8-5 8 5 9-6 7-6-15 5-9-5-9z"/>
+    <path d="M64 46l6 10-5 9 5 10-6 8-6-17 5-10-5-9z"/>
+    <path d="M76 49l6 8-5 8 5 9-6 7-6-15 5-9-5-9z"/>
+  </g>
+
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M19 65c0-25 19-44 45-44s45 19 45 44-19 44-45 44-45-19-45-44z" stroke-width="3.5"/>
+    <path d="M52 49l6 8-5 8 5 9-6 7-6-15 5-9-5-9zM64 46l6 10-5 9 5 10-6 8-6-17 5-10-5-9zM76 49l6 8-5 8 5 9-6 7-6-15 5-9-5-9z" stroke-width="1.75"/>
+  </g>
+</svg>

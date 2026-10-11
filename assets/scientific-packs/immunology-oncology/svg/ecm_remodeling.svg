@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Extracellular-matrix Remodeling</title>
+  <desc id="desc">Editable extracellular-matrix remodeling schematic with intact matrix fibers transitioning through a generic enzyme to separated fibers.</desc>
+  <g data-region="intact_matrix" fill="none" stroke="#7B78C9" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 27c14 9 22 25 24 48s9 39 23 48M5 48c16 8 24 22 27 42M12 8c13 13 19 28 20 45"/></g>
+  <g data-region="remodeling_enzyme" fill="#F4DC8A" stroke="none"><path d="M48 51c5-14 25-17 34-5 13 2 17 20 7 29 2 14-15 24-27 16-12 5-25-8-20-20-5-8-2-16 6-20z"/><circle cx="68" cy="66" r="6"/></g>
+  <g data-region="remodeled_matrix" fill="none" stroke="#E76F51" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"><path d="M82 18l14 11M106 38l15 9M78 55l12 13M103 70l17 13M77 94l15 18M108 100l12 14"/></g>
+  <g data-region="remodeling_direction" fill="none" stroke="#58B8AE" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M51 109L84 109M77.25 114L84 109L77.25 104"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M48 51c5-14 25-17 34-5 13 2 17 20 7 29 2 14-15 24-27 16-12 5-25-8-20-20-5-8-2-16 6-20z"/></g>
+</svg>

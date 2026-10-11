@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Six-well plate</title>
+  <desc id="desc">Original vector six-well culture plate with six separated wells, visible media menisci, and editable semantic regions.</desc>
+  <rect data-region="plate" x="13" y="24" width="102" height="80" rx="10" fill="#E8EEF7"/>
+  <g data-region="well" fill="#FFFFFF">
+    <circle cx="36" cy="48" r="14"/><circle cx="64" cy="48" r="14"/><circle cx="92" cy="48" r="14"/>
+    <circle cx="36" cy="80" r="14"/><circle cx="64" cy="80" r="14"/><circle cx="92" cy="80" r="14"/>
+  </g>
+  <g data-region="media" fill="#D9F4E5">
+    <ellipse cx="36" cy="51" rx="9" ry="7"/><ellipse cx="64" cy="51" rx="9" ry="7"/><ellipse cx="92" cy="51" rx="9" ry="7"/>
+    <ellipse cx="36" cy="83" rx="9" ry="7"/><ellipse cx="64" cy="83" rx="9" ry="7"/><ellipse cx="92" cy="83" rx="9" ry="7"/>
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="13" y="24" width="102" height="80" rx="10" stroke-width="3.5"/>
+    <g stroke-width="3">
+      <circle cx="36" cy="48" r="14"/><circle cx="64" cy="48" r="14"/><circle cx="92" cy="48" r="14"/>
+      <circle cx="36" cy="80" r="14"/><circle cx="64" cy="80" r="14"/><circle cx="92" cy="80" r="14"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">CTLA-4–B7 Checkpoint Interaction</title>
+  <desc id="desc">Editable ctla-4–b7 checkpoint interaction schematic with CTLA-4 homodimer engaging a B7-family ligand across a membrane gap.</desc>
+  <g data-region="membranes" fill="#DCE4EC" stroke="none"><path d="M7 10h114v12H7zM7 106h114v12H7z"/></g>
+  <g data-region="receptor" fill="#C7F2EC" stroke="none"><path d="M43 106V83l-8-13 11-12 9 12-7 13v23zM80 106V83l-7-13 9-12 11 12-8 13v23z"/></g>
+  <g data-region="ligand" fill="#B8B5FF" stroke="none"><path d="M48 22v19l-10 12 10 10 10-10-5-12V22zM75 22v19l-5 12 10 10 10-10-10-12V22z"/></g>
+  <g data-region="interaction_cues" fill="none" stroke="#E76F51" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M53 65c7 7 15 7 22 0M61 72l-4 7m10-7 4 7"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M43 106V83l-8-13 11-12 9 12-7 13v23zM80 106V83l-7-13 9-12 11 12-8 13v23z"/><path d="M48 22v19l-10 12 10 10 10-10-5-12V22zM75 22v19l-5 12 10 10 10-10-10-12V22z"/><path d="M7 10h114v12H7zM7 106h114v12H7zM48 93h32"/></g>
+</svg>

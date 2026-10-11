@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Cytokine Receptor</title>
+  <desc id="desc">Original vector cytokine-receptor pair with ligand-bridged extracellular chains, membrane segment, convergent cytosolic signal, and editable semantic regions.</desc>
+
+  <path data-region="membrane" d="M13 79c17-8 34 7 51 0s34-8 51 0" fill="none" stroke="#7DD3C7" stroke-linecap="round" stroke-width="9"/>
+
+  <g data-region="receptor" fill="none" stroke="#8EC8FF" stroke-linecap="round" stroke-linejoin="round" stroke-width="8">
+    <path d="M46 96V62c0-13 5-23 15-31"/><path d="M82 96V62c0-13-5-23-15-31"/>
+  </g>
+
+  <path data-region="ligand" fill="#F4A261" d="M48 25c5-9 12-12 18-7 6-5 14-2 18 7-4 9-11 13-18 9-7 4-14 0-18-9z"/>
+
+  <g data-region="signal" fill="none" stroke="#7B78C9" stroke-linecap="round" stroke-linejoin="round" stroke-width="4.5">
+    <path d="M47 104c5 5 10 9 17 12M81 104c-5 5-10 9-17 12"/>
+    <path d="M58 111l6 5 6-5"/>
+  </g>
+
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M13 79c17-8 34 7 51 0s34-8 51 0" stroke-width="3"/>
+    <path d="M46 96V62c0-13 5-23 15-31M82 96V62c0-13-5-23-15-31" stroke-width="3"/>
+    <path d="M48 25c5-9 12-12 18-7 6-5 14-2 18 7-4 9-11 13-18 9-7 4-14 0-18-9z" stroke-width="2.5"/>
+  </g>
+</svg>

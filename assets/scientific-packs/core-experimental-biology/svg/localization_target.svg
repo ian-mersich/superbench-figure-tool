@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Localization Target</title>
+  <desc id="desc">Editable subcellular localization relation schematic with cargo directed into a bounded destination.</desc>
+  <g data-region="relation" fill="none" stroke="#5EA9DD" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 64h57m-9-9 10 9-10 9"/></g>
+  <g data-region="molecular_state" fill="#B8B5FF" stroke="none"><circle cx="18" cy="64" r="11"/><circle cx="99" cy="64" r="26"/></g>
+  <g data-region="relation_cue" fill="none" stroke="#E76F51" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M90 64l7 7 13-16"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="64" r="11"/><circle cx="99" cy="64" r="26"/></g>
+</svg>

@@ -1,0 +1,164 @@
+{
+  "schema": "figureStudio.scientificScene.v1",
+  "id": "t-cell-activation-checkpoint",
+  "name": "T-cell activation and PD-1 checkpoint",
+  "summary": "Antigen recognition, CD28 co-stimulation, a compact TCR pathway, and one PD-1 inhibitory branch.",
+  "source_record_id": "source.figure-studio-tcell-scientific-starter.2026-09-12",
+  "rights_record_id": "rights.figure-studio-tcell-scientific-starter.cc0.2026-09-12",
+  "scientific_record": {
+    "id": "science.figure-studio.tcell-activation-checkpoint.2026-09-12",
+    "verified_on": "2026-09-12",
+    "scope": "A locally authored, editable overview of antigen-dependent TCR engagement, CD28 co-stimulation, selected proximal signaling, and one PD-1 inhibitory branch.",
+    "relationships": [
+      {
+        "claim": "Peptide–MHC engagement of the TCR is represented upstream of LCK, ZAP-70, and LAT.",
+        "source_ids": ["courtney-2018", "uniprot-zap70-p43403"]
+      },
+      {
+        "claim": "CD28 engagement by B7-family ligands is represented as a co-stimulatory input that supports the activation program.",
+        "source_ids": ["esensten-2016"]
+      },
+      {
+        "claim": "PD-1 ligation is represented as recruiting SHP2 and preferentially attenuating CD28 signaling in the experimental contexts studied.",
+        "source_ids": ["yokosuka-2012", "hui-2017"]
+      }
+    ],
+    "sources": [
+      {
+        "id": "courtney-2018",
+        "citation": "Courtney AH, Lo W-L, Weiss A. TCR Signaling: Mechanisms of Initiation and Propagation. Trends Biochem Sci. 2018;43:108–123.",
+        "doi": "10.1016/j.tibs.2017.11.008",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/29269020/",
+        "role": "Authoritative review of the TCR–LCK–ZAP-70–LAT signaling sequence."
+      },
+      {
+        "id": "uniprot-zap70-p43403",
+        "citation": "UniProtKB/Swiss-Prot P43403 (ZAP70_HUMAN), reviewed entry.",
+        "url": "https://www.uniprot.org/uniprotkb/P43403/entry",
+        "role": "Current authoritative protein annotation for ZAP-70 recruitment, LCK-dependent activation, and LAT phosphorylation."
+      },
+      {
+        "id": "esensten-2016",
+        "citation": "Esensten JH et al. CD28 costimulation: from mechanism to therapy. Immunity. 2016;44:973–988.",
+        "doi": "10.1016/j.immuni.2016.04.020",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4932896/",
+        "role": "Authoritative review supporting CD28 as a critical second signal alongside TCR ligation."
+      },
+      {
+        "id": "yokosuka-2012",
+        "citation": "Yokosuka T et al. Programmed cell death 1 forms negative costimulatory microclusters that directly inhibit T cell receptor signaling by recruiting phosphatase SHP2. J Exp Med. 2012;209:1201–1217.",
+        "doi": "10.1084/jem.20112741",
+        "url": "https://rupress.org/jem/article/209/6/1201/41299/Programmed-cell-death-1-forms-negative",
+        "role": "Primary experimental evidence for PD-1 microclusters, SHP2 recruitment, and reduced proximal signaling."
+      },
+      {
+        "id": "hui-2017",
+        "citation": "Hui E et al. T cell costimulatory receptor CD28 is a primary target for PD-1-mediated inhibition. Science. 2017;355:1428–1433.",
+        "doi": "10.1126/science.aaf1292",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6286077/",
+        "role": "Primary biochemical and intact-cell evidence that CD28 is preferentially dephosphorylated by PD-1-recruited SHP2 in the tested systems."
+      }
+    ],
+    "design_precedents": [
+      {
+        "source_id": "courtney-2018",
+        "figure": "Figure 1B",
+        "decision": "Separate receptor engagement from the compact LCK–ZAP-70–LAT sequence below the membrane."
+      },
+      {
+        "source_id": "esensten-2016",
+        "figure": "Conceptual pathway discussion",
+        "decision": "Keep CD28–B7 co-stimulation visually parallel to antigen recognition instead of treating it as a downstream TCR node."
+      },
+      {
+        "source_id": "yokosuka-2012",
+        "figure": "Figures 6–8",
+        "decision": "Use one restrained PD-1–SHP2 inhibitory branch and an inhibition-bar terminator."
+      },
+      {
+        "source_id": "hui-2017",
+        "figure": "Figures 2–3",
+        "decision": "Place the inhibitory branch near CD28 and label the attenuation as preferential and context-bounded."
+      }
+    ],
+    "limitations": [
+      "This starter is not a complete T-cell signaling network.",
+      "Relationships are qualitative summaries, not quantitative, stoichiometric, kinetic, temporal, or causal-inference claims.",
+      "Spatial proximity in the starter does not claim molecular complex membership, simultaneous occupancy, or pathway equivalence.",
+      "Cell type, differentiation state, ligand density, species, and experimental context can change signaling behavior.",
+      "The activation-program output is an editable abstraction and is not a computable model or a claim that all downstream programs are equivalent."
+    ],
+    "authorship": "Original Figure Studio scene recipe and preview; no third-party artwork, database diagram, or commercial visual content was copied, traced, or embedded."
+  },
+  "canvas": {
+    "width": 960,
+    "height": 540,
+    "width_in": 10,
+    "height_in": 5.625,
+    "background_role": "background"
+  },
+  "palette": {
+    "background": "#F6F8FB",
+    "surface": "#FFFFFF",
+    "ink": "#26323D",
+    "muted": "#667085",
+    "membrane": "#D9E4EC",
+    "recognition": "#4F7CAC",
+    "costimulation": "#2A9D8F",
+    "checkpoint": "#B85C73",
+    "inhibition": "#C84C3A",
+    "signal": "#7B78C9",
+    "highlight": "#F4A261"
+  },
+  "layers": [
+    {"id": "interface", "name": "Antigen-presenting interface"},
+    {"id": "receptors", "name": "T-cell membrane receptors"},
+    {"id": "signaling", "name": "Intracellular signaling"},
+    {"id": "relationships", "name": "Molecular relationships"},
+    {"id": "labels", "name": "Editable labels"}
+  ],
+  "nodes": [
+    {"id": "interface_band", "type": "shape", "shape": "rounded_rect", "layer_id": "interface", "x": 38, "y": 82, "width": 884, "height": 188, "radius": 18, "fill_role": "surface", "stroke_role": "membrane", "stroke_width": 2},
+    {"id": "signaling_band", "type": "shape", "shape": "rounded_rect", "layer_id": "signaling", "x": 38, "y": 278, "width": 884, "height": 188, "radius": 18, "fill_role": "surface", "stroke_role": "membrane", "stroke_width": 2},
+    {"id": "tcr_pmhc", "type": "asset", "layer_id": "receptors", "asset_id": "core.immune.tcr_engagement", "top_level": true, "x": 75, "y": 110, "width": 160, "height": 142, "palette_overrides": {"membrane": "membrane", "pmhc": "recognition", "peptide": "highlight", "tcr": "signal"}},
+    {"id": "cd28_b7", "type": "asset", "layer_id": "receptors", "asset_id": "immuno.membrane_signaling.cd28_b7_costimulatory_interaction", "top_level": true, "x": 288, "y": 110, "width": 160, "height": 142, "palette_overrides": {"membranes": "membrane", "receptor": "costimulation", "ligand": "recognition", "interaction_cues": "highlight"}},
+    {"id": "pd1_pdl1", "type": "asset", "layer_id": "receptors", "asset_id": "core.immune.pd1_pdl1_checkpoint", "top_level": true, "x": 735, "y": 110, "width": 150, "height": 142, "palette_overrides": {"membrane": "membrane", "pdl1": "recognition", "pd1": "checkpoint"}},
+    {"id": "lck", "type": "asset", "layer_id": "signaling", "asset_id": "core.protein.kinase", "top_level": true, "x": 83, "y": 308, "width": 76, "height": 68, "palette_overrides": {"body": "recognition", "active_site": "signal", "phosphate": "highlight"}},
+    {"id": "zap70", "type": "asset", "layer_id": "signaling", "asset_id": "core.protein.kinase", "top_level": true, "x": 205, "y": 308, "width": 76, "height": 68, "palette_overrides": {"body": "signal", "active_site": "recognition", "phosphate": "highlight"}},
+    {"id": "lat", "type": "asset", "layer_id": "signaling", "asset_id": "exp.protein.adaptor", "top_level": true, "x": 327, "y": 308, "width": 76, "height": 68, "palette_overrides": {"protein_body": "signal", "interaction_site": "recognition", "molecular_feature": "highlight"}},
+    {"id": "pi3k_akt", "type": "asset", "layer_id": "signaling", "asset_id": "core.protein.kinase", "top_level": true, "x": 474, "y": 308, "width": 76, "height": 68, "palette_overrides": {"body": "costimulation", "active_site": "signal", "phosphate": "highlight"}},
+    {"id": "shp2", "type": "asset", "layer_id": "signaling", "asset_id": "exp.protein.phosphatase", "top_level": true, "x": 666, "y": 308, "width": 76, "height": 68, "palette_overrides": {"protein_body": "checkpoint", "interaction_site": "inhibition", "molecular_feature": "highlight"}},
+    {"id": "activation_program", "type": "shape", "shape": "rounded_rect", "layer_id": "signaling", "x": 398, "y": 405, "width": 250, "height": 47, "radius": 14, "fill_role": "surface", "stroke_role": "costimulation", "stroke_width": 2.5},
+    {"id": "title", "type": "text", "role": "scene-title", "include_scientific_record": true, "layer_id": "labels", "x": 40, "y": 18, "width": 650, "height": 32, "text": "T-cell activation and PD-1 checkpoint", "placeholder": true, "editable": true, "font_size": 25, "fill_role": "ink", "align": "left"},
+    {"id": "subtitle", "type": "text", "role": "scene-subtitle", "layer_id": "labels", "x": 40, "y": 53, "width": 820, "height": 20, "text": "Antigen recognition + co-stimulation, with one context-bounded inhibitory branch", "placeholder": true, "editable": true, "font_size": 14, "fill_role": "muted", "align": "left"},
+    {"id": "apc_label", "type": "text", "layer_id": "labels", "x": 507, "y": 89, "width": 142, "height": 20, "text": "APC-facing ligands", "placeholder": true, "editable": true, "font_size": 12, "fill_role": "muted", "align": "center"},
+    {"id": "tcr_label", "type": "text", "layer_id": "labels", "x": 60, "y": 88, "width": 190, "height": 22, "text": "peptide–MHC · αβ TCR", "placeholder": true, "editable": true, "font_size": 13, "fill_role": "recognition", "align": "center"},
+    {"id": "cd28_label", "type": "text", "layer_id": "labels", "x": 273, "y": 88, "width": 190, "height": 22, "text": "B7 (CD80/CD86) · CD28", "placeholder": true, "editable": true, "font_size": 13, "fill_role": "costimulation", "align": "center"},
+    {"id": "pd1_label", "type": "text", "layer_id": "labels", "x": 726, "y": 88, "width": 168, "height": 22, "text": "PD-L1 · PD-1", "placeholder": true, "editable": true, "font_size": 13, "fill_role": "checkpoint", "align": "center"},
+    {"id": "tcell_label", "type": "text", "layer_id": "labels", "x": 50, "y": 284, "width": 108, "height": 20, "text": "T-cell signaling", "placeholder": true, "editable": true, "font_size": 12, "fill_role": "muted", "align": "left"},
+    {"id": "lck_label", "type": "text", "layer_id": "labels", "x": 75, "y": 380, "width": 92, "height": 21, "text": "LCK", "placeholder": true, "editable": true, "font_size": 13, "fill_role": "ink", "align": "center"},
+    {"id": "zap70_label", "type": "text", "layer_id": "labels", "x": 197, "y": 380, "width": 92, "height": 21, "text": "ZAP-70", "placeholder": true, "editable": true, "font_size": 13, "fill_role": "ink", "align": "center"},
+    {"id": "lat_label", "type": "text", "layer_id": "labels", "x": 319, "y": 380, "width": 92, "height": 21, "text": "LAT scaffold", "placeholder": true, "editable": true, "font_size": 13, "fill_role": "ink", "align": "center"},
+    {"id": "pi3k_akt_label", "type": "text", "layer_id": "labels", "x": 456, "y": 380, "width": 112, "height": 21, "text": "PI3K–AKT", "placeholder": true, "editable": true, "font_size": 13, "fill_role": "ink", "align": "center"},
+    {"id": "shp2_label", "type": "text", "layer_id": "labels", "x": 658, "y": 380, "width": 92, "height": 21, "text": "SHP2", "placeholder": true, "editable": true, "font_size": 13, "fill_role": "checkpoint", "align": "center"},
+    {"id": "activation_label", "type": "text", "layer_id": "labels", "x": 418, "y": 416, "width": 210, "height": 27, "text": "Editable activation program", "placeholder": true, "editable": true, "font_size": 14, "fill_role": "ink", "align": "center"},
+    {"id": "limitations_note", "type": "text", "role": "limitations-note", "layer_id": "labels", "x": 46, "y": 489, "width": 868, "height": 30, "text": "Simplified authoring starter — not a complete, quantitative, stoichiometric, temporal, causal, or state-equivalent pathway model.", "placeholder": true, "editable": true, "font_size": 12, "fill_role": "muted", "align": "center"}
+  ],
+  "groups": [
+    {"id": "antigen_recognition", "name": "Antigen recognition (pMHC–TCR)", "layer_id": "receptors", "members": ["tcr_pmhc", "tcr_label", "lck", "lck_label", "zap70", "zap70_label"]},
+    {"id": "costimulatory_signal", "name": "CD28 co-stimulation", "layer_id": "receptors", "members": ["cd28_b7", "cd28_label", "pi3k_akt", "pi3k_akt_label"]},
+    {"id": "checkpoint_inhibition", "name": "PD-1 inhibitory checkpoint", "layer_id": "receptors", "members": ["pd1_pdl1", "pd1_label", "shp2", "shp2_label"]},
+    {"id": "proximal_signaling", "name": "Selected proximal signaling", "layer_id": "signaling", "members": ["lck", "zap70", "lat", "lck_label", "zap70_label", "lat_label"]},
+    {"id": "activation_output", "name": "Abstract activation output", "layer_id": "signaling", "members": ["activation_program", "activation_label"]}
+  ],
+  "connectors": [
+    {"id": "tcr_activates_lck", "layer_id": "relationships", "from": {"node_id": "tcr_pmhc", "anchor": "right"}, "to": {"node_id": "lck", "anchor": "top"}, "relation": "activation", "label": "initiates", "style": {"stroke_role": "recognition", "stroke_width": 2.4, "line": "solid", "terminator": "arrow", "label_offset": {"x": -18, "y": -10}}},
+    {"id": "lck_activates_zap70", "layer_id": "relationships", "from": {"node_id": "lck", "anchor": "right"}, "to": {"node_id": "zap70", "anchor": "left"}, "relation": "activation", "label": "activates", "style": {"stroke_role": "recognition", "stroke_width": 2.4, "line": "solid", "terminator": "arrow", "label_offset": {"x": 0, "y": -32}}},
+    {"id": "zap70_phosphorylates_lat", "layer_id": "relationships", "from": {"node_id": "zap70", "anchor": "right"}, "to": {"node_id": "lat", "anchor": "left"}, "relation": "activation", "label": "phosphorylates", "style": {"stroke_role": "signal", "stroke_width": 2.4, "line": "solid", "terminator": "arrow", "label_offset": {"x": 0, "y": -46}}},
+    {"id": "lat_supports_output", "layer_id": "relationships", "from": {"node_id": "lat", "anchor": "right"}, "to": {"node_id": "activation_program", "anchor": "left"}, "relation": "activation", "label": "supports", "style": {"stroke_role": "signal", "stroke_width": 2.4, "line": "solid", "terminator": "arrow", "label_offset": {"x": -24, "y": 18}}},
+    {"id": "cd28_supports_pi3k", "layer_id": "relationships", "from": {"node_id": "cd28_b7", "anchor": "bottom"}, "to": {"node_id": "pi3k_akt", "anchor": "top"}, "relation": "activation", "label": "co-stimulates", "style": {"stroke_role": "costimulation", "stroke_width": 2.4, "line": "solid", "terminator": "arrow", "label_offset": {"x": 22, "y": -2}}},
+    {"id": "pi3k_supports_output", "layer_id": "relationships", "from": {"node_id": "pi3k_akt", "anchor": "bottom"}, "to": {"node_id": "activation_program", "anchor": "top"}, "relation": "activation", "label": "supports", "style": {"stroke_role": "costimulation", "stroke_width": 2.4, "line": "solid", "terminator": "arrow", "label_offset": {"x": 34, "y": 0}}},
+    {"id": "pd1_recruits_shp2", "layer_id": "relationships", "from": {"node_id": "pd1_pdl1", "anchor": "bottom"}, "to": {"node_id": "shp2", "anchor": "top"}, "relation": "binding", "label": "recruits", "style": {"stroke_role": "checkpoint", "stroke_width": 2.4, "line": "solid", "terminator": "arrow", "label_offset": {"x": 20, "y": -2}}},
+    {"id": "shp2_attenuates_cd28", "layer_id": "relationships", "from": {"node_id": "shp2", "anchor": "top"}, "to": {"node_id": "cd28_b7", "anchor": "bottom"}, "relation": "inhibition", "label": "preferentially attenuates", "style": {"stroke_role": "inhibition", "stroke_width": 2.6, "line": "dashed", "terminator": "bar", "route": "elbow", "label_offset": {"x": 45, "y": 11}}}
+  ]
+}

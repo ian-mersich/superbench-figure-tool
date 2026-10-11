@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Schwann Cell and Myelin</title>
+  <desc id="desc">Editable myelinating schwann cell schematic with cross-section of an axon surrounded by concentric myelin wraps, with a peripheral Schwann nucleus.</desc>
+  <g data-region="cell_body" fill="#C7F2EC" stroke="none"><circle cx="59" cy="67" r="43"/></g>
+  <g data-region="axon" fill="#8EC8FF" stroke="none"><circle cx="59" cy="67" r="14"/></g>
+  <g data-region="schwann_nucleus" fill="#B8B5FF" stroke="none"><ellipse cx="103" cy="38" rx="12" ry="8"/></g>
+  <g data-region="myelin_wraps" fill="none" stroke="#F4A261" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="59" cy="67" r="32"/><circle cx="59" cy="67" r="24"/><path d="M92 40l5-3"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="59" cy="67" r="43"/><circle cx="59" cy="67" r="32"/><circle cx="59" cy="67" r="24"/><circle cx="59" cy="67" r="14"/><ellipse cx="103" cy="38" rx="12" ry="8"/></g>
+</svg>

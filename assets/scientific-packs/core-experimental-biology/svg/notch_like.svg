@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Notch-like Receptor</title>
+  <desc id="desc">Editable notch-family receptor schematic schematic with single-pass receptor with repeated extracellular domains.</desc>
+  <g data-region="biological_context" fill="#C7F2EC" stroke="none"><path d="M8 82h112v14H8z"/></g>
+  <g data-region="receptor_or_vesicle" fill="none" stroke="#5EA9DD" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M62 84V31M62 96v20M62 31l19-13"/></g>
+  <g data-region="cargo_or_signal" fill="none" stroke="#F4A261" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="55" y="27" width="14" height="11" rx="5"/><rect x="55" y="40" width="14" height="11" rx="5"/><rect x="55" y="53" width="14" height="11" rx="5"/><rect x="55" y="66" width="14" height="11" rx="5"/><path d="M81 18l19 8-7 19-19-8zM68 106l12 7-12 7z"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M8 82h112M8 96h112M62 84V31M62 96v20M62 31l19-13M81 18l19 8-7 19-19-8z"/></g>
+</svg>

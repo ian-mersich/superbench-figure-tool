@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Enhancer–Promoter Interaction</title>
+  <desc id="desc">Editable enhancer-promoter chromatin interaction schematic with looped regulatory DNA bringing enhancer and promoter together.</desc>
+  <g data-region="nucleic_acid" fill="none" stroke="#5EA9DD" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 94h110M9 102h110M28 94c3-55 72-62 79 0"/></g>
+  <g data-region="regulatory_feature" fill="none" stroke="#7B78C9" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><rect x="17" y="82" width="24" height="24" rx="5"/><path d="M91 82h24v24H91zM94 94h17M105 88l7 6-7 6"/></g>
+  <g data-region="process_feature" fill="none" stroke="#F4A261" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M30 79c11-23 43-34 66-13M53 39l8-12 8 12M47 33h28"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 94h110M9 102h110M28 94c3-55 72-62 79 0M17 82h24v24H17zM91 82h24v24H91z"/></g>
+</svg>

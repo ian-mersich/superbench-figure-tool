@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Syringe</title>
+  <desc id="desc">Original vector syringe with finger flange, plunger, graduated barrel, sample fluid, needle, and editable semantic regions.</desc>
+  <g transform="rotate(-28 64 64)">
+    <rect data-region="barrel" x="39" y="51" width="52" height="24" rx="5" fill="#E8EEF7"/>
+    <path data-region="plunger" fill="#8EC8FF" d="M15 53h8v20h-8zM22 61h17v4H22zM34 46h6v34h-6z"/>
+    <path data-region="fluid" fill="#5EA9DD" d="M49 56h27v14H49z"/>
+    <path data-region="needle" fill="none" stroke="#8EC8FF" stroke-linecap="round" stroke-width="2.5" d="M94 63h26"/>
+    <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="39" y="51" width="52" height="24" rx="5" stroke-width="3.5"/>
+      <path d="M15 53h8v20h-8zM22 61h17M34 46h6v34h-6M91 58h5v10h-5M96 63h24" stroke-width="3"/>
+      <path d="M50 51v8M58 51v6M66 51v8M74 51v6M82 51v8" stroke-width="1.75"/>
+      <path d="M49 56v14h27" stroke-width="2"/>
+    </g>
+  </g>
+</svg>

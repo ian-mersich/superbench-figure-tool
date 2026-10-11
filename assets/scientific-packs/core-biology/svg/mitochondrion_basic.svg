@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Mitochondrion</title>
+  <desc id="desc">Original vector mitochondrion with a bean-shaped outer membrane, inner membrane band, folded cristae, and editable semantic regions.</desc>
+
+  <path data-region="matrix" fill="#FFD7A8" d="M19 67c0-22 16-39 39-43 24-4 47 7 53 27 6 21-8 42-31 52-23 10-49 3-58-16-3-6-4-13-3-20z"/>
+
+  <path data-region="accent" d="M29 66c0-16 12-29 30-33 18-3 36 5 42 19 7 16-4 33-22 42-18 8-39 3-47-11-3-5-4-11-3-17z" fill="none" stroke="#F4A261" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" opacity="0.8"/>
+
+  <g data-region="cristae" fill="none" stroke="#E76F51" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.25">
+    <path d="M42 45c8-4 9 9 17 6 7-3 6-13 14-13 7 0 8 9 16 8"/>
+    <path d="M36 59c9-4 10 10 19 7 8-3 7-14 15-14 8 0 9 11 19 8 4-1 7-4 10-7"/>
+    <path d="M35 75c9-5 11 9 20 7 8-2 8-13 16-13 9 0 9 12 18 10 4-1 7-4 10-7"/>
+    <path d="M43 89c7-4 9 6 17 5 8-2 8-11 16-11 7 0 9 7 15 5"/>
+  </g>
+
+  <path data-region="outline" d="M19 67c0-22 16-39 39-43 24-4 47 7 53 27 6 21-8 42-31 52-23 10-49 3-58-16-3-6-4-13-3-20z" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5"/>
+</svg>

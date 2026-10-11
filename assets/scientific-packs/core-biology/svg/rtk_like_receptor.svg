@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">RTK-Like Receptor</title>
+  <desc id="desc">Original vector RTK-like receptor dimer with ligand-bridged extracellular domains, paired transmembrane helices, cytosolic kinase lobes, phosphates, and editable semantic regions.</desc>
+
+  <g data-region="membrane" fill="#C7F2EC">
+    <rect x="13" y="66" width="102" height="8" rx="4"/><rect x="13" y="81" width="102" height="8" rx="4"/>
+  </g>
+
+  <g data-region="receptor" fill="#8EC8FF">
+    <path d="M39 32c0-9 7-16 16-16 8 0 14 6 14 14 0 7-4 12-10 15v48H47V45c-5-3-8-7-8-13z"/>
+    <path d="M89 32c0-9-7-16-16-16-8 0-14 6-14 14 0 7 4 12 10 15v48h12V45c5-3 8-7 8-13z"/>
+    <path d="M34 98c0-7 6-12 13-12h13c5 0 9 4 9 9 0 8-7 15-16 17H44c-6 0-10-6-10-14z"/>
+    <path d="M94 98c0-7-6-12-13-12H68c-5 0-9 4-9 9 0 8 7 15 16 17h9c6 0 10-6 10-14z"/>
+  </g>
+
+  <path data-region="ligand" fill="#F4A261" d="M46 16c4-8 12-12 18-7 6-5 14-1 18 7-3 8-10 12-18 8-8 4-15 0-18-8z"/>
+
+  <g data-region="phosphate" fill="#E76F51">
+    <circle cx="43" cy="116" r="4"/><circle cx="57" cy="118" r="4"/><circle cx="71" cy="118" r="4"/><circle cx="85" cy="116" r="4"/>
+  </g>
+
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M13 70h102M13 85h102" stroke-width="2.5"/>
+    <path d="M39 32c0-9 7-16 16-16 8 0 14 6 14 14 0 7-4 12-10 15v48H47V45c-5-3-8-7-8-13zM89 32c0-9-7-16-16-16-8 0-14 6-14 14 0 7 4 12 10 15v48h12V45c5-3 8-7 8-13z" stroke-width="3"/>
+    <path d="M34 98c0-7 6-12 13-12h13c5 0 9 4 9 9 0 8-7 15-16 17H44c-6 0-10-6-10-14zM94 98c0-7-6-12-13-12H68c-5 0-9 4-9 9 0 8 7 15 16 17h9c6 0 10-6 10-14z" stroke-width="2.75"/>
+    <path d="M46 16c4-8 12-12 18-7 6-5 14-1 18 7-3 8-10 12-18 8-8 4-15 0-18-8z" stroke-width="2.5"/>
+  </g>
+</svg>

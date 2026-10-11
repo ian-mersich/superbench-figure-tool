@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Generic antibody</title>
+  <desc id="desc">Original vector IgG-like antibody with paired heavy and light chains, antigen-binding tips, and a flexible hinge.</desc>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round">
+    <g stroke-width="11">
+      <path d="M59 103c1-17 1-29-5-38L30 36"/>
+      <path d="M69 103c-1-17-1-29 5-38l24-29"/>
+      <path d="M51 64 27 43"/>
+      <path d="m77 64 24-21"/>
+    </g>
+    <path d="M55 66c5 4 13 4 18 0" stroke-width="9"/>
+    <path d="M21 34 29 25M107 34l-8-9" stroke-width="12"/>
+  </g>
+  <g data-region="heavy_chain" fill="none" stroke="#8EC8FF" stroke-linecap="round" stroke-linejoin="round" stroke-width="6">
+    <path d="M59 103c1-17 1-29-5-38L30 36"/>
+    <path d="M69 103c-1-17-1-29 5-38l24-29"/>
+    <path d="M51 64 27 43"/>
+    <path d="m77 64 24-21"/>
+  </g>
+  <g data-region="binding_tip" fill="none" stroke="#F4A261" stroke-linecap="round" stroke-width="7">
+    <path d="M21 34 29 25"/>
+    <path d="M107 34l-8-9"/>
+  </g>
+  <path data-region="hinge" d="M55 66c5 4 13 4 18 0" fill="none" stroke="#B8B5FF" stroke-linecap="round" stroke-width="5"/>
+</svg>

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Microcentrifuge Tube</title>
+  <desc id="desc">Original vector microcentrifuge tube with hinged flip cap, tapered body, sample, pellet cue, and editable semantic regions.</desc>
+  <path data-region="body" fill="#E8EEF7" d="M48 43h34l-5 47-11 24h-4L52 90z"/>
+  <path data-region="cap" fill="#8EC8FF" d="M47 36c-8 0-16-5-18-12-2-6 3-11 10-10l31 5c5 1 8 5 7 10-1 5-5 8-10 8z"/>
+  <path data-region="fluid" fill="#5EA9DD" d="M55 76h22l-2 14-10 21h-2L54 90z"/>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M48 43h34l-5 47-11 24h-4L52 90z" stroke-width="3.5"/>
+    <path d="M47 36c-8 0-16-5-18-12-2-6 3-11 10-10l31 5c5 1 8 5 7 10-1 5-5 8-10 8z" stroke-width="3.25"/>
+    <path d="M48 36v8M55 76h22" stroke-width="2.5"/>
+    <path d="M56 54h12M55 62h9" stroke-width="2"/>
+    <path d="M60 104h8" stroke-width="2.75"/>
+  </g>
+</svg>

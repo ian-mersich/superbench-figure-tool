@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Mouse Model — Manuscript Line</title>
+  <desc id="desc">Thin-line laboratory mouse in a restrained side profile with editable body, ear, eye, nose, accent, and outline regions.</desc>
+
+  <g data-region="outline" fill="none" stroke="#66707A" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke-width="4.25" d="M29 80C19 76 11 81 12 91c1 10 10 16 20 11"/>
+    <path stroke-width="1.8" d="M53 100l-4 13M80 101l5 12"/>
+  </g>
+  <path data-region="accent" fill="none" stroke="#C58F8C" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.15" d="M29 80C19 76 11 81 12 91c1 10 10 16 20 11"/>
+
+  <path data-region="body" fill="#F6F4F1" d="M27 78c3-18 20-29 42-29 9 0 17 1 24 4 1-8 5-13 10-13 7 0 10 6 9 13 2 2 4 5 4 9 1 3-2 5-6 7l-10 7c-5 11-18 19-33 23-17 4-33 1-40-9-2-4-2-7 0-12z"/>
+  <path data-region="outline" fill="none" stroke="#66707A" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.15" d="M27 78c3-18 20-29 42-29 9 0 17 1 24 4 1-8 5-13 10-13 7 0 10 6 9 13 2 2 4 5 4 9 1 3-2 5-6 7l-10 7c-5 11-18 19-33 23-17 4-33 1-40-9-2-4-2-7 0-12z"/>
+
+  <path data-region="ear" fill="#EEDDD2" d="M97 52c-2-4-1-9 3-11 5-1 9 2 10 7 0 5-4 9-9 8-2 0-3-2-4-4z"/>
+  <path data-region="outline" fill="none" stroke="#66707A" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M97 52c-2-4-1-9 3-11 5-1 9 2 10 7 0 5-4 9-9 8-2 0-3-2-4-4z"/>
+
+  <circle data-region="eye" fill="#6657A8" cx="104" cy="58" r="2.15"/>
+  <circle data-region="nose" fill="#4B535B" cx="115" cy="64" r="1.9"/>
+  <g data-region="accent" fill="none" stroke="#C58F8C" stroke-linecap="round" stroke-width="1.5">
+    <path d="M110 67l8 1M109 69l8 3"/>
+  </g>
+</svg>

@@ -1,0 +1,183 @@
+{
+  "schema": "figureStudio.scientificScene.v1",
+  "id": "receptor-signaling",
+  "name": "Receptor signaling",
+  "summary": "Membrane receptor activation with a branched response and an inhibitory regulator.",
+  "source_record_id": "source.figure-studio-scientific-scenes.2026-08-30",
+  "rights_record_id": "rights.figure-studio-scientific-scenes.cc0.2026-08-30",
+  "canvas": {
+    "width": 960,
+    "height": 540,
+    "width_in": 10,
+    "height_in": 5.625,
+    "background_role": "background"
+  },
+  "palette": {
+    "background": "#F7F9FC",
+    "surface": "#FFFFFF",
+    "ink": "#26323D",
+    "muted": "#667085",
+    "structure": "#4F7CAC",
+    "activation": "#2A9D8F",
+    "inhibition": "#E76F51",
+    "highlight": "#F4A261",
+    "secondary": "#8D7CC1"
+  },
+  "layers": [
+    {"id": "context", "name": "Cell context"},
+    {"id": "biology", "name": "Signaling components"},
+    {"id": "relationships", "name": "Molecular relationships"},
+    {"id": "labels", "name": "Editable labels"}
+  ],
+  "nodes": [
+    {
+      "id": "membrane",
+      "type": "asset",
+      "layer_id": "context",
+      "asset_id": "core.membrane.plasma_segment",
+      "top_level": true,
+      "x": 72,
+      "y": 116,
+      "width": 816,
+      "height": 72,
+      "palette_overrides": {"membrane": "structure", "accent": "highlight"}
+    },
+    {
+      "id": "ligand",
+      "type": "asset",
+      "layer_id": "biology",
+      "asset_id": "core.ligand.generic",
+      "top_level": true,
+      "x": 156,
+      "y": 47,
+      "width": 76,
+      "height": 62,
+      "palette_overrides": {"ligand": "highlight"}
+    },
+    {
+      "id": "receptor",
+      "type": "asset",
+      "layer_id": "biology",
+      "asset_id": "core.receptor.rtk_like",
+      "top_level": true,
+      "x": 170,
+      "y": 126,
+      "width": 100,
+      "height": 112,
+      "palette_overrides": {"receptor": "structure", "phosphate": "activation"}
+    },
+    {
+      "id": "kinase_a",
+      "type": "asset",
+      "layer_id": "biology",
+      "asset_id": "core.protein.kinase",
+      "top_level": true,
+      "x": 242,
+      "y": 285,
+      "width": 82,
+      "height": 72,
+      "palette_overrides": {"body": "structure", "phosphate": "activation"}
+    },
+    {
+      "id": "adaptor",
+      "type": "asset",
+      "layer_id": "biology",
+      "asset_id": "exp.protein.adaptor",
+      "top_level": true,
+      "x": 388,
+      "y": 286,
+      "width": 80,
+      "height": 70,
+      "palette_overrides": {"protein_body": "secondary", "interaction_site": "highlight"}
+    },
+    {
+      "id": "scaffold",
+      "type": "asset",
+      "layer_id": "biology",
+      "asset_id": "exp.protein.scaffold",
+      "top_level": true,
+      "x": 522,
+      "y": 274,
+      "width": 100,
+      "height": 88,
+      "palette_overrides": {"protein_body": "structure", "interaction_site": "highlight"}
+    },
+    {
+      "id": "kinase_b",
+      "type": "asset",
+      "layer_id": "biology",
+      "asset_id": "core.protein.kinase",
+      "top_level": true,
+      "x": 680,
+      "y": 285,
+      "width": 82,
+      "height": 72,
+      "palette_overrides": {"body": "activation", "phosphate": "highlight"}
+    },
+    {
+      "id": "phosphatase",
+      "type": "asset",
+      "layer_id": "biology",
+      "asset_id": "exp.protein.phosphatase",
+      "top_level": true,
+      "x": 680,
+      "y": 423,
+      "width": 82,
+      "height": 70,
+      "palette_overrides": {"protein_body": "inhibition", "interaction_site": "highlight"}
+    },
+    {
+      "id": "response_a",
+      "type": "shape",
+      "shape": "rounded_rect",
+      "layer_id": "biology",
+      "x": 812,
+      "y": 244,
+      "width": 120,
+      "height": 62,
+      "radius": 14,
+      "fill_role": "surface",
+      "stroke_role": "activation",
+      "stroke_width": 2.5
+    },
+    {
+      "id": "response_b",
+      "type": "shape",
+      "shape": "rounded_rect",
+      "layer_id": "biology",
+      "x": 812,
+      "y": 350,
+      "width": 120,
+      "height": 62,
+      "radius": 14,
+      "fill_role": "surface",
+      "stroke_role": "structure",
+      "stroke_width": 2.5
+    },
+    {"id": "title", "type": "text", "layer_id": "labels", "x": 44, "y": 18, "width": 650, "height": 34, "text": "Receptor signaling pathway", "placeholder": true, "editable": true, "font_size": 25, "fill_role": "ink", "align": "left"},
+    {"id": "ligand_label", "type": "text", "layer_id": "labels", "x": 137, "y": 20, "width": 112, "height": 24, "text": "Ligand", "placeholder": true, "editable": true, "font_size": 14, "fill_role": "muted", "align": "center"},
+    {"id": "receptor_label", "type": "text", "layer_id": "labels", "x": 145, "y": 234, "width": 150, "height": 24, "text": "Receptor", "placeholder": true, "editable": true, "font_size": 15, "fill_role": "ink", "align": "center"},
+    {"id": "kinase_a_label", "type": "text", "layer_id": "labels", "x": 226, "y": 363, "width": 114, "height": 22, "text": "Kinase A", "placeholder": true, "editable": true, "font_size": 14, "fill_role": "ink", "align": "center"},
+    {"id": "adaptor_label", "type": "text", "layer_id": "labels", "x": 374, "y": 363, "width": 108, "height": 22, "text": "Adaptor", "placeholder": true, "editable": true, "font_size": 14, "fill_role": "ink", "align": "center"},
+    {"id": "scaffold_label", "type": "text", "layer_id": "labels", "x": 516, "y": 369, "width": 112, "height": 22, "text": "Scaffold", "placeholder": true, "editable": true, "font_size": 14, "fill_role": "ink", "align": "center"},
+    {"id": "kinase_b_label", "type": "text", "layer_id": "labels", "x": 664, "y": 363, "width": 114, "height": 22, "text": "Kinase B", "placeholder": true, "editable": true, "font_size": 14, "fill_role": "ink", "align": "center"},
+    {"id": "phosphatase_label", "type": "text", "layer_id": "labels", "x": 648, "y": 495, "width": 146, "height": 22, "text": "Phosphatase", "placeholder": true, "editable": true, "font_size": 14, "fill_role": "inhibition", "align": "center"},
+    {"id": "response_a_label", "type": "text", "layer_id": "labels", "x": 822, "y": 260, "width": 100, "height": 34, "text": "Response A", "placeholder": true, "editable": true, "font_size": 14, "fill_role": "ink", "align": "center"},
+    {"id": "response_b_label", "type": "text", "layer_id": "labels", "x": 822, "y": 366, "width": 100, "height": 34, "text": "Response B", "placeholder": true, "editable": true, "font_size": 14, "fill_role": "ink", "align": "center"}
+  ],
+  "groups": [
+    {"id": "receptor_module", "name": "Ligand and receptor", "layer_id": "biology", "members": ["ligand", "receptor", "ligand_label", "receptor_label"]},
+    {"id": "signal_cascade", "name": "Intracellular signaling cascade", "layer_id": "biology", "members": ["kinase_a", "adaptor", "scaffold", "kinase_b", "phosphatase", "kinase_a_label", "adaptor_label", "scaffold_label", "kinase_b_label", "phosphatase_label"]},
+    {"id": "response_branch", "name": "Branched response", "layer_id": "biology", "members": ["response_a", "response_b", "response_a_label", "response_b_label"]}
+  ],
+  "connectors": [
+    {"id": "ligand_binds_receptor", "layer_id": "relationships", "from": {"node_id": "ligand", "anchor": "bottom"}, "to": {"node_id": "receptor", "anchor": "top"}, "relation": "binding", "label": "binds", "style": {"stroke_role": "structure", "stroke_width": 2.5, "line": "solid", "terminator": "arrow"}},
+    {"id": "receptor_activates_kinase_a", "layer_id": "relationships", "from": {"node_id": "receptor", "anchor": "bottom"}, "to": {"node_id": "kinase_a", "anchor": "top"}, "relation": "activation", "label": "activates", "style": {"stroke_role": "activation", "stroke_width": 2.5, "line": "solid", "terminator": "arrow"}},
+    {"id": "kinase_a_recruits_adaptor", "layer_id": "relationships", "from": {"node_id": "kinase_a", "anchor": "right"}, "to": {"node_id": "adaptor", "anchor": "left"}, "relation": "binding", "label": "recruits", "style": {"stroke_role": "structure", "stroke_width": 2.5, "line": "solid", "terminator": "arrow"}},
+    {"id": "adaptor_recruits_scaffold", "layer_id": "relationships", "from": {"node_id": "adaptor", "anchor": "right"}, "to": {"node_id": "scaffold", "anchor": "left"}, "relation": "binding", "label": "assembles", "style": {"stroke_role": "structure", "stroke_width": 2.5, "line": "solid", "terminator": "arrow"}},
+    {"id": "scaffold_activates_kinase_b", "layer_id": "relationships", "from": {"node_id": "scaffold", "anchor": "right"}, "to": {"node_id": "kinase_b", "anchor": "left"}, "relation": "activation", "label": "activates", "style": {"stroke_role": "activation", "stroke_width": 2.5, "line": "solid", "terminator": "arrow"}},
+    {"id": "kinase_b_drives_response_a", "layer_id": "relationships", "from": {"node_id": "kinase_b", "anchor": "right"}, "to": {"node_id": "response_a", "anchor": "left"}, "relation": "activation", "label": "branch 1", "style": {"stroke_role": "activation", "stroke_width": 2.5, "line": "solid", "terminator": "arrow"}},
+    {"id": "kinase_b_drives_response_b", "layer_id": "relationships", "from": {"node_id": "kinase_b", "anchor": "right"}, "to": {"node_id": "response_b", "anchor": "left"}, "relation": "activation", "label": "branch 2", "style": {"stroke_role": "activation", "stroke_width": 2.5, "line": "solid", "terminator": "arrow"}},
+    {"id": "phosphatase_inhibits_kinase_b", "layer_id": "relationships", "from": {"node_id": "phosphatase", "anchor": "top"}, "to": {"node_id": "kinase_b", "anchor": "bottom"}, "relation": "inhibition", "label": "dephosphorylates", "style": {"stroke_role": "inhibition", "stroke_width": 2.5, "line": "dashed", "terminator": "bar"}}
+  ]
+}

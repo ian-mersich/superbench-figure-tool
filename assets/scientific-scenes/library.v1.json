@@ -1,0 +1,365 @@
+{
+  "description": "Editable starting points for common experimental-biology figures and presentations.",
+  "id": "figure-studio-scientific-scenes",
+  "name": "Scientific Scenes",
+  "rights_record_id": "rights.figure-studio-scientific-scenes.cc0.2026-08-30",
+  "scenes": [
+    {
+      "actions": [
+        "use_as_new_figure",
+        "insert_current_document"
+      ],
+      "biology_note": "Shows sample collection and lysis, clarified lysate, total-protein assessment and planned loading, SDS-PAGE, membrane transfer, blocking with primary/secondary antibody probing, signal detection, and one illustrative target/loading-control result.",
+      "category": "Experimental workflows",
+      "id": "immunoblot-assay-workflow",
+      "limitations": "Bands are placeholders, not data. The loading control must be validated for the sample and treatment context. This starter does not establish detector linearity, transfer efficiency, antibody specificity, normalization validity, fold change, statistical significance, biological mechanism, or reproducibility; one blot alone is not a complete quantitative analysis.",
+      "modes": [
+        "figure",
+        "presentation"
+      ],
+      "name": "Immunoblot assay workflow",
+      "preview": "previews/immunoblot-assay-workflow.svg",
+      "rights_record_id": "rights.figure-studio-immunoblot-assay-workflow.cc0.2026-09-13",
+      "scene": "scenes/immunoblot-assay-workflow.scene.json",
+      "source_record_id": "source.figure-studio-immunoblot-assay-workflow.2026-09-13",
+      "summary": "An editable immunoblot workflow from sample collection and lysis through SDS-PAGE, membrane transfer, antibody probing, signal detection, and one illustrative target/loading-control result.",
+      "synonyms": [
+        "western blot workflow",
+        "protein immunoblot",
+        "SDS-PAGE western blot",
+        "membrane transfer and antibody probing",
+        "target and loading control blot"
+      ],
+      "tags": [
+        "immunoblot",
+        "western blot",
+        "sample lysis",
+        "clarified lysate",
+        "total protein",
+        "SDS-PAGE",
+        "membrane transfer",
+        "primary antibody",
+        "secondary antibody",
+        "signal detection",
+        "loading control",
+        "placeholder bands"
+      ]
+    },
+    {
+      "actions": [
+        "use_as_new_figure",
+        "insert_current_document"
+      ],
+      "biology_note": "Shows one selected macroautophagy sequence: an LC3-associated phagophore surrounds a SQSTM1/p62-linked cargo example, closes as a double-membrane autophagosome, fuses with a lysosome, and forms an autolysosome where cargo is degraded.",
+      "category": "Cell biology",
+      "id": "autophagosome-lysosome-process",
+      "limitations": "Static schematic only; LC3 or SQSTM1/p62 placement does not measure autophagic flux. It does not represent quantitative kinetics, abundance, complete machinery, disease-specific causality, or clinical or therapeutic effects.",
+      "modes": [
+        "figure",
+        "presentation"
+      ],
+      "name": "Autophagosome–lysosome process",
+      "preview": "previews/autophagosome-lysosome-process.svg",
+      "rights_record_id": "rights.figure-studio-autophagosome-lysosome-process.cc0.2026-09-13",
+      "scene": "scenes/autophagosome-lysosome-process.scene.json",
+      "source_record_id": "source.figure-studio-autophagosome-lysosome-process.2026-09-13",
+      "summary": "A qualitative macroautophagy sequence from phagophore formation and selected cargo capture through autophagosome closure, lysosomal fusion, and cargo degradation.",
+      "synonyms": [
+        "macroautophagy",
+        "phagophore to autolysosome",
+        "autophagic degradation",
+        "LC3 p62 cargo",
+        "autophagosome lysosome fusion"
+      ],
+      "tags": [
+        "autophagy",
+        "phagophore",
+        "cargo sequestration",
+        "autophagosome",
+        "lysosome",
+        "autolysosome",
+        "LC3",
+        "SQSTM1",
+        "p62",
+        "cargo degradation",
+        "autophagic flux"
+      ]
+    },
+    {
+      "actions": [
+        "use_as_new_figure",
+        "insert_current_document"
+      ],
+      "biology_note": "Orients peptide–MHC/TCR recognition, CD28–B7 costimulation, and PD-1/PD-L1 checkpoint context across an APC–T-cell interface, with only LCK–ZAP-70–LAT shown as a proximal signaling handoff.",
+      "category": "Immunology",
+      "id": "apc-t-cell-immune-synapse",
+      "limitations": "A qualitative orientation schematic, not a complete receptor catalog, quantitative or kinetic pathway, causal analysis, clinical claim, or canonical synapse organization.",
+      "modes": [
+        "figure",
+        "presentation"
+      ],
+      "name": "APC–T-cell immune synapse",
+      "preview": "previews/apc-t-cell-immune-synapse.svg",
+      "rights_record_id": "rights.figure-studio-apc-tcell-immune-synapse.cc0.2026-09-12",
+      "scene": "scenes/apc-t-cell-immune-synapse.scene.json",
+      "source_record_id": "source.figure-studio-apc-tcell-immune-synapse.2026-09-12",
+      "summary": "Opposing APC and T-cell membranes with antigen recognition, CD28 costimulation, PD-1 checkpoint context, and a bounded signaling handoff.",
+      "synonyms": [
+        "APC T-cell interaction",
+        "antigen-presenting cell T cell",
+        "T-cell priming",
+        "peptide-MHC TCR",
+        "CD28 B7 costimulation",
+        "PD-1 PD-L1 checkpoint"
+      ],
+      "tags": [
+        "immune synapse",
+        "APC",
+        "antigen-presenting cell",
+        "T cell",
+        "TCR",
+        "pMHC",
+        "CD28",
+        "CD80",
+        "CD86",
+        "B7",
+        "PD-1",
+        "PD-L1",
+        "LCK",
+        "ZAP-70",
+        "LAT",
+        "cell-cell interaction"
+      ]
+    },
+    {
+      "actions": [
+        "use_as_new_figure",
+        "insert_current_document"
+      ],
+      "biology_note": "Pairs peptide–MHC recognition with CD28–B7 co-stimulation, then shows a deliberately small LCK–ZAP-70–LAT signaling core and PD-1–SHP2 inhibition.",
+      "category": "Immunology",
+      "id": "t-cell-activation-checkpoint",
+      "limitations": "A simplified authoring starter, not a complete, quantitative, stoichiometric, temporal, causal, or state-equivalent pathway model.",
+      "modes": [
+        "figure",
+        "presentation"
+      ],
+      "name": "T-cell activation and PD-1 checkpoint",
+      "preview": "previews/t-cell-activation-checkpoint.svg",
+      "rights_record_id": "rights.figure-studio-tcell-scientific-starter.cc0.2026-09-12",
+      "scene": "scenes/t-cell-activation-checkpoint.scene.json",
+      "source_record_id": "source.figure-studio-tcell-scientific-starter.2026-09-12",
+      "summary": "Antigen recognition, CD28 co-stimulation, a compact TCR pathway, and one PD-1 inhibitory branch.",
+      "synonyms": [
+        "T cell activation",
+        "TCR signaling",
+        "peptide-MHC",
+        "CD28 B7",
+        "PD-1 PD-L1",
+        "immune checkpoint",
+        "immune synapse"
+      ],
+      "tags": [
+        "T cell",
+        "TCR",
+        "pMHC",
+        "antigen presentation",
+        "CD28",
+        "CD80",
+        "CD86",
+        "B7",
+        "PD-1",
+        "PD-L1",
+        "SHP2",
+        "checkpoint",
+        "co-stimulation"
+      ]
+    },
+    {
+      "actions": [
+        "use_as_new_figure",
+        "insert_current_document"
+      ],
+      "category": "Cell signaling",
+      "id": "receptor-signaling",
+      "modes": [
+        "figure",
+        "presentation"
+      ],
+      "name": "Receptor signaling",
+      "preview": "previews/receptor-signaling.svg",
+      "rights_record_id": "rights.figure-studio-scientific-scenes.cc0.2026-08-30",
+      "scene": "scenes/receptor-signaling.scene.json",
+      "source_record_id": "source.figure-studio-scientific-scenes.2026-08-30",
+      "summary": "Membrane receptor activation with a branched response and an inhibitory regulator.",
+      "synonyms": [
+        "signal transduction",
+        "receptor pathway",
+        "kinase cascade"
+      ],
+      "tags": [
+        "receptor",
+        "ligand",
+        "activation",
+        "inhibition",
+        "branching"
+      ]
+    },
+    {
+      "actions": [
+        "use_as_new_figure",
+        "insert_current_document"
+      ],
+      "category": "Cell interactions",
+      "id": "tumor-microenvironment",
+      "modes": [
+        "figure",
+        "presentation"
+      ],
+      "name": "Tumor microenvironment",
+      "preview": "previews/tumor-microenvironment.svg",
+      "rights_record_id": "rights.figure-studio-scientific-scenes.cc0.2026-08-30",
+      "scene": "scenes/tumor-microenvironment.scene.json",
+      "source_record_id": "source.figure-studio-scientific-scenes.2026-08-30",
+      "summary": "Tumor, immune, stromal, and vascular cells arranged around editable intercellular signals.",
+      "synonyms": [
+        "TME",
+        "tumor immune interaction",
+        "stromal niche"
+      ],
+      "tags": [
+        "tumor",
+        "T cell",
+        "macrophage",
+        "fibroblast",
+        "endothelium",
+        "chemokine"
+      ]
+    },
+    {
+      "actions": [
+        "use_as_new_figure",
+        "insert_current_document"
+      ],
+      "category": "Gene expression",
+      "id": "gene-regulation-expression",
+      "modes": [
+        "figure",
+        "presentation"
+      ],
+      "name": "Gene regulation and expression",
+      "preview": "previews/gene-regulation-expression.svg",
+      "rights_record_id": "rights.figure-studio-scientific-scenes.cc0.2026-08-30",
+      "scene": "scenes/gene-regulation-expression.scene.json",
+      "source_record_id": "source.figure-studio-scientific-scenes.2026-08-30",
+      "summary": "Chromatin regulation through transcription, RNA processing, nuclear export, and translation.",
+      "synonyms": [
+        "central dogma",
+        "DNA to RNA to protein",
+        "transcription translation"
+      ],
+      "tags": [
+        "chromatin",
+        "enhancer",
+        "transcription",
+        "splicing",
+        "mRNA",
+        "translation"
+      ]
+    },
+    {
+      "actions": [
+        "use_as_new_figure",
+        "insert_current_document"
+      ],
+      "category": "Experimental workflows",
+      "id": "culture-treatment-readout",
+      "modes": [
+        "figure",
+        "presentation"
+      ],
+      "name": "Culture to quantitative readout",
+      "preview": "previews/culture-treatment-readout.svg",
+      "rights_record_id": "rights.figure-studio-scientific-scenes.cc0.2026-08-30",
+      "scene": "scenes/culture-treatment-readout.scene.json",
+      "source_record_id": "source.figure-studio-scientific-scenes.2026-08-30",
+      "summary": "Cell culture, treatment, plate-based assay, and quantitative dose-response readout.",
+      "synonyms": [
+        "culture treatment assay",
+        "drug response workflow",
+        "cell viability assay"
+      ],
+      "tags": [
+        "cell culture",
+        "treatment",
+        "multiwell plate",
+        "plate reader",
+        "dose response"
+      ]
+    },
+    {
+      "actions": [
+        "use_as_new_figure",
+        "insert_current_document"
+      ],
+      "category": "Molecular workflows",
+      "id": "crispr-perturbation-validation",
+      "modes": [
+        "figure",
+        "presentation"
+      ],
+      "name": "CRISPR perturbation and validation",
+      "preview": "previews/crispr-perturbation-validation.svg",
+      "rights_record_id": "rights.figure-studio-scientific-scenes.cc0.2026-08-30",
+      "scene": "scenes/crispr-perturbation-validation.scene.json",
+      "source_record_id": "source.figure-studio-scientific-scenes.2026-08-30",
+      "summary": "Guide delivery and genome editing followed by PCR, gel, and protein-level validation.",
+      "synonyms": [
+        "CRISPR validation",
+        "gene editing workflow",
+        "Cas9 perturbation"
+      ],
+      "tags": [
+        "CRISPR",
+        "Cas9",
+        "plasmid",
+        "PCR",
+        "gel electrophoresis",
+        "western blot"
+      ]
+    },
+    {
+      "actions": [
+        "use_as_new_figure",
+        "insert_current_document"
+      ],
+      "category": "Imaging and cytometry",
+      "id": "microscopy-flow-readout",
+      "modes": [
+        "figure",
+        "presentation"
+      ],
+      "name": "Microscopy and flow cytometry readout",
+      "preview": "previews/microscopy-flow-readout.svg",
+      "rights_record_id": "rights.figure-studio-scientific-scenes.cc0.2026-08-30",
+      "scene": "scenes/microscopy-flow-readout.scene.json",
+      "source_record_id": "source.figure-studio-scientific-scenes.2026-08-30",
+      "summary": "One prepared sample branching into fluorescence microscopy and flow-cytometry readouts.",
+      "synonyms": [
+        "imaging and flow",
+        "fluorescence microscopy",
+        "FACS readout"
+      ],
+      "tags": [
+        "microscopy",
+        "flow cytometry",
+        "fluorescence",
+        "dot plot",
+        "histogram"
+      ]
+    }
+  ],
+  "schema": "figureStudio.scientificSceneLibrary.v1",
+  "source_record_id": "source.figure-studio-scientific-scenes.2026-08-30",
+  "version": "1.5.0"
+}
