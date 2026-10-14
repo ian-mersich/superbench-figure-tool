@@ -1,8 +1,12 @@
 # Superbench Figure Tool
 
-Source for Superbench Figure Tool **1.0.0-beta.6**, a shared editor for creating and editing scientific figures and presentations. The browser edition uses the same editor source as the desktop integration.
+Create editable scientific figures and presentations in your browser. Figure Tool provides vector drawing, scientific artwork, portable project files and SVG, PNG and PDF exports.
 
-This is the shared editor source for beta.6, based on source revision `6e35da30ce7fdf21f40956318abee691ddff26f0`. The public repository is [https://github.com/ian-mersich/superbench-figure-tool](https://github.com/ian-mersich/superbench-figure-tool); the complete source archive is distributed at [https://github.com/ian-mersich/superbench-figure-tool/releases/download/v1.0.0-beta.6/figure-tool-source.zip](https://github.com/ian-mersich/superbench-figure-tool/releases/download/v1.0.0-beta.6/figure-tool-source.zip).
+**[Open Figure Tool](https://imersich.com/superbench/figure_tool/)** · [Download a release](https://github.com/ian-mersich/superbench-figure-tool/releases)
+
+This repository contains the **1.0.0-beta.6** editor source. The browser edition uses the same editor source as the desktop integration; an installed desktop release is qualified separately. [Download the complete source archive](https://github.com/ian-mersich/superbench-figure-tool/releases/download/v1.0.0-beta.6-docs.1/figure-tool-source.zip).
+
+Documentation revision 1 updates the introduction and license explanation. Editor code, artwork, dependencies and saved-file formats remain beta.6.
 
 ## Run the browser editor
 

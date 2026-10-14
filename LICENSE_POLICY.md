@@ -1,8 +1,8 @@
 # Figure Tool licenses
 
-Ian Mersich approved **Apache-2.0** for Figure Tool's first-party source on
-10 October 2026. The full terms are in [LICENSE](LICENSE), with attribution in
-[NOTICE](NOTICE). This covers the original application code, documentation,
+Figure Tool's first-party source uses **Apache-2.0**. The full terms are in
+[LICENSE](LICENSE), with attribution in [NOTICE](NOTICE). This covers the
+original application code, documentation,
 configuration, and build/test tooling in this repository. Existing notices in
 third-party or contributed material remain applicable.
 
@@ -29,5 +29,3 @@ root originals; the package producer rejects missing or different terms when
 `package.json` declares Apache-2.0. The original-artwork scope notice and full
 CC0 text also travel under `app/legal/assets/` and must match their originals.
 
-The owner previously considered AGPLv3. Apache-2.0 is the final adopted choice;
-the earlier preference-only candidate is historical evidence, not current policy.
