@@ -1,6 +1,6 @@
 {
   "name": "@superbench/figure-tool",
-  "version": "1.0.0-beta.9",
+  "version": "1.0.0-beta.10",
   "private": true,
   "license": "Apache-2.0",
   "description": "Superbench Figure Tool scientific figure and presentation editor for Windows.",

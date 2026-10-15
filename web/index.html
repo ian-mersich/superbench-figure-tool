@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Create editable scientific figures and presentations with Superbench Figure Tool.">
     <title>Superbench Figure Tool — browser editor</title>
-    <link rel="stylesheet" href="web-editor.css">
+    <link rel="stylesheet" href="web-editor.css?v=20261015-appearance2">
     <script src="browser-store.js" defer></script>
-    <script src="browser-session.js?v=20261011-browserfiles1" defer></script>
+    <script src="browser-session.js?v=20261015-appearance2" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#editor">Skip to editor</a>
@@ -27,7 +27,8 @@
         </div>
       </div>
       <div class="web-header-actions">
-        <div class="web-theme-selector" role="group" aria-label="Editor appearance">
+        <div id="browser-appearance" class="web-theme-selector" role="group" aria-label="Appearance" title="Change the interface appearance; drawing colors stay the same">
+          <span class="web-theme-label">Appearance</span>
           <button id="browser-theme-light" type="button" data-browser-theme="light" aria-pressed="true" title="Light appearance selected">Light</button>
           <button id="browser-theme-dark" type="button" data-browser-theme="dark-graphite" aria-pressed="false" title="Use dark appearance">Dark</button>
         </div>

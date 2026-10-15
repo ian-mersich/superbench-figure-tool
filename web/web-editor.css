@@ -60,7 +60,8 @@ button:disabled { opacity: .55; cursor: default; }
 .brand strong { font-size: 13px; line-height: 1.1; }
 .brand small { margin-top: 2px; color: var(--web-text-muted); font-size: 9px; line-height: 1; }
 .web-header-actions { display: flex; min-width: 0; align-items: center; justify-content: flex-end; gap: 6px; }
-.web-theme-selector { display: inline-flex; flex: 0 0 auto; gap: 2px; padding: 2px; border: 1px solid var(--web-border-strong); border-radius: 5px; background: var(--web-inset); }
+.web-theme-selector { display: inline-flex; align-items: center; flex: 0 0 auto; gap: 2px; padding: 2px; border: 1px solid var(--web-border-strong); border-radius: 5px; background: var(--web-inset); }
+.web-theme-label { margin: 0 4px; color: var(--web-text-muted); font-size: 11px; }
 .web-theme-selector button { min-width: 40px; min-height: 28px; padding: 4px 7px; border: 0; border-radius: 3px; color: var(--web-text-muted); background: transparent; font-size: 11px; line-height: 1.2; }
 .web-theme-selector button:hover { color: var(--web-text); background: var(--web-control-hover); }
 .web-theme-selector button[aria-pressed="true"] { color: var(--web-text-strong); background: var(--web-selected); font-weight: 700; }

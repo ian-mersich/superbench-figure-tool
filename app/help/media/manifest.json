@@ -76,13 +76,24 @@
       "id": "browser-files",
       "type": "image",
       "file": "browser-files.png",
-      "bytes": 85337,
-      "sha256": "0a7c7fd41401e4458e3884bf6ea98c355bd238824b8a8faaf845546348503bb7",
+      "bytes": 87137,
+      "sha256": "b579d108b6c75d2aafb954b87e336f39b2b1bb2330ee450d63ab7e24bf48f90b",
       "width": 1040,
       "height": 660,
-      "alt": "Browser files menu with Saved work, Open file, Download file, and on-device save information.",
-      "caption": "Browser saves stay on this device. Download file makes a portable copy; Saved work shows documents stored in this browser.",
-      "intent": "Show Browser files actions and the on-device save status above a finished editable example diagram."
+      "alt": "Browser files menu with Saved work, Open file and Download file; Appearance Light/Dark stays visible separately in the header.",
+      "caption": "Browser saves stay on this device. Download file makes a portable copy; Saved work shows documents stored in this browser. Appearance stays visible in the header.",
+      "intent": "Show the existing editable assay-workflow example with Browser files open and Appearance Light/Dark visible separately in the header.",
+      "captured_on": "2026-10-15",
+      "source_revision": "8913ad0693c6cfdaf0a9bcb25d449e4c18a003b9",
+      "source_state": "Appearance correction working tree; unchanged canonical assay-workflow capture fixture",
+      "source_files_sha256": {
+        "app/app.js": "36d6c0e8f609cc1eed03be5d33f94eb466c33da987a5ae39f6f91b2ff00f3fce",
+        "app/index.html": "668c10c61b160201307db1ee4f09efd51bfc0456819014acdac87b02f56ac278",
+        "app/styles.css": "06bb2854bd42307c5084da177d3fbb527bf6cd681b0544be7d2c071ff7d9e31a",
+        "web/browser-session.js": "75cbedc6b76ef363a204d331c01ec28de01e5042d40155e217bb6a8ca27ffab8",
+        "web/browser-chrome.css": "7c614725ac73e961eea6c1e0e366637f2b4c309983f6c3ab9347675d94d3b8ad",
+        "scripts/capture-figure-help-media.py": "b763133a82f3e6a3764a6d17c8a123ded8c4a1657d59c506a1bf180bb0bc098f"
+      }
     }
   ],
   "source_files_sha256": {
@@ -92,5 +103,16 @@
     "web/browser-session.js": "fa0b5c96fdb9aeb8466d44b51bb5e1f3be8d2b46ba7b961e5932bf2242219199",
     "web/browser-chrome.css": "780acb0c0e0590bfc58aec29e2ea4e6ca5da73b2f80ce74a441b4761f24c064b",
     "scripts/capture-figure-help-media.py": "b763133a82f3e6a3764a6d17c8a123ded8c4a1657d59c506a1bf180bb0bc098f"
-  }
+  },
+  "capture_updates": [
+    {
+      "captured_on": "2026-10-15",
+      "media_ids": [
+        "browser-files"
+      ],
+      "source_revision": "8913ad0693c6cfdaf0a9bcb25d449e4c18a003b9",
+      "capture_script": "scripts/capture-figure-help-media.py",
+      "description": "Only the Browser files image was recaptured for the visible Appearance control; other media retain their original capture records."
+    }
+  ]
 }

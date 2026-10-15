@@ -627,7 +627,7 @@ def build_release_artifacts(
         manifest = build_tool_package(
             source, work_package, source_revision=commit, version_override=version_override,
             distribution_scope=distribution_scope,
-            public_release_eligible=bool(validation.get("public_release_eligible")),
+            public_release_eligible=(distribution_scope == "public-release" and bool(validation.get("public_release_eligible"))),
         )
         package_digest = str(manifest["package_sha256"])
         package_relative = Path("archives") / TOOL_ID / f"{version}-{package_digest}.zip"

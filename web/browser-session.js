@@ -9,13 +9,15 @@
   const webHeader = document.querySelector(".web-header");
   const toolbar = document.querySelector(".browser-toolbar");
   const headerActions = document.querySelector(".web-header-actions");
+  const appearance = document.getElementById("browser-appearance");
   const retryButton = document.getElementById("browser-retry");
   const copyButton = document.getElementById("browser-save-copy");
   const announcements = document.getElementById("browser-announcements");
   let browserChrome = null;
 
-  // This same-origin web host owns browser files. Adopt its existing controls
-  // only after the shared editor is ready; the native editor never loads this.
+  // This same-origin web host owns browser files and appearance preferences.
+  // Adopt its controls only after the shared editor is ready; the desktop host
+  // owns its global Settings and never loads this browser entry.
   async function integrateBrowserChrome() {
     const editorDocument = frame.contentDocument;
     const header = editorDocument?.querySelector(".app-header .top-window-actions");
@@ -23,7 +25,7 @@
     if (!header || !root || browserChrome) return;
     const stylesheet = editorDocument.createElement("link");
     stylesheet.rel = "stylesheet";
-    stylesheet.href = new URL("browser-chrome.css", document.baseURI).href;
+    stylesheet.href = new URL("browser-chrome.css?v=20261015-appearance2", document.baseURI).href;
     const styled = await new Promise(resolve => {
       const timeout = setTimeout(() => resolve(false), 5000);
       stylesheet.onload = () => { clearTimeout(timeout); resolve(true); };
@@ -46,7 +48,7 @@
     panel.id = "browser-files-panel";
     panel.className = "browser-chrome-panel";
     panel.setAttribute("role", "dialog");
-    panel.setAttribute("aria-label", "Browser files and appearance");
+    panel.setAttribute("aria-label", "Browser files");
     panel.hidden = true;
     const heading = editorDocument.createElement("strong");
     heading.className = "browser-chrome-heading";
@@ -62,9 +64,13 @@
       link.href = link.href;
       link.target = "_top";
     });
+    // Appearance stays visible beside Browser files. Only file/about controls
+    // belong in its popover; moving this same control preserves its preference
+    // owner and handlers without adding settings to the shared editor.
+    appearance.classList.add("browser-chrome-appearance");
+    header.prepend(trigger, appearance);
     panel.append(heading, toolbar, headerActions);
     root.append(panel);
-    header.prepend(trigger);
     const position = () => {
       const bounds = trigger.getBoundingClientRect();
       const top = bounds.bottom + 6;

@@ -6,6 +6,13 @@ The browser site and Superbench consume one committed editor and asset collectio
 scientific scenes. Fixes belong here. Do not maintain a second editor in the
 public source checkout or backport individual fixes into the old beta.6 site.
 
+The beta.9 release was published on 15 October 2026. Its immutable runtime source
+is `16d0629e5cc0b1fc5b3fb0af1938fe43ed355c71`, and its selected Superbench package
+is `9c4e3bee373cf7051880a130d3d6802aae4fb2438bcbd7c5aee480563ad782b2`.
+The deployed HTTPS editor and the actual installed selection passed the same
+710-file payload comparison. The public source/tag, archive identities, CI and
+deployment evidence are recorded in [PUBLIC_PUBLICATION.md](PUBLIC_PUBLICATION.md).
+
 The 15 October product decision is recorded in
 `config/scientific-product-release-2026-10-15.json`. It binds the exact accepted
 artwork, scientific metadata, native-editing reviews and the owner's instruction
@@ -55,6 +62,13 @@ supports reviewed static hosting and a locally trusted immutable Superbench
 package without provisioning an update-feed signer. A public automatic update
 feed remains a separate signed-catalog operation.
 
+Source eligibility and package distribution scope are distinct. Validation may
+report that the complete collection is eligible for public release even during
+a private-review build. A private-review manifest must still declare
+`public_release_eligible: false`; the public assertion is emitted only for an
+explicit public-release build whose source passes every public check. Build and
+rights receipts preserve the truthful source-validation result.
+
 ## Qualify and promote the same release
 
 Qualify the exact native/static payloads, including the current repaint, direct
@@ -84,8 +98,24 @@ previous package for rollback. Its source pin must carry the real public-release
 provenance. An existing compatible native host can consume it after the separate
 headless native checks; a package update does not establish a new MSI qualification.
 
-Publishing the public repository/release, updating the website, and changing the
-actual local selected package remain explicit promotion steps after the matched
-candidate is reviewed. All beta.6 repaint/backport candidates remain unpublished
-historical diagnostics; they are not the next release path. The roadmap continues
-with the shared Figure release and separate Windows installer qualification.
+For future releases, publishing the public repository/release, updating the
+website, and changing the actual local selected package remain explicit promotion
+steps after the matched candidate is reviewed. Those steps are complete for
+beta.9. All beta.6 repaint/backport candidates remain unpublished historical
+diagnostics. The shared Figure release milestone is complete; the separate
+Windows installer qualification remains on the same roadmap.
+
+## Tooling changes after publication
+
+The canonical development repository can advance its packaging scripts, tests
+and release documentation without repackaging the installed or deployed editor.
+The subsequent private-review eligibility correction changes only the producer
+and its regression tests. It does not change any payload file, version, source
+pin, public tag, archive, or installed selection. The original beta.9 source
+export remains faithful to its reviewed 16d0629 snapshot; its explicit
+public-release build path already emitted the correct manifest.
+
+Do not point either consumer at a newer development commit merely because its
+release tooling changed. A runtime update requires a new intentional shared
+candidate, paired artifacts, qualification and promotion. Keep the immutable
+beta.9 receipts as the evidence for the current release.

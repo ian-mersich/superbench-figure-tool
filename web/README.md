@@ -2,8 +2,8 @@
 
 This folder is a browser entry around the **same** `../app/index.html`, scripts, styles, and
 vendor assets that the Figure tool uses inside Mersich Lab Superbench. Once the shared
-editor is ready, **Browser files** in its header opens browser saves, file controls,
-the **Light / Dark** selector, and **About**. About contains the Figure website and
+editor is ready, **Appearance · Light / Dark** stays visible in its header.
+**Browser files** opens browser saves, file controls, and **About**. About contains the Figure website and
 personal-site links, licenses, source downloads, and the browser-storage explanation. Do not copy the editor implementation here
 or maintain a separate Figure feature branch for the web edition.
 
@@ -45,8 +45,9 @@ The editor shell lives in this subfolder to allow web-only hosting and status co
 Its iframe loads the shared Figure application one directory above, so Superbench and this
 browser entry use the same editor source at the same repository revision.
 
-The web host inserts the Browser files button into the ready editor's existing header
-and moves its original controls into a same-document popover. Their file and browser-store
+The web host inserts Browser files and the existing Appearance selector into the
+ready editor's header. Only its file and About controls move into the Browser files
+popover. Their file and browser-store
 handlers stay unchanged. `browser-chrome.css` loads only through this web host; direct
 shared-app and native-host launches do not acquire browser controls. The outer header
 remains available during loading, local-file guidance, startup failure, or a failed
@@ -56,13 +57,19 @@ the popover and returns focus to Browser files.
 
 ## Browser appearance
 
-**Light / Dark** changes the web shell and shared editor controls immediately. It uses
+The visible **Appearance · Light / Dark** control changes the web shell and shared editor controls immediately. It uses
 the shared editor's appearance API; figure and slide colors remain part of the document.
 The browser remembers an explicit choice in localStorage at the same origin, independent
 of installed Superbench settings and browser project saves. Before a choice is made, the
 editor follows the system's light or dark appearance. If preference storage is blocked,
 the selector still works for the current visit. The local-file guidance also supports
 the selector without starting the iframe or accessing browser storage.
+
+Appearance belongs to the containing host. Superbench uses its global Settings;
+this web entry owns the browser preference. Both call the same shared editor
+appearance API, and neither saves interface appearance into figure or slide artwork.
+Host controls and storage can differ while the complete Figure runtime and Library
+remain one paired release. See [the host settings boundary](../docs/architecture/FIGURE_HOST_SETTINGS.md).
 
 ## Browser saves
 

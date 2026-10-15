@@ -45,6 +45,37 @@ def test_package_manifest_matches_host_contract_and_private_qa_version_is_marked
     assert producer.verify_tool_package(package, trusted_package_sha256=manifest["package_sha256"]) == manifest
 
 
+@pytest.mark.parametrize("scope,source_eligible,manifest_eligible", [
+    ("private-review", True, False),
+    ("public-release", True, True),
+    ("private-review", False, False),
+])
+def test_release_scope_gates_manifest_eligibility_without_changing_source_validation(
+    tmp_path: Path, monkeypatch, scope: str, source_eligible: bool, manifest_eligible: bool,
+) -> None:
+    source = _tiny_figure_source(tmp_path / "fixture")
+    validation = {"scope": scope, "public_release_eligible": source_eligible}
+    monkeypatch.setattr(producer, "resolve_commit", lambda *_: "a" * 40)
+    monkeypatch.setattr(producer, "extract_git_archive", lambda _repo, _commit, destination: shutil.copytree(source, destination))
+    def validate(_source, *, distribution_scope):
+        assert distribution_scope == scope
+        return validation
+    monkeypatch.setattr(producer, "validate_release_source", validate)
+    monkeypatch.setattr(producer, "_rights_receipt", lambda _source, result, *, scope: {
+        "scope": scope, "source_public_release_eligible": result["public_release_eligible"],
+    })
+    release = producer.build_release_artifacts(tmp_path, "fixture", tmp_path / "release", distribution_scope=scope)
+    with zipfile.ZipFile(release.package_zip) as archive:
+        manifest = json.loads(archive.read("tool-package.json"))
+        assert manifest["source_provenance"]["distribution_scope"] == scope
+        assert manifest["source_provenance"]["public_release_eligible"] is manifest_eligible
+    receipt = json.loads(release.receipt_path.read_text(encoding="utf-8"))
+    assert receipt["validation"] == validation
+    assert receipt["public_distribution_authorized"] is (scope == "public-release" and source_eligible)
+    assert release.public_release_eligible is source_eligible
+    assert producer.verify_archive_payload_parity(release.package_zip, release.web_zip)["file_count"] == 5
+
+
 def test_package_builder_accepts_canonical_identity_and_only_exact_legacy_pair(tmp_path: Path) -> None:
     source = _tiny_figure_source(tmp_path / "source")
     (source / "package.json").write_text(

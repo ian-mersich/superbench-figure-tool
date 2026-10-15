@@ -17,6 +17,35 @@
 .browser-chrome-trigger:hover, .browser-chrome-trigger[aria-expanded="true"] { background: var(--chrome-soft); }
 .browser-chrome-trigger[data-save-state="error"], .browser-chrome-trigger[data-save-state="conflict"] { color: var(--warn); }
 .browser-chrome-trigger:focus-visible, .browser-chrome-panel :focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.figure-studio-root .browser-chrome-appearance {
+  display: inline-flex;
+  align-items: center;
+  flex: 0 0 auto;
+  gap: 2px;
+  height: 28px;
+  padding: 2px;
+  border: 1px solid var(--line-strong);
+  border-radius: 4px;
+  background: var(--field);
+  white-space: nowrap;
+}
+.browser-chrome-appearance .web-theme-label { margin: 0 4px; color: var(--muted); font-size: 11px; }
+.figure-studio-root .browser-chrome-appearance button {
+  min-width: 35px;
+  height: 22px;
+  padding: 0 5px;
+  border: 0;
+  border-radius: 3px;
+  color: var(--muted);
+  background: transparent;
+  box-shadow: none;
+  font: inherit;
+  font-size: 11px;
+  cursor: pointer;
+}
+.figure-studio-root .browser-chrome-appearance button:hover { color: var(--text); background: var(--chrome-soft); }
+.figure-studio-root .browser-chrome-appearance button[aria-pressed="true"] { color: var(--text-strong); background: var(--accent-soft); font-weight: 700; }
+.figure-studio-root .browser-chrome-appearance button:focus-visible { outline: 2px solid var(--focus); outline-offset: -2px; }
 .browser-chrome-panel {
   position: fixed;
   z-index: 950;
@@ -50,9 +79,6 @@
 }
 .browser-chrome-panel button:hover { background: var(--chrome-soft); }
 .browser-chrome-panel .web-header-actions { display: block; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line); }
-.browser-chrome-panel .web-theme-selector { display: inline-flex; gap: 2px; padding: 2px; border: 1px solid var(--line-strong); border-radius: 5px; background: var(--field); }
-.browser-chrome-panel .web-theme-selector button { min-width: 54px; border: 0; background: transparent; color: var(--muted); }
-.browser-chrome-panel .web-theme-selector button[aria-pressed="true"] { color: var(--text-strong); background: var(--accent-soft); font-weight: 700; }
 .browser-chrome-panel .web-about { margin-top: 12px; }
 .browser-chrome-panel .web-about summary { display: inline-flex; padding: 2px 0; cursor: pointer; font-weight: 600; list-style: none; }
 .browser-chrome-panel .web-about summary::-webkit-details-marker { display: none; }

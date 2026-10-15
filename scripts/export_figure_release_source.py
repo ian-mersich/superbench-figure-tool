@@ -30,6 +30,7 @@ SUPPORT_FILES = (
     "tests/test_export_figure_release_source.py",
     "tests/test_vendor_fabric_portability.py", "tests/test_vendor_source_tools.py",
     "docs/UNIFIED_FIGURE_RELEASE.md",
+    "docs/architecture/FIGURE_HOST_SETTINGS.md",
 )
 
 

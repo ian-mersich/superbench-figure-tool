@@ -1,6 +1,6 @@
 {
   "schema": "figureStudio.helpContent.v2",
-  "version": "1.0.0-beta.9",
+  "version": "1.0.0-beta.10",
   "title": "Figure Tool Help",
   "updated": "2026-10-15",
   "shared_help": {
@@ -298,7 +298,7 @@
         "Choose Figure for manuscript panels, graphical abstracts, diagrams, and illustrations. Choose Presentation for a slide deck with layouts, themes, notes, and playback. Use the Figure / Presentation buttons to switch between them.",
         "Use File > New to choose a document type and size. Library contains Assets, Scenes, and Templates. The canvas is where you draw and arrange artwork; Style or Inspector shows controls for the current selection. Simple keeps common controls close at hand; Advanced exposes detailed vector and text controls.",
         "Use Document setup to change page dimensions, units, grids, and snapping without clearing your selection. Fit brings the artboard back into view. Changing canvas zoom does not change the size of exported artwork.",
-        "In the web app, Browser files contains Saved work, Open file, Download file, appearance, and About. Edits are saved on this device when browser storage is available. Download an editable file for backup or use on another computer.",
+        "In the web app, use Appearance · Light / Dark in the header. In Superbench, use App Settings. This changes the interface without recoloring artwork. Browser files contains Saved work, Open file, Download file, and About. Browser saves stay on this device; download an editable file for backup or use on another computer.",
         "Start with the topics on selecting artwork, Lines and arrows, and saving work. Help provides reference instructions and short visual demonstrations for the current tools."
       ],
       "updated": "2026-10-11",
@@ -323,7 +323,7 @@
         },
         {
           "type": "paragraph",
-          "text": "In the web app, Browser files contains Saved work, Open file, Download file, appearance, and About. Edits are saved on this device when browser storage is available. Download an editable file for backup or use on another computer."
+          "text": "In the web app, use Appearance · Light / Dark in the header. In Superbench, use App Settings. This changes the interface without recoloring artwork. Browser files contains Saved work, Open file, Download file, and About. Browser saves stay on this device; download an editable file for backup or use on another computer."
         },
         {
           "type": "paragraph",
