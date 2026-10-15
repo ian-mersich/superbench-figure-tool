@@ -1,0 +1,140 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 720" role="img" aria-labelledby="title desc">
+<title id="title">Spatial RNA methods</title><desc id="desc">Two distinct routes: location-barcoded RNA capture with sequencing, and RNA imaging in fixed tissue.</desc>
+<rect width="1120" height="100%" fill="#FFFFFF"/>
+<rect x="32" y="112" width="1056" height="245" rx="16" fill="#F3F7FA"/>
+<rect x="32" y="380" width="1056" height="234" rx="16" fill="#F3F7FA"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="section_title section_desc" x="64" y="180" width="112" height="112">
+  <title id="section_title">Tissue Section Slide</title>
+  <desc id="section_desc">Original vector microscope slide with a mounted tissue section, coverslip, writable label area, and editable semantic regions.</desc>
+
+  <rect data-region="slide" x="12" y="29" width="104" height="70" rx="7" fill="#E8EEF7" />
+  <rect data-region="coverslip" x="42" y="38" width="62" height="52" rx="4" fill="#F7F9FC" />
+  <path data-region="tissue" fill="#C7F2EC" d="M51 58c4-7 13-10 21-6 8-4 18-1 22 6 4 8-2 15-11 18-10 3-23 1-30-4-7-5-9-12-2-14z" />
+  <rect data-region="label" x="19" y="38" width="17" height="52" rx="3" fill="#B8B5FF" />
+
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="12" y="29" width="104" height="70" rx="7" stroke-width="3.2" />
+    <rect x="42" y="38" width="62" height="52" rx="4" stroke-width="2.4" />
+    <path stroke-width="2.5" d="M51 58c4-7 13-10 21-6 8-4 18-1 22 6 4 8-2 15-11 18-10 3-23 1-30-4-7-5-9-12-2-14z" />
+    <rect x="19" y="38" width="17" height="52" rx="3" stroke-width="2" />
+    <path stroke-width="1.6" d="M23 47h9M23 54h9M23 61h9" />
+  </g>
+</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="array_title array_desc" x="274" y="172" width="128" height="128">
+  <title id="array_title">Tissue-associated Spatial RNA Capture Array</title>
+  <desc id="array_desc">Original editable plan-view schematic of a tissue section associated with an array of spatially barcoded RNA capture positions. The purple sites indicate capture positions, not individual cells or measured expression. A capture site can contain RNA from multiple cells; spacing, tissue shape, and resolution are illustrative.</desc>
+  <g data-region="substrate" fill="#E8EEF7" stroke="none">
+    <rect x="17" y="17" width="94" height="94" rx="8" />
+  </g>
+  <g data-region="tissue_context" fill="#C7F2EC" stroke="none">
+    <path d="M32 31c10-9 23-4 31 1 9-7 22-6 28 3 10 3 14 14 8 24 5 11-1 22-11 24-5 12-20 16-30 9-12 4-26-2-28-14-9-6-11-20-3-29-4-7-2-13 5-18z" />
+  </g>
+  <g data-region="capture_sites" fill="#7B78C9" stroke="none">
+    <circle cx="32" cy="32" r="4" /><circle cx="53" cy="32" r="4" /><circle cx="74" cy="32" r="4" /><circle cx="95" cy="32" r="4" />
+    <circle cx="32" cy="53" r="4" /><circle cx="53" cy="53" r="4" /><circle cx="74" cy="53" r="4" /><circle cx="95" cy="53" r="4" />
+    <circle cx="32" cy="74" r="4" /><circle cx="53" cy="74" r="4" /><circle cx="74" cy="74" r="4" /><circle cx="95" cy="74" r="4" />
+    <circle cx="32" cy="95" r="4" /><circle cx="53" cy="95" r="4" /><circle cx="74" cy="95" r="4" /><circle cx="95" cy="95" r="4" />
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="17" y="17" width="94" height="94" rx="8" />
+    <path d="M32 31c10-9 23-4 31 1 9-7 22-6 28 3 10 3 14 14 8 24 5 11-1 22-11 24-5 12-20 16-30 9-12 4-26-2-28-14-9-6-11-20-3-29-4-7-2-13 5-18z" stroke-width="2.75" />
+  </g>
+</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="library_title library_desc" x="500" y="180" width="112" height="112">
+  <title id="library_title">cDNA Library</title>
+  <desc id="library_desc">Editable complementary-dna library schematic with collection of indexed double-stranded cDNA fragments.</desc>
+  <g data-region="nucleic_acid" fill="none" stroke="#5EA9DD" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 30l45 18M35 19l45 18M15 65l45 18M44 61l45 18M34 96l45 18M70 89l42 17" /></g>
+  <g data-region="regulatory_feature" fill="none" stroke="#7B78C9" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 30l4-9M63 48l4-9M35 19l4-9M80 37l4-9M15 65l4-9M60 83l4-9M44 61l4-9M89 79l4-9M34 96l4-9M79 114l4-9M70 89l4-9M112 106l4-9" /></g>
+  <g data-region="process_feature" fill="none" stroke="#F4A261" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="17" width="12" height="12" rx="2" /><rect x="76" y="24" width="12" height="12" rx="2" /><rect x="11" y="52" width="12" height="12" rx="2" /><rect x="85" y="66" width="12" height="12" rx="2" /></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 30l45 18M35 19l45 18M15 65l45 18M44 61l45 18M34 96l45 18M70 89l42 17" /></g>
+</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="sequencer_title sequencer_desc" x="724" y="180" width="112" height="112">
+  <title id="sequencer_title">Sequencing Instrument</title>
+  <desc id="sequencer_desc">Editable nucleic-acid sequencing instrument schematic with benchtop sequencer with flow-cell bay and run display.</desc>
+  <g data-region="instrument_body" fill="#DCE4EC" stroke="none"><rect x="15" y="13" width="98" height="103" rx="10" /><path d="M24 23h80v48H24z" /></g>
+  <g data-region="instrument_detail" fill="#5EA9DD" stroke="none"><rect x="33" y="32" width="39" height="29" rx="4" /><rect x="82" y="32" width="13" height="29" rx="3" /><circle cx="88" cy="47" r="4" /></g>
+  <g data-region="operational_cue" fill="none" stroke="#7B78C9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M39 53l8-9 7 5 11-12M29 85h69M29 97h49M90 91l8 6-8 6" /></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 13h98v103H15zM24 23h80v48H24zM33 32h39v29H33zM82 32h13v29H82z" /></g>
+</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="reads_title reads_desc" x="944" y="180" width="112" height="112">
+  <title id="reads_title">Sequencing Reads — Paired End</title>
+  <desc id="reads_desc">Editable paired end form of sequencing-read alignment, shown with single-end and paired-end read-alignment forms.</desc>
+  <g data-region="assay_surface" fill="#F7F9FC" stroke="none"><rect x="10" y="13" width="108" height="102" rx="7" /></g>
+  <g data-region="measured_signal" fill="#B8B5FF" stroke="none"><path d="M22 34h24v8H22zM77 34h25v8H77zM31 61h27v8H31zM83 61h24v8H83zM18 88h24v8H18zM68 88h28v8H68z" /></g>
+  <g data-region="signal_trace" fill="none" stroke="#E76F51" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round"><path d="M46 38c13-18 18-18 31 0M58 65c10-17 15-17 25 0M42 92c10-20 16-20 26 0" /></g>
+  <g data-region="axes_or_structure" fill="none" stroke="#5EA9DD" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"><path d="M17 48h94M17 75h94M17 102h94" /></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="13" width="108" height="102" rx="7" /></g>
+</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="fixed_section_title fixed_section_desc" x="66" y="453" width="112" height="112">
+  <title id="fixed_section_title">Tissue Section Slide</title>
+  <desc id="fixed_section_desc">Original vector microscope slide with a mounted tissue section, coverslip, writable label area, and editable semantic regions.</desc>
+
+  <rect data-region="slide" x="12" y="29" width="104" height="70" rx="7" fill="#E8EEF7" />
+  <rect data-region="coverslip" x="42" y="38" width="62" height="52" rx="4" fill="#F7F9FC" />
+  <path data-region="tissue" fill="#C7F2EC" d="M51 58c4-7 13-10 21-6 8-4 18-1 22 6 4 8-2 15-11 18-10 3-23 1-30-4-7-5-9-12-2-14z" />
+  <rect data-region="label" x="19" y="38" width="17" height="52" rx="3" fill="#B8B5FF" />
+
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="12" y="29" width="104" height="70" rx="7" stroke-width="3.2" />
+    <rect x="42" y="38" width="62" height="52" rx="4" stroke-width="2.4" />
+    <path stroke-width="2.5" d="M51 58c4-7 13-10 21-6 8-4 18-1 22 6 4 8-2 15-11 18-10 3-23 1-30-4-7-5-9-12-2-14z" />
+    <rect x="19" y="38" width="17" height="52" rx="3" stroke-width="2" />
+    <path stroke-width="1.6" d="M23 47h9M23 54h9M23 61h9" />
+  </g>
+</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="puncta_title puncta_desc" x="332" y="445" width="128" height="128">
+  <title id="puncta_title">Illustrative In-situ RNA Puncta Field</title>
+  <desc id="puncta_desc">Original editable schematic of an RNA fluorescence in situ hybridization field, with cell context, nuclei, and illustrative RNA-associated puncta. This is not a microscopy image or measured dataset. Dot numbers, positions, colors, and sizes do not encode expression levels, molecule counts, a named target, or a physical scale.</desc>
+  <g data-region="cell_context" fill="#D9F4E5" stroke="none">
+    <path d="M25 33c1-10 12-14 22-10 11-3 19 5 18 16 3 10-4 19-14 20-10 5-24-1-25-11-5-5-5-10-1-15z" />
+    <path d="M76 30c10-5 23 1 24 11 7 8 2 21-8 24-10 4-22-2-22-12-5-8-1-19 6-23z" />
+    <path d="M45 74c8-8 22-6 27 2 12 1 18 14 11 23-6 11-20 11-28 5-12-1-18-10-14-20-1-4 0-7 4-10z" />
+  </g>
+  <g data-region="nuclei" fill="#B8B5FF" stroke="none">
+    <ellipse cx="43" cy="39" rx="7.5" ry="9" transform="rotate(-15 43 39)" />
+    <ellipse cx="86" cy="47" rx="7" ry="8" transform="rotate(18 86 47)" />
+    <ellipse cx="62" cy="89" rx="8" ry="7" transform="rotate(-12 62 89)" />
+  </g>
+  <g data-region="rna_puncta" fill="#E76F51" stroke="none">
+    <circle cx="30" cy="36" r="2.6" /><circle cx="32" cy="49" r="2.6" /><circle cx="53" cy="30" r="2.6" /><circle cx="55" cy="46" r="2.6" />
+    <circle cx="79" cy="35" r="2.6" /><circle cx="75" cy="51" r="2.6" /><circle cx="96" cy="53" r="2.6" />
+    <circle cx="49" cy="82" r="2.6" /><circle cx="51" cy="98" r="2.6" /><circle cx="69" cy="77" r="2.6" /><circle cx="76" cy="89" r="2.6" /><circle cx="69" cy="101" r="2.6" />
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="16" y="16" width="96" height="96" rx="10" />
+    <path d="M25 33c1-10 12-14 22-10 11-3 19 5 18 16 3 10-4 19-14 20-10 5-24-1-25-11-5-5-5-10-1-15zM76 30c10-5 23 1 24 11 7 8 2 21-8 24-10 4-22-2-22-12-5-8-1-19 6-23zM45 74c8-8 22-6 27 2 12 1 18 14 11 23-6 11-20 11-28 5-12-1-18-10-14-20-1-4 0-7 4-10z" stroke-width="2.75" />
+    <ellipse cx="43" cy="39" rx="7.5" ry="9" transform="rotate(-15 43 39)" stroke-width="2.75" />
+    <ellipse cx="86" cy="47" rx="7" ry="8" transform="rotate(18 86 47)" stroke-width="2.75" />
+    <ellipse cx="62" cy="89" rx="8" ry="7" transform="rotate(-12 62 89)" stroke-width="2.75" />
+  </g>
+</svg>
+<path d="M176 236.0L274 236.0" fill="none" stroke="#2A9D8F" stroke-width="2.5"/>
+<path d="M266 231.0L274 236.0L266 241.0" fill="none" stroke="#2A9D8F" stroke-width="2.5"/>
+<text x="225.0" y="216.0" text-anchor="middle" dominant-baseline="central" fill="#2A9D8F" font-family="Arial,sans-serif" font-size="12">place tissue</text>
+<path d="M402 236.0L500 236.0" fill="none" stroke="#2A9D8F" stroke-width="2.5"/>
+<path d="M492 231.0L500 236.0L492 241.0" fill="none" stroke="#2A9D8F" stroke-width="2.5"/>
+<text x="451.0" y="216.0" text-anchor="middle" dominant-baseline="central" fill="#2A9D8F" font-family="Arial,sans-serif" font-size="12">capture + RT</text>
+<path d="M612 236.0L724 236.0" fill="none" stroke="#5EA9DD" stroke-width="2.5"/>
+<path d="M716 231.0L724 236.0L716 241.0" fill="none" stroke="#5EA9DD" stroke-width="2.5"/>
+<text x="668.0" y="216.0" text-anchor="middle" dominant-baseline="central" fill="#5EA9DD" font-family="Arial,sans-serif" font-size="12">prepare</text>
+<path d="M836 236.0L944 236.0" fill="none" stroke="#5EA9DD" stroke-width="2.5"/>
+<path d="M936 231.0L944 236.0L936 241.0" fill="none" stroke="#5EA9DD" stroke-width="2.5"/>
+<text x="890.0" y="216.0" text-anchor="middle" dominant-baseline="central" fill="#5EA9DD" font-family="Arial,sans-serif" font-size="12">sequence</text>
+<path d="M178 509.0L332 509.0" fill="none" stroke="#E76F51" stroke-width="2.5"/>
+<path d="M324 504.0L332 509.0L324 514.0" fill="none" stroke="#E76F51" stroke-width="2.5"/>
+<text x="255.0" y="489.0" text-anchor="middle" dominant-baseline="central" fill="#E76F51" font-family="Arial,sans-serif" font-size="12">probe + image</text>
+<text x="40" y="53" text-anchor="start" font-family="Arial,sans-serif" font-size="28" fill="#26323D"><tspan x="40" dy="0">Spatial RNA measurements</tspan></text>
+<text x="40" y="86" text-anchor="start" font-family="Arial,sans-serif" font-size="16" fill="#667085"><tspan x="40" dy="0">Capture and sequencing · RNA imaging in situ</tspan></text>
+<text x="48" y="143" text-anchor="start" font-family="Arial,sans-serif" font-size="19" fill="#2A9D8F"><tspan x="48" dy="0">Location-barcoded capture</tspan></text>
+<text x="120.0" y="326" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#26323D"><tspan x="120.0" dy="0">Tissue section</tspan></text>
+<text x="338.0" y="326" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#26323D"><tspan x="338.0" dy="0">RNA capture array</tspan></text>
+<text x="556.0" y="326" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#26323D"><tspan x="556.0" dy="0">cDNA library</tspan></text>
+<text x="780.0" y="326" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#26323D"><tspan x="780.0" dy="0">Sequencing</tspan></text>
+<text x="1001.0" y="326" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#26323D"><tspan x="1001.0" dy="0">RNA + location reads</tspan></text>
+<text x="48" y="414" text-anchor="start" font-family="Arial,sans-serif" font-size="19" fill="#E76F51"><tspan x="48" dy="0">RNA imaging in fixed tissue</tspan></text>
+<text x="124.0" y="594" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#26323D"><tspan x="124.0" dy="0">Fixed tissue</tspan></text>
+<text x="396.0" y="594" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#26323D"><tspan x="396.0" dy="0">Illustrative RNA puncta</tspan></text>
+<text x="578" y="481" text-anchor="start" font-family="Arial,sans-serif" font-size="21" fill="#26323D"><tspan x="578" dy="0">Hybridize probes, then image</tspan></text>
+<text x="578" y="519" text-anchor="start" font-family="Arial,sans-serif" font-size="17" fill="#667085"><tspan x="578" dy="0">Dots illustrate RNA localization.</tspan><tspan x="578" dy="21.25">They are not measured transcript counts.</tspan></text>
+<text x="40" y="662" text-anchor="start" font-family="Arial,sans-serif" font-size="14" fill="#667085"><tspan x="40" dy="0">Capture spots may sample multiple cells. Resolution depends on the method; both routes require assay-specific controls.</tspan></text>
+</svg>

@@ -55,7 +55,8 @@
     Object.freeze(["western blot", "western", "immunoblot", "protein blot"]),
     Object.freeze(["flow cytometry", "facs", "fluorescence activated cell sorting"]),
     Object.freeze(["extracellular matrix", "ecm"]),
-    Object.freeze(["organoid", "3d culture", "three dimensional culture"])
+    Object.freeze(["organoid", "3d culture", "three dimensional culture"]),
+    Object.freeze(["single cell", "isolated cell", "individual cell"])
   ]);
 
   function arrayOf(value) {
@@ -148,6 +149,49 @@
     return text(asset?.concept_id || asset?.conceptId || asset?.assetId || asset?.id);
   }
 
+  function scientificAssetFormId(asset) {
+    const explicit = text(asset?.form_id || asset?.formId);
+    if (explicit) return normalizeText(explicit).replace(/\s+/g, "-");
+    return normalizeText(asset?.variant_axis || asset?.variantAxis) === "form"
+      ? text(asset?.style_variant || asset?.styleVariant) || "default"
+      : "default";
+  }
+
+  function scientificAssetFormLabel(asset) {
+    const explicit = text(asset?.form_label || asset?.formLabel);
+    if (explicit) return explicit;
+    const id = scientificAssetFormId(asset);
+    return id === "default" ? "Original drawing" : id.replace(/[-_]+/g, " ").replace(/\b\w/g, (letter) => letter.toUpperCase());
+  }
+
+  function deriveFormGroups(assets) {
+    const forms = new Map();
+    for (const asset of arrayOf(assets)) {
+      const formId = scientificAssetFormId(asset);
+      if (!forms.has(formId)) forms.set(formId, { formId, label: scientificAssetFormLabel(asset), variants: [] });
+      forms.get(formId).variants.push(asset);
+    }
+    return [...forms.values()].map((form) => ({
+      ...form,
+      primary: form.variants.find((asset) => normalizeText(asset.style_variant) === "soft line") || form.variants[0]
+    }));
+  }
+
+  function selectConceptVariant(group, query = "", preferredId = "") {
+    const variants = arrayOf(group?.variants);
+    const matched = arrayOf(group?.matchedVariants);
+    // A precise drawing search must not insert a different remembered drawing.
+    if (text(query) && matched.length === 1) return matched[0];
+    const preferred = variants.find((asset) => asset.id === preferredId);
+    if (text(query) && matched.length) {
+      const matchedForms = new Set(matched.map(scientificAssetFormId));
+      if (!preferred || !matchedForms.has(scientificAssetFormId(preferred))) {
+        return matched.find((asset) => normalizeText(asset.style_variant) === "soft line") || matched[0];
+      }
+    }
+    return preferred || variants.find((asset) => normalizeText(asset.style_variant) === "soft line") || matched[0] || variants[0] || null;
+  }
+
   function normalizeAsset(asset, packMeta, assetOrder, catalogOrder) {
     if (!asset || typeof asset !== "object") {
       throw new TypeError(`Asset ${assetOrder + 1} in pack "${packMeta.id}" is not an object.`);
@@ -199,6 +243,7 @@
         subcategory: primary?.subcategory || "",
         primary,
         variants: ordered,
+        forms: deriveFormGroups(ordered),
         assetIds: ordered.map((asset) => asset.id),
         packIds: [...new Set(ordered.map((asset) => asset._packId).filter(Boolean))],
         catalogOrder: Math.min(...ordered.map((asset) => finiteOrder(asset._catalogOrder))),
@@ -269,6 +314,13 @@
     const tokens = normalized.split(" ").filter(Boolean);
     const units = [];
     for (let index = 0; index < tokens.length;) {
+      // Case preserves the scientist's FISH acronym while ordinary fish-model
+      // queries remain available. The assay alternatives never include bare fish.
+      if (tokens[index] === "fish" && /\bFISH\b/.test(text(query))) {
+        units.push({ key: "assay:fish", source: "FISH", alternatives: ["fluorescence in situ hybridization", "rna fish", "dna fish", "smfish"], domainEquivalent: true });
+        index += 1;
+        continue;
+      }
       const equivalent = EQUIVALENT_LOOKUP.find((entry) => (
         entry.tokens.length <= tokens.length - index
         && entry.tokens.every((token, offset) => token === tokens[index + offset])
@@ -315,7 +367,7 @@
     return ` ${haystack} `.includes(` ${needle} `);
   }
 
-  function phraseMatch(field, alternative) {
+  function phraseMatch(field, alternative, requirePhrase = false) {
     const candidates = [...new Set([field.normalized, field.singular].filter(Boolean))];
     const query = singularPhrase(alternative);
     if (!query) return null;
@@ -328,7 +380,7 @@
       else {
         const queryTokens = query.split(" ");
         const candidateTokens = new Set(candidate.split(" "));
-        if (queryTokens.length > 1 && queryTokens.every((token) => candidateTokens.has(token)) && strength < 8) {
+        if (!requirePhrase && queryTokens.length > 1 && queryTokens.every((token) => candidateTokens.has(token)) && strength < 8) {
           strength = 8;
           kind = "tokens";
         }
@@ -345,7 +397,7 @@
       let best = null;
       for (const field of fields) {
         for (const alternative of unit.alternatives) {
-          const match = phraseMatch(field, alternative);
+          const match = phraseMatch(field, alternative, unit.domainEquivalent);
           if (!match) continue;
           const score = FIELD_WEIGHTS[field.field] * match.strength;
           const candidate = { unit: unit.source, alternative, field: field.field, kind: match.kind, score };
@@ -361,13 +413,20 @@
       ["scientificName", "synonym", "name"].includes(field.field)
       && (field.normalized === parsedQuery.normalized || field.singular === singularPhrase(parsedQuery.normalized))
     ));
-    const score = matches.reduce((total, match) => total + match.score, 0) + (wholeQueryExact ? 100 : 0);
+    // Broad object nouns should show the biological objects before contextual
+    // assay, instrument or signaling mentions, while longer queries keep their
+    // existing field-weighted relevance.
+    const objectFamily = { cell: "cell", organelle: "organelle", protein: "protein", receptor: "membrane-signaling" }[singularPhrase(parsedQuery.normalized)];
+    const objectFamilyScore = objectFamily && normalizeText(asset.category) === objectFamily ? 180 : 0;
+    const score = matches.reduce((total, match) => total + match.score, 0) + (wholeQueryExact ? 100 : 0) + objectFamilyScore;
     return {
       score,
       exact: wholeQueryExact || matches.every((match) => match.kind === "exact"),
+      identityExact: wholeQueryExact,
       matchedFields: [...new Set(matches.map((match) => match.field))],
       matchedTerms: [...new Set(matches.map((match) => match.alternative))],
-      matches
+      matches,
+      objectFamilyScore
     };
   }
 
@@ -462,6 +521,8 @@
       if (favorite) return favorite;
     }
     if (orderBy === "relevance" || (orderBy !== "catalog" && left.score !== right.score)) {
+      const exactIdentity = Number(Boolean(right.relevance?.identityExact)) - Number(Boolean(left.relevance?.identityExact));
+      if (exactIdentity) return exactIdentity;
       const relevance = right.score - left.score;
       if (relevance) return relevance;
     }
@@ -552,6 +613,10 @@
     singularPhrase,
     resolveAssetUrl,
     scientificAssetConceptId,
+    scientificAssetFormId,
+    scientificAssetFormLabel,
+    deriveFormGroups,
+    selectConceptVariant,
     normalizePackSources,
     deriveConceptGroups,
     searchAssets,

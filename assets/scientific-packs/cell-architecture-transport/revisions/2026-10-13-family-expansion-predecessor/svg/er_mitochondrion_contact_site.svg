@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">ER–Mitochondrion Contact Site</title>
+  <desc id="desc">Separate ER and mitochondrial membranes apposed through illustrative contact-site tethers.</desc>
+  <g data-region="er_membrane" fill="#8EC8FF" stroke="none">
+    <path d="M22 17Q61 12 104 23Q113 26 110 36Q108 43 99 40Q61 28 25 33Q16 34 15 26Q14 19 22 17ZM24 23Q61 19 103 29Q106 30 104 34Q63 23 25 27Q21 28 21 26Q21 23 24 23Z" fill-rule="evenodd"/>
+  </g>
+  <g data-region="mitochondrial_membranes" fill="#C7F2EC" stroke="none">
+    <path d="M18 72C19 53 39 44 64 48C89 43 113 56 113 76C114 99 94 112 66 112C39 114 15 98 18 72ZM24 73C25 59 42 50 64 54C87 49 107 61 107 77C108 95 91 106 66 106C43 108 21 95 24 73Z" fill-rule="evenodd"/><path d="M30 74C31 62 43 57 64 60C85 55 100 65 101 78C102 91 89 100 66 100C45 103 28 93 30 74ZM36 76C37 66 46 63 64 66Q73 64 82 66L77 77Q73 84 79 86Q82 88 85 80L89 68Q95 71 95 79Q95 87 85 91L69 91L73 79Q76 73 71 72Q67 71 66 79L62 94Q48 96 41 88L47 78Q51 72 47 70Q43 69 41 75L38 84Q35 81 36 76Z" fill-rule="evenodd"/>
+  </g>
+  <g data-region="contact_tethers" fill="#B8B5FF" stroke="none">
+    <path d="M44 33L51 34L54 49L47 50Z"/><path d="M74 36L81 38L78 48L71 48Z"/>
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M22 17Q61 12 104 23Q113 26 110 36Q108 43 99 40Q61 28 25 33Q16 34 15 26Q14 19 22 17Z"/><path d="M24 23Q61 19 103 29Q106 30 104 34Q63 23 25 27Q21 28 21 26Q21 23 24 23Z"/><path d="M18 72C19 53 39 44 64 48C89 43 113 56 113 76C114 99 94 112 66 112C39 114 15 98 18 72Z"/><path d="M24 73C25 59 42 50 64 54C87 49 107 61 107 77C108 95 91 106 66 106C43 108 21 95 24 73Z"/><path d="M30 74C31 62 43 57 64 60C85 55 100 65 101 78C102 91 89 100 66 100C45 103 28 93 30 74Z"/><path d="M36 76C37 66 46 63 64 66Q73 64 82 66L77 77Q73 84 79 86Q82 88 85 80L89 68Q95 71 95 79Q95 87 85 91L69 91L73 79Q76 73 71 72Q67 71 66 79L62 94Q48 96 41 88L47 78Q51 72 47 70Q43 69 41 75L38 84Q35 81 36 76Z"/><path d="M44 33L51 34L54 49L47 50Z"/><path d="M74 36L81 38L78 48L71 48Z"/>
+  </g>
+</svg>

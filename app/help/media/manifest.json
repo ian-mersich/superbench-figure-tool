@@ -1,0 +1,96 @@
+{
+  "schema": "superbench.figureHelpMedia.v1",
+  "captured_on": "2026-10-11",
+  "source_revision": "3f0ed708b7c73a1b5532a603446b33ee8d7529d8",
+  "source_state": "Help refresh working tree; first-party editor, fixture and capture script",
+  "license": "Apache-2.0",
+  "capture_script": "scripts/capture-figure-help-media.py",
+  "browser": "Playwright Chromium, fresh contexts, 1280×800, device scale 1",
+  "video": "Silent VP8 WebM; actual native browser frames of real pointer actions encoded by existing Playwright FFmpeg; no synthetic UI",
+  "media": [
+    {
+      "id": "lines-picker",
+      "type": "image",
+      "file": "lines-picker.png",
+      "bytes": 65112,
+      "sha256": "06126c48faf28db49d78a14a67ab1097c648b98faecb7930fbcf0034bfa61b4b",
+      "width": 900,
+      "height": 722,
+      "alt": "Graphical Lines menu showing line, arrow, and inhibition presets beside a sample workflow.",
+      "caption": "Choose a line or arrow by its shape. Draw new places it on the canvas; Apply to selected restyles an eligible selected line.",
+      "intent": "Show the current graphical Lines menu beside editable sample-preparation and imaging shapes."
+    },
+    {
+      "id": "lines-draw",
+      "type": "video",
+      "file": "lines-draw.webm",
+      "bytes": 140600,
+      "sha256": "30f9afdf6e0a144f11abbb94a9ca97df9868b130dd9e0a03841cfa3bf34d7ade",
+      "width": 900,
+      "height": 722,
+      "alt": "Choose the straight arrow preset and drag between two sample-workflow shapes.",
+      "caption": "Choose Lines → Arrows → Straight, then drag from the start point to the end point.",
+      "intent": "Show a researcher choosing the straight arrow preset, then dragging once to draw an editable arrow between two example steps.",
+      "poster": "lines-draw-poster.png",
+      "duration_seconds": 8.0,
+      "muted": true,
+      "steps": [
+        "Open Lines and choose Draw new.",
+        "Choose Straight in Arrows.",
+        "Drag between the two shapes, then release."
+      ]
+    },
+    {
+      "id": "direct-selection",
+      "type": "video",
+      "file": "direct-selection.webm",
+      "bytes": 243226,
+      "sha256": "f76d73b0dae364d8dae89b337d81a92545c16175e73374d6dbe1224d83ba910b",
+      "width": 1280,
+      "height": 740,
+      "alt": "An unselected arrow endpoint is found by a Direct Selection marquee and moved upward.",
+      "caption": "In Advanced, use Direct Selection (A). Drag a box around an endpoint, then drag the selected endpoint. The other endpoint stays fixed.",
+      "intent": "Show Direct Selection discovering an unselected arrow endpoint with a marquee and moving only that endpoint.",
+      "poster": "direct-selection-poster.png",
+      "duration_seconds": 10.4,
+      "muted": true,
+      "steps": [
+        "Choose Advanced and Direct Selection (A).",
+        "Drag a selection box around the unselected endpoint.",
+        "Drag the selected endpoint to change the arrow."
+      ]
+    },
+    {
+      "id": "assay-workflow",
+      "type": "image",
+      "file": "assay-workflow.png",
+      "bytes": 74920,
+      "sha256": "6b45a2e06ed829de48901d9cd528fc0b920517057a1fb2141a146e31eaebae97",
+      "width": 1100,
+      "height": 722,
+      "alt": "Editable assay workflow with Prepare samples, Acquire images, and Compare conditions connected by arrows.",
+      "caption": "Build a diagram from editable shapes and text, then connect the steps with arrows.",
+      "intent": "Show a complete assay-workflow example with editable native shapes, text, and arrows."
+    },
+    {
+      "id": "browser-files",
+      "type": "image",
+      "file": "browser-files.png",
+      "bytes": 85337,
+      "sha256": "0a7c7fd41401e4458e3884bf6ea98c355bd238824b8a8faaf845546348503bb7",
+      "width": 1040,
+      "height": 660,
+      "alt": "Browser files menu with Saved work, Open file, Download file, and on-device save information.",
+      "caption": "Browser saves stay on this device. Download file makes a portable copy; Saved work shows documents stored in this browser.",
+      "intent": "Show Browser files actions and the on-device save status above a finished editable example diagram."
+    }
+  ],
+  "source_files_sha256": {
+    "app/index.html": "e1e5a03bf0671d1b8493b0a1d005575d35f1f2567e46f9a504ae517e34e73995",
+    "app/app.js": "073cd3f32b9495e0ee73190090fee24374ada043ee8ee05eeea8bbcbc0417e20",
+    "app/styles.css": "00202492cc37989121ae38d5cc5d2f9f1080e7175d98776ae9e80f7f90a85151",
+    "web/browser-session.js": "fa0b5c96fdb9aeb8466d44b51bb5e1f3be8d2b46ba7b961e5932bf2242219199",
+    "web/browser-chrome.css": "780acb0c0e0590bfc58aec29e2ea4e6ca5da73b2f80ce74a441b4761f24c064b",
+    "scripts/capture-figure-help-media.py": "b763133a82f3e6a3764a6d17c8a123ded8c4a1657d59c506a1bf180bb0bc098f"
+  }
+}

@@ -1,8 +1,8 @@
 {
   "schema": "figureStudio.helpContent.v2",
-  "version": "1.0.0-beta.6",
+  "version": "1.0.0-beta.9",
   "title": "Figure Tool Help",
-  "updated": "2026-09-14",
+  "updated": "2026-10-15",
   "shared_help": {
     "schema_id": "bsd.help.appCapability.v2",
     "surface_id": "figure_studio",
@@ -12,15 +12,13 @@
     "hosted_context_owner": "bsd_shell",
     "editor_content_owner": "figure_studio",
     "search_is_read_only": true,
-    "tutorial_execution_enabled": true,
+    "tutorial_execution_enabled": false,
     "document_mutation_enabled": false,
     "stable_deep_links": true,
     "hierarchical_toc": true,
     "history_navigation": true,
     "related_topics": true,
-    "contextual_learn_actions": true,
-    "tutorial_workspace_actions_require_user_input": true,
-    "tutorial_catalog": "figure-studio-tutorials.json"
+    "contextual_learn_actions": false
   },
   "toc": [
     {
@@ -31,12 +29,19 @@
         {
           "id": "orientation",
           "title": "Orientation",
-          "articles": ["getting-started", "workspace-switching", "document-tabs"]
+          "articles": [
+            "getting-started",
+            "workspace-switching",
+            "document-tabs"
+          ]
         },
         {
           "id": "create-documents",
           "title": "Create documents",
-          "articles": ["figure-documents", "presentation-documents"]
+          "articles": [
+            "figure-documents",
+            "presentation-documents"
+          ]
         }
       ]
     },
@@ -48,17 +53,32 @@
         {
           "id": "layout-selection",
           "title": "Canvas and selection",
-          "articles": ["artboards-decks", "select-arrange", "selection-transforms"]
+          "articles": [
+            "artboards-decks",
+            "select-arrange",
+            "selection-transforms"
+          ]
         },
         {
           "id": "draw-type",
           "title": "Drawing and type",
-          "articles": ["paths-vectors", "typography"]
+          "articles": [
+            "paths-vectors",
+            "lines-arrows",
+            "typography"
+          ]
         },
         {
           "id": "appearance",
           "title": "Appearance and reusable styles",
-          "articles": ["appearance-stack", "graphic-styles", "swatches-recolor", "vector-patterns", "stroke-brushes", "clips-masks"]
+          "articles": [
+            "appearance-stack",
+            "graphic-styles",
+            "swatches-recolor",
+            "vector-patterns",
+            "stroke-brushes",
+            "clips-masks"
+          ]
         }
       ]
     },
@@ -66,46 +86,71 @@
       "id": "scientific-diagrams",
       "title": "Scientific diagrams",
       "description": "Use assets, connectors, results, and reusable components.",
-      "articles": ["biological-assets", "smart-connectors", "scientific-components", "results-to-deck"]
+      "articles": [
+        "biological-assets",
+        "smart-connectors",
+        "scientific-components",
+        "results-to-deck"
+      ]
     },
     {
       "id": "presentation-authoring",
       "title": "Presentation authoring",
       "description": "Manage slides, layouts, themes, notes, and playback.",
-      "articles": ["presentation-slides", "presentation-playback"]
+      "articles": [
+        "presentation-slides",
+        "presentation-playback"
+      ]
     },
     {
       "id": "open-import",
       "title": "Open and import",
-      "description": "Bring in supported artwork and exchange common deck content honestly.",
-      "articles": ["importing", "pptx-compatibility"]
+      "description": "Bring in artwork or common editable slide content.",
+      "articles": [
+        "importing",
+        "pptx-compatibility"
+      ]
     },
     {
       "id": "save-export",
       "title": "Save and export",
-      "description": "Keep editable sources and create mode-aware delivery files.",
+      "description": "Keep editable copies and create files for sharing.",
       "children": [
         {
           "id": "save-recover",
           "title": "Save, reopen, and recover",
-          "articles": ["save-save-as", "saving-recovery"]
+          "articles": [
+            "save-save-as",
+            "saving-recovery"
+          ]
         },
         {
           "id": "export-formats",
           "title": "Export formats and resolution",
-          "articles": ["figure-export-options", "presentation-export-options", "export-packages"]
+          "articles": [
+            "figure-export-options",
+            "presentation-export-options",
+            "export-packages"
+          ]
         }
       ]
     },
     {
       "id": "learn-access",
-      "title": "Learn and work accessibly",
-      "articles": ["help-navigation", "shortcuts-accessibility"]
+      "title": "Help and keyboard controls",
+      "articles": [
+        "help-navigation",
+        "shortcuts-accessibility"
+      ]
     },
     {
       "id": "support",
       "title": "Troubleshooting and limits",
-      "articles": ["troubleshooting", "known-limitations", "about"]
+      "articles": [
+        "troubleshooting",
+        "known-limitations",
+        "about"
+      ]
     }
   ],
   "context_routes": {
@@ -141,7 +186,13 @@
     "import.pptx": "pptx-compatibility",
     "accessibility.keyboard": "shortcuts-accessibility",
     "support.missing-content": "troubleshooting",
-    "support.limits": "known-limitations"
+    "support.limits": "known-limitations",
+    "tools.lines": "lines-arrows",
+    "tools.arrow": "lines-arrows",
+    "figure.document-setup": "artboards-decks",
+    "browser.files": "saving-recovery",
+    "file.export.check": "figure-export-options",
+    "figure.sources": "export-packages"
   },
   "coverage": {
     "mode-workspace-switching": "workspace-switching",
@@ -170,504 +221,1084 @@
     "accessibility": "shortcuts-accessibility",
     "help-navigation": "help-navigation",
     "troubleshooting": "troubleshooting",
-    "limits": "known-limitations"
+    "limits": "known-limitations",
+    "graphical-line-presets": "lines-arrows",
+    "browser-files": "saving-recovery",
+    "document-setup": "artboards-decks",
+    "optional-export-check": "figure-export-options"
   },
   "related": {
-    "getting-started": ["workspace-switching", "document-tabs", "help-navigation"],
-    "workspace-switching": ["document-tabs", "figure-documents", "presentation-documents"],
-    "document-tabs": ["workspace-switching", "save-save-as", "saving-recovery"],
-    "save-save-as": ["document-tabs", "saving-recovery", "export-packages"],
-    "figure-export-options": ["export-packages", "figure-documents", "shortcuts-accessibility"],
-    "presentation-export-options": ["export-packages", "pptx-compatibility", "presentation-playback"],
-    "help-navigation": ["getting-started", "shortcuts-accessibility", "troubleshooting"]
-  },
-  "learn_routes": {
-    "getting-started": ["FIG-00", "PRES-01"],
-    "workspace-switching": ["FIG-00", "PRES-01"],
-    "document-tabs": ["FIG-00", "SAFE-01"],
-    "figure-documents": ["FIG-00", "FIG-01"],
-    "artboards-decks": ["FIG-01"],
-    "biological-assets": ["FIG-02", "PRES-01"],
-    "smart-connectors": ["FIG-02"],
-    "paths-vectors": ["FIG-03"],
-    "appearance-stack": ["FIG-03"],
-    "importing": ["FIG-04"],
-    "figure-export-options": ["FIG-05"],
-    "presentation-documents": ["PRES-01"],
-    "presentation-slides": ["PRES-01", "PRES-02"],
-    "presentation-playback": ["PRES-01", "PRES-02"],
-    "pptx-compatibility": ["PRES-03"],
-    "save-save-as": ["SAFE-01"],
-    "saving-recovery": ["SAFE-01"]
+    "getting-started": [
+      "workspace-switching",
+      "document-tabs",
+      "help-navigation"
+    ],
+    "workspace-switching": [
+      "document-tabs",
+      "figure-documents",
+      "presentation-documents"
+    ],
+    "document-tabs": [
+      "workspace-switching",
+      "save-save-as",
+      "saving-recovery"
+    ],
+    "save-save-as": [
+      "document-tabs",
+      "saving-recovery",
+      "export-packages"
+    ],
+    "figure-export-options": [
+      "export-packages",
+      "figure-documents",
+      "shortcuts-accessibility"
+    ],
+    "presentation-export-options": [
+      "export-packages",
+      "pptx-compatibility",
+      "presentation-playback"
+    ],
+    "help-navigation": [
+      "getting-started",
+      "shortcuts-accessibility",
+      "troubleshooting"
+    ],
+    "lines-arrows": [
+      "smart-connectors",
+      "paths-vectors",
+      "selection-transforms"
+    ],
+    "paths-vectors": [
+      "selection-transforms",
+      "lines-arrows",
+      "importing"
+    ],
+    "saving-recovery": [
+      "save-save-as",
+      "document-tabs",
+      "troubleshooting"
+    ]
   },
   "sections": [
     {
       "id": "getting-started",
       "title": "Getting started",
-      "keywords": ["start", "new", "figure", "presentation", "mode", "open", "canvas", "slides"],
-      "summary": "Choose Figure or Presentation, then start with the workspace and commands made for that document.",
+      "keywords": [
+        "start",
+        "new",
+        "figure",
+        "presentation",
+        "mode",
+        "open",
+        "canvas",
+        "slides"
+      ],
+      "summary": "Create a Figure or Presentation, add artwork, and keep an editable copy.",
       "body": [
-        "Choose Figure for one scientific canvas: manuscript panels, graphical abstracts, pathway diagrams, and illustrations. Choose Presentation for an ordered deck with a slide navigator, layouts, themes, speaker notes, and presentation controls.",
-        "Both modes use the same vector, shape, text, connector, scientific-asset, style, save, and export foundations. The document kind remains explicit when you save and reopen; adding a figure panel never silently turns a Figure into a slide deck.",
-        "Open Figure accepts an individual .fsfigure file. Open Presentation accepts an individual .fsdeck file. Open Project restores the Figure and Presentation tabs saved together in an .fsproject file. Legacy .figurestudio and .figure-studio.json files can be imported, but must be saved in a current format before they become a new save target. Open PDF/SVG starts a Figure from supported artwork; use Import when artwork should be placed into the current Figure or Presentation instead.",
-        "Use the left toolbar for authoring, the center canvas for direct manipulation, and Properties for the current selection. Advanced source details appear only when imported content needs them.",
-        "For a guided start, open Tutorials and choose a Figure, Presentation, or safe-save course. Each course saves its own progress, resumes at the first incomplete step, and offers contextual workspace callouts. Starting or resetting a tutorial never silently replaces document content."
+        "Choose Figure for manuscript panels, graphical abstracts, diagrams, and illustrations. Choose Presentation for a slide deck with layouts, themes, notes, and playback. Use the Figure / Presentation buttons to switch between them.",
+        "Use File > New to choose a document type and size. Library contains Assets, Scenes, and Templates. The canvas is where you draw and arrange artwork; Style or Inspector shows controls for the current selection. Simple keeps common controls close at hand; Advanced exposes detailed vector and text controls.",
+        "Use Document setup to change page dimensions, units, grids, and snapping without clearing your selection. Fit brings the artboard back into view. Changing canvas zoom does not change the size of exported artwork.",
+        "In the web app, Browser files contains Saved work, Open file, Download file, appearance, and About. Edits are saved on this device when browser storage is available. Download an editable file for backup or use on another computer.",
+        "Start with the topics on selecting artwork, Lines and arrows, and saving work. Help provides reference instructions and short visual demonstrations for the current tools."
+      ],
+      "updated": "2026-10-11",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Choose Figure for manuscript panels, graphical abstracts, diagrams, and illustrations. Choose Presentation for a slide deck with layouts, themes, notes, and playback. Use the Figure / Presentation buttons to switch between them."
+        },
+        {
+          "type": "paragraph",
+          "text": "Use File > New to choose a document type and size. Library contains Assets, Scenes, and Templates. The canvas is where you draw and arrange artwork; Style or Inspector shows controls for the current selection. Simple keeps common controls close at hand; Advanced exposes detailed vector and text controls."
+        },
+        {
+          "type": "image",
+          "alt": "Editable assay workflow with Prepare samples, Acquire images, and Compare conditions connected by arrows.",
+          "caption": "Build a diagram from editable shapes and text, then connect the steps with arrows.",
+          "src": "media/assay-workflow.png"
+        },
+        {
+          "type": "paragraph",
+          "text": "Use Document setup to change page dimensions, units, grids, and snapping without clearing your selection. Fit brings the artboard back into view. Changing canvas zoom does not change the size of exported artwork."
+        },
+        {
+          "type": "paragraph",
+          "text": "In the web app, Browser files contains Saved work, Open file, Download file, appearance, and About. Edits are saved on this device when browser storage is available. Download an editable file for backup or use on another computer."
+        },
+        {
+          "type": "paragraph",
+          "text": "Start with the topics on selecting artwork, Lines and arrows, and saving work. Help provides reference instructions and short visual demonstrations for the current tools."
+        }
       ]
     },
     {
       "id": "workspace-switching",
-      "title": "Switching between Figure and Presentation workspaces",
-      "keywords": ["workspace", "switch", "figure", "presentation", "mode", "deck editor", "tabs", "present slideshow"],
-      "summary": "Move between the Figure canvas and Presentation deck editor without closing documents or relaunching Figure Tool.",
+      "title": "Switching between Figure and Presentation",
+      "keywords": [
+        "workspace",
+        "switch",
+        "figure",
+        "presentation",
+        "mode",
+        "deck editor",
+        "tabs",
+        "present slideshow"
+      ],
+      "summary": "Switch workspaces while keeping documents in both open.",
       "body": [
-        "Use the always-visible Figure | Presentation switcher to change the active workspace. Figure is the single-canvas scientific illustration workspace. Presentation is the multi-slide deck editor; Present and Slideshow are commands inside that workspace, not a third document mode.",
-        "Each workspace keeps a separate tab collection. Switching to Presentation hides Figure tabs without closing them, and switching back restores the last active Figure tab. The last active Presentation tab is restored in the same way.",
-        "New Figure and Open Figure create tabs in the Figure workspace. New Presentation and Open Presentation create tabs in the Presentation workspace. Creating or opening a document can activate its appropriate workspace, but it never closes documents in the other collection.",
-        "Save, Save As, and Export are scoped to the active tab in the active workspace: .fsfigure for a Figure and .fsdeck for a Presentation. Save Project is a separate, explicit command that writes the complete open Figure and Presentation workspace to one .fsproject file.",
-        "If no tab is open in a workspace, the workspace shows a clear empty state with New and Open actions. Switching workspaces is navigation only and does not change document content or dirty state."
-      ]
+        "Use Figure or Presentation in the header. Figure provides an illustration canvas; Presentation adds a slide navigator, slide layouts, notes, and Present controls.",
+        "Each workspace has its own document tabs. Switching workspaces returns to the last active tab without closing the other documents.",
+        "New and Open activate the workspace appropriate to the document. Save and Export apply to the active document. Save Project preserves all open Figure and Presentation tabs together in an .fsproject file.",
+        "Present starts playback of a Presentation; it does not change the document type or save the deck."
+      ],
+      "updated": "2026-10-11"
     },
     {
       "id": "document-tabs",
-      "title": "Working with multiple document tabs",
-      "keywords": ["tabs", "multiple documents", "new tab", "open tab", "close tab", "dirty marker", "filename", "untitled", "undo", "selection"],
-      "summary": "Keep several Figures and Presentations open while every tab retains its own content, history, selection, path, and dirty state.",
+      "title": "Working with document tabs",
+      "keywords": [
+        "tabs",
+        "multiple documents",
+        "new tab",
+        "open tab",
+        "close tab",
+        "dirty marker",
+        "filename",
+        "untitled",
+        "undo",
+        "selection"
+      ],
+      "summary": "Keep several documents open and switch between them above the canvas.",
       "body": [
-        "The tab strip above the canvas shows documents in the active workspace. New Figure, New Presentation, Open Figure, and Open Presentation add tabs. Open Project restores a saved workspace and replaces its open Figure and Presentation tabs. Untitled documents use numbered names such as Untitled Figure 1 and Untitled Presentation 1.",
-        "A tab owns its model, filename and native path, dirty state, undo and redo history, selection, view state, save target, and export target. Changing selection or using Undo in one tab never changes another tab.",
-        "The active tab and window title show the saved filename or untitled name. A dirty marker means that tab differs from its last saved file. Saving the active tab clears only its marker.",
-        "Closing a tab with unsaved changes asks whether to discard them. Cancel keeps the tab open so you can save first. Confirming closes only that tab and discards its unsaved changes. Closing a clean tab needs no save decision.",
-        "Save each document, or use Save Project to preserve all open Figure and Presentation tabs together, before closing Figure Tool. Ordinary Save targets only the active tab. The window title also marks unsaved changes in other tabs or in a saved project's open tabs and views.",
-        "Use the Figure | Presentation switcher to reach tabs in the other workspace. Hidden tabs remain open and retain their state until you close them or exit the application."
-      ]
+        "Use File > New or Open to add a document. The + button beside the tab strip opens New. Use Figure / Presentation to reach tabs in the other workspace.",
+        "Each open tab keeps its artwork, selection, view, and Undo / Redo history separately. A marker beside its name indicates changes that have not been saved to its document file.",
+        "Use the close button on a tab to close that document. If it has unsaved changes, cancel the confirmation to keep it open and save first. Closing a clean tab does not close other tabs.",
+        "Open Project replaces the complete open workspace. Save Project first if you want to keep its collection of documents. Portable files preserve artwork and document settings, but not transient selection or Undo history.",
+        "Browser autosave preserves the open workspace separately from downloaded files. Closing a document changes that workspace; use Download file or Download project to keep a deliberate copy."
+      ],
+      "updated": "2026-10-11"
     },
     {
       "id": "figure-documents",
-      "title": "Creating a Figure document",
-      "keywords": ["figure", "single canvas", "new figure", "artboard", "panel", "layout", "graphical abstract"],
-      "summary": "Build one exportable scientific canvas with panels, guides, assets, labels, and artwork.",
+      "title": "Creating a Figure",
+      "keywords": [
+        "figure",
+        "single canvas",
+        "new figure",
+        "artboard",
+        "panel",
+        "layout",
+        "graphical abstract"
+      ],
+      "summary": "Start with a blank artboard, layout, or editable scientific scene.",
       "body": [
-        "Choose New Figure, then select a manuscript preset, presentation-sized canvas for a graphical abstract, or a custom width and height. The artboard is the visible export boundary.",
-        "Use a multi-panel layout to add editable panel frames and labels. Align and distribute the frames, replace placeholders with results or assets, and keep labels in their own layer for easier editing.",
-        "A Figure has one primary canvas. It does not show a slide navigator or deck-only controls. Save Figure preserves the artboard, objects, layers, styles, embedded assets, and supported source attachments.",
-        "Run Figure check before final export to find overset text, missing linked artwork, low-resolution images, unsupported effects, or content outside the artboard. Figure check advises; it does not silently rewrite artwork."
-      ]
+        "Choose File > New, select Figure, and choose a preset or custom dimensions. The white artboard defines the exported page.",
+        "Open Library > Templates for a clean canvas, graphical abstract, or multi-panel Figure. A template creates a new document; earlier Figures remain open in their tabs.",
+        "Add individual symbols from Assets, or use a complete diagram from Scenes. Add labels with Text and relationships with Lines. Frames and panel labels are editable artwork rather than fixed image placeholders.",
+        "Document setup controls units, artboard dimensions, grids, guides, and multi-panel layout. Review the Figure at its intended final size, then save an .fsfigure copy and use Export for a delivery file."
+      ],
+      "updated": "2026-10-11"
     },
     {
       "id": "artboards-decks",
-      "title": "Artboards, panels, and figure layouts",
-      "keywords": ["artboard", "figure", "panel", "layout", "guides", "margins"],
-      "summary": "Size a Figure canvas and organize multi-panel artwork without introducing slide behavior.",
+      "title": "Sizing artboards and arranging panels",
+      "keywords": [
+        "artboard",
+        "figure",
+        "panel",
+        "layout",
+        "guides",
+        "margins"
+      ],
+      "summary": "Set the exported page size and arrange editable panel frames.",
       "body": [
-        "The Figure artboard defines the exported page. Use a preset or enter a custom size; changing the artboard does not scale artwork unless you choose an explicit scale-with-artboard action.",
-        "Multi-panel layouts create ordinary editable frames and panel labels. They can be resized, aligned, restyled, grouped, or removed like other objects.",
-        "Use guides, margins, Align, and Distribute to maintain consistent gutters. Content outside the artboard remains editable but is excluded from normal Figure export."
-      ]
+        "Open Document setup for Units, Artboard presets, Width, and Height. Changing the page dimensions does not automatically rescale existing artwork.",
+        "Use the multi-panel Rows and Columns controls and Create layout to add panel frames and labels. Add title + legend inserts editable text placeholders. Replace their text and adjust frames to suit the results.",
+        "Use Align and Distribute for consistent edges and gaps. Guides help position artwork; snapping can be enabled separately for grids, guides, and objects.",
+        "Fit artboard restores an overview. Pan and zoom to inspect details. Drawing and selecting preserve the current view; use Fit explicitly when you want the artboard fitted again.",
+        "Normal export clips to the chosen artboard. Artwork outside it remains editable; move important content inside the page before exporting."
+      ],
+      "updated": "2026-10-11"
     },
     {
       "id": "presentation-documents",
-      "title": "Creating a Presentation document",
-      "keywords": ["presentation", "deck", "slide", "new presentation", "navigator", "theme", "layout", "notes", "present"],
-      "summary": "Author an ordered scientific slide deck with consistent size, layouts, themes, notes, and playback.",
+      "title": "Creating a Presentation",
+      "keywords": [
+        "presentation",
+        "deck",
+        "slide",
+        "new presentation",
+        "navigator",
+        "theme",
+        "layout",
+        "notes",
+        "present"
+      ],
+      "summary": "Build a slide deck with consistent dimensions, themes, and notes.",
       "body": [
-        "Choose New Presentation, then select the slide size and an optional theme. Every slide in a Presentation uses the same deck geometry; creating a slide does not reset the deck to a Figure preset.",
-        "Use the navigator to create, duplicate, reorder, and delete slides. Apply a layout to the current slide, then edit its text, images, scientific assets, shapes, vectors, and connectors with the shared authoring tools.",
-        "Themes provide coordinated colors, type choices, and layout defaults. Applying a theme does not flatten custom artwork. Review slides after a theme or layout change when exact text wrapping matters.",
-        "Speaker notes belong to their slide and reopen with the Presentation. Present from beginning or Present from current slide fits the complete slide inside the available stage and keeps navigation and Exit controls reachable.",
-        "Save Presentation preserves slide order, slide size, themes, layouts, notes, and editable artwork. Export PDF for dependable sharing, or use bounded PPTX interchange when collaborators need editable common content."
-      ]
+        "Choose File > New, select Presentation, and choose Widescreen, Standard, or custom dimensions. All slides use the deck dimensions.",
+        "Use New slide and the Slides navigator to build the deck. Layout & theme provides starting arrangements and coordinated type and color choices; the artwork remains editable.",
+        "Draw, import, add scientific assets, and arrange objects with the same authoring tools used for Figures. Notes stores speaker notes for the selected slide.",
+        "Save an .fsdeck copy to retain the editable deck. Use PDF for visual sharing or PPTX for supported editable slide content. Review exported files before presenting; complex artwork may be flattened or omitted in PPTX with warnings."
+      ],
+      "updated": "2026-10-11"
     },
     {
       "id": "presentation-slides",
       "title": "Managing slides, layouts, themes, and notes",
-      "keywords": ["slide navigator", "new slide", "duplicate", "reorder", "delete", "layout", "theme", "speaker notes"],
-      "summary": "Keep a scientific deck coherent while each slide remains independently editable.",
+      "keywords": [
+        "slide navigator",
+        "new slide",
+        "duplicate",
+        "reorder",
+        "delete",
+        "layout",
+        "theme",
+        "speaker notes"
+      ],
+      "summary": "Add and arrange slides, then keep their text and appearance consistent.",
       "body": [
-        "New Slide uses the selected layout and the Presentation's established slide size. Duplicate Slide copies the current slide and notes. Drag in the navigator or use Move Up and Move Down to reorder; Delete Slide asks for confirmation when it would discard work.",
-        "Layouts are starting structures, not locked templates. Replace placeholders with live text, images, vectors, or scientific assets and adjust them with the normal selection and alignment tools.",
-        "Use a theme for consistent fonts and colors, then keep deliberate slide-specific overrides where needed. Theme changes do not promise identical rendering in PowerPoint or Google Slides; review exported files in the destination application.",
-        "Add speaker notes below the slide. Notes are included in the Figure Tool document and the supported PPTX notes subset when available, but are excluded from normal slide PDF, SVG, and PNG output."
-      ]
+        "Use New slide to add a slide. Select a thumbnail in Slides to edit it; use slide actions to duplicate, move, or delete it. Reordering keeps its artwork and notes together.",
+        "Open Layout & theme to apply a layout or theme. Layout objects remain editable. Check text wrapping and deliberate custom colors after changes.",
+        "Open Notes for the selected slide and enter speaker notes. Notes are saved in .fsdeck and supported PPTX output; they are not included as visible artwork in normal slide images or PDFs.",
+        "Use Present to review the complete deck. Keep panel labels, type sizes, and scientific symbols readable at the projected size."
+      ],
+      "updated": "2026-10-11"
     },
     {
       "id": "presentation-playback",
-      "title": "Presenting and reviewing slide playback",
-      "keywords": ["present", "slideshow", "playback", "from beginning", "current slide", "fit slide", "notes", "exit", "navigation"],
-      "summary": "Review a deck in fitted playback while keeping navigation, speaker notes, and Exit controls reachable.",
+      "title": "Presenting a slide deck",
+      "keywords": [
+        "present",
+        "slideshow",
+        "playback",
+        "from beginning",
+        "current slide",
+        "fit slide",
+        "notes",
+        "exit",
+        "navigation"
+      ],
+      "summary": "Play the active Presentation and return to editing afterward.",
       "body": [
-        "Present from beginning starts with slide 1. Present from current slide starts with the selected navigator item. Both commands belong to the active Presentation tab and use that deck's current slide order.",
-        "Playback fits the complete slide inside the available stage without cropping its edges. Resizing the window recalculates the fit; it does not change slide geometry, artwork size, or the saved deck.",
-        "Use the visible navigation controls or supported keyboard commands to move between slides. The slide counter, Notes control, and Exit remain reachable at supported desktop sizes.",
-        "Speaker notes display for the current slide when Notes is open. Notes are presenter guidance, not visible slide artwork, and normal slide images or PDFs do not include them.",
-        "Exit returns to the same Presentation tab and slide. Playback does not save, export, flatten, or otherwise change the document.",
-        "Review every slide for overflow, small type, source legibility, transitions in scientific reasoning, and unintended off-slide content before exporting or presenting to an audience."
-      ]
+        "Present from beginning starts at slide 1. Present from current slide starts at the selected slide. Both use the active Presentation tab.",
+        "Playback fits the complete slide to the available window. Use the visible navigation controls or keyboard navigation to move between slides. Open Notes to view the current slide’s speaker notes.",
+        "Exit or Escape returns to editing. Playback does not change slide geometry, save the document, or export a file.",
+        "Review small type, cropped content, image legibility, and the order of your scientific argument before presenting to an audience."
+      ],
+      "updated": "2026-10-11"
     },
     {
       "id": "importing",
-      "title": "Opening and importing SVG, PDF, and images",
-      "keywords": ["import", "open", "svg", "pdf", "image", "png", "jpeg", "placement", "raster", "source and notes"],
-      "summary": "Open supported artwork as a Figure, or place it into the current Figure or Presentation.",
+      "title": "Opening and importing artwork",
+      "keywords": [
+        "import",
+        "open",
+        "svg",
+        "pdf",
+        "image",
+        "png",
+        "jpeg",
+        "placement",
+        "raster",
+        "source and notes"
+      ],
+      "summary": "Open SVG or PDF as a Figure, or insert artwork into an existing document.",
       "body": [
-        "Use Open PDF/SVG when imported artwork should become a new Figure. Figure Tool sizes the artboard to the opened page or artwork and keeps the supported original source available under Source & notes.",
-        "Use Import when SVG, image, or PDF artwork should be placed into the current Figure or slide. Review placement and size, then place the artwork; it remains selected so you can align or resize it immediately.",
-        "For an editable PDF page, choose Direct Selection or press A, then click artwork inside the page. You can also double-click the page to enter its contents. PDF text opens as vector outlines by default so the page keeps its original appearance.",
-        "Select the PDF page and use PDF text > Convert to editable text when wording must change. Figure Tool reconstructs detected text runs and keeps the outline representation available through Keep outlines. Figure check reports substituted fonts, symbols, spacing, and rotated labels that need review before export.",
-        "The original PDF remains attached at the document level even after individual page objects are released or deleted. Dense or complex sources may stay protected, with editable overlays for supported changes. Technical source details are available under Advanced.",
-        "Raster imports are embedded as images. Raster vectorization can create editable regions, but it is segmentation of pixels, not biological interpretation."
-      ]
+        "Choose File > New, then Open PDF or SVG to start a Figure from artwork. File > Open PDF also opens a PDF directly. Use File > Import SVG/Image/PDF when artwork should be inserted into the current Figure or slide. Review its placement and dimensions before continuing.",
+        "For PDF, choose Editable reconstruction to create supported canvas text and vectors, or Source-backed placement to keep the page together with its original PDF. Select the first page, all pages, or a page range where offered. The import summary tells you what was actually reconstructed and what remains a placed preview.",
+        "PDF text may be reconstructed as editable text or kept as outlines depending on the source and supported import path. Font replacement can alter labels or spacing. Compare the result with the original PDF; unsupported or dense pages may fall back to a placed page.",
+        "Press A for Direct Selection to reach editable children in a supported imported group. A placed image or protected page does not expose individual vector anchors. Source details identify the retained original, page, and import limitations.",
+        "The web app supports PDF placement and supported reconstruction in the browser. Advanced changes to the original PDF require the desktop PDF service and are unavailable on a static website.",
+        "Raster images retain their source pixels. Vectorization can turn visible pixel regions into editable shapes; it does not recover the original plot data, labels, or biological meaning."
+      ],
+      "updated": "2026-10-11"
     },
     {
       "id": "pptx-compatibility",
-      "title": "PowerPoint and Google Slides compatibility",
-      "keywords": ["pptx", "powerpoint", "google slides", "import presentation", "export presentation", "round trip", "compatibility", "warning"],
-      "summary": "Use PPTX for bounded editable deck interchange, with explicit warnings when content is flattened or skipped.",
+      "title": "Working with PowerPoint files",
+      "keywords": [
+        "pptx",
+        "powerpoint",
+        "google slides",
+        "import presentation",
+        "export presentation",
+        "round trip",
+        "compatibility",
+        "warning"
+      ],
+      "summary": "Exchange common editable slide content and review warnings for unsupported objects.",
       "body": [
-        "PPTX v1 imports and exports slide order and one uniform slide size; plain text boxes; rectangles, rounded rectangles, ellipses, and triangles; straight lines and connectors; embedded PNG, JPEG, and SVG images; basic solid fills and strokes; basic arrowheads; and plain speaker notes.",
-        "Text interchange includes the text object's base font family, size, bold, italic, alignment, and solid color. Superscript, subscript, baseline shift, and other mixed character-range formatting remain editable in the Figure Tool document and visual exports, but PPTX v1 reduces those ranges to the base supported text style and reports a warning. Basic theme colors are resolved when a PPTX is imported. Content inherited from a PowerPoint master or layout is not imported; objects drawn directly on slides remain editable within the supported subset.",
-        "On export, supported Fabric vector or grouped artwork that is not directly representable in the bounded subset can be placed as an embedded SVG with a warning. Content that cannot be represented or safely flattened is skipped with a warning instead of being silently misreported as editable.",
-        "SmartArt, charts, tables, audio, video, 3D objects, animations, transitions, macros, OLE objects, arbitrary freeform paths, and advanced theme or master effects are outside PPTX v1. Import reports these items plainly and leaves the original file unchanged.",
-        "Google Slides compatibility is file-based: import or export PPTX for common editable content, or use PDF, SVG, and PNG for visual sharing. Figure Tool 1.0.0-beta.6 has no direct Google Drive or Google Slides cloud connection.",
-        "Always review an exported PPTX in the destination application. Figure Tool does not claim universal PowerPoint or Google Slides round-trip fidelity."
-      ]
+        "PPTX import and export support slide order, one uniform slide size, ordinary text boxes, basic shapes, straight lines and connectors, embedded PNG/JPEG/SVG images, basic solid fills and strokes, arrowheads, and plain speaker notes.",
+        "Basic font, size, bold, italic, alignment, and text color are retained where supported. Mixed character formatting, including superscript, subscript, and baseline shift, may be reduced to the text object’s base style with a warning. Check scientific notation after interchange.",
+        "Artwork that cannot be represented as an editable PowerPoint object may be embedded as SVG, or omitted if it cannot be safely represented. Read import and export warnings; a visible SVG image is not the same as independently editable shapes.",
+        "SmartArt, charts, tables, media, animations, transitions, macros, OLE objects, arbitrary freeform paths, and complex theme or master content are not fully supported. Objects inherited from masters or layouts are not reconstructed as ordinary slide artwork.",
+        "Google Slides use is file-based through PPTX or visual exports. There is no direct Google Drive or Google Slides connection. Keep the original file and inspect the exported deck in the application where it will be used."
+      ],
+      "updated": "2026-10-11"
     },
     {
       "id": "select-arrange",
-      "title": "Selecting and arranging objects",
-      "keywords": ["select", "arrange", "layers", "lock", "hide", "group", "reparent", "reorder", "reveal in layers", "select on canvas", "fit selection", "context menu"],
-      "summary": "Use the canvas, context menus, and layer tree to select, group, hide, lock, reorder, and move objects through a document hierarchy.",
+      "title": "Selecting and arranging artwork",
+      "keywords": [
+        "select",
+        "arrange",
+        "layers",
+        "lock",
+        "hide",
+        "group",
+        "reparent",
+        "reorder",
+        "reveal in layers",
+        "select on canvas",
+        "fit selection",
+        "context menu"
+      ],
+      "summary": "Select artwork on the canvas or in Layers, then move, group, hide, or lock it.",
       "body": [
-        "Named layers are saved with the Figure or with each slide. Click a layer header to make it current; new shapes, text, imports, and pasted artwork are inserted there. Use Move here or a layer context menu to move the current top-level selection without changing its geometry.",
-        "Drag an editable object or ordinary group in Layers to place it before, inside, or after a compatible destination. The highlighted destination names the result before you drop. Moving artwork between groups or named layers keeps its position on the canvas and is one undoable action. Locked, protected, source-backed, self, descendant, and structurally incompatible destinations are rejected with a plain explanation.",
-        "Click objects on the canvas or select rows in Layers. Shift-click rows for multi-selection. Use Reveal in Layers on selected canvas artwork to open the panel and expose its exact row. Use Select on canvas from a row to select that object; Fit selection brings off-screen artwork into view without changing document geometry. Right-click selected artwork or object rows for duplicate, delete, group, ungroup, layer-bounded arrange, lock, hide, and properties actions. Alt+Page Up or Alt+Page Down changes the current layer; add Shift to move the selection to the adjacent layer.",
-        "Layer visibility and lock state apply to all of that layer's artwork while preserving each object's own hidden or locked state. Layer order defines the major stacking bands, and object arrange commands stay inside their layer. Expand groups to browse and rename nested objects; selecting a nested row enters the required Isolation Mode path without flattening the group.",
-        "Object rows identify groups, editable vectors, protected source artwork, clips, masks, filters, blend modes, gradients, and patterns when Figure Tool can detect them.",
-        "Large PDF or SVG imports are windowed in the layer list so thousands of objects do not render as thousands of rows at once. Use Advanced source parts when you need to inspect individual imported elements."
-      ]
+        "Use Select or press V to select whole objects. Click an object, Shift-click to extend the selection, or drag across empty canvas to select several. Use the selection handles to resize or rotate; drag the selected artwork to move it.",
+        "Right-click selected artwork for duplicate, delete, group, ungroup, arrange, hide, lock, and property commands. Only applicable actions are available for protected or locked artwork.",
+        "Open Inspector > Layers to select and rename objects, expand groups, and change visibility or locks. Reveal in Layers finds selected canvas artwork; Select on canvas selects an object from its row. Fit selection brings it into view.",
+        "New artwork goes into the current named layer. Use Move here or the layer context menu to move a selection. Drag eligible object rows before, inside, or after a compatible destination; the destination highlight shows the intended change.",
+        "Double-click a group to edit its children in Isolation Mode. Back or Escape returns to the containing artwork. Group and layer edits preserve placement and can be undone; protected imported groups may offer fewer actions."
+      ],
+      "updated": "2026-10-11"
     },
     {
       "id": "selection-transforms",
-      "title": "Selection, transforms, align, and distribute",
-      "keywords": ["selection", "direct selection", "move", "resize", "rotate", "transform", "align", "distribute", "snap", "snap to grid", "snap to guides", "snap to objects", "smart guides", "group"],
-      "summary": "Choose whole objects or individual vector parts, then position them precisely or as a coordinated selection.",
+      "title": "Positioning, aligning, and distributing artwork",
+      "keywords": [
+        "selection",
+        "direct selection",
+        "move",
+        "resize",
+        "rotate",
+        "transform",
+        "align",
+        "distribute",
+        "snap",
+        "snap to grid",
+        "snap to guides",
+        "snap to objects",
+        "smart guides",
+        "group"
+      ],
+      "summary": "Use whole-object selection for arrangement and Direct Selection for individual points.",
       "body": [
-        "Use Selection or V to move, resize, rotate, duplicate, group, and arrange whole objects. Shift-click adds or removes objects from the selection. Drag a marquee across empty canvas to select several objects.",
-        "Use Direct Selection or A to edit supported anchors, handles, line endpoints, connector bends, and children inside groups or imported vectors. Double-click a group to enter Isolation Mode; use Back or Escape to return to the containing artwork.",
-        "Enter exact X, Y, width, height, rotation, line length, or angle values in Properties. Multi-selection transforms preserve the objects' relative placement. Lock proportions when width and height should change together.",
-        "Align uses the selection, the artboard or slide, or a chosen key object as its reference. A key object stays fixed while the other selected objects move. Enter an exact horizontal or vertical gap when repeated panels or diagram nodes need a specific gutter.",
-        "In Figure documents, Duplicate and Repeat creates a copy using the last safe move, rotation, or proportional scale; Transform Again reuses that transform on the current selection. Repeat is kept with its own document tab and is unavailable for protected, linked, connected, or otherwise unsafe artwork.",
-        "View provides separate Snap to Grid, Snap to Guides, and Snap to Objects choices. Snap to Objects includes object edges and centers, equal-spacing positions, and artboard edges and centers. Smart Guides control the temporary alignment and spacing cues; hiding those cues does not turn off any snap channel.",
-        "Hold Ctrl while moving, scaling, or drawing to bypass all snapping for that gesture. On macOS, hold Command. Release the key to use the saved snap choices again.",
-        "Group related labels and artwork when they should move together. Layers and groups retain their names, order, visibility, and lock state when the document is saved and reopened."
-      ]
+        "Select or V moves, resizes, and rotates whole objects. Direct Selection or A edits supported path anchors, line endpoints, and connector bends. Drag a Direct Selection box from empty canvas to discover editable anchors, including those on unselected artwork. Shift extends the point selection.",
+        "Style or Inspector provides numeric position and size controls. Advanced exposes rotation, shear, exact gaps, and additional transforms where applicable. Line geometry includes start/end coordinates, length, and angle; selecting one endpoint keeps the opposite endpoint fixed during length or angle changes.",
+        "Align and Distribute can use the selected artwork, artboard, or a chosen key object. A key object remains fixed while the other objects move. Use exact gaps when panel spacing needs a specific measurement.",
+        "View contains separate Snap to Grid, Snap to Guides, and Snap to Objects choices. Smart Guides controls the temporary alignment cues. Hold Ctrl (Command on macOS) while moving, scaling, or drawing to bypass snapping for that gesture.",
+        "In Figure mode, Duplicate and Repeat and Transform Again can reuse a supported previous transform. They are unavailable for artwork where repeating could break a source relationship or connector. Undo returns the artwork to its previous placement."
+      ],
+      "updated": "2026-10-11"
     },
     {
       "id": "paths-vectors",
-      "title": "Shapes, pen tools, paths, and nodes",
-      "keywords": ["shape", "rectangle", "ellipse", "polygon", "pen", "pencil", "path", "vector", "anchor", "node", "boolean", "handles"],
-      "summary": "Draw basic shapes and freeform paths, then refine supported anchors, handles, and combined geometry.",
+      "title": "Editing shapes, paths, and anchors",
+      "keywords": [
+        "shape",
+        "rectangle",
+        "ellipse",
+        "polygon",
+        "pen",
+        "pencil",
+        "path",
+        "vector",
+        "anchor",
+        "node",
+        "boolean",
+        "handles"
+      ],
+      "summary": "Draw editable geometry and select individual points without first selecting the object.",
       "body": [
-        "Use the Shape tools for rectangles, rounded rectangles, ellipses, polygons, stars, lines, and arrows. Drag on the canvas for a visual size or use Properties for exact geometry. Hold Shift where offered to constrain proportions or direction.",
-        "Use Pen to click straight anchors and drag curved handles. Close a path by returning to its first anchor, or finish an open path with Enter. Use Direct Selection to move anchors and handles, convert supported point types, add or remove nodes, and edit one path without moving the whole object.",
-        "Press A for Direct Selection, then click inside supported imported PDF or SVG artwork to select a text outline, path, shape, or image. On dense protected artwork, Figure Tool creates an editable overlay while keeping the original available through Restore source. Double-clicking editable imported artwork also enters its contents.",
-        "Select two or more closed editable shapes and choose Shape Builder to combine highlighted regions; hold Alt while clicking or dragging to remove regions. Divide creates the visible regions as separate editable artwork. Protected, open, grouped, or locked artwork must be released or made editable first.",
-        "Lines and arrows expose endpoints with exact start, end, length, and angle values in Properties. When one endpoint is selected with Direct Selection, the opposite endpoint becomes the pivot for length and angle changes.",
-        "Advanced PDF details can expose native path operations when Figure Tool has safely identified a contiguous PDF path sequence. These controls are not part of the normal editing workflow.",
-        "Deleting an isolated source edit keeps the replaced source element hidden until you choose Restore source. Duplicated overlays become independent artwork.",
-        "Ordinary SVG files and older documents can use geometric fallback selection. Figure Tool does not provide unrestricted freeform editing of every possible PDF content stream."
+        "Choose Shapes for basic geometric objects, or Pen for a custom path. With Pen, click to add straight anchors and drag to create curved handles. Return to the first anchor to close a path, or press Enter to finish an open path.",
+        "Press A for Direct Selection. Click a path or drag a selection box across its anchors; a box can find editable anchors even when the object was not previously selected. Shift adds points to the selection. Drag selected points to change the shape, then use Undo if needed.",
+        "Press Delete to remove selected anchors. If enough points remain, the path reconnects. If fewer than two points remain in an open path or three in a closed path, the affected path or subpath is removed. Other parts of an isolated asset remain in place. Deleting an endpoint of an ordinary line removes that line. Undo restores the artwork and point selection.",
+        "Curve direction handles become available when their path or anchor is selected. Direct Selection also edits line endpoints and connector bends. It does not turn an image, locked object, or protected source page into freely editable geometry.",
+        "Double-click an editable group to enter Isolation Mode, then select its child artwork. Back or Escape returns to the containing group. Imported SVG and PDF editing depends on what the importer could represent; keep the source and compare important details visually.",
+        "Use point controls to change supported anchor types, add or remove nodes, or refine a segment. Shape Builder combines regions of eligible closed shapes; Alt removes a region. Compound paths preserve multiple subpaths in one editable object."
+      ],
+      "updated": "2026-10-11",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Choose Shapes for basic geometric objects, or Pen for a custom path. With Pen, click to add straight anchors and drag to create curved handles. Return to the first anchor to close a path, or press Enter to finish an open path."
+        },
+        {
+          "type": "paragraph",
+          "text": "Press A for Direct Selection. Click a path or drag a selection box across its anchors; a box can find editable anchors even when the object was not previously selected. Shift adds points to the selection. Drag selected points to change the shape, then use Undo if needed."
+        },
+        {
+          "type": "video",
+          "alt": "An unselected arrow endpoint is found by a Direct Selection marquee and moved upward.",
+          "caption": "In Advanced, use Direct Selection (A). Drag a box around an endpoint, then drag the selected endpoint. The other endpoint stays fixed.",
+          "src": "media/direct-selection.webm",
+          "poster": "media/direct-selection-poster.png"
+        },
+        {
+          "type": "paragraph",
+          "text": "Press Delete to remove selected anchors. If enough points remain, the path reconnects. If fewer than two points remain in an open path or three in a closed path, the affected path or subpath is removed. Other parts of an isolated asset remain in place. Deleting an endpoint of an ordinary line removes that line. Undo restores the artwork and point selection."
+        },
+        {
+          "type": "paragraph",
+          "text": "Curve direction handles become available when their path or anchor is selected. Direct Selection also edits line endpoints and connector bends. It does not turn an image, locked object, or protected source page into freely editable geometry."
+        },
+        {
+          "type": "paragraph",
+          "text": "Double-click an editable group to enter Isolation Mode, then select its child artwork. Back or Escape returns to the containing group. Imported SVG and PDF editing depends on what the importer could represent; keep the source and compare important details visually."
+        },
+        {
+          "type": "paragraph",
+          "text": "Use point controls to change supported anchor types, add or remove nodes, or refine a segment. Shape Builder combines regions of eligible closed shapes; Alt removes a region. Compound paths preserve multiple subpaths in one editable object."
+        }
+      ]
+    },
+    {
+      "id": "lines-arrows",
+      "keywords": [
+        "lines",
+        "arrows",
+        "inhibitor",
+        "inhibition",
+        "dots",
+        "curve",
+        "circular",
+        "bracket",
+        "preset",
+        "dashed",
+        "endpoints"
+      ],
+      "title": "Drawing lines and arrows",
+      "summary": "Choose a graphical preset, then draw it or apply it to a selected line.",
+      "body": [
+        "Open Lines to see previews for plain lines, arrows, inhibition bars, dots, curved or circular routes, brackets, and custom drawing. Scroll the menu for the remaining groups.",
+        "Choose Draw new, select a preset, and drag on the canvas. Straight and curved presets use their own drawing tools. Smart connectors attach to object ports; comparison brackets require the appropriate selected objects.",
+        "To restyle an existing eligible line, select it, open Lines, choose Apply to selected, and click a preset. Presets for unavailable conversions are disabled; protected imported artwork must first become editable.",
+        "Style or the Advanced stroke controls provide color, width, dash, and start/end markers. Press A to adjust endpoints or supported bends. Geometry measurements appear while you draw or edit; numeric controls remain available in Inspector.",
+        "Use arrow and inhibition styles consistently in a scientific diagram. A symbol does not establish a biological interaction by itself; label an ambiguous relationship and distinguish proposed relationships from measured results."
+      ],
+      "updated": "2026-10-11",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Open Lines to see previews for plain lines, arrows, inhibition bars, dots, curved or circular routes, brackets, and custom drawing. Scroll the menu for the remaining groups."
+        },
+        {
+          "type": "paragraph",
+          "text": "Choose Draw new, select a preset, and drag on the canvas. Straight and curved presets use their own drawing tools. Smart connectors attach to object ports; comparison brackets require the appropriate selected objects."
+        },
+        {
+          "type": "image",
+          "alt": "Graphical Lines menu showing line, arrow, and inhibition presets beside a sample workflow.",
+          "caption": "Choose a line or arrow by its shape. Draw new places it on the canvas; Apply to selected restyles an eligible selected line.",
+          "src": "media/lines-picker.png"
+        },
+        {
+          "type": "video",
+          "alt": "Choose the straight arrow preset and drag between two sample-workflow shapes.",
+          "caption": "Choose Lines → Arrows → Straight, then drag from the start point to the end point.",
+          "src": "media/lines-draw.webm",
+          "poster": "media/lines-draw-poster.png"
+        },
+        {
+          "type": "paragraph",
+          "text": "To restyle an existing eligible line, select it, open Lines, choose Apply to selected, and click a preset. Presets for unavailable conversions are disabled; protected imported artwork must first become editable."
+        },
+        {
+          "type": "paragraph",
+          "text": "Style or the Advanced stroke controls provide color, width, dash, and start/end markers. Press A to adjust endpoints or supported bends. Geometry measurements appear while you draw or edit; numeric controls remain available in Inspector."
+        },
+        {
+          "type": "paragraph",
+          "text": "Use arrow and inhibition styles consistently in a scientific diagram. A symbol does not establish a biological interaction by itself; label an ambiguous relationship and distinguish proposed relationships from measured results."
+        }
       ]
     },
     {
       "id": "smart-connectors",
-      "title": "Authoring scientific connectors",
-      "keywords": ["connector", "pathway", "mechanism", "arrow", "endpoint", "port", "bend", "direct selection", "routing", "label", "reverse"],
-      "summary": "Attach scientific relationships to object ports, refine their route directly, and keep connector semantics editable through figure production.",
+      "title": "Connecting diagram objects",
+      "keywords": [
+        "connector",
+        "pathway",
+        "mechanism",
+        "arrow",
+        "endpoint",
+        "port",
+        "bend",
+        "direct selection",
+        "routing",
+        "label",
+        "reverse"
+      ],
+      "summary": "Attach lines to objects so relationships follow their movement.",
       "body": [
-        "Choose Smart Connector, then select a start and end port. Eligible objects expose three ports on each side so dense pathway figures can separate nearby relationships without enlarging the visible markers. Straight, elbow, and curved routes use the connector's stroke, dash, start marker, end marker, and optional label settings.",
-        "Selection and Direct Selection have separate jobs. Use Selection to choose the connector as one object. Press A for Direct Selection to expose its two endpoint handles and, for elbow routes, its bend handles. The visible controls stay small while their pointer targets remain at least 24 pixels at supported desktop sizes.",
-        "Drag an endpoint onto another port to reattach it, or drag into open canvas to detach only that endpoint. Hold Shift to constrain the drag to one axis. Hold Alt, Ctrl, or Command to bypass object ports and snapping for a free endpoint. A selected endpoint can be nudged with the arrow keys, with Shift for ten-unit steps; Delete detaches it without deleting the connector. Reverse swaps the biological direction while preserving the start and end marker style slots.",
-        "Drag or nudge an elbow bend to enter manual routing. Shift constrains bend movement to one axis, while Alt, Ctrl, or Command bypasses snapping. Orthogonal keeps manual legs axis-aligned. Auto returns the connector to bounded obstacle- and label-aware routing. Automatic routing reports constrained cases honestly; it does not claim global pathway layout, arbitrary maze solving, or semantic crossing resolution.",
-        "Connector labels are normal selectable text objects. Move or nudge a label to create a durable offset from its routed segment, edit its text directly, or choose Label home to restore automatic placement. Moving attached nodes updates the route; a fully detached connector can be moved as one object with Selection.",
-        "Endpoint identities, ports, route mode, bends, styles, labels, and label offsets participate in undo and redo. They persist through grouping, duplication with remapped endpoint identities, Save Figure or Save Presentation and reopen, and SVG, PNG, and PDF export."
-      ]
+        "Open Lines and choose a smart connector, then choose its start and end object ports. Eligible objects expose ports along their edges. Straight, elbow, and curved routes have editable stroke, dash, marker, and label settings.",
+        "Use Select to select the connector as one object. Press A for Direct Selection to edit an endpoint or elbow bend. Drag an endpoint onto a port to attach it; drag it into empty canvas to detach that endpoint.",
+        "Shift constrains endpoint or bend movement to one axis. Alt, Ctrl, or Command bypasses ports and snapping for free movement. Arrow keys nudge a selected handle; Shift makes a larger step. Reverse exchanges the relationship direction.",
+        "Editing an elbow bend creates a manual route. Auto returns to automatic routing; Orthogonal keeps manual legs axis-aligned. Automatic routing avoids supported obstacles but cannot resolve every crossing in a crowded diagram.",
+        "Connector labels are editable text. Move a label to offset it from the route, or use Label home to restore automatic placement. Moving connected nodes updates the line. Save and reopen retain endpoint connections, bends, labels, and offsets."
+      ],
+      "updated": "2026-10-11"
     },
     {
       "id": "typography",
-      "title": "Editing typography and text paths",
-      "keywords": ["text", "type", "font", "character", "paragraph", "tracking", "kerning", "leading", "superscript", "subscript", "baseline shift", "greek", "symbols", "statistics", "units", "area text", "overset", "text path", "outlines", "source font", "pdf", "publication typography", "panel label", "title", "annotation", "legend", "named style"],
-      "summary": "Format selected characters, coordinate publication text roles, insert scientific symbols, work with fixed area text and text paths, and create reversible outlines.",
+      "title": "Formatting text and scientific symbols",
+      "keywords": [
+        "text",
+        "type",
+        "font",
+        "character",
+        "paragraph",
+        "tracking",
+        "kerning",
+        "leading",
+        "superscript",
+        "subscript",
+        "baseline shift",
+        "greek",
+        "symbols",
+        "statistics",
+        "units",
+        "area text",
+        "overset",
+        "text path",
+        "outlines",
+        "source font",
+        "pdf",
+        "publication typography",
+        "panel label",
+        "title",
+        "annotation",
+        "legend",
+        "named style"
+      ],
+      "summary": "Keep labels editable and check their readability at the final figure size.",
       "body": [
-        "Select live text to use Character controls for font, size, leading, tracking, bold, italic, underline, and strikethrough. Paragraph controls provide alignment, justification, and left-to-right or right-to-left direction.",
-        "While editing text, select the characters that should be raised or lowered, then choose Superscript or Subscript in Character. These are real character-range styles: the surrounding text stays unchanged, the two choices are mutually exclusive, and choosing an active style again removes it. With only a caret, the choice applies to characters you type next.",
-        "Baseline shift moves only the selected characters without changing their font size, family, color, or other styling. Values are measured in points: a positive value raises text and a negative value lowers it. Reset returns the selected characters to their normal baseline while leaving superscript or subscript sizing intact.",
-        "Choose Symbols to search common Greek letters, mathematical and statistical notation, arrows, and scientific units by symbol or name. Insertion replaces the current character selection or occurs at the caret, then returns to text editing. Recently used symbols appear first. Use Unicode only for the actual symbol; use Superscript and Subscript for raised or lowered letters and numbers.",
-        "Tracking changes spacing across the selected text object. For a manual kerning pair, enter text editing, place the cursor between two characters, then adjust Kerning in Properties. Manual pair spacing remains attached to that text object across project reload.",
-        "Drag with the Text tool to create a fixed area text frame. Text reflows when the frame width changes, while a small plus badge and the Properties status identify overset text. Fit frame to content grows the frame height without changing its width.",
-        "To place text on a path, select one ordinary editable text object and one ordinary editable path, then choose Type > Type on a Path or use the object context menu. Character-range formatting stays with the text when it is placed on or detached from the path. Adjust the start offset and path alignment in Properties. Flip Path Text Side moves readable text to the opposite side; Detach from Path restores separate editable text and path objects.",
-        "Save Figure and Save Presentation preserve character-range formatting through reopen, copy, duplicate, undo, and redo. SVG, PDF, PNG, JPEG, and TIFF preserve the visible raised and lowered characters. PPTX v1 keeps the text editable but reduces character-range formatting to the text object's base supported style; review scientific notation after PPTX interchange.",
-        "Create Outlines converts supported live text to editable vector glyph paths. Figure Tool retains the source text, font metadata, and scene position in the project so Restore Editable Text can reverse the command. Current outline shaping uses direct font glyph mapping; complex scripts, per-range styles, and advanced OpenType shaping require further support.",
-        "PDF text identifies its detected source font and whether Figure Tool retained that exact embeddable font, fitted a replacement, or must use the vector-outline fallback. Source-font outlines use the retained font program when available. Typography changes and outlines are canvas edits with review status; they do not claim native PDF text-stream mutation or full Illustrator/PDF equivalence.",
-        "For a Figure, choose Type > Publication typography to review one publisher-neutral profile for panel labels, titles, annotations, and legend/body text. Panel Label objects are recognized automatically; select other editable text before opening the dialog and assign its role explicitly. The preview lists exact final-size points, weight, line height, color, font resolution, page locations, possible reflow or overset, and report-only protected content before it changes anything.",
-        "Reviewed panel-label renumbering follows page order and then left-to-right, top-to-bottom position. Apply updates linked named text styles as one undo step while preserving live text, scientific Unicode, character-range superscript or subscript, object identity, position, groups, layers, and unrelated artwork. Save Figure preserves the profile, roles, style bindings, and label sequence. SVG and PDF record review metadata, but Figure Tool does not claim font installation or embedding, complex-script shaping, publisher certification, or cross-application typographic equivalence."
-      ]
+        "Use Text or T to add a label; drag with Text to create a fixed text frame. Character and Paragraph controls provide font, size, spacing, weight, alignment, and text direction. Advanced exposes additional type controls.",
+        "While editing text, select characters for Superscript, Subscript, or Baseline shift. With a caret, the choice applies to newly typed characters. Symbols lets you search Greek letters, mathematical notation, arrows, and units and insert them at the caret.",
+        "A fixed text frame reflows when its width changes. A plus badge or overset status means some text does not fit. Fit frame to content increases its height; review wrapping and the final exported result.",
+        "For text on a path, select an ordinary editable text object and path, then choose Type > Type on a Path. Use path offset/alignment controls to position it; Detach from Path returns separate objects.",
+        "Create Outlines converts supported live text to vector glyphs. Restore Editable Text can return retained source text. Complex scripts and advanced font shaping are not fully supported, so check outlined text carefully.",
+        "Type > Publication typography coordinates panel labels, titles, annotations, and legend text. Review its proposed size and style changes before Apply. It does not certify a journal’s requirements or the readability of every imported label.",
+        "PDF imports can use editable text, font replacement, or outlines depending on the source. The document retains supported character styles, while PPTX may reduce mixed formatting. Review scientific notation and fonts in the final destination."
+      ],
+      "updated": "2026-10-11"
     },
     {
       "id": "appearance-stack",
-      "title": "Building an appearance stack",
-      "keywords": ["appearance", "fill", "stroke", "gradient", "gradient tool", "color stop", "midpoint", "radial", "eyedropper", "pattern", "blend", "effect", "shadow", "expand appearance", "paint order", "opacity", "svg"],
-      "summary": "Layer fills, strokes, gradients, patterns, blend modes, and bounded effects while keeping one editable vector path.",
+      "title": "Layering fills, strokes, and effects",
+      "keywords": [
+        "appearance",
+        "fill",
+        "stroke",
+        "gradient",
+        "gradient tool",
+        "color stop",
+        "midpoint",
+        "radial",
+        "eyedropper",
+        "pattern",
+        "blend",
+        "effect",
+        "shadow",
+        "expand appearance",
+        "paint order",
+        "opacity",
+        "svg"
+      ],
+      "summary": "Apply several paints to one editable vector object.",
       "body": [
-        "Select an ordinary editable shape or path, then use Appearance in Properties or the Object menu. The top row is the frontmost item. Move rows forward or backward to control how paints and effects overlap.",
-        "Fill and stroke rows can use a solid color, linear gradient, radial gradient, or diagonal, crosshatch, and dot pattern. Gradient rows expose every color stop with location, opacity, and a midpoint for the segment that follows it. Add, remove, or reorder stops in Properties.",
-        "Press G or choose Edit on canvas to use the Gradient tool. Drag linear start/end geometry or radial center/radius geometry, drag interior color stops to reorder them along the axis, and drag the small midpoint diamonds to bias color interpolation. Double-click the gradient axis to add a stop; select an interior stop and press Delete to remove it.",
-        "Every item has its own visibility, opacity, and blend mode. Stroke rows also have an independent width. Offset Copy creates a live vector-representable duplicate; Soft Shadow adds a bounded blur and remains live.",
-        "Expand Appearance replaces eligible solid, gradient, and offset-copy stacks with grouped ordinary vector objects. Pattern tiles and soft shadows disable expansion because silently flattening them would not produce ordinary editable path geometry. Reduce to Base Appearance keeps the frontmost fill and stroke and removes the extra stack entries.",
-        "Figure Tool stores up to eight appearance items on one eligible vector and up to eight authored stops in one gradient. Eyedropper and Graphic Styles retain the full appearance. Save and reopen preserve the ordered items; SVG and PDF export retain supported gradients, blends, and soft blur.",
-        "This stack applies to ordinary editable vector shapes and paths. Lines, arrows, text, groups, protected source artwork, and native PDF objects keep their dedicated appearance workflows. Appearance changes do not rewrite arbitrary native PDF content."
-      ]
+        "Select an ordinary editable shape or path and open Appearance in Inspector, or use Object appearance commands in Advanced. The top appearance row is painted in front of lower rows.",
+        "Add fills or strokes using solid colors, gradients, or supported patterns. Each row has its own visibility, opacity, and blend mode; stroke rows also have a width. Offset Copy and Soft Shadow add supported effects.",
+        "Press G or choose Edit on canvas to edit a gradient. Drag its endpoints or center/radius and color stops. Double-click its axis to add a stop; select an interior stop and press Delete to remove it.",
+        "Expand Appearance turns eligible paint stacks into ordinary grouped artwork. Patterns or shadows can prevent expansion. Reduce to Base Appearance removes additional paints. Both operations should be reviewed visually.",
+        "Up to eight appearance items and eight authored gradient stops are supported. Text, groups, lines, protected imports, and native PDF objects use their own controls. Save and reopen retain supported appearance settings; export may differ for unsupported effects."
+      ],
+      "updated": "2026-10-11"
     },
     {
       "id": "graphic-styles",
       "title": "Reusing Graphic Styles",
-      "keywords": ["graphic style", "style library", "appearance", "replace", "merge", "my assets", "multiple selection", "thumbnail"],
-      "summary": "Save an editable vector appearance once, then apply or merge it across eligible figure objects.",
+      "keywords": [
+        "graphic style",
+        "style library",
+        "appearance",
+        "replace",
+        "merge",
+        "my assets",
+        "multiple selection",
+        "thumbnail"
+      ],
+      "summary": "Save an object’s appearance and apply it to other editable vectors.",
       "body": [
-        "Select one ordinary editable shape or path, open Appearance in Properties, name the style, and choose Save style. The style records the ordered fills, strokes, gradients, patterns, blend modes, and supported effects rather than a flattened preview.",
-        "Choose a thumbnail to replace the current appearance of every eligible selected vector. Choose the plus button or Merge to put the style paints in front of each object's current appearance. A merged stack keeps at most eight items, and Figure Tool reports any omitted back paints.",
-        "Manage document styles in My Assets. Built-in styles remain available, while saved styles can be renamed or deleted. Custom styles and the last-used style are preserved by Save Figure and Save Presentation and participate in undo history.",
-        "Graphic Styles apply only to ordinary editable vector shapes and paths. Locked, text, line, group, protected imported, and native PDF objects are skipped and counted. Applying a Graphic Style never rewrites a native PDF content stream and does not claim Illustrator/PDF native equivalence."
-      ]
+        "Select an ordinary editable shape or path. Open Object > Graphic Styles or My Assets, enter a style name, and choose Save selection. Appearance also offers Save style for an eligible selected vector.",
+        "Choose a style thumbnail to replace the appearance of eligible selected vectors. Merge or the plus control adds its paints in front of existing paints. At most eight appearance items are retained; omitted items are reported.",
+        "Rename or delete custom styles in My Assets. Built-in styles remain available. Saved document files retain custom styles, and style changes can be undone.",
+        "Locked objects, text, lines, groups, and protected imports are not eligible for these vector styles. Use their dedicated text, line, or asset controls instead. Applying a style does not rewrite the original PDF."
+      ],
+      "updated": "2026-10-11"
     },
     {
       "id": "swatches-recolor",
-      "title": "Using swatches and Recolor Selection",
-      "keywords": ["swatch", "global color", "process color", "color group", "recolor", "select same", "palette", "gradient stop", "arrowhead"],
-      "summary": "Build document color groups, link artwork to global colors, and preview coordinated color changes before committing them.",
+      "title": "Saving colors and recoloring artwork",
+      "keywords": [
+        "swatch",
+        "global color",
+        "process color",
+        "color group",
+        "recolor",
+        "select same",
+        "palette",
+        "gradient stop",
+        "arrowhead",
+        "Saved colors"
+      ],
+      "summary": "Reuse document colors and preview coordinated changes.",
       "body": [
-        "Open Swatches from the Object menu or the Inspector tab. A swatch can be applied to fills, strokes, live text, either arrowhead, or the selected stop in an ordinary editable gradient.",
-        "Global colors stay linked to the artwork that uses them. Editing a Global swatch updates linked objects, gradient stops, patterns, and saved Graphic Styles. Process colors apply the current value without keeping a live link.",
-        "Use Select > Same Fill Color, Same Stroke Color, or Same Global Swatch to find matching artwork. Select an editable SVG group and choose Collect to add its unique colors to a Collected color group.",
-        "Recolor Selection creates a live preview for ordinary editable artwork. Map source colors to custom values or document swatches, preserve neutrals when appropriate, then Apply colors or Cancel to restore the exact starting appearance.",
-        "Saved Figure and Presentation documents retain the swatch library. SVG export retains supported document colors, while PDF export uses the resolved vector colors. Protected PDF artwork remains unchanged unless it has first become ordinary editable vectors."
-      ]
+        "Open Inspector > Saved colors, or Object > Saved colors in Advanced. Add a named color, then apply it to eligible fills, strokes, text, markers, or a selected gradient stop.",
+        "A Global color keeps a link to the artwork that uses it: editing the color updates its linked uses. A Process color applies its current value without that continuing link.",
+        "Select > Same Fill Color, Same Stroke Color, and Same Global Swatch find related artwork. Collect adds colors from an eligible selected group to the document color library.",
+        "Choose Recolor Selection to map existing colors to new values or saved colors. Review the live preview, then Apply colors; Cancel restores the starting appearance.",
+        "Colors are saved in .fsfigure and .fsdeck files. Protected PDF artwork is not recolored by ordinary swatch controls. Add labels, patterns, or line styles when color alone would make a scientific comparison unclear."
+      ],
+      "updated": "2026-10-11"
     },
     {
       "id": "vector-patterns",
-      "title": "Creating editable vector patterns",
-      "keywords": ["pattern", "vector tile", "tile bounds", "spacing", "pattern edit", "swatches", "graphic style", "svg", "pdf"],
-      "summary": "Create a named repeating tile from ordinary vectors, tune its bounds and spacing, and reuse it as a live Appearance fill.",
+      "title": "Creating vector patterns",
+      "keywords": [
+        "pattern",
+        "vector tile",
+        "tile bounds",
+        "spacing",
+        "pattern edit",
+        "swatches",
+        "graphic style",
+        "svg",
+        "pdf"
+      ],
+      "summary": "Create a repeating tile from editable artwork and use it as a fill.",
       "body": [
-        "Select one to eight ordinary editable vector shapes or paths, open Swatches, and choose Create in the Patterns section. Figure Tool keeps the selected source artwork on the canvas and adds a named vector tile to the document library.",
-        "Select an ordinary editable target and choose the pattern thumbnail to apply it. A named pattern remains linked across Appearance fills and saved Graphic Styles. Rename or delete it in Swatches; deleting a library entry leaves existing artwork with an unlinked copy of its current tile.",
-        "Choose Edit beside a named pattern in Appearance, or use Object > Edit Pattern Tile. Pattern Edit shows small handles for the tile origin, tile bounds, horizontal spacing, and vertical spacing. The visible markers stay small while their pointer targets remain larger. Use Commit or Enter to keep the edit, and Cancel or Escape to restore the starting tile across linked uses.",
-        "Saved Figure and Presentation documents preserve the named vector library. SVG export writes a reusable vector pattern resource, and PDF export uses that vector output. Opening an exported SVG or PDF does not reconstruct the named Figure Tool pattern library; imported artwork follows the normal editable-vector or protected-source path.",
-        "Pattern authoring is limited to ordinary editable vectors and bounded tile markup. It does not write native PDF Pattern resources, gradient meshes, ICC or spot-color resources, or claim full Illustrator/PDF equivalence."
-      ]
+        "Select one to eight ordinary editable shapes or paths. Open Saved colors and choose Create in Patterns, or Object > Make Pattern from Selection in Advanced. The original artwork stays on the canvas.",
+        "Choose the pattern thumbnail for an eligible target. Named patterns can be reused in Appearance and Graphic Styles. Rename or delete them in Saved colors; deleting a library entry leaves current artwork with its existing unlinked tile.",
+        "Use Object > Edit Pattern Tile or Edit beside the pattern in Appearance. Adjust its origin, bounds, and spacing. Commit or Enter keeps the changes; Cancel or Escape restores the starting tile.",
+        "Document files retain the editable pattern library. SVG and PDF export supported vector appearance, but opening an exported file does not recreate the named library. Protected PDF patterns and gradient meshes are not freely rewritten by this tool."
+      ],
+      "updated": "2026-10-11"
     },
     {
       "id": "stroke-brushes",
-      "title": "Brushes and variable-width strokes",
-      "keywords": ["brush", "art brush", "scientific motif", "membrane", "nucleic acid", "actin", "microtubule", "selected artwork", "width tool", "variable width", "stroke profile", "taper", "marker", "stretch guides", "colorization", "shift w", "graphic style"],
-      "summary": "Apply reusable width, calligraphic, vector-art, or scientific motif brushes to an open or closed path.",
+      "title": "Using brushes and variable-width strokes",
+      "keywords": [
+        "brush",
+        "art brush",
+        "scientific motif",
+        "membrane",
+        "nucleic acid",
+        "actin",
+        "microtubule",
+        "selected artwork",
+        "width tool",
+        "variable width",
+        "stroke profile",
+        "taper",
+        "marker",
+        "stretch guides",
+        "colorization",
+        "shift w",
+        "graphic style"
+      ],
+      "summary": "Apply width profiles, calligraphic strokes, or repeated vector artwork to a path.",
       "body": [
-        "Select an editable single-subpath vector path, line, or arrow and open Appearance in Properties. The Brushes section provides compact previews for built-in and document brushes. Applying a brush sets the base stroke width, cap, join, and width profile.",
-        "Choose Width Tool or press Shift+W. Each width point has a round left-side handle and a diamond right-side handle. Turn Link sides off to edit either side independently; leave it on for symmetric edits. Small visible handles retain larger pointer targets. Click the path to add a point, use the arrow keys to nudge the selected side, and press Delete to remove an interior point. Closed paths use one cyclic seam point. Enter commits; Escape restores the starting profile.",
-        "Choose Brush Options from Appearance, the Object menu, a path context menu, or the Width Tool strip. Width Profile keeps the current per-side shape. Calligraphic provides a fixed nib angle and roundness. Art Brush provides reusable ribbon presets or selected vector artwork. New Art Brush from Selection captures up to eight ordinary vector objects or nested groups, with up to 24 visible vector children, while leaving the source artwork and grouping unchanged on the artboard.",
-        "Selected-art options control direction, mirroring along or across the path, fit or stretch-between-guides behavior, corner overlap adjustment, and tint, tints-and-shades, or preserved source colors. The brush source is stored as bounded vector paths, and the same warped vector pieces are used for canvas display and export.",
-        "Scientific Motif artwork repeats an original first-party vector motif along the same editable path model. Built-in motifs cover phospholipid mono- and bilayers, double- and single-stranded nucleic acid, a vessel or tubule wall, actin, and microtubules. Brush Options keeps spacing, scale, path direction, side, orientation, and motif-specific color roles explicit. The selected motif's intended scientific limits remain visible in the editor and stored with the live object.",
-        "Choose Expand Art Brush to Paths from Properties, Object, or the path context menu when you need ordinary editable geometry. Expansion replaces the live brush path with a grouped set of normal vector paths at the same layer position. Enter Isolation Mode or ungroup the result to edit individual anchors. The expanded paths no longer depend on the brush definition.",
-        "Graphic Styles retain supported width profiles. Saved documents and undo history retain brushes, brush options, expanded groups, motif source and rights records, and per-object left and right widths. SVG export compiles live strokes and motifs into vector geometry; expanded brushes export as ordinary paths, and PDF export uses the same geometry.",
-        "Scientific Motif editing recommends source paths no longer than 4,800 pt, with no more than 240 motif placements or 960 generated vector paths. Live rendering is bounded at 512 motifs and 2,400 paths. When a dense or long brush exceeds a recommendation or reaches a cap, Figure Tool reports the requested and rendered counts and suggests increasing spacing or shortening the path instead of silently rasterizing the brush.",
-        "This release supports solid strokes on ordinary editable single-subpath vectors. Grouped selected-art sources may contain ordinary paths and basic shapes; convert text to outlines and expand gradients, patterns, live effects, masks, blends, dashed or variable strokes first. Raster images and protected PDF objects are rejected instead of being silently rasterized. Arrowheads must be removed or separately expanded before expanding an Art Brush. Scatter, bristle, pressure or stylus variation, compound-subpath offset cleanup, and robust cleanup of self-intersecting warped geometry remain outside this brush engine.",
-        "Scientific motifs are schematic composition aids, not molecular, compositional, directional, compartment, interaction, or scale evidence. Brush editing does not mutate an attached PDF content stream or claim native Illustrator/PDF brush equivalence. Protected and native PDF objects must first become ordinary editable vectors before Figure Tool brush controls apply."
-      ]
+        "Select an ordinary editable single-subpath path, line, or arrow. In Advanced, use Appearance or Object > Brush Options to choose a width profile, calligraphic brush, art brush, or scientific motif. Review the live preview before Apply.",
+        "Use Width Tool or Shift+W to adjust a stroke at individual points. Link sides keeps symmetric width; turn it off to adjust each side separately. Click to add a width point, nudge with arrow keys, or Delete an eligible interior point. Enter commits and Escape cancels the edit.",
+        "New Art Brush from Selection captures eligible vector artwork without removing it from the canvas. Options control direction, mirroring, stretch, and coloring. Text, raster images, protected PDF objects, and unsupported effects need a different approach or explicit conversion first.",
+        "Scientific motifs include schematic membranes, nucleic acids, vessels, actin, and microtubules. Adjust spacing, scale, direction, side, and colors. These drawings communicate a schematic idea; they do not establish molecular scale, composition, or interaction evidence.",
+        "Expand Art Brush to Paths replaces a live brush with grouped editable vector pieces. Ungroup or enter Isolation Mode to edit individual points. The expanded artwork no longer follows the live brush definition.",
+        "Dense motifs and self-intersecting curves can affect responsiveness or appearance. The editor reports count limits; increase spacing or shorten the path. Save retains supported brush settings, while SVG and PDF use the visible vector geometry. Pressure-sensitive, scatter, and bristle brushes are not provided."
+      ],
+      "updated": "2026-10-11"
     },
     {
       "id": "clips-masks",
-      "title": "Using clips and masks",
-      "keywords": ["clip", "clip path", "mask", "opacity mask", "compound path", "invert", "protected source", "release"],
-      "summary": "Author editable clipping masks and compound paths while preserving unsupported imported compositing.",
+      "title": "Clipping artwork and making compound paths",
+      "keywords": [
+        "clip",
+        "clip path",
+        "mask",
+        "opacity mask",
+        "compound path",
+        "invert",
+        "protected source",
+        "release"
+      ],
+      "summary": "Keep artwork inside an editable clipping boundary or combine path subparts.",
       "body": [
-        "For ordinary editable vectors, place the intended clipping path above the content, select them together, then choose Object > Make Clipping Mask or press Ctrl+7. Layers shows the clipping path separately from the clipped contents. Use Edit Clipping Path for Direct Selection, Edit Clipped Contents for isolation mode, and Release Clipping Mask to return every item to the canvas.",
-        "Select two or more editable paths and choose Object > Make Compound Path or press Ctrl+8. The resulting path uses an even-odd fill rule, exposes all subpath anchors to Direct Selection, and can be separated again with Release Compound Path.",
-        "Figure Tool detects clip paths and masks in supported SVG and PDF artwork when those relationships can be represented safely. Direct Selection identifies the clipping path, masked content, and protected imported structures.",
-        "Safe actions include selecting represented structures, hiding or locking protected bounds, and releasing imported structures when a normal editable form is available.",
-        "The original PDF or SVG appearance remains authoritative for unsupported compositing. Figure Tool does not claim arbitrary editing of every native mask or effect graph."
-      ]
+        "Place an ordinary editable clipping path above the content and select them together. Choose Object > Make Clipping Mask or Ctrl+7. Layers shows the clipping path and clipped contents separately.",
+        "Use Edit Clipping Path for its anchors, Edit Clipped Contents to enter the contents, or Release Clipping Mask to return the items to the canvas.",
+        "Select eligible paths and choose Object > Make Compound Path or Ctrl+8. Its subpaths share one object and an even-odd fill; Direct Selection can edit their anchors. Release Compound Path separates them.",
+        "Imported clips and masks are editable only when they can be represented safely. Unsupported source appearance stays protected. These controls do not provide unrestricted editing of every PDF mask or compositing effect."
+      ],
+      "updated": "2026-10-11"
     },
     {
       "id": "biological-assets",
-      "title": "Using assets, scenes and templates",
-      "keywords": ["asset", "biology", "cell", "pathway", "scientific asset", "scene", "template", "CRISPR", "flow cytometry"],
-      "summary": "Find scientific assets, insert an editable scene, or create a new figure from a layout template.",
+      "title": "Using assets, scenes, and templates",
+      "keywords": [
+        "asset",
+        "biology",
+        "cell",
+        "pathway",
+        "scientific asset",
+        "scene",
+        "template",
+        "CRISPR",
+        "flow cytometry"
+      ],
+      "summary": "Find scientific symbols or insert an editable diagram.",
       "body": [
-        "Library opens with Assets first, followed by Scenes and Templates. Search stays at the top and applies to the selected view. Assets provides individual scientific symbols; Scenes provides complete editable diagrams with previews and short scientific summaries.",
-        "Choose Templates to create a new Figure from a layout. Earlier figures stay open in their own tabs.",
-        "Use as new figure opens the complete scene on a new Figure canvas. Insert in this figure adds it to the current Figure; Insert on this slide adds editable artwork without changing the Presentation or creating another slide.",
-        "Scene labels are placeholders you can edit directly. Scientific assets, relationships, and labels remain separate on named layers, so you can move a module, reconnect a relationship, or remove an unneeded branch without rebuilding the scene.",
-        "Use Assets to search names, tags, and common scientific synonyms. Favorites and Recent keep frequently used concepts close at hand in both Figure and Presentation documents.",
-        "Select a scientific asset to recolor its named parts. When a concept offers another drawing, switch its style or use Replace; its position, size, scene layer, and attached relationships are preserved.",
-        "Scientific assets remain editable vector groups after insertion. Release editable paths only when you need detailed geometry changes, because the released paths no longer behave as one library asset."
-      ]
+        "Open Library and choose Assets, Scenes, or Templates. Search and filters apply to the selected view. Assets contains individual symbols; Scenes contains editable diagrams; Templates provides new Figure layouts.",
+        "Use Favorites and Recent to find frequently used drawings. Related searches offers names from the matching catalog and keeps your current filters. Clear search removes only the query, keeping those filters.",
+        "Choose Preview on a drawing to inspect a larger image, alternate forms or views, scientific limitations, and editable parts. Close or Escape returns to the Library without inserting or changing artwork.",
+        "Style and Palette choices in the Library affect the next insertion or replacement. The preview states those choices; it does not recolor artwork already on the canvas.",
+        "Select one inserted drawing to use Replace selected or Replace all same in Style or the detailed Inspector. In Presentation, open Format for these controls. The actions count the unlocked matching copies in this figure or slide; locked copies are kept. Each replacement keeps its size and position, and Undo restores the previous artwork in one step.",
+        "Part colors names the biological regions available in the selected drawing. Change a region color or reset it without changing the other parts. These controls affect the selected drawing; the Library Palette affects the next insertion.",
+        "For a scene, Use as new figure creates a new document. Insert in this figure or Insert on this slide adds it to the current canvas. Its labels, symbols, and relationships remain separately editable on named layers.",
+        "Edit placeholder labels to match your experiment or biological system. Check each arrow’s meaning and remove irrelevant branches. A reusable diagram is a starting point, not evidence for a particular biological claim.",
+        "Release editable paths only when you need detailed geometry changes; released paths stop behaving as one library asset. Original bundled artwork is offered for unrestricted reuse under CC0; imported third-party artwork retains its own permissions. Document setup > Sources & reuse records available source and rights information."
+      ],
+      "updated": "2026-10-15"
     },
     {
       "id": "results-to-deck",
-      "title": "Results panels, images, and small tables",
-      "keywords": ["result", "bioplot", "linked panel", "crop", "table", "refresh", "detach"],
-      "summary": "Place result panels, frame images in Figures or Presentations without changing their source pixels, and add small publication tables.",
+      "title": "Placing result panels, images, and tables",
+      "keywords": [
+        "result",
+        "bioplot",
+        "linked panel",
+        "crop",
+        "table",
+        "refresh",
+        "detach"
+      ],
+      "summary": "Arrange imported results while keeping their underlying image or artwork available.",
       "body": [
-        "Import a result SVG, image, or PDF as artwork, then use Link Selected Panel when you want its source relationship recorded under Source & notes. Updating a linked panel is explicit. If a source is unavailable, the panel reports that state instead of silently replacing local work.",
-        "Image Frame is a shared Figure and Presentation capability. Select an eligible embedded image on a Figure canvas or Presentation slide to use Fit, Fill, the nine-position focal control, or Reset. The frame keeps its visible bounds while the image is fitted or cropped, and stores those choices with that document so the source pixels remain available after save and reopen.",
-        "Figure-only precision arrangement controls, including exact gaps and repeated transforms, do not appear in Presentation. Image Frame appears contextually in either workspace only for an eligible selected image. Locked artwork must be unlocked, and protected or source-backed artwork must be released before reframing.",
-        "File > Import CSV/TSV Table creates a small, bounded publication table card. It is intended for concise result tables, not spreadsheet calculation or bulk data editing."
-      ]
+        "Import a result SVG, image, or PDF into the current Figure or slide. Source & notes records available source information. In Advanced, Object > Link Selected Panel marks eligible imported artwork for explicit refresh. It does not watch your local file or analysis for automatic changes; a Superbench-hosted result can have additional source information.",
+        "Select an eligible image to use Image Frame controls. Fit shows the whole image, Fill crops within the frame, the focal control changes its position, and Reset removes frame adjustments. The source pixels remain available in the document.",
+        "Locked or protected artwork must become eligible before it can be reframed. Resizing an image does not increase its underlying resolution; inspect it at the final output size.",
+        "File > Import CSV/TSV Table creates a small publication table from a local file. It is intended for concise values and labels; it is not a spreadsheet calculator or bulk data editor."
+      ],
+      "updated": "2026-10-11"
     },
     {
       "id": "scientific-components",
-      "title": "Reusing scientific components",
-      "keywords": ["component", "symbol", "instance", "master", "variant", "override", "my assets", "detach"],
-      "summary": "Save an authored scientific module once, insert linked instances, and vary bounded biological labels or appearance without losing master geometry updates.",
+      "title": "Reusing a group of artwork",
+      "keywords": [
+        "component",
+        "symbol",
+        "instance",
+        "master",
+        "variant",
+        "override",
+        "my assets",
+        "detach"
+      ],
+      "summary": "Save an authored group and reuse linked copies of it.",
       "body": [
-        "Group an ordinary authored scientific module, open My Assets, name it under Scientific components, and choose Save group. The library keeps a thumbnail, stable internal part identities, and a revisioned editable master. Insert places the next instance beside existing copies so receptor, organelle, pathway, or assay modules can be compared without an overlapping stack.",
-        "Select an instance and open Instance overrides in the inspector. Text, simple fill and stroke colors, visibility, and opacity can vary by named part. Those bounded overrides remain local when Update master sends geometry changes to every linked instance. Reset restores one part or the entire instance; Detach converts the instance into an intentional local copy.",
-        "Rename or delete masters in My Assets. Deleting a master detaches existing instances rather than removing artwork. Duplicate, group, undo, redo, save/reopen, and SVG, PNG, and PDF rendering preserve component artwork and supported overrides.",
-        "Results-linked panels, protected imported artwork, native PDF content, locked descendants, and nested components cannot become a component master. Release or redraw protected artwork explicitly first. Component overrides are intentionally bounded and do not claim full Illustrator symbol-property equivalence."
-      ]
+        "Group ordinary authored artwork, open My Assets, enter a name under Scientific components, and choose Save group. Insert places another linked copy on the canvas.",
+        "Select an instance and open Instance overrides to change supported named-part text, colors, visibility, or opacity. Update master sends geometry changes to linked instances while keeping supported local overrides.",
+        "Reset removes a part’s override or all instance overrides. Detach makes an independent local copy. Rename or delete masters in My Assets; deleting a master detaches its existing instances rather than deleting their artwork.",
+        "Linked analysis panels, protected imports, native PDF content, locked descendants, and nested components cannot become masters. Use an ordinary editable group. Save and reopen retain supported component links and overrides."
+      ],
+      "updated": "2026-10-11"
     },
     {
       "id": "save-save-as",
-      "title": "Saving the active document with Save and Save As",
-      "keywords": ["save", "save as", "native dialog", "file path", "overwrite", "active tab", "filename", "dirty marker", "browser download", "destination"],
-      "summary": "Save the active Figure or Presentation in its own current format, or explicitly save all open tabs together as a Figure Tool Project.",
+      "title": "Saving and downloading an editable file",
+      "keywords": [
+        "save",
+        "save as",
+        "native dialog",
+        "file path",
+        "overwrite",
+        "active tab",
+        "filename",
+        "dirty marker",
+        "browser download",
+        "destination",
+        "Browser files",
+        "Saved work",
+        "Download file",
+        "Open file",
+        "autosave",
+        "backup"
+      ],
+      "summary": "Keep one document as .fsfigure or .fsdeck, or all open documents as .fsproject.",
       "body": [
-        "Save and Save As apply only to the active tab: an individual Figure uses .fsfigure and an individual Presentation uses .fsdeck. They never silently modify another tab or the other workspace.",
-        "In the desktop app, Save on an untitled document opens the native Windows file dialog. Choose a filename and location. After a successful write, the tab and window title show that filename and the document's dirty marker clears.",
-        "In the desktop app, later Save writes the active document to its established path without asking for another name. Save As opens the native dialog and, after success, makes the chosen filename and path the active tab's new save target.",
-        "The confirmation uses ordinary language and identifies exactly what was saved and where—for example, Saved “Mechanism figure.fsfigure” in “C:\\Research\\Figures”. If writing fails, the document stays dirty and Figure Tool does not claim that it was saved.",
-        "In a browser, Figure Tool downloads a named .fsfigure or .fsdeck file. The browser controls its destination. The confirmation identifies the filename; later Save downloads another copy.",
-        "Save Project and Save Project As are separate commands for preserving all open Figure and Presentation tabs in one .fsproject file. Saving an individual tab does not silently update a project file, and saving a project does not change the individual tab's Save target.",
-        "Legacy .figurestudio and .figure-studio.json files are import-only. After reviewing an imported legacy document, use Save As to create a current .fsfigure or .fsdeck file. Export As creates delivery files such as SVG, PDF, PNG, TIFF, JPEG, or PPTX and does not establish a document Save target."
+        "Save and Save As apply to the active document. A Figure uses .fsfigure and a Presentation uses .fsdeck. Save Project preserves all open Figure and Presentation tabs together in an .fsproject file.",
+        "In the web app, Browser files > Download file downloads the active document. File > Save and Save As also download an editable file; the browser chooses its destination. This is separate from automatic browser storage.",
+        "Browser files > Saved work lists locally stored workspaces. Download project on a list entry preserves its open documents as .fsproject. Use Open file to reopen a downloaded document or project.",
+        "In the desktop app, Save on an untitled document opens a Windows save dialog. Later Save writes to its chosen path; Save As chooses a new name or location. A failed write does not clear the unsaved-change marker.",
+        "Legacy .figurestudio and .figure-studio.json files are accepted for import. Save them in a current format after reviewing their content. Export creates delivery files such as PNG, SVG, PDF, or PPTX; it does not replace your editable document."
+      ],
+      "updated": "2026-10-11",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Save and Save As apply to the active document. A Figure uses .fsfigure and a Presentation uses .fsdeck. Save Project preserves all open Figure and Presentation tabs together in an .fsproject file."
+        },
+        {
+          "type": "paragraph",
+          "text": "In the web app, Browser files > Download file downloads the active document. File > Save and Save As also download an editable file; the browser chooses its destination. This is separate from automatic browser storage."
+        },
+        {
+          "type": "image",
+          "alt": "Browser files menu with Saved work, Open file, Download file, and on-device save information.",
+          "caption": "Browser saves stay on this device. Download file makes a portable copy; Saved work shows documents stored in this browser.",
+          "src": "media/browser-files.png"
+        },
+        {
+          "type": "paragraph",
+          "text": "Browser files > Saved work lists locally stored workspaces. Download project on a list entry preserves its open documents as .fsproject. Use Open file to reopen a downloaded document or project."
+        },
+        {
+          "type": "paragraph",
+          "text": "In the desktop app, Save on an untitled document opens a Windows save dialog. Later Save writes to its chosen path; Save As chooses a new name or location. A failed write does not clear the unsaved-change marker."
+        },
+        {
+          "type": "paragraph",
+          "text": "Legacy .figurestudio and .figure-studio.json files are accepted for import. Save them in a current format after reviewing their content. Export creates delivery files such as PNG, SVG, PDF, or PPTX; it does not replace your editable document."
+        }
       ]
     },
     {
       "id": "saving-recovery",
-      "title": "Saving, reopening, and recovering work",
-      "keywords": ["save figure", "save presentation", "save as", "open", "reopen", "recovery", "unsaved", "missing asset", "legacy"],
-      "summary": "Reopen individual Figure and Presentation files or restore an explicitly saved multi-document project, with clear legacy-import and unsaved-work safeguards.",
+      "title": "Browser saves, reopening, and recovery",
+      "keywords": [
+        "save figure",
+        "save presentation",
+        "save as",
+        "open",
+        "reopen",
+        "recovery",
+        "unsaved",
+        "missing asset",
+        "legacy",
+        "Browser files",
+        "Saved work",
+        "Download file",
+        "Open file",
+        "autosave",
+        "backup"
+      ],
+      "summary": "Use local autosave and downloaded backups for different purposes.",
       "body": [
-        "Use Save for the active Figure or Presentation. In the desktop app, an untitled tab opens Save As; a named tab writes to its existing path. Save As asks for a name and location and assigns that target to the active tab. In a browser, Save downloads a named file and the browser controls its destination.",
-        "Current files make their scope explicit: .fsfigure contains one Figure, .fsdeck contains one Presentation, and .fsproject contains the open Figure and Presentation workspace. Legacy .figurestudio and .figure-studio.json files open only for import; review the mode and content, then use Save As to create a current-format copy.",
-        "New Figure, New Presentation, Open Figure, and Open Presentation add tabs. Open Project replaces the open Figure and Presentation workspace. Save each document or use Save Project before replacing the workspace or closing Figure Tool. Cancel a tab's close confirmation to keep editing or save first. Import places supported artwork into the current document.",
-        "Embedded images and released scientific assets reopen without their original repository paths. Linked artwork that cannot be found appears as a labeled missing item with its last saved placement and Source & notes information.",
-        "If Figure Tool offers a recovery copy after an interruption, open it as a separate tab, review the document kind and content, then use Save As. Recovery is a safety copy, not a promise that every unsaved change survives, and not a substitute for deliberate saved versions and ordinary backups."
-      ]
+        "The web app automatically saves edits in this browser when storage is available. Browser files shows save status. Saved work lists locally stored workspaces with Resume, Rename, Download project, and Remove.",
+        "Earlier saves retains two previous snapshots. Recovering one opens a separate copy rather than overwriting the current saved work. If a save fails, keep the editor open, download a file, and use Retry. For competing-tab conflicts, save a separate copy or review which version you want to keep.",
+        "Browser copies stay on this device and browser profile. They do not sync to another computer or cloud account. Clearing site data removes them, and private browsing is not lasting storage. Download backups of important work.",
+        "Use Open file for .fsfigure, .fsdeck, or .fsproject. Individual files open as document tabs; a project restores its open workspace. Opening a project can replace current tabs, so preserve current work first.",
+        "Embedded images and bundled assets reopen without their original local folder. Missing linked artwork needs an available source or replacement; check Source & notes before changing it. Portable files retain artwork and settings, but not live Undo history.",
+        "On desktop, save to deliberate document files and keep ordinary backups. If a recovery copy is offered after an interruption, review it and use Save As. Recovery cannot guarantee every unsaved edit."
+      ],
+      "updated": "2026-10-11"
     },
     {
       "id": "figure-export-options",
-      "title": "Exporting a Figure with format and resolution controls",
-      "keywords": ["export as", "figure", "svg", "pdf", "png", "jpeg", "jpg", "tiff", "dpi", "dimensions", "background", "transparency", "artboard scope"],
-      "summary": "Export the active Figure as vector or raster output with controls that match the selected format and intended delivery size.",
+      "title": "Exporting a Figure",
+      "keywords": [
+        "export as",
+        "figure",
+        "svg",
+        "pdf",
+        "png",
+        "jpeg",
+        "jpg",
+        "tiff",
+        "dpi",
+        "dimensions",
+        "background",
+        "transparency",
+        "artboard scope",
+        "export warnings",
+        "optional export check"
+      ],
+      "summary": "Choose a delivery format, final dimensions, and background.",
       "body": [
-        "Choose Export As while the intended Figure tab is active. The dialog names that document and offers Figure formats only. Export does not act on other Figure tabs or on any Presentation.",
-        "SVG and PDF are vector outputs and do not expose DPI controls. Use SVG when supported editable paths are useful downstream, or PDF for a portable publication page. Review fonts, clipping, masks, gradients, and imported content in the destination viewer.",
-        "PNG, JPEG, and TIFF are raster outputs. Choose a useful 96, 150, 300, or 600 DPI preset, an equivalent scale, or explicit pixel dimensions. The dialog shows the resulting dimensions so physical size and resolution are not confused with canvas zoom.",
-        "Choose transparent or solid background only when the selected format supports it. JPEG is opaque. PNG and TIFF can preserve transparency where the current renderer and destination format support it; always inspect edge antialiasing over the intended final background.",
-        "For documents with applicable artboard scope, choose Current artboard or All artboards. A multi-artboard raster export uses a coherent multi-file destination or package and names outputs predictably instead of silently overwriting them.",
-        "Run Figure check before final export. After completion, the status message identifies the Figure filename or untitled name, selected format, scope when relevant, and real destination path. Browser fallback identifies only the downloaded filename."
-      ]
+        "Activate the intended Figure tab and choose Export. The dialog names the document and shows a preview. Select the required artboard scope where more than one is available.",
+        "SVG and PDF preserve supported vector artwork and do not use DPI settings. Imported image content remains raster. PDF is useful for a publication page; SVG is useful when another application can edit the supported vectors.",
+        "PNG, JPEG, and TIFF create raster output. Choose a DPI preset, scale, or explicit pixel dimensions. Output size depends on these settings and page dimensions, not the canvas zoom.",
+        "Choose a transparent or solid background where supported. JPEG is always opaque. Check image edges and antialiasing against the intended final background.",
+        "Export warnings identifies supported problems such as small or overset text, low-resolution images, missing artwork, or content outside the page. Click an artwork warning to locate it. Optional export check provides additional information; it does not replace visual review or assess scientific conclusions.",
+        "Open the exported file and inspect it at its intended final size. Keep the .fsfigure source. Browser exports download files; desktop exports use the destination offered by the installed app."
+      ],
+      "updated": "2026-10-11"
     },
     {
       "id": "presentation-export-options",
-      "title": "Exporting a Presentation and its slides",
-      "keywords": ["export as", "presentation", "pptx", "pdf", "png", "jpeg", "tiff", "current slide", "all slides", "resolution", "multi-file", "destination"],
-      "summary": "Export the active deck as PPTX or PDF, or render the current slide or all slides as consistently named raster files.",
+      "title": "Exporting a Presentation",
+      "keywords": [
+        "export as",
+        "presentation",
+        "pptx",
+        "pdf",
+        "png",
+        "jpeg",
+        "tiff",
+        "current slide",
+        "all slides",
+        "resolution",
+        "multi-file",
+        "destination"
+      ],
+      "summary": "Create a PDF, PowerPoint file, or images of selected slides.",
       "body": [
-        "Choose Export As while the intended Presentation tab is active. The dialog names that deck and offers Presentation formats only. Figure documents and other Presentation tabs remain untouched.",
-        "Export PDF creates one page per slide in navigator order. PDF is the dependable visual share; review every page for clipping, font substitution, and unintended off-slide artwork.",
-        "Export PPTX uses the documented v1 interchange subset. Read the supported, approximated, and unsupported summary before export, review every warning, and inspect the exported file in PowerPoint or another PPTX consumer. Universal round-trip fidelity is not claimed.",
-        "For PNG, JPEG, or TIFF, choose Current slide or All slides and set a useful resolution or explicit dimensions. Current slide produces one file. All slides uses a selected folder or package choice and predictable slide-numbered filenames without overwriting unrelated files.",
-        "Raster background and transparency follow format support: JPEG is opaque, while PNG or TIFF can offer transparency where supported. The same dimensions and background choices apply consistently to every slide in an All slides export.",
-        "After completion, the status message identifies the Presentation, selected format, current or all slide scope, and destination. Browser fallback reports explicit downloaded filenames but does not claim to know the browser's destination folder."
-      ]
+        "Activate the intended Presentation and choose Export. The dialog names that deck. Use Current slide or All slides where the selected format provides that choice.",
+        "PDF creates pages in slide order. Check every page for missing content, font changes, and cropping. PPTX retains common editable objects but can flatten or skip complex artwork with warnings; read the PowerPoint compatibility topic.",
+        "PNG, JPEG, and TIFF provide resolution or pixel-dimension controls. Current slide produces one image; All slides produces consistently numbered outputs using the available folder or package option.",
+        "Background choices depend on the format. JPEG is opaque. Notes are saved in .fsdeck and supported PPTX notes, rather than painted into ordinary slide images or PDF pages.",
+        "Review warnings and open the final output in its intended viewer. Keep the editable .fsdeck source. A browser reports downloaded filenames but cannot know their final folder."
+      ],
+      "updated": "2026-10-11"
     },
     {
       "id": "export-packages",
-      "title": "Exporting PNG, SVG, PDF, and PPTX",
-      "keywords": ["export", "svg", "pdf", "png", "pptx", "powerpoint", "all slides", "figure check", "resolution"],
-      "summary": "Choose an output for publication, sharing, or bounded editable deck interchange.",
+      "title": "Choosing a save or export format",
+      "keywords": [
+        "export",
+        "svg",
+        "pdf",
+        "png",
+        "pptx",
+        "powerpoint",
+        "all slides",
+        "figure check",
+        "resolution"
+      ],
+      "summary": "Keep editable sources and select a separate output for sharing.",
       "body": [
-        "For a Figure, Export As offers SVG and PDF vector output plus PNG, JPEG, and TIFF raster output. Raster formats offer useful resolution presets or explicit dimensions and format-appropriate background controls; vector formats do not show meaningless DPI controls.",
-        "For a Presentation, export PDF or bounded PPTX, or render the current slide or all slides as PNG, JPEG, or TIFF with consistent resolution settings and coherent multi-file naming.",
-        "Export PPTX when collaborators need common editable slide content. The bounded PPTX v1 subset covers ordinary text, basic shapes, lines and connectors, embedded PNG/JPEG/SVG images, one uniform slide size, slide order, and plain speaker notes. Read PowerPoint and Google Slides compatibility before relying on interchange.",
-        "Run Figure check before export. Address missing artwork, overset text, low-resolution images, unsupported effects, or off-canvas content, then open the exported file in its destination application for a final visual review.",
-        "Saving a Figure Tool document and exporting an output are different actions. Save and Export target only the active tab. Keep the editable Figure or Presentation document even when PDF, SVG, PNG, JPEG, TIFF, or PPTX is the file you deliver."
-      ]
+        "Use .fsfigure for one editable Figure, .fsdeck for one editable Presentation, and .fsproject for an open collection of both. Save these files even when another format is the deliverable.",
+        "SVG and PDF retain supported vector appearance. PNG, JPEG, and TIFF render pixels at your chosen dimensions. Neither a vector file extension nor high DPI restores detail missing from a source image.",
+        "PPTX is for supported editable slide content. Complex artwork may be embedded as an image or omitted with a warning. Review the result in PowerPoint or another receiving application.",
+        "Export previews and warnings help find output issues. Optional export check gives more detail when needed; it does not certify a figure or replace final-size visual review. Sources & reuse in Document setup helps inspect recorded artwork and permissions."
+      ],
+      "updated": "2026-10-11"
     },
     {
       "id": "help-navigation",
-      "title": "Finding help and resuming guided tutorials",
-      "keywords": ["help center", "search", "table of contents", "back", "forward", "deep link", "related topics", "learn", "tutorial", "progress", "resume", "restart"],
-      "summary": "Use the hierarchical Help Center for reference and the separate guided curriculum for step-by-step practice across both workspaces.",
+      "title": "Finding Help",
+      "keywords": [
+        "help",
+        "search",
+        "topics",
+        "back",
+        "forward",
+        "screenshots",
+        "demonstrations",
+        "keyboard"
+      ],
+      "summary": "Search task instructions and follow related topics without changing the document.",
       "body": [
-        "Open Help for task-first reference. Expand the table of contents by area, search all local articles, or open a contextual Learn action from a tool or dialog. Help search is local and read-only; it does not change the active document.",
-        "Back and Forward move through the articles and tutorials visited during the current learning session. Related topics connect adjacent tasks without forcing you back to the top of the contents.",
-        "Every article has a stable #help/topic deep link. A deep link opens the owned Figure Tool article even when the app is installed offline. Tutorial links use #tutorial/course/step so a supported learning route can return to a particular course step.",
-        "Tutorials are a separate guided curriculum covering a first Figure, four-panel Figure, asset diagram, vector editing, imported SVG/PDF, publication export, first Presentation, layouts/themes, PPTX interchange, and save/recovery.",
-        "Each course stores its own completed steps and resumes at the first incomplete step. Continue marks the current step complete. Back changes the viewed step. Restart clears only that course's progress and never deletes or replaces document content.",
-        "Show in workspace is an explicit learner action. New tutorial documents open as additional tabs. If a future tutorial step would replace dirty content, Figure Tool defaults to keeping the current document and requires a separate explicit discard choice."
-      ]
+        "Open Help > Search Help. Search names such as lines, direct selection, browser saves, or PowerPoint. Browse the topic list when you are exploring the available tools.",
+        "Select a topic to read its instructions and available screenshots or short demonstrations. Back and Forward return to previously viewed topics. Related topics connect nearby tasks.",
+        "Reading, searching, and playing a demonstration leave your document unchanged. Close Help to try an action on your own artwork.",
+        "Article links use #help/topic. The Help content is bundled with the editor for installed or locally served use. Escape or the close button returns to the canvas."
+      ],
+      "updated": "2026-10-11"
     },
     {
       "id": "shortcuts-accessibility",
-      "title": "Shortcuts and accessibility",
-      "keywords": ["keyboard", "shortcut", "accessibility", "focus", "screen reader", "contrast", "zoom", "selection", "direct selection"],
-      "summary": "Use keyboard authoring and visible focus while preserving a readable scientific workspace.",
+      "title": "Keyboard shortcuts and accessible use",
+      "keywords": [
+        "keyboard",
+        "shortcut",
+        "accessibility",
+        "focus",
+        "screen reader",
+        "contrast",
+        "zoom",
+        "selection",
+        "direct selection"
+      ],
+      "summary": "Use keyboard controls and keep the final artwork readable.",
       "body": [
-        "Common shortcuts include V for Selection, A for Direct Selection, T for Text, P for Pen, G for Gradient, Ctrl+Z for Undo, Ctrl+Shift+Z for Redo, Ctrl+D for Duplicate, Ctrl+G for Group, Ctrl+Shift+G for Ungroup, and Delete for an unlocked selection.",
-        "Use Tab and Shift+Tab to move through menus, panels, fields, and dialogs. Enter activates the focused control; Escape closes a menu or dialog, cancels an in-progress direct edit, or leaves Isolation Mode when offered.",
-        "Arrow keys nudge selected artwork; Shift+Arrow uses a larger step. In the slide navigator, use the labeled Move Up and Move Down commands when drag-and-drop is inconvenient.",
-        "Figure Tool keeps visible focus indicators and labels for main controls. Color alone should not carry scientific meaning: add text, line styles, markers, or patterns and review contrast at the final export size.",
-        "Canvas zoom changes the view, not document geometry. Use Fit Figure or Fit Slide to restore an overview; presentation playback fits the complete slide while keeping navigation and Exit controls reachable."
-      ]
+        "V selects whole objects; A selects supported anchors and parts; T adds text; P uses Pen; G edits gradients; Shift+W opens Width Tool. Ctrl+Z undoes; Ctrl+Shift+Z or Ctrl+Y redoes; Ctrl+D duplicates; Ctrl+G groups; Ctrl+Shift+G ungroups. On macOS use Command for the corresponding modifier.",
+        "Arrow keys nudge selected artwork or supported selected handles. Shift makes a larger step. Delete removes unlocked selections or selected anchors; when too few anchors remain, it removes the affected path or subpath. Deleting an endpoint of an ordinary line removes that line. Escape cancels an edit or closes the active menu or dialog.",
+        "Tab and Shift+Tab move between controls. Enter or Space activates a button. Lines supports arrow-key navigation, Home, End, and Escape. Use labeled slide actions when dragging thumbnails is inconvenient.",
+        "Fit artboard restores the page overview. Canvas zoom changes the view rather than exported geometry. Document setup controls grids and snapping; Ctrl or Command bypasses snapping during a gesture.",
+        "Labels, contrast, marker shapes, and line styles help readers interpret the scientific content. Do not rely on color alone. Check text and symbols at the final publication or projection size."
+      ],
+      "updated": "2026-10-11"
     },
     {
       "id": "troubleshooting",
-      "title": "Troubleshooting missing or unsupported content",
-      "keywords": ["troubleshooting", "missing asset", "unsupported", "warning", "font", "blank", "pdf", "pptx", "recovery", "installed runtime"],
-      "summary": "Resolve missing artwork and compatibility warnings without hiding or overwriting the source problem.",
+      "title": "Troubleshooting",
+      "keywords": [
+        "troubleshooting",
+        "missing asset",
+        "unsupported",
+        "warning",
+        "font",
+        "blank",
+        "pdf",
+        "pptx",
+        "recovery",
+        "installed runtime"
+      ],
+      "summary": "Keep work open and preserve a copy before replacing missing content.",
       "body": [
-        "If a scientific asset is missing, confirm that the installed Asset Library is available, search by the asset name shown in Source & notes, and reinsert only after saving a copy. Released assets should not require a repository or network path.",
-        "If a font is unavailable, keep PDF text as outlines for visual fidelity or choose an installed replacement and review wrapping. Figure check reports text that is overset or likely to need attention.",
-        "If PDF or SVG content opens as protected artwork, use an editable overlay or release only the supported portion. Keep the original source attached until the result has passed a visual comparison.",
-        "If PPTX import reports unsupported content, keep the original PPTX, review every warning, and decide whether to retain a flattened visual, redraw the object, or omit it deliberately. SmartArt, charts, tables, media, animation, macros, OLE, freeform paths, and advanced masters are not silently converted.",
-        "If a save, import, or export fails, do not close the document. Save As to a new location when possible, note the operation and file type, then open Help > Troubleshooting details for the technical message."
-      ]
+        "If browser save status reports a failure, download the current document before closing the page, then use Retry. If another tab changed the same saved workspace, review the conflict or save a separate copy. Clearing browser data does not recover deleted saves.",
+        "If an asset or image is missing, check Source & notes and the available replacement controls. A protected source page or raster image cannot expose individual editable points. Direct Selection works on supported editable vectors, not every visible pixel.",
+        "For unexpected PDF or SVG appearance, compare with the original. Try Source-backed placement when you want the page kept intact, or use an original SVG when editable vector geometry is essential. Check fonts, clipping, symbols, and raster portions.",
+        "For PowerPoint warnings, keep the original PPTX and inspect the imported or exported deck. Redraw or replace an unsupported object deliberately rather than assuming it was converted faithfully.",
+        "If a Windows .fsfigure file opens an older installed editor, use Browser files > Open file in the web app or Open in the intended desktop app. Windows file associations are separate from browser downloads.",
+        "If drawing feels constrained, check snapping in Document setup; Ctrl or Command temporarily bypasses it. Use Fit to restore the overview. If import or export fails, keep the document open, save a copy if possible, and include the operation, file type, and visible error when reporting the problem."
+      ],
+      "updated": "2026-10-11"
     },
     {
       "id": "about",
       "title": "About Figure Tool",
-      "keywords": ["about", "version", "suite", "beta", "windows"],
-      "summary": "Figure Tool 1.0.0-beta.6 is the scientific Figure and Presentation editor within Mersich Lab Superbench.",
+      "keywords": [
+        "about",
+        "version",
+        "suite",
+        "beta",
+        "windows"
+      ],
+      "summary": "Superbench Figure Tool is a scientific illustration and presentation editor.",
       "body": [
-        "Figure Tool combines a single-canvas Figure workspace and a multi-slide Presentation workspace with shared vector, text, shape, connector, scientific-asset, style, save, and export foundations.",
-        "Mersich Lab Superbench is in active v1 development. The editor version shown here is not a claim of a public v1 release.",
-        "Open Figure and Present in Mersich Lab Superbench. Direct editor launch surfaces remain available for development and qualification."
-      ]
+        "Figure provides a canvas for scientific diagrams and publication figures. Presentation provides slide decks. Both share drawing, text, assets, selection, appearance, save, and export tools.",
+        "The web and desktop editions use the same editor source, but their file access and PDF services differ. Browser saves are local to this device; the web app does not provide an account or cloud synchronization.",
+        "This is a beta release. Use About for the current edition’s information and site links. Keep editable document backups and review important imports and exports visually.",
+        "First-party software uses Apache-2.0. Original bundled scientific artwork uses CC0-1.0; third-party libraries, fonts, and imported content retain their own terms. See the included license and attribution information."
+      ],
+      "updated": "2026-10-11"
     },
     {
       "id": "known-limitations",
-      "title": "Known limitations and protected imported content",
-      "keywords": ["limitations", "protected source", "native pdf", "illustrator", "powerpoint", "google slides", "pptx", "collaboration", "animation"],
-      "summary": "Some PDF, SVG, PPTX, typography, presentation, and collaboration behavior remains deliberately bounded in this beta.",
+      "title": "Current limitations",
+      "keywords": [
+        "limitations",
+        "protected source",
+        "native pdf",
+        "illustrator",
+        "powerpoint",
+        "google slides",
+        "pptx",
+        "collaboration",
+        "animation"
+      ],
+      "summary": "Know where imports, exports, and browser storage need extra care.",
       "body": [
-        "Figure Tool keeps the original PDF attached to the document and retains parsed structure when available, but its current canvas edit model reconstructs supported artwork through vector conversion. PDF text opens as outlines for fidelity and can be explicitly converted to editable runs with a reversible Keep outlines action.",
-        "Editable PDF text can require font substitution, symbol normalization, spacing review, or rotated-label adjustment. Clip, mask, filter, blend, gradient, mesh, and pattern structures are editable only when Figure Tool can represent the specific case safely; otherwise the original appearance remains protected.",
-        "Figure Tool does not claim arbitrary PDF rewriting, complete prepress or color-management support, native Illustrator equivalence, or faithful reconstruction of every SVG or PDF effect. Review important imported and exported artwork visually.",
-        "PPTX v1 is limited to the common objects listed in PowerPoint and Google Slides compatibility. Character-range superscript, subscript, baseline shift, and mixed formatting are reduced to the text object's base style with a warning. Theme, master, layout, chart, SmartArt, table, media, animation, macro, OLE, 3D, arbitrary freeform-path, and advanced-effect fidelity is not provided. Universal PowerPoint or Google Slides round-tripping is not claimed.",
-        "Presentation mode does not provide animation authoring, real-time collaboration, comments/review parity, or direct Google Slides cloud integration. File interchange uses PPTX, PDF, SVG, and PNG.",
-        "Raster vectorization reconstructs pixel regions for editing; it does not infer biological meaning, statistics, labels, or experimental context. Figure Tool does not validate scientific conclusions.",
-        "Recovery copies and unsaved-work prompts reduce accidental loss but are not version control or cloud backup. Keep deliberate saved versions of important Figure and Presentation documents."
-      ]
+        "PDF and SVG import reconstruct supported editable artwork or keep a placed/protected representation. Fonts, spacing, clipping, masks, filters, blends, and complex gradients may differ. A scanned PDF or image cannot recover its original vector paths or plot data.",
+        "The static web edition has no native PDF service. Advanced rewriting of attached PDF content is unavailable there. Reconstructed canvas edits are not a guarantee that the original PDF’s internal structure was preserved.",
+        "PPTX supports common text, shapes, lines, images, and notes. Complex masters, layouts, charts, SmartArt, tables, media, animation, advanced effects, and arbitrary paths are not fully supported. Mixed character formatting can be reduced. Review all interchange warnings and the receiving application’s result.",
+        "Font availability and shaping differ between computers and browsers. Figure Tool does not provide full prepress, color management, font installation, or equivalence with every Illustrator, PowerPoint, or PDF feature.",
+        "There is no real-time collaboration, cloud synchronization, direct Google Slides connection, or animation authoring. Browser copies depend on the device, browser profile, origin, available storage, and retained site data.",
+        "Export warnings and schematic assets help prepare artwork; they do not assess biological accuracy, infer causal relationships, or validate experimental conclusions. Keep original data and sources, editable document files, and final-size visual review."
+      ],
+      "updated": "2026-10-11"
     }
   ]
 }

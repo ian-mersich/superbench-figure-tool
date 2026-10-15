@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Microwell Spheroid Aggregation — Single microwell</title>
+  <desc id="desc">A compact cell aggregate in a submerged, rounded low-adhesion microwell.</desc>
+  <g data-region="support" fill="#E8EEF7" stroke="none">
+    <path d="M17 32H28V64C28 86 42 103 64 104C85 104 100 86 100 64V32H111V65C111 93 91 115 64 115C37 115 17 93 17 65Z"/>
+  </g>
+  <g data-region="medium" fill="#8EC8FF" stroke="none">
+    <path d="M28 46H100V64C100 86 85 104 64 104C42 103 28 86 28 64Z"/>
+  </g>
+  <g data-region="aggregatecells" fill="#7DD3C7" stroke="none">
+    <path d="M-18 -3C-19 -11 -11 -16 -5 -13C1 -19 11 -15 13 -9C21 -8 23 1 17 6C18 14 9 18 2 14C-5 20 -15 14 -15 9C-22 7 -25 0 -18 -3Z" transform="translate(64 89) scale(0.83)"/>
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M17 32H28V64C28 86 42 103 64 104C85 104 100 86 100 64V32H111V65C111 93 91 115 64 115C37 115 17 93 17 65Z"/><path d="M-18 -3C-19 -11 -11 -16 -5 -13C1 -19 11 -15 13 -9C21 -8 23 1 17 6C18 14 9 18 2 14C-5 20 -15 14 -15 9C-22 7 -25 0 -18 -3Z" transform="translate(64 89) scale(0.83)"/><path d="M-16 -4C-9 -7 -5 -4 -4 3M-4 3C1 0 5 3 6 11M-4 3C-8 7 -6 10 -8 13M1 -13C2 -6 8 -6 13 -8M13 -8C9 -1 12 4 17 5" transform="translate(64 89) scale(0.83)" stroke-width="2.2"/><path d="M29 46H99" stroke-width="2.2"/>
+  </g>
+</svg>

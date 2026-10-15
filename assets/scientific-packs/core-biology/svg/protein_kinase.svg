@@ -1,23 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
-  <title id="title">Generic Kinase</title>
-  <desc id="desc">Original vector unequal-lobed kinase domain with a narrow catalytic cleft, entering peptide substrate, and phosphate-transfer cue.</desc>
-  <g data-region="body" fill="#8EC8FF">
-    <path d="M25 47c3-15 16-25 31-24 13 1 24 9 26 20 2 9-5 17-15 20-12 3-26 0-35-6-5-3-8-6-7-10z"/>
-    <path d="M39 70c10-8 28-11 43-6 19 5 29 22 23 37-7 17-31 23-50 13-17-9-25-28-16-44z"/>
+  <title id="title">Generic Kinase Domain</title>
+  <desc id="desc">Original connected unequal-lobed kinase domain schematic with an open catalytic cleft, a short peptide cue and a separate abstract phosphate symbol. No named structure, residue identity, reaction kinetics or measured activity is implied.</desc>
+  <g data-region="body" fill="#8EC8FF" stroke="none">
+    <path d="M29 52c-8-9-1-24 15-29 17-7 34 4 36 19 1 8-6 12-15 15l-17 5c0 7 7 11 14 7 14-8 32-4 43 10 14 19-1 38-23 37-27 2-50-17-49-37l1-18-5-9z"/>
   </g>
-  <g data-region="active_site" fill="#5EA9DD">
-    <path d="M51 62c10-6 23-7 34-2l-7 12c-8-3-17-2-24 3-6-3-7-8-3-13z"/>
-    <circle cx="29" cy="68" r="4"/><circle cx="39" cy="66" r="4"/><circle cx="49" cy="64" r="4"/>
+  <g data-region="active_site" fill="#5EA9DD" stroke="none">
+    <path d="M43 56c8-5 18-6 27-3l-5 4-17 5 2 8-8-3 1-11z"/><circle cx="61" cy="63" r="3"/><circle cx="73" cy="63" r="3"/><circle cx="85" cy="63" r="3"/>
   </g>
-  <g data-region="phosphate" fill="#F4A261">
-    <circle cx="88" cy="59" r="5"/>
-    <circle cx="96" cy="54" r="2.5"/><circle cx="97" cy="63" r="2.5"/><circle cx="89" cy="50" r="2.5"/>
+  <g data-region="phosphate" fill="#F4A261" stroke="none">
+    <circle cx="100" cy="63" r="5"/>
   </g>
-  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M25 47c3-15 16-25 31-24 13 1 24 9 26 20 2 9-5 17-15 20-12 3-26 0-35-6-5-3-8-6-7-10z" stroke-width="3.5"/>
-    <path d="M39 70c10-8 28-11 43-6 19 5 29 22 23 37-7 17-31 23-50 13-17-9-25-28-16-44z" stroke-width="3.5"/>
-    <path d="M51 62c10-6 23-7 34-2l-7 12c-8-3-17-2-24 3M25 68h28" stroke-width="2.75"/>
-    <path d="M83 63l5-4" stroke-width="2.5"/>
-    <circle cx="88" cy="59" r="5" stroke-width="2.5"/>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+    <path d="M29 52c-8-9-1-24 15-29 17-7 34 4 36 19 1 8-6 12-15 15l-17 5c0 7 7 11 14 7 14-8 32-4 43 10 14 19-1 38-23 37-27 2-50-17-49-37l1-18-5-9z"/><path d="M57 63h31" stroke-width="2"/><circle cx="100" cy="63" r="5" stroke-width="2.5"/>
   </g>
 </svg>

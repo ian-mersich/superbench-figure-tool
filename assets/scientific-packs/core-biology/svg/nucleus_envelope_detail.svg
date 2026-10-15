@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Nuclear Envelope and Pore — Section</title>
+  <desc id="desc">Generic section through a nuclear pore: two separated nuclear membranes join around an opening occupied by a schematic pore complex. No nucleoporin stoichiometry, dimensions or transport outcome is specified.</desc>
+  <path data-region="cytoplasm" fill="#D9F4E5" d="M18 19H110V38H18Z"/>
+  <path data-region="nucleoplasm" fill="#D9D7FF" d="M18 79H110V109H18Z"/>
+  <path data-region="envelope" fill="none" stroke="#8EC8FF" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round" d="M18 43H46C59 43 59 73 46 73H18M110 43H82C69 43 69 73 82 73H110"/>
+  <path data-region="pore_complex" fill="#B8B5FF" d="M47 35C50 31 56 32 59 36L61 43L57 53V64L61 73L59 81C55 86 49 84 47 79L46 72L51 63V54L46 44Z M81 35C78 31 72 32 69 36L67 43L71 53V64L67 73L69 81C73 86 79 84 81 79L82 72L77 63V54L82 44Z"/>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M18 43H46C59 43 59 73 46 73H18M110 43H82C69 43 69 73 82 73H110" stroke-width="1.6"/>
+    <path d="M47 35C50 31 56 32 59 36L61 43L57 53V64L61 73L59 81C55 86 49 84 47 79L46 72L51 63V54L46 44Z M81 35C78 31 72 32 69 36L67 43L71 53V64L67 73L69 81C73 86 79 84 81 79L82 72L77 63V54L82 44Z" stroke-width="1.7"/>
+  </g>
+</svg>

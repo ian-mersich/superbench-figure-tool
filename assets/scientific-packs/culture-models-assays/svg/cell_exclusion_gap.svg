@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Cell-exclusion Zone Assay — Circular excluded zone</title>
+  <desc id="desc">A deliberately cell-free circular zone remains inside a surrounding monolayer after removal of an exclusion barrier.</desc>
+<g data-region="substrate" fill="#C7F2EC" stroke="none">
+<rect x="17" y="17" width="94" height="94" rx="8"/>
+</g>
+<g data-region="celllayer" fill="#7DD3C7" stroke="none">
+<path d="M25 25H103V103H25Z M43 64C42 52 51 42 64 43C77 42 86 52 85 64C86 78 76 85 63 85C51 85 43 76 43 64Z" fill-rule="evenodd"/>
+</g>
+<g data-region="nuclei" fill="#B8B5FF" stroke="none">
+<ellipse cx="39" cy="34" rx="3.1" ry="3.7"/><ellipse cx="63" cy="32" rx="3.1" ry="3.7"/><ellipse cx="88" cy="35" rx="3.1" ry="3.7"/><ellipse cx="96" cy="58" rx="3.1" ry="3.7"/><ellipse cx="94" cy="84" rx="3.1" ry="3.7"/><ellipse cx="78" cy="96" rx="3.1" ry="3.7"/><ellipse cx="52" cy="96" rx="3.1" ry="3.7"/><ellipse cx="32" cy="83" rx="3.1" ry="3.7"/><ellipse cx="31" cy="59" rx="3.1" ry="3.7"/>
+</g>
+<g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+<rect x="17" y="17" width="94" height="94" rx="8"/><path d="M25 25H103V103H25Z"/><path d="M43 64C42 52 51 42 64 43C77 42 86 52 85 64C86 78 76 85 63 85C51 85 43 76 43 64Z"/><path d="M50 25L50 45M76 25L76 46M25 47L46 49M25 72L45 72M43 103L47 80M68 103L68 85M91 103L81 79M103 77L83 74M103 51L83 53" stroke-width="1.8"/>
+</g>
+</svg>

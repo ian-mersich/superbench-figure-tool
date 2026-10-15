@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Desmosome</title>
+  <desc id="desc">Illustrative intercellular desmosomal cadherin contact with paired cytoplasmic plaques attached to intermediate filaments.</desc>
+  <g data-region="membrane" fill="#C7F2EC" stroke="none">
+    <path d="M49 18H57V110H49Z M71 18H79V110H71Z"/>
+  </g>
+  <g data-region="desmosomal_cadherin" fill="#8EC8FF" stroke="none">
+    <path d="M44 47H57C61 47 62 53 65 57L62 62C58 57 57 54 53 55H44Z"/><path d="M84 47H71C67 47 66 53 63 57L66 62C70 57 71 54 75 55H84Z"/><path d="M44 73H56C60 73 62 79 65 82L62 87C57 82 57 81 53 81H44Z"/><path d="M84 73H72C68 73 66 79 63 82L66 87C71 82 71 81 75 81H84Z"/>
+  </g>
+  <g data-region="plaque" fill="#B8B5FF" stroke="none">
+    <rect x="33" y="39" width="13" height="50" rx="5"/><rect x="82" y="39" width="13" height="50" rx="5"/>
+  </g>
+  <g data-region="intermediate_filament" fill="#F4DC8A" stroke="none">
+    <path d="M19 26C29 27 29 43 38 45V53C24 49 25 35 18 33Z"/><path d="M19 96C29 96 29 83 38 79V71C24 76 25 89 18 89Z"/><path d="M18 61C26 56 30 69 38 63V71C27 78 25 64 18 68Z"/><path d="M109 26C99 27 99 43 90 45V53C104 49 103 35 110 33Z"/><path d="M109 96C99 96 99 83 90 79V71C104 76 103 89 110 89Z"/><path d="M110 61C102 56 98 69 90 63V71C101 78 103 64 110 68Z"/>
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M49 18H57V44M49 18V44M49 58V70M57 62V70M49 85V110H57V88M71 18H79M71 18V44M79 18V44M71 62V70M79 58V70M71 88V110H79V85"/><path d="M44 47H57C61 47 62 53 65 57L62 62C58 57 57 54 53 55H44Z"/><path d="M84 47H71C67 47 66 53 63 57L66 62C70 57 71 54 75 55H84Z"/><path d="M44 73H56C60 73 62 79 65 82L62 87C57 82 57 81 53 81H44Z"/><path d="M84 73H72C68 73 66 79 63 82L66 87C71 82 71 81 75 81H84Z"/><rect x="33" y="39" width="13" height="50" rx="5"/><rect x="82" y="39" width="13" height="50" rx="5"/><path d="M19 26C29 27 29 43 38 45V53C24 49 25 35 18 33Z"/><path d="M19 96C29 96 29 83 38 79V71C24 76 25 89 18 89Z"/><path d="M18 61C26 56 30 69 38 63V71C27 78 25 64 18 68Z"/><path d="M109 26C99 27 99 43 90 45V53C104 49 103 35 110 33Z"/><path d="M109 96C99 96 99 83 90 79V71C104 76 103 89 110 89Z"/><path d="M110 61C102 56 98 69 90 63V71C101 78 103 64 110 68Z"/>
+  </g>
+</svg>

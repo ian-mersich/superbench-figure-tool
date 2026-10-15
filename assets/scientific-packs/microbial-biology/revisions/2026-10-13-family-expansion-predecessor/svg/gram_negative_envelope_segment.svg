@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Gram-negative Cell Envelope</title>
+  <desc id="desc">A typical Gram-negative envelope segment with two membranes, periplasm and a thin peptidoglycan wall for membrane and microbial schematics.</desc>
+  <g data-region="periplasm" fill="#D9F4E5" stroke="none">
+    <rect x="18" y="44" width="92" height="36"/>
+  </g>
+  <g data-region="outer_membrane" fill="#7DD3C7" stroke="none">
+    <rect x="18" y="28" width="92" height="16" rx="4"/>
+  </g>
+  <g data-region="inner_membrane" fill="#7DD3C7" stroke="none">
+    <rect x="18" y="80" width="92" height="16" rx="4"/>
+  </g>
+  <g data-region="peptidoglycan" fill="#8EC8FF" stroke="none">
+    <rect x="18" y="60" width="92" height="5" rx="1.5"/>
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M22 28H106Q110 28 110 32V40Q110 44 106 44H22Q18 44 18 40V32Q18 28 22 28Z"/><path d="M22 80H106Q110 80 110 84V92Q110 96 106 96H22Q18 96 18 92V84Q18 80 22 80Z"/><path d="M32 31V41M32 83V93" stroke-width="2.1"/><path d="M48 31V41M48 83V93" stroke-width="2.1"/><path d="M64 31V41M64 83V93" stroke-width="2.1"/><path d="M80 31V41M80 83V93" stroke-width="2.1"/><path d="M96 31V41M96 83V93" stroke-width="2.1"/>
+  </g>
+</svg>

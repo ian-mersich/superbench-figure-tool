@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">COPI-Coated Vesicle</title>
+  <desc id="desc">A membrane vesicle surrounded by distinct membrane-proximal and outer coatomer, with illustrative membrane-associated Arf1.</desc>
+  <g data-region="membrane" fill="#8EC8FF" stroke="none">
+    <path d="M33 64a31 31 0 1 0 62 0a31 31 0 1 0 -62 0ZM40 64a24 24 0 1 0 48 0a24 24 0 1 0 -48 0Z" fill-rule="evenodd"/>
+  </g>
+  <g data-region="adaptor" fill="#7DD3C7" stroke="none">
+    <path d="M54 33Q64 27 73 34L70 39Q64 35 57 40Z" transform="rotate(18 64 64)"/><path d="M54 33Q64 27 73 34L70 39Q64 35 57 40Z" transform="rotate(108 64 64)"/><path d="M54 33Q64 27 73 34L70 39Q64 35 57 40Z" transform="rotate(198 64 64)"/><path d="M54 33Q64 27 73 34L70 39Q64 35 57 40Z" transform="rotate(288 64 64)"/>
+  </g>
+  <g data-region="outer_coat" fill="#B8B5FF" stroke="none">
+    <path d="M51 23Q54 14 63 16Q71 13 77 22L73 29Q66 23 61 28L54 30Z" transform="rotate(0 64 64)"/><path d="M51 23Q54 14 63 16Q71 13 77 22L73 29Q66 23 61 28L54 30Z" transform="rotate(45 64 64)"/><path d="M51 23Q54 14 63 16Q71 13 77 22L73 29Q66 23 61 28L54 30Z" transform="rotate(90 64 64)"/><path d="M51 23Q54 14 63 16Q71 13 77 22L73 29Q66 23 61 28L54 30Z" transform="rotate(135 64 64)"/><path d="M51 23Q54 14 63 16Q71 13 77 22L73 29Q66 23 61 28L54 30Z" transform="rotate(180 64 64)"/><path d="M51 23Q54 14 63 16Q71 13 77 22L73 29Q66 23 61 28L54 30Z" transform="rotate(225 64 64)"/><path d="M51 23Q54 14 63 16Q71 13 77 22L73 29Q66 23 61 28L54 30Z" transform="rotate(270 64 64)"/><path d="M51 23Q54 14 63 16Q71 13 77 22L73 29Q66 23 61 28L54 30Z" transform="rotate(315 64 64)"/>
+  </g>
+  <g data-region="arf" fill="#F4A261" stroke="none">
+    <circle cx="74.51" cy="96.34" r="4.5"/><circle cx="30.74" cy="56.93" r="4.5"/><circle cx="86.75" cy="38.73" r="4.5"/>
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="64" cy="64" r="31"/><circle cx="64" cy="64" r="24"/><path d="M51 23Q54 14 63 16Q71 13 77 22L73 29Q66 23 61 28L54 30Z" transform="rotate(0 64 64)"/><path d="M54 33Q64 27 73 34L70 39Q64 35 57 40Z" transform="rotate(18 64 64)"/><path d="M51 23Q54 14 63 16Q71 13 77 22L73 29Q66 23 61 28L54 30Z" transform="rotate(45 64 64)"/><path d="M51 23Q54 14 63 16Q71 13 77 22L73 29Q66 23 61 28L54 30Z" transform="rotate(90 64 64)"/><path d="M54 33Q64 27 73 34L70 39Q64 35 57 40Z" transform="rotate(108 64 64)"/><path d="M51 23Q54 14 63 16Q71 13 77 22L73 29Q66 23 61 28L54 30Z" transform="rotate(135 64 64)"/><path d="M51 23Q54 14 63 16Q71 13 77 22L73 29Q66 23 61 28L54 30Z" transform="rotate(180 64 64)"/><path d="M54 33Q64 27 73 34L70 39Q64 35 57 40Z" transform="rotate(198 64 64)"/><path d="M51 23Q54 14 63 16Q71 13 77 22L73 29Q66 23 61 28L54 30Z" transform="rotate(225 64 64)"/><path d="M51 23Q54 14 63 16Q71 13 77 22L73 29Q66 23 61 28L54 30Z" transform="rotate(270 64 64)"/><path d="M54 33Q64 27 73 34L70 39Q64 35 57 40Z" transform="rotate(288 64 64)"/><path d="M51 23Q54 14 63 16Q71 13 77 22L73 29Q66 23 61 28L54 30Z" transform="rotate(315 64 64)"/><circle cx="74.51" cy="96.34" r="4.5"/><circle cx="30.74" cy="56.93" r="4.5"/><circle cx="86.75" cy="38.73" r="4.5"/>
+  </g>
+</svg>

@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="data:,">
     <title>Superbench Figure Tool</title>
-  <link rel="stylesheet" href="styles.css?v=20261007-library1">
+  <link rel="stylesheet" href="styles.css?v=20261011-usability1">
+    <link rel="stylesheet" href="line-picker.css?v=20261011-picker1">
     <link rel="stylesheet" href="help/figure-studio-help-center.css?v=20260902-family-polish1">
   </head>
   <body class="figure-studio-standalone">
@@ -325,10 +326,9 @@
             <div class="app-menu" data-menu="help">
               <button type="button" class="menu-trigger" role="menuitem" aria-haspopup="true" aria-expanded="false">Help</button>
               <div class="menu-dropdown" role="menu" aria-label="Help">
-                <button type="button" role="menuitem" data-command="tutorials" data-shared-icon="tutorials"><span>Tutorials&hellip;</span></button>
-                <div class="menu-separator" role="separator"></div>
                 <button type="button" role="menuitem" data-command="help-center" data-shared-icon="help"><span>Search Help</span></button>
                 <button type="button" role="menuitem" data-command="help-getting-started" data-shared-icon="help"><span>Getting Started</span></button>
+                <button type="button" role="menuitem" data-command="help-workspace" data-shared-icon="help"><span>Workspace help</span></button>
                 <button type="button" role="menuitem" data-command="help-importing" data-shared-icon="help"><span>Importing Files</span></button>
                 <button type="button" role="menuitem" data-command="help-vector-editing" data-shared-icon="help"><span>Paths and Vectors</span></button>
                 <button type="button" role="menuitem" data-command="help-clips-masks" data-shared-icon="help"><span>Clips and Masks</span></button>
@@ -353,8 +353,7 @@
               <button type="button" id="figureWorkspaceTab" role="tab" data-document-workspace="figure" aria-selected="true">Figure</button>
               <button type="button" id="presentationWorkspaceTab" role="tab" data-document-workspace="presentation" aria-selected="false">Presentation</button>
             </div>
-            <button type="button" id="contextLearnBtn" class="help-top-button" data-shared-icon="help" title="Learn about the current workspace">Learn</button>
-            <button type="button" id="tutorialsBtn" class="help-top-button" data-command="tutorials" data-shared-icon="tutorials" title="Open guided Figure Tool tutorials">Tutorials</button>
+            <button type="button" id="contextLearnBtn" class="help-top-button" data-shared-icon="help" title="Read Help for the current workspace">Workspace help</button>
             <button type="button" id="helpCenterBtn" class="help-top-button" data-command="help-center" data-shared-icon="help" title="Search Figure Tool help">Help</button>
             <button type="button" class="share-button" disabled hidden aria-hidden="true" title="Sharing is not enabled in local standalone mode">Share</button>
             <span class="save-indicator" data-save-state="new" role="status" aria-live="polite" title="This figure has not been saved yet">New</span>
@@ -399,7 +398,7 @@
             <button type="button" data-command="insert-text" class="ribbon-command" data-icon="TX" data-shared-icon="text"><span>Text</span></button>
             <button type="button" data-command="insert-table" class="ribbon-command" data-icon="TB" data-shared-icon="table"><span>Table</span></button>
             <button type="button" data-command="insert-rect" class="ribbon-command" data-icon="SH" data-shared-icon="shapes"><span>Shapes</span></button>
-            <button type="button" data-command="insert-arrow" class="ribbon-command" data-icon="AR" data-shared-icon="arrow"><span>Lines</span></button>
+            <button type="button" data-line-picker-open class="ribbon-command" data-icon="AR" data-shared-icon="arrow" aria-haspopup="menu" aria-controls="linePickerPopover" aria-expanded="false"><span>Lines</span></button>
             <button type="button" id="addPanelLabelBtn" class="ribbon-command" data-icon="PL" data-shared-icon="labels"><span>Labels</span></button>
             <button type="button" id="openAssetsPanelBtn" class="ribbon-command" data-icon="AS" data-shared-icon="assets"><span>Assets</span></button>
             <span class="ribbon-label">Insert</span>
@@ -472,18 +471,9 @@
                 <button type="button" data-tool="shapeBuilder" role="menuitem">Shape Builder <kbd>Shift+M</kbd></button>
               </div>
             </div>
-            <div class="tool-flyout">
-              <button type="button" class="tool-button tool-primary" data-tool="line" data-shared-icon="line" title="Line and curve tools" aria-label="Line and curve tools">Line <span class="tool-caret" aria-hidden="true"></span></button>
-              <div class="tool-popover" role="menu" aria-label="Line tools">
-                <button type="button" data-tool="line" role="menuitem">Line segment</button>
-                <button type="button" data-tool="arrow" role="menuitem">Arrow</button>
-                <button type="button" data-tool="smartConnector" role="menuitem">Smart connector</button>
-                <button type="button" data-tool="dashedLine" role="menuitem">Dashed line</button>
-                <button type="button" data-tool="arc" role="menuitem">Arc</button>
-                <button type="button" data-tool="curve" role="menuitem">Curve</button>
-                <button type="button" data-tool="wave" role="menuitem">Wave</button>
-                <button type="button" data-tool="freehand" role="menuitem">Freehand path</button>
-              </div>
+            <div class="tool-flyout line-picker-flyout">
+              <button type="button" class="tool-button tool-primary" data-tool="line" data-shared-icon="line" title="Lines and arrows" aria-label="Lines and arrows">Lines <span class="tool-caret" aria-hidden="true"></span></button>
+              <div id="linePickerPopover" class="tool-popover line-picker-popover" role="menu" aria-label="Line tools"></div>
             </div>
             <button type="button" class="tool-button" data-tool="dot" data-shared-icon="dot" data-tool-palette-optional="dot" title="Small filled dot or marker" aria-label="Dot">Dot</button>
             <button type="button" class="tool-button" id="importAssetBtn" data-shared-icon="import" data-tool-palette-optional="import" title="Import SVG, PNG/JPG, PDF pages, or converted PDF SVG plus metadata" aria-label="Import artwork">Import</button>
@@ -725,9 +715,9 @@
                 <label class="asset-art-style-row" for="assetArtStyleSelect">
                   <span>Style</span>
                   <select id="assetArtStyleSelect" aria-label="Style for newly inserted scientific assets">
-                    <option value="soft-color">Soft color</option>
-                    <option value="cut-paper">Cut paper</option>
-                    <option value="technical-ink">Technical ink</option>
+                    <option value="soft-color">Style 1</option>
+                    <option value="cut-paper">Style 2</option>
+                    <option value="technical-ink">Style 3</option>
                   </select>
                 </label>
                 <label class="asset-art-style-row" for="assetPaletteSelect"><span>Palette</span>
@@ -750,11 +740,13 @@
                 </span>
                 <button type="button" id="cancelAssetReplaceBtn">Cancel</button>
               </div>
+              <div id="assetRelatedSearches" class="asset-related-searches" aria-label="Related asset searches" hidden></div>
               <div id="assetPanelStatus" class="asset-status">Loading scientific assets...</div>
               <div id="assetGrid" class="asset-grid" aria-live="polite"></div>
             </section>
             <section id="figureLibraryView-scenes" class="panel-section asset-scenes-panel" data-library-view="scenes" role="tabpanel" aria-labelledby="figureLibraryTab-scenes" data-collapsible="true" data-collapsed="false" hidden>
               <div class="panel-title">Scientific scenes</div>
+              <div id="sceneRelatedSearches" class="asset-related-searches" aria-label="Related scene searches" hidden></div>
               <div class="scene-discovery-controls">
                 <label class="scene-category-label" for="sceneCategorySelect">Area</label>
                 <select id="sceneCategorySelect" aria-label="Scientific scene area">
@@ -925,7 +917,7 @@
                 <button type="button" data-figure-tool="circle" data-shared-icon="circle">Circle</button>
               </div>
             </details>
-            <button type="button" data-figure-tool="arrow" data-shared-icon="arrow" aria-pressed="false" title="Draw an arrow">Arrow</button>
+            <button type="button" data-line-picker-open data-shared-icon="arrow" title="Lines and arrows" aria-haspopup="menu" aria-controls="linePickerPopover" aria-expanded="false">Lines</button>
             <span class="figure-simple-toolbar-divider" aria-hidden="true"></span>
             <button type="button" data-figure-layout-command="undo" data-shared-icon="undo" title="Undo (Ctrl/Cmd+Z)" disabled>Undo</button>
             <button type="button" data-figure-layout-command="redo" data-shared-icon="redo" title="Redo (Ctrl/Cmd+Shift+Z)" disabled>Redo</button>
@@ -1467,8 +1459,10 @@
                 </div>
               </div>
             </details>
-            <button type="button" id="documentFigureCheckBtn" class="inspector-subtle-action" data-document-context-action="preflight">Figure check&hellip;</button>
-            <button type="button" id="documentSourcesLimitsBtn" class="inspector-subtle-action" data-document-context-action="sources-limits">Sources &amp; limits&hellip;</button>
+            <div class="document-review-actions">
+              <button type="button" id="documentSourcesLimitsBtn" data-document-context-action="sources-limits" title="Review artwork sources, fonts, and recorded reuse permissions">Sources &amp; reuse&hellip;</button>
+              <small>Recorded artwork sources and reuse permissions.</small>
+            </div>
           </section>
 
           <div class="legacy-selection-controls" hidden aria-hidden="true">
@@ -1498,12 +1492,13 @@
               <div id="scientificAssetStyleList" class="scientific-asset-style-list" role="group" aria-label="Scientific asset style"></div>
             </div>
             <div class="scientific-asset-edit-actions">
-              <button type="button" id="replaceScientificAssetBtn">Replace</button>
+              <button type="button" id="replaceScientificAssetBtn">Replace selected (1)</button>
               <button type="button" id="replaceAllScientificAssetsBtn">Replace all same</button>
             </div>
+            <p id="scientificAssetReplacementNote" class="asset-selection-note"></p>
             <div id="scientificAssetColorControls" class="asset-color-controls" hidden>
               <div class="asset-color-header">
-                <strong>Colors</strong>
+                <strong>Part colors</strong>
                 <button type="button" id="resetAssetColorsBtn">Reset colors</button>
               </div>
               <div id="scientificAssetColorList" class="asset-color-list"></div>
@@ -1750,6 +1745,10 @@
 
           <section id="preflightPanel" class="panel-section preflight-panel technical-inspector-section" data-collapsible="true" data-collapsed="true" data-inspector-panel="properties">
             <div class="panel-title">Advanced document check</div>
+            <div id="preflightSummary" class="preflight-summary">Not run yet</div>
+            <div id="preflightResults" class="preflight-results"></div>
+            <details class="preflight-settings">
+              <summary>Check settings</summary>
             <div class="form-grid two">
               <label>
                 Min text
@@ -1773,8 +1772,7 @@
               <button type="button" id="exportPreflightBtn">Export technical details</button>
             </div>
             <button type="button" id="fontAuditBtn" class="font-audit-open-btn">Review document fonts…</button>
-            <div id="preflightSummary" class="preflight-summary">Not run yet</div>
-            <div id="preflightResults" class="preflight-results"></div>
+            </details>
           </section>
           <section class="panel-section grow inspector-layers-panel" data-inspector-panel="layers">
             <div class="layers-panel-heading">
@@ -2151,6 +2149,30 @@
         </footer>
       </section>
     </div>
+    <dialog id="assetPreviewDialog" class="asset-preview-dialog" role="dialog" aria-modal="true" aria-labelledby="assetPreviewTitle" aria-describedby="assetPreviewStatus" hidden>
+      <header class="asset-preview-header">
+        <div><span class="asset-preview-eyebrow">Library preview</span><h2 id="assetPreviewTitle"></h2></div>
+        <button type="button" id="assetPreviewCloseBtn" aria-label="Close asset preview" autofocus>Close</button>
+      </header>
+      <div class="asset-preview-content">
+        <figure class="asset-preview-art"><img id="assetPreviewImage" alt=""><figcaption id="assetPreviewAppearance"></figcaption></figure>
+        <div class="asset-preview-details" tabindex="0" role="region" aria-label="Drawing details">
+          <label class="asset-preview-form" for="assetPreviewVariantSelect">Drawing / view<select id="assetPreviewVariantSelect"></select></label>
+          <p id="assetPreviewDescription"></p>
+          <section><h3>Scientific limitations</h3><ul id="assetPreviewLimitations"></ul></section>
+          <section><h3 id="assetPreviewPartsHeading">Editable part colors</h3><p id="assetPreviewEditHint" class="asset-preview-hint">After insertion, select the drawing to change these parts in Style.</p><ul id="assetPreviewParts" class="asset-preview-parts"></ul></section>
+        </div>
+      </div>
+      <footer class="asset-preview-footer">
+        <div><p id="assetPreviewStatus" role="status" aria-live="polite"></p><small id="assetPreviewReplacementNote"></small></div>
+        <div class="asset-preview-actions">
+          <button type="button" id="assetPreviewInsertBtn" class="primary">Insert</button>
+          <button type="button" id="assetPreviewReplaceSelectedBtn">Replace selected (1)</button>
+          <button type="button" id="assetPreviewReplaceAllBtn">Replace all same</button>
+        </div>
+      </footer>
+    </dialog>
+
     <div id="myAssetsBackdrop" class="my-assets-backdrop" hidden>
       <section id="myAssetsDialog" class="my-assets-dialog" role="dialog" aria-modal="true" aria-labelledby="myAssetsTitle">
         <header class="my-assets-header">
@@ -2420,31 +2442,6 @@
       </section>
       <p class="scientific-symbol-help">Use arrow keys to move through results. Press Enter to insert; Escape closes.</p>
     </section>
-    <div id="tutorialBackdrop" class="tutorial-backdrop" hidden>
-      <section id="tutorialDialog" class="tutorial-dialog" role="dialog" aria-modal="true" aria-labelledby="tutorialDialogTitle">
-        <header class="tutorial-header">
-          <div><strong id="tutorialDialogTitle">Figure Tool tutorials</strong><span>Guided learning stays separate from reference Help.</span></div>
-          <button type="button" id="closeTutorialBtn" aria-label="Close tutorials">Close</button>
-        </header>
-        <div class="tutorial-body">
-          <nav id="tutorialList" class="tutorial-list" aria-label="Tutorials"></nav>
-          <main class="tutorial-step">
-            <div id="tutorialStepProgress" class="tutorial-step-progress">Choose a tutorial</div>
-            <h2 id="tutorialStepTitle">Learn by building</h2>
-            <p id="tutorialStepInstruction">Choose a guided tutorial from the list.</p>
-            <p id="tutorialStepWhy" class="tutorial-step-why"></p>
-            <div id="tutorialOutcome" class="tutorial-outcome"></div>
-          </main>
-        </div>
-        <footer class="tutorial-actions">
-          <button type="button" id="resetTutorialBtn" disabled>Reset tutorial</button>
-          <span id="tutorialSaveStatus" role="status">Progress is saved on this device.</span>
-          <button type="button" id="showTutorialTargetBtn" disabled>Show in workspace</button>
-          <button type="button" id="previousTutorialStepBtn" disabled>Back</button>
-          <button type="button" id="continueTutorialStepBtn" class="accent-command" disabled>Continue</button>
-        </footer>
-      </section>
-    </div>
     <div id="newDocumentBackdrop" class="new-document-backdrop" hidden>
       <section id="newDocumentDialog" class="new-document-dialog" role="dialog" aria-modal="true" aria-labelledby="newDocumentTitle">
         <header class="new-document-header">
@@ -2558,11 +2555,14 @@
     <script src="scientific-asset-palettes.js?v=20261008" defer></script>
     <script src="scientific-asset-color-controls.js?v=20261008" defer></script>
     <script src="scientific-scene-catalog.js?v=20260830-scenes1" defer></script>
+    <script src="scientific-asset-discovery.js?v=20261015-library1" defer></script>
+    <script src="scientific-asset-preview.js?v=20261015-library1" defer></script>
     <script src="scientific-motif-catalog.js?v=20260914-fig28" defer></script>
     <script src="scientific-protocol-components.js?v=20260923-fig-par-04" defer></script>
     <script src="vector-engine.js?v=20260903-scene1" defer></script>
     <script src="native-pdf-ir-materializer.js?v=20260904-text1" defer></script>
     <script src="project-overview.js?v=20260921-project-overview1" defer></script>
-  <script src="app.js?v=20261007-library1" defer></script>
+    <script src="line-picker.js?v=20261011-picker1" defer></script>
+  <script src="app.js?v=20261011-usability1" defer></script>
   </body>
 </html>

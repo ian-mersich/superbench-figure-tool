@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Receptor Extracellular Domain</title>
+  <desc id="desc">Original isolated extracellular-domain schematic with an accessible binding cleft. Membrane, transmembrane segment and cytoplasmic tail are omitted. Not a named receptor or atomic model.</desc>
+  <g data-region="receptor" fill="#8EC8FF" stroke="none">
+    <path d="M31 34c-13 4-18 20-9 34 6 11 17 15 28 15l3 13h22l3-13c14 0 26-7 29-19 4-13-3-26-15-30l-11 16H43L31 34z"/>
+  </g>
+  <g data-region="binding_site" fill="#5EA9DD" stroke="none">
+    <path d="M43 50h38l-8 14H51l-8-14z"/>
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+    <path d="M31 34c-13 4-18 20-9 34 6 11 17 15 28 15l3 13h22l3-13c14 0 26-7 29-19 4-13-3-26-15-30l-11 16H43L31 34z"/><path d="M43 50h38l-8 14H51"/>
+  </g>
+</svg>

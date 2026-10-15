@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Endosomal Recycling Tubule</title>
+  <desc id="desc">An endosome continuous with a sorting tubule, showing illustrative membrane-associated cargo and external sorting proteins.</desc>
+  <g data-region="membrane" fill="#8EC8FF" stroke="none">
+    <path d="M51 22C27 20 16 39 18 65C20 87 39 105 61 98Q76 92 77 78Q77 70 88 70H105Q114 70 114 58Q114 47 105 47H89Q77 47 74 39Q68 24 51 22ZM49 30C31 29 24 43 26 64C28 83 43 94 59 90Q68 86 69 76Q69 63 87 63H104Q108 63 108 58Q108 53 104 53H88Q73 53 67 42Q63 31 49 30Z" fill-rule="evenodd"/>
+  </g>
+  <g data-region="cargo" fill="#E76F51" stroke="none">
+    <path d="M88 45Q82 42 83 37Q86 33 90 36Q94 33 98 37Q98 43 92 45V55H88Z"/><path d="M101 77Q96 80 97 85Q101 89 105 86Q111 86 111 81Q109 77 105 77V62H101Z"/>
+  </g>
+  <g data-region="sorting_coat" fill="#7DD3C7" stroke="none">
+    <path d="M76 40Q86 37 94 40L94 44Q86 41 76 45Z"/><path d="M77 73Q87 78 95 74L95 78Q86 82 76 77Z"/>
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M51 22C27 20 16 39 18 65C20 87 39 105 61 98Q76 92 77 78Q77 70 88 70H105Q114 70 114 58Q114 47 105 47H89Q77 47 74 39Q68 24 51 22Z"/><path d="M49 30C31 29 24 43 26 64C28 83 43 94 59 90Q68 86 69 76Q69 63 87 63H104Q108 63 108 58Q108 53 104 53H88Q73 53 67 42Q63 31 49 30Z"/><path d="M88 45Q82 42 83 37Q86 33 90 36Q94 33 98 37Q98 43 92 45V55H88Z"/><path d="M101 77Q96 80 97 85Q101 89 105 86Q111 86 111 81Q109 77 105 77V62H101Z"/><path d="M76 40Q86 37 94 40L94 44Q86 41 76 45Z"/><path d="M77 73Q87 78 95 74L95 78Q86 82 76 77Z"/>
+  </g>
+</svg>

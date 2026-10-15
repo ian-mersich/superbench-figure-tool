@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Eukaryotic Cell — Cutaway</title>
+  <desc id="desc">Original schematic cutaway exposing a cell interior on an oblique plane, with an intact bounded nucleus and sparse organelles. The opening is a drawing convention, not membrane rupture or lysis.</desc>
+  <path data-region="cytoplasm" fill="#C7F2EC" d="M20 57C16 74 24 93 43 102C64 114 88 108 102 91C109 82 112 68 108 57C86 70 42 71 20 57Z"/>
+  <path data-region="cytoplasm" fill="#C7F2EC" fill-opacity="0.65" d="M20 57C21 39 40 28 64 28C89 28 107 40 108 57C109 73 88 84 64 84C39 84 20 73 20 57Z"/>
+  <path data-region="nucleus" fill="#B8B5FF" d="M43 53C42 42 52 35 64 36C77 36 85 44 84 55C83 66 72 73 60 70C49 68 43 62 43 53Z"/>
+  <g data-region="accent" fill="#F4A261"><path d="M28 60C27 55 31 51 36 53C42 55 46 63 41 66C37 70 29 66 28 60Z"/><path d="M88 47C93 42 101 47 102 52C103 57 98 59 93 55C89 53 86 50 88 47Z"/><circle cx="76" cy="75" r="2.8"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20 57C16 74 24 93 43 102C64 114 88 108 102 91C109 82 112 68 108 57C86 70 42 71 20 57Z" stroke-width="3.2"/>
+    <path d="M43 53C42 42 52 35 64 36C77 36 85 44 84 55C83 66 72 73 60 70C49 68 43 62 43 53Z" stroke-width="2.4"/>
+    <path d="M20 57C21 39 40 28 64 28C89 28 107 40 108 57C109 73 88 84 64 84C39 84 20 73 20 57Z" stroke-width="2.4"/>
+    <path d="M31 58C37 58 34 63 40 63M91 48C94 47 94 53 99 53" stroke-width="1.5"/>
+  </g>
+</svg>

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Cell-laden Collagen-gel Culture — Attached gel</title>
+  <desc id="desc">Plan view of a cell-laden collagen gel attached around the culture-well boundary. Culture medium is occluded by the gel in this view; no contraction readout is shown.</desc>
+<g data-region="well" fill="#C7F2EC" stroke="none">
+<path d="M18 64a46 46 0 1 0 92 0a46 46 0 1 0 -92 0Z M25 64a39 39 0 1 0 78 0a39 39 0 1 0 -78 0Z" fill-rule="evenodd"/>
+</g>
+<g data-region="medium" fill="#8EC8FF" stroke="none">
+<circle cx="64" cy="64" r="39"/>
+</g>
+<g data-region="matrix" fill="#B8B5FF" stroke="none">
+<circle cx="64" cy="64" r="39"/>
+</g>
+<g data-region="fibroblasts" fill="#559984" stroke="none">
+<path d="M-10 0L-3 -3C0 -7 5 -3 6 -1L11 0L4 3C0 7 -4 3 -6 2Z" transform="translate(46 46) rotate(-20) scale(0.78)"/><path d="M-10 0L-3 -3C0 -7 5 -3 6 -1L11 0L4 3C0 7 -4 3 -6 2Z" transform="translate(83 52) rotate(25) scale(0.78)"/><path d="M-10 0L-3 -3C0 -7 5 -3 6 -1L11 0L4 3C0 7 -4 3 -6 2Z" transform="translate(49 81) rotate(30) scale(0.78)"/><path d="M-10 0L-3 -3C0 -7 5 -3 6 -1L11 0L4 3C0 7 -4 3 -6 2Z" transform="translate(79 81) rotate(-35) scale(0.78)"/>
+</g>
+<g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+<circle cx="64" cy="64" r="46"/><circle cx="64" cy="64" r="39"/><path d="M-10 0L-3 -3C0 -7 5 -3 6 -1L11 0L4 3C0 7 -4 3 -6 2Z" transform="translate(46 46) rotate(-20) scale(0.78)"/><path d="M-10 0L-3 -3C0 -7 5 -3 6 -1L11 0L4 3C0 7 -4 3 -6 2Z" transform="translate(83 52) rotate(25) scale(0.78)"/><path d="M-10 0L-3 -3C0 -7 5 -3 6 -1L11 0L4 3C0 7 -4 3 -6 2Z" transform="translate(49 81) rotate(30) scale(0.78)"/><path d="M-10 0L-3 -3C0 -7 5 -3 6 -1L11 0L4 3C0 7 -4 3 -6 2Z" transform="translate(79 81) rotate(-35) scale(0.78)"/><path d="M30 63C39 55 47 55 55 60M68 36C65 49 68 60 71 65M73 91C81 85 91 80 99 75" stroke-width="1.8"/>
+</g>
+</svg>

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Generic Antibody — Manuscript Line</title>
+  <desc id="desc">Restrained thin-line IgG-like antibody companion with geometry and editable semantic regions matched to the soft-line concept.</desc>
+
+  <g data-region="outline" fill="none" stroke="#66707A" stroke-linecap="round" stroke-linejoin="round">
+    <g stroke-width="4.4">
+      <path d="M59 103c1-17 1-29-5-38L30 36"/>
+      <path d="M69 103c-1-17-1-29 5-38l24-29"/>
+      <path d="M51 64 27 43"/>
+      <path d="m77 64 24-21"/>
+    </g>
+    <path d="M55 66c5 4 13 4 18 0" stroke-width="3.8"/>
+    <path d="M21 34 29 25M107 34l-8-9" stroke-width="4.5"/>
+  </g>
+
+  <g data-region="heavy_chain" fill="none" stroke="#7E9DB2" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.15">
+    <path d="M59 103c1-17 1-29-5-38L30 36"/>
+    <path d="M69 103c-1-17-1-29 5-38l24-29"/>
+    <path d="M51 64 27 43"/>
+    <path d="m77 64 24-21"/>
+  </g>
+
+  <g data-region="binding_tip" fill="none" stroke="#C58F8C" stroke-linecap="round" stroke-width="2.35">
+    <path d="M21 34 29 25"/>
+    <path d="M107 34l-8-9"/>
+  </g>
+
+  <path data-region="hinge" d="M55 66c5 4 13 4 18 0" fill="none" stroke="#9D95C8" stroke-linecap="round" stroke-width="2"/>
+</svg>

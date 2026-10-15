@@ -1,0 +1,397 @@
+{
+  "schema_id": "superbench.scientificAssetRevision.v1",
+  "revision_id": "2026-10-13-broad-library",
+  "revision_date": "2026-10-13",
+  "pack_id": "core-biology",
+  "predecessor": {
+    "audit_id": "core-biology.provenance-license-release.2026-10-11.rna-redraw",
+    "catalog_sha256": "a941c12a4955d55854832328f612d3190d59f57ab86f58388efaec6416cf5cc1",
+    "audit_sha256": "19e75365f22c683d4112e83646f4cd4aae928ca91ab097487dfaabe2a1f17a05",
+    "receipt_sha256": "f4d3ac0423b230f33535003cf95392fa30b5c1f69745c61c7ac6cebb495e0e9b",
+    "snapshot": "revisions/2026-10-13-broad-library-predecessor"
+  },
+  "current_catalog_sha256": "3d9478cb34924522f74a74855be178e3821123472d939e18dde61a1e8177e918",
+  "source_record_id": "broad-library-original-vectors-2026-10-13",
+  "review": {
+    "status": "accepted",
+    "scientific_review": "pass",
+    "visual_review": "pass",
+    "editor_checks": "pass",
+    "reviewer": "Independent scientific and original-image review by retained_state; canonical native browser qualification",
+    "reviewed_on": "2026-10-13",
+    "evidence": [
+      {
+        "file": "qa_artifacts/library-drawing-review/final-cut-paper-policy/independent-artwork-review.json",
+        "sha256": "4f8359185d0b29a7306858fd9dd18ea2b0cc0173711d24644506dda1936594b7"
+      },
+      {
+        "file": "qa_artifacts/library-drawings/20261013T142958Z-direct/report.json",
+        "sha256": "ffde0d0784fb262b13f045d22e2b79b4e761a3c5ca0dcc64ae158a917be6886d"
+      },
+      {
+        "file": "qa_artifacts/library-drawings/20261013T142958Z-direct/native-treatments/native-treatment-matrix.json",
+        "sha256": "0ef751a597b8ca274b76f6b7cf1e3e36be4fb2bb4a06eb89349cf5a3fcbdb575"
+      },
+      {
+        "file": "qa_artifacts/library-drawings/20261013T142958Z-web/report.json",
+        "sha256": "1fbbc84392a6c715e8ccb53b777c5e81783264708ed3497e05748bd35f703620"
+      },
+      {
+        "file": "qa_artifacts/library-drawings/20261013T142958Z-web/native-treatments/native-treatment-matrix.json",
+        "sha256": "99e3b582e4ea3a96035d577e072d2bd9c644a5ed9afceaf8657c98e3f5d88475"
+      },
+      {
+        "file": "qa_artifacts/library-drawings/20261013T142958Z-review/independent-native-visual-review.json",
+        "sha256": "facd5e8af21e9c08722bb63935f3bd3c0e9fdc90416acfda8f86062bd4ce0891"
+      }
+    ],
+    "scope": "Original 64/256/512-pixel artwork in all three treatments; native Figure/Presentation insertion, semantic recoloring, point editing, Undo/Redo, workspace and selection switching, real Save/cold Open, editable SVG export at three desktop widths in light/dark on direct and web routes; all 42 drawings across three treatments and four palettes; 14 historical Core drawings retained. Product/desktop/public deployment selection remains separate."
+  },
+  "changed_assets": [
+    {
+      "asset_id": "core.cell.generic",
+      "file": "svg/cell_generic.svg",
+      "before_svg_sha256": "0b6716b871958a0999bc588388057b8bb4edb055833031220e7f6e999a580951",
+      "after_svg_sha256": "3d5437df5a3d4e99763d18db167fa339326aacda5c50e5901a39536273c35e32",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "core.cell.epithelial",
+      "file": "svg/cell_epithelial.svg",
+      "before_svg_sha256": "4bd5d583d82da4222aea951ee8f5dfb634847dce3d7825b3fa13a05ed572c9e6",
+      "after_svg_sha256": "bbfa719fb8841ab423f6230fa52cb95fed31f8e7eb3d91eb1d64373726a89848",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "core.cell.neuron_like",
+      "file": "svg/cell_neuron_like.svg",
+      "before_svg_sha256": "be095e6f94e278167ac2921737e7328596597d0e41449d8d5c91222fc97df380",
+      "after_svg_sha256": "50f9e332b18a7fc392413977e77da6643e6f3d471f00f2820f89ce2f71c4fd5d",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "core.nucleus.round",
+      "file": "svg/nucleus_round.svg",
+      "before_svg_sha256": "35c119af827676c8186c748f5a07a084a43cfc68edd730511d77ca99ea005496",
+      "after_svg_sha256": "5c4d92762fe08f6008e90bec5e5c0154a9e815f6e4e7450a816c357a263d0dac",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "core.mitochondrion.basic",
+      "file": "svg/mitochondrion_basic.svg",
+      "before_svg_sha256": "63fade56d9700efd813a83159c9546602e59a783ddae84f93b89200383fefc19",
+      "after_svg_sha256": "226af5bf3280b36213159b0bef03cb7bf76938426bbcb6ae44d2fb239d07e788",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "core.mitochondrion.basic_manuscript",
+      "file": "svg/mitochondrion_basic_manuscript.svg",
+      "before_svg_sha256": "3afe364fb929bc356449c1979064deaebf99747a05b85ed7328a2d6da14136fd",
+      "after_svg_sha256": "490edd5cb8ef3239ec7281090e74db6551e8772d2f22d42acd257123b903e8fc",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "core.golgi.basic",
+      "file": "svg/golgi_apparatus.svg",
+      "before_svg_sha256": "caab23cec2874ee561c545ab6abfb6efa024e2521f0e56b2ad6efb3636a33bb0",
+      "after_svg_sha256": "131fba211cc1d4d6e72ff596481e23c11b7de311c1f34eea1bd97a914f509d58",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "core.er.rough",
+      "file": "svg/rough_endoplasmic_reticulum.svg",
+      "before_svg_sha256": "11870f533fc52679be757806ee817beb7b859cf92deeb4a1565cd5b5fce7d334",
+      "after_svg_sha256": "a86531e0894128b3e5c5a1101a1c365cd951adbceef39c6a8bce35382ae371f0",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "core.lysosome.basic",
+      "file": "svg/lysosome.svg",
+      "before_svg_sha256": "3fa0af7d231c4efcc34c8840674e072b28c6c22a7f2f0d6598dc2d2cd335ba07",
+      "after_svg_sha256": "c9ec2e0be46a8ac22bb479fa65c4337a5230d349f56a9f1316fef305e42e70d1",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "core.antibody.igg",
+      "file": "svg/antibody_igg.svg",
+      "before_svg_sha256": "c6d159d306e22c9fb5a371c2f464a63baf4e7dbad90aa3c19b5c919d7d931d75",
+      "after_svg_sha256": "41ba86934d52edd5e2f7f32e408b512cacbf276767e09eaf889b949bc5576e40",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "core.antibody.igg_manuscript",
+      "file": "svg/antibody_igg_manuscript.svg",
+      "before_svg_sha256": "8cc4d8135d99ede6aee4b3bbb128d54ad789a7e6a9514a444b6649dadade1f6d",
+      "after_svg_sha256": "df1c29cd3be81421e6ecb8efe0fe5800452b342e0ead9c2ebd3e5609b9efd82a",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "core.receptor.membrane",
+      "file": "svg/membrane_receptor.svg",
+      "before_svg_sha256": "1ac722a526b0e2b9d9ded9d952ae6490393eeecd0af63f8775ca1a82fe10873d",
+      "after_svg_sha256": "63a68b0df1a37ee886ceb1a54a6aa36cd0a32335e7d40a7ab86cff623e519c92",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "core.protein.enzyme",
+      "file": "svg/catalytic_enzyme.svg",
+      "before_svg_sha256": "bd39d7e3135eaa323c532d0aabc47e70641372e535fdbb587d48319d7e7cc556",
+      "after_svg_sha256": "12fd83f70e7b682d52898cb367c77b2c0c77fb1ce2aced81d5fb6363bc02e080",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "core.protein.kinase",
+      "file": "svg/protein_kinase.svg",
+      "before_svg_sha256": "190ae8b9f6ccbfc79ca778f80ceeb4742d23cd3bdc3ed0cd2019d725b28eb081",
+      "after_svg_sha256": "71db38f815c20f7bbb2ce58c40ce40687fdee393317ccc171e280ccfd5cb1e55",
+      "license": "CC0-1.0"
+    }
+  ],
+  "added_assets": [
+    {
+      "asset_id": "core.cell.generic_spread",
+      "file": "svg/cell_generic_spread.svg",
+      "svg_sha256": "d3562eb0313711abb439077c9f8eccbfc09107753e058391108bd9a2fa25708b",
+      "metadata_sha256": "62e5ed2b17361d77255ef209d26e558249346babb4f7926c5fd52d190eef8863",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "core.cell.generic_cutaway",
+      "file": "svg/cell_generic_cutaway.svg",
+      "svg_sha256": "1fa2af07691ee9b24f9dfc4343a9ac129619ed1594356d5e64c23770ecb099b9",
+      "metadata_sha256": "7310a10aace60b66a873bf1e087a2652e456f276db3ebfc8dc7c5200ded0dced",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "core.cell.epithelial_apical",
+      "file": "svg/cell_epithelial_apical.svg",
+      "svg_sha256": "cceea04addf843a0c7b143fc628f1a72cf030d55d883c547dfc601d59742e752",
+      "metadata_sha256": "5a97ebdea27352371d12138b01fb80c6cd226d717ba07c0005febe11b514c7e2",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "core.cell.epithelial_cuboidal",
+      "file": "svg/cell_epithelial_cuboidal.svg",
+      "svg_sha256": "82de74b87417627b13175e59a150eadb12f26fee6f87003a70895dcc0fabd92a",
+      "metadata_sha256": "2385794064566191bc92e93e31098bdbab383642eb74c8cc538a5ceb75bdd9d4",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "core.cell.neuron_bipolar",
+      "file": "svg/cell_neuron_bipolar.svg",
+      "svg_sha256": "4dedfd24671dedd3d96956a5801f4f6a8ac73c4bbfaa72bfe95ef770894afb9d",
+      "metadata_sha256": "381be8ea0b58e96ad3b948279a3d5fc3e60776d47fd715f6183238d5d466a928",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "core.cell.neuron_pseudounipolar",
+      "file": "svg/cell_neuron_pseudounipolar.svg",
+      "svg_sha256": "d89d419cc524d3c480217f1b5359075e6eb74af9311dca64d892368e2182580b",
+      "metadata_sha256": "481a5c1c6169215c25510f9725b320af5d41d5f4f0e63420ba9493c4fc9b7544",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "core.nucleus.oval_cutaway",
+      "file": "svg/nucleus_oval_cutaway.svg",
+      "svg_sha256": "f9af03ef657532c2870b2d1bcca746f2eb9b25cb9e24a3e6724fea712f9aa633",
+      "metadata_sha256": "60e344c0556aed493ebfe87643d57d13156e90deef6e80e94a5111984c48923a",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "core.nucleus.envelope_detail",
+      "file": "svg/nucleus_envelope_detail.svg",
+      "svg_sha256": "dac25199d0254951fb0a0d55af12bc1803579dcec9977f9c16d0a0c08b3a49d7",
+      "metadata_sha256": "092b9c83b702f76a03f3c394ba140cfe8a118befabde2dcd7013e97d24907a04",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "core.mitochondrion.tubular",
+      "file": "svg/mitochondrion_tubular.svg",
+      "svg_sha256": "65f83dc421f7ffe34abade291f295ac703b8d0983f1f7dd698f7e6d5f31f372e",
+      "metadata_sha256": "d0fc34d842702157bfffc2c34d1f9f96e8d7ebb4239dfbf90708c25e692609fd",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "core.mitochondrion.network",
+      "file": "svg/mitochondrion_network.svg",
+      "svg_sha256": "4e349d4318f8c081ff3ea25b25b831f017386b2352239bfc54118b1183e808d9",
+      "metadata_sha256": "7a014c67c0ea3664e5b19a17caad9e0f357bdf158046f8173f4b38d51cb5f09f",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "core.golgi.oblique",
+      "file": "svg/golgi_oblique.svg",
+      "svg_sha256": "a921599e60cd8610efdaf5e269d15c8a9906b0e436b58b1618a813097de5dc3b",
+      "metadata_sha256": "3664fdfe93d42e3d667af666eaa10b6a1b48d33ffce74bd315221bb26f2e16ae",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "core.golgi.ribbon",
+      "file": "svg/golgi_ribbon.svg",
+      "svg_sha256": "4cf9c63acc8fcd97f7216cdbf4fcf35f44acefdb3675fefc9e40fa637724800b",
+      "metadata_sha256": "685a772ff39023a01bcbfbffa05e4e997c8d4e959f9321c5345e1a599e85f20e",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "core.er.rough_network",
+      "file": "svg/rough_er_network.svg",
+      "svg_sha256": "c2e4dd5c7b9b378f0584dc083787ccc9fa311973236bdd6fd24ceaa0c54ed779",
+      "metadata_sha256": "765d063c74244e92ed58fd00d13c3e84d09885a00418db686b5b9838a45a3881",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "core.er.smooth",
+      "file": "svg/smooth_er.svg",
+      "svg_sha256": "428177f43deb9ed823d079225c980106fb7e32d5aef05ae2c92a2aba4e27ae99",
+      "metadata_sha256": "d4412b0b65bf33148a1b9cb4b94c882738f7f90bd15660ec3894736d0e5656d9",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "core.antibody.fab_fragment",
+      "file": "svg/antibody_fab_fragment.svg",
+      "svg_sha256": "5828e80db499d77442e198c1531d50f891be6f0bd5ecd522eb96b39b57ab2784",
+      "metadata_sha256": "17c8ae2d17aa82d388462fb3feb0af4cd999b6950894bfdc38523cedeeb73451",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "core.antibody.fc_fragment",
+      "file": "svg/antibody_fc_fragment.svg",
+      "svg_sha256": "8acc8ed2fa826e5df4d63945e550ed9b5f36a0b877fec8cba4173111221e888c",
+      "metadata_sha256": "ceb17de0d72eddcec23153bd1ecbbda2cb2a270e5c644b6023cfcb5f361e68db",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "core.receptor.single_pass_unliganded",
+      "file": "svg/receptor_single_pass_unliganded.svg",
+      "svg_sha256": "8a8654192273bf6412953968f3ed590f2f6097834b64abdf567566c48239c9eb",
+      "metadata_sha256": "ecb22e2eea0dd85dcec35d8e06dc2c0fa0afc4af5220b2bae072c8f0ecefb4b8",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "core.receptor.extracellular_domain",
+      "file": "svg/receptor_extracellular_domain.svg",
+      "svg_sha256": "a7b60d8341a75a47ff3f8227a1e0fa03af06281615b6f9d741137c57b947847d",
+      "metadata_sha256": "0040e5cbfa79522419ea167bf4e014335bff4328e8b31d9731efa639dc3a0274",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "core.ligand.peptide",
+      "file": "svg/ligand_peptide.svg",
+      "svg_sha256": "49055e86428f047e0ac0834b5dbf2485f5708fa51889396fd5889ffb9d1b7fc5",
+      "metadata_sha256": "59cc6ee7f63e6ea62455d97a0d7b7bb2a89526c8dbc15643a5d56ef2d06c9090",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "core.ligand.small_molecule",
+      "file": "svg/ligand_small_molecule.svg",
+      "svg_sha256": "67ea405a63c7ef4c15f5940b4401e74145150c662280fd9713f701fa86d01cb5",
+      "metadata_sha256": "6dfb5455dd21ce9eeac10f09e15e6b8484e7b11690b9c16857dff1020a641d43",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "core.lysosome.cutaway",
+      "file": "svg/lysosome_cutaway.svg",
+      "svg_sha256": "e683a1f875f00a915902ece3f7ac90040e79ab1029436d46579ff8b7f8058638",
+      "metadata_sha256": "9e83b24512f049e311993635e9c703cacbb7eb7455af16f91bb253500f11d5da",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "core.autolysosome",
+      "file": "svg/autolysosome.svg",
+      "svg_sha256": "f964e9865e8633809bf7735c1dcd74c850541d929cc7319be05af00fe9c9fb84",
+      "metadata_sha256": "464f80558121ff247e5c403bd57c53198484e0591d1adf1bafe72a886385c086",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "core.protein.homotrimer",
+      "file": "svg/protein_homotrimer.svg",
+      "svg_sha256": "018b769edf42349648c36a1306d474fddb505b30508c576ead17c3bc6a5e3e86",
+      "metadata_sha256": "5602da10e13302ef0941ec1e1bb20f21dc38e556d019a1ea9781238458115b11",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "core.protein.heterotetramer",
+      "file": "svg/protein_heterotetramer.svg",
+      "svg_sha256": "d3d591671878dec88b420e6471cde4d4cf4ef4885a1f2efac6c6daa8a2090c50",
+      "metadata_sha256": "7386aeb62436c903dc0f6ab38f13ae943757a7b184ab208fcaff7ab4a9afe17a",
+      "license": "CC0-1.0"
+    }
+  ],
+  "metadata_changes": [
+    {
+      "asset_id": "core.cell.generic",
+      "before_metadata_sha256": "13840fd4ef5f496ada793c99cead95fa7915a54e80ee736118d6ce4a8752a8f0",
+      "after_metadata_sha256": "c6a88d9792db7b317ae75938c348b6b8b320cdb602cf75ab7cd7f31759c8a6ae"
+    },
+    {
+      "asset_id": "core.cell.epithelial",
+      "before_metadata_sha256": "09cd8367bd660228e4f0dd791cf40779bb1d744ec556cce3986e6fde828e84b8",
+      "after_metadata_sha256": "48539ba1fe8c5b5ebfc8d134d4b5d3df575ad0c25a0828e21a0394ff2c05547e"
+    },
+    {
+      "asset_id": "core.nucleus.round",
+      "before_metadata_sha256": "7d3d0db6e7f2038e9225908200b82e393cf19fdaaa2150c983642ab8b2b20f7a",
+      "after_metadata_sha256": "bd076b819adf7bfbd720d6b0216251ad347bc28d8060255de1d15d36a4d5de94"
+    },
+    {
+      "asset_id": "core.mitochondrion.basic",
+      "before_metadata_sha256": "1077536480c03b9bea8407cd771ae46377d8a678649cd22fabcf1b26bfe25313",
+      "after_metadata_sha256": "b95becd123b7ed3878a9238f97d979b574f5eadca76d90c2f2a7a1f34dbe6114"
+    },
+    {
+      "asset_id": "core.antibody.igg",
+      "before_metadata_sha256": "46738b5f2cbe89622537cac5ab0e7412757c71bbbde6d1f153be74a9baacec5b",
+      "after_metadata_sha256": "72634197e50b84016298eb263c7344ca42a5788c07bd04fb2ebd6f21e1d5e63d"
+    },
+    {
+      "asset_id": "core.receptor.membrane",
+      "before_metadata_sha256": "8601d601aa48cf1909bcf46db0c68bb6fa85c4ca7a1fe90daae2ddf5c033d89f",
+      "after_metadata_sha256": "0bac0a8edbe6947d85ae21232f0e5b39ca195c491159686b7c121b965f035c2f"
+    },
+    {
+      "asset_id": "core.golgi.basic",
+      "before_metadata_sha256": "7936048063bf7cfc699a981e1e3dbb5bbc5b29fdd3b72da46a809a743562909f",
+      "after_metadata_sha256": "f5f514f2edad664e72f766c55cf5ff40740fa311788d79b7da69d647a3319084"
+    },
+    {
+      "asset_id": "core.er.rough",
+      "before_metadata_sha256": "b85065b4d39246b1550e41f80d32730c816c5c78ed71a9e53fd524589d887f39",
+      "after_metadata_sha256": "6bec5b50dde965c86b49effe48c379bb6d4b8389af30c755b27fb0b5790f0fee"
+    },
+    {
+      "asset_id": "core.lysosome.basic",
+      "before_metadata_sha256": "1daa649ddead19974e4bc35725e511ce01c48ec60f799f0474c0c7c9ba539226",
+      "after_metadata_sha256": "c11c5c11aa44cdfe0f80a60b65c7897ddd54ecd59d099d50d4ce9f9372ac46bf"
+    },
+    {
+      "asset_id": "core.protein.kinase",
+      "before_metadata_sha256": "26bfde45c7a771031ff81706e8d55a633fc73f7dabd3f08ccf5b5b13944e92ba",
+      "after_metadata_sha256": "7c20c50b79ff37fd22679cf0e6db9cb9334ba31f9ca362b9b8972a2099db0eba"
+    },
+    {
+      "asset_id": "core.protein.enzyme",
+      "before_metadata_sha256": "46ea812af281c180e4a45cbb037d09c485400b0a25d76666deddb8335587c6c5",
+      "after_metadata_sha256": "1362a7088c06358e7f680c6dc00727d67284ba8fb234376d1379e12d740516de"
+    },
+    {
+      "asset_id": "core.mrna.transcript",
+      "before_metadata_sha256": "51e97a7e9fd0bf8e8e9a165e3936b0ced70c562d5c8aeea74651d748f88c22f7",
+      "after_metadata_sha256": "d14a3f41b98bf78e652ecf1fb0cb98ccd61724558e9c24eafbbf7515f1a840ab"
+    },
+    {
+      "asset_id": "core.cell.neuron_like",
+      "before_metadata_sha256": "60ab486d04116fac5885be1042568d5ed3d8055b94a4af8398a1af1ccdd0fdec",
+      "after_metadata_sha256": "221d04abfdf90e88cdc27ecebbf104e9b82c1f47b72641c1e3c1504e16835d14"
+    },
+    {
+      "asset_id": "core.antibody.igg_manuscript",
+      "before_metadata_sha256": "d343000b4bb6d23f5f34fd2bfcb7616f84c907b71b8e9ae1d46384fb0077986e",
+      "after_metadata_sha256": "c153bf4211a50a073c34bd2351e55e000c7da3d474a8c5763cc2705c9879febd"
+    },
+    {
+      "asset_id": "core.mitochondrion.basic_manuscript",
+      "before_metadata_sha256": "638c3fc7b9a7c7135f7d4ecf9fe28d397b3f9bb4c14ec4c23722238fa1bcc48f",
+      "after_metadata_sha256": "f83172f38eca7d7bacf2ac44fc61422fca131050c4327219de22367ab599819e"
+    }
+  ]
+}

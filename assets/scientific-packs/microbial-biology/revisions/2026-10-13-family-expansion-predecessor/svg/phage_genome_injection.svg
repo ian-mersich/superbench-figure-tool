@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Contractile-phage Genome Injection</title>
+  <desc id="desc">A T4-like phage delivering an illustrative genome through its tail conduit into bacterial cytoplasm while the capsid remains outside.</desc>
+  <g data-region="hostcytoplasm" fill="#D9F4E5" stroke="none">
+    <path d="M18 100H42C54 100 57 92 59 92H69C72 100 74 100 86 100H110V112H18Z"/>
+  </g>
+  <g data-region="hostmembranes" fill="#7DD3C7" stroke="none">
+    <rect x="18" y="79" width="41" height="5"/><rect x="69" y="79" width="41" height="5"/><path d="M18 94H42C53 94 55 86 59 86V92C57 92 54 100 42 100H18Z"/><path d="M69 86C73 86 75 94 86 94H110V100H86C74 100 71 92 69 92Z"/>
+  </g>
+  <g data-region="phageapparatus" fill="#8EC8FF" stroke="none">
+    <path d="M52 18H76L84 28V45L76 57H52L44 45V28Z"/><rect x="59" y="57" width="10" height="35"/><path d="M51 63H77V71H51Z M57 63H71V71H57Z" fill-rule="evenodd"/><path d="M51 72H77L81 76H47Z"/>
+  </g>
+  <g data-region="genome" fill="none" stroke="#E76F51" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M53 29C58 23 68 24 72 30C78 37 51 32 54 42C57 48 67 44 64 50V94C65 101 79 97 82 104C84 111 72 109 72 109"/>
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M52 18H76L84 28V45L76 57H52L44 45V28Z"/><path d="M52 18L56 28H72L76 18M56 28L52 45M72 28L76 45" stroke-width="2.75"/><path d="M59 57V92M69 57V92M51 63V71H57V63M77 63V71H71V63" stroke-width="2.75"/><path d="M51 72H77L81 76H47Z"/><path d="M18 79H59M69 79H110M18 84H59M69 84H110M18 94H42C53 94 55 86 59 86M69 86C73 86 75 94 86 94H110M18 100H42C54 100 57 92 59 92M69 92C72 100 74 100 86 100H110"/>
+  </g>
+</svg>

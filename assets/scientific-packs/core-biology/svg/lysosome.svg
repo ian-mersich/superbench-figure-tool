@@ -1,22 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
-  <title id="title">Lysosome</title>
-  <desc id="desc">Original vector lysosome with an irregular single membrane, acidic lumen, heterogeneous enzyme and substrate contents, and editable semantic regions.</desc>
+  <title id="title">Lysosome — Section</title>
+  <desc id="desc">Original schematic lysosome with one limiting membrane, a lumen and sparse illustrative contents. Content marks do not specify individual enzymes, pH, activity, concentration or measured size.</desc>
+  <path data-region="lumen" fill="#D9D7FF" d="M22 64C21 43 36 24 58 21C81 18 101 31 107 52C113 73 102 95 80 104C59 113 36 103 26 84C23 78 22 71 22 64Z"/>
 
-  <path data-region="lumen" fill="#D9D7FF" d="M21 66c-1-23 15-42 38-45 24-3 44 11 48 34 4 23-10 45-33 51-23 6-46-7-52-29-1-4-1-7-1-11z"/>
-  <path data-region="membrane" d="M21 66c-1-23 15-42 38-45 24-3 44 11 48 34 4 23-10 45-33 51-23 6-46-7-52-29-1-4-1-7-1-11z" fill="none" stroke="#8EC8FF" stroke-linecap="round" stroke-linejoin="round" stroke-width="7"/>
+  <path data-region="membrane" fill="none" stroke="#8EC8FF" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" d="M22 64C21 43 36 24 58 21C81 18 101 31 107 52C113 73 102 95 80 104C59 113 36 103 26 84C23 78 22 71 22 64Z"/>
 
-  <g data-region="enzyme" fill="#F4A261">
-    <path d="M39 49c3-5 10-6 14-2 4 3 3 9-1 12-5 3-12 0-13-5-1-2-1-4 0-5z"/>
-    <circle cx="72" cy="42" r="4"/><circle cx="88" cy="58" r="5"/><circle cx="47" cy="76" r="4"/>
-    <path d="M65 64l9-5 8 6-3 10-10 2-7-7z"/>
-    <path d="M77 86c5-4 13-1 14 5-1 6-8 9-13 5-3-3-4-7-1-10z"/>
-    <circle cx="58" cy="91" r="2.75"/>
-  </g>
-
+  <g data-region="enzyme" fill="#F4A261"><path d="M39 48C42 43 50 43 54 48C57 52 53 58 47 58C41 58 37 53 39 48Z"/><path d="M74 73C79 68 86 70 88 75C90 82 82 87 77 83C74 81 71 77 74 73Z"/><circle cx="74" cy="45" r="3.4"/><circle cx="45" cy="81" r="3.2"/></g>
   <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M21 66c-1-23 15-42 38-45 24-3 44 11 48 34 4 23-10 45-33 51-23 6-46-7-52-29-1-4-1-7-1-11z" stroke-width="3.5"/>
-    <path d="M39 49c3-5 10-6 14-2 4 3 3 9-1 12-5 3-12 0-13-5-1-2-1-4 0-5z" stroke-width="1.75"/>
-    <path d="M65 64l9-5 8 6-3 10-10 2-7-7z" stroke-width="1.75"/>
-    <path d="M77 86c5-4 13-1 14 5-1 6-8 9-13 5-3-3-4-7-1-10z" stroke-width="1.75"/>
+    <path d="M22 64C21 43 36 24 58 21C81 18 101 31 107 52C113 73 102 95 80 104C59 113 36 103 26 84C23 78 22 71 22 64Z" stroke-width="3.2"/>
+    <path d="M39 48C42 43 50 43 54 48C57 52 53 58 47 58C41 58 37 53 39 48ZM74 73C79 68 86 70 88 75C90 82 82 87 77 83C74 81 71 77 74 73Z" stroke-width="1.6"/>
   </g>
 </svg>

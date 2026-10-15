@@ -1,0 +1,582 @@
+{
+  "schema": "figureStudio.scientificScene.v1",
+  "id": "spatial-rna-methods",
+  "name": "Spatial RNA methods",
+  "summary": "Two distinct routes: location-barcoded RNA capture with sequencing, and RNA imaging in fixed tissue.",
+  "source_record_id": "source.figure-studio-rna-methods.2026-10-07",
+  "rights_record_id": "rights.figure-studio-rna-methods.owner-cc0.2026-10-10",
+  "canvas": {
+    "width": 1120,
+    "height": 720,
+    "width_in": 11.6666666667,
+    "height_in": 7.5,
+    "background_role": "background"
+  },
+  "palette": {
+    "background": "#FFFFFF",
+    "surface": "#F3F7FA",
+    "ink": "#26323D",
+    "muted": "#667085",
+    "sample": "#C7F2EC",
+    "nucleus": "#B8B5FF",
+    "capture": "#2A9D8F",
+    "library": "#5EA9DD",
+    "barcode": "#7B78C9",
+    "signal": "#E76F51",
+    "outline": "#26323D"
+  },
+  "layers": [
+    {
+      "id": "context",
+      "name": "Method sections"
+    },
+    {
+      "id": "biology",
+      "name": "RNA acquisition objects"
+    },
+    {
+      "id": "relationships",
+      "name": "Method relationships"
+    },
+    {
+      "id": "labels",
+      "name": "Editable method labels"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "capture_band",
+      "type": "shape",
+      "shape": "rounded_rect",
+      "layer_id": "context",
+      "x": 32,
+      "y": 112,
+      "width": 1056,
+      "height": 245,
+      "radius": 16,
+      "fill_role": "surface",
+      "stroke_role": "surface",
+      "stroke_width": 1
+    },
+    {
+      "id": "imaging_band",
+      "type": "shape",
+      "shape": "rounded_rect",
+      "layer_id": "context",
+      "x": 32,
+      "y": 380,
+      "width": 1056,
+      "height": 234,
+      "radius": 16,
+      "fill_role": "surface",
+      "stroke_role": "surface",
+      "stroke_width": 1
+    },
+    {
+      "id": "title",
+      "type": "text",
+      "layer_id": "labels",
+      "x": 40,
+      "y": 25,
+      "width": 1040,
+      "height": 40,
+      "text": "Spatial RNA measurements",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 28,
+      "fill_role": "ink",
+      "align": "left"
+    },
+    {
+      "id": "subtitle",
+      "type": "text",
+      "layer_id": "labels",
+      "x": 40,
+      "y": 70,
+      "width": 1040,
+      "height": 28,
+      "text": "Capture and sequencing · RNA imaging in situ",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 16,
+      "fill_role": "muted",
+      "align": "left"
+    },
+    {
+      "id": "capture_heading",
+      "type": "text",
+      "layer_id": "labels",
+      "x": 48,
+      "y": 124,
+      "width": 1010,
+      "height": 30,
+      "text": "Location-barcoded capture",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 19,
+      "fill_role": "capture",
+      "align": "left"
+    },
+    {
+      "id": "section",
+      "type": "asset",
+      "layer_id": "biology",
+      "top_level": true,
+      "asset_id": "core.sample.tissue_section_slide",
+      "x": 64,
+      "y": 180,
+      "width": 112,
+      "height": 112,
+      "palette_overrides": {
+        "tissue": "sample"
+      }
+    },
+    {
+      "id": "array",
+      "type": "asset",
+      "layer_id": "biology",
+      "top_level": true,
+      "asset_id": "rna.assay_workflow.spatial_capture_array",
+      "x": 274,
+      "y": 172,
+      "width": 128,
+      "height": 128,
+      "palette_overrides": {
+        "outline": "outline"
+      }
+    },
+    {
+      "id": "library",
+      "type": "asset",
+      "layer_id": "biology",
+      "top_level": true,
+      "asset_id": "exp.nucleic_acid.cdna_library",
+      "x": 500,
+      "y": 180,
+      "width": 112,
+      "height": 112,
+      "palette_overrides": {
+        "nucleic_acid": "library",
+        "regulatory_feature": "barcode"
+      }
+    },
+    {
+      "id": "sequencer",
+      "type": "asset",
+      "layer_id": "biology",
+      "top_level": true,
+      "asset_id": "exp.lab_equipment.sequencer",
+      "x": 724,
+      "y": 180,
+      "width": 112,
+      "height": 112,
+      "palette_overrides": {
+        "instrument_detail": "library"
+      }
+    },
+    {
+      "id": "reads",
+      "type": "asset",
+      "layer_id": "biology",
+      "top_level": true,
+      "asset_id": "exp.assay_workflow.sequencing_reads.paired_end",
+      "x": 944,
+      "y": 180,
+      "width": 112,
+      "height": 112,
+      "palette_overrides": {
+        "signal_trace": "signal"
+      }
+    },
+    {
+      "id": "section_label",
+      "type": "text",
+      "layer_id": "labels",
+      "x": 40,
+      "y": 310,
+      "width": 160,
+      "height": 48,
+      "text": "Tissue section",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 16,
+      "fill_role": "ink",
+      "align": "center"
+    },
+    {
+      "id": "array_label",
+      "type": "text",
+      "layer_id": "labels",
+      "x": 244,
+      "y": 310,
+      "width": 188,
+      "height": 48,
+      "text": "RNA capture array",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 16,
+      "fill_role": "ink",
+      "align": "center"
+    },
+    {
+      "id": "library_label",
+      "type": "text",
+      "layer_id": "labels",
+      "x": 472,
+      "y": 310,
+      "width": 168,
+      "height": 48,
+      "text": "cDNA library",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 16,
+      "fill_role": "ink",
+      "align": "center"
+    },
+    {
+      "id": "sequencer_label",
+      "type": "text",
+      "layer_id": "labels",
+      "x": 696,
+      "y": 310,
+      "width": 168,
+      "height": 48,
+      "text": "Sequencing",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 16,
+      "fill_role": "ink",
+      "align": "center"
+    },
+    {
+      "id": "reads_label",
+      "type": "text",
+      "layer_id": "labels",
+      "x": 912,
+      "y": 310,
+      "width": 178,
+      "height": 48,
+      "text": "RNA + location reads",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 16,
+      "fill_role": "ink",
+      "align": "center"
+    },
+    {
+      "id": "imaging_heading",
+      "type": "text",
+      "layer_id": "labels",
+      "x": 48,
+      "y": 395,
+      "width": 1010,
+      "height": 30,
+      "text": "RNA imaging in fixed tissue",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 19,
+      "fill_role": "signal",
+      "align": "left"
+    },
+    {
+      "id": "fixed_section",
+      "type": "asset",
+      "layer_id": "biology",
+      "top_level": true,
+      "asset_id": "core.sample.tissue_section_slide",
+      "x": 66,
+      "y": 453,
+      "width": 112,
+      "height": 112,
+      "palette_overrides": {
+        "tissue": "sample"
+      }
+    },
+    {
+      "id": "puncta",
+      "type": "asset",
+      "layer_id": "biology",
+      "top_level": true,
+      "asset_id": "rna.assay_workflow.in_situ_rna_puncta",
+      "x": 332,
+      "y": 445,
+      "width": 128,
+      "height": 128,
+      "palette_overrides": {
+        "outline": "outline"
+      }
+    },
+    {
+      "id": "fixed_section_label",
+      "type": "text",
+      "layer_id": "labels",
+      "x": 40,
+      "y": 578,
+      "width": 168,
+      "height": 48,
+      "text": "Fixed tissue",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 16,
+      "fill_role": "ink",
+      "align": "center"
+    },
+    {
+      "id": "puncta_label",
+      "type": "text",
+      "layer_id": "labels",
+      "x": 306,
+      "y": 578,
+      "width": 180,
+      "height": 48,
+      "text": "Illustrative RNA puncta",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 16,
+      "fill_role": "ink",
+      "align": "center"
+    },
+    {
+      "id": "imaging_note",
+      "type": "text",
+      "layer_id": "labels",
+      "x": 578,
+      "y": 460,
+      "width": 464,
+      "height": 48,
+      "text": "Hybridize probes, then image",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 21,
+      "fill_role": "ink",
+      "align": "left"
+    },
+    {
+      "id": "imaging_limit",
+      "type": "text",
+      "layer_id": "labels",
+      "x": 578,
+      "y": 502,
+      "width": 464,
+      "height": 70,
+      "text": "Dots illustrate RNA localization.\nThey are not measured transcript counts.",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 17,
+      "fill_role": "muted",
+      "align": "left"
+    },
+    {
+      "id": "limits",
+      "type": "text",
+      "layer_id": "labels",
+      "x": 40,
+      "y": 648,
+      "width": 1040,
+      "height": 52,
+      "text": "Capture spots may sample multiple cells. Resolution depends on the method; both routes require assay-specific controls.",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 14,
+      "fill_role": "muted",
+      "align": "left"
+    }
+  ],
+  "groups": [
+    {
+      "id": "capture_stage",
+      "name": "Spatial RNA capture",
+      "layer_id": "biology",
+      "members": [
+        "section",
+        "array",
+        "section_label",
+        "array_label"
+      ]
+    },
+    {
+      "id": "sequencing_stage",
+      "name": "Library and sequencing",
+      "layer_id": "biology",
+      "members": [
+        "library",
+        "sequencer",
+        "reads",
+        "library_label",
+        "sequencer_label",
+        "reads_label"
+      ]
+    },
+    {
+      "id": "imaging_stage",
+      "name": "RNA imaging in situ",
+      "layer_id": "biology",
+      "members": [
+        "fixed_section",
+        "puncta",
+        "fixed_section_label",
+        "puncta_label",
+        "imaging_note",
+        "imaging_limit"
+      ]
+    }
+  ],
+  "connectors": [
+    {
+      "id": "place_tissue",
+      "layer_id": "relationships",
+      "from": {
+        "node_id": "section",
+        "anchor": "right"
+      },
+      "to": {
+        "node_id": "array",
+        "anchor": "left"
+      },
+      "relation": "sampling",
+      "label": "place tissue",
+      "style": {
+        "stroke_role": "capture",
+        "stroke_width": 2.5,
+        "line": "solid",
+        "terminator": "arrow",
+        "label_offset": {
+          "x": 0,
+          "y": -20
+        },
+        "label_placement": "midpoint"
+      }
+    },
+    {
+      "id": "capture_to_library",
+      "layer_id": "relationships",
+      "from": {
+        "node_id": "array",
+        "anchor": "right"
+      },
+      "to": {
+        "node_id": "library",
+        "anchor": "left"
+      },
+      "relation": "conversion",
+      "label": "capture + RT",
+      "style": {
+        "stroke_role": "capture",
+        "stroke_width": 2.5,
+        "line": "solid",
+        "terminator": "arrow",
+        "label_offset": {
+          "x": 0,
+          "y": -20
+        },
+        "label_placement": "midpoint"
+      }
+    },
+    {
+      "id": "library_to_sequencer",
+      "layer_id": "relationships",
+      "from": {
+        "node_id": "library",
+        "anchor": "right"
+      },
+      "to": {
+        "node_id": "sequencer",
+        "anchor": "left"
+      },
+      "relation": "conversion",
+      "label": "prepare",
+      "style": {
+        "stroke_role": "library",
+        "stroke_width": 2.5,
+        "line": "solid",
+        "terminator": "arrow",
+        "label_offset": {
+          "x": 0,
+          "y": -20
+        },
+        "label_placement": "midpoint"
+      }
+    },
+    {
+      "id": "sequence_to_reads",
+      "layer_id": "relationships",
+      "from": {
+        "node_id": "sequencer",
+        "anchor": "right"
+      },
+      "to": {
+        "node_id": "reads",
+        "anchor": "left"
+      },
+      "relation": "measurement",
+      "label": "sequence",
+      "style": {
+        "stroke_role": "library",
+        "stroke_width": 2.5,
+        "line": "solid",
+        "terminator": "arrow",
+        "label_offset": {
+          "x": 0,
+          "y": -20
+        },
+        "label_placement": "midpoint"
+      }
+    },
+    {
+      "id": "hybridize_and_image",
+      "layer_id": "relationships",
+      "from": {
+        "node_id": "fixed_section",
+        "anchor": "right"
+      },
+      "to": {
+        "node_id": "puncta",
+        "anchor": "left"
+      },
+      "relation": "measurement",
+      "label": "probe + image",
+      "style": {
+        "stroke_role": "signal",
+        "stroke_width": 2.5,
+        "line": "solid",
+        "terminator": "arrow",
+        "label_offset": {
+          "x": 0,
+          "y": -20
+        },
+        "label_placement": "midpoint"
+      }
+    }
+  ],
+  "scientific_record": {
+    "verified_on": "2026-10-07",
+    "sources": [
+      {
+        "id": "stahl-2016",
+        "citation": "Ståhl et al. Science. 2016. Visualization and analysis of gene expression in tissue sections by spatial transcriptomics.",
+        "doi": "10.1126/science.aaf2403",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/27365449/"
+      },
+      {
+        "id": "raj-2008",
+        "citation": "Raj et al. Nature Methods. 2008. Imaging individual mRNA molecules using multiple singly labeled probes.",
+        "doi": "10.1038/nmeth.1253",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3126653/"
+      }
+    ],
+    "relationships": [
+      {
+        "claim": "Spatial capture primers retain sampling position, but a capture feature can contain multiple cells.",
+        "source_ids": [
+          "stahl-2016"
+        ]
+      },
+      {
+        "claim": "RNA-FISH can reveal localized fluorescence puncta in fixed samples; interpretation requires method-specific controls.",
+        "source_ids": [
+          "raj-2008"
+        ]
+      }
+    ]
+  }
+}

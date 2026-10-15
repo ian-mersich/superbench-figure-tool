@@ -1,224 +1,268 @@
 {
-  "license_notice": "LICENSE-SCENES-CC0-1.0.md",
-  "product_release_pending_scene_ids": [
-    "single-cell-rna-workflow",
-    "spatial-rna-methods"
-  ],
-  "public_distribution_authorized": true,
+  "schema": "figureStudio.scientificSceneRights.v1",
   "recorded_on": "2026-09-13",
+  "status": "released",
+  "selected_public_license": "CC0-1.0",
+  "license_notice": "LICENSE-SCENES-CC0-1.0.md",
+  "public_distribution_authorized": true,
   "rights_basis": {
+    "status": "owner_attested_original_output",
     "decision_reference": "Figure Studio original bundled-scene CC0 release record, updated 2026-09-13",
-    "qualification": "This record does not provide a non-infringement, patent, trademark, privacy, publicity, or endorsement warranty.",
     "source_evidence": "Each registered scene is an original data-defined editable vector recipe with a matching original SVG preview.",
-    "status": "owner_attested_original_output"
+    "qualification": "This record does not provide a non-infringement, patent, trademark, privacy, publicity, or endorsement warranty."
   },
+  "source_records": [
+    {
+      "id": "source.figure-studio-scientific-scenes.2026-08-30",
+      "source_type": "clean_room_original_editable_vector_scene",
+      "creator": "Figure Studio",
+      "creation_method": "Original data-defined scene recipe and SVG preview created from generic scientific knowledge.",
+      "clean_room_scope": "No proprietary artwork, screenshot, template, taxonomy, prose, or third-party component was copied, traced, or embedded.",
+      "third_party_material": "none_declared"
+    },
+    {
+      "id": "source.figure-studio-tcell-scientific-starter.2026-09-12",
+      "source_type": "clean_room_original_editable_vector_scene",
+      "creator": "Figure Studio",
+      "creation_method": "Original data-defined scene recipe and SVG preview composed from existing Figure Studio scientific assets and generic editable vector primitives; biological relationships were checked against the sources recorded in the recipe.",
+      "clean_room_scope": "No commercial or database artwork, screenshot, pathway layout, template, prose, or third-party component was copied, traced, scraped, or embedded.",
+      "third_party_material": "none_declared"
+    },
+    {
+      "id": "source.figure-studio-apc-tcell-immune-synapse.2026-09-12",
+      "source_type": "clean_room_original_editable_vector_scene",
+      "creator": "Figure Studio",
+      "creation_method": "Original data-defined scene recipe and SVG preview composed from released Figure Studio scientific assets and original vector primitives; biological relationships were checked against the sources recorded in the recipe.",
+      "clean_room_scope": "No commercial or database artwork, screenshot, pathway layout, template, prose, or third-party component was copied, traced, scraped, or embedded.",
+      "third_party_material": "none_declared"
+    },
+    {
+      "id": "source.figure-studio-autophagosome-lysosome-process.2026-09-13",
+      "source_type": "clean_room_original_editable_vector_scene",
+      "creator": "Figure Studio",
+      "creation_method": "Original data-defined scene recipe and SVG preview composed from released Figure Studio organelle assets and original editable vector primitives; biological relationships and interpretation limits were checked against the sources recorded in the recipe.",
+      "clean_room_scope": "No publication artwork, commercial or database illustration, screenshot, pathway layout, template, prose, or third-party component was copied, traced, scraped, or embedded.",
+      "third_party_material": "none_declared"
+    },
+    {
+      "id": "source.figure-studio-immunoblot-assay-workflow.2026-09-13",
+      "source_type": "clean_room_original_editable_vector_scene",
+      "creator": "Figure Studio",
+      "creation_method": "Original data-defined scene recipe and SVG preview composed from released Figure Studio laboratory, antibody, and assay-result assets plus original editable vector primitives; assay sequence and interpretation limits were checked against the sources recorded in the recipe.",
+      "clean_room_scope": "No publication artwork, commercial template, screenshot, vendor diagram, database illustration, prose, or third-party component was copied, traced, scraped, or embedded.",
+      "third_party_material": "none_declared"
+    },
+    {
+      "id": "source.figure-studio-rna-methods.2026-10-07",
+      "source_type": "clean_room_original_editable_vector_scene",
+      "creator": "Mersich Lab Superbench",
+      "creation_method": "Original recipes composed from existing vectors and new original RNA-method drafts; method references supply scientific concepts only.",
+      "clean_room_scope": "No publication or proprietary artwork, screenshots, layouts, templates or prose were copied or traced.",
+      "third_party_material": "none_declared"
+    }
+  ],
   "rights_records": [
     {
       "id": "rights.figure-studio-scientific-scenes.cc0.2026-08-30",
       "license": "CC0-1.0",
-      "public_distribution_authorized": true,
-      "qualification": "This record does not provide a non-infringement, patent, trademark, privacy, publicity, or endorsement warranty.",
       "rights_basis": "owner_attested_original_output",
-      "status": "released"
+      "status": "released",
+      "public_distribution_authorized": true,
+      "qualification": "This record does not provide a non-infringement, patent, trademark, privacy, publicity, or endorsement warranty."
     },
     {
       "id": "rights.figure-studio-tcell-scientific-starter.cc0.2026-09-12",
       "license": "CC0-1.0",
-      "public_distribution_authorized": true,
-      "qualification": "This record covers the original T-cell scene recipe, scene-specific labels, and preview; cited publications inform scientific accuracy but their text and figures are not included.",
       "rights_basis": "owner_attested_original_output",
-      "status": "released"
+      "status": "released",
+      "public_distribution_authorized": true,
+      "qualification": "This record covers the original T-cell scene recipe, scene-specific labels, and preview; cited publications inform scientific accuracy but their text and figures are not included."
     },
     {
       "id": "rights.figure-studio-apc-tcell-immune-synapse.cc0.2026-09-12",
       "license": "CC0-1.0",
-      "public_distribution_authorized": true,
-      "qualification": "This record covers the original APC–T-cell immune-synapse scene recipe, scene-specific labels, and preview; cited publications inform scientific accuracy but their text and figures are not included.",
       "rights_basis": "owner_attested_original_output",
-      "status": "released"
+      "status": "released",
+      "public_distribution_authorized": true,
+      "qualification": "This record covers the original APC–T-cell immune-synapse scene recipe, scene-specific labels, and preview; cited publications inform scientific accuracy but their text and figures are not included."
     },
     {
       "id": "rights.figure-studio-autophagosome-lysosome-process.cc0.2026-09-13",
       "license": "CC0-1.0",
-      "public_distribution_authorized": true,
-      "qualification": "This record covers the original autophagosome–lysosome process recipe, scene-specific labels, and preview; cited publications inform scientific accuracy but their text and figures are not included.",
       "rights_basis": "owner_attested_original_output",
-      "status": "released"
+      "status": "released",
+      "public_distribution_authorized": true,
+      "qualification": "This record covers the original autophagosome–lysosome process recipe, scene-specific labels, and preview; cited publications inform scientific accuracy but their text and figures are not included."
     },
     {
       "id": "rights.figure-studio-immunoblot-assay-workflow.cc0.2026-09-13",
       "license": "CC0-1.0",
-      "public_distribution_authorized": true,
-      "qualification": "This record covers the original immunoblot assay workflow recipe, scene-specific labels, and preview; cited publications inform scientific accuracy but their text and figures are not included.",
       "rights_basis": "owner_attested_original_output",
-      "status": "released"
+      "status": "released",
+      "public_distribution_authorized": true,
+      "qualification": "This record covers the original immunoblot assay workflow recipe, scene-specific labels, and preview; cited publications inform scientific accuracy but their text and figures are not included."
+    },
+    {
+      "id": "rights.figure-studio-rna-methods.owner-cc0.2026-10-10",
+      "license": "CC0-1.0",
+      "rights_basis": "owner_attested_original_output",
+      "status": "rights_cleared",
+      "public_distribution_authorized": true,
+      "qualification": "The workspace owner grants CC0 1.0 permission for the two original RNA scene recipes, scene-specific labels, and preview artwork effective 2026-10-10. Product-level scene release remains pending. This is not a non-infringement, patent, trademark, privacy, publicity, or endorsement warranty.",
+      "product_release_status": "pending_quality_and_product_review",
+      "effective_date": "2026-10-10"
     }
   ],
   "scenes": [
     {
-      "name": "Immunoblot assay workflow",
-      "preview_file": "previews/immunoblot-assay-workflow.svg",
-      "preview_sha256": "9396b7495103285f52aadf1dc2be9a509ea881575f41df6f0762703c08922c4e",
-      "release_disposition": "released_under_cc0_1_0",
-      "rights_record_id": "rights.figure-studio-immunoblot-assay-workflow.cc0.2026-09-13",
-      "scene_file": "scenes/immunoblot-assay-workflow.scene.json",
       "scene_id": "immunoblot-assay-workflow",
+      "name": "Immunoblot assay workflow",
+      "scene_file": "scenes/immunoblot-assay-workflow.scene.json",
+      "preview_file": "previews/immunoblot-assay-workflow.svg",
       "scene_sha256": "33fa98ea63a72c7eb2af7ff5aad7dd81a6314864f5aa9270b7920527216d1894",
+      "preview_sha256": "9396b7495103285f52aadf1dc2be9a509ea881575f41df6f0762703c08922c4e",
       "source_record_id": "source.figure-studio-immunoblot-assay-workflow.2026-09-13",
-      "third_party_material": "none_declared"
+      "rights_record_id": "rights.figure-studio-immunoblot-assay-workflow.cc0.2026-09-13",
+      "third_party_material": "none_declared",
+      "release_disposition": "released_under_cc0_1_0"
     },
     {
-      "name": "Autophagosome–lysosome process",
-      "preview_file": "previews/autophagosome-lysosome-process.svg",
-      "preview_sha256": "344a3c94560c3680e23f76c671eab2bc774a278304b574fbb0b90dc99d7d8472",
-      "release_disposition": "released_under_cc0_1_0",
-      "rights_record_id": "rights.figure-studio-autophagosome-lysosome-process.cc0.2026-09-13",
-      "scene_file": "scenes/autophagosome-lysosome-process.scene.json",
       "scene_id": "autophagosome-lysosome-process",
+      "name": "Autophagosome–lysosome process",
+      "scene_file": "scenes/autophagosome-lysosome-process.scene.json",
+      "preview_file": "previews/autophagosome-lysosome-process.svg",
       "scene_sha256": "d59aa9c15016d938b9f979e9d5ec668db1b5223e7b01d55b5e690605b6d8fe32",
+      "preview_sha256": "344a3c94560c3680e23f76c671eab2bc774a278304b574fbb0b90dc99d7d8472",
       "source_record_id": "source.figure-studio-autophagosome-lysosome-process.2026-09-13",
-      "third_party_material": "none_declared"
+      "rights_record_id": "rights.figure-studio-autophagosome-lysosome-process.cc0.2026-09-13",
+      "third_party_material": "none_declared",
+      "release_disposition": "released_under_cc0_1_0"
     },
     {
-      "name": "APC–T-cell immune synapse",
-      "preview_file": "previews/apc-t-cell-immune-synapse.svg",
-      "preview_sha256": "677a77723077275ca9cb7e6fa5038e3bec2f677d4cf1d36de388ac3efbc3d3b6",
-      "release_disposition": "released_under_cc0_1_0",
-      "rights_record_id": "rights.figure-studio-apc-tcell-immune-synapse.cc0.2026-09-12",
-      "scene_file": "scenes/apc-t-cell-immune-synapse.scene.json",
       "scene_id": "apc-t-cell-immune-synapse",
+      "name": "APC–T-cell immune synapse",
+      "scene_file": "scenes/apc-t-cell-immune-synapse.scene.json",
+      "preview_file": "previews/apc-t-cell-immune-synapse.svg",
       "scene_sha256": "c514b5a00adbb1a21054105e45be2c84e07ed76e3ec11c5ea20823afbdb5563c",
+      "preview_sha256": "677a77723077275ca9cb7e6fa5038e3bec2f677d4cf1d36de388ac3efbc3d3b6",
       "source_record_id": "source.figure-studio-apc-tcell-immune-synapse.2026-09-12",
-      "third_party_material": "none_declared"
+      "rights_record_id": "rights.figure-studio-apc-tcell-immune-synapse.cc0.2026-09-12",
+      "third_party_material": "none_declared",
+      "release_disposition": "released_under_cc0_1_0"
     },
     {
-      "name": "T-cell activation and PD-1 checkpoint",
-      "preview_file": "previews/t-cell-activation-checkpoint.svg",
-      "preview_sha256": "4e3688525521e1933795bcffa62a98a17dbc28347e3907ebc7ad15b22c661d11",
-      "release_disposition": "released_under_cc0_1_0",
-      "rights_record_id": "rights.figure-studio-tcell-scientific-starter.cc0.2026-09-12",
-      "scene_file": "scenes/t-cell-activation-checkpoint.scene.json",
       "scene_id": "t-cell-activation-checkpoint",
+      "name": "T-cell activation and PD-1 checkpoint",
+      "scene_file": "scenes/t-cell-activation-checkpoint.scene.json",
+      "preview_file": "previews/t-cell-activation-checkpoint.svg",
       "scene_sha256": "78b8041ae8f55703b671eee5e20dbeb6cbb25ab5201a7fec8b29722ae55e1b69",
+      "preview_sha256": "4e3688525521e1933795bcffa62a98a17dbc28347e3907ebc7ad15b22c661d11",
       "source_record_id": "source.figure-studio-tcell-scientific-starter.2026-09-12",
-      "third_party_material": "none_declared"
+      "rights_record_id": "rights.figure-studio-tcell-scientific-starter.cc0.2026-09-12",
+      "third_party_material": "none_declared",
+      "release_disposition": "released_under_cc0_1_0"
     },
     {
-      "name": "Receptor signaling",
-      "preview_file": "previews/receptor-signaling.svg",
-      "preview_sha256": "8b1ad83be309595f6ecb2db8dbae820bd294b25762d5183cfacfc9e917e56cf8",
-      "release_disposition": "released_under_cc0_1_0",
-      "rights_record_id": "rights.figure-studio-scientific-scenes.cc0.2026-08-30",
-      "scene_file": "scenes/receptor-signaling.scene.json",
       "scene_id": "receptor-signaling",
+      "name": "Receptor signaling",
+      "scene_file": "scenes/receptor-signaling.scene.json",
+      "preview_file": "previews/receptor-signaling.svg",
       "scene_sha256": "0cc6ba7d04082dc451167b924fb9ea97e10576a6b81594aafaab2530f6c802cd",
+      "preview_sha256": "8b1ad83be309595f6ecb2db8dbae820bd294b25762d5183cfacfc9e917e56cf8",
       "source_record_id": "source.figure-studio-scientific-scenes.2026-08-30",
-      "third_party_material": "none_declared"
+      "rights_record_id": "rights.figure-studio-scientific-scenes.cc0.2026-08-30",
+      "third_party_material": "none_declared",
+      "release_disposition": "released_under_cc0_1_0"
     },
     {
-      "name": "Tumor microenvironment",
-      "preview_file": "previews/tumor-microenvironment.svg",
-      "preview_sha256": "e81436c5285c5deea20ac847e2c458d35b795abc33081ec9f8eff4f4842e15a7",
-      "release_disposition": "released_under_cc0_1_0",
-      "rights_record_id": "rights.figure-studio-scientific-scenes.cc0.2026-08-30",
-      "scene_file": "scenes/tumor-microenvironment.scene.json",
       "scene_id": "tumor-microenvironment",
+      "name": "Tumor microenvironment",
+      "scene_file": "scenes/tumor-microenvironment.scene.json",
+      "preview_file": "previews/tumor-microenvironment.svg",
       "scene_sha256": "7bf13883fb24e73290306b7117ae2b568585f6b939addf6dbaa88bda23f2cf14",
+      "preview_sha256": "e81436c5285c5deea20ac847e2c458d35b795abc33081ec9f8eff4f4842e15a7",
       "source_record_id": "source.figure-studio-scientific-scenes.2026-08-30",
-      "third_party_material": "none_declared"
+      "rights_record_id": "rights.figure-studio-scientific-scenes.cc0.2026-08-30",
+      "third_party_material": "none_declared",
+      "release_disposition": "released_under_cc0_1_0"
     },
     {
-      "name": "Gene regulation and expression",
-      "preview_file": "previews/gene-regulation-expression.svg",
-      "preview_sha256": "d954762aa919e0a08ffb66e0b1bfa5a509bba5bb4f49d86fc2eb0729bba61bed",
-      "release_disposition": "released_under_cc0_1_0",
-      "rights_record_id": "rights.figure-studio-scientific-scenes.cc0.2026-08-30",
-      "scene_file": "scenes/gene-regulation-expression.scene.json",
       "scene_id": "gene-regulation-expression",
+      "name": "Gene regulation and expression",
+      "scene_file": "scenes/gene-regulation-expression.scene.json",
+      "preview_file": "previews/gene-regulation-expression.svg",
       "scene_sha256": "6c100900d62e5669c557919df2349fe1b307295c474e2c92273995bcd0b1e790",
+      "preview_sha256": "d954762aa919e0a08ffb66e0b1bfa5a509bba5bb4f49d86fc2eb0729bba61bed",
       "source_record_id": "source.figure-studio-scientific-scenes.2026-08-30",
-      "third_party_material": "none_declared"
+      "rights_record_id": "rights.figure-studio-scientific-scenes.cc0.2026-08-30",
+      "third_party_material": "none_declared",
+      "release_disposition": "released_under_cc0_1_0"
     },
     {
-      "name": "Culture to quantitative readout",
-      "preview_file": "previews/culture-treatment-readout.svg",
-      "preview_sha256": "86a5c314a0a712ec386c3f91e0e3e33bf5ded7bd03357f48bb4c18afb0740154",
-      "release_disposition": "released_under_cc0_1_0",
-      "rights_record_id": "rights.figure-studio-scientific-scenes.cc0.2026-08-30",
-      "scene_file": "scenes/culture-treatment-readout.scene.json",
       "scene_id": "culture-treatment-readout",
+      "name": "Culture to quantitative readout",
+      "scene_file": "scenes/culture-treatment-readout.scene.json",
+      "preview_file": "previews/culture-treatment-readout.svg",
       "scene_sha256": "36e9c335b7d55ec4430e674cc2eb23cea8c048880c2dc0b8def83d4093b6b0b6",
+      "preview_sha256": "86a5c314a0a712ec386c3f91e0e3e33bf5ded7bd03357f48bb4c18afb0740154",
       "source_record_id": "source.figure-studio-scientific-scenes.2026-08-30",
-      "third_party_material": "none_declared"
+      "rights_record_id": "rights.figure-studio-scientific-scenes.cc0.2026-08-30",
+      "third_party_material": "none_declared",
+      "release_disposition": "released_under_cc0_1_0"
     },
     {
-      "name": "CRISPR perturbation and validation",
-      "preview_file": "previews/crispr-perturbation-validation.svg",
-      "preview_sha256": "f335d40c6b0e9f31a00add1e05dd0bb349a8eaf4fe92099bb2f08cb9eba26a85",
-      "release_disposition": "released_under_cc0_1_0",
-      "rights_record_id": "rights.figure-studio-scientific-scenes.cc0.2026-08-30",
-      "scene_file": "scenes/crispr-perturbation-validation.scene.json",
       "scene_id": "crispr-perturbation-validation",
+      "name": "CRISPR perturbation and validation",
+      "scene_file": "scenes/crispr-perturbation-validation.scene.json",
+      "preview_file": "previews/crispr-perturbation-validation.svg",
       "scene_sha256": "96b0f4c4ef9ff8a59f64b6ea8ca38a2209797364d44acda10cfe76a064d449b4",
+      "preview_sha256": "f335d40c6b0e9f31a00add1e05dd0bb349a8eaf4fe92099bb2f08cb9eba26a85",
       "source_record_id": "source.figure-studio-scientific-scenes.2026-08-30",
-      "third_party_material": "none_declared"
-    },
-    {
-      "name": "Microscopy and flow cytometry readout",
-      "preview_file": "previews/microscopy-flow-readout.svg",
-      "preview_sha256": "93a8ec770816499bdf307b5b83fc8f752e0e9e54a553954101d40d41a24dc715",
-      "release_disposition": "released_under_cc0_1_0",
       "rights_record_id": "rights.figure-studio-scientific-scenes.cc0.2026-08-30",
-      "scene_file": "scenes/microscopy-flow-readout.scene.json",
+      "third_party_material": "none_declared",
+      "release_disposition": "released_under_cc0_1_0"
+    },
+    {
       "scene_id": "microscopy-flow-readout",
+      "name": "Microscopy and flow cytometry readout",
+      "scene_file": "scenes/microscopy-flow-readout.scene.json",
+      "preview_file": "previews/microscopy-flow-readout.svg",
       "scene_sha256": "d84fef7659ecb396a23a4d0a07ade6f3bde55a4112fa31ceda403a5eb919e4c6",
+      "preview_sha256": "93a8ec770816499bdf307b5b83fc8f752e0e9e54a553954101d40d41a24dc715",
       "source_record_id": "source.figure-studio-scientific-scenes.2026-08-30",
-      "third_party_material": "none_declared"
+      "rights_record_id": "rights.figure-studio-scientific-scenes.cc0.2026-08-30",
+      "third_party_material": "none_declared",
+      "release_disposition": "released_under_cc0_1_0"
+    },
+    {
+      "scene_id": "single-cell-rna-workflow",
+      "name": "Droplet single-cell RNA workflow",
+      "scene_file": "scenes/single-cell-rna-workflow.scene.json",
+      "preview_file": "previews/single-cell-rna-workflow.svg",
+      "source_record_id": "source.figure-studio-rna-methods.2026-10-07",
+      "rights_record_id": "rights.figure-studio-rna-methods.owner-cc0.2026-10-10",
+      "third_party_material": "none_declared",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "scene_sha256": "d96faf2bcb8e67939e94914b8fb083e4d5991762a7e7726ef877c67262a2bc75",
+      "preview_sha256": "5420139979016ba5f54e7b99ea5822da2b10646240d3740809340095d7189263",
+      "product_release_status": "pending_quality_and_product_review"
+    },
+    {
+      "scene_id": "spatial-rna-methods",
+      "name": "Spatial RNA methods",
+      "scene_file": "scenes/spatial-rna-methods.scene.json",
+      "preview_file": "previews/spatial-rna-methods.svg",
+      "source_record_id": "source.figure-studio-rna-methods.2026-10-07",
+      "rights_record_id": "rights.figure-studio-rna-methods.owner-cc0.2026-10-10",
+      "third_party_material": "none_declared",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "scene_sha256": "da88e530c3ba5b38e96f2c9ef23eb40186d26bdda5e48b734c215cfc5a37217d",
+      "preview_sha256": "20019511d3685597ec1685867342b70fae5a79fca02649b7aa96bab5cc562709",
+      "product_release_status": "pending_quality_and_product_review"
     }
   ],
-  "schema": "figureStudio.scientificSceneRights.v1",
-  "selected_public_license": "CC0-1.0",
-  "source_records": [
-    {
-      "clean_room_scope": "No proprietary artwork, screenshot, template, taxonomy, prose, or third-party component was copied, traced, or embedded.",
-      "creation_method": "Original data-defined scene recipe and SVG preview created from generic scientific knowledge.",
-      "creator": "Figure Studio",
-      "id": "source.figure-studio-scientific-scenes.2026-08-30",
-      "source_type": "clean_room_original_editable_vector_scene",
-      "third_party_material": "none_declared"
-    },
-    {
-      "clean_room_scope": "No commercial or database artwork, screenshot, pathway layout, template, prose, or third-party component was copied, traced, scraped, or embedded.",
-      "creation_method": "Original data-defined scene recipe and SVG preview composed from existing Figure Studio scientific assets and generic editable vector primitives; biological relationships were checked against the sources recorded in the recipe.",
-      "creator": "Figure Studio",
-      "id": "source.figure-studio-tcell-scientific-starter.2026-09-12",
-      "source_type": "clean_room_original_editable_vector_scene",
-      "third_party_material": "none_declared"
-    },
-    {
-      "clean_room_scope": "No commercial or database artwork, screenshot, pathway layout, template, prose, or third-party component was copied, traced, scraped, or embedded.",
-      "creation_method": "Original data-defined scene recipe and SVG preview composed from released Figure Studio scientific assets and original vector primitives; biological relationships were checked against the sources recorded in the recipe.",
-      "creator": "Figure Studio",
-      "id": "source.figure-studio-apc-tcell-immune-synapse.2026-09-12",
-      "source_type": "clean_room_original_editable_vector_scene",
-      "third_party_material": "none_declared"
-    },
-    {
-      "clean_room_scope": "No publication artwork, commercial or database illustration, screenshot, pathway layout, template, prose, or third-party component was copied, traced, scraped, or embedded.",
-      "creation_method": "Original data-defined scene recipe and SVG preview composed from released Figure Studio organelle assets and original editable vector primitives; biological relationships and interpretation limits were checked against the sources recorded in the recipe.",
-      "creator": "Figure Studio",
-      "id": "source.figure-studio-autophagosome-lysosome-process.2026-09-13",
-      "source_type": "clean_room_original_editable_vector_scene",
-      "third_party_material": "none_declared"
-    },
-    {
-      "clean_room_scope": "No publication artwork, commercial template, screenshot, vendor diagram, database illustration, prose, or third-party component was copied, traced, scraped, or embedded.",
-      "creation_method": "Original data-defined scene recipe and SVG preview composed from released Figure Studio laboratory, antibody, and assay-result assets plus original editable vector primitives; assay sequence and interpretation limits were checked against the sources recorded in the recipe.",
-      "creator": "Figure Studio",
-      "id": "source.figure-studio-immunoblot-assay-workflow.2026-09-13",
-      "source_type": "clean_room_original_editable_vector_scene",
-      "third_party_material": "none_declared"
-    }
-  ],
-  "status": "released"
+  "product_release_pending_scene_ids": [
+    "single-cell-rna-workflow",
+    "spatial-rna-methods"
+  ]
 }

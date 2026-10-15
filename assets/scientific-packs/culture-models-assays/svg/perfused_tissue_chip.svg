@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Perfused Cell–Matrix Culture Chip — Connected U channel</title>
+  <desc id="desc">A cell-laden matrix chamber with adjacent connected medium channels and fluid ports for drawing microfluidic culture experiments.</desc>
+  <g data-region="devicebody" fill="#E8EEF7" stroke="none">
+    <rect x="17" y="17" width="94" height="94" rx="11"/><circle cx="43" cy="46" r="3.3"/><circle cx="43" cy="62" r="3.3"/><circle cx="43" cy="79" r="3.3"/><circle cx="85" cy="46" r="3.3"/><circle cx="85" cy="62" r="3.3"/><circle cx="85" cy="79" r="3.3"/>
+  </g>
+  <g data-region="mediumchannels" fill="#8EC8FF" stroke="none">
+    <path d="M28 28H40V85C40 92 44 96 51 96H78C85 96 88 92 88 85V28H100V85C100 100 93 107 78 107H51C36 107 28 100 28 85Z"/><circle cx="34" cy="28" r="7.6"/><circle cx="94" cy="28" r="7.6"/>
+  </g>
+  <g data-region="cellmatrix" fill="#D9F4E5" stroke="none">
+    <path d="M47 39C55 35 73 36 81 40L81 84C72 89 55 89 47 85Z"/>
+  </g>
+  <g data-region="cells" fill="#7DD3C7" stroke="none">
+    <path d="M-7 1C-7 -4 -2 -6 3 -4C8 -2 8 3 3 5C-2 7 -7 5 -7 1Z" transform="translate(60 49) rotate(-20) scale(0.78)"/><path d="M-7 1C-7 -4 -2 -6 3 -4C8 -2 8 3 3 5C-2 7 -7 5 -7 1Z" transform="translate(69 67) rotate(25) scale(0.78)"/><path d="M-7 1C-7 -4 -2 -6 3 -4C8 -2 8 3 3 5C-2 7 -7 5 -7 1Z" transform="translate(58 79) rotate(-12) scale(0.78)"/>
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="17" y="17" width="94" height="94" rx="11"/><path d="M28 37V85C28 100 36 107 51 107H78C93 107 100 100 100 85V37M40 37V85C40 92 44 96 51 96H78C85 96 88 92 88 85V37"/><circle cx="34" cy="28" r="7.6"/><circle cx="94" cy="28" r="7.6"/><path d="M47 39C55 35 73 36 81 40L81 84C72 89 55 89 47 85Z"/><circle cx="43" cy="46" r="3.3"/><circle cx="43" cy="62" r="3.3"/><circle cx="43" cy="79" r="3.3"/><circle cx="85" cy="46" r="3.3"/><circle cx="85" cy="62" r="3.3"/><circle cx="85" cy="79" r="3.3"/><path d="M-7 1C-7 -4 -2 -6 3 -4C8 -2 8 3 3 5C-2 7 -7 5 -7 1Z" transform="translate(60 49) rotate(-20) scale(0.78)"/><path d="M-2 0C-1 -2 2 -2 3 0C3 2 0 3 -2 0Z" transform="translate(60 49) rotate(-20) scale(0.78)" stroke-width="1.3"/><path d="M-7 1C-7 -4 -2 -6 3 -4C8 -2 8 3 3 5C-2 7 -7 5 -7 1Z" transform="translate(69 67) rotate(25) scale(0.78)"/><path d="M-2 0C-1 -2 2 -2 3 0C3 2 0 3 -2 0Z" transform="translate(69 67) rotate(25) scale(0.78)" stroke-width="1.3"/><path d="M-7 1C-7 -4 -2 -6 3 -4C8 -2 8 3 3 5C-2 7 -7 5 -7 1Z" transform="translate(58 79) rotate(-12) scale(0.78)"/><path d="M-2 0C-1 -2 2 -2 3 0C3 2 0 3 -2 0Z" transform="translate(58 79) rotate(-12) scale(0.78)" stroke-width="1.3"/>
+  </g>
+</svg>

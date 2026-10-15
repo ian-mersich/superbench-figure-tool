@@ -1,0 +1,303 @@
+{
+  "schema_id": "superbench.scientificAssetFamilyRevision.v1",
+  "revision_id": "2026-10-13-family-expansion",
+  "revision_date": "2026-10-13",
+  "pack_id": "microbial-biology",
+  "predecessor": {
+    "snapshot": "revisions/2026-10-13-family-expansion-predecessor",
+    "catalog_sha256": "0087755676428bb69ffe95369cc231db3c15b908b80253e4ed90c66c0c43ab09",
+    "audit_sha256": "e85c63faac8b03f518cfa2d5bb68a552b8e218863941b97f685847501cd71779"
+  },
+  "current_catalog_sha256": "9e17fa7d43ba1d7209c6cf8c895384bf8d34fc02c04f897d55417568dd1c6744",
+  "current_audit_sha256": "dc1ec2475e6ff44b1c42b275ae9f3c4e35dc3c3535db37fd7a69ae4334f7c980",
+  "current_license_notice_sha256": "95eef16a8b54f302de875a5f77a582c34f5514d3b66af2153f1ae64ff4f29f10",
+  "review": {
+    "status": "accepted",
+    "scientific_review": "pass",
+    "visual_review": "pass",
+    "editor_checks": "pass",
+    "reviewed_on": "2026-10-13",
+    "reviewer": "Independent scientific, original-image and native desktop acceptance by retained_state",
+    "scope": "All 76 current SVG drawings at 64/256/512 pixels in Soft color, Cut paper and Technical ink; all 76 native Figure/Presentation insertions and all 40 historical embedded drawings in both native file types at 1280/1440/1920 light/dark on both canonical routes; real part/anchor edits and Undo/Redo, live whole/path selection, Save/cold Open and SVG export; all 3 treatments × 4 palettes with exact colors, alpha, geometry and parts. Both requalified routes share the same frozen driver and passing 406-asset catalog/schema/SVG preflight after one redundant alias correction. The rejected pre-validation candidate remains preserved separately. Product release remains pending.",
+    "evidence": [
+      {
+        "file": "qa_artifacts/family-library/independent-native-visual-review-requalified.json",
+        "sha256": "8cc917cc392f7e6135e0c9c231a97972a5ece8e7c9a2dd47843181986be0db2d"
+      },
+      {
+        "file": "qa_artifacts/family-library/final-direct-requalified/report.json",
+        "sha256": "e5c989f8da82ada52e54a5555aaa1ede58daca02040054640a984cbc6a4f27bd"
+      },
+      {
+        "file": "qa_artifacts/family-library/final-direct-requalified/native-treatments/native-treatment-matrix.json",
+        "sha256": "2535360a3621ff858aeac25589ab83523ae09b1f663d2c70a69070bd99880d5a"
+      },
+      {
+        "file": "qa_artifacts/family-library/final-web-requalified/report.json",
+        "sha256": "2b0be2a4ae8c223a3b1c2d5a1aa7e28225f0afb6647da0ba23180ca11cef1343"
+      },
+      {
+        "file": "qa_artifacts/family-library/final-web-requalified/native-treatments/native-treatment-matrix.json",
+        "sha256": "7b1c3907260cdfa2f16ed283f58c7a734af77849031dacedcf9170c4e9702fd3"
+      }
+    ]
+  },
+  "changed_assets": [
+    {
+      "asset_id": "microbe.membrane_signaling.gram_negative_envelope_segment",
+      "file": "svg/gram_negative_envelope_segment.svg",
+      "after_svg_sha256": "98a5feafe34f4cf7fae6c6f1e5e53d91d0430052d9949e67b21287dac3085115",
+      "after_metadata_sha256": "090d103d9c829767ee5f85e7a2fe4aedd86fe1423e0493023e26b9e794348b1f",
+      "license": "CC0-1.0",
+      "before_svg_sha256": "9218eeb790483beea8ce0cbcc5e99c57d5ac470174fff986c33804d3e8806759",
+      "before_metadata_sha256": "317051bf605902fd408b827264bf4bd8b7ba34ecafcd442d4470e6d88001d944"
+    },
+    {
+      "asset_id": "microbe.membrane_signaling.gram_positive_envelope_segment",
+      "file": "svg/gram_positive_envelope_segment.svg",
+      "after_svg_sha256": "bb3e6d28c9a0de8cb47db779bd4edca79a55cefd1076ff4d5f33fa05251fcd67",
+      "after_metadata_sha256": "22be9232ac6d54b0617261499b9ba5ccff09f8a0798c1a2cc2c3c0a2628f0b1d",
+      "license": "CC0-1.0",
+      "before_svg_sha256": "b6b8a9521a3533e8ebbed45ae63c479a29d585486ea282e9981fbb49525e8d76",
+      "before_metadata_sha256": "df3aa78c65441ff9a6672d831dfc83f5a5a8f0d430bf773e83eb4e8686029aff"
+    },
+    {
+      "asset_id": "microbe.cell.encapsulated_bacterium",
+      "file": "svg/encapsulated_bacterium.svg",
+      "after_svg_sha256": "853b9f6089b0eb1d129cc94699b7aefb3caa9188b720a661c36257fb59fb00b9",
+      "after_metadata_sha256": "67176948278f15619202e4164d3c6b5b293108234f079db61d907fc03d49f6b5",
+      "license": "CC0-1.0",
+      "before_svg_sha256": "576e7e7e780d2af230b43da126d45ec5328ee5ca4ead42bd8b6c0230fe695984",
+      "before_metadata_sha256": "3154d7ca5f05a41fae676922826c5b270589d745a99d7f563121c7ed0477db5e"
+    },
+    {
+      "asset_id": "microbe.membrane_signaling.bacterial_flagellar_motor",
+      "file": "svg/bacterial_flagellar_motor.svg",
+      "after_svg_sha256": "2b659c18d1058a6128320e43c3c4f27bb04d5ab1360915677d9a9698efb0c799",
+      "after_metadata_sha256": "d571de14b3127291ebcd03d76a8190a534b9d03a9ed00dbe50d58f1cd9f63e66",
+      "license": "CC0-1.0",
+      "before_svg_sha256": "3de5258c839dc25d58490db21e00d76df2d1c0450521c2b993fe4689d0d8f88a",
+      "before_metadata_sha256": "0c7ccc050296571ccf1850f15445b73d7bc50a2d4591475e3c82dc4ab4c2be93"
+    },
+    {
+      "asset_id": "microbe.cell.bacterial_endospore",
+      "file": "svg/bacterial_endospore.svg",
+      "after_svg_sha256": "ad88690141e843ce5ae491a149a11cdedd9f090b291bd10f9129a5e73bb80755",
+      "after_metadata_sha256": "44ca97aab2b64940df0349483241c88f2ad09ec957c432d1d84d1450140abf7c",
+      "license": "CC0-1.0",
+      "before_svg_sha256": "2183a699e9b61179a7074f99ec0daead2229115019e9e42df3a5b04efca75728",
+      "before_metadata_sha256": "6a3cfbda3be757786578dd916e7b6ba40f39246ae9178365931802faa5cb9a80"
+    },
+    {
+      "asset_id": "microbe.model_system.surface_attached_biofilm",
+      "file": "svg/surface_attached_biofilm.svg",
+      "after_svg_sha256": "b4c046e43a239703d66711315a92a03a46363f0b4704b1db5476823f3566904c",
+      "after_metadata_sha256": "5bcf160729044812298beec350e7ab848d049ec30975f3b0de6b9ce4721d8470",
+      "license": "CC0-1.0",
+      "before_svg_sha256": "1468ad05742c0e3c2534a46492ab158ce6e22c28e85c9be342303ee1e3e1715f",
+      "before_metadata_sha256": "47b2b7063c8b08d9c9f2c8f146e0fc9ba9843a628f4988fcc22c83f6b7f434ac"
+    },
+    {
+      "asset_id": "microbe.cell.septate_fungal_hypha",
+      "file": "svg/septate_fungal_hypha.svg",
+      "after_svg_sha256": "d177d6fab778f256ebffcd5ffcc6948b657108ae4bd752ff757dc484d76740a8",
+      "after_metadata_sha256": "7270aa7d9ba34ce76afcde9d658cd51e0ac4353240171ef0e0023587b93488cc",
+      "license": "CC0-1.0",
+      "before_svg_sha256": "6fab78ff9e789f9449c43e1861c6c795de9185b9824d380d8a59d301638e2a9d",
+      "before_metadata_sha256": "b6f3f5efc51e56391c832fd942c7b7cf57ff78e02255ebe6c2bb69ac34edba29"
+    },
+    {
+      "asset_id": "microbe.membrane_signaling.outer_membrane_vesicle_budding",
+      "file": "svg/outer_membrane_vesicle_budding.svg",
+      "after_svg_sha256": "c1b6228b0e47da5506d962ffe5e9e8af2ec06b39e43e659b8473ebd31bfa5d28",
+      "after_metadata_sha256": "90e624a1011f3da5bbb20875156af6b4e486fcd1e8b2ce2775a21f741f798460",
+      "license": "CC0-1.0",
+      "before_svg_sha256": "170ab290ac14d496b6bfffa8c7ab70ded8d892e3444a09ebc91effb360152a15",
+      "before_metadata_sha256": "85a185cd0d26c8d6b3ae72179adc2ad7116da3e721805ead06f9c4b7d1628a9a"
+    },
+    {
+      "asset_id": "microbe.model_system.contractile_tailed_bacteriophage",
+      "file": "svg/contractile_tailed_bacteriophage.svg",
+      "after_svg_sha256": "3640224b9ac623e6722ae3e32d54164cdc021ababe91f28b7493c0a11f95fb7a",
+      "after_metadata_sha256": "ec3c00c0b3fe1b45cf90958bdde0372eb8aa6e914e8f0c0c1a373923ee61ca0e",
+      "license": "CC0-1.0",
+      "before_svg_sha256": "121b3d9bfd8f0ce24aad8a05d7e426b1a0dac2c4067e40ada91deefe2e35091e",
+      "before_metadata_sha256": "e52a6c015bc09119144099eab50eae56aee3c4d65002848b34b27f1d638d8103"
+    },
+    {
+      "asset_id": "microbe.membrane_signaling.phage_genome_injection",
+      "file": "svg/phage_genome_injection.svg",
+      "after_svg_sha256": "0a3aba4823d94d186a289f94709fc6c68f60829f3760f1c81283e8a69ae34168",
+      "after_metadata_sha256": "08eae00a2da9d45ca91bcb60896208f46e1276145e27c36583bfd6dc99c5247c",
+      "license": "CC0-1.0",
+      "before_svg_sha256": "da3443ef88c83f20b85e8db65e7b788f186d11c1407b06a59bf865e7b7f8b7e3",
+      "before_metadata_sha256": "5606556346c1ffdc4f0806e13c2a8931895224dc03739247e9ca5910db6b4703"
+    },
+    {
+      "asset_id": "microbe.membrane_signaling.enveloped_virus_membrane_fusion",
+      "file": "svg/enveloped_virus_membrane_fusion.svg",
+      "after_svg_sha256": "a5c4371f40ca17bc1eda78dbdce8f2787bd820ecd1bb5b63cf3ccc57d8fec2e9",
+      "after_metadata_sha256": "4553ea98c2e247a2abb46e433bdf838837d516b8b2841182236a5662f0c4a414",
+      "license": "CC0-1.0",
+      "before_svg_sha256": "b0c071444b4326f82a6d4f3f3e927241fc250b34afea1bd5487619969815ea01",
+      "before_metadata_sha256": "538472775722a8b12222e77d0623e41e815610bf91927252aec89252ca4c2f1b"
+    },
+    {
+      "asset_id": "microbe.membrane_signaling.enveloped_virus_plasma_membrane_budding",
+      "file": "svg/enveloped_virus_plasma_membrane_budding.svg",
+      "after_svg_sha256": "31a1c0f63b759297b162d7dd6d8b94e768d6f4d64b12c5bb5309fe03cca19ca4",
+      "after_metadata_sha256": "f5dae5467ad4181b140836e51dda35c6ca57d6e0fc2a6e388ed9681faea9b87b",
+      "license": "CC0-1.0",
+      "before_svg_sha256": "4d5733d98655ab088b6414ede87608e4da3034ca4fb311ca51afbf559ee94908",
+      "before_metadata_sha256": "4e9092db18a433fd32e6897543c7a9e0399b73754d089efaef0219959608768c"
+    }
+  ],
+  "added_assets": [
+    {
+      "asset_id": "microbe.cell.encapsulated_bacterium_rod",
+      "file": "svg/encapsulated_bacterium_rod.svg",
+      "after_svg_sha256": "19dff904d69b53874b42eee30942834671fb9edbd4f989cc360dc4a34a69d635",
+      "after_metadata_sha256": "4ea9e8bffc1f3c983d9e870c905562eb5177db162126cfc9c967834ff1fbe93b",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "microbe.model_system.surface_attached_biofilm_plan",
+      "file": "svg/surface_attached_biofilm_plan.svg",
+      "after_svg_sha256": "32efa8b5070a86fc3ec35df314b927cbf5ca38268ab51b02d2a0c2fb11257625",
+      "after_metadata_sha256": "269635243c3c00581a1ad49f41c54fbdad7972bb4b3fba55fb9e5063bcf89e10",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "microbe.cell.septate_fungal_hypha_unbranched",
+      "file": "svg/septate_fungal_hypha_unbranched.svg",
+      "after_svg_sha256": "595eee66b92156c3a8ea0119502dadea72e64371d40e307107b63cf522140d40",
+      "after_metadata_sha256": "0ebc09df9ef560b0133b993d3654830c1503a8da7c171d777a3de37571eb3b25",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "microbe.model_system.contractile_tailed_phage_contracted",
+      "file": "svg/contractile_tailed_phage_contracted.svg",
+      "after_svg_sha256": "1c0bce583e247d660a42b4290dc9ef7678e57e8dc4c30522f23ce3420744995d",
+      "after_metadata_sha256": "8b814d64560a00e519a199bd485a774033ccf41e5551762d44d75c673df6ea61",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "microbe.membrane_signaling.released_outer_membrane_vesicle",
+      "file": "svg/released_outer_membrane_vesicle.svg",
+      "after_svg_sha256": "6ba61b9e98506ca2346a5532fa49a2a4a27581234fec7d66af3130e2831d337c",
+      "after_metadata_sha256": "71ea4f7bbd16b184a8ea1ab48a725900397d0447aa2aa5682800ad43f3784e6c",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "microbe.cell.endospore_in_mother_cell",
+      "file": "svg/endospore_in_mother_cell.svg",
+      "after_svg_sha256": "da1d829a3e7eef81ffca96e957212b13436018febe4b71055e676bdf64514e1d",
+      "after_metadata_sha256": "3fea52f815a271ddef2b695ced812c05dda3e86a922d76fa0911299d0049e439",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "microbe.cell.paired_cocci",
+      "file": "svg/paired_cocci.svg",
+      "after_svg_sha256": "e1845e0aa1381c07505d0fc7b06aa5042cdfc32f5b25e91a3150b3d7457393ef",
+      "after_metadata_sha256": "f063800c49c4d02cd969ca9bd8e665978ada561d8efcda23b721204a20a04d4a",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "microbe.cell.chained_cocci",
+      "file": "svg/chained_cocci.svg",
+      "after_svg_sha256": "e5f6f1b8a8fb92581cd49dfa8f5c9152e4b1173feba56b3fc0f6ade0f3d9cb88",
+      "after_metadata_sha256": "0b06025aaa877716177b11c7828134938d103414050820d3dec03fc1cb1891fb",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "microbe.cell.fungal_pseudohyphal_chain",
+      "file": "svg/fungal_pseudohyphal_chain.svg",
+      "after_svg_sha256": "0fac42d31c48c08129fbf89930c3cf7690775661150e9c73dc2e1f0e418b69ba",
+      "after_metadata_sha256": "78167f3ea40420060da4833e67f73ac0e9148db0d40fc6b057ddb5f83a859f47",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "microbe.cell.fungal_germ_tube",
+      "file": "svg/fungal_germ_tube.svg",
+      "after_svg_sha256": "05eaddd90f9b7d4432bbd0fb108817c39d31e8a066ac5910166917b80ee6c608",
+      "after_metadata_sha256": "41ab2649ffd98c799a3472ea7beeb17aeb3ae4e8a4e7a68a3014e9ddcfb8080a",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "microbe.model_system.short_tailed_bacteriophage",
+      "file": "svg/short_tailed_bacteriophage.svg",
+      "after_svg_sha256": "10192cc24762f405839f02ab25a7733a6d93ccfefe619dfae41ccfc173ecc1fc",
+      "after_metadata_sha256": "f7144c82abc16ada05291a8b8b445ca96ddda0ebe9c44d748dda72f8ae7ca0d2",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "microbe.model_system.long_noncontractile_bacteriophage",
+      "file": "svg/long_noncontractile_bacteriophage.svg",
+      "after_svg_sha256": "e105b61c42b3e8efb4c10f5390d7322880858c06ad41dc78f800a8ef335abc7f",
+      "after_metadata_sha256": "c6acf19c7e8486acee7df7cae4e49c239de3482043988f4d1646efcf6e8a3f1a",
+      "license": "CC0-1.0"
+    }
+  ],
+  "preserved_files": [
+    {
+      "file": "revisions/2026-10-13-family-expansion-predecessor/asset-pack.json",
+      "sha256": "0087755676428bb69ffe95369cc231db3c15b908b80253e4ed90c66c0c43ab09"
+    },
+    {
+      "file": "revisions/2026-10-13-family-expansion-predecessor/LICENSE-ASSETS-CC0-1.0.md",
+      "sha256": "602ffb80a5a728d7c76b66509885c1353a8f0a1ff1555dc5ee99051ab786320f"
+    },
+    {
+      "file": "revisions/2026-10-13-family-expansion-predecessor/rights-release-record.json",
+      "sha256": "e85c63faac8b03f518cfa2d5bb68a552b8e218863941b97f685847501cd71779"
+    },
+    {
+      "file": "revisions/2026-10-13-family-expansion-predecessor/svg/bacterial_endospore.svg",
+      "sha256": "2183a699e9b61179a7074f99ec0daead2229115019e9e42df3a5b04efca75728"
+    },
+    {
+      "file": "revisions/2026-10-13-family-expansion-predecessor/svg/bacterial_flagellar_motor.svg",
+      "sha256": "3de5258c839dc25d58490db21e00d76df2d1c0450521c2b993fe4689d0d8f88a"
+    },
+    {
+      "file": "revisions/2026-10-13-family-expansion-predecessor/svg/contractile_tailed_bacteriophage.svg",
+      "sha256": "121b3d9bfd8f0ce24aad8a05d7e426b1a0dac2c4067e40ada91deefe2e35091e"
+    },
+    {
+      "file": "revisions/2026-10-13-family-expansion-predecessor/svg/encapsulated_bacterium.svg",
+      "sha256": "576e7e7e780d2af230b43da126d45ec5328ee5ca4ead42bd8b6c0230fe695984"
+    },
+    {
+      "file": "revisions/2026-10-13-family-expansion-predecessor/svg/enveloped_virus_membrane_fusion.svg",
+      "sha256": "b0c071444b4326f82a6d4f3f3e927241fc250b34afea1bd5487619969815ea01"
+    },
+    {
+      "file": "revisions/2026-10-13-family-expansion-predecessor/svg/enveloped_virus_plasma_membrane_budding.svg",
+      "sha256": "4d5733d98655ab088b6414ede87608e4da3034ca4fb311ca51afbf559ee94908"
+    },
+    {
+      "file": "revisions/2026-10-13-family-expansion-predecessor/svg/gram_negative_envelope_segment.svg",
+      "sha256": "9218eeb790483beea8ce0cbcc5e99c57d5ac470174fff986c33804d3e8806759"
+    },
+    {
+      "file": "revisions/2026-10-13-family-expansion-predecessor/svg/gram_positive_envelope_segment.svg",
+      "sha256": "b6b8a9521a3533e8ebbed45ae63c479a29d585486ea282e9981fbb49525e8d76"
+    },
+    {
+      "file": "revisions/2026-10-13-family-expansion-predecessor/svg/outer_membrane_vesicle_budding.svg",
+      "sha256": "170ab290ac14d496b6bfffa8c7ab70ded8d892e3444a09ebc91effb360152a15"
+    },
+    {
+      "file": "revisions/2026-10-13-family-expansion-predecessor/svg/phage_genome_injection.svg",
+      "sha256": "da3443ef88c83f20b85e8db65e7b788f186d11c1407b06a59bf865e7b7f8b7e3"
+    },
+    {
+      "file": "revisions/2026-10-13-family-expansion-predecessor/svg/septate_fungal_hypha.svg",
+      "sha256": "6fab78ff9e789f9449c43e1861c6c795de9185b9824d380d8a59d301638e2a9d"
+    },
+    {
+      "file": "revisions/2026-10-13-family-expansion-predecessor/svg/surface_attached_biofilm.svg",
+      "sha256": "1468ad05742c0e3c2534a46492ab158ce6e22c28e85c9be342303ee1e3e1715f"
+    }
+  ]
+}

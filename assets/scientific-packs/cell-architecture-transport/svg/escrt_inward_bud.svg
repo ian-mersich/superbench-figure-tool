@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">ESCRT — Inward Membrane Bud</title>
+  <desc id="desc">An inward endosomal membrane bud with an open cytoplasmic neck and a symbolic ESCRT assembly on its cytoplasmic face.</desc>
+  <g data-region="membrane" fill="#8EC8FF" stroke="none">
+    <path d="M16 34H49Q55 34 55 43V50Q55 57 43 64Q30 72 34 90Q39 111 65 111Q91 111 96 91Q101 73 88 65Q75 57 75 50V43Q75 34 82 34H112V44H84V50Q84 54 92 59Q111 72 104 95Q97 119 65 119Q34 119 26 95Q18 74 38 58L46 51V44H16Z"/>
+  </g>
+  <g data-region="escrt_assembly" fill="#B8B5FF" stroke="none">
+    <path d="M49 29H55L61 42V50H55L51 40Z M75 29H81L79 40L75 50H69V42Z"/>
+  </g>
+  <g data-region="cargo" fill="#E76F51" stroke="none">
+    <ellipse cx="62" cy="78" rx="8" ry="8"/><path d="M71 90Q76 83 84 88L82 98H73Z"/>
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M16 34H49Q55 34 55 43V50Q55 57 43 64Q30 72 34 90Q39 111 65 111Q91 111 96 91Q101 73 88 65Q75 57 75 50V43Q75 34 82 34H112V44H84V50Q84 54 92 59Q111 72 104 95Q97 119 65 119Q34 119 26 95Q18 74 38 58L46 51V44H16Z"/><path d="M49 29H55L61 42V50H55L51 40Z M75 29H81L79 40L75 50H69V42Z"/><ellipse cx="62" cy="78" rx="8" ry="8"/><path d="M71 90Q76 83 84 88L82 98H73Z"/>
+  </g>
+</svg>

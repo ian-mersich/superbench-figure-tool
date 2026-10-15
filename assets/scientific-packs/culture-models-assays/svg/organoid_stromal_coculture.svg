@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Organoid–Stromal Co-culture — Shared matrix</title>
+  <desc id="desc">Hollow epithelial organoid and morphologically distinct stromal cells share an external hydrogel environment.</desc>
+  <g data-region="externalmatrix" fill="#D9F4E5" stroke="none">
+    <path d="M16 109C18 51 33 23 64 23C96 23 111 53 112 109Z"/>
+  </g>
+  <g data-region="epithelium" fill="#7DD3C7" stroke="none">
+    <path d="M50 67C47 53 56 41 71 40C84 39 94 49 94 62C95 76 84 87 71 87C58 87 51 79 50 67Z M60 66C59 56 64 50 73 50C81 50 85 56 85 64C85 73 79 78 71 78C63 77 60 73 60 66Z" fill-rule="evenodd"/>
+  </g>
+  <g data-region="lumenfluid" fill="#FFFFFF" stroke="none">
+    <path d="M60 66C59 56 64 50 73 50C81 50 85 56 85 64C85 73 79 78 71 78C63 77 60 73 60 66Z"/>
+  </g>
+  <g data-region="stromalcells" fill="#F4A261" stroke="none">
+    <path d="M-10 0L-3 -4C1 -7 5 -4 7 -2L12 0L5 3C0 7 -4 3 -6 2Z" transform="translate(32 67) rotate(-55)"/><path d="M-10 0L-3 -4C1 -7 5 -4 7 -2L12 0L5 3C0 7 -4 3 -6 2Z" transform="translate(43 95) rotate(25)"/><path d="M-10 0L-3 -4C1 -7 5 -4 7 -2L12 0L5 3C0 7 -4 3 -6 2Z" transform="translate(91 98) rotate(-30)"/>
+  </g>
+  <g data-region="nuclei" fill="#B8B5FF" stroke="none">
+    <ellipse cx="54" cy="62" rx="2.6" ry="3.6"/><ellipse cx="64" cy="45" rx="3.2" ry="2.4"/><ellipse cx="86" cy="50" rx="2.5" ry="3"/><ellipse cx="90" cy="70" rx="2.2" ry="3.2"/><ellipse cx="70" cy="82" rx="3.3" ry="2.2"/><ellipse cx="32" cy="67" rx="2.6" ry="2.2"/><ellipse cx="43" cy="95" rx="2.6" ry="2.2"/><ellipse cx="91" cy="98" rx="2.6" ry="2.2"/>
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M16 109C18 51 33 23 64 23C96 23 111 53 112 109Z"/><path d="M50 67C47 53 56 41 71 40C84 39 94 49 94 62C95 76 84 87 71 87C58 87 51 79 50 67Z"/><path d="M60 66C59 56 64 50 73 50C81 50 85 56 85 64C85 73 79 78 71 78C63 77 60 73 60 66Z"/><path d="M57 48L64 53M91 59L84 62M83 83L78 75M53 76L62 72" stroke-width="1.6"/><path d="M-10 0L-3 -4C1 -7 5 -4 7 -2L12 0L5 3C0 7 -4 3 -6 2Z" transform="translate(32 67) rotate(-55)"/><path d="M-10 0L-3 -4C1 -7 5 -4 7 -2L12 0L5 3C0 7 -4 3 -6 2Z" transform="translate(43 95) rotate(25)"/><path d="M-10 0L-3 -4C1 -7 5 -4 7 -2L12 0L5 3C0 7 -4 3 -6 2Z" transform="translate(91 98) rotate(-30)"/>
+  </g>
+</svg>

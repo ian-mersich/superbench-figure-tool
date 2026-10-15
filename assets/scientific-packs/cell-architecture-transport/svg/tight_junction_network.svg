@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Tight Junction — Strand Network</title>
+  <desc id="desc">A membrane-plane view of intersecting tight-junction strands on an illustrative membrane patch.</desc>
+  <g data-region="membrane" fill="#C7F2EC" stroke="none">
+    <path d="M22 20Q64 14 108 24L111 100Q65 114 18 101Z"/>
+  </g>
+  <g data-region="junction_strand" fill="#8EC8FF" stroke="none">
+    <path d="M23 43Q40 32 53 45Q70 58 91 43L107 35L109 43L94 51Q73 66 53 53Q39 41 22 51Z M20 73Q40 59 58 75Q73 89 96 70L109 65L110 73L99 78Q75 101 55 83Q39 68 20 81Z M47 46L54 49L48 69L41 69Z M85 53L91 49L96 72L89 77Z"/>
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M22 20Q64 14 108 24L111 100Q65 114 18 101Z"/><path d="M23 43Q40 32 53 45Q70 58 91 43L107 35L109 43L94 51Q73 66 53 53Q39 41 22 51Z M20 73Q40 59 58 75Q73 89 96 70L109 65L110 73L99 78Q75 101 55 83Q39 68 20 81Z M47 46L54 49L48 69L41 69Z M85 53L91 49L96 72L89 77Z"/>
+  </g>
+</svg>

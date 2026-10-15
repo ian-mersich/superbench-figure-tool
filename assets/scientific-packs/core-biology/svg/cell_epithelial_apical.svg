@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Epithelial Cell — Apical View</title>
+  <desc id="desc">Original polygonal apical surface of a generic epithelial cell, with selected junction cues at its perimeter. Internal nuclei and side-view organelles are omitted; no cilia or brush border is asserted.</desc>
+  <path data-region="cytoplasm" fill="#D9F4E5" d="M37 20L85 18L111 56L94 100L45 111L17 70Z"/>
+
+  <g data-region="junction" fill="#F4A261"><path d="M38 20L62 19L62 24L41 25ZM108 58L100 80L96 77L104 56ZM43 107L28 87L32 83L47 104Z"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M37 20L85 18L111 56L94 100L45 111L17 70Z" stroke-width="3.2"/>
+
+
+  </g>
+</svg>

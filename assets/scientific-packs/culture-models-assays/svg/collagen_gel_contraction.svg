@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Cell-laden Collagen-gel Culture — Floating gel</title>
+  <desc id="desc">A cell-laden contracted collagen gel separated from the culture-well wall by surrounding medium.</desc>
+<g data-region="well" fill="#C7F2EC" stroke="none">
+<path d="M18 64a46 46 0 1 0 92 0a46 46 0 1 0 -92 0Z M25 64a39 39 0 1 0 78 0a39 39 0 1 0 -78 0Z" fill-rule="evenodd"/>
+</g>
+<g data-region="medium" fill="#8EC8FF" stroke="none">
+<circle cx="64" cy="64" r="39"/>
+</g>
+<g data-region="matrix" fill="#B8B5FF" stroke="none">
+<path d="M37 54C45 39 64 35 79 42C95 48 98 69 87 83C74 98 51 94 39 81C31 73 31 64 37 54Z"/>
+</g>
+<g data-region="fibroblasts" fill="#559984" stroke="none">
+<path d="M-10 0L-3 -3C0 -7 5 -3 6 -1L11 0L4 3C0 7 -4 3 -6 2Z" transform="translate(51 51) rotate(-25) scale(0.78)"/><path d="M-10 0L-3 -3C0 -7 5 -3 6 -1L11 0L4 3C0 7 -4 3 -6 2Z" transform="translate(78 56) rotate(20) scale(0.78)"/><path d="M-10 0L-3 -3C0 -7 5 -3 6 -1L11 0L4 3C0 7 -4 3 -6 2Z" transform="translate(48 76) rotate(15) scale(0.78)"/><path d="M-10 0L-3 -3C0 -7 5 -3 6 -1L11 0L4 3C0 7 -4 3 -6 2Z" transform="translate(76 77) rotate(-35) scale(0.78)"/>
+</g>
+<g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+<circle cx="64" cy="64" r="46"/><circle cx="64" cy="64" r="39"/><path d="M37 54C45 39 64 35 79 42C95 48 98 69 87 83C74 98 51 94 39 81C31 73 31 64 37 54Z"/><path d="M-10 0L-3 -3C0 -7 5 -3 6 -1L11 0L4 3C0 7 -4 3 -6 2Z" transform="translate(51 51) rotate(-25) scale(0.78)"/><path d="M-10 0L-3 -3C0 -7 5 -3 6 -1L11 0L4 3C0 7 -4 3 -6 2Z" transform="translate(78 56) rotate(20) scale(0.78)"/><path d="M-10 0L-3 -3C0 -7 5 -3 6 -1L11 0L4 3C0 7 -4 3 -6 2Z" transform="translate(48 76) rotate(15) scale(0.78)"/><path d="M-10 0L-3 -3C0 -7 5 -3 6 -1L11 0L4 3C0 7 -4 3 -6 2Z" transform="translate(76 77) rotate(-35) scale(0.78)"/><path d="M39 64C47 60 52 59 60 64M65 42C61 51 64 60 67 64M59 88C66 83 79 86 87 79" stroke-width="1.8"/>
+</g>
+</svg>

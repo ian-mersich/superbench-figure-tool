@@ -1,27 +1,23 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
   <title id="title">Round Nucleus</title>
-  <desc id="desc">Original vector nucleus with a gently irregular double envelope, nuclear pores, an offset nucleolus, distributed chromatin fibers, and editable semantic regions.</desc>
-
-  <path data-region="nucleoplasm" fill="#D9D7FF" d="M63 22c21-1 39 14 43 34 4 21-8 42-29 49-21 7-42-3-50-22-8-19-1-40 16-52 6-5 13-8 20-9z"/>
-
+  <desc id="desc">Generic nuclear section with a double envelope joining around a pore opening, nucleoplasm, chromatin and an unbounded nucleolus. Shapes are illustrative and do not establish cell type or molecular dimensions.</desc>
+  <path data-region="nucleoplasm" fill="#D9D7FF" d="M100 59C98 40 83 28 64 27C45 25 31 39 28 56C24 75 34 92 51 99C69 105 87 99 97 83C101 76 103 70 101 68L100 59Z"/>
   <g data-region="envelope" fill="none" stroke="#8EC8FF" stroke-linecap="round" stroke-linejoin="round">
-    <path stroke-width="5" d="M63 18c23-1 43 15 47 37 5 23-9 46-32 54-23 8-47-3-56-24-9-21-2-45 17-58 7-5 15-8 24-9z"/>
-    <path stroke-width="1.8" d="M63 24c20-1 37 13 41 32 4 20-8 39-28 46-20 7-39-3-47-20-7-18-1-38 15-49 6-5 12-7 19-9z"/>
+    <path d="M108 57C106 35 90 20 67 19C44 17 26 30 21 52C16 73 26 97 47 106C68 114 91 106 103 87C109 77 111 70 109 69" stroke-width="5"/>
+    <path d="M100 59C98 40 83 28 64 27C45 25 31 39 28 56C24 75 34 92 51 99C69 105 87 99 97 83C101 76 103 70 101 68" stroke-width="2.4"/>
+    <path d="M108 57C105 53 102 54 100 59M109 69C106 74 103 73 101 68" stroke-width="3.2"/>
+    <path d="M101 56C108 52 114 58 112 64C112 69 107 72 102 69" stroke-width="3.8"/>
   </g>
-
-  <g data-region="chromatin" fill="none" stroke="#7B78C9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-    <path d="M38 49c4-7 13-9 18-3 4 4 2 10-3 12-6 2-12-1-14-5"/>
-    <path d="M69 36c6-4 14-2 16 4 2 5-2 10-7 11-5 1-9-3-9-7"/>
-    <path d="M36 76c5-6 13-7 18-1 4 5 1 11-5 13-5 1-10-2-12-6"/>
-    <path d="M68 78c5-7 15-7 19-1 4 6 0 12-6 14-6 1-11-3-12-7"/>
+  <g data-region="chromatin" fill="none" stroke="#7B78C9" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.9">
+    <path d="M35 53C39 44 48 42 54 49C58 54 52 60 47 60"/>
+    <path d="M34 76C42 67 49 73 54 78C58 82 66 85 70 79"/>
+    <path d="M65 36C75 32 84 38 81 45"/>
   </g>
-
-  <path data-region="nucleolus" fill="#F4A261" d="M72 54c5-5 14-4 18 1 4 6 2 14-4 18-7 4-15 1-18-6-2-5-1-10 4-13z"/>
-
+  <path data-region="nucleolus" fill="#F4A261" d="M69 57C76 51 87 55 90 63C94 73 83 80 74 77C66 74 62 64 69 57Z"/>
   <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round">
-    <path stroke-width="2.7" d="M63 18c23-1 43 15 47 37 5 23-9 46-32 54-23 8-47-3-56-24-9-21-2-45 17-58 7-5 15-8 24-9z"/>
-    <path stroke-width="1.5" d="M63 24c20-1 37 13 41 32 4 20-8 39-28 46-20 7-39-3-47-20-7-18-1-38 15-49 6-5 12-7 19-9z"/>
-    <path stroke-width="1.8" d="M72 54c5-5 14-4 18 1 4 6 2 14-4 18-7 4-15 1-18-6-2-5-1-10 4-13z"/>
-    <path stroke-width="1.5" d="M40 27l4 6M64 18l-1 7M101 37l-6 4M109 67l-7-1M96 96l-5-5M65 111l1-7M27 91l6-4M20 62l7 1"/>
+    <path d="M108 57C106 35 90 20 67 19C44 17 26 30 21 52C16 73 26 97 47 106C68 114 91 106 103 87C109 77 111 70 109 69" stroke-width="1.8"/>
+    <path d="M100 59C98 40 83 28 64 27C45 25 31 39 28 56C24 75 34 92 51 99C69 105 87 99 97 83C101 76 103 70 101 68" stroke-width="1.3"/>
+    <path d="M108 57C105 53 102 54 100 59M109 69C106 74 103 73 101 68" stroke-width="1.4"/>
+    <path d="M101 56C108 52 114 58 112 64C112 69 107 72 102 69" stroke-width="1.4"/>
   </g>
 </svg>

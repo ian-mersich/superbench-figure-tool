@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">COPII Vesicle Budding</title>
+  <desc id="desc">An ER-connected bud with illustrative cargo and separate inner and outer COPII coats.</desc>
+  <g data-region="membrane" fill="#8EC8FF" stroke="none">
+    <path d="M20 92H48Q55 92 53 83L50 77C30 66 30 39 48 27C66 14 91 28 93 49C95 61 86 74 77 78L75 84Q73 92 80 92H108Q114 92 114 100Q114 108 108 108H20Q14 108 14 100Q14 92 20 92ZM21 98H48Q62 98 59 82L56 72C40 64 38 44 52 33C67 23 84 33 86 50C88 61 79 70 70 74L68 84Q66 98 80 98H107Q109 98 109 100Q109 102 107 102H21Q19 102 19 100Q19 98 21 98Z" fill-rule="evenodd"/>
+  </g>
+  <g data-region="cargo" fill="#E76F51" stroke="none">
+    <path d="M51 53Q44 43 51 38Q60 33 66 42Q71 50 63 55Q57 60 51 53Z"/><circle cx="72" cy="62" r="6"/>
+  </g>
+  <g data-region="inner_coat" fill="#F4A261" stroke="none">
+    <ellipse cx="34.06" cy="43.98" rx="6.5" ry="3.7" transform="rotate(-75 34.06 43.98)"/><ellipse cx="46.22" cy="26.61" rx="6.5" ry="3.7" transform="rotate(-35 46.22 26.61)"/><ellipse cx="66.70" cy="21.12" rx="6.5" ry="3.7" transform="rotate(5 66.70 21.12)"/><ellipse cx="85.92" cy="30.08" rx="6.5" ry="3.7" transform="rotate(45 85.92 30.08)"/><ellipse cx="94.88" cy="49.30" rx="6.5" ry="3.7" transform="rotate(85 94.88 49.30)"/><ellipse cx="89.39" cy="69.78" rx="6.5" ry="3.7" transform="rotate(125 89.39 69.78)"/>
+  </g>
+  <g data-region="outer_coat" fill="#B8B5FF" stroke="none">
+    <path d="M25 66L24 42L40 20L66 16L94 31L105 54L93 78L80 85L78 79L89 73L99 53L89 35L65 22L43 26L30 44L31 63Z"/>
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20 92H48Q55 92 53 83L50 77C30 66 30 39 48 27C66 14 91 28 93 49C95 61 86 74 77 78L75 84Q73 92 80 92H108Q114 92 114 100Q114 108 108 108H20Q14 108 14 100Q14 92 20 92Z"/><path d="M21 98H48Q62 98 59 82L56 72C40 64 38 44 52 33C67 23 84 33 86 50C88 61 79 70 70 74L68 84Q66 98 80 98H107Q109 98 109 100Q109 102 107 102H21Q19 102 19 100Q19 98 21 98Z"/><ellipse cx="34.06" cy="43.98" rx="6.5" ry="3.7" transform="rotate(-75 34.06 43.98)"/><ellipse cx="46.22" cy="26.61" rx="6.5" ry="3.7" transform="rotate(-35 46.22 26.61)"/><ellipse cx="66.70" cy="21.12" rx="6.5" ry="3.7" transform="rotate(5 66.70 21.12)"/><ellipse cx="85.92" cy="30.08" rx="6.5" ry="3.7" transform="rotate(45 85.92 30.08)"/><ellipse cx="94.88" cy="49.30" rx="6.5" ry="3.7" transform="rotate(85 94.88 49.30)"/><ellipse cx="89.39" cy="69.78" rx="6.5" ry="3.7" transform="rotate(125 89.39 69.78)"/><path d="M25 66L24 42L40 20L66 16L94 31L105 54L93 78L80 85L78 79L89 73L99 53L89 35L65 22L43 26L30 44L31 63Z" stroke-width="2.75"/><path d="M51 53Q44 43 51 38Q60 33 66 42Q71 50 63 55Q57 60 51 53Z"/><circle cx="72" cy="62" r="6"/>
+  </g>
+</svg>

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Bacterial Endospore</title>
+  <desc id="desc">An isolated bacterial endospore cross-section with a bounded core, inner membrane, peptidoglycan cortex and outer protein coat.</desc>
+  <g data-region="coat" fill="#8EC8FF" stroke="none">
+    <path d="M36 32C50 17 75 15 90 29C108 46 106 79 89 98C74 116 49 113 34 97C18 79 20 51 36 32Z"/>
+  </g>
+  <g data-region="cortex" fill="#D9F4E5" stroke="none">
+    <path d="M43 39C55 27 74 27 85 38C97 51 96 77 83 91C71 104 52 102 40 90C27 76 31 52 43 39Z"/>
+  </g>
+  <g data-region="core" fill="#7DD3C7" stroke="none">
+    <path d="M48 48C57 38 71 38 80 47C90 59 87 78 78 87C68 96 55 92 46 83C37 74 38 59 48 48Z"/>
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M36 32C50 17 75 15 90 29C108 46 106 79 89 98C74 116 49 113 34 97C18 79 20 51 36 32Z"/><path d="M43 39C55 27 74 27 85 38C97 51 96 77 83 91C71 104 52 102 40 90C27 76 31 52 43 39Z"/><path d="M48 48C57 38 71 38 80 47C90 59 87 78 78 87C68 96 55 92 46 83C37 74 38 59 48 48Z" stroke-width="6"/>
+  </g>
+  <g data-region="inner_membrane" fill="none" stroke="#B8B5FF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M48 48C57 38 71 38 80 47C90 59 87 78 78 87C68 96 55 92 46 83C37 74 38 59 48 48Z"/>
+  </g>
+</svg>

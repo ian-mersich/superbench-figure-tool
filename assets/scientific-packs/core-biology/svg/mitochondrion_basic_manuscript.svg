@@ -1,17 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
-  <title id="title">Mitochondrion — Manuscript Line</title>
-  <desc id="desc">Restrained thin-line mitochondrion companion with matched bean-shaped membrane, inner band, folded cristae, and editable semantic regions.</desc>
-
-  <path data-region="matrix" fill="#F5E6D6" d="M19 67c0-22 16-39 39-43 24-4 47 7 53 27 6 21-8 42-31 52-23 10-49 3-58-16-3-6-4-13-3-20z"/>
-
-  <path data-region="accent" d="M29 66c0-16 12-29 30-33 18-3 36 5 42 19 7 16-4 33-22 42-18 8-39 3-47-11-3-5-4-11-3-17z" fill="none" stroke="#D1A07E" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.85" opacity="0.82"/>
-
-  <g data-region="cristae" fill="none" stroke="#C58F8C" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-    <path d="M42 45c8-4 9 9 17 6 7-3 6-13 14-13 7 0 8 9 16 8"/>
-    <path d="M36 59c9-4 10 10 19 7 8-3 7-14 15-14 8 0 9 11 19 8 4-1 7-4 10-7"/>
-    <path d="M35 75c9-5 11 9 20 7 8-2 8-13 16-13 9 0 9 12 18 10 4-1 7-4 10-7"/>
-    <path d="M43 89c7-4 9 6 17 5 8-2 8-11 16-11 7 0 9 7 15 5"/>
+  <title id="title">Mitochondrion — Thin Line</title>
+  <desc id="desc">Original schematic mitochondrial section with a separate outer membrane and continuous inner membrane, including three illustrative invaginations joined at narrow openings. Crista number, dimensions and morphology do not specify energetic state. Geometry matches the corresponding soft illustration.</desc>
+  <path data-region="matrix" fill="#F5E6D6" d="M27 64C27 48 37 37 49 34C47 41 43 54 46 61C49 67 54 63 54 56L58 33C67 32 75 35 82 39L70 56C66 63 72 66 77 60L89 44C97 50 102 57 102 66C102 77 94 88 82 94C73 99 63 101 55 100L61 82C63 75 57 73 54 79L47 98C34 94 26 81 27 64Z"/>
+  <g data-region="accent" fill="none" stroke="#D1A07E" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M27 64C27 48 37 37 49 34"/>
+    <path d="M58 33C67 32 75 35 82 39"/>
+    <path d="M89 44C97 50 102 57 102 66C102 77 94 88 82 94C73 99 63 101 55 100"/>
+    <path d="M47 98C34 94 26 81 27 64"/>
   </g>
-
-  <path data-region="outline" d="M19 67c0-22 16-39 39-43 24-4 47 7 53 27 6 21-8 42-31 52-23 10-49 3-58-16-3-6-4-13-3-20z" fill="none" stroke="#66707A" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.1"/>
+  <g data-region="cristae" fill="none" stroke="#C58F8C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M49 34C47 41 43 54 46 61C49 67 54 63 54 56L58 33"/>
+    <path d="M82 39L70 56C66 63 72 66 77 60L89 44"/>
+    <path d="M55 100L61 82C63 75 57 73 54 79L47 98"/>
+  </g>
+  <path data-region="outline" fill="none" stroke="#66707A" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" d="M18 65C18 43 33 27 54 24C77 20 103 31 111 49C120 69 108 91 85 103C64 114 39 108 26 91C20 83 17 74 18 65Z"/>
 </svg>

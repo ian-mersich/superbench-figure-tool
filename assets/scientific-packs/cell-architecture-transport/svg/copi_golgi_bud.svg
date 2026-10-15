@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">COPI — Golgi-connected Bud</title>
+  <desc id="desc">An illustrative COPI-coated bud continuous with a Golgi membrane, with coatomer and Arf1 separately editable.</desc>
+  <g data-region="membrane" fill="#8EC8FF" stroke="none">
+    <path d="M16 96H43Q55 96 53 80L50 74Q30 63 37 42Q41 24 63 25Q87 23 92 45Q99 65 79 76L75 81Q72 96 85 96H112V108H16ZM21 102H44Q64 102 59 79L56 69Q42 61 43 47Q46 32 64 32Q82 30 85 48Q88 62 73 70L68 80Q64 102 85 102H107V103H21Z" fill-rule="evenodd"/>
+  </g>
+  <g data-region="adaptor" fill="#7DD3C7" stroke="none">
+    <ellipse cx="36" cy="45" rx="5" ry="3"/><ellipse cx="56" cy="24" rx="5" ry="3"/><ellipse cx="87" cy="36" rx="5" ry="3"/>
+  </g>
+  <g data-region="outer_coat" fill="#B8B5FF" stroke="none">
+    <path d="M28.97 29.07Q36.97 20.07 44.97 30.07L41.97 37.07L31.97 36.07Z" transform="rotate(-55 36.97 33.07)"/><path d="M53.12 15.129999999999999Q61.12 6.129999999999999 69.12 16.13L66.12 23.13L56.12 22.13Z" transform="rotate(-5 61.12 19.13)"/><path d="M79.33 24.67Q87.33 15.670000000000002 95.33 25.67L92.33 32.67L82.33 31.67Z" transform="rotate(45 87.33 28.67)"/><path d="M88.87 50.88Q96.87 41.88 104.87 51.88L101.87 58.88L91.87 57.88Z" transform="rotate(95 96.87 54.88)"/><path d="M77.21 73.28Q85.21 64.28 93.21 74.28L90.21 81.28L80.21 80.28Z" transform="rotate(140 85.21 77.28)"/>
+  </g>
+  <g data-region="arf" fill="#F4A261" stroke="none">
+    <ellipse cx="33" cy="52" rx="4.5" ry="4.5"/><ellipse cx="74" cy="22" rx="4.5" ry="4.5"/><ellipse cx="94" cy="43" rx="4.5" ry="4.5"/>
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M16 96H43Q55 96 53 80L50 74Q30 63 37 42Q41 24 63 25Q87 23 92 45Q99 65 79 76L75 81Q72 96 85 96H112V108H16Z"/><path d="M21 102H44Q64 102 59 79L56 69Q42 61 43 47Q46 32 64 32Q82 30 85 48Q88 62 73 70L68 80Q64 102 85 102H107V103H21Z"/><ellipse cx="36" cy="45" rx="5" ry="3"/><ellipse cx="56" cy="24" rx="5" ry="3"/><ellipse cx="87" cy="36" rx="5" ry="3"/><path d="M28.97 29.07Q36.97 20.07 44.97 30.07L41.97 37.07L31.97 36.07Z" transform="rotate(-55 36.97 33.07)"/><path d="M53.12 15.129999999999999Q61.12 6.129999999999999 69.12 16.13L66.12 23.13L56.12 22.13Z" transform="rotate(-5 61.12 19.13)"/><path d="M79.33 24.67Q87.33 15.670000000000002 95.33 25.67L92.33 32.67L82.33 31.67Z" transform="rotate(45 87.33 28.67)"/><path d="M88.87 50.88Q96.87 41.88 104.87 51.88L101.87 58.88L91.87 57.88Z" transform="rotate(95 96.87 54.88)"/><path d="M77.21 73.28Q85.21 64.28 93.21 74.28L90.21 81.28L80.21 80.28Z" transform="rotate(140 85.21 77.28)"/><ellipse cx="33" cy="52" rx="4.5" ry="4.5"/><ellipse cx="74" cy="22" rx="4.5" ry="4.5"/><ellipse cx="94" cy="43" rx="4.5" ry="4.5"/>
+  </g>
+</svg>

@@ -1,0 +1,85 @@
+{
+  "schema_id": "superbench.scientificAssetArtworkRevision.v1",
+  "revision_id": "2026-10-13-rna-method-refinement",
+  "revision_date": "2026-10-13",
+  "pack_id": "rna-methods",
+  "predecessor": {
+    "catalog_sha256": "c65608c0ff7e3828aff4844301f3567e738579f2a7245277b44b14e16f6d4e23",
+    "audit_sha256": "2bdaa1fb1dfbdce8bb96d87c7bab640c6692711b80f948e7c8a96b025ba2182f",
+    "snapshot": "revisions/2026-10-13-broad-library-predecessor"
+  },
+  "current_catalog_sha256": "6e77577795470401190cd0f1bed83578ec277cc39f32de79a4f09ba6e0ac908f",
+  "review": {
+    "status": "accepted",
+    "scientific_review": "pass",
+    "visual_review": "pass",
+    "editor_checks": "pass",
+    "reviewer": "Independent scientific and original-image review by retained_state; canonical native browser qualification",
+    "reviewed_on": "2026-10-13",
+    "evidence": [
+      {
+        "file": "qa_artifacts/library-drawing-review/final-cut-paper-policy/independent-artwork-review.json",
+        "sha256": "4f8359185d0b29a7306858fd9dd18ea2b0cc0173711d24644506dda1936594b7"
+      },
+      {
+        "file": "qa_artifacts/library-drawings/20261013T142958Z-direct/report.json",
+        "sha256": "ffde0d0784fb262b13f045d22e2b79b4e761a3c5ca0dcc64ae158a917be6886d"
+      },
+      {
+        "file": "qa_artifacts/library-drawings/20261013T142958Z-direct/native-treatments/native-treatment-matrix.json",
+        "sha256": "0ef751a597b8ca274b76f6b7cf1e3e36be4fb2bb4a06eb89349cf5a3fcbdb575"
+      },
+      {
+        "file": "qa_artifacts/library-drawings/20261013T142958Z-web/report.json",
+        "sha256": "1fbbc84392a6c715e8ccb53b777c5e81783264708ed3497e05748bd35f703620"
+      },
+      {
+        "file": "qa_artifacts/library-drawings/20261013T142958Z-web/native-treatments/native-treatment-matrix.json",
+        "sha256": "99e3b582e4ea3a96035d577e072d2bd9c644a5ed9afceaf8657c98e3f5d88475"
+      },
+      {
+        "file": "qa_artifacts/library-drawings/20261013T142958Z-review/independent-native-visual-review.json",
+        "sha256": "facd5e8af21e9c08722bb63935f3bd3c0e9fdc90416acfda8f86062bd4ce0891"
+      }
+    ],
+    "scope": "Original 64/256/512-pixel artwork in all three treatments; native Figure/Presentation insertion, semantic recoloring, point editing, Undo/Redo, workspace and selection switching, real Save/cold Open, editable SVG export at three desktop widths in light/dark on direct and web routes; all 42 drawings across three treatments and four palettes; 14 historical Core drawings retained. Product/desktop/public deployment selection remains separate."
+  },
+  "changed_assets": [
+    {
+      "asset_id": "rna.lab_equipment.microfluidic_cell_partition",
+      "file": "svg/microfluidic_cell_partition.svg",
+      "before_svg_sha256": "35f074edeef9a027484522d9c80f7d09e01e5003787fd6455461ff0a022fdc7f",
+      "after_svg_sha256": "e7b399bae6cb8cc3fb2f07e1f2bf990fe5b10e34d674c805b1c6074f11a00d6a",
+      "before_metadata_sha256": "9baad43662e64c38c011c29a489d942f3d0fee8bbcda5b23900a4439f209701e",
+      "after_metadata_sha256": "29393ef61b6994c1c8d7122cbc3eed6683bc2c2095dbcbaaf34fcbadce4993ce",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "rna.nucleic_acid.barcoded_capture_bead",
+      "file": "svg/barcoded_capture_bead.svg",
+      "before_svg_sha256": "cff4c76a06c860d286d9b3eccf9d2232879a0d0b4c2dc10f844b134cbbf157da",
+      "after_svg_sha256": "424d1c2a903352b17b03b70bbeee02993fbaccae6e7884a22a206509ef62cd37",
+      "before_metadata_sha256": "1236c0c07367c02fab9cff41da983dbdaa60775b4837d65f9746abca7d05bdbe",
+      "after_metadata_sha256": "eb4bf96338054924e5f85b5acac4b98c970acde9db3528be92347f20b04932f6",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "rna.assay_workflow.spatial_capture_array",
+      "file": "svg/spatial_capture_array.svg",
+      "before_svg_sha256": "950e8a5f7992e9a5e56355c79be6eb8dcb3458dae7597cbf505e7110721358b4",
+      "after_svg_sha256": "c5679bd1c0ffc4cb6d299c61a24d8944393f79bbf85b014ec2822729a6bbef05",
+      "before_metadata_sha256": "45be4a648683c4dbc1edbd265bfd0b666be6268e6f9a27b13c04ed45b3a9d395",
+      "after_metadata_sha256": "67325c3ee7ddc2a654d624c22e930f19a37dff069500ff619593c4347acbe6d6",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "rna.assay_workflow.in_situ_rna_puncta",
+      "file": "svg/in_situ_rna_puncta.svg",
+      "before_svg_sha256": "70c113627c0faef82d105b88a981a50022e410244174e1e6fcf47e6e8beb2074",
+      "after_svg_sha256": "a57cd0e15870516dd4317fff72fc640e74f828b3dd87c0b7fefda0e91d5d1859",
+      "before_metadata_sha256": "9e256ae42e65793dc2198999aae811e02d4259053d3d4bf45ae42f310655ca0f",
+      "after_metadata_sha256": "5b5f43e54b93011bf86fce547db5a449c5c556c065e988fe6113ea0bdb76256a",
+      "license": "CC0-1.0"
+    }
+  ]
+}

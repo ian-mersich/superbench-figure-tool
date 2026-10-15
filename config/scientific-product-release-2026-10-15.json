@@ -1,0 +1,112 @@
+{
+  "schema": "figureStudio.scientificProductRelease.v1",
+  "release_id": "reviewed-library-and-rna-scenes.2026-10-15",
+  "release_date": "2026-10-15",
+  "decision": "approved_for_matching_public_web_and_superbench_packages",
+  "scope": "Product inclusion of the exact reviewed collection in matching release candidates; actual publication, package selection, native-host and deployed-site qualification remain separately gated. No new license grant.",
+  "user_authorization": {
+    "source": "Owner instructions in the current 2026-10-15 Figure release task",
+    "instruction": "Paraphrase: provide the reviewed Figure package including the expanded Library, and keep the public browser editor and Superbench on the same canonical runtime and assets.",
+    "rights_basis": "Existing owner CC0 grants, preserved unchanged; this instruction resolves separate product inclusion."
+  },
+  "library": {
+    "drawing_count": 406,
+    "concept_count": 346,
+    "pack_count": 8,
+    "scene_count": 12
+  },
+  "asset_file_count": 572,
+  "asset_inventory_sha256": "cd621bff01b4abc81cc59d56b13fa930e82901039b51bf1b4ba9a1a36b1aed36",
+  "identity_method": "JSON canonical SHA-256; other asset files SHA-256 after CRLF-to-LF normalization. Every file in both scientific asset roots is included.",
+  "packs": {
+    "cell-architecture-transport": {
+      "catalog_sha256": "ec0b221148b6b25b287437f605f532d59b84d784ed260f861fb0fb84f4f435f2",
+      "audit_file": "rights-release-record-2026-10-13.json",
+      "audit_sha256": "9bd7a54ed501ddfb24769995f1d3d56b173ec0454a04e87512446e87710816e9",
+      "original_rights_records_sha256": "6f54de2759367391a4d0c6754b098b46bbbc6e93488b9a7832eeec74d6fc2211",
+      "original_rights_grant_date": "2026-10-10",
+      "revision_receipt": "family-expansion-2026-10-13.json",
+      "revision_receipt_sha256": "5b74bb139b1d164566aa9300b9d6961ff89e9f6db06310bc00d2916623fa6849",
+      "drawing_count": 28
+    },
+    "culture-models-assays": {
+      "catalog_sha256": "f9e64bebee918b360cc97b9b4ec89b2e11d52195cf2abca5ac39ca723c7fa60d",
+      "audit_file": "rights-release-record-2026-10-13.json",
+      "audit_sha256": "fcceb4028f164f2da85de5a58ac6d78f5152f2b00924895f619c071c4a829b0e",
+      "original_rights_records_sha256": "800b0017aa314136d39dcc7464ed23f08267b3ab6a28d27603be8a6b2c2391da",
+      "original_rights_grant_date": "2026-10-10",
+      "revision_receipt": "family-expansion-2026-10-13.json",
+      "revision_receipt_sha256": "00ccdf41ddcb9a8849a41f4ed862a18b68bddcbb25a60153554eb4c25286c930",
+      "drawing_count": 24
+    },
+    "microbial-biology": {
+      "catalog_sha256": "9e17fa7d43ba1d7209c6cf8c895384bf8d34fc02c04f897d55417568dd1c6744",
+      "audit_file": "rights-release-record-2026-10-13.json",
+      "audit_sha256": "dc1ec2475e6ff44b1c42b275ae9f3c4e35dc3c3535db37fd7a69ae4334f7c980",
+      "original_rights_records_sha256": "1d99466fe5f54f3f251591eb57f06973d8b06dadb0debec9c17fcc1013129495",
+      "original_rights_grant_date": "2026-10-10",
+      "revision_receipt": "family-expansion-2026-10-13.json",
+      "revision_receipt_sha256": "8eaad1101e95d31b076d515f735a02f94c64bcbf8128839c87a66e451e16497a",
+      "drawing_count": 24
+    },
+    "rna-methods": {
+      "catalog_sha256": "6e77577795470401190cd0f1bed83578ec277cc39f32de79a4f09ba6e0ac908f",
+      "audit_file": "rights-release-record.json",
+      "audit_sha256": "9db4e5bae0f9c1a99fe619e41f342efd01ee723b36300d8fdb8fc701cafc4a84",
+      "original_rights_records_sha256": "b1581a2d4a57cc89a373e233e88cdf18eaa20bd825877dfce31f2e76bf8a26c8",
+      "original_rights_grant_date": "2026-10-10",
+      "revision_receipt": "artwork-revision-2026-10-13.json",
+      "revision_receipt_sha256": "406d859d9678010169cefb0006131c438276ab65f26972bda228822e2a5b1029",
+      "drawing_count": 4
+    }
+  },
+  "scenes": {
+    "single-cell-rna-workflow": {
+      "scene_sha256": "a7d22e7fa4d7d27a89477bfe0f41ec90e5b1ff7b84c4217d0af61b15f18bf3dd",
+      "preview_sha256": "5420139979016ba5f54e7b99ea5822da2b10646240d3740809340095d7189263"
+    },
+    "spatial-rna-methods": {
+      "scene_sha256": "42887da40bb40cd9a3b8fca1d18ec7a1e6d361c3590e4d46447d43d4ea98bdb7",
+      "preview_sha256": "20019511d3685597ec1685867342b70fae5a79fca02649b7aa96bab5cc562709"
+    }
+  },
+  "scene_rights_sha256": "7b3cead8d915e955918b45a8beb86cb2afef4a0083e846813c7aac74be65f66b",
+  "review": {
+    "scientific_review": "pass",
+    "visual_review": "pass",
+    "editor_checks": "pass",
+    "acceptance_document": "docs/scientific-assets/REVIEWED_LIBRARY_PRODUCT_RELEASE_2026_10_15.md",
+    "acceptance_document_sha256": "bc345b77e54bf9c1215f1dc9cbce9bb5747d0e3cb2f53c1963e9b8a5e52ea7d5",
+    "evidence": [
+      {
+        "file": "assets/scientific-packs/cell-architecture-transport/family-expansion-2026-10-13.json",
+        "sha256": "a6a321e89476e38a596e85aa73e1402c1a298054a23ca4f4036bbe67bde3c9ac"
+      },
+      {
+        "file": "assets/scientific-packs/culture-models-assays/family-expansion-2026-10-13.json",
+        "sha256": "9843148ccdd2d961d063010c657e33550467e1b9a33d386d97c8eb9ddd778d7a"
+      },
+      {
+        "file": "assets/scientific-packs/microbial-biology/family-expansion-2026-10-13.json",
+        "sha256": "12bd5a08ab37b219c2c0b3f11ac51f5e20ecca0a404a187220d81cd4556ef9f5"
+      },
+      {
+        "file": "assets/scientific-packs/rna-methods/artwork-revision-2026-10-13.json",
+        "sha256": "01aff489a1209aa185738a7c4cef1dd5f0944f2fd68999f03c0a950366628b61"
+      },
+      {
+        "file": "qa_artifacts/unified-release-20261015/scenes/report.json",
+        "sha256": "34329d981a462a62e180cdab24c585d58626b20526b7300f877024a016681497"
+      },
+      {
+        "file": "qa_artifacts/unified-release-20261015/scenes/independent-scene-review.json",
+        "sha256": "67885ba8d9196b67be5a384858121409864ff257cd3e98085dc43a9082ed0b6b"
+      },
+      {
+        "file": "qa_artifacts/unified-release-20261015/scenes/source-inventory.json",
+        "sha256": "2300ff6453f7db7ba7dc7db9a964319ecdf709312d7d1b3dd995314eecdce186"
+      }
+    ],
+    "final_package_qualification": "Separate frozen-source direct/web, Core integration, hidden-native and deployed-site checks remain required."
+  }
+}

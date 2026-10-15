@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Bacterial Flagellar Motor</title>
+  <desc id="desc">A simplified Gram-negative flagellar motor connecting a membrane-associated rotor and stators to an external shaft and hook.</desc>
+  <g data-region="membranes" fill="#7DD3C7" stroke="none">
+    <path d="M18 45H60V55H18Z M70 45H110V55H70Z M18 81H47V91H18Z M83 81H110V91H83Z"/>
+  </g>
+  <g data-region="peptidoglycan" fill="#8EC8FF" stroke="none">
+    <path d="M18 65H59V69H18Z M71 65H110V69H71Z"/>
+  </g>
+  <g data-region="rotor" fill="#B8B5FF" stroke="none">
+    <path d="M61 81V35C61 22 70 15 80 18C89 21 91 30 98 29C103 28 104 22 108 22L110 28C106 29 105 34 99 35C87 38 85 26 78 24C73 23 69 27 69 35V81Z"/><rect x="55" y="78" width="20" height="12" rx="3"/><path d="M50 88H58V103H73V88H81V104Q81 111 74 111H57Q50 111 50 104Z"/>
+  </g>
+  <g data-region="stators" fill="#F4A261" stroke="none">
+    <path d="M44 74Q44 72 46 72H53V96H44Z M77 72H84Q86 72 86 74V96H77Z"/>
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M18 45H59M71 45H110M18 55H59M71 55H110M18 81H45M85 81H110M18 91H45M85 91H110"/><path d="M61 81V35C61 22 70 15 80 18C89 21 91 30 98 29C103 28 104 22 108 22L110 28C106 29 105 34 99 35C87 38 85 26 78 24C73 23 69 27 69 35V81Z"/><path d="M55 81Q55 78 58 78H61M69 78H72Q75 78 75 81V87Q75 90 72 90H58Q55 90 55 87V81"/><path d="M50 88H58V103H73V88H81V104Q81 111 74 111H57Q50 111 50 104Z"/><path d="M44 74Q44 72 46 72H53V96H44Z M77 72H84Q86 72 86 74V96H77Z"/><path d="M58 98H73" stroke-width="2.2"/>
+  </g>
+</svg>

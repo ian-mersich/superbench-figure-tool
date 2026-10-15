@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Chromatin loop</title>
+  <desc id="desc">Original vector chromatin loop with a beads-on-string nucleosome fiber, terminal anchors, and editable semantic regions.</desc>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M17 91c9-10 12-28 23-40 13-14 33-20 50-11 19 10 25 32 14 48-9 13-28 17-42 10-11-5-17-16-13-26 4-9 15-13 24-9 8 3 12 12 9 20" stroke-width="8"/>
+    <g stroke-width="2.75">
+      <circle cx="31" cy="64" r="7"/><circle cx="48" cy="47" r="7"/><circle cx="70" cy="42" r="7"/>
+      <circle cx="91" cy="53" r="7"/><circle cx="102" cy="74" r="7"/><circle cx="88" cy="94" r="7"/>
+      <circle cx="63" cy="94" r="7"/><circle cx="57" cy="72" r="7"/>
+      <circle cx="17" cy="91" r="5"/><circle cx="82" cy="83" r="5"/>
+    </g>
+  </g>
+  <path data-region="fiber" fill="none" stroke="#7B78C9" stroke-linecap="round" stroke-linejoin="round" stroke-width="4.5" d="M17 91c9-10 12-28 23-40 13-14 33-20 50-11 19 10 25 32 14 48-9 13-28 17-42 10-11-5-17-16-13-26 4-9 15-13 24-9 8 3 12 12 9 20"/>
+  <g data-region="histone" fill="#F4A261">
+    <circle cx="31" cy="64" r="7"/><circle cx="48" cy="47" r="7"/><circle cx="70" cy="42" r="7"/>
+    <circle cx="91" cy="53" r="7"/><circle cx="102" cy="74" r="7"/><circle cx="88" cy="94" r="7"/>
+    <circle cx="63" cy="94" r="7"/><circle cx="57" cy="72" r="7"/>
+  </g>
+  <g data-region="accent" fill="#C7F2EC">
+    <circle cx="17" cy="91" r="5"/>
+    <circle cx="82" cy="83" r="5"/>
+  </g>
+</svg>

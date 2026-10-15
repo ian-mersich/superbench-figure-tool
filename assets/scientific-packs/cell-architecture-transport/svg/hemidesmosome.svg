@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Hemidesmosome</title>
+  <desc id="desc">Illustrative basal epithelial adhesion linking a membrane adhesion complex to basement membrane externally and to intermediate filaments through cytoplasmic linkers.</desc>
+  <g data-region="membrane" fill="#C7F2EC" stroke="none">
+    <rect x="16" y="72" width="96" height="9" rx="2"/>
+  </g>
+  <g data-region="adhesion_complex" fill="#8EC8FF" stroke="none">
+    <path d="M42 56H52L58 47H65L60 58H71L76 47H83L78 58H88V65H42Z M54 64H62V79L58 89Q57 99 49 99Q42 96 49 89L53 78Z M72 64H80V79L86 88Q92 96 84 99Q74 99 74 86Z"/>
+  </g>
+  <g data-region="intermediate_filament" fill="#F4DC8A" stroke="none">
+    <path d="M19 21Q31 23 38 38L54 46L51 53L33 43Q26 30 16 29Z M38 18Q41 34 54 43L50 49Q34 39 31 19Z M109 21Q97 23 90 38L74 46L77 53L95 43Q102 30 112 29Z M90 18Q87 34 74 43L78 49Q94 39 97 19Z"/>
+  </g>
+  <g data-region="basement_membrane" fill="#9FD8B5" stroke="none">
+    <rect x="16" y="102" width="96" height="10" rx="2"/><rect x="31" y="97" width="67" height="5" rx="2"/>
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M16 72H52M52 81H16V72M82 72H112V81H82"/><path d="M42 56H52L58 47H65L60 58H71L76 47H83L78 58H88V65H42Z M54 64H62V79L58 89Q57 99 49 99Q42 96 49 89L53 78Z M72 64H80V79L86 88Q92 96 84 99Q74 99 74 86Z"/><path d="M19 21Q31 23 38 38L54 46L51 53L33 43Q26 30 16 29Z M38 18Q41 34 54 43L50 49Q34 39 31 19Z M109 21Q97 23 90 38L74 46L77 53L95 43Q102 30 112 29Z M90 18Q87 34 74 43L78 49Q94 39 97 19Z"/><rect x="16" y="102" width="96" height="10" rx="2"/><rect x="31" y="97" width="67" height="5" rx="2"/>
+  </g>
+</svg>

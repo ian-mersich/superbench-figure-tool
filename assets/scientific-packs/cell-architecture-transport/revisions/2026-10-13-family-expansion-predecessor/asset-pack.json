@@ -1,0 +1,2132 @@
+{
+  "schema_version": "0.3.0",
+  "id": "cell-architecture-transport",
+  "name": "Cell Architecture & Transport",
+  "description": "Editable cell junctions, matrix attachments, cargo motors, vesicle coats and membrane interactions for cell architecture and intracellular transport.",
+  "style_family": "figure-studio-soft-line-v1",
+  "style_families": [
+    "figure-studio-soft-line-v1"
+  ],
+  "qa_status": "independent_scientific_and_visual_review_passed_2026_10_07",
+  "concept_count": 16,
+  "asset_count": 16,
+  "category_counts": {
+    "membrane-signaling": {
+      "concept_count": 8,
+      "style_count": 8
+    },
+    "pathway-symbol": {
+      "concept_count": 6,
+      "style_count": 6
+    },
+    "organelle": {
+      "concept_count": 2,
+      "style_count": 2
+    }
+  },
+  "release_audit": {
+    "file": "rights-release-record.json",
+    "audit_id": "cell-architecture-transport.rights-cleared-quality-pending.2026-10-10",
+    "audit_date": "2026-10-10",
+    "release_effective_date": null,
+    "status": "rights_cleared_quality_pending",
+    "concept_count": 16,
+    "asset_count": 16,
+    "public_distribution_authorized": true,
+    "selected_public_license": "CC0-1.0",
+    "license_notice": "LICENSE-ASSETS-CC0-1.0.md",
+    "rights_grant_effective_date": "2026-10-10",
+    "product_release_status": "pending_quality_and_product_review"
+  },
+  "style_tokens": {
+    "viewBox": "0 0 128 128",
+    "target_padding_units": "14-18",
+    "primary_outline": "#26323D",
+    "primary_outline_width": 3.5,
+    "detail_outline_width": 2.75,
+    "line_cap": "round",
+    "line_join": "round",
+    "palette": {
+      "actin": [
+        "#E76F51"
+      ],
+      "adaptor": [
+        "#7DD3C7",
+        "#B8B5FF"
+      ],
+      "adhesion_complex": [
+        "#8EC8FF"
+      ],
+      "arf": [
+        "#F4A261"
+      ],
+      "basement_membrane": [
+        "#9FD8B5"
+      ],
+      "cadherin": [
+        "#8EC8FF"
+      ],
+      "cargo": [
+        "#E76F51",
+        "#F4A261"
+      ],
+      "channel_lumen": [
+        "#FFFFFF"
+      ],
+      "connexon": [
+        "#8EC8FF"
+      ],
+      "contact_tethers": [
+        "#B8B5FF"
+      ],
+      "desmosomal_cadherin": [
+        "#8EC8FF"
+      ],
+      "er_membrane": [
+        "#8EC8FF"
+      ],
+      "extracellular_matrix": [
+        "#9FD8B5"
+      ],
+      "fused_membrane": [
+        "#8EC8FF"
+      ],
+      "importin": [
+        "#7DD3C7"
+      ],
+      "inner_autophagic_membrane": [
+        "#B8B5FF"
+      ],
+      "inner_coat": [
+        "#F4A261"
+      ],
+      "intermediate_filament": [
+        "#F4DC8A"
+      ],
+      "intraluminal_vesicles": [
+        "#7B78C9"
+      ],
+      "junction_strand": [
+        "#8EC8FF"
+      ],
+      "lumen": [
+        "#C7F2EC"
+      ],
+      "lysosomal_contents": [
+        "#7DD3C7"
+      ],
+      "membrane": [
+        "#8EC8FF",
+        "#C7F2EC"
+      ],
+      "microtubule": [
+        "#B8B5FF"
+      ],
+      "mitochondrial_membranes": [
+        "#C7F2EC"
+      ],
+      "motor": [
+        "#5EA9DD"
+      ],
+      "nuclear_envelope": [
+        "#8EC8FF"
+      ],
+      "nuclear_pore": [
+        "#B8B5FF"
+      ],
+      "outer_coat": [
+        "#B8B5FF"
+      ],
+      "outline": [
+        "#26323D"
+      ],
+      "plaque": [
+        "#B8B5FF"
+      ],
+      "q_snare": [
+        "#7DD3C7"
+      ],
+      "r_snare": [
+        "#E76F51"
+      ],
+      "sorting_coat": [
+        "#7DD3C7"
+      ],
+      "target_membrane": [
+        "#C7F2EC"
+      ],
+      "vesicle_membrane": [
+        "#8EC8FF"
+      ]
+    }
+  },
+  "source_policy": {
+    "batch_scope": "cell-architecture-transport only",
+    "allowed_sources": [
+      "Original vector construction informed by primary scientific papers",
+      "Existing shared style tokens"
+    ],
+    "disallowed_sources": [
+      "Copied or traced published or proprietary artwork",
+      "Downloaded third-party vector components",
+      "Measured observations as decorative art"
+    ],
+    "reference_use": "Entity topology and mechanism only; no source geometry incorporated."
+  },
+  "license_definitions": {
+    "CC0-1.0": {
+      "label": "CC0 1.0 Universal",
+      "reuse": "Owner-authorized public-domain dedication for the original artwork and asset-specific metadata scoped by the canonical asset license notice.",
+      "scope_notice": "LICENSE-ASSETS-CC0-1.0.md",
+      "rights_status": "owner_attested_original_output",
+      "release_status": "rights_cleared_quality_pending",
+      "public_distribution_authorized": true,
+      "selected_public_license": "CC0-1.0"
+    }
+  },
+  "source_records": [
+    {
+      "id": "source.cell-architecture-transport.2026-10-07",
+      "kind": "clean_room_generation_record",
+      "pack_id": "cell-architecture-transport",
+      "scope": "all_assets_in_pack",
+      "created_on": "2026-10-07",
+      "generated_by": "Figure Tool AI-assisted original SVG authoring",
+      "third_party_material": "none_declared",
+      "statement": "Original editable SVG geometry constructed for the Figure Tool from cell-architecture-transport concepts. Primary research informs biological relationships only. No published or proprietary artwork, tracing, screenshot, structural coordinates, measured data or third-party vector component was incorporated. This source record documents original construction and does not decide product release.",
+      "scientific_references": [
+        {
+          "id": "zhao-2018-tight-junction",
+          "citation": "Zhao J, Krystofiak ES, Ballesteros A, Cui R, Van Itallie CM, Anderson JM, Fenollar-Ferrer C, Kachar B. Multiple claudin–claudin cis interfaces are required for tight junction strand formation and inherent flexibility. Communications Biology. 2018;1:50.",
+          "doi": "10.1038/s42003-018-0051-5",
+          "url": "https://www.nature.com/articles/s42003-018-0051-5",
+          "figure": "Figure 1",
+          "use": "Live and freeze-fracture strand images support repeated, flexible strand contacts. Show apposed cell membranes with tight-junction contacts, without a central gap-junction lumen. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "wang-2022-adherens-junction",
+          "citation": "Wang A, Dunn AR, Weis WI. Mechanism of the cadherin–catenin F-actin catch bond interaction. eLife. 2022;11:e80130.",
+          "doi": "10.7554/eLife.80130",
+          "url": "https://elifesciences.org/articles/80130",
+          "figure": "Figure 1, especially panel A",
+          "use": "Preserve the extracellular cadherin trans contact between opposed membranes and the intracellular cadherin–catenin connection to actin. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "schmitt-2022-desmosome",
+          "citation": "Schmitt T, Pircher J, Steinert L, Meier K, Ghoreschi K, Vielmuth F, Kugelmann D, Waschke J. Dsg1 and Dsg3 Composition of Desmosomes Across Human Epidermis and Alterations in Pemphigus Vulgaris Patient Skin. Frontiers in Immunology. 2022;13:884241.",
+          "doi": "10.3389/fimmu.2022.884241",
+          "url": "https://www.frontiersin.org/journals/immunology/articles/10.3389/fimmu.2022.884241/full",
+          "figure": "Figure 1A and C",
+          "use": "Use extracellular desmosomal cadherin contact, paired intracellular plaques and outward keratin intermediate filaments. Broad plaques distinguish the contact from the actin-linked adherens junction. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "myers-2018-gap-junction",
+          "citation": "Myers JB, Haddad BG, O’Neill SE, Chorev DS, Yoshioka CC, Robinson CV, Zuckerman DM, Reichow SL. Structure of native lens connexin-46/50 intercellular channels by CryoEM. Nature. 2018;564:372–377.",
+          "doi": "10.1038/s41586-018-0786-7",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6309215/",
+          "figure": "Figure 1, especially panels b and d",
+          "use": "Dock two connexon hemichannels across two opposed membranes and retain a continuous lumen joining their cytoplasmic sides. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "kanchanawong-2010-focal-adhesion",
+          "citation": "Kanchanawong P, Shtengel G, Pasapera AM, Ramko EB, Davidson MW, Hess HF, Waterman CM. Nanoscale architecture of integrin-based cell adhesions. Nature. 2010;468:580–584.",
+          "doi": "10.1038/nature09621",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3046339/",
+          "figure": "Figure 4, especially panel d",
+          "use": "Keep matrix extracellular, integrin across one basal membrane, and an intracellular adhesion complex between integrin and actin stress fibres. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "geerts-1999-hemidesmosome",
+          "citation": "Geerts D, Fontao L, Nievers MG, Schaapveld RQJ, Purkis PE, Wheeler GN, Lane EB, Leigh IM, Sonnenberg A. Binding of integrin α6β4 to plectin prevents plectin association with F-actin but does not interfere with intermediate filament binding. Journal of Cell Biology. 1999;147:417–434.",
+          "doi": "10.1083/jcb.147.2.417",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2174221/",
+          "figure": "Figure 1",
+          "use": "The β4-integrin and plectin domain maps distinguish integrin-binding and intermediate-filament-binding roles. Show a cytoplasmic linker between the membrane adhesion complex and keratin filaments. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "belyy-2016-motor-topology",
+          "citation": "Belyy V, Schlager MA, Foster H, Reimer AE, Carter AP, Yildiz A. The mammalian dynein–dynactin complex is a strong opponent to kinesin in a tug-of-war competition. Nature Cell Biology. 2016;18:1018–1024.",
+          "doi": "10.1038/ncb3393",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5007201/",
+          "figure": "Figure 2, especially panels c, d and e",
+          "use": "Differentiate compact kinesin-1 motor heads and a long stalk from dynein AAA+ rings, microtubule-binding stalks and the tail-associated dynactin/adaptor complex. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "zanetti-2013-copii",
+          "citation": "Zanetti G, Prinz S, Daum S, Meister A, Schekman R, Bacia K, Briggs JAG. The structure of the COPII transport-vesicle coat assembled on membranes. eLife. 2013;2:e00951.",
+          "doi": "10.7554/eLife.00951",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3778437/",
+          "figure": "Figure 1",
+          "use": "Distinct membrane-proximal and cage-like outer coats surround a continuous ER bud. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "dodonova-2017-copi",
+          "citation": "Dodonova SO, Aderhold P, Kopp J, et al. 9Å structure of the COPI coat reveals that the Arf1 GTPase occupies two contrasting molecular environments. eLife. 2017;6:e26691.",
+          "doi": "10.7554/eLife.26691",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5482573/",
+          "figure": "Figure 2 and Figure 2—figure supplement 3",
+          "use": "Separate membrane-proximal coatomer, outer coatomer and membrane-associated Arf1. Use original leaf-like coat units, distinct from the open COPII cage. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "diao-2015-autophagic-fusion",
+          "citation": "Diao J, Liu R, Rong Y, et al. ATG14 promotes membrane tethering and fusion of autophagosomes to endolysosomes. Nature. 2015;520:563–566.",
+          "doi": "10.1038/nature14147",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4442024/",
+          "figure": "Figure 2c,f and Figure 4b",
+          "use": "Four SNARE helices from opposed membranes; sealed double-membrane autophagosomes distinguished from autolysosomes. Retain the inner autophagic membrane after outer-membrane fusion. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "chi-2014-mvb",
+          "citation": "Chi RJ, Liu J, West M, Wang J, Odorizzi G, Burd CG. Fission of SNX-BAR–coated endosomal retrograde transport carriers is promoted by the dynamin-related protein Vps1. Journal of Cell Biology. 2014;204:793–806.",
+          "doi": "10.1083/jcb.201309084",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3941054/",
+          "figure": "Figure 8",
+          "use": "Represent a limiting endosomal membrane enclosing multiple intraluminal vesicles. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "suzuki-2021-recycling",
+          "citation": "Suzuki SW, Oishi A, Nikulin N, et al. A PX-BAR protein Mvp1/SNX8 and a dynamin-like GTPase Vps1 drive endosomal recycling. eLife. 2021;10:e69883.",
+          "doi": "10.7554/eLife.69883",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8504969/",
+          "figure": "Figure 7",
+          "use": "Endosomal membrane continues into a sorting tubule; membrane-associated cargo and an illustrative external sorting coat stay distinct. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "lowe-2015-importin",
+          "citation": "Lowe AR, Tang JH, Yassif J, et al. Importin-β modulates the permeability of the nuclear pore complex in a Ran-dependent manner. eLife. 2015;4:e04052.",
+          "doi": "10.7554/eLife.04052",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4375889/",
+          "figure": "Figure 1A and Figure 7",
+          "use": "Keep nuclear-envelope boundary, pore channel, receptor-bound cargo and import direction distinct; do not present an isolated pore as cargo import. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "csordas-2006-er-contact",
+          "citation": "Csordás G, Renken C, Várnai P, et al. Structural and functional features and significance of the physical linkage between ER and mitochondria. Journal of Cell Biology. 2006;174:915–921.",
+          "doi": "10.1083/jcb.200604016",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2064383/",
+          "figure": "Figure 1",
+          "use": "Two separate organelles are apposed and linked by illustrative tethers; mitochondrial membranes and ER lumen remain separate. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "nahidiazar-2015-hemidesmosome",
+          "citation": "Nahidiazar L, Kreft M, van den Broek B, Secades P, Manders EMM, Sonnenberg A, Jalink K. The molecular architecture of hemidesmosomes, as revealed with super-resolution microscopy. Journal of Cell Science. 2015;128:3714–3719.",
+          "doi": "10.1242/jcs.171892",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/26330528/",
+          "figure": "Figures 1, 2D and 4: text and captions only",
+          "use": "Plectin and other cytolinkers connect β4 integrin and keratin; basal tissue topology differs from a simple direct integrin–IF contact, and exact measured distances are omitted. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "stahley-2016-desmosome",
+          "citation": "Stahley SN, Bartle EI, Atkinson CE, Kowalczyk AP, Mattheyses AL. Molecular organization of the desmosome as revealed by direct stochastic optical reconstruction microscopy. Journal of Cell Science. 2016;129:2897–2904.",
+          "doi": "10.1242/jcs.185785",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5004873/",
+          "figure": "Figure 1A and Figures 2–3: text and captions only",
+          "use": "Opposed plaque organization and the desmoplakin–IF attachment distinguish desmosomes from cadherin–actin adherens junctions. Concepts only; no source artwork or geometry copied."
+        }
+      ]
+    }
+  ],
+  "rights_records": [
+    {
+      "id": "rights.cell-architecture-transport.owner-cc0.2026-10-10",
+      "kind": "owner_license_grant",
+      "pack_id": "cell-architecture-transport",
+      "scope": "all_assets_in_pack",
+      "status": "rights_cleared",
+      "public_distribution_authorized": true,
+      "selected_public_license": "CC0-1.0",
+      "rights_basis": "owner_attested_original_output",
+      "third_party_material": "none_declared",
+      "effective_date": "2026-10-10",
+      "statement": "The workspace owner grants CC0 1.0 permission for the original artwork and asset-specific metadata in the cell-architecture-transport pack, effective 2026-10-10. This grant does not approve the pack for product release.",
+      "qualification": "This is an owner license grant for the recorded original material. It is not a non-infringement, patent, trademark, privacy, publicity, or endorsement warranty; product-release quality review remains separate."
+    }
+  ],
+  "assets": [
+    {
+      "id": "cellarch.membrane_signaling.tight_junction",
+      "concept_id": "cellarch.membrane_signaling.tight_junction",
+      "name": "Tight Junction",
+      "scientific_name": "Tight Junction",
+      "synonyms": [
+        "claudin",
+        "paracellular barrier",
+        "epithelial junction",
+        "cell cell junction",
+        "junction strand"
+      ],
+      "category": "membrane-signaling",
+      "subcategory": "Cell architecture and transport",
+      "tags": [
+        "tight junction",
+        "claudin",
+        "paracellular barrier",
+        "epithelial junction",
+        "cell cell junction",
+        "junction strand",
+        "cell architecture and transport"
+      ],
+      "description": "Illustrative tight-junction strand contacts between apposed cell membranes, representing a paracellular barrier without specifying permeability.",
+      "file": "svg/tight_junction.svg",
+      "editable_color_regions": [
+        {
+          "id": "membrane",
+          "label": "Adjacent cell membranes",
+          "default": "#C7F2EC",
+          "paint": "fill"
+        },
+        {
+          "id": "junction_strand",
+          "label": "Tight-junction strand contacts",
+          "default": "#8EC8FF",
+          "paint": "fill"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#26323D",
+          "paint": "stroke"
+        }
+      ],
+      "connector_hints": [
+        {
+          "id": "left",
+          "label": "Left attachment",
+          "role": "attachment",
+          "x": 0.125,
+          "y": 0.5
+        },
+        {
+          "id": "right",
+          "label": "Right attachment",
+          "role": "attachment",
+          "x": 0.875,
+          "y": 0.5
+        },
+        {
+          "id": "top",
+          "label": "Top attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.125
+        },
+        {
+          "id": "bottom",
+          "label": "Bottom attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.875
+        }
+      ],
+      "scientific_references": [
+        {
+          "id": "zhao-2018-tight-junction",
+          "citation": "Zhao J, Krystofiak ES, Ballesteros A, Cui R, Van Itallie CM, Anderson JM, Fenollar-Ferrer C, Kachar B. Multiple claudin–claudin cis interfaces are required for tight junction strand formation and inherent flexibility. Communications Biology. 2018;1:50.",
+          "doi": "10.1038/s42003-018-0051-5",
+          "url": "https://www.nature.com/articles/s42003-018-0051-5",
+          "figure": "Figure 1",
+          "use": "Live and freeze-fracture strand images support repeated, flexible strand contacts. Show apposed cell membranes with tight-junction contacts, without a central gap-junction lumen. Concepts only; no source artwork or geometry copied."
+        }
+      ],
+      "scientific_limitations": [
+        "No claudin subtype, strand count, atomic interface or quantitative permeability.",
+        "The contact does not imply an impermeable wall; no cytoskeletal attachment is depicted."
+      ],
+      "reviewer_notes": "Independent scientific and original-image review passed at 64 and 256 px in all three treatments. Source/web editing qualification is recorded separately in the asset review. Product-level release approval remains pending. CC0 1.0 permission is granted; product-level release approval remains pending.",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable SVG geometry constructed for the Figure Tool from cell-architecture-transport concepts. Primary research informs biological relationships only. No published or proprietary artwork, tracing, screenshot, structural coordinates, measured data or third-party vector component was incorporated. The workspace owner grants CC0 1.0 permission effective 2026-10-10; product-level release approval remains pending.",
+      "source_record_id": "source.cell-architecture-transport.2026-10-07",
+      "rights_record_id": "rights.cell-architecture-transport.owner-cc0.2026-10-10",
+      "style_family": "figure-studio-soft-line-v1",
+      "style_variant": "standard",
+      "review_status": "independent_scientific_and_visual_review_passed_2026_10_07",
+      "style_status": "soft_line_v1_original_draft",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 3
+    },
+    {
+      "id": "cellarch.membrane_signaling.adherens_junction",
+      "concept_id": "cellarch.membrane_signaling.adherens_junction",
+      "name": "Adherens Junction",
+      "scientific_name": "Adherens Junction",
+      "synonyms": [
+        "cadherin",
+        "catenin",
+        "actin linked adhesion",
+        "cell cell adhesion",
+        "epithelial junction"
+      ],
+      "category": "membrane-signaling",
+      "subcategory": "Cell architecture and transport",
+      "tags": [
+        "adherens junction",
+        "cadherin",
+        "catenin",
+        "actin linked adhesion",
+        "cell cell adhesion",
+        "epithelial junction",
+        "cell architecture and transport"
+      ],
+      "description": "Illustrative cadherin-mediated contact between adjacent cells, with cytoplasmic adhesion adaptors connecting the contact to actin filaments.",
+      "file": "svg/adherens_junction.svg",
+      "editable_color_regions": [
+        {
+          "id": "membrane",
+          "label": "Adjacent cell membranes",
+          "default": "#C7F2EC",
+          "paint": "fill"
+        },
+        {
+          "id": "cadherin",
+          "label": "Intercellular cadherin adhesion",
+          "default": "#8EC8FF",
+          "paint": "fill"
+        },
+        {
+          "id": "adaptor",
+          "label": "Cytoplasmic adhesion adaptors",
+          "default": "#B8B5FF",
+          "paint": "fill"
+        },
+        {
+          "id": "actin",
+          "label": "Actin attachment",
+          "default": "#E76F51",
+          "paint": "fill"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#26323D",
+          "paint": "stroke"
+        }
+      ],
+      "connector_hints": [
+        {
+          "id": "left",
+          "label": "Left attachment",
+          "role": "attachment",
+          "x": 0.125,
+          "y": 0.5
+        },
+        {
+          "id": "right",
+          "label": "Right attachment",
+          "role": "attachment",
+          "x": 0.875,
+          "y": 0.5
+        },
+        {
+          "id": "top",
+          "label": "Top attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.125
+        },
+        {
+          "id": "bottom",
+          "label": "Bottom attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.875
+        }
+      ],
+      "scientific_references": [
+        {
+          "id": "wang-2022-adherens-junction",
+          "citation": "Wang A, Dunn AR, Weis WI. Mechanism of the cadherin–catenin F-actin catch bond interaction. eLife. 2022;11:e80130.",
+          "doi": "10.7554/eLife.80130",
+          "url": "https://elifesciences.org/articles/80130",
+          "figure": "Figure 1, especially panel A",
+          "use": "Preserve the extracellular cadherin trans contact between opposed membranes and the intracellular cadherin–catenin connection to actin. Concepts only; no source artwork or geometry copied."
+        }
+      ],
+      "scientific_limitations": [
+        "No cadherin subtype, complete complex stoichiometry or measured force response.",
+        "Adaptor connectivity is schematic and does not establish a particular catch-bond or stable adhesion state."
+      ],
+      "reviewer_notes": "Independent scientific and original-image review passed at 64 and 256 px in all three treatments. Source/web editing qualification is recorded separately in the asset review. Product-level release approval remains pending. CC0 1.0 permission is granted; product-level release approval remains pending.",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable SVG geometry constructed for the Figure Tool from cell-architecture-transport concepts. Primary research informs biological relationships only. No published or proprietary artwork, tracing, screenshot, structural coordinates, measured data or third-party vector component was incorporated. The workspace owner grants CC0 1.0 permission effective 2026-10-10; product-level release approval remains pending.",
+      "source_record_id": "source.cell-architecture-transport.2026-10-07",
+      "rights_record_id": "rights.cell-architecture-transport.owner-cc0.2026-10-10",
+      "style_family": "figure-studio-soft-line-v1",
+      "style_variant": "standard",
+      "review_status": "independent_scientific_and_visual_review_passed_2026_10_07",
+      "style_status": "soft_line_v1_original_draft",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 5
+    },
+    {
+      "id": "cellarch.membrane_signaling.desmosome",
+      "concept_id": "cellarch.membrane_signaling.desmosome",
+      "name": "Desmosome",
+      "scientific_name": "Desmosome",
+      "synonyms": [
+        "desmoglein",
+        "desmocollin",
+        "desmoplakin",
+        "intermediate filament adhesion",
+        "keratin",
+        "cell cell adhesion"
+      ],
+      "category": "membrane-signaling",
+      "subcategory": "Cell architecture and transport",
+      "tags": [
+        "desmosome",
+        "desmoglein",
+        "desmocollin",
+        "desmoplakin",
+        "intermediate filament adhesion",
+        "keratin",
+        "cell cell adhesion",
+        "cell architecture and transport"
+      ],
+      "description": "Illustrative intercellular desmosomal cadherin contact with paired cytoplasmic plaques attached to intermediate filaments.",
+      "file": "svg/desmosome.svg",
+      "editable_color_regions": [
+        {
+          "id": "membrane",
+          "label": "Adjacent cell membranes",
+          "default": "#C7F2EC",
+          "paint": "fill"
+        },
+        {
+          "id": "desmosomal_cadherin",
+          "label": "Intercellular desmosomal cadherins",
+          "default": "#8EC8FF",
+          "paint": "fill"
+        },
+        {
+          "id": "plaque",
+          "label": "Desmosomal attachment plaques",
+          "default": "#B8B5FF",
+          "paint": "fill"
+        },
+        {
+          "id": "intermediate_filament",
+          "label": "Intermediate filament attachment",
+          "default": "#F4DC8A",
+          "paint": "fill"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#26323D",
+          "paint": "stroke"
+        }
+      ],
+      "connector_hints": [
+        {
+          "id": "left",
+          "label": "Left attachment",
+          "role": "attachment",
+          "x": 0.125,
+          "y": 0.5
+        },
+        {
+          "id": "right",
+          "label": "Right attachment",
+          "role": "attachment",
+          "x": 0.875,
+          "y": 0.5
+        },
+        {
+          "id": "top",
+          "label": "Top attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.125
+        },
+        {
+          "id": "bottom",
+          "label": "Bottom attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.875
+        }
+      ],
+      "scientific_references": [
+        {
+          "id": "schmitt-2022-desmosome",
+          "citation": "Schmitt T, Pircher J, Steinert L, Meier K, Ghoreschi K, Vielmuth F, Kugelmann D, Waschke J. Dsg1 and Dsg3 Composition of Desmosomes Across Human Epidermis and Alterations in Pemphigus Vulgaris Patient Skin. Frontiers in Immunology. 2022;13:884241.",
+          "doi": "10.3389/fimmu.2022.884241",
+          "url": "https://www.frontiersin.org/journals/immunology/articles/10.3389/fimmu.2022.884241/full",
+          "figure": "Figure 1A and C",
+          "use": "Use extracellular desmosomal cadherin contact, paired intracellular plaques and outward keratin intermediate filaments. Broad plaques distinguish the contact from the actin-linked adherens junction. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "stahley-2016-desmosome",
+          "citation": "Stahley SN, Bartle EI, Atkinson CE, Kowalczyk AP, Mattheyses AL. Molecular organization of the desmosome as revealed by direct stochastic optical reconstruction microscopy. Journal of Cell Science. 2016;129:2897–2904.",
+          "doi": "10.1242/jcs.185785",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5004873/",
+          "figure": "Figure 1A and Figures 2–3: text and captions only",
+          "use": "Opposed plaque organization and the desmoplakin–IF attachment distinguish desmosomes from cadherin–actin adherens junctions. Concepts only; no source artwork or geometry copied."
+        }
+      ],
+      "scientific_limitations": [
+        "No desmosomal cadherin subtype, fixed plaque composition, exact dimensions or adhesion strength.",
+        "The drawing does not establish tissue identity, disease, maturation or keratin isoform."
+      ],
+      "reviewer_notes": "Independent scientific and original-image review passed at 64 and 256 px in all three treatments. Source/web editing qualification is recorded separately in the asset review. Product-level release approval remains pending. CC0 1.0 permission is granted; product-level release approval remains pending.",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable SVG geometry constructed for the Figure Tool from cell-architecture-transport concepts. Primary research informs biological relationships only. No published or proprietary artwork, tracing, screenshot, structural coordinates, measured data or third-party vector component was incorporated. The workspace owner grants CC0 1.0 permission effective 2026-10-10; product-level release approval remains pending.",
+      "source_record_id": "source.cell-architecture-transport.2026-10-07",
+      "rights_record_id": "rights.cell-architecture-transport.owner-cc0.2026-10-10",
+      "style_family": "figure-studio-soft-line-v1",
+      "style_variant": "standard",
+      "review_status": "independent_scientific_and_visual_review_passed_2026_10_07",
+      "style_status": "soft_line_v1_original_draft",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 5
+    },
+    {
+      "id": "cellarch.membrane_signaling.gap_junction",
+      "concept_id": "cellarch.membrane_signaling.gap_junction",
+      "name": "Gap Junction",
+      "scientific_name": "Gap Junction",
+      "synonyms": [
+        "connexin",
+        "connexon",
+        "intercellular channel",
+        "cell communication",
+        "hemichannel"
+      ],
+      "category": "membrane-signaling",
+      "subcategory": "Cell architecture and transport",
+      "tags": [
+        "gap junction",
+        "connexin",
+        "connexon",
+        "intercellular channel",
+        "cell communication",
+        "hemichannel",
+        "cell architecture and transport"
+      ],
+      "description": "Illustrative docked connexon hemichannels spanning adjacent cell membranes, with a continuous intercellular lumen linking the two cytoplasmic sides.",
+      "file": "svg/gap_junction.svg",
+      "editable_color_regions": [
+        {
+          "id": "membrane",
+          "label": "Adjacent cell membranes",
+          "default": "#C7F2EC",
+          "paint": "fill"
+        },
+        {
+          "id": "connexon",
+          "label": "Docked connexon hemichannels",
+          "default": "#8EC8FF",
+          "paint": "fill"
+        },
+        {
+          "id": "channel_lumen",
+          "label": "Continuous intercellular channel lumen",
+          "default": "#FFFFFF",
+          "paint": "fill"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#26323D",
+          "paint": "stroke"
+        }
+      ],
+      "connector_hints": [
+        {
+          "id": "left",
+          "label": "Left attachment",
+          "role": "attachment",
+          "x": 0.125,
+          "y": 0.5
+        },
+        {
+          "id": "right",
+          "label": "Right attachment",
+          "role": "attachment",
+          "x": 0.875,
+          "y": 0.5
+        },
+        {
+          "id": "top",
+          "label": "Top attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.125
+        },
+        {
+          "id": "bottom",
+          "label": "Bottom attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.875
+        }
+      ],
+      "scientific_references": [
+        {
+          "id": "myers-2018-gap-junction",
+          "citation": "Myers JB, Haddad BG, O’Neill SE, Chorev DS, Yoshioka CC, Robinson CV, Zuckerman DM, Reichow SL. Structure of native lens connexin-46/50 intercellular channels by CryoEM. Nature. 2018;564:372–377.",
+          "doi": "10.1038/s41586-018-0786-7",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6309215/",
+          "figure": "Figure 1, especially panels b and d",
+          "use": "Dock two connexon hemichannels across two opposed membranes and retain a continuous lumen joining their cytoplasmic sides. Concepts only; no source artwork or geometry copied."
+        }
+      ],
+      "scientific_limitations": [
+        "No connexin isoform, exact visible subunit count, channel diameter or permeability.",
+        "The lumen denotes topology rather than a measured open state."
+      ],
+      "reviewer_notes": "Independent scientific and original-image review passed at 64 and 256 px in all three treatments. Source/web editing qualification is recorded separately in the asset review. Product-level release approval remains pending. CC0 1.0 permission is granted; product-level release approval remains pending.",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable SVG geometry constructed for the Figure Tool from cell-architecture-transport concepts. Primary research informs biological relationships only. No published or proprietary artwork, tracing, screenshot, structural coordinates, measured data or third-party vector component was incorporated. The workspace owner grants CC0 1.0 permission effective 2026-10-10; product-level release approval remains pending.",
+      "source_record_id": "source.cell-architecture-transport.2026-10-07",
+      "rights_record_id": "rights.cell-architecture-transport.owner-cc0.2026-10-10",
+      "style_family": "figure-studio-soft-line-v1",
+      "style_variant": "standard",
+      "review_status": "independent_scientific_and_visual_review_passed_2026_10_07",
+      "style_status": "soft_line_v1_original_draft",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 4
+    },
+    {
+      "id": "cellarch.membrane_signaling.focal_adhesion",
+      "concept_id": "cellarch.membrane_signaling.focal_adhesion",
+      "name": "Focal Adhesion",
+      "scientific_name": "Focal Adhesion",
+      "synonyms": [
+        "integrin adhesion",
+        "cell matrix adhesion",
+        "actin stress fibre",
+        "talin",
+        "vinculin",
+        "extracellular matrix"
+      ],
+      "category": "membrane-signaling",
+      "subcategory": "Cell architecture and transport",
+      "tags": [
+        "focal adhesion",
+        "integrin adhesion",
+        "cell matrix adhesion",
+        "actin stress fibre",
+        "talin",
+        "vinculin",
+        "extracellular matrix",
+        "cell architecture and transport"
+      ],
+      "description": "Illustrative integrin-based cell–matrix adhesion, with extracellular matrix outside the membrane and a cytoplasmic adhesion complex connecting to actin filaments.",
+      "file": "svg/focal_adhesion.svg",
+      "editable_color_regions": [
+        {
+          "id": "membrane",
+          "label": "Cell membrane",
+          "default": "#C7F2EC",
+          "paint": "fill"
+        },
+        {
+          "id": "adhesion_complex",
+          "label": "Integrin adhesion and cytoplasmic attachment",
+          "default": "#8EC8FF",
+          "paint": "fill"
+        },
+        {
+          "id": "actin",
+          "label": "Actin attachment",
+          "default": "#E76F51",
+          "paint": "fill"
+        },
+        {
+          "id": "extracellular_matrix",
+          "label": "Extracellular matrix attachment",
+          "default": "#9FD8B5",
+          "paint": "fill"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#26323D",
+          "paint": "stroke"
+        }
+      ],
+      "connector_hints": [
+        {
+          "id": "left",
+          "label": "Left attachment",
+          "role": "attachment",
+          "x": 0.125,
+          "y": 0.5
+        },
+        {
+          "id": "right",
+          "label": "Right attachment",
+          "role": "attachment",
+          "x": 0.875,
+          "y": 0.5
+        },
+        {
+          "id": "top",
+          "label": "Top attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.125
+        },
+        {
+          "id": "bottom",
+          "label": "Bottom attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.875
+        }
+      ],
+      "scientific_references": [
+        {
+          "id": "kanchanawong-2010-focal-adhesion",
+          "citation": "Kanchanawong P, Shtengel G, Pasapera AM, Ramko EB, Davidson MW, Hess HF, Waterman CM. Nanoscale architecture of integrin-based cell adhesions. Nature. 2010;468:580–584.",
+          "doi": "10.1038/nature09621",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3046339/",
+          "figure": "Figure 4, especially panel d",
+          "use": "Keep matrix extracellular, integrin across one basal membrane, and an intracellular adhesion complex between integrin and actin stress fibres. Concepts only; no source artwork or geometry copied."
+        }
+      ],
+      "scientific_limitations": [
+        "No specific integrin, matrix ligand, complete adaptor composition or activation state.",
+        "No force, nanometre spacing, adhesion maturation or stoichiometry is measured."
+      ],
+      "reviewer_notes": "Independent scientific and original-image review passed at 64 and 256 px in all three treatments. Source/web editing qualification is recorded separately in the asset review. Product-level release approval remains pending. CC0 1.0 permission is granted; product-level release approval remains pending.",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable SVG geometry constructed for the Figure Tool from cell-architecture-transport concepts. Primary research informs biological relationships only. No published or proprietary artwork, tracing, screenshot, structural coordinates, measured data or third-party vector component was incorporated. The workspace owner grants CC0 1.0 permission effective 2026-10-10; product-level release approval remains pending.",
+      "source_record_id": "source.cell-architecture-transport.2026-10-07",
+      "rights_record_id": "rights.cell-architecture-transport.owner-cc0.2026-10-10",
+      "style_family": "figure-studio-soft-line-v1",
+      "style_variant": "standard",
+      "review_status": "independent_scientific_and_visual_review_passed_2026_10_07",
+      "style_status": "soft_line_v1_original_draft",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 5
+    },
+    {
+      "id": "cellarch.membrane_signaling.hemidesmosome",
+      "concept_id": "cellarch.membrane_signaling.hemidesmosome",
+      "name": "Hemidesmosome",
+      "scientific_name": "Hemidesmosome",
+      "synonyms": [
+        "alpha6 beta4 integrin",
+        "plectin",
+        "keratin attachment",
+        "basement membrane adhesion",
+        "basal epithelial adhesion"
+      ],
+      "category": "membrane-signaling",
+      "subcategory": "Cell architecture and transport",
+      "tags": [
+        "hemidesmosome",
+        "alpha6 beta4 integrin",
+        "plectin",
+        "keratin attachment",
+        "basement membrane adhesion",
+        "basal epithelial adhesion",
+        "cell architecture and transport"
+      ],
+      "description": "Illustrative basal epithelial adhesion linking a membrane adhesion complex to basement membrane externally and to intermediate filaments through cytoplasmic linkers.",
+      "file": "svg/hemidesmosome.svg",
+      "editable_color_regions": [
+        {
+          "id": "membrane",
+          "label": "Basal cell membrane",
+          "default": "#C7F2EC",
+          "paint": "fill"
+        },
+        {
+          "id": "adhesion_complex",
+          "label": "Basal adhesion and intracellular filament attachment",
+          "default": "#8EC8FF",
+          "paint": "fill"
+        },
+        {
+          "id": "intermediate_filament",
+          "label": "Intermediate filament attachment",
+          "default": "#F4DC8A",
+          "paint": "fill"
+        },
+        {
+          "id": "basement_membrane",
+          "label": "Basement-membrane attachment",
+          "default": "#9FD8B5",
+          "paint": "fill"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#26323D",
+          "paint": "stroke"
+        }
+      ],
+      "connector_hints": [
+        {
+          "id": "left",
+          "label": "Left attachment",
+          "role": "attachment",
+          "x": 0.125,
+          "y": 0.5
+        },
+        {
+          "id": "right",
+          "label": "Right attachment",
+          "role": "attachment",
+          "x": 0.875,
+          "y": 0.5
+        },
+        {
+          "id": "top",
+          "label": "Top attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.125
+        },
+        {
+          "id": "bottom",
+          "label": "Bottom attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.875
+        }
+      ],
+      "scientific_references": [
+        {
+          "id": "geerts-1999-hemidesmosome",
+          "citation": "Geerts D, Fontao L, Nievers MG, Schaapveld RQJ, Purkis PE, Wheeler GN, Lane EB, Leigh IM, Sonnenberg A. Binding of integrin α6β4 to plectin prevents plectin association with F-actin but does not interfere with intermediate filament binding. Journal of Cell Biology. 1999;147:417–434.",
+          "doi": "10.1083/jcb.147.2.417",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2174221/",
+          "figure": "Figure 1",
+          "use": "The β4-integrin and plectin domain maps distinguish integrin-binding and intermediate-filament-binding roles. Show a cytoplasmic linker between the membrane adhesion complex and keratin filaments. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "nahidiazar-2015-hemidesmosome",
+          "citation": "Nahidiazar L, Kreft M, van den Broek B, Secades P, Manders EMM, Sonnenberg A, Jalink K. The molecular architecture of hemidesmosomes, as revealed with super-resolution microscopy. Journal of Cell Science. 2015;128:3714–3719.",
+          "doi": "10.1242/jcs.171892",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/26330528/",
+          "figure": "Figures 1, 2D and 4: text and captions only",
+          "use": "Plectin and other cytolinkers connect β4 integrin and keratin; basal tissue topology differs from a simple direct integrin–IF contact, and exact measured distances are omitted. Concepts only; no source artwork or geometry copied."
+        }
+      ],
+      "scientific_limitations": [
+        "No complete type-I or type-II subunit composition, exact tissue dimensions or keratin isoform.",
+        "The cytoplasmic linker is essential: do not imply direct integrin–intermediate-filament binding or an actin-linked focal adhesion."
+      ],
+      "reviewer_notes": "Independent scientific and original-image review passed at 64 and 256 px in all three treatments. Source/web editing qualification is recorded separately in the asset review. Product-level release approval remains pending. CC0 1.0 permission is granted; product-level release approval remains pending.",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable SVG geometry constructed for the Figure Tool from cell-architecture-transport concepts. Primary research informs biological relationships only. No published or proprietary artwork, tracing, screenshot, structural coordinates, measured data or third-party vector component was incorporated. The workspace owner grants CC0 1.0 permission effective 2026-10-10; product-level release approval remains pending.",
+      "source_record_id": "source.cell-architecture-transport.2026-10-07",
+      "rights_record_id": "rights.cell-architecture-transport.owner-cc0.2026-10-10",
+      "style_family": "figure-studio-soft-line-v1",
+      "style_variant": "standard",
+      "review_status": "independent_scientific_and_visual_review_passed_2026_10_07",
+      "style_status": "soft_line_v1_original_draft",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 5
+    },
+    {
+      "id": "cellarch.pathway_symbol.kinesin_cargo_transport",
+      "concept_id": "cellarch.pathway_symbol.kinesin_cargo_transport",
+      "name": "Kinesin Cargo Transport",
+      "scientific_name": "Kinesin Cargo Transport",
+      "synonyms": [
+        "kinesin",
+        "kinesin 1",
+        "microtubule motor",
+        "vesicle transport",
+        "intracellular cargo transport",
+        "anterograde transport"
+      ],
+      "category": "pathway-symbol",
+      "subcategory": "Cell architecture and transport",
+      "tags": [
+        "kinesin cargo transport",
+        "kinesin",
+        "kinesin 1",
+        "microtubule motor",
+        "vesicle transport",
+        "intracellular cargo transport",
+        "anterograde transport",
+        "cell architecture and transport"
+      ],
+      "description": "Illustrative kinesin-1-like motor with compact microtubule-binding heads and a stalk linking to a generic vesicular cargo.",
+      "file": "svg/kinesin_cargo_transport.svg",
+      "editable_color_regions": [
+        {
+          "id": "microtubule",
+          "label": "Microtubule track",
+          "default": "#B8B5FF",
+          "paint": "fill"
+        },
+        {
+          "id": "motor",
+          "label": "Kinesin motor and cargo attachment",
+          "default": "#5EA9DD",
+          "paint": "fill"
+        },
+        {
+          "id": "cargo",
+          "label": "Illustrative transported vesicular cargo",
+          "default": "#F4A261",
+          "paint": "fill"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#26323D",
+          "paint": "stroke"
+        }
+      ],
+      "connector_hints": [
+        {
+          "id": "left",
+          "label": "Left attachment",
+          "role": "attachment",
+          "x": 0.125,
+          "y": 0.5
+        },
+        {
+          "id": "right",
+          "label": "Right attachment",
+          "role": "attachment",
+          "x": 0.875,
+          "y": 0.5
+        },
+        {
+          "id": "top",
+          "label": "Top attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.125
+        },
+        {
+          "id": "bottom",
+          "label": "Bottom attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.875
+        }
+      ],
+      "scientific_references": [
+        {
+          "id": "belyy-2016-motor-topology",
+          "citation": "Belyy V, Schlager MA, Foster H, Reimer AE, Carter AP, Yildiz A. The mammalian dynein–dynactin complex is a strong opponent to kinesin in a tug-of-war competition. Nature Cell Biology. 2016;18:1018–1024.",
+          "doi": "10.1038/ncb3393",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5007201/",
+          "figure": "Figure 2, especially panels c, d and e",
+          "use": "Differentiate compact kinesin-1 motor heads and a long stalk from dynein AAA+ rings, microtubule-binding stalks and the tail-associated dynactin/adaptor complex. Concepts only; no source artwork or geometry copied."
+        }
+      ],
+      "scientific_limitations": [
+        "No cargo identity, complete adaptor composition, speed, force, step size or motor copy number.",
+        "The silhouette is kinesin-1-like; it does not describe every kinesin family's topology or direction. Direction arrows are omitted."
+      ],
+      "reviewer_notes": "Independent scientific and original-image review passed at 64 and 256 px in all three treatments. Source/web editing qualification is recorded separately in the asset review. Product-level release approval remains pending. CC0 1.0 permission is granted; product-level release approval remains pending.",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable SVG geometry constructed for the Figure Tool from cell-architecture-transport concepts. Primary research informs biological relationships only. No published or proprietary artwork, tracing, screenshot, structural coordinates, measured data or third-party vector component was incorporated. The workspace owner grants CC0 1.0 permission effective 2026-10-10; product-level release approval remains pending.",
+      "source_record_id": "source.cell-architecture-transport.2026-10-07",
+      "rights_record_id": "rights.cell-architecture-transport.owner-cc0.2026-10-10",
+      "style_family": "figure-studio-soft-line-v1",
+      "style_variant": "standard",
+      "review_status": "independent_scientific_and_visual_review_passed_2026_10_07",
+      "style_status": "soft_line_v1_original_draft",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 4
+    },
+    {
+      "id": "cellarch.pathway_symbol.cytoplasmic_dynein_cargo_transport",
+      "concept_id": "cellarch.pathway_symbol.cytoplasmic_dynein_cargo_transport",
+      "name": "Cytoplasmic Dynein Cargo Transport",
+      "scientific_name": "Cytoplasmic Dynein Cargo Transport",
+      "synonyms": [
+        "cytoplasmic dynein",
+        "dynein cargo transport",
+        "dynein dynactin",
+        "microtubule motor",
+        "cargo adaptor",
+        "retrograde transport",
+        "vesicle transport"
+      ],
+      "category": "pathway-symbol",
+      "subcategory": "Cell architecture and transport",
+      "tags": [
+        "cytoplasmic dynein",
+        "dynein cargo transport",
+        "dynein dynactin",
+        "microtubule motor",
+        "cargo adaptor",
+        "retrograde transport",
+        "vesicle transport",
+        "cell architecture and transport"
+      ],
+      "description": "Illustrative cytoplasmic dynein transport complex with paired AAA+ motor rings, microtubule-binding stalks and a simplified tail-associated adaptor complex linking to generic vesicular cargo.",
+      "file": "svg/cytoplasmic_dynein_cargo_transport.svg",
+      "editable_color_regions": [
+        {
+          "id": "microtubule",
+          "label": "Microtubule track",
+          "default": "#B8B5FF",
+          "paint": "fill"
+        },
+        {
+          "id": "motor",
+          "label": "Dynein motor, stalks and cargo-attachment assembly",
+          "default": "#5EA9DD",
+          "paint": "fill"
+        },
+        {
+          "id": "cargo",
+          "label": "Illustrative transported vesicular cargo",
+          "default": "#F4A261",
+          "paint": "fill"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#26323D",
+          "paint": "stroke"
+        }
+      ],
+      "connector_hints": [
+        {
+          "id": "left",
+          "label": "Left attachment",
+          "role": "attachment",
+          "x": 0.125,
+          "y": 0.5
+        },
+        {
+          "id": "right",
+          "label": "Right attachment",
+          "role": "attachment",
+          "x": 0.875,
+          "y": 0.5
+        },
+        {
+          "id": "top",
+          "label": "Top attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.125
+        },
+        {
+          "id": "bottom",
+          "label": "Bottom attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.875
+        }
+      ],
+      "scientific_references": [
+        {
+          "id": "belyy-2016-motor-topology",
+          "citation": "Belyy V, Schlager MA, Foster H, Reimer AE, Carter AP, Yildiz A. The mammalian dynein–dynactin complex is a strong opponent to kinesin in a tug-of-war competition. Nature Cell Biology. 2016;18:1018–1024.",
+          "doi": "10.1038/ncb3393",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5007201/",
+          "figure": "Figure 2, especially panels c, d and e",
+          "use": "Differentiate compact kinesin-1 motor heads and a long stalk from dynein AAA+ rings, microtubule-binding stalks and the tail-associated dynactin/adaptor complex. Concepts only; no source artwork or geometry copied."
+        }
+      ],
+      "scientific_limitations": [
+        "The motor region includes a simplified associated complex; no particular dynactin/adaptor stoichiometry or identity is specified.",
+        "No cargo identity, transport rate, force, step size, activation state or exact motor copy number."
+      ],
+      "reviewer_notes": "Independent scientific and original-image review passed at 64 and 256 px in all three treatments. Source/web editing qualification is recorded separately in the asset review. Product-level release approval remains pending. CC0 1.0 permission is granted; product-level release approval remains pending.",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable SVG geometry constructed for the Figure Tool from cell-architecture-transport concepts. Primary research informs biological relationships only. No published or proprietary artwork, tracing, screenshot, structural coordinates, measured data or third-party vector component was incorporated. The workspace owner grants CC0 1.0 permission effective 2026-10-10; product-level release approval remains pending.",
+      "source_record_id": "source.cell-architecture-transport.2026-10-07",
+      "rights_record_id": "rights.cell-architecture-transport.owner-cc0.2026-10-10",
+      "style_family": "figure-studio-soft-line-v1",
+      "style_variant": "standard",
+      "review_status": "independent_scientific_and_visual_review_passed_2026_10_07",
+      "style_status": "soft_line_v1_original_draft",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 4
+    },
+    {
+      "id": "cellarch.pathway_symbol.copii_vesicle_budding",
+      "concept_id": "cellarch.pathway_symbol.copii_vesicle_budding",
+      "name": "COPII Vesicle Budding",
+      "scientific_name": "COPII Vesicle Budding",
+      "synonyms": [
+        "COPII",
+        "ER exit",
+        "Sec13 Sec31",
+        "Sec23 Sec24",
+        "secretory transport"
+      ],
+      "category": "pathway-symbol",
+      "subcategory": "Intracellular transport and membrane interactions",
+      "tags": [
+        "COPII",
+        "ER exit",
+        "Sec13 Sec31",
+        "Sec23 Sec24",
+        "secretory transport",
+        "cell architecture and transport"
+      ],
+      "description": "An ER-connected bud with illustrative cargo and separate inner and outer COPII coats.",
+      "file": "svg/copii_vesicle_budding.svg",
+      "editable_color_regions": [
+        {
+          "id": "membrane",
+          "label": "ER and budding-vesicle membrane",
+          "default": "#8EC8FF",
+          "paint": "fill"
+        },
+        {
+          "id": "cargo",
+          "label": "Illustrative luminal cargo",
+          "default": "#E76F51",
+          "paint": "fill"
+        },
+        {
+          "id": "inner_coat",
+          "label": "Inner COPII coat",
+          "default": "#F4A261",
+          "paint": "fill"
+        },
+        {
+          "id": "outer_coat",
+          "label": "Outer COPII cage",
+          "default": "#B8B5FF",
+          "paint": "fill"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#26323D",
+          "paint": "stroke"
+        }
+      ],
+      "connector_hints": [
+        {
+          "id": "left",
+          "label": "Left attachment",
+          "role": "attachment",
+          "x": 0.125,
+          "y": 0.5
+        },
+        {
+          "id": "right",
+          "label": "Right attachment",
+          "role": "attachment",
+          "x": 0.875,
+          "y": 0.5
+        },
+        {
+          "id": "top",
+          "label": "Top attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.125
+        },
+        {
+          "id": "bottom",
+          "label": "Bottom attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.875
+        }
+      ],
+      "scientific_references": [
+        {
+          "id": "zanetti-2013-copii",
+          "citation": "Zanetti G, Prinz S, Daum S, Meister A, Schekman R, Bacia K, Briggs JAG. The structure of the COPII transport-vesicle coat assembled on membranes. eLife. 2013;2:e00951.",
+          "doi": "10.7554/eLife.00951",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3778437/",
+          "figure": "Figure 1",
+          "use": "Distinct membrane-proximal and cage-like outer coats surround a continuous ER bud. Concepts only; no source artwork or geometry copied."
+        }
+      ],
+      "scientific_limitations": "The lumen remains continuous with the ER; scission and transport to the Golgi are not depicted. Coat layout and cargo are illustrative.",
+      "reviewer_notes": "Independent scientific and original-image review passed at 64 and 256 px in all three treatments. Source/web editing qualification is recorded separately in the asset review. Product-level release approval remains pending. CC0 1.0 permission is granted; product-level release approval remains pending.",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable SVG geometry constructed for the Figure Tool from cell-architecture-transport concepts. Primary research informs biological relationships only. No published or proprietary artwork, tracing, screenshot, structural coordinates, measured data or third-party vector component was incorporated. The workspace owner grants CC0 1.0 permission effective 2026-10-10; product-level release approval remains pending.",
+      "source_record_id": "source.cell-architecture-transport.2026-10-07",
+      "rights_record_id": "rights.cell-architecture-transport.owner-cc0.2026-10-10",
+      "style_family": "figure-studio-soft-line-v1",
+      "style_variant": "standard",
+      "review_status": "independent_scientific_and_visual_review_passed_2026_10_07",
+      "style_status": "soft_line_v1_original_draft",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 5
+    },
+    {
+      "id": "cellarch.organelle.copi_coated_vesicle",
+      "concept_id": "cellarch.organelle.copi_coated_vesicle",
+      "name": "COPI-Coated Vesicle",
+      "scientific_name": "COPI-Coated Vesicle",
+      "synonyms": [
+        "COPI",
+        "coatomer",
+        "Arf1",
+        "Golgi retrieval",
+        "retrograde vesicle"
+      ],
+      "category": "organelle",
+      "subcategory": "Intracellular transport and membrane interactions",
+      "tags": [
+        "COPI",
+        "coatomer",
+        "Arf1",
+        "Golgi retrieval",
+        "retrograde vesicle",
+        "cell architecture and transport"
+      ],
+      "description": "A membrane vesicle surrounded by distinct membrane-proximal and outer coatomer, with illustrative membrane-associated Arf1.",
+      "file": "svg/copi_coated_vesicle.svg",
+      "editable_color_regions": [
+        {
+          "id": "membrane",
+          "label": "Vesicle membrane",
+          "default": "#8EC8FF",
+          "paint": "fill"
+        },
+        {
+          "id": "adaptor",
+          "label": "Membrane-proximal coatomer",
+          "default": "#7DD3C7",
+          "paint": "fill"
+        },
+        {
+          "id": "outer_coat",
+          "label": "Outer coatomer",
+          "default": "#B8B5FF",
+          "paint": "fill"
+        },
+        {
+          "id": "arf",
+          "label": "Illustrative membrane-associated Arf1",
+          "default": "#F4A261",
+          "paint": "fill"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#26323D",
+          "paint": "stroke"
+        }
+      ],
+      "connector_hints": [
+        {
+          "id": "left",
+          "label": "Left attachment",
+          "role": "attachment",
+          "x": 0.125,
+          "y": 0.5
+        },
+        {
+          "id": "right",
+          "label": "Right attachment",
+          "role": "attachment",
+          "x": 0.875,
+          "y": 0.5
+        },
+        {
+          "id": "top",
+          "label": "Top attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.125
+        },
+        {
+          "id": "bottom",
+          "label": "Bottom attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.875
+        }
+      ],
+      "scientific_references": [
+        {
+          "id": "dodonova-2017-copi",
+          "citation": "Dodonova SO, Aderhold P, Kopp J, et al. 9Å structure of the COPI coat reveals that the Arf1 GTPase occupies two contrasting molecular environments. eLife. 2017;6:e26691.",
+          "doi": "10.7554/eLife.26691",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5482573/",
+          "figure": "Figure 2 and Figure 2—figure supplement 3",
+          "use": "Separate membrane-proximal coatomer, outer coatomer and membrane-associated Arf1. Use original leaf-like coat units, distinct from the open COPII cage. Concepts only; no source artwork or geometry copied."
+        }
+      ],
+      "scientific_limitations": "No fixed coatomer/Arf1 stoichiometry, cargo identity, direction, distance or lattice is implied.",
+      "reviewer_notes": "Independent scientific and original-image review passed at 64 and 256 px in all three treatments. Source/web editing qualification is recorded separately in the asset review. Product-level release approval remains pending. CC0 1.0 permission is granted; product-level release approval remains pending.",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable SVG geometry constructed for the Figure Tool from cell-architecture-transport concepts. Primary research informs biological relationships only. No published or proprietary artwork, tracing, screenshot, structural coordinates, measured data or third-party vector component was incorporated. The workspace owner grants CC0 1.0 permission effective 2026-10-10; product-level release approval remains pending.",
+      "source_record_id": "source.cell-architecture-transport.2026-10-07",
+      "rights_record_id": "rights.cell-architecture-transport.owner-cc0.2026-10-10",
+      "style_family": "figure-studio-soft-line-v1",
+      "style_variant": "standard",
+      "review_status": "independent_scientific_and_visual_review_passed_2026_10_07",
+      "style_status": "soft_line_v1_original_draft",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 5
+    },
+    {
+      "id": "cellarch.membrane_signaling.trans_snare_complex",
+      "concept_id": "cellarch.membrane_signaling.trans_snare_complex",
+      "name": "Trans-SNARE Complex",
+      "scientific_name": "Trans-SNARE Complex",
+      "synonyms": [
+        "SNARE",
+        "membrane docking",
+        "four-helix bundle",
+        "Q-SNARE",
+        "R-SNARE"
+      ],
+      "category": "membrane-signaling",
+      "subcategory": "Intracellular transport and membrane interactions",
+      "tags": [
+        "SNARE",
+        "membrane docking",
+        "four-helix bundle",
+        "Q-SNARE",
+        "R-SNARE",
+        "cell architecture and transport"
+      ],
+      "description": "A vesicle and separate target membrane connected by an illustrative four-helix SNARE bundle: three Q helices and one R helix.",
+      "file": "svg/trans_snare_complex.svg",
+      "editable_color_regions": [
+        {
+          "id": "vesicle_membrane",
+          "label": "Vesicle membrane",
+          "default": "#8EC8FF",
+          "paint": "fill"
+        },
+        {
+          "id": "target_membrane",
+          "label": "Target membrane",
+          "default": "#C7F2EC",
+          "paint": "fill"
+        },
+        {
+          "id": "q_snare",
+          "label": "Three Q-SNARE helices",
+          "default": "#7DD3C7",
+          "paint": "fill"
+        },
+        {
+          "id": "r_snare",
+          "label": "R-SNARE helix",
+          "default": "#E76F51",
+          "paint": "fill"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#26323D",
+          "paint": "stroke"
+        }
+      ],
+      "connector_hints": [
+        {
+          "id": "left",
+          "label": "Left attachment",
+          "role": "attachment",
+          "x": 0.125,
+          "y": 0.5
+        },
+        {
+          "id": "right",
+          "label": "Right attachment",
+          "role": "attachment",
+          "x": 0.875,
+          "y": 0.5
+        },
+        {
+          "id": "top",
+          "label": "Top attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.125
+        },
+        {
+          "id": "bottom",
+          "label": "Bottom attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.875
+        }
+      ],
+      "scientific_references": [
+        {
+          "id": "diao-2015-autophagic-fusion",
+          "citation": "Diao J, Liu R, Rong Y, et al. ATG14 promotes membrane tethering and fusion of autophagosomes to endolysosomes. Nature. 2015;520:563–566.",
+          "doi": "10.1038/nature14147",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4442024/",
+          "figure": "Figure 2c,f and Figure 4b",
+          "use": "Four SNARE helices from opposed membranes; sealed double-membrane autophagosomes distinguished from autolysosomes. Retain the inner autophagic membrane after outer-membrane fusion. Concepts only; no source artwork or geometry copied."
+        }
+      ],
+      "scientific_limitations": "This is a generic pre-fusion trans complex, not a named SNARE isoform set or a fused cis complex. Helix shapes are schematic; affinity and kinetics are not shown.",
+      "reviewer_notes": "Independent scientific and original-image review passed at 64 and 256 px in all three treatments. Source/web editing qualification is recorded separately in the asset review. Product-level release approval remains pending. CC0 1.0 permission is granted; product-level release approval remains pending.",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable SVG geometry constructed for the Figure Tool from cell-architecture-transport concepts. Primary research informs biological relationships only. No published or proprietary artwork, tracing, screenshot, structural coordinates, measured data or third-party vector component was incorporated. The workspace owner grants CC0 1.0 permission effective 2026-10-10; product-level release approval remains pending.",
+      "source_record_id": "source.cell-architecture-transport.2026-10-07",
+      "rights_record_id": "rights.cell-architecture-transport.owner-cc0.2026-10-10",
+      "style_family": "figure-studio-soft-line-v1",
+      "style_variant": "standard",
+      "review_status": "independent_scientific_and_visual_review_passed_2026_10_07",
+      "style_status": "soft_line_v1_original_draft",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 5
+    },
+    {
+      "id": "cellarch.organelle.multivesicular_endosome",
+      "concept_id": "cellarch.organelle.multivesicular_endosome",
+      "name": "Multivesicular Endosome",
+      "scientific_name": "Multivesicular Endosome",
+      "synonyms": [
+        "MVB",
+        "multivesicular body",
+        "late endosome",
+        "intraluminal vesicle",
+        "ILV"
+      ],
+      "category": "organelle",
+      "subcategory": "Intracellular transport and membrane interactions",
+      "tags": [
+        "MVB",
+        "multivesicular body",
+        "late endosome",
+        "intraluminal vesicle",
+        "ILV",
+        "cell architecture and transport"
+      ],
+      "description": "An endosome with a limiting membrane surrounding multiple intraluminal vesicles.",
+      "file": "svg/multivesicular_endosome.svg",
+      "editable_color_regions": [
+        {
+          "id": "lumen",
+          "label": "Endosomal lumen",
+          "default": "#C7F2EC",
+          "paint": "fill"
+        },
+        {
+          "id": "membrane",
+          "label": "Limiting endosomal membrane",
+          "default": "#8EC8FF",
+          "paint": "fill"
+        },
+        {
+          "id": "intraluminal_vesicles",
+          "label": "Intraluminal vesicle membranes",
+          "default": "#7B78C9",
+          "paint": "fill"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#26323D",
+          "paint": "stroke"
+        }
+      ],
+      "connector_hints": [
+        {
+          "id": "left",
+          "label": "Left attachment",
+          "role": "attachment",
+          "x": 0.125,
+          "y": 0.5
+        },
+        {
+          "id": "right",
+          "label": "Right attachment",
+          "role": "attachment",
+          "x": 0.875,
+          "y": 0.5
+        },
+        {
+          "id": "top",
+          "label": "Top attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.125
+        },
+        {
+          "id": "bottom",
+          "label": "Bottom attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.875
+        }
+      ],
+      "scientific_references": [
+        {
+          "id": "chi-2014-mvb",
+          "citation": "Chi RJ, Liu J, West M, Wang J, Odorizzi G, Burd CG. Fission of SNX-BAR–coated endosomal retrograde transport carriers is promoted by the dynamin-related protein Vps1. Journal of Cell Biology. 2014;204:793–806.",
+          "doi": "10.1083/jcb.201309084",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3941054/",
+          "figure": "Figure 8",
+          "use": "Represent a limiting endosomal membrane enclosing multiple intraluminal vesicles. Concepts only; no source artwork or geometry copied."
+        }
+      ],
+      "scientific_limitations": "Illustrative compartment topology; vesicle count, diameter, maturity, luminal acidity, cargo fate and exosome release are not established.",
+      "reviewer_notes": "Independent scientific and original-image review passed at 64 and 256 px in all three treatments. Source/web editing qualification is recorded separately in the asset review. Product-level release approval remains pending. CC0 1.0 permission is granted; product-level release approval remains pending.",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable SVG geometry constructed for the Figure Tool from cell-architecture-transport concepts. Primary research informs biological relationships only. No published or proprietary artwork, tracing, screenshot, structural coordinates, measured data or third-party vector component was incorporated. The workspace owner grants CC0 1.0 permission effective 2026-10-10; product-level release approval remains pending.",
+      "source_record_id": "source.cell-architecture-transport.2026-10-07",
+      "rights_record_id": "rights.cell-architecture-transport.owner-cc0.2026-10-10",
+      "style_family": "figure-studio-soft-line-v1",
+      "style_variant": "standard",
+      "review_status": "independent_scientific_and_visual_review_passed_2026_10_07",
+      "style_status": "soft_line_v1_original_draft",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 4
+    },
+    {
+      "id": "cellarch.pathway_symbol.endosomal_recycling_tubule",
+      "concept_id": "cellarch.pathway_symbol.endosomal_recycling_tubule",
+      "name": "Endosomal Recycling Tubule",
+      "scientific_name": "Endosomal Recycling Tubule",
+      "synonyms": [
+        "recycling endosome",
+        "sorting tubule",
+        "endosomal retrieval",
+        "SNX-BAR",
+        "membrane cargo"
+      ],
+      "category": "pathway-symbol",
+      "subcategory": "Intracellular transport and membrane interactions",
+      "tags": [
+        "recycling endosome",
+        "sorting tubule",
+        "endosomal retrieval",
+        "SNX-BAR",
+        "membrane cargo",
+        "cell architecture and transport"
+      ],
+      "description": "An endosome continuous with a sorting tubule, showing illustrative membrane-associated cargo and external sorting proteins.",
+      "file": "svg/endosomal_recycling_tubule.svg",
+      "editable_color_regions": [
+        {
+          "id": "membrane",
+          "label": "Endosome and continuous recycling tubule",
+          "default": "#8EC8FF",
+          "paint": "fill"
+        },
+        {
+          "id": "cargo",
+          "label": "Illustrative membrane-associated cargo",
+          "default": "#E76F51",
+          "paint": "fill"
+        },
+        {
+          "id": "sorting_coat",
+          "label": "Illustrative tubule-associated sorting proteins",
+          "default": "#7DD3C7",
+          "paint": "fill"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#26323D",
+          "paint": "stroke"
+        }
+      ],
+      "connector_hints": [
+        {
+          "id": "left",
+          "label": "Left attachment",
+          "role": "attachment",
+          "x": 0.125,
+          "y": 0.5
+        },
+        {
+          "id": "right",
+          "label": "Right attachment",
+          "role": "attachment",
+          "x": 0.875,
+          "y": 0.5
+        },
+        {
+          "id": "top",
+          "label": "Top attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.125
+        },
+        {
+          "id": "bottom",
+          "label": "Bottom attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.875
+        }
+      ],
+      "scientific_references": [
+        {
+          "id": "suzuki-2021-recycling",
+          "citation": "Suzuki SW, Oishi A, Nikulin N, et al. A PX-BAR protein Mvp1/SNX8 and a dynamin-like GTPase Vps1 drive endosomal recycling. eLife. 2021;10:e69883.",
+          "doi": "10.7554/eLife.69883",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8504969/",
+          "figure": "Figure 7",
+          "use": "Endosomal membrane continues into a sorting tubule; membrane-associated cargo and an illustrative external sorting coat stay distinct. Concepts only; no source artwork or geometry copied."
+        }
+      ],
+      "scientific_limitations": "The carrier remains attached; scission, a particular receptor or recycling destination, universal machinery and measured cargo flux are not depicted.",
+      "reviewer_notes": "Independent scientific and original-image review passed at 64 and 256 px in all three treatments. Source/web editing qualification is recorded separately in the asset review. Product-level release approval remains pending. CC0 1.0 permission is granted; product-level release approval remains pending.",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable SVG geometry constructed for the Figure Tool from cell-architecture-transport concepts. Primary research informs biological relationships only. No published or proprietary artwork, tracing, screenshot, structural coordinates, measured data or third-party vector component was incorporated. The workspace owner grants CC0 1.0 permission effective 2026-10-10; product-level release approval remains pending.",
+      "source_record_id": "source.cell-architecture-transport.2026-10-07",
+      "rights_record_id": "rights.cell-architecture-transport.owner-cc0.2026-10-10",
+      "style_family": "figure-studio-soft-line-v1",
+      "style_variant": "standard",
+      "review_status": "independent_scientific_and_visual_review_passed_2026_10_07",
+      "style_status": "soft_line_v1_original_draft",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 4
+    },
+    {
+      "id": "cellarch.pathway_symbol.autophagosome_lysosome_fusion",
+      "concept_id": "cellarch.pathway_symbol.autophagosome_lysosome_fusion",
+      "name": "Autophagosome–Lysosome Fusion",
+      "scientific_name": "Autophagosome–Lysosome Fusion",
+      "synonyms": [
+        "autolysosome",
+        "autophagic body",
+        "autophagy fusion",
+        "lysosome fusion",
+        "outer membrane fusion"
+      ],
+      "category": "pathway-symbol",
+      "subcategory": "Intracellular transport and membrane interactions",
+      "tags": [
+        "autolysosome",
+        "autophagic body",
+        "autophagy fusion",
+        "lysosome fusion",
+        "outer membrane fusion",
+        "cell architecture and transport"
+      ],
+      "description": "An early autolysosome after outer-membrane fusion, retaining the inner autophagic membrane and its enclosed cargo beside illustrative lysosomal contents.",
+      "file": "svg/autophagosome_lysosome_fusion.svg",
+      "editable_color_regions": [
+        {
+          "id": "fused_membrane",
+          "label": "Fused outer autophagosomal and lysosomal membrane",
+          "default": "#8EC8FF",
+          "paint": "fill"
+        },
+        {
+          "id": "inner_autophagic_membrane",
+          "label": "Retained inner autophagic membrane",
+          "default": "#B8B5FF",
+          "paint": "fill"
+        },
+        {
+          "id": "cargo",
+          "label": "Sequestered cargo",
+          "default": "#E76F51",
+          "paint": "fill"
+        },
+        {
+          "id": "lysosomal_contents",
+          "label": "Illustrative lysosomal contents",
+          "default": "#7DD3C7",
+          "paint": "fill"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#26323D",
+          "paint": "stroke"
+        }
+      ],
+      "connector_hints": [
+        {
+          "id": "left",
+          "label": "Left attachment",
+          "role": "attachment",
+          "x": 0.125,
+          "y": 0.5
+        },
+        {
+          "id": "right",
+          "label": "Right attachment",
+          "role": "attachment",
+          "x": 0.875,
+          "y": 0.5
+        },
+        {
+          "id": "top",
+          "label": "Top attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.125
+        },
+        {
+          "id": "bottom",
+          "label": "Bottom attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.875
+        }
+      ],
+      "scientific_references": [
+        {
+          "id": "diao-2015-autophagic-fusion",
+          "citation": "Diao J, Liu R, Rong Y, et al. ATG14 promotes membrane tethering and fusion of autophagosomes to endolysosomes. Nature. 2015;520:563–566.",
+          "doi": "10.1038/nature14147",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4442024/",
+          "figure": "Figure 2c,f and Figure 4b",
+          "use": "Four SNARE helices from opposed membranes; sealed double-membrane autophagosomes distinguished from autolysosomes. Retain the inner autophagic membrane after outer-membrane fusion. Concepts only; no source artwork or geometry copied."
+        }
+      ],
+      "scientific_limitations": "The inner autophagic membrane remains enclosed. This is not both membranes fusing, completed cargo degradation, measured flux or verified acidity.",
+      "reviewer_notes": "Independent scientific and original-image review passed at 64 and 256 px in all three treatments. Source/web editing qualification is recorded separately in the asset review. Product-level release approval remains pending. CC0 1.0 permission is granted; product-level release approval remains pending.",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable SVG geometry constructed for the Figure Tool from cell-architecture-transport concepts. Primary research informs biological relationships only. No published or proprietary artwork, tracing, screenshot, structural coordinates, measured data or third-party vector component was incorporated. The workspace owner grants CC0 1.0 permission effective 2026-10-10; product-level release approval remains pending.",
+      "source_record_id": "source.cell-architecture-transport.2026-10-07",
+      "rights_record_id": "rights.cell-architecture-transport.owner-cc0.2026-10-10",
+      "style_family": "figure-studio-soft-line-v1",
+      "style_variant": "standard",
+      "review_status": "independent_scientific_and_visual_review_passed_2026_10_07",
+      "style_status": "soft_line_v1_original_draft",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 5
+    },
+    {
+      "id": "cellarch.pathway_symbol.importin_cargo_nuclear_import",
+      "concept_id": "cellarch.pathway_symbol.importin_cargo_nuclear_import",
+      "name": "Importin–Cargo Nuclear Import",
+      "scientific_name": "Importin–Cargo Nuclear Import",
+      "synonyms": [
+        "nuclear import",
+        "importin",
+        "karyopherin",
+        "NLS cargo",
+        "nucleocytoplasmic transport"
+      ],
+      "category": "pathway-symbol",
+      "subcategory": "Intracellular transport and membrane interactions",
+      "tags": [
+        "nuclear import",
+        "importin",
+        "karyopherin",
+        "NLS cargo",
+        "nucleocytoplasmic transport",
+        "cell architecture and transport"
+      ],
+      "description": "Receptor-bound cargo at a schematic nuclear pore, with a separate nuclear-envelope boundary and an illustrative import-direction arrow.",
+      "file": "svg/importin_cargo_nuclear_import.svg",
+      "editable_color_regions": [
+        {
+          "id": "nuclear_envelope",
+          "label": "Nuclear envelope",
+          "default": "#8EC8FF",
+          "paint": "fill"
+        },
+        {
+          "id": "nuclear_pore",
+          "label": "Schematic nuclear pore complex",
+          "default": "#B8B5FF",
+          "paint": "fill"
+        },
+        {
+          "id": "cargo",
+          "label": "NLS-containing cargo and import direction",
+          "default": "#E76F51",
+          "paint": "fill"
+        },
+        {
+          "id": "importin",
+          "label": "Illustrative importin-bound cargo receptor",
+          "default": "#7DD3C7",
+          "paint": "fill"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#26323D",
+          "paint": "stroke"
+        }
+      ],
+      "connector_hints": [
+        {
+          "id": "left",
+          "label": "Left attachment",
+          "role": "attachment",
+          "x": 0.125,
+          "y": 0.5
+        },
+        {
+          "id": "right",
+          "label": "Right attachment",
+          "role": "attachment",
+          "x": 0.875,
+          "y": 0.5
+        },
+        {
+          "id": "top",
+          "label": "Top attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.125
+        },
+        {
+          "id": "bottom",
+          "label": "Bottom attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.875
+        }
+      ],
+      "scientific_references": [
+        {
+          "id": "lowe-2015-importin",
+          "citation": "Lowe AR, Tang JH, Yassif J, et al. Importin-β modulates the permeability of the nuclear pore complex in a Ran-dependent manner. eLife. 2015;4:e04052.",
+          "doi": "10.7554/eLife.04052",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4375889/",
+          "figure": "Figure 1A and Figure 7",
+          "use": "Keep nuclear-envelope boundary, pore channel, receptor-bound cargo and import direction distinct; do not present an isolated pore as cargo import. Concepts only; no source artwork or geometry copied."
+        }
+      ],
+      "scientific_limitations": "Only an illustrative entry step is shown. Full importin-α/β recycling and Ran regulation, pore stoichiometry, permeability and transport rates are not depicted.",
+      "reviewer_notes": "Independent scientific and original-image review passed at 64 and 256 px in all three treatments. Source/web editing qualification is recorded separately in the asset review. Product-level release approval remains pending. CC0 1.0 permission is granted; product-level release approval remains pending.",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable SVG geometry constructed for the Figure Tool from cell-architecture-transport concepts. Primary research informs biological relationships only. No published or proprietary artwork, tracing, screenshot, structural coordinates, measured data or third-party vector component was incorporated. The workspace owner grants CC0 1.0 permission effective 2026-10-10; product-level release approval remains pending.",
+      "source_record_id": "source.cell-architecture-transport.2026-10-07",
+      "rights_record_id": "rights.cell-architecture-transport.owner-cc0.2026-10-10",
+      "style_family": "figure-studio-soft-line-v1",
+      "style_variant": "standard",
+      "review_status": "independent_scientific_and_visual_review_passed_2026_10_07",
+      "style_status": "soft_line_v1_original_draft",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 5
+    },
+    {
+      "id": "cellarch.membrane_signaling.er_mitochondrion_contact_site",
+      "concept_id": "cellarch.membrane_signaling.er_mitochondrion_contact_site",
+      "name": "ER–Mitochondrion Contact Site",
+      "scientific_name": "ER–Mitochondrion Contact Site",
+      "synonyms": [
+        "ER mitochondria contact",
+        "MAM",
+        "membrane contact site",
+        "organelle contact",
+        "ER tether"
+      ],
+      "category": "membrane-signaling",
+      "subcategory": "Intracellular transport and membrane interactions",
+      "tags": [
+        "ER mitochondria contact",
+        "MAM",
+        "membrane contact site",
+        "organelle contact",
+        "ER tether",
+        "cell architecture and transport"
+      ],
+      "description": "Separate ER and mitochondrial membranes apposed through illustrative contact-site tethers.",
+      "file": "svg/er_mitochondrion_contact_site.svg",
+      "editable_color_regions": [
+        {
+          "id": "er_membrane",
+          "label": "ER membrane",
+          "default": "#8EC8FF",
+          "paint": "fill"
+        },
+        {
+          "id": "mitochondrial_membranes",
+          "label": "Mitochondrial membranes and cristae",
+          "default": "#C7F2EC",
+          "paint": "fill"
+        },
+        {
+          "id": "contact_tethers",
+          "label": "Illustrative contact-site tethers",
+          "default": "#B8B5FF",
+          "paint": "fill"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#26323D",
+          "paint": "stroke"
+        }
+      ],
+      "connector_hints": [
+        {
+          "id": "left",
+          "label": "Left attachment",
+          "role": "attachment",
+          "x": 0.125,
+          "y": 0.5
+        },
+        {
+          "id": "right",
+          "label": "Right attachment",
+          "role": "attachment",
+          "x": 0.875,
+          "y": 0.5
+        },
+        {
+          "id": "top",
+          "label": "Top attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.125
+        },
+        {
+          "id": "bottom",
+          "label": "Bottom attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.875
+        }
+      ],
+      "scientific_references": [
+        {
+          "id": "csordas-2006-er-contact",
+          "citation": "Csordás G, Renken C, Várnai P, et al. Structural and functional features and significance of the physical linkage between ER and mitochondria. Journal of Cell Biology. 2006;174:915–921.",
+          "doi": "10.1083/jcb.200604016",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2064383/",
+          "figure": "Figure 1",
+          "use": "Two separate organelles are apposed and linked by illustrative tethers; mitochondrial membranes and ER lumen remain separate. Concepts only; no source artwork or geometry copied."
+        }
+      ],
+      "scientific_limitations": "No membrane fusion or obligatory named tether. Contact distance, calcium or lipid flux, physiological state and measured dynamics are not established.",
+      "reviewer_notes": "Independent scientific and original-image review passed at 64 and 256 px in all three treatments. Source/web editing qualification is recorded separately in the asset review. Product-level release approval remains pending. CC0 1.0 permission is granted; product-level release approval remains pending.",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable SVG geometry constructed for the Figure Tool from cell-architecture-transport concepts. Primary research informs biological relationships only. No published or proprietary artwork, tracing, screenshot, structural coordinates, measured data or third-party vector component was incorporated. The workspace owner grants CC0 1.0 permission effective 2026-10-10; product-level release approval remains pending.",
+      "source_record_id": "source.cell-architecture-transport.2026-10-07",
+      "rights_record_id": "rights.cell-architecture-transport.owner-cc0.2026-10-10",
+      "style_family": "figure-studio-soft-line-v1",
+      "style_variant": "standard",
+      "review_status": "independent_scientific_and_visual_review_passed_2026_10_07",
+      "style_status": "soft_line_v1_original_draft",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 4
+    }
+  ]
+}

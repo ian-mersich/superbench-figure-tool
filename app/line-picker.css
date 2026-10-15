@@ -1,0 +1,82 @@
+/* Line samples use a padded viewBox and the current theme's text color. */
+html .figure-studio-root .line-picker-popover {
+  width: 364px;
+  padding: 0;
+  background: var(--chrome);
+  border-color: var(--line-strong);
+  color: var(--text);
+  overflow-x: hidden;
+  overflow-y: scroll;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--line-strong) var(--chrome);
+}
+html .figure-studio-root .tool-flyout.open .line-picker-popover { display: block; }
+html .figure-studio-root .line-picker-popover.line-picker-portaled { position: fixed; z-index: 900; display: block; transform: none; }
+html .figure-studio-root .line-picker-popover[hidden] { display: none !important; }
+html .figure-studio-root .line-picker-popover button::before,
+html .figure-studio-root .line-picker-popover button::after { content: none; display: none; }
+.line-picker-header {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  padding: 11px 12px 9px;
+  background: var(--chrome);
+  border-bottom: 1px solid var(--line);
+}
+.line-picker-heading { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.line-picker-heading strong { font-size: 13px; }
+.line-picker-status { margin: 6px 0 0; color: var(--muted); font-size: 11px; line-height: 1.35; }
+.line-picker-modes { display: flex; gap: 4px; margin-top: 9px; }
+html .figure-studio-root .line-picker-modes button {
+  display: block;
+  width: auto;
+  flex: 1;
+  min-height: 29px;
+  padding: 3px 8px;
+  border: 1px solid var(--line);
+  background: var(--field);
+  text-align: center;
+  font-size: 11px;
+}
+html .figure-studio-root .line-picker-modes button[aria-pressed="true"] {
+  color: var(--text-strong);
+  border-color: var(--accent-line);
+  background: var(--accent-soft);
+}
+.line-picker-groups { padding: 4px 12px 10px; }
+.line-picker-group { margin-top: 9px; }
+.line-picker-group h3 { margin: 0 0 4px; color: var(--muted); font-size: 11px; font-weight: 650; }
+.line-picker-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 5px; }
+html .figure-studio-root .line-picker-grid button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 60px;
+  padding: 3px 4px;
+  gap: 1px;
+  border: 1px solid var(--line);
+  background: var(--field);
+  color: var(--text);
+  text-align: center;
+  font-size: 10px;
+  line-height: 1.15;
+}
+html .figure-studio-root .line-picker-grid button::before,
+html .figure-studio-root .line-picker-grid button::after { content: none; display: none; }
+.line-picker-grid svg { display: block; width: 88px; height: 40px; flex: 0 0 40px; max-width: 100%; overflow: visible; }
+html .figure-studio-root .line-picker-grid button:hover,
+html .figure-studio-root .line-picker-grid button:focus-visible,
+html .figure-studio-root .line-picker-grid button[aria-pressed="true"] {
+  border-color: var(--accent-line);
+  background: var(--accent-soft);
+}
+html .figure-studio-root .line-picker-popover button:disabled { opacity: .42; cursor: default; }
+.line-picker-footer { position: sticky; bottom: 0; padding: 8px 12px; background: var(--chrome); border-top: 1px solid var(--line); }
+html .figure-studio-root .line-picker-footer button { display: block; border: 1px solid var(--line); background: var(--field); min-height: 29px; font-size: 11px; text-align: center; white-space: nowrap; }
+html .figure-studio-root .line-picker-footer .line-picker-more { min-height: 23px; margin-bottom: 4px; border: none; background: transparent; font-size: 10px; color: var(--muted); }
+.line-picker-popover::-webkit-scrollbar { width: 8px; }
+.line-picker-popover::-webkit-scrollbar-track { background: var(--chrome); }
+.line-picker-popover::-webkit-scrollbar-thumb { background: var(--line-strong); border: 2px solid var(--chrome); border-radius: 6px; }

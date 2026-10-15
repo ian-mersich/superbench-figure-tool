@@ -1,0 +1,335 @@
+{
+  "schema_id": "figureStudio.scientificAssetLicenseReleaseAudit.v1",
+  "audit_id": "culture-models-assays.rights-cleared-quality-pending.2026-10-10",
+  "audit_date": "2026-10-10",
+  "pack_id": "culture-models-assays",
+  "status": "rights_cleared_quality_pending",
+  "release_effective_date": null,
+  "concept_count": 12,
+  "asset_count": 12,
+  "rights_cleared_count": 12,
+  "third_party_component_count": 0,
+  "license_selection_pending_count": 0,
+  "public_distribution_authorized": true,
+  "selected_public_license": "CC0-1.0",
+  "license_notice": "LICENSE-ASSETS-CC0-1.0.md",
+  "rights_basis": {
+    "status": "owner_attested_original_output",
+    "scope": "all_assets_in_pack",
+    "pack_id": "culture-models-assays",
+    "authorization_record_id": "rights.culture-models-assays.owner-cc0.2026-10-10",
+    "qualification": "This is an owner license grant for the recorded original material. It is not a non-infringement, patent, trademark, privacy, publicity, or endorsement warranty; product-release quality review remains separate."
+  },
+  "source_records": [
+    {
+      "id": "source.culture-models-assays.2026-10-08",
+      "kind": "clean_room_generation_record",
+      "pack_id": "culture-models-assays",
+      "scope": "all_assets_in_pack",
+      "created_on": "2026-10-08",
+      "generated_by": "Figure Tool AI-assisted original SVG authoring",
+      "third_party_material": "none_declared",
+      "statement": "Original editable SVG geometry constructed for the Figure Tool from culture models and functional assays concepts. Primary research informs biological relationships and experimental arrangements only. No published or proprietary artwork, tracing, screenshot, structural coordinates, measured data or third-party vector component was incorporated. This source record documents original construction and does not decide product release.",
+      "scientific_references": [
+        {
+          "id": "ng-2008-perfusion",
+          "citation": "Ng CP, Pun SH. A Perfusable 3D Cell–Matrix Tissue Culture Chamber for In Situ Evaluation of Nanoparticle Vehicle Penetration and Transport. Biotechnology and bioengineering. 2008.",
+          "doi": "10.1002/bit.21698",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2796126/",
+          "figure": "Figure 3a, c and f",
+          "use": "Keep a central cell-laden matrix separate from adjacent connected media channels and retain it with posts. Fluid ports are continuous with the media space. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "lee-2020-ali",
+          "citation": "Lee DDH, Petris A, Hynds RE, O’Callaghan C. Ciliated epithelial cell differentiation at air-liquid interface using commercially available culture media. Methods in molecular biology (Clifton, N.J.). 2020.",
+          "doi": "10.1007/7651_2019_269",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7116769/",
+          "figure": "Figure 1A",
+          "use": "A differentiated epithelial row rests on a porous insert with basal medium below and free air above; the apical surface has no bulk liquid pool. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "williamson-2018-organoid",
+          "citation": "Williamson IA, Arnold JW, Samsa LA, et al. A High-Throughput Organoid Microinjection Platform to Study Gastrointestinal Microbiota and Luminal Physiology. Cellular and Molecular Gastroenterology and Hepatology. 2018.",
+          "doi": "10.1016/j.jcmgh.2018.05.004",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6092482/",
+          "figure": "Figure 1A and G",
+          "use": "Keep the closed epithelial shell, hollow lumen and surrounding external hydrogel distinct. For microinjection, the needle crosses the shell and terminates in the lumen, with injected cargo shown inside. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "struber-2022-hanging-drop",
+          "citation": "Struber A, Auer G, Fischlechner M, et al. Low-Cost Devices for Three-Dimensional Cell Aggregation, Real-Time Monitoring Microscopy, Microfluidic Immunostaining, and Deconvolution Analysis. Bioengineering. 2022.",
+          "doi": "10.3390/bioengineering9020060",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8869754/",
+          "figure": "Figure 1A–C",
+          "use": "A drop hangs from the underside of a support and contains a compact aggregate near its lowest point. Cells do not adhere to the solid support. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "whisler-2014-microvascular",
+          "citation": "Whisler JA, Chen MB, Kamm RD. Control of Perfusable Microvascular Network Morphology Using a Multiculture Microfluidic System. Tissue Engineering. Part C, Methods. 2014.",
+          "doi": "10.1089/ten.tec.2013.0370",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4074745/",
+          "figure": "Figure 1A, B, F and G; Figure 2A–C",
+          "use": "Use branching endothelial walls around continuous lumens in a matrix. At least one patent connection opens to each adjacent medium channel, distinguishing a perfusable arrangement from disconnected endothelial strings. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "balko-2023-scratch",
+          "citation": "Balko S, Kerr E, Buchel E, Logsetty S, Raouf A. A Robust and Standardized Approach to Quantify Wound Closure Using the Scratch Assay. Methods and Protocols. 2023.",
+          "doi": "10.3390/mps6050087",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10514857/",
+          "figure": "Figure 1A",
+          "use": "Show an open cell-free gap between confluent epithelial sheets, retaining the irregular cellular borders. A single state is sufficient for the reusable primitive. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "rafehi-2011-clonogenic",
+          "citation": "Rafehi H, Orlowski C, Georgiadis GT, Ververis K, El-Osta A, Karagiannis TC. Clonogenic Assay: Adherent Cells. Journal of Visualized Experiments : JoVE. 2011.",
+          "doi": "10.3791/2573",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3197314/",
+          "figure": "Figure 1",
+          "use": "Place spatially separated multi-cell colonies on the adherent base of a culture well. Avoid rendering colonies as isolated single cells or suspended aggregates. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "nakamura-2023-soft-agar",
+          "citation": "Nakamura D. The evaluation of tumorigenicity and characterization of colonies in a soft agar colony formation assay using polymerase chain reaction. Scientific Reports. 2023.",
+          "doi": "10.1038/s41598-023-32442-6",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10070612/",
+          "figure": "Figure 1",
+          "use": "Keep cell-containing upper agar above a cell-free agar base, with a separate medium overlay. Colonies reside inside the upper gel rather than on the dish base. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "yamamoto-2000-contraction",
+          "citation": "Yamamoto T, Hartmann K, Eckes B, Krieg T. Mast cells enhance contraction of three-dimensional collagen lattices by fibroblasts by cell–cell interaction: role of stem cell factor/c-kit. Immunology. 2000.",
+          "doi": "10.1046/j.1365-2567.2000.00973.x",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2327175/",
+          "figure": "Figure 1a–c",
+          "use": "Draw a detached cell-laden collagen gel smaller than the surrounding well, leaving a free-fluid annulus. Fibroblasts are within the gel rather than attached to the well wall. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "misra-2019-tissue-slice",
+          "citation": "Misra S, Moro CF, Del Chiaro M, et al. Ex vivo organotypic culture system of precision-cut slices of human pancreatic ductal adenocarcinoma. Scientific Reports. 2019.",
+          "doi": "10.1038/s41598-019-38603-w",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6376017/",
+          "figure": "Figure 1, culture inset",
+          "use": "A thick live heterogeneous tissue slice rests on a porous culture support inside a well; the medium extends below the support and covers the upper tissue face. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "chen-2015-microwells",
+          "citation": "Chen YC, Lou X, Zhang Z, Ingram P, Yoon E. High-Throughput Cancer Cell Sphere Formation for Characterizing the Efficacy of Photo Dynamic Therapy in 3D Cell Cultures. Scientific Reports. 2015;5:12175.",
+          "doi": "10.1038/srep12175",
+          "url": "https://www.nature.com/articles/srep12175",
+          "figure": "Figure 1a–b",
+          "use": "A compact aggregate settles in a concave, non-adherent microwell filled with medium. The well lies below its support surface, unlike a pendant hanging drop. Concepts only; no source artwork or geometry copied."
+        }
+      ]
+    }
+  ],
+  "rights_records": [
+    {
+      "id": "rights.culture-models-assays.owner-cc0.2026-10-10",
+      "kind": "owner_license_grant",
+      "pack_id": "culture-models-assays",
+      "scope": "all_assets_in_pack",
+      "status": "rights_cleared",
+      "public_distribution_authorized": true,
+      "selected_public_license": "CC0-1.0",
+      "rights_basis": "owner_attested_original_output",
+      "third_party_material": "none_declared",
+      "effective_date": "2026-10-10",
+      "statement": "The workspace owner grants CC0 1.0 permission for the original artwork and asset-specific metadata in the culture-models-assays pack, effective 2026-10-10. This grant does not approve the pack for product release.",
+      "qualification": "This is an owner license grant for the recorded original material. It is not a non-infringement, patent, trademark, privacy, publicity, or endorsement warranty; product-release quality review remains separate."
+    }
+  ],
+  "license_candidates": [
+    {
+      "id": "CC0-1.0",
+      "selected": true,
+      "owner_action_required": false,
+      "rationale": "Explicit workspace-owner authorization recorded for this original artwork."
+    }
+  ],
+  "release_blocker": "CC0 rights are cleared. Product-level release approval remains pending and must be recorded separately.",
+  "assets": [
+    {
+      "asset_id": "culture.model_system.perfused_tissue_chip",
+      "file": "svg/perfused_tissue_chip.svg",
+      "sha256": "ffc958ecbe7a880d12c969f003a0e481a70946e6d05ffec442e67661ca37758d",
+      "provenance_sha256": "d6b2a889a42454d9e42ce7a75d6af452f8f3d1fae1e86d4a1a9e6ff354044025",
+      "source_type": "clean_room_original_vector",
+      "lineage": "workspace_generated_clean_room_original",
+      "current_license": "CC0-1.0",
+      "rights_basis": "owner_attested_original_output",
+      "third_party_material": "none_declared",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "source_record_id": "source.culture-models-assays.2026-10-08",
+      "rights_record_id": "rights.culture-models-assays.owner-cc0.2026-10-10"
+    },
+    {
+      "asset_id": "culture.model_system.air_liquid_interface_culture",
+      "file": "svg/air_liquid_interface_culture.svg",
+      "sha256": "99ec85246bf5da0b86e2276efee2cc4d0f25361f69439acd64feb5a7dd1bfd2c",
+      "provenance_sha256": "d6b2a889a42454d9e42ce7a75d6af452f8f3d1fae1e86d4a1a9e6ff354044025",
+      "source_type": "clean_room_original_vector",
+      "lineage": "workspace_generated_clean_room_original",
+      "current_license": "CC0-1.0",
+      "rights_basis": "owner_attested_original_output",
+      "third_party_material": "none_declared",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "source_record_id": "source.culture-models-assays.2026-10-08",
+      "rights_record_id": "rights.culture-models-assays.owner-cc0.2026-10-10"
+    },
+    {
+      "asset_id": "culture.model_system.hydrogel_embedded_organoid",
+      "file": "svg/hydrogel_embedded_organoid.svg",
+      "sha256": "b7fca80901f68f233e1b4255bb545aa0e705d1dbaa09c0d06ac26f17c2a16e7a",
+      "provenance_sha256": "d6b2a889a42454d9e42ce7a75d6af452f8f3d1fae1e86d4a1a9e6ff354044025",
+      "source_type": "clean_room_original_vector",
+      "lineage": "workspace_generated_clean_room_original",
+      "current_license": "CC0-1.0",
+      "rights_basis": "owner_attested_original_output",
+      "third_party_material": "none_declared",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "source_record_id": "source.culture-models-assays.2026-10-08",
+      "rights_record_id": "rights.culture-models-assays.owner-cc0.2026-10-10"
+    },
+    {
+      "asset_id": "culture.model_system.hanging_drop_spheroid",
+      "file": "svg/hanging_drop_spheroid.svg",
+      "sha256": "ac8ba54d1e04273655ae42914ca5d229f30200fb1297ab9f87f717943ca22ae6",
+      "provenance_sha256": "d6b2a889a42454d9e42ce7a75d6af452f8f3d1fae1e86d4a1a9e6ff354044025",
+      "source_type": "clean_room_original_vector",
+      "lineage": "workspace_generated_clean_room_original",
+      "current_license": "CC0-1.0",
+      "rights_basis": "owner_attested_original_output",
+      "third_party_material": "none_declared",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "source_record_id": "source.culture-models-assays.2026-10-08",
+      "rights_record_id": "rights.culture-models-assays.owner-cc0.2026-10-10"
+    },
+    {
+      "asset_id": "culture.model_system.microwell_spheroid_aggregation",
+      "file": "svg/microwell_spheroid_aggregation.svg",
+      "sha256": "aab199dbf514b0f881a36585086722cdf24604aa1186513099400e0e8f97936f",
+      "provenance_sha256": "d6b2a889a42454d9e42ce7a75d6af452f8f3d1fae1e86d4a1a9e6ff354044025",
+      "source_type": "clean_room_original_vector",
+      "lineage": "workspace_generated_clean_room_original",
+      "current_license": "CC0-1.0",
+      "rights_basis": "owner_attested_original_output",
+      "third_party_material": "none_declared",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "source_record_id": "source.culture-models-assays.2026-10-08",
+      "rights_record_id": "rights.culture-models-assays.owner-cc0.2026-10-10"
+    },
+    {
+      "asset_id": "culture.assay_workflow.epithelial_scratch_wound",
+      "file": "svg/epithelial_scratch_wound.svg",
+      "sha256": "76c9437a8a873908f0822c768a2029d795e8ec9f757970f6bd8576c267ffdf61",
+      "provenance_sha256": "d6b2a889a42454d9e42ce7a75d6af452f8f3d1fae1e86d4a1a9e6ff354044025",
+      "source_type": "clean_room_original_vector",
+      "lineage": "workspace_generated_clean_room_original",
+      "current_license": "CC0-1.0",
+      "rights_basis": "owner_attested_original_output",
+      "third_party_material": "none_declared",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "source_record_id": "source.culture-models-assays.2026-10-08",
+      "rights_record_id": "rights.culture-models-assays.owner-cc0.2026-10-10"
+    },
+    {
+      "asset_id": "culture.assay_workflow.clonogenic_colony_formation",
+      "file": "svg/clonogenic_colony_formation.svg",
+      "sha256": "0972daa66ad2d1697d8c55b8703b9425658bcdef0b650c15e740edab53724c8b",
+      "provenance_sha256": "d6b2a889a42454d9e42ce7a75d6af452f8f3d1fae1e86d4a1a9e6ff354044025",
+      "source_type": "clean_room_original_vector",
+      "lineage": "workspace_generated_clean_room_original",
+      "current_license": "CC0-1.0",
+      "rights_basis": "owner_attested_original_output",
+      "third_party_material": "none_declared",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "source_record_id": "source.culture-models-assays.2026-10-08",
+      "rights_record_id": "rights.culture-models-assays.owner-cc0.2026-10-10"
+    },
+    {
+      "asset_id": "culture.assay_workflow.soft_agar_colony",
+      "file": "svg/soft_agar_colony.svg",
+      "sha256": "68fae5d36b12035f6eb5142a4058760e45c40be66a7fe197c0b4152abdb82825",
+      "provenance_sha256": "d6b2a889a42454d9e42ce7a75d6af452f8f3d1fae1e86d4a1a9e6ff354044025",
+      "source_type": "clean_room_original_vector",
+      "lineage": "workspace_generated_clean_room_original",
+      "current_license": "CC0-1.0",
+      "rights_basis": "owner_attested_original_output",
+      "third_party_material": "none_declared",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "source_record_id": "source.culture-models-assays.2026-10-08",
+      "rights_record_id": "rights.culture-models-assays.owner-cc0.2026-10-10"
+    },
+    {
+      "asset_id": "culture.assay_workflow.collagen_gel_contraction",
+      "file": "svg/collagen_gel_contraction.svg",
+      "sha256": "d5c84c2ec4464addd109d43a4f3e97fb45fcf98b212d760e7c7875730f198def",
+      "provenance_sha256": "d6b2a889a42454d9e42ce7a75d6af452f8f3d1fae1e86d4a1a9e6ff354044025",
+      "source_type": "clean_room_original_vector",
+      "lineage": "workspace_generated_clean_room_original",
+      "current_license": "CC0-1.0",
+      "rights_basis": "owner_attested_original_output",
+      "third_party_material": "none_declared",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "source_record_id": "source.culture-models-assays.2026-10-08",
+      "rights_record_id": "rights.culture-models-assays.owner-cc0.2026-10-10"
+    },
+    {
+      "asset_id": "culture.model_system.precision_cut_tissue_slice_culture",
+      "file": "svg/precision_cut_tissue_slice_culture.svg",
+      "sha256": "9dfda38a8367f2509b2bea5ff1003ae7e9ab8976517c334586f0d03f18d53010",
+      "provenance_sha256": "d6b2a889a42454d9e42ce7a75d6af452f8f3d1fae1e86d4a1a9e6ff354044025",
+      "source_type": "clean_room_original_vector",
+      "lineage": "workspace_generated_clean_room_original",
+      "current_license": "CC0-1.0",
+      "rights_basis": "owner_attested_original_output",
+      "third_party_material": "none_declared",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "source_record_id": "source.culture-models-assays.2026-10-08",
+      "rights_record_id": "rights.culture-models-assays.owner-cc0.2026-10-10"
+    },
+    {
+      "asset_id": "culture.assay_workflow.organoid_luminal_microinjection",
+      "file": "svg/organoid_luminal_microinjection.svg",
+      "sha256": "cd1f7e1431e5fb77b83cf62a969d29a8b1bf9fb82283f046fed5e7309a3a45b6",
+      "provenance_sha256": "d6b2a889a42454d9e42ce7a75d6af452f8f3d1fae1e86d4a1a9e6ff354044025",
+      "source_type": "clean_room_original_vector",
+      "lineage": "workspace_generated_clean_room_original",
+      "current_license": "CC0-1.0",
+      "rights_basis": "owner_attested_original_output",
+      "third_party_material": "none_declared",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "source_record_id": "source.culture-models-assays.2026-10-08",
+      "rights_record_id": "rights.culture-models-assays.owner-cc0.2026-10-10"
+    },
+    {
+      "asset_id": "culture.model_system.perfusable_microvascular_network",
+      "file": "svg/perfusable_microvascular_network.svg",
+      "sha256": "416cf048110d34b61b55a81e34f12a596572086ad6b59dcc7949f378d2bc5000",
+      "provenance_sha256": "d6b2a889a42454d9e42ce7a75d6af452f8f3d1fae1e86d4a1a9e6ff354044025",
+      "source_type": "clean_room_original_vector",
+      "lineage": "workspace_generated_clean_room_original",
+      "current_license": "CC0-1.0",
+      "rights_basis": "owner_attested_original_output",
+      "third_party_material": "none_declared",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "source_record_id": "source.culture-models-assays.2026-10-08",
+      "rights_record_id": "rights.culture-models-assays.owner-cc0.2026-10-10"
+    }
+  ],
+  "rights_grant_effective_date": "2026-10-10",
+  "product_release_status": "pending_quality_and_product_review",
+  "supersedes_audit_id": "culture-models-assays.provenance-license-draft.2026-10-08"
+}

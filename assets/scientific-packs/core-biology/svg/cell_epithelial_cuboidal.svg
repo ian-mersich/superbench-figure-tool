@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Cuboidal Epithelial Cell — Side View</title>
+  <desc id="desc">Original generic cuboidal epithelial section with comparable height and width, an apical free surface, lateral junction cues and basal side. No brush border, cilia or specific tissue is asserted.</desc>
+  <path data-region="cytoplasm" fill="#D9F4E5" d="M30 35C49 32 79 32 98 35L99 96C79 100 49 100 29 96Z"/>
+  <path data-region="nucleus" fill="#B8B5FF" d="M49 70C48 61 54 54 64 54C74 54 81 60 80 70C79 80 71 85 62 84C54 83 49 78 49 70Z"/>
+  <g data-region="junction" fill="#F4A261"><path d="M26 41H34V50H26ZM94 41H102V50H94Z"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M30 35C49 32 79 32 98 35L99 96C79 100 49 100 29 96Z" stroke-width="3.2"/>
+    <path d="M49 70C48 61 54 54 64 54C74 54 81 60 80 70C79 80 71 85 62 84C54 83 49 78 49 70Z" stroke-width="2.4"/>
+    <path d="M30 35C49 32 79 32 98 35" stroke-width="4"/>
+  </g>
+</svg>

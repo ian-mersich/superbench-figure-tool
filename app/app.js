@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  const APP_VERSION = "1.0.0-beta.6";
+  const APP_VERSION = "1.0.0-beta.9";
   const PROJECT_SCHEMA = "figureStudio.project.v2";
   const DOCUMENT_KINDS = Object.freeze(["figure", "presentation"]);
   const FIRST_RUN_STORAGE_KEY = "figureStudio.firstRun.v2";
@@ -548,12 +548,24 @@
   let pdfUnicodeFontProgramsPromise = null;
   const RESOURCE_BASE_URL = window.__FIGURE_STUDIO_RESOURCE_BASE_URL || new URL("../", document.currentScript?.src || document.baseURI).toString();
   const HELP_CONTENT_URL = "app/help/figure-studio-help.json";
-  const TUTORIAL_CONTENT_URL = "app/help/figure-studio-tutorials.json";
-  const TUTORIAL_PROGRESS_STORAGE_KEY = "figure-studio.tutorial-progress.v1";
+  // Retired course links remain read-only aliases so saved bookmarks and hosts
+  // open useful Help without loading courses or touching stored progress.
+  const RETIRED_TUTORIAL_HELP_TOPICS = Object.freeze({
+    "FIG-00": "getting-started", "first-figure": "getting-started",
+    "FIG-01": "artboards-decks", "first-four-panel-figure": "artboards-decks",
+    "FIG-02": "biological-assets", "asset-based-scientific-diagram": "biological-assets",
+    "FIG-03": "paths-vectors", "vector-editing": "paths-vectors",
+    "FIG-04": "importing", "imported-svg-pdf": "importing",
+    "FIG-05": "figure-export-options", "publication-export": "figure-export-options",
+    "PRES-01": "presentation-documents", "first-scientific-presentation": "presentation-documents",
+    "PRES-02": "presentation-slides", "slide-layouts-themes": "presentation-slides",
+    "PRES-03": "pptx-compatibility", "pptx-interchange": "pptx-compatibility",
+    "SAFE-01": "saving-recovery", "save-reopen-recovery": "saving-recovery"
+  });
   const HELP_COMMAND_TOPIC_MAP = {
     "help-center": "getting-started",
     "help-getting-started": "getting-started",
-    "help-keyboard": "getting-started",
+    "help-keyboard": "shortcuts-accessibility",
     "help-importing": "importing",
     "help-pdf": "importing",
     "help-vector-editing": "paths-vectors",
@@ -1255,7 +1267,6 @@
     quickImportBtn: document.getElementById("quickImportBtn"),
     helpCenterBtn: document.getElementById("helpCenterBtn"),
     contextLearnBtn: document.getElementById("contextLearnBtn"),
-    tutorialsBtn: document.getElementById("tutorialsBtn"),
     pptxSummaryBackdrop: document.getElementById("pptxSummaryBackdrop"),
     pptxSummaryDialog: document.getElementById("pptxSummaryDialog"),
     pptxSummaryTitle: document.getElementById("pptxSummaryTitle"),
@@ -1269,20 +1280,6 @@
     pptxCompatibilityClaim: document.getElementById("pptxCompatibilityClaim"),
     closePptxSummaryBtn: document.getElementById("closePptxSummaryBtn"),
     dismissPptxSummaryBtn: document.getElementById("dismissPptxSummaryBtn"),
-    tutorialBackdrop: document.getElementById("tutorialBackdrop"),
-    tutorialDialog: document.getElementById("tutorialDialog"),
-    tutorialList: document.getElementById("tutorialList"),
-    tutorialStepProgress: document.getElementById("tutorialStepProgress"),
-    tutorialStepTitle: document.getElementById("tutorialStepTitle"),
-    tutorialStepInstruction: document.getElementById("tutorialStepInstruction"),
-    tutorialStepWhy: document.getElementById("tutorialStepWhy"),
-    tutorialOutcome: document.getElementById("tutorialOutcome"),
-    tutorialSaveStatus: document.getElementById("tutorialSaveStatus"),
-    closeTutorialBtn: document.getElementById("closeTutorialBtn"),
-    resetTutorialBtn: document.getElementById("resetTutorialBtn"),
-    showTutorialTargetBtn: document.getElementById("showTutorialTargetBtn"),
-    previousTutorialStepBtn: document.getElementById("previousTutorialStepBtn"),
-    continueTutorialStepBtn: document.getElementById("continueTutorialStepBtn"),
     scientificSymbolPopover: document.getElementById("scientificSymbolPopover"),
     scientificSymbolSearch: document.getElementById("scientificSymbolSearch"),
     scientificSymbolCategoryBar: document.getElementById("scientificSymbolCategoryBar"),
@@ -1461,6 +1458,8 @@
   const SCIENTIFIC_ASSET_RENDER_BATCH = 48;
   let scientificAssetScrollFrame = 0;
   let scientificAssetReplacement = null;
+  let scientificAssetPreviewUi = null;
+  let scientificAssetDocumentGeneration = 0;
   let userAssetLibrary = [];
   let graphicStyleLibrary = [];
   let lastGraphicStyleId = "";
@@ -1662,10 +1661,6 @@
   let helpContentLoadPromise = null;
   let helpContent = { schema: "figureStudio.helpContent.v1", sections: [] };
   let learningCenter = null;
-  let tutorialContentLoadPromise = null;
-  let tutorialCatalog = { schema: "figureStudio.tutorialCatalog.v1", tutorials: [] };
-  let tutorialProgress = { tutorialId: "", completedStepIds: [], activeStepId: "" };
-  let tutorialFocusReturnTarget = null;
   let pptxInterchangeState = {
     status: "idle",
     operation: "",
@@ -1724,6 +1719,7 @@
   let viewportRefitFrame = 0;
   let viewportLayoutStableGeneration = 0;
   let viewFollowsViewport = true;
+  let canvasAuthoringPointerDown = false;
   let editorProductReady = false;
   let floatingRailZCounter = 45;
   let propertiesFocusReturnTarget = null;
@@ -1800,7 +1796,7 @@
     publicationTypography: null,
     pdfSources: { schema: "figureStudio.pdfSourceRegistry.v1", entries: {} },
     layers: { collapsedBatches: {}, collapsedGroups: {}, pdfParts: defaultPdfPartsManagerFilters() },
-    ui: { leftSidebarVisible: false, rightInspectorVisible: true, activeTemplate: "", inspectorTab: "properties" },
+    ui: { leftSidebarVisible: false, rightInspectorVisible: true, activeTemplate: "", inspectorTab: "properties", presentationPane: "slides" },
     tool: "select"
   };
 
@@ -1983,6 +1979,8 @@
   }
 
   function syncDocumentModeUi() {
+    const preview = scientificAssetPreviewUi?.getState();
+    if (preview?.open && preview.contextId !== scientificAssetPreviewContextId()) scientificAssetPreviewUi.close({ force: true, restoreFocus: false });
     const root = figureStudioRoot();
     if (!root) return;
     const kind = normalizeDocumentKind(state.document?.kind);
@@ -1996,7 +1994,7 @@
     root.dataset.pageGeometry = presentation ? "uniform" : "per-page";
     root.dataset.legacyDocument = state.document?.legacy ? "true" : "false";
     const documentCheckButton = document.querySelector('[data-document-context-action="preflight"]');
-    if (documentCheckButton) documentCheckButton.textContent = presentation ? "Presentation check…" : "Figure check…";
+    if (documentCheckButton) documentCheckButton.textContent = presentation ? "Check presentation…" : "Check figure…";
     if (els.documentNavigationTab) {
       els.documentNavigationTab.hidden = !navigationVisible;
       els.documentNavigationTab.textContent = presentation ? "Slides" : "Pages";
@@ -2065,10 +2063,9 @@
           setInspectorTab('properties');
         } else if (command === 'design' || command === 'assets') {
           const pane = command === 'design' ? 'design' : 'assets';
-          root.dataset.deckPane = root.dataset.deckPane === pane ? 'slides' : pane;
-          setSidebarTab(root.dataset.deckPane === 'assets' ? 'assets' : 'slides');
+          const nextPane = root.dataset.deckPane === pane ? 'slides' : pane;
+          setSidebarTab(nextPane === 'assets' ? 'assets' : 'slides', { presentationPane: nextPane });
           if (pane === 'design') setPanelCollapsed(root.querySelector('.deck-theme-panel'), false);
-          toolbar.querySelector('[data-deck-command="design"]').setAttribute('aria-pressed', String(root.dataset.deckPane === 'design'));
         } else {
           void Promise.resolve(executeMenuCommand(command)).catch((error) => showLongToast(error.message));
         }
@@ -2077,28 +2074,47 @@
       const back = document.createElement('button');
       back.type = 'button'; back.className = 'deck-back-to-slides'; back.textContent = '← Slides';
       back.addEventListener('click', () => {
-        root.dataset.deckPane = 'slides'; setSidebarTab('slides');
-        toolbar.querySelector('[data-deck-command="design"]').setAttribute('aria-pressed', 'false');
+        setSidebarTab('slides');
         requestAnimationFrame(() => fitToScreen());
       });
       root.querySelector('.left-panel').prepend(back);
-      const allowedMenus = new Set(['new-project', 'new-slide', 'open-project', 'open-pptx', 'save-project', 'save-project-as', 'save-workspace-project', 'save-workspace-project-as', 'close-document-tab', 'import-panel', 'import-result-table', 'export-as', 'pptx-compatibility', 'document-fonts', 'undo', 'redo', 'cut', 'copy', 'paste', 'paste-in-place', 'duplicate', 'delete', 'select-all', 'group', 'ungroup', 'fit-screen', 'zoom-in', 'zoom-out', 'toggle-grid', 'toggle-smart-guides', 'toggle-guides', 'present-from-beginning', 'present-current-slide', 'toggle-speaker-notes', 'help-center', 'help-keyboard', 'help-importing', 'help-known-limitations']);
+      const allowedMenus = new Set(['new-project', 'new-slide', 'open-project', 'open-pptx', 'save-project', 'save-project-as', 'save-workspace-project', 'save-workspace-project-as', 'close-document-tab', 'import-panel', 'import-result-table', 'export-as', 'pptx-compatibility', 'document-fonts', 'undo', 'redo', 'cut', 'copy', 'paste', 'paste-in-place', 'duplicate', 'delete', 'select-all', 'group', 'ungroup', 'fit-screen', 'zoom-in', 'zoom-out', 'toggle-grid', 'toggle-smart-guides', 'toggle-guides', 'present-from-beginning', 'present-current-slide', 'toggle-speaker-notes', 'help-center', 'help-workspace', 'help-keyboard', 'help-importing', 'help-known-limitations']);
       root.querySelectorAll('#appMenuBar [data-command]').forEach((button) => {
         if (!allowedMenus.has(button.dataset.command)) button.dataset.deckHide = 'true';
       });
     }
     root.querySelector('.presentation-toolbar').hidden = !presentation;
     root.querySelector('.deck-back-to-slides').hidden = !presentation;
-    root.querySelector('.left-panel').setAttribute('aria-label', presentation ? 'Slides and deck design' : 'Library panel');
+    root.querySelector('.left-panel').setAttribute('aria-label', leftRailPanelName());
     const railTitle = root.querySelector('.left-panel .rail-window-bar strong');
-    if (railTitle) railTitle.textContent = presentation ? 'Slides' : 'Library';
-    if (els.leftRailResize) els.leftRailResize.setAttribute('aria-label', presentation ? 'Resize slide pane' : 'Resize Library panel');
+    if (railTitle) railTitle.textContent = presentation ? presentationPaneTitle() : 'Library';
     root.querySelector('.inspector').setAttribute('aria-label', presentation ? 'Slide formatting' : 'Inspector panel');
     if (presentation && state.ui.leftSidebarVisible === false) {
       state.ui.leftSidebarVisible = true;
       syncChromePanels({ persist: true, updateStage: true });
     }
-    if (presentation && root.dataset.deckPane !== 'assets') setSidebarTab('slides');
+    if (presentation) {
+      const pane = normalizePresentationPane(state.ui.presentationPane);
+      // Passive restoration must not invoke the Assets action's search focus.
+      setSidebarTab(pane === 'assets' ? 'tools' : 'slides', { presentationPane: pane });
+    }
+  }
+
+  function normalizePresentationPane(pane, sidebarTab = 'slides') {
+    return ['slides', 'design', 'assets'].includes(pane)
+      ? pane
+      : ['tools', 'assets'].includes(sidebarTab) ? 'assets' : 'slides';
+  }
+
+  function presentationPaneTitle() {
+    const pane = normalizePresentationPane(state.ui.presentationPane);
+    return pane === 'assets' ? 'Library' : pane === 'design' ? 'Layout & theme' : 'Slides';
+  }
+
+  function leftRailPanelName() {
+    if (!isPresentationDocument()) return 'Library panel';
+    return normalizePresentationPane(state.ui.presentationPane) === 'slides'
+      ? 'Slide pane' : `${presentationPaneTitle()} panel`;
   }
 
   function presentationFigureSource() {
@@ -2553,10 +2569,10 @@
       openTutorialCenter,
       closeTutorialCenter,
       getTutorialStateForQa,
-      selectTutorialForQa: (tutorialId) => learningCenter?.openTutorial?.(tutorialId) || selectTutorial(tutorialId),
-      continueTutorialStepForQa: () => learningCenter?.continueTutorial?.() || continueTutorialStep(),
-      previousTutorialStepForQa: () => learningCenter?.previousTutorial?.() || previousTutorialStep(),
-      resetTutorialProgressForQa: () => learningCenter?.restartTutorial?.() || resetTutorialProgress(),
+      selectTutorialForQa: openTutorialCenter,
+      continueTutorialStepForQa: getTutorialStateForQa,
+      previousTutorialStepForQa: getTutorialStateForQa,
+      resetTutorialProgressForQa: getTutorialStateForQa,
       openPptxCompatibilityForQa: () => showPptxCompatibilitySummary({ operation: "compatibility" }),
       closePptxCompatibilityForQa: closePptxCompatibilitySummary,
       getPptxInterchangeStateForQa,
@@ -4108,6 +4124,7 @@
       searchScientificAssetsForQa,
       getScientificAssetConceptStateForQa,
       getScientificAssetReplacementStateForQa,
+      getScientificAssetPreviewStateForQa: () => scientificAssetPreviewUi?.getState() || { open: false },
       beginScientificAssetReplacementForQa: beginScientificAssetReplacement,
       replaceScientificAssetsWithAssetForQa: replaceScientificAssetsWithAsset,
       getSelectionStateForQa,
@@ -4912,7 +4929,11 @@
     tab.historyDirectSelection = Array.from(historyDirectSelectionState.entries()).map(([key, value]) => [key, cloneDocumentTabValue(value, null)]);
     tab.historyUndoDirectSelection = Array.from(historyUndoDirectSelectionState.entries()).map(([key, value]) => [key, cloneDocumentTabValue(value, null)]);
     tab.selectionIds = selectedTopLevelObjects().map((object) => object.figureId || "").filter(Boolean);
-    tab.directSelection = cloneDocumentTabValue(captureDirectSelectionHistoryState(), null);
+    const directSelection = captureDirectSelectionHistoryState();
+    // A whole-object selection must not be replaced by a previously edited
+    // path when this document is restored after a workspace or tab switch.
+    const selectionMatchesDirect = !tab.selectionIds.length || tab.selectionIds.some((id) => directSelection?.objectIds?.includes(id));
+    tab.directSelection = selectionMatchesDirect ? cloneDocumentTabValue(directSelection, null) : null;
     tab.view = cloneDocumentTabValue(state.view, { zoom: 1, panX: 80, panY: 80 });
     tab.uiContext = cloneDocumentTabValue(state.ui, {});
     tab.notesOpen = Boolean(presentationState.notesOpen);
@@ -5033,7 +5054,15 @@
       close.textContent = "×";
       entry.append(button, close);
       els.documentTabs.appendChild(entry);
-      if (selected) requestAnimationFrame(() => entry.scrollIntoView({ block: "nearest", inline: "nearest" }));
+      if (selected) requestAnimationFrame(() => {
+        if (!entry.isConnected) return;
+        const left = entry.offsetLeft;
+        const right = left + entry.offsetWidth;
+        if (left < els.documentTabs.scrollLeft) els.documentTabs.scrollLeft = left;
+        else if (right > els.documentTabs.scrollLeft + els.documentTabs.clientWidth) {
+          els.documentTabs.scrollLeft = right - els.documentTabs.clientWidth;
+        }
+      });
     });
     updateWindowDocumentState();
     syncDocumentFileSurface();
@@ -6026,6 +6055,22 @@
       scheduleViewportRefit();
     });
     viewportResizeObserver.observe(els.viewport);
+    // Selection can open Style and resize the viewport. Keep scene coordinates
+    // stable from pointer-down onward; only an explicit Fit resumes fitting.
+    els.viewport.addEventListener("pointerdown", (event) => {
+      if (event.button !== 0 || state.tool === "pan") return;
+      canvasAuthoringPointerDown = true;
+      viewFollowsViewport = false;
+      if (viewportRefitFrame) window.cancelAnimationFrame(viewportRefitFrame);
+      viewportRefitFrame = 0;
+    }, true);
+    const endAuthoringPointer = () => {
+      canvasAuthoringPointerDown = false;
+      renderLineGeometryOverlay();
+    };
+    window.addEventListener("pointerup", endAuthoringPointer, true);
+    window.addEventListener("pointercancel", endAuthoringPointer, true);
+    window.addEventListener("blur", endAuthoringPointer);
   }
 
   function markFigureStudioProductReady() {
@@ -7119,6 +7164,7 @@
       backgroundColor: "#ffffff",
       preserveObjectStacking: true,
       selection: true,
+      enablePointerEvents: true,
       stopContextMenu: true
     });
     const requestFullCanvasRender = canvas.requestRenderAll.bind(canvas);
@@ -7173,6 +7219,7 @@
     canvas.upperCanvasEl?.addEventListener("pointerdown", (event) => {
       canvas._figureStudioPointerType = event.pointerType === "touch" ? "touch" : "mouse";
       canvas._figureStudioPointerId = event.pointerId;
+      if (beginSelectedPathBodyDrag(event)) return;
       const active = canvas.getActiveObject?.();
       const viewportPoint = canvas.getViewportPoint(event);
       const control = state.tool === "freeTransform" && isLineVectorObject(active)
@@ -7209,7 +7256,12 @@
         const cached = transformedScenePointCache.get(source);
         if (cached) return fabricPoint(cached.x, cached.y);
       }
-      const layout = currentViewportLayoutMetrics();
+      // Pointer events preserve fractional client coordinates, including below
+      // 100% zoom. Refresh the origin before a new gesture because contextual
+      // controls can move the viewport without changing its measured size.
+      const layout = ["pointerdown", "mousedown"].includes(source?.type)
+        ? refreshViewportLayoutMetrics()
+        : currentViewportLayoutMetrics();
       const zoom = Math.max(0.0001, Number(state.view.zoom) || 1);
       if (!layout.width || !layout.height || !Number.isFinite(Number(source?.clientX)) || !Number.isFinite(Number(source?.clientY))) return null;
       const point = fabricPoint(
@@ -7603,20 +7655,22 @@
     return { paletteId, paletteColorOverrides, customColorOverrides };
   }
 
-  function scientificAssetColorControlsMarkup(object, mode) {
+  function scientificAssetColorControlsMarkup(object, mode, options = {}) {
     const meta = object?.scientificAssetMeta;
     const regions = scientificAssetRegions(meta);
     const controls = window.FigureStudioScientificAssetColorControls;
     if (!meta || !regions.length || !controls) return "";
     const layers = scientificAssetColorLayers(meta);
     return controls.render(meta, {
-      mode, prefix: `asset-colors-${mode}`, locked: Boolean(object.locked || meta.rasterFallback),
+      mode, prefix: `asset-colors-${mode}`, locked: Boolean(object.locked || meta.rasterFallback || !scientificAssetIsCanvasRoot(object)),
       palettes: window.FigureStudioScientificAssetPalettes?.getPalettes() || [], regions,
       overrides: sanitizeScientificAssetColorOverrides(meta.colorOverrides), paletteId: layers.paletteId,
       hasCustomColors: Object.keys(layers.customColorOverrides).length > 0,
       customOverrides: layers.customColorOverrides,
-      disabledReason: object.locked ? "Unlock the asset before changing its colors" : meta.rasterFallback ? "Insert an editable vector copy to change its part colors" : "",
-      heading: mode !== "advanced", resetAll: mode !== "advanced"
+      disabledReason: object.locked ? "Unlock the asset before changing its colors"
+        : !scientificAssetIsCanvasRoot(object) ? "Exit group editing and ungroup the containing group to change this drawing's part colors."
+        : meta.rasterFallback ? "Insert an editable vector copy to change its part colors" : "",
+      heading: mode !== "advanced", resetAll: mode !== "advanced", ...options
     });
   }
 
@@ -7725,7 +7779,14 @@
       fields += `<div class="simple-style-section simple-style-type-actions">${action("toggle-bold", "Bold", { pressed: ["700", "bold"].includes(String(p.fontWeight?.value)), disabled: !p.fontWeight?.supportedCount })}${action("toggle-italic", "Italic", { pressed: p.fontStyle?.value === "italic", disabled: !p.fontStyle?.supportedCount })}</div>`;
       fields += `<div class="simple-style-section simple-style-text-align" role="group" aria-label="Text alignment">${["left", "center", "right"].map((align) => action(`text-align-${align}`, align[0].toUpperCase() + align.slice(1), { pressed: p.textAlign?.value === align, disabled: !p.textAlign?.supportedCount })).join("")}</div>`;
     }
-    if (assetColors) fields += scientificAssetColorControlsMarkup(first, "simple");
+    if (context.single && first?.scientificAssetMeta) {
+      const replacement = scientificAssetReplacementInfo();
+      fields += `<section id="assetSelectionControls" aria-label="Selected scientific drawing"><span id="assetSelectionName">Selected drawing</span><div class="asset-selection-actions"><button type="button" data-asset-selection-action="replace-selected"${replacement.selectedDisabled ? " disabled" : ""}>Replace selected (1)</button><button type="button" data-asset-selection-action="replace-all"${replacement.allDisabled ? " disabled" : ""}>Replace all same (${replacement.allCount})</button></div><p class="asset-selection-note">${escapeHtml(replacement.note)}</p></section>`;
+    }
+    if (assetColors) {
+      const expanded = document.getElementById("assetSelectionColors")?.open !== false;
+      fields += `<details id="assetSelectionColors"${expanded ? " open" : ""}><summary>Part colors (${scientificAssetRegions(first.scientificAssetMeta).length})</summary><p class="asset-selection-note">Changes this selected drawing.</p>${scientificAssetColorControlsMarkup(first, "simple", { mode: "advanced", heading: false, resetAll: true })}</details>`;
+    }
     else {
       fields += color("fill", context.kind === "callout" ? "Background" : text ? "Text color" : "Fill");
       if (context.kind === "callout") fields += color("textFill", "Text color");
@@ -7743,6 +7804,9 @@
     surface.innerHTML = fields;
     bindSelectionContextSurface(surface);
     bindScientificAssetColorControls(surface);
+    surface.querySelectorAll("[data-asset-selection-action]").forEach((button) => {
+      button.addEventListener("click", () => beginScientificAssetReplacement(button.dataset.assetSelectionAction === "replace-all" ? "all-same" : "selected", { preserveFilters: true }));
+    });
     surface.querySelectorAll("[data-simple-order]").forEach((button) => {
       button.addEventListener("click", () => executeMenuCommand(button.dataset.simpleOrder === "forward" ? "bring-forward" : "send-backward"));
     });
@@ -22782,7 +22846,7 @@
         // A clipped-out or unpainted PDF region must not select an unrelated
         // global stroke or Isolation Mode's default first child.
         event.e?.preventDefault?.();
-        if (!path && pathNodeEdit.object) beginPathHandleMarquee(event);
+        if (!path) beginPathHandleMarquee(event);
         return;
       }
       const explicitCandidate = event.target && isDirectSelectionEditableObject(event.target)
@@ -22811,7 +22875,7 @@
         showToast(nearest ? "Direct Selection anchor active" : "Direct Selection nodes active");
         return;
       }
-      if (pathNodeEdit.object) {
+      if (pathNodeEdit.object || !event.target) {
         event.e.preventDefault?.();
         beginPathHandleMarquee(event);
         return;
@@ -23202,6 +23266,8 @@
   }
 
   function createObjectForToolDrag(tool, start, current) {
+    const pickerObject = createLinePickerObject(tool, start, current);
+    if (pickerObject) return pickerObject;
     const dx = Number(current.x || 0) - Number(start.x || 0);
     const dy = Number(current.y || 0) - Number(start.y || 0);
     const left = Math.min(start.x, current.x);
@@ -23387,6 +23453,8 @@
   }
 
   function createObjectForTool(tool, left, top) {
+    const pickerObject = createLinePickerObject(tool, { x: left, y: top }, { x: left + 180, y: top + (linePickerPresetForTool(tool)?.route === "straight" ? 0 : 72) });
+    if (pickerObject) return pickerObject;
     if (tool === "rect") return makeRect(left, top, 160, 96, {}, nextDefaultName("rect"), sourceMeta());
     if (tool === "roundedRect") return makeRect(left, top, 160, 96, { rx: 14, ry: 14 }, "Rounded rectangle", sourceMeta());
     if (tool === "ellipse") return makeEllipse(left, top, 140, 100, {}, nextDefaultName("ellipse"), sourceMeta());
@@ -26851,9 +26919,9 @@
     const selecting = state.tool === "select" || state.tool === "directSelect" || state.tool === "freeTransform" || gradientEditing || patternEditing || widthEditing;
     const targetFinding = selecting || state.tool === "eyedropper" || state.tool === "smartConnector" || state.tool === "scientificCallout" || isAnchorTool();
     canvas.isDrawingMode = drawing;
-    // Direct Selection owns its point marquee. Fabric's object marquee creates
-    // an ActiveSelection whose rectangular body can move the whole collection,
-    // which is the opposite of point editing and leaves DOM anchors behind.
+    // Direct Selection owns its point marquee and selected-path body gestures.
+    // Fabric's rectangular ActiveSelection must not move points merely because
+    // the pointer is in empty space between separate selected paths.
     canvas.selection = !panning && selecting && state.tool !== "directSelect";
     canvas.skipTargetFind = panning || (!drawing && !targetFinding);
     canvas.defaultCursor = panning
@@ -26949,6 +27017,7 @@
 
   function activateTool(tool, options = {}) {
     const nextTool = String(tool || "select");
+    if (!options.linePicker) linePickerPresetId = "";
     if (nextTool === "select" && isGroupIsolationActive() && isolationRootGroup()?.scientificAssetMeta) {
       // Return to the complete library asset when leaving point editing.
       exitGroupIsolation({ toast: false });
@@ -29178,6 +29247,7 @@
     if (els.canvasStage.style.width !== width) els.canvasStage.style.width = width;
     if (els.canvasStage.style.height !== height) els.canvasStage.style.height = height;
     els.canvasStage.style.transform = `translate(${state.view.panX}px, ${state.view.panY}px) scale(${state.view.zoom})`;
+    els.pathNodeOverlay?.style.setProperty("--path-node-inverse-zoom", String(1 / Math.max(0.08, state.view.zoom)));
     els.canvasStage.classList.toggle("grid", state.settings.showGrid);
     els.canvasStage.style.backgroundSize = `${GRID}px ${GRID}px`;
     els.zoomLabel.textContent = `${Math.round(state.view.zoom * 100)}%`;
@@ -30906,7 +30976,7 @@
 
   function normalizeFigureLayoutProfile(value, layout) {
     const fallback = layout === "presentation"
-      ? { rails: createDefaultRailLayout(), palette: { position: "left", visible: true }, sidebarTab: "slides", inspectorTab: "properties" }
+      ? { rails: createDefaultRailLayout(), palette: { position: "left", visible: true }, sidebarTab: "slides", inspectorTab: "properties", presentationPane: "slides" }
       : defaultFigureLayoutProfile(layout);
     if (!value || typeof value !== "object") return fallback;
     const raw = value.rails || fallback.rails;
@@ -30923,7 +30993,8 @@
     return {
       rails, palette,
       sidebarTab: ["slides", "tools"].includes(value.sidebarTab) ? value.sidebarTab : fallback.sidebarTab,
-      inspectorTab: ["properties", "layers", "swatches"].includes(value.inspectorTab) ? value.inspectorTab : "properties"
+      inspectorTab: ["properties", "layers", "swatches"].includes(value.inspectorTab) ? value.inspectorTab : "properties",
+      ...(layout === "presentation" ? { presentationPane: normalizePresentationPane(value.presentationPane, value.sidebarTab) } : {})
     };
   }
 
@@ -30935,7 +31006,8 @@
       }),
       palette: toolPaletteCustomization?.getProfileState?.() || { position: "left", visible: true },
       sidebarTab: document.querySelector('[data-sidebar-tab].active')?.dataset.sidebarTab || "tools",
-      inspectorTab: state.ui.inspectorTab || "properties"
+      inspectorTab: state.ui.inspectorTab || "properties",
+      ...(figureLayoutContext === "presentation" ? { presentationPane: normalizePresentationPane(figureStudioRoot()?.dataset.deckPane) } : {})
     };
   }
 
@@ -30956,7 +31028,7 @@
     toolPaletteCustomization?.applyPreferences?.(profile.palette, { preserveView: true });
     syncChromePanels({ persist: false, updateStage: false });
     // Do not use the Assets action: it focuses search and refits the document.
-    setSidebarTab(profile.sidebarTab);
+    setSidebarTab(profile.sidebarTab, { presentationPane: profile.presentationPane });
     setInspectorTab(profile.inspectorTab);
     if (simpleFigureLayout()) {
       const section = els.assetGrid?.closest?.(".panel-section[data-collapsible='true']");
@@ -31108,16 +31180,10 @@
 
   function showFigureDocumentSetup() {
     if (isPresentationDocument()) return;
-    figureSimpleDocumentSetupOpen = !figureSimpleDocumentSetupOpen;
-    state.ui.rightInspectorVisible = true;
-    setInspectorTab("properties");
     syncDocumentPropertiesState();
-    if (els.documentSetupDisclosure) els.documentSetupDisclosure.open = figureSimpleDocumentSetupOpen;
-    syncFigureLayoutChrome();
-    syncChromePanels({ persist: true, updateStage: true });
-    requestAnimationFrame(() => {
-      if (figureSimpleDocumentSetupOpen) document.getElementById("documentSetupToggle")?.focus({ preventScroll: true });
-    });
+    if (els.documentSetupDisclosure) els.documentSetupDisclosure.open = true;
+    openDocumentReview(document.getElementById("propertiesNoSelectionState"), "Document setup",
+      "Set the page size, units, grid, and guides. Your artwork selection stays in place.");
   }
 
   function setupFigureLayoutPresets() {
@@ -31452,7 +31518,7 @@
       }
       if (restore) restore.hidden = visible;
       const panelName = side === "left"
-        ? (isPresentationDocument() ? "Slide pane" : "Library panel")
+        ? leftRailPanelName()
         : (isPresentationDocument() ? "Slide formatting" : simpleFigureLayout() && !figureSimplePropertiesExpanded ? "Style panel" : "Inspector panel");
       if (resizeHandle) resizeHandle.setAttribute("aria-label", `Resize ${panelName.toLowerCase()}${isPresentationDocument() && railDockEdge(side) === "bottom" ? " height" : ""}`);
       els.workspace.querySelectorAll(`[data-rail-dock-position="${side}"]`).forEach((select) => {
@@ -31460,7 +31526,7 @@
         select.setAttribute("aria-label", `${panelName} position`);
       });
       if (restore) {
-        const restoreLabel = side === "left" && isPresentationDocument() ? "Slides" : (side === "left" ? "Library" : simpleFigureLayout() && !figureSimplePropertiesExpanded ? "Style" : "Inspector");
+        const restoreLabel = side === "left" && isPresentationDocument() ? presentationPaneTitle() : (side === "left" ? "Library" : simpleFigureLayout() && !figureSimplePropertiesExpanded ? "Style" : "Inspector");
         restore.textContent = restoreLabel;
         restore.title = `Show ${panelName}`;
         restore.setAttribute("aria-label", `Show ${panelName}`);
@@ -31810,14 +31876,14 @@
     const edge = isPresentationDocument() ? railDockEdge(side) : side;
     const allowed = edge === "bottom" ? ["ArrowUp", "ArrowDown", "Home"] : ["ArrowLeft", "ArrowRight", "Home"];
     if (!allowed.includes(event.key)) return;
+    event.preventDefault();
+    event.stopPropagation();
     if (event.key === "Home") {
-      event.preventDefault();
       if (edge === "bottom") setDockedRailHeight(side, RAIL_LAYOUT_DEFAULTS[side].height, { updateStage: true });
       else setDockedRailWidth(side, RAIL_LAYOUT_DEFAULTS[side].width, { updateStage: true });
       return;
     }
     const step = event.shiftKey ? 24 : 8;
-    event.preventDefault();
     if (edge === "bottom") {
       setDockedRailHeight(side, railLayout[side].height + (event.key === "ArrowUp" ? step : -step), { updateStage: true });
     } else {
@@ -32405,6 +32471,7 @@
       redoStack = [];
       projectRevision = 0;
       commitHistory("New project", { markDirty: false });
+      syncFigureLayoutDocumentContext(kind);
       setSidebarTab(kind === "presentation" ? "slides" : "tools");
       syncDocumentModeUi();
       showToast(`New ${kind} created`);
@@ -36497,139 +36564,68 @@
     };
   }
 
-  function highlightLearningTarget(target, message = "") {
-    if (!target) return false;
-    target.classList.add("learning-callout-target");
-    target.scrollIntoView?.({ block: "nearest", inline: "nearest", behavior: "smooth" });
-    target.focus?.({ preventScroll: true });
-    window.setTimeout(() => target.classList.remove("learning-callout-target"), 2800);
-    if (message) showToast(message);
-    return true;
-  }
-
-  async function focusLearningCenterTarget(request = {}) {
-    const focus = String(request.focus || request.action?.focus || "").trim();
-    const command = String(request.action?.command || "").trim();
-    if (focus === "workspace.figure" || focus === "workspace.presentation") {
-      const kind = focus.endsWith("presentation") ? "presentation" : "figure";
-      await switchDocumentWorkspace(kind);
-      return highlightLearningTarget(
-        els.documentWorkspaceSwitcher?.querySelector(`[data-document-workspace="${kind}"]`),
-        `${kind === "presentation" ? "Presentation" : "Figure"} workspace is active.`
-      );
-    }
-    if (focus === "new.figure" || focus === "new.presentation" || command === "new-figure" || command === "new-presentation") {
-      openNewDocumentDialog({ kind: focus.endsWith("presentation") || command === "new-presentation" ? "presentation" : "figure" });
-      return true;
-    }
-    if (focus.startsWith("documents.")) {
-      const tab = activeDocumentTab();
-      const target = focus.includes("close")
-        ? els.documentTabs?.querySelector(`[data-close-document-tab="${tab?.id || ""}"]`)
-        : els.documentTabs;
-      return highlightLearningTarget(target, "This workspace keeps each document in its own tab.");
-    }
-    if (focus.startsWith("scenes.") || focus === "assets.scenes") {
-      setRailVisibility("left", true, { fit: false, focus: false });
-      setRailCollapsed("left", false, { toast: false, focus: false });
-      setSidebarTab("tools");
-      selectFigureLibraryView("scenes", { focusSearch: true });
-      return highlightLearningTarget(els.sceneSearchInput, "Search the editable scientific scenes here.");
-    }
-    if (focus.startsWith("assets.")) {
-      setRailVisibility("left", true, { fit: false, focus: false });
-      setRailCollapsed("left", false, { toast: false, focus: false });
-      setSidebarTab("assets");
-      return highlightLearningTarget(els.assetSearchInput, "Search the bundled scientific assets here.");
-    }
-    if (focus.startsWith("layers.")) {
-      setInspectorTab("layers");
-      return highlightLearningTarget(document.querySelector('[data-inspector-tab="layers"]'), "Layers and groups are available here.");
-    }
-    if (focus.startsWith("presentation.")) {
-      await switchDocumentWorkspace("presentation");
-      setSidebarTab("slides");
-      const target = focus.includes("notes") ? els.speakerNotesToggleBtn
-        : focus.includes("layout") || focus.includes("theme") ? els.addSlideBtn
-          : els.slideNavigator || els.addSlideBtn;
-      return highlightLearningTarget(target, "Presentation tools apply to the active deck tab.");
-    }
-    if (focus.startsWith("help.")) return openHelpCenter(focus.slice(5));
-    if (command === "export-as" || focus === "file.export-as") {
-      openExportAsDialog();
-      return true;
-    }
-    if (command === "save" || focus === "file.save") {
-      return highlightLearningTarget(document.getElementById("saveProjectBtn"), "Save applies only to the active tab.");
-    }
-    if (command === "save-as" || focus === "file.save-as") {
-      return highlightLearningTarget(document.getElementById("saveProjectAsBtn"), "Save As chooses a new name and location for this tab.");
-    }
-    if (command === "open-document" || command === "open-presentation" || focus === "file.open-document" || focus === "file.open-presentation") {
-      const kind = command.includes("presentation") || focus.includes("presentation") ? "presentation" : documentWorkspaceState.activeKind;
-      await switchDocumentWorkspace(kind);
-      await openProjectCommand({ expectedKind: kind });
-      return true;
-    }
-    if (command === "open-artwork" || command === "import" || focus === "file.open-artwork" || focus === "file.import") {
-      await switchDocumentWorkspace("figure");
-      els.quickImportBtn?.click();
-      return true;
-    }
-    if (command === "present-from-beginning" || command === "present-from-current") {
-      await switchDocumentWorkspace("presentation");
-      executeCommand(command);
-      return true;
-    }
-    if (command === "figure-check" || focus === "file.figure-check") {
-      focusPreflightSettings();
-      return true;
-    }
-    if (command === "show-layouts") {
-      await switchDocumentWorkspace("presentation");
-      setSidebarTab("slides");
-      return highlightLearningTarget(els.addSlideBtn, "Choose a layout when adding or changing a slide.");
-    }
-    const target = focus.startsWith("arrange.") ? document.querySelector("[data-align]")
-      : focus.startsWith("tools.smart") ? document.querySelector('[data-tool="smartConnector"]')
-        : focus.startsWith("tools.text") ? document.querySelector('[data-tool="text"]')
-          : focus.startsWith("tools.pen") ? document.querySelector('[data-tool="pen"]')
-            : focus.startsWith("tools.direct") || focus.startsWith("paths.") ? document.querySelector('[data-tool="directSelect"]')
-              : focus.startsWith("appearance.") || focus.startsWith("properties.") ? document.querySelector('[data-inspector-tab="properties"]')
-                : focus.startsWith("view.present") ? document.querySelector('[data-command="present-from-beginning"]')
-                  : null;
-    return highlightLearningTarget(target, request.action?.label || "Continue in the highlighted workspace control.");
-  }
-
   function ensureLearningCenter() {
     if (learningCenter) return learningCenter;
     const api = window.FigureStudioLearningCenter;
     if (!api?.create) return null;
     learningCenter = api.create({
       helpUrl: HELP_CONTENT_URL,
-      tutorialUrl: TUTORIAL_CONTENT_URL,
       resourceUrl,
-      getDocumentContext: activeLearningDocumentContext,
-      onFocusTarget: (request) => { void focusLearningCenterTarget(request); },
-      onRequestTutorialTransition: ({ transition }) => {
-        showLongToast(transition?.message || "The current document was kept. Open a new tab before continuing this tutorial.");
-      }
+      getDocumentContext: activeLearningDocumentContext
     });
     learningCenter.bindContextualLearn(figureStudioRoot() || document);
     return learningCenter;
   }
 
   function focusPreflightSettings() {
-    state.ui.rightInspectorVisible = true;
-    syncChromePanels();
-    const panel = document.querySelector(".preflight-panel");
-    panel?.classList.add("is-open");
+    runPreflight();
+    openDocumentReview(els.preflightPanel, `Check ${documentKindLabel().toLowerCase()}`,
+      "Check text size, image resolution, fonts, and artwork outside the page before exporting.");
+  }
+
+  function openDocumentReview(panel, title, description) {
+    if (!panel) return;
+    const previous = document.getElementById("documentReviewDialog");
+    previous?.close();
+    previous?.restoreReviewPanel?.();
+    const returnFocus = document.activeElement;
+    const marker = document.createComment("document-review-panel");
+    panel.before(marker);
+    const dialog = document.createElement("dialog");
+    dialog.id = "documentReviewDialog";
+    dialog.className = "document-review-dialog";
+    dialog.setAttribute("aria-labelledby", "documentReviewTitle");
+    dialog.setAttribute("aria-describedby", "documentReviewDescription");
+    dialog.innerHTML = `<div class="document-review-heading"><h2 id="documentReviewTitle">${escapeHtml(title)}</h2><button type="button" class="document-review-close" aria-label="Close document review">&times;</button></div><p id="documentReviewDescription">${escapeHtml(description)}</p><div class="document-review-body"></div>`;
+    dialog.querySelector(".document-review-body").appendChild(panel);
+    panel.classList.add("is-open");
     setPanelCollapsed(panel, false);
-    panel?.scrollIntoView({ block: "start", behavior: "smooth" });
-    els.preflightMinTextInput?.focus();
+    dialog.querySelector(".document-review-close").addEventListener("click", () => dialog.close());
+    dialog.addEventListener("click", (event) => { if (event.target === dialog) dialog.close(); });
+    dialog.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") { event.preventDefault(); event.stopPropagation(); dialog.close(); }
+    });
+    const restoreReviewPanel = () => {
+      if (!marker.isConnected) return;
+      marker.replaceWith(panel);
+      panel.classList.remove("is-open");
+      dialog.remove();
+      document.getElementById("figureDocumentSetupBtn")?.setAttribute("aria-pressed", "false");
+      if (returnFocus?.isConnected) returnFocus.focus({ preventScroll: true });
+    };
+    dialog.restoreReviewPanel = restoreReviewPanel;
+    dialog.addEventListener("close", restoreReviewPanel, { once: true });
+    figureStudioRoot().appendChild(dialog);
+    document.getElementById("figureDocumentSetupBtn")?.setAttribute("aria-pressed", String(panel.id === "propertiesNoSelectionState"));
+    dialog.showModal();
+    dialog.querySelector(".document-review-close").focus({ preventScroll: true });
   }
 
   function executeHelpCommand(command) {
+    if (command === "help-workspace") {
+      return openHelpCenter(documentWorkspaceState.activeKind === "presentation"
+        ? "presentation-documents" : "figure-documents");
+    }
     return openHelpCenter(HELP_COMMAND_TOPIC_MAP[command] || "getting-started");
   }
 
@@ -36724,7 +36720,7 @@
         <header class="help-center-header">
           <div>
             <strong>Figure Tool Help</strong>
-            <span>Search tutorials, tools, imports, saving, and troubleshooting.</span>
+            <span>Search tools, imports, saving, and troubleshooting.</span>
           </div>
           <button type="button" class="help-center-close" data-help-center-close aria-label="Close Help">Close</button>
         </header>
@@ -36907,7 +36903,7 @@
         open: modern.open,
         view: modern.view,
         articleCount: modern.articleCount,
-        tutorialCount: modern.tutorialCount,
+        tutorialCount: 0,
         activeId: modern.activeArticleId || active?.dataset.fsActiveHelp || "",
         activeTitle: active?.querySelector("h2")?.textContent || "",
         query: modern.query || "",
@@ -36949,259 +36945,31 @@
     };
   }
 
-  function tutorialById(tutorialId = tutorialProgress.tutorialId) {
-    return (tutorialCatalog.tutorials || []).find((tutorial) => tutorial.id === tutorialId) || null;
-  }
-
-  function normalizeTutorialProgress(value = {}) {
-    const tutorial = tutorialById(String(value?.tutorialId || ""));
-    const stepIds = new Set((tutorial?.steps || []).map((step) => step.id));
-    const completedStepIds = Array.from(new Set(Array.isArray(value?.completedStepIds) ? value.completedStepIds : []))
-      .map((id) => String(id || ""))
-      .filter((id) => stepIds.has(id));
-    const requestedActive = String(value?.activeStepId || "");
-    const activeStepId = stepIds.has(requestedActive)
-      ? requestedActive
-      : (tutorial?.steps || []).find((step) => !completedStepIds.includes(step.id))?.id || tutorial?.steps?.[0]?.id || "";
-    return { tutorialId: tutorial?.id || "", completedStepIds, activeStepId };
-  }
-
-  function loadStoredTutorialProgress() {
-    try {
-      tutorialProgress = normalizeTutorialProgress(JSON.parse(window.localStorage.getItem(TUTORIAL_PROGRESS_STORAGE_KEY) || "{}"));
-    } catch {
-      tutorialProgress = normalizeTutorialProgress();
-    }
-    return tutorialProgress;
-  }
-
-  function saveTutorialProgress(status = "Progress saved on this device.") {
-    tutorialProgress = normalizeTutorialProgress(tutorialProgress);
-    try { window.localStorage.setItem(TUTORIAL_PROGRESS_STORAGE_KEY, JSON.stringify(tutorialProgress)); }
-    catch { status = "Progress is available for this session."; }
-    if (els.tutorialSaveStatus) els.tutorialSaveStatus.textContent = status;
-    return tutorialProgress;
-  }
-
-  async function loadTutorialContent() {
-    if (tutorialCatalog.tutorials.length) return tutorialCatalog;
-    if (!tutorialContentLoadPromise) {
-      tutorialContentLoadPromise = fetch(resourceUrl(TUTORIAL_CONTENT_URL), { cache: "no-store" })
-        .then((response) => {
-          if (!response.ok) throw new Error(`Tutorials unavailable (${response.status})`);
-          return response.json();
-        })
-        .then((payload) => {
-          tutorialCatalog = {
-            schema: String(payload?.schema || "figureStudio.tutorialCatalog.v1"),
-            tutorials: (Array.isArray(payload?.tutorials) ? payload.tutorials : []).filter((tutorial) => tutorial?.id && Array.isArray(tutorial.steps) && tutorial.steps.length)
-          };
-          loadStoredTutorialProgress();
-          return tutorialCatalog;
-        });
-    }
-    return tutorialContentLoadPromise;
-  }
-
-  function selectTutorial(tutorialId, options = {}) {
-    const tutorial = tutorialById(tutorialId);
-    if (!tutorial) return null;
-    if (tutorialProgress.tutorialId !== tutorial.id || options.restart === true) {
-      tutorialProgress = { tutorialId: tutorial.id, completedStepIds: [], activeStepId: tutorial.steps[0]?.id || "" };
-      saveTutorialProgress(options.restart ? "Tutorial reset. Your document was not changed." : "Tutorial selected. Progress saved on this device.");
-    }
-    renderTutorialCenter();
-    return tutorial;
-  }
-
-  function activeTutorialStep() {
-    const tutorial = tutorialById();
-    const index = Math.max(0, (tutorial?.steps || []).findIndex((step) => step.id === tutorialProgress.activeStepId));
-    return { tutorial, step: tutorial?.steps?.[index] || null, index };
-  }
-
-  function renderTutorialCenter() {
-    const tutorials = tutorialCatalog.tutorials || [];
-    if (els.tutorialList) {
-      els.tutorialList.innerHTML = tutorials.length
-        ? tutorials.map((tutorial) => {
-          const active = tutorial.id === tutorialProgress.tutorialId;
-          const completed = active ? tutorialProgress.completedStepIds.length : 0;
-          return `<button type="button" data-tutorial-id="${escapeHtml(tutorial.id)}" aria-current="${active ? "true" : "false"}">
-            <strong>${escapeHtml(tutorial.title)}</strong>
-            <span>${escapeHtml(tutorial.summary || "")}</span>
-            <small>${escapeHtml(documentKindLabelForTutorial(tutorial))} · ${completed}/${tutorial.steps.length} steps · ${Number(tutorial.estimated_minutes || 0)} min</small>
-          </button>`;
-        }).join("")
-        : '<div class="help-center-empty">Tutorials could not be loaded.</div>';
-    }
-    const { tutorial, step, index } = activeTutorialStep();
-    const complete = Boolean(tutorial && tutorialProgress.completedStepIds.length >= tutorial.steps.length);
-    if (els.tutorialStepProgress) els.tutorialStepProgress.textContent = tutorial && step
-      ? `${tutorial.id} · Step ${index + 1} of ${tutorial.steps.length}${complete ? " · Complete" : ""}`
-      : "Choose a tutorial";
-    if (els.tutorialStepTitle) els.tutorialStepTitle.textContent = step?.title || "Learn by building";
-    if (els.tutorialStepInstruction) els.tutorialStepInstruction.textContent = step?.instruction || "Choose a guided tutorial from the list.";
-    if (els.tutorialStepWhy) {
-      els.tutorialStepWhy.hidden = !step?.why;
-      els.tutorialStepWhy.textContent = step?.why ? `Why this matters: ${step.why}` : "";
-    }
-    if (els.tutorialOutcome) {
-      els.tutorialOutcome.hidden = !tutorial?.outcome;
-      els.tutorialOutcome.textContent = tutorial?.outcome ? `Outcome: ${tutorial.outcome}` : "";
-    }
-    if (els.previousTutorialStepBtn) els.previousTutorialStepBtn.disabled = !step || index <= 0;
-    if (els.continueTutorialStepBtn) {
-      els.continueTutorialStepBtn.disabled = !step || complete;
-      els.continueTutorialStepBtn.textContent = complete ? "Completed" : (step?.continue_label || "Continue");
-    }
-    if (els.resetTutorialBtn) els.resetTutorialBtn.disabled = !tutorial;
-    if (els.showTutorialTargetBtn) els.showTutorialTargetBtn.disabled = !step;
-  }
-
-  function documentKindLabelForTutorial(tutorial) {
-    return normalizeDocumentKind(tutorial?.mode) === "presentation" ? "Presentation" : "Figure";
-  }
-
-  function continueTutorialStep() {
-    const { tutorial, step, index } = activeTutorialStep();
-    if (!tutorial || !step) return null;
-    tutorialProgress.completedStepIds = Array.from(new Set([...tutorialProgress.completedStepIds, step.id]));
-    tutorialProgress.activeStepId = tutorial.steps[index + 1]?.id || step.id;
-    saveTutorialProgress(index + 1 >= tutorial.steps.length ? "Tutorial complete. Progress saved on this device." : "Step complete. Progress saved on this device.");
-    renderTutorialCenter();
-    return getTutorialStateForQa();
-  }
-
-  function previousTutorialStep() {
-    const { tutorial, index } = activeTutorialStep();
-    if (!tutorial || index <= 0) return null;
-    tutorialProgress.activeStepId = tutorial.steps[index - 1].id;
-    saveTutorialProgress();
-    renderTutorialCenter();
-    return getTutorialStateForQa();
-  }
-
-  function resetTutorialProgress() {
-    const tutorial = tutorialById();
-    if (!tutorial) return null;
-    tutorialProgress = { tutorialId: tutorial.id, completedStepIds: [], activeStepId: tutorial.steps[0]?.id || "" };
-    saveTutorialProgress("Tutorial reset. Your document was not changed.");
-    renderTutorialCenter();
-    return getTutorialStateForQa();
-  }
-
-  function focusTutorialTarget() {
-    const { tutorial, step } = activeTutorialStep();
-    if (!tutorial || !step) return false;
-    const focus = String(step.focus || "");
-    closeTutorialCenter({ restoreFocus: false });
-    if (focus === "new.figure" || focus === "new.presentation") {
-      openNewDocumentDialog({ kind: focus.endsWith("presentation") ? "presentation" : "figure" });
-      return true;
-    }
-    if (focus.startsWith("scenes.") || focus === "assets.scenes") {
-      setRailVisibility("left", true, { fit: false, focus: false });
-      setRailCollapsed("left", false, { toast: false, focus: false });
-      setSidebarTab("tools");
-      selectFigureLibraryView("scenes", { focusSearch: true });
-      return true;
-    }
-    if (focus.startsWith("assets.")) {
-      setRailVisibility("left", true, { fit: false, focus: false });
-      setRailCollapsed("left", false, { toast: false, focus: false });
-      setSidebarTab("assets");
-      els.assetSearchInput?.focus({ preventScroll: true });
-      return true;
-    }
-    if (focus.startsWith("layers.")) {
-      setInspectorTab("layers");
-      document.querySelector('[data-inspector-tab="layers"]')?.focus({ preventScroll: true });
-      return true;
-    }
-    if (focus.startsWith("presentation.")) {
-      setSidebarTab("slides");
-      (focus.includes("notes") ? els.speakerNotesToggleBtn : els.addSlideBtn)?.focus({ preventScroll: true });
-      return true;
-    }
-    const target = focus.startsWith("file.save")
-      ? document.getElementById("saveProjectBtn")
-      : focus === "file.import" ? els.quickImportBtn
-        : focus.startsWith("arrange.") ? document.querySelector("[data-align]")
-          : focus.startsWith("tools.smart") ? document.querySelector('[data-tool="smartConnector"]')
-            : focus.startsWith("tools.text") ? document.querySelector('[data-tool="text"]')
-              : focus.startsWith("properties.") ? document.querySelector('[data-inspector-tab="properties"]')
-                : focus.startsWith("view.present") ? document.querySelector('[data-command="present-from-beginning"]')
-                  : null;
-    target?.focus?.({ preventScroll: true });
-    return Boolean(target);
-  }
-
   async function openTutorialCenter(tutorialId = "") {
-    const modernCenter = ensureLearningCenter();
-    if (modernCenter) {
-      const preferred = tutorialId || (normalizeDocumentKind(state.document?.kind) === "presentation" ? "PRES-01" : "FIG-00");
-      await modernCenter.openTutorial(preferred);
-      return getTutorialStateForQa();
-    }
-    if (!els.tutorialBackdrop) return null;
-    tutorialFocusReturnTarget = document.activeElement;
-    els.tutorialBackdrop.hidden = false;
-    if (els.tutorialSaveStatus) els.tutorialSaveStatus.textContent = "Loading tutorials…";
-    try {
-      await loadTutorialContent();
-      const preferred = tutorialId || tutorialProgress.tutorialId
-        || tutorialCatalog.tutorials.find((tutorial) => normalizeDocumentKind(tutorial.mode) === normalizeDocumentKind(state.document?.kind))?.id
-        || tutorialCatalog.tutorials[0]?.id || "";
-      selectTutorial(preferred);
-      if (els.tutorialSaveStatus) els.tutorialSaveStatus.textContent = "Progress is saved on this device.";
-      requestAnimationFrame(() => els.tutorialList?.querySelector('[aria-current="true"]')?.focus({ preventScroll: true }));
-      return getTutorialStateForQa();
-    } catch (error) {
-      if (els.tutorialSaveStatus) els.tutorialSaveStatus.textContent = error?.message || "Tutorials are unavailable.";
-      renderTutorialCenter();
-      return getTutorialStateForQa();
-    }
+    const defaultTopic = normalizeDocumentKind(state.document?.kind) === "presentation"
+      ? "presentation-documents" : "getting-started";
+    await openHelpCenter(RETIRED_TUTORIAL_HELP_TOPICS[String(tutorialId || "")] || defaultTopic, { query: "" });
+    return getTutorialStateForQa();
   }
 
-  function closeTutorialCenter(options = {}) {
-    if (learningCenter?.getState?.().view === "tutorials" && learningCenter.close({ restoreFocus: options.restoreFocus !== false })) return true;
-    if (!els.tutorialBackdrop || els.tutorialBackdrop.hidden) return false;
-    els.tutorialBackdrop.hidden = true;
-    const target = tutorialFocusReturnTarget;
-    tutorialFocusReturnTarget = null;
-    if (options.restoreFocus !== false && target?.isConnected) target.focus({ preventScroll: true });
+  function closeTutorialCenter() {
+    closeHelpCenter();
     return true;
   }
 
   function getTutorialStateForQa() {
-    if (learningCenter) {
-      const modern = learningCenter.getState();
-      return {
-        schema: "figureStudio.tutorialState.qa.v2",
-        open: modern.open && modern.view === "tutorials",
-        catalogCount: modern.tutorialCount,
-        stepCount: modern.tutorialStepCount,
-        tutorialId: modern.activeTutorialId || "",
-        activeStepId: modern.tutorialStatus?.currentStepId || "",
-        activeStepIndex: modern.tutorialStatus?.currentStepIndex ?? -1,
-        completedStepIds: [...(modern.tutorialStatus?.completedStepIds || [])],
-        documentDirty,
-        progress: modern.tutorialStatus || null
-      };
-    }
-    const { tutorial, step, index } = activeTutorialStep();
     return {
-      schema: "figureStudio.tutorialState.qa.v1",
-      open: Boolean(els.tutorialBackdrop && !els.tutorialBackdrop.hidden),
-      catalogCount: tutorialCatalog.tutorials.length,
-      stepCount: (tutorialCatalog.tutorials || []).reduce((count, item) => count + item.steps.length, 0),
-      tutorialId: tutorial?.id || "",
-      activeStepId: step?.id || "",
-      activeStepIndex: step ? index : -1,
-      completedStepIds: [...tutorialProgress.completedStepIds],
+      schema: "figureStudio.tutorialState.qa.v2",
+      status: "retired",
+      open: false,
+      catalogCount: 0,
+      stepCount: 0,
+      tutorialId: "",
+      activeStepId: "",
+      activeStepIndex: -1,
+      completedStepIds: [],
       documentDirty,
-      progress: { ...tutorialProgress, completedStepIds: [...tutorialProgress.completedStepIds] }
+      progress: null
     };
   }
 
@@ -37385,7 +37153,7 @@
       if (["path-delete-point", "path-split", "path-join"].includes(command)) {
         const topology = pathTopologyActionState(command);
         item.title = topology.enabled
-          ? command === "path-join" ? "Join selected endpoints and keep the top path appearance" : command === "path-split" ? "Cut the path at the selected anchor" : "Delete selected anchors and keep path continuity"
+          ? command === "path-join" ? "Join selected endpoints and keep the top path appearance" : command === "path-split" ? "Cut the path at the selected anchor" : "Delete selected anchors; remove short paths or subpaths"
           : topology.reason;
       }
       if (command === "recent-documents") {
@@ -37522,6 +37290,11 @@
   }
 
   function closeToolFlyouts() {
+    const linePopover = document.getElementById("linePickerPopover");
+    if (linePopover) linePopover.hidden = true;
+    document.querySelectorAll("[data-line-picker-open]").forEach((button) => button.setAttribute("aria-expanded", "false"));
+    linePickerAnchor?.setAttribute("aria-expanded", "false");
+    linePickerAnchor = null;
     els.toolGrid?.querySelectorAll(".tool-flyout.open").forEach((flyout) => {
       flyout.classList.remove("open");
       flyout.querySelector(".tool-primary")?.setAttribute("aria-expanded", "false");
@@ -37531,6 +37304,7 @@
 
   function openToolFlyout(flyout) {
     if (!flyout) return;
+    if (flyout.classList.contains("line-picker-flyout")) return openLinePicker(flyout.querySelector(".tool-primary"));
     closeToolFlyouts();
     flyout.classList.add("open");
     const trigger = flyout.querySelector(".tool-primary");
@@ -37544,7 +37318,7 @@
   }
 
   function hasOpenToolFlyout() {
-    return Boolean(els.toolGrid?.querySelector(".tool-flyout.open"));
+    return Boolean(els.toolGrid?.querySelector(".tool-flyout.open") || linePickerAnchor);
   }
 
   function setSelectionCommandDisabled(command, disabled) {
@@ -37961,8 +37735,8 @@
     const splitState = pathTopologyActionState("split");
     const joinState = pathTopologyActionState("join");
     if (els.deletePathNodeBtn) {
-      els.deletePathNodeBtn.disabled = lineVector || !editing || !deleteState.enabled;
-      els.deletePathNodeBtn.title = deleteState.enabled ? "Delete selected anchors and keep each path connected" : deleteState.reason;
+      els.deletePathNodeBtn.disabled = !editing || !deleteState.enabled;
+      els.deletePathNodeBtn.title = deleteState.enabled ? "Delete selected anchors; remove a path contour if too few anchors remain" : deleteState.reason;
     }
     if (els.splitPathNodeBtn) {
       els.splitPathNodeBtn.disabled = lineVector || !editing || !splitState.enabled;
@@ -38078,6 +37852,8 @@
       stopPathNodeEdit({ sync: false });
     }
     if (object && isPathNodeEditing(object)) {
+      renderPathNodeOverlay();
+    } else if (pathNodeEdit.marquee) {
       renderPathNodeOverlay();
     } else {
       clearPathNodeOverlay();
@@ -40103,6 +39879,10 @@
     const object = pathNodeEdit.object;
     if (!els.pathNodeOverlay || !object || !isEditablePathObject(object)) {
       clearPathNodeOverlay();
+      if (els.pathNodeOverlay && pathNodeEdit.marquee) {
+        renderPathHandleMarqueeBox();
+        els.pathNodeOverlay.hidden = false;
+      }
       return;
     }
     const editableObjects = pathNodeEditObjects();
@@ -40269,7 +40049,7 @@
   }
 
   function beginPathHandleMarquee(event) {
-    if (!pathNodeEdit.object || !isEditablePathObject(pathNodeEdit.object)) return false;
+    if (state.tool !== "directSelect" || !canvas) return false;
     resetPaintedVectorDirectSelectionCycle();
     event.e?.preventDefault?.();
     ensureDirectSelectionCanvasCollection();
@@ -40293,6 +40073,14 @@
   function ensureDirectSelectionCanvasCollection() {
     const objects = pathNodeEditObjects();
     if (!canvas || !objects.length) return null;
+    const isolationGroup = isGroupIsolationActive() ? activeIsolationGroup() : null;
+    if (isolationGroup && objects.every((object) => objectIsWithinGroup(object, isolationGroup))) {
+      // Isolation tracks a selection without Fabric reparenting the children
+      // into an ActiveSelection. Point selection must preserve that ownership.
+      selectIsolatedObjects(objects, { sync: false, revealInLayers: false });
+      syncLineVectorSelectionChrome();
+      return canvas.getActiveObject?.() || null;
+    }
     const active = canvas.getActiveObject?.();
     const activeObjects = isActiveSelectionObject(active) ? active.getObjects() : active ? [active] : [];
     const matches = activeObjects.length === objects.length && objects.every((object) => activeObjects.includes(object));
@@ -40312,7 +40100,7 @@
   }
 
   function updatePathHandleMarquee(event) {
-    if (!pathNodeEdit.marquee || !pathNodeEdit.object) return false;
+    if (!pathNodeEdit.marquee) return false;
     if (
       event?.pointerId != null
       && pathNodeEdit.marquee.pointerId != null
@@ -40327,8 +40115,7 @@
 
   function finishPathHandleMarquee(event) {
     const marquee = pathNodeEdit.marquee;
-    const object = pathNodeEdit.object;
-    if (!marquee || !object) return false;
+    if (!marquee) return false;
     if (
       event?.pointerId != null
       && marquee.pointerId != null
@@ -40336,21 +40123,35 @@
     ) return false;
     event?.preventDefault?.();
     const box = normalizedPointRect(marquee.start, marquee.current);
-    const handles = pathNodeEditObjects().flatMap((item) => (
-      pathHandleDescriptors(item).filter((descriptor) => {
-        const point = pathHandleCanvasPoint(item, descriptor);
-        return point.x >= box.left && point.x <= box.right && point.y >= box.top && point.y <= box.bottom;
-      }).map((descriptor) => qualifyPathHandle(item, descriptor))
+    const previousObjects = pathNodeEditObjects();
+    const existing = marquee.additive ? selectedPathHandleRefs().slice() : [];
+    const hits = directSelectionMarqueeHits(box);
+    // Discover first, then convert only primitives whose handles were enclosed.
+    // In particular this never releases or materializes a dense source page.
+    const convertsPrimitive = hits.some((hit) => isPrimitiveShapeDirectSelectable(hit.object));
+    if (convertsPrimitive && isActiveSelectionObject(canvas.getActiveObject())) canvas.discardActiveObject();
+    const hitObjects = hits.map((hit) => ensureDirectSelectionPathObject(hit.object, { history: false, select: false }));
+    const handles = hits.flatMap((hit, index) => (
+      pathHandleDescriptors(hitObjects[index])
+        .filter((descriptor) => hit.handles.some((handle) => (
+          handle.commandIndex === descriptor.commandIndex && handle.handleType === descriptor.handleType
+        )))
+        .map((descriptor) => qualifyPathHandle(hitObjects[index], descriptor))
     ));
     if (handles.length) {
-      const existing = marquee.additive ? (pathNodeEdit.selectedHandles || []) : [];
+      const editObjects = uniqueObjects([...(marquee.additive ? previousObjects : []), ...hitObjects]);
+      startPathNodeEdit(editObjects[0], { toast: false });
+      pathNodeEdit.objects = editObjects;
+      editObjects.forEach((item) => item.set({ hasControls: false, hasBorders: false }));
       const merged = [...existing];
       handles.forEach((handle) => {
         if (!merged.some((item) => samePathHandle(item, handle))) merged.push(handle);
       });
       pathNodeEdit.selectedHandles = merged;
       pathNodeEdit.selected = handles.at(-1) || merged.at(-1) || null;
-      showToast(`${handles.length} handle${handles.length === 1 ? "" : "s"} selected`);
+      pathNodeEdit.selectedSegment = null;
+      ensureDirectSelectionCanvasCollection();
+      showToast(`${merged.length} handle${merged.length === 1 ? "" : "s"} selected`);
     } else if (!marquee.additive) {
       pathNodeEdit.selectedHandles = [];
       pathNodeEdit.selected = null;
@@ -40363,9 +40164,32 @@
     pathNodeEdit.marquee = null;
     resetPaintedVectorDirectSelectionCycle();
     renderPathNodeOverlay();
-    updatePathNodeStatus(object);
+    updatePathNodeStatus(pathNodeEdit.object);
     syncInspector();
+    if (convertsPrimitive) commitHistory("Shapes converted to editable paths");
     return true;
+  }
+
+  function directSelectionMarqueeHits(box) {
+    const roots = isGroupIsolationActive() ? groupChildren(activeIsolationGroup()) : canvas.getObjects();
+    // Keep group boundaries and existing source-protection rules. The current
+    // path collection also includes deliberately exposed clipping paths.
+    return uniqueObjects([...roots, ...pathNodeEditObjects()])
+      .filter((object) => isDirectSelectionEditableObject(object) && object.visible !== false && Number(object.opacity) !== 0)
+      .map((object) => {
+        const primitive = isPrimitiveShapeDirectSelectable(object);
+        const preview = primitive ? new fabricRef.Path(primitiveShapePathData(object)) : object;
+        const handles = pathHandleDescriptors(preview).filter((descriptor) => {
+          const point = primitive
+            ? fabricRef.util.transformPoint(fabricPoint(
+              Number(descriptor.command[descriptor.xIndex]) - preview.pathOffset.x,
+              Number(descriptor.command[descriptor.yIndex]) - preview.pathOffset.y
+            ), pathObjectSceneMatrix(object))
+            : pathHandleCanvasPoint(object, descriptor);
+          return point.x >= box.left && point.x <= box.right && point.y >= box.top && point.y <= box.bottom;
+        });
+        return { object, handles };
+      }).filter((hit) => hit.handles.length);
   }
 
   function normalizedPointRect(a, b) {
@@ -40625,7 +40449,76 @@
     els.pathNodeOverlay.appendChild(line);
   }
 
-  function beginPathNodeDrag(event, commandIndex, handleType, object = pathNodeEdit.object) {
+  function beginSelectedPathBodyDrag(event) {
+    if (state.tool !== "directSelect" || event.button !== 0 || event.isPrimary === false
+        || event.altKey || pathNodeEdit.dragging || pathNodeEdit.segmentDrag || pathNodeEdit.marquee) return false;
+    const selected = selectedPathHandleRefs();
+    if (!selected.length) return false;
+    const point = canvasPointFromClient(event);
+    const found = canvas.findTarget?.(event);
+    const front = isGroupIsolationActive()
+      ? isolationRootGroup()?.scientificAssetMeta
+        ? scientificAssetEditablePathAtPoint(activeIsolationGroup(), point, event.pointerType === "touch" ? "touch" : "mouse")
+        : isolationChildAtScenePoint(activeIsolationGroup(), point)
+      : found?.target || found;
+    const object = pathNodeEditObjects().slice().reverse().find((item) => (
+      isDirectSelectionEditableObject(item)
+      && (front === item || objectIsWithinGroup(item, front))
+      && selected.some((handle) => handle.objectId === pathEditObjectId(item))
+      && vectorPaintedHitTest(item, point, event.pointerType === "touch" ? "touch" : "mouse")
+    ));
+    if (!object) return false;
+    const primary = selected.find((handle) => handle.objectId === pathEditObjectId(object) && handle.handleType === "endpoint")
+      || selected.find((handle) => handle.objectId === pathEditObjectId(object));
+    if (!primary) return false;
+    // Own the gesture before Fabric discards the multi-path point selection or
+    // starts moving only the hit object. Empty collective bounds never qualify.
+    cancelSelectionUiSync();
+    event.stopImmediatePropagation();
+    beginPathNodeDrag(event, primary.commandIndex, primary.handleType, object, { body: true });
+    return true;
+  }
+
+  function pathBodyDragTranslations(selected) {
+    return pathNodeEditObjects().filter((object) => !isLineVectorObject(object)).flatMap((object) => {
+      const selectedForObject = selected.filter((handle) => handle.objectId === pathEditObjectId(object));
+      if (!selectedForObject.length) return [];
+      const endpoints = pathNodeDescriptors(object);
+      const wholePath = endpoints.length > 0 && endpoints.every((endpoint) => selectedForObject.some((handle) => (
+        samePathHandle(qualifyPathHandle(object, endpoint), handle)
+      )));
+      const descriptors = pathHandleDescriptors(object);
+      const operands = [];
+      const add = (commandIndex, xIndex, yIndex) => {
+        if (!operands.some((entry) => entry.commandIndex === commandIndex && entry.xIndex === xIndex)) {
+          operands.push({ commandIndex, xIndex, yIndex });
+        }
+      };
+      if (!wholePath) descriptors.forEach((descriptor) => {
+        const anchor = descriptor.handleType === "endpoint" ? descriptor : controlNodeDescriptor(object, descriptor);
+        const selectedDirectly = selectedForObject.some((handle) => samePathHandle(qualifyPathHandle(object, descriptor), handle));
+        const selectedAnchor = anchor && selectedForObject.some((handle) => samePathHandle(qualifyPathHandle(object, anchor), handle));
+        if (!selectedDirectly && !selectedAnchor) return;
+        add(descriptor.commandIndex, descriptor.xIndex, descriptor.yIndex);
+        if (descriptor.handleType === "endpoint" && descriptor.isContourStart) {
+          const seam = pathContourForCommand(object.path, descriptor.commandIndex)?.explicitCommandIndex;
+          const indices = seam >= 0 ? pathEndpointIndices(object.path[seam]) : null;
+          if (indices) add(seam, indices[0], indices[1]);
+        }
+      });
+      // Enclosing every anchor selects the complete path. Preserve hidden
+      // tangents and the duplicate endpoint that may close an SVG contour.
+      return [{
+        objectId: pathEditObjectId(object),
+        wholePath,
+        operands,
+        path: copyPathCommands(object.path),
+        inverseSceneMatrix: fabricRef.util.invertTransform(pathObjectSceneMatrix(object))
+      }];
+    });
+  }
+
+  function beginPathNodeDrag(event, commandIndex, handleType, object = pathNodeEdit.object, options = {}) {
     if (!object) return;
     resetPaintedVectorDirectSelectionCycle();
     event.preventDefault();
@@ -40653,11 +40546,12 @@
       && handleType === "endpoint"
       && !currentHandleSelected
       && (!lineEndpoint || crossObjectSelection);
-    selectPathHandle(object, commandIndex, handleType, {
+    if (!options.body) selectPathHandle(object, commandIndex, handleType, {
       additive: modifierAddsHandle,
       preserveExisting: true
     });
-    const startPoint = pathHandleCanvasPoint(object, selectedPathHandleDescriptor(object));
+    const startPoint = options.body ? canvasPointFromClient(event)
+      : pathHandleCanvasPoint(object, selectedPathHandleDescriptor(object));
     const selectedHandleStarts = selectedPathHandleRefs().map((descriptor) => {
       const handleObject = objectForPathHandleRef(descriptor);
       const handleDescriptor = handleObject
@@ -40691,6 +40585,8 @@
       objectId: pathEditObjectId(object),
       commandIndex,
       handleType,
+      body: options.body === true,
+      bodyTranslations: options.body ? pathBodyDragTranslations(existingHandles) : [],
       dirty: false,
       startPoint,
       lastPoint: startPoint,
@@ -40703,8 +40599,10 @@
       currentHandleSelected,
       selectionModifier
     };
-    event.currentTarget.classList.add("dragging");
-    event.currentTarget.classList.add("selected");
+    if (!options.body) {
+      event.currentTarget.classList.add("dragging");
+      event.currentTarget.classList.add("selected");
+    }
   }
 
   function cancelPathNodeDrag(event = null) {
@@ -40769,7 +40667,7 @@
     const descriptor = pathHandleDescriptors(object).find((item) => samePathHandle(item, dragging));
     if (!descriptor) return;
     let point = snapWorkspacePoint(canvasPointFromClient(event), { grid: false, excludeObjects: pathNodeEditObjects(), bypass: snappingBypassed(event) });
-    if (event.shiftKey && isLineVectorObject(object) && descriptor.lineEndpointRole) {
+    if (!dragging.body && event.shiftKey && isLineVectorObject(object) && descriptor.lineEndpointRole) {
       const oppositeRole = descriptor.lineEndpointRole === "start" ? "end" : "start";
       const oppositeDescriptor = lineVectorEndpointDescriptors(object)
         .find((item) => item.lineEndpointRole === oppositeRole);
@@ -40785,7 +40683,7 @@
           y: opposite.y + Math.sin(angle) * length
         };
       }
-    } else if (event.shiftKey && descriptor.handleType !== "endpoint") {
+    } else if (!dragging.body && event.shiftKey && descriptor.handleType !== "endpoint") {
       const anchorDescriptor = controlNodeDescriptor(object, descriptor);
       if (anchorDescriptor) {
         const anchor = pathHandleCanvasPoint(object, anchorDescriptor);
@@ -40800,19 +40698,39 @@
     const startPoint = dragging.startPoint || pathHandleCanvasPoint(object, descriptor);
     const dx = point.x - startPoint.x;
     const dy = point.y - startPoint.y;
+    if (dragging.body && !dragging.dirty && Math.hypot(dx, dy) * Math.max(0.08, state.view.zoom) < 3) return;
     const handles = Array.isArray(dragging.handles) && dragging.handles.length ? dragging.handles : [dragging];
     const previewMetricStartedAt = handles.every((handle) => isOrdinaryVectorEnginePathPreviewCandidate(objectForPathHandleRef(handle)))
       ? vectorEngineMetricNow()
       : null;
+    const translatedObjects = new Set();
+    (dragging.bodyTranslations || []).forEach((entry) => {
+      const translated = objectForPathHandleRef(entry);
+      if (!translated) return;
+      const inverse = entry.inverseSceneMatrix;
+      const localDx = inverse[0] * dx + inverse[2] * dy;
+      const localDy = inverse[1] * dx + inverse[3] * dy;
+      translated.path = entry.wholePath
+        ? fabricRef.util.transformPath(copyPathCommands(entry.path), [1, 0, 0, 1, localDx, localDy])
+        : copyPathCommands(entry.path);
+      if (!entry.wholePath) entry.operands.forEach(({ commandIndex, xIndex, yIndex }) => {
+        translated.path[commandIndex][xIndex] += localDx;
+        translated.path[commandIndex][yIndex] += localDy;
+      });
+      translated.set?.({ path: translated.path });
+      translated.dirty = true;
+      translated.setCoords?.();
+      translatedObjects.add(translated);
+    });
     handles.forEach((handleRef) => {
       const handleObject = objectForPathHandleRef(handleRef);
-      if (!handleObject) return;
+      if (!handleObject || translatedObjects.has(handleObject)) return;
       const handleDescriptor = pathHandleDescriptors(handleObject).find((item) => samePathHandle(qualifyPathHandle(handleObject, item), handleRef));
       if (!handleDescriptor) return;
       const origin = handleRef.point || pathHandleCanvasPoint(handleObject, handleDescriptor);
       setPathHandleCanvasPoint(handleObject, handleDescriptor, { x: origin.x + dx, y: origin.y + dy });
     });
-    if (descriptor.handleType !== "endpoint") {
+    if (!dragging.body && descriptor.handleType !== "endpoint") {
       const nodeDescriptor = controlNodeDescriptor(object, descriptor);
       const initialType = BEZIER_NODE_TYPES.has(dragging.initialNodeType) ? dragging.initialNodeType : "corner";
       const requestedType = event.altKey ? (initialType === "corner" ? "symmetric" : "corner") : initialType;
@@ -40892,13 +40810,17 @@
         entries.push(handle);
         touchedObjects.set(handleObject, entries);
       });
-      const historyLabel = (dragging.handles?.length || 1) > 1
+      const historyLabel = dragging.body ? "Selected points moved" : (dragging.handles?.length || 1) > 1
         ? "Path handles edited"
         : dragging.handleType === "endpoint" ? "Path node edited" : "Path control edited";
       const routed = tryRouteOrdinaryPathOperandEdit(dragging.pathSnapshots, touchedObjects, { historyLabel });
       if (!routed) {
         touchedObjects.forEach((handles, touchedObject) => {
-          if (pdfSourceIdForObject(touchedObject)) setPathCommandsWithSceneStableFrame(touchedObject, touchedObject.path || []);
+          // Fabric reconstructs a path's dimensions and offset on history
+          // reload. Settle the same frame now so Redo retains every scene point.
+          if (pdfSourceIdForObject(touchedObject) || !isLineVectorObject(touchedObject)) {
+            setPathCommandsWithSceneStableFrame(touchedObject, touchedObject.path || []);
+          }
           touchedObject.setCoords();
           const endpointsOnly = handles.every((handle) => handle.handleType === "endpoint");
           recordPathGeometryEdit(touchedObject, endpointsOnly ? "path_anchor_edit" : "path_control_handle_edit", touchedObject.path || [], {
@@ -40915,7 +40837,9 @@
         syncInspector();
         commitHistory(historyLabel, pdfIncrementalHistoryOptions([...touchedObjects.keys()]));
       }
-      if ((dragging.handles?.length || 1) > 1) {
+      if (dragging.body) {
+        showToast("Selection moved");
+      } else if ((dragging.handles?.length || 1) > 1) {
         showToast(`${dragging.handles.length} selected anchors moved`);
       }
     } else {
@@ -40925,10 +40849,10 @@
         handleType: dragging.handleType
       };
       const prior = Array.isArray(dragging.selectionBefore) ? dragging.selectionBefore : [];
-      if (dragging.selectionModifier && dragging.currentHandleSelected && prior.length > 1) {
+      if (!dragging.body && dragging.selectionModifier && dragging.currentHandleSelected && prior.length > 1) {
         pathNodeEdit.selectedHandles = prior.filter((handle) => !samePathHandle(handle, activeHandle));
         pathNodeEdit.selected = pathNodeEdit.selectedHandles.at(-1) || null;
-      } else if (!dragging.selectionModifier && dragging.currentHandleSelected && prior.length > 1) {
+      } else if (!dragging.body && !dragging.selectionModifier && dragging.currentHandleSelected && prior.length > 1) {
         const resolved = selectedPathHandleRefs().find((handle) => samePathHandle(handle, activeHandle)) || activeHandle;
         pathNodeEdit.selectedHandles = [resolved];
         pathNodeEdit.selected = resolved;
@@ -43372,7 +43296,7 @@
     if (selected.some((item) => item.descriptor.handleType !== "endpoint")) {
       return topologyActionResult(false, "Delete Anchors works with anchor points, not curve handles.");
     }
-    if (selected.some((item) => !isTopologyEditablePath(item.object))) {
+    if (selected.some((item) => !isTopologyEditablePath(item.object) && !canDeleteAuthoredLineEndpoints(item.object))) {
       return topologyActionResult(false, "Release, override, or unlock this artwork before changing its anchors.");
     }
     const byContour = new Map();
@@ -43382,19 +43306,22 @@
       byContour.get(key).nodeIds.add(item.nodeId || `${item.descriptor.commandIndex}`);
     });
     for (const entry of byContour.values()) {
+      if (canDeleteAuthoredLineEndpoints(entry.object)) continue;
       const contour = pathContourRecords(entry.object)[entry.descriptor.contourIndex];
       const nodes = pathNodeDescriptors(entry.object).filter((item) => item.contourIndex === entry.descriptor.contourIndex);
       if (!contour || !pathTopologyCommandsSupported(entry.object, contour.commands)) {
         return topologyActionResult(false, "This path uses curve commands that cannot be changed safely.");
       }
-      const minimum = entry.descriptor.contourClosed ? 3 : 2;
-      if (nodes.length - entry.nodeIds.size < minimum) {
-        return topologyActionResult(false, entry.descriptor.contourClosed
-          ? "Keep at least three anchors in a closed path."
-          : "Keep at least two anchors in an open path.");
-      }
+      // Deleting below the drawable minimum removes that contour, rather
+      // than leaving a degenerate path or blocking deletion of an asset part.
+      if (!nodes.length) return topologyActionResult(false, "This path has no editable anchors.");
     }
     return topologyActionResult(true);
+  }
+
+  function canDeleteAuthoredLineEndpoints(object) {
+    return Boolean(isLineVectorObject(object) && canUseBezierNodeEditing(object)
+      && !isSmartConnectorObject(object) && !object.figureStudioAnnotationMeta && !object.scientificCalloutMeta);
   }
 
   function pathTopologySplitState() {
@@ -43912,9 +43839,17 @@
     };
   }
 
-  function setSidebarTab(tabName) {
+  function setSidebarTab(tabName, options = {}) {
     const requested = ["slides", "tools", "assets"].includes(tabName) ? tabName : "slides";
-    const target = requested === "assets" ? "tools" : requested;
+    let target = requested === "assets" ? "tools" : requested;
+    if (isPresentationDocument()) {
+      const pane = normalizePresentationPane(options.presentationPane, target);
+      target = pane === 'assets' ? 'tools' : 'slides';
+      state.ui.presentationPane = pane;
+      const root = figureStudioRoot();
+      root.dataset.deckPane = pane;
+      root.querySelector('[data-deck-command="design"]')?.setAttribute('aria-pressed', String(pane === 'design'));
+    }
     document.querySelectorAll("[data-sidebar-tab]").forEach((button) => {
       button.classList.toggle("active", button.dataset.sidebarTab === target);
     });
@@ -43922,6 +43857,13 @@
       panel.classList.toggle("active", panel.dataset.sidebarPanel === target);
     });
     if (target === "slides") renderDeckNavigator();
+    if (isPresentationDocument()) {
+      const root = figureStudioRoot();
+      root.querySelector('.left-panel').setAttribute('aria-label', leftRailPanelName());
+      const railTitle = root.querySelector('.left-panel .rail-window-bar strong');
+      if (railTitle) railTitle.textContent = presentationPaneTitle();
+      syncChromePanels({ persist: false, updateStage: false });
+    }
     saveFigureLayoutPreferences();
     if (requested === "assets") {
       selectFigureLibraryView("assets", { focusSearch: true });
@@ -44031,6 +43973,7 @@
   }
 
   function setupToolFlyouts() {
+    renderLinePicker();
     els.toolGrid?.querySelectorAll(".tool-flyout").forEach((flyout, index) => {
       const trigger = flyout.querySelector(".tool-primary");
       const menu = flyout.querySelector(".tool-popover");
@@ -44226,13 +44169,31 @@
 
   function scientificAssetVariantAxis(variants) {
     const assets = Array.isArray(variants) ? variants : [variants];
-    return assets.some((asset) => String(asset?.variant_axis || asset?.variantAxis || "").trim().toLowerCase() === "form")
+    return scientificAssetFormGroups(assets).length > 1 || assets.some((asset) => String(asset?.variant_axis || asset?.variantAxis || "").trim().toLowerCase() === "form")
       ? "form"
       : "style";
   }
 
+  function scientificAssetFormGroups(variants) {
+    const api = window.FigureStudioScientificAssetCatalog;
+    return api?.deriveFormGroups ? api.deriveFormGroups(variants) : [{ formId: "default", label: "Original drawing", variants, primary: variants?.[0] }];
+  }
+
+  function scientificAssetDrawingLabel(asset) {
+    return window.FigureStudioScientificAssetCatalog?.scientificAssetFormLabel(asset) || scientificAssetVariantLabel(asset);
+  }
+
+  function scientificAssetChoiceLabel(asset, variants) {
+    const forms = scientificAssetFormGroups(variants);
+    if (forms.length < 2) return scientificAssetVariantLabel(asset);
+    const form = forms.find((entry) => entry.variants.some((variant) => variant.id === asset.id));
+    return form?.variants.length > 1
+      ? `${form.label} · ${scientificAssetVariantShortLabel(asset)}`
+      : form?.label || scientificAssetDrawingLabel(asset);
+  }
+
   function scientificAssetVariantAxisLabel(variants) {
-    return scientificAssetVariantAxis(variants) === "form" ? "Form" : "Style";
+    return scientificAssetVariantAxis(variants) === "form" ? "Drawing" : "Line weight";
   }
 
   function scientificAssetConceptVariants(conceptId) {
@@ -44243,10 +44204,12 @@
   function selectedScientificAssetVariantForGroup(group) {
     const variants = Array.isArray(group?.variants) ? group.variants : [];
     const preferredId = state.assets.variantByConcept?.[group?.conceptId] || "";
-    const preferred = variants.find((asset) => asset.id === preferredId);
-    if (preferred) return preferred;
+    const catalogApi = window.FigureStudioScientificAssetCatalog;
+    if (catalogApi?.selectConceptVariant) return catalogApi.selectConceptVariant(group, state.assets.search, preferredId);
     const matched = Array.isArray(group?.matchedVariants) ? group.matchedVariants : [];
     if (String(state.assets.search || "").trim() && matched.length === 1) return matched[0];
+    const preferred = variants.find((asset) => asset.id === preferredId);
+    if (preferred) return preferred;
     return variants.find((asset) => asset.style_variant === "soft-line") || matched[0] || variants[0] || null;
   }
 
@@ -44323,6 +44286,7 @@
     if (els.assetPaletteSelect) els.assetPaletteSelect.value = scientificAssetPalette();
     if (els.myAssetsBackdrop && !els.myAssetsBackdrop.hidden) renderMyAssetsDialogList();
     renderScientificAssetReplacementBanner();
+    renderScientificAssetRelatedSearches("assets");
     if (!scientificAssetPack) {
       cancelScientificAssetPrewarm();
       els.assetPanelStatus.textContent = scientificAssetLoadError || "No asset pack loaded.";
@@ -44493,6 +44457,26 @@
     const conceptId = group.conceptId || scientificAssetConceptId(asset);
     const conceptName = group.primary?.name || asset.name;
     const favoriteToggle = renderScientificAssetFavoriteToggle(conceptId, conceptName);
+    const forms = scientificAssetFormGroups(variants);
+    if (forms.length > 1) {
+      const matchedIds = new Set((group.matchedVariants || []).map((variant) => variant.id));
+      const searching = Boolean(String(state.assets.search || "").trim());
+      const visibleForms = searching ? forms.filter((form) => form.variants.some((variant) => matchedIds.has(variant.id))) : forms;
+      return `
+        <div class="asset-concept-card asset-form-concept" data-asset-concept-card="${escapeHtml(conceptId)}">
+          <div class="asset-concept-heading">${escapeHtml(conceptName)}</div>
+          ${favoriteToggle}
+          <div class="asset-form-grid" role="group" aria-label="Drawings for ${escapeHtml(conceptName)}">${visibleForms.map((form) => {
+            const matchedVariants = form.variants.filter((variant) => matchedIds.has(variant.id));
+            const drawing = selectedScientificAssetVariantForGroup({ conceptId, variants: form.variants, matchedVariants });
+            return `<div class="asset-form-choice" data-asset-form-id="${escapeHtml(form.formId)}">
+              ${renderScientificAssetCard(drawing, { displayName: form.label, conceptId, drawingLabel: form.label })}
+              ${renderScientificAssetCompanionPicker(form.variants, drawing, conceptId, `${conceptName} · ${form.label}`)}
+            </div>`;
+          }).join("")}</div>
+        </div>
+      `;
+    }
     if (variants.length < 2) {
       return `
         <div class="asset-card-shell" data-asset-concept-card="${escapeHtml(conceptId)}">
@@ -44501,25 +44485,28 @@
         </div>
       `;
     }
-    const variantAxis = scientificAssetVariantAxis(variants);
-    const variantAxisLabel = scientificAssetVariantAxisLabel(variants);
+    return `
+      <div class="asset-concept-card" data-asset-concept-card="${escapeHtml(group.conceptId)}">
+        ${renderScientificAssetCard(asset, { displayName: conceptName, conceptId: group.conceptId })}
+        ${favoriteToggle}
+        ${renderScientificAssetCompanionPicker(variants, asset, conceptId, conceptName)}
+      </div>
+    `;
+  }
+
+  function renderScientificAssetCompanionPicker(variants, asset, conceptId, conceptName) {
+    if (variants.length < 2) return "";
     const choices = variants.map((variant) => {
       const active = variant.id === asset.id;
       const label = scientificAssetVariantLabel(variant);
       const shortLabel = scientificAssetVariantShortLabel(variant);
       return `
-        <button type="button" data-asset-concept-id="${escapeHtml(group.conceptId)}" data-asset-variant-id="${escapeHtml(variant.id)}" aria-pressed="${active ? "true" : "false"}" title="Use ${escapeHtml(label)} ${escapeHtml(variantAxis)} for ${escapeHtml(conceptName)}">
+        <button type="button" data-asset-concept-id="${escapeHtml(conceptId)}" data-asset-variant-id="${escapeHtml(variant.id)}" aria-pressed="${active ? "true" : "false"}" title="Use ${escapeHtml(label)} for ${escapeHtml(conceptName)}">
           ${escapeHtml(shortLabel)}
         </button>
       `;
     }).join("");
-    return `
-      <div class="asset-concept-card" data-asset-concept-card="${escapeHtml(group.conceptId)}">
-        ${renderScientificAssetCard(asset, { displayName: conceptName, conceptId: group.conceptId })}
-        ${favoriteToggle}
-        <div class="asset-style-picker" role="group" data-variant-axis="${escapeHtml(variantAxis)}" aria-label="${escapeHtml(variantAxisLabel)} for ${escapeHtml(conceptName)}">${choices}</div>
-      </div>
-    `;
+    return `<div class="asset-style-picker" role="group" data-variant-axis="style" aria-label="Line weight for ${escapeHtml(conceptName)}">${choices}</div>`;
   }
 
   function renderScientificAssetFavoriteToggle(conceptId, conceptName) {
@@ -44538,14 +44525,123 @@
     const displayName = options.displayName || asset.name;
     const styleLabel = asset.style_variant ? ` · ${scientificAssetVariantLabel(asset)}` : "";
     return `
-      <button type="button" class="asset-card" data-asset-id="${escapeHtml(asset.id)}"${options.conceptId ? ` data-asset-concept-id="${escapeHtml(options.conceptId)}"` : ""} data-replace-current="${current ? "true" : "false"}" title="${action} ${escapeHtml(displayName)}${escapeHtml(styleLabel)} · ${escapeHtml(compactStatus(asset.category))}${regionCount ? ` · ${regionCount} editable parts` : ""}"${current ? " disabled" : ""}>
+      <button type="button" class="asset-card" data-asset-id="${escapeHtml(asset.id)}"${options.conceptId ? ` data-asset-concept-id="${escapeHtml(options.conceptId)}"` : ""} data-replace-current="${current ? "true" : "false"}" aria-label="${action} ${escapeHtml(options.drawingLabel ? `${asset.name} · ${options.drawingLabel}` : displayName)}${escapeHtml(styleLabel)}" title="${action} ${escapeHtml(displayName)}${escapeHtml(styleLabel)} · ${escapeHtml(compactStatus(asset.category))}${regionCount ? ` · ${regionCount} editable parts` : ""}"${current ? " disabled" : ""}>
         <span class="${escapeHtml(assetThumbClass(asset))}"><img src="${escapeHtml(asset._svgUrl)}" data-asset-style-preview="${escapeHtml(asset.id)}" alt="" loading="lazy" decoding="async"></span>
         <span class="asset-card-body">
           <span class="asset-name">${escapeHtml(displayName)}</span>
         </span>
       </button>
+      <button type="button" class="asset-preview-trigger" data-asset-preview-id="${escapeHtml(asset.id)}" aria-label="Preview ${escapeHtml(asset.name)}${options.drawingLabel ? ` · ${escapeHtml(options.drawingLabel)}` : ""}">Preview</button>
     `;
   }
+
+  function scientificAssetReplacementInfo(asset = null) {
+    const source = selectedScientificAssetObject();
+    const same = source ? scientificAssetSameObjects(source.scientificAssetMeta.assetId) : [];
+    const allCount = same.filter((object) => !object.locked).length;
+    const lockedCount = same.length - allCount;
+    const nested = Boolean(source && !scientificAssetIsCanvasRoot(source));
+    const unchanged = Boolean(asset && asset.id === source?.scientificAssetMeta?.assetId);
+    const selectedDisabled = !source || Boolean(source.locked) || nested || unchanged;
+    const selectionLabel = asset && source ? `Selected: ${source.scientificAssetMeta.assetName || source.name}. ` : "";
+    const scopeNote = `Replace all same applies only to this ${isPresentationDocument() ? "slide" : "figure"}. Size and position are kept.`;
+    return {
+      sourceName: source?.scientificAssetMeta?.assetName || source?.name || '',
+      selectedCount: source ? 1 : 0, allCount, lockedCount, selectedDisabled,
+      allDisabled: selectedDisabled || allCount < 2,
+      note: !source ? 'Select one drawing on the canvas to replace it.'
+        : source.locked ? 'Unlock this drawing to replace it or change its colors.'
+        : nested ? 'Exit group editing and ungroup the containing group to replace this drawing or change its part colors.'
+        : unchanged ? 'This drawing is already selected. Choose another view to replace it.'
+        : lockedCount ? `${selectionLabel}${lockedCount} locked ${lockedCount === 1 ? 'copy is' : 'copies are'} kept. ${scopeNote}`
+        : `${selectionLabel}${scopeNote}`
+    };
+  }
+
+  function renderScientificAssetRelatedSearches(scope) {
+    const surface = document.getElementById(scope === 'scenes' ? 'sceneRelatedSearches' : 'assetRelatedSearches');
+    if (!surface) return;
+    const query = String(scope === 'scenes' ? scientificSceneQuery : state.assets.search || '').trim();
+    const source = scope === 'scenes' ? scientificSceneLibrary : scientificAssetCatalog;
+    const options = scope === 'scenes'
+      ? { scope, category: scientificSceneCategory === 'all' ? '' : scientificSceneCategory, mode: normalizeDocumentKind(state.document?.kind), limit: 3 }
+      : { scope, category: state.assets.category, subcategory: state.assets.subcategory, discovery: state.assets.discovery,
+          favoriteConceptIds: state.assets.favorites, recentConceptIds: state.assets.recent, limit: 3 };
+    const suggestions = query && source ? window.FigureStudioScientificAssetDiscovery?.recommendQueries(source, query, options) || [] : [];
+    const noResults = query && source && !(scope === 'scenes' ? filteredScientificScenes() : filteredScientificAssets()).length;
+    surface.hidden = !suggestions.length && !noResults;
+    surface.innerHTML = suggestions.length
+      ? `<span>Related searches</span>${suggestions.map((item) => `<button type="button" data-asset-related-query="${escapeHtml(item.query)}" data-library-scope="${scope}" title="Search ${escapeHtml(item.label)} in ${scope === 'scenes' ? 'Scenes' : 'Assets'}; ${item.count} matching concept${item.count === 1 ? '' : 's'}">${escapeHtml(item.label)}</button>`).join('')}`
+      : noResults ? `<span>Try another term or keep your filters and</span><button type="button" data-asset-clear-search data-library-scope="${scope}">Clear search</button>` : '';
+  }
+
+  function scientificAssetPreviewContextId() {
+    return `${activeDocumentTab()?.id || currentTransformDocumentId() || ""}:${state.deck?.activePageId || ""}`;
+  }
+
+  function setupScientificAssetDiscoveryControls() {
+    scientificAssetPreviewUi = window.FigureStudioScientificAssetPreview?.create({
+      getAsset: findScientificAsset,
+      getVariants: (asset) => scientificAssetConceptVariants(scientificAssetConceptId(asset)),
+      choiceLabel: scientificAssetChoiceLabel,
+      contextId: scientificAssetPreviewContextId,
+      partColorHint: () => isPresentationDocument()
+        ? "After insertion, select the drawing and open Format to change these parts."
+        : "After insertion, select the drawing to change these parts in Style.",
+      loadPreview: async (asset) => {
+        const style = scientificAssetArtStyle();
+        const regions = styledScientificAssetMetadata(asset, style).editable_color_regions || [];
+        const paletteOverrides = window.FigureStudioScientificAssetPalettes?.paletteRegionOverrides(scientificAssetPalette(), asset.editable_color_regions || []) || {};
+        const source = await loadScientificAssetSvgSource(asset, style);
+        return { svgText: recolorScientificAssetPaletteSvg(source, regions, paletteOverrides).svgText, regions, paletteOverrides,
+          appearanceLabel: `${els.assetArtStyleSelect?.selectedOptions?.[0]?.text || style} · ${els.assetPaletteSelect?.selectedOptions?.[0]?.text || scientificAssetPalette()} · for the next insertion` };
+      },
+      replacementInfo: scientificAssetReplacementInfo,
+      onAction: async (action, assetId) => {
+        const asset = findScientificAsset(assetId);
+        if (!asset) return false;
+        let result;
+        if (action === 'insert') {
+          result = await insertScientificAsset(assetId);
+          if (result && scientificAssetReplacement) cancelScientificAssetReplacement({ toast: false });
+        } else {
+          const scope = action === 'replace-all' ? 'all-same' : 'selected';
+          const info = scientificAssetReplacementInfo(asset);
+          if (scope === 'all-same' ? info.allDisabled : info.selectedDisabled) return false;
+          beginScientificAssetReplacement(scope, { preserveFilters: true, focusSearch: false });
+          result = await replaceScientificAssetsWithAsset(assetId);
+          if (result?.status !== 'ok') return false;
+        }
+        if (!result) return false;
+        state.assets.variantByConcept = { ...(state.assets.variantByConcept || {}), [scientificAssetConceptId(asset)]: assetId };
+        renderScientificAssetPanel();
+        return true;
+      }
+    });
+    for (const scope of ['assets', 'scenes']) {
+      const surface = document.getElementById(scope === 'assets' ? 'assetRelatedSearches' : 'sceneRelatedSearches');
+      surface?.addEventListener('click', (event) => {
+        const button = event.target.closest('button[data-library-scope]');
+        if (!button || button.dataset.libraryScope !== scope) return;
+        const query = button.hasAttribute('data-asset-clear-search') ? '' : button.dataset.assetRelatedQuery;
+        if (query == null) return;
+        if (scope === 'assets') {
+          state.assets.search = query;
+          els.assetSearchInput.value = query;
+          scientificAssetRenderLimit = SCIENTIFIC_ASSET_RENDER_BATCH;
+          renderScientificAssetPanel();
+          els.assetGrid?.scrollTo?.({ top: 0 });
+          els.assetSearchInput.focus({ preventScroll: true });
+        } else {
+          scientificSceneQuery = query;
+          els.sceneSearchInput.value = query;
+          renderScientificScenePanel();
+          els.sceneSearchInput.focus({ preventScroll: true });
+        }
+      });
+    }
+  }
+
 
   function scientificAssetArtStyle() {
     return window.FigureStudioScientificAssetArtStyles?.normalizeStyle(state.assets.artStyle) || "soft-color";
@@ -44582,7 +44678,7 @@
   function currentScientificAssetReplacementSource() {
     if (!scientificAssetReplacement?.sourceFigureId) return null;
     const source = getByFigureId(scientificAssetReplacement.sourceFigureId);
-    if (!source?.scientificAssetMeta) {
+    if (!source?.scientificAssetMeta || !scientificAssetIsCanvasRoot(source)) {
       scientificAssetReplacement = null;
       return null;
     }
@@ -44628,14 +44724,15 @@
         : `Replace ${replacement.sourceAssetName}`;
     }
     if (els.assetReplaceDetail) {
+      const locked = replacement.targetCount - replacement.replaceableCount;
       els.assetReplaceDetail.textContent = replacement.scope === "all-same"
-        ? `Choose an asset for ${replacement.targetCount} matching object${replacement.targetCount === 1 ? "" : "s"}.`
-        : "Choose a bundled scientific asset.";
+        ? `Choose a drawing for ${replacement.replaceableCount} matching ${replacement.replaceableCount === 1 ? "copy" : "copies"}.${locked ? ` ${locked} locked ${locked === 1 ? "copy is" : "copies are"} kept.` : ""}`
+        : "Choose a drawing to replace the selected copy, or Preview to inspect it first.";
     }
     if (els.cancelAssetReplaceBtn) els.cancelAssetReplaceBtn.disabled = replacement.busy;
   }
 
-  function beginScientificAssetReplacement(scope = "selected") {
+  function beginScientificAssetReplacement(scope = "selected", options = {}) {
     const source = selectedScientificAssetObject();
     if (!source) {
       showToast("Select one bundled scientific asset to replace");
@@ -44643,6 +44740,11 @@
     }
     if (source.locked) {
       showToast("Unlock the scientific asset before replacing it");
+      return getScientificAssetReplacementStateForQa();
+    }
+    if (!scientificAssetIsCanvasRoot(source)) {
+      cancelScientificAssetReplacement({ toast: false });
+      showLongToast("Exit group editing and ungroup the containing group to replace this drawing.");
       return getScientificAssetReplacementStateForQa();
     }
     const normalizedScope = scope === "all-same" ? "all-same" : "selected";
@@ -44653,19 +44755,21 @@
       sourceAssetName: source.scientificAssetMeta.assetName || source.name || "scientific asset",
       busy: false
     };
-    state.assets.search = "";
-    state.assets.category = source.scientificAssetMeta.category || "all";
-    state.assets.subcategory = "all";
-    state.assets.discovery = "all";
-    if (els.assetSearchInput) els.assetSearchInput.value = "";
-    renderAssetCategoryOptions();
-    if (els.assetCategorySelect) els.assetCategorySelect.value = state.assets.category;
+    if (!options.preserveFilters) {
+      state.assets.search = "";
+      state.assets.category = source.scientificAssetMeta.category || "all";
+      state.assets.subcategory = "all";
+      state.assets.discovery = "all";
+      if (els.assetSearchInput) els.assetSearchInput.value = "";
+      renderAssetCategoryOptions();
+      if (els.assetCategorySelect) els.assetCategorySelect.value = state.assets.category;
+    }
     setRailVisibility("left", true, { fit: false, focus: false });
     setRailCollapsed("left", false, { toast: false, focus: false });
     setSidebarTab("assets");
     setImportPlacementStatus("");
     renderScientificAssetPanel();
-    requestAnimationFrame(() => els.assetSearchInput?.focus());
+    if (options.focusSearch !== false) requestAnimationFrame(() => els.assetSearchInput?.focus());
     showToast(normalizedScope === "all-same" ? "Choose a replacement for all matching assets" : "Choose a replacement asset");
     return getScientificAssetReplacementStateForQa();
   }
@@ -45494,6 +45598,7 @@
     const tab = activeDocumentTab();
     return {
       sourceCanvas: canvas,
+      sourceDocumentGeneration: scientificAssetDocumentGeneration,
       sourceDocumentId: String(tab?.id || currentTransformDocumentId() || ""),
       sourceKind: normalizeDocumentKind(state.document?.kind),
       sourcePageId: normalizeDocumentKind(state.document?.kind) === "presentation"
@@ -45506,6 +45611,7 @@
 
   function scientificAssetInsertionOwnershipIsCurrent(context) {
     if (!context?.sourceCanvas || documentWorkspaceState.switching) return false;
+    if (context.sourceDocumentGeneration !== scientificAssetDocumentGeneration) return false;
     if (canvas !== context.sourceCanvas || String(activeDocumentTab()?.id || "") !== context.sourceDocumentId) return false;
     if (normalizeDocumentKind(state.document?.kind) !== context.sourceKind) return false;
     if (context.sourcePageId && String(activeDeckPage()?.id || "") !== context.sourcePageId) return false;
@@ -45797,6 +45903,7 @@
       return;
     }
     const scenes = filteredScientificScenes();
+    renderScientificAssetRelatedSearches("scenes");
     const kind = normalizeDocumentKind(state.document?.kind);
     const total = scientificSceneLibrary.scenes.length;
     if (els.sceneLibraryStatus) {
@@ -46389,6 +46496,7 @@
       style_family: asset.style_family || asset._packStyleFamily || scientificAssetPack?.style_family || "",
       concept_id: asset.concept_id || asset.id,
       style_variant: asset.style_variant || "default",
+      ...(asset.form_id ? { form_id: asset.form_id, form_label: asset.form_label || scientificAssetDrawingLabel(asset) } : {}),
       art_style: asset.art_style || "soft-color",
       assetId: asset.id,
       assetName: asset.name,
@@ -46462,6 +46570,10 @@
     });
   }
 
+  function scientificAssetIsCanvasRoot(object) {
+    return Boolean(object && (canvas?.getObjects?.() || []).includes(object));
+  }
+
   function selectedScientificAssetObject() {
     const selected = selectedTopLevelObjects();
     return selected.length === 1 && selected[0]?.scientificAssetMeta ? selected[0] : null;
@@ -46479,6 +46591,10 @@
     if (source.locked) {
       showToast(`Unlock the scientific asset before changing its ${variantAxis}`);
       return { status: "locked" };
+    }
+    if (!scientificAssetIsCanvasRoot(source)) {
+      showLongToast("Exit group editing and ungroup the containing group to change this drawing's view.");
+      return { status: "unavailable", reason: "nested-asset" };
     }
     if (source.scientificAssetMeta.assetId === target.id) return { status: "unchanged", assetId: target.id };
     if (scientificAssetConceptId(source.scientificAssetMeta) !== scientificAssetConceptId(target)) {
@@ -46518,6 +46634,8 @@
       return { status: "locked", replacement };
     }
 
+    const operation = captureScientificAssetInsertionContext(asset);
+    const replacementSession = scientificAssetReplacement;
     scientificAssetReplacement.busy = true;
     renderScientificAssetPanel();
     const timestamp = new Date().toISOString();
@@ -46586,13 +46704,23 @@
         prepared.push({ canvasIndex, group, snapshot });
       }
 
+      if (!scientificAssetInsertionOwnershipIsCurrent(operation) || scientificAssetReplacement !== replacementSession) {
+        return { status: "cancelled", reason: "document-changed" };
+      }
+      if (replaceableTargets.some((object) => !scientificAssetIsCanvasRoot(object) || object.locked)) {
+        cancelScientificAssetReplacement({ toast: false });
+        showToast("Replacement was cancelled because the drawings changed while loading");
+        return { status: "cancelled", reason: "asset-changed" };
+      }
       canvas.discardActiveObject();
       replaceableTargets.forEach((object) => canvas.remove(object));
       prepared.sort((left, right) => left.canvasIndex - right.canvasIndex)
         .forEach(({ canvasIndex, group }) => insertCanvasObjectAtIndex(group, canvasIndex));
       const active = prepared.find(({ snapshot }) => snapshot.figureId === replacement.sourceFigureId)?.group || prepared[0].group;
       canvas.setActiveObject(active);
-      canvas.requestRenderAll();
+      // Selection events suppress queued artwork paints in this same job.
+      // Replacement changes the artwork, so complete its lower-canvas paint.
+      canvas.renderAll();
       setImportPlacementStatus("");
       cancelScientificAssetReplacement({ toast: false });
       recordScientificAssetUse(asset);
@@ -46609,8 +46737,9 @@
         replacement: getScientificAssetReplacementStateForQa()
       };
     } catch (error) {
+      if (!scientificAssetInsertionOwnershipIsCurrent(operation) || scientificAssetReplacement !== replacementSession) return { status: "cancelled", reason: "document-changed" };
       console.error("Scientific asset replacement failed", error);
-      if (scientificAssetReplacement) scientificAssetReplacement.busy = false;
+      scientificAssetReplacement.busy = false;
       renderScientificAssetPanel();
       showToast("Could not replace scientific asset");
       return { status: "error", message: error?.message || String(error), replacement: getScientificAssetReplacementStateForQa() };
@@ -46690,7 +46819,8 @@
       reconcileVariableStrokeRenderers([recoloredGroup]);
       recoloredGroup.setCoords();
       canvas.discardActiveObject(); canvas.remove(object); insertCanvasObjectAtIndex(recoloredGroup, canvasIndex); canvas.setActiveObject(recoloredGroup);
-      canvas.requestRenderAll(); setImportPlacementStatus(""); syncUi();
+      // A selected-object change must paint even during selection-only updates.
+      canvas.renderAll(); setImportPlacementStatus(""); syncUi();
       commitHistory(options.historyLabel || "Scientific asset colors updated");
       showToast("Asset colors updated"); return recoloredGroup;
     } catch (error) {
@@ -47974,7 +48104,7 @@
           ${selectionContextNumberField("anchorY", "Y", anchorY, { decimals: 3, step: "0.01" })}`)}
         ${lineGeometry ? group("line-geometry", "Line geometry", `${selectionContextNumberField("lineLength", "Length", lineGeometryFieldState(lineGeometry.length, !lineGeometry.locked), { decimals: 2, min: 0.01, step: "0.01", lineEndpoint: lineGeometry.selectedEndpoint })}${selectionContextNumberField("lineAngle", "Angle", lineGeometryFieldState(lineGeometry.angle, !lineGeometry.locked), { decimals: 1, min: -180, max: 180, step: "1", lineEndpoint: lineGeometry.selectedEndpoint })}`) : ""}
         ${anchorCount >= 2 ? group("anchor-align", "Align anchors", `${action("align-anchor-x", "Align X", { title: "Align selected anchors vertically" })}${action("align-anchor-y", "Align Y", { title: "Align selected anchors horizontally" })}${anchorCount >= 3 ? `<span class="context-strip-secondary">${action("distribute-anchor-x", "↔", { title: "Distribute selected anchors horizontally", className: "context-strip-anchor-space" })}${action("distribute-anchor-y", "↕", { title: "Distribute selected anchors vertically", className: "context-strip-anchor-space" })}</span>` : ""}`) : ""}
-        ${anchorCount ? group("anchor-edit", "Anchor type", `${action("path-corner", "Corner")}${action("path-smooth", "Smooth")}<details class="context-strip-connector-more context-strip-anchor-more"><summary data-context-disclosure="anchor-more" title="More anchor actions">More</summary><div class="context-strip-connector-menu context-strip-anchor-menu" popover="manual" role="group" aria-label="Anchor actions">${action("path-corner", "Corner")}${action("path-smooth", "Smooth")}${action("path-symmetric", "Symmetric")}${action("path-delete-point", anchorCount > 1 ? "Delete anchors" : "Delete anchor", { title: context.anchor?.canDelete ? "Delete selected anchors and keep the path connected" : context.anchor?.deleteReason, disabled: !context.anchor?.canDelete })}${anchorCount === 1 ? action("path-split", "Cut path", { title: context.anchor?.canSplit ? "Cut the path at this anchor" : context.anchor?.splitReason, disabled: !context.anchor?.canSplit }) : ""}${anchorCount === 2 ? action("path-join", "Join ends", { title: context.anchor?.canJoin ? "Join selected endpoints. Smooth endpoints keep a curved join; Corner endpoints make a straight join." : context.anchor?.joinReason, disabled: !context.anchor?.canJoin }) : ""}${action("edit-path-nodes", "Finish", { title: "Finish Direct Selection" })}</div></details>`) : ""}`;
+        ${anchorCount ? group("anchor-edit", "Anchor type", `${action("path-corner", "Corner")}${action("path-smooth", "Smooth")}<details class="context-strip-connector-more context-strip-anchor-more"><summary data-context-disclosure="anchor-more" title="More anchor actions">More</summary><div class="context-strip-connector-menu context-strip-anchor-menu" popover="manual" role="group" aria-label="Anchor actions">${action("path-corner", "Corner")}${action("path-smooth", "Smooth")}${action("path-symmetric", "Symmetric")}${action("path-delete-point", anchorCount > 1 ? "Delete anchors" : "Delete anchor", { title: context.anchor?.canDelete ? "Delete selected anchors; remove the path or subpath if too few points remain" : context.anchor?.deleteReason, disabled: !context.anchor?.canDelete })}${anchorCount === 1 ? action("path-split", "Cut path", { title: context.anchor?.canSplit ? "Cut the path at this anchor" : context.anchor?.splitReason, disabled: !context.anchor?.canSplit }) : ""}${anchorCount === 2 ? action("path-join", "Join ends", { title: context.anchor?.canJoin ? "Join selected endpoints. Smooth endpoints keep a curved join; Corner endpoints make a straight join." : context.anchor?.joinReason, disabled: !context.anchor?.canJoin }) : ""}${action("edit-path-nodes", "Finish", { title: "Finish Direct Selection" })}</div></details>`) : ""}`;
     } else if (context.kind === "segment") {
       controls = `${group("segment-edit", "Path segment", `${action("path-segment-straight", "Straight", { disabled: !context.segment?.curved })}${action("path-segment-curve", "Curved", { disabled: Boolean(context.segment?.curved) })}${action("path-add-point", "Add point", { title: "Add an anchor at the segment midpoint" })}`)}
         ${group("path-edit", "Path editing", action("edit-path-nodes", "Finish", { title: "Finish Direct Selection" }), "context-strip-tertiary")}`;
@@ -51941,6 +52071,208 @@
     return dirty;
   }
 
+  let linePickerPresetId = "";
+  let linePickerMode = "draw";
+  let linePickerAnchor = null;
+
+  function positionLinePickerPopover() {
+    const popover = document.getElementById("linePickerPopover");
+    if (!popover || !linePickerAnchor || popover.hidden) return;
+    const anchor = linePickerAnchor.getBoundingClientRect();
+    const width = Math.min(364, window.innerWidth - 16);
+    const below = anchor.bottom + 6;
+    const top = Math.min(below, Math.max(8, window.innerHeight - Math.min(620, popover.scrollHeight) - 8));
+    popover.style.left = `${Math.max(8, Math.min(anchor.left, window.innerWidth - width - 8))}px`;
+    popover.style.top = `${Math.max(8, top)}px`;
+    popover.style.width = `${width}px`;
+    popover.style.maxHeight = `${Math.min(620, window.innerHeight - Math.max(8, top) - 8)}px`;
+  }
+
+  function openLinePicker(anchor) {
+    const popover = document.getElementById("linePickerPopover");
+    if (!popover || !anchor) return;
+    if (linePickerAnchor === anchor && !popover.hidden) { closeToolFlyouts(); return; }
+    closeToolFlyouts();
+    linePickerAnchor = anchor;
+    anchor.setAttribute("aria-expanded", "true");
+    document.getElementById("figureStudioRoot").append(popover);
+    popover.classList.add("line-picker-portaled");
+    popover.hidden = false;
+    popover.scrollTop = 0;
+    syncLinePicker();
+    positionLinePickerPopover();
+    popover.querySelector('[data-line-picker-preset]:not(:disabled)')?.focus({ preventScroll: true });
+  }
+
+  function handleLinePickerClick(event) {
+    if (event.target.closest("[data-line-picker-more]")) {
+      const popover = document.getElementById("linePickerPopover");
+      const dots = popover.querySelector('.line-picker-group[aria-label="Dots"]');
+      popover.scrollTop = dots.offsetTop - popover.querySelector(".line-picker-header").offsetHeight - 6;
+    }
+    const mode = event.target.closest("[data-line-picker-mode]");
+    if (mode && !mode.disabled) { linePickerMode = mode.dataset.linePickerMode; syncLinePicker(); }
+    const preset = event.target.closest("[data-line-picker-preset]");
+    if (preset && !preset.disabled) applyLinePickerPreset(preset.dataset.linePickerPreset);
+    if (event.target.closest("[data-line-picker-advanced]")) {
+      closeToolFlyouts();
+      openAppearanceStructureForObject(selectedTopLevelObjects()[0], { advanced: true });
+    }
+    event.stopPropagation();
+  }
+
+  function handleLinePickerKeyDown(event) {
+    const popover = document.getElementById("linePickerPopover");
+    if (event.key === "Escape") {
+      const anchor = linePickerAnchor;
+      closeToolFlyouts();
+      anchor?.focus({ preventScroll: true });
+      event.preventDefault();
+    } else if (["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Home", "End"].includes(event.key)) {
+      const choices = [...popover.querySelectorAll('[data-line-picker-preset]:not(:disabled)')];
+      const index = choices.indexOf(event.target.closest("[data-line-picker-preset]"));
+      const offset = event.key === "ArrowUp" ? -3 : event.key === "ArrowDown" ? 3 : event.key === "ArrowLeft" ? -1 : 1;
+      const next = event.key === "Home" ? 0 : event.key === "End" ? choices.length - 1 : Math.max(0, Math.min(choices.length - 1, index + offset));
+      choices[next]?.focus();
+      event.preventDefault();
+    } else if (["Enter", " "].includes(event.key) && event.target.matches("button:not(:disabled)")) {
+      event.preventDefault();
+      event.target.click();
+    }
+    // Menu navigation must not nudge selected artwork or activate canvas tools.
+    event.stopPropagation();
+  }
+
+  function linePickerApi() {
+    return window.FigureToolLinePicker;
+  }
+
+  function linePickerSelectionTargets() {
+    return selectedTopLevelObjects().filter((object) => !object.locked && (isLineVectorObject(object) || isSmartConnectorObject(object)));
+  }
+
+  function linePickerCanApply(preset, targets = linePickerSelectionTargets()) {
+    if (!preset.route || !targets.length) return false;
+    return targets.every((object) => isSmartConnectorObject(object) || preset.route === "straight"
+      || (!object.group && !nativePdfDescriptorTreeForObject(object) && !sourceBackedResultMeta(object)));
+  }
+
+  function renderLinePicker() {
+    const popover = document.getElementById("linePickerPopover");
+    const api = linePickerApi();
+    if (!popover || !api) return;
+    const groups = [...new Set(api.presets.map((preset) => preset.group))];
+    popover.innerHTML = `<div class="line-picker-header">
+      <div class="line-picker-heading"><strong>Lines and arrows</strong></div>
+      <div class="line-picker-modes" role="group" aria-label="Use line preset">
+        <button type="button" data-line-picker-mode="draw" aria-pressed="true">Draw new</button>
+        <button type="button" data-line-picker-mode="selection" aria-pressed="false">Apply to selected</button>
+      </div>
+      <p class="line-picker-status" id="linePickerStatus">Choose a preset, then drag on the canvas.</p>
+    </div><div class="line-picker-groups">${groups.map((group) => `<section class="line-picker-group" aria-label="${group}"><h3>${group}</h3><div class="line-picker-grid">${api.presets.filter((preset) => preset.group === group).map((preset) => `<button type="button" role="menuitem" data-line-picker-preset="${preset.id}" ${preset.legacyTool ? `data-tool="${preset.legacyTool}"` : ""} aria-label="${group}: ${preset.label}" title="${preset.command ? "Select two objects to add a comparison bracket" : preset.shape === "connector" ? "Connect two object anchors" : `${group}: ${preset.label}`}" aria-pressed="false">${api.previewMarkup(preset)}<span>${preset.label}</span></button>`).join("")}</div></section>`).join("")}</div>
+      <div class="line-picker-footer"><button type="button" class="line-picker-more" data-line-picker-more>Dots, Circular, Brackets, Custom ↓</button><button type="button" data-line-picker-advanced>Advanced stroke controls…</button></div>`;
+    popover.hidden = true;
+    popover.addEventListener("click", handleLinePickerClick);
+    popover.addEventListener("keydown", handleLinePickerKeyDown);
+    document.querySelectorAll("[data-line-picker-open]").forEach((button) => button.addEventListener("click", (event) => {
+      event.stopPropagation();
+      openLinePicker(button);
+    }));
+    window.addEventListener("resize", positionLinePickerPopover);
+    syncLinePicker();
+  }
+
+  function syncLinePicker() {
+    const popover = document.getElementById("linePickerPopover");
+    const api = linePickerApi();
+    if (!popover || !api) return;
+    const targets = linePickerSelectionTargets();
+    if (!targets.length) linePickerMode = "draw";
+    popover.querySelectorAll("[data-line-picker-mode]").forEach((button) => {
+      button.disabled = button.dataset.linePickerMode === "selection" && !targets.length;
+      button.setAttribute("aria-pressed", String(button.dataset.linePickerMode === linePickerMode));
+    });
+    const status = popover.querySelector(".line-picker-status");
+    if (status) status.textContent = linePickerMode === "selection"
+      ? `Choose a preset to update ${targets.length === 1 ? "the selected line" : `${targets.length} selected lines`}.`
+      : "Choose a preset, then drag on the canvas.";
+    popover.querySelectorAll("[data-line-picker-preset]").forEach((button) => {
+      const preset = api.presets.find((item) => item.id === button.dataset.linePickerPreset);
+      button.disabled = linePickerMode === "selection" ? !linePickerCanApply(preset, targets)
+        : preset.command ? selectedTopLevelObjects().filter(annotationTarget).length < 2
+          : isPresentationDocument() && !['line', 'arrow', 'smartConnector', 'ring'].includes(preset.tool);
+      button.setAttribute("aria-pressed", String(linePickerMode === "draw" ? linePickerPresetId === preset.id && state.tool === preset.tool
+        : targets.length > 0 && targets.every((object) => {
+          const style = readStyle(object);
+          return preset.route && (isSmartConnectorObject(object) ? normalizeSmartConnectorMeta(object.smartConnectorMeta).route : "straight") === preset.route
+            && style.arrowStart === (preset.start || "none") && style.arrowEnd === (preset.end || "none") && style.lineDash === (preset.dash || "solid");
+        })));
+    });
+  }
+
+  function linePickerPresetForTool(tool) {
+    return linePickerApi()?.presets.find((preset) => preset.id === linePickerPresetId && preset.tool === tool) || null;
+  }
+
+  function createLinePickerObject(tool, start, current) {
+    const preset = linePickerPresetForTool(tool);
+    if (!preset?.route) return null;
+    let dx = current.x - start.x;
+    let dy = current.y - start.y;
+    if (Math.hypot(dx, dy) < 1) { dx = 180; dy = preset.route === "straight" ? 0 : 72; }
+    const style = { ...linePickerApi().stylePatch(preset), stroke: "#182026", strokeWidth: 2 };
+    const name = `${preset.group === "Lines" ? "Line" : preset.group === "Arrows" ? "Arrow" : preset.group === "Inhibition" ? "Inhibition line" : "Line with endpoint marker"} — ${preset.label.toLowerCase()}`;
+    if (preset.route === "straight") return preset.tool === "arrow"
+      ? makeArrow(start.x, start.y, dx, dy, style, name, sourceMeta())
+      : makeLine(start.x, start.y, dx, dy, style, name, sourceMeta());
+    const object = makeSmartConnector({ point: { ...start } }, { point: { x: start.x + dx, y: start.y + dy } }, { ...style, route: preset.route }, name, sourceMeta());
+    applyStylePatch(object, style);
+    return object;
+  }
+
+  function applyLinePickerPreset(presetId) {
+    const api = linePickerApi();
+    const preset = api?.presets.find((item) => item.id === presetId);
+    if (!preset) return;
+    const targets = linePickerSelectionTargets();
+    if (linePickerMode === "selection") {
+      if (!linePickerCanApply(preset, targets)) return;
+      canvas.discardActiveObject();
+      const selected = targets.map((object) => {
+        const patch = api.stylePatch(preset);
+        if (isSmartConnectorObject(object)) {
+          object.smartConnectorMeta = normalizeSmartConnectorMeta({ ...object.smartConnectorMeta, route: preset.route, routeMode: "auto", manualBends: [], autoBends: [] });
+        } else if (preset.route !== "straight") {
+          const endpoints = lineVectorSceneEndpoints(object);
+          const previousStyle = readStyle(object);
+          const replacement = makeSmartConnector({ point: endpoints.start }, { point: endpoints.end }, { ...previousStyle, ...patch, route: preset.route }, object.name, object.source);
+          replacement.set({ figureId: object.figureId, importMeta: object.importMeta, visible: object.visible, opacity: object.opacity });
+          applyStylePatch(replacement, { ...previousStyle, ...patch });
+          const index = canvas.getObjects().indexOf(object);
+          canvas.remove(object);
+          insertCanvasObjectAtIndex(replacement, index);
+          object = replacement;
+        }
+        applyLineStylePatch(object, patch, `line_picker_${preset.id}`);
+        refreshObjectHierarchy(object);
+        return object;
+      });
+      if (selected.length === 1) canvas.setActiveObject(selected[0]);
+      else canvas.setActiveObject(new fabricRef.ActiveSelection(selected, { canvas }));
+      canvas.requestRenderAll();
+      syncUi();
+      commitHistory("Line preset applied");
+      showToast("Line preset applied");
+      syncLinePicker();
+      return;
+    }
+    if (preset.command) { executeInsertCommand(preset.command); closeToolFlyouts(); return; }
+    linePickerPresetId = preset.id;
+    activateTool(preset.tool, { toast: false, linePicker: true });
+    closeToolFlyouts();
+    showToast(preset.shape === "connector" ? "Choose source and destination object anchors" : preset.shape === "freehand" ? "Drag to draw a freehand path" : `${preset.group}: ${preset.label} — drag on the canvas`);
+  }
+
   function linePresetPatch(preset, currentStyle = {}) {
     const customDash = currentStyle.customDashArray || dashArrayToText(currentStyle.strokeDashArray) || "6, 3, 1, 3";
     const patches = {
@@ -51970,6 +52302,7 @@
   }
 
   function syncLinePresetStrip(style = {}, enabled = true) {
+    syncLinePicker();
     if (!els.linePresetStrip) return;
     const active = linePresetForStyle(style);
     els.linePresetStrip.querySelectorAll("[data-line-preset]").forEach((button) => {
@@ -55314,7 +55647,9 @@
 
     const overrides = sanitizeScientificAssetColorOverrides(meta.colorOverrides);
     const locked = Boolean(object.locked);
-    const sameCount = scientificAssetSameObjects(meta.assetId).length;
+    const nested = !scientificAssetIsCanvasRoot(object);
+    const replacement = scientificAssetReplacementInfo();
+    const sameCount = replacement.allCount;
     const currentAsset = findScientificAsset(meta.assetId);
     const styleVariants = scientificAssetConceptVariants(scientificAssetConceptId(meta));
     const variantAxis = scientificAssetVariantAxis(styleVariants);
@@ -55324,7 +55659,7 @@
     if (els.scientificAssetEditPanel) els.scientificAssetEditPanel.hidden = false;
     if (els.scientificAssetEditName) els.scientificAssetEditName.textContent = meta.assetName || object.name || "Scientific asset";
     if (els.scientificAssetEditMeta) {
-      const styleText = styleVariants.length > 1 && currentAsset ? ` · ${scientificAssetVariantLabel(currentAsset)}` : "";
+      const styleText = styleVariants.length > 1 && currentAsset ? ` · ${scientificAssetChoiceLabel(currentAsset, styleVariants)}` : "";
       els.scientificAssetEditMeta.textContent = `${compactStatus(meta.category || "component")}${styleText} · ${regions.length ? `${regions.length} editable part${regions.length === 1 ? "" : "s"}` : "grouped vector"}`;
     }
     if (els.scientificAssetStyleControls && els.scientificAssetStyleList) {
@@ -55335,32 +55670,36 @@
       els.scientificAssetStyleList.setAttribute("aria-label", `${variantAxisLabel} for ${variantConceptName}`);
       els.scientificAssetStyleList.innerHTML = styleVariants.length < 2 ? "" : styleVariants.map((variant) => {
         const active = variant.id === meta.assetId;
-        const label = scientificAssetVariantLabel(variant);
+        const label = scientificAssetChoiceLabel(variant, styleVariants);
         const title = locked
           ? `Unlock the asset before changing its ${variantAxis}`
+          : nested ? replacement.note
           : active
             ? `${label} ${variantAxis} is selected`
             : `Switch to ${label} ${variantAxis}`;
-        return `<button type="button" data-scientific-asset-style-id="${escapeHtml(variant.id)}" aria-pressed="${active ? "true" : "false"}"${locked || active ? " disabled" : ""} title="${escapeHtml(title)}">${escapeHtml(label)}</button>`;
+        return `<button type="button" data-scientific-asset-style-id="${escapeHtml(variant.id)}" aria-pressed="${active ? "true" : "false"}"${locked || nested || active ? " disabled" : ""} title="${escapeHtml(title)}">${escapeHtml(label)}</button>`;
       }).join("");
     }
     if (els.replaceScientificAssetBtn) {
-      els.replaceScientificAssetBtn.disabled = locked;
-      els.replaceScientificAssetBtn.title = locked ? "Unlock the asset before replacing it" : "Choose another bundled scientific asset and keep this object's size and position";
+      els.replaceScientificAssetBtn.disabled = replacement.selectedDisabled;
+      els.replaceScientificAssetBtn.title = locked ? "Unlock the asset before replacing it" : nested ? replacement.note : "Choose another bundled scientific asset and keep this object's size and position";
     }
     if (els.replaceAllScientificAssetsBtn) {
-      els.replaceAllScientificAssetsBtn.textContent = sameCount > 1 ? `Replace all same (${sameCount})` : "Replace all same";
-      els.replaceAllScientificAssetsBtn.disabled = locked || sameCount < 2;
+      els.replaceAllScientificAssetsBtn.textContent = `Replace all same (${sameCount})`;
+      els.replaceAllScientificAssetsBtn.disabled = replacement.allDisabled;
       els.replaceAllScientificAssetsBtn.title = locked
         ? "Unlock the asset before replacing it"
+        : nested ? replacement.note
         : sameCount < 2
-          ? "No other matching copies are on this slide"
-          : `Replace all ${sameCount} matching assets while keeping each transform`;
+          ? `No other matching copies are in this ${isPresentationDocument() ? "slide" : "figure"}`
+          : `Replace all ${sameCount} unlocked matching copies while keeping each size and position`;
     }
+    const replacementNote = document.getElementById("scientificAssetReplacementNote");
+    if (replacementNote) replacementNote.textContent = replacement.note;
     els.scientificAssetColorControls.hidden = !regions.length;
     if (els.resetAssetColorsBtn) {
-      els.resetAssetColorsBtn.disabled = locked || (!Object.keys(overrides).length && scientificAssetColorLayers(meta).paletteId === "original");
-      els.resetAssetColorsBtn.title = locked ? "Unlock the asset before recoloring" : "Reset palette and part colors; keep individual component edits";
+      els.resetAssetColorsBtn.disabled = locked || nested || (!Object.keys(overrides).length && scientificAssetColorLayers(meta).paletteId === "original");
+      els.resetAssetColorsBtn.title = locked ? "Unlock the asset before recoloring" : nested ? replacement.note : "Reset palette and part colors; keep individual component edits";
     }
     els.scientificAssetColorList.innerHTML = scientificAssetColorControlsMarkup(object, "advanced");
     bindScientificAssetColorControls(els.scientificAssetColorList);
@@ -63531,6 +63870,7 @@
       return true;
     }
     const root = isolationRootGroup();
+    if (pathNodeEdit.object && objectIsWithinGroup(pathNodeEdit.object, root)) stopPathNodeEdit({ sync: false });
     [...groupIsolation.path].reverse().forEach(restoreIsolationGroupSettings);
     groupIsolation = { path: [], selected: null, selectedObjects: [], guardingSelection: false };
     if (options.selectGroup !== false && root && (canvas?.getObjects?.() || []).includes(root)) {
@@ -63857,6 +64197,7 @@
 
   function refreshObjectHierarchy(object, options = {}) {
     object?.setCoords?.();
+    let root = object;
     let parent = object?.group || null;
     while (parent) {
       parent.dirty = true;
@@ -63865,7 +64206,20 @@
       // painted geometry unreachable to Selection/Free Transform.
       if (options.layout !== false) parent.triggerLayout?.();
       parent.setCoords?.();
+      root = parent;
       parent = parent.group || null;
+    }
+    if (root !== object && options.layout !== false) {
+      // Fit-content layout can recenter every sibling's local coordinates.
+      // Refresh their cached hit bounds after the final ancestor layout,
+      // including descendants of nested groups, without changing geometry.
+      const refreshDescendants = (group) => {
+        groupChildren(group).forEach((child) => {
+          child.setCoords?.();
+          refreshDescendants(child);
+        });
+      };
+      refreshDescendants(root);
     }
   }
 
@@ -64239,7 +64593,9 @@
     const object = preferredObject
       || (selected.length === 1 && isLineVectorObject(selected[0]) ? selected[0] : null);
     const geometry = lineGeometryStateForObject(object);
-    if (!geometry || object?.visible === false || (object !== drawInteraction?.object && selected.length !== 1)) {
+    const editing = canvasAuthoringPointerDown && (object === drawInteraction?.object
+      || canvas._currentTransform?.target === object || pathNodeEdit.dragging || pathNodeEdit.segmentDrag || nativePathEdit.dragging);
+    if (!editing || !geometry || object?.visible === false || (object !== drawInteraction?.object && selected.length !== 1)) {
       els.lineGeometryOverlay.hidden = true;
       els.lineGeometryOverlay.innerHTML = "";
       els.lineGeometryOverlay.dataset.mode = "";
@@ -64801,22 +65157,17 @@
     clone.setCoords();
   }
 
-  function deleteSelection() {
-    if (liveBooleanEdit.active) {
-      showToast("Release or expand the live compound before deleting retained shapes");
-      return { status: "blocked", reason: "live-compound-edit" };
-    }
-    const selection = uniqueObjects(expandPptxShapeLabelDependents(selectedTopLevelObjects()));
+  function captureRemovedObjectConnectorEndpoints(objects) {
     const removedIds = new Set();
     const collectRemovedIds = (object) => {
       if (object?.figureId) removedIds.add(String(object.figureId));
       groupChildren(object).forEach(collectRemovedIds);
     };
-    selection.forEach(collectRemovedIds);
+    objects.forEach(collectRemovedIds);
     // A connector nested in a fit-content group stores endpoint fallbacks in
     // that group's coordinate space. Removing a sibling can rebase the group,
     // so retain the attached anchor in scene space until removal has settled.
-    const detachedConnectorEndpoints = allCanvasObjectsDeep().filter(isSmartConnectorObject).flatMap((connector) => {
+    return allCanvasObjectsDeep().filter(isSmartConnectorObject).flatMap((connector) => {
       const meta = normalizeSmartConnectorMeta(connector.smartConnectorMeta);
       return ["start", "end"].map((endpoint) => {
         if (!removedIds.has(String(meta[endpoint]?.objectId || ""))) return null;
@@ -64824,6 +65175,28 @@
         return anchor ? { connector, endpoint, scenePoint: { x: anchor.x, y: anchor.y } } : null;
       }).filter(Boolean);
     });
+  }
+
+  function detachRemovedObjectConnectorEndpoints(endpoints) {
+    endpoints.forEach(({ connector, endpoint, scenePoint }) => {
+      if (!connector?.group && !canvas.getObjects().includes(connector)) return;
+      const meta = normalizeSmartConnectorMeta(connector.smartConnectorMeta);
+      if (getByFigureId(meta[endpoint].objectId || "")) return;
+      meta[endpoint].objectId = "";
+      const local = scenePointToObjectParent(connector, scenePoint);
+      meta[endpoint].point = { x: roundPathCoord(local.x), y: roundPathCoord(local.y) };
+      connector.smartConnectorMeta = meta;
+    });
+    if (endpoints.length) refreshSmartConnectors();
+  }
+
+  function deleteSelection() {
+    if (liveBooleanEdit.active) {
+      showToast("Release or expand the live compound before deleting retained shapes");
+      return { status: "blocked", reason: "live-compound-edit" };
+    }
+    const selection = uniqueObjects(expandPptxShapeLabelDependents(selectedTopLevelObjects()));
+    const detachedConnectorEndpoints = captureRemovedObjectConnectorEndpoints(selection);
     let changed = false;
     let blockedSourceCount = 0;
     canvas.discardActiveObject();
@@ -64843,16 +65216,7 @@
         changed = true;
       }
     });
-    detachedConnectorEndpoints.forEach(({ connector, endpoint, scenePoint }) => {
-      if (!connector?.group && !canvas.getObjects().includes(connector)) return;
-      const meta = normalizeSmartConnectorMeta(connector.smartConnectorMeta);
-      if (getByFigureId(meta[endpoint].objectId || "")) return;
-      meta[endpoint].objectId = "";
-      const local = scenePointToObjectParent(connector, scenePoint);
-      meta[endpoint].point = { x: roundPathCoord(local.x), y: roundPathCoord(local.y) };
-      connector.smartConnectorMeta = meta;
-    });
-    if (detachedConnectorEndpoints.length) refreshSmartConnectors();
+    detachRemovedObjectConnectorEndpoints(detachedConnectorEndpoints);
     if (isGroupIsolationActive()) {
       const replacement = selectableIsolationChildren()[0] || null;
       if (replacement) selectIsolatedObject(replacement, { sync: false });
@@ -66326,55 +66690,107 @@
     const byObject = new Map();
     items.forEach((item) => {
       if (!byObject.has(item.object)) byObject.set(item.object, []);
-      byObject.get(item.object).push({ nodeId: item.nodeId, nodeIndex: item.descriptor.nodeIndex });
+      byObject.get(item.object).push({ nodeId: qualifyPathHandle(item.object, item.descriptor).nodeId, nodeIndex: item.descriptor.nodeIndex, contourIndex: item.descriptor.contourIndex });
     });
-    const backups = new Map([...byObject.keys()].map((object) => [object, {
-      commands: copyPathCommands(object.path),
-      meta: cloneManifestValue(normalizedBezierNodeMeta(object), null)
-    }]));
-    let failed = false;
-    byObject.forEach((nodes, object) => {
-      nodes.sort((a, b) => b.nodeIndex - a.nodeIndex).forEach((node) => {
-        if (!failed && !deletePathNodeGeometry(object, node.nodeId, node.nodeIndex)) failed = true;
-      });
-    });
-    if (failed) {
-      backups.forEach((backup, object) => {
-        setPathCommandsWithSceneStableFrame(object, backup.commands);
-        setBezierNodeMeta(object, backup.meta);
-      });
-      canvas.requestRenderAll();
-      renderPathNodeOverlay();
-      syncUi();
-      showToast("The selected anchors could not be deleted safely");
-      return false;
+    // Stage the whole batch on detached paths before touching the canvas.
+    // A short contour disappears as a unit; other contours retain their IDs,
+    // geometry and appearance. Only an object with no contours is removed.
+    const plans = [];
+    for (const [object, nodes] of byObject) {
+      const isLine = canDeleteAuthoredLineEndpoints(object);
+      const records = isLine ? [] : pathContourRecords(object);
+      const removedContourIndices = new Set(records.flatMap((record, index) => {
+        const selectedCount = new Set(nodes.filter((node) => node.contourIndex === index).map((node) => node.nodeId)).size;
+        return selectedCount && record.nodes.length - selectedCount < (record.closed ? 3 : 2) ? [index] : [];
+      }));
+      const retained = records.filter((_record, index) => !removedContourIndices.has(index));
+      const parent = topologyParent(object);
+      if (!collectionObjects(parent || canvas).includes(object)) return false;
+      const plan = { object, nodes, parent, records, removedContourIndices, isLine, removeObject: !retained.length, nextRecords: [] };
+      if (!plan.removeObject) {
+        const staged = new fabricRef.Path(copyPathCommands(object.path));
+        staged.figureId = pathEditObjectId(object);
+        setBezierNodeMeta(staged, normalizedBezierNodeMeta(object));
+        const stagedOk = setPathContourRecords(staged, retained)
+          && nodes.filter((node) => !removedContourIndices.has(node.contourIndex))
+            .sort((a, b) => b.nodeIndex - a.nodeIndex)
+            .every((node) => deletePathNodeGeometry(staged, node.nodeId));
+        if (!stagedOk) {
+          showToast("The selected anchors could not be deleted safely");
+          return false;
+        }
+        plan.nextRecords = pathContourRecords(staged);
+      }
+      plans.push(plan);
     }
-    const modified = [...byObject.keys()];
-    const nextHandles = modified.map((object) => {
-      const priorIndices = byObject.get(object).map((item) => item.nodeIndex);
-      const descriptors = pathNodeDescriptors(object);
-      const target = descriptors[Math.min(Math.min(...priorIndices), Math.max(0, descriptors.length - 1))];
-      return target ? qualifyPathHandle(object, target) : null;
-    }).filter(Boolean);
-    pathNodeEdit.object = modified.includes(pathNodeEdit.object) ? pathNodeEdit.object : modified[0];
-    pathNodeEdit.objects = modified;
-    pathNodeEdit.selectedHandles = nextHandles;
-    pathNodeEdit.selected = nextHandles.at(-1) || null;
-    pathNodeEdit.selectedSegment = null;
-    pathNodeEdit.dragging = null;
-    ensureDirectSelectionCanvasCollection();
+    const modified = plans.filter((plan) => !plan.removeObject).map((plan) => plan.object);
+    const applied = [];
+    for (const plan of plans.filter((entry) => !entry.removeObject)) {
+      if (setPathContourRecords(plan.object, plan.nextRecords)) applied.push(plan);
+      else {
+        applied.reverse().forEach((entry) => setPathContourRecords(entry.object, entry.records));
+        canvas.requestRenderAll();
+        renderPathNodeOverlay();
+        syncUi();
+        showToast("The selected anchors could not be deleted safely");
+        return false;
+      }
+    }
+    const removedObjects = plans.filter((plan) => plan.removeObject).map((plan) => plan.object);
+    const detachedEndpoints = captureRemovedObjectConnectorEndpoints(removedObjects);
+    // Release ActiveSelection ownership before removing top-level members.
+    // Isolation uses the real parent, so a DNA part never removes its group.
+    canvas.discardActiveObject();
+    removedObjects.forEach(removeTopologyObject);
+    detachRemovedObjectConnectorEndpoints(detachedEndpoints);
+    plans.forEach((plan) => {
+      const meta = plan.object.figureStudioCompoundPathMeta;
+      if (!plan.removeObject && plan.removedContourIndices.size && Array.isArray(meta?.members) && meta.members.length === plan.records.length) {
+        const members = meta.members.filter((_member, index) => !plan.removedContourIndices.has(index));
+        plan.object.figureStudioCompoundPathMeta = { ...meta, members, member_count: members.length };
+      }
+    });
+    if (!modified.length) {
+      stopPathNodeEdit({ sync: false });
+      if (isGroupIsolationActive()) selectIsolatedObjects([], { sync: false, revealInLayers: false });
+    } else {
+      const nextHandles = modified.map((object) => {
+        const priorIndices = byObject.get(object).map((item) => item.nodeIndex);
+        const descriptors = pathNodeDescriptors(object);
+        const target = descriptors[Math.min(Math.min(...priorIndices), Math.max(0, descriptors.length - 1))];
+        return target ? qualifyPathHandle(object, target) : null;
+      }).filter(Boolean);
+      pathNodeEdit.object = modified.includes(pathNodeEdit.object) ? pathNodeEdit.object : modified[0];
+      pathNodeEdit.objects = modified;
+      pathNodeEdit.selectedHandles = nextHandles;
+      pathNodeEdit.selected = nextHandles.at(-1) || null;
+      pathNodeEdit.selectedSegment = null;
+      pathNodeEdit.dragging = null;
+      ensureDirectSelectionCanvasCollection();
+    }
+    const removedContourCount = plans.reduce((count, plan) => count + plan.removedContourIndices.size, 0);
+    const removedLineCount = plans.filter((plan) => plan.isLine).length;
+    const label = removedLineCount && !modified.length && !removedContourCount ? removedLineCount === 1 ? "Line deleted" : "Lines deleted"
+      : removedContourCount ? "Path anchors and contours deleted" : items.length === 1 ? "Path anchor deleted" : "Path anchors deleted";
     modified.forEach((object) => recordPathGeometryEdit(object, "path_anchor_delete", object.path, {
       action: "delete_selected_path_anchors",
       selected_anchor_count: byObject.get(object).length,
-      historyLabel: items.length === 1 ? "Path anchor deleted" : "Path anchors deleted"
+      removed_contour_count: plans.find((plan) => plan.object === object).removedContourIndices.size,
+      historyLabel: label
     }));
     canvas.requestRenderAll();
     renderPathNodeOverlay();
     syncUi();
-    commitHistory(items.length === 1 ? "Path anchor deleted" : "Path anchors deleted", {
-      undoDirectSelectionState: selectionBeforeDelete
-    });
-    showToast(items.length === 1 ? "Anchor deleted; path remains connected" : `${items.length} anchors deleted; paths remain connected`);
+    commitHistory(label, { undoDirectSelectionState: selectionBeforeDelete });
+    const removedPathCount = plans.filter((plan) => plan.removeObject && !plan.isLine).length;
+    const removedSubpathCount = plans.filter((plan) => !plan.removeObject).reduce((count, plan) => count + plan.removedContourIndices.size, 0);
+    const removals = [
+      removedLineCount ? `${removedLineCount === 1 ? "Line" : `${removedLineCount} lines`} removed` : "",
+      removedPathCount ? `${removedPathCount === 1 ? "Path" : `${removedPathCount} paths`} removed` : "",
+      removedSubpathCount ? `${removedSubpathCount === 1 ? "Subpath" : `${removedSubpathCount} subpaths`} removed` : ""
+    ].filter(Boolean);
+    showToast(removals.length ? removals.join("; ")
+      : items.length === 1 ? "Anchor deleted; path remains connected" : `${items.length} anchors deleted; paths remain connected`);
     return true;
   }
 
@@ -76085,7 +76501,8 @@
   function getScientificAssetConceptStateForQa(conceptId) {
     const normalized = String(conceptId || "");
     const allGroups = scientificAssetConceptGroups(scientificAssetPack?.assets || []);
-    const group = allGroups.find((entry) => entry.conceptId === normalized) || null;
+    const group = scientificAssetConceptGroups(filteredScientificAssets()).find((entry) => entry.conceptId === normalized)
+      || allGroups.find((entry) => entry.conceptId === normalized) || null;
     const visibleCard = els.assetGrid?.querySelector(`[data-asset-concept-card="${normalized}"]`) || null;
     return {
       conceptId: normalized,
@@ -76093,7 +76510,11 @@
       assetCount: scientificAssetPack?.assets?.length || 0,
       visible: Boolean(visibleCard),
       visibleCardCount: els.assetGrid?.querySelectorAll(".asset-card").length || 0,
-      conceptCardCount: visibleCard?.querySelectorAll(":scope > .asset-card").length || 0,
+      conceptCardCount: visibleCard ? 1 : 0,
+      drawingCardCount: visibleCard?.querySelectorAll(".asset-card").length || 0,
+      forms: scientificAssetFormGroups(group?.variants || []).map((form) => ({
+        id: form.formId, label: form.label, assetIds: form.variants.map((variant) => variant.id)
+      })),
       selectedAssetId: group?.asset?.id || "",
       selectedStyle: group?.asset ? scientificAssetVariantLabel(group.asset) : "",
       variantIds: (group?.variants || []).map((asset) => asset.id),
@@ -77832,7 +78253,7 @@
     if (!els.preflightSummary || !els.preflightResults) return;
     const counts = report.counts;
     els.preflightSummary.classList.remove("empty");
-    els.preflightSummary.innerHTML = PREFLIGHT_SEVERITIES.map((severity) => `
+    els.preflightSummary.innerHTML = ["error", "warning"].map((severity) => `
       <div class="preflight-count ${severity}">
         <strong>${counts[severity] || 0}</strong>
         ${severity}
@@ -77840,6 +78261,17 @@
     `).join("");
 
     els.preflightResults.innerHTML = "";
+    if (!counts.error && !counts.warning) {
+      const clear = document.createElement("p");
+      clear.className = "preflight-clear";
+      clear.textContent = "No export warnings found.";
+      els.preflightResults.appendChild(clear);
+    }
+    const details = document.createElement("details");
+    details.className = "preflight-technical-details";
+    const summary = document.createElement("summary");
+    summary.textContent = "Technical details";
+    details.appendChild(summary);
     PREFLIGHT_SEVERITIES.forEach((severity) => {
       const items = report.issues.filter((issue) => issue.severity === severity);
       if (!items.length) return;
@@ -77850,8 +78282,10 @@
       title.textContent = severity;
       group.appendChild(title);
       items.forEach((issue) => group.appendChild(renderPreflightIssue(issue)));
-      els.preflightResults.appendChild(group);
+      if (["info", "pass"].includes(severity)) details.appendChild(group);
+      else els.preflightResults.appendChild(group);
     });
+    if (details.childElementCount > 1) els.preflightResults.appendChild(details);
   }
 
   function renderPreflightIssue(issue) {
@@ -77964,16 +78398,16 @@
   }
 
   async function openSourcesLimits(options = {}) {
-    state.ui.rightInspectorVisible = true;
-    syncChromePanels();
-    setInspectorTab("properties");
     els.sourcesLimitsPanel?.classList.add("is-open");
     setPanelCollapsed(els.sourcesLimitsPanel, false);
     lastSourcesLimitsReport = await buildSourcesLimitsReport(options || {});
     lastSourcesLimitsDigestInput = lastSourcesLimitsReport.digestInput || "";
     renderSourcesLimitsReport(lastSourcesLimitsReport);
     syncCommandButtons();
-    els.sourcesLimitsPanel?.scrollIntoView?.({ block: "nearest", behavior: "smooth" });
+    if (!options.reportExport && !options.background) {
+      openDocumentReview(els.sourcesLimitsPanel, "Sources & reuse",
+        "Review recorded artwork sources, fonts, reuse permissions, and unresolved source notes for this document.");
+    }
     emitHostEvent("onSourcesLimitsUpdated", { summary: lastSourcesLimitsReport.summary, report: lastSourcesLimitsReport });
     return lastSourcesLimitsReport;
   }
@@ -78057,6 +78491,7 @@
   function selectPreflightObject(objectId) {
     const object = getByFigureId(objectId);
     if (!object) return;
+    document.getElementById("documentReviewDialog")?.close();
     setActiveObjects([object]);
     showToast(`Selected ${object.name || humanizeType(object.figureType)}`);
   }
@@ -78891,6 +79326,11 @@
       : payload;
     const project = fileFormatApi().compactSharedGroupImportMetadata(sourceProject);
     if (!project || !project.fabric || !project.artboard) throw new Error("That file is not a Figure Tool document.");
+    // Saved work can restore the same document/page IDs on the reused canvas.
+    // Pending artwork operations still belong to the previous document content.
+    scientificAssetDocumentGeneration += 1;
+    scientificAssetPreviewUi?.close({ force: true, restoreFocus: false });
+    if (scientificAssetReplacement) cancelScientificAssetReplacement({ toast: false });
     await assertSavedTypedNativePdfSourcesBeforeRestore(project);
     if (pdfHistoryMovePending) await pdfHistoryMoveCompletion;
     if (pdfHistoryMutationLockDepth) await pdfHistoryMutationCompletion;
@@ -78985,6 +79425,9 @@
       isRestoring = false;
       updateStage();
       fitToScreen();
+      // Apply local mode layout before the new/cold document's navigator default.
+      // Live tab restoration reapplies its captured pane after loading completes.
+      syncFigureLayoutDocumentContext(state.document?.kind);
       setSidebarTab(isPresentationDocument() || (state.document?.legacy && state.deck.pages.length > 1) ? "slides" : "tools");
       syncUi();
       undoStack = [];
@@ -91968,12 +92411,12 @@
     if (!root) return;
     const counts = report?.counts || { error: 0, warning: 0, info: 0, pass: 0 };
     const countRoot = root.querySelector("[data-export-review-counts]");
-    countRoot.innerHTML = ["error", "warning", "info"].map((severity) => `
+    countRoot.innerHTML = ["error", "warning"].map((severity) => `
       <span data-severity="${severity}"><strong>${Number(counts[severity] || 0)}</strong> ${severity}${Number(counts[severity] || 0) === 1 ? "" : "s"}</span>
     `).join("");
     const list = root.querySelector("[data-export-review-issues]");
     const actionable = (report?.issues || []).filter((issue) => issue.severity === "error" || issue.severity === "warning");
-    const displayed = actionable.length ? actionable : (report?.issues || []).filter((issue) => issue.severity === "info").slice(0, 3);
+    const displayed = actionable;
     const visibleIssues = displayed.slice(0, 3);
     list.innerHTML = visibleIssues.map((issue) => `
       <button type="button" class="export-review-issue ${escapeHtml(issue.severity)}" data-export-review-issue="${escapeHtml(issue.id || "")}" data-object-id="${escapeHtml(issue.objectId || "")}" ${issue.objectId ? "" : "disabled"}>
@@ -91984,8 +92427,8 @@
     `).join("");
     if (!displayed.length) list.innerHTML = '<p class="export-review-clear">No issues were reported for this output.</p>';
     root.querySelector("[data-export-review-more]").textContent = displayed.length > visibleIssues.length
-      ? `Open Figure check details (${displayed.length - visibleIssues.length} more issue${displayed.length - visibleIssues.length === 1 ? "" : "s"})`
-      : "Open Figure check details";
+      ? `Optional export check (${displayed.length - visibleIssues.length} more issue${displayed.length - visibleIssues.length === 1 ? "" : "s"})`
+      : "Optional export check…";
   }
 
   async function openExportReviewIssue(issueId) {
@@ -92203,10 +92646,11 @@
     const submit = root.querySelector("[data-export-as-submit]");
     const blockers = Number(exportAsDialogState.review?.blockerCount || 0);
     const ready = exportAsDialogState.reviewStatus === "ready" && Boolean(exportAsDialogState.preview?.targetId);
+    root.querySelector("[data-export-review-open-check]").disabled = !ready;
     submit.disabled = exportAsDialogState.exporting || !ready || blockers > 0;
     submit.textContent = blockers > 0
       ? "Fix errors to export"
-      : (ready ? "Export" : "Preparing review…");
+      : (ready ? "Export" : "Preparing export…");
   }
 
   async function prepareExportReview(options = {}) {
@@ -92217,7 +92661,7 @@
     exportAsDialogState.review = null;
     exportAsDialogState.preview = null;
     setExportAsStatus("");
-    root.querySelector("[data-export-review-progress]").textContent = "Preparing the Figure check…";
+    root.querySelector("[data-export-review-progress]").textContent = "Preparing export…";
     root.querySelector("[data-export-preview-progress]").textContent = "Preparing preview…";
     root.querySelector("[data-export-preview-stage]").dataset.loading = "true";
     updateExportReviewSubmitState();
@@ -92335,10 +92779,10 @@
             <label data-export-as-delivery-row hidden>Multiple files<select data-export-as-delivery><option value="folder">Choose a folder</option><option value="package">One ZIP package</option></select></label>
             <p data-export-as-hint class="export-as-hint"></p>
             <section class="export-review-summary" aria-labelledby="exportReviewTitle">
-              <div class="export-review-heading"><strong id="exportReviewTitle">Figure check</strong><span data-export-review-counts></span></div>
-              <p data-export-review-progress role="status" aria-live="polite">Preparing the Figure check…</p>
+              <div class="export-review-heading"><strong id="exportReviewTitle">Export warnings</strong><span data-export-review-counts></span></div>
+              <p data-export-review-progress role="status" aria-live="polite">Preparing export…</p>
               <div data-export-review-issues class="export-review-issues"></div>
-              <button type="button" class="export-review-more" data-export-review-open-check><span data-export-review-more>Open Figure check details</span></button>
+              <button type="button" class="export-review-more" data-export-review-open-check><span data-export-review-more>Optional export check…</span></button>
             </section>
           </div>
           <section class="export-preview" aria-labelledby="exportPreviewTitle">
@@ -92355,7 +92799,7 @@
           </section>
           <p data-export-as-status class="export-as-status" role="status" aria-live="polite" hidden></p>
         </div>
-        <footer><span>Export is available after the preview and Figure check are current.</span><button type="button" data-export-as-cancel>Cancel</button><button type="button" class="accent-command" data-export-as-submit disabled>Preparing review…</button></footer>
+        <footer><span>Export is available when the preview is ready.</span><button type="button" data-export-as-cancel>Cancel</button><button type="button" class="accent-command" data-export-as-submit disabled>Preparing export…</button></footer>
       </section>`;
     figureStudioRoot().appendChild(backdrop);
     backdrop.querySelectorAll("[data-export-as-close],[data-export-as-cancel]").forEach((button) => button.addEventListener("click", closeExportAsDialog));
@@ -92381,10 +92825,8 @@
         emitHostEvent("onPreflightUpdated", { counts: lastPreflightReport.counts, report: lastPreflightReport });
       }
       closeExportAsDialog();
-      document.querySelector(".preflight-panel")?.classList.add("is-open");
-      setPanelCollapsed(document.querySelector(".preflight-panel"), false);
-      els.preflightPanel?.scrollIntoView?.({ block: "nearest" });
-      els.runPreflightBtn?.focus?.({ preventScroll: true });
+      openDocumentReview(els.preflightPanel, "Optional export check",
+        "Review text size, image resolution, fonts, and artwork outside the page for this export.");
     });
     backdrop.querySelector("[data-export-as-submit]").addEventListener("click", executeExportAsDialog);
     exportAsDialogState.backdrop = backdrop;
@@ -92558,7 +93000,7 @@
       return { status: "review-required" };
     }
     if (Number(exportAsDialogState.review?.blockerCount || 0) > 0) {
-      setExportAsStatus("Fix the Figure check errors before export.", "error");
+      setExportAsStatus("Resolve the export errors before exporting.", "error");
       updateExportReviewSubmitState();
       return { status: "invalid", reason: "figure-check-errors" };
     }
@@ -94048,7 +94490,7 @@
     window.addEventListener("keyup", onKeyUp);
     window.addEventListener("pointerdown", (event) => {
       if (!els.appMenuBar?.contains(event.target)) closeMenus();
-      if (!els.toolGrid?.contains(event.target)) closeToolFlyouts();
+      if (!els.toolGrid?.contains(event.target) && !event.target.closest?.("#linePickerPopover, [data-line-picker-open]")) closeToolFlyouts();
       if (!els.objectContextMenu?.contains(event.target)) hideObjectContextMenu();
       if (!els.slideContextMenu?.contains(event.target)) hideSlideContextMenu();
       if (!els.layerContextMenu?.contains(event.target)) hideLayerContextMenu();
@@ -94359,6 +94801,15 @@
     });
 
     els.toolGrid.addEventListener("click", (event) => {
+      const pickerMode = event.target.closest("[data-line-picker-mode]");
+      if (pickerMode && !pickerMode.disabled) { linePickerMode = pickerMode.dataset.linePickerMode; syncLinePicker(); return; }
+      const pickerPreset = event.target.closest("[data-line-picker-preset]");
+      if (pickerPreset && !pickerPreset.disabled) { applyLinePickerPreset(pickerPreset.dataset.linePickerPreset); return; }
+      if (event.target.closest("[data-line-picker-advanced]")) {
+        closeToolFlyouts();
+        openAppearanceStructureForObject(selectedTopLevelObjects()[0], { advanced: true });
+        return;
+      }
       const button = event.target.closest("[data-tool]");
       if (!button) return;
       const flyout = button.closest(".tool-flyout");
@@ -94752,6 +95203,7 @@
     document.querySelectorAll(".ribbon-command[data-command]").forEach((button) => {
       button.addEventListener("click", () => executeMenuCommand(button.dataset.command));
     });
+    setupScientificAssetDiscoveryControls();
     if (els.assetSearchInput) {
       els.assetSearchInput.addEventListener("input", () => {
         state.assets.search = els.assetSearchInput.value;
@@ -94812,6 +95264,12 @@
       });
     }
     const handleAssetInsertClick = async (event) => {
+      const previewButton = event.target.closest("[data-asset-preview-id]");
+      if (previewButton) {
+        event.preventDefault();
+        scientificAssetPreviewUi?.open(previewButton.dataset.assetPreviewId, previewButton);
+        return;
+      }
       const favoriteButton = event.target.closest("[data-asset-favorite-concept]");
       if (favoriteButton) {
         event.preventDefault();
@@ -94842,6 +95300,8 @@
       }
       const card = event.target.closest("[data-asset-id]");
       if (!card) return;
+      const conceptId = card.dataset.assetConceptId;
+      if (conceptId) state.assets.variantByConcept = { ...(state.assets.variantByConcept || {}), [conceptId]: card.dataset.assetId };
       if (scientificAssetReplacement) await replaceScientificAssetsWithAsset(card.dataset.assetId);
       else insertScientificAsset(card.dataset.assetId);
     };
@@ -95320,19 +95780,6 @@
       if (els.scientificSymbolPopover?.contains(event.target) || scientificSymbolPopoverState.trigger?.contains?.(event.target)) return;
       closeScientificSymbolPopover();
     }, true);
-    els.tutorialsBtn?.addEventListener("click", () => openTutorialCenter());
-    els.closeTutorialBtn?.addEventListener("click", () => closeTutorialCenter());
-    els.tutorialBackdrop?.addEventListener("pointerdown", (event) => {
-      if (event.target === els.tutorialBackdrop) closeTutorialCenter();
-    });
-    els.tutorialList?.addEventListener("click", (event) => {
-      const button = event.target.closest("[data-tutorial-id]");
-      if (button) selectTutorial(button.dataset.tutorialId);
-    });
-    els.continueTutorialStepBtn?.addEventListener("click", continueTutorialStep);
-    els.previousTutorialStepBtn?.addEventListener("click", previousTutorialStep);
-    els.resetTutorialBtn?.addEventListener("click", resetTutorialProgress);
-    els.showTutorialTargetBtn?.addEventListener("click", focusTutorialTarget);
     document.getElementById("saveProjectBtn").addEventListener("click", saveProject);
     els.saveProjectAsBtn?.addEventListener("click", () => saveProject({ saveAs: true }));
     document.getElementById("loadProjectBtn").addEventListener("click", openProjectCommand);
@@ -96425,6 +96872,7 @@
   }
 
   function onKeyDown(event) {
+    if (scientificAssetPreviewUi?.getState().open) return;
     if (exportAsDialogState.backdrop && !exportAsDialogState.backdrop.hidden) {
       handleExportAsDialogKeyDown(event);
       return;
@@ -96454,13 +96902,6 @@
       if (event.key === "Escape") {
         event.preventDefault();
         closePptxCompatibilitySummary();
-      }
-      return;
-    }
-    if (els.tutorialBackdrop && !els.tutorialBackdrop.hidden) {
-      if (event.key === "Escape") {
-        event.preventDefault();
-        closeTutorialCenter();
       }
       return;
     }

@@ -3,16 +3,16 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Superbench Figure Tool browser editor, beta.6.">
-    <title>Superbench Figure Tool — beta.6</title>
+    <meta name="description" content="Create editable scientific figures and presentations with Superbench Figure Tool.">
+    <title>Superbench Figure Tool — browser editor</title>
     <link rel="stylesheet" href="web-editor.css">
     <script src="browser-store.js" defer></script>
-    <script src="browser-session.js" defer></script>
+    <script src="browser-session.js?v=20261011-browserfiles1" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#editor">Skip to editor</a>
     <header class="web-header">
-      <a class="brand" href="../" aria-label="Superbench home">
+      <a class="brand" href="https://imersich.com/superbench/" aria-label="Superbench website">
         <span class="brand-mark" aria-hidden="true">FT</span>
         <span><strong>Figure Tool</strong><small>Superbench</small></span>
       </a>
@@ -34,14 +34,15 @@
         <details class="web-about">
           <summary>About</summary>
           <div class="web-about-panel">
-            <p><strong>Superbench Figure Tool beta.6</strong></p>
+            <p><strong>Superbench Figure Tool</strong></p>
             <p>Saved work stays in this browser on this device. There is no account or cloud sync. Clearing site data removes browser saves; download files for backups or to move work to another computer.</p>
-            <span>Superbench Figure Tool</span>
-            <p><a href="../LICENSE">Code license</a> · <a href="../assets/LICENSE-ORIGINAL-ASSETS-CC0-1.0.md">Artwork reuse</a> · <a href="../THIRD_PARTY_NOTICES.md">Third-party notices</a> · <a href="https://github.com/ian-mersich/superbench-figure-tool/releases/download/v1.0.0-beta.6-docs.1/figure-tool-source.zip">Source archive</a></p>
+            <p><a href="../app/legal/LICENSE">Code license</a> · <a href="../app/legal/assets/LICENSE-ORIGINAL-ASSETS-CC0-1.0.md">Artwork reuse</a> · <a href="../vendor/NOTICE">Third-party notices</a> · <a href="https://github.com/ian-mersich/superbench-figure-tool/releases">Source downloads</a></p>
+            <a href="https://imersich.com/">Ian Mersich</a>
           </div>
         </details>
       </div>
     </header>
+    <div id="browser-announcements" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
     <dialog id="browser-library" aria-labelledby="browser-library-title">
       <div class="browser-library-heading"><h2 id="browser-library-title">Saved in this browser</h2><button id="browser-library-close" type="button">Close</button></div>
       <p>Resume your figures and presentations, including every open document and its saved assets. These copies belong to this browser profile on this device. Clearing site data removes them.</p>
@@ -54,8 +55,8 @@
       <section id="browser-launch-error" class="browser-launch-error" role="alert" hidden>
         <h2 id="browser-launch-title">The editor could not open</h2>
         <p id="browser-launch-message"></p>
-        <p id="browser-local-server-help" hidden>Check your connection and reload this page. If the problem continues, try again later.</p>
-        <a id="browser-local-launch" href="/superbench/figure_tool/" hidden>Open Figure Tool</a>
+        <p id="browser-local-server-help" hidden>Keep the local preview server running. From the Figure Tool folder, run <code>python -m http.server 4177 --bind 127.0.0.1 --directory .</code>.</p>
+        <a id="browser-local-launch" href="http://127.0.0.1:4177/web/" hidden>Open local browser preview</a>
         <button id="browser-launch-retry" type="button" hidden>Reload editor</button>
       </section>
       <noscript><p class="browser-launch-error">Enable JavaScript to open the Figure editor.</p></noscript>

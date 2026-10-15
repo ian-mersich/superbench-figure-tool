@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Unliganded Single-pass Receptor</title>
+  <desc id="desc">Original generic single-pass receptor with an extracellular binding region, one continuous membrane-spanning segment and a cytoplasmic tail. Ligand absence does not establish an inactive state. No named receptor structure, activity or scale is implied.</desc>
+  <g data-region="membrane" fill="#C7F2EC" stroke="none">
+    <rect x="15" y="72" width="98" height="8" rx="4"/><rect x="15" y="84" width="98" height="8" rx="4"/>
+  </g>
+  <g data-region="receptor" fill="#8EC8FF" stroke="none">
+    <path d="M42 25c-11 3-17 14-12 24 4 9 14 12 27 10v35c0 11 6 17 17 21l5-9c-8-4-11-6-11-13V59c14 2 25-3 29-12 4-10-3-20-14-22l-8 12H52l-10-12z"/>
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+    <path d="M42 25c-11 3-17 14-12 24 4 9 14 12 27 10v35c0 11 6 17 17 21l5-9c-8-4-11-6-11-13V59c14 2 25-3 29-12 4-10-3-20-14-22l-8 12H52l-10-12z"/><path d="M15 76h42M68 76h45M15 88h42M68 88h45"/>
+  </g>
+</svg>

@@ -1,0 +1,243 @@
+{
+  "schema_id": "figureStudio.scientificAssetLicenseReleaseAudit.v1",
+  "audit_id": "protein-homeostasis.rights-cleared-quality-pending.2026-10-10",
+  "audit_date": "2026-10-10",
+  "pack_id": "protein-homeostasis",
+  "status": "rights_cleared_quality_pending",
+  "release_effective_date": null,
+  "concept_count": 8,
+  "asset_count": 8,
+  "rights_cleared_count": 8,
+  "third_party_component_count": 0,
+  "license_selection_pending_count": 0,
+  "public_distribution_authorized": true,
+  "selected_public_license": "CC0-1.0",
+  "license_notice": "LICENSE-ASSETS-CC0-1.0.md",
+  "rights_basis": {
+    "status": "owner_attested_original_output",
+    "scope": "all_assets_in_pack",
+    "pack_id": "protein-homeostasis",
+    "authorization_record_id": "rights.protein-homeostasis.owner-cc0.2026-10-10",
+    "qualification": "This is an owner license grant for the recorded original material. It is not a non-infringement, patent, trademark, privacy, publicity, or endorsement warranty; product-release quality review remains separate."
+  },
+  "source_records": [
+    {
+      "id": "source.protein-homeostasis.2026-10-07",
+      "kind": "clean_room_generation_record",
+      "pack_id": "protein-homeostasis",
+      "scope": "all_assets_in_pack",
+      "created_on": "2026-10-07",
+      "generated_by": "Figure Tool AI-assisted original SVG authoring",
+      "third_party_material": "none_declared",
+      "statement": "Original editable SVG geometry constructed for the Figure Tool from protein-homeostasis concepts. Primary research informs biological relationships only. No published or proprietary artwork, tracing, screenshot, structural coordinates, measured data or third-party vector component was incorporated. This source record documents original construction and does not decide product release.",
+      "scientific_references": [
+        {
+          "id": "qi-2013-hsp70",
+          "citation": "Qi R, Sarbeng EB, Liu Q, et al. Allosteric opening of the polypeptide-binding site when an Hsp70 binds ATP. Nature Structural & Molecular Biology. 2013;20:900–907.",
+          "doi": "10.1038/nsmb.2583",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3772632/",
+          "figure": "Figure 1",
+          "use": "Separate HSP70 nucleotide-binding domain, linker, substrate-binding domain and lid; retain an extended client segment. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "wang-2022-client-loading",
+          "citation": "Wang RY-R, Noddings CM, Kirschke E, Myasnikov AG, Johnson JL, Agard DA. Structure of Hsp90–Hsp70–Hop–GR reveals the Hsp90 client-loading mechanism. Nature. 2022;601:460–464.",
+          "doi": "10.1038/s41586-021-04252-1",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9179170/",
+          "figure": "Figure 4",
+          "use": "Make the client's extended binding region visible and preserve client identity through chaperone handling. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "noddings-2022-client-remodelling",
+          "citation": "Noddings CM, Wang RY-R, Johnson JL, Agard DA. Structure of Hsp90–p23–GR reveals the Hsp90 client-remodelling mechanism. Nature. 2022;601:465–469.",
+          "doi": "10.1038/s41586-021-04236-1",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8994517/",
+          "figure": "Figure 1",
+          "use": "Show two HSP90 protomers, a central lumen and a client segment passing between them while most client mass remains outside. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "dou-2012-ring-e3",
+          "citation": "Dou H, Buetow L, Sibbet GJ, Cameron K, Huang DT. BIRC7–E2 ubiquitin conjugate structure reveals the mechanism of ubiquitin transfer by a RING dimer. Nature Structural & Molecular Biology. 2012;19:876–883.",
+          "doi": "10.1038/nsmb.2379",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3880866/",
+          "figure": "Figure 1",
+          "use": "Keep donor ubiquitin attached to E2 and RING E3 separate; direct transfer originates from E2-bound ubiquitin. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "renatus-2006-dub",
+          "citation": "Renatus M, Parrado SG, D'Arcy A, et al. Structural basis of ubiquitin recognition by the deubiquitinating protease USP2. Structure. 2006;14:1293–1302.",
+          "doi": "10.1016/j.str.2006.06.012",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7126176/",
+          "figure": "Figure 2",
+          "use": "Use a DUB cleft engaging ubiquitin's body and C-terminal attachment region; leave the substrate backbone intact. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "dong-2019-proteasome",
+          "citation": "Dong Y, Zhang S, Wu Z, et al. Cryo-EM structures and dynamics of substrate-engaged human 26S proteasome. Nature. 2019;565:49–55.",
+          "doi": "10.1038/s41586-018-0736-4",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6370054/",
+          "figure": "Figure 6",
+          "use": "Separate ubiquitin recognition/removal, translocation and degradation; depict an entering polypeptide and exiting short peptides. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "boatz-2017-aggregate-limit",
+          "citation": "Boatz JC, Whitley MJ, Li M, Gronenborn AM, van der Wel PCA. Cataract-associated P23T γD-crystallin retains a native-like fold in amorphous-looking aggregates formed at physiological pH. Nature Communications. 2017;8:15137.",
+          "doi": "10.1038/ncomms15137",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5424181/",
+          "figure": "Figure 8",
+          "use": "Amorphous-looking aggregates may retain native-like folds; aggregation alone establishes neither amyloid nor toxicity. Concepts only; no source artwork or geometry copied."
+        }
+      ]
+    }
+  ],
+  "rights_records": [
+    {
+      "id": "rights.protein-homeostasis.owner-cc0.2026-10-10",
+      "kind": "owner_license_grant",
+      "pack_id": "protein-homeostasis",
+      "scope": "all_assets_in_pack",
+      "status": "rights_cleared",
+      "public_distribution_authorized": true,
+      "selected_public_license": "CC0-1.0",
+      "rights_basis": "owner_attested_original_output",
+      "third_party_material": "none_declared",
+      "effective_date": "2026-10-10",
+      "statement": "The workspace owner grants CC0 1.0 permission for the original artwork and asset-specific metadata in the protein-homeostasis pack, effective 2026-10-10. This grant does not approve the pack for product release.",
+      "qualification": "This is an owner license grant for the recorded original material. It is not a non-infringement, patent, trademark, privacy, publicity, or endorsement warranty; product-release quality review remains separate."
+    }
+  ],
+  "license_candidates": [
+    {
+      "id": "CC0-1.0",
+      "selected": true,
+      "owner_action_required": false,
+      "rationale": "Explicit workspace-owner authorization recorded for this original artwork."
+    }
+  ],
+  "release_blocker": "CC0 rights are cleared. Product-level release approval remains pending and must be recorded separately.",
+  "assets": [
+    {
+      "asset_id": "proteostasis.protein.unfolded_polypeptide",
+      "file": "svg/unfolded_polypeptide.svg",
+      "sha256": "c01ef569cc14fb4d383de981772f7af6ee5aebd4f08a28937d15f63859aef47a",
+      "provenance_sha256": "83827ee887ee409868872f49d842325d3064e36488829ec55258b2760390c76c",
+      "source_type": "clean_room_original_vector",
+      "lineage": "workspace_generated_clean_room_original",
+      "current_license": "CC0-1.0",
+      "rights_basis": "owner_attested_original_output",
+      "third_party_material": "none_declared",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "source_record_id": "source.protein-homeostasis.2026-10-07",
+      "rights_record_id": "rights.protein-homeostasis.owner-cc0.2026-10-10"
+    },
+    {
+      "asset_id": "proteostasis.protein.misfolded_protein",
+      "file": "svg/misfolded_protein.svg",
+      "sha256": "0b732e65e5156a14291bf8423ae9c7f691ff6bed3a9e6ab2a3ce682c65520dd1",
+      "provenance_sha256": "83827ee887ee409868872f49d842325d3064e36488829ec55258b2760390c76c",
+      "source_type": "clean_room_original_vector",
+      "lineage": "workspace_generated_clean_room_original",
+      "current_license": "CC0-1.0",
+      "rights_basis": "owner_attested_original_output",
+      "third_party_material": "none_declared",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "source_record_id": "source.protein-homeostasis.2026-10-07",
+      "rights_record_id": "rights.protein-homeostasis.owner-cc0.2026-10-10"
+    },
+    {
+      "asset_id": "proteostasis.protein.hsp70_client_complex",
+      "file": "svg/hsp70_client_complex.svg",
+      "sha256": "ddc302e82fe88d9b091c5c8cd85032133ab849260136ce131e83324d8a0f0a3a",
+      "provenance_sha256": "83827ee887ee409868872f49d842325d3064e36488829ec55258b2760390c76c",
+      "source_type": "clean_room_original_vector",
+      "lineage": "workspace_generated_clean_room_original",
+      "current_license": "CC0-1.0",
+      "rights_basis": "owner_attested_original_output",
+      "third_party_material": "none_declared",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "source_record_id": "source.protein-homeostasis.2026-10-07",
+      "rights_record_id": "rights.protein-homeostasis.owner-cc0.2026-10-10"
+    },
+    {
+      "asset_id": "proteostasis.protein.hsp90_client_complex",
+      "file": "svg/hsp90_client_complex.svg",
+      "sha256": "30559295fe7916ad08cc898c08fb7a6ced4bb82cee8f0188199f2d13d3dfbf4d",
+      "provenance_sha256": "83827ee887ee409868872f49d842325d3064e36488829ec55258b2760390c76c",
+      "source_type": "clean_room_original_vector",
+      "lineage": "workspace_generated_clean_room_original",
+      "current_license": "CC0-1.0",
+      "rights_basis": "owner_attested_original_output",
+      "third_party_material": "none_declared",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "source_record_id": "source.protein-homeostasis.2026-10-07",
+      "rights_record_id": "rights.protein-homeostasis.owner-cc0.2026-10-10"
+    },
+    {
+      "asset_id": "proteostasis.protein.ring_e3_ubiquitination_complex",
+      "file": "svg/ring_e3_ubiquitination_complex.svg",
+      "sha256": "a15e13725fa55eaf86b2465760fcf45fc9dcd09e66f4957aeab3644aed260c0d",
+      "provenance_sha256": "83827ee887ee409868872f49d842325d3064e36488829ec55258b2760390c76c",
+      "source_type": "clean_room_original_vector",
+      "lineage": "workspace_generated_clean_room_original",
+      "current_license": "CC0-1.0",
+      "rights_basis": "owner_attested_original_output",
+      "third_party_material": "none_declared",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "source_record_id": "source.protein-homeostasis.2026-10-07",
+      "rights_record_id": "rights.protein-homeostasis.owner-cc0.2026-10-10"
+    },
+    {
+      "asset_id": "proteostasis.protein.deubiquitinase_substrate_complex",
+      "file": "svg/deubiquitinase_substrate_complex.svg",
+      "sha256": "8d0cb2f7c2739ba331d51dae346f29d85eba323d4db6b19ca03d28bf647fe03a",
+      "provenance_sha256": "83827ee887ee409868872f49d842325d3064e36488829ec55258b2760390c76c",
+      "source_type": "clean_room_original_vector",
+      "lineage": "workspace_generated_clean_room_original",
+      "current_license": "CC0-1.0",
+      "rights_basis": "owner_attested_original_output",
+      "third_party_material": "none_declared",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "source_record_id": "source.protein-homeostasis.2026-10-07",
+      "rights_record_id": "rights.protein-homeostasis.owner-cc0.2026-10-10"
+    },
+    {
+      "asset_id": "proteostasis.protein.proteasomal_substrate_processing",
+      "file": "svg/proteasomal_substrate_processing.svg",
+      "sha256": "fc356e7df3850bd3a0f8e8e6cf846eef9dae71a2a57b84a9bea73b8de55d3a3c",
+      "provenance_sha256": "83827ee887ee409868872f49d842325d3064e36488829ec55258b2760390c76c",
+      "source_type": "clean_room_original_vector",
+      "lineage": "workspace_generated_clean_room_original",
+      "current_license": "CC0-1.0",
+      "rights_basis": "owner_attested_original_output",
+      "third_party_material": "none_declared",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "source_record_id": "source.protein-homeostasis.2026-10-07",
+      "rights_record_id": "rights.protein-homeostasis.owner-cc0.2026-10-10"
+    },
+    {
+      "asset_id": "proteostasis.protein.amorphous_protein_aggregate",
+      "file": "svg/amorphous_protein_aggregate.svg",
+      "sha256": "7876670e2c344d2402887b510151b9901fa31ed763c9052355880c2804a36619",
+      "provenance_sha256": "83827ee887ee409868872f49d842325d3064e36488829ec55258b2760390c76c",
+      "source_type": "clean_room_original_vector",
+      "lineage": "workspace_generated_clean_room_original",
+      "current_license": "CC0-1.0",
+      "rights_basis": "owner_attested_original_output",
+      "third_party_material": "none_declared",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "source_record_id": "source.protein-homeostasis.2026-10-07",
+      "rights_record_id": "rights.protein-homeostasis.owner-cc0.2026-10-10"
+    }
+  ],
+  "rights_grant_effective_date": "2026-10-10",
+  "product_release_status": "pending_quality_and_product_review",
+  "supersedes_audit_id": "protein-homeostasis.provenance-license-draft.2026-10-07"
+}

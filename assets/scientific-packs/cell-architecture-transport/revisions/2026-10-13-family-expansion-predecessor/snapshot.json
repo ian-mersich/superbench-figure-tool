@@ -1,0 +1,84 @@
+{
+  "schema": "figureStudio.immutableAssetPredecessor.v1",
+  "pack_id": "cell-architecture-transport",
+  "snapshot_date": "2026-10-13",
+  "purpose": "Exact predecessor before family expansion; original license and rights record preserved without amendment",
+  "files": [
+    {
+      "file": "asset-pack.json",
+      "sha256": "8bece4f440e7e1f2e44ffc33642eccff1f6c022811eb8dbfdeee30a2871ae0df"
+    },
+    {
+      "file": "LICENSE-ASSETS-CC0-1.0.md",
+      "sha256": "c2d1c2186f2d0d55f5e3ea7b3c51e6e4ffcbb7008d910fc9429bfa9bb0c31e7d"
+    },
+    {
+      "file": "rights-release-record.json",
+      "sha256": "8b0d9b08a40a69c1e92adf071db4f4b42ee39416daeabb224810fa58ea49e812"
+    },
+    {
+      "file": "svg/adherens_junction.svg",
+      "sha256": "98e22f7e44a70bcab7f6d023965a1eab0cd4715a7c64e555af38a049168f26bb"
+    },
+    {
+      "file": "svg/autophagosome_lysosome_fusion.svg",
+      "sha256": "257bbb6ac0e0d7cbe41488307ee05a540a6c2aee72c14d21d9dd7cb080373f60"
+    },
+    {
+      "file": "svg/copi_coated_vesicle.svg",
+      "sha256": "02c4c42339051dfe9f650e42e7b75aa09d57d0e16516667d0c578e0f1ae99e2d"
+    },
+    {
+      "file": "svg/copii_vesicle_budding.svg",
+      "sha256": "ae6a02d1d36ec720bbfd614cbdba3777a93b13de8a889955c77fe82e841af405"
+    },
+    {
+      "file": "svg/cytoplasmic_dynein_cargo_transport.svg",
+      "sha256": "e79cbff406b2ac004b9faf4cc8150e82128e4851ee7769cb24af998580524bf4"
+    },
+    {
+      "file": "svg/desmosome.svg",
+      "sha256": "e2e23d6cb5d5c8a591c87974752b2873108f99ecc3b0d41c121679c876443f48"
+    },
+    {
+      "file": "svg/endosomal_recycling_tubule.svg",
+      "sha256": "b3882214122b3af94d732f69d7d0bf3521ffdad9a76ef1290404f034b747a0d0"
+    },
+    {
+      "file": "svg/er_mitochondrion_contact_site.svg",
+      "sha256": "39eb6935955c95a7fb3921839b2d19aee80cd66ff312196d16c0ac81da8288e8"
+    },
+    {
+      "file": "svg/focal_adhesion.svg",
+      "sha256": "c624af4831774084e1fdcca707752b2dd568fa4d3c321493ae951ffc6060e110"
+    },
+    {
+      "file": "svg/gap_junction.svg",
+      "sha256": "6fd9d2488413ef1bb2d45ec39d05935b7685ae2e0597b840d6a63ab440a85dce"
+    },
+    {
+      "file": "svg/hemidesmosome.svg",
+      "sha256": "2e55f2646ba94cba2700aa53c172aa517e44fcf199373cd7fa2b01c0d28f627f"
+    },
+    {
+      "file": "svg/importin_cargo_nuclear_import.svg",
+      "sha256": "35668d12b542af20f03094972508c0e34d097d97bfbf105c58b264cc362260ef"
+    },
+    {
+      "file": "svg/kinesin_cargo_transport.svg",
+      "sha256": "6a2659fd561063b8524cff4465d5286f1f2ab9a59a3a19ecd5f1ff07088bd583"
+    },
+    {
+      "file": "svg/multivesicular_endosome.svg",
+      "sha256": "777c5b051c92582c36afa293a919b5bc8aebb4a9a193aeb02c62100f5931905c"
+    },
+    {
+      "file": "svg/tight_junction.svg",
+      "sha256": "149dc1f97cac37b94e6355cf0d9d15ba7267cca734d6c5ff8530d03b1e2eaa9b"
+    },
+    {
+      "file": "svg/trans_snare_complex.svg",
+      "sha256": "7385c80b014c3fcdf44db1af222eea2e4b716c6247f53cc4fc489536da1e00ce"
+    }
+  ]
+}

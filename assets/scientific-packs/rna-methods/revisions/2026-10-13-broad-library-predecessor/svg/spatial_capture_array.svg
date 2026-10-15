@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Tissue-associated Spatial RNA Capture Array</title>
+  <desc id="desc">Original editable plan-view schematic of a tissue section associated with an array of spatially barcoded RNA capture positions. The purple sites indicate capture positions, not individual cells or measured expression. A capture site can contain RNA from multiple cells; spacing, tissue shape, and resolution are illustrative.</desc>
+  <g data-region="substrate" fill="#E8EEF7" stroke="none">
+    <rect x="17" y="17" width="94" height="94" rx="8"/>
+  </g>
+  <g data-region="tissue_context" fill="#C7F2EC" stroke="none">
+    <path d="M32 31c10-9 23-4 31 1 9-7 22-6 28 3 10 3 14 14 8 24 5 11-1 22-11 24-5 12-20 16-30 9-12 4-26-2-28-14-9-6-11-20-3-29-4-7-2-13 5-18z"/>
+  </g>
+  <g data-region="capture_sites" fill="#7B78C9" stroke="none">
+    <circle cx="32" cy="32" r="4"/><circle cx="53" cy="32" r="4"/><circle cx="74" cy="32" r="4"/><circle cx="95" cy="32" r="4"/>
+    <circle cx="32" cy="53" r="4"/><circle cx="53" cy="53" r="4"/><circle cx="74" cy="53" r="4"/><circle cx="95" cy="53" r="4"/>
+    <circle cx="32" cy="74" r="4"/><circle cx="53" cy="74" r="4"/><circle cx="74" cy="74" r="4"/><circle cx="95" cy="74" r="4"/>
+    <circle cx="32" cy="95" r="4"/><circle cx="53" cy="95" r="4"/><circle cx="74" cy="95" r="4"/><circle cx="95" cy="95" r="4"/>
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="17" y="17" width="94" height="94" rx="8"/>
+    <path d="M32 31c10-9 23-4 31 1 9-7 22-6 28 3 10 3 14 14 8 24 5 11-1 22-11 24-5 12-20 16-30 9-12 4-26-2-28-14-9-6-11-20-3-29-4-7-2-13 5-18z" stroke-width="2.75"/>
+  </g>
+</svg>

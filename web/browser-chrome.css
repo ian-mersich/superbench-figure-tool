@@ -1,0 +1,64 @@
+/* Browser-owned controls adopt the shared editor's current appearance tokens. */
+.figure-studio-root .browser-chrome-trigger {
+  flex: 0 0 auto;
+  min-height: 28px;
+  height: 28px;
+  padding: 0 9px;
+  border: 1px solid var(--line-strong);
+  border-radius: 4px;
+  color: var(--text);
+  background: var(--chrome-strong);
+  font: inherit;
+  font-size: 11px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.browser-chrome-trigger::after { content: " ▾"; color: var(--muted); }
+.browser-chrome-trigger:hover, .browser-chrome-trigger[aria-expanded="true"] { background: var(--chrome-soft); }
+.browser-chrome-trigger[data-save-state="error"], .browser-chrome-trigger[data-save-state="conflict"] { color: var(--warn); }
+.browser-chrome-trigger:focus-visible, .browser-chrome-panel :focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.browser-chrome-panel {
+  position: fixed;
+  z-index: 950;
+  width: min(350px, calc(100vw - 16px));
+  overflow: auto;
+  padding: 14px;
+  border: 1px solid var(--line-strong);
+  border-radius: 6px;
+  background: var(--chrome);
+  color: var(--text);
+  box-shadow: 0 10px 28px var(--shadow);
+  font-size: 12px;
+  line-height: 1.5;
+}
+.browser-chrome-panel[hidden] { display: none !important; }
+.browser-chrome-heading { display: block; margin-bottom: 5px; color: var(--text-strong); font-size: 13px; }
+.browser-chrome-panel .browser-toolbar { display: block; font-size: 12px; }
+.browser-chrome-panel #browser-save-status { display: block; min-height: 36px; margin-bottom: 12px; color: var(--muted); white-space: normal; overflow-wrap: anywhere; }
+.browser-chrome-panel #browser-save-status[data-state="error"], .browser-chrome-panel #browser-save-status[data-state="conflict"] { color: var(--warn); }
+.browser-chrome-panel .browser-toolbar-actions { display: flex; flex-wrap: wrap; gap: 6px; }
+.browser-chrome-panel button {
+  min-height: 30px;
+  padding: 5px 9px;
+  border: 1px solid var(--line-strong);
+  border-radius: 4px;
+  color: var(--text);
+  background: var(--chrome-strong);
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+.browser-chrome-panel button:hover { background: var(--chrome-soft); }
+.browser-chrome-panel .web-header-actions { display: block; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line); }
+.browser-chrome-panel .web-theme-selector { display: inline-flex; gap: 2px; padding: 2px; border: 1px solid var(--line-strong); border-radius: 5px; background: var(--field); }
+.browser-chrome-panel .web-theme-selector button { min-width: 54px; border: 0; background: transparent; color: var(--muted); }
+.browser-chrome-panel .web-theme-selector button[aria-pressed="true"] { color: var(--text-strong); background: var(--accent-soft); font-weight: 700; }
+.browser-chrome-panel .web-about { margin-top: 12px; }
+.browser-chrome-panel .web-about summary { display: inline-flex; padding: 2px 0; cursor: pointer; font-weight: 600; list-style: none; }
+.browser-chrome-panel .web-about summary::-webkit-details-marker { display: none; }
+.browser-chrome-panel .web-about summary::after { content: " ▾"; margin-left: 6px; color: var(--muted); }
+.browser-chrome-panel .web-about-panel { margin-top: 8px; font-size: 12px; line-height: 1.5; }
+.browser-chrome-panel .web-about-panel p { margin: 0 0 8px; }
+.browser-chrome-panel .web-about-panel p:last-of-type { color: var(--muted); }
+.browser-chrome-panel .web-about-panel a { display: block; width: fit-content; margin-top: 5px; color: var(--text); text-underline-offset: 3px; }
+.browser-chrome-panel [hidden] { display: none !important; }

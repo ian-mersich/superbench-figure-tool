@@ -1,22 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
   <title id="title">mRNA Transcript</title>
-  <desc id="desc">Original vector mature mRNA with a 5-prime cap, untranslated regions, segmented coding sequence, poly(A) tail, and editable semantic regions.</desc>
-  <g data-region="utr" fill="none" stroke="#8EC8FF" stroke-linecap="round" stroke-width="5">
-    <path d="M27 64h19M89 64h13"/>
-  </g>
-  <g data-region="coding_region" fill="#F4A261">
-    <rect x="45" y="53" width="17" height="22" rx="4"/>
-    <rect x="64" y="53" width="24" height="22" rx="4"/>
-  </g>
-  <g data-region="cap_tail" fill="#B8B5FF">
-    <path d="M16 54h8l5 10-5 10h-8l-5-10z"/>
-    <circle cx="106" cy="64" r="3.2"/><circle cx="113" cy="64" r="3.2"/><circle cx="120" cy="64" r="3.2"/>
-  </g>
-  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M27 64h18M89 64h13M102 64h20" stroke-width="3"/>
-    <rect x="45" y="53" width="17" height="22" rx="4" stroke-width="3"/>
-    <rect x="64" y="53" width="24" height="22" rx="4" stroke-width="3"/>
-    <path d="M16 54h8l5 10-5 10h-8l-5-10z" stroke-width="2.75"/>
-    <path d="M50 49v-5M83 49v-5" stroke-width="2.5"/>
+  <desc id="desc">Typical capped and polyadenylated eukaryotic mRNA: a cap, 5-prime UTR, one continuous coding region, 3-prime UTR and connected poly(A) tail. Region lengths and nucleotide marks are schematic, not an exon map or sequence.</desc>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="5.8" stroke-linecap="round"><path d="M26 64C32 69 36 69 42 64M80 64C86 72 91 76 96 70"/></g>
+  <path data-region="utr" d="M26 64C32 69 36 69 42 64M80 64C86 72 91 76 96 70" fill="none" stroke="#8EC8FF" stroke-width="4" stroke-linecap="round"/>
+  <g data-region="outline" stroke="#26323D" stroke-width="1.35" stroke-linejoin="round">
+    <path data-region="coding_region" d="M45.792 65.806C46.952 63.37 48.145 61.338 49.334 59.692C50.523 58.046 51.706 56.789 52.839 55.867C53.971 54.945 55.046 54.356 56.089 53.998C57.132 53.641 58.152 53.504 59.258 53.568C60.364 53.632 61.561 53.906 62.874 54.441C64.186 54.977 65.608 55.777 67.102 56.857C68.597 57.937 70.164 59.296 71.77 60.922C73.376 62.548 75.021 64.44 76.685 66.579A4.2 4.2 0 0 0 83.315 61.421C81.479 59.06 79.624 56.921 77.746 55.019C75.867 53.118 73.965 51.453 72.023 50.049C70.08 48.645 68.095 47.5 66.048 46.664C64.001 45.829 61.886 45.306 59.742 45.182C57.598 45.058 55.43 45.344 53.364 46.053C51.298 46.761 49.341 47.883 47.536 49.352C45.731 50.821 44.07 52.634 42.525 54.773C40.98 56.912 39.548 59.38 38.208 62.194A4.2 4.2 0 0 0 45.792 65.806Z" fill="#F4A261"/>
+    <g data-region="cap_tail" fill="#B8B5FF"><path d="M97.152 70.96C98.142 69.773 99.125 68.632 100.108 67.571C101.091 66.511 102.073 65.529 103.057 64.66C104.041 63.791 105.026 63.033 106.013 62.415C106.999 61.797 107.985 61.318 108.977 60.994C109.969 60.67 110.967 60.5 112 60.5A1.5 1.5 0 0 0 112 57.5C110.633 57.5 109.311 57.73 108.047 58.142C106.783 58.554 105.577 59.147 104.419 59.873C103.262 60.599 102.151 61.457 101.071 62.412C99.991 63.367 98.941 64.417 97.908 65.533C96.875 66.648 95.858 67.827 94.848 69.04A1.5 1.5 0 0 0 97.152 70.96Z"/><path d="M14 64L17 58.8H23L26 64L23 69.2H17Z"/><circle cx="97.802" cy="67.89" r="2.3"/><circle cx="102.064" cy="63.536" r="2.3"/><circle cx="106.843" cy="60.242" r="2.3"/><circle cx="112" cy="59" r="2.3"/></g>
   </g>
 </svg>

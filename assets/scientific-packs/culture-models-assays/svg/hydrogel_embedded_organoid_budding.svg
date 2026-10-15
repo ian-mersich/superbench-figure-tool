@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Hydrogel-embedded Organoid — Budded</title>
+  <desc id="desc">Budded epithelial organoid with one connected internal lumen, surrounded externally by hydrogel. Nuclei and buds are illustrative.</desc>
+  <g data-region="externalmatrix" fill="#D9F4E5" stroke="none">
+    <path d="M16 108C18 51 31 22 64 22C98 22 111 53 112 108Z"/>
+  </g>
+  <g data-region="epithelium" fill="#7DD3C7" stroke="none">
+    <path d="M35 71C28 61 32 46 44 44C46 30 61 28 67 40C82 32 95 41 91 55C104 57 106 73 95 78C100 94 85 105 74 96C61 106 47 101 46 90C35 90 30 81 35 71Z M43 70C38 59 40 54 52 54C54 46 59 39 62 51C70 51 79 42 82 54C80 63 91 65 90 71C89 78 78 78 80 88C72 90 67 85 61 92C53 88 58 80 47 81C42 78 40 74 43 70Z" fill-rule="evenodd"/>
+  </g>
+  <g data-region="nuclei" fill="#B8B5FF" stroke="none">
+    <ellipse cx="38" cy="60" rx="2.5" ry="3.3"/><ellipse cx="53" cy="40" rx="3.2" ry="2.5"/><ellipse cx="79" cy="43" rx="3.2" ry="2.4"/><ellipse cx="97" cy="67" rx="2.5" ry="3.3"/><ellipse cx="87" cy="91" rx="3.2" ry="2.5"/><ellipse cx="60" cy="98" rx="3.2" ry="2.3"/><ellipse cx="38" cy="82" rx="2.5" ry="3.2"/>
+  </g>
+  <g data-region="lumenfluid" fill="#FFFFFF" stroke="none">
+    <path d="M43 70C38 59 40 54 52 54C54 46 59 39 62 51C70 51 79 42 82 54C80 63 91 65 90 71C89 78 78 78 80 88C72 90 67 85 61 92C53 88 58 80 47 81C42 78 40 74 43 70Z"/>
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M16 108C18 51 31 22 64 22C98 22 111 53 112 108Z"/><path d="M35 71C28 61 32 46 44 44C46 30 61 28 67 40C82 32 95 41 91 55C104 57 106 73 95 78C100 94 85 105 74 96C61 106 47 101 46 90C35 90 30 81 35 71Z"/><path d="M43 70C38 59 40 54 52 54C54 46 59 39 62 51C70 51 79 42 82 54C80 63 91 65 90 71C89 78 78 78 80 88C72 90 67 85 61 92C53 88 58 80 47 81C42 78 40 74 43 70Z"/><path d="M45 44L51 54M67 40L62 51M91 55L82 54M95 78L89 72M74 96L80 88M46 90L53 87M35 71L43 70" stroke-width="1.6"/>
+  </g>
+</svg>

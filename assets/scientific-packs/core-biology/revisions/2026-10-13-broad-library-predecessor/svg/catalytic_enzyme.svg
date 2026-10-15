@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Catalytic Enzyme</title>
+  <desc id="desc">Original vector single-fold catalytic enzyme with a deep complementary substrate pocket and one fitted substrate cue.</desc>
+  <path data-region="body" fill="#8EC8FF" d="M28 34c17-17 45-18 63-3 13 11 18 28 13 44-4 15-16 27-31 31-20 6-42-3-50-22-7-17-4-37 5-50zm48 25c-9 1-16 7-18 16-2 8 1 15 8 19 4-8 10-14 18-18l12-6c-4-8-11-12-20-11z" fill-rule="evenodd"/>
+  <path data-region="active_site" fill="#5EA9DD" d="M76 59c9-1 16 3 20 11l-12 6c-8 4-14 10-18 18-7-4-10-11-8-19 2-9 9-15 18-16z"/>
+  <path data-region="substrate" fill="#F4A261" d="m89 64 9 5-1 11-10 4-8-6 2-10z"/>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M28 34c17-17 45-18 63-3 13 11 18 28 13 44-4 15-16 27-31 31-20 6-42-3-50-22-7-17-4-37 5-50z" stroke-width="3.5"/>
+    <path d="M76 59c9-1 16 3 20 11l-12 6c-8 4-14 10-18 18-7-4-10-11-8-19 2-9 9-15 18-16z" stroke-width="2.75"/>
+    <path d="m89 64 9 5-1 11-10 4-8-6 2-10z" stroke-width="2.75"/>
+  </g>
+</svg>

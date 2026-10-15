@@ -1,0 +1,415 @@
+{
+  "schema_id": "superbench.scientificAssetProductRelease.v1",
+  "release_id": "protein-homeostasis.qualified-release.2026-10-11",
+  "release_date": "2026-10-11",
+  "pack_id": "protein-homeostasis",
+  "predecessor": {
+    "audit_id": "protein-homeostasis.rights-cleared-quality-pending.2026-10-10",
+    "catalog_sha256": "eb83fdea352334fe94d51a3abd24ee1285ee49e317b200255222cee2e61b60d3",
+    "audit_sha256": "44fbdf7d0ccb16cb6abee8db27cb1d676c6b949764e658893a5a5dfbae72b31f",
+    "license_notice_sha256": "2a384f66ac943cf1022a42479dfa2b93eddefaf04fe40befc4373bece58f9360",
+    "snapshot": "releases/2026-10-10-rights-cleared"
+  },
+  "current_catalog_sha256": "69d033d292aeafeabae8ca9a5dc4ccde69a030618fe7704e8f49d54475c8e6ab",
+  "current_license_notice_sha256": "dc962680b191d507a7b2478c5171cca693d471933edab0e5e41ebfa554ad647a",
+  "owner_grant_record_id": "rights.protein-homeostasis.owner-cc0.2026-10-10",
+  "scientific_source_record_id": "source.protein-homeostasis.2026-10-07",
+  "contour_refinement_record_id": "source.protein-homeostasis.contour-refinement.2026-10-11",
+  "review": {
+    "status": "accepted",
+    "visual_review": "pass",
+    "editor_checks": "pass",
+    "reviewer": "independent asset_visual_review and project lead review",
+    "reviewed_on": "2026-10-11",
+    "scope": "All eight contour-refined protein-homeostasis vectors at native 64, 128 and 256 pixels in three treatments, including original-versus-refined comparisons; actual Figure and Presentation Library insertion, treatment/palette combinations, light/dark appearance and downloaded Save/cold Open; Figure vector SVG export; all 31 declared named-region recolors and actual pointer selection and dragging of visible contour anchors with Undo/Redo in Figure, including settled sibling selection bounds; constant screen-sized endpoint and tangent-control hit areas at 50%, 100% and 400% zoom; preceding artwork retained through Save/cold Open; supported Presentation export, Edit in Figure handoff, original-slide preservation and vector SVG export of the copied artwork from Figure; independent full-resolution final editor capture acceptance.",
+    "evidence": "docs/scientific-assets/PROTEIN_HOMEOSTASIS_QUALIFICATION_2026_10_11.md",
+    "evidence_records": [
+      {
+        "file": "qa_artifacts/protein-homeostasis-qualification-20261011/review/static-visual-verdict.json",
+        "sha256": "05f825d3a70b21489d36b3d7e0102a00ea68ba55040321473e51ea5f515b65f3"
+      },
+      {
+        "file": "qa_artifacts/protein-homeostasis-qualification-20261011/native/native-browser-proof.json",
+        "sha256": "cc24272aaf951c79883c077b5ef3914eedfac9b93f18eb477bcc1620cdb4fd43"
+      },
+      {
+        "file": "qa_artifacts/protein-homeostasis-qualification-20261011/native/native-visual-verdict.json",
+        "sha256": "d1aabc2ef465bfc749d95a16c48219c3c3e6037da1d389c6c2cc22785095cef9"
+      },
+      {
+        "file": "qa_artifacts/protein-homeostasis-qualification-20261011/review/historical-thumbnail-visual-verdict.json",
+        "sha256": "a5cb2cce11e78961452a30a26cc079188fcc0556067e76df6c37fc472d024240"
+      },
+      {
+        "file": "qa_artifacts/protein-homeostasis-qualification-20261011/release-review/presentation-export-independent-review.json",
+        "sha256": "5d02e127a5a8b29ad8ccb564784b8dbc505716c65b46b7f922035a8bc941aa36"
+      },
+      {
+        "file": "qa_artifacts/protein-homeostasis-qualification-20261011/direct-selection-regression-final/proof.json",
+        "sha256": "a736bbfd8f26d9c52fec7e0f563544509580aef6630664256f2763dad40cd39a"
+      },
+      {
+        "file": "qa_artifacts/protein-homeostasis-qualification-20261011/direct-selection-regression-final/independent-visual-verdict.json",
+        "sha256": "d7b17bdd52d94382b946d1617f626f23d46daac438245c3c6c228452fc2ad044"
+      }
+    ],
+    "comparison_limits": {
+      "cold_open_derived_scene_tolerance_pixels": 0.01,
+      "authored_native_fields_and_ids": "exact at native six-decimal serialization precision after Save/cold Open; derived scene matrices and bounds compared separately within 0.01 pixel",
+      "undo_imported_child_ids": "transient IDs may regenerate; owning asset identity, hierarchy, geometry, paints, sibling preservation and correct anchor reselection checked separately",
+      "copy_svg_export_manifest_delta": "Handoff preserves the exact original document before export. Subsequent copy SVG export may update only project.manifest.export.lastProxyExportAudit; this non-authoring diagnostic is recorded separately while all original slide content remains exact.",
+      "thumbnail": {
+        "scope": "Only the exact independently reviewed 213 by 150 historical before/after thumbnails; no global tolerance change",
+        "prior_rgba_numeric_limits": {
+          "mean_channel_difference": 0.25,
+          "maximum_channel_difference": 20
+        },
+        "prior_numeric_result": "FAIL",
+        "observed": {
+          "size_px": [
+            213,
+            150
+          ],
+          "maximum_channel_difference": 21,
+          "pixels_differing": 3345,
+          "pixels_max_channel_gt5": 1377,
+          "pixels_max_channel_gt10": 269,
+          "pixels_max_channel_gt20": 1,
+          "total_pixels": 31950,
+          "prior_threshold_mean": 0.25,
+          "prior_threshold_max": 20,
+          "prior_threshold_result": "FAIL",
+          "mean_rgb_channel_difference": 0.4110067814293166,
+          "mean_rgba_channel_difference": 0.3082550860719875,
+          "prior_threshold_channel_mode": "RGBA"
+        },
+        "specific_visual_continuity_exception": "accepted",
+        "control": "The same serialized preceding artwork produces a byte-identical preview in archived-catalog and current-catalog contexts. Authored fields/IDs remain exact and derived scene differences remain within 0.01 pixel.",
+        "evidence_file": "qa_artifacts/protein-homeostasis-qualification-20261011/review/historical-thumbnail-visual-verdict.json"
+      }
+    },
+    "known_separate_ui_issue": "Creating a new Presentation can restore the Slides sidebar while retaining an Assets pane flag. Reopening Asset library may require two visible clicks. Independent review also found poor contrast on inactive document-tab labels in light-theme Presentation captures. These existing navigation and tab appearance issues are recorded separately and are not corrected by the artwork or grouped point-editing changes."
+  },
+  "assets": [
+    {
+      "asset_id": "proteostasis.protein.unfolded_polypeptide",
+      "file": "svg/unfolded_polypeptide.svg",
+      "before_svg_sha256": "c01ef569cc14fb4d383de981772f7af6ee5aebd4f08a28937d15f63859aef47a",
+      "after_svg_sha256": "0aa9dbc2462d5b98fbc6f5a2e46c789f142f4033f0bfbc1d50330c51adcedf7c",
+      "before_metadata_sha256": "82df53eaf1467a5f084080b4c7e32a96efb0be2c1fb49df93b193a12227845b6",
+      "after_metadata_sha256": "56b0e8b69c19dbbc90eadec4f98d14781e66d303b4754bf55607e03a26d1489a",
+      "source_record_id": "source.protein-homeostasis.contour-refinement.2026-10-11",
+      "rights_record_id": "rights.protein-homeostasis.owner-cc0.2026-10-10",
+      "metadata_changes": {
+        "provenance": {
+          "before": "Original editable SVG geometry constructed for the Figure Tool from protein-homeostasis concepts. Primary research informs biological relationships only. No published or proprietary artwork, tracing, screenshot, structural coordinates, measured data or third-party vector component was incorporated. The workspace owner grants CC0 1.0 permission effective 2026-10-10; product-level release approval remains pending.",
+          "after": "Original editable SVG geometry constructed for the Figure Tool from protein-homeostasis concepts. Primary research informs biological relationships only. No published or proprietary artwork, tracing, screenshot, structural coordinates, measured data or third-party vector component was incorporated. The workspace owner grants CC0 1.0 permission effective 2026-10-10; product-level scientific, visual and native editing review passed on 2026-10-11."
+        },
+        "review_status": {
+          "before": "independent_scientific_and_visual_review_passed_2026_10_07",
+          "after": "independent_scientific_visual_and_native_editor_review_passed_2026_10_11"
+        },
+        "style_status": {
+          "before": "soft_line_v1_original_draft",
+          "after": "soft_line_v1_independently_qualified"
+        },
+        "reviewer_notes": {
+          "before": "Independent scientific and original-image review passed at 64 and 256 px in all three treatments. Source/web editing qualification is recorded separately in the asset review. Product-level release approval remains pending. CC0 1.0 permission is granted; product-level release approval remains pending.",
+          "after": "Independent individual artwork and before/after review passed at 64, 128 and 256 px in all three treatments. Dense ribbon contours were refitted as sparse cubic Bezier paths after a native editing rejection. Fresh native Figure checks passed all named-region recolors, actual pointer selection and dragging of anchors, Undo/Redo, actual Save/cold Open and vector SVG export. Presentation insertion, treatments, Save/cold Open, supported export and Edit in Figure handoff passed; copied slide artwork exports as vector SVG in Figure. Detailed recolor and anchor editing remain in Figure. Biological relationships, scientific limits and the October 10 CC0 owner grant are unchanged. Product review accepted on 2026-10-11."
+        },
+        "mvp_quality": {
+          "before": "original_draft",
+          "after": "curated_beta"
+        },
+        "quality_tier": {
+          "before": "draft",
+          "after": "beta_curated"
+        },
+        "source_record_id": {
+          "before": "source.protein-homeostasis.2026-10-07",
+          "after": "source.protein-homeostasis.contour-refinement.2026-10-11"
+        }
+      }
+    },
+    {
+      "asset_id": "proteostasis.protein.misfolded_protein",
+      "file": "svg/misfolded_protein.svg",
+      "before_svg_sha256": "0b732e65e5156a14291bf8423ae9c7f691ff6bed3a9e6ab2a3ce682c65520dd1",
+      "after_svg_sha256": "2e9bbb068cb63a2384e031ae884bf6e13b9440a0030eb797758d3096ca0733bb",
+      "before_metadata_sha256": "7cbd71141c5283e388ee91e81f07b648da6bcc962f772f649da6388f7b7f240b",
+      "after_metadata_sha256": "ff53dc04b9ee4ee333cfe5d6c6e9b3f7049b14e8079a950fa2e2009006dff8d7",
+      "source_record_id": "source.protein-homeostasis.contour-refinement.2026-10-11",
+      "rights_record_id": "rights.protein-homeostasis.owner-cc0.2026-10-10",
+      "metadata_changes": {
+        "provenance": {
+          "before": "Original editable SVG geometry constructed for the Figure Tool from protein-homeostasis concepts. Primary research informs biological relationships only. No published or proprietary artwork, tracing, screenshot, structural coordinates, measured data or third-party vector component was incorporated. The workspace owner grants CC0 1.0 permission effective 2026-10-10; product-level release approval remains pending.",
+          "after": "Original editable SVG geometry constructed for the Figure Tool from protein-homeostasis concepts. Primary research informs biological relationships only. No published or proprietary artwork, tracing, screenshot, structural coordinates, measured data or third-party vector component was incorporated. The workspace owner grants CC0 1.0 permission effective 2026-10-10; product-level scientific, visual and native editing review passed on 2026-10-11."
+        },
+        "review_status": {
+          "before": "independent_scientific_and_visual_review_passed_2026_10_07",
+          "after": "independent_scientific_visual_and_native_editor_review_passed_2026_10_11"
+        },
+        "style_status": {
+          "before": "soft_line_v1_original_draft",
+          "after": "soft_line_v1_independently_qualified"
+        },
+        "reviewer_notes": {
+          "before": "Independent scientific and original-image review passed at 64 and 256 px in all three treatments. Source/web editing qualification is recorded separately in the asset review. Product-level release approval remains pending. CC0 1.0 permission is granted; product-level release approval remains pending.",
+          "after": "Independent individual artwork and before/after review passed at 64, 128 and 256 px in all three treatments. Dense ribbon contours were refitted as sparse cubic Bezier paths after a native editing rejection. Fresh native Figure checks passed all named-region recolors, actual pointer selection and dragging of anchors, Undo/Redo, actual Save/cold Open and vector SVG export. Presentation insertion, treatments, Save/cold Open, supported export and Edit in Figure handoff passed; copied slide artwork exports as vector SVG in Figure. Detailed recolor and anchor editing remain in Figure. Biological relationships, scientific limits and the October 10 CC0 owner grant are unchanged. Product review accepted on 2026-10-11."
+        },
+        "mvp_quality": {
+          "before": "original_draft",
+          "after": "curated_beta"
+        },
+        "quality_tier": {
+          "before": "draft",
+          "after": "beta_curated"
+        },
+        "source_record_id": {
+          "before": "source.protein-homeostasis.2026-10-07",
+          "after": "source.protein-homeostasis.contour-refinement.2026-10-11"
+        }
+      }
+    },
+    {
+      "asset_id": "proteostasis.protein.hsp70_client_complex",
+      "file": "svg/hsp70_client_complex.svg",
+      "before_svg_sha256": "ddc302e82fe88d9b091c5c8cd85032133ab849260136ce131e83324d8a0f0a3a",
+      "after_svg_sha256": "35397427ae08b61630b4df905b19009e09a4b49570b44b325f3daba2589890cf",
+      "before_metadata_sha256": "9c8c7bb92bd1ea38d0ceb08db20e8bede3dd63dbb5b9ed0a4f8e75eb1568341c",
+      "after_metadata_sha256": "040754a711c2dfcc49e4b8c0c0c4943b992736d46c393d18d882c1e60c46af7e",
+      "source_record_id": "source.protein-homeostasis.contour-refinement.2026-10-11",
+      "rights_record_id": "rights.protein-homeostasis.owner-cc0.2026-10-10",
+      "metadata_changes": {
+        "provenance": {
+          "before": "Original editable SVG geometry constructed for the Figure Tool from protein-homeostasis concepts. Primary research informs biological relationships only. No published or proprietary artwork, tracing, screenshot, structural coordinates, measured data or third-party vector component was incorporated. The workspace owner grants CC0 1.0 permission effective 2026-10-10; product-level release approval remains pending.",
+          "after": "Original editable SVG geometry constructed for the Figure Tool from protein-homeostasis concepts. Primary research informs biological relationships only. No published or proprietary artwork, tracing, screenshot, structural coordinates, measured data or third-party vector component was incorporated. The workspace owner grants CC0 1.0 permission effective 2026-10-10; product-level scientific, visual and native editing review passed on 2026-10-11."
+        },
+        "review_status": {
+          "before": "independent_scientific_and_visual_review_passed_2026_10_07",
+          "after": "independent_scientific_visual_and_native_editor_review_passed_2026_10_11"
+        },
+        "style_status": {
+          "before": "soft_line_v1_original_draft",
+          "after": "soft_line_v1_independently_qualified"
+        },
+        "reviewer_notes": {
+          "before": "Independent scientific and original-image review passed at 64 and 256 px in all three treatments. Source/web editing qualification is recorded separately in the asset review. Product-level release approval remains pending. CC0 1.0 permission is granted; product-level release approval remains pending.",
+          "after": "Independent individual artwork and before/after review passed at 64, 128 and 256 px in all three treatments. Dense ribbon contours were refitted as sparse cubic Bezier paths after a native editing rejection. Fresh native Figure checks passed all named-region recolors, actual pointer selection and dragging of anchors, Undo/Redo, actual Save/cold Open and vector SVG export. Presentation insertion, treatments, Save/cold Open, supported export and Edit in Figure handoff passed; copied slide artwork exports as vector SVG in Figure. Detailed recolor and anchor editing remain in Figure. Biological relationships, scientific limits and the October 10 CC0 owner grant are unchanged. Product review accepted on 2026-10-11."
+        },
+        "mvp_quality": {
+          "before": "original_draft",
+          "after": "curated_beta"
+        },
+        "quality_tier": {
+          "before": "draft",
+          "after": "beta_curated"
+        },
+        "source_record_id": {
+          "before": "source.protein-homeostasis.2026-10-07",
+          "after": "source.protein-homeostasis.contour-refinement.2026-10-11"
+        }
+      }
+    },
+    {
+      "asset_id": "proteostasis.protein.hsp90_client_complex",
+      "file": "svg/hsp90_client_complex.svg",
+      "before_svg_sha256": "30559295fe7916ad08cc898c08fb7a6ced4bb82cee8f0188199f2d13d3dfbf4d",
+      "after_svg_sha256": "6be2ab24ede4980027bbb33a50c6977dbf4595645598be2649778e9feb69f743",
+      "before_metadata_sha256": "74102325e29f58764603e6bae475830ae32a310633dff9aac0174963122264ee",
+      "after_metadata_sha256": "07d6089c23ae5941062c511314fdadfe2157753612c0d234650031d0fd2ad157",
+      "source_record_id": "source.protein-homeostasis.contour-refinement.2026-10-11",
+      "rights_record_id": "rights.protein-homeostasis.owner-cc0.2026-10-10",
+      "metadata_changes": {
+        "provenance": {
+          "before": "Original editable SVG geometry constructed for the Figure Tool from protein-homeostasis concepts. Primary research informs biological relationships only. No published or proprietary artwork, tracing, screenshot, structural coordinates, measured data or third-party vector component was incorporated. The workspace owner grants CC0 1.0 permission effective 2026-10-10; product-level release approval remains pending.",
+          "after": "Original editable SVG geometry constructed for the Figure Tool from protein-homeostasis concepts. Primary research informs biological relationships only. No published or proprietary artwork, tracing, screenshot, structural coordinates, measured data or third-party vector component was incorporated. The workspace owner grants CC0 1.0 permission effective 2026-10-10; product-level scientific, visual and native editing review passed on 2026-10-11."
+        },
+        "review_status": {
+          "before": "independent_scientific_and_visual_review_passed_2026_10_07",
+          "after": "independent_scientific_visual_and_native_editor_review_passed_2026_10_11"
+        },
+        "style_status": {
+          "before": "soft_line_v1_original_draft",
+          "after": "soft_line_v1_independently_qualified"
+        },
+        "reviewer_notes": {
+          "before": "Independent scientific and original-image review passed at 64 and 256 px in all three treatments. Source/web editing qualification is recorded separately in the asset review. Product-level release approval remains pending. CC0 1.0 permission is granted; product-level release approval remains pending.",
+          "after": "Independent individual artwork and before/after review passed at 64, 128 and 256 px in all three treatments. Dense ribbon contours were refitted as sparse cubic Bezier paths after a native editing rejection. Fresh native Figure checks passed all named-region recolors, actual pointer selection and dragging of anchors, Undo/Redo, actual Save/cold Open and vector SVG export. Presentation insertion, treatments, Save/cold Open, supported export and Edit in Figure handoff passed; copied slide artwork exports as vector SVG in Figure. Detailed recolor and anchor editing remain in Figure. Biological relationships, scientific limits and the October 10 CC0 owner grant are unchanged. Product review accepted on 2026-10-11."
+        },
+        "mvp_quality": {
+          "before": "original_draft",
+          "after": "curated_beta"
+        },
+        "quality_tier": {
+          "before": "draft",
+          "after": "beta_curated"
+        },
+        "source_record_id": {
+          "before": "source.protein-homeostasis.2026-10-07",
+          "after": "source.protein-homeostasis.contour-refinement.2026-10-11"
+        }
+      }
+    },
+    {
+      "asset_id": "proteostasis.protein.ring_e3_ubiquitination_complex",
+      "file": "svg/ring_e3_ubiquitination_complex.svg",
+      "before_svg_sha256": "a15e13725fa55eaf86b2465760fcf45fc9dcd09e66f4957aeab3644aed260c0d",
+      "after_svg_sha256": "248b3b3488a5324922fd46db054176ab6bcc805abd752df7621b29b88686fb65",
+      "before_metadata_sha256": "c4d266a7e076a1fc143543f8d29c309836b433596894f649a231a4e3ec14d5dd",
+      "after_metadata_sha256": "50f442da560762e1a3b4f2215451ac4832241531fc8e39b4d18af85d4b369f38",
+      "source_record_id": "source.protein-homeostasis.contour-refinement.2026-10-11",
+      "rights_record_id": "rights.protein-homeostasis.owner-cc0.2026-10-10",
+      "metadata_changes": {
+        "provenance": {
+          "before": "Original editable SVG geometry constructed for the Figure Tool from protein-homeostasis concepts. Primary research informs biological relationships only. No published or proprietary artwork, tracing, screenshot, structural coordinates, measured data or third-party vector component was incorporated. The workspace owner grants CC0 1.0 permission effective 2026-10-10; product-level release approval remains pending.",
+          "after": "Original editable SVG geometry constructed for the Figure Tool from protein-homeostasis concepts. Primary research informs biological relationships only. No published or proprietary artwork, tracing, screenshot, structural coordinates, measured data or third-party vector component was incorporated. The workspace owner grants CC0 1.0 permission effective 2026-10-10; product-level scientific, visual and native editing review passed on 2026-10-11."
+        },
+        "review_status": {
+          "before": "independent_scientific_and_visual_review_passed_2026_10_07",
+          "after": "independent_scientific_visual_and_native_editor_review_passed_2026_10_11"
+        },
+        "style_status": {
+          "before": "soft_line_v1_original_draft",
+          "after": "soft_line_v1_independently_qualified"
+        },
+        "reviewer_notes": {
+          "before": "Independent scientific and original-image review passed at 64 and 256 px in all three treatments. Source/web editing qualification is recorded separately in the asset review. Product-level release approval remains pending. CC0 1.0 permission is granted; product-level release approval remains pending.",
+          "after": "Independent individual artwork and before/after review passed at 64, 128 and 256 px in all three treatments. Dense ribbon contours were refitted as sparse cubic Bezier paths after a native editing rejection. Fresh native Figure checks passed all named-region recolors, actual pointer selection and dragging of anchors, Undo/Redo, actual Save/cold Open and vector SVG export. Presentation insertion, treatments, Save/cold Open, supported export and Edit in Figure handoff passed; copied slide artwork exports as vector SVG in Figure. Detailed recolor and anchor editing remain in Figure. Biological relationships, scientific limits and the October 10 CC0 owner grant are unchanged. Product review accepted on 2026-10-11."
+        },
+        "mvp_quality": {
+          "before": "original_draft",
+          "after": "curated_beta"
+        },
+        "quality_tier": {
+          "before": "draft",
+          "after": "beta_curated"
+        },
+        "source_record_id": {
+          "before": "source.protein-homeostasis.2026-10-07",
+          "after": "source.protein-homeostasis.contour-refinement.2026-10-11"
+        }
+      }
+    },
+    {
+      "asset_id": "proteostasis.protein.deubiquitinase_substrate_complex",
+      "file": "svg/deubiquitinase_substrate_complex.svg",
+      "before_svg_sha256": "8d0cb2f7c2739ba331d51dae346f29d85eba323d4db6b19ca03d28bf647fe03a",
+      "after_svg_sha256": "7f3af692162d6473f36694dd2147b5294df8184f0c516309f6a69fd9774aadb6",
+      "before_metadata_sha256": "990b6f901c39fbc9636ad616bb664bd2d9bd36344073691b19a6c7df893fad6e",
+      "after_metadata_sha256": "27095d6a16a87c5a648d48376ebaed1d7f2f1b0f40243ed8b2a31a14da391a17",
+      "source_record_id": "source.protein-homeostasis.contour-refinement.2026-10-11",
+      "rights_record_id": "rights.protein-homeostasis.owner-cc0.2026-10-10",
+      "metadata_changes": {
+        "provenance": {
+          "before": "Original editable SVG geometry constructed for the Figure Tool from protein-homeostasis concepts. Primary research informs biological relationships only. No published or proprietary artwork, tracing, screenshot, structural coordinates, measured data or third-party vector component was incorporated. The workspace owner grants CC0 1.0 permission effective 2026-10-10; product-level release approval remains pending.",
+          "after": "Original editable SVG geometry constructed for the Figure Tool from protein-homeostasis concepts. Primary research informs biological relationships only. No published or proprietary artwork, tracing, screenshot, structural coordinates, measured data or third-party vector component was incorporated. The workspace owner grants CC0 1.0 permission effective 2026-10-10; product-level scientific, visual and native editing review passed on 2026-10-11."
+        },
+        "review_status": {
+          "before": "independent_scientific_and_visual_review_passed_2026_10_07",
+          "after": "independent_scientific_visual_and_native_editor_review_passed_2026_10_11"
+        },
+        "style_status": {
+          "before": "soft_line_v1_original_draft",
+          "after": "soft_line_v1_independently_qualified"
+        },
+        "reviewer_notes": {
+          "before": "Independent scientific and original-image review passed at 64 and 256 px in all three treatments. Source/web editing qualification is recorded separately in the asset review. Product-level release approval remains pending. CC0 1.0 permission is granted; product-level release approval remains pending.",
+          "after": "Independent individual artwork and before/after review passed at 64, 128 and 256 px in all three treatments. Dense ribbon contours were refitted as sparse cubic Bezier paths after a native editing rejection. Fresh native Figure checks passed all named-region recolors, actual pointer selection and dragging of anchors, Undo/Redo, actual Save/cold Open and vector SVG export. Presentation insertion, treatments, Save/cold Open, supported export and Edit in Figure handoff passed; copied slide artwork exports as vector SVG in Figure. Detailed recolor and anchor editing remain in Figure. Biological relationships, scientific limits and the October 10 CC0 owner grant are unchanged. Product review accepted on 2026-10-11."
+        },
+        "mvp_quality": {
+          "before": "original_draft",
+          "after": "curated_beta"
+        },
+        "quality_tier": {
+          "before": "draft",
+          "after": "beta_curated"
+        },
+        "source_record_id": {
+          "before": "source.protein-homeostasis.2026-10-07",
+          "after": "source.protein-homeostasis.contour-refinement.2026-10-11"
+        }
+      }
+    },
+    {
+      "asset_id": "proteostasis.protein.proteasomal_substrate_processing",
+      "file": "svg/proteasomal_substrate_processing.svg",
+      "before_svg_sha256": "fc356e7df3850bd3a0f8e8e6cf846eef9dae71a2a57b84a9bea73b8de55d3a3c",
+      "after_svg_sha256": "9d2c1c56f0d6a83fff7e65f9bed350418adbec4603e4cdb6ee882f33ab7695ec",
+      "before_metadata_sha256": "3ccaa2af544c7d54a77d8796e3adb2c2411713871a542e1f233459196cefd4b5",
+      "after_metadata_sha256": "d009b61c0e04081c20eeeb588fbc358f5b5fa3fb3462ec9449d91edd8e70656a",
+      "source_record_id": "source.protein-homeostasis.contour-refinement.2026-10-11",
+      "rights_record_id": "rights.protein-homeostasis.owner-cc0.2026-10-10",
+      "metadata_changes": {
+        "provenance": {
+          "before": "Original editable SVG geometry constructed for the Figure Tool from protein-homeostasis concepts. Primary research informs biological relationships only. No published or proprietary artwork, tracing, screenshot, structural coordinates, measured data or third-party vector component was incorporated. The workspace owner grants CC0 1.0 permission effective 2026-10-10; product-level release approval remains pending.",
+          "after": "Original editable SVG geometry constructed for the Figure Tool from protein-homeostasis concepts. Primary research informs biological relationships only. No published or proprietary artwork, tracing, screenshot, structural coordinates, measured data or third-party vector component was incorporated. The workspace owner grants CC0 1.0 permission effective 2026-10-10; product-level scientific, visual and native editing review passed on 2026-10-11."
+        },
+        "review_status": {
+          "before": "independent_scientific_and_visual_review_passed_2026_10_07",
+          "after": "independent_scientific_visual_and_native_editor_review_passed_2026_10_11"
+        },
+        "style_status": {
+          "before": "soft_line_v1_original_draft",
+          "after": "soft_line_v1_independently_qualified"
+        },
+        "reviewer_notes": {
+          "before": "Independent scientific and original-image review passed at 64 and 256 px in all three treatments. Source/web editing qualification is recorded separately in the asset review. Product-level release approval remains pending. CC0 1.0 permission is granted; product-level release approval remains pending.",
+          "after": "Independent individual artwork and before/after review passed at 64, 128 and 256 px in all three treatments. Dense ribbon contours were refitted as sparse cubic Bezier paths after a native editing rejection. Fresh native Figure checks passed all named-region recolors, actual pointer selection and dragging of anchors, Undo/Redo, actual Save/cold Open and vector SVG export. Presentation insertion, treatments, Save/cold Open, supported export and Edit in Figure handoff passed; copied slide artwork exports as vector SVG in Figure. Detailed recolor and anchor editing remain in Figure. Biological relationships, scientific limits and the October 10 CC0 owner grant are unchanged. Product review accepted on 2026-10-11."
+        },
+        "mvp_quality": {
+          "before": "original_draft",
+          "after": "curated_beta"
+        },
+        "quality_tier": {
+          "before": "draft",
+          "after": "beta_curated"
+        },
+        "source_record_id": {
+          "before": "source.protein-homeostasis.2026-10-07",
+          "after": "source.protein-homeostasis.contour-refinement.2026-10-11"
+        }
+      }
+    },
+    {
+      "asset_id": "proteostasis.protein.amorphous_protein_aggregate",
+      "file": "svg/amorphous_protein_aggregate.svg",
+      "before_svg_sha256": "7876670e2c344d2402887b510151b9901fa31ed763c9052355880c2804a36619",
+      "after_svg_sha256": "a52a5c01d84f6886772d740c445ce63190d6c9e6b77f96a0583897dc512a4be5",
+      "before_metadata_sha256": "d8444f8be831a89bbafc01cc1327e3fa9d02f18d4985ba6815375d1a3044f256",
+      "after_metadata_sha256": "fea162cc84db99a08130ca47cd5d57c30458830d03d46b80f6c040b33f6a4131",
+      "source_record_id": "source.protein-homeostasis.contour-refinement.2026-10-11",
+      "rights_record_id": "rights.protein-homeostasis.owner-cc0.2026-10-10",
+      "metadata_changes": {
+        "provenance": {
+          "before": "Original editable SVG geometry constructed for the Figure Tool from protein-homeostasis concepts. Primary research informs biological relationships only. No published or proprietary artwork, tracing, screenshot, structural coordinates, measured data or third-party vector component was incorporated. The workspace owner grants CC0 1.0 permission effective 2026-10-10; product-level release approval remains pending.",
+          "after": "Original editable SVG geometry constructed for the Figure Tool from protein-homeostasis concepts. Primary research informs biological relationships only. No published or proprietary artwork, tracing, screenshot, structural coordinates, measured data or third-party vector component was incorporated. The workspace owner grants CC0 1.0 permission effective 2026-10-10; product-level scientific, visual and native editing review passed on 2026-10-11."
+        },
+        "review_status": {
+          "before": "independent_scientific_and_visual_review_passed_2026_10_07",
+          "after": "independent_scientific_visual_and_native_editor_review_passed_2026_10_11"
+        },
+        "style_status": {
+          "before": "soft_line_v1_original_draft",
+          "after": "soft_line_v1_independently_qualified"
+        },
+        "reviewer_notes": {
+          "before": "Independent scientific and original-image review passed at 64 and 256 px in all three treatments. Source/web editing qualification is recorded separately in the asset review. Product-level release approval remains pending. CC0 1.0 permission is granted; product-level release approval remains pending.",
+          "after": "Independent individual artwork and before/after review passed at 64, 128 and 256 px in all three treatments. Dense ribbon contours were refitted as sparse cubic Bezier paths after a native editing rejection. Fresh native Figure checks passed all named-region recolors, actual pointer selection and dragging of anchors, Undo/Redo, actual Save/cold Open and vector SVG export. Presentation insertion, treatments, Save/cold Open, supported export and Edit in Figure handoff passed; copied slide artwork exports as vector SVG in Figure. Detailed recolor and anchor editing remain in Figure. Biological relationships, scientific limits and the October 10 CC0 owner grant are unchanged. Product review accepted on 2026-10-11."
+        },
+        "mvp_quality": {
+          "before": "original_draft",
+          "after": "curated_beta"
+        },
+        "quality_tier": {
+          "before": "draft",
+          "after": "beta_curated"
+        },
+        "source_record_id": {
+          "before": "source.protein-homeostasis.2026-10-07",
+          "after": "source.protein-homeostasis.contour-refinement.2026-10-11"
+        }
+      }
+    }
+  ]
+}

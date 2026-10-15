@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Golgi Apparatus — Oblique Stack</title>
+  <desc id="desc">Illustrative oblique view of a stacked Golgi with flattened cisternae and nearby vesicles. This is a drawing viewpoint, not a distinct cell state or a measured reconstruction.</desc>
+  <g data-region="cisterna" fill="#FFD7A8">
+    <path d="M31 30C48 20 78 21 99 29C104 31 104 35 100 38C82 48 49 47 29 39C24 37 25 33 31 30Z"/>
+    <path d="M27 48C46 38 79 39 102 47C108 49 108 53 103 57C85 66 49 65 26 58C20 55 21 51 27 48Z"/>
+    <path d="M26 67C47 57 80 58 104 67C109 69 110 73 105 76C83 85 48 84 24 77C19 74 20 70 26 67Z"/>
+    <path d="M34 87C53 77 77 78 98 85C104 88 105 91 100 95C82 103 54 103 32 96C27 93 28 90 34 87Z"/>
+  </g>
+  <g data-region="vesicle" fill="#C7F2EC">
+    <circle cx="110" cy="37" r="3.7"/>
+    <circle cx="16" cy="57" r="3.4"/>
+    <circle cx="112" cy="81" r="3.8"/>
+    <circle cx="22" cy="99" r="3.3"/>
+  </g>
+  <g data-region="accent" fill="none" stroke="#F4A261" stroke-width="2.2" stroke-linecap="round">
+    <path d="M34 32C51 27 79 28 95 33"/>
+    <path d="M29 50C50 45 80 46 99 51"/>
+    <path d="M29 70C51 65 79 66 100 71"/>
+    <path d="M37 90C56 84 78 85 94 89"/>
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M31 30C48 20 78 21 99 29C104 31 104 35 100 38C82 48 49 47 29 39C24 37 25 33 31 30Z"/>
+    <path d="M27 48C46 38 79 39 102 47C108 49 108 53 103 57C85 66 49 65 26 58C20 55 21 51 27 48Z"/>
+    <path d="M26 67C47 57 80 58 104 67C109 69 110 73 105 76C83 85 48 84 24 77C19 74 20 70 26 67Z"/>
+    <path d="M34 87C53 77 77 78 98 85C104 88 105 91 100 95C82 103 54 103 32 96C27 93 28 90 34 87Z"/>
+    <circle cx="110" cy="37" r="3.7"/>
+    <circle cx="16" cy="57" r="3.4"/>
+    <circle cx="112" cy="81" r="3.8"/>
+    <circle cx="22" cy="99" r="3.3"/>
+  </g>
+</svg>

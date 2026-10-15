@@ -1,0 +1,1681 @@
+{
+  "schema_version": "0.3.0",
+  "id": "microbial-biology",
+  "name": "Microbial Structures & Interactions",
+  "description": "Editable microbial envelopes, capsules, spores, biofilms, hyphae and selected phage or enveloped-virus interactions.",
+  "generated_by": {
+    "script": "scripts/seed-microbial-biology-assets.py",
+    "generated_on": "2026-10-08",
+    "deterministic": true
+  },
+  "style_family": "figure-studio-soft-line-v1",
+  "style_families": [
+    "figure-studio-soft-line-v1"
+  ],
+  "qa_status": "independent_scientific_and_visual_review_passed_2026_10_08",
+  "concept_count": 12,
+  "asset_count": 12,
+  "category_counts": {
+    "membrane-signaling": {
+      "concept_count": 7,
+      "style_count": 7
+    },
+    "cell": {
+      "concept_count": 3,
+      "style_count": 3
+    },
+    "model-system": {
+      "concept_count": 2,
+      "style_count": 2
+    }
+  },
+  "release_audit": {
+    "file": "rights-release-record.json",
+    "audit_id": "microbial-biology.rights-cleared-quality-pending.2026-10-10",
+    "audit_date": "2026-10-10",
+    "release_effective_date": null,
+    "status": "rights_cleared_quality_pending",
+    "concept_count": 12,
+    "asset_count": 12,
+    "public_distribution_authorized": true,
+    "selected_public_license": "CC0-1.0",
+    "license_notice": "LICENSE-ASSETS-CC0-1.0.md",
+    "rights_grant_effective_date": "2026-10-10",
+    "product_release_status": "pending_quality_and_product_review"
+  },
+  "style_tokens": {
+    "viewBox": "0 0 128 128",
+    "target_padding_units": "14-18",
+    "primary_outline": "#26323D",
+    "primary_outline_width": 3.5,
+    "detail_outline_width": 2.75,
+    "line_cap": "round",
+    "line_join": "round",
+    "palette": {
+      "bacteria": [
+        "#7DD3C7"
+      ],
+      "capsule": [
+        "#D9F4E5"
+      ],
+      "cell_body": [
+        "#7DD3C7"
+      ],
+      "cellwall": [
+        "#7DD3C7"
+      ],
+      "coat": [
+        "#8EC8FF"
+      ],
+      "core": [
+        "#7DD3C7"
+      ],
+      "cortex": [
+        "#D9F4E5"
+      ],
+      "cytoplasm": [
+        "#D9F4E5"
+      ],
+      "fibers": [
+        "#58B8AE"
+      ],
+      "fusionproteins": [
+        "#E76F51"
+      ],
+      "genome": [
+        "#E76F51"
+      ],
+      "head": [
+        "#B8B5FF"
+      ],
+      "hostcytoplasm": [
+        "#D9F4E5"
+      ],
+      "hostmembrane": [
+        "#7DD3C7"
+      ],
+      "hostmembranes": [
+        "#7DD3C7"
+      ],
+      "inner_membrane": [
+        "#7DD3C7",
+        "#B8B5FF"
+      ],
+      "innermembrane": [
+        "#B8B5FF"
+      ],
+      "matrix": [
+        "#D9F4E5"
+      ],
+      "membrane": [
+        "#7DD3C7"
+      ],
+      "membranes": [
+        "#7DD3C7"
+      ],
+      "nuclei": [
+        "#B8B5FF"
+      ],
+      "nucleoid": [
+        "#B8B5FF"
+      ],
+      "outer_membrane": [
+        "#7DD3C7"
+      ],
+      "outermembrane": [
+        "#7DD3C7"
+      ],
+      "outline": [
+        "#26323D"
+      ],
+      "peptidoglycan": [
+        "#8EC8FF"
+      ],
+      "periplasm": [
+        "#D9F4E5",
+        "#E8EEF7"
+      ],
+      "phageapparatus": [
+        "#8EC8FF"
+      ],
+      "rotor": [
+        "#B8B5FF"
+      ],
+      "septa": [
+        "#E8EEF7"
+      ],
+      "stators": [
+        "#F4A261"
+      ],
+      "surface": [
+        "#E8EEF7"
+      ],
+      "surfaceproteins": [
+        "#8EC8FF"
+      ],
+      "tailapparatus": [
+        "#8EC8FF"
+      ],
+      "viralcontents": [
+        "#8EC8FF",
+        "#B8B5FF"
+      ]
+    }
+  },
+  "source_policy": {
+    "batch_scope": "microbial-biology only",
+    "allowed_sources": [
+      "Original vector construction informed by primary scientific papers",
+      "Existing shared style tokens"
+    ],
+    "disallowed_sources": [
+      "Copied or traced published or proprietary artwork",
+      "Downloaded third-party vector components",
+      "Measured observations as decorative art"
+    ],
+    "reference_use": "Biological topology and molecular relationships only; no source geometry incorporated."
+  },
+  "license_definitions": {
+    "CC0-1.0": {
+      "label": "CC0 1.0 Universal",
+      "reuse": "Owner-authorized public-domain dedication for the original artwork and asset-specific metadata scoped by the canonical asset license notice.",
+      "scope_notice": "LICENSE-ASSETS-CC0-1.0.md",
+      "rights_status": "owner_attested_original_output",
+      "release_status": "rights_cleared_quality_pending",
+      "public_distribution_authorized": true,
+      "selected_public_license": "CC0-1.0"
+    }
+  },
+  "source_records": [
+    {
+      "id": "source.microbial-biology.2026-10-08",
+      "kind": "clean_room_generation_record",
+      "pack_id": "microbial-biology",
+      "scope": "all_assets_in_pack",
+      "created_on": "2026-10-08",
+      "generated_by": "Figure Tool AI-assisted original SVG authoring",
+      "third_party_material": "none_declared",
+      "statement": "Original editable SVG geometry constructed for the Figure Tool from microbial structures and interactions concepts. Primary research informs biological topology and molecular relationships only. No published or proprietary artwork, tracing, screenshot, structural coordinates, measured data or third-party vector component was incorporated. This source record documents original construction and does not decide product release.",
+      "scientific_references": [
+        {
+          "id": "pmc10197873-figure2",
+          "citation": "Andrea Corona Ramírez et al. Multiple roads lead to Rome: unique morphology and chemistry of endospores, exospores, myxospores, cysts and akinetes in bacteria. Microbiology. 2023.",
+          "doi": "10.1099/mic.0.001299",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10197873/",
+          "figure": "Fig. 2.",
+          "use": "Figure 2a right: Bacillus endospore has a bounded inner core and surrounding concentric cortex/coat; use an isolated spore cross-section. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "pmc10197873-figure3",
+          "citation": "Andrea Corona Ramírez et al. Multiple roads lead to Rome: unique morphology and chemistry of endospores, exospores, myxospores, cysts and akinetes in bacteria. Microbiology. 2023.",
+          "doi": "10.1099/mic.0.001299",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10197873/",
+          "figure": "Fig. 3.",
+          "use": "Figure 3a upper: one cytoplasmic membrane below a broad external wall. Figure 3c/d upper: two membranes with an intervening periplasm including thin peptidoglycan. Figure 3a lower: core membrane, cortex and coat of a Bacillus endospore. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "pmc1201225-figure3",
+          "citation": "Sven Hammerschmidt et al. Illustration of Pneumococcal Polysaccharide Capsule during Adherence and Invasion of Epithelial Cells. Infection and Immunity. 2005.",
+          "doi": "10.1128/IAI.73.8.4653-4667.2005",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC1201225/",
+          "figure": "FIG. 3.",
+          "use": "Capsule-positive microscopy in panels A/D/G shows capsular material outside the bacterial body; comparisons distinguish the capsule from intracellular structures. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "pmc3160247-figure3",
+          "citation": "Songye Chen et al. Structural diversity of bacterial flagellar motors. The EMBO Journal. 2011.",
+          "doi": "10.1038/emboj.2011.186",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3160247/",
+          "figure": "Figure 3.",
+          "use": "Salmonella and E. coli motor panels show the shaft through outer membrane/peptidoglycan, the rotor at the cytoplasmic membrane, a cytoplasmic C-ring and flanking membrane-associated stators. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "pmc3513368-figure1",
+          "citation": "Veysel Berk et al. Molecular Architecture and Assembly Principles of Vibrio cholerae Biofilms. Science (New York, N.Y.). 2012.",
+          "doi": "10.1126/science.1222981",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3513368/",
+          "figure": "Fig. 1.  V. cholerae  biofilm structure.",
+          "use": "Panels B/C show bacterial clusters encased by extracellular matrix and associated with the underlying surface. Depict an irregular attached matrix containing bacterial rods. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "pmc2745257-figure2",
+          "citation": "Brooke L Deatherage et al. Biogenesis of Bacterial Membrane Vesicles. Molecular microbiology. 2009.",
+          "doi": "10.1111/j.1365-2958.2009.06731.x",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2745257/",
+          "figure": "Figure 2. WT MV release localized to division septa and cell body; MV proteins control size and localization of MV release.",
+          "use": "Actual microscopy in panels E/F shows membrane vesicles associated with the bacterial outer surface and release at cell-body or septal sites. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "pmc2745257-figure6",
+          "citation": "Brooke L Deatherage et al. Biogenesis of Bacterial Membrane Vesicles. Molecular microbiology. 2009.",
+          "doi": "10.1111/j.1365-2958.2009.06731.x",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2745257/",
+          "figure": "Figure 6. Model of MV biogenesis.",
+          "use": "Panel B left models an outer-membrane protrusion enclosing periplasmic material while the inner membrane remains separate; retain an open periplasm-to-bud neck. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "pmc4568249-figure1",
+          "citation": "Bo Hu et al. Structural remodeling of bacteriophage T4 and host membranes during infection initiation. Proceedings of the National Academy of Sciences of the United States of America. 2015.",
+          "doi": "10.1073/pnas.1501064112",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4568249/",
+          "figure": "Fig. 1.",
+          "use": "Actual tomography in panels A/C/D/F distinguishes the capsid, neck, sheath around an axial tube, baseplate and flexible long fibers of a contractile-tailed phage. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "pmc4568249-figure3",
+          "citation": "Bo Hu et al. Structural remodeling of bacteriophage T4 and host membranes during infection initiation. Proceedings of the National Academy of Sciences of the United States of America. 2015.",
+          "doi": "10.1073/pnas.1501064112",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4568249/",
+          "figure": "Fig. 3.",
+          "use": "Panels A/B show genome retention/release from an external head; panels F/L show the inner membrane bulging toward the contracted tail tube. Genome delivery keeps the capsid outside and joins the tube to the inner membrane. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "pmc4568249-figure5",
+          "citation": "Bo Hu et al. Structural remodeling of bacteriophage T4 and host membranes during infection initiation. Proceedings of the National Academy of Sciences of the United States of America. 2015.",
+          "doi": "10.1073/pnas.1501064112",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4568249/",
+          "figure": "Fig. 5.",
+          "use": "Panels E/F integrate the observed T4-like state: contracted sheath outside, tube across the outer membrane, outward-bulged inner membrane and genome entering cytoplasm. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "pmc4944294-figure6",
+          "citation": "Long Gui et al. Visualization and Sequencing of Membrane Remodeling Leading to Influenza Virus Fusion. Journal of Virology. 2016.",
+          "doi": "10.1128/JVI.00240-16",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4944294/",
+          "figure": "FIG 6.",
+          "use": "Postfusion influenza/liposome tomography shows merged membrane-bound compartments. Depict a fused viral envelope/target membrane rather than an intact viral shell crossing another intact membrane. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "pmc4944294-figure10",
+          "citation": "Long Gui et al. Visualization and Sequencing of Membrane Remodeling Leading to Influenza Virus Fusion. Journal of Virology. 2016.",
+          "doi": "10.1128/JVI.00240-16",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4944294/",
+          "figure": "FIG 10.",
+          "use": "Final pore-formation stage has a true opening bounded by merged membrane segments. Use one open-pore state, with viral contents exposed to the target-side compartment. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "pmc2991257-figure2",
+          "citation": "Lars-Anders Carlson et al. Cryo Electron Tomography of Native HIV-1 Budding Sites. PLoS Pathogens. 2010.",
+          "doi": "10.1371/journal.ppat.1001173",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2991257/",
+          "figure": "Figure 2. Cryo electron tomograms of HIV-1 budding sites and released particles.",
+          "use": "Actual HIV budding tomograms in panels A/D/F show outward plasma-membrane curvature around viral assembly material with a narrowing membrane neck. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "pmc4011870-figure1",
+          "citation": "Diego Luis Delgado-Álvarez et al. Septum Development in Neurospora crassa: The Septal Actomyosin Tangle. PLoS ONE. 2014.",
+          "doi": "10.1371/journal.pone.0096744",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4011870/",
+          "figure": "Figure 1. Septum development in hyphae of  Neurospora crassa  visualized by fluorescent tagging of actin with Lifeact-GFP.",
+          "use": "Actual live microscopy in panels A/B shows connected tubular fungal hyphae, branching and transverse septa. Use a continuous wall enclosing connected cytoplasm. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "pmc4011870-figure6",
+          "citation": "Diego Luis Delgado-Álvarez et al. Septum Development in Neurospora crassa: The Septal Actomyosin Tangle. PLoS ONE. 2014.",
+          "doi": "10.1371/journal.pone.0096744",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4011870/",
+          "figure": "Figure 6. Chronology of the incorporation of actin (A) and tropomyosin (B) during septum development.",
+          "use": "FM4-64 series shows ingrowth of the septal membrane within a tubular hypha. With the article description of the central pore, retain real septal openings continuous with cytoplasm. Concepts only; no source artwork or geometry copied."
+        }
+      ]
+    }
+  ],
+  "rights_records": [
+    {
+      "id": "rights.microbial-biology.owner-cc0.2026-10-10",
+      "kind": "owner_license_grant",
+      "pack_id": "microbial-biology",
+      "scope": "all_assets_in_pack",
+      "status": "rights_cleared",
+      "public_distribution_authorized": true,
+      "selected_public_license": "CC0-1.0",
+      "rights_basis": "owner_attested_original_output",
+      "third_party_material": "none_declared",
+      "effective_date": "2026-10-10",
+      "statement": "The workspace owner grants CC0 1.0 permission for the original artwork and asset-specific metadata in the microbial-biology pack, effective 2026-10-10. This grant does not approve the pack for product release.",
+      "qualification": "This is an owner license grant for the recorded original material. It is not a non-infringement, patent, trademark, privacy, publicity, or endorsement warranty; product-release quality review remains separate."
+    }
+  ],
+  "assets": [
+    {
+      "id": "microbe.membrane_signaling.gram_negative_envelope_segment",
+      "concept_id": "microbe.membrane_signaling.gram_negative_envelope_segment",
+      "name": "Gram-negative Cell Envelope",
+      "scientific_name": "Gram-negative Cell Envelope",
+      "synonyms": [
+        "gram-negative envelope",
+        "diderm bacterial envelope",
+        "inner and outer membrane",
+        "bacterial periplasm"
+      ],
+      "category": "membrane-signaling",
+      "subcategory": "Microbial structures and interactions",
+      "tags": [
+        "gram-negative envelope",
+        "gram negative cell envelope",
+        "diderm bacterial envelope",
+        "inner and outer membrane",
+        "bacterial periplasm",
+        "microbial structures and interactions"
+      ],
+      "description": "A typical Gram-negative envelope segment with two membranes, periplasm and a thin peptidoglycan wall for membrane and microbial schematics.",
+      "file": "svg/gram_negative_envelope_segment.svg",
+      "editable_color_regions": [
+        {
+          "id": "periplasm",
+          "label": "Periplasmic space",
+          "default": "#D9F4E5",
+          "paint": "fill"
+        },
+        {
+          "id": "outer_membrane",
+          "label": "Outer membrane",
+          "default": "#7DD3C7",
+          "paint": "fill"
+        },
+        {
+          "id": "inner_membrane",
+          "label": "Cytoplasmic membrane",
+          "default": "#7DD3C7",
+          "paint": "fill"
+        },
+        {
+          "id": "peptidoglycan",
+          "label": "Thin peptidoglycan wall",
+          "default": "#8EC8FF",
+          "paint": "fill"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#26323D",
+          "paint": "stroke"
+        }
+      ],
+      "connector_hints": [
+        {
+          "id": "left",
+          "label": "Left attachment",
+          "role": "attachment",
+          "x": 0.125,
+          "y": 0.5
+        },
+        {
+          "id": "right",
+          "label": "Right attachment",
+          "role": "attachment",
+          "x": 0.875,
+          "y": 0.5
+        },
+        {
+          "id": "top",
+          "label": "Top attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.125
+        },
+        {
+          "id": "bottom",
+          "label": "Bottom attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.875
+        }
+      ],
+      "scientific_references": [
+        {
+          "id": "pmc10197873-figure3",
+          "citation": "Andrea Corona Ramírez et al. Multiple roads lead to Rome: unique morphology and chemistry of endospores, exospores, myxospores, cysts and akinetes in bacteria. Microbiology. 2023.",
+          "doi": "10.1099/mic.0.001299",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10197873/",
+          "figure": "Fig. 3.",
+          "use": "Figure 3a upper: one cytoplasmic membrane below a broad external wall. Figure 3c/d upper: two membranes with an intervening periplasm including thin peptidoglycan. Figure 3a lower: core membrane, cortex and coat of a Bacillus endospore. Concepts only; no source artwork or geometry copied."
+        }
+      ],
+      "scientific_limitations": "Typical diderm arrangement only. Widths and lipid marks are illustrative; no species, actual Gram stain, lipid chemistry, LPS/O-antigen composition, porin count, capsule, permeability or resistance is implied.",
+      "reviewer_notes": "Independent scientific and original-image review passed at 64 and 256 px in all three treatments. Source/web editing qualification is recorded separately in the asset review. Product-level release approval remains pending. CC0 1.0 permission is granted; product-level release approval remains pending.",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable SVG geometry constructed for the Figure Tool from microbial structures and interactions concepts. Primary research informs biological topology and molecular relationships only. No published or proprietary artwork, tracing, screenshot, structural coordinates, measured data or third-party vector component was incorporated. The workspace owner grants CC0 1.0 permission effective 2026-10-10; product-level release approval remains pending.",
+      "source_record_id": "source.microbial-biology.2026-10-08",
+      "rights_record_id": "rights.microbial-biology.owner-cc0.2026-10-10",
+      "style_family": "figure-studio-soft-line-v1",
+      "style_variant": "standard",
+      "review_status": "independent_scientific_and_visual_review_passed_2026_10_08",
+      "style_status": "soft_line_v1_original_draft",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 5
+    },
+    {
+      "id": "microbe.membrane_signaling.gram_positive_envelope_segment",
+      "concept_id": "microbe.membrane_signaling.gram_positive_envelope_segment",
+      "name": "Gram-positive Cell Envelope",
+      "scientific_name": "Gram-positive Cell Envelope",
+      "synonyms": [
+        "gram-positive envelope",
+        "gram positive cell wall",
+        "monoderm bacterial envelope",
+        "thick peptidoglycan",
+        "single bacterial membrane"
+      ],
+      "category": "membrane-signaling",
+      "subcategory": "Microbial structures and interactions",
+      "tags": [
+        "gram-positive envelope",
+        "gram positive cell wall",
+        "monoderm bacterial envelope",
+        "thick peptidoglycan",
+        "single bacterial membrane",
+        "microbial structures and interactions"
+      ],
+      "description": "A typical Gram-positive envelope segment with one cytoplasmic membrane beneath a broad peptidoglycan wall.",
+      "file": "svg/gram_positive_envelope_segment.svg",
+      "editable_color_regions": [
+        {
+          "id": "cytoplasm",
+          "label": "Cytoplasmic space",
+          "default": "#D9F4E5",
+          "paint": "fill"
+        },
+        {
+          "id": "peptidoglycan",
+          "label": "Thick peptidoglycan wall",
+          "default": "#8EC8FF",
+          "paint": "fill"
+        },
+        {
+          "id": "membrane",
+          "label": "Cytoplasmic membrane",
+          "default": "#7DD3C7",
+          "paint": "fill"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#26323D",
+          "paint": "stroke"
+        }
+      ],
+      "connector_hints": [
+        {
+          "id": "left",
+          "label": "Left attachment",
+          "role": "attachment",
+          "x": 0.125,
+          "y": 0.5
+        },
+        {
+          "id": "right",
+          "label": "Right attachment",
+          "role": "attachment",
+          "x": 0.875,
+          "y": 0.5
+        },
+        {
+          "id": "top",
+          "label": "Top attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.125
+        },
+        {
+          "id": "bottom",
+          "label": "Bottom attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.875
+        }
+      ],
+      "scientific_references": [
+        {
+          "id": "pmc10197873-figure3",
+          "citation": "Andrea Corona Ramírez et al. Multiple roads lead to Rome: unique morphology and chemistry of endospores, exospores, myxospores, cysts and akinetes in bacteria. Microbiology. 2023.",
+          "doi": "10.1099/mic.0.001299",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10197873/",
+          "figure": "Fig. 3.",
+          "use": "Figure 3a upper: one cytoplasmic membrane below a broad external wall. Figure 3c/d upper: two membranes with an intervening periplasm including thin peptidoglycan. Figure 3a lower: core membrane, cortex and coat of a Bacillus endospore. Concepts only; no source artwork or geometry copied."
+        }
+      ],
+      "scientific_limitations": "Typical monoderm arrangement only; Gram status and envelope architecture have exceptions. Wall thickness and mesh marks are illustrative. Teichoic acids and surface layers are omitted, and no species or measured permeability is implied.",
+      "reviewer_notes": "Independent scientific and original-image review passed at 64 and 256 px in all three treatments. Source/web editing qualification is recorded separately in the asset review. Product-level release approval remains pending. CC0 1.0 permission is granted; product-level release approval remains pending.",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable SVG geometry constructed for the Figure Tool from microbial structures and interactions concepts. Primary research informs biological topology and molecular relationships only. No published or proprietary artwork, tracing, screenshot, structural coordinates, measured data or third-party vector component was incorporated. The workspace owner grants CC0 1.0 permission effective 2026-10-10; product-level release approval remains pending.",
+      "source_record_id": "source.microbial-biology.2026-10-08",
+      "rights_record_id": "rights.microbial-biology.owner-cc0.2026-10-10",
+      "style_family": "figure-studio-soft-line-v1",
+      "style_variant": "standard",
+      "review_status": "independent_scientific_and_visual_review_passed_2026_10_08",
+      "style_status": "soft_line_v1_original_draft",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 4
+    },
+    {
+      "id": "microbe.cell.encapsulated_bacterium",
+      "concept_id": "microbe.cell.encapsulated_bacterium",
+      "name": "Encapsulated Bacterium",
+      "scientific_name": "Encapsulated Bacterium",
+      "synonyms": [
+        "bacterial capsule",
+        "capsular coating",
+        "extracellular bacterial capsule"
+      ],
+      "category": "cell",
+      "subcategory": "Microbial structures and interactions",
+      "tags": [
+        "bacterial capsule",
+        "encapsulated bacterium",
+        "capsular coating",
+        "extracellular bacterial capsule",
+        "microbial structures and interactions"
+      ],
+      "description": "A short oval bacterial body enclosed by a separate extracellular capsule, with an illustrative nucleoid.",
+      "file": "svg/encapsulated_bacterium.svg",
+      "editable_color_regions": [
+        {
+          "id": "capsule",
+          "label": "Extracellular capsule",
+          "default": "#D9F4E5",
+          "paint": "fill"
+        },
+        {
+          "id": "cell_body",
+          "label": "Bacterial cell body",
+          "default": "#7DD3C7",
+          "paint": "fill"
+        },
+        {
+          "id": "nucleoid",
+          "label": "Illustrative nucleoid",
+          "default": "#B8B5FF",
+          "paint": "stroke"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#26323D",
+          "paint": "stroke"
+        }
+      ],
+      "connector_hints": [
+        {
+          "id": "left",
+          "label": "Left attachment",
+          "role": "attachment",
+          "x": 0.125,
+          "y": 0.5
+        },
+        {
+          "id": "right",
+          "label": "Right attachment",
+          "role": "attachment",
+          "x": 0.875,
+          "y": 0.5
+        },
+        {
+          "id": "top",
+          "label": "Top attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.125
+        },
+        {
+          "id": "bottom",
+          "label": "Bottom attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.875
+        }
+      ],
+      "scientific_references": [
+        {
+          "id": "pmc1201225-figure3",
+          "citation": "Sven Hammerschmidt et al. Illustration of Pneumococcal Polysaccharide Capsule during Adherence and Invasion of Epithelial Cells. Infection and Immunity. 2005.",
+          "doi": "10.1128/IAI.73.8.4653-4667.2005",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC1201225/",
+          "figure": "FIG. 3.",
+          "use": "Capsule-positive microscopy in panels A/D/G shows capsular material outside the bacterial body; comparisons distinguish the capsule from intracellular structures. Concepts only; no source artwork or geometry copied."
+        }
+      ],
+      "scientific_limitations": "Capsule location is schematic; the drawing does not identify a species, serotype, Gram status, capsule chemistry, abundance, motility, phagocytosis resistance or virulence. The nucleoid curve is illustrative and has no nuclear envelope.",
+      "reviewer_notes": "Independent scientific and original-image review passed at 64 and 256 px in all three treatments. Source/web editing qualification is recorded separately in the asset review. Product-level release approval remains pending. CC0 1.0 permission is granted; product-level release approval remains pending.",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable SVG geometry constructed for the Figure Tool from microbial structures and interactions concepts. Primary research informs biological topology and molecular relationships only. No published or proprietary artwork, tracing, screenshot, structural coordinates, measured data or third-party vector component was incorporated. The workspace owner grants CC0 1.0 permission effective 2026-10-10; product-level release approval remains pending.",
+      "source_record_id": "source.microbial-biology.2026-10-08",
+      "rights_record_id": "rights.microbial-biology.owner-cc0.2026-10-10",
+      "style_family": "figure-studio-soft-line-v1",
+      "style_variant": "standard",
+      "review_status": "independent_scientific_and_visual_review_passed_2026_10_08",
+      "style_status": "soft_line_v1_original_draft",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 4
+    },
+    {
+      "id": "microbe.membrane_signaling.bacterial_flagellar_motor",
+      "concept_id": "microbe.membrane_signaling.bacterial_flagellar_motor",
+      "name": "Bacterial Flagellar Motor",
+      "scientific_name": "Bacterial Flagellar Motor",
+      "synonyms": [
+        "flagellar motor",
+        "Gram-negative flagellar basal body",
+        "flagellar rotor and stator",
+        "flagellar hook"
+      ],
+      "category": "membrane-signaling",
+      "subcategory": "Microbial structures and interactions",
+      "tags": [
+        "flagellar motor",
+        "bacterial flagellar motor",
+        "Gram-negative flagellar basal body",
+        "flagellar rotor and stator",
+        "flagellar hook",
+        "microbial structures and interactions"
+      ],
+      "description": "A simplified Gram-negative flagellar motor connecting a membrane-associated rotor and stators to an external shaft and hook.",
+      "file": "svg/bacterial_flagellar_motor.svg",
+      "editable_color_regions": [
+        {
+          "id": "membranes",
+          "label": "Outer and cytoplasmic membranes",
+          "default": "#7DD3C7",
+          "paint": "fill"
+        },
+        {
+          "id": "peptidoglycan",
+          "label": "Thin peptidoglycan wall",
+          "default": "#8EC8FF",
+          "paint": "fill"
+        },
+        {
+          "id": "rotor",
+          "label": "Rotor, shaft and external hook",
+          "default": "#B8B5FF",
+          "paint": "fill"
+        },
+        {
+          "id": "stators",
+          "label": "Membrane-associated stators",
+          "default": "#F4A261",
+          "paint": "fill"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#26323D",
+          "paint": "stroke"
+        }
+      ],
+      "connector_hints": [
+        {
+          "id": "left",
+          "label": "Left attachment",
+          "role": "attachment",
+          "x": 0.125,
+          "y": 0.5
+        },
+        {
+          "id": "right",
+          "label": "Right attachment",
+          "role": "attachment",
+          "x": 0.875,
+          "y": 0.5
+        },
+        {
+          "id": "top",
+          "label": "Top attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.125
+        },
+        {
+          "id": "bottom",
+          "label": "Bottom attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.875
+        }
+      ],
+      "scientific_references": [
+        {
+          "id": "pmc3160247-figure3",
+          "citation": "Songye Chen et al. Structural diversity of bacterial flagellar motors. The EMBO Journal. 2011.",
+          "doi": "10.1038/emboj.2011.186",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3160247/",
+          "figure": "Figure 3.",
+          "use": "Salmonella and E. coli motor panels show the shaft through outer membrane/peptidoglycan, the rotor at the cytoplasmic membrane, a cytoplasmic C-ring and flanking membrane-associated stators. Concepts only; no source artwork or geometry copied."
+        }
+      ],
+      "scientific_limitations": "Generic Gram-negative arrangement, not every bacterial motor. The short external extension represents shaft and hook rather than a measured complete filament. Export machinery, ring stoichiometry, ion identity, rotation direction, speed and torque are omitted.",
+      "reviewer_notes": "Independent scientific and original-image review passed at 64 and 256 px in all three treatments. Source/web editing qualification is recorded separately in the asset review. Product-level release approval remains pending. CC0 1.0 permission is granted; product-level release approval remains pending.",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable SVG geometry constructed for the Figure Tool from microbial structures and interactions concepts. Primary research informs biological topology and molecular relationships only. No published or proprietary artwork, tracing, screenshot, structural coordinates, measured data or third-party vector component was incorporated. The workspace owner grants CC0 1.0 permission effective 2026-10-10; product-level release approval remains pending.",
+      "source_record_id": "source.microbial-biology.2026-10-08",
+      "rights_record_id": "rights.microbial-biology.owner-cc0.2026-10-10",
+      "style_family": "figure-studio-soft-line-v1",
+      "style_variant": "standard",
+      "review_status": "independent_scientific_and_visual_review_passed_2026_10_08",
+      "style_status": "soft_line_v1_original_draft",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 5
+    },
+    {
+      "id": "microbe.cell.bacterial_endospore",
+      "concept_id": "microbe.cell.bacterial_endospore",
+      "name": "Bacterial Endospore",
+      "scientific_name": "Bacterial Endospore",
+      "synonyms": [
+        "endospore",
+        "spore core cortex coat",
+        "Bacillus-type endospore"
+      ],
+      "category": "cell",
+      "subcategory": "Microbial structures and interactions",
+      "tags": [
+        "endospore",
+        "bacterial endospore",
+        "spore core cortex coat",
+        "Bacillus-type endospore",
+        "microbial structures and interactions"
+      ],
+      "description": "An isolated bacterial endospore cross-section with a bounded core, inner membrane, peptidoglycan cortex and outer protein coat.",
+      "file": "svg/bacterial_endospore.svg",
+      "editable_color_regions": [
+        {
+          "id": "coat",
+          "label": "Outer protein coat",
+          "default": "#8EC8FF",
+          "paint": "fill"
+        },
+        {
+          "id": "cortex",
+          "label": "Peptidoglycan cortex",
+          "default": "#D9F4E5",
+          "paint": "fill"
+        },
+        {
+          "id": "core",
+          "label": "Spore core",
+          "default": "#7DD3C7",
+          "paint": "fill"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#26323D",
+          "paint": "stroke"
+        },
+        {
+          "id": "inner_membrane",
+          "label": "Core membrane",
+          "default": "#B8B5FF",
+          "paint": "stroke"
+        }
+      ],
+      "connector_hints": [
+        {
+          "id": "left",
+          "label": "Left attachment",
+          "role": "attachment",
+          "x": 0.125,
+          "y": 0.5
+        },
+        {
+          "id": "right",
+          "label": "Right attachment",
+          "role": "attachment",
+          "x": 0.875,
+          "y": 0.5
+        },
+        {
+          "id": "top",
+          "label": "Top attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.125
+        },
+        {
+          "id": "bottom",
+          "label": "Bottom attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.875
+        }
+      ],
+      "scientific_references": [
+        {
+          "id": "pmc10197873-figure2",
+          "citation": "Andrea Corona Ramírez et al. Multiple roads lead to Rome: unique morphology and chemistry of endospores, exospores, myxospores, cysts and akinetes in bacteria. Microbiology. 2023.",
+          "doi": "10.1099/mic.0.001299",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10197873/",
+          "figure": "Fig. 2.",
+          "use": "Figure 2a right: Bacillus endospore has a bounded inner core and surrounding concentric cortex/coat; use an isolated spore cross-section. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "pmc10197873-figure3",
+          "citation": "Andrea Corona Ramírez et al. Multiple roads lead to Rome: unique morphology and chemistry of endospores, exospores, myxospores, cysts and akinetes in bacteria. Microbiology. 2023.",
+          "doi": "10.1099/mic.0.001299",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10197873/",
+          "figure": "Fig. 3.",
+          "use": "Figure 3a upper: one cytoplasmic membrane below a broad external wall. Figure 3c/d upper: two membranes with an intervening periplasm including thin peptidoglycan. Figure 3a lower: core membrane, cortex and coat of a Bacillus endospore. Concepts only; no source artwork or geometry copied."
+        }
+      ],
+      "scientific_limitations": "A simplified endospore arrangement rather than a universal bacterial spore. Germ cell wall, outer-membrane remnants and exosporium are omitted. No species, mother-cell stage, germination, measured layer thickness, viability or resistance is implied.",
+      "reviewer_notes": "Independent scientific and original-image review passed at 64 and 256 px in all three treatments. Source/web editing qualification is recorded separately in the asset review. Product-level release approval remains pending. CC0 1.0 permission is granted; product-level release approval remains pending.",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable SVG geometry constructed for the Figure Tool from microbial structures and interactions concepts. Primary research informs biological topology and molecular relationships only. No published or proprietary artwork, tracing, screenshot, structural coordinates, measured data or third-party vector component was incorporated. The workspace owner grants CC0 1.0 permission effective 2026-10-10; product-level release approval remains pending.",
+      "source_record_id": "source.microbial-biology.2026-10-08",
+      "rights_record_id": "rights.microbial-biology.owner-cc0.2026-10-10",
+      "style_family": "figure-studio-soft-line-v1",
+      "style_variant": "standard",
+      "review_status": "independent_scientific_and_visual_review_passed_2026_10_08",
+      "style_status": "soft_line_v1_original_draft",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 5
+    },
+    {
+      "id": "microbe.model_system.surface_attached_biofilm",
+      "concept_id": "microbe.model_system.surface_attached_biofilm",
+      "name": "Surface-attached Biofilm",
+      "scientific_name": "Surface-attached Biofilm",
+      "synonyms": [
+        "biofilm matrix",
+        "bacterial biofilm",
+        "extracellular polymeric matrix",
+        "surface associated microbial community"
+      ],
+      "category": "model-system",
+      "subcategory": "Microbial structures and interactions",
+      "tags": [
+        "biofilm matrix",
+        "surface attached biofilm",
+        "bacterial biofilm",
+        "extracellular polymeric matrix",
+        "surface associated microbial community",
+        "microbial structures and interactions"
+      ],
+      "description": "An irregular extracellular biofilm matrix containing bacterial clusters and attached to a shared substrate.",
+      "file": "svg/surface_attached_biofilm.svg",
+      "editable_color_regions": [
+        {
+          "id": "matrix",
+          "label": "Extracellular biofilm matrix",
+          "default": "#D9F4E5",
+          "paint": "fill"
+        },
+        {
+          "id": "bacteria",
+          "label": "Illustrative bacterial cells",
+          "default": "#7DD3C7",
+          "paint": "fill"
+        },
+        {
+          "id": "surface",
+          "label": "Attached substrate",
+          "default": "#E8EEF7",
+          "paint": "fill"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#26323D",
+          "paint": "stroke"
+        }
+      ],
+      "connector_hints": [
+        {
+          "id": "left",
+          "label": "Left attachment",
+          "role": "attachment",
+          "x": 0.125,
+          "y": 0.5
+        },
+        {
+          "id": "right",
+          "label": "Right attachment",
+          "role": "attachment",
+          "x": 0.875,
+          "y": 0.5
+        },
+        {
+          "id": "top",
+          "label": "Top attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.125
+        },
+        {
+          "id": "bottom",
+          "label": "Bottom attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.875
+        }
+      ],
+      "scientific_references": [
+        {
+          "id": "pmc3513368-figure1",
+          "citation": "Veysel Berk et al. Molecular Architecture and Assembly Principles of Vibrio cholerae Biofilms. Science (New York, N.Y.). 2012.",
+          "doi": "10.1126/science.1222981",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3513368/",
+          "figure": "Fig. 1.  V. cholerae  biofilm structure.",
+          "use": "Panels B/C show bacterial clusters encased by extracellular matrix and associated with the underlying surface. Depict an irregular attached matrix containing bacterial rods. Concepts only; no source artwork or geometry copied."
+        }
+      ],
+      "scientific_limitations": "The matrix, cell number and mound shapes are illustrative. The drawing does not establish a species mixture, universal biofilm architecture, matrix chemistry, biomass, maturity, antibiotic resistance or infection outcome.",
+      "reviewer_notes": "Independent scientific and original-image review passed at 64 and 256 px in all three treatments. Source/web editing qualification is recorded separately in the asset review. Product-level release approval remains pending. CC0 1.0 permission is granted; product-level release approval remains pending.",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable SVG geometry constructed for the Figure Tool from microbial structures and interactions concepts. Primary research informs biological topology and molecular relationships only. No published or proprietary artwork, tracing, screenshot, structural coordinates, measured data or third-party vector component was incorporated. The workspace owner grants CC0 1.0 permission effective 2026-10-10; product-level release approval remains pending.",
+      "source_record_id": "source.microbial-biology.2026-10-08",
+      "rights_record_id": "rights.microbial-biology.owner-cc0.2026-10-10",
+      "style_family": "figure-studio-soft-line-v1",
+      "style_variant": "standard",
+      "review_status": "independent_scientific_and_visual_review_passed_2026_10_08",
+      "style_status": "soft_line_v1_original_draft",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 4
+    },
+    {
+      "id": "microbe.cell.septate_fungal_hypha",
+      "concept_id": "microbe.cell.septate_fungal_hypha",
+      "name": "Septate Fungal Hypha",
+      "scientific_name": "Septate Fungal Hypha",
+      "synonyms": [
+        "septate hypha",
+        "fungal filament",
+        "septal pore",
+        "branched fungal hypha"
+      ],
+      "category": "cell",
+      "subcategory": "Microbial structures and interactions",
+      "tags": [
+        "septate hypha",
+        "septate fungal hypha",
+        "fungal filament",
+        "septal pore",
+        "branched fungal hypha",
+        "microbial structures and interactions"
+      ],
+      "description": "A connected fungal filament with a surrounding wall, transverse septa with open pores and illustrative nuclei.",
+      "file": "svg/septate_fungal_hypha.svg",
+      "editable_color_regions": [
+        {
+          "id": "cellwall",
+          "label": "Connected fungal cell wall",
+          "default": "#7DD3C7",
+          "paint": "fill"
+        },
+        {
+          "id": "cytoplasm",
+          "label": "Continuous hyphal cytoplasm",
+          "default": "#D9F4E5",
+          "paint": "fill"
+        },
+        {
+          "id": "septa",
+          "label": "Pore-containing transverse septa",
+          "default": "#E8EEF7",
+          "paint": "fill"
+        },
+        {
+          "id": "nuclei",
+          "label": "Illustrative hyphal nuclei",
+          "default": "#B8B5FF",
+          "paint": "fill"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#26323D",
+          "paint": "stroke"
+        }
+      ],
+      "connector_hints": [
+        {
+          "id": "left",
+          "label": "Left attachment",
+          "role": "attachment",
+          "x": 0.125,
+          "y": 0.5
+        },
+        {
+          "id": "right",
+          "label": "Right attachment",
+          "role": "attachment",
+          "x": 0.875,
+          "y": 0.5
+        },
+        {
+          "id": "top",
+          "label": "Top attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.125
+        },
+        {
+          "id": "bottom",
+          "label": "Bottom attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.875
+        }
+      ],
+      "scientific_references": [
+        {
+          "id": "pmc4011870-figure1",
+          "citation": "Diego Luis Delgado-Álvarez et al. Septum Development in Neurospora crassa: The Septal Actomyosin Tangle. PLoS ONE. 2014.",
+          "doi": "10.1371/journal.pone.0096744",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4011870/",
+          "figure": "Figure 1. Septum development in hyphae of  Neurospora crassa  visualized by fluorescent tagging of actin with Lifeact-GFP.",
+          "use": "Actual live microscopy in panels A/B shows connected tubular fungal hyphae, branching and transverse septa. Use a continuous wall enclosing connected cytoplasm. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "pmc4011870-figure6",
+          "citation": "Diego Luis Delgado-Álvarez et al. Septum Development in Neurospora crassa: The Septal Actomyosin Tangle. PLoS ONE. 2014.",
+          "doi": "10.1371/journal.pone.0096744",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4011870/",
+          "figure": "Figure 6. Chronology of the incorporation of actin (A) and tropomyosin (B) during septum development.",
+          "use": "FM4-64 series shows ingrowth of the septal membrane within a tubular hypha. With the article description of the central pore, retain real septal openings continuous with cytoplasm. Concepts only; no source artwork or geometry copied."
+        }
+      ],
+      "scientific_limitations": "Represents a generic septate hypha, not all fungal growth forms. Pore openings, branch shape and nuclear number are illustrative. No species, dolipore, Woronin-body structure, plugging state, growth rate or pathogenicity is implied.",
+      "reviewer_notes": "Independent scientific and original-image review passed at 64 and 256 px in all three treatments. Source/web editing qualification is recorded separately in the asset review. Product-level release approval remains pending. CC0 1.0 permission is granted; product-level release approval remains pending.",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable SVG geometry constructed for the Figure Tool from microbial structures and interactions concepts. Primary research informs biological topology and molecular relationships only. No published or proprietary artwork, tracing, screenshot, structural coordinates, measured data or third-party vector component was incorporated. The workspace owner grants CC0 1.0 permission effective 2026-10-10; product-level release approval remains pending.",
+      "source_record_id": "source.microbial-biology.2026-10-08",
+      "rights_record_id": "rights.microbial-biology.owner-cc0.2026-10-10",
+      "style_family": "figure-studio-soft-line-v1",
+      "style_variant": "standard",
+      "review_status": "independent_scientific_and_visual_review_passed_2026_10_08",
+      "style_status": "soft_line_v1_original_draft",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 5
+    },
+    {
+      "id": "microbe.membrane_signaling.outer_membrane_vesicle_budding",
+      "concept_id": "microbe.membrane_signaling.outer_membrane_vesicle_budding",
+      "name": "Outer-membrane Vesicle Budding",
+      "scientific_name": "Outer-membrane Vesicle Budding",
+      "synonyms": [
+        "outer membrane vesicle",
+        "OMV",
+        "Gram-negative vesiculation",
+        "periplasmic membrane vesicle"
+      ],
+      "category": "membrane-signaling",
+      "subcategory": "Microbial structures and interactions",
+      "tags": [
+        "outer membrane vesicle",
+        "outer membrane vesicle budding",
+        "OMV",
+        "Gram-negative vesiculation",
+        "periplasmic membrane vesicle",
+        "microbial structures and interactions"
+      ],
+      "description": "A Gram-negative outer-membrane bud enclosing periplasmic material while the cytoplasmic membrane remains separate and intact.",
+      "file": "svg/outer_membrane_vesicle_budding.svg",
+      "editable_color_regions": [
+        {
+          "id": "cytoplasm",
+          "label": "Bacterial cytoplasm",
+          "default": "#D9F4E5",
+          "paint": "fill"
+        },
+        {
+          "id": "innermembrane",
+          "label": "Separate intact inner membrane",
+          "default": "#B8B5FF",
+          "paint": "fill"
+        },
+        {
+          "id": "periplasm",
+          "label": "Periplasm continuous with the outer-membrane bud",
+          "default": "#E8EEF7",
+          "paint": "fill"
+        },
+        {
+          "id": "outermembrane",
+          "label": "Continuous budding outer membrane",
+          "default": "#7DD3C7",
+          "paint": "fill"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#26323D",
+          "paint": "stroke"
+        }
+      ],
+      "connector_hints": [
+        {
+          "id": "left",
+          "label": "Left attachment",
+          "role": "attachment",
+          "x": 0.125,
+          "y": 0.5
+        },
+        {
+          "id": "right",
+          "label": "Right attachment",
+          "role": "attachment",
+          "x": 0.875,
+          "y": 0.5
+        },
+        {
+          "id": "top",
+          "label": "Top attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.125
+        },
+        {
+          "id": "bottom",
+          "label": "Bottom attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.875
+        }
+      ],
+      "scientific_references": [
+        {
+          "id": "pmc2745257-figure2",
+          "citation": "Brooke L Deatherage et al. Biogenesis of Bacterial Membrane Vesicles. Molecular microbiology. 2009.",
+          "doi": "10.1111/j.1365-2958.2009.06731.x",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2745257/",
+          "figure": "Figure 2. WT MV release localized to division septa and cell body; MV proteins control size and localization of MV release.",
+          "use": "Actual microscopy in panels E/F shows membrane vesicles associated with the bacterial outer surface and release at cell-body or septal sites. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "pmc2745257-figure6",
+          "citation": "Brooke L Deatherage et al. Biogenesis of Bacterial Membrane Vesicles. Molecular microbiology. 2009.",
+          "doi": "10.1111/j.1365-2958.2009.06731.x",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2745257/",
+          "figure": "Figure 6. Model of MV biogenesis.",
+          "use": "Panel B left models an outer-membrane protrusion enclosing periplasmic material while the inner membrane remains separate; retain an open periplasm-to-bud neck. Concepts only; no source artwork or geometry copied."
+        }
+      ],
+      "scientific_limitations": "One budding route for single-membrane outer-membrane vesicles. Peptidoglycan and specific cargo chemistry are omitted. The drawing does not represent outer-inner membrane vesicles, lysis-derived vesicles, cytoplasmic cargo, size, release frequency or a universal biogenesis mechanism.",
+      "reviewer_notes": "Independent scientific and original-image review passed at 64 and 256 px in all three treatments. Source/web editing qualification is recorded separately in the asset review. Product-level release approval remains pending. CC0 1.0 permission is granted; product-level release approval remains pending.",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable SVG geometry constructed for the Figure Tool from microbial structures and interactions concepts. Primary research informs biological topology and molecular relationships only. No published or proprietary artwork, tracing, screenshot, structural coordinates, measured data or third-party vector component was incorporated. The workspace owner grants CC0 1.0 permission effective 2026-10-10; product-level release approval remains pending.",
+      "source_record_id": "source.microbial-biology.2026-10-08",
+      "rights_record_id": "rights.microbial-biology.owner-cc0.2026-10-10",
+      "style_family": "figure-studio-soft-line-v1",
+      "style_variant": "standard",
+      "review_status": "independent_scientific_and_visual_review_passed_2026_10_08",
+      "style_status": "soft_line_v1_original_draft",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 5
+    },
+    {
+      "id": "microbe.model_system.contractile_tailed_bacteriophage",
+      "concept_id": "microbe.model_system.contractile_tailed_bacteriophage",
+      "name": "Contractile-tailed Bacteriophage",
+      "scientific_name": "Contractile-tailed Bacteriophage",
+      "synonyms": [
+        "contractile bacteriophage",
+        "contractile tailed phage",
+        "tailed bacteriophage",
+        "phage tail sheath",
+        "T4-like phage"
+      ],
+      "category": "model-system",
+      "subcategory": "Microbial structures and interactions",
+      "tags": [
+        "contractile bacteriophage",
+        "contractile tailed phage",
+        "tailed bacteriophage",
+        "phage tail sheath",
+        "T4-like phage",
+        "microbial structures and interactions"
+      ],
+      "description": "A contractile-tailed phage with a capsid, illustrative genome, sheath around a distinct axial tube, baseplate and flexible fibers.",
+      "file": "svg/contractile_tailed_bacteriophage.svg",
+      "editable_color_regions": [
+        {
+          "id": "head",
+          "label": "Faceted phage head",
+          "default": "#B8B5FF",
+          "paint": "fill"
+        },
+        {
+          "id": "genome",
+          "label": "Illustrative packaged phage genome",
+          "default": "#E76F51",
+          "paint": "stroke"
+        },
+        {
+          "id": "tailapparatus",
+          "label": "Contractile sheath, axial tube and basal apparatus",
+          "default": "#8EC8FF",
+          "paint": "fill"
+        },
+        {
+          "id": "fibers",
+          "label": "Illustrative partially extended and folded tail fibers",
+          "default": "#58B8AE",
+          "paint": "stroke"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#26323D",
+          "paint": "stroke"
+        }
+      ],
+      "connector_hints": [
+        {
+          "id": "left",
+          "label": "Left attachment",
+          "role": "attachment",
+          "x": 0.125,
+          "y": 0.5
+        },
+        {
+          "id": "right",
+          "label": "Right attachment",
+          "role": "attachment",
+          "x": 0.875,
+          "y": 0.5
+        },
+        {
+          "id": "top",
+          "label": "Top attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.125
+        },
+        {
+          "id": "bottom",
+          "label": "Bottom attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.875
+        }
+      ],
+      "scientific_references": [
+        {
+          "id": "pmc4568249-figure1",
+          "citation": "Bo Hu et al. Structural remodeling of bacteriophage T4 and host membranes during infection initiation. Proceedings of the National Academy of Sciences of the United States of America. 2015.",
+          "doi": "10.1073/pnas.1501064112",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4568249/",
+          "figure": "Fig. 1.",
+          "use": "Actual tomography in panels A/C/D/F distinguishes the capsid, neck, sheath around an axial tube, baseplate and flexible long fibers of a contractile-tailed phage. Concepts only; no source artwork or geometry copied."
+        }
+      ],
+      "scientific_limitations": "A simplified contractile-tail architecture, not all bacteriophages. Fiber pose, head faceting and genome curve are illustrative; no literal resting T4 conformation, exact protein count, receptor identity, sequence or infection state is implied.",
+      "reviewer_notes": "Independent scientific and original-image review passed at 64 and 256 px in all three treatments. Source/web editing qualification is recorded separately in the asset review. Product-level release approval remains pending. CC0 1.0 permission is granted; product-level release approval remains pending.",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable SVG geometry constructed for the Figure Tool from microbial structures and interactions concepts. Primary research informs biological topology and molecular relationships only. No published or proprietary artwork, tracing, screenshot, structural coordinates, measured data or third-party vector component was incorporated. The workspace owner grants CC0 1.0 permission effective 2026-10-10; product-level release approval remains pending.",
+      "source_record_id": "source.microbial-biology.2026-10-08",
+      "rights_record_id": "rights.microbial-biology.owner-cc0.2026-10-10",
+      "style_family": "figure-studio-soft-line-v1",
+      "style_variant": "standard",
+      "review_status": "independent_scientific_and_visual_review_passed_2026_10_08",
+      "style_status": "soft_line_v1_original_draft",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 5
+    },
+    {
+      "id": "microbe.membrane_signaling.phage_genome_injection",
+      "concept_id": "microbe.membrane_signaling.phage_genome_injection",
+      "name": "Contractile-phage Genome Injection",
+      "scientific_name": "Contractile-phage Genome Injection",
+      "synonyms": [
+        "phage genome injection",
+        "bacteriophage DNA delivery",
+        "contractile phage infection",
+        "T4-like genome translocation",
+        "phage genome ejection"
+      ],
+      "category": "membrane-signaling",
+      "subcategory": "Microbial structures and interactions",
+      "tags": [
+        "phage genome injection",
+        "bacteriophage DNA delivery",
+        "contractile phage infection",
+        "T4-like genome translocation",
+        "phage genome ejection",
+        "microbial structures and interactions"
+      ],
+      "description": "A T4-like phage delivering an illustrative genome through its tail conduit into bacterial cytoplasm while the capsid remains outside.",
+      "file": "svg/phage_genome_injection.svg",
+      "editable_color_regions": [
+        {
+          "id": "hostcytoplasm",
+          "label": "Bacterial cytoplasm continuous with the tail conduit",
+          "default": "#D9F4E5",
+          "paint": "fill"
+        },
+        {
+          "id": "hostmembranes",
+          "label": "Separate bacterial membranes with a locally bulged inner membrane",
+          "default": "#7DD3C7",
+          "paint": "fill"
+        },
+        {
+          "id": "phageapparatus",
+          "label": "Extracellular phage head and contracted tail apparatus",
+          "default": "#8EC8FF",
+          "paint": "fill"
+        },
+        {
+          "id": "genome",
+          "label": "Illustrative phage genome conduit into cytoplasm",
+          "default": "#E76F51",
+          "paint": "stroke"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#26323D",
+          "paint": "stroke"
+        }
+      ],
+      "connector_hints": [
+        {
+          "id": "left",
+          "label": "Left attachment",
+          "role": "attachment",
+          "x": 0.125,
+          "y": 0.5
+        },
+        {
+          "id": "right",
+          "label": "Right attachment",
+          "role": "attachment",
+          "x": 0.875,
+          "y": 0.5
+        },
+        {
+          "id": "top",
+          "label": "Top attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.125
+        },
+        {
+          "id": "bottom",
+          "label": "Bottom attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.875
+        }
+      ],
+      "scientific_references": [
+        {
+          "id": "pmc4568249-figure3",
+          "citation": "Bo Hu et al. Structural remodeling of bacteriophage T4 and host membranes during infection initiation. Proceedings of the National Academy of Sciences of the United States of America. 2015.",
+          "doi": "10.1073/pnas.1501064112",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4568249/",
+          "figure": "Fig. 3.",
+          "use": "Panels A/B show genome retention/release from an external head; panels F/L show the inner membrane bulging toward the contracted tail tube. Genome delivery keeps the capsid outside and joins the tube to the inner membrane. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "pmc4568249-figure5",
+          "citation": "Bo Hu et al. Structural remodeling of bacteriophage T4 and host membranes during infection initiation. Proceedings of the National Academy of Sciences of the United States of America. 2015.",
+          "doi": "10.1073/pnas.1501064112",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4568249/",
+          "figure": "Fig. 5.",
+          "use": "Panels E/F integrate the observed T4-like state: contracted sheath outside, tube across the outer membrane, outward-bulged inner membrane and genome entering cytoplasm. Concepts only; no source artwork or geometry copied."
+        }
+      ],
+      "scientific_limitations": "A T4-like contracted-tail interaction. The inner membrane bulges toward the tube; this is not a universal phage mechanism. Exact peptidoglycan ultrastructure, receptors, forces, kinetics, energy dependence and subsequent productive infection are not shown.",
+      "reviewer_notes": "Independent scientific and original-image review passed at 64 and 256 px in all three treatments. Source/web editing qualification is recorded separately in the asset review. Product-level release approval remains pending. CC0 1.0 permission is granted; product-level release approval remains pending.",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable SVG geometry constructed for the Figure Tool from microbial structures and interactions concepts. Primary research informs biological topology and molecular relationships only. No published or proprietary artwork, tracing, screenshot, structural coordinates, measured data or third-party vector component was incorporated. The workspace owner grants CC0 1.0 permission effective 2026-10-10; product-level release approval remains pending.",
+      "source_record_id": "source.microbial-biology.2026-10-08",
+      "rights_record_id": "rights.microbial-biology.owner-cc0.2026-10-10",
+      "style_family": "figure-studio-soft-line-v1",
+      "style_variant": "standard",
+      "review_status": "independent_scientific_and_visual_review_passed_2026_10_08",
+      "style_status": "soft_line_v1_original_draft",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 5
+    },
+    {
+      "id": "microbe.membrane_signaling.enveloped_virus_membrane_fusion",
+      "concept_id": "microbe.membrane_signaling.enveloped_virus_membrane_fusion",
+      "name": "Enveloped-virus Membrane Fusion",
+      "scientific_name": "Enveloped-virus Membrane Fusion",
+      "synonyms": [
+        "viral membrane fusion",
+        "enveloped virus fusion",
+        "viral fusion pore",
+        "viral envelope target membrane fusion"
+      ],
+      "category": "membrane-signaling",
+      "subcategory": "Microbial structures and interactions",
+      "tags": [
+        "viral membrane fusion",
+        "enveloped virus fusion",
+        "viral fusion pore",
+        "viral envelope target membrane fusion",
+        "microbial structures and interactions"
+      ],
+      "description": "An open fusion pore connecting a viral envelope and target membrane, with viral contents exposed to the target-side compartment.",
+      "file": "svg/enveloped_virus_membrane_fusion.svg",
+      "editable_color_regions": [
+        {
+          "id": "membranes",
+          "label": "Continuous fused viral and target membranes",
+          "default": "#7DD3C7",
+          "paint": "fill"
+        },
+        {
+          "id": "hostcytoplasm",
+          "label": "Host cytoplasm exposed through the open fusion pore",
+          "default": "#D9F4E5",
+          "paint": "fill"
+        },
+        {
+          "id": "viralcontents",
+          "label": "Illustrative viral contents at and through the fusion pore",
+          "default": "#8EC8FF",
+          "paint": "fill"
+        },
+        {
+          "id": "fusionproteins",
+          "label": "Illustrative membrane-associated fusion proteins",
+          "default": "#E76F51",
+          "paint": "stroke"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#26323D",
+          "paint": "stroke"
+        }
+      ],
+      "connector_hints": [
+        {
+          "id": "left",
+          "label": "Left attachment",
+          "role": "attachment",
+          "x": 0.125,
+          "y": 0.5
+        },
+        {
+          "id": "right",
+          "label": "Right attachment",
+          "role": "attachment",
+          "x": 0.875,
+          "y": 0.5
+        },
+        {
+          "id": "top",
+          "label": "Top attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.125
+        },
+        {
+          "id": "bottom",
+          "label": "Bottom attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.875
+        }
+      ],
+      "scientific_references": [
+        {
+          "id": "pmc4944294-figure6",
+          "citation": "Long Gui et al. Visualization and Sequencing of Membrane Remodeling Leading to Influenza Virus Fusion. Journal of Virology. 2016.",
+          "doi": "10.1128/JVI.00240-16",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4944294/",
+          "figure": "FIG 6.",
+          "use": "Postfusion influenza/liposome tomography shows merged membrane-bound compartments. Depict a fused viral envelope/target membrane rather than an intact viral shell crossing another intact membrane. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "pmc4944294-figure10",
+          "citation": "Long Gui et al. Visualization and Sequencing of Membrane Remodeling Leading to Influenza Virus Fusion. Journal of Virology. 2016.",
+          "doi": "10.1128/JVI.00240-16",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4944294/",
+          "figure": "FIG 10.",
+          "use": "Final pore-formation stage has a true opening bounded by merged membrane segments. Use one open-pore state, with viral contents exposed to the target-side compartment. Concepts only; no source artwork or geometry copied."
+        }
+      ],
+      "scientific_limitations": "One open-pore state informed by influenza/liposome experiments. It does not specify a virus species, receptor, endosomal versus plasma-membrane site, fusion-protein structure, pH requirement or successful infection; nonenveloped viruses are not represented.",
+      "reviewer_notes": "Independent scientific and original-image review passed at 64 and 256 px in all three treatments. Source/web editing qualification is recorded separately in the asset review. Product-level release approval remains pending. CC0 1.0 permission is granted; product-level release approval remains pending.",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable SVG geometry constructed for the Figure Tool from microbial structures and interactions concepts. Primary research informs biological topology and molecular relationships only. No published or proprietary artwork, tracing, screenshot, structural coordinates, measured data or third-party vector component was incorporated. The workspace owner grants CC0 1.0 permission effective 2026-10-10; product-level release approval remains pending.",
+      "source_record_id": "source.microbial-biology.2026-10-08",
+      "rights_record_id": "rights.microbial-biology.owner-cc0.2026-10-10",
+      "style_family": "figure-studio-soft-line-v1",
+      "style_variant": "standard",
+      "review_status": "independent_scientific_and_visual_review_passed_2026_10_08",
+      "style_status": "soft_line_v1_original_draft",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 5
+    },
+    {
+      "id": "microbe.membrane_signaling.enveloped_virus_plasma_membrane_budding",
+      "concept_id": "microbe.membrane_signaling.enveloped_virus_plasma_membrane_budding",
+      "name": "Viral Plasma-membrane Budding",
+      "scientific_name": "Viral Plasma-membrane Budding",
+      "synonyms": [
+        "enveloped virus budding",
+        "plasma membrane virion assembly",
+        "viral budding neck",
+        "host derived viral envelope"
+      ],
+      "category": "membrane-signaling",
+      "subcategory": "Microbial structures and interactions",
+      "tags": [
+        "viral plasma membrane budding",
+        "enveloped virus budding",
+        "plasma membrane virion assembly",
+        "viral budding neck",
+        "host derived viral envelope",
+        "microbial structures and interactions"
+      ],
+      "description": "An enveloped viral assembly bud wrapped by the host plasma membrane and joined to the cell by a narrow open membrane neck.",
+      "file": "svg/enveloped_virus_plasma_membrane_budding.svg",
+      "editable_color_regions": [
+        {
+          "id": "hostmembrane",
+          "label": "Continuous host plasma membrane and budding envelope",
+          "default": "#7DD3C7",
+          "paint": "fill"
+        },
+        {
+          "id": "hostcytoplasm",
+          "label": "Host cytoplasm continuous through the open bud neck",
+          "default": "#D9F4E5",
+          "paint": "fill"
+        },
+        {
+          "id": "viralcontents",
+          "label": "Illustrative viral assembly coat and contents",
+          "default": "#B8B5FF",
+          "paint": "fill"
+        },
+        {
+          "id": "surfaceproteins",
+          "label": "Illustrative budding-envelope surface proteins",
+          "default": "#8EC8FF",
+          "paint": "fill"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#26323D",
+          "paint": "stroke"
+        }
+      ],
+      "connector_hints": [
+        {
+          "id": "left",
+          "label": "Left attachment",
+          "role": "attachment",
+          "x": 0.125,
+          "y": 0.5
+        },
+        {
+          "id": "right",
+          "label": "Right attachment",
+          "role": "attachment",
+          "x": 0.875,
+          "y": 0.5
+        },
+        {
+          "id": "top",
+          "label": "Top attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.125
+        },
+        {
+          "id": "bottom",
+          "label": "Bottom attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.875
+        }
+      ],
+      "scientific_references": [
+        {
+          "id": "pmc2991257-figure2",
+          "citation": "Lars-Anders Carlson et al. Cryo Electron Tomography of Native HIV-1 Budding Sites. PLoS Pathogens. 2010.",
+          "doi": "10.1371/journal.ppat.1001173",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2991257/",
+          "figure": "Figure 2. Cryo electron tomograms of HIV-1 budding sites and released particles.",
+          "use": "Actual HIV budding tomograms in panels A/D/F show outward plasma-membrane curvature around viral assembly material with a narrowing membrane neck. Concepts only; no source artwork or geometry copied."
+        }
+      ],
+      "scientific_limitations": "One plasma-membrane assembly route informed by HIV tomography. Viral contents and surface proteins are generic, and the neck remains open. No mature conical capsid, completed scission, particle yield, infectivity or universal viral release route is implied.",
+      "reviewer_notes": "Independent scientific and original-image review passed at 64 and 256 px in all three treatments. Source/web editing qualification is recorded separately in the asset review. Product-level release approval remains pending. CC0 1.0 permission is granted; product-level release approval remains pending.",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable SVG geometry constructed for the Figure Tool from microbial structures and interactions concepts. Primary research informs biological topology and molecular relationships only. No published or proprietary artwork, tracing, screenshot, structural coordinates, measured data or third-party vector component was incorporated. The workspace owner grants CC0 1.0 permission effective 2026-10-10; product-level release approval remains pending.",
+      "source_record_id": "source.microbial-biology.2026-10-08",
+      "rights_record_id": "rights.microbial-biology.owner-cc0.2026-10-10",
+      "style_family": "figure-studio-soft-line-v1",
+      "style_variant": "standard",
+      "review_status": "independent_scientific_and_visual_review_passed_2026_10_08",
+      "style_status": "soft_line_v1_original_draft",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 5
+    }
+  ]
+}

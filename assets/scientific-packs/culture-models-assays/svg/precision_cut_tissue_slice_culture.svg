@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Tissue-slice Culture — Submerged</title>
+  <desc id="desc">A thick tissue slice on a porous support with culture medium covering both faces.</desc>
+<g data-region="medium" fill="#8EC8FF" stroke="none">
+<path d="M22 39H106V98C106 103 103 106 98 106H30C25 106 22 103 22 98Z"/>
+</g>
+<g data-region="support" fill="#C7F2EC" stroke="none">
+<path d="M30 79H37V86H30Z"/><path d="M43 79H50V86H43Z"/><path d="M56 79H63V86H56Z"/><path d="M69 79H76V86H69Z"/><path d="M82 79H89V86H82Z"/><path d="M95 79H102V86H95Z"/><path d="M30 86H37V106H30ZM95 86H102V106H95Z"/>
+</g>
+<g data-region="tissue" fill="#B8B5FF" stroke="none">
+<path d="M32 64C37 53 49 57 58 54C67 51 77 58 86 57C93 57 97 63 96 71L93 79H35C31 74 29 70 32 64Z"/>
+</g>
+<g data-region="cells" fill="#559984" stroke="none">
+<path d="M40 63C43 59 48 60 50 63C53 67 48 70 44 68C40 68 37 66 40 63ZM70 65C73 61 79 62 80 66C81 70 75 73 72 70C69 69 68 67 70 65Z"/><circle cx="58" cy="63" r="3.4"/><circle cx="54" cy="74" r="2.9"/><ellipse cx="86" cy="71" rx="3.7" ry="2.8"/>
+</g>
+<g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+<path d="M17 25V98C17 110 22 113 31 113H97C106 113 111 110 111 98V25M14 25H25M103 25H114"/><path d="M22 39H106" stroke-width="2.2"/><path d="M30 79H37V86H30Z"/><path d="M43 79H50V86H43Z"/><path d="M56 79H63V86H56Z"/><path d="M69 79H76V86H69Z"/><path d="M82 79H89V86H82Z"/><path d="M95 79H102V86H95Z"/><path d="M30 86H37V106H30ZM95 86H102V106H95Z"/><path d="M32 64C37 53 49 57 58 54C67 51 77 58 86 57C93 57 97 63 96 71L93 79H35C31 74 29 70 32 64Z"/><path d="M33 71C49 76 69 71 95 73" stroke-width="1.4"/>
+</g>
+</svg>

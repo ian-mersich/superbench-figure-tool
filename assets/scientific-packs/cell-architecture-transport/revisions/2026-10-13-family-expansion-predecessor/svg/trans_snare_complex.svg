@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Trans-SNARE Complex</title>
+  <desc id="desc">A vesicle and separate target membrane connected by an illustrative four-helix SNARE bundle: three Q helices and one R helix.</desc>
+  <g data-region="vesicle_membrane" fill="#8EC8FF" stroke="none">
+    <path d="M42 35a22 22 0 1 0 44 0a22 22 0 1 0 -44 0ZM49 35a15 15 0 1 0 30 0a15 15 0 1 0 -30 0Z" fill-rule="evenodd"/>
+  </g>
+  <g data-region="target_membrane" fill="#C7F2EC" stroke="none">
+    <path d="M20 102H108Q113 102 113 107Q113 112 108 112H20Q15 112 15 107Q15 102 20 102Z"/>
+  </g>
+  <g data-region="q_snare" fill="#7DD3C7" stroke="none">
+    <path d="M44 65Q48 62 51 65V108Q47.5 111 44 108Z"/><path d="M54 65Q58 62 61 65V90Q57.5 93 54 90Z"/><path d="M64 65Q68 62 71 65V90Q67.5 93 64 90Z"/><path d="M54 89H71V93H54Z"/>
+  </g>
+  <g data-region="r_snare" fill="#E76F51" stroke="none">
+    <path d="M74 52Q78 49 81 52V92Q77.5 95 74 92Z"/>
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="64" cy="35" r="22"/><circle cx="64" cy="35" r="15"/><path d="M20 102H108Q113 102 113 107Q113 112 108 112H20Q15 112 15 107Q15 102 20 102Z"/><path d="M44 65Q48 62 51 65V108Q47.5 111 44 108Z"/><path d="M45 70L50 74" stroke-width="2.75"/><path d="M45 79L50 83" stroke-width="2.75"/><path d="M45 88L50 92" stroke-width="2.75"/><path d="M45 97L50 101" stroke-width="2.75"/><path d="M54 65Q58 62 61 65V90Q57.5 93 54 90Z"/><path d="M55 70L60 74" stroke-width="2.75"/><path d="M55 79L60 83" stroke-width="2.75"/><path d="M64 65Q68 62 71 65V90Q67.5 93 64 90Z"/><path d="M65 70L70 74" stroke-width="2.75"/><path d="M65 79L70 83" stroke-width="2.75"/><path d="M74 52Q78 49 81 52V92Q77.5 95 74 92Z"/><path d="M75 57L80 61" stroke-width="2.75"/><path d="M75 66L80 70" stroke-width="2.75"/><path d="M75 75L80 79" stroke-width="2.75"/><path d="M75 84L80 88" stroke-width="2.75"/><path d="M54 89H71V93H54Z"/>
+  </g>
+</svg>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Small-molecule Ligand Symbol</title>
+  <desc id="desc">Original compact abstract small-molecule ligand symbol. This colored contour is not a chemical formula, atom-and-bond model, named drug, binding specificity or measured shape.</desc>
+  <g data-region="ligand" fill="#F4A261" stroke="none">
+    <path d="M43 35c7-8 16-13 25-10l13 8 4 16 15 13-6 17-19 4-12 19-19-8-2-20-13-13 5-16 9-10z"/>
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5">
+    <path d="M43 35c7-8 16-13 25-10l13 8 4 16 15 13-6 17-19 4-12 19-19-8-2-20-13-13 5-16 9-10z"/>
+  </g>
+</svg>

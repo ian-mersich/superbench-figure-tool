@@ -1,40 +1,39 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
   <title id="title">Rough Endoplasmic Reticulum</title>
-  <desc id="desc">Original vector rough endoplasmic reticulum with separated membrane cisternae, visible lumen, ribosome studs, and editable semantic regions.</desc>
-
-  <g data-region="membrane" fill="#C7F2EC">
-    <path d="M19 29c14-6 28 3 43 0 17-5 31-5 47 1l-2 13c-16-5-30-4-45 1-16 5-28-5-41 0z"/>
-    <path d="M17 51c15-5 29 3 45 0 17-4 32-4 49 2l-2 13c-17-5-31-5-47-1-17 4-30-5-43 0z"/>
-    <path d="M20 74c14-5 28 3 43 0 16-4 30-3 46 2l-2 13c-16-5-29-4-44 0-16 4-29-5-41-1z"/>
-    <path d="M27 96c12-4 23 2 36 0 14-3 26-2 39 2l-2 11c-13-4-25-3-37 0-13 3-24-4-35-1z"/>
-  </g>
-
-  <g data-region="lumen" fill="#E8FAF6">
-    <path d="M24 32c12-3 24 4 39 1 15-4 27-4 41 0l-1 5c-14-3-27-2-41 2-14 4-25-4-38 0z"/>
-    <path d="M22 54c13-3 26 4 41 1 15-3 28-3 43 1l-1 5c-15-3-28-3-43 0-15 4-27-4-40 0z"/>
-    <path d="M25 77c12-3 24 4 38 1 14-3 27-2 41 1l-1 5c-14-3-26-2-40 1-14 3-26-4-38-1z"/>
-    <path d="M32 99c10-2 20 3 32 1 12-2 22-1 33 1l-1 4c-11-2-21-1-32 1-12 3-21-3-32-1z"/>
-  </g>
-
+  <desc id="desc">Illustrative rough ER sheets joined by a continuous membrane corridor and lumen. Ribosomes lie on cytosolic surfaces; this is a generic drawing, not a measured organelle reconstruction.</desc>
+  <path data-region="membrane" fill="#C7F2EC" d="M24 29C44 21 80 24 106 29L107 43C83 38 55 44 31 40L31 52C55 47 82 50 107 55L107 69C83 64 56 69 31 65L31 79C52 74 78 77 102 82L101 97C78 91 51 98 27 91C20 89 17 84 17 78L17 39C17 34 19 31 24 29Z"/>
+  <path data-region="lumen" fill="#E8FAF6" d="M25 33C45 26 79 28 103 32L104 39C80 35 52 42 27 36L27 57C53 51 81 54 104 58L104 65C81 61 53 67 27 61L27 84C51 77 77 81 98 85L98 93C75 87 50 95 27 87C23 85 21 82 21 78L21 39C21 36 22 34 25 33Z"/>
   <g data-region="ribosome" fill="#F4A261">
-    <circle cx="27" cy="27" r="2.4"/><circle cx="42" cy="27" r="2.4"/><circle cx="58" cy="27" r="2.4"/><circle cx="75" cy="25" r="2.4"/><circle cx="92" cy="26" r="2.4"/><circle cx="107" cy="29" r="2.4"/>
-    <circle cx="25" cy="49" r="2.4"/><circle cx="41" cy="50" r="2.4"/><circle cx="58" cy="49" r="2.4"/><circle cx="76" cy="48" r="2.4"/><circle cx="94" cy="49" r="2.4"/><circle cx="108" cy="52" r="2.4"/>
-    <circle cx="28" cy="72" r="2.4"/><circle cx="45" cy="73" r="2.4"/><circle cx="63" cy="72" r="2.4"/><circle cx="81" cy="72" r="2.4"/><circle cx="101" cy="73" r="2.4"/>
-    <circle cx="36" cy="94" r="2.4"/><circle cx="54" cy="95" r="2.4"/><circle cx="73" cy="94" r="2.4"/><circle cx="93" cy="96" r="2.4"/>
+    <circle cx="30" cy="24" r="2.6"/>
+    <circle cx="47" cy="24" r="2.6"/>
+    <circle cx="65" cy="24" r="2.6"/>
+    <circle cx="83" cy="25" r="2.6"/>
+    <circle cx="99" cy="27" r="2.6"/>
+    <circle cx="41" cy="46" r="2.6"/>
+    <circle cx="59" cy="46" r="2.6"/>
+    <circle cx="77" cy="47" r="2.6"/>
+    <circle cx="95" cy="50" r="2.6"/>
+    <circle cx="41" cy="73" r="2.6"/>
+    <circle cx="58" cy="73" r="2.6"/>
+    <circle cx="76" cy="74" r="2.6"/>
+    <circle cx="94" cy="78" r="2.6"/>
   </g>
-
   <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round">
-    <g stroke-width="2.75">
-      <path d="M19 29c14-6 28 3 43 0 17-5 31-5 47 1l-2 13c-16-5-30-4-45 1-16 5-28-5-41 0z"/>
-      <path d="M17 51c15-5 29 3 45 0 17-4 32-4 49 2l-2 13c-17-5-31-5-47-1-17 4-30-5-43 0z"/>
-      <path d="M20 74c14-5 28 3 43 0 16-4 30-3 46 2l-2 13c-16-5-29-4-44 0-16 4-29-5-41-1z"/>
-      <path d="M27 96c12-4 23 2 36 0 14-3 26-2 39 2l-2 11c-13-4-25-3-37 0-13 3-24-4-35-1z"/>
-    </g>
-    <g stroke-width="1.35">
-      <circle cx="27" cy="27" r="2.4"/><circle cx="42" cy="27" r="2.4"/><circle cx="58" cy="27" r="2.4"/><circle cx="75" cy="25" r="2.4"/><circle cx="92" cy="26" r="2.4"/><circle cx="107" cy="29" r="2.4"/>
-      <circle cx="25" cy="49" r="2.4"/><circle cx="41" cy="50" r="2.4"/><circle cx="58" cy="49" r="2.4"/><circle cx="76" cy="48" r="2.4"/><circle cx="94" cy="49" r="2.4"/><circle cx="108" cy="52" r="2.4"/>
-      <circle cx="28" cy="72" r="2.4"/><circle cx="45" cy="73" r="2.4"/><circle cx="63" cy="72" r="2.4"/><circle cx="81" cy="72" r="2.4"/><circle cx="101" cy="73" r="2.4"/>
-      <circle cx="36" cy="94" r="2.4"/><circle cx="54" cy="95" r="2.4"/><circle cx="73" cy="94" r="2.4"/><circle cx="93" cy="96" r="2.4"/>
+    <path d="M24 29C44 21 80 24 106 29L107 43C83 38 55 44 31 40L31 52C55 47 82 50 107 55L107 69C83 64 56 69 31 65L31 79C52 74 78 77 102 82L101 97C78 91 51 98 27 91C20 89 17 84 17 78L17 39C17 34 19 31 24 29Z" stroke-width="2.75"/>
+    <g stroke-width="1.1">
+    <circle cx="30" cy="24" r="2.6"/>
+    <circle cx="47" cy="24" r="2.6"/>
+    <circle cx="65" cy="24" r="2.6"/>
+    <circle cx="83" cy="25" r="2.6"/>
+    <circle cx="99" cy="27" r="2.6"/>
+    <circle cx="41" cy="46" r="2.6"/>
+    <circle cx="59" cy="46" r="2.6"/>
+    <circle cx="77" cy="47" r="2.6"/>
+    <circle cx="95" cy="50" r="2.6"/>
+    <circle cx="41" cy="73" r="2.6"/>
+    <circle cx="58" cy="73" r="2.6"/>
+    <circle cx="76" cy="74" r="2.6"/>
+    <circle cx="94" cy="78" r="2.6"/>
     </g>
   </g>
 </svg>

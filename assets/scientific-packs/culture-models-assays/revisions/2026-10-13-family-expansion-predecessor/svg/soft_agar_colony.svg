@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+<title id="title">Soft-agar Colony Assay</title>
+<desc id="desc">Colonies within a cell-containing upper agar layer above a cell-free agar base and beneath a medium overlay.</desc>
+<g data-region="baseagar" fill="#C7F2EC" stroke="none">
+<path d="M22 78Q64 93 106 78V95Q64 114 22 95Z"/>
+</g>
+<g data-region="cellagar" fill="#B8B5FF" stroke="none">
+<path d="M22 52Q64 66 106 52V78Q64 93 22 78Z"/>
+</g>
+<g data-region="medium" fill="#8EC8FF" stroke="none">
+<path d="M22 30Q64 15 106 30V52Q64 66 22 52Z"/>
+</g>
+<g data-region="colonies" fill="#E76F51" stroke="none">
+<path d="M-8 -2Q-10 -8 -4 -9Q0 -13 5 -8Q11 -8 10 -2Q14 3 8 7Q8 12 2 10Q-4 13 -7 7Q-13 4 -8 -2Z" transform="translate(43 66) scale(0.5)"/><path d="M-8 -2Q-10 -8 -4 -9Q0 -13 5 -8Q11 -8 10 -2Q14 3 8 7Q8 12 2 10Q-4 13 -7 7Q-13 4 -8 -2Z" transform="translate(73 75) scale(0.6)"/><path d="M-8 -2Q-10 -8 -4 -9Q0 -13 5 -8Q11 -8 10 -2Q14 3 8 7Q8 12 2 10Q-4 13 -7 7Q-13 4 -8 -2Z" transform="translate(91 63) scale(0.4)"/>
+</g>
+<g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+<ellipse cx="64" cy="30" rx="42" ry="11"/><path d="M22 30V95Q64 114 106 95V30M22 52Q64 66 106 52M22 78Q64 93 106 78"/><path d="M-8 -2Q-10 -8 -4 -9Q0 -13 5 -8Q11 -8 10 -2Q14 3 8 7Q8 12 2 10Q-4 13 -7 7Q-13 4 -8 -2Z" transform="translate(43 66) scale(0.5)"/><path d="M-8 -2Q-10 -8 -4 -9Q0 -13 5 -8Q11 -8 10 -2Q14 3 8 7Q8 12 2 10Q-4 13 -7 7Q-13 4 -8 -2Z" transform="translate(73 75) scale(0.6)"/><path d="M-8 -2Q-10 -8 -4 -9Q0 -13 5 -8Q11 -8 10 -2Q14 3 8 7Q8 12 2 10Q-4 13 -7 7Q-13 4 -8 -2Z" transform="translate(91 63) scale(0.4)"/>
+</g>
+</svg>

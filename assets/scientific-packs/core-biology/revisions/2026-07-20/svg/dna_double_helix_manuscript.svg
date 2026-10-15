@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">DNA Double Helix — Manuscript Line</title>
+  <desc id="desc">Restrained thin-line DNA double-helix companion with matched crossing backbones, base pairs, terminal accents, and editable semantic regions.</desc>
+
+  <g data-region="outline" fill="none" stroke="#66707A" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M40 19c34 20 34 70 0 90M88 19c-34 20-34 70 0 90" stroke-width="4.4"/>
+    <path d="M48 27 80 36M40 45l48 14M40 68l48 14M48 101l32-9" stroke-width="3"/>
+    <circle cx="40" cy="19" r="4.5" stroke-width="1.5"/><circle cx="88" cy="19" r="4.5" stroke-width="1.5"/>
+    <circle cx="40" cy="109" r="4.5" stroke-width="1.5"/><circle cx="88" cy="109" r="4.5" stroke-width="1.5"/>
+  </g>
+
+  <g data-region="base_pair" fill="none" stroke="#C58F8C" stroke-linecap="round" stroke-width="2">
+    <path d="M48 27 80 36"/>
+    <path d="M40 45l48 14"/>
+    <path d="M40 68l48 14"/>
+    <path d="M48 101l32-9"/>
+  </g>
+
+  <g data-region="backbone" fill="none" stroke="#7E9DB2" stroke-linecap="round" stroke-width="2.15">
+    <path d="M40 19c34 20 34 70 0 90"/>
+    <path d="M88 19c-34 20-34 70 0 90"/>
+  </g>
+
+  <g data-region="accent" fill="#AFA8D2">
+    <circle cx="40" cy="19" r="4.5"/><circle cx="88" cy="19" r="4.5"/>
+    <circle cx="40" cy="109" r="4.5"/><circle cx="88" cy="109" r="4.5"/>
+  </g>
+</svg>

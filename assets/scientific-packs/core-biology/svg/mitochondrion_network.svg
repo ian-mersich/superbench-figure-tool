@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Branched Mitochondrial Network — Section</title>
+  <desc id="desc">Original connected branched mitochondrial segment with distinct limiting membranes and sparse inner folds. It does not imply that all mitochondria in a cell are connected, show a fusion event or diagnose energetic state.</desc>
+  <path data-region="matrix" fill="#FFD7A8" d="M20 77C35 69 45 61 57 52C62 41 57 29 66 23C67 22 68 23 67 25C59 33 66 41 61 51C77 48 90 39 102 31C107 28 110 28 109 32C107 35 102 37 99 39L93 41L92 39C92 38 89 39 89 41L88 44C81 49 74 53 64 54C58 65 62 75 78 81C92 84 102 84 111 90C113 92 112 93 110 92C101 89 87 88 74 83L70 80L65 76L64 68C64 64 60 64 60 68L60 73C58 68 58 62 58 58C46 68 34 79 22 84C17 86 16 82 20 77Z"/>
+  <g data-region="accent" fill="none" stroke="#F4A261" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20 77C35 69 45 61 57 52C62 41 57 29 66 23C67 22 68 23 67 25C59 33 66 41 61 51C77 48 90 39 102 31C107 28 110 28 109 32C107 35 102 37 99 39L93 41"/>
+    <path d="M88 44C81 49 74 53 64 54C58 65 62 75 78 81C92 84 102 84 111 90C113 92 112 93 110 92C101 89 87 88 74 83L70 80L65 76"/>
+    <path d="M60 73C58 68 58 62 58 58C46 68 34 79 22 84C17 86 16 82 20 77"/>
+  </g>
+  <g data-region="cristae" fill="none" stroke="#E76F51" stroke-width="3.25" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M93 41L92 39C92 38 89 39 89 41L88 44"/>
+    <path d="M65 76L64 68C64 64 60 64 60 68L60 73"/>
+  </g>
+  <path data-region="outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" d="M17 72C31 67 42 60 53 50C57 39 53 27 63 19C70 14 76 19 72 25C64 31 69 39 66 46C79 43 89 35 99 27C106 22 114 24 114 30C114 36 106 40 100 42C89 50 78 56 67 58C64 65 68 72 78 76C91 79 102 79 112 85C118 89 116 96 110 98C101 96 88 90 74 88C58 83 54 74 54 66C45 74 34 83 24 88C15 93 10 86 13 80C14 77 15 74 17 72Z"/>
+</svg>

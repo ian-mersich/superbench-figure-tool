@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Tubular Mitochondrion — Section</title>
+  <desc id="desc">Original elongated mitochondrial section with distinct outer and inner membranes and sparse inner-membrane invaginations. The tubular shape and fold number are illustrative and do not diagnose metabolic state.</desc>
+  <path data-region="matrix" fill="#FFD7A8" d="M21 66C21 57 30 51 41 51L43 65C44 71 49 70 49 64L50 50C64 48 72 43 83 44L79 57C77 62 82 65 86 60L93 46C105 49 110 59 105 66C99 74 81 74 64 80L62 68C61 63 57 63 56 68L55 82C41 85 29 81 23 74C21 72 20 69 21 66Z"/>
+  <g data-region="accent" fill="none" stroke="#F4A261" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 66C21 57 30 51 41 51"/>
+    <path d="M50 50C64 48 72 43 83 44"/>
+    <path d="M93 46C105 49 110 59 105 66C99 74 81 74 64 80"/>
+    <path d="M55 82C41 85 29 81 23 74C21 72 20 69 21 66"/>
+  </g>
+  <g data-region="cristae" fill="none" stroke="#E76F51" stroke-width="3.25" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M41 51L43 65C44 71 49 70 49 64L50 50"/>
+    <path d="M83 44L79 57C77 62 82 65 86 60L93 46"/>
+    <path d="M64 80L62 68C61 63 57 63 56 68L55 82"/>
+  </g>
+  <path data-region="outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" d="M14 67C14 54 26 44 43 43C65 40 78 33 98 38C116 42 120 59 112 71C103 83 83 81 65 87C47 94 26 88 17 79C14 76 13 72 14 67Z"/>
+</svg>

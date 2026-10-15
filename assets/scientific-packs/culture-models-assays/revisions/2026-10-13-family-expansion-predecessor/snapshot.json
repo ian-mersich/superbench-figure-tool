@@ -1,0 +1,67 @@
+{
+  "schema_id": "superbench.scientificAssetPredecessorSnapshot.v1",
+  "snapshot_date": "2026-10-13",
+  "source_commit": "d7387e7e414083e091c4c1bba81a08ee8c520cf7",
+  "files": [
+    {
+      "file": "asset-pack.json",
+      "sha256": "ac458737ca9f0b4b81f84fecc20891ab357ca86ef535f42c0845452bc648bd5c"
+    },
+    {
+      "file": "rights-release-record.json",
+      "sha256": "3b885eb57f08e502e377af774f16abc8d696f6053431da1e8969f459cf96c417"
+    },
+    {
+      "file": "LICENSE-ASSETS-CC0-1.0.md",
+      "sha256": "09bb098a64831dc74a3cff7d8c26c26ada3439781c1b4d8b418e4560c8b421de"
+    },
+    {
+      "file": "svg/perfused_tissue_chip.svg",
+      "sha256": "ffc958ecbe7a880d12c969f003a0e481a70946e6d05ffec442e67661ca37758d"
+    },
+    {
+      "file": "svg/air_liquid_interface_culture.svg",
+      "sha256": "99ec85246bf5da0b86e2276efee2cc4d0f25361f69439acd64feb5a7dd1bfd2c"
+    },
+    {
+      "file": "svg/hydrogel_embedded_organoid.svg",
+      "sha256": "b7fca80901f68f233e1b4255bb545aa0e705d1dbaa09c0d06ac26f17c2a16e7a"
+    },
+    {
+      "file": "svg/hanging_drop_spheroid.svg",
+      "sha256": "ac8ba54d1e04273655ae42914ca5d229f30200fb1297ab9f87f717943ca22ae6"
+    },
+    {
+      "file": "svg/microwell_spheroid_aggregation.svg",
+      "sha256": "aab199dbf514b0f881a36585086722cdf24604aa1186513099400e0e8f97936f"
+    },
+    {
+      "file": "svg/epithelial_scratch_wound.svg",
+      "sha256": "76c9437a8a873908f0822c768a2029d795e8ec9f757970f6bd8576c267ffdf61"
+    },
+    {
+      "file": "svg/clonogenic_colony_formation.svg",
+      "sha256": "0972daa66ad2d1697d8c55b8703b9425658bcdef0b650c15e740edab53724c8b"
+    },
+    {
+      "file": "svg/soft_agar_colony.svg",
+      "sha256": "68fae5d36b12035f6eb5142a4058760e45c40be66a7fe197c0b4152abdb82825"
+    },
+    {
+      "file": "svg/collagen_gel_contraction.svg",
+      "sha256": "d5c84c2ec4464addd109d43a4f3e97fb45fcf98b212d760e7c7875730f198def"
+    },
+    {
+      "file": "svg/precision_cut_tissue_slice_culture.svg",
+      "sha256": "9dfda38a8367f2509b2bea5ff1003ae7e9ab8976517c334586f0d03f18d53010"
+    },
+    {
+      "file": "svg/organoid_luminal_microinjection.svg",
+      "sha256": "cd1f7e1431e5fb77b83cf62a969d29a8b1bf9fb82283f046fed5e7309a3a45b6"
+    },
+    {
+      "file": "svg/perfusable_microvascular_network.svg",
+      "sha256": "416cf048110d34b61b55a81e34f12a596572086ad6b59dcc7949f378d2bc5000"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Tight Junction</title>
+  <desc id="desc">Illustrative tight-junction strand contacts between apposed cell membranes, representing a paracellular barrier without specifying permeability.</desc>
+  <g data-region="membrane" fill="#C7F2EC" stroke="none">
+    <path d="M40 18H50C50 36 59 40 59 64C59 88 50 93 50 110H40C40 90 49 86 49 64C49 42 40 38 40 18Z"/><path d="M88 18H78C78 36 69 40 69 64C69 88 78 93 78 110H88C88 90 79 86 79 64C79 42 88 38 88 18Z"/>
+  </g>
+  <g data-region="junction_strand" fill="#8EC8FF" stroke="none">
+    <path d="M62 28H66L69 36H74V42H69L67 48L72 51V57H68L66 63L70 66V72H67L66 77L72 81V87H69L67 93H74V99H67L64 104L61 99H54V93H61L62 87H56V81H61L62 75L58 72V66H62V61H56V55H61L62 49L59 42H54V36H61Z"/>
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M50 18H40C40 38 49 42 49 64C49 86 40 90 40 110H50M78 18H88C88 38 79 42 79 64C79 86 88 90 88 110H78"/><path d="M50 18C50 24 50 28 52 32M56 45L57 48M58 60L59 63M59 76L58 79M56 89L54 92M52 102L50 110M78 18C78 24 78 28 76 32M72 45L71 48M70 60L69 63M69 76L70 79M72 89L74 92M76 102L78 110"/><path d="M62 28H66L69 36H74V42H69L67 48L72 51V57H68L66 63L70 66V72H67L66 77L72 81V87H69L67 93H74V99H67L64 104L61 99H54V93H61L62 87H56V81H61L62 75L58 72V66H62V61H56V55H61L62 49L59 42H54V36H61Z"/>
+  </g>
+</svg>

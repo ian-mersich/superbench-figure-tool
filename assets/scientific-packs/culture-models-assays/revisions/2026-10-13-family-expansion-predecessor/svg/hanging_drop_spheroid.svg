@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Hanging-drop Spheroid Culture</title>
+  <desc id="desc">A pendant culture-medium drop with a cell aggregate near its lower tip, suspended beneath a support.</desc>
+  <g data-region="support" fill="#E8EEF7" stroke="none">
+    <rect x="18" y="24" width="92" height="10" rx="3"/>
+  </g>
+  <g data-region="medium" fill="#8EC8FF" stroke="none">
+    <path d="M43 34C44 45 38 56 34 66C26 89 43 108 64 108C85 108 102 89 94 66C90 56 84 45 85 34Z"/>
+  </g>
+  <g data-region="aggregatecells" fill="#7DD3C7" stroke="none">
+    <circle cx="56" cy="86" r="6"/><circle cx="67" cy="85" r="6"/><circle cx="77" cy="91" r="6"/><circle cx="48" cy="94" r="6"/><circle cx="59" cy="96" r="6.5"/><circle cx="70" cy="97" r="6"/>
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="18" y="24" width="92" height="10" rx="3"/><path d="M43 34C44 45 38 56 34 66C26 89 43 108 64 108C85 108 102 89 94 66C90 56 84 45 85 34Z"/><circle cx="56" cy="86" r="6"/><circle cx="67" cy="85" r="6"/><circle cx="77" cy="91" r="6"/><circle cx="48" cy="94" r="6"/><circle cx="59" cy="96" r="6.5"/><circle cx="70" cy="97" r="6"/>
+  </g>
+</svg>

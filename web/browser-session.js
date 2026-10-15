@@ -6,6 +6,110 @@
   const list = document.getElementById("browser-projects");
   const store = window.FigureBrowserStore;
   const localFile = window.location.protocol === "file:";
+  const webHeader = document.querySelector(".web-header");
+  const toolbar = document.querySelector(".browser-toolbar");
+  const headerActions = document.querySelector(".web-header-actions");
+  const retryButton = document.getElementById("browser-retry");
+  const copyButton = document.getElementById("browser-save-copy");
+  const announcements = document.getElementById("browser-announcements");
+  let browserChrome = null;
+
+  // This same-origin web host owns browser files. Adopt its existing controls
+  // only after the shared editor is ready; the native editor never loads this.
+  async function integrateBrowserChrome() {
+    const editorDocument = frame.contentDocument;
+    const header = editorDocument?.querySelector(".app-header .top-window-actions");
+    const root = editorDocument?.getElementById("figureStudioRoot");
+    if (!header || !root || browserChrome) return;
+    const stylesheet = editorDocument.createElement("link");
+    stylesheet.rel = "stylesheet";
+    stylesheet.href = new URL("browser-chrome.css", document.baseURI).href;
+    const styled = await new Promise(resolve => {
+      const timeout = setTimeout(() => resolve(false), 5000);
+      stylesheet.onload = () => { clearTimeout(timeout); resolve(true); };
+      stylesheet.onerror = () => { clearTimeout(timeout); resolve(false); };
+      editorDocument.head.append(stylesheet);
+    });
+    if (!styled || editorDocument !== frame.contentDocument) {
+      stylesheet.remove();
+      return;
+    }
+    const trigger = editorDocument.createElement("button");
+    trigger.id = "browser-files-trigger";
+    trigger.className = "browser-chrome-trigger";
+    trigger.type = "button";
+    trigger.textContent = "Browser files";
+    trigger.setAttribute("aria-haspopup", "dialog");
+    trigger.setAttribute("aria-controls", "browser-files-panel");
+    trigger.setAttribute("aria-expanded", "false");
+    const panel = editorDocument.createElement("section");
+    panel.id = "browser-files-panel";
+    panel.className = "browser-chrome-panel";
+    panel.setAttribute("role", "dialog");
+    panel.setAttribute("aria-label", "Browser files and appearance");
+    panel.hidden = true;
+    const heading = editorDocument.createElement("strong");
+    heading.className = "browser-chrome-heading";
+    heading.textContent = "In this browser";
+    const website = editorDocument.createElement("a");
+    website.href = webHeader.querySelector(".brand").href;
+    website.textContent = "Figure Tool website";
+    website.target = "_top";
+    headerActions.querySelector(".web-about-panel").append(website);
+    // These links previously belonged to the outer page. Preserve full-page
+    // navigation when their controls move into the editor's document.
+    headerActions.querySelectorAll(".web-about-panel a").forEach(link => {
+      link.href = link.href;
+      link.target = "_top";
+    });
+    panel.append(heading, toolbar, headerActions);
+    root.append(panel);
+    header.prepend(trigger);
+    const position = () => {
+      const bounds = trigger.getBoundingClientRect();
+      const top = bounds.bottom + 6;
+      panel.style.top = `${top}px`;
+      panel.style.left = `${Math.max(8, Math.min(bounds.right - panel.offsetWidth, editorDocument.documentElement.clientWidth - panel.offsetWidth - 8))}px`;
+      panel.style.maxHeight = `${Math.max(100, editorDocument.documentElement.clientHeight - top - 12)}px`;
+    };
+    const close = (restoreFocus = false) => {
+      panel.hidden = true;
+      trigger.setAttribute("aria-expanded", "false");
+      headerActions.querySelector(".web-about").open = false;
+      if (restoreFocus) trigger.focus();
+    };
+    const open = (focusControls = false) => {
+      panel.hidden = false;
+      trigger.setAttribute("aria-expanded", "true");
+      position();
+      if (focusControls) toolbar.querySelector("button:not(:disabled)")?.focus();
+    };
+    trigger.addEventListener("click", () => {
+      if (panel.hidden) open(true); else close();
+    });
+    editorDocument.addEventListener("focusin", event => {
+      if (!panel.hidden && !panel.contains(event.target) && !trigger.contains(event.target)) close();
+    });
+    editorDocument.addEventListener("pointerdown", event => {
+      if (!panel.hidden && !panel.contains(event.target) && !trigger.contains(event.target)) close();
+    }, true);
+    editorDocument.addEventListener("keydown", event => {
+      if (event.key === "Escape" && !panel.hidden) {
+        event.preventDefault();
+        event.stopPropagation();
+        close(true);
+      }
+    }, true);
+    frame.contentWindow.addEventListener("resize", () => { if (!panel.hidden) position(); });
+    document.addEventListener("pointerdown", () => close());
+    toolbar.querySelectorAll(".browser-toolbar-actions button").forEach(button => button.addEventListener("click", () => close()));
+    library.addEventListener("close", () => trigger.focus());
+    browserChrome = { trigger, panel, open, close };
+    status.removeAttribute("role");
+    trigger.title = status.textContent;
+    webHeader.hidden = true;
+    document.body.dataset.browserChrome = "integrated";
+  }
   // The web host keeps its own appearance preference, separate from saved artwork
   // and the installed Superbench settings. Keep the legacy engine namespace stable.
   const themeStorageKey = "figureStudio.webTheme.v1";
@@ -75,6 +179,13 @@
   // A file URL cannot fetch the shared editor assets or access its iframe as a
   // same-origin document. Do not start the editor or storage under that origin.
   if (localFile) {
+    const localLaunch = document.getElementById("browser-local-launch");
+    // Release staging replaces this legacy consumer URL. Only the canonical
+    // source preview needs its current root and command explained here.
+    if (localLaunch.origin === "http://127.0.0.1:4177") {
+      localLaunch.href = "http://127.0.0.1:4177/web/";
+      document.getElementById("browser-local-server-help").innerHTML = "Keep the local preview server running. From the Figure source folder, run <code>python -m http.server 4177 --bind 127.0.0.1 --directory .</code>.";
+    }
     launchFailure("Opening the HTML file directly prevents this browser from loading the editor and its saved-work library. Use the local browser preview below.", true);
     return;
   }
@@ -91,8 +202,16 @@
     status.textContent = message;
     status.dataset.state = state;
     if (state === "saved") status.dataset.sessionKey = savedKey;
-    document.getElementById("browser-retry").hidden = state !== "error";
-    document.getElementById("browser-save-copy").hidden = state !== "conflict";
+    retryButton.hidden = state !== "error";
+    copyButton.hidden = state !== "conflict";
+    announcements.textContent = message;
+    if (browserChrome) {
+      browserChrome.trigger.title = message;
+      browserChrome.trigger.dataset.saveState = state;
+      browserChrome.trigger.textContent = state === "error" ? "Browser files · Save failed"
+        : state === "conflict" ? "Browser files · Save conflict" : "Browser files";
+      if (state === "error" || state === "conflict") browserChrome.open();
+    }
   }
   function failure(error) {
     failed = true;
@@ -281,14 +400,17 @@
     if (!state?.ready || busy) return;
     if (!started) {
       started = true;
+      busy = true;
       applyEditorTheme();
       observedKey = state.key;
       document.querySelectorAll(".browser-toolbar button").forEach(node => { node.disabled = false; });
       try {
+        await integrateBrowserChrome();
         await store.open();
         feedback("Autosave ready · Stored only in this browser");
         if ((await store.list()).length) await showLibrary();
       } catch (error) { failure(error); }
+      finally { busy = false; }
     } else if (!state.busy && !failed) await save();
   }
   timer = setInterval(tick, 1200);

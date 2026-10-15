@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Fungal Pseudohyphal Chain</title>
+  <desc id="desc">Connected elongated fungal cells with constricted cell junctions and illustrative nuclei.</desc>
+  <g data-region="cells" fill="#7DD3C7" stroke="none">
+    <path d="M24 32C21 21 29 13 36 16C46 20 50 36 48 46C59 44 65 57 64 70C76 67 86 81 90 96C95 109 90 115 82 112C71 110 67 95 68 85C56 87 48 75 47 61C35 63 27 49 24 32Z"/>
+  </g>
+  <g data-region="nuclei" fill="#B8B5FF" stroke="none">
+    <ellipse cx="36" cy="37" rx="4" ry="7"/><ellipse cx="55" cy="66" rx="4" ry="7"/><ellipse cx="79" cy="96" rx="4" ry="7"/>
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M24 32C21 21 29 13 36 16C46 20 50 36 48 46C59 44 65 57 64 70C76 67 86 81 90 96C95 109 90 115 82 112C71 110 67 95 68 85C56 87 48 75 47 61C35 63 27 49 24 32Z"/><path d="M48 46Q43 50 47 61M64 70Q61 77 68 85" stroke-width="2.2"/>
+  </g>
+</svg>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Spread Eukaryotic Cell</title>
+  <desc id="desc">Original schematic spread adherent-cell section with irregular membrane, bounded nucleus and sparse organelles. The contour does not specify a cell type, density or measured spreading state.</desc>
+  <path data-region="cytoplasm" fill="#C7F2EC" d="M12 66C18 57 25 51 30 38C34 25 43 28 49 37C57 30 65 22 74 28C83 34 79 43 91 46C103 49 117 44 116 55C115 66 98 65 100 78C104 92 111 100 99 104C87 108 84 97 72 99C59 104 46 115 36 105C27 96 34 89 27 83C17 81 6 77 12 66Z"/>
+
+  <path data-region="nucleus" fill="#B8B5FF" d="M45 65C42 53 51 42 63 42C77 42 85 52 83 65C81 78 70 84 58 80C50 78 47 72 45 65Z"/>
+  <g data-region="accent" fill="#F4A261"><path d="M30 51C31 46 39 46 42 52C44 57 40 63 36 61C31 60 27 55 30 51Z"/><path d="M75 91C76 85 87 81 92 84C98 88 93 94 85 95C78 97 74 95 75 91Z"/><circle cx="34" cy="87" r="3"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 66C18 57 25 51 30 38C34 25 43 28 49 37C57 30 65 22 74 28C83 34 79 43 91 46C103 49 117 44 116 55C115 66 98 65 100 78C104 92 111 100 99 104C87 108 84 97 72 99C59 104 46 115 36 105C27 96 34 89 27 83C17 81 6 77 12 66Z" stroke-width="3.2"/>
+    <path d="M45 65C42 53 51 42 63 42C77 42 85 52 83 65C81 78 70 84 58 80C50 78 47 72 45 65Z" stroke-width="2.4"/>
+    <path d="M32 51C37 51 33 57 38 57M79 92C84 93 84 86 91 88" stroke-width="1.5"/>
+  </g>
+</svg>

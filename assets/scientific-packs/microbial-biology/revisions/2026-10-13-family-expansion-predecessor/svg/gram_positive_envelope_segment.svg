@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Gram-positive Cell Envelope</title>
+  <desc id="desc">A typical Gram-positive envelope segment with one cytoplasmic membrane beneath a broad peptidoglycan wall.</desc>
+  <g data-region="cytoplasm" fill="#D9F4E5" stroke="none">
+    <rect x="18" y="92" width="92" height="15" rx="2"/>
+  </g>
+  <g data-region="peptidoglycan" fill="#8EC8FF" stroke="none">
+    <rect x="18" y="27" width="92" height="47" rx="4"/>
+  </g>
+  <g data-region="membrane" fill="#7DD3C7" stroke="none">
+    <rect x="18" y="78" width="92" height="14" rx="4"/>
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M22 27H106Q110 27 110 31V70Q110 74 106 74H22Q18 74 18 70V31Q18 27 22 27Z"/><path d="M22 78H106Q110 78 110 82V88Q110 92 106 92H22Q18 92 18 88V82Q18 78 22 78Z"/><path d="M27 36L40 62M40 36L27 62" stroke-width="2.1"/><path d="M49 36L62 62M62 36L49 62" stroke-width="2.1"/><path d="M71 36L84 62M84 36L71 62" stroke-width="2.1"/><path d="M93 36L106 62M106 36L93 62" stroke-width="2.1"/><path d="M32 81V89" stroke-width="2.1"/><path d="M48 81V89" stroke-width="2.1"/><path d="M64 81V89" stroke-width="2.1"/><path d="M80 81V89" stroke-width="2.1"/><path d="M96 81V89" stroke-width="2.1"/>
+  </g>
+</svg>

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Hydrogel-embedded Organoid — Cystic</title>
+  <desc id="desc">A hollow epithelial organoid surrounded by an external hydrogel, with the lumen and surrounding matrix separately editable.</desc>
+  <g data-region="externalmatrix" fill="#D9F4E5" stroke="none">
+    <path d="M16 108C18 51 31 22 64 22C98 22 111 53 112 108Z"/>
+  </g>
+  <g data-region="epithelium" fill="#7DD3C7" stroke="none">
+    <path d="M34 72C32 57 43 45 60 44C77 42 94 52 97 68C100 83 88 97 72 100C53 105 37 92 34 72Z M46 72C44 62 50 55 62 55C75 53 84 60 85 71C86 82 77 89 67 90C55 91 48 83 46 72Z" fill-rule="evenodd"/>
+  </g>
+  <g data-region="nuclei" fill="#B8B5FF" stroke="none">
+    <ellipse cx="39" cy="68" rx="2.8" ry="4"/><ellipse cx="51" cy="49" rx="3.8" ry="2.6"/><ellipse cx="80" cy="50" rx="3.6" ry="2.7"/><ellipse cx="92" cy="75" rx="2.7" ry="4"/><ellipse cx="75" cy="96" rx="4" ry="2.5"/><ellipse cx="45" cy="88" rx="2.8" ry="3.7"/>
+  </g>
+  <g data-region="lumenfluid" fill="#FFFFFF" stroke="none">
+    <path d="M46 72C44 62 50 55 62 55C75 53 84 60 85 71C86 82 77 89 67 90C55 91 48 83 46 72Z"/>
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M16 108C18 51 31 22 64 22C98 22 111 53 112 108Z"/><path d="M34 72C32 57 43 45 60 44C77 42 94 52 97 68C100 83 88 97 72 100C53 105 37 92 34 72Z"/><path d="M46 72C44 62 50 55 62 55C75 53 84 60 85 71C86 82 77 89 67 90C55 91 48 83 46 72Z"/><path d="M45 48L52 57M73 44L71 55M96 65L84 66M87 93L80 85M59 101L60 90M35 79L47 77" stroke-width="1.6"/>
+  </g>
+</svg>

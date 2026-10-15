@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Desmosome</title>
+  <desc id="desc">Illustrative intercellular desmosomal cadherin contact with paired cytoplasmic plaques attached to intermediate filaments.</desc>
+  <g data-region="membrane" fill="#C7F2EC" stroke="none">
+    <rect x="44" y="18" width="9" height="92" rx="2"/><rect x="75" y="18" width="9" height="92" rx="2"/>
+  </g>
+  <g data-region="desmosomal_cadherin" fill="#8EC8FF" stroke="none">
+    <path d="M41 41H53L64 48L75 41H87V50H76L64 56L52 50H41Z"/><path d="M41 77H53L64 84L75 77H87V86H76L64 92L52 86H41Z"/>
+  </g>
+  <g data-region="plaque" fill="#B8B5FF" stroke="none">
+    <rect x="31" y="36" width="13" height="58" rx="5"/><rect x="84" y="36" width="13" height="58" rx="5"/>
+  </g>
+  <g data-region="intermediate_filament" fill="#F4DC8A" stroke="none">
+    <path d="M18 23Q29 26 35 42L31 49Q25 36 16 31Z M16 61Q27 56 36 65L32 72Q25 65 16 69Z M18 106Q27 88 35 82L38 89Q30 95 25 110Z M110 23Q99 26 93 42L97 49Q103 36 112 31Z M112 61Q101 56 92 65L96 72Q103 65 112 69Z M110 106Q101 88 93 82L90 89Q98 95 103 110Z"/>
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M44 18H53V38M44 18V38M44 59V74M53 59V74M44 94V110H53V94M75 18H84V38M75 18V38M75 59V74M84 59V74M75 94V110H84V94"/><path d="M41 41H53L64 48L75 41H87V50H76L64 56L52 50H41Z"/><path d="M41 77H53L64 84L75 77H87V86H76L64 92L52 86H41Z"/><rect x="31" y="36" width="13" height="58" rx="5"/><rect x="84" y="36" width="13" height="58" rx="5"/><path d="M18 23Q29 26 35 42L31 49Q25 36 16 31Z M16 61Q27 56 36 65L32 72Q25 65 16 69Z M18 106Q27 88 35 82L38 89Q30 95 25 110Z M110 23Q99 26 93 42L97 49Q103 36 112 31Z M112 61Q101 56 92 65L96 72Q103 65 112 69Z M110 106Q101 88 93 82L90 89Q98 95 103 110Z"/>
+  </g>
+</svg>

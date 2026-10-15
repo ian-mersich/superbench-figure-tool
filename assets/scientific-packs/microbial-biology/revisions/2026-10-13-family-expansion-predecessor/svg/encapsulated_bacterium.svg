@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Encapsulated Bacterium</title>
+  <desc id="desc">A short oval bacterial body enclosed by a separate extracellular capsule, with an illustrative nucleoid.</desc>
+  <g data-region="capsule" fill="#D9F4E5" stroke="none">
+    <path d="M30 51C24 33 37 17 57 16C78 12 99 26 100 49C108 71 100 101 78 109C57 117 35 105 30 88C24 75 24 65 30 51Z"/>
+  </g>
+  <g data-region="cell_body" fill="#7DD3C7" stroke="none">
+    <path d="M42 45C44 29 59 25 72 31C88 37 91 61 87 81C84 98 68 104 54 95C42 88 38 63 42 45Z"/>
+  </g>
+  <g data-region="nucleoid" fill="none" stroke="#B8B5FF" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M57 49C72 40 76 51 63 57C51 63 55 76 71 77C82 79 72 88 61 83"/>
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M30 51C24 33 37 17 57 16C78 12 99 26 100 49C108 71 100 101 78 109C57 117 35 105 30 88C24 75 24 65 30 51Z"/><path d="M42 45C44 29 59 25 72 31C88 37 91 61 87 81C84 98 68 104 54 95C42 88 38 63 42 45Z"/><path d="M36 38Q40 26 53 24M83 27Q94 35 93 47M96 80Q94 97 81 102M37 91Q43 102 54 105" stroke-width="2.1"/>
+  </g>
+</svg>

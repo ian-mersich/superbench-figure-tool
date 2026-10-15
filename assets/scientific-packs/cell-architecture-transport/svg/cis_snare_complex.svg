@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Cis-SNARE Complex</title>
+  <desc id="desc">A post-fusion four-helix SNARE bundle with Qa and R anchors in one membrane and paired non-transmembrane SNAP helices.</desc>
+  <g data-region="membrane" fill="#8EC8FF" stroke="none">
+    <rect x="16" y="97" width="96" height="13" rx="4"/>
+  </g>
+  <g data-region="q_snare" fill="#7DD3C7" stroke="none">
+    <path d="M42 28Q45 26 48 28V100H42Z"/><path d="M54 28Q57 26 60 28V90H54Z"/><path d="M66 28Q69 26 72 28V90H66Z"/><rect x="54" y="88" width="18" height="5" rx="2"/>
+  </g>
+  <g data-region="r_snare" fill="#E76F51" stroke="none">
+    <path d="M78 28Q81 26 84 28V100H78Z"/>
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="16" y="97" width="96" height="13" rx="4"/><path d="M42 28Q45 26 48 28V100H42Z"/><path d="M54 28Q57 26 60 28V90H54Z"/><path d="M66 28Q69 26 72 28V90H66Z"/><path d="M78 28Q81 26 84 28V100H78Z"/><rect x="54" y="88" width="18" height="5" rx="2"/>
+  </g>
+</svg>

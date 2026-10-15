@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Antibody Fc Fragment</title>
+  <desc id="desc">Paired heavy-chain constant portions of an Fc fragment, with hinge ends and no antigen-binding arms. Domain contours and spacing are schematic; no subclass, glycan composition or receptor engagement is specified.</desc>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round" stroke-width="14">
+    <path d="M48 32c-4 14-6 22-4 33l5 32"/><path d="M80 32c4 14 6 22 4 33l-5 32"/><path d="M48 32 51 17M80 32l-3-15M46 42h36"/>
+  </g>
+  <g data-region="heavy_chain" fill="none" stroke="#8EC8FF" stroke-linecap="round" stroke-linejoin="round" stroke-width="9">
+    <path d="M48 32c-4 14-6 22-4 33l5 32"/><path d="M80 32c4 14 6 22 4 33l-5 32"/>
+  </g>
+  <g data-region="hinge" fill="none" stroke="#B8B5FF" stroke-linecap="round" stroke-linejoin="round" stroke-width="6">
+    <path d="M48 32 51 17M80 32l-3-15M46 42h36"/>
+  </g>
+</svg>

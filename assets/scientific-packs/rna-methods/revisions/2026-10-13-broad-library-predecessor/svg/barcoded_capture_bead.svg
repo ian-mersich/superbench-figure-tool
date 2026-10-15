@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Oligo-barcoded RNA Capture Bead</title>
+  <desc id="desc">Original editable schematic of a bead bearing tethered capture oligonucleotides. Purple segments denote the shared bead barcode, orange segments denote molecular identifier regions whose sequences vary among oligonucleotides, and teal terminal segments denote poly(dT) capture tails. The segments and number of oligonucleotides are illustrative, not actual sequences or stoichiometry.</desc>
+  <g data-region="bead_body" fill="#8EC8FF" stroke="none">
+    <circle cx="64" cy="64" r="27"/>
+  </g>
+  <g data-region="cell_barcode" fill="none" stroke="#7B78C9" stroke-width="4" stroke-linecap="round">
+    <path d="M64 35v-8"/>
+    <path d="M64 35v-8" transform="rotate(45 64 64)"/>
+    <path d="M64 35v-8" transform="rotate(90 64 64)"/>
+    <path d="M64 35v-8" transform="rotate(135 64 64)"/>
+    <path d="M64 35v-8" transform="rotate(180 64 64)"/>
+    <path d="M64 35v-8" transform="rotate(225 64 64)"/>
+    <path d="M64 35v-8" transform="rotate(270 64 64)"/>
+    <path d="M64 35v-8" transform="rotate(315 64 64)"/>
+  </g>
+  <g data-region="molecular_identifier" fill="none" stroke="#F4A261" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M64 27l-1-3 1-3"/>
+    <path d="M64 27l1-3-1-3" transform="rotate(45 64 64)"/>
+    <path d="M64 27l-1-2 2-2-1-2" transform="rotate(90 64 64)"/>
+    <path d="M64 27l1-2-2-2 1-2" transform="rotate(135 64 64)"/>
+    <path d="M64 27l-1-3 1-3" transform="rotate(180 64 64)"/>
+    <path d="M64 27l1-3-1-3" transform="rotate(225 64 64)"/>
+    <path d="M64 27l-1-2 2-2-1-2" transform="rotate(270 64 64)"/>
+    <path d="M64 27l1-2-2-2 1-2" transform="rotate(315 64 64)"/>
+  </g>
+  <g data-region="polydt_capture_tail" fill="none" stroke="#7DD3C7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M64 21v-7m-3 2h6m-6 3h6"/>
+    <path d="M64 21v-7m-3 2h6m-6 3h6" transform="rotate(45 64 64)"/>
+    <path d="M64 21v-7m-3 2h6m-6 3h6" transform="rotate(90 64 64)"/>
+    <path d="M64 21v-7m-3 2h6m-6 3h6" transform="rotate(135 64 64)"/>
+    <path d="M64 21v-7m-3 2h6m-6 3h6" transform="rotate(180 64 64)"/>
+    <path d="M64 21v-7m-3 2h6m-6 3h6" transform="rotate(225 64 64)"/>
+    <path d="M64 21v-7m-3 2h6m-6 3h6" transform="rotate(270 64 64)"/>
+    <path d="M64 21v-7m-3 2h6m-6 3h6" transform="rotate(315 64 64)"/>
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round">
+    <circle cx="64" cy="64" r="27"/>
+    <path d="M64 41v-6" stroke-width="2.75"/>
+    <path d="M64 41v-6" stroke-width="2.75" transform="rotate(45 64 64)"/>
+    <path d="M64 41v-6" stroke-width="2.75" transform="rotate(90 64 64)"/>
+    <path d="M64 41v-6" stroke-width="2.75" transform="rotate(135 64 64)"/>
+    <path d="M64 41v-6" stroke-width="2.75" transform="rotate(180 64 64)"/>
+    <path d="M64 41v-6" stroke-width="2.75" transform="rotate(225 64 64)"/>
+    <path d="M64 41v-6" stroke-width="2.75" transform="rotate(270 64 64)"/>
+    <path d="M64 41v-6" stroke-width="2.75" transform="rotate(315 64 64)"/>
+  </g>
+</svg>

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Air–Liquid Interface Culture — Ciliated epithelial section</title>
+  <desc id="desc">An epithelial layer on a porous insert with air above and culture medium below.</desc>
+  <g data-region="insert" fill="#E8EEF7" stroke="none">
+    <path d="M17 49H23V101C23 105 25 107 29 107H99C103 107 105 105 105 101V49H111V102C111 110 107 113 99 113H29C21 113 17 110 17 102Z"/><path d="M27 37H37V79H31V43H27ZM91 37H101V43H97V79H91Z"/><path d="M37 79H45V85H37Z"/><path d="M51 79H59V85H51Z"/><path d="M65 79H73V85H65Z"/><path d="M79 79H87V85H79Z"/>
+  </g>
+  <g data-region="basalmedium" fill="#8EC8FF" stroke="none">
+    <path d="M23 85H105V101C105 105 103 107 99 107H29C25 107 23 105 23 101ZM23 72H31V85H23ZM97 72H105V85H97Z"/><path d="M45 79H51V85H45Z"/><path d="M59 79H65V85H59Z"/><path d="M73 79H79V85H73Z"/><path d="M87 79H93V85H87Z"/>
+  </g>
+  <g data-region="epithelialcells" fill="#7DD3C7" stroke="none">
+    <path d="M37 79V60C37 55 51 55 51 60V79Z"/><path d="M39 56L38 49H40L41 56Z"/><path d="M43 56L43 49H45L45 56Z"/><path d="M47 56L48 49H50L49 56Z"/><path d="M51 79V58C51 53 65 53 65 58V79Z"/><path d="M53 54L52 47H54L55 54Z"/><path d="M57 54L57 47H59L59 54Z"/><path d="M61 54L62 47H64L63 54Z"/><path d="M65 79V60C65 55 79 55 79 60V79Z"/><path d="M67 56L66 49H68L69 56Z"/><path d="M71 56L71 49H73L73 56Z"/><path d="M75 56L76 49H78L77 56Z"/><path d="M79 79V59C79 54 93 54 93 59V79Z"/><path d="M81 55L80 48H82L83 55Z"/><path d="M85 55L85 48H87L87 55Z"/><path d="M89 55L90 48H92L91 55Z"/>
+  </g>
+  <g data-region="nuclei" fill="#B8B5FF" stroke="none">
+    <ellipse cx="44" cy="69" rx="3.1" ry="4.6"/><ellipse cx="58" cy="69" rx="3.1" ry="4.6"/><ellipse cx="72" cy="69" rx="3.1" ry="4.6"/><ellipse cx="86" cy="69" rx="3.1" ry="4.6"/>
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M17 49H23V101C23 105 25 107 29 107H99C103 107 105 105 105 101V49H111V102C111 110 107 113 99 113H29C21 113 17 110 17 102Z"/><path d="M27 37H37V79H31V43H27ZM91 37H101V43H97V79H91Z"/><path d="M37 79H45V85H37Z"/><path d="M51 79H59V85H51Z"/><path d="M65 79H73V85H65Z"/><path d="M79 79H87V85H79Z"/><path d="M37 79V60C37 55 51 55 51 60V79Z"/><path d="M51 79V58C51 53 65 53 65 58V79Z"/><path d="M65 79V60C65 55 79 55 79 60V79Z"/><path d="M79 79V59C79 54 93 54 93 59V79Z"/><ellipse cx="44" cy="69" rx="3.1" ry="4.6"/><ellipse cx="58" cy="69" rx="3.1" ry="4.6"/><ellipse cx="72" cy="69" rx="3.1" ry="4.6"/><ellipse cx="86" cy="69" rx="3.1" ry="4.6"/><path d="M23 72H30M98 72H105" stroke-width="2.2"/>
+  </g>
+</svg>

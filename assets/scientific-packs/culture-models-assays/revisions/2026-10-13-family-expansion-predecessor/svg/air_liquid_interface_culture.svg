@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Air–Liquid Interface Culture</title>
+  <desc id="desc">An epithelial layer on a porous insert with air above and culture medium below.</desc>
+  <g data-region="insert" fill="#E8EEF7" stroke="none">
+    <path d="M18 53H23V104H105V53H110V109H18Z"/><path d="M29 42H40V87H34V48H29Z M88 42H99V48H94V87H88Z"/><path d="M40 81H46V87H40Z M52 81H60V87H52Z M66 81H74V87H66Z M80 81H88V87H80Z"/>
+  </g>
+  <g data-region="basalmedium" fill="#8EC8FF" stroke="none">
+    <path d="M23 88H105V104H23Z M23 76H34V88H23Z M94 76H105V88H94Z M40 87H88V88H40Z M46 81H52V88H46Z M60 81H66V88H60Z M74 81H80V88H74Z"/>
+  </g>
+  <g data-region="epithelialcells" fill="#7DD3C7" stroke="none">
+    <path d="M40 81V61C40 55 49.6 55 49.6 61V81Z"/><path d="M41 56V51H43V56Z"/><path d="M44 56V51H46V56Z"/><path d="M47 56V51H49V56Z"/><path d="M49.6 81V61C49.6 55 59.2 55 59.2 61V81Z"/><path d="M50.6 56V51H52.6V56Z"/><path d="M53.6 56V51H55.6V56Z"/><path d="M56.6 56V51H58.6V56Z"/><path d="M59.2 81V61C59.2 55 68.8 55 68.8 61V81Z"/><path d="M60.2 56V51H62.2V56Z"/><path d="M63.2 56V51H65.2V56Z"/><path d="M66.2 56V51H68.2V56Z"/><path d="M68.8 81V61C68.8 55 78.4 55 78.4 61V81Z"/><path d="M69.8 56V51H71.8V56Z"/><path d="M72.8 56V51H74.8V56Z"/><path d="M75.8 56V51H77.8V56Z"/><path d="M78.4 81V61C78.4 55 88 55 88 61V81Z"/><path d="M79.4 56V51H81.4V56Z"/><path d="M82.4 56V51H84.4V56Z"/><path d="M85.4 56V51H87.4V56Z"/>
+  </g>
+  <g data-region="nuclei" fill="#B8B5FF" stroke="none">
+    <ellipse cx="44.8" cy="70" rx="2.75" ry="4.2"/><ellipse cx="54.4" cy="70" rx="2.75" ry="4.2"/><ellipse cx="64" cy="70" rx="2.75" ry="4.2"/><ellipse cx="73.6" cy="70" rx="2.75" ry="4.2"/><ellipse cx="83.2" cy="70" rx="2.75" ry="4.2"/>
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M18 53H23V104H105V53H110V109H18Z"/><path d="M29 42H40V54M88 54V42H99V48H94V87H88M34 48V87H40M29 48H34"/><path d="M40 81H46V87H40Z M52 81H60V87H52Z M66 81H74V87H66Z M80 81H88V87H80Z"/><path d="M40 81V61C40 55 49.6 55 49.6 61V81Z"/><path d="M49.6 81V61C49.6 55 59.2 55 59.2 61V81Z"/><path d="M59.2 81V61C59.2 55 68.8 55 68.8 61V81Z"/><path d="M68.8 81V61C68.8 55 78.4 55 78.4 61V81Z"/><path d="M78.4 81V61C78.4 55 88 55 88 61V81Z"/><path d="M23 76H32M96 76H105" stroke-width="2.75"/>
+  </g>
+</svg>

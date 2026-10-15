@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Importin–Cargo Nuclear Import</title>
+  <desc id="desc">Receptor-bound cargo at a schematic nuclear pore, with a separate nuclear-envelope boundary and an illustrative import-direction arrow.</desc>
+  <g data-region="nuclear_envelope" fill="#8EC8FF" stroke="none">
+    <rect x="16" y="57" width="30" height="14" rx="5"/><rect x="82" y="57" width="30" height="14" rx="5"/>
+  </g>
+  <g data-region="nuclear_pore" fill="#B8B5FF" stroke="none">
+    <path d="M41 49H49L55 55V74L49 82H41L47 72V58Z M87 49H79L73 55V74L79 82H87L81 72V58Z"/>
+  </g>
+  <g data-region="cargo" fill="#E76F51" stroke="none">
+    <path d="M56 27Q61 19 68 24Q76 20 80 28Q85 38 76 43Q69 49 62 41Q53 40 56 27Z"/><path d="M61 83H68V99H77L64 112L51 99H61Z"/>
+  </g>
+  <g data-region="importin" fill="#7DD3C7" stroke="none">
+    <path d="M81 19Q96 28 91 41Q87 54 72 52L73 45Q85 45 85 35Q87 28 78 25Z"/>
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="16" y="57" width="30" height="14" rx="5"/><rect x="82" y="57" width="30" height="14" rx="5"/><path d="M41 49H49L55 55V74L49 82H41L47 72V58Z M87 49H79L73 55V74L79 82H87L81 72V58Z"/><path d="M56 27Q61 19 68 24Q76 20 80 28Q85 38 76 43Q69 49 62 41Q53 40 56 27Z"/><path d="M61 83H68V99H77L64 112L51 99H61Z"/><path d="M81 19Q96 28 91 41Q87 54 72 52L73 45Q85 45 85 35Q87 28 78 25Z"/>
+  </g>
+</svg>

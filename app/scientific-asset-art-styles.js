@@ -78,6 +78,7 @@
       // identifiers remain editable after insertion into the figure canvas.
       return source
         .replace(/#[0-9a-fA-F]{6}\b/g, cutPaperColor)
+        .replace(/<[A-Za-z][^>]*\bdata-region="outline"[^>]*>/g, (element) => element.replace(/\bstroke="#[0-9a-fA-F]{6}"/, 'stroke="#273747"'))
         .replace(/(<g data-region="outline"[^>]*?)stroke="#[0-9a-fA-F]{6}"/, '$1stroke="#273747" opacity="0.25"')
         .replace(/(<g data-region="outline"[^>]*?)stroke-width="[0-9]+(?:\.[0-9]+)?"/, '$1stroke-width="1.2"')
         .replace(/stroke-linecap="round"/g, 'stroke-linecap="square"')
@@ -101,7 +102,9 @@
     return (regions || []).map((region) => ({
       ...region,
       default: /^#[0-9a-fA-F]{6}$/.test(String(region.default || ""))
-        ? (selected === CUT_PAPER ? cutPaperColor(region.default) : technicalInkColor(region.default))
+        ? (selected === CUT_PAPER
+          ? (region.id === "outline" && region.paint !== "fill" ? "#273747" : cutPaperColor(region.default))
+          : technicalInkColor(region.default))
         : region.default
     }));
   }

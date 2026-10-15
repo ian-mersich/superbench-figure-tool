@@ -1,0 +1,485 @@
+{
+  "schema": "figureStudio.scientificScene.v1",
+  "id": "single-cell-rna-workflow",
+  "name": "Droplet single-cell RNA workflow",
+  "summary": "Cell suspension, droplet partitioning and barcoded RNA capture followed by library preparation and sequencing.",
+  "source_record_id": "source.figure-studio-rna-methods.2026-10-07",
+  "rights_record_id": "rights.figure-studio-rna-methods.owner-cc0.2026-10-10",
+  "canvas": {
+    "width": 1120,
+    "height": 600,
+    "width_in": 11.6666666667,
+    "height_in": 6.25,
+    "background_role": "background"
+  },
+  "palette": {
+    "background": "#FFFFFF",
+    "surface": "#F3F7FA",
+    "ink": "#26323D",
+    "muted": "#667085",
+    "sample": "#C7F2EC",
+    "nucleus": "#B8B5FF",
+    "capture": "#2A9D8F",
+    "library": "#5EA9DD",
+    "barcode": "#7B78C9",
+    "signal": "#E76F51",
+    "outline": "#26323D"
+  },
+  "layers": [
+    {
+      "id": "context",
+      "name": "Method sections"
+    },
+    {
+      "id": "biology",
+      "name": "RNA acquisition objects"
+    },
+    {
+      "id": "relationships",
+      "name": "Method relationships"
+    },
+    {
+      "id": "labels",
+      "name": "Editable method labels"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "workflow_band",
+      "type": "shape",
+      "shape": "rounded_rect",
+      "layer_id": "context",
+      "x": 32,
+      "y": 110,
+      "width": 1056,
+      "height": 224,
+      "radius": 16,
+      "fill_role": "surface",
+      "stroke_role": "surface",
+      "stroke_width": 1
+    },
+    {
+      "id": "barcode_band",
+      "type": "shape",
+      "shape": "rounded_rect",
+      "layer_id": "context",
+      "x": 32,
+      "y": 350,
+      "width": 1056,
+      "height": 176,
+      "radius": 16,
+      "fill_role": "surface",
+      "stroke_role": "surface",
+      "stroke_width": 1
+    },
+    {
+      "id": "title",
+      "type": "text",
+      "layer_id": "labels",
+      "x": 40,
+      "y": 25,
+      "width": 1020,
+      "height": 40,
+      "text": "Droplet single-cell RNA sequencing",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 28,
+      "fill_role": "ink",
+      "align": "left"
+    },
+    {
+      "id": "subtitle",
+      "type": "text",
+      "layer_id": "labels",
+      "x": 40,
+      "y": 70,
+      "width": 1030,
+      "height": 26,
+      "text": "An editable method schematic · replace labels for your protocol",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 15,
+      "fill_role": "muted",
+      "align": "left"
+    },
+    {
+      "id": "cells",
+      "type": "asset",
+      "layer_id": "biology",
+      "top_level": true,
+      "asset_id": "core.cell.generic",
+      "x": 58,
+      "y": 150,
+      "width": 128,
+      "height": 128,
+      "palette_overrides": {
+        "cytoplasm": "sample",
+        "nucleus": "nucleus"
+      }
+    },
+    {
+      "id": "partition",
+      "type": "asset",
+      "layer_id": "biology",
+      "top_level": true,
+      "asset_id": "rna.lab_equipment.microfluidic_cell_partition",
+      "x": 260,
+      "y": 150,
+      "width": 128,
+      "height": 128,
+      "palette_overrides": {
+        "outline": "outline"
+      }
+    },
+    {
+      "id": "library",
+      "type": "asset",
+      "layer_id": "biology",
+      "top_level": true,
+      "asset_id": "exp.nucleic_acid.cdna_library",
+      "x": 485,
+      "y": 150,
+      "width": 128,
+      "height": 128,
+      "palette_overrides": {
+        "nucleic_acid": "library",
+        "regulatory_feature": "barcode"
+      }
+    },
+    {
+      "id": "sequencer",
+      "type": "asset",
+      "layer_id": "biology",
+      "top_level": true,
+      "asset_id": "exp.lab_equipment.sequencer",
+      "x": 710,
+      "y": 150,
+      "width": 128,
+      "height": 128,
+      "palette_overrides": {
+        "instrument_detail": "library"
+      }
+    },
+    {
+      "id": "reads",
+      "type": "asset",
+      "layer_id": "biology",
+      "top_level": true,
+      "asset_id": "exp.assay_workflow.sequencing_reads.paired_end",
+      "x": 935,
+      "y": 150,
+      "width": 128,
+      "height": 128,
+      "palette_overrides": {
+        "signal_trace": "signal"
+      }
+    },
+    {
+      "id": "bead",
+      "type": "asset",
+      "layer_id": "biology",
+      "top_level": true,
+      "asset_id": "rna.nucleic_acid.barcoded_capture_bead",
+      "x": 260,
+      "y": 374,
+      "width": 120,
+      "height": 120,
+      "palette_overrides": {
+        "outline": "outline"
+      }
+    },
+    {
+      "id": "cells_label",
+      "type": "text",
+      "layer_id": "labels",
+      "x": 40,
+      "y": 283,
+      "width": 160,
+      "height": 48,
+      "text": "Cell suspension",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 16,
+      "fill_role": "ink",
+      "align": "center"
+    },
+    {
+      "id": "partition_label",
+      "type": "text",
+      "layer_id": "labels",
+      "x": 236,
+      "y": 283,
+      "width": 176,
+      "height": 48,
+      "text": "Droplet partition",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 16,
+      "fill_role": "ink",
+      "align": "center"
+    },
+    {
+      "id": "library_label",
+      "type": "text",
+      "layer_id": "labels",
+      "x": 467,
+      "y": 283,
+      "width": 164,
+      "height": 48,
+      "text": "cDNA library",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 16,
+      "fill_role": "ink",
+      "align": "center"
+    },
+    {
+      "id": "sequencer_label",
+      "type": "text",
+      "layer_id": "labels",
+      "x": 687,
+      "y": 283,
+      "width": 174,
+      "height": 48,
+      "text": "Sequencing",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 16,
+      "fill_role": "ink",
+      "align": "center"
+    },
+    {
+      "id": "reads_label",
+      "type": "text",
+      "layer_id": "labels",
+      "x": 915,
+      "y": 283,
+      "width": 170,
+      "height": 48,
+      "text": "Barcode + RNA reads",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 16,
+      "fill_role": "ink",
+      "align": "center"
+    },
+    {
+      "id": "bead_label",
+      "type": "text",
+      "layer_id": "labels",
+      "x": 40,
+      "y": 400,
+      "width": 190,
+      "height": 48,
+      "text": "Oligo-barcoded\nRNA capture bead",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 18,
+      "fill_role": "capture",
+      "align": "left"
+    },
+    {
+      "id": "barcode_heading",
+      "type": "text",
+      "layer_id": "labels",
+      "x": 442,
+      "y": 380,
+      "width": 610,
+      "height": 48,
+      "text": "Cell barcode and UMI have different roles",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 19,
+      "fill_role": "ink",
+      "align": "left"
+    },
+    {
+      "id": "barcode_note",
+      "type": "text",
+      "layer_id": "labels",
+      "x": 442,
+      "y": 418,
+      "width": 610,
+      "height": 72,
+      "text": "Shared bead barcode → assign captured RNA to a partition\nDifferent UMIs → distinguish captured molecules",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 16,
+      "fill_role": "muted",
+      "align": "left"
+    },
+    {
+      "id": "limits",
+      "type": "text",
+      "layer_id": "labels",
+      "x": 40,
+      "y": 550,
+      "width": 1040,
+      "height": 38,
+      "text": "Schematic only. Empty partitions and multiplets occur; RNA recovery and cell quality require review.",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 14,
+      "fill_role": "muted",
+      "align": "left"
+    }
+  ],
+  "groups": [
+    {
+      "id": "capture_stage",
+      "name": "Cell and bead capture",
+      "layer_id": "biology",
+      "members": [
+        "cells",
+        "partition",
+        "cells_label",
+        "partition_label"
+      ]
+    },
+    {
+      "id": "library_stage",
+      "name": "Library and sequencing",
+      "layer_id": "biology",
+      "members": [
+        "library",
+        "sequencer",
+        "reads",
+        "library_label",
+        "sequencer_label",
+        "reads_label"
+      ]
+    },
+    {
+      "id": "barcode_context",
+      "name": "Barcode interpretation",
+      "layer_id": "biology",
+      "members": [
+        "bead",
+        "bead_label",
+        "barcode_heading",
+        "barcode_note"
+      ]
+    }
+  ],
+  "connectors": [
+    {
+      "id": "cells_to_partition",
+      "layer_id": "relationships",
+      "from": {
+        "node_id": "cells",
+        "anchor": "right"
+      },
+      "to": {
+        "node_id": "partition",
+        "anchor": "left"
+      },
+      "relation": "sampling",
+      "label": "partition",
+      "style": {
+        "stroke_role": "capture",
+        "stroke_width": 2.5,
+        "line": "solid",
+        "terminator": "arrow",
+        "label_offset": {
+          "x": 0,
+          "y": -20
+        },
+        "label_placement": "midpoint"
+      }
+    },
+    {
+      "id": "capture_to_library",
+      "layer_id": "relationships",
+      "from": {
+        "node_id": "partition",
+        "anchor": "right"
+      },
+      "to": {
+        "node_id": "library",
+        "anchor": "left"
+      },
+      "relation": "conversion",
+      "label": "lyse + RT",
+      "style": {
+        "stroke_role": "capture",
+        "stroke_width": 2.5,
+        "line": "solid",
+        "terminator": "arrow",
+        "label_offset": {
+          "x": 0,
+          "y": -20
+        },
+        "label_placement": "midpoint"
+      }
+    },
+    {
+      "id": "library_to_sequencer",
+      "layer_id": "relationships",
+      "from": {
+        "node_id": "library",
+        "anchor": "right"
+      },
+      "to": {
+        "node_id": "sequencer",
+        "anchor": "left"
+      },
+      "relation": "conversion",
+      "label": "prepare",
+      "style": {
+        "stroke_role": "library",
+        "stroke_width": 2.5,
+        "line": "solid",
+        "terminator": "arrow",
+        "label_offset": {
+          "x": 0,
+          "y": -20
+        },
+        "label_placement": "midpoint"
+      }
+    },
+    {
+      "id": "sequence_to_reads",
+      "layer_id": "relationships",
+      "from": {
+        "node_id": "sequencer",
+        "anchor": "right"
+      },
+      "to": {
+        "node_id": "reads",
+        "anchor": "left"
+      },
+      "relation": "measurement",
+      "label": "sequence",
+      "style": {
+        "stroke_role": "library",
+        "stroke_width": 2.5,
+        "line": "solid",
+        "terminator": "arrow",
+        "label_offset": {
+          "x": 0,
+          "y": -20
+        },
+        "label_placement": "midpoint"
+      }
+    }
+  ],
+  "scientific_record": {
+    "verified_on": "2026-10-07",
+    "sources": [
+      {
+        "id": "macosko-2015",
+        "citation": "Macosko et al. Cell. 2015. Highly parallel genome-wide expression profiling of individual cells using nanoliter droplets.",
+        "doi": "10.1016/j.cell.2015.05.002",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4481139/"
+      }
+    ],
+    "relationships": [
+      {
+        "claim": "Droplet partitioning and bead-associated oligo(dT) capture can retain a cell barcode and molecule-specific UMIs during library preparation.",
+        "source_ids": [
+          "macosko-2015"
+        ]
+      }
+    ]
+  }
+}

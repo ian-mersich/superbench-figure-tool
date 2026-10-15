@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Protein Heterotetramer — Two Pairs</title>
+  <desc id="desc">Four contacting schematic subunits: two rounded copies of one subunit and two angular copies of a second subunit. Shape and color indicate two pairs, not a named protein or a universal atomic assembly.</desc>
+  <g data-region="subunit_a" fill="#8EC8FF" stroke="none">
+    <ellipse cx="43" cy="44" rx="23" ry="20"/><ellipse cx="85" cy="84" rx="23" ry="20"/>
+  </g>
+  <g data-region="subunit_b" fill="#B8B5FF" stroke="none">
+    <path d="M72 24h26l10 10v20L97 64H73L62 54V34l10-10z"/><path d="M30 64h26l10 10v20l-11 10H31L20 94V74l10-10z"/>
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5">
+    <ellipse cx="43" cy="44" rx="23" ry="20"/><ellipse cx="85" cy="84" rx="23" ry="20"/><path d="M72 24h26l10 10v20L97 64H73L62 54V34l10-10z"/><path d="M30 64h26l10 10v20l-11 10H31L20 94V74l10-10z"/>
+  </g>
+</svg>

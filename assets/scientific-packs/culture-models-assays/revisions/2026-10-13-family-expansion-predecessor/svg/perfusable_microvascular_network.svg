@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Perfusable Microvascular Culture</title>
+  <desc id="desc">An illustrative branched endothelial network with continuous lumens opening into adjacent medium channels.</desc>
+  <g data-region="matrix" fill="#D9F4E5" stroke="none">
+    <rect x="28" y="20" width="72" height="88" rx="5"/>
+  </g>
+  <g data-region="endothelialwalls" fill="#7DD3C7" stroke="none">
+    <path d="M30 56H37C43 56 46 32 64 32C82 32 85 56 91 56H98V72H91C85 72 82 96 64 96C46 96 43 72 37 72H30Z M60 49C53 52 51 57 47 64C51 71 53 76 60 79Z M68 49C75 52 77 57 81 64C77 71 75 76 68 79Z" fill-rule="evenodd"/>
+  </g>
+  <g data-region="lumen" fill="#8EC8FF" stroke="none">
+    <path d="M30 61H37C46 61 49 37 64 37C79 37 82 61 91 61H98V67H91C78 67 74 43 64 43C54 43 50 67 37 67H30Z"/><path d="M30 61H37C50 61 54 85 64 85C74 85 78 61 91 61H98V67H91C82 67 79 91 64 91C49 91 46 67 37 67H30Z"/><rect x="62" y="40" width="4" height="48"/>
+  </g>
+  <g data-region="mediumchannels" fill="#8EC8FF" stroke="none">
+    <rect x="18" y="20" width="12" height="88" rx="3"/><rect x="98" y="20" width="12" height="88" rx="3"/>
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M18 20H30V55M18 20V108H30V73M98 20H110V108H98V73M98 20V55"/><path d="M30 56H37C43 56 46 32 64 32C82 32 85 56 91 56H98M30 72H37C43 72 46 96 64 96C82 96 85 72 91 72H98"/><path d="M60 49C53 52 51 57 47 64C51 71 53 76 60 79Z"/><path d="M68 49C75 52 77 57 81 64C77 71 75 76 68 79Z"/>
+  </g>
+</svg>

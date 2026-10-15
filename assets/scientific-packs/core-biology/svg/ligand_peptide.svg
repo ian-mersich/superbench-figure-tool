@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Peptide Ligand</title>
+  <desc id="desc">Original short connected polypeptide ligand symbol with illustrative side-chain cues. The chain is not an amino acid sequence, atom-and-bond structure, or measured peptide length.</desc>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round" stroke-width="10">
+    <path d="M20 89 37 62 59 71 82 40 106 49M37 62l-6-17M59 71l7 22M82 40l-2-18"/>
+  </g>
+  <g data-region="backbone" fill="none" stroke="#8EC8FF" stroke-linecap="round" stroke-linejoin="round" stroke-width="6">
+    <path d="M20 89 37 62 59 71 82 40 106 49M37 62l-6-17M59 71l7 22M82 40l-2-18"/>
+  </g>
+  <g data-region="side_chain" fill="#F4A261" stroke="none">
+    <ellipse cx="30" cy="41" rx="5" ry="7"/><ellipse cx="68" cy="99" rx="6" ry="5"/><ellipse cx="80" cy="18" rx="5" ry="4"/>
+  </g>
+</svg>

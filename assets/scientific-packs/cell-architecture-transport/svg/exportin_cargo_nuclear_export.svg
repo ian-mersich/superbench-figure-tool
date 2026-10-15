@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Exportin–RanGTP–Cargo Nuclear Export</title>
+  <desc id="desc">An illustrative CRM1 export receptor bound to RanGTP and NES-containing cargo on the nuclear side of a separate pore, with nucleus-to-cytoplasm direction.</desc>
+  <g data-region="nuclear_envelope" fill="#8EC8FF" stroke="none">
+    <rect x="16" y="57" width="30" height="14" rx="5"/><rect x="82" y="57" width="30" height="14" rx="5"/>
+  </g>
+  <g data-region="nuclear_pore" fill="#B8B5FF" stroke="none">
+    <path d="M41 49H49L55 55V74L49 82H41L47 72V58Z M87 49H79L73 55V74L79 82H87L81 72V58Z"/>
+  </g>
+  <g data-region="exportin" fill="#7DD3C7" stroke="none">
+    <path d="M53 99Q45 79 61 73Q80 67 89 84Q94 100 78 109L73 103Q86 96 81 85Q77 77 66 80Q55 83 60 96Z"/>
+  </g>
+  <g data-region="ran_gtp" fill="#F4A261" stroke="none">
+    <ellipse cx="68" cy="91" rx="6" ry="6"/>
+  </g>
+  <g data-region="cargo" fill="#E76F51" stroke="none">
+    <path d="M87 84Q84 76 94 73Q103 70 109 77Q114 84 106 90Q95 96 87 89Z"/>
+  </g>
+  <g data-region="transport_direction" fill="#E76F51" stroke="none">
+    <path d="M61 41H68V28H77L64 15L51 28H61Z"/>
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="16" y="57" width="30" height="14" rx="5"/><rect x="82" y="57" width="30" height="14" rx="5"/><path d="M41 49H49L55 55V74L49 82H41L47 72V58Z M87 49H79L73 55V74L79 82H87L81 72V58Z"/><path d="M53 99Q45 79 61 73Q80 67 89 84Q94 100 78 109L73 103Q86 96 81 85Q77 77 66 80Q55 83 60 96Z"/><ellipse cx="68" cy="91" rx="6" ry="6"/><path d="M87 84Q84 76 94 73Q103 70 109 77Q114 84 106 90Q95 96 87 89Z"/><path d="M61 41H68V28H77L64 15L51 28H61Z"/>
+  </g>
+</svg>

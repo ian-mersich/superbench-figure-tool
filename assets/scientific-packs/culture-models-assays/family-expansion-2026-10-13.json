@@ -1,0 +1,307 @@
+{
+  "schema_id": "superbench.scientificAssetFamilyRevision.v1",
+  "revision_id": "2026-10-13-family-expansion",
+  "revision_date": "2026-10-13",
+  "pack_id": "culture-models-assays",
+  "predecessor": {
+    "snapshot": "revisions/2026-10-13-family-expansion-predecessor",
+    "catalog_sha256": "9b3cc2f5fc8cd4f746bd0f35e398858914ad54cdd41e9949abf23cf46662079b",
+    "audit_sha256": "f1f9518feb703b28a7da88603e756a486a41ff7581c5be2128937e2025fffc25"
+  },
+  "current_catalog_sha256": "f9e64bebee918b360cc97b9b4ec89b2e11d52195cf2abca5ac39ca723c7fa60d",
+  "current_audit_sha256": "fcceb4028f164f2da85de5a58ac6d78f5152f2b00924895f619c071c4a829b0e",
+  "current_license_notice_sha256": "e703699a24ccd62390022fe7d51d46af49bfd3ba19da0e9e8c46f3a469f15757",
+  "review": {
+    "status": "accepted",
+    "scientific_review": "pass",
+    "visual_review": "pass",
+    "editor_checks": "pass",
+    "reviewed_on": "2026-10-13",
+    "reviewer": "Independent scientific, original-image and native desktop acceptance by retained_state",
+    "scope": "All 76 current SVG drawings at 64/256/512 pixels in Soft color, Cut paper and Technical ink; all 76 native Figure/Presentation insertions and all 40 historical embedded drawings in both native file types at 1280/1440/1920 light/dark on both canonical routes; real part/anchor edits and Undo/Redo, live whole/path selection, Save/cold Open and SVG export; all 3 treatments × 4 palettes with exact colors, alpha, geometry and parts. Both requalified routes share the same frozen driver and passing 406-asset catalog/schema/SVG preflight after one redundant alias correction. The rejected pre-validation candidate remains preserved separately. Product release remains pending.",
+    "evidence": [
+      {
+        "file": "qa_artifacts/family-library/independent-native-visual-review-requalified.json",
+        "sha256": "8cc917cc392f7e6135e0c9c231a97972a5ece8e7c9a2dd47843181986be0db2d"
+      },
+      {
+        "file": "qa_artifacts/family-library/final-direct-requalified/report.json",
+        "sha256": "e5c989f8da82ada52e54a5555aaa1ede58daca02040054640a984cbc6a4f27bd"
+      },
+      {
+        "file": "qa_artifacts/family-library/final-direct-requalified/native-treatments/native-treatment-matrix.json",
+        "sha256": "2535360a3621ff858aeac25589ab83523ae09b1f663d2c70a69070bd99880d5a"
+      },
+      {
+        "file": "qa_artifacts/family-library/final-web-requalified/report.json",
+        "sha256": "2b0be2a4ae8c223a3b1c2d5a1aa7e28225f0afb6647da0ba23180ca11cef1343"
+      },
+      {
+        "file": "qa_artifacts/family-library/final-web-requalified/native-treatments/native-treatment-matrix.json",
+        "sha256": "7b1c3907260cdfa2f16ed283f58c7a734af77849031dacedcf9170c4e9702fd3"
+      }
+    ]
+  },
+  "changed_assets": [
+    {
+      "asset_id": "culture.model_system.perfused_tissue_chip",
+      "file": "svg/perfused_tissue_chip.svg",
+      "after_svg_sha256": "8c87698a0c2846d3fd1b1864118d4aed9cbc1a95a8e0b68e93fd12119ffc4709",
+      "after_metadata_sha256": "f9bf5d6b02bcaf5f2227b381d44b84a1c390fdef7897eced93281ce5d9e8e6a1",
+      "license": "CC0-1.0",
+      "before_svg_sha256": "ffc958ecbe7a880d12c969f003a0e481a70946e6d05ffec442e67661ca37758d",
+      "before_metadata_sha256": "711c9f0bb3bb1b4ba2759b5aad99ebe141e8b9ca9f2eb136cae455c372d9352f"
+    },
+    {
+      "asset_id": "culture.model_system.air_liquid_interface_culture",
+      "file": "svg/air_liquid_interface_culture.svg",
+      "after_svg_sha256": "535f7138b155b5953c28cecd7fc25a4524a8a0b68de20cdb1c99615ba62570ed",
+      "after_metadata_sha256": "42bf86b5447281f9e725e94b7940515c1ca1d573b8d4a1e19fbe523d81f98922",
+      "license": "CC0-1.0",
+      "before_svg_sha256": "99ec85246bf5da0b86e2276efee2cc4d0f25361f69439acd64feb5a7dd1bfd2c",
+      "before_metadata_sha256": "2da46a8d4c24c682713a2e2c72c0c88fb1ddc599a182827624fbb640d21aa8c1"
+    },
+    {
+      "asset_id": "culture.model_system.hydrogel_embedded_organoid",
+      "file": "svg/hydrogel_embedded_organoid.svg",
+      "after_svg_sha256": "76f5fc61e9e5c78c3289e17e7a597d24fe26bc8ac26b5952a3723f152578856c",
+      "after_metadata_sha256": "cf36141fd07d717de09f39d6b869e25ca260c6d795eb1f825fa18d2e1150bf28",
+      "license": "CC0-1.0",
+      "before_svg_sha256": "b7fca80901f68f233e1b4255bb545aa0e705d1dbaa09c0d06ac26f17c2a16e7a",
+      "before_metadata_sha256": "c7ece89875bb242c50eb802de36b6ecabb362c4e5b7c37b7e0e9797378173ac0"
+    },
+    {
+      "asset_id": "culture.model_system.hanging_drop_spheroid",
+      "file": "svg/hanging_drop_spheroid.svg",
+      "after_svg_sha256": "5c8b1054a9c1593f8f576e4830eac007968397207f69000e5c6709eb9dc03bd9",
+      "after_metadata_sha256": "8400cf6ba9797ec1126afd4aba82815203815527ba2a13eb0f95fa53aa8ecbed",
+      "license": "CC0-1.0",
+      "before_svg_sha256": "ac8ba54d1e04273655ae42914ca5d229f30200fb1297ab9f87f717943ca22ae6",
+      "before_metadata_sha256": "7a15c69e01c72ee33abb2df9133dd444185bc8210e547077d89a87d10e9638a5"
+    },
+    {
+      "asset_id": "culture.model_system.microwell_spheroid_aggregation",
+      "file": "svg/microwell_spheroid_aggregation.svg",
+      "after_svg_sha256": "1a919ab6bf61b9269d3e8b38684432f4faa42f2d176e5b70b2b059b7a8e8b611",
+      "after_metadata_sha256": "0a1ee1edef44c92a00f52b3d189e4a60e63bfcfb24a115d38731d337914a1b29",
+      "license": "CC0-1.0",
+      "before_svg_sha256": "aab199dbf514b0f881a36585086722cdf24604aa1186513099400e0e8f97936f",
+      "before_metadata_sha256": "0799c182e2564bf03df2584d203ff03664af5e35ca746b3a02ac9d34766c6579"
+    },
+    {
+      "asset_id": "culture.assay_workflow.epithelial_scratch_wound",
+      "file": "svg/epithelial_scratch_wound.svg",
+      "after_svg_sha256": "8e055e41713ff81f7c05e819afbdb255cf1bb7f16881e7cecfadf5916a7eb547",
+      "after_metadata_sha256": "f7573e488d33dd03c909b3d5bb07f2a4f620e9b32e6e53aaab8dd7a647564f9f",
+      "license": "CC0-1.0",
+      "before_svg_sha256": "76c9437a8a873908f0822c768a2029d795e8ec9f757970f6bd8576c267ffdf61",
+      "before_metadata_sha256": "0259a7298ba05bfaa3fcc08222b25591e438426d1719c56faabd93d324a8563e"
+    },
+    {
+      "asset_id": "culture.assay_workflow.clonogenic_colony_formation",
+      "file": "svg/clonogenic_colony_formation.svg",
+      "after_svg_sha256": "e97a489b5f7598cfdfd77244a66264a5d8d66d14a4eb53a402dc150310731f8e",
+      "after_metadata_sha256": "01312a21e07724d4c4540ea2390cd995221e1156e6b281d4f6f7511da62ed4b7",
+      "license": "CC0-1.0",
+      "before_svg_sha256": "0972daa66ad2d1697d8c55b8703b9425658bcdef0b650c15e740edab53724c8b",
+      "before_metadata_sha256": "b3ee5fd4dfccec049ed1e07edc99f9caa22e83ff108ba13b55fa80420d26ff9e"
+    },
+    {
+      "asset_id": "culture.assay_workflow.soft_agar_colony",
+      "file": "svg/soft_agar_colony.svg",
+      "after_svg_sha256": "a5d2046e1773c185cc859f867d27f978bf3c74df1a29b31b688ae333edd88f81",
+      "after_metadata_sha256": "da0fac98003ff52490bc3149af47d2bdcfb94577ca89dba17f3035388c196de6",
+      "license": "CC0-1.0",
+      "before_svg_sha256": "68fae5d36b12035f6eb5142a4058760e45c40be66a7fe197c0b4152abdb82825",
+      "before_metadata_sha256": "3b5eda91a94da5d3d98769dc59515e4d9ccaf8c40d94119e2de69dee14abc977"
+    },
+    {
+      "asset_id": "culture.assay_workflow.collagen_gel_contraction",
+      "file": "svg/collagen_gel_contraction.svg",
+      "after_svg_sha256": "d145776fa51531ea5e760cecd6f36e344e395d5c96cf7aca37d34a84619b63bb",
+      "after_metadata_sha256": "b739951e3c8fefc1b4193f80c988cdf1c069ed261dda33caae5fabf1dbeb7289",
+      "license": "CC0-1.0",
+      "before_svg_sha256": "d5c84c2ec4464addd109d43a4f3e97fb45fcf98b212d760e7c7875730f198def",
+      "before_metadata_sha256": "2b15a0c1141b3861e88d91bd0e965052bdd4342883266820694d714acd647678"
+    },
+    {
+      "asset_id": "culture.model_system.precision_cut_tissue_slice_culture",
+      "file": "svg/precision_cut_tissue_slice_culture.svg",
+      "after_svg_sha256": "98f3527b572b780ce1a86ea9d66975e5b3937c707f8059bb62822989808e4442",
+      "after_metadata_sha256": "8fdc869780db4d6e431c7c8069e616bdcb7c685cc59080066f1aed8195948259",
+      "license": "CC0-1.0",
+      "before_svg_sha256": "9dfda38a8367f2509b2bea5ff1003ae7e9ab8976517c334586f0d03f18d53010",
+      "before_metadata_sha256": "40036960118ca4d78984078f102aa6a2c5c3b7ae163b76d27af681160b062a62"
+    },
+    {
+      "asset_id": "culture.assay_workflow.organoid_luminal_microinjection",
+      "file": "svg/organoid_luminal_microinjection.svg",
+      "after_svg_sha256": "caa44aa759333f8272043f5404986204d52c885d7125dda5da453b4193cf60a5",
+      "after_metadata_sha256": "a62ef78228df8ffc61193bb467f18d79db7195af1e0d254c4e0d6cc0745aafa7",
+      "license": "CC0-1.0",
+      "before_svg_sha256": "cd1f7e1431e5fb77b83cf62a969d29a8b1bf9fb82283f046fed5e7309a3a45b6",
+      "before_metadata_sha256": "58e416dfcc6396faa911b26167fa65efeac8a9a9ddc770195148940715b4ca21"
+    },
+    {
+      "asset_id": "culture.model_system.perfusable_microvascular_network",
+      "file": "svg/perfusable_microvascular_network.svg",
+      "after_svg_sha256": "651adc7fd7d2686c0b8b2809b51db64c248c5cf5e6f3c0fb608373d705877102",
+      "after_metadata_sha256": "790d953d8aa1f3b1bff69ac364dc781fb65588977dd65153ff4820da49f63322",
+      "license": "CC0-1.0",
+      "before_svg_sha256": "416cf048110d34b61b55a81e34f12a596572086ad6b59dcc7949f378d2bc5000",
+      "before_metadata_sha256": "8669071409de9a7c64e4baa2fa72e983fcf7f653a1a5e14cac307cd075e668ef"
+    }
+  ],
+  "added_assets": [
+    {
+      "asset_id": "culture.model_system.perfused_tissue_chip.dual_channel",
+      "file": "svg/perfused_tissue_chip_dual_channel.svg",
+      "after_svg_sha256": "1f0fddb35bab7922a1ccf0cb0d5ae53684e1facdb335b68d6954218212999064",
+      "after_metadata_sha256": "c036bed59e200872e3aad537327de0e03d1b35d240fc9c3f2b41d06f909e1d6a",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "culture.model_system.hydrogel_embedded_organoid.budding",
+      "file": "svg/hydrogel_embedded_organoid_budding.svg",
+      "after_svg_sha256": "ae5a5d7e986e2dc87e0c2088c969045ac37d2efbd36a0583afd3ea8538736f37",
+      "after_metadata_sha256": "3afddbbf1059a3829d7a832e79292fceea0e7fc3b0655dcc4b043f9d209ad1b9",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "culture.model_system.hanging_drop_spheroid.array",
+      "file": "svg/hanging_drop_spheroid_array.svg",
+      "after_svg_sha256": "abd51a1cad646cfc8c54c66f25700c0bd95f7c26a44677255712e7626db095dc",
+      "after_metadata_sha256": "afb7fd6583e8679514b41e36f319158d63ff90f840ce30bca1df8136efae8119",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "culture.model_system.microwell_spheroid_aggregation.array",
+      "file": "svg/microwell_spheroid_aggregation_array.svg",
+      "after_svg_sha256": "a188899c113286d5d05170b7f9e7362dc9520e7cbf0c2e8b97af776e160d5017",
+      "after_metadata_sha256": "509e17ce93ee061db913a6c8995aeccadcb06bcf9c560b2eacd3d388495a66ff",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "culture.assay_workflow.collagen_gel_contraction.anchored",
+      "file": "svg/collagen_gel_contraction_anchored.svg",
+      "after_svg_sha256": "2be0f7d82307c4bebc3ade5ba59404f05ebc78c78fd4209f36d437c8727cf9ae",
+      "after_metadata_sha256": "b722267d7f5805e2243b00a9882460e27aac086a41ea3ed9737625379697bbf1",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "culture.model_system.precision_cut_tissue_slice_culture.interface",
+      "file": "svg/precision_cut_tissue_slice_culture_interface.svg",
+      "after_svg_sha256": "44b089bb420859f33e3dcf599701beb4d707ff56c6ba1ec1885b5901aa76856b",
+      "after_metadata_sha256": "5b39baf5830aca619c50c807a7356f23513f967cfe88d426e0bd02286c4487ac",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "culture.model_system.hydrogel_embedded_spheroid",
+      "file": "svg/hydrogel_embedded_spheroid.svg",
+      "after_svg_sha256": "723926fccf63ec8854f00b4a0eb215e8e145b71cd4c84b7ddcabb2dfe7b8d79e",
+      "after_metadata_sha256": "5b042895a3f19dea4ac84a092a8216f4eb8e19db12e7c77c5e89aa41d49323f6",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "culture.model_system.organoid_stromal_coculture",
+      "file": "svg/organoid_stromal_coculture.svg",
+      "after_svg_sha256": "e1bd91aef8744d47f469c88463ffa187b5cbf15152107706bd246591f4cad974",
+      "after_metadata_sha256": "50c26254990ba8ff99bd3e458d9e1222d19adf887e80897ae27d9be316dd82de",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "culture.model_system.microcarrier_cell_culture",
+      "file": "svg/microcarrier_cell_culture.svg",
+      "after_svg_sha256": "6594fa3cb5e5e97798eb4661ea32f0a2554db6af3c962aa9655e349c1cac6c06",
+      "after_metadata_sha256": "20e251a59dd552ffc8e0862b2d157bae03e15859de596198df0cd32f18c7fb0e",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "culture.model_system.suspension_spheroid_culture",
+      "file": "svg/suspension_spheroid_culture.svg",
+      "after_svg_sha256": "cefca204d74541d6f3738fb9db72eec1f7bbf0ae239293f437592e8768b5a62b",
+      "after_metadata_sha256": "12fe23457062567ae475a383ced4723541529ca13bd1a3eadee4f8a29146b127",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "culture.assay_workflow.spheroid_matrix_outgrowth",
+      "file": "svg/spheroid_matrix_outgrowth.svg",
+      "after_svg_sha256": "1140200b8e0b245e5b0c65527d44b15de20c20e4741e574293332faf085c44a2",
+      "after_metadata_sha256": "937ae73d9ccf5db19f0b795134b960e0433f7da2a313cf35c154947531d040a0",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "culture.assay_workflow.cell_exclusion_gap",
+      "file": "svg/cell_exclusion_gap.svg",
+      "after_svg_sha256": "87b0ce143b37765e9a3df11c01bf1262181feef0bd6e3ce8e5ce8b9e3215a45c",
+      "after_metadata_sha256": "3b7763686e30c2bb2d6f0e696ba4cb750549eb5d83e3114158bb54557f1b186f",
+      "license": "CC0-1.0"
+    }
+  ],
+  "preserved_files": [
+    {
+      "file": "revisions/2026-10-13-family-expansion-predecessor/asset-pack.json",
+      "sha256": "9b3cc2f5fc8cd4f746bd0f35e398858914ad54cdd41e9949abf23cf46662079b"
+    },
+    {
+      "file": "revisions/2026-10-13-family-expansion-predecessor/LICENSE-ASSETS-CC0-1.0.md",
+      "sha256": "09bb098a64831dc74a3cff7d8c26c26ada3439781c1b4d8b418e4560c8b421de"
+    },
+    {
+      "file": "revisions/2026-10-13-family-expansion-predecessor/rights-release-record.json",
+      "sha256": "f1f9518feb703b28a7da88603e756a486a41ff7581c5be2128937e2025fffc25"
+    },
+    {
+      "file": "revisions/2026-10-13-family-expansion-predecessor/snapshot.json",
+      "sha256": "a13f0abef811921e7ccd40878e8476a020866768252c31e2547c0df008a68299"
+    },
+    {
+      "file": "revisions/2026-10-13-family-expansion-predecessor/svg/air_liquid_interface_culture.svg",
+      "sha256": "99ec85246bf5da0b86e2276efee2cc4d0f25361f69439acd64feb5a7dd1bfd2c"
+    },
+    {
+      "file": "revisions/2026-10-13-family-expansion-predecessor/svg/clonogenic_colony_formation.svg",
+      "sha256": "0972daa66ad2d1697d8c55b8703b9425658bcdef0b650c15e740edab53724c8b"
+    },
+    {
+      "file": "revisions/2026-10-13-family-expansion-predecessor/svg/collagen_gel_contraction.svg",
+      "sha256": "d5c84c2ec4464addd109d43a4f3e97fb45fcf98b212d760e7c7875730f198def"
+    },
+    {
+      "file": "revisions/2026-10-13-family-expansion-predecessor/svg/epithelial_scratch_wound.svg",
+      "sha256": "76c9437a8a873908f0822c768a2029d795e8ec9f757970f6bd8576c267ffdf61"
+    },
+    {
+      "file": "revisions/2026-10-13-family-expansion-predecessor/svg/hanging_drop_spheroid.svg",
+      "sha256": "ac8ba54d1e04273655ae42914ca5d229f30200fb1297ab9f87f717943ca22ae6"
+    },
+    {
+      "file": "revisions/2026-10-13-family-expansion-predecessor/svg/hydrogel_embedded_organoid.svg",
+      "sha256": "b7fca80901f68f233e1b4255bb545aa0e705d1dbaa09c0d06ac26f17c2a16e7a"
+    },
+    {
+      "file": "revisions/2026-10-13-family-expansion-predecessor/svg/microwell_spheroid_aggregation.svg",
+      "sha256": "aab199dbf514b0f881a36585086722cdf24604aa1186513099400e0e8f97936f"
+    },
+    {
+      "file": "revisions/2026-10-13-family-expansion-predecessor/svg/organoid_luminal_microinjection.svg",
+      "sha256": "cd1f7e1431e5fb77b83cf62a969d29a8b1bf9fb82283f046fed5e7309a3a45b6"
+    },
+    {
+      "file": "revisions/2026-10-13-family-expansion-predecessor/svg/perfusable_microvascular_network.svg",
+      "sha256": "416cf048110d34b61b55a81e34f12a596572086ad6b59dcc7949f378d2bc5000"
+    },
+    {
+      "file": "revisions/2026-10-13-family-expansion-predecessor/svg/perfused_tissue_chip.svg",
+      "sha256": "ffc958ecbe7a880d12c969f003a0e481a70946e6d05ffec442e67661ca37758d"
+    },
+    {
+      "file": "revisions/2026-10-13-family-expansion-predecessor/svg/precision_cut_tissue_slice_culture.svg",
+      "sha256": "9dfda38a8367f2509b2bea5ff1003ae7e9ab8976517c334586f0d03f18d53010"
+    },
+    {
+      "file": "revisions/2026-10-13-family-expansion-predecessor/svg/soft_agar_colony.svg",
+      "sha256": "68fae5d36b12035f6eb5142a4058760e45c40be66a7fe197c0b4152abdb82825"
+    }
+  ]
+}

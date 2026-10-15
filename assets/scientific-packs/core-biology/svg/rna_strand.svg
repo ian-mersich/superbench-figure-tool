@@ -1,16 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
   <title id="title">RNA Strand</title>
-  <desc id="desc">Original vector single-stranded RNA hairpin with a folded backbone, paired stem bases, terminal accents, and editable semantic regions.</desc>
+  <desc id="desc">Generic single-stranded RNA hairpin with one continuous backbone, a paired stem, an unpaired connecting loop and free ends. Base marks and lengths are illustrative; no sequence, measured fold or end chemistry is specified.</desc>
   <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M24 103c12-8 19-17 19-30V48c0-17 9-27 21-27s21 10 21 27v25c0 13 8 22 20 28" stroke-width="8"/>
-    <path d="M47 49h34M47 59h34M47 69h34M31 93l-7-8M97 92l7-9" stroke-width="5.5"/>
-    <circle cx="24" cy="103" r="4.5" stroke-width="2.5"/><circle cx="105" cy="101" r="4.5" stroke-width="2.5"/>
+    <path d="M46 50H82M46 57.5H82M46 65H82M46 72.5H82M40.1 25.7L47 29M51.4 18.5L54 26M64 16.5V24M76.6 18.5L74 26M87.9 25.7L81 29M30 101L28 92M39 93L34 85M89 93L94 85M98 101L100 92" stroke-width="3.6"/>
+    <path d="M22 105C37 101 45 91 46 75L46 48C46 39 39 37 39 30C39 12 89 12 89 30C89 37 82 39 82 48L82 75C83 91 91 101 106 105" stroke-width="6"/>
   </g>
-  <path data-region="backbone" fill="none" stroke="#5EA9DD" stroke-linecap="round" stroke-linejoin="round" stroke-width="4.5" d="M24 103c12-8 19-17 19-30V48c0-17 9-27 21-27s21 10 21 27v25c0 13 8 22 20 28"/>
-  <g data-region="base" fill="none" stroke="#F4A261" stroke-linecap="round" stroke-width="3">
-    <path d="M47 49h34M47 59h34M47 69h34M31 93l-7-8M97 92l7-9"/>
-  </g>
-  <g data-region="accent" fill="#B8B5FF">
-    <circle cx="24" cy="103" r="4.5"/><circle cx="105" cy="101" r="4.5"/>
-  </g>
+  <path data-region="base" d="M46 50H82M46 57.5H82M46 65H82M46 72.5H82M40.1 25.7L47 29M51.4 18.5L54 26M64 16.5V24M76.6 18.5L74 26M87.9 25.7L81 29M30 101L28 92M39 93L34 85M89 93L94 85M98 101L100 92" fill="none" stroke="#F4A261" stroke-width="2.4" stroke-linecap="round"/>
+  <path data-region="backbone" d="M22 105C37 101 45 91 46 75L46 48C46 39 39 37 39 30C39 12 89 12 89 30C89 37 82 39 82 48L82 75C83 91 91 101 106 105" fill="none" stroke="#5EA9DD" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="1.2"><circle cx="22" cy="105" r="2.3"/><circle cx="106" cy="105" r="2.3"/></g>
+  <g data-region="accent" fill="#B8B5FF"><circle cx="22" cy="105" r="2.3"/><circle cx="106" cy="105" r="2.3"/></g>
 </svg>

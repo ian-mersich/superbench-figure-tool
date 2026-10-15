@@ -1,21 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
   <title id="title">siRNA Duplex</title>
-  <desc id="desc">Original vector short interfering RNA duplex with antiparallel strands, paired bases, two-nucleotide overhangs, and editable semantic regions.</desc>
-  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M25 49c18-5 57-5 76 0M27 79c18 5 57 5 76 0" stroke-width="8"/>
-    <path d="m34 48 2 32m12-34 2 36m12-37 2 38m12-38 2 37m12-35 2 33" stroke-width="5.25"/>
-    <g stroke-width="2.25">
-      <circle cx="17" cy="49" r="3.2"/><circle cx="17" cy="58" r="3.2"/>
-      <circle cx="113" cy="71" r="3.2"/><circle cx="113" cy="80" r="3.2"/>
-    </g>
-  </g>
-  <path data-region="sense" fill="none" stroke="#5EA9DD" stroke-linecap="round" stroke-width="4.5" d="M25 49c18-5 57-5 76 0"/>
-  <path data-region="antisense" fill="none" stroke="#7B78C9" stroke-linecap="round" stroke-width="4.5" d="M27 79c18 5 57 5 76 0"/>
-  <g data-region="overhang" fill="#F4A261">
-    <circle cx="17" cy="49" r="3.2"/><circle cx="17" cy="58" r="3.2"/>
-    <circle cx="113" cy="71" r="3.2"/><circle cx="113" cy="80" r="3.2"/>
-  </g>
-  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-width="2.25">
-    <path d="m34 48 2 32m12-34 2 36m12-37 2 38m12-38 2 37m12-35 2 33"/>
-  </g>
+  <desc id="desc">Generic short antiparallel siRNA duplex with connected paired bases and two illustrative unpaired nucleotide marks on each opposite 3-prime extension. No sequence, exact duplex length, guide-strand assignment or silencing outcome is specified.</desc>
+  <path data-region="outline" d="M35.63 50.287L35.63 77.712M43.121 48.786L43.121 79.214M51.326 47.791L51.326 80.209M59.955 47.304L59.955 80.696M68.717 47.323L68.717 80.677M77.324 47.85L77.324 80.15M85.484 48.883L85.484 79.117M92.909 50.424L92.909 77.576" fill="none" stroke="#26323D" stroke-width="2.1" stroke-linecap="round"/>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><path d="M16 44C25 44 26 51 33 51C50 46 78 46 95 51"/><path d="M33 77C50 82 78 82 95 77C102 77 103 84 112 84"/></g>
+  <path data-region="sense" d="M16 44C25 44 26 51 33 51C50 46 78 46 95 51" fill="none" stroke="#5EA9DD" stroke-width="4.2" stroke-linecap="round"/>
+  <path data-region="antisense" d="M33 77C50 82 78 82 95 77C102 77 103 84 112 84" fill="none" stroke="#7B78C9" stroke-width="4.2" stroke-linecap="round"/>
+  <g data-region="outline" stroke="#26323D" stroke-width="1.1" stroke-linejoin="round"><path data-region="overhang" d="M19.6 44L22 44.5L21.5 53.3Q20.7 55 19.5 53.2ZM26 48L28.4 49.9L25.8 58Q24.6 59.4 23.6 57.5ZM101.2 80.8L103.4 82.3L106.2 74.7Q106 72.8 104.1 73.9ZM110.1 83.8L112.5 84L113 74.8Q112 73.2 110.7 74.8Z" fill="#F4A261"/></g>
 </svg>

@@ -1,23 +1,22 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
   <title id="title">Chromatin loop</title>
-  <desc id="desc">Original vector chromatin loop with a beads-on-string nucleosome fiber, terminal anchors, and editable semantic regions.</desc>
-  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M17 91c9-10 12-28 23-40 13-14 33-20 50-11 19 10 25 32 14 48-9 13-28 17-42 10-11-5-17-16-13-26 4-9 15-13 24-9 8 3 12 12 9 20" stroke-width="8"/>
-    <g stroke-width="2.75">
-      <circle cx="31" cy="64" r="7"/><circle cx="48" cy="47" r="7"/><circle cx="70" cy="42" r="7"/>
-      <circle cx="91" cy="53" r="7"/><circle cx="102" cy="74" r="7"/><circle cx="88" cy="94" r="7"/>
-      <circle cx="63" cy="94" r="7"/><circle cx="57" cy="72" r="7"/>
-      <circle cx="17" cy="91" r="5"/><circle cx="82" cy="83" r="5"/>
+  <desc id="desc">Generic compact chromatin schematic with one continuous smooth fiber, evenly spaced nucleosome-like beads centered on the fiber, and short terminal caps. Not an exact nucleosome arrangement or loop-extrusion model.</desc>
+  <path data-region="fiber" fill="none" stroke="#7B78C9" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" d="M16 95C27 83 28 58 40 43C54 26 79 25 96 40C112 54 112 79 97 94C82 109 57 107 44 91C33 78 38 58 53 53C68 48 84 58 84 73"/>
+  <g data-region="outline" stroke="#26323D" stroke-width="1.8" stroke-linejoin="round">
+    <g data-region="histone" fill="#F4A261">
+      <circle cx="24.185" cy="80.217" r="6.5"/>
+      <circle cx="37.816" cy="46.011" r="6.5"/>
+      <circle cx="69.101" cy="29.455" r="6.5"/>
+      <circle cx="101.027" cy="45.421" r="6.5"/>
+      <circle cx="105.686" cy="80.519" r="6.5"/>
+      <circle cx="78.915" cy="103.558" r="6.5"/>
+      <circle cx="45.318" cy="92.529" r="6.5"/>
+      <circle cx="43.953" cy="58.952" r="6.5"/>
+      <circle cx="77.28" cy="57.922" r="6.5"/>
     </g>
-  </g>
-  <path data-region="fiber" fill="none" stroke="#7B78C9" stroke-linecap="round" stroke-linejoin="round" stroke-width="4.5" d="M17 91c9-10 12-28 23-40 13-14 33-20 50-11 19 10 25 32 14 48-9 13-28 17-42 10-11-5-17-16-13-26 4-9 15-13 24-9 8 3 12 12 9 20"/>
-  <g data-region="histone" fill="#F4A261">
-    <circle cx="31" cy="64" r="7"/><circle cx="48" cy="47" r="7"/><circle cx="70" cy="42" r="7"/>
-    <circle cx="91" cy="53" r="7"/><circle cx="102" cy="74" r="7"/><circle cx="88" cy="94" r="7"/>
-    <circle cx="63" cy="94" r="7"/><circle cx="57" cy="72" r="7"/>
-  </g>
-  <g data-region="accent" fill="#C7F2EC">
-    <circle cx="17" cy="91" r="5"/>
-    <circle cx="82" cy="83" r="5"/>
+    <g data-region="accent" fill="#C7F2EC" stroke="none">
+      <rect x="12" y="92.75" width="8" height="4.5" rx="2.25" transform="rotate(129.232 16 95)"/>
+      <rect x="80" y="70.75" width="8" height="4.5" rx="2.25" transform="rotate(85.85 84 73)"/>
+    </g>
   </g>
 </svg>

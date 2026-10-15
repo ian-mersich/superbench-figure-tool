@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">COPI-Coated Vesicle</title>
+  <desc id="desc">A membrane vesicle surrounded by distinct membrane-proximal and outer coatomer, with illustrative membrane-associated Arf1.</desc>
+  <g data-region="membrane" fill="#8EC8FF" stroke="none">
+    <path d="M33 64a31 31 0 1 0 62 0a31 31 0 1 0 -62 0ZM40 64a24 24 0 1 0 48 0a24 24 0 1 0 -48 0Z" fill-rule="evenodd"/>
+  </g>
+  <g data-region="adaptor" fill="#7DD3C7" stroke="none">
+    <path d="M57 31Q64 28 71 32L69 38Q64 35 59 39Z" transform="rotate(15 64 64)"/><path d="M57 31Q64 28 71 32L69 38Q64 35 59 39Z" transform="rotate(75 64 64)"/><path d="M57 31Q64 28 71 32L69 38Q64 35 59 39Z" transform="rotate(135 64 64)"/><path d="M57 31Q64 28 71 32L69 38Q64 35 59 39Z" transform="rotate(195 64 64)"/><path d="M57 31Q64 28 71 32L69 38Q64 35 59 39Z" transform="rotate(255 64 64)"/><path d="M57 31Q64 28 71 32L69 38Q64 35 59 39Z" transform="rotate(315 64 64)"/>
+  </g>
+  <g data-region="outer_coat" fill="#B8B5FF" stroke="none">
+    <path d="M54 19Q64 11 75 20L72 28Q64 23 56 29Z" transform="rotate(0 64 64)"/><path d="M54 19Q64 11 75 20L72 28Q64 23 56 29Z" transform="rotate(60 64 64)"/><path d="M54 19Q64 11 75 20L72 28Q64 23 56 29Z" transform="rotate(120 64 64)"/><path d="M54 19Q64 11 75 20L72 28Q64 23 56 29Z" transform="rotate(180 64 64)"/><path d="M54 19Q64 11 75 20L72 28Q64 23 56 29Z" transform="rotate(240 64 64)"/><path d="M54 19Q64 11 75 20L72 28Q64 23 56 29Z" transform="rotate(300 64 64)"/>
+  </g>
+  <g data-region="arf" fill="#F4A261" stroke="none">
+    <ellipse cx="84.32" cy="90.0" rx="4" ry="4"/><ellipse cx="31.32" cy="68.59" rx="4" ry="4"/><ellipse cx="76.36" cy="33.4" rx="4" ry="4"/>
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="64" cy="64" rx="24" ry="24"/><path d="M57 31Q64 28 71 32L69 38Q64 35 59 39Z" transform="rotate(15 64 64)"/><path d="M57 31Q64 28 71 32L69 38Q64 35 59 39Z" transform="rotate(75 64 64)"/><path d="M57 31Q64 28 71 32L69 38Q64 35 59 39Z" transform="rotate(135 64 64)"/><path d="M57 31Q64 28 71 32L69 38Q64 35 59 39Z" transform="rotate(195 64 64)"/><path d="M57 31Q64 28 71 32L69 38Q64 35 59 39Z" transform="rotate(255 64 64)"/><path d="M57 31Q64 28 71 32L69 38Q64 35 59 39Z" transform="rotate(315 64 64)"/><path d="M54 19Q64 11 75 20L72 28Q64 23 56 29Z" transform="rotate(0 64 64)"/><path d="M54 19Q64 11 75 20L72 28Q64 23 56 29Z" transform="rotate(60 64 64)"/><path d="M54 19Q64 11 75 20L72 28Q64 23 56 29Z" transform="rotate(120 64 64)"/><path d="M54 19Q64 11 75 20L72 28Q64 23 56 29Z" transform="rotate(180 64 64)"/><path d="M54 19Q64 11 75 20L72 28Q64 23 56 29Z" transform="rotate(240 64 64)"/><path d="M54 19Q64 11 75 20L72 28Q64 23 56 29Z" transform="rotate(300 64 64)"/><ellipse cx="84.32" cy="90.0" rx="4" ry="4"/><ellipse cx="31.32" cy="68.59" rx="4" ry="4"/><ellipse cx="76.36" cy="33.4" rx="4" ry="4"/>
+  </g>
+</svg>

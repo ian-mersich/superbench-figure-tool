@@ -21,6 +21,11 @@ import uuid
 import zipfile
 from io import BytesIO
 
+try:
+    from . import scientific_product_release
+except ImportError:  # Direct script invocation from an archived source tree.
+    import scientific_product_release
+
 TOOL_ID = "figure-studio"
 CANONICAL_PACKAGE_NAME = "@superbench/figure-tool"
 LEGACY_PACKAGE_IDENTITIES = {("@bsd-studio/figure-studio", "1.0.0-beta.3")}
@@ -52,6 +57,13 @@ WINDOWS_RESERVED = re.compile(r"^(?:CON|PRN|AUX|NUL|COM[1-9]|LPT[1-9])(?:\.|$)",
 
 class ReleaseBuildError(ValueError):
     """A committed source or candidate failed a release contract."""
+
+
+def _product_release(source_root: Path) -> dict | None:
+    try:
+        return scientific_product_release.validate(source_root)
+    except (ValueError, KeyError, OSError) as error:
+        raise ReleaseBuildError(str(error)) from error
 
 
 @dataclass(frozen=True)
@@ -463,6 +475,10 @@ def validate_scene_release(scene_root: Path, *, distribution_scope: str) -> dict
     actual_files = {path.relative_to(scene_root).as_posix() for path in scene_root.rglob("*") if path.is_file()}
     if actual_files != expected_files:
         raise ReleaseBuildError("Scientific scene payload contains missing or unregistered files")
+    approval = _product_release(scene_root.parents[1])
+    historical_pending = sorted(pending)
+    if approval:
+        pending = [scene_id for scene_id in pending if scene_id not in approval["scenes"]]
     if distribution_scope == "public-release" and pending:
         raise ReleaseBuildError("Public distribution is pending scene product release approval: " + ", ".join(sorted(pending)))
     return {
@@ -471,6 +487,8 @@ def validate_scene_release(scene_root: Path, *, distribution_scope: str) -> dict
         "rights_record_count": len(rights_by_id),
         "public_distribution_authorized": not pending and rights.get("public_distribution_authorized") is True,
         "pending_scene_ids": sorted(pending),
+        "historical_pending_scene_ids": historical_pending,
+        "product_release_record": scientific_product_release.RECORD if approval else None,
         "rights_sha256": sha256_bytes((scene_root / "release-rights.v1.json").read_bytes()),
         "status": "released" if not pending else "private_review_only",
     }
@@ -497,6 +515,7 @@ def validate_release_source(source_root: Path, *, distribution_scope: str) -> di
         output = getattr(error, "stderr", "") or ""
         safe_output = output.strip()[-1200:]
         raise ReleaseBuildError(f"Figure source validation failed: {safe_output or type(error).__name__}") from error
+    approval = _product_release(source_root)
     scenes = validate_scene_release(source_root / SCENE_ROOT, distribution_scope=distribution_scope)
     library = _read_json(source_root / PACK_ROOT / "library.json", "scientific pack registry")
     pending_packs = []
@@ -509,12 +528,14 @@ def validate_release_source(source_root: Path, *, distribution_scope: str) -> di
         release = catalog.get("release_audit") or {}
         status = str(release.get("status") or "")
         authorized = release.get("public_distribution_authorized") is True
-        if status != "released" or not authorized:
+        effective_status = "released" if approval and str(row.get("id")) in approval["packs"] else status
+        if effective_status != "released" or not authorized:
             pending_packs.append(str(row.get("id") or ""))
         pack_receipts.append({
             "pack_id": str(row.get("id") or ""),
             "path": str(row.get("path") or ""),
             "status": status,
+            "effective_product_release_status": effective_status,
             "public_distribution_authorized": authorized,
             "license": str(release.get("selected_public_license") or ""),
             "catalog_sha256": sha256_bytes(pack_path.read_bytes()),
@@ -527,6 +548,8 @@ def validate_release_source(source_root: Path, *, distribution_scope: str) -> di
         "vendor_validator": vendor,
         "packs": pack_receipts,
         "pending_pack_ids": sorted(pending_packs),
+        "product_release_record": scientific_product_release.RECORD if approval else None,
+        "product_release_record_sha256": scientific_product_release.canonical(approval) if approval else None,
         "scenes": scenes,
         "public_release_eligible": not pending_packs and not scenes["pending_scene_ids"],
     }
@@ -545,12 +568,34 @@ def _rights_receipt(source_root: Path, validation: Mapping[str, object], *, scop
         "pending_scene_ids": validation.get("scenes", {}).get("pending_scene_ids"),
         "scientific_packs": validation.get("packs"),
         "scientific_scenes": validation.get("scenes"),
+        "product_release_record": validation.get("product_release_record"),
+        "product_release_record_sha256": validation.get("product_release_record_sha256"),
         "source_digests": {
             "pack_registry_sha256": sha256_bytes(library_path.read_bytes()),
             "scene_rights_sha256": sha256_bytes(scene_rights_path.read_bytes()),
             "vendor_manifest_sha256": sha256_bytes(vendor_manifest_path.read_bytes()),
         },
     }
+
+
+def verify_archive_payload_parity(package_zip: Path, web_zip: Path) -> dict[str, object]:
+    """Read both emitted archives and prove every shared payload byte is identical."""
+    with zipfile.ZipFile(package_zip) as native, zipfile.ZipFile(web_zip) as web:
+        native_names, web_names = native.namelist(), web.namelist()
+        if len(set(native_names)) != len(native_names) or len(set(web_names)) != len(web_names):
+            raise ReleaseBuildError("Release archives contain duplicate members")
+        manifest = json.loads(native.read("tool-package.json"))
+        rows = manifest["payload_files"]
+        paths = {str(row["path"]) for row in rows}
+        if set(native_names) != {"tool-package.json", *("payload/" + path for path in paths)} or set(web_names) != paths:
+            raise ReleaseBuildError("Native and web archives do not contain exactly the shared payload")
+        for row in rows:
+            path = str(row["path"])
+            data = native.read("payload/" + path)
+            if (data != web.read(path) or len(data) != row["size"] or sha256_bytes(data) != row["sha256"]):
+                raise ReleaseBuildError("Native/web payload byte mismatch: " + path)
+        return {"status": "passed", "file_count": len(rows), "package_sha256": manifest["package_sha256"],
+                "comparison": "Every decompressed web member equals the matching native payload member and manifest SHA-256."}
 
 
 def build_release_artifacts(
@@ -560,9 +605,12 @@ def build_release_artifacts(
     *,
     distribution_scope: str = "private-review",
     version_override: str | None = None,
+    source_exports: bool = False,
 ) -> BuiltRelease:
     repository = Path(repository).resolve()
     output_root = Path(output_root).resolve()
+    if source_exports and distribution_scope != "public-release":
+        raise ReleaseBuildError("Public source exports require fully qualified public-release scope")
     commit = resolve_commit(repository, revision)
     if version_override is not None and distribution_scope != "private-review":
         raise ReleaseBuildError("QA version overrides are allowed only for private-review builds")
@@ -593,6 +641,7 @@ def build_release_artifacts(
         web_zip.parent.mkdir(parents=True, exist_ok=True)
         package_archive_sha = _write_deterministic_zip(work_package, package_zip, package=True)
         web_archive_sha = _write_deterministic_zip(work_package, web_zip, package=False)
+        archive_parity = verify_archive_payload_parity(package_zip, web_zip)
         source_files = _source_inventory(source)
         core_files = _prefixed_inventory(source, ("app", "vendor", "assets/scientific-packs", "assets/scientific-scenes"))
         web_files = _prefixed_inventory(source, ("web",))
@@ -625,6 +674,13 @@ def build_release_artifacts(
         }
         web_inventory_path = output_root / f"web-shell-inventory-{version}-{package_digest}.json"
         web_inventory_path.write_text(json.dumps(web_inventory, indent=2, sort_keys=True) + "\n", encoding="utf-8", newline="\n")
+        source_export = None
+        if source_exports:
+            try:
+                from .export_figure_release_source import export_source
+            except ImportError:
+                from export_figure_release_source import export_source
+            source_export = export_source(source, work_package, output_root, cache=repository / "qa_artifacts/vendor-source-cache")
         rights = _rights_receipt(source, validation, scope=distribution_scope)
         rights_path = output_root / f"rights-receipt-{version}-{package_digest}.json"
         rights_path.write_text(json.dumps(rights, indent=2, sort_keys=True) + "\n", encoding="utf-8", newline="\n")
@@ -645,6 +701,8 @@ def build_release_artifacts(
             "web_archive_payload_roots": list(PAYLOAD_ROOTS),
             "web_shell_inventory": web_inventory_path.name,
             "web_archive_sha256": web_archive_sha,
+            "shared_payload_parity": archive_parity,
+            "source_export": source_export,
             "source_inventory": inventory_path.name,
             "rights_receipt": rights_path.name,
             "validation": validation,
@@ -928,15 +986,27 @@ def main() -> int:
     parser.add_argument("--qa-signing-key-env", default="FIGURE_RELEASE_QA_SIGNING_KEY")
     parser.add_argument("--previous-feed", type=Path, help="Verified prior feed directory with catalog.json and all referenced ZIPs")
     parser.add_argument("--initialize-catalog", action="store_true")
+    parser.add_argument("--artifacts-only", action="store_true",
+                        help="Build validated native/static archives and receipts without issuing or signing an update catalog")
+    parser.add_argument("--source-exports", action="store_true",
+                        help="Also prepare an unchanged-payload public source tree and full preferred-source ZIP from the same snapshot")
     args = parser.parse_args()
+    catalog_options = {"--previous-feed", "--initialize-catalog", "--sign-private-review-candidate",
+                       "--public-signing-key-env", "--public-trust-anchor-env", "--qa-signing-key-env"}
+    if args.artifacts_only and any(token.split("=", 1)[0] in catalog_options for token in __import__("sys").argv[1:]):
+        parser.error("--artifacts-only cannot be combined with catalog or signing options")
     repo = args.repository.resolve()
     output = args.output_root.resolve()
-    if output == repo or repo not in output.parents or "qa_artifacts" not in {part.casefold() for part in output.relative_to(repo).parts}:
+    qa_root = (repo / "qa_artifacts").resolve()
+    if repo not in qa_root.parents or qa_root not in output.parents:
         raise SystemExit("Release output must stay under this repository's ignored qa_artifacts directory")
     try:
         release = build_release_artifacts(repo, args.revision, output, distribution_scope=args.distribution_scope,
-                                          version_override=args.qa_version_override)
-        if args.distribution_scope == "public-release":
+                                          version_override=args.qa_version_override, source_exports=args.source_exports)
+        if args.artifacts_only:
+            public_trust_anchor = TRUSTED_CATALOG_PUBLIC_KEY
+            key = None
+        elif args.distribution_scope == "public-release":
             public_trust_anchor = _public_key_from_environment(args.public_trust_anchor_env)
             key = _load_private_key_from_environment(args.public_signing_key_env,
                                                      expected_public_key=public_trust_anchor)
@@ -946,7 +1016,7 @@ def main() -> int:
         else:
             public_trust_anchor = TRUSTED_CATALOG_PUBLIC_KEY
             key = None
-        if args.distribution_scope == "public-release" and key is None:
+        if args.distribution_scope == "public-release" and key is None and not args.artifacts_only:
             raise ReleaseBuildError("Public catalog signing requires a configured production signing key")
         if args.sign_private_review_candidate and key is None:
             raise ReleaseBuildError("Private-review catalog signing was requested but the QA key is unavailable")

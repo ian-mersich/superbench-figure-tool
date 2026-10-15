@@ -1,20 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
-  <title id="title">Generic Eukaryotic Cell</title>
-  <desc id="desc">Original vector eukaryotic cell with an organic membrane contour, offset nucleus, restrained organelle accents, and editable semantic regions.</desc>
+  <title id="title">Rounded Eukaryotic Cell</title>
+  <desc id="desc">Original schematic section of a rounded eukaryotic cell with bounded nucleus and sparse organelles. Placement, number and dimensions are illustrative, not a measured cell.</desc>
+  <path data-region="cytoplasm" fill="#C7F2EC" d="M18 67C16 43 32 24 55 20C78 15 101 27 109 47C116 68 104 92 82 104C61 115 35 109 23 90C19 83 18 75 18 67Z"/>
 
-  <path data-region="cytoplasm" fill="#C7F2EC" d="M18 67c-1-24 15-43 38-48 23-4 45 7 52 28 8 22-4 46-26 57-21 11-48 5-59-14-4-7-5-15-5-23z"/>
-  <path data-region="nucleus" fill="#B8B5FF" d="M42 65c0-12 9-22 21-23 12-1 22 7 23 19 1 12-8 23-20 24-13 2-24-7-24-20z"/>
-
-  <g data-region="accent" fill="#F4A261">
-    <circle cx="66" cy="62" r="4"/>
-    <ellipse cx="91" cy="48" rx="8" ry="3.5" transform="rotate(28 91 48)"/>
-    <ellipse cx="91" cy="82" rx="7" ry="3" transform="rotate(-31 91 82)"/>
-    <circle cx="34" cy="45" r="3"/><circle cx="36" cy="88" r="2.75"/>
-  </g>
-
+  <path data-region="nucleus" fill="#B8B5FF" d="M42 64C41 52 50 42 62 41C75 40 84 49 85 61C86 73 77 84 65 85C53 86 43 77 42 64Z"/>
+  <g data-region="accent" fill="#F4A261"><path d="M84 39C89 34 98 37 101 43C105 49 101 55 95 54C89 54 80 46 84 39Z"/><path d="M78 92C77 85 84 78 92 77C99 76 103 82 98 87C94 92 80 99 78 92Z"/><circle cx="32" cy="55" r="3"/></g>
   <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M18 67c-1-24 15-43 38-48 23-4 45 7 52 28 8 22-4 46-26 57-21 11-48 5-59-14-4-7-5-15-5-23z" stroke-width="3.5"/>
-    <path d="M42 65c0-12 9-22 21-23 12-1 22 7 23 19 1 12-8 23-20 24-13 2-24-7-24-20z" stroke-width="2.75"/>
-    <path d="M85 46c4 1 8 3 12 6M85 85c4-1 8-4 12-7" stroke-width="1.5"/>
+    <path d="M18 67C16 43 32 24 55 20C78 15 101 27 109 47C116 68 104 92 82 104C61 115 35 109 23 90C19 83 18 75 18 67Z" stroke-width="3.2"/>
+    <path d="M42 64C41 52 50 42 62 41C75 40 84 49 85 61C86 73 77 84 65 85C53 86 43 77 42 64Z" stroke-width="2.4"/>
+    <path d="M86 41C91 40 89 47 96 48M82 90C89 91 85 84 93 83" stroke-width="1.5"/>
   </g>
 </svg>

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Outer-membrane Vesicle Budding</title>
+  <desc id="desc">A Gram-negative outer-membrane bud enclosing periplasmic material while the cytoplasmic membrane remains separate and intact.</desc>
+  <g data-region="cytoplasm" fill="#D9F4E5" stroke="none">
+    <rect x="18" y="94" width="92" height="17"/>
+  </g>
+  <g data-region="innermembrane" fill="#B8B5FF" stroke="none">
+    <rect x="18" y="88" width="92" height="6"/>
+  </g>
+  <g data-region="periplasm" fill="#E8EEF7" stroke="none">
+    <path d="M18 78H45C58 78 58 68 52 61C40 52 40 37 51 30C64 22 79 28 83 38C87 47 81 53 75 59C70 64 69 78 83 78H110V88H18Z"/>
+  </g>
+  <g data-region="outermembrane" fill="#7DD3C7" stroke="none">
+    <path d="M18 72H45C52 72 51 68 47 62C33 51 36 31 49 24C65 15 84 22 89 36C94 48 87 57 81 62C76 66 76 72 83 72H110V78H83C69 78 70 64 75 59C81 53 87 47 83 38C79 28 64 22 51 30C40 37 40 52 52 61C58 68 58 78 45 78H18Z"/>
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M18 72H45C52 72 51 68 47 62C33 51 36 31 49 24C65 15 84 22 89 36C94 48 87 57 81 62C76 66 76 72 83 72H110"/><path d="M18 78H45C58 78 58 68 52 61C40 52 40 37 51 30C64 22 79 28 83 38C87 47 81 53 75 59C70 64 69 78 83 78H110"/><path d="M18 88H110M18 94H110"/>
+  </g>
+</svg>

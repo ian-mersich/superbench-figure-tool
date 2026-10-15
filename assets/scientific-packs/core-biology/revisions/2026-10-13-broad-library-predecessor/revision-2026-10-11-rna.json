@@ -1,0 +1,102 @@
+{
+  "schema_id": "superbench.scientificAssetRevision.v1",
+  "revision_id": "2026-10-11-rna-redraw",
+  "revision_date": "2026-10-11",
+  "pack_id": "core-biology",
+  "predecessor": {
+    "audit_id": "core-biology.provenance-license-release.2026-10-11.nucleic-acid-redraw",
+    "catalog_sha256": "14fedf450572c49a5aca903ee9e505dc87407dfd9c900e32eaf013c736e8a725",
+    "audit_sha256": "669a9ddfcfd46d9086b3320fd1015ff80f6646f8e71bb4cd3c051241f32196e6",
+    "receipt_sha256": "1245db83903e47dd5e5b6aba1b6d161fe56c1fb398720ced0b44aa3b86055073",
+    "snapshot": "revisions/2026-10-11-nucleic-acid-redraw"
+  },
+  "current_catalog_sha256": "a941c12a4955d55854832328f612d3190d59f57ab86f58388efaec6416cf5cc1",
+  "redraw_source_record_id": "rna-redraw-source-2026-10-11",
+  "owner_authorization_record_id": "owner-rna-redraw-authorization-2026-10-11",
+  "review": {
+    "status": "accepted",
+    "visual_review": "pass",
+    "editor_checks": "pass",
+    "reviewer": "independent asset_visual_review and project lead review",
+    "reviewed_on": "2026-10-11",
+    "scope": "all four RNA drawings at native 64, 96, 160 and 224 pixels in three treatments; actual native editor across three treatments and four palettes, light/dark appearance, 16 semantic-region recolors, form switching, isolated anchor editing and Undo/Redo, editable SVG export, current and historical Save/cold Open; independent full-resolution acceptance of all 16 final native captures",
+    "evidence": "docs/scientific-assets/RNA_ARTWORK_REVISION_2026_10_11.md",
+    "evidence_records": [
+      {
+        "file": "qa_artifacts/asset-round2-20261011/review/draft-visual-verdict.json",
+        "sha256": "0e4b904e526e2a5162989f9bc1d0ac245ee85224c30a427fa201c133c1243b8c"
+      },
+      {
+        "file": "qa_artifacts/asset-round2-20261011/native/native-browser-proof.json",
+        "sha256": "2c2dcda70e52357dd0641766e987a88f9f5c53e4efdd72cf715d2faa086fa92b"
+      },
+      {
+        "file": "qa_artifacts/asset-round2-20261011/native/native-visual-verdict.json",
+        "sha256": "06dd769a49d84d7a98ce70025672b19df4e6df270e5ebd2be69d859c3730c3df"
+      }
+    ],
+    "comparison_limits": {
+      "cold_open_derived_scene_tolerance_pixels": 0.01,
+      "historical_max_derived_scene_delta_pixels": 0.004163,
+      "authored_native_fields_and_ids": "exact after Save/cold Open",
+      "undo_imported_child_ids": "transient IDs may regenerate; owning asset identity, geometry and anchor reselection checked separately",
+      "historical_thumbnail": "derived thumbnail antialiasing assessed separately from the exact authored payload"
+    }
+  },
+  "changed_assets": [
+    {
+      "asset_id": "core.rna.strand",
+      "file": "svg/rna_strand.svg",
+      "before_svg_sha256": "74c4d3ff16de2a939e9d5b4d9cd71e56f3114d9343bd09119ca819f1ad52b29c",
+      "after_svg_sha256": "5eeedfb64e97043c503e5c9bb795f07010ad3c989d5dae10fac25a98e32584f9",
+      "before_metadata_sha256": "72a364c4af14c0ce5d0fbebbdb7de065c98afc279663146a285cebe7dcf9bd79",
+      "after_metadata_sha256": "1dc4dc3541d77c1e1d171418bbdbc0fe94099a9cf3370fa28547d9eefe0c7263",
+      "lineage": "original_redraw_of_released_workspace_vector",
+      "license": "CC0-1.0",
+      "paint_channel_changes": [],
+      "region_label_changes": []
+    },
+    {
+      "asset_id": "core.rna.strand_linear",
+      "file": "svg/rna_strand_linear.svg",
+      "before_svg_sha256": "34f374f5b5758b6c333301636784d8158ccaf54c699251647cb0fd590fadc253",
+      "after_svg_sha256": "818242b15b7c996922896f56a93c10a60d79d8c1f7bbb6404c3f734ee1e165b4",
+      "before_metadata_sha256": "c7a21a93596a99455aa03c25c7421b018940757f1f2526bbe80e7cdb447d7d60",
+      "after_metadata_sha256": "0c117d8b333dc8f94f40c6b2fb41eb93c8bad76517f17821043ed0459984ffbd",
+      "lineage": "original_redraw_of_released_workspace_vector",
+      "license": "CC0-1.0",
+      "paint_channel_changes": [],
+      "region_label_changes": []
+    },
+    {
+      "asset_id": "core.mrna.transcript",
+      "file": "svg/mrna_transcript.svg",
+      "before_svg_sha256": "0776a35f9adb9125324a4b854daf6c2af53b43bf5b994c4b3ee1881730b90f09",
+      "after_svg_sha256": "4f3fb3ce486bd4819b20d2f3bfb0902c14b17f7bf228e9b4e0360d23e8576fc2",
+      "before_metadata_sha256": "7e6af7ef85e3676d2ae9c4a0318afa75e17cc794799cc0684922dd765ac04c14",
+      "after_metadata_sha256": "51e97a7e9fd0bf8e8e9a165e3936b0ced70c562d5c8aeea74651d748f88c22f7",
+      "lineage": "original_redraw_of_released_workspace_vector",
+      "license": "CC0-1.0",
+      "paint_channel_changes": [],
+      "region_label_changes": [
+        {
+          "region_id": "coding_region",
+          "before": "Segmented coding sequence",
+          "after": "Coding sequence"
+        }
+      ]
+    },
+    {
+      "asset_id": "core.rna.sirna",
+      "file": "svg/sirna_duplex.svg",
+      "before_svg_sha256": "14a56b82de6af39f319c322acd3c46231858fee166152d08df2eb278e5c7efd6",
+      "after_svg_sha256": "e10dad23db86cfbd1a9009b5d99161d361ade67aff4477f16a687ae7726b7da5",
+      "before_metadata_sha256": "c63c0432f3a1de1fd69019d506bd6ce7db64ad86b9bee679df7d50c75c9a0110",
+      "after_metadata_sha256": "4066a5fc11a4e7a85919c2119479fd0526fb5482ef2ca3690527bb0c54137ce3",
+      "lineage": "original_redraw_of_released_workspace_vector",
+      "license": "CC0-1.0",
+      "paint_channel_changes": [],
+      "region_label_changes": []
+    }
+  ]
+}

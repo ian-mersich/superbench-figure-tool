@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">ER–Mitochondrion Contact Site</title>
+  <desc id="desc">Separate ER and mitochondrial membranes apposed through illustrative contact-site tethers.</desc>
+  <g data-region="er_membrane" fill="#8EC8FF" stroke="none">
+    <path d="M20 17Q62 13 106 24Q115 29 109 38Q107 42 100 40Q61 29 24 33Q14 34 15 25Q14 19 20 17ZM23 23Q64 20 104 30Q107 31 103 34Q63 25 25 27Q21 28 21 26Z" fill-rule="evenodd"/>
+  </g>
+  <g data-region="mitochondrial_membranes" fill="#C7F2EC" stroke="none">
+    <path d="M17 75Q19 48 51 49Q69 45 87 53Q113 58 112 82Q109 108 74 111Q43 115 24 98Q15 88 17 75ZM24 76Q26 56 52 55Q71 51 87 60Q107 66 105 82Q102 101 74 105Q45 109 29 94Q22 87 24 76Z" fill-rule="evenodd"/><path d="M31 77Q33 62 54 62Q73 56 88 67Q99 75 96 85Q92 97 74 98Q47 103 34 90Q29 84 31 77ZM38 78Q40 67 55 68Q64 65 72 66L67 79Q64 87 71 88Q76 88 78 77L81 69Q92 73 89 84Q85 92 75 92H58L62 79Q64 74 60 72Q56 72 54 79L50 94Q43 91 40 87Q37 83 38 78Z" fill-rule="evenodd"/>
+  </g>
+  <g data-region="contact_tethers" fill="#B8B5FF" stroke="none">
+    <path d="M42 31L49 32L52 51L45 53Z M75 35L82 37L80 54L73 51Z"/>
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20 17Q62 13 106 24Q115 29 109 38Q107 42 100 40Q61 29 24 33Q14 34 15 25Q14 19 20 17Z"/><path d="M23 23Q64 20 104 30Q107 31 103 34Q63 25 25 27Q21 28 21 26Z"/><path d="M17 75Q19 48 51 49Q69 45 87 53Q113 58 112 82Q109 108 74 111Q43 115 24 98Q15 88 17 75Z"/><path d="M24 76Q26 56 52 55Q71 51 87 60Q107 66 105 82Q102 101 74 105Q45 109 29 94Q22 87 24 76Z"/><path d="M31 77Q33 62 54 62Q73 56 88 67Q99 75 96 85Q92 97 74 98Q47 103 34 90Q29 84 31 77Z"/><path d="M38 78Q40 67 55 68Q64 65 72 66L67 79Q64 87 71 88Q76 88 78 77L81 69Q92 73 89 84Q85 92 75 92H58L62 79Q64 74 60 72Q56 72 54 79L50 94Q43 91 40 87Q37 83 38 78Z"/><path d="M42 31L49 32L52 51L45 53Z M75 35L82 37L80 54L73 51Z"/>
+  </g>
+</svg>

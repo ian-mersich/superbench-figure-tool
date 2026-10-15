@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Adherens Junction</title>
+  <desc id="desc">Illustrative cadherin-mediated contact between adjacent cells, with cytoplasmic adhesion adaptors connecting the contact to actin filaments.</desc>
+  <g data-region="membrane" fill="#C7F2EC" stroke="none">
+    <path d="M46 18H54V110H46Z M74 18H82V110H74Z"/>
+  </g>
+  <g data-region="cadherin" fill="#8EC8FF" stroke="none">
+    <path d="M43 47H56C60 47 63 49 66 53L63 57C60 54 57 53 54 54H43Z"/><path d="M85 47H72C68 47 65 49 62 53L65 57C68 54 71 53 74 54H85Z"/><path d="M43 76H56C60 76 63 78 66 82L63 86C60 83 57 82 54 83H43Z"/><path d="M85 76H72C68 76 65 78 62 82L65 86C68 83 71 82 74 83H85Z"/>
+  </g>
+  <g data-region="adaptor" fill="#B8B5FF" stroke="none">
+    <path d="M35 40H40L45 47V55L40 61H35L39 52Z M35 69H40L45 76V84L40 90H35L39 81Z"/><path d="M93 40H88L83 47V55L88 61H93L89 52Z M93 69H88L83 76V84L88 90H93L89 81Z"/>
+  </g>
+  <g data-region="actin" fill="#E76F51" stroke="none">
+    <path d="M21 18H27C24 46 29 81 27 110H21C23 81 18 46 21 18Z"/><path d="M32 18H38C35 48 40 83 38 110H32C34 83 29 48 32 18Z"/><path d="M107 18H101C104 46 99 81 101 110H107C105 81 110 46 107 18Z"/><path d="M96 18H90C93 48 88 83 90 110H96C94 83 99 48 96 18Z"/>
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M46 18H54V44M46 18V44M46 58V73M54 58V73M46 87V110H54V87M74 18H82M74 18V44M82 18V44M74 58V73M82 58V73M74 87V110H82V87"/><path d="M43 47H56C60 47 63 49 66 53L63 57C60 54 57 53 54 54H43Z"/><path d="M85 47H72C68 47 65 49 62 53L65 57C68 54 71 53 74 54H85Z"/><path d="M43 76H56C60 76 63 78 66 82L63 86C60 83 57 82 54 83H43Z"/><path d="M85 76H72C68 76 65 78 62 82L65 86C68 83 71 82 74 83H85Z"/><path d="M35 40H40L45 47V55L40 61H35L39 52Z M35 69H40L45 76V84L40 90H35L39 81Z"/><path d="M93 40H88L83 47V55L88 61H93L89 52Z M93 69H88L83 76V84L88 90H93L89 81Z"/><path d="M21 18H27C24 46 29 81 27 110H21C23 81 18 46 21 18Z"/><path d="M32 18H38C35 48 40 83 38 110H32C34 83 29 48 32 18Z"/><path d="M107 18H101C104 46 99 81 101 110H107C105 81 110 46 107 18Z"/><path d="M96 18H90C93 48 88 83 90 110H96C94 83 99 48 96 18Z"/>
+  </g>
+</svg>

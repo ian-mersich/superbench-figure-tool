@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Autolysosome — Section</title>
+  <desc id="desc">Original schematic autolysosome with one outer limiting membrane, heterogeneous partially degraded cargo and open internal membrane remnants. It is distinguished from an autophagosome by its single outer membrane; marks do not quantify degradation or activity.</desc>
+  <path data-region="lumen" fill="#D9D7FF" d="M19 64C19 42 33 24 56 20C82 15 105 31 109 55C113 77 101 99 78 107C56 115 34 104 25 87C21 80 19 71 19 64Z"/>
+
+  <path data-region="membrane" fill="none" stroke="#8EC8FF" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" d="M19 64C19 42 33 24 56 20C82 15 105 31 109 55C113 77 101 99 78 107C56 115 34 104 25 87C21 80 19 71 19 64Z"/>
+  <g data-region="cargo" fill="#C7F2EC"><path d="M34 44C40 37 51 38 58 45L54 51L61 57C57 64 47 65 39 61L42 54L34 51Z"/><path d="M68 74L81 67L95 75L91 86L78 91L69 85L74 80Z"/><path d="M68 37C79 34 91 41 93 51L87 55C84 47 79 44 71 44Z"/></g>
+  <g data-region="enzyme" fill="#F4A261"><circle cx="36" cy="79" r="3"/><circle cx="58" cy="89" r="3.4"/><circle cx="72" cy="59" r="3"/><path d="M53 69C57 66 62 69 61 73C60 78 54 78 52 74C51 72 51 70 53 69Z"/></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M19 64C19 42 33 24 56 20C82 15 105 31 109 55C113 77 101 99 78 107C56 115 34 104 25 87C21 80 19 71 19 64Z" stroke-width="3.2"/>
+    <path d="M34 44C40 37 51 38 58 45L54 51L61 57C57 64 47 65 39 61L42 54L34 51ZM68 74L81 67L95 75L91 86L78 91L69 85L74 80ZM68 37C79 34 91 41 93 51L87 55C84 47 79 44 71 44Z" stroke-width="1.7"/>
+    <path d="M72 40C80 39 86 45 89 50" stroke-width="1.4"/>
+  </g>
+</svg>

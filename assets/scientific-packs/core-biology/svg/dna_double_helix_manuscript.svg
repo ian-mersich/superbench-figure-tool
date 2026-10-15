@@ -1,28 +1,30 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
   <title id="title">DNA Double Helix — Manuscript Line</title>
-  <desc id="desc">Restrained thin-line DNA double-helix companion with matched crossing backbones, base pairs, terminal accents, and editable semantic regions.</desc>
-
-  <g data-region="outline" fill="none" stroke="#66707A" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M40 19c34 20 34 70 0 90M88 19c-34 20-34 70 0 90" stroke-width="4.4"/>
-    <path d="M48 27 80 36M40 45l48 14M40 68l48 14M48 101l32-9" stroke-width="3"/>
-    <circle cx="40" cy="19" r="4.5" stroke-width="1.5"/><circle cx="88" cy="19" r="4.5" stroke-width="1.5"/>
-    <circle cx="40" cy="109" r="4.5" stroke-width="1.5"/><circle cx="88" cy="109" r="4.5" stroke-width="1.5"/>
+  <desc id="desc">Generic DNA helix schematic with smooth crossing backbones, connected evenly spaced base pairs, short terminal caps, and four editable color regions. Not a sequence or structural model.</desc>
+  <g data-region="base_pair" fill="none" stroke="#C58F8C" stroke-width="1.65" stroke-linecap="round">
+    <path d="M40.818 19.224 87.182 20.776"/>
+    <path d="M47.029 25.879 80.971 30.121"/>
+    <path d="M57.788 33.102 70.212 38.898"/>
+    <path d="M70.212 41.102 57.788 46.898"/>
+    <path d="M80.971 49.879 47.029 54.121"/>
+    <path d="M87.182 59.224 40.818 60.776"/>
+    <path d="M87.182 68.776 40.818 67.224"/>
+    <path d="M80.971 78.121 47.029 73.879"/>
+    <path d="M70.212 86.898 57.788 81.102"/>
+    <path d="M57.788 94.898 70.212 89.102"/>
+    <path d="M47.029 102.121 80.971 97.879"/>
+    <path d="M40.818 108.776 87.182 107.224"/>
   </g>
-
-  <g data-region="base_pair" fill="none" stroke="#C58F8C" stroke-linecap="round" stroke-width="2">
-    <path d="M48 27 80 36"/>
-    <path d="M40 45l48 14"/>
-    <path d="M40 68l48 14"/>
-    <path d="M48 101l32-9"/>
+  <g data-region="outline" stroke="#66707A" stroke-width="0.8" stroke-linejoin="round">
+    <g data-region="backbone" fill="#7E9DB2">
+      <path d="M41.1 16C41.1 18.652 43.353 21.636 47.703 25.009C52.054 28.382 58.286 32.058 64.591 36.072C70.896 40.086 77.202 44.44 81.758 49.111C86.314 53.782 89.1 58.836 89.1 64C89.1 69.164 86.314 74.218 81.758 78.889C77.202 83.56 70.896 87.914 64.591 91.928C58.286 95.942 52.054 99.618 47.703 102.991C43.353 106.364 41.1 109.348 41.1 112A1.1 1.1 0 0 1 38.9 112C38.9 108.223 41.82 104.768 46.355 101.252C50.891 97.736 57.148 94.058 63.409 90.072C69.671 86.086 75.853 81.793 80.183 77.353C84.513 72.914 86.9 68.407 86.9 64C86.9 59.593 84.513 55.086 80.183 50.647C75.853 46.207 69.671 41.914 63.409 37.928C57.148 33.942 50.891 30.264 46.355 26.748C41.82 23.232 38.9 19.777 38.9 16A1.1 1.1 0 0 1 41.1 16Z"/>
+      <path d="M89.1 16C89.1 21.164 86.314 26.218 81.758 30.889C77.202 35.56 70.896 39.914 64.591 43.928C58.286 47.942 52.054 51.618 47.703 54.991C43.353 58.364 41.1 61.348 41.1 64C41.1 66.652 43.353 69.636 47.703 73.009C52.054 76.382 58.286 80.058 64.591 84.072C70.896 88.086 77.202 92.44 81.758 97.111C86.314 101.782 89.1 106.836 89.1 112A1.1 1.1 0 0 1 86.9 112C86.9 107.593 84.513 103.086 80.183 98.647C75.853 94.207 69.671 89.914 63.409 85.928C57.148 81.942 50.891 78.264 46.355 74.748C41.82 71.232 38.9 67.777 38.9 64C38.9 60.223 41.82 56.768 46.355 53.252C50.891 49.736 57.148 46.058 63.409 42.072C69.671 38.086 75.853 33.793 80.183 29.353C84.513 24.914 86.9 20.407 86.9 16A1.1 1.1 0 0 1 89.1 16Z"/>
+    </g>
   </g>
-
-  <g data-region="backbone" fill="none" stroke="#7E9DB2" stroke-linecap="round" stroke-width="2.15">
-    <path d="M40 19c34 20 34 70 0 90"/>
-    <path d="M88 19c-34 20-34 70 0 90"/>
-  </g>
-
-  <g data-region="accent" fill="#AFA8D2">
-    <circle cx="40" cy="19" r="4.5"/><circle cx="88" cy="19" r="4.5"/>
-    <circle cx="40" cy="109" r="4.5"/><circle cx="88" cy="109" r="4.5"/>
+  <g data-region="accent" fill="#AFA8D2" stroke="none">
+    <path d="M41.1 16C41.1 16.573 41.194 17.147 41.389 17.742A1.1 1.1 0 0 1 39.3 18.429C39.037 17.631 38.9 16.816 38.9 16A1.1 1.1 0 0 1 41.1 16Z"/>
+    <path d="M41.389 110.258C41.194 110.853 41.1 111.427 41.1 112A1.1 1.1 0 0 1 38.9 112C38.9 111.184 39.037 110.369 39.3 109.571A1.1 1.1 0 0 1 41.389 110.258Z"/>
+    <path d="M89.1 16C89.1 17.115 88.975 18.23 88.729 19.337A1.1 1.1 0 0 1 86.582 18.86C86.794 17.904 86.9 16.952 86.9 16A1.1 1.1 0 0 1 89.1 16Z"/>
+    <path d="M88.729 108.663C88.975 109.77 89.1 110.885 89.1 112A1.1 1.1 0 0 1 86.9 112C86.9 111.048 86.794 110.096 86.582 109.14A1.1 1.1 0 0 1 88.729 108.663Z"/>
   </g>
 </svg>

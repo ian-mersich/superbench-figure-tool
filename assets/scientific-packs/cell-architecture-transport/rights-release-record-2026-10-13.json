@@ -1,0 +1,774 @@
+{
+  "schema_id": "figureStudio.scientificAssetLicenseReleaseAudit.v1",
+  "audit_id": "cell-architecture-transport.rights-cleared-quality-pending.2026-10-13",
+  "audit_date": "2026-10-13",
+  "pack_id": "cell-architecture-transport",
+  "status": "rights_cleared_quality_pending",
+  "release_effective_date": null,
+  "concept_count": 20,
+  "asset_count": 28,
+  "rights_cleared_count": 28,
+  "third_party_component_count": 0,
+  "license_selection_pending_count": 0,
+  "public_distribution_authorized": true,
+  "selected_public_license": "CC0-1.0",
+  "license_notice": "LICENSE-ASSETS-CC0-1.0.md",
+  "rights_basis": {
+    "status": "owner_attested_original_output",
+    "scope": "all_assets_in_pack",
+    "pack_id": "cell-architecture-transport",
+    "authorization_record_id": "rights.cell-architecture-transport.owner-cc0.2026-10-10",
+    "qualification": "This is an owner license grant for the recorded original material. It is not a non-infringement, patent, trademark, privacy, publicity, or endorsement warranty; product-release quality review remains separate."
+  },
+  "source_records": [
+    {
+      "id": "source.cell-architecture-transport.2026-10-07",
+      "kind": "clean_room_generation_record",
+      "pack_id": "cell-architecture-transport",
+      "scope": "all_assets_in_pack",
+      "created_on": "2026-10-07",
+      "generated_by": "Figure Tool AI-assisted original SVG authoring",
+      "third_party_material": "none_declared",
+      "statement": "Original editable SVG geometry constructed for the Figure Tool from cell-architecture-transport concepts. Primary research informs biological relationships only. No published or proprietary artwork, tracing, screenshot, structural coordinates, measured data or third-party vector component was incorporated. This source record documents original construction and does not decide product release.",
+      "scientific_references": [
+        {
+          "id": "zhao-2018-tight-junction",
+          "citation": "Zhao J, Krystofiak ES, Ballesteros A, Cui R, Van Itallie CM, Anderson JM, Fenollar-Ferrer C, Kachar B. Multiple claudin–claudin cis interfaces are required for tight junction strand formation and inherent flexibility. Communications Biology. 2018;1:50.",
+          "doi": "10.1038/s42003-018-0051-5",
+          "url": "https://www.nature.com/articles/s42003-018-0051-5",
+          "figure": "Figure 1",
+          "use": "Live and freeze-fracture strand images support repeated, flexible strand contacts. Show apposed cell membranes with tight-junction contacts, without a central gap-junction lumen. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "wang-2022-adherens-junction",
+          "citation": "Wang A, Dunn AR, Weis WI. Mechanism of the cadherin–catenin F-actin catch bond interaction. eLife. 2022;11:e80130.",
+          "doi": "10.7554/eLife.80130",
+          "url": "https://elifesciences.org/articles/80130",
+          "figure": "Figure 1, especially panel A",
+          "use": "Preserve the extracellular cadherin trans contact between opposed membranes and the intracellular cadherin–catenin connection to actin. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "schmitt-2022-desmosome",
+          "citation": "Schmitt T, Pircher J, Steinert L, Meier K, Ghoreschi K, Vielmuth F, Kugelmann D, Waschke J. Dsg1 and Dsg3 Composition of Desmosomes Across Human Epidermis and Alterations in Pemphigus Vulgaris Patient Skin. Frontiers in Immunology. 2022;13:884241.",
+          "doi": "10.3389/fimmu.2022.884241",
+          "url": "https://www.frontiersin.org/journals/immunology/articles/10.3389/fimmu.2022.884241/full",
+          "figure": "Figure 1A and C",
+          "use": "Use extracellular desmosomal cadherin contact, paired intracellular plaques and outward keratin intermediate filaments. Broad plaques distinguish the contact from the actin-linked adherens junction. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "myers-2018-gap-junction",
+          "citation": "Myers JB, Haddad BG, O’Neill SE, Chorev DS, Yoshioka CC, Robinson CV, Zuckerman DM, Reichow SL. Structure of native lens connexin-46/50 intercellular channels by CryoEM. Nature. 2018;564:372–377.",
+          "doi": "10.1038/s41586-018-0786-7",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6309215/",
+          "figure": "Figure 1, especially panels b and d",
+          "use": "Dock two connexon hemichannels across two opposed membranes and retain a continuous lumen joining their cytoplasmic sides. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "kanchanawong-2010-focal-adhesion",
+          "citation": "Kanchanawong P, Shtengel G, Pasapera AM, Ramko EB, Davidson MW, Hess HF, Waterman CM. Nanoscale architecture of integrin-based cell adhesions. Nature. 2010;468:580–584.",
+          "doi": "10.1038/nature09621",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3046339/",
+          "figure": "Figure 4, especially panel d",
+          "use": "Keep matrix extracellular, integrin across one basal membrane, and an intracellular adhesion complex between integrin and actin stress fibres. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "geerts-1999-hemidesmosome",
+          "citation": "Geerts D, Fontao L, Nievers MG, Schaapveld RQJ, Purkis PE, Wheeler GN, Lane EB, Leigh IM, Sonnenberg A. Binding of integrin α6β4 to plectin prevents plectin association with F-actin but does not interfere with intermediate filament binding. Journal of Cell Biology. 1999;147:417–434.",
+          "doi": "10.1083/jcb.147.2.417",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2174221/",
+          "figure": "Figure 1",
+          "use": "The β4-integrin and plectin domain maps distinguish integrin-binding and intermediate-filament-binding roles. Show a cytoplasmic linker between the membrane adhesion complex and keratin filaments. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "belyy-2016-motor-topology",
+          "citation": "Belyy V, Schlager MA, Foster H, Reimer AE, Carter AP, Yildiz A. The mammalian dynein–dynactin complex is a strong opponent to kinesin in a tug-of-war competition. Nature Cell Biology. 2016;18:1018–1024.",
+          "doi": "10.1038/ncb3393",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5007201/",
+          "figure": "Figure 2, especially panels c, d and e",
+          "use": "Differentiate compact kinesin-1 motor heads and a long stalk from dynein AAA+ rings, microtubule-binding stalks and the tail-associated dynactin/adaptor complex. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "zanetti-2013-copii",
+          "citation": "Zanetti G, Prinz S, Daum S, Meister A, Schekman R, Bacia K, Briggs JAG. The structure of the COPII transport-vesicle coat assembled on membranes. eLife. 2013;2:e00951.",
+          "doi": "10.7554/eLife.00951",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3778437/",
+          "figure": "Figure 1",
+          "use": "Distinct membrane-proximal and cage-like outer coats surround a continuous ER bud. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "dodonova-2017-copi",
+          "citation": "Dodonova SO, Aderhold P, Kopp J, et al. 9Å structure of the COPI coat reveals that the Arf1 GTPase occupies two contrasting molecular environments. eLife. 2017;6:e26691.",
+          "doi": "10.7554/eLife.26691",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5482573/",
+          "figure": "Figure 2 and Figure 2—figure supplement 3",
+          "use": "Separate membrane-proximal coatomer, outer coatomer and membrane-associated Arf1. Use original leaf-like coat units, distinct from the open COPII cage. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "diao-2015-autophagic-fusion",
+          "citation": "Diao J, Liu R, Rong Y, et al. ATG14 promotes membrane tethering and fusion of autophagosomes to endolysosomes. Nature. 2015;520:563–566.",
+          "doi": "10.1038/nature14147",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4442024/",
+          "figure": "Figure 2c,f and Figure 4b",
+          "use": "Four SNARE helices from opposed membranes; sealed double-membrane autophagosomes distinguished from autolysosomes. Retain the inner autophagic membrane after outer-membrane fusion. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "chi-2014-mvb",
+          "citation": "Chi RJ, Liu J, West M, Wang J, Odorizzi G, Burd CG. Fission of SNX-BAR–coated endosomal retrograde transport carriers is promoted by the dynamin-related protein Vps1. Journal of Cell Biology. 2014;204:793–806.",
+          "doi": "10.1083/jcb.201309084",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3941054/",
+          "figure": "Figure 8",
+          "use": "Represent a limiting endosomal membrane enclosing multiple intraluminal vesicles. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "suzuki-2021-recycling",
+          "citation": "Suzuki SW, Oishi A, Nikulin N, et al. A PX-BAR protein Mvp1/SNX8 and a dynamin-like GTPase Vps1 drive endosomal recycling. eLife. 2021;10:e69883.",
+          "doi": "10.7554/eLife.69883",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8504969/",
+          "figure": "Figure 7",
+          "use": "Endosomal membrane continues into a sorting tubule; membrane-associated cargo and an illustrative external sorting coat stay distinct. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "lowe-2015-importin",
+          "citation": "Lowe AR, Tang JH, Yassif J, et al. Importin-β modulates the permeability of the nuclear pore complex in a Ran-dependent manner. eLife. 2015;4:e04052.",
+          "doi": "10.7554/eLife.04052",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4375889/",
+          "figure": "Figure 1A and Figure 7",
+          "use": "Keep nuclear-envelope boundary, pore channel, receptor-bound cargo and import direction distinct; do not present an isolated pore as cargo import. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "csordas-2006-er-contact",
+          "citation": "Csordás G, Renken C, Várnai P, et al. Structural and functional features and significance of the physical linkage between ER and mitochondria. Journal of Cell Biology. 2006;174:915–921.",
+          "doi": "10.1083/jcb.200604016",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2064383/",
+          "figure": "Figure 1",
+          "use": "Two separate organelles are apposed and linked by illustrative tethers; mitochondrial membranes and ER lumen remain separate. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "nahidiazar-2015-hemidesmosome",
+          "citation": "Nahidiazar L, Kreft M, van den Broek B, Secades P, Manders EMM, Sonnenberg A, Jalink K. The molecular architecture of hemidesmosomes, as revealed with super-resolution microscopy. Journal of Cell Science. 2015;128:3714–3719.",
+          "doi": "10.1242/jcs.171892",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/26330528/",
+          "figure": "Figures 1, 2D and 4: text and captions only",
+          "use": "Plectin and other cytolinkers connect β4 integrin and keratin; basal tissue topology differs from a simple direct integrin–IF contact, and exact measured distances are omitted. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "stahley-2016-desmosome",
+          "citation": "Stahley SN, Bartle EI, Atkinson CE, Kowalczyk AP, Mattheyses AL. Molecular organization of the desmosome as revealed by direct stochastic optical reconstruction microscopy. Journal of Cell Science. 2016;129:2897–2904.",
+          "doi": "10.1242/jcs.185785",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5004873/",
+          "figure": "Figure 1A and Figures 2–3: text and captions only",
+          "use": "Opposed plaque organization and the desmoplakin–IF attachment distinguish desmosomes from cadherin–actin adherens junctions. Concepts only; no source artwork or geometry copied."
+        }
+      ],
+      "family_expansion": {
+        "revision_id": "2026-10-13-family-expansion",
+        "created_on": "2026-10-13",
+        "statement": "Original editable SVG coordinates constructed afresh for the Cell Architecture & Transport family. Inspected primary figure pixels inform biological topology and limitations only. No published or proprietary artwork, tracing, screenshot, structural coordinates, measured observations or third-party vector component was incorporated. This original-art construction record does not grant rights or approve product release.",
+        "scientific_references": [
+          {
+            "id": "zhao-2018-tight-junction",
+            "citation": "Zhao J, Krystofiak ES, Ballesteros A, Cui R, Van Itallie CM, Anderson JM, Fenollar-Ferrer C, Kachar B. Multiple claudin–claudin cis interfaces are required for tight junction strand formation and inherent flexibility. Communications Biology. 2018;1:50.",
+            "doi": "10.1038/s42003-018-0051-5",
+            "url": "https://www.nature.com/articles/s42003-018-0051-5",
+            "figure": "Figure 1",
+            "use": "Live and freeze-fracture strand images support repeated, flexible strand contacts. Show apposed cell membranes with tight-junction contacts, without a central gap-junction lumen. Concepts only; no source artwork or geometry copied."
+          },
+          {
+            "id": "wang-2022-adherens-junction",
+            "citation": "Wang A, Dunn AR, Weis WI. Mechanism of the cadherin–catenin F-actin catch bond interaction. eLife. 2022;11:e80130.",
+            "doi": "10.7554/eLife.80130",
+            "url": "https://elifesciences.org/articles/80130",
+            "figure": "Figure 1, especially panel A",
+            "use": "Preserve the extracellular cadherin trans contact between opposed membranes and the intracellular cadherin–catenin connection to actin. Concepts only; no source artwork or geometry copied."
+          },
+          {
+            "id": "schmitt-2022-desmosome",
+            "citation": "Schmitt T, Pircher J, Steinert L, Meier K, Ghoreschi K, Vielmuth F, Kugelmann D, Waschke J. Dsg1 and Dsg3 Composition of Desmosomes Across Human Epidermis and Alterations in Pemphigus Vulgaris Patient Skin. Frontiers in Immunology. 2022;13:884241.",
+            "doi": "10.3389/fimmu.2022.884241",
+            "url": "https://www.frontiersin.org/journals/immunology/articles/10.3389/fimmu.2022.884241/full",
+            "figure": "Figure 1A and C",
+            "use": "Use extracellular desmosomal cadherin contact, paired intracellular plaques and outward keratin intermediate filaments. Broad plaques distinguish the contact from the actin-linked adherens junction. Concepts only; no source artwork or geometry copied."
+          },
+          {
+            "id": "myers-2018-gap-junction",
+            "citation": "Myers JB, Haddad BG, O’Neill SE, Chorev DS, Yoshioka CC, Robinson CV, Zuckerman DM, Reichow SL. Structure of native lens connexin-46/50 intercellular channels by CryoEM. Nature. 2018;564:372–377.",
+            "doi": "10.1038/s41586-018-0786-7",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6309215/",
+            "figure": "Figure 1, especially panels b and d",
+            "use": "Dock two connexon hemichannels across two opposed membranes and retain a continuous lumen joining their cytoplasmic sides. Concepts only; no source artwork or geometry copied."
+          },
+          {
+            "id": "kanchanawong-2010-focal-adhesion",
+            "citation": "Kanchanawong P, Shtengel G, Pasapera AM, Ramko EB, Davidson MW, Hess HF, Waterman CM. Nanoscale architecture of integrin-based cell adhesions. Nature. 2010;468:580–584.",
+            "doi": "10.1038/nature09621",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3046339/",
+            "figure": "Figure 1d,f (en-face integrin adhesion and actin); Figure 4d (cross-section layer relationship)",
+            "use": "En-face measured microscopy supports elongated adhesion footprints with associated actin; Figure 4d supports matrix outside one basal membrane and an intracellular adhesion assembly between integrin and actin. Source positions, size, colors and measured spacing are not reused. Concepts only; no source artwork or geometry copied."
+          },
+          {
+            "id": "rezniczek-1998-hemidesmosome",
+            "citation": "Rezniczek GA, de Pereda JM, Reipert S, Wiche G. Linking integrin alpha6beta4-based cell adhesion to the intermediate filament cytoskeleton: direct interaction between the beta4 subunit and plectin at multiple molecular sites. Journal of Cell Biology. 1998;141:209–225.",
+            "doi": "10.1083/jcb.141.1.209",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2132717/",
+            "figure": "Figure 1A–B",
+            "use": "The integrin beta4 and plectin domain maps distinguish membrane-integrin binding from intermediate-filament-binding roles. Keep a cytoplasmic linker between membrane adhesion and intermediate filaments. Concepts only; no source artwork or geometry copied."
+          },
+          {
+            "id": "belyy-2016-motor-topology",
+            "citation": "Belyy V, Schlager MA, Foster H, Reimer AE, Carter AP, Yildiz A. The mammalian dynein–dynactin complex is a strong opponent to kinesin in a tug-of-war competition. Nature Cell Biology. 2016;18:1018–1024.",
+            "doi": "10.1038/ncb3393",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5007201/",
+            "figure": "Figure 2, especially panels c, d and e",
+            "use": "Differentiate compact kinesin-1 motor heads and a long stalk from dynein AAA+ rings, microtubule-binding stalks and the tail-associated dynactin/adaptor complex. Concepts only; no source artwork or geometry copied."
+          },
+          {
+            "id": "zanetti-2013-copii",
+            "citation": "Zanetti G, Prinz S, Daum S, Meister A, Schekman R, Bacia K, Briggs JAG. The structure of the COPII transport-vesicle coat assembled on membranes. eLife. 2013;2:e00951.",
+            "doi": "10.7554/eLife.00951",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3778437/",
+            "figure": "Figure 1",
+            "use": "Distinct membrane-proximal and cage-like outer coats surround a continuous ER bud. Concepts only; no source artwork or geometry copied."
+          },
+          {
+            "id": "dodonova-2017-copi",
+            "citation": "Dodonova SO, Aderhold P, Kopp J, et al. 9Å structure of the COPI coat reveals that the Arf1 GTPase occupies two contrasting molecular environments. eLife. 2017;6:e26691.",
+            "doi": "10.7554/eLife.26691",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5482573/",
+            "figure": "Figure 2 and Figure 2—figure supplement 3",
+            "use": "Separate membrane-proximal coatomer, outer coatomer and membrane-associated Arf1. Use original leaf-like coat units, distinct from the open COPII cage. Concepts only; no source artwork or geometry copied."
+          },
+          {
+            "id": "diao-2015-autophagic-fusion",
+            "citation": "Diao J, Liu R, Rong Y, et al. ATG14 promotes membrane tethering and fusion of autophagosomes to endolysosomes. Nature. 2015;520:563–566.",
+            "doi": "10.1038/nature14147",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4442024/",
+            "figure": "Figure 2c,f (published pixels inspected); Figure 4b (primary context/caption only in this expansion)",
+            "use": "Four SNARE helices from opposed membranes; sealed double-membrane autophagosomes distinguished from autolysosomes. Retain the inner autophagic membrane after outer-membrane fusion. Concepts only; no source artwork or geometry copied."
+          },
+          {
+            "id": "chi-2014-mvb",
+            "citation": "Chi RJ, Liu J, West M, Wang J, Odorizzi G, Burd CG. Fission of SNX-BAR–coated endosomal retrograde transport carriers is promoted by the dynamin-related protein Vps1. Journal of Cell Biology. 2014;204:793–806.",
+            "doi": "10.1083/jcb.201309084",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3941054/",
+            "figure": "Figure 8",
+            "use": "Represent a limiting endosomal membrane enclosing multiple intraluminal vesicles. Concepts only; no source artwork or geometry copied."
+          },
+          {
+            "id": "suzuki-2021-recycling",
+            "citation": "Suzuki SW, Oishi A, Nikulin N, et al. A PX-BAR protein Mvp1/SNX8 and a dynamin-like GTPase Vps1 drive endosomal recycling. eLife. 2021;10:e69883.",
+            "doi": "10.7554/eLife.69883",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8504969/",
+            "figure": "Figure 7",
+            "use": "Endosomal membrane continues into a sorting tubule; membrane-associated cargo and an illustrative external sorting coat stay distinct. Concepts only; no source artwork or geometry copied."
+          },
+          {
+            "id": "lowe-2015-importin",
+            "citation": "Lowe AR, Tang JH, Yassif J, et al. Importin-β modulates the permeability of the nuclear pore complex in a Ran-dependent manner. eLife. 2015;4:e04052.",
+            "doi": "10.7554/eLife.04052",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4375889/",
+            "figure": "Figure 1A and Figure 7",
+            "use": "Keep nuclear-envelope boundary, pore channel, receptor-bound cargo and import direction distinct; do not present an isolated pore as cargo import. Concepts only; no source artwork or geometry copied."
+          },
+          {
+            "id": "csordas-2006-er-contact",
+            "citation": "Csordás G, Renken C, Várnai P, et al. Structural and functional features and significance of the physical linkage between ER and mitochondria. Journal of Cell Biology. 2006;174:915–921.",
+            "doi": "10.1083/jcb.200604016",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2064383/",
+            "figure": "Figure 1",
+            "use": "Two separate organelles are apposed and linked by illustrative tethers; mitochondrial membranes and ER lumen remain separate. Concepts only; no source artwork or geometry copied."
+          },
+          {
+            "id": "lombardo-2017-myosin-va",
+            "citation": "Lombardo AT, Nelson SR, Ali MY, et al. Myosin Va molecular motors manoeuvre liposome cargo through suspended actin filament intersections in vitro. Nature Communications. 2017;8:15692.",
+            "doi": "10.1038/ncomms15692",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5461480/",
+            "figure": "Figure 1a–b",
+            "use": "Show compact actin-bound motor heads, longer lever-arm connections and a symbolic lipid-bound cargo. Actin differs visibly from the microtubule lattice used for kinesin and dynein. Concepts only; no source artwork or geometry copied."
+          },
+          {
+            "id": "prinslow-2019-cis-snare",
+            "citation": "Prinslow EA, Stepien KP, Pan YZ, Xu J, Rizo J. Multiple factors maintain assembled trans-SNARE complexes in the presence of NSF and alphaSNAP. eLife. 2019;8:e38880.",
+            "doi": "10.7554/eLife.38880",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6353594/",
+            "figure": "Figure 7A–B",
+            "use": "Contrast a cis bundle with both membrane-spanning anchors in one membrane against a trans bundle anchored across two opposed membranes. Keep three Q helices and one R helix; the paired SNAP helices are not transmembrane. Concepts only; no source artwork or geometry copied."
+          },
+          {
+            "id": "wollert-2009-escrt",
+            "citation": "Wollert T, Wunder C, Lippincott-Schwartz J, Hurley JH. Membrane scission by the ESCRT-III complex. Nature. 2009;458:172–177.",
+            "doi": "10.1038/nature07836",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2743992/",
+            "figure": "Figure 6, initial open-neck states; Figures 2–3 for compartment topology",
+            "use": "Show an inward membrane invagination whose interior remains continuous with cytoplasm through an open neck. A symbolic ESCRT assembly stays on the cytoplasmic face of that neck; endosomal lumen surrounds the bud. Concepts only; no source artwork or geometry copied."
+          },
+          {
+            "id": "monecke-2013-exportin",
+            "citation": "Monecke T, Haselbach D, Voss B, et al. Structural basis for cooperativity of CRM1 export complex formation. Proceedings of the National Academy of Sciences USA. 2013;110:960–965.",
+            "doi": "10.1073/pnas.1215214110",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3549083/",
+            "figure": "Figure 6, receptor–RanGTP–cargo export complex and nuclear pore context",
+            "use": "Keep export receptor, RanGTP and cargo individually editable, associated on the nuclear side of a separate envelope/pore, with an outward direction cue. Concepts only; no source artwork or geometry copied."
+          },
+          {
+            "id": "nahidiazar-2015-hemidesmosome",
+            "citation": "Nahidiazar L, Kreft M, van den Broek B, Secades P, Manders EMM, Sonnenberg A, Jalink K. The molecular architecture of hemidesmosomes, as revealed with super-resolution microscopy. Journal of Cell Science. 2015;128:3714–3719.",
+            "doi": "10.1242/jcs.171892",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/26330528/",
+            "figure": "Figures 1, 2D and 4: text and captions only",
+            "use": "Plectin and other cytolinkers connect β4 integrin and keratin; basal tissue topology differs from a simple direct integrin–IF contact, and exact measured distances are omitted. Concepts only; no source artwork or geometry copied."
+          },
+          {
+            "id": "stahley-2016-desmosome",
+            "citation": "Stahley SN, Bartle EI, Atkinson CE, Kowalczyk AP, Mattheyses AL. Molecular organization of the desmosome as revealed by direct stochastic optical reconstruction microscopy. Journal of Cell Science. 2016;129:2897–2904.",
+            "doi": "10.1242/jcs.185785",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5004873/",
+            "figure": "Figure 1A and Figures 2–3: text and captions only",
+            "use": "Opposed plaque organization and the desmoplakin–IF attachment distinguish desmosomes from cadherin–actin adherens junctions. Concepts only; no source artwork or geometry copied."
+          },
+          {
+            "id": "geerts-1999-hemidesmosome",
+            "citation": "Geerts D, Fontao L, Nievers MG, Schaapveld RQJ, Purkis PE, Wheeler GN, Lane EB, Leigh IM, Sonnenberg A. Binding of integrin α6β4 to plectin prevents plectin association with F-actin but does not interfere with intermediate filament binding. Journal of Cell Biology. 1999;147:417–434.",
+            "doi": "10.1083/jcb.147.2.417",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2174221/",
+            "figure": "Primary abstract and text; Figure 1 is a Western blot, not the inspected domain map",
+            "use": "Integrin beta4 binds plectin; intermediate-filament attachment is preserved while association of plectin with F-actin is inhibited. The hemidesmosome is not an actin-linked focal adhesion. Concepts only; no source artwork or geometry copied."
+          }
+        ],
+        "predecessor": "revisions/2026-10-13-family-expansion-predecessor",
+        "legacy_refresh_count": 16,
+        "added_drawing_count": 12,
+        "reference_corrections": [
+          {
+            "date": "2026-10-13",
+            "previous_reference_id": "geerts-1999-hemidesmosome",
+            "correct_inspected_reference_id": "rezniczek-1998-hemidesmosome",
+            "reason": "Inspected JCB15097.f1.jpg is Rezniczek1998 Figure1A–B (PMC2132717), not Geerts1999 Figure1 (a Western blot, PMC2174221). Current references corrected; original immutable predecessor/source record retained.",
+            "scientific_effect": "No change to SVG geometry, named parts, paints or biological topology; primary sources support the cytoplasmic plectin link to intermediate filaments."
+          }
+        ]
+      }
+    }
+  ],
+  "rights_records": [
+    {
+      "id": "rights.cell-architecture-transport.owner-cc0.2026-10-10",
+      "kind": "owner_license_grant",
+      "pack_id": "cell-architecture-transport",
+      "scope": "all_assets_in_pack",
+      "status": "rights_cleared",
+      "public_distribution_authorized": true,
+      "selected_public_license": "CC0-1.0",
+      "rights_basis": "owner_attested_original_output",
+      "third_party_material": "none_declared",
+      "effective_date": "2026-10-10",
+      "statement": "The workspace owner grants CC0 1.0 permission for the original artwork and asset-specific metadata in the cell-architecture-transport pack, effective 2026-10-10. This grant does not approve the pack for product release.",
+      "qualification": "This is an owner license grant for the recorded original material. It is not a non-infringement, patent, trademark, privacy, publicity, or endorsement warranty; product-release quality review remains separate."
+    }
+  ],
+  "license_candidates": [
+    {
+      "id": "CC0-1.0",
+      "selected": true,
+      "owner_action_required": false,
+      "rationale": "Explicit workspace-owner authorization recorded for this original artwork."
+    }
+  ],
+  "release_blocker": "CC0 rights are cleared. Product-level release approval remains pending and must be recorded separately.",
+  "assets": [
+    {
+      "asset_id": "cellarch.membrane_signaling.tight_junction",
+      "file": "svg/tight_junction.svg",
+      "source_type": "clean_room_original_vector",
+      "source_record_id": "source.cell-architecture-transport.2026-10-07",
+      "rights_record_id": "rights.cell-architecture-transport.owner-cc0.2026-10-10",
+      "current_license": "CC0-1.0",
+      "third_party_material": "none_declared",
+      "rights_basis": "owner_attested_original_output",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "sha256": "f68258cc8e6fc5c038cb4f1f723264c19b88313a0101151595e3dd8543363a7a",
+      "provenance_sha256": "69bf4230a00746ff43330cdc732df1dd75e6fe4a36253d89a276e8b364b051b7"
+    },
+    {
+      "asset_id": "cellarch.membrane_signaling.adherens_junction",
+      "file": "svg/adherens_junction.svg",
+      "source_type": "clean_room_original_vector",
+      "source_record_id": "source.cell-architecture-transport.2026-10-07",
+      "rights_record_id": "rights.cell-architecture-transport.owner-cc0.2026-10-10",
+      "current_license": "CC0-1.0",
+      "third_party_material": "none_declared",
+      "rights_basis": "owner_attested_original_output",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "sha256": "16e92610b5790af2784f4d473d76d9c3e06e8c4fda8ef4bbfa1f64980c606210",
+      "provenance_sha256": "69bf4230a00746ff43330cdc732df1dd75e6fe4a36253d89a276e8b364b051b7"
+    },
+    {
+      "asset_id": "cellarch.membrane_signaling.desmosome",
+      "file": "svg/desmosome.svg",
+      "source_type": "clean_room_original_vector",
+      "source_record_id": "source.cell-architecture-transport.2026-10-07",
+      "rights_record_id": "rights.cell-architecture-transport.owner-cc0.2026-10-10",
+      "current_license": "CC0-1.0",
+      "third_party_material": "none_declared",
+      "rights_basis": "owner_attested_original_output",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "sha256": "c345e6e0d54cfcbde415dd90155a53c4be953b3672baddd55b3051b4731302b7",
+      "provenance_sha256": "69bf4230a00746ff43330cdc732df1dd75e6fe4a36253d89a276e8b364b051b7"
+    },
+    {
+      "asset_id": "cellarch.membrane_signaling.gap_junction",
+      "file": "svg/gap_junction.svg",
+      "source_type": "clean_room_original_vector",
+      "source_record_id": "source.cell-architecture-transport.2026-10-07",
+      "rights_record_id": "rights.cell-architecture-transport.owner-cc0.2026-10-10",
+      "current_license": "CC0-1.0",
+      "third_party_material": "none_declared",
+      "rights_basis": "owner_attested_original_output",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "sha256": "b6c856af34730bbd5bbcd51803b2f106d816caa7497e9d9eafe00e9b4d9d583d",
+      "provenance_sha256": "69bf4230a00746ff43330cdc732df1dd75e6fe4a36253d89a276e8b364b051b7"
+    },
+    {
+      "asset_id": "cellarch.membrane_signaling.focal_adhesion",
+      "file": "svg/focal_adhesion.svg",
+      "source_type": "clean_room_original_vector",
+      "source_record_id": "source.cell-architecture-transport.2026-10-07",
+      "rights_record_id": "rights.cell-architecture-transport.owner-cc0.2026-10-10",
+      "current_license": "CC0-1.0",
+      "third_party_material": "none_declared",
+      "rights_basis": "owner_attested_original_output",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "sha256": "f6601a4d3f314f57e74dcc95b79bfb11af6bccb4f839bd669c75fcab6cb06564",
+      "provenance_sha256": "69bf4230a00746ff43330cdc732df1dd75e6fe4a36253d89a276e8b364b051b7"
+    },
+    {
+      "asset_id": "cellarch.membrane_signaling.hemidesmosome",
+      "file": "svg/hemidesmosome.svg",
+      "source_type": "clean_room_original_vector",
+      "source_record_id": "source.cell-architecture-transport.2026-10-07",
+      "rights_record_id": "rights.cell-architecture-transport.owner-cc0.2026-10-10",
+      "current_license": "CC0-1.0",
+      "third_party_material": "none_declared",
+      "rights_basis": "owner_attested_original_output",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "sha256": "9fa3f63302cf40715367af1b8e9bf5acd32ed77a936808280ee931b38308a422",
+      "provenance_sha256": "69bf4230a00746ff43330cdc732df1dd75e6fe4a36253d89a276e8b364b051b7"
+    },
+    {
+      "asset_id": "cellarch.pathway_symbol.kinesin_cargo_transport",
+      "file": "svg/kinesin_cargo_transport.svg",
+      "source_type": "clean_room_original_vector",
+      "source_record_id": "source.cell-architecture-transport.2026-10-07",
+      "rights_record_id": "rights.cell-architecture-transport.owner-cc0.2026-10-10",
+      "current_license": "CC0-1.0",
+      "third_party_material": "none_declared",
+      "rights_basis": "owner_attested_original_output",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "sha256": "839d9691f24e05cda528b89e49cb0c2362a50e60c4bd37284e1b912d0a149c9a",
+      "provenance_sha256": "69bf4230a00746ff43330cdc732df1dd75e6fe4a36253d89a276e8b364b051b7"
+    },
+    {
+      "asset_id": "cellarch.pathway_symbol.cytoplasmic_dynein_cargo_transport",
+      "file": "svg/cytoplasmic_dynein_cargo_transport.svg",
+      "source_type": "clean_room_original_vector",
+      "source_record_id": "source.cell-architecture-transport.2026-10-07",
+      "rights_record_id": "rights.cell-architecture-transport.owner-cc0.2026-10-10",
+      "current_license": "CC0-1.0",
+      "third_party_material": "none_declared",
+      "rights_basis": "owner_attested_original_output",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "sha256": "01cd4a87b9a8bc07e95180d356ec239e228c44dd2dcd4e210b0c0a506148587f",
+      "provenance_sha256": "69bf4230a00746ff43330cdc732df1dd75e6fe4a36253d89a276e8b364b051b7"
+    },
+    {
+      "asset_id": "cellarch.pathway_symbol.copii_vesicle_budding",
+      "file": "svg/copii_vesicle_budding.svg",
+      "source_type": "clean_room_original_vector",
+      "source_record_id": "source.cell-architecture-transport.2026-10-07",
+      "rights_record_id": "rights.cell-architecture-transport.owner-cc0.2026-10-10",
+      "current_license": "CC0-1.0",
+      "third_party_material": "none_declared",
+      "rights_basis": "owner_attested_original_output",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "sha256": "4fd0249d0501989664f882fff007f7320b55bcac8ce1a90558e33135200a68a8",
+      "provenance_sha256": "69bf4230a00746ff43330cdc732df1dd75e6fe4a36253d89a276e8b364b051b7"
+    },
+    {
+      "asset_id": "cellarch.organelle.copi_coated_vesicle",
+      "file": "svg/copi_coated_vesicle.svg",
+      "source_type": "clean_room_original_vector",
+      "source_record_id": "source.cell-architecture-transport.2026-10-07",
+      "rights_record_id": "rights.cell-architecture-transport.owner-cc0.2026-10-10",
+      "current_license": "CC0-1.0",
+      "third_party_material": "none_declared",
+      "rights_basis": "owner_attested_original_output",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "sha256": "ace2815383e9f188ee61da8188538040c4e4c0a1cc0df28d8a3b9cada3d1aef6",
+      "provenance_sha256": "69bf4230a00746ff43330cdc732df1dd75e6fe4a36253d89a276e8b364b051b7"
+    },
+    {
+      "asset_id": "cellarch.membrane_signaling.trans_snare_complex",
+      "file": "svg/trans_snare_complex.svg",
+      "source_type": "clean_room_original_vector",
+      "source_record_id": "source.cell-architecture-transport.2026-10-07",
+      "rights_record_id": "rights.cell-architecture-transport.owner-cc0.2026-10-10",
+      "current_license": "CC0-1.0",
+      "third_party_material": "none_declared",
+      "rights_basis": "owner_attested_original_output",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "sha256": "fc900120e952d3189068f1134021cfe59ed7dec5c0bcad84c80d6808fa138d41",
+      "provenance_sha256": "69bf4230a00746ff43330cdc732df1dd75e6fe4a36253d89a276e8b364b051b7"
+    },
+    {
+      "asset_id": "cellarch.organelle.multivesicular_endosome",
+      "file": "svg/multivesicular_endosome.svg",
+      "source_type": "clean_room_original_vector",
+      "source_record_id": "source.cell-architecture-transport.2026-10-07",
+      "rights_record_id": "rights.cell-architecture-transport.owner-cc0.2026-10-10",
+      "current_license": "CC0-1.0",
+      "third_party_material": "none_declared",
+      "rights_basis": "owner_attested_original_output",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "sha256": "42749935205859769b3c7b3afc64c6c5c256f867dc4a51421acecf8909a51212",
+      "provenance_sha256": "69bf4230a00746ff43330cdc732df1dd75e6fe4a36253d89a276e8b364b051b7"
+    },
+    {
+      "asset_id": "cellarch.pathway_symbol.endosomal_recycling_tubule",
+      "file": "svg/endosomal_recycling_tubule.svg",
+      "source_type": "clean_room_original_vector",
+      "source_record_id": "source.cell-architecture-transport.2026-10-07",
+      "rights_record_id": "rights.cell-architecture-transport.owner-cc0.2026-10-10",
+      "current_license": "CC0-1.0",
+      "third_party_material": "none_declared",
+      "rights_basis": "owner_attested_original_output",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "sha256": "6683bcdc6fa7ffebd9c59a4ae893871d3b30e682715f22db41a14881357a0abd",
+      "provenance_sha256": "69bf4230a00746ff43330cdc732df1dd75e6fe4a36253d89a276e8b364b051b7"
+    },
+    {
+      "asset_id": "cellarch.pathway_symbol.autophagosome_lysosome_fusion",
+      "file": "svg/autophagosome_lysosome_fusion.svg",
+      "source_type": "clean_room_original_vector",
+      "source_record_id": "source.cell-architecture-transport.2026-10-07",
+      "rights_record_id": "rights.cell-architecture-transport.owner-cc0.2026-10-10",
+      "current_license": "CC0-1.0",
+      "third_party_material": "none_declared",
+      "rights_basis": "owner_attested_original_output",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "sha256": "753166ebf84100db4b82f1958bfa2e9da69cfff7f296f7a668e4f14d9af58cf1",
+      "provenance_sha256": "69bf4230a00746ff43330cdc732df1dd75e6fe4a36253d89a276e8b364b051b7"
+    },
+    {
+      "asset_id": "cellarch.pathway_symbol.importin_cargo_nuclear_import",
+      "file": "svg/importin_cargo_nuclear_import.svg",
+      "source_type": "clean_room_original_vector",
+      "source_record_id": "source.cell-architecture-transport.2026-10-07",
+      "rights_record_id": "rights.cell-architecture-transport.owner-cc0.2026-10-10",
+      "current_license": "CC0-1.0",
+      "third_party_material": "none_declared",
+      "rights_basis": "owner_attested_original_output",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "sha256": "9cb6b984f262a22598dd3c86f30a528ae5a081a54547ec932d5d58cf8b47bf0d",
+      "provenance_sha256": "69bf4230a00746ff43330cdc732df1dd75e6fe4a36253d89a276e8b364b051b7"
+    },
+    {
+      "asset_id": "cellarch.membrane_signaling.er_mitochondrion_contact_site",
+      "file": "svg/er_mitochondrion_contact_site.svg",
+      "source_type": "clean_room_original_vector",
+      "source_record_id": "source.cell-architecture-transport.2026-10-07",
+      "rights_record_id": "rights.cell-architecture-transport.owner-cc0.2026-10-10",
+      "current_license": "CC0-1.0",
+      "third_party_material": "none_declared",
+      "rights_basis": "owner_attested_original_output",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "sha256": "68b8855f236d6bbc3c0bf1278380771d910aa9e5dcd52e55835413e0854a2ecf",
+      "provenance_sha256": "69bf4230a00746ff43330cdc732df1dd75e6fe4a36253d89a276e8b364b051b7"
+    },
+    {
+      "asset_id": "cellarch.membrane_signaling.tight_junction_network",
+      "file": "svg/tight_junction_network.svg",
+      "source_type": "clean_room_original_vector",
+      "source_record_id": "source.cell-architecture-transport.2026-10-07",
+      "rights_record_id": "rights.cell-architecture-transport.owner-cc0.2026-10-10",
+      "current_license": "CC0-1.0",
+      "third_party_material": "none_declared",
+      "rights_basis": "owner_attested_original_output",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "sha256": "e4d909e71ba4b1848239211e3566c15f9a9ec7bc3e5119b677763f97d83b2e6c",
+      "provenance_sha256": "7efb728f9c1ec6ae621d8ba2d84f5918f00159b57cf3d162732db1ae42b86b5a"
+    },
+    {
+      "asset_id": "cellarch.membrane_signaling.gap_junction_plaque",
+      "file": "svg/gap_junction_plaque.svg",
+      "source_type": "clean_room_original_vector",
+      "source_record_id": "source.cell-architecture-transport.2026-10-07",
+      "rights_record_id": "rights.cell-architecture-transport.owner-cc0.2026-10-10",
+      "current_license": "CC0-1.0",
+      "third_party_material": "none_declared",
+      "rights_basis": "owner_attested_original_output",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "sha256": "29228f4d0adddd5bf96d46a1e8a8f091d5f57b48452434a741706a4d5e296524",
+      "provenance_sha256": "7efb728f9c1ec6ae621d8ba2d84f5918f00159b57cf3d162732db1ae42b86b5a"
+    },
+    {
+      "asset_id": "cellarch.membrane_signaling.focal_adhesion_enface",
+      "file": "svg/focal_adhesion_enface.svg",
+      "source_type": "clean_room_original_vector",
+      "source_record_id": "source.cell-architecture-transport.2026-10-07",
+      "rights_record_id": "rights.cell-architecture-transport.owner-cc0.2026-10-10",
+      "current_license": "CC0-1.0",
+      "third_party_material": "none_declared",
+      "rights_basis": "owner_attested_original_output",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "sha256": "005837299e0bf6c1c0aa61c8c26570a7b4aeae2d10b81906550961af7af95756",
+      "provenance_sha256": "7efb728f9c1ec6ae621d8ba2d84f5918f00159b57cf3d162732db1ae42b86b5a"
+    },
+    {
+      "asset_id": "cellarch.pathway_symbol.copii_detached_carrier",
+      "file": "svg/copii_detached_carrier.svg",
+      "source_type": "clean_room_original_vector",
+      "source_record_id": "source.cell-architecture-transport.2026-10-07",
+      "rights_record_id": "rights.cell-architecture-transport.owner-cc0.2026-10-10",
+      "current_license": "CC0-1.0",
+      "third_party_material": "none_declared",
+      "rights_basis": "owner_attested_original_output",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "sha256": "ac21ec78816132b3c125874588c3fb382a64b859f69a3f48ba5ea339770e3071",
+      "provenance_sha256": "7efb728f9c1ec6ae621d8ba2d84f5918f00159b57cf3d162732db1ae42b86b5a"
+    },
+    {
+      "asset_id": "cellarch.organelle.copi_golgi_bud",
+      "file": "svg/copi_golgi_bud.svg",
+      "source_type": "clean_room_original_vector",
+      "source_record_id": "source.cell-architecture-transport.2026-10-07",
+      "rights_record_id": "rights.cell-architecture-transport.owner-cc0.2026-10-10",
+      "current_license": "CC0-1.0",
+      "third_party_material": "none_declared",
+      "rights_basis": "owner_attested_original_output",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "sha256": "42f05aa075cd32cadf1a4d5d4ef80ea5c21ecd1f9443d7ee1d5fb97d4f06b99a",
+      "provenance_sha256": "7efb728f9c1ec6ae621d8ba2d84f5918f00159b57cf3d162732db1ae42b86b5a"
+    },
+    {
+      "asset_id": "cellarch.pathway_symbol.recycling_endosome_branched",
+      "file": "svg/recycling_endosome_branched.svg",
+      "source_type": "clean_room_original_vector",
+      "source_record_id": "source.cell-architecture-transport.2026-10-07",
+      "rights_record_id": "rights.cell-architecture-transport.owner-cc0.2026-10-10",
+      "current_license": "CC0-1.0",
+      "third_party_material": "none_declared",
+      "rights_basis": "owner_attested_original_output",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "sha256": "96d478734b43c96ed98afb41bb35e39e0a3965210455410f0c20980ce2152a1a",
+      "provenance_sha256": "7efb728f9c1ec6ae621d8ba2d84f5918f00159b57cf3d162732db1ae42b86b5a"
+    },
+    {
+      "asset_id": "cellarch.membrane_signaling.er_mitochondrion_tubular_contact",
+      "file": "svg/er_mitochondrion_tubular_contact.svg",
+      "source_type": "clean_room_original_vector",
+      "source_record_id": "source.cell-architecture-transport.2026-10-07",
+      "rights_record_id": "rights.cell-architecture-transport.owner-cc0.2026-10-10",
+      "current_license": "CC0-1.0",
+      "third_party_material": "none_declared",
+      "rights_basis": "owner_attested_original_output",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "sha256": "25475b75c84c2b4296498afbb962b8790190ebbcfd286a39b347c3a0025f764f",
+      "provenance_sha256": "7efb728f9c1ec6ae621d8ba2d84f5918f00159b57cf3d162732db1ae42b86b5a"
+    },
+    {
+      "asset_id": "cellarch.pathway_symbol.autophagosome_lysosome_docking",
+      "file": "svg/autophagosome_lysosome_docking.svg",
+      "source_type": "clean_room_original_vector",
+      "source_record_id": "source.cell-architecture-transport.2026-10-07",
+      "rights_record_id": "rights.cell-architecture-transport.owner-cc0.2026-10-10",
+      "current_license": "CC0-1.0",
+      "third_party_material": "none_declared",
+      "rights_basis": "owner_attested_original_output",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "sha256": "b89a438795c58207734939e48c1a2c4f5e153f2dd615ffe0cd506501fecce205",
+      "provenance_sha256": "7efb728f9c1ec6ae621d8ba2d84f5918f00159b57cf3d162732db1ae42b86b5a"
+    },
+    {
+      "asset_id": "cellarch.pathway_symbol.myosin_va_cargo_transport",
+      "file": "svg/myosin_va_cargo_transport.svg",
+      "source_type": "clean_room_original_vector",
+      "source_record_id": "source.cell-architecture-transport.2026-10-07",
+      "rights_record_id": "rights.cell-architecture-transport.owner-cc0.2026-10-10",
+      "current_license": "CC0-1.0",
+      "third_party_material": "none_declared",
+      "rights_basis": "owner_attested_original_output",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "sha256": "536ca0709725adef6c003f7399c2c93e584be9e91e4520cf1710236aec417772",
+      "provenance_sha256": "7efb728f9c1ec6ae621d8ba2d84f5918f00159b57cf3d162732db1ae42b86b5a"
+    },
+    {
+      "asset_id": "cellarch.membrane_signaling.cis_snare_complex",
+      "file": "svg/cis_snare_complex.svg",
+      "source_type": "clean_room_original_vector",
+      "source_record_id": "source.cell-architecture-transport.2026-10-07",
+      "rights_record_id": "rights.cell-architecture-transport.owner-cc0.2026-10-10",
+      "current_license": "CC0-1.0",
+      "third_party_material": "none_declared",
+      "rights_basis": "owner_attested_original_output",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "sha256": "bf571bc69af877d4b284f89d904be9c2865661d9a890aea30d4f124dbdd27f24",
+      "provenance_sha256": "7efb728f9c1ec6ae621d8ba2d84f5918f00159b57cf3d162732db1ae42b86b5a"
+    },
+    {
+      "asset_id": "cellarch.pathway_symbol.escrt_inward_bud",
+      "file": "svg/escrt_inward_bud.svg",
+      "source_type": "clean_room_original_vector",
+      "source_record_id": "source.cell-architecture-transport.2026-10-07",
+      "rights_record_id": "rights.cell-architecture-transport.owner-cc0.2026-10-10",
+      "current_license": "CC0-1.0",
+      "third_party_material": "none_declared",
+      "rights_basis": "owner_attested_original_output",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "sha256": "6ae7c34a94aca607afd29124502a7ec8e6edbec35db140865674ba9cd7368ac9",
+      "provenance_sha256": "7efb728f9c1ec6ae621d8ba2d84f5918f00159b57cf3d162732db1ae42b86b5a"
+    },
+    {
+      "asset_id": "cellarch.pathway_symbol.exportin_cargo_nuclear_export",
+      "file": "svg/exportin_cargo_nuclear_export.svg",
+      "source_type": "clean_room_original_vector",
+      "source_record_id": "source.cell-architecture-transport.2026-10-07",
+      "rights_record_id": "rights.cell-architecture-transport.owner-cc0.2026-10-10",
+      "current_license": "CC0-1.0",
+      "third_party_material": "none_declared",
+      "rights_basis": "owner_attested_original_output",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "sha256": "5091e7ec359909c122bc53a5a269beb5e212525400ad43aedb5905b287b16a6b",
+      "provenance_sha256": "7efb728f9c1ec6ae621d8ba2d84f5918f00159b57cf3d162732db1ae42b86b5a"
+    }
+  ],
+  "rights_grant_effective_date": "2026-10-10",
+  "product_release_status": "pending_quality_and_product_review",
+  "supersedes_audit_id": "cell-architecture-transport.provenance-license-draft.2026-10-07"
+}

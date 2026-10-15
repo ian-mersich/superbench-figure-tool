@@ -1,0 +1,359 @@
+{
+  "schema_id": "superbench.scientificAssetFamilyRevision.v1",
+  "revision_id": "2026-10-13-family-expansion",
+  "revision_date": "2026-10-13",
+  "pack_id": "cell-architecture-transport",
+  "predecessor": {
+    "snapshot": "revisions/2026-10-13-family-expansion-predecessor",
+    "catalog_sha256": "93cc9a8fb06d96d846d68235ab91367c38fdb0b6c3b5b9ff78c0ee6bb0830aa7",
+    "audit_sha256": "34976414f7087454b75ba9435ca8c0ac2d83a6d90666ec58d5daa28544e3d3bd"
+  },
+  "current_catalog_sha256": "ec0b221148b6b25b287437f605f532d59b84d784ed260f861fb0fb84f4f435f2",
+  "current_audit_sha256": "9bd7a54ed501ddfb24769995f1d3d56b173ec0454a04e87512446e87710816e9",
+  "current_license_notice_sha256": "a358d2b0d26e68ab7edb734d310aaa7b6b1ad267dfd8bbec987a96546ef50b7c",
+  "review": {
+    "status": "accepted",
+    "scientific_review": "pass",
+    "visual_review": "pass",
+    "editor_checks": "pass",
+    "reviewed_on": "2026-10-13",
+    "reviewer": "Independent scientific, original-image and native desktop acceptance by retained_state",
+    "scope": "All 76 current SVG drawings at 64/256/512 pixels in Soft color, Cut paper and Technical ink; all 76 native Figure/Presentation insertions and all 40 historical embedded drawings in both native file types at 1280/1440/1920 light/dark on both canonical routes; real part/anchor edits and Undo/Redo, live whole/path selection, Save/cold Open and SVG export; all 3 treatments × 4 palettes with exact colors, alpha, geometry and parts. Both requalified routes share the same frozen driver and passing 406-asset catalog/schema/SVG preflight after one redundant alias correction. The rejected pre-validation candidate remains preserved separately. Product release remains pending.",
+    "evidence": [
+      {
+        "file": "qa_artifacts/family-library/independent-native-visual-review-requalified.json",
+        "sha256": "8cc917cc392f7e6135e0c9c231a97972a5ece8e7c9a2dd47843181986be0db2d"
+      },
+      {
+        "file": "qa_artifacts/family-library/final-direct-requalified/report.json",
+        "sha256": "e5c989f8da82ada52e54a5555aaa1ede58daca02040054640a984cbc6a4f27bd"
+      },
+      {
+        "file": "qa_artifacts/family-library/final-direct-requalified/native-treatments/native-treatment-matrix.json",
+        "sha256": "2535360a3621ff858aeac25589ab83523ae09b1f663d2c70a69070bd99880d5a"
+      },
+      {
+        "file": "qa_artifacts/family-library/final-web-requalified/report.json",
+        "sha256": "2b0be2a4ae8c223a3b1c2d5a1aa7e28225f0afb6647da0ba23180ca11cef1343"
+      },
+      {
+        "file": "qa_artifacts/family-library/final-web-requalified/native-treatments/native-treatment-matrix.json",
+        "sha256": "7b1c3907260cdfa2f16ed283f58c7a734af77849031dacedcf9170c4e9702fd3"
+      }
+    ]
+  },
+  "changed_assets": [
+    {
+      "asset_id": "cellarch.membrane_signaling.tight_junction",
+      "file": "svg/tight_junction.svg",
+      "after_svg_sha256": "f68258cc8e6fc5c038cb4f1f723264c19b88313a0101151595e3dd8543363a7a",
+      "after_metadata_sha256": "72ff40b7c816cc50c2790c5033bbd00b51fd9db4eac47891f5f7fe8a615bcd8a",
+      "license": "CC0-1.0",
+      "before_svg_sha256": "149dc1f97cac37b94e6355cf0d9d15ba7267cca734d6c5ff8530d03b1e2eaa9b",
+      "before_metadata_sha256": "d76cec6f5071002ce9b2a53ce6eaabd8f544c87b0c39b26fe0c6296f31b1ca50"
+    },
+    {
+      "asset_id": "cellarch.membrane_signaling.adherens_junction",
+      "file": "svg/adherens_junction.svg",
+      "after_svg_sha256": "16e92610b5790af2784f4d473d76d9c3e06e8c4fda8ef4bbfa1f64980c606210",
+      "after_metadata_sha256": "f35ff2e2cde857409d595b4b926c5e9ce7822b2b07a6125297fb2242a4263561",
+      "license": "CC0-1.0",
+      "before_svg_sha256": "98e22f7e44a70bcab7f6d023965a1eab0cd4715a7c64e555af38a049168f26bb",
+      "before_metadata_sha256": "0314dd93f3cde8a99d205fcfef5a6e69cdccb3f8e52a81aff22384e85cb9befc"
+    },
+    {
+      "asset_id": "cellarch.membrane_signaling.desmosome",
+      "file": "svg/desmosome.svg",
+      "after_svg_sha256": "c345e6e0d54cfcbde415dd90155a53c4be953b3672baddd55b3051b4731302b7",
+      "after_metadata_sha256": "b0fae4b0a0f6ce6c2d9c299fd7fbb1df7180a2990e0dfa4fdc624b04b54bae3c",
+      "license": "CC0-1.0",
+      "before_svg_sha256": "e2e23d6cb5d5c8a591c87974752b2873108f99ecc3b0d41c121679c876443f48",
+      "before_metadata_sha256": "c8156e1531d2f9c721106c4f56ec64c3f511ec4587503971b950f35138cc43e7"
+    },
+    {
+      "asset_id": "cellarch.membrane_signaling.gap_junction",
+      "file": "svg/gap_junction.svg",
+      "after_svg_sha256": "b6c856af34730bbd5bbcd51803b2f106d816caa7497e9d9eafe00e9b4d9d583d",
+      "after_metadata_sha256": "8b34768465cc4fbdce80e0d66a2fa70e06d5c7ff40fe805027d392d77f46d3c8",
+      "license": "CC0-1.0",
+      "before_svg_sha256": "6fd9d2488413ef1bb2d45ec39d05935b7685ae2e0597b840d6a63ab440a85dce",
+      "before_metadata_sha256": "15b4a24d5e95bb7caa55e20f474d74b53c8a0e008ffcc5307b50db8ea436b868"
+    },
+    {
+      "asset_id": "cellarch.membrane_signaling.focal_adhesion",
+      "file": "svg/focal_adhesion.svg",
+      "after_svg_sha256": "f6601a4d3f314f57e74dcc95b79bfb11af6bccb4f839bd669c75fcab6cb06564",
+      "after_metadata_sha256": "d49950ee12aaccbabddb8a6345e399bbb3d9ad25837f0a92ef0702d4d994214b",
+      "license": "CC0-1.0",
+      "before_svg_sha256": "c624af4831774084e1fdcca707752b2dd568fa4d3c321493ae951ffc6060e110",
+      "before_metadata_sha256": "efdffcdb050f680ed2b9e1b8cf2c5192868e116c154af423a1306ca7b2cd26e3"
+    },
+    {
+      "asset_id": "cellarch.membrane_signaling.hemidesmosome",
+      "file": "svg/hemidesmosome.svg",
+      "after_svg_sha256": "9fa3f63302cf40715367af1b8e9bf5acd32ed77a936808280ee931b38308a422",
+      "after_metadata_sha256": "6033261ca8608b045f4d9e950229e642f23021f05d25396fcbfea0cd53337852",
+      "license": "CC0-1.0",
+      "before_svg_sha256": "2e55f2646ba94cba2700aa53c172aa517e44fcf199373cd7fa2b01c0d28f627f",
+      "before_metadata_sha256": "6cf2964a907eb5385a9dc3619aea65a98adbf83f55831e5928a1278baa909f68"
+    },
+    {
+      "asset_id": "cellarch.pathway_symbol.kinesin_cargo_transport",
+      "file": "svg/kinesin_cargo_transport.svg",
+      "after_svg_sha256": "839d9691f24e05cda528b89e49cb0c2362a50e60c4bd37284e1b912d0a149c9a",
+      "after_metadata_sha256": "17a65774b786c9f1f954091f474b99c780259fda1c6b71c860c8369bd2e9efb9",
+      "license": "CC0-1.0",
+      "before_svg_sha256": "6a2659fd561063b8524cff4465d5286f1f2ab9a59a3a19ecd5f1ff07088bd583",
+      "before_metadata_sha256": "a4abc4ec6b691e2816f24a442c7fd7c9816f15d408e36326d3cefeacb930ad23"
+    },
+    {
+      "asset_id": "cellarch.pathway_symbol.cytoplasmic_dynein_cargo_transport",
+      "file": "svg/cytoplasmic_dynein_cargo_transport.svg",
+      "after_svg_sha256": "01cd4a87b9a8bc07e95180d356ec239e228c44dd2dcd4e210b0c0a506148587f",
+      "after_metadata_sha256": "efa4bca5a7964917d1151da822c83ec6a7e0e69c2158cded73a60615782df2e6",
+      "license": "CC0-1.0",
+      "before_svg_sha256": "e79cbff406b2ac004b9faf4cc8150e82128e4851ee7769cb24af998580524bf4",
+      "before_metadata_sha256": "08d64c82e7dcf057594220f2fd68a46fb2c7d1a07d438166004e366d8090399a"
+    },
+    {
+      "asset_id": "cellarch.pathway_symbol.copii_vesicle_budding",
+      "file": "svg/copii_vesicle_budding.svg",
+      "after_svg_sha256": "4fd0249d0501989664f882fff007f7320b55bcac8ce1a90558e33135200a68a8",
+      "after_metadata_sha256": "5051239441fb0e5f67f2fb83a1d84a035b787ff6b5ffc2065d4a7832a2dba5b6",
+      "license": "CC0-1.0",
+      "before_svg_sha256": "ae6a02d1d36ec720bbfd614cbdba3777a93b13de8a889955c77fe82e841af405",
+      "before_metadata_sha256": "82f8ee5b87eef4ecb380a7bbbec88c57997b93e847d9b0f5d1191ff80d84a31a"
+    },
+    {
+      "asset_id": "cellarch.organelle.copi_coated_vesicle",
+      "file": "svg/copi_coated_vesicle.svg",
+      "after_svg_sha256": "ace2815383e9f188ee61da8188538040c4e4c0a1cc0df28d8a3b9cada3d1aef6",
+      "after_metadata_sha256": "d370ef2bd057b20dbcdcd8b423e723a8d1ccfadee5bd1d165a72971a3ddc2603",
+      "license": "CC0-1.0",
+      "before_svg_sha256": "02c4c42339051dfe9f650e42e7b75aa09d57d0e16516667d0c578e0f1ae99e2d",
+      "before_metadata_sha256": "5126ef885ea1e46236d45b013d020fd37a314389f95a0d28150775aad4e49b72"
+    },
+    {
+      "asset_id": "cellarch.membrane_signaling.trans_snare_complex",
+      "file": "svg/trans_snare_complex.svg",
+      "after_svg_sha256": "fc900120e952d3189068f1134021cfe59ed7dec5c0bcad84c80d6808fa138d41",
+      "after_metadata_sha256": "ab38619517f3caf21ab9630d9ac43663429a35e1f933899bc8e1a50903e258ca",
+      "license": "CC0-1.0",
+      "before_svg_sha256": "7385c80b014c3fcdf44db1af222eea2e4b716c6247f53cc4fc489536da1e00ce",
+      "before_metadata_sha256": "522e568ea333ccfedeb9eaba885b378ef800388a380afe2dde1b826280cf06a4"
+    },
+    {
+      "asset_id": "cellarch.organelle.multivesicular_endosome",
+      "file": "svg/multivesicular_endosome.svg",
+      "after_svg_sha256": "42749935205859769b3c7b3afc64c6c5c256f867dc4a51421acecf8909a51212",
+      "after_metadata_sha256": "70ec37f70044ddb0a67f4448579c471b77ff3052da3ec48548786b494750219a",
+      "license": "CC0-1.0",
+      "before_svg_sha256": "777c5b051c92582c36afa293a919b5bc8aebb4a9a193aeb02c62100f5931905c",
+      "before_metadata_sha256": "888677df92d63d39bdbd5f5ab4ce9314a00a34b3b27c93f87efc784bd971a8fd"
+    },
+    {
+      "asset_id": "cellarch.pathway_symbol.endosomal_recycling_tubule",
+      "file": "svg/endosomal_recycling_tubule.svg",
+      "after_svg_sha256": "6683bcdc6fa7ffebd9c59a4ae893871d3b30e682715f22db41a14881357a0abd",
+      "after_metadata_sha256": "6e800aa4455daaad51eda76d7919ff0abd3ad7e66d6f0db0adecd5b02b26069d",
+      "license": "CC0-1.0",
+      "before_svg_sha256": "b3882214122b3af94d732f69d7d0bf3521ffdad9a76ef1290404f034b747a0d0",
+      "before_metadata_sha256": "010b93d42e87e8257ab51abf908139e0c9b2f26597a6aec408e6a8fa8e121d99"
+    },
+    {
+      "asset_id": "cellarch.pathway_symbol.autophagosome_lysosome_fusion",
+      "file": "svg/autophagosome_lysosome_fusion.svg",
+      "after_svg_sha256": "753166ebf84100db4b82f1958bfa2e9da69cfff7f296f7a668e4f14d9af58cf1",
+      "after_metadata_sha256": "5f31c6c2bbc0da8c78e426677a2262251545ead4c0c4c69a7a5a45a90e35a4cd",
+      "license": "CC0-1.0",
+      "before_svg_sha256": "257bbb6ac0e0d7cbe41488307ee05a540a6c2aee72c14d21d9dd7cb080373f60",
+      "before_metadata_sha256": "97370cc92151ff755b09370a28c98534500c73ff001e7c82001fd5fd3e6aee33"
+    },
+    {
+      "asset_id": "cellarch.pathway_symbol.importin_cargo_nuclear_import",
+      "file": "svg/importin_cargo_nuclear_import.svg",
+      "after_svg_sha256": "9cb6b984f262a22598dd3c86f30a528ae5a081a54547ec932d5d58cf8b47bf0d",
+      "after_metadata_sha256": "cee9738487022cc2aaf31bb50fc7c8a1c4cbc30eedce4f5f64f555bc06f5a637",
+      "license": "CC0-1.0",
+      "before_svg_sha256": "35668d12b542af20f03094972508c0e34d097d97bfbf105c58b264cc362260ef",
+      "before_metadata_sha256": "a3068ef4453bc77d97bc88279fe780c4561af9c84658514739887a4f89df44ce"
+    },
+    {
+      "asset_id": "cellarch.membrane_signaling.er_mitochondrion_contact_site",
+      "file": "svg/er_mitochondrion_contact_site.svg",
+      "after_svg_sha256": "68b8855f236d6bbc3c0bf1278380771d910aa9e5dcd52e55835413e0854a2ecf",
+      "after_metadata_sha256": "5cbc3c3a61f5f9f3e7ad252c73048a9eca71936b554d06abcf8f29e38ba372d2",
+      "license": "CC0-1.0",
+      "before_svg_sha256": "39eb6935955c95a7fb3921839b2d19aee80cd66ff312196d16c0ac81da8288e8",
+      "before_metadata_sha256": "2ce71b285486dedfe45d9d384262be82be51c8ecb99f81afefefcfe02286fc76"
+    }
+  ],
+  "added_assets": [
+    {
+      "asset_id": "cellarch.membrane_signaling.tight_junction_network",
+      "file": "svg/tight_junction_network.svg",
+      "after_svg_sha256": "e4d909e71ba4b1848239211e3566c15f9a9ec7bc3e5119b677763f97d83b2e6c",
+      "after_metadata_sha256": "9d7dc29ad71588dfcc2552e2dedc2092c95309ca48fb2bac6abd10779dc554d2",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "cellarch.membrane_signaling.gap_junction_plaque",
+      "file": "svg/gap_junction_plaque.svg",
+      "after_svg_sha256": "29228f4d0adddd5bf96d46a1e8a8f091d5f57b48452434a741706a4d5e296524",
+      "after_metadata_sha256": "e0346bfdce6b8285eddbc97c95fbeaa645fc778ca8b5526478760d42dc63e03a",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "cellarch.membrane_signaling.focal_adhesion_enface",
+      "file": "svg/focal_adhesion_enface.svg",
+      "after_svg_sha256": "005837299e0bf6c1c0aa61c8c26570a7b4aeae2d10b81906550961af7af95756",
+      "after_metadata_sha256": "5a4e304f9bd547d47a2c9b24488b669d6a50999865c3caa10572e28e77f54a23",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "cellarch.pathway_symbol.copii_detached_carrier",
+      "file": "svg/copii_detached_carrier.svg",
+      "after_svg_sha256": "ac21ec78816132b3c125874588c3fb382a64b859f69a3f48ba5ea339770e3071",
+      "after_metadata_sha256": "689aff33bb5d3c83037658f289d18fee3063a49d234149baf2a8afdf0ddc047d",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "cellarch.organelle.copi_golgi_bud",
+      "file": "svg/copi_golgi_bud.svg",
+      "after_svg_sha256": "42f05aa075cd32cadf1a4d5d4ef80ea5c21ecd1f9443d7ee1d5fb97d4f06b99a",
+      "after_metadata_sha256": "26fd205d2ee0872149b80a74052004a0e2cfdc0e57789562fc7904d140a6c3e5",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "cellarch.pathway_symbol.recycling_endosome_branched",
+      "file": "svg/recycling_endosome_branched.svg",
+      "after_svg_sha256": "96d478734b43c96ed98afb41bb35e39e0a3965210455410f0c20980ce2152a1a",
+      "after_metadata_sha256": "8e467227576e90b330b56e0b1a5c89c548384c8c692b132f54785f4361f2c0f5",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "cellarch.membrane_signaling.er_mitochondrion_tubular_contact",
+      "file": "svg/er_mitochondrion_tubular_contact.svg",
+      "after_svg_sha256": "25475b75c84c2b4296498afbb962b8790190ebbcfd286a39b347c3a0025f764f",
+      "after_metadata_sha256": "fba7b6151da779a296f4f05525194eed43d616d3a23bf148763e976d2231f038",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "cellarch.pathway_symbol.autophagosome_lysosome_docking",
+      "file": "svg/autophagosome_lysosome_docking.svg",
+      "after_svg_sha256": "b89a438795c58207734939e48c1a2c4f5e153f2dd615ffe0cd506501fecce205",
+      "after_metadata_sha256": "db5e82d57dd56815e357c7d1777125e28c4e6cab1cb455bdc6616fe7d6b0c6c8",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "cellarch.pathway_symbol.myosin_va_cargo_transport",
+      "file": "svg/myosin_va_cargo_transport.svg",
+      "after_svg_sha256": "536ca0709725adef6c003f7399c2c93e584be9e91e4520cf1710236aec417772",
+      "after_metadata_sha256": "2daa49b53be38d21737c62b977fb254fca1f266a315023e367aa27ec98dd144f",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "cellarch.membrane_signaling.cis_snare_complex",
+      "file": "svg/cis_snare_complex.svg",
+      "after_svg_sha256": "bf571bc69af877d4b284f89d904be9c2865661d9a890aea30d4f124dbdd27f24",
+      "after_metadata_sha256": "cba2aab4e488fae721cbb383531695ba7ff01292541ca4d6a008dfb62795a393",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "cellarch.pathway_symbol.escrt_inward_bud",
+      "file": "svg/escrt_inward_bud.svg",
+      "after_svg_sha256": "6ae7c34a94aca607afd29124502a7ec8e6edbec35db140865674ba9cd7368ac9",
+      "after_metadata_sha256": "37266976d87b9ce2e990fbb90b6bcec92b2682efb173c63f3d5fa3e7fe736458",
+      "license": "CC0-1.0"
+    },
+    {
+      "asset_id": "cellarch.pathway_symbol.exportin_cargo_nuclear_export",
+      "file": "svg/exportin_cargo_nuclear_export.svg",
+      "after_svg_sha256": "5091e7ec359909c122bc53a5a269beb5e212525400ad43aedb5905b287b16a6b",
+      "after_metadata_sha256": "bbef1406a82f8d92897b6f2047bf7dc97f27ee57c3826d58a2eb4067d732b4b5",
+      "license": "CC0-1.0"
+    }
+  ],
+  "preserved_files": [
+    {
+      "file": "revisions/2026-10-13-family-expansion-predecessor/asset-pack.json",
+      "sha256": "93cc9a8fb06d96d846d68235ab91367c38fdb0b6c3b5b9ff78c0ee6bb0830aa7"
+    },
+    {
+      "file": "revisions/2026-10-13-family-expansion-predecessor/LICENSE-ASSETS-CC0-1.0.md",
+      "sha256": "c2d1c2186f2d0d55f5e3ea7b3c51e6e4ffcbb7008d910fc9429bfa9bb0c31e7d"
+    },
+    {
+      "file": "revisions/2026-10-13-family-expansion-predecessor/rights-release-record.json",
+      "sha256": "34976414f7087454b75ba9435ca8c0ac2d83a6d90666ec58d5daa28544e3d3bd"
+    },
+    {
+      "file": "revisions/2026-10-13-family-expansion-predecessor/snapshot.json",
+      "sha256": "0d2fdac59f1488f7f483c965d344c85e2481d6cbf219896f01cf39522305dd85"
+    },
+    {
+      "file": "revisions/2026-10-13-family-expansion-predecessor/svg/adherens_junction.svg",
+      "sha256": "98e22f7e44a70bcab7f6d023965a1eab0cd4715a7c64e555af38a049168f26bb"
+    },
+    {
+      "file": "revisions/2026-10-13-family-expansion-predecessor/svg/autophagosome_lysosome_fusion.svg",
+      "sha256": "257bbb6ac0e0d7cbe41488307ee05a540a6c2aee72c14d21d9dd7cb080373f60"
+    },
+    {
+      "file": "revisions/2026-10-13-family-expansion-predecessor/svg/copi_coated_vesicle.svg",
+      "sha256": "02c4c42339051dfe9f650e42e7b75aa09d57d0e16516667d0c578e0f1ae99e2d"
+    },
+    {
+      "file": "revisions/2026-10-13-family-expansion-predecessor/svg/copii_vesicle_budding.svg",
+      "sha256": "ae6a02d1d36ec720bbfd614cbdba3777a93b13de8a889955c77fe82e841af405"
+    },
+    {
+      "file": "revisions/2026-10-13-family-expansion-predecessor/svg/cytoplasmic_dynein_cargo_transport.svg",
+      "sha256": "e79cbff406b2ac004b9faf4cc8150e82128e4851ee7769cb24af998580524bf4"
+    },
+    {
+      "file": "revisions/2026-10-13-family-expansion-predecessor/svg/desmosome.svg",
+      "sha256": "e2e23d6cb5d5c8a591c87974752b2873108f99ecc3b0d41c121679c876443f48"
+    },
+    {
+      "file": "revisions/2026-10-13-family-expansion-predecessor/svg/endosomal_recycling_tubule.svg",
+      "sha256": "b3882214122b3af94d732f69d7d0bf3521ffdad9a76ef1290404f034b747a0d0"
+    },
+    {
+      "file": "revisions/2026-10-13-family-expansion-predecessor/svg/er_mitochondrion_contact_site.svg",
+      "sha256": "39eb6935955c95a7fb3921839b2d19aee80cd66ff312196d16c0ac81da8288e8"
+    },
+    {
+      "file": "revisions/2026-10-13-family-expansion-predecessor/svg/focal_adhesion.svg",
+      "sha256": "c624af4831774084e1fdcca707752b2dd568fa4d3c321493ae951ffc6060e110"
+    },
+    {
+      "file": "revisions/2026-10-13-family-expansion-predecessor/svg/gap_junction.svg",
+      "sha256": "6fd9d2488413ef1bb2d45ec39d05935b7685ae2e0597b840d6a63ab440a85dce"
+    },
+    {
+      "file": "revisions/2026-10-13-family-expansion-predecessor/svg/hemidesmosome.svg",
+      "sha256": "2e55f2646ba94cba2700aa53c172aa517e44fcf199373cd7fa2b01c0d28f627f"
+    },
+    {
+      "file": "revisions/2026-10-13-family-expansion-predecessor/svg/importin_cargo_nuclear_import.svg",
+      "sha256": "35668d12b542af20f03094972508c0e34d097d97bfbf105c58b264cc362260ef"
+    },
+    {
+      "file": "revisions/2026-10-13-family-expansion-predecessor/svg/kinesin_cargo_transport.svg",
+      "sha256": "6a2659fd561063b8524cff4465d5286f1f2ab9a59a3a19ecd5f1ff07088bd583"
+    },
+    {
+      "file": "revisions/2026-10-13-family-expansion-predecessor/svg/multivesicular_endosome.svg",
+      "sha256": "777c5b051c92582c36afa293a919b5bc8aebb4a9a193aeb02c62100f5931905c"
+    },
+    {
+      "file": "revisions/2026-10-13-family-expansion-predecessor/svg/tight_junction.svg",
+      "sha256": "149dc1f97cac37b94e6355cf0d9d15ba7267cca734d6c5ff8530d03b1e2eaa9b"
+    },
+    {
+      "file": "revisions/2026-10-13-family-expansion-predecessor/svg/trans_snare_complex.svg",
+      "sha256": "7385c80b014c3fcdf44db1af222eea2e4b716c6247f53cc4fc489536da1e00ce"
+    }
+  ]
+}

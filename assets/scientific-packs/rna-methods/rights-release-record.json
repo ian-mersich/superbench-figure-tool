@@ -1,0 +1,198 @@
+{
+  "schema_id": "figureStudio.scientificAssetLicenseReleaseAudit.v1",
+  "audit_id": "rna-methods.rights-cleared-quality-pending.2026-10-13",
+  "audit_date": "2026-10-13",
+  "pack_id": "rna-methods",
+  "status": "rights_cleared_quality_pending",
+  "release_effective_date": null,
+  "concept_count": 4,
+  "asset_count": 4,
+  "rights_cleared_count": 4,
+  "third_party_component_count": 0,
+  "license_selection_pending_count": 0,
+  "public_distribution_authorized": true,
+  "selected_public_license": "CC0-1.0",
+  "license_notice": "LICENSE-ASSETS-CC0-1.0.md",
+  "rights_basis": {
+    "status": "owner_attested_original_output",
+    "scope": "all_assets_in_pack",
+    "pack_id": "rna-methods",
+    "authorization_record_id": "rights.rna-methods.owner-cc0.2026-10-10",
+    "qualification": "This is an owner license grant for the recorded original material. It is not a non-infringement, patent, trademark, privacy, publicity, or endorsement warranty; product-release quality review remains separate."
+  },
+  "source_records": [
+    {
+      "id": "source.rna-methods.2026-10-07",
+      "kind": "clean_room_generation_record",
+      "pack_id": "rna-methods",
+      "scope": "all_assets_in_pack",
+      "created_on": "2026-10-07",
+      "generated_by": "Figure Studio AI-assisted original SVG authoring",
+      "third_party_material": "none_declared",
+      "statement": "Four original editable vectors were authored for Figure Studio from scientific method concepts supported by primary research articles. Paths, layouts, and illustrative marks were constructed anew; no proprietary asset, published diagram, screenshot, tracing, image, or third-party vector component was incorporated.",
+      "scientific_references": [
+        {
+          "id": "macosko-2015-drop-seq",
+          "citation": "Macosko et al. Highly parallel genome-wide expression profiling of individual cells using nanoliter droplets. Cell 161, 1202–1214 (2015).",
+          "doi": "10.1016/j.cell.2015.05.002",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4481139/",
+          "use": "Method concepts only: aqueous cell partitioning, oligo-barcoded capture beads, shared bead barcodes, distinct molecular identifiers, and poly(dT) capture. No published artwork, geometry, image, or sequence was copied."
+        },
+        {
+          "id": "stahl-2016-spatial-transcriptomics",
+          "citation": "Ståhl et al. Visualization and analysis of gene expression in tissue sections by spatial transcriptomics. Science 353, 78–82 (2016).",
+          "doi": "10.1126/science.aaf2403",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/27365449/",
+          "use": "Method concept only: a tissue section associated with spatially barcoded capture positions. No single-cell resolution claim, published image, or measured expression pattern is reproduced."
+        },
+        {
+          "id": "raj-2008-rna-fish",
+          "citation": "Raj et al. Imaging individual mRNA molecules using multiple singly labeled probes. Nature Methods 5, 877–879 (2008).",
+          "doi": "10.1038/nmeth.1253",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3126653/",
+          "use": "Method concept only: RNA-probe-associated puncta in a cellular field with nuclear context. No microscopy image, measured spot positions, molecular counts, target genes, or scale was copied."
+        }
+      ],
+      "artwork_refinement": {
+        "revision_id": "2026-10-13-rna-method-refinement",
+        "revision_date": "2026-10-13",
+        "asset_ids": [
+          "rna.lab_equipment.microfluidic_cell_partition",
+          "rna.nucleic_acid.barcoded_capture_bead",
+          "rna.assay_workflow.spatial_capture_array",
+          "rna.assay_workflow.in_situ_rna_puncta"
+        ],
+        "third_party_material": "none_declared",
+        "generated_by": "Superbench Figure Tool workspace",
+        "statement": "Four existing original method schematics were refined as new editable vector geometry, informed by the recorded primary-source method concepts. No source artwork, tracing, raster data, experimental sequences or measurements were incorporated.",
+        "scientific_references": [
+          {
+            "citation": "Macosko et al., Cell, 2015",
+            "doi": "10.1016/j.cell.2015.05.002",
+            "figure": "Figures 1 and 2",
+            "url": "https://mccarrolllab.org/wp-content/uploads/2014/12/Macosko_Cell_1-s2.0-S0092867415005498-main.pdf",
+            "design_decision": "Cell/bead compartment, oligo(dT) capture, shared cell barcode and distinct molecular identifiers. No guarantee of one cell/bead per droplet. Drop-seq RT location must not generalize to all methods."
+          },
+          {
+            "citation": "Stahl et al., Science, 2016",
+            "doi": "10.1126/science.aaf2403",
+            "figure": "Figures 1 and 2",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/27365449/",
+            "design_decision": "Tissue on spatially barcoded capture features with distinct probe roles; feature is not necessarily a single cell. No measured expression map, intensity or platform spacing."
+          },
+          {
+            "citation": "Choi et al., Development, 2018",
+            "doi": "10.1242/dev.165753",
+            "figure": "Figure 1A-C",
+            "url": "https://www.its.caltech.edu/~niles/refs/choi18.pdf",
+            "design_decision": "Probe hybridization versus tethered amplification; HCR hairpins/initiators are DNA. Use relationship precedent only, do not impose HCR chemistry on generic RNA FISH."
+          },
+          {
+            "citation": "Raj et al., Nature Methods, 2008",
+            "doi": "10.1038/nmeth.1253",
+            "figure": "Methods/abstract only; figure pixels not examined",
+            "url": "https://www.nature.com/articles/nmeth.1253",
+            "design_decision": "Multiple singly labelled probes support schematic RNA-associated cellular puncta. No measured positions, counts, target identity, scale or copied microscopy."
+          },
+          {
+            "citation": "Habib et al., Nature Methods, 2017",
+            "doi": "10.1038/nmeth.4407",
+            "figure": "Methods only; figure pixels not used",
+            "url": "https://wordpress.uchospitals.edu/basu-lab/files/2017/09/Habib_et_al-2017-Nature_Methods.pdf",
+            "design_decision": "Nuclei isolation and nucleus/bead co-encapsulation clarify sample context only; no measured figure layout or exact branded sample-preparation protocol."
+          }
+        ]
+      }
+    }
+  ],
+  "rights_records": [
+    {
+      "id": "rights.rna-methods.owner-cc0.2026-10-10",
+      "kind": "owner_license_grant",
+      "pack_id": "rna-methods",
+      "scope": "all_assets_in_pack",
+      "status": "rights_cleared",
+      "public_distribution_authorized": true,
+      "selected_public_license": "CC0-1.0",
+      "rights_basis": "owner_attested_original_output",
+      "third_party_material": "none_declared",
+      "effective_date": "2026-10-10",
+      "statement": "The workspace owner grants CC0 1.0 permission for the original artwork and asset-specific metadata in the rna-methods pack, effective 2026-10-10. This grant does not approve the pack for product release.",
+      "qualification": "This is an owner license grant for the recorded original material. It is not a non-infringement, patent, trademark, privacy, publicity, or endorsement warranty; product-release quality review remains separate."
+    }
+  ],
+  "license_candidates": [
+    {
+      "id": "CC0-1.0",
+      "selected": true,
+      "owner_action_required": false,
+      "rationale": "Explicit workspace-owner authorization recorded for this original artwork."
+    }
+  ],
+  "release_blocker": "CC0 rights are cleared. Product-level release approval remains pending and must be recorded separately.",
+  "assets": [
+    {
+      "asset_id": "rna.lab_equipment.microfluidic_cell_partition",
+      "file": "svg/microfluidic_cell_partition.svg",
+      "sha256": "e7b399bae6cb8cc3fb2f07e1f2bf990fe5b10e34d674c805b1c6074f11a00d6a",
+      "provenance_sha256": "7a1eb6b3937255202bffdff0e6c1dd931adbd88462831cf9083de13eebef9803",
+      "source_type": "clean_room_original_vector",
+      "lineage": "workspace_generated_clean_room_original",
+      "current_license": "CC0-1.0",
+      "rights_basis": "owner_attested_original_output",
+      "third_party_material": "none_declared",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "source_record_id": "source.rna-methods.2026-10-07",
+      "rights_record_id": "rights.rna-methods.owner-cc0.2026-10-10"
+    },
+    {
+      "asset_id": "rna.nucleic_acid.barcoded_capture_bead",
+      "file": "svg/barcoded_capture_bead.svg",
+      "sha256": "424d1c2a903352b17b03b70bbeee02993fbaccae6e7884a22a206509ef62cd37",
+      "provenance_sha256": "7a1eb6b3937255202bffdff0e6c1dd931adbd88462831cf9083de13eebef9803",
+      "source_type": "clean_room_original_vector",
+      "lineage": "workspace_generated_clean_room_original",
+      "current_license": "CC0-1.0",
+      "rights_basis": "owner_attested_original_output",
+      "third_party_material": "none_declared",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "source_record_id": "source.rna-methods.2026-10-07",
+      "rights_record_id": "rights.rna-methods.owner-cc0.2026-10-10"
+    },
+    {
+      "asset_id": "rna.assay_workflow.spatial_capture_array",
+      "file": "svg/spatial_capture_array.svg",
+      "sha256": "c5679bd1c0ffc4cb6d299c61a24d8944393f79bbf85b014ec2822729a6bbef05",
+      "provenance_sha256": "7a1eb6b3937255202bffdff0e6c1dd931adbd88462831cf9083de13eebef9803",
+      "source_type": "clean_room_original_vector",
+      "lineage": "workspace_generated_clean_room_original",
+      "current_license": "CC0-1.0",
+      "rights_basis": "owner_attested_original_output",
+      "third_party_material": "none_declared",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "source_record_id": "source.rna-methods.2026-10-07",
+      "rights_record_id": "rights.rna-methods.owner-cc0.2026-10-10"
+    },
+    {
+      "asset_id": "rna.assay_workflow.in_situ_rna_puncta",
+      "file": "svg/in_situ_rna_puncta.svg",
+      "sha256": "a57cd0e15870516dd4317fff72fc640e74f828b3dd87c0b7fefda0e91d5d1859",
+      "provenance_sha256": "7a1eb6b3937255202bffdff0e6c1dd931adbd88462831cf9083de13eebef9803",
+      "source_type": "clean_room_original_vector",
+      "lineage": "workspace_generated_clean_room_original",
+      "current_license": "CC0-1.0",
+      "rights_basis": "owner_attested_original_output",
+      "third_party_material": "none_declared",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "source_record_id": "source.rna-methods.2026-10-07",
+      "rights_record_id": "rights.rna-methods.owner-cc0.2026-10-10"
+    }
+  ],
+  "rights_grant_effective_date": "2026-10-10",
+  "product_release_status": "pending_quality_and_product_review",
+  "supersedes_audit_id": "rna-methods.provenance-license-draft.2026-10-07"
+}

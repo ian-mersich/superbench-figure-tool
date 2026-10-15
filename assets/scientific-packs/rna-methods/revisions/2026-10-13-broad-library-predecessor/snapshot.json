@@ -1,0 +1,35 @@
+{
+  "schema_id": "superbench.scientificAssetPredecessorSnapshot.v1",
+  "snapshot_date": "2026-10-13",
+  "source_commit": "a034fed8",
+  "files": [
+    {
+      "file": "asset-pack.json",
+      "sha256": "551d9dff3bedfec67c04e902ecbbc7a2a0599a55fdeb96ab1021d88f1d4d6b43"
+    },
+    {
+      "file": "rights-release-record.json",
+      "sha256": "f4dbf378f88335407f4ac27e1ce21d2a9b0bad06b93218de460e33e058e8a5e6"
+    },
+    {
+      "file": "LICENSE-ASSETS-CC0-1.0.md",
+      "sha256": "e0ba46f20d4358a4836b371dc8f38ead2135c2b9b0cb61a0cb0edbdfc65767d1"
+    },
+    {
+      "file": "svg/microfluidic_cell_partition.svg",
+      "sha256": "35f074edeef9a027484522d9c80f7d09e01e5003787fd6455461ff0a022fdc7f"
+    },
+    {
+      "file": "svg/barcoded_capture_bead.svg",
+      "sha256": "cff4c76a06c860d286d9b3eccf9d2232879a0d0b4c2dc10f844b134cbbf157da"
+    },
+    {
+      "file": "svg/spatial_capture_array.svg",
+      "sha256": "950e8a5f7992e9a5e56355c79be6eb8dcb3458dae7597cbf505e7110721358b4"
+    },
+    {
+      "file": "svg/in_situ_rna_puncta.svg",
+      "sha256": "70c113627c0faef82d105b88a981a50022e410244174e1e6fcf47e6e8beb2074"
+    }
+  ]
+}

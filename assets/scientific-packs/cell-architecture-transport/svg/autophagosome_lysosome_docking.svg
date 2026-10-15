@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Autophagosome–Lysosome — Pre-fusion Apposition</title>
+  <desc id="desc">A sealed double-membrane autophagosome apposed to a separate single-membrane lysosome before fusion.</desc>
+  <g data-region="autophagosome_membrane" fill="#8EC8FF" stroke="none">
+    <path d="M14 67a27 27 0 1 0 54 0a27 27 0 1 0 -54 0ZM19 67a22 22 0 1 0 44 0a22 22 0 1 0 -44 0Z" fill-rule="evenodd"/>
+  </g>
+  <g data-region="inner_autophagic_membrane" fill="#B8B5FF" stroke="none">
+    <path d="M25 67a16 16 0 1 0 32 0a16 16 0 1 0 -32 0ZM30 67a11 11 0 1 0 22 0a11 11 0 1 0 -22 0Z" fill-rule="evenodd"/>
+  </g>
+  <g data-region="lysosome_membrane" fill="#8EC8FF" stroke="none">
+    <path d="M76 67a19 19 0 1 0 38 0a19 19 0 1 0 -38 0ZM82 67a13 13 0 1 0 26 0a13 13 0 1 0 -26 0Z" fill-rule="evenodd"/>
+  </g>
+  <g data-region="cargo" fill="#E76F51" stroke="none">
+    <path d="M34 61Q40 55 46 60L50 70Q42 79 33 70Z"/>
+  </g>
+  <g data-region="lysosomal_contents" fill="#7DD3C7" stroke="none">
+    <ellipse cx="92" cy="63" rx="4" ry="4"/><ellipse cx="99" cy="73" rx="3" ry="3"/>
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="41" cy="67" rx="27" ry="27"/><ellipse cx="41" cy="67" rx="22" ry="22"/><ellipse cx="41" cy="67" rx="16" ry="16"/><ellipse cx="41" cy="67" rx="11" ry="11"/><ellipse cx="95" cy="67" rx="19" ry="19"/><ellipse cx="95" cy="67" rx="13" ry="13"/><path d="M34 61Q40 55 46 60L50 70Q42 79 33 70Z"/><ellipse cx="92" cy="63" rx="4" ry="4"/><ellipse cx="99" cy="73" rx="3" ry="3"/>
+  </g>
+</svg>

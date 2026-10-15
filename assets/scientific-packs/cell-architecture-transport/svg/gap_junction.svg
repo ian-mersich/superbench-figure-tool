@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Gap Junction</title>
+  <desc id="desc">Illustrative docked connexon hemichannels spanning adjacent cell membranes, with a continuous intercellular lumen linking the two cytoplasmic sides.</desc>
+  <g data-region="membrane" fill="#C7F2EC" stroke="none">
+    <rect x="42" y="18" width="10" height="92" rx="0"/><rect x="76" y="18" width="10" height="92" rx="0"/>
+  </g>
+  <g data-region="connexon" fill="#8EC8FF" stroke="none">
+    <path d="M32 48Q46 39 57 49L64 53L71 49Q82 39 96 48V80Q82 89 71 79L64 75L57 79Q46 89 32 80Z"/>
+  </g>
+  <g data-region="channel_lumen" fill="#FFFFFF" stroke="none">
+    <rect x="30" y="59" width="68" height="10" rx="0"/>
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M42 18H52V43M42 18V42M42 86V110H52V85M76 18H86V42M76 18V43M76 85V110H86V86"/><path d="M32 59V48Q46 39 57 49L64 53L71 49Q82 39 96 48V59M32 69V80Q46 89 57 79L64 75L71 79Q82 89 96 80V69M32 59H96M32 69H96M64 53V59M64 69V75"/>
+  </g>
+</svg>

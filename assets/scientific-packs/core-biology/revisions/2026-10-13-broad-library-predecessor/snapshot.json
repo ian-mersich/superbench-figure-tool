@@ -1,0 +1,79 @@
+{
+  "schema_id": "superbench.scientificAssetPredecessorSnapshot.v1",
+  "snapshot_date": "2026-10-13",
+  "source_commit": "a034fed8",
+  "files": [
+    {
+      "file": "asset-pack.json",
+      "sha256": "cbd70b0d6b104277d12af97b91a649de01b636ceb4ef41575f5e6f54c65ba5b9"
+    },
+    {
+      "file": "license-release-audit.json",
+      "sha256": "94d75e115ecaa4be74eff791cbe33fdd6f4906b2dfce984fc2f1d5a71e25cc9f"
+    },
+    {
+      "file": "LICENSE-ASSETS-CC0-1.0.md",
+      "sha256": "2920cc0c3a5986b9b4c3dbab144d6e421a4f572a8140c4fbf3596afd783887e6"
+    },
+    {
+      "file": "revision-2026-10-11-rna.json",
+      "sha256": "cb7ef1a0f6e6bb3722dee3d683d9d505b28ee4239f49f8f5264cf954b4838369"
+    },
+    {
+      "file": "svg/cell_generic.svg",
+      "sha256": "0b6716b871958a0999bc588388057b8bb4edb055833031220e7f6e999a580951"
+    },
+    {
+      "file": "svg/cell_epithelial.svg",
+      "sha256": "4bd5d583d82da4222aea951ee8f5dfb634847dce3d7825b3fa13a05ed572c9e6"
+    },
+    {
+      "file": "svg/cell_neuron_like.svg",
+      "sha256": "be095e6f94e278167ac2921737e7328596597d0e41449d8d5c91222fc97df380"
+    },
+    {
+      "file": "svg/nucleus_round.svg",
+      "sha256": "35c119af827676c8186c748f5a07a084a43cfc68edd730511d77ca99ea005496"
+    },
+    {
+      "file": "svg/mitochondrion_basic.svg",
+      "sha256": "63fade56d9700efd813a83159c9546602e59a783ddae84f93b89200383fefc19"
+    },
+    {
+      "file": "svg/mitochondrion_basic_manuscript.svg",
+      "sha256": "3afe364fb929bc356449c1979064deaebf99747a05b85ed7328a2d6da14136fd"
+    },
+    {
+      "file": "svg/golgi_apparatus.svg",
+      "sha256": "caab23cec2874ee561c545ab6abfb6efa024e2521f0e56b2ad6efb3636a33bb0"
+    },
+    {
+      "file": "svg/rough_endoplasmic_reticulum.svg",
+      "sha256": "11870f533fc52679be757806ee817beb7b859cf92deeb4a1565cd5b5fce7d334"
+    },
+    {
+      "file": "svg/lysosome.svg",
+      "sha256": "3fa0af7d231c4efcc34c8840674e072b28c6c22a7f2f0d6598dc2d2cd335ba07"
+    },
+    {
+      "file": "svg/antibody_igg.svg",
+      "sha256": "c6d159d306e22c9fb5a371c2f464a63baf4e7dbad90aa3c19b5c919d7d931d75"
+    },
+    {
+      "file": "svg/antibody_igg_manuscript.svg",
+      "sha256": "8cc4d8135d99ede6aee4b3bbb128d54ad789a7e6a9514a444b6649dadade1f6d"
+    },
+    {
+      "file": "svg/membrane_receptor.svg",
+      "sha256": "1ac722a526b0e2b9d9ded9d952ae6490393eeecd0af63f8775ca1a82fe10873d"
+    },
+    {
+      "file": "svg/catalytic_enzyme.svg",
+      "sha256": "bd39d7e3135eaa323c532d0aabc47e70641372e535fdbb587d48319d7e7cc556"
+    },
+    {
+      "file": "svg/protein_kinase.svg",
+      "sha256": "190ae8b9f6ccbfc79ca778f80ceeb4742d23cd3bdc3ed0cd2019d725b28eb081"
+    }
+  ]
+}

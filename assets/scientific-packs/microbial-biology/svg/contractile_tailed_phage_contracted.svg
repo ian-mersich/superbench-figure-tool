@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Contractile-Tailed Bacteriophage — Contracted</title>
+  <desc id="desc">A free contractile-tailed phage with a shortened broad sheath around the exposed axial tail tube.</desc>
+  <g data-region="head" fill="#B8B5FF" stroke="none">
+    <path d="M51 18H77L85 29V51L77 64H51L43 51V29Z"/>
+  </g>
+  <g data-region="genome" fill="none" stroke="#E76F51" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M55 32C60 24 75 29 71 35C67 41 51 36 54 45C56 53 69 55 75 48"/>
+  </g>
+  <g data-region="tailapparatus" fill="#8EC8FF" stroke="none">
+    <rect x="58" y="64" width="12" height="6" rx="1"/><path d="M50 70H78V84H50Z M58 70H70V84H58Z" fill-rule="evenodd"/><rect x="61" y="70" width="6" height="40"/><path d="M50 84H60V90H46Z M68 84H78L82 90H68Z"/>
+  </g>
+  <g data-region="fibers" fill="none" stroke="#58B8AE" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M50 88L38 97L28 99M78 88L91 97L102 99"/>
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M51 18H77L85 29V51L77 64H51L43 51V29Z"/><path d="M51 18L55 29H73L77 18M55 29L51 51M73 29L77 51" stroke-width="2.75"/><path d="M58 64V70M70 64V70M50 70H58V84H50ZM70 70H78V84H70ZM61 70V110M67 70V110 M50 84H60V90H46Z M68 84H78L82 90H68Z" stroke-width="2.75"/>
+  </g>
+</svg>

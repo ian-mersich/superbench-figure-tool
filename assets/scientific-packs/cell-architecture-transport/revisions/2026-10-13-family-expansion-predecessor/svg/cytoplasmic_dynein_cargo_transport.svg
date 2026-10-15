@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Cytoplasmic Dynein Cargo Transport</title>
+  <desc id="desc">Illustrative cytoplasmic dynein transport complex with paired AAA+ motor rings, microtubule-binding stalks and a simplified tail-associated adaptor complex linking to generic vesicular cargo.</desc>
+  <g data-region="microtubule" fill="#B8B5FF" stroke="none">
+    <rect x="18" y="93" width="92" height="8" rx="3"/><rect x="18" y="104" width="92" height="8" rx="3"/>
+  </g>
+  <g data-region="motor" fill="#5EA9DD" stroke="none">
+    <path d="M43 45H84V51H77L82 54L78 59L69 51H58L48 59L44 54L50 51H43Z"/><path d="M31 64C31 55 36 50 44 50C53 50 59 56 59 64C59 73 53 79 44 79C36 79 31 73 31 64Z M39 64C39 68 41 71 44 71C48 71 51 68 51 64C51 60 48 58 44 58C41 58 39 60 39 64Z" fill-rule="evenodd"/><path d="M68 65C68 56 73 51 81 51C90 51 96 57 96 65C96 74 90 80 81 80C73 80 68 74 68 65Z M76 65C76 69 78 72 81 72C85 72 88 69 88 65C88 61 85 59 81 59C78 59 76 61 76 65Z" fill-rule="evenodd"/><path d="M51 71L55 75L39 89L35 86Z M87 73L91 77L75 90L71 87Z"/><path d="M31 86H40L44 90L41 93H30L28 90Z M67 87H76L80 91L77 93H66L64 90Z"/>
+  </g>
+  <g data-region="cargo" fill="#F4A261" stroke="none">
+    <ellipse cx="64" cy="34" rx="19" ry="16"/>
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="18" y="93" width="92" height="8" rx="3"/><rect x="18" y="104" width="92" height="8" rx="3"/><path d="M31 94V100M44 94V100M57 94V100M70 94V100M83 94V100M96 94V100M25 105V111M38 105V111M51 105V111M64 105V111M77 105V111M90 105V111M103 105V111" stroke-width="2.75"/><path d="M43 45H84V51H77L82 54L78 59L69 51H58L48 59L44 54L50 51H43Z"/><path d="M31 64C31 55 36 50 44 50C53 50 59 56 59 64C59 73 53 79 44 79C36 79 31 73 31 64Z M39 64C39 68 41 71 44 71C48 71 51 68 51 64C51 60 48 58 44 58C41 58 39 60 39 64Z" fill-rule="evenodd"/><path d="M68 65C68 56 73 51 81 51C90 51 96 57 96 65C96 74 90 80 81 80C73 80 68 74 68 65Z M76 65C76 69 78 72 81 72C85 72 88 69 88 65C88 61 85 59 81 59C78 59 76 61 76 65Z" fill-rule="evenodd"/><path d="M51 71L55 75L39 89L35 86Z M87 73L91 77L75 90L71 87Z"/><path d="M31 86H40L44 90L41 93H30L28 90Z M67 87H76L80 91L77 93H66L64 90Z"/><ellipse cx="64" cy="34" rx="19" ry="16"/>
+  </g>
+</svg>

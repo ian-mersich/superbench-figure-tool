@@ -1,0 +1,1087 @@
+{
+  "schema_version": "0.3.0",
+  "id": "protein-homeostasis",
+  "name": "Protein Homeostasis",
+  "description": "Editable protein states and interactions for chaperone handling, ubiquitination, deubiquitination, proteasomal processing and amorphous aggregation.",
+  "style_family": "figure-studio-soft-line-v1",
+  "style_families": [
+    "figure-studio-soft-line-v1"
+  ],
+  "qa_status": "independent_scientific_and_visual_review_passed_2026_10_07",
+  "concept_count": 8,
+  "asset_count": 8,
+  "category_counts": {
+    "protein": {
+      "concept_count": 7,
+      "style_count": 7
+    },
+    "pathway-symbol": {
+      "concept_count": 1,
+      "style_count": 1
+    }
+  },
+  "release_audit": {
+    "file": "rights-release-record.json",
+    "audit_id": "protein-homeostasis.rights-cleared-quality-pending.2026-10-10",
+    "audit_date": "2026-10-10",
+    "release_effective_date": null,
+    "status": "rights_cleared_quality_pending",
+    "concept_count": 8,
+    "asset_count": 8,
+    "public_distribution_authorized": true,
+    "selected_public_license": "CC0-1.0",
+    "license_notice": "LICENSE-ASSETS-CC0-1.0.md",
+    "rights_grant_effective_date": "2026-10-10",
+    "product_release_status": "pending_quality_and_product_review"
+  },
+  "style_tokens": {
+    "viewBox": "0 0 128 128",
+    "target_padding_units": "14-18",
+    "primary_outline": "#26323D",
+    "primary_outline_width": 3.5,
+    "detail_outline_width": 2.75,
+    "line_cap": "round",
+    "line_join": "round",
+    "palette": {
+      "client": "#E76F51",
+      "chaperone_light": "#8EC8FF",
+      "chaperone_dark": "#5EA9DD",
+      "ubiquitin": "#B8B5FF",
+      "ubiquitin_enzyme": "#9FD8B5",
+      "hydrophobic_patch": "#F4DC8A",
+      "proteolytic_core": "#C7F2EC",
+      "outline": "#26323D"
+    }
+  },
+  "source_policy": {
+    "batch_scope": "protein-homeostasis only",
+    "allowed_sources": [
+      "Original vector construction informed by primary scientific papers",
+      "Existing shared style tokens"
+    ],
+    "disallowed_sources": [
+      "Copied or traced published or proprietary artwork",
+      "Downloaded third-party vector components",
+      "Measured observations as decorative art"
+    ],
+    "reference_use": "Entity topology and mechanism only; no source geometry incorporated."
+  },
+  "license_definitions": {
+    "CC0-1.0": {
+      "label": "CC0 1.0 Universal",
+      "reuse": "Owner-authorized public-domain dedication for the original artwork and asset-specific metadata scoped by the canonical asset license notice.",
+      "scope_notice": "LICENSE-ASSETS-CC0-1.0.md",
+      "rights_status": "owner_attested_original_output",
+      "release_status": "rights_cleared_quality_pending",
+      "public_distribution_authorized": true,
+      "selected_public_license": "CC0-1.0"
+    }
+  },
+  "source_records": [
+    {
+      "id": "source.protein-homeostasis.2026-10-07",
+      "kind": "clean_room_generation_record",
+      "pack_id": "protein-homeostasis",
+      "scope": "all_assets_in_pack",
+      "created_on": "2026-10-07",
+      "generated_by": "Figure Tool AI-assisted original SVG authoring",
+      "third_party_material": "none_declared",
+      "statement": "Original editable SVG geometry constructed for the Figure Tool from protein-homeostasis concepts. Primary research informs biological relationships only. No published or proprietary artwork, tracing, screenshot, structural coordinates, measured data or third-party vector component was incorporated. This source record documents original construction and does not decide product release.",
+      "scientific_references": [
+        {
+          "id": "qi-2013-hsp70",
+          "citation": "Qi R, Sarbeng EB, Liu Q, et al. Allosteric opening of the polypeptide-binding site when an Hsp70 binds ATP. Nature Structural & Molecular Biology. 2013;20:900–907.",
+          "doi": "10.1038/nsmb.2583",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3772632/",
+          "figure": "Figure 1",
+          "use": "Separate HSP70 nucleotide-binding domain, linker, substrate-binding domain and lid; retain an extended client segment. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "wang-2022-client-loading",
+          "citation": "Wang RY-R, Noddings CM, Kirschke E, Myasnikov AG, Johnson JL, Agard DA. Structure of Hsp90–Hsp70–Hop–GR reveals the Hsp90 client-loading mechanism. Nature. 2022;601:460–464.",
+          "doi": "10.1038/s41586-021-04252-1",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9179170/",
+          "figure": "Figure 4",
+          "use": "Make the client's extended binding region visible and preserve client identity through chaperone handling. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "noddings-2022-client-remodelling",
+          "citation": "Noddings CM, Wang RY-R, Johnson JL, Agard DA. Structure of Hsp90–p23–GR reveals the Hsp90 client-remodelling mechanism. Nature. 2022;601:465–469.",
+          "doi": "10.1038/s41586-021-04236-1",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8994517/",
+          "figure": "Figure 1",
+          "use": "Show two HSP90 protomers, a central lumen and a client segment passing between them while most client mass remains outside. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "dou-2012-ring-e3",
+          "citation": "Dou H, Buetow L, Sibbet GJ, Cameron K, Huang DT. BIRC7–E2 ubiquitin conjugate structure reveals the mechanism of ubiquitin transfer by a RING dimer. Nature Structural & Molecular Biology. 2012;19:876–883.",
+          "doi": "10.1038/nsmb.2379",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3880866/",
+          "figure": "Figure 1",
+          "use": "Keep donor ubiquitin attached to E2 and RING E3 separate; direct transfer originates from E2-bound ubiquitin. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "renatus-2006-dub",
+          "citation": "Renatus M, Parrado SG, D'Arcy A, et al. Structural basis of ubiquitin recognition by the deubiquitinating protease USP2. Structure. 2006;14:1293–1302.",
+          "doi": "10.1016/j.str.2006.06.012",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7126176/",
+          "figure": "Figure 2",
+          "use": "Use a DUB cleft engaging ubiquitin's body and C-terminal attachment region; leave the substrate backbone intact. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "dong-2019-proteasome",
+          "citation": "Dong Y, Zhang S, Wu Z, et al. Cryo-EM structures and dynamics of substrate-engaged human 26S proteasome. Nature. 2019;565:49–55.",
+          "doi": "10.1038/s41586-018-0736-4",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6370054/",
+          "figure": "Figure 6",
+          "use": "Separate ubiquitin recognition/removal, translocation and degradation; depict an entering polypeptide and exiting short peptides. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "boatz-2017-aggregate-limit",
+          "citation": "Boatz JC, Whitley MJ, Li M, Gronenborn AM, van der Wel PCA. Cataract-associated P23T γD-crystallin retains a native-like fold in amorphous-looking aggregates formed at physiological pH. Nature Communications. 2017;8:15137.",
+          "doi": "10.1038/ncomms15137",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5424181/",
+          "figure": "Figure 8",
+          "use": "Amorphous-looking aggregates may retain native-like folds; aggregation alone establishes neither amyloid nor toxicity. Concepts only; no source artwork or geometry copied."
+        }
+      ]
+    }
+  ],
+  "rights_records": [
+    {
+      "id": "rights.protein-homeostasis.owner-cc0.2026-10-10",
+      "kind": "owner_license_grant",
+      "pack_id": "protein-homeostasis",
+      "scope": "all_assets_in_pack",
+      "status": "rights_cleared",
+      "public_distribution_authorized": true,
+      "selected_public_license": "CC0-1.0",
+      "rights_basis": "owner_attested_original_output",
+      "third_party_material": "none_declared",
+      "effective_date": "2026-10-10",
+      "statement": "The workspace owner grants CC0 1.0 permission for the original artwork and asset-specific metadata in the protein-homeostasis pack, effective 2026-10-10. This grant does not approve the pack for product release.",
+      "qualification": "This is an owner license grant for the recorded original material. It is not a non-infringement, patent, trademark, privacy, publicity, or endorsement warranty; product-release quality review remains separate."
+    }
+  ],
+  "assets": [
+    {
+      "id": "proteostasis.protein.unfolded_polypeptide",
+      "concept_id": "proteostasis.protein.unfolded_polypeptide",
+      "name": "Unfolded Polypeptide",
+      "scientific_name": "Unfolded Polypeptide",
+      "synonyms": [
+        "unfolded protein",
+        "polypeptide",
+        "denatured protein",
+        "protein folding",
+        "protein homeostasis",
+        "proteostasis"
+      ],
+      "category": "protein",
+      "subcategory": "Protein homeostasis",
+      "tags": [
+        "unfolded protein",
+        "unfolded polypeptide",
+        "polypeptide",
+        "denatured protein",
+        "protein folding",
+        "protein homeostasis",
+        "proteostasis"
+      ],
+      "description": "Illustrative extended polypeptide with a continuous protein backbone and sparse exposed hydrophobic-segment cues; no sequence or measured conformation is represented.",
+      "file": "svg/unfolded_polypeptide.svg",
+      "editable_color_regions": [
+        {
+          "id": "client",
+          "label": "Polypeptide backbone",
+          "default": "#E76F51",
+          "paint": "fill"
+        },
+        {
+          "id": "hydrophobic_patch",
+          "label": "Exposed hydrophobic segments",
+          "default": "#F4DC8A",
+          "paint": "fill"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#26323D",
+          "paint": "stroke"
+        }
+      ],
+      "connector_hints": [
+        {
+          "id": "left",
+          "label": "Left attachment",
+          "role": "attachment",
+          "x": 0.125,
+          "y": 0.5
+        },
+        {
+          "id": "right",
+          "label": "Right attachment",
+          "role": "attachment",
+          "x": 0.875,
+          "y": 0.5
+        },
+        {
+          "id": "top",
+          "label": "Top attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.125
+        },
+        {
+          "id": "bottom",
+          "label": "Bottom attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.875
+        }
+      ],
+      "scientific_references": [
+        {
+          "id": "qi-2013-hsp70",
+          "citation": "Qi R, Sarbeng EB, Liu Q, et al. Allosteric opening of the polypeptide-binding site when an Hsp70 binds ATP. Nature Structural & Molecular Biology. 2013;20:900–907.",
+          "doi": "10.1038/nsmb.2583",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3772632/",
+          "figure": "Figure 1",
+          "use": "Separate HSP70 nucleotide-binding domain, linker, substrate-binding domain and lid; retain an extended client segment. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "wang-2022-client-loading",
+          "citation": "Wang RY-R, Noddings CM, Kirschke E, Myasnikov AG, Johnson JL, Agard DA. Structure of Hsp90–Hsp70–Hop–GR reveals the Hsp90 client-loading mechanism. Nature. 2022;601:460–464.",
+          "doi": "10.1038/s41586-021-04252-1",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9179170/",
+          "figure": "Figure 4",
+          "use": "Make the client's extended binding region visible and preserve client identity through chaperone handling. Concepts only; no source artwork or geometry copied."
+        }
+      ],
+      "scientific_limitations": [
+        "No sequence, residue count, end chemistry, atomic conformation or measured residue exposure.",
+        "Do not relabel as an intrinsically disordered protein without biological context."
+      ],
+      "reviewer_notes": "Independent scientific and original-image review passed at 64 and 256 px in all three treatments. Source/web editing qualification is recorded separately in the asset review. Product-level release approval remains pending. CC0 1.0 permission is granted; product-level release approval remains pending.",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable SVG geometry constructed for the Figure Tool from protein-homeostasis concepts. Primary research informs biological relationships only. No published or proprietary artwork, tracing, screenshot, structural coordinates, measured data or third-party vector component was incorporated. The workspace owner grants CC0 1.0 permission effective 2026-10-10; product-level release approval remains pending.",
+      "source_record_id": "source.protein-homeostasis.2026-10-07",
+      "rights_record_id": "rights.protein-homeostasis.owner-cc0.2026-10-10",
+      "style_family": "figure-studio-soft-line-v1",
+      "style_variant": "standard",
+      "review_status": "independent_scientific_and_visual_review_passed_2026_10_07",
+      "style_status": "soft_line_v1_original_draft",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 3
+    },
+    {
+      "id": "proteostasis.protein.misfolded_protein",
+      "concept_id": "proteostasis.protein.misfolded_protein",
+      "name": "Misfolded Protein",
+      "scientific_name": "Misfolded Protein",
+      "synonyms": [
+        "protein misfolding",
+        "non-native protein",
+        "exposed hydrophobic region",
+        "folding stress",
+        "proteostasis"
+      ],
+      "category": "protein",
+      "subcategory": "Protein homeostasis",
+      "tags": [
+        "misfolded protein",
+        "protein misfolding",
+        "non-native protein",
+        "exposed hydrophobic region",
+        "folding stress",
+        "proteostasis",
+        "protein homeostasis"
+      ],
+      "description": "Illustrative non-native partial protein fold with sparse exposed hydrophobic-patch cues.",
+      "file": "svg/misfolded_protein.svg",
+      "editable_color_regions": [
+        {
+          "id": "client",
+          "label": "Irregular compact polypeptide",
+          "default": "#E76F51",
+          "paint": "fill"
+        },
+        {
+          "id": "hydrophobic_patch",
+          "label": "Exposed hydrophobic segments",
+          "default": "#F4DC8A",
+          "paint": "fill"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#26323D",
+          "paint": "stroke"
+        }
+      ],
+      "connector_hints": [
+        {
+          "id": "left",
+          "label": "Left attachment",
+          "role": "attachment",
+          "x": 0.125,
+          "y": 0.5
+        },
+        {
+          "id": "right",
+          "label": "Right attachment",
+          "role": "attachment",
+          "x": 0.875,
+          "y": 0.5
+        },
+        {
+          "id": "top",
+          "label": "Top attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.125
+        },
+        {
+          "id": "bottom",
+          "label": "Bottom attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.875
+        }
+      ],
+      "scientific_references": [
+        {
+          "id": "qi-2013-hsp70",
+          "citation": "Qi R, Sarbeng EB, Liu Q, et al. Allosteric opening of the polypeptide-binding site when an Hsp70 binds ATP. Nature Structural & Molecular Biology. 2013;20:900–907.",
+          "doi": "10.1038/nsmb.2583",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3772632/",
+          "figure": "Figure 1",
+          "use": "Separate HSP70 nucleotide-binding domain, linker, substrate-binding domain and lid; retain an extended client segment. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "wang-2022-client-loading",
+          "citation": "Wang RY-R, Noddings CM, Kirschke E, Myasnikov AG, Johnson JL, Agard DA. Structure of Hsp90–Hsp70–Hop–GR reveals the Hsp90 client-loading mechanism. Nature. 2022;601:460–464.",
+          "doi": "10.1038/s41586-021-04252-1",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9179170/",
+          "figure": "Figure 4",
+          "use": "Make the client's extended binding region visible and preserve client identity through chaperone handling. Concepts only; no source artwork or geometry copied."
+        }
+      ],
+      "scientific_limitations": [
+        "Geometry and patches are explanatory cues, not measured tertiary structure or hydrophobicity.",
+        "Do not imply inevitable aggregation."
+      ],
+      "reviewer_notes": "Independent scientific and original-image review passed at 64 and 256 px in all three treatments. Source/web editing qualification is recorded separately in the asset review. Product-level release approval remains pending. CC0 1.0 permission is granted; product-level release approval remains pending.",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable SVG geometry constructed for the Figure Tool from protein-homeostasis concepts. Primary research informs biological relationships only. No published or proprietary artwork, tracing, screenshot, structural coordinates, measured data or third-party vector component was incorporated. The workspace owner grants CC0 1.0 permission effective 2026-10-10; product-level release approval remains pending.",
+      "source_record_id": "source.protein-homeostasis.2026-10-07",
+      "rights_record_id": "rights.protein-homeostasis.owner-cc0.2026-10-10",
+      "style_family": "figure-studio-soft-line-v1",
+      "style_variant": "standard",
+      "review_status": "independent_scientific_and_visual_review_passed_2026_10_07",
+      "style_status": "soft_line_v1_original_draft",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 3
+    },
+    {
+      "id": "proteostasis.protein.hsp70_client_complex",
+      "concept_id": "proteostasis.protein.hsp70_client_complex",
+      "name": "HSP70–Client Complex",
+      "scientific_name": "HSP70–Client Complex",
+      "synonyms": [
+        "HSP70",
+        "Hsc70",
+        "heat shock protein 70",
+        "molecular chaperone",
+        "client binding",
+        "substrate binding",
+        "protein folding",
+        "proteostasis"
+      ],
+      "category": "protein",
+      "subcategory": "Protein homeostasis",
+      "tags": [
+        "HSP70",
+        "Hsc70",
+        "heat shock protein 70",
+        "molecular chaperone",
+        "client binding",
+        "substrate binding",
+        "protein folding",
+        "proteostasis",
+        "protein homeostasis"
+      ],
+      "description": "Illustrative HSP70-family chaperone with connected nucleotide-binding and substrate-binding domains holding an extended client region.",
+      "file": "svg/hsp70_client_complex.svg",
+      "editable_color_regions": [
+        {
+          "id": "atpase_domain",
+          "label": "ATPase domain and interdomain linker",
+          "default": "#8EC8FF",
+          "paint": "fill"
+        },
+        {
+          "id": "substrate_binding_domain",
+          "label": "Substrate-binding domain and lid",
+          "default": "#5EA9DD",
+          "paint": "fill"
+        },
+        {
+          "id": "client",
+          "label": "Extended client polypeptide",
+          "default": "#E76F51",
+          "paint": "fill"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#26323D",
+          "paint": "stroke"
+        }
+      ],
+      "connector_hints": [
+        {
+          "id": "left",
+          "label": "Left attachment",
+          "role": "attachment",
+          "x": 0.125,
+          "y": 0.5
+        },
+        {
+          "id": "right",
+          "label": "Right attachment",
+          "role": "attachment",
+          "x": 0.875,
+          "y": 0.5
+        },
+        {
+          "id": "top",
+          "label": "Top attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.125
+        },
+        {
+          "id": "bottom",
+          "label": "Bottom attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.875
+        }
+      ],
+      "scientific_references": [
+        {
+          "id": "qi-2013-hsp70",
+          "citation": "Qi R, Sarbeng EB, Liu Q, et al. Allosteric opening of the polypeptide-binding site when an Hsp70 binds ATP. Nature Structural & Molecular Biology. 2013;20:900–907.",
+          "doi": "10.1038/nsmb.2583",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3772632/",
+          "figure": "Figure 1",
+          "use": "Separate HSP70 nucleotide-binding domain, linker, substrate-binding domain and lid; retain an extended client segment. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "wang-2022-client-loading",
+          "citation": "Wang RY-R, Noddings CM, Kirschke E, Myasnikov AG, Johnson JL, Agard DA. Structure of Hsp90–Hsp70–Hop–GR reveals the Hsp90 client-loading mechanism. Nature. 2022;601:460–464.",
+          "doi": "10.1038/s41586-021-04252-1",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9179170/",
+          "figure": "Figure 4",
+          "use": "Make the client's extended binding region visible and preserve client identity through chaperone handling. Concepts only; no source artwork or geometry copied."
+        }
+      ],
+      "scientific_limitations": [
+        "No species, isoform, nucleotide state or complete co-chaperone system.",
+        "Association does not demonstrate successful folding."
+      ],
+      "reviewer_notes": "Independent scientific and original-image review passed at 64 and 256 px in all three treatments. Source/web editing qualification is recorded separately in the asset review. Product-level release approval remains pending. CC0 1.0 permission is granted; product-level release approval remains pending.",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable SVG geometry constructed for the Figure Tool from protein-homeostasis concepts. Primary research informs biological relationships only. No published or proprietary artwork, tracing, screenshot, structural coordinates, measured data or third-party vector component was incorporated. The workspace owner grants CC0 1.0 permission effective 2026-10-10; product-level release approval remains pending.",
+      "source_record_id": "source.protein-homeostasis.2026-10-07",
+      "rights_record_id": "rights.protein-homeostasis.owner-cc0.2026-10-10",
+      "style_family": "figure-studio-soft-line-v1",
+      "style_variant": "standard",
+      "review_status": "independent_scientific_and_visual_review_passed_2026_10_07",
+      "style_status": "soft_line_v1_original_draft",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 4
+    },
+    {
+      "id": "proteostasis.protein.hsp90_client_complex",
+      "concept_id": "proteostasis.protein.hsp90_client_complex",
+      "name": "HSP90–Client Complex",
+      "scientific_name": "HSP90–Client Complex",
+      "synonyms": [
+        "HSP90",
+        "heat shock protein 90",
+        "molecular chaperone",
+        "client protein",
+        "client association",
+        "protein homeostasis",
+        "proteostasis"
+      ],
+      "category": "protein",
+      "subcategory": "Protein homeostasis",
+      "tags": [
+        "HSP90",
+        "heat shock protein 90",
+        "molecular chaperone",
+        "client protein",
+        "client association",
+        "protein homeostasis",
+        "proteostasis"
+      ],
+      "description": "Illustrative two-protomer HSP90-family chaperone associated with a client segment at its central lumen.",
+      "file": "svg/hsp90_client_complex.svg",
+      "editable_color_regions": [
+        {
+          "id": "protomer_a",
+          "label": "HSP90 protomer A",
+          "default": "#8EC8FF",
+          "paint": "fill"
+        },
+        {
+          "id": "protomer_b",
+          "label": "HSP90 protomer B",
+          "default": "#5EA9DD",
+          "paint": "fill"
+        },
+        {
+          "id": "client",
+          "label": "Client outside dimer and lumen-bound segment",
+          "default": "#E76F51",
+          "paint": "fill"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#26323D",
+          "paint": "stroke"
+        }
+      ],
+      "connector_hints": [
+        {
+          "id": "left",
+          "label": "Left attachment",
+          "role": "attachment",
+          "x": 0.125,
+          "y": 0.5
+        },
+        {
+          "id": "right",
+          "label": "Right attachment",
+          "role": "attachment",
+          "x": 0.875,
+          "y": 0.5
+        },
+        {
+          "id": "top",
+          "label": "Top attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.125
+        },
+        {
+          "id": "bottom",
+          "label": "Bottom attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.875
+        }
+      ],
+      "scientific_references": [
+        {
+          "id": "wang-2022-client-loading",
+          "citation": "Wang RY-R, Noddings CM, Kirschke E, Myasnikov AG, Johnson JL, Agard DA. Structure of Hsp90–Hsp70–Hop–GR reveals the Hsp90 client-loading mechanism. Nature. 2022;601:460–464.",
+          "doi": "10.1038/s41586-021-04252-1",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9179170/",
+          "figure": "Figure 4",
+          "use": "Make the client's extended binding region visible and preserve client identity through chaperone handling. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "noddings-2022-client-remodelling",
+          "citation": "Noddings CM, Wang RY-R, Johnson JL, Agard DA. Structure of Hsp90–p23–GR reveals the Hsp90 client-remodelling mechanism. Nature. 2022;601:465–469.",
+          "doi": "10.1038/s41586-021-04236-1",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8994517/",
+          "figure": "Figure 1",
+          "use": "Show two HSP90 protomers, a central lumen and a client segment passing between them while most client mass remains outside. Concepts only; no source artwork or geometry copied."
+        }
+      ],
+      "scientific_limitations": [
+        "No species, isoform, nucleotide state or co-chaperone composition.",
+        "No universal activation, complete maturation complex or invariably unfolded client."
+      ],
+      "reviewer_notes": "Independent scientific and original-image review passed at 64 and 256 px in all three treatments. Source/web editing qualification is recorded separately in the asset review. Product-level release approval remains pending. CC0 1.0 permission is granted; product-level release approval remains pending.",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable SVG geometry constructed for the Figure Tool from protein-homeostasis concepts. Primary research informs biological relationships only. No published or proprietary artwork, tracing, screenshot, structural coordinates, measured data or third-party vector component was incorporated. The workspace owner grants CC0 1.0 permission effective 2026-10-10; product-level release approval remains pending.",
+      "source_record_id": "source.protein-homeostasis.2026-10-07",
+      "rights_record_id": "rights.protein-homeostasis.owner-cc0.2026-10-10",
+      "style_family": "figure-studio-soft-line-v1",
+      "style_variant": "standard",
+      "review_status": "independent_scientific_and_visual_review_passed_2026_10_07",
+      "style_status": "soft_line_v1_original_draft",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 4
+    },
+    {
+      "id": "proteostasis.protein.ring_e3_ubiquitination_complex",
+      "concept_id": "proteostasis.protein.ring_e3_ubiquitination_complex",
+      "name": "RING E3 Ubiquitination Complex",
+      "scientific_name": "RING E3 Ubiquitination Complex",
+      "synonyms": [
+        "RING E3",
+        "E3 ubiquitin ligase",
+        "E2 ubiquitin conjugate",
+        "E2 Ub",
+        "ubiquitination",
+        "ubiquitylation",
+        "ubiquitin transfer"
+      ],
+      "category": "protein",
+      "subcategory": "Protein homeostasis",
+      "tags": [
+        "RING E3",
+        "E3 ubiquitin ligase",
+        "E2 ubiquitin conjugate",
+        "E2 Ub",
+        "ubiquitination",
+        "ubiquitylation",
+        "ubiquitin transfer",
+        "protein homeostasis",
+        "proteostasis"
+      ],
+      "description": "Illustrative RING E3 supporting an E2–ubiquitin conjugate beside a substrate for direct E2-to-substrate transfer.",
+      "file": "svg/ring_e3_ubiquitination_complex.svg",
+      "editable_color_regions": [
+        {
+          "id": "e3_ligase",
+          "label": "RING E3 docking scaffold",
+          "default": "#9FD8B5",
+          "paint": "fill"
+        },
+        {
+          "id": "e2_enzyme",
+          "label": "Ubiquitin-conjugating E2 enzyme",
+          "default": "#8EC8FF",
+          "paint": "fill"
+        },
+        {
+          "id": "ubiquitin",
+          "label": "E2-linked donor ubiquitin",
+          "default": "#B8B5FF",
+          "paint": "fill"
+        },
+        {
+          "id": "substrate",
+          "label": "Protein substrate",
+          "default": "#E76F51",
+          "paint": "fill"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#26323D",
+          "paint": "stroke"
+        }
+      ],
+      "connector_hints": [
+        {
+          "id": "left",
+          "label": "Left attachment",
+          "role": "attachment",
+          "x": 0.125,
+          "y": 0.5
+        },
+        {
+          "id": "right",
+          "label": "Right attachment",
+          "role": "attachment",
+          "x": 0.875,
+          "y": 0.5
+        },
+        {
+          "id": "top",
+          "label": "Top attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.125
+        },
+        {
+          "id": "bottom",
+          "label": "Bottom attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.875
+        }
+      ],
+      "scientific_references": [
+        {
+          "id": "dou-2012-ring-e3",
+          "citation": "Dou H, Buetow L, Sibbet GJ, Cameron K, Huang DT. BIRC7–E2 ubiquitin conjugate structure reveals the mechanism of ubiquitin transfer by a RING dimer. Nature Structural & Molecular Biology. 2012;19:876–883.",
+          "doi": "10.1038/nsmb.2379",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3880866/",
+          "figure": "Figure 1",
+          "use": "Keep donor ubiquitin attached to E2 and RING E3 separate; direct transfer originates from E2-bound ubiquitin. Concepts only; no source artwork or geometry copied."
+        }
+      ],
+      "scientific_limitations": [
+        "No named enzyme, substrate or linkage.",
+        "No E3–ubiquitin covalent intermediate.",
+        "Attachment alone does not establish proteasomal degradation."
+      ],
+      "reviewer_notes": "Independent scientific and original-image review passed at 64 and 256 px in all three treatments. Source/web editing qualification is recorded separately in the asset review. Product-level release approval remains pending. CC0 1.0 permission is granted; product-level release approval remains pending.",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable SVG geometry constructed for the Figure Tool from protein-homeostasis concepts. Primary research informs biological relationships only. No published or proprietary artwork, tracing, screenshot, structural coordinates, measured data or third-party vector component was incorporated. The workspace owner grants CC0 1.0 permission effective 2026-10-10; product-level release approval remains pending.",
+      "source_record_id": "source.protein-homeostasis.2026-10-07",
+      "rights_record_id": "rights.protein-homeostasis.owner-cc0.2026-10-10",
+      "style_family": "figure-studio-soft-line-v1",
+      "style_variant": "standard",
+      "review_status": "independent_scientific_and_visual_review_passed_2026_10_07",
+      "style_status": "soft_line_v1_original_draft",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 5
+    },
+    {
+      "id": "proteostasis.protein.deubiquitinase_substrate_complex",
+      "concept_id": "proteostasis.protein.deubiquitinase_substrate_complex",
+      "name": "Deubiquitinase–Substrate Complex",
+      "scientific_name": "Deubiquitinase–Substrate Complex",
+      "synonyms": [
+        "deubiquitinase",
+        "deubiquitinating enzyme",
+        "DUB",
+        "deubiquitination",
+        "deubiquitylation",
+        "ubiquitin removal"
+      ],
+      "category": "protein",
+      "subcategory": "Protein homeostasis",
+      "tags": [
+        "deubiquitinase",
+        "deubiquitinating enzyme",
+        "DUB",
+        "deubiquitination",
+        "deubiquitylation",
+        "ubiquitin removal",
+        "protein homeostasis",
+        "proteostasis"
+      ],
+      "description": "Illustrative DUB engaging ubiquitin and the attachment joining it to a substrate protein.",
+      "file": "svg/deubiquitinase_substrate_complex.svg",
+      "editable_color_regions": [
+        {
+          "id": "deubiquitinase",
+          "label": "Generic deubiquitinase cleft",
+          "default": "#9FD8B5",
+          "paint": "fill"
+        },
+        {
+          "id": "ubiquitin",
+          "label": "Ubiquitin and its substrate attachment",
+          "default": "#B8B5FF",
+          "paint": "fill"
+        },
+        {
+          "id": "substrate",
+          "label": "Protein substrate",
+          "default": "#E76F51",
+          "paint": "fill"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#26323D",
+          "paint": "stroke"
+        }
+      ],
+      "connector_hints": [
+        {
+          "id": "left",
+          "label": "Left attachment",
+          "role": "attachment",
+          "x": 0.125,
+          "y": 0.5
+        },
+        {
+          "id": "right",
+          "label": "Right attachment",
+          "role": "attachment",
+          "x": 0.875,
+          "y": 0.5
+        },
+        {
+          "id": "top",
+          "label": "Top attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.125
+        },
+        {
+          "id": "bottom",
+          "label": "Bottom attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.875
+        }
+      ],
+      "scientific_references": [
+        {
+          "id": "renatus-2006-dub",
+          "citation": "Renatus M, Parrado SG, D'Arcy A, et al. Structural basis of ubiquitin recognition by the deubiquitinating protease USP2. Structure. 2006;14:1293–1302.",
+          "doi": "10.1016/j.str.2006.06.012",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7126176/",
+          "figure": "Figure 2",
+          "use": "Use a DUB cleft engaging ubiquitin's body and C-terminal attachment region; leave the substrate backbone intact. Concepts only; no source artwork or geometry copied."
+        }
+      ],
+      "scientific_limitations": [
+        "Substrate backbone remains intact; cleavage concerns the ubiquitin attachment.",
+        "No family identity, linkage specificity or automatic substrate rescue."
+      ],
+      "reviewer_notes": "Independent scientific and original-image review passed at 64 and 256 px in all three treatments. Source/web editing qualification is recorded separately in the asset review. Product-level release approval remains pending. CC0 1.0 permission is granted; product-level release approval remains pending.",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable SVG geometry constructed for the Figure Tool from protein-homeostasis concepts. Primary research informs biological relationships only. No published or proprietary artwork, tracing, screenshot, structural coordinates, measured data or third-party vector component was incorporated. The workspace owner grants CC0 1.0 permission effective 2026-10-10; product-level release approval remains pending.",
+      "source_record_id": "source.protein-homeostasis.2026-10-07",
+      "rights_record_id": "rights.protein-homeostasis.owner-cc0.2026-10-10",
+      "style_family": "figure-studio-soft-line-v1",
+      "style_variant": "standard",
+      "review_status": "independent_scientific_and_visual_review_passed_2026_10_07",
+      "style_status": "soft_line_v1_original_draft",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 4
+    },
+    {
+      "id": "proteostasis.protein.proteasomal_substrate_processing",
+      "concept_id": "proteostasis.protein.proteasomal_substrate_processing",
+      "name": "Proteasomal Substrate Processing",
+      "scientific_name": "Proteasomal Substrate Processing",
+      "synonyms": [
+        "proteasomal degradation",
+        "proteasome substrate",
+        "substrate processing",
+        "protein degradation",
+        "protein turnover",
+        "substrate translocation",
+        "ubiquitin proteasome system"
+      ],
+      "category": "pathway-symbol",
+      "subcategory": "Protein homeostasis",
+      "tags": [
+        "proteasomal degradation",
+        "proteasome substrate",
+        "substrate processing",
+        "protein degradation",
+        "protein turnover",
+        "substrate translocation",
+        "ubiquitin proteasome system",
+        "protein homeostasis",
+        "proteostasis"
+      ],
+      "description": "Illustrative proteasomal processing with one entering polypeptide and short peptides leaving the proteolytic core.",
+      "file": "svg/proteasomal_substrate_processing.svg",
+      "editable_color_regions": [
+        {
+          "id": "regulatory_particle",
+          "label": "Regulatory particle",
+          "default": "#8EC8FF",
+          "paint": "fill"
+        },
+        {
+          "id": "proteolytic_core",
+          "label": "Cutaway proteolytic core",
+          "default": "#C7F2EC",
+          "paint": "fill"
+        },
+        {
+          "id": "substrate",
+          "label": "Continuous entering polypeptide",
+          "default": "#E76F51",
+          "paint": "fill"
+        },
+        {
+          "id": "peptide",
+          "label": "Released peptide fragments",
+          "default": "#E76F51",
+          "paint": "fill"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#26323D",
+          "paint": "stroke"
+        }
+      ],
+      "connector_hints": [
+        {
+          "id": "left",
+          "label": "Left attachment",
+          "role": "attachment",
+          "x": 0.125,
+          "y": 0.5
+        },
+        {
+          "id": "right",
+          "label": "Right attachment",
+          "role": "attachment",
+          "x": 0.875,
+          "y": 0.5
+        },
+        {
+          "id": "top",
+          "label": "Top attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.125
+        },
+        {
+          "id": "bottom",
+          "label": "Bottom attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.875
+        }
+      ],
+      "scientific_references": [
+        {
+          "id": "dong-2019-proteasome",
+          "citation": "Dong Y, Zhang S, Wu Z, et al. Cryo-EM structures and dynamics of substrate-engaged human 26S proteasome. Nature. 2019;565:49–55.",
+          "doi": "10.1038/s41586-018-0736-4",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6370054/",
+          "figure": "Figure 6",
+          "use": "Separate ubiquitin recognition/removal, translocation and degradation; depict an entering polypeptide and exiting short peptides. Concepts only; no source artwork or geometry copied."
+        }
+      ],
+      "scientific_limitations": [
+        "Depicts a processing relationship distinct from the existing standalone proteasome.",
+        "No intact folded globule or attached polyubiquitin through the core.",
+        "No exact conformation, identity, rate or chain linkage."
+      ],
+      "reviewer_notes": "Independent scientific and original-image review passed at 64 and 256 px in all three treatments. Source/web editing qualification is recorded separately in the asset review. Product-level release approval remains pending. CC0 1.0 permission is granted; product-level release approval remains pending.",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable SVG geometry constructed for the Figure Tool from protein-homeostasis concepts. Primary research informs biological relationships only. No published or proprietary artwork, tracing, screenshot, structural coordinates, measured data or third-party vector component was incorporated. The workspace owner grants CC0 1.0 permission effective 2026-10-10; product-level release approval remains pending.",
+      "source_record_id": "source.protein-homeostasis.2026-10-07",
+      "rights_record_id": "rights.protein-homeostasis.owner-cc0.2026-10-10",
+      "style_family": "figure-studio-soft-line-v1",
+      "style_variant": "standard",
+      "review_status": "independent_scientific_and_visual_review_passed_2026_10_07",
+      "style_status": "soft_line_v1_original_draft",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 5
+    },
+    {
+      "id": "proteostasis.protein.amorphous_protein_aggregate",
+      "concept_id": "proteostasis.protein.amorphous_protein_aggregate",
+      "name": "Amorphous Protein Aggregate",
+      "scientific_name": "Amorphous Protein Aggregate",
+      "synonyms": [
+        "protein aggregate",
+        "amorphous aggregate",
+        "amorphous aggregation",
+        "nonfibrillar aggregation",
+        "protein aggregation",
+        "proteostasis"
+      ],
+      "category": "protein",
+      "subcategory": "Protein homeostasis",
+      "tags": [
+        "protein aggregate",
+        "amorphous aggregate",
+        "amorphous aggregation",
+        "nonfibrillar aggregation",
+        "protein aggregation",
+        "proteostasis",
+        "protein homeostasis"
+      ],
+      "description": "Illustrative irregular nonfibrillar grouping of interacting protein chains without a membrane boundary or repetitive amyloid architecture.",
+      "file": "svg/amorphous_protein_aggregate.svg",
+      "editable_color_regions": [
+        {
+          "id": "client",
+          "label": "Entangled polypeptides",
+          "default": "#E76F51",
+          "paint": "fill"
+        },
+        {
+          "id": "hydrophobic_patch",
+          "label": "Illustrative exposed hydrophobic segments",
+          "default": "#F4DC8A",
+          "paint": "fill"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#26323D",
+          "paint": "stroke"
+        }
+      ],
+      "connector_hints": [
+        {
+          "id": "left",
+          "label": "Left attachment",
+          "role": "attachment",
+          "x": 0.125,
+          "y": 0.5
+        },
+        {
+          "id": "right",
+          "label": "Right attachment",
+          "role": "attachment",
+          "x": 0.875,
+          "y": 0.5
+        },
+        {
+          "id": "top",
+          "label": "Top attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.125
+        },
+        {
+          "id": "bottom",
+          "label": "Bottom attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.875
+        }
+      ],
+      "scientific_references": [
+        {
+          "id": "boatz-2017-aggregate-limit",
+          "citation": "Boatz JC, Whitley MJ, Li M, Gronenborn AM, van der Wel PCA. Cataract-associated P23T γD-crystallin retains a native-like fold in amorphous-looking aggregates formed at physiological pH. Nature Communications. 2017;8:15137.",
+          "doi": "10.1038/ncomms15137",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5424181/",
+          "figure": "Figure 8",
+          "use": "Amorphous-looking aggregates may retain native-like folds; aggregation alone establishes neither amyloid nor toxicity. Concepts only; no source artwork or geometry copied."
+        }
+      ],
+      "scientific_limitations": [
+        "No amyloid, toxicity, measured insolubility or complete unfolding claim.",
+        "Do not make aggregation an inevitable result of misfolding or chaperone association."
+      ],
+      "reviewer_notes": "Independent scientific and original-image review passed at 64 and 256 px in all three treatments. Source/web editing qualification is recorded separately in the asset review. Product-level release approval remains pending. CC0 1.0 permission is granted; product-level release approval remains pending.",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable SVG geometry constructed for the Figure Tool from protein-homeostasis concepts. Primary research informs biological relationships only. No published or proprietary artwork, tracing, screenshot, structural coordinates, measured data or third-party vector component was incorporated. The workspace owner grants CC0 1.0 permission effective 2026-10-10; product-level release approval remains pending.",
+      "source_record_id": "source.protein-homeostasis.2026-10-07",
+      "rights_record_id": "rights.protein-homeostasis.owner-cc0.2026-10-10",
+      "style_family": "figure-studio-soft-line-v1",
+      "style_variant": "standard",
+      "review_status": "independent_scientific_and_visual_review_passed_2026_10_07",
+      "style_status": "soft_line_v1_original_draft",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 3
+    }
+  ]
+}

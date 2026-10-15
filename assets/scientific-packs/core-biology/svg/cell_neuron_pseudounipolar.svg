@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Pseudounipolar Sensory Neuron — Schematic</title>
+  <desc id="desc">Original pseudounipolar morphology with the soma outside the through-path, attached by one stem to a continuous T-junction. The two lateral branches are axonal; no transport direction, regenerative state or measured caliber is asserted.</desc>
+
+  <path data-region="cytoplasm" fill="#D9F4E5" d="M15 38H113V46H72L73 66C86 69 94 79 93 91C92 105 80 113 66 111C52 109 44 99 45 86C46 76 52 69 64 66L63 46H15Z"/>
+  <g data-region="neurite" fill="none" stroke="#7DD3C7" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 42H112M68 42L68 67"/></g>
+  <path data-region="nucleus" fill="#B8B5FF" d="M57 88C57 81 63 77 70 78C78 79 82 84 81 91C80 99 74 102 67 101C60 100 56 95 57 88Z"/>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M15 38H113V46H72L73 66C86 69 94 79 93 91C92 105 80 113 66 111C52 109 44 99 45 86C46 76 52 69 64 66L63 46H15Z" stroke-width="3.1"/>
+    <path d="M57 88C57 81 63 77 70 78C78 79 82 84 81 91C80 99 74 102 67 101C60 100 56 95 57 88Z" stroke-width="2.2"/>
+  </g>
+</svg>

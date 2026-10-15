@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Hanging-drop Spheroid Culture — Single hanging drop</title>
+  <desc id="desc">A pendant culture-medium drop with a cell aggregate near its lower tip, suspended beneath a support.</desc>
+  <g data-region="support" fill="#E8EEF7" stroke="none">
+    <rect x="16" y="24" width="96" height="10" rx="3"/>
+  </g>
+  <g data-region="medium" fill="#8EC8FF" stroke="none">
+    <path d="M42 34C43 49 32 58 31 75C29 93 43 110 64 111C84 111 99 96 97 77C96 59 85 48 86 34Z"/>
+  </g>
+  <g data-region="aggregatecells" fill="#7DD3C7" stroke="none">
+    <path d="M-18 -3C-19 -11 -11 -16 -5 -13C1 -19 11 -15 13 -9C21 -8 23 1 17 6C18 14 9 18 2 14C-5 20 -15 14 -15 9C-22 7 -25 0 -18 -3Z" transform="translate(64 92) scale(0.88)"/>
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="16" y="24" width="96" height="10" rx="3"/><path d="M42 34C43 49 32 58 31 75C29 93 43 110 64 111C84 111 99 96 97 77C96 59 85 48 86 34Z"/><path d="M-18 -3C-19 -11 -11 -16 -5 -13C1 -19 11 -15 13 -9C21 -8 23 1 17 6C18 14 9 18 2 14C-5 20 -15 14 -15 9C-22 7 -25 0 -18 -3Z" transform="translate(64 92) scale(0.88)"/><path d="M-16 -4C-9 -7 -5 -4 -4 3M-4 3C1 0 5 3 6 11M-4 3C-8 7 -6 10 -8 13M1 -13C2 -6 8 -6 13 -8M13 -8C9 -1 12 4 17 5" transform="translate(64 92) scale(0.88)" stroke-width="2.2"/>
+  </g>
+</svg>

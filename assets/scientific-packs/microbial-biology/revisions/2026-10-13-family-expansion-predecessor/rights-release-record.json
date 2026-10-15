@@ -1,0 +1,367 @@
+{
+  "schema_id": "figureStudio.scientificAssetLicenseReleaseAudit.v1",
+  "audit_id": "microbial-biology.rights-cleared-quality-pending.2026-10-10",
+  "audit_date": "2026-10-10",
+  "pack_id": "microbial-biology",
+  "status": "rights_cleared_quality_pending",
+  "release_effective_date": null,
+  "concept_count": 12,
+  "asset_count": 12,
+  "rights_cleared_count": 12,
+  "third_party_component_count": 0,
+  "license_selection_pending_count": 0,
+  "public_distribution_authorized": true,
+  "selected_public_license": "CC0-1.0",
+  "license_notice": "LICENSE-ASSETS-CC0-1.0.md",
+  "rights_basis": {
+    "status": "owner_attested_original_output",
+    "scope": "all_assets_in_pack",
+    "pack_id": "microbial-biology",
+    "authorization_record_id": "rights.microbial-biology.owner-cc0.2026-10-10",
+    "qualification": "This is an owner license grant for the recorded original material. It is not a non-infringement, patent, trademark, privacy, publicity, or endorsement warranty; product-release quality review remains separate."
+  },
+  "source_records": [
+    {
+      "id": "source.microbial-biology.2026-10-08",
+      "kind": "clean_room_generation_record",
+      "pack_id": "microbial-biology",
+      "scope": "all_assets_in_pack",
+      "created_on": "2026-10-08",
+      "generated_by": "Figure Tool AI-assisted original SVG authoring",
+      "third_party_material": "none_declared",
+      "statement": "Original editable SVG geometry constructed for the Figure Tool from microbial structures and interactions concepts. Primary research informs biological topology and molecular relationships only. No published or proprietary artwork, tracing, screenshot, structural coordinates, measured data or third-party vector component was incorporated. This source record documents original construction and does not decide product release.",
+      "scientific_references": [
+        {
+          "id": "pmc10197873-figure2",
+          "citation": "Andrea Corona Ramírez et al. Multiple roads lead to Rome: unique morphology and chemistry of endospores, exospores, myxospores, cysts and akinetes in bacteria. Microbiology. 2023.",
+          "doi": "10.1099/mic.0.001299",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10197873/",
+          "figure": "Fig. 2.",
+          "use": "Figure 2a right: Bacillus endospore has a bounded inner core and surrounding concentric cortex/coat; use an isolated spore cross-section. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "pmc10197873-figure3",
+          "citation": "Andrea Corona Ramírez et al. Multiple roads lead to Rome: unique morphology and chemistry of endospores, exospores, myxospores, cysts and akinetes in bacteria. Microbiology. 2023.",
+          "doi": "10.1099/mic.0.001299",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10197873/",
+          "figure": "Fig. 3.",
+          "use": "Figure 3a upper: one cytoplasmic membrane below a broad external wall. Figure 3c/d upper: two membranes with an intervening periplasm including thin peptidoglycan. Figure 3a lower: core membrane, cortex and coat of a Bacillus endospore. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "pmc1201225-figure3",
+          "citation": "Sven Hammerschmidt et al. Illustration of Pneumococcal Polysaccharide Capsule during Adherence and Invasion of Epithelial Cells. Infection and Immunity. 2005.",
+          "doi": "10.1128/IAI.73.8.4653-4667.2005",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC1201225/",
+          "figure": "FIG. 3.",
+          "use": "Capsule-positive microscopy in panels A/D/G shows capsular material outside the bacterial body; comparisons distinguish the capsule from intracellular structures. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "pmc3160247-figure3",
+          "citation": "Songye Chen et al. Structural diversity of bacterial flagellar motors. The EMBO Journal. 2011.",
+          "doi": "10.1038/emboj.2011.186",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3160247/",
+          "figure": "Figure 3.",
+          "use": "Salmonella and E. coli motor panels show the shaft through outer membrane/peptidoglycan, the rotor at the cytoplasmic membrane, a cytoplasmic C-ring and flanking membrane-associated stators. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "pmc3513368-figure1",
+          "citation": "Veysel Berk et al. Molecular Architecture and Assembly Principles of Vibrio cholerae Biofilms. Science (New York, N.Y.). 2012.",
+          "doi": "10.1126/science.1222981",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3513368/",
+          "figure": "Fig. 1.  V. cholerae  biofilm structure.",
+          "use": "Panels B/C show bacterial clusters encased by extracellular matrix and associated with the underlying surface. Depict an irregular attached matrix containing bacterial rods. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "pmc2745257-figure2",
+          "citation": "Brooke L Deatherage et al. Biogenesis of Bacterial Membrane Vesicles. Molecular microbiology. 2009.",
+          "doi": "10.1111/j.1365-2958.2009.06731.x",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2745257/",
+          "figure": "Figure 2. WT MV release localized to division septa and cell body; MV proteins control size and localization of MV release.",
+          "use": "Actual microscopy in panels E/F shows membrane vesicles associated with the bacterial outer surface and release at cell-body or septal sites. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "pmc2745257-figure6",
+          "citation": "Brooke L Deatherage et al. Biogenesis of Bacterial Membrane Vesicles. Molecular microbiology. 2009.",
+          "doi": "10.1111/j.1365-2958.2009.06731.x",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2745257/",
+          "figure": "Figure 6. Model of MV biogenesis.",
+          "use": "Panel B left models an outer-membrane protrusion enclosing periplasmic material while the inner membrane remains separate; retain an open periplasm-to-bud neck. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "pmc4568249-figure1",
+          "citation": "Bo Hu et al. Structural remodeling of bacteriophage T4 and host membranes during infection initiation. Proceedings of the National Academy of Sciences of the United States of America. 2015.",
+          "doi": "10.1073/pnas.1501064112",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4568249/",
+          "figure": "Fig. 1.",
+          "use": "Actual tomography in panels A/C/D/F distinguishes the capsid, neck, sheath around an axial tube, baseplate and flexible long fibers of a contractile-tailed phage. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "pmc4568249-figure3",
+          "citation": "Bo Hu et al. Structural remodeling of bacteriophage T4 and host membranes during infection initiation. Proceedings of the National Academy of Sciences of the United States of America. 2015.",
+          "doi": "10.1073/pnas.1501064112",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4568249/",
+          "figure": "Fig. 3.",
+          "use": "Panels A/B show genome retention/release from an external head; panels F/L show the inner membrane bulging toward the contracted tail tube. Genome delivery keeps the capsid outside and joins the tube to the inner membrane. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "pmc4568249-figure5",
+          "citation": "Bo Hu et al. Structural remodeling of bacteriophage T4 and host membranes during infection initiation. Proceedings of the National Academy of Sciences of the United States of America. 2015.",
+          "doi": "10.1073/pnas.1501064112",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4568249/",
+          "figure": "Fig. 5.",
+          "use": "Panels E/F integrate the observed T4-like state: contracted sheath outside, tube across the outer membrane, outward-bulged inner membrane and genome entering cytoplasm. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "pmc4944294-figure6",
+          "citation": "Long Gui et al. Visualization and Sequencing of Membrane Remodeling Leading to Influenza Virus Fusion. Journal of Virology. 2016.",
+          "doi": "10.1128/JVI.00240-16",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4944294/",
+          "figure": "FIG 6.",
+          "use": "Postfusion influenza/liposome tomography shows merged membrane-bound compartments. Depict a fused viral envelope/target membrane rather than an intact viral shell crossing another intact membrane. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "pmc4944294-figure10",
+          "citation": "Long Gui et al. Visualization and Sequencing of Membrane Remodeling Leading to Influenza Virus Fusion. Journal of Virology. 2016.",
+          "doi": "10.1128/JVI.00240-16",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4944294/",
+          "figure": "FIG 10.",
+          "use": "Final pore-formation stage has a true opening bounded by merged membrane segments. Use one open-pore state, with viral contents exposed to the target-side compartment. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "pmc2991257-figure2",
+          "citation": "Lars-Anders Carlson et al. Cryo Electron Tomography of Native HIV-1 Budding Sites. PLoS Pathogens. 2010.",
+          "doi": "10.1371/journal.ppat.1001173",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2991257/",
+          "figure": "Figure 2. Cryo electron tomograms of HIV-1 budding sites and released particles.",
+          "use": "Actual HIV budding tomograms in panels A/D/F show outward plasma-membrane curvature around viral assembly material with a narrowing membrane neck. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "pmc4011870-figure1",
+          "citation": "Diego Luis Delgado-Álvarez et al. Septum Development in Neurospora crassa: The Septal Actomyosin Tangle. PLoS ONE. 2014.",
+          "doi": "10.1371/journal.pone.0096744",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4011870/",
+          "figure": "Figure 1. Septum development in hyphae of  Neurospora crassa  visualized by fluorescent tagging of actin with Lifeact-GFP.",
+          "use": "Actual live microscopy in panels A/B shows connected tubular fungal hyphae, branching and transverse septa. Use a continuous wall enclosing connected cytoplasm. Concepts only; no source artwork or geometry copied."
+        },
+        {
+          "id": "pmc4011870-figure6",
+          "citation": "Diego Luis Delgado-Álvarez et al. Septum Development in Neurospora crassa: The Septal Actomyosin Tangle. PLoS ONE. 2014.",
+          "doi": "10.1371/journal.pone.0096744",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4011870/",
+          "figure": "Figure 6. Chronology of the incorporation of actin (A) and tropomyosin (B) during septum development.",
+          "use": "FM4-64 series shows ingrowth of the septal membrane within a tubular hypha. With the article description of the central pore, retain real septal openings continuous with cytoplasm. Concepts only; no source artwork or geometry copied."
+        }
+      ]
+    }
+  ],
+  "rights_records": [
+    {
+      "id": "rights.microbial-biology.owner-cc0.2026-10-10",
+      "kind": "owner_license_grant",
+      "pack_id": "microbial-biology",
+      "scope": "all_assets_in_pack",
+      "status": "rights_cleared",
+      "public_distribution_authorized": true,
+      "selected_public_license": "CC0-1.0",
+      "rights_basis": "owner_attested_original_output",
+      "third_party_material": "none_declared",
+      "effective_date": "2026-10-10",
+      "statement": "The workspace owner grants CC0 1.0 permission for the original artwork and asset-specific metadata in the microbial-biology pack, effective 2026-10-10. This grant does not approve the pack for product release.",
+      "qualification": "This is an owner license grant for the recorded original material. It is not a non-infringement, patent, trademark, privacy, publicity, or endorsement warranty; product-release quality review remains separate."
+    }
+  ],
+  "license_candidates": [
+    {
+      "id": "CC0-1.0",
+      "selected": true,
+      "owner_action_required": false,
+      "rationale": "Explicit workspace-owner authorization recorded for this original artwork."
+    }
+  ],
+  "release_blocker": "CC0 rights are cleared. Product-level release approval remains pending and must be recorded separately.",
+  "assets": [
+    {
+      "asset_id": "microbe.membrane_signaling.gram_negative_envelope_segment",
+      "file": "svg/gram_negative_envelope_segment.svg",
+      "sha256": "9218eeb790483beea8ce0cbcc5e99c57d5ac470174fff986c33804d3e8806759",
+      "provenance_sha256": "15fee811ce7e1cd13d8297d61b6e3c14882c7af7749a256e5330cbe104f3b030",
+      "source_type": "clean_room_original_vector",
+      "lineage": "workspace_generated_clean_room_original",
+      "current_license": "CC0-1.0",
+      "rights_basis": "owner_attested_original_output",
+      "third_party_material": "none_declared",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "source_record_id": "source.microbial-biology.2026-10-08",
+      "rights_record_id": "rights.microbial-biology.owner-cc0.2026-10-10"
+    },
+    {
+      "asset_id": "microbe.membrane_signaling.gram_positive_envelope_segment",
+      "file": "svg/gram_positive_envelope_segment.svg",
+      "sha256": "b6b8a9521a3533e8ebbed45ae63c479a29d585486ea282e9981fbb49525e8d76",
+      "provenance_sha256": "15fee811ce7e1cd13d8297d61b6e3c14882c7af7749a256e5330cbe104f3b030",
+      "source_type": "clean_room_original_vector",
+      "lineage": "workspace_generated_clean_room_original",
+      "current_license": "CC0-1.0",
+      "rights_basis": "owner_attested_original_output",
+      "third_party_material": "none_declared",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "source_record_id": "source.microbial-biology.2026-10-08",
+      "rights_record_id": "rights.microbial-biology.owner-cc0.2026-10-10"
+    },
+    {
+      "asset_id": "microbe.cell.encapsulated_bacterium",
+      "file": "svg/encapsulated_bacterium.svg",
+      "sha256": "576e7e7e780d2af230b43da126d45ec5328ee5ca4ead42bd8b6c0230fe695984",
+      "provenance_sha256": "15fee811ce7e1cd13d8297d61b6e3c14882c7af7749a256e5330cbe104f3b030",
+      "source_type": "clean_room_original_vector",
+      "lineage": "workspace_generated_clean_room_original",
+      "current_license": "CC0-1.0",
+      "rights_basis": "owner_attested_original_output",
+      "third_party_material": "none_declared",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "source_record_id": "source.microbial-biology.2026-10-08",
+      "rights_record_id": "rights.microbial-biology.owner-cc0.2026-10-10"
+    },
+    {
+      "asset_id": "microbe.membrane_signaling.bacterial_flagellar_motor",
+      "file": "svg/bacterial_flagellar_motor.svg",
+      "sha256": "3de5258c839dc25d58490db21e00d76df2d1c0450521c2b993fe4689d0d8f88a",
+      "provenance_sha256": "15fee811ce7e1cd13d8297d61b6e3c14882c7af7749a256e5330cbe104f3b030",
+      "source_type": "clean_room_original_vector",
+      "lineage": "workspace_generated_clean_room_original",
+      "current_license": "CC0-1.0",
+      "rights_basis": "owner_attested_original_output",
+      "third_party_material": "none_declared",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "source_record_id": "source.microbial-biology.2026-10-08",
+      "rights_record_id": "rights.microbial-biology.owner-cc0.2026-10-10"
+    },
+    {
+      "asset_id": "microbe.cell.bacterial_endospore",
+      "file": "svg/bacterial_endospore.svg",
+      "sha256": "2183a699e9b61179a7074f99ec0daead2229115019e9e42df3a5b04efca75728",
+      "provenance_sha256": "15fee811ce7e1cd13d8297d61b6e3c14882c7af7749a256e5330cbe104f3b030",
+      "source_type": "clean_room_original_vector",
+      "lineage": "workspace_generated_clean_room_original",
+      "current_license": "CC0-1.0",
+      "rights_basis": "owner_attested_original_output",
+      "third_party_material": "none_declared",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "source_record_id": "source.microbial-biology.2026-10-08",
+      "rights_record_id": "rights.microbial-biology.owner-cc0.2026-10-10"
+    },
+    {
+      "asset_id": "microbe.model_system.surface_attached_biofilm",
+      "file": "svg/surface_attached_biofilm.svg",
+      "sha256": "1468ad05742c0e3c2534a46492ab158ce6e22c28e85c9be342303ee1e3e1715f",
+      "provenance_sha256": "15fee811ce7e1cd13d8297d61b6e3c14882c7af7749a256e5330cbe104f3b030",
+      "source_type": "clean_room_original_vector",
+      "lineage": "workspace_generated_clean_room_original",
+      "current_license": "CC0-1.0",
+      "rights_basis": "owner_attested_original_output",
+      "third_party_material": "none_declared",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "source_record_id": "source.microbial-biology.2026-10-08",
+      "rights_record_id": "rights.microbial-biology.owner-cc0.2026-10-10"
+    },
+    {
+      "asset_id": "microbe.cell.septate_fungal_hypha",
+      "file": "svg/septate_fungal_hypha.svg",
+      "sha256": "6fab78ff9e789f9449c43e1861c6c795de9185b9824d380d8a59d301638e2a9d",
+      "provenance_sha256": "15fee811ce7e1cd13d8297d61b6e3c14882c7af7749a256e5330cbe104f3b030",
+      "source_type": "clean_room_original_vector",
+      "lineage": "workspace_generated_clean_room_original",
+      "current_license": "CC0-1.0",
+      "rights_basis": "owner_attested_original_output",
+      "third_party_material": "none_declared",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "source_record_id": "source.microbial-biology.2026-10-08",
+      "rights_record_id": "rights.microbial-biology.owner-cc0.2026-10-10"
+    },
+    {
+      "asset_id": "microbe.membrane_signaling.outer_membrane_vesicle_budding",
+      "file": "svg/outer_membrane_vesicle_budding.svg",
+      "sha256": "170ab290ac14d496b6bfffa8c7ab70ded8d892e3444a09ebc91effb360152a15",
+      "provenance_sha256": "15fee811ce7e1cd13d8297d61b6e3c14882c7af7749a256e5330cbe104f3b030",
+      "source_type": "clean_room_original_vector",
+      "lineage": "workspace_generated_clean_room_original",
+      "current_license": "CC0-1.0",
+      "rights_basis": "owner_attested_original_output",
+      "third_party_material": "none_declared",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "source_record_id": "source.microbial-biology.2026-10-08",
+      "rights_record_id": "rights.microbial-biology.owner-cc0.2026-10-10"
+    },
+    {
+      "asset_id": "microbe.model_system.contractile_tailed_bacteriophage",
+      "file": "svg/contractile_tailed_bacteriophage.svg",
+      "sha256": "121b3d9bfd8f0ce24aad8a05d7e426b1a0dac2c4067e40ada91deefe2e35091e",
+      "provenance_sha256": "15fee811ce7e1cd13d8297d61b6e3c14882c7af7749a256e5330cbe104f3b030",
+      "source_type": "clean_room_original_vector",
+      "lineage": "workspace_generated_clean_room_original",
+      "current_license": "CC0-1.0",
+      "rights_basis": "owner_attested_original_output",
+      "third_party_material": "none_declared",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "source_record_id": "source.microbial-biology.2026-10-08",
+      "rights_record_id": "rights.microbial-biology.owner-cc0.2026-10-10"
+    },
+    {
+      "asset_id": "microbe.membrane_signaling.phage_genome_injection",
+      "file": "svg/phage_genome_injection.svg",
+      "sha256": "da3443ef88c83f20b85e8db65e7b788f186d11c1407b06a59bf865e7b7f8b7e3",
+      "provenance_sha256": "15fee811ce7e1cd13d8297d61b6e3c14882c7af7749a256e5330cbe104f3b030",
+      "source_type": "clean_room_original_vector",
+      "lineage": "workspace_generated_clean_room_original",
+      "current_license": "CC0-1.0",
+      "rights_basis": "owner_attested_original_output",
+      "third_party_material": "none_declared",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "source_record_id": "source.microbial-biology.2026-10-08",
+      "rights_record_id": "rights.microbial-biology.owner-cc0.2026-10-10"
+    },
+    {
+      "asset_id": "microbe.membrane_signaling.enveloped_virus_membrane_fusion",
+      "file": "svg/enveloped_virus_membrane_fusion.svg",
+      "sha256": "b0c071444b4326f82a6d4f3f3e927241fc250b34afea1bd5487619969815ea01",
+      "provenance_sha256": "15fee811ce7e1cd13d8297d61b6e3c14882c7af7749a256e5330cbe104f3b030",
+      "source_type": "clean_room_original_vector",
+      "lineage": "workspace_generated_clean_room_original",
+      "current_license": "CC0-1.0",
+      "rights_basis": "owner_attested_original_output",
+      "third_party_material": "none_declared",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "source_record_id": "source.microbial-biology.2026-10-08",
+      "rights_record_id": "rights.microbial-biology.owner-cc0.2026-10-10"
+    },
+    {
+      "asset_id": "microbe.membrane_signaling.enveloped_virus_plasma_membrane_budding",
+      "file": "svg/enveloped_virus_plasma_membrane_budding.svg",
+      "sha256": "4d5733d98655ab088b6414ede87608e4da3034ca4fb311ca51afbf559ee94908",
+      "provenance_sha256": "15fee811ce7e1cd13d8297d61b6e3c14882c7af7749a256e5330cbe104f3b030",
+      "source_type": "clean_room_original_vector",
+      "lineage": "workspace_generated_clean_room_original",
+      "current_license": "CC0-1.0",
+      "rights_basis": "owner_attested_original_output",
+      "third_party_material": "none_declared",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "source_record_id": "source.microbial-biology.2026-10-08",
+      "rights_record_id": "rights.microbial-biology.owner-cc0.2026-10-10"
+    }
+  ],
+  "rights_grant_effective_date": "2026-10-10",
+  "product_release_status": "pending_quality_and_product_review",
+  "supersedes_audit_id": "microbial-biology.provenance-license-draft.2026-10-08"
+}

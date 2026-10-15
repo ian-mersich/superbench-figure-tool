@@ -1,0 +1,77 @@
+{
+  "schema_id": "superbench.scientificAssetRevision.v1",
+  "revision_id": "2026-10-11-nucleic-acid-redraw",
+  "revision_date": "2026-10-11",
+  "pack_id": "core-biology",
+  "predecessor": {
+    "audit_id": "core-biology.provenance-license-release.2026-07-20",
+    "catalog_sha256": "f1c3ba520939b1a204ff528d702a71571ae1256d5c0206f793d107893487b9bc",
+    "audit_sha256": "0248f1092c1f476aa7d69b0f9cd45baa5f96785f5b82b1c61aca804cab94dcd7",
+    "snapshot": "revisions/2026-07-20"
+  },
+  "current_catalog_sha256": "14fedf450572c49a5aca903ee9e505dc87407dfd9c900e32eaf013c736e8a725",
+  "redraw_source_record_id": "nucleic-acid-redraw-source-2026-10-11",
+  "owner_authorization_record_id": "owner-nucleic-acid-redraw-authorization-2026-10-11",
+  "review": {
+    "status": "accepted",
+    "visual_review": "pass",
+    "reviewer": "independent project lead review",
+    "reviewed_on": "2026-10-11",
+    "scope": "all three assets at 96 and 160 pixels, native editor and Technical ink; independent region recolor, style switching, save/reopen, old embedded artwork, and editable vector isolation",
+    "evidence": "docs/scientific-assets/NUCLEIC_ACID_REVISION_2026_10_11.md",
+    "editor_checks": "pass"
+  },
+  "changed_assets": [
+    {
+      "asset_id": "core.dna.double_helix",
+      "file": "svg/dna_double_helix.svg",
+      "before_svg_sha256": "a1e8479be81f7ffe42da71d665cd62bb18d976e1668a72a322400dd9cfee5592",
+      "after_svg_sha256": "14a99bd6090232147ecaeef0a8867e29b87cdae1a793ab53484362cd46b75b23",
+      "before_metadata_sha256": "b2a6bcf78af6d22b2d77246cb68907e90200b9c0ad396a91db82990ffb53e51f",
+      "after_metadata_sha256": "ee21093b83f8699a5be1d1c35dc07e7524e530f11a30e67ff6d1778446ab7ca4",
+      "lineage": "original_redraw_of_released_workspace_vector",
+      "license": "CC0-1.0",
+      "paint_channel_changes": [
+        {
+          "region_id": "backbone",
+          "before": "stroke",
+          "after": "fill"
+        }
+      ]
+    },
+    {
+      "asset_id": "core.dna.double_helix_manuscript",
+      "file": "svg/dna_double_helix_manuscript.svg",
+      "before_svg_sha256": "27d50334fc2bb38ef1a8d4983beeebbda5e6660950a2fba264d210672a36a050",
+      "after_svg_sha256": "c1590f84805fe6383a0f68681b53f1490b22d086b215b56d0c8769f3821d9849",
+      "before_metadata_sha256": "15c9ff2fce063366de3563fe930af61419878c190edf11915dbd5e3d08ae7619",
+      "after_metadata_sha256": "278a968526f35222acf70aa0b93632996f5472f2c8a8e1d6c5d73e20c9521e29",
+      "lineage": "original_redraw_of_released_workspace_vector",
+      "license": "CC0-1.0",
+      "paint_channel_changes": [
+        {
+          "region_id": "backbone",
+          "before": "stroke",
+          "after": "fill"
+        }
+      ]
+    },
+    {
+      "asset_id": "core.chromatin.loop",
+      "file": "svg/chromatin_loop.svg",
+      "before_svg_sha256": "5ca9e3a0ec893d787739f88410da1b5a52ab56cc8aaa7e325041fe5b1a240312",
+      "after_svg_sha256": "2287a2339f6b166f76c163e765e28fd575b3a4eecee6aa310f7cd7fee463c3d9",
+      "before_metadata_sha256": "8fe448cbf2b4b1eeeacad344031373bad7d7dad8181aa2d0a492f089c4a787ff",
+      "after_metadata_sha256": "4f400a3bbcf230b7b4d0040220bd66757a059e58ddb0c5025860a1784418bbdc",
+      "lineage": "original_redraw_of_released_workspace_vector",
+      "license": "CC0-1.0",
+      "paint_channel_changes": [
+        {
+          "region_id": "histone",
+          "before": "fill+stroke (implicit default)",
+          "after": "fill"
+        }
+      ]
+    }
+  ]
+}

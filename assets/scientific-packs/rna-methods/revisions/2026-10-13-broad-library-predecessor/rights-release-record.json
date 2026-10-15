@@ -1,0 +1,148 @@
+{
+  "schema_id": "figureStudio.scientificAssetLicenseReleaseAudit.v1",
+  "audit_id": "rna-methods.rights-cleared-quality-pending.2026-10-10",
+  "audit_date": "2026-10-10",
+  "pack_id": "rna-methods",
+  "status": "rights_cleared_quality_pending",
+  "release_effective_date": null,
+  "concept_count": 4,
+  "asset_count": 4,
+  "rights_cleared_count": 4,
+  "third_party_component_count": 0,
+  "license_selection_pending_count": 0,
+  "public_distribution_authorized": true,
+  "selected_public_license": "CC0-1.0",
+  "license_notice": "LICENSE-ASSETS-CC0-1.0.md",
+  "rights_basis": {
+    "status": "owner_attested_original_output",
+    "scope": "all_assets_in_pack",
+    "pack_id": "rna-methods",
+    "authorization_record_id": "rights.rna-methods.owner-cc0.2026-10-10",
+    "qualification": "This is an owner license grant for the recorded original material. It is not a non-infringement, patent, trademark, privacy, publicity, or endorsement warranty; product-release quality review remains separate."
+  },
+  "source_records": [
+    {
+      "id": "source.rna-methods.2026-10-07",
+      "kind": "clean_room_generation_record",
+      "pack_id": "rna-methods",
+      "scope": "all_assets_in_pack",
+      "created_on": "2026-10-07",
+      "generated_by": "Figure Studio AI-assisted original SVG authoring",
+      "third_party_material": "none_declared",
+      "statement": "Four original editable vectors were authored for Figure Studio from scientific method concepts supported by primary research articles. Paths, layouts, and illustrative marks were constructed anew; no proprietary asset, published diagram, screenshot, tracing, image, or third-party vector component was incorporated.",
+      "scientific_references": [
+        {
+          "id": "macosko-2015-drop-seq",
+          "citation": "Macosko et al. Highly parallel genome-wide expression profiling of individual cells using nanoliter droplets. Cell 161, 1202–1214 (2015).",
+          "doi": "10.1016/j.cell.2015.05.002",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4481139/",
+          "use": "Method concepts only: aqueous cell partitioning, oligo-barcoded capture beads, shared bead barcodes, distinct molecular identifiers, and poly(dT) capture. No published artwork, geometry, image, or sequence was copied."
+        },
+        {
+          "id": "stahl-2016-spatial-transcriptomics",
+          "citation": "Ståhl et al. Visualization and analysis of gene expression in tissue sections by spatial transcriptomics. Science 353, 78–82 (2016).",
+          "doi": "10.1126/science.aaf2403",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/27365449/",
+          "use": "Method concept only: a tissue section associated with spatially barcoded capture positions. No single-cell resolution claim, published image, or measured expression pattern is reproduced."
+        },
+        {
+          "id": "raj-2008-rna-fish",
+          "citation": "Raj et al. Imaging individual mRNA molecules using multiple singly labeled probes. Nature Methods 5, 877–879 (2008).",
+          "doi": "10.1038/nmeth.1253",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3126653/",
+          "use": "Method concept only: RNA-probe-associated puncta in a cellular field with nuclear context. No microscopy image, measured spot positions, molecular counts, target genes, or scale was copied."
+        }
+      ]
+    }
+  ],
+  "rights_records": [
+    {
+      "id": "rights.rna-methods.owner-cc0.2026-10-10",
+      "kind": "owner_license_grant",
+      "pack_id": "rna-methods",
+      "scope": "all_assets_in_pack",
+      "status": "rights_cleared",
+      "public_distribution_authorized": true,
+      "selected_public_license": "CC0-1.0",
+      "rights_basis": "owner_attested_original_output",
+      "third_party_material": "none_declared",
+      "effective_date": "2026-10-10",
+      "statement": "The workspace owner grants CC0 1.0 permission for the original artwork and asset-specific metadata in the rna-methods pack, effective 2026-10-10. This grant does not approve the pack for product release.",
+      "qualification": "This is an owner license grant for the recorded original material. It is not a non-infringement, patent, trademark, privacy, publicity, or endorsement warranty; product-release quality review remains separate."
+    }
+  ],
+  "license_candidates": [
+    {
+      "id": "CC0-1.0",
+      "selected": true,
+      "owner_action_required": false,
+      "rationale": "Explicit workspace-owner authorization recorded for this original artwork."
+    }
+  ],
+  "release_blocker": "CC0 rights are cleared. Product-level release approval remains pending and must be recorded separately.",
+  "assets": [
+    {
+      "asset_id": "rna.lab_equipment.microfluidic_cell_partition",
+      "file": "svg/microfluidic_cell_partition.svg",
+      "sha256": "35f074edeef9a027484522d9c80f7d09e01e5003787fd6455461ff0a022fdc7f",
+      "provenance_sha256": "7a1eb6b3937255202bffdff0e6c1dd931adbd88462831cf9083de13eebef9803",
+      "source_type": "clean_room_original_vector",
+      "lineage": "workspace_generated_clean_room_original",
+      "current_license": "CC0-1.0",
+      "rights_basis": "owner_attested_original_output",
+      "third_party_material": "none_declared",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "source_record_id": "source.rna-methods.2026-10-07",
+      "rights_record_id": "rights.rna-methods.owner-cc0.2026-10-10"
+    },
+    {
+      "asset_id": "rna.nucleic_acid.barcoded_capture_bead",
+      "file": "svg/barcoded_capture_bead.svg",
+      "sha256": "cff4c76a06c860d286d9b3eccf9d2232879a0d0b4c2dc10f844b134cbbf157da",
+      "provenance_sha256": "7a1eb6b3937255202bffdff0e6c1dd931adbd88462831cf9083de13eebef9803",
+      "source_type": "clean_room_original_vector",
+      "lineage": "workspace_generated_clean_room_original",
+      "current_license": "CC0-1.0",
+      "rights_basis": "owner_attested_original_output",
+      "third_party_material": "none_declared",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "source_record_id": "source.rna-methods.2026-10-07",
+      "rights_record_id": "rights.rna-methods.owner-cc0.2026-10-10"
+    },
+    {
+      "asset_id": "rna.assay_workflow.spatial_capture_array",
+      "file": "svg/spatial_capture_array.svg",
+      "sha256": "950e8a5f7992e9a5e56355c79be6eb8dcb3458dae7597cbf505e7110721358b4",
+      "provenance_sha256": "7a1eb6b3937255202bffdff0e6c1dd931adbd88462831cf9083de13eebef9803",
+      "source_type": "clean_room_original_vector",
+      "lineage": "workspace_generated_clean_room_original",
+      "current_license": "CC0-1.0",
+      "rights_basis": "owner_attested_original_output",
+      "third_party_material": "none_declared",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "source_record_id": "source.rna-methods.2026-10-07",
+      "rights_record_id": "rights.rna-methods.owner-cc0.2026-10-10"
+    },
+    {
+      "asset_id": "rna.assay_workflow.in_situ_rna_puncta",
+      "file": "svg/in_situ_rna_puncta.svg",
+      "sha256": "70c113627c0faef82d105b88a981a50022e410244174e1e6fcf47e6e8beb2074",
+      "provenance_sha256": "7a1eb6b3937255202bffdff0e6c1dd931adbd88462831cf9083de13eebef9803",
+      "source_type": "clean_room_original_vector",
+      "lineage": "workspace_generated_clean_room_original",
+      "current_license": "CC0-1.0",
+      "rights_basis": "owner_attested_original_output",
+      "third_party_material": "none_declared",
+      "provenance_status": "owner_attested",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "source_record_id": "source.rna-methods.2026-10-07",
+      "rights_record_id": "rights.rna-methods.owner-cc0.2026-10-10"
+    }
+  ],
+  "rights_grant_effective_date": "2026-10-10",
+  "product_release_status": "pending_quality_and_product_review",
+  "supersedes_audit_id": "rna-methods.provenance-license-draft.2026-10-07"
+}
