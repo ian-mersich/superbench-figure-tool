@@ -1,7 +1,7 @@
 {
   "schema": "figureStudio.pptxCompatibility.v1",
   "version": "pptx.v1",
-  "productVersion": "1.0.0-beta.10",
+  "productVersion": "1.0.0-beta.11",
   "direction": "Common scientific-deck PPTX interchange",
   "googleSlides": "Use the exported PPTX, PDF, SVG, or PNG files. Direct cloud integration is not included.",
   "fidelityClaim": "Bounded editable interchange; not universal PowerPoint or Google Slides round-trip fidelity.",

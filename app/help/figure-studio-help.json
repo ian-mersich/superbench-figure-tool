@@ -1,6 +1,6 @@
 {
   "schema": "figureStudio.helpContent.v2",
-  "version": "1.0.0-beta.10",
+  "version": "1.0.0-beta.11",
   "title": "Figure Tool Help",
   "updated": "2026-10-15",
   "shared_help": {
@@ -961,8 +961,8 @@
         "Open Library and choose Assets, Scenes, or Templates. Search and filters apply to the selected view. Assets contains individual symbols; Scenes contains editable diagrams; Templates provides new Figure layouts.",
         "Use Favorites and Recent to find frequently used drawings. Related searches offers names from the matching catalog and keeps your current filters. Clear search removes only the query, keeping those filters.",
         "Choose Preview on a drawing to inspect a larger image, alternate forms or views, scientific limitations, and editable parts. Close or Escape returns to the Library without inserting or changing artwork.",
-        "Style and Palette choices in the Library affect the next insertion or replacement. The preview states those choices; it does not recolor artwork already on the canvas.",
-        "Select one inserted drawing to use Replace selected or Replace all same in Style or the detailed Inspector. In Presentation, open Format for these controls. The actions count the unlocked matching copies in this figure or slide; locked copies are kept. Each replacement keeps its size and position, and Undo restores the previous artwork in one step.",
+        "Style and Palette choices in the Library affect the next insertion. The preview states those choices; it does not recolor artwork already on the canvas. Library cards always insert a new drawing.",
+        "Select one inserted Library drawing and choose Change drawing in Style or the detailed Inspector; in Presentation, use Format. The chooser changes only the selected drawing by default. A counted checkbox can include other unlocked, unmodified copies on this figure or slide. If you edited the selected drawing, review and acknowledge that changing it discards those edits. Custom drawings remain editable with the canvas tools. Changing a drawing keeps its size, position and stacking order; one Undo restores its previous artwork. Closing the chooser leaves the canvas unchanged.",
         "Part colors names the biological regions available in the selected drawing. Change a region color or reset it without changing the other parts. These controls affect the selected drawing; the Library Palette affects the next insertion.",
         "For a scene, Use as new figure creates a new document. Insert in this figure or Insert on this slide adds it to the current canvas. Its labels, symbols, and relationships remain separately editable on named layers.",
         "Edit placeholder labels to match your experiment or biological system. Check each arrow’s meaning and remove irrelevant branches. A reusable diagram is a starting point, not evidence for a particular biological claim.",

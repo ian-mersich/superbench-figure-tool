@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+<title id="title">Caveola — Single invagination</title>
+<desc id="desc">A flask-shaped plasma-membrane invagination with a narrow surface connection and caveolar coat cues. A generic caveolar morphology. Coat marks do not imply clathrin, caveolin stoichiometry or a fully detached vesicle; neighboring profiles do not establish their three-dimensional connectivity.</desc>
+<g data-region="cytoplasm" id="cytoplasmic-context-fill" fill="#C7F2EC"><path d="M17 42H111V110H17Z"/></g>
+<g data-region="lumen" id="extracellularly-continuous-caveolar-lumen-fill" fill="#F7F9FC"><path d="M58 30H71V47C84 53 89 65 88 73C87 89 66 100 52 91C35 83 34 57 55 47Z"/></g>
+<g data-region="membrane" id="flask-shaped-caveolar-membrane-fill" fill="#7DD3C7"><path d="M17 36H51Q58 36 55 47C34 57 35 83 52 91C66 100 87 89 88 73Q89 55 74 48Q70 36 78 36H111V44H82Q93 59 94 73Q94 99 66 103Q39 103 33 82Q25 61 47 44H17Z"/></g>
+<g data-region="outline" id="flask-shaped-caveolar-membrane-outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 36H51Q58 36 55 47C34 57 35 83 52 91C66 100 87 89 88 73Q89 55 74 48Q70 36 78 36H111V44H82Q93 59 94 73Q94 99 66 103Q39 103 33 82Q25 61 47 44H17Z"/></g>
+<g data-region="coat" id="caveolar-coat-cue-0-fill" fill="#5EA9DD"><ellipse cx="36" cy="61" rx="3" ry="5"/></g>
+<g data-region="coat" id="caveolar-coat-cue-1-fill" fill="#5EA9DD"><ellipse cx="35" cy="79" rx="3" ry="5"/></g>
+<g data-region="coat" id="caveolar-coat-cue-2-fill" fill="#5EA9DD"><ellipse cx="48" cy="96" rx="3" ry="5"/></g>
+<g data-region="coat" id="caveolar-coat-cue-3-fill" fill="#5EA9DD"><ellipse cx="71" cy="99" rx="3" ry="5"/></g>
+<g data-region="coat" id="caveolar-coat-cue-4-fill" fill="#5EA9DD"><ellipse cx="89" cy="85" rx="3" ry="5"/></g>
+<g data-region="coat" id="caveolar-coat-cue-5-fill" fill="#5EA9DD"><ellipse cx="92" cy="65" rx="3" ry="5"/></g>
+</svg>

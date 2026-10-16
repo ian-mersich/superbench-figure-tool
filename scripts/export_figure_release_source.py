@@ -18,7 +18,9 @@ import zipfile
 SUPPORT_FILES = (
     "LICENSE", "NOTICE", "LICENSE_POLICY.md", "package.json", "requirements-release.txt", ".gitattributes",
     "assets/LICENSE-ORIGINAL-ASSETS-CC0-1.0.md", "assets/CC0-1.0.txt",
+    "assets/LICENSE-CELL-STRESS-TME-ANALYSIS-CC0-1.0.md",
     "config/scientific-product-release-2026-10-15.json",
+    "config/scientific-product-release-2026-10-15-expansion.json",
     "scripts/figure_tool_package_producer.py", "scripts/scientific_product_release.py",
     "scripts/scientific_family_revision.py", "scripts/export_figure_release_source.py",
     "scripts/check_figure_release_sync.py", "tests/test_figure_release_sync.py",
@@ -26,11 +28,16 @@ SUPPORT_FILES = (
     "scripts/validate-scientific-assets.py", "scripts/validate-vendor-bundle.py",
     "scripts/prepare-vendor-source.py", "scripts/rebuild-svg2pdf-vendor.py",
     "scripts/build-vendor-notice.py", "scripts/generate-scientific-asset-license-audit.py",
+    "scripts/seed-cell-structure-stress-assets.py", "scripts/cell_structure_stress_renderers.py",
+    "scripts/cell_structure_stress_science.json", "scripts/seed-tumor-analysis-assets.py",
     "tests/test_figure_tool_package_producer.py", "tests/test_scientific_product_release.py",
     "tests/test_export_figure_release_source.py",
+    "tests/test_cell_structure_stress_assets.py", "tests/test_tumor_analysis_assets.py",
+    "tests/test_scientific_contribution_policy.py",
     "tests/test_vendor_fabric_portability.py", "tests/test_vendor_source_tools.py",
     "docs/UNIFIED_FIGURE_RELEASE.md",
     "docs/architecture/FIGURE_HOST_SETTINGS.md",
+    "docs/architecture/FIGURE_DRAWING_CHANGES.md",
 )
 
 
@@ -103,15 +110,20 @@ def export_source(source: Path, package: Path, output: Path, *, cache: Path) -> 
                                     "instructions": "vendor/SOURCE_MATERIALS.md"},
     }
     (repository / "SOURCE_RELEASE.json").write_text(json.dumps(metadata, indent=2) + "\n", encoding="utf-8", newline="\n")
+    exported_library = json.loads((source / "assets/scientific-packs/library.json").read_text(encoding="utf-8"))
+    drawing_count = sum(row["asset_count"] for row in exported_library["packs"])
+    concept_count = sum(row["concept_count"] for row in exported_library["packs"])
     (repository / "README.md").write_text(
         "# Superbench Figure Tool\n\nCreate editable scientific figures and presentations. "
         "[Open the browser editor](https://imersich.com/superbench/figure_tool/).\n\n"
         f"This is {version}. The browser and Superbench packages use the same app, styles, vendors, "
-        "406 Library drawings (346 concepts), and 12 scientific scenes. SOURCE_RELEASE.json binds this export "
+        f"{drawing_count} Library drawings "
+        f"({concept_count} concepts), and 12 scientific scenes. SOURCE_RELEASE.json binds this export "
         "to their committed source and shared payload. Installed native-host qualification is separate.\n\n"
         "Serve this directory over HTTP and open `web/`. Work stays in the current browser profile; download "
         "portable files for backups. First-party code is Apache-2.0 and original artwork is CC0-1.0. "
-        "See LICENSE, NOTICE, assets/LICENSE-ORIGINAL-ASSETS-CC0-1.0.md and vendor/NOTICE.\n\n"
+        "See LICENSE, NOTICE, LICENSE_POLICY.md, assets/LICENSE-ORIGINAL-ASSETS-CC0-1.0.md, "
+        "assets/LICENSE-CELL-STRESS-TME-ANALYSIS-CC0-1.0.md and vendor/NOTICE.\n\n"
         "The full release source ZIP includes verified preferred upstream sources under preferred-source-materials/. "
         "This slim Git export retains the same lock, complete notices, and fetch/verify instructions in "
         "vendor/SOURCE_MATERIALS.md. Fresh upstream compiler rebuilds are not qualified as byte-identical.\n\n"

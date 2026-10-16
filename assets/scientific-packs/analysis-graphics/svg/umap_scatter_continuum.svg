@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+<title id="title">UMAP Scatter — Continuous state example</title>
+<desc id="desc">Editable UMAP-style examples with separated clusters or a continuous color ordering. Illustrative editable template with invented positions, not measured data or an analysis result. Replace marks and labels with verified study-specific content before presenting results. UMAP axis values and apparent distances have no measured meaning here. Colors do not establish cell identities or lineage.</desc>
+<g data-region="outline" fill="none" stroke="#26323D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M25 20V99H112"/></g>
+<g data-region="outline" fill="#26323D" stroke="none" stroke-linecap="round" stroke-linejoin="round"><text x="69" y="117" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" font-weight="400">UMAP 1</text></g>
+<g data-region="outline" fill="#26323D" stroke="none" stroke-linecap="round" stroke-linejoin="round"><text x="10" y="61" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" font-weight="400" transform="rotate(-90 10 61)">UMAP 2</text></g>
+<g data-region="state_a" fill="#5EA9DD" stroke="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="33" cy="78" r="2.3"/><circle cx="36" cy="70" r="2.3"/><circle cx="40" cy="79" r="2.3"/><circle cx="42" cy="66" r="2.3"/><circle cx="45" cy="72" r="2.3"/><circle cx="47" cy="61" r="2.3"/></g>
+<g data-region="state_b" fill="#58B8AE" stroke="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="51" cy="66" r="2.3"/><circle cx="54" cy="59" r="2.3"/><circle cx="56" cy="51" r="2.3"/><circle cx="58" cy="60" r="2.3"/><circle cx="62" cy="54" r="2.3"/><circle cx="65" cy="48" r="2.3"/></g>
+<g data-region="state_c" fill="#F4A261" stroke="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="71" cy="46" r="2.3"/><circle cx="75" cy="39" r="2.3"/><circle cx="80" cy="45" r="2.3"/><circle cx="84" cy="32" r="2.3"/><circle cx="89" cy="39" r="2.3"/><circle cx="96" cy="31" r="2.3"/></g>
+<g data-region="outline" fill="#26323D" stroke="none" stroke-linecap="round" stroke-linejoin="round"><text x="103" y="17" text-anchor="end" font-family="Arial, sans-serif" font-size="7" font-weight="400">Example</text></g>
+</svg>

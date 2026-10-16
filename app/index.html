@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="data:,">
     <title>Superbench Figure Tool</title>
-  <link rel="stylesheet" href="styles.css?v=20261011-usability1">
+  <link rel="stylesheet" href="styles.css?v=20261015-change1">
     <link rel="stylesheet" href="line-picker.css?v=20261011-picker1">
     <link rel="stylesheet" href="help/figure-studio-help-center.css?v=20260902-family-polish1">
   </head>
@@ -732,13 +732,6 @@
                 <button type="button" data-asset-discovery="all" aria-pressed="true">All</button>
                 <button type="button" data-asset-discovery="favorites" aria-pressed="false">Favorites <span id="assetFavoriteCount">0</span></button>
                 <button type="button" data-asset-discovery="recent" aria-pressed="false">Recent <span id="assetRecentCount">0</span></button>
-              </div>
-              <div id="assetReplaceBanner" class="asset-replace-banner" hidden>
-                <span>
-                  <strong id="assetReplaceTitle">Replace asset</strong>
-                  <small id="assetReplaceDetail">Choose a bundled scientific asset.</small>
-                </span>
-                <button type="button" id="cancelAssetReplaceBtn">Cancel</button>
               </div>
               <div id="assetRelatedSearches" class="asset-related-searches" aria-label="Related asset searches" hidden></div>
               <div id="assetPanelStatus" class="asset-status">Loading scientific assets...</div>
@@ -1492,8 +1485,7 @@
               <div id="scientificAssetStyleList" class="scientific-asset-style-list" role="group" aria-label="Scientific asset style"></div>
             </div>
             <div class="scientific-asset-edit-actions">
-              <button type="button" id="replaceScientificAssetBtn">Replace selected (1)</button>
-              <button type="button" id="replaceAllScientificAssetsBtn">Replace all same</button>
+              <button type="button" id="replaceScientificAssetBtn">Change drawing…</button>
             </div>
             <p id="scientificAssetReplacementNote" class="asset-selection-note"></p>
             <div id="scientificAssetColorControls" class="asset-color-controls" hidden>
@@ -2151,12 +2143,13 @@
     </div>
     <dialog id="assetPreviewDialog" class="asset-preview-dialog" role="dialog" aria-modal="true" aria-labelledby="assetPreviewTitle" aria-describedby="assetPreviewStatus" hidden>
       <header class="asset-preview-header">
-        <div><span class="asset-preview-eyebrow">Library preview</span><h2 id="assetPreviewTitle"></h2></div>
+        <div><span id="assetPreviewEyebrow" class="asset-preview-eyebrow">Library preview</span><h2 id="assetPreviewTitle"></h2></div>
         <button type="button" id="assetPreviewCloseBtn" aria-label="Close asset preview" autofocus>Close</button>
       </header>
       <div class="asset-preview-content">
         <figure class="asset-preview-art"><img id="assetPreviewImage" alt=""><figcaption id="assetPreviewAppearance"></figcaption></figure>
         <div class="asset-preview-details" tabindex="0" role="region" aria-label="Drawing details">
+          <label id="assetPreviewSearchField" class="asset-preview-form" hidden>Find another drawing<input id="assetPreviewSearchInput" type="search" placeholder="Name or biological term…" autocomplete="off"></label>
           <label class="asset-preview-form" for="assetPreviewVariantSelect">Drawing / view<select id="assetPreviewVariantSelect"></select></label>
           <p id="assetPreviewDescription"></p>
           <section><h3>Scientific limitations</h3><ul id="assetPreviewLimitations"></ul></section>
@@ -2165,10 +2158,11 @@
       </div>
       <footer class="asset-preview-footer">
         <div><p id="assetPreviewStatus" role="status" aria-live="polite"></p><small id="assetPreviewReplacementNote"></small></div>
+        <label id="assetPreviewScopeField" class="asset-preview-choice" hidden><input id="assetPreviewIncludeCopies" type="checkbox"><span id="assetPreviewScopeLabel"></span></label>
+        <label id="assetPreviewEditedField" class="asset-preview-choice asset-preview-edited" hidden><input id="assetPreviewAllowEdited" type="checkbox"><span>This drawing has edited parts. Discard those edits and use the Library drawing.</span></label>
         <div class="asset-preview-actions">
           <button type="button" id="assetPreviewInsertBtn" class="primary">Insert</button>
-          <button type="button" id="assetPreviewReplaceSelectedBtn">Replace selected (1)</button>
-          <button type="button" id="assetPreviewReplaceAllBtn">Replace all same</button>
+          <button type="button" id="assetPreviewReplaceSelectedBtn" class="primary" hidden>Change drawing</button>
         </div>
       </footer>
     </dialog>
@@ -2555,14 +2549,14 @@
     <script src="scientific-asset-palettes.js?v=20261008" defer></script>
     <script src="scientific-asset-color-controls.js?v=20261008" defer></script>
     <script src="scientific-scene-catalog.js?v=20260830-scenes1" defer></script>
-    <script src="scientific-asset-discovery.js?v=20261015-library1" defer></script>
-    <script src="scientific-asset-preview.js?v=20261015-library1" defer></script>
+    <script src="scientific-asset-discovery.js?v=20261015-change1" defer></script>
+    <script src="scientific-asset-preview.js?v=20261015-change1" defer></script>
     <script src="scientific-motif-catalog.js?v=20260914-fig28" defer></script>
     <script src="scientific-protocol-components.js?v=20260923-fig-par-04" defer></script>
     <script src="vector-engine.js?v=20260903-scene1" defer></script>
     <script src="native-pdf-ir-materializer.js?v=20260904-text1" defer></script>
     <script src="project-overview.js?v=20260921-project-overview1" defer></script>
     <script src="line-picker.js?v=20261011-picker1" defer></script>
-  <script src="app.js?v=20261011-usability1" defer></script>
+  <script src="app.js?v=20261015-change1" defer></script>
   </body>
 </html>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+<title id="title">Lactate / Metabolite Gradient — Source-to-tissue</title>
+<desc id="desc">A producing-cell source and qualitative decrease of metabolite availability away from that source. The illustrated source direction is explicit and differs from oxygen delivery. Lactate production, uptake, clearance and pH vary; no concentration, flux, acidity or universal metabolic symbiosis is asserted.</desc>
+<g data-region="tissue" fill="#E8EEF7" stroke="none" stroke-linecap="round" stroke-linejoin="round"><rect x="29" y="29" width="82" height="67" rx="6"/></g>
+<g data-region="outline" fill="none" stroke="#26323D" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="29" y="29" width="82" height="67" rx="6"/></g>
+<g data-region="source" fill="#C7F2EC" stroke="none" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="97" cy="64" rx="12" ry="20"/></g>
+<g data-region="outline" fill="none" stroke="#26323D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="97" cy="64" rx="12" ry="20"/></g>
+<g data-region="outline" fill="none" stroke="#26323D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M91 104L34 104"/><path d="M38.26 101.39L34 104L38.26 106.61"/></g>
+<g data-region="outline" fill="#26323D" stroke="none" stroke-linecap="round" stroke-linejoin="round"><text x="69" y="119" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" font-weight="400">Lactate: source high</text></g>
+<g data-region="molecule" fill="#E76F51" stroke="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="83" cy="43" r="2.8"/><circle cx="84" cy="57" r="2.8"/><circle cx="82" cy="70" r="2.8"/><circle cx="81" cy="85" r="2.8"/><circle cx="70" cy="48" r="2.8"/><circle cx="70" cy="70" r="2.8"/><circle cx="69" cy="86" r="2.8"/><circle cx="58" cy="57" r="2.8"/><circle cx="54" cy="78" r="2.8"/><circle cx="43" cy="66" r="2.8"/></g>
+</svg>

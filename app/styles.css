@@ -11120,52 +11120,6 @@ html:is(
   overflow: hidden;
 }
 
-.asset-replace-banner {
-  min-width: 0;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  align-items: center;
-  gap: 7px;
-  margin: 1px 2px 0;
-  padding: 6px 7px;
-  border: 1px solid color-mix(in srgb, var(--accent) 44%, var(--line));
-  border-radius: 5px;
-  background: color-mix(in srgb, var(--accent-soft) 66%, var(--field));
-}
-
-.asset-replace-banner[hidden] {
-  display: none;
-}
-
-.asset-replace-banner > span {
-  min-width: 0;
-  display: grid;
-  gap: 1px;
-}
-
-.asset-replace-banner strong,
-.asset-replace-banner small {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.asset-replace-banner strong {
-  color: var(--text-strong);
-  font-size: 10px;
-}
-
-.asset-replace-banner small {
-  color: var(--muted);
-  font-size: 9px;
-}
-
-.asset-replace-banner button {
-  min-height: 24px;
-  padding-inline: 7px;
-  font-size: 9px;
-}
-
 .asset-browser-heading {
   min-width: 0;
   display: flex;
@@ -18297,6 +18251,12 @@ html .figure-studio-root #figureSimpleStyleControls > .scientific-asset-colors {
 .asset-preview-details { min-width: 0; overflow-y: auto; padding: 19px 21px 20px; max-height: min(510px, calc(100dvh - 250px)); border-left: 1px solid var(--line); }
 .asset-preview-form { display: grid; gap: 5px; font-size: 11px; font-weight: 600; }
 .asset-preview-form select { width: 100%; min-height: 34px; font-size: 12px; }
+.asset-preview-form input { width: 100%; min-height: 34px; font-size: 12px; }
+.asset-preview-form + .asset-preview-form { margin-top: 10px; }
+.figure-studio-root .asset-preview-choice { display: flex; align-items: flex-start; gap: 8px; font-size: 12px; line-height: 1.45; }
+.figure-studio-root .asset-preview-choice input[type="checkbox"] { flex: 0 0 15px; width: 15px; min-width: 15px; height: 15px; min-height: 15px; padding: 0; margin: 2px 0 0; }
+.asset-preview-choice[hidden], .asset-preview-form[hidden], .asset-preview-actions button[hidden] { display: none; }
+.asset-preview-edited { padding: 9px 11px; border: 1px solid var(--accent-line); border-radius: 5px; background: var(--panel-2); }
 .asset-preview-details p, .asset-preview-details li { font-size: 12px; line-height: 1.55; }
 .asset-preview-details h3 { font-size: 12px; margin: 17px 0 6px; }
 .asset-preview-details ul { margin: 0; padding-left: 17px; }

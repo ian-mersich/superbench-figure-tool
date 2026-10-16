@@ -16,6 +16,9 @@ def tiny_source(root: Path) -> Path:
     for name in producer.PAYLOAD_ROOTS:
         (root / name).mkdir(parents=True, exist_ok=True)
         (root / name / "index.html").write_text("original " + name, encoding="utf-8")
+    (root / "assets/scientific-packs/library.json").write_text(json.dumps({
+        "packs": [{"id": "fixture", "asset_count": 3, "concept_count": 2}]
+    }), encoding="utf-8")
     (root / "docs/scientific-assets").mkdir(parents=True)
     (root / "docs/scientific-assets/review.md").write_text("Accepted original artwork", encoding="utf-8")
     return root
@@ -36,6 +39,7 @@ def test_source_exports_preserve_every_payload_byte_and_keep_preferred_sources_o
     receipt = exporter.export_source(source, package, output, cache=tmp_path / "cache")
     assert receipt["shared_payload_parity"] == "passed"
     exporter.verify_payload(output / "source-repository", manifest)
+    assert "3 Library drawings (2 concepts)" in (output / "source-repository/README.md").read_text(encoding="utf-8")
     assert not (output / "source-repository/vendor/source-materials").exists()
     with zipfile.ZipFile(output / receipt["archive"]) as archive:
         for row in manifest["payload_files"]:

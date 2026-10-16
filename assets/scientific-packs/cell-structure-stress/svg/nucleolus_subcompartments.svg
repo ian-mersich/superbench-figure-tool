@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+<title id="title">Nucleolus — Subcompartments</title>
+<desc id="desc">A nucleolar granular component containing multiple dense fibrillar components and fibrillar centers. Membraneless nucleolar organization is schematic and not to scale. Subcompartment number, shape and composition vary with species and state; no ribosome-production rate or molecular stoichiometry is encoded.</desc>
+<g data-region="nucleolus" id="nucleolar-granular-component-fill" fill="#B8B5FF"><path d="M28 40C38 22 72 16 93 31C111 45 110 78 94 96C74 115 41 107 25 87C12 72 19 53 28 40Z"/></g>
+<g data-region="outline" id="nucleolar-granular-component-outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M28 40C38 22 72 16 93 31C111 45 110 78 94 96C74 115 41 107 25 87C12 72 19 53 28 40Z"/></g>
+<g data-region="fibrillar_component" id="dense-fibrillar-0-fill" fill="#7B78C9"><circle cx="45" cy="50" r="14"/></g>
+<g data-region="fibrillar_centers" id="fibrillar-center-0-fill" fill="#F4A261"><circle cx="46" cy="49" r="4.6"/></g>
+<g data-region="fibrillar_component" id="dense-fibrillar-1-fill" fill="#7B78C9"><circle cx="77" cy="53" r="15"/></g>
+<g data-region="fibrillar_centers" id="fibrillar-center-1-fill" fill="#F4A261"><circle cx="78" cy="52" r="4.6"/></g>
+<g data-region="fibrillar_component" id="dense-fibrillar-2-fill" fill="#7B78C9"><circle cx="62" cy="82" r="12"/></g>
+<g data-region="fibrillar_centers" id="fibrillar-center-2-fill" fill="#F4A261"><circle cx="63" cy="81" r="4.6"/></g>
+</svg>

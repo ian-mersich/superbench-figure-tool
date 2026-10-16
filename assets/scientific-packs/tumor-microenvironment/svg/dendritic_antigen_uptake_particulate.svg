@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+<title id="title">Dendritic Cell Antigen Uptake — Particulate antigen</title>
+<desc id="desc">A dendritic-cell outline with extracellular antigen and an intracellular uptake compartment. Soluble and particulate forms are schematic uptake arrangements, not measurements of efficiency. Uptake does not establish processing, peptide presentation or T-cell activation.</desc>
+<g data-region="cell_body" fill="#C7F2EC" stroke="none" stroke-linecap="round" stroke-linejoin="round"><path d="M20 43L35 45L31 24L49 41L65 30L68 48L87 43L80 59L94 74L76 80L79 102L60 88L45 105L42 85L20 90L28 72L14 62L30 57Z"/></g>
+<g data-region="outline" fill="none" stroke="#26323D" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 43L35 45L31 24L49 41L65 30L68 48L87 43L80 59L94 74L76 80L79 102L60 88L45 105L42 85L20 90L28 72L14 62L30 57Z"/></g>
+<g data-region="nucleus" fill="#B8B5FF" stroke="none" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="45" cy="65" rx="11" ry="14"/></g>
+<g data-region="outline" fill="none" stroke="#26323D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="45" cy="65" rx="11" ry="14"/></g>
+<g data-region="uptake_compartment" fill="#E8EEF7" stroke="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="67" cy="66" r="11"/></g>
+<g data-region="outline" fill="none" stroke="#26323D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="67" cy="66" r="11"/></g>
+<g data-region="antigen" fill="#F4A261" stroke="none" stroke-linecap="round" stroke-linejoin="round"><path d="M99 27L108 31L105 41L95 38Z"/><path d="M63 61L71 63L69 71L62 69Z"/></g>
+<g data-region="outline" fill="none" stroke="#26323D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M99 27L108 31L105 41L95 38Z"/><path d="M63 61L71 63L69 71L62 69Z"/></g>
+<g data-region="outline" fill="none" stroke="#26323D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M100 63L84 65"/><path d="M87.91 61.88L84 65L88.55 67.06"/></g>
+</svg>

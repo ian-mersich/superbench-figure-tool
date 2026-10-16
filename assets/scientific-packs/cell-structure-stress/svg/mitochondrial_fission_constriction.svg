@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+<title id="title">Mitochondrial Fission — Constriction</title>
+<desc id="desc">An elongated mitochondrion narrowed at a central division-machinery cue. A generic division event, not complete DRP1, actin or ER-contact anatomy. Ring geometry, cristae number, mtDNA partitioning, fragment size, rates and stress or death outcomes are not specified. Separation is shown as a state rather than a measured motion.</desc>
+<g data-region="mitochondria" id="constricted-mitochondrion-fill" fill="#8EC8FF"><path d="M24 45Q12 52 19 71Q27 89 45 82Q57 76 64 77Q78 90 99 80Q117 70 108 50Q99 35 81 45Q69 53 64 51Q45 34 24 45Z"/></g>
+<g data-region="outline" id="constricted-mitochondrion-outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M24 45Q12 52 19 71Q27 89 45 82Q57 76 64 77Q78 90 99 80Q117 70 108 50Q99 35 81 45Q69 53 64 51Q45 34 24 45Z"/></g>
+<g data-region="cristae" id="crista-0" fill="none" stroke="#E76F51" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M29 52l-3 13 7 3"/></g>
+<g data-region="cristae" id="crista-1" fill="none" stroke="#E76F51" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M44 56l-3 13 7 3"/></g>
+<g data-region="cristae" id="crista-2" fill="none" stroke="#E76F51" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M82 55l-3 13 7 3"/></g>
+<g data-region="cristae" id="crista-3" fill="none" stroke="#E76F51" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M97 50l-3 13 7 3"/></g>
+<g data-region="division_ring" id="constriction-ring" fill="none" stroke="#B8B5FF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="64" cy="64" rx="6" ry="19"/></g>
+<g data-region="outline" id="ring-front-contour" fill="none" stroke="#26323D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M63 46Q73 64 63 82"/></g>
+</svg>

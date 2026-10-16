@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+<title id="title">Lactate / Metabolite Gradient — Local radial source</title>
+<desc id="desc">A producing-cell source and qualitative decrease of metabolite availability away from that source. The illustrated source direction is explicit and differs from oxygen delivery. Lactate production, uptake, clearance and pH vary; no concentration, flux, acidity or universal metabolic symbiosis is asserted.</desc>
+<g data-region="tissue" fill="#E8EEF7" stroke="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="64" cy="62" r="42"/></g>
+<g data-region="outline" fill="none" stroke="#26323D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="64" cy="62" r="42"/></g>
+<g data-region="outline" fill="none" stroke="#26323D" stroke-width="1.3" stroke-dasharray="3 4" stroke-linecap="round" stroke-linejoin="round"><circle cx="64" cy="62" r="27"/><circle cx="64" cy="62" r="13"/></g>
+<g data-region="source" fill="#C7F2EC" stroke="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="64" cy="62" r="10"/></g>
+<g data-region="outline" fill="none" stroke="#26323D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="64" cy="62" r="10"/></g>
+<g data-region="outline" fill="none" stroke="#26323D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M76 61L100 61"/><path d="M95.74 63.61L100 61L95.74 58.39"/></g>
+<g data-region="molecule" fill="#E76F51" stroke="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="49" cy="48" r="2.8"/><circle cx="68" cy="44" r="2.8"/><circle cx="79" cy="53" r="2.8"/><circle cx="79" cy="70" r="2.8"/><circle cx="65" cy="81" r="2.8"/><circle cx="48" cy="73" r="2.8"/><circle cx="35" cy="53" r="2.8"/><circle cx="86" cy="38" r="2.8"/><circle cx="93" cy="73" r="2.8"/></g>
+<g data-region="outline" fill="#26323D" stroke="none" stroke-linecap="round" stroke-linejoin="round"><text x="64" y="119" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" font-weight="400">Lactate high at source</text></g>
+</svg>

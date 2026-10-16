@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+<title id="title">Scatter Plot — Single series with guide</title>
+<desc id="desc">Editable point clouds for one series with a guide or two distinct series. Illustrative editable template with invented positions, not measured data or an analysis result. Replace marks and labels with verified study-specific content before presenting results. Axes lack numerical units. Any dashed trend is a hand-authored guide, not a fitted model, correlation estimate, confidence interval or causal relationship.</desc>
+<g data-region="outline" fill="none" stroke="#26323D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M25 20V99H112"/></g>
+<g data-region="outline" fill="#26323D" stroke="none" stroke-linecap="round" stroke-linejoin="round"><text x="69" y="117" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" font-weight="400">X</text></g>
+<g data-region="outline" fill="#26323D" stroke="none" stroke-linecap="round" stroke-linejoin="round"><text x="10" y="61" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" font-weight="400" transform="rotate(-90 10 61)">Y</text></g>
+<g data-region="series_a" fill="#5EA9DD" stroke="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="35" cy="82" r="2.8"/><circle cx="41" cy="70" r="2.8"/><circle cx="49" cy="78" r="2.8"/><circle cx="56" cy="57" r="2.8"/><circle cx="62" cy="66" r="2.8"/><circle cx="71" cy="43" r="2.8"/><circle cx="79" cy="52" r="2.8"/><circle cx="87" cy="32" r="2.8"/><circle cx="98" cy="42" r="2.8"/></g>
+<g data-region="trend" fill="none" stroke="#58B8AE" stroke-width="1.6" stroke-dasharray="4 4" stroke-linecap="round" stroke-linejoin="round"><path d="M31 89L104 30"/></g>
+<g data-region="outline" fill="#26323D" stroke="none" stroke-linecap="round" stroke-linejoin="round"><text x="109" y="17" text-anchor="end" font-family="Arial, sans-serif" font-size="7" font-weight="400">Example</text></g>
+</svg>

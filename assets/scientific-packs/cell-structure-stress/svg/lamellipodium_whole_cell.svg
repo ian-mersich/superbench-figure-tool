@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+<title id="title">Lamellipodium — Whole cell</title>
+<desc id="desc">A migrating cell with a broad leading-edge sheet and branched actin cues. A thin sheet-like protrusion schematic. Branch geometry, filament number, force, motility direction and Arp2/3 position are not measured. This form contrasts with a filopodium but does not assert mutually exclusive protrusion types.</desc>
+<g data-region="cytoplasm" id="migrating-cell-body-fill" fill="#C7F2EC"><path d="M21 86Q13 69 28 56L55 37Q72 15 93 21Q114 30 109 52Q109 66 94 76L77 95Q47 116 21 97Z"/></g>
+<g data-region="outline" id="migrating-cell-body-outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 86Q13 69 28 56L55 37Q72 15 93 21Q114 30 109 52Q109 66 94 76L77 95Q47 116 21 97Z"/></g>
+<g data-region="membrane" id="broad-lamellipodial-sheet-fill" fill="#7DD3C7"><path d="M52 39Q72 16 93 21Q113 28 109 51L94 65Q91 42 68 43Z"/></g>
+<g data-region="nucleus" id="nucleus-fill" fill="#D9D7FF"><ellipse cx="46" cy="77" rx="17" ry="14"/></g>
+<g data-region="outline" id="nucleus-outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="46" cy="77" rx="17" ry="14"/></g>
+<g data-region="actin" id="leading-edge-branched-actin" fill="none" stroke="#E76F51" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M68 44L80 29M73 37L69 33M79 50L93 32M85 42L93 43M92 56L104 43M97 50L104 54"/></g>
+</svg>

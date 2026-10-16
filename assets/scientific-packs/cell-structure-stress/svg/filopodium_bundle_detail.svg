@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+<title id="title">Filopodium — Bundle detail</title>
+<desc id="desc">An enlarged finger-like membrane protrusion containing parallel actin filaments and crosslink cues. A generic filopodial morphology; filament number, crosslinker identity and orientation, force, receptor localization and motility are not specified. The slender protrusion is not a microtubule-based cilium.</desc>
+<g data-region="cytoplasm" id="filopodial-membrane-protrusion-fill" fill="#C7F2EC"><path d="M17 104V82H49V29Q49 16 62 16Q75 16 75 29V82H111V104Z"/></g>
+<g data-region="outline" id="filopodial-membrane-protrusion-outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 104V82H49V29Q49 16 62 16Q75 16 75 29V82H111V104Z"/></g>
+<g data-region="actin" id="parallel-actin-filaments" fill="none" stroke="#E76F51" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M55 98V32M62 98V27M69 98V32"/></g>
+<g data-region="actin" id="actin-bundle-crosslink-0" fill="none" stroke="#E76F51" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M54 43h16"/></g>
+<g data-region="actin" id="actin-bundle-crosslink-1" fill="none" stroke="#E76F51" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M54 57h16"/></g>
+<g data-region="actin" id="actin-bundle-crosslink-2" fill="none" stroke="#E76F51" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M54 71h16"/></g>
+<g data-region="actin" id="actin-bundle-crosslink-3" fill="none" stroke="#E76F51" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M54 85h16"/></g>
+</svg>

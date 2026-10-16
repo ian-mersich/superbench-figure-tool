@@ -232,8 +232,11 @@ def build_tool_package(
         raise ReleaseBuildError("Public package creation requires passing public rights gates")
     metadata = _read_json(source_root / "package.json", "package metadata")
     if metadata.get("license") == "Apache-2.0":
-        for relative in ("LICENSE", "NOTICE", "LICENSE_POLICY.md",
-                         "assets/LICENSE-ORIGINAL-ASSETS-CC0-1.0.md", "assets/CC0-1.0.txt"):
+        terms = ["LICENSE", "NOTICE", "LICENSE_POLICY.md",
+                 "assets/LICENSE-ORIGINAL-ASSETS-CC0-1.0.md", "assets/CC0-1.0.txt"]
+        if any((source_root / PACK_ROOT / pack_id).is_dir() for pack_id in scientific_product_release.EXPANSION_PACK_COUNTS):
+            terms.append("assets/LICENSE-CELL-STRESS-TME-ANALYSIS-CC0-1.0.md")
+        for relative in terms:
             canonical = source_root / relative
             bundled = source_root / "app/legal" / relative
             if not canonical.is_file() or not bundled.is_file() or canonical.read_bytes() != bundled.read_bytes():
@@ -488,7 +491,7 @@ def validate_scene_release(scene_root: Path, *, distribution_scope: str) -> dict
         "public_distribution_authorized": not pending and rights.get("public_distribution_authorized") is True,
         "pending_scene_ids": sorted(pending),
         "historical_pending_scene_ids": historical_pending,
-        "product_release_record": scientific_product_release.RECORD if approval else None,
+        "product_release_record": scientific_product_release.active_record_path(approval),
         "rights_sha256": sha256_bytes((scene_root / "release-rights.v1.json").read_bytes()),
         "status": "released" if not pending else "private_review_only",
     }
@@ -548,7 +551,7 @@ def validate_release_source(source_root: Path, *, distribution_scope: str) -> di
         "vendor_validator": vendor,
         "packs": pack_receipts,
         "pending_pack_ids": sorted(pending_packs),
-        "product_release_record": scientific_product_release.RECORD if approval else None,
+        "product_release_record": scientific_product_release.active_record_path(approval),
         "product_release_record_sha256": scientific_product_release.canonical(approval) if approval else None,
         "scenes": scenes,
         "public_release_eligible": not pending_packs and not scenes["pending_scene_ids"],

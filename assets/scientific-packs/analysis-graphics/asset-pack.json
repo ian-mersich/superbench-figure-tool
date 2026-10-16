@@ -1,0 +1,2317 @@
+{
+  "schema_version": "0.3.0",
+  "id": "analysis-graphics",
+  "version": "0.1.0",
+  "name": "Analysis Graphics",
+  "description": "Editable schematic plot templates. Example geometry only; no measured data, computed statistics or analysis functions.",
+  "style_family": "figure-studio-soft-line-v1",
+  "style_families": [
+    "figure-studio-soft-line-v1"
+  ],
+  "qa_status": "independent_scientific_and_visual_review_passed_2026_10_15",
+  "generated_by": {
+    "script": "scripts/seed-tumor-analysis-assets.py",
+    "generated_on": "2026-10-15",
+    "deterministic": true
+  },
+  "concept_count": 10,
+  "asset_count": 20,
+  "category_counts": {
+    "assay-workflow": {
+      "concept_count": 10,
+      "style_count": 20
+    }
+  },
+  "release_audit": {
+    "file": "rights-release-record.json",
+    "audit_id": "analysis-graphics.repository-policy-cc0-quality-pending.2026-10-15",
+    "audit_date": "2026-10-15",
+    "status": "rights_cleared_quality_pending",
+    "release_effective_date": null,
+    "rights_grant_effective_date": "2026-10-15",
+    "product_release_status": "pending_quality_and_product_review",
+    "concept_count": 10,
+    "asset_count": 20,
+    "public_distribution_authorized": true,
+    "selected_public_license": "CC0-1.0",
+    "license_notice": "LICENSE-ASSETS-CC0-1.0.md"
+  },
+  "style_tokens": {
+    "viewBox": "0 0 128 128",
+    "target_padding_units": "10-16; axis labels can reach 5 units",
+    "primary_outline": "#26323D",
+    "primary_outline_width": 2.8,
+    "detail_outline_width": 1.5,
+    "line_cap": "round",
+    "line_join": "round"
+  },
+  "source_policy": {
+    "allowed_sources": [
+      "original vector geometry",
+      "primary-literature scientific conventions without copied artwork"
+    ],
+    "disallowed_sources": [
+      "tracing or copying scientific/proprietary artwork",
+      "third-party components",
+      "measured values presented as new results"
+    ]
+  },
+  "license_definitions": {
+    "CC0-1.0": {
+      "label": "CC0 1.0 Universal",
+      "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "reuse": "Original artwork and asset-specific metadata may be reused under CC0 1.0 Universal; product qualification remains separate.",
+      "attribution_required": false,
+      "public_distribution_authorized": true,
+      "selected_public_license": "CC0-1.0",
+      "rights_status": "repository_policy_original_output",
+      "release_status": "rights_cleared_quality_pending"
+    }
+  },
+  "source_records": [
+    {
+      "id": "source.analysis-graphics.2026-10-15",
+      "kind": "clean_room_generation_record",
+      "pack_id": "analysis-graphics",
+      "scope": "all_assets_in_pack",
+      "created_on": "2026-10-15",
+      "generated_by": "Superbench Figure Tool AI-assisted original SVG authoring, deterministic script",
+      "third_party_material": "none_declared",
+      "statement": "Original editable vector geometry authored for Superbench Figure Tool from generic scientific concepts and primary-literature conventions. Published figures informed biological meaning and plot conventions only. No artwork, screenshot, measured data, tracing, structural coordinates or third-party vector component was incorporated.",
+      "scientific_references": [
+        {
+          "id": "anandi-2024",
+          "citation": "Anandi L et al. Direct visualization of emergent metastatic features within an ex vivo model of the tumor microenvironment. Life Science Alliance. 2024.",
+          "doi": "10.26508/lsa.202403053",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11487089/",
+          "figure": "Figure 1A–C; Figure 7",
+          "use": "Spatial supply boundaries and increasing distance can be shown separately from measured fluorescence plots. Figure 1 inspected. Drug distribution and oxygen are distinct, context-dependent gradients."
+        },
+        {
+          "id": "elyada-2019",
+          "citation": "Elyada E et al. Cross-species single-cell analysis of pancreatic ductal adenocarcinoma reveals antigen-presenting cancer-associated fibroblasts. Cancer Discovery. 2019.",
+          "doi": "10.1158/2159-8290.CD-19-0094",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6727976/",
+          "figure": "Figure 1A, B and F; Figure 2",
+          "use": "Cellular context and heterogeneous fibroblast populations; violin widths show distributions. Original figures inspected; no source geometry or data reused."
+        },
+        {
+          "id": "kaplan-meier-1958",
+          "citation": "Kaplan EL, Meier P. Nonparametric estimation from incomplete observations. Journal of the American Statistical Association. 1958.",
+          "doi": "10.1080/01621459.1958.10501452",
+          "url": "https://doi.org/10.1080/01621459.1958.10501452",
+          "use": "The survival estimate is a nonincreasing step function, and censoring is distinct from an event. Example marks and steps have no patient-data interpretation."
+        },
+        {
+          "id": "mcinnes-2018",
+          "citation": "McInnes L, Healy J, Melville J. UMAP: Uniform Manifold Approximation and Projection for Dimension Reduction. 2018. arXiv:1802.03426.",
+          "url": "https://arxiv.org/abs/1802.03426",
+          "use": "UMAP is a dimension-reduction embedding; labeled embedding axes do not denote physical spatial coordinates. Method source only, with no source point coordinates reused."
+        },
+        {
+          "id": "omicsvolcano-2021",
+          "citation": "Kuznetsova I et al. OmicsVolcano: software for intuitive visualization and interactive exploration of high-throughput biological data. STAR Protocols. 2021.",
+          "doi": "10.1016/j.xpro.2020.100279",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7821039/",
+          "figure": "Figure 1 (caption)",
+          "use": "Volcano axes separate effect size from adjusted statistical evidence. Hand-authored example points are not analytical output."
+        },
+        {
+          "id": "tinevez-2017",
+          "citation": "Tinevez JY et al. TrackMate: An open and extensible platform for single-particle tracking. Methods. 2017.",
+          "doi": "10.1016/j.ymeth.2016.09.016",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/27713081/",
+          "use": "Tracking links observed positions over acquisition time. These hand-authored positions represent the drawing convention only, not a computed track."
+        },
+        {
+          "id": "trapnell-2014",
+          "citation": "Trapnell C et al. Pseudo-temporal ordering of individual cells reveals dynamics and regulators of cell fate decisions. Nature Biotechnology. 2014.",
+          "doi": "10.1038/nbt.2859",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4122333/",
+          "figure": "Figure 2A–C and F",
+          "use": "An inferred cell-state ordering may branch; pseudotime is distinct from collection time. Heatmaps require a visible scale. Figure inspected; no cell coordinates or values reused."
+        },
+        {
+          "id": "xue-2014",
+          "citation": "Xue J et al. Transcriptome-based network analysis reveals a spectrum model of human macrophage activation. Immunity. 2014.",
+          "doi": "10.1016/j.immuni.2014.01.006",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3991396/",
+          "figure": "Figure 1J (caption and methods)",
+          "use": "Depict several incoming environmental cues and an adjustable response continuum; avoid a universal M1/M2 binary."
+        },
+        {
+          "id": "zilionis-2019",
+          "citation": "Zilionis R et al. Single-cell transcriptomics of human and mouse lung cancers reveals conserved myeloid populations across individuals and species. Immunity. 2019.",
+          "doi": "10.1016/j.immuni.2019.03.009",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6620049/",
+          "figure": "Figure 4B, Q; neutrophil populations described in Results",
+          "use": "Distinct cell-state populations require molecular evidence; labeled diverging expression heatmaps are distinct from cell-count diagrams. Figure 4 inspected; no measured values reused."
+        }
+      ]
+    }
+  ],
+  "rights_records": [
+    {
+      "id": "rights.analysis-graphics.repository-policy-cc0.2026-10-15",
+      "kind": "repository_policy_license",
+      "pack_id": "analysis-graphics",
+      "scope": "all_assets_in_pack",
+      "status": "rights_cleared",
+      "public_distribution_authorized": true,
+      "selected_public_license": "CC0-1.0",
+      "rights_basis": "repository_policy_original_output",
+      "license_policy": "original-vectors.cc0.repository-policy.2026-10-15",
+      "third_party_material": "none_declared",
+      "effective_date": "2026-10-15",
+      "statement": "The 20 newly authored original SVG drawings and asset-specific catalog metadata in this pack apply the repository's adopted CC0 original-artwork policy prospectively on 2026-10-15. This repository-policy record does not assert a new personal owner attestation or copy, extend or backdate an earlier owner grant. The exact covered SVG and provenance identities are enumerated in this pack's audit.",
+      "qualification": "This finite contribution contains original editable vector construction with no declared third-party components. Independent scientific and visual review of the exact drawings passed on 2026-10-15. Native editor qualification and product inclusion remain separate and pending; reuse permission is not a product-release decision. CC0 carries its own limitations and warranty disclaimer."
+    }
+  ],
+  "assets": [
+    {
+      "id": "analysis.umap_scatter.clusters",
+      "concept_id": "analysis.umap_scatter",
+      "name": "UMAP Scatter — Separated clusters",
+      "scientific_name": "UMAP Scatter — Separated clusters",
+      "synonyms": [
+        "UMAP embedding",
+        "uniform manifold approximation projection"
+      ],
+      "category": "assay-workflow",
+      "subcategory": "Analytical graphics · schematic templates",
+      "tags": [
+        "UMAP Scatter",
+        "Separated clusters",
+        "UMAP embedding",
+        "uniform manifold approximation projection",
+        "editable vector",
+        "schematic",
+        "example",
+        "template",
+        "not measured data"
+      ],
+      "description": "Editable UMAP-style examples with separated clusters or a continuous color ordering.",
+      "scientific_limitations": "Illustrative editable template with invented positions, not measured data or an analysis result. Replace marks and labels with verified study-specific content before presenting results. UMAP axis values and apparent distances have no measured meaning here. Colors do not establish cell identities or lineage.",
+      "scientific_references": [
+        {
+          "id": "mcinnes-2018",
+          "citation": "McInnes L, Healy J, Melville J. UMAP: Uniform Manifold Approximation and Projection for Dimension Reduction. 2018. arXiv:1802.03426.",
+          "url": "https://arxiv.org/abs/1802.03426",
+          "use": "UMAP is a dimension-reduction embedding; labeled embedding axes do not denote physical spatial coordinates. Method source only, with no source point coordinates reused."
+        },
+        {
+          "id": "elyada-2019",
+          "citation": "Elyada E et al. Cross-species single-cell analysis of pancreatic ductal adenocarcinoma reveals antigen-presenting cancer-associated fibroblasts. Cancer Discovery. 2019.",
+          "doi": "10.1158/2159-8290.CD-19-0094",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6727976/",
+          "figure": "Figure 1A, B and F; Figure 2",
+          "use": "Cellular context and heterogeneous fibroblast populations; violin widths show distributions. Original figures inspected; no source geometry or data reused."
+        }
+      ],
+      "file": "svg/umap_scatter_clusters.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector geometry authored for Superbench Figure Tool from generic scientific concepts and primary-literature conventions. Published figures informed biological meaning and plot conventions only. No artwork, screenshot, measured data, tracing, structural coordinates or third-party vector component was incorporated.",
+      "source_record_id": "source.analysis-graphics.2026-10-15",
+      "rights_record_id": "rights.analysis-graphics.repository-policy-cc0.2026-10-15",
+      "style_family": "figure-studio-soft-line-v1",
+      "style_variant": "standard",
+      "variant_axis": "form",
+      "form_id": "clusters",
+      "form_label": "Separated clusters",
+      "review_status": "independent_scientific_and_visual_review_passed_2026_10_15",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "reviewed_original_vector",
+      "quality_tier": "reviewed",
+      "reviewer_notes": "Independent scientific and visual review accepted this exact drawing at 64, 256 and 512 px in all three drawing styles on 2026-10-15. Native editor qualification and product inclusion remain pending and are recorded separately from this artwork review and prospective repository CC0 permission.",
+      "editable_region_count": 4,
+      "editable_color_regions": [
+        {
+          "id": "outline",
+          "label": "Contours and labels",
+          "default": "#26323D",
+          "paint": "both"
+        },
+        {
+          "id": "state_a",
+          "label": "Example cluster A",
+          "default": "#5EA9DD",
+          "paint": "fill"
+        },
+        {
+          "id": "state_b",
+          "label": "Example cluster B",
+          "default": "#58B8AE",
+          "paint": "fill"
+        },
+        {
+          "id": "state_c",
+          "label": "Example cluster C",
+          "default": "#F4A261",
+          "paint": "fill"
+        }
+      ],
+      "connector_hints": [
+        {
+          "id": "left",
+          "label": "Left attachment",
+          "role": "attachment",
+          "x": 0.08,
+          "y": 0.5
+        },
+        {
+          "id": "right",
+          "label": "Right attachment",
+          "role": "attachment",
+          "x": 0.92,
+          "y": 0.5
+        },
+        {
+          "id": "top",
+          "label": "Top attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.08
+        },
+        {
+          "id": "bottom",
+          "label": "Bottom attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.92
+        }
+      ]
+    },
+    {
+      "id": "analysis.umap_scatter.continuum",
+      "concept_id": "analysis.umap_scatter",
+      "name": "UMAP Scatter — Continuous state example",
+      "scientific_name": "UMAP Scatter — Continuous state example",
+      "synonyms": [
+        "UMAP embedding",
+        "uniform manifold approximation projection"
+      ],
+      "category": "assay-workflow",
+      "subcategory": "Analytical graphics · schematic templates",
+      "tags": [
+        "UMAP Scatter",
+        "Continuous state example",
+        "UMAP embedding",
+        "uniform manifold approximation projection",
+        "editable vector",
+        "schematic",
+        "example",
+        "template",
+        "not measured data"
+      ],
+      "description": "Editable UMAP-style examples with separated clusters or a continuous color ordering.",
+      "scientific_limitations": "Illustrative editable template with invented positions, not measured data or an analysis result. Replace marks and labels with verified study-specific content before presenting results. UMAP axis values and apparent distances have no measured meaning here. Colors do not establish cell identities or lineage.",
+      "scientific_references": [
+        {
+          "id": "mcinnes-2018",
+          "citation": "McInnes L, Healy J, Melville J. UMAP: Uniform Manifold Approximation and Projection for Dimension Reduction. 2018. arXiv:1802.03426.",
+          "url": "https://arxiv.org/abs/1802.03426",
+          "use": "UMAP is a dimension-reduction embedding; labeled embedding axes do not denote physical spatial coordinates. Method source only, with no source point coordinates reused."
+        },
+        {
+          "id": "elyada-2019",
+          "citation": "Elyada E et al. Cross-species single-cell analysis of pancreatic ductal adenocarcinoma reveals antigen-presenting cancer-associated fibroblasts. Cancer Discovery. 2019.",
+          "doi": "10.1158/2159-8290.CD-19-0094",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6727976/",
+          "figure": "Figure 1A, B and F; Figure 2",
+          "use": "Cellular context and heterogeneous fibroblast populations; violin widths show distributions. Original figures inspected; no source geometry or data reused."
+        }
+      ],
+      "file": "svg/umap_scatter_continuum.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector geometry authored for Superbench Figure Tool from generic scientific concepts and primary-literature conventions. Published figures informed biological meaning and plot conventions only. No artwork, screenshot, measured data, tracing, structural coordinates or third-party vector component was incorporated.",
+      "source_record_id": "source.analysis-graphics.2026-10-15",
+      "rights_record_id": "rights.analysis-graphics.repository-policy-cc0.2026-10-15",
+      "style_family": "figure-studio-soft-line-v1",
+      "style_variant": "standard",
+      "variant_axis": "form",
+      "form_id": "continuum",
+      "form_label": "Continuous state example",
+      "review_status": "independent_scientific_and_visual_review_passed_2026_10_15",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "reviewed_original_vector",
+      "quality_tier": "reviewed",
+      "reviewer_notes": "Independent scientific and visual review accepted this exact drawing at 64, 256 and 512 px in all three drawing styles on 2026-10-15. Native editor qualification and product inclusion remain pending and are recorded separately from this artwork review and prospective repository CC0 permission.",
+      "editable_region_count": 4,
+      "editable_color_regions": [
+        {
+          "id": "outline",
+          "label": "Contours and labels",
+          "default": "#26323D",
+          "paint": "both"
+        },
+        {
+          "id": "state_a",
+          "label": "Example early state",
+          "default": "#5EA9DD",
+          "paint": "fill"
+        },
+        {
+          "id": "state_b",
+          "label": "Example intermediate state",
+          "default": "#58B8AE",
+          "paint": "fill"
+        },
+        {
+          "id": "state_c",
+          "label": "Example later state",
+          "default": "#F4A261",
+          "paint": "fill"
+        }
+      ],
+      "connector_hints": [
+        {
+          "id": "left",
+          "label": "Left attachment",
+          "role": "attachment",
+          "x": 0.08,
+          "y": 0.5
+        },
+        {
+          "id": "right",
+          "label": "Right attachment",
+          "role": "attachment",
+          "x": 0.92,
+          "y": 0.5
+        },
+        {
+          "id": "top",
+          "label": "Top attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.08
+        },
+        {
+          "id": "bottom",
+          "label": "Bottom attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.92
+        }
+      ]
+    },
+    {
+      "id": "analysis.volcano_plot.overview",
+      "concept_id": "analysis.volcano_plot",
+      "name": "Volcano Plot — Threshold overview",
+      "scientific_name": "Volcano Plot — Threshold overview",
+      "synonyms": [
+        "differential expression volcano",
+        "log fold change plot"
+      ],
+      "category": "assay-workflow",
+      "subcategory": "Analytical graphics · schematic templates",
+      "tags": [
+        "Volcano Plot",
+        "Threshold overview",
+        "differential expression volcano",
+        "log fold change plot",
+        "editable vector",
+        "schematic",
+        "example",
+        "template",
+        "not measured data"
+      ],
+      "description": "Editable example points on log2 fold-change and −log10(q) axes, with schematic threshold guides.",
+      "scientific_limitations": "Illustrative editable template with invented positions, not measured data or an analysis result. Replace marks and labels with verified study-specific content before presenting results. q denotes an adjusted statistical value in this example. Dashed cutoffs are placeholders, not a specified significance threshold; A/B labels are generic features.",
+      "scientific_references": [
+        {
+          "id": "omicsvolcano-2021",
+          "citation": "Kuznetsova I et al. OmicsVolcano: software for intuitive visualization and interactive exploration of high-throughput biological data. STAR Protocols. 2021.",
+          "doi": "10.1016/j.xpro.2020.100279",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7821039/",
+          "figure": "Figure 1 (caption)",
+          "use": "Volcano axes separate effect size from adjusted statistical evidence. Hand-authored example points are not analytical output."
+        }
+      ],
+      "file": "svg/volcano_plot_overview.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector geometry authored for Superbench Figure Tool from generic scientific concepts and primary-literature conventions. Published figures informed biological meaning and plot conventions only. No artwork, screenshot, measured data, tracing, structural coordinates or third-party vector component was incorporated.",
+      "source_record_id": "source.analysis-graphics.2026-10-15",
+      "rights_record_id": "rights.analysis-graphics.repository-policy-cc0.2026-10-15",
+      "style_family": "figure-studio-soft-line-v1",
+      "style_variant": "standard",
+      "variant_axis": "form",
+      "form_id": "overview",
+      "form_label": "Threshold overview",
+      "review_status": "independent_scientific_and_visual_review_passed_2026_10_15",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "reviewed_original_vector",
+      "quality_tier": "reviewed",
+      "reviewer_notes": "Independent scientific and visual review accepted this exact drawing at 64, 256 and 512 px in all three drawing styles on 2026-10-15. Native editor qualification and product inclusion remain pending and are recorded separately from this artwork review and prospective repository CC0 permission.",
+      "editable_region_count": 4,
+      "editable_color_regions": [
+        {
+          "id": "outline",
+          "label": "Contours and labels",
+          "default": "#26323D",
+          "paint": "both"
+        },
+        {
+          "id": "lower",
+          "label": "Example negative fold changes",
+          "default": "#5EA9DD",
+          "paint": "fill"
+        },
+        {
+          "id": "higher",
+          "label": "Example positive fold changes",
+          "default": "#E76F51",
+          "paint": "fill"
+        },
+        {
+          "id": "neutral",
+          "label": "Example other tested features",
+          "default": "#58B8AE",
+          "paint": "fill"
+        }
+      ],
+      "connector_hints": [
+        {
+          "id": "left",
+          "label": "Left attachment",
+          "role": "attachment",
+          "x": 0.08,
+          "y": 0.5
+        },
+        {
+          "id": "right",
+          "label": "Right attachment",
+          "role": "attachment",
+          "x": 0.92,
+          "y": 0.5
+        },
+        {
+          "id": "top",
+          "label": "Top attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.08
+        },
+        {
+          "id": "bottom",
+          "label": "Bottom attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.92
+        }
+      ]
+    },
+    {
+      "id": "analysis.volcano_plot.feature_labels",
+      "concept_id": "analysis.volcano_plot",
+      "name": "Volcano Plot — Example feature labels",
+      "scientific_name": "Volcano Plot — Example feature labels",
+      "synonyms": [
+        "differential expression volcano",
+        "log fold change plot"
+      ],
+      "category": "assay-workflow",
+      "subcategory": "Analytical graphics · schematic templates",
+      "tags": [
+        "Volcano Plot",
+        "Example feature labels",
+        "differential expression volcano",
+        "log fold change plot",
+        "editable vector",
+        "schematic",
+        "example",
+        "template",
+        "not measured data"
+      ],
+      "description": "Editable example points on log2 fold-change and −log10(q) axes, with schematic threshold guides.",
+      "scientific_limitations": "Illustrative editable template with invented positions, not measured data or an analysis result. Replace marks and labels with verified study-specific content before presenting results. q denotes an adjusted statistical value in this example. Dashed cutoffs are placeholders, not a specified significance threshold; A/B labels are generic features.",
+      "scientific_references": [
+        {
+          "id": "omicsvolcano-2021",
+          "citation": "Kuznetsova I et al. OmicsVolcano: software for intuitive visualization and interactive exploration of high-throughput biological data. STAR Protocols. 2021.",
+          "doi": "10.1016/j.xpro.2020.100279",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7821039/",
+          "figure": "Figure 1 (caption)",
+          "use": "Volcano axes separate effect size from adjusted statistical evidence. Hand-authored example points are not analytical output."
+        }
+      ],
+      "file": "svg/volcano_plot_feature_labels.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector geometry authored for Superbench Figure Tool from generic scientific concepts and primary-literature conventions. Published figures informed biological meaning and plot conventions only. No artwork, screenshot, measured data, tracing, structural coordinates or third-party vector component was incorporated.",
+      "source_record_id": "source.analysis-graphics.2026-10-15",
+      "rights_record_id": "rights.analysis-graphics.repository-policy-cc0.2026-10-15",
+      "style_family": "figure-studio-soft-line-v1",
+      "style_variant": "standard",
+      "variant_axis": "form",
+      "form_id": "feature_labels",
+      "form_label": "Example feature labels",
+      "review_status": "independent_scientific_and_visual_review_passed_2026_10_15",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "reviewed_original_vector",
+      "quality_tier": "reviewed",
+      "reviewer_notes": "Independent scientific and visual review accepted this exact drawing at 64, 256 and 512 px in all three drawing styles on 2026-10-15. Native editor qualification and product inclusion remain pending and are recorded separately from this artwork review and prospective repository CC0 permission.",
+      "editable_region_count": 4,
+      "editable_color_regions": [
+        {
+          "id": "outline",
+          "label": "Contours and labels",
+          "default": "#26323D",
+          "paint": "both"
+        },
+        {
+          "id": "lower",
+          "label": "Example negative fold changes",
+          "default": "#5EA9DD",
+          "paint": "fill"
+        },
+        {
+          "id": "higher",
+          "label": "Example positive fold changes",
+          "default": "#E76F51",
+          "paint": "fill"
+        },
+        {
+          "id": "neutral",
+          "label": "Example other tested features",
+          "default": "#58B8AE",
+          "paint": "fill"
+        }
+      ],
+      "connector_hints": [
+        {
+          "id": "left",
+          "label": "Left attachment",
+          "role": "attachment",
+          "x": 0.08,
+          "y": 0.5
+        },
+        {
+          "id": "right",
+          "label": "Right attachment",
+          "role": "attachment",
+          "x": 0.92,
+          "y": 0.5
+        },
+        {
+          "id": "top",
+          "label": "Top attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.08
+        },
+        {
+          "id": "bottom",
+          "label": "Bottom attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.92
+        }
+      ]
+    },
+    {
+      "id": "analysis.heatmap.matrix",
+      "concept_id": "analysis.heatmap",
+      "name": "Heatmap — Value matrix",
+      "scientific_name": "Heatmap — Value matrix",
+      "synonyms": [
+        "expression heatmap",
+        "clustered matrix"
+      ],
+      "category": "assay-workflow",
+      "subcategory": "Analytical graphics · schematic templates",
+      "tags": [
+        "Heatmap",
+        "Value matrix",
+        "expression heatmap",
+        "clustered matrix",
+        "editable vector",
+        "schematic",
+        "example",
+        "template",
+        "not measured data"
+      ],
+      "description": "Editable relative-value matrix with a labeled diverging key, optionally with a schematic column dendrogram.",
+      "scientific_limitations": "Illustrative editable template with invented positions, not measured data or an analysis result. Replace marks and labels with verified study-specific content before presenting results. Features, sample values, scaling and clustering are unspecified. Colors are symbolic relative values; dendrogram branches have no inferred distance.",
+      "scientific_references": [
+        {
+          "id": "zilionis-2019",
+          "citation": "Zilionis R et al. Single-cell transcriptomics of human and mouse lung cancers reveals conserved myeloid populations across individuals and species. Immunity. 2019.",
+          "doi": "10.1016/j.immuni.2019.03.009",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6620049/",
+          "figure": "Figure 4B, Q; neutrophil populations described in Results",
+          "use": "Distinct cell-state populations require molecular evidence; labeled diverging expression heatmaps are distinct from cell-count diagrams. Figure 4 inspected; no measured values reused."
+        },
+        {
+          "id": "trapnell-2014",
+          "citation": "Trapnell C et al. Pseudo-temporal ordering of individual cells reveals dynamics and regulators of cell fate decisions. Nature Biotechnology. 2014.",
+          "doi": "10.1038/nbt.2859",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4122333/",
+          "figure": "Figure 2A–C and F",
+          "use": "An inferred cell-state ordering may branch; pseudotime is distinct from collection time. Heatmaps require a visible scale. Figure inspected; no cell coordinates or values reused."
+        }
+      ],
+      "file": "svg/heatmap_matrix.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector geometry authored for Superbench Figure Tool from generic scientific concepts and primary-literature conventions. Published figures informed biological meaning and plot conventions only. No artwork, screenshot, measured data, tracing, structural coordinates or third-party vector component was incorporated.",
+      "source_record_id": "source.analysis-graphics.2026-10-15",
+      "rights_record_id": "rights.analysis-graphics.repository-policy-cc0.2026-10-15",
+      "style_family": "figure-studio-soft-line-v1",
+      "style_variant": "standard",
+      "variant_axis": "form",
+      "form_id": "matrix",
+      "form_label": "Value matrix",
+      "review_status": "independent_scientific_and_visual_review_passed_2026_10_15",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "reviewed_original_vector",
+      "quality_tier": "reviewed",
+      "reviewer_notes": "Independent scientific and visual review accepted this exact drawing at 64, 256 and 512 px in all three drawing styles on 2026-10-15. Native editor qualification and product inclusion remain pending and are recorded separately from this artwork review and prospective repository CC0 permission.",
+      "editable_region_count": 4,
+      "editable_color_regions": [
+        {
+          "id": "low",
+          "label": "Lower example value",
+          "default": "#5EA9DD",
+          "paint": "fill"
+        },
+        {
+          "id": "mid",
+          "label": "Middle example value",
+          "default": "#E8EEF7",
+          "paint": "fill"
+        },
+        {
+          "id": "high",
+          "label": "Higher example value",
+          "default": "#E76F51",
+          "paint": "fill"
+        },
+        {
+          "id": "outline",
+          "label": "Contours and labels",
+          "default": "#26323D",
+          "paint": "both"
+        }
+      ],
+      "connector_hints": [
+        {
+          "id": "left",
+          "label": "Left attachment",
+          "role": "attachment",
+          "x": 0.08,
+          "y": 0.5
+        },
+        {
+          "id": "right",
+          "label": "Right attachment",
+          "role": "attachment",
+          "x": 0.92,
+          "y": 0.5
+        },
+        {
+          "id": "top",
+          "label": "Top attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.08
+        },
+        {
+          "id": "bottom",
+          "label": "Bottom attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.92
+        }
+      ]
+    },
+    {
+      "id": "analysis.heatmap.clustered",
+      "concept_id": "analysis.heatmap",
+      "name": "Heatmap — Column clustering cue",
+      "scientific_name": "Heatmap — Column clustering cue",
+      "synonyms": [
+        "expression heatmap",
+        "clustered matrix"
+      ],
+      "category": "assay-workflow",
+      "subcategory": "Analytical graphics · schematic templates",
+      "tags": [
+        "Heatmap",
+        "Column clustering cue",
+        "expression heatmap",
+        "clustered matrix",
+        "editable vector",
+        "schematic",
+        "example",
+        "template",
+        "not measured data"
+      ],
+      "description": "Editable relative-value matrix with a labeled diverging key, optionally with a schematic column dendrogram.",
+      "scientific_limitations": "Illustrative editable template with invented positions, not measured data or an analysis result. Replace marks and labels with verified study-specific content before presenting results. Features, sample values, scaling and clustering are unspecified. Colors are symbolic relative values; dendrogram branches have no inferred distance.",
+      "scientific_references": [
+        {
+          "id": "zilionis-2019",
+          "citation": "Zilionis R et al. Single-cell transcriptomics of human and mouse lung cancers reveals conserved myeloid populations across individuals and species. Immunity. 2019.",
+          "doi": "10.1016/j.immuni.2019.03.009",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6620049/",
+          "figure": "Figure 4B, Q; neutrophil populations described in Results",
+          "use": "Distinct cell-state populations require molecular evidence; labeled diverging expression heatmaps are distinct from cell-count diagrams. Figure 4 inspected; no measured values reused."
+        },
+        {
+          "id": "trapnell-2014",
+          "citation": "Trapnell C et al. Pseudo-temporal ordering of individual cells reveals dynamics and regulators of cell fate decisions. Nature Biotechnology. 2014.",
+          "doi": "10.1038/nbt.2859",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4122333/",
+          "figure": "Figure 2A–C and F",
+          "use": "An inferred cell-state ordering may branch; pseudotime is distinct from collection time. Heatmaps require a visible scale. Figure inspected; no cell coordinates or values reused."
+        }
+      ],
+      "file": "svg/heatmap_clustered.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector geometry authored for Superbench Figure Tool from generic scientific concepts and primary-literature conventions. Published figures informed biological meaning and plot conventions only. No artwork, screenshot, measured data, tracing, structural coordinates or third-party vector component was incorporated.",
+      "source_record_id": "source.analysis-graphics.2026-10-15",
+      "rights_record_id": "rights.analysis-graphics.repository-policy-cc0.2026-10-15",
+      "style_family": "figure-studio-soft-line-v1",
+      "style_variant": "standard",
+      "variant_axis": "form",
+      "form_id": "clustered",
+      "form_label": "Column clustering cue",
+      "review_status": "independent_scientific_and_visual_review_passed_2026_10_15",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "reviewed_original_vector",
+      "quality_tier": "reviewed",
+      "reviewer_notes": "Independent scientific and visual review accepted this exact drawing at 64, 256 and 512 px in all three drawing styles on 2026-10-15. Native editor qualification and product inclusion remain pending and are recorded separately from this artwork review and prospective repository CC0 permission.",
+      "editable_region_count": 4,
+      "editable_color_regions": [
+        {
+          "id": "low",
+          "label": "Lower example value",
+          "default": "#5EA9DD",
+          "paint": "fill"
+        },
+        {
+          "id": "mid",
+          "label": "Middle example value",
+          "default": "#E8EEF7",
+          "paint": "fill"
+        },
+        {
+          "id": "high",
+          "label": "Higher example value",
+          "default": "#E76F51",
+          "paint": "fill"
+        },
+        {
+          "id": "outline",
+          "label": "Contours and labels",
+          "default": "#26323D",
+          "paint": "both"
+        }
+      ],
+      "connector_hints": [
+        {
+          "id": "left",
+          "label": "Left attachment",
+          "role": "attachment",
+          "x": 0.08,
+          "y": 0.5
+        },
+        {
+          "id": "right",
+          "label": "Right attachment",
+          "role": "attachment",
+          "x": 0.92,
+          "y": 0.5
+        },
+        {
+          "id": "top",
+          "label": "Top attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.08
+        },
+        {
+          "id": "bottom",
+          "label": "Bottom attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.92
+        }
+      ]
+    },
+    {
+      "id": "analysis.kaplan_meier_curve.one_group",
+      "concept_id": "analysis.kaplan_meier_curve",
+      "name": "Kaplan–Meier Curve — Single group",
+      "scientific_name": "Kaplan–Meier Curve — Single group",
+      "synonyms": [
+        "KM survival curve",
+        "survival probability curve"
+      ],
+      "category": "assay-workflow",
+      "subcategory": "Analytical graphics · schematic templates",
+      "tags": [
+        "Kaplan–Meier Curve",
+        "Single group",
+        "KM survival curve",
+        "survival probability curve",
+        "editable vector",
+        "schematic",
+        "example",
+        "template",
+        "not measured data"
+      ],
+      "description": "Editable nonincreasing step curves with censor marks, for one or two illustrative groups.",
+      "scientific_limitations": "Illustrative editable template with invented positions, not measured data or an analysis result. Replace marks and labels with verified study-specific content before presenting results. No cohort, event count, at-risk table, follow-up duration, uncertainty or hazard ratio is supplied. Example censor marks are not event drops.",
+      "scientific_references": [
+        {
+          "id": "kaplan-meier-1958",
+          "citation": "Kaplan EL, Meier P. Nonparametric estimation from incomplete observations. Journal of the American Statistical Association. 1958.",
+          "doi": "10.1080/01621459.1958.10501452",
+          "url": "https://doi.org/10.1080/01621459.1958.10501452",
+          "use": "The survival estimate is a nonincreasing step function, and censoring is distinct from an event. Example marks and steps have no patient-data interpretation."
+        }
+      ],
+      "file": "svg/kaplan_meier_curve_one_group.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector geometry authored for Superbench Figure Tool from generic scientific concepts and primary-literature conventions. Published figures informed biological meaning and plot conventions only. No artwork, screenshot, measured data, tracing, structural coordinates or third-party vector component was incorporated.",
+      "source_record_id": "source.analysis-graphics.2026-10-15",
+      "rights_record_id": "rights.analysis-graphics.repository-policy-cc0.2026-10-15",
+      "style_family": "figure-studio-soft-line-v1",
+      "style_variant": "standard",
+      "variant_axis": "form",
+      "form_id": "one_group",
+      "form_label": "Single group",
+      "review_status": "independent_scientific_and_visual_review_passed_2026_10_15",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "reviewed_original_vector",
+      "quality_tier": "reviewed",
+      "reviewer_notes": "Independent scientific and visual review accepted this exact drawing at 64, 256 and 512 px in all three drawing styles on 2026-10-15. Native editor qualification and product inclusion remain pending and are recorded separately from this artwork review and prospective repository CC0 permission.",
+      "editable_region_count": 3,
+      "editable_color_regions": [
+        {
+          "id": "outline",
+          "label": "Contours and labels",
+          "default": "#26323D",
+          "paint": "both"
+        },
+        {
+          "id": "curve_a",
+          "label": "Example survival curve A",
+          "default": "#5EA9DD",
+          "paint": "stroke"
+        },
+        {
+          "id": "censor_a",
+          "label": "Example censor marks A",
+          "default": "#5EA9DD",
+          "paint": "stroke"
+        }
+      ],
+      "connector_hints": [
+        {
+          "id": "left",
+          "label": "Left attachment",
+          "role": "attachment",
+          "x": 0.08,
+          "y": 0.5
+        },
+        {
+          "id": "right",
+          "label": "Right attachment",
+          "role": "attachment",
+          "x": 0.92,
+          "y": 0.5
+        },
+        {
+          "id": "top",
+          "label": "Top attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.08
+        },
+        {
+          "id": "bottom",
+          "label": "Bottom attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.92
+        }
+      ]
+    },
+    {
+      "id": "analysis.kaplan_meier_curve.two_groups",
+      "concept_id": "analysis.kaplan_meier_curve",
+      "name": "Kaplan–Meier Curve — Two groups",
+      "scientific_name": "Kaplan–Meier Curve — Two groups",
+      "synonyms": [
+        "KM survival curve",
+        "survival probability curve"
+      ],
+      "category": "assay-workflow",
+      "subcategory": "Analytical graphics · schematic templates",
+      "tags": [
+        "Kaplan–Meier Curve",
+        "Two groups",
+        "KM survival curve",
+        "survival probability curve",
+        "editable vector",
+        "schematic",
+        "example",
+        "template",
+        "not measured data"
+      ],
+      "description": "Editable nonincreasing step curves with censor marks, for one or two illustrative groups.",
+      "scientific_limitations": "Illustrative editable template with invented positions, not measured data or an analysis result. Replace marks and labels with verified study-specific content before presenting results. No cohort, event count, at-risk table, follow-up duration, uncertainty or hazard ratio is supplied. Example censor marks are not event drops.",
+      "scientific_references": [
+        {
+          "id": "kaplan-meier-1958",
+          "citation": "Kaplan EL, Meier P. Nonparametric estimation from incomplete observations. Journal of the American Statistical Association. 1958.",
+          "doi": "10.1080/01621459.1958.10501452",
+          "url": "https://doi.org/10.1080/01621459.1958.10501452",
+          "use": "The survival estimate is a nonincreasing step function, and censoring is distinct from an event. Example marks and steps have no patient-data interpretation."
+        }
+      ],
+      "file": "svg/kaplan_meier_curve_two_groups.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector geometry authored for Superbench Figure Tool from generic scientific concepts and primary-literature conventions. Published figures informed biological meaning and plot conventions only. No artwork, screenshot, measured data, tracing, structural coordinates or third-party vector component was incorporated.",
+      "source_record_id": "source.analysis-graphics.2026-10-15",
+      "rights_record_id": "rights.analysis-graphics.repository-policy-cc0.2026-10-15",
+      "style_family": "figure-studio-soft-line-v1",
+      "style_variant": "standard",
+      "variant_axis": "form",
+      "form_id": "two_groups",
+      "form_label": "Two groups",
+      "review_status": "independent_scientific_and_visual_review_passed_2026_10_15",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "reviewed_original_vector",
+      "quality_tier": "reviewed",
+      "reviewer_notes": "Independent scientific and visual review accepted this exact drawing at 64, 256 and 512 px in all three drawing styles on 2026-10-15. Native editor qualification and product inclusion remain pending and are recorded separately from this artwork review and prospective repository CC0 permission.",
+      "editable_region_count": 5,
+      "editable_color_regions": [
+        {
+          "id": "outline",
+          "label": "Contours and labels",
+          "default": "#26323D",
+          "paint": "both"
+        },
+        {
+          "id": "curve_a",
+          "label": "Example survival curve A",
+          "default": "#5EA9DD",
+          "paint": "stroke"
+        },
+        {
+          "id": "censor_a",
+          "label": "Example censor marks A",
+          "default": "#5EA9DD",
+          "paint": "stroke"
+        },
+        {
+          "id": "curve_b",
+          "label": "Example survival curve B",
+          "default": "#E76F51",
+          "paint": "stroke"
+        },
+        {
+          "id": "censor_b",
+          "label": "Example censor marks B",
+          "default": "#E76F51",
+          "paint": "stroke"
+        }
+      ],
+      "connector_hints": [
+        {
+          "id": "left",
+          "label": "Left attachment",
+          "role": "attachment",
+          "x": 0.08,
+          "y": 0.5
+        },
+        {
+          "id": "right",
+          "label": "Right attachment",
+          "role": "attachment",
+          "x": 0.92,
+          "y": 0.5
+        },
+        {
+          "id": "top",
+          "label": "Top attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.08
+        },
+        {
+          "id": "bottom",
+          "label": "Bottom attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.92
+        }
+      ]
+    },
+    {
+      "id": "analysis.violin_plot.paired",
+      "concept_id": "analysis.violin_plot",
+      "name": "Violin Plot — Separate groups",
+      "scientific_name": "Violin Plot — Separate groups",
+      "synonyms": [
+        "violin density",
+        "split violin distribution"
+      ],
+      "category": "assay-workflow",
+      "subcategory": "Analytical graphics · schematic templates",
+      "tags": [
+        "Violin Plot",
+        "Separate groups",
+        "violin density",
+        "split violin distribution",
+        "editable vector",
+        "schematic",
+        "example",
+        "template",
+        "not measured data"
+      ],
+      "description": "Editable symmetric distributions or a split violin, with a horizontal summary guide.",
+      "scientific_limitations": "Illustrative editable template with invented positions, not measured data or an analysis result. Replace marks and labels with verified study-specific content before presenting results. Widths are hand-authored schematic density envelopes. The horizontal mark is a placeholder summary, not a calculated median or statistical comparison; no sample sizes are implied.",
+      "scientific_references": [
+        {
+          "id": "elyada-2019",
+          "citation": "Elyada E et al. Cross-species single-cell analysis of pancreatic ductal adenocarcinoma reveals antigen-presenting cancer-associated fibroblasts. Cancer Discovery. 2019.",
+          "doi": "10.1158/2159-8290.CD-19-0094",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6727976/",
+          "figure": "Figure 1A, B and F; Figure 2",
+          "use": "Cellular context and heterogeneous fibroblast populations; violin widths show distributions. Original figures inspected; no source geometry or data reused."
+        }
+      ],
+      "file": "svg/violin_plot_paired.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector geometry authored for Superbench Figure Tool from generic scientific concepts and primary-literature conventions. Published figures informed biological meaning and plot conventions only. No artwork, screenshot, measured data, tracing, structural coordinates or third-party vector component was incorporated.",
+      "source_record_id": "source.analysis-graphics.2026-10-15",
+      "rights_record_id": "rights.analysis-graphics.repository-policy-cc0.2026-10-15",
+      "style_family": "figure-studio-soft-line-v1",
+      "style_variant": "standard",
+      "variant_axis": "form",
+      "form_id": "paired",
+      "form_label": "Separate groups",
+      "review_status": "independent_scientific_and_visual_review_passed_2026_10_15",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "reviewed_original_vector",
+      "quality_tier": "reviewed",
+      "reviewer_notes": "Independent scientific and visual review accepted this exact drawing at 64, 256 and 512 px in all three drawing styles on 2026-10-15. Native editor qualification and product inclusion remain pending and are recorded separately from this artwork review and prospective repository CC0 permission.",
+      "editable_region_count": 3,
+      "editable_color_regions": [
+        {
+          "id": "outline",
+          "label": "Contours and labels",
+          "default": "#26323D",
+          "paint": "both"
+        },
+        {
+          "id": "distribution_a",
+          "label": "Example distribution A",
+          "default": "#5EA9DD",
+          "paint": "fill"
+        },
+        {
+          "id": "distribution_b",
+          "label": "Example distribution B",
+          "default": "#E76F51",
+          "paint": "fill"
+        }
+      ],
+      "connector_hints": [
+        {
+          "id": "left",
+          "label": "Left attachment",
+          "role": "attachment",
+          "x": 0.08,
+          "y": 0.5
+        },
+        {
+          "id": "right",
+          "label": "Right attachment",
+          "role": "attachment",
+          "x": 0.92,
+          "y": 0.5
+        },
+        {
+          "id": "top",
+          "label": "Top attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.08
+        },
+        {
+          "id": "bottom",
+          "label": "Bottom attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.92
+        }
+      ]
+    },
+    {
+      "id": "analysis.violin_plot.split",
+      "concept_id": "analysis.violin_plot",
+      "name": "Violin Plot — Split distribution",
+      "scientific_name": "Violin Plot — Split distribution",
+      "synonyms": [
+        "violin density",
+        "split violin distribution"
+      ],
+      "category": "assay-workflow",
+      "subcategory": "Analytical graphics · schematic templates",
+      "tags": [
+        "Violin Plot",
+        "Split distribution",
+        "violin density",
+        "split violin distribution",
+        "editable vector",
+        "schematic",
+        "example",
+        "template",
+        "not measured data"
+      ],
+      "description": "Editable symmetric distributions or a split violin, with a horizontal summary guide.",
+      "scientific_limitations": "Illustrative editable template with invented positions, not measured data or an analysis result. Replace marks and labels with verified study-specific content before presenting results. Widths are hand-authored schematic density envelopes. The horizontal mark is a placeholder summary, not a calculated median or statistical comparison; no sample sizes are implied.",
+      "scientific_references": [
+        {
+          "id": "elyada-2019",
+          "citation": "Elyada E et al. Cross-species single-cell analysis of pancreatic ductal adenocarcinoma reveals antigen-presenting cancer-associated fibroblasts. Cancer Discovery. 2019.",
+          "doi": "10.1158/2159-8290.CD-19-0094",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6727976/",
+          "figure": "Figure 1A, B and F; Figure 2",
+          "use": "Cellular context and heterogeneous fibroblast populations; violin widths show distributions. Original figures inspected; no source geometry or data reused."
+        }
+      ],
+      "file": "svg/violin_plot_split.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector geometry authored for Superbench Figure Tool from generic scientific concepts and primary-literature conventions. Published figures informed biological meaning and plot conventions only. No artwork, screenshot, measured data, tracing, structural coordinates or third-party vector component was incorporated.",
+      "source_record_id": "source.analysis-graphics.2026-10-15",
+      "rights_record_id": "rights.analysis-graphics.repository-policy-cc0.2026-10-15",
+      "style_family": "figure-studio-soft-line-v1",
+      "style_variant": "standard",
+      "variant_axis": "form",
+      "form_id": "split",
+      "form_label": "Split distribution",
+      "review_status": "independent_scientific_and_visual_review_passed_2026_10_15",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "reviewed_original_vector",
+      "quality_tier": "reviewed",
+      "reviewer_notes": "Independent scientific and visual review accepted this exact drawing at 64, 256 and 512 px in all three drawing styles on 2026-10-15. Native editor qualification and product inclusion remain pending and are recorded separately from this artwork review and prospective repository CC0 permission.",
+      "editable_region_count": 3,
+      "editable_color_regions": [
+        {
+          "id": "outline",
+          "label": "Contours and labels",
+          "default": "#26323D",
+          "paint": "both"
+        },
+        {
+          "id": "distribution_a",
+          "label": "Example distribution A",
+          "default": "#5EA9DD",
+          "paint": "fill"
+        },
+        {
+          "id": "distribution_b",
+          "label": "Example distribution B",
+          "default": "#E76F51",
+          "paint": "fill"
+        }
+      ],
+      "connector_hints": [
+        {
+          "id": "left",
+          "label": "Left attachment",
+          "role": "attachment",
+          "x": 0.08,
+          "y": 0.5
+        },
+        {
+          "id": "right",
+          "label": "Right attachment",
+          "role": "attachment",
+          "x": 0.92,
+          "y": 0.5
+        },
+        {
+          "id": "top",
+          "label": "Top attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.08
+        },
+        {
+          "id": "bottom",
+          "label": "Bottom attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.92
+        }
+      ]
+    },
+    {
+      "id": "analysis.box_plot.vertical",
+      "concept_id": "analysis.box_plot",
+      "name": "Box Plot — Vertical groups",
+      "scientific_name": "Box Plot — Vertical groups",
+      "synonyms": [
+        "box and whisker plot",
+        "boxplot"
+      ],
+      "category": "assay-workflow",
+      "subcategory": "Analytical graphics · schematic templates",
+      "tags": [
+        "Box Plot",
+        "Vertical groups",
+        "box and whisker plot",
+        "boxplot",
+        "editable vector",
+        "schematic",
+        "example",
+        "template",
+        "not measured data"
+      ],
+      "description": "Editable vertical or horizontal box-and-whisker examples with central median lines.",
+      "scientific_limitations": "Illustrative editable template with invented positions, not measured data or an analysis result. Replace marks and labels with verified study-specific content before presenting results. Boxes stand for the middle quartiles and central lines for medians; whisker rules, sample sizes, outliers and numerical summaries are unspecified.",
+      "scientific_references": [
+        {
+          "id": "elyada-2019",
+          "citation": "Elyada E et al. Cross-species single-cell analysis of pancreatic ductal adenocarcinoma reveals antigen-presenting cancer-associated fibroblasts. Cancer Discovery. 2019.",
+          "doi": "10.1158/2159-8290.CD-19-0094",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6727976/",
+          "figure": "Figure 1A, B and F; Figure 2",
+          "use": "Cellular context and heterogeneous fibroblast populations; violin widths show distributions. Original figures inspected; no source geometry or data reused."
+        }
+      ],
+      "file": "svg/box_plot_vertical.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector geometry authored for Superbench Figure Tool from generic scientific concepts and primary-literature conventions. Published figures informed biological meaning and plot conventions only. No artwork, screenshot, measured data, tracing, structural coordinates or third-party vector component was incorporated.",
+      "source_record_id": "source.analysis-graphics.2026-10-15",
+      "rights_record_id": "rights.analysis-graphics.repository-policy-cc0.2026-10-15",
+      "style_family": "figure-studio-soft-line-v1",
+      "style_variant": "standard",
+      "variant_axis": "form",
+      "form_id": "vertical",
+      "form_label": "Vertical groups",
+      "review_status": "independent_scientific_and_visual_review_passed_2026_10_15",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "reviewed_original_vector",
+      "quality_tier": "reviewed",
+      "reviewer_notes": "Independent scientific and visual review accepted this exact drawing at 64, 256 and 512 px in all three drawing styles on 2026-10-15. Native editor qualification and product inclusion remain pending and are recorded separately from this artwork review and prospective repository CC0 permission.",
+      "editable_region_count": 3,
+      "editable_color_regions": [
+        {
+          "id": "outline",
+          "label": "Contours and labels",
+          "default": "#26323D",
+          "paint": "both"
+        },
+        {
+          "id": "box_a",
+          "label": "Example summary A",
+          "default": "#5EA9DD",
+          "paint": "fill"
+        },
+        {
+          "id": "box_b",
+          "label": "Example summary B",
+          "default": "#E76F51",
+          "paint": "fill"
+        }
+      ],
+      "connector_hints": [
+        {
+          "id": "left",
+          "label": "Left attachment",
+          "role": "attachment",
+          "x": 0.08,
+          "y": 0.5
+        },
+        {
+          "id": "right",
+          "label": "Right attachment",
+          "role": "attachment",
+          "x": 0.92,
+          "y": 0.5
+        },
+        {
+          "id": "top",
+          "label": "Top attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.08
+        },
+        {
+          "id": "bottom",
+          "label": "Bottom attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.92
+        }
+      ]
+    },
+    {
+      "id": "analysis.box_plot.horizontal",
+      "concept_id": "analysis.box_plot",
+      "name": "Box Plot — Horizontal groups",
+      "scientific_name": "Box Plot — Horizontal groups",
+      "synonyms": [
+        "box and whisker plot",
+        "boxplot"
+      ],
+      "category": "assay-workflow",
+      "subcategory": "Analytical graphics · schematic templates",
+      "tags": [
+        "Box Plot",
+        "Horizontal groups",
+        "box and whisker plot",
+        "boxplot",
+        "editable vector",
+        "schematic",
+        "example",
+        "template",
+        "not measured data"
+      ],
+      "description": "Editable vertical or horizontal box-and-whisker examples with central median lines.",
+      "scientific_limitations": "Illustrative editable template with invented positions, not measured data or an analysis result. Replace marks and labels with verified study-specific content before presenting results. Boxes stand for the middle quartiles and central lines for medians; whisker rules, sample sizes, outliers and numerical summaries are unspecified.",
+      "scientific_references": [
+        {
+          "id": "elyada-2019",
+          "citation": "Elyada E et al. Cross-species single-cell analysis of pancreatic ductal adenocarcinoma reveals antigen-presenting cancer-associated fibroblasts. Cancer Discovery. 2019.",
+          "doi": "10.1158/2159-8290.CD-19-0094",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6727976/",
+          "figure": "Figure 1A, B and F; Figure 2",
+          "use": "Cellular context and heterogeneous fibroblast populations; violin widths show distributions. Original figures inspected; no source geometry or data reused."
+        }
+      ],
+      "file": "svg/box_plot_horizontal.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector geometry authored for Superbench Figure Tool from generic scientific concepts and primary-literature conventions. Published figures informed biological meaning and plot conventions only. No artwork, screenshot, measured data, tracing, structural coordinates or third-party vector component was incorporated.",
+      "source_record_id": "source.analysis-graphics.2026-10-15",
+      "rights_record_id": "rights.analysis-graphics.repository-policy-cc0.2026-10-15",
+      "style_family": "figure-studio-soft-line-v1",
+      "style_variant": "standard",
+      "variant_axis": "form",
+      "form_id": "horizontal",
+      "form_label": "Horizontal groups",
+      "review_status": "independent_scientific_and_visual_review_passed_2026_10_15",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "reviewed_original_vector",
+      "quality_tier": "reviewed",
+      "reviewer_notes": "Independent scientific and visual review accepted this exact drawing at 64, 256 and 512 px in all three drawing styles on 2026-10-15. Native editor qualification and product inclusion remain pending and are recorded separately from this artwork review and prospective repository CC0 permission.",
+      "editable_region_count": 3,
+      "editable_color_regions": [
+        {
+          "id": "outline",
+          "label": "Contours and labels",
+          "default": "#26323D",
+          "paint": "both"
+        },
+        {
+          "id": "box_a",
+          "label": "Example summary A",
+          "default": "#5EA9DD",
+          "paint": "fill"
+        },
+        {
+          "id": "box_b",
+          "label": "Example summary B",
+          "default": "#E76F51",
+          "paint": "fill"
+        }
+      ],
+      "connector_hints": [
+        {
+          "id": "left",
+          "label": "Left attachment",
+          "role": "attachment",
+          "x": 0.08,
+          "y": 0.5
+        },
+        {
+          "id": "right",
+          "label": "Right attachment",
+          "role": "attachment",
+          "x": 0.92,
+          "y": 0.5
+        },
+        {
+          "id": "top",
+          "label": "Top attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.08
+        },
+        {
+          "id": "bottom",
+          "label": "Bottom attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.92
+        }
+      ]
+    },
+    {
+      "id": "analysis.scatter_plot.single_series",
+      "concept_id": "analysis.scatter_plot",
+      "name": "Scatter Plot — Single series with guide",
+      "scientific_name": "Scatter Plot — Single series with guide",
+      "synonyms": [
+        "XY scatter",
+        "bivariate point plot"
+      ],
+      "category": "assay-workflow",
+      "subcategory": "Analytical graphics · schematic templates",
+      "tags": [
+        "Scatter Plot",
+        "Single series with guide",
+        "XY scatter",
+        "bivariate point plot",
+        "editable vector",
+        "schematic",
+        "example",
+        "template",
+        "not measured data"
+      ],
+      "description": "Editable point clouds for one series with a guide or two distinct series.",
+      "scientific_limitations": "Illustrative editable template with invented positions, not measured data or an analysis result. Replace marks and labels with verified study-specific content before presenting results. Axes lack numerical units. Any dashed trend is a hand-authored guide, not a fitted model, correlation estimate, confidence interval or causal relationship.",
+      "scientific_references": [
+        {
+          "id": "anandi-2024",
+          "citation": "Anandi L et al. Direct visualization of emergent metastatic features within an ex vivo model of the tumor microenvironment. Life Science Alliance. 2024.",
+          "doi": "10.26508/lsa.202403053",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11487089/",
+          "figure": "Figure 1A–C; Figure 7",
+          "use": "Spatial supply boundaries and increasing distance can be shown separately from measured fluorescence plots. Figure 1 inspected. Drug distribution and oxygen are distinct, context-dependent gradients."
+        }
+      ],
+      "file": "svg/scatter_plot_single_series.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector geometry authored for Superbench Figure Tool from generic scientific concepts and primary-literature conventions. Published figures informed biological meaning and plot conventions only. No artwork, screenshot, measured data, tracing, structural coordinates or third-party vector component was incorporated.",
+      "source_record_id": "source.analysis-graphics.2026-10-15",
+      "rights_record_id": "rights.analysis-graphics.repository-policy-cc0.2026-10-15",
+      "style_family": "figure-studio-soft-line-v1",
+      "style_variant": "standard",
+      "variant_axis": "form",
+      "form_id": "single_series",
+      "form_label": "Single series with guide",
+      "review_status": "independent_scientific_and_visual_review_passed_2026_10_15",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "reviewed_original_vector",
+      "quality_tier": "reviewed",
+      "reviewer_notes": "Independent scientific and visual review accepted this exact drawing at 64, 256 and 512 px in all three drawing styles on 2026-10-15. Native editor qualification and product inclusion remain pending and are recorded separately from this artwork review and prospective repository CC0 permission.",
+      "editable_region_count": 3,
+      "editable_color_regions": [
+        {
+          "id": "outline",
+          "label": "Contours and labels",
+          "default": "#26323D",
+          "paint": "both"
+        },
+        {
+          "id": "series_a",
+          "label": "Example series A",
+          "default": "#5EA9DD",
+          "paint": "fill"
+        },
+        {
+          "id": "trend",
+          "label": "Illustrative trend guide",
+          "default": "#58B8AE",
+          "paint": "stroke"
+        }
+      ],
+      "connector_hints": [
+        {
+          "id": "left",
+          "label": "Left attachment",
+          "role": "attachment",
+          "x": 0.08,
+          "y": 0.5
+        },
+        {
+          "id": "right",
+          "label": "Right attachment",
+          "role": "attachment",
+          "x": 0.92,
+          "y": 0.5
+        },
+        {
+          "id": "top",
+          "label": "Top attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.08
+        },
+        {
+          "id": "bottom",
+          "label": "Bottom attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.92
+        }
+      ]
+    },
+    {
+      "id": "analysis.scatter_plot.two_series",
+      "concept_id": "analysis.scatter_plot",
+      "name": "Scatter Plot — Two series",
+      "scientific_name": "Scatter Plot — Two series",
+      "synonyms": [
+        "XY scatter",
+        "bivariate point plot"
+      ],
+      "category": "assay-workflow",
+      "subcategory": "Analytical graphics · schematic templates",
+      "tags": [
+        "Scatter Plot",
+        "Two series",
+        "XY scatter",
+        "bivariate point plot",
+        "editable vector",
+        "schematic",
+        "example",
+        "template",
+        "not measured data"
+      ],
+      "description": "Editable point clouds for one series with a guide or two distinct series.",
+      "scientific_limitations": "Illustrative editable template with invented positions, not measured data or an analysis result. Replace marks and labels with verified study-specific content before presenting results. Axes lack numerical units. Any dashed trend is a hand-authored guide, not a fitted model, correlation estimate, confidence interval or causal relationship.",
+      "scientific_references": [
+        {
+          "id": "anandi-2024",
+          "citation": "Anandi L et al. Direct visualization of emergent metastatic features within an ex vivo model of the tumor microenvironment. Life Science Alliance. 2024.",
+          "doi": "10.26508/lsa.202403053",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11487089/",
+          "figure": "Figure 1A–C; Figure 7",
+          "use": "Spatial supply boundaries and increasing distance can be shown separately from measured fluorescence plots. Figure 1 inspected. Drug distribution and oxygen are distinct, context-dependent gradients."
+        }
+      ],
+      "file": "svg/scatter_plot_two_series.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector geometry authored for Superbench Figure Tool from generic scientific concepts and primary-literature conventions. Published figures informed biological meaning and plot conventions only. No artwork, screenshot, measured data, tracing, structural coordinates or third-party vector component was incorporated.",
+      "source_record_id": "source.analysis-graphics.2026-10-15",
+      "rights_record_id": "rights.analysis-graphics.repository-policy-cc0.2026-10-15",
+      "style_family": "figure-studio-soft-line-v1",
+      "style_variant": "standard",
+      "variant_axis": "form",
+      "form_id": "two_series",
+      "form_label": "Two series",
+      "review_status": "independent_scientific_and_visual_review_passed_2026_10_15",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "reviewed_original_vector",
+      "quality_tier": "reviewed",
+      "reviewer_notes": "Independent scientific and visual review accepted this exact drawing at 64, 256 and 512 px in all three drawing styles on 2026-10-15. Native editor qualification and product inclusion remain pending and are recorded separately from this artwork review and prospective repository CC0 permission.",
+      "editable_region_count": 3,
+      "editable_color_regions": [
+        {
+          "id": "outline",
+          "label": "Contours and labels",
+          "default": "#26323D",
+          "paint": "both"
+        },
+        {
+          "id": "series_a",
+          "label": "Example series A",
+          "default": "#5EA9DD",
+          "paint": "fill"
+        },
+        {
+          "id": "series_b",
+          "label": "Example series B",
+          "default": "#E76F51",
+          "paint": "fill"
+        }
+      ],
+      "connector_hints": [
+        {
+          "id": "left",
+          "label": "Left attachment",
+          "role": "attachment",
+          "x": 0.08,
+          "y": 0.5
+        },
+        {
+          "id": "right",
+          "label": "Right attachment",
+          "role": "attachment",
+          "x": 0.92,
+          "y": 0.5
+        },
+        {
+          "id": "top",
+          "label": "Top attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.08
+        },
+        {
+          "id": "bottom",
+          "label": "Bottom attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.92
+        }
+      ]
+    },
+    {
+      "id": "analysis.network_graph.hub",
+      "concept_id": "analysis.network_graph",
+      "name": "Network Graph — Hub arrangement",
+      "scientific_name": "Network Graph — Hub arrangement",
+      "synonyms": [
+        "association network",
+        "node edge graph",
+        "interaction network schematic"
+      ],
+      "category": "assay-workflow",
+      "subcategory": "Analytical graphics · schematic templates",
+      "tags": [
+        "Network Graph",
+        "Hub arrangement",
+        "association network",
+        "node edge graph",
+        "interaction network schematic",
+        "editable vector",
+        "schematic",
+        "example",
+        "template",
+        "not measured data"
+      ],
+      "description": "Editable nodes joined by undirected edges, in hub or modular arrangements.",
+      "scientific_limitations": "Illustrative editable template with invented positions, not measured data or an analysis result. Replace marks and labels with verified study-specific content before presenting results. Edges represent unspecified associations only; no causality, regulation, direction, measured strength, enrichment or graph inference is asserted.",
+      "scientific_references": [
+        {
+          "id": "xue-2014",
+          "citation": "Xue J et al. Transcriptome-based network analysis reveals a spectrum model of human macrophage activation. Immunity. 2014.",
+          "doi": "10.1016/j.immuni.2014.01.006",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3991396/",
+          "figure": "Figure 1J (caption and methods)",
+          "use": "Depict several incoming environmental cues and an adjustable response continuum; avoid a universal M1/M2 binary."
+        }
+      ],
+      "file": "svg/network_graph_hub.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector geometry authored for Superbench Figure Tool from generic scientific concepts and primary-literature conventions. Published figures informed biological meaning and plot conventions only. No artwork, screenshot, measured data, tracing, structural coordinates or third-party vector component was incorporated.",
+      "source_record_id": "source.analysis-graphics.2026-10-15",
+      "rights_record_id": "rights.analysis-graphics.repository-policy-cc0.2026-10-15",
+      "style_family": "figure-studio-soft-line-v1",
+      "style_variant": "standard",
+      "variant_axis": "form",
+      "form_id": "hub",
+      "form_label": "Hub arrangement",
+      "review_status": "independent_scientific_and_visual_review_passed_2026_10_15",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "reviewed_original_vector",
+      "quality_tier": "reviewed",
+      "reviewer_notes": "Independent scientific and visual review accepted this exact drawing at 64, 256 and 512 px in all three drawing styles on 2026-10-15. Native editor qualification and product inclusion remain pending and are recorded separately from this artwork review and prospective repository CC0 permission.",
+      "editable_region_count": 4,
+      "editable_color_regions": [
+        {
+          "id": "edges",
+          "label": "Undirected example associations",
+          "default": "#58B8AE",
+          "paint": "stroke"
+        },
+        {
+          "id": "nodes_a",
+          "label": "Example node group A",
+          "default": "#5EA9DD",
+          "paint": "fill"
+        },
+        {
+          "id": "outline",
+          "label": "Contours and labels",
+          "default": "#26323D",
+          "paint": "both"
+        },
+        {
+          "id": "nodes_b",
+          "label": "Example node group B",
+          "default": "#F4A261",
+          "paint": "fill"
+        }
+      ],
+      "connector_hints": [
+        {
+          "id": "left",
+          "label": "Left attachment",
+          "role": "attachment",
+          "x": 0.08,
+          "y": 0.5
+        },
+        {
+          "id": "right",
+          "label": "Right attachment",
+          "role": "attachment",
+          "x": 0.92,
+          "y": 0.5
+        },
+        {
+          "id": "top",
+          "label": "Top attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.08
+        },
+        {
+          "id": "bottom",
+          "label": "Bottom attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.92
+        }
+      ]
+    },
+    {
+      "id": "analysis.network_graph.modular",
+      "concept_id": "analysis.network_graph",
+      "name": "Network Graph — Modular arrangement",
+      "scientific_name": "Network Graph — Modular arrangement",
+      "synonyms": [
+        "association network",
+        "node edge graph",
+        "interaction network schematic"
+      ],
+      "category": "assay-workflow",
+      "subcategory": "Analytical graphics · schematic templates",
+      "tags": [
+        "Network Graph",
+        "Modular arrangement",
+        "association network",
+        "node edge graph",
+        "interaction network schematic",
+        "editable vector",
+        "schematic",
+        "example",
+        "template",
+        "not measured data"
+      ],
+      "description": "Editable nodes joined by undirected edges, in hub or modular arrangements.",
+      "scientific_limitations": "Illustrative editable template with invented positions, not measured data or an analysis result. Replace marks and labels with verified study-specific content before presenting results. Edges represent unspecified associations only; no causality, regulation, direction, measured strength, enrichment or graph inference is asserted.",
+      "scientific_references": [
+        {
+          "id": "xue-2014",
+          "citation": "Xue J et al. Transcriptome-based network analysis reveals a spectrum model of human macrophage activation. Immunity. 2014.",
+          "doi": "10.1016/j.immuni.2014.01.006",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3991396/",
+          "figure": "Figure 1J (caption and methods)",
+          "use": "Depict several incoming environmental cues and an adjustable response continuum; avoid a universal M1/M2 binary."
+        }
+      ],
+      "file": "svg/network_graph_modular.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector geometry authored for Superbench Figure Tool from generic scientific concepts and primary-literature conventions. Published figures informed biological meaning and plot conventions only. No artwork, screenshot, measured data, tracing, structural coordinates or third-party vector component was incorporated.",
+      "source_record_id": "source.analysis-graphics.2026-10-15",
+      "rights_record_id": "rights.analysis-graphics.repository-policy-cc0.2026-10-15",
+      "style_family": "figure-studio-soft-line-v1",
+      "style_variant": "standard",
+      "variant_axis": "form",
+      "form_id": "modular",
+      "form_label": "Modular arrangement",
+      "review_status": "independent_scientific_and_visual_review_passed_2026_10_15",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "reviewed_original_vector",
+      "quality_tier": "reviewed",
+      "reviewer_notes": "Independent scientific and visual review accepted this exact drawing at 64, 256 and 512 px in all three drawing styles on 2026-10-15. Native editor qualification and product inclusion remain pending and are recorded separately from this artwork review and prospective repository CC0 permission.",
+      "editable_region_count": 4,
+      "editable_color_regions": [
+        {
+          "id": "edges",
+          "label": "Undirected example associations",
+          "default": "#58B8AE",
+          "paint": "stroke"
+        },
+        {
+          "id": "nodes_a",
+          "label": "Example node group A",
+          "default": "#5EA9DD",
+          "paint": "fill"
+        },
+        {
+          "id": "outline",
+          "label": "Contours and labels",
+          "default": "#26323D",
+          "paint": "both"
+        },
+        {
+          "id": "nodes_b",
+          "label": "Example node group B",
+          "default": "#F4A261",
+          "paint": "fill"
+        }
+      ],
+      "connector_hints": [
+        {
+          "id": "left",
+          "label": "Left attachment",
+          "role": "attachment",
+          "x": 0.08,
+          "y": 0.5
+        },
+        {
+          "id": "right",
+          "label": "Right attachment",
+          "role": "attachment",
+          "x": 0.92,
+          "y": 0.5
+        },
+        {
+          "id": "top",
+          "label": "Top attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.08
+        },
+        {
+          "id": "bottom",
+          "label": "Bottom attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.92
+        }
+      ]
+    },
+    {
+      "id": "analysis.pseudotime_trajectory.linear",
+      "concept_id": "analysis.pseudotime_trajectory",
+      "name": "Pseudotime Trajectory — Continuous ordering",
+      "scientific_name": "Pseudotime Trajectory — Continuous ordering",
+      "synonyms": [
+        "cell state trajectory",
+        "inferred developmental ordering"
+      ],
+      "category": "assay-workflow",
+      "subcategory": "Analytical graphics · schematic templates",
+      "tags": [
+        "Pseudotime Trajectory",
+        "Continuous ordering",
+        "cell state trajectory",
+        "inferred developmental ordering",
+        "editable vector",
+        "schematic",
+        "example",
+        "template",
+        "not measured data"
+      ],
+      "description": "Editable cell-state points along a continuous or branching ordering.",
+      "scientific_limitations": "Illustrative editable template with invented positions, not measured data or an analysis result. Replace marks and labels with verified study-specific content before presenting results. Pseudotime is an inferred ordering, not elapsed time or lineage tracing. No root, branch assignment, trajectory method or actual fate transition is inferred by this artwork.",
+      "scientific_references": [
+        {
+          "id": "trapnell-2014",
+          "citation": "Trapnell C et al. Pseudo-temporal ordering of individual cells reveals dynamics and regulators of cell fate decisions. Nature Biotechnology. 2014.",
+          "doi": "10.1038/nbt.2859",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4122333/",
+          "figure": "Figure 2A–C and F",
+          "use": "An inferred cell-state ordering may branch; pseudotime is distinct from collection time. Heatmaps require a visible scale. Figure inspected; no cell coordinates or values reused."
+        }
+      ],
+      "file": "svg/pseudotime_trajectory_linear.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector geometry authored for Superbench Figure Tool from generic scientific concepts and primary-literature conventions. Published figures informed biological meaning and plot conventions only. No artwork, screenshot, measured data, tracing, structural coordinates or third-party vector component was incorporated.",
+      "source_record_id": "source.analysis-graphics.2026-10-15",
+      "rights_record_id": "rights.analysis-graphics.repository-policy-cc0.2026-10-15",
+      "style_family": "figure-studio-soft-line-v1",
+      "style_variant": "standard",
+      "variant_axis": "form",
+      "form_id": "linear",
+      "form_label": "Continuous ordering",
+      "review_status": "independent_scientific_and_visual_review_passed_2026_10_15",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "reviewed_original_vector",
+      "quality_tier": "reviewed",
+      "reviewer_notes": "Independent scientific and visual review accepted this exact drawing at 64, 256 and 512 px in all three drawing styles on 2026-10-15. Native editor qualification and product inclusion remain pending and are recorded separately from this artwork review and prospective repository CC0 permission.",
+      "editable_region_count": 4,
+      "editable_color_regions": [
+        {
+          "id": "outline",
+          "label": "Contours and labels",
+          "default": "#26323D",
+          "paint": "both"
+        },
+        {
+          "id": "state_a",
+          "label": "Example earlier ordering",
+          "default": "#5EA9DD",
+          "paint": "fill"
+        },
+        {
+          "id": "state_b",
+          "label": "Example middle ordering",
+          "default": "#58B8AE",
+          "paint": "fill"
+        },
+        {
+          "id": "state_c",
+          "label": "Example later ordering",
+          "default": "#F4A261",
+          "paint": "fill"
+        }
+      ],
+      "connector_hints": [
+        {
+          "id": "left",
+          "label": "Left attachment",
+          "role": "attachment",
+          "x": 0.08,
+          "y": 0.5
+        },
+        {
+          "id": "right",
+          "label": "Right attachment",
+          "role": "attachment",
+          "x": 0.92,
+          "y": 0.5
+        },
+        {
+          "id": "top",
+          "label": "Top attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.08
+        },
+        {
+          "id": "bottom",
+          "label": "Bottom attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.92
+        }
+      ]
+    },
+    {
+      "id": "analysis.pseudotime_trajectory.branching",
+      "concept_id": "analysis.pseudotime_trajectory",
+      "name": "Pseudotime Trajectory — Branching ordering",
+      "scientific_name": "Pseudotime Trajectory — Branching ordering",
+      "synonyms": [
+        "cell state trajectory",
+        "inferred developmental ordering"
+      ],
+      "category": "assay-workflow",
+      "subcategory": "Analytical graphics · schematic templates",
+      "tags": [
+        "Pseudotime Trajectory",
+        "Branching ordering",
+        "cell state trajectory",
+        "inferred developmental ordering",
+        "editable vector",
+        "schematic",
+        "example",
+        "template",
+        "not measured data"
+      ],
+      "description": "Editable cell-state points along a continuous or branching ordering.",
+      "scientific_limitations": "Illustrative editable template with invented positions, not measured data or an analysis result. Replace marks and labels with verified study-specific content before presenting results. Pseudotime is an inferred ordering, not elapsed time or lineage tracing. No root, branch assignment, trajectory method or actual fate transition is inferred by this artwork.",
+      "scientific_references": [
+        {
+          "id": "trapnell-2014",
+          "citation": "Trapnell C et al. Pseudo-temporal ordering of individual cells reveals dynamics and regulators of cell fate decisions. Nature Biotechnology. 2014.",
+          "doi": "10.1038/nbt.2859",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4122333/",
+          "figure": "Figure 2A–C and F",
+          "use": "An inferred cell-state ordering may branch; pseudotime is distinct from collection time. Heatmaps require a visible scale. Figure inspected; no cell coordinates or values reused."
+        }
+      ],
+      "file": "svg/pseudotime_trajectory_branching.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector geometry authored for Superbench Figure Tool from generic scientific concepts and primary-literature conventions. Published figures informed biological meaning and plot conventions only. No artwork, screenshot, measured data, tracing, structural coordinates or third-party vector component was incorporated.",
+      "source_record_id": "source.analysis-graphics.2026-10-15",
+      "rights_record_id": "rights.analysis-graphics.repository-policy-cc0.2026-10-15",
+      "style_family": "figure-studio-soft-line-v1",
+      "style_variant": "standard",
+      "variant_axis": "form",
+      "form_id": "branching",
+      "form_label": "Branching ordering",
+      "review_status": "independent_scientific_and_visual_review_passed_2026_10_15",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "reviewed_original_vector",
+      "quality_tier": "reviewed",
+      "reviewer_notes": "Independent scientific and visual review accepted this exact drawing at 64, 256 and 512 px in all three drawing styles on 2026-10-15. Native editor qualification and product inclusion remain pending and are recorded separately from this artwork review and prospective repository CC0 permission.",
+      "editable_region_count": 4,
+      "editable_color_regions": [
+        {
+          "id": "outline",
+          "label": "Contours and labels",
+          "default": "#26323D",
+          "paint": "both"
+        },
+        {
+          "id": "state_a",
+          "label": "Example earlier ordering",
+          "default": "#5EA9DD",
+          "paint": "fill"
+        },
+        {
+          "id": "state_b",
+          "label": "Example middle ordering",
+          "default": "#58B8AE",
+          "paint": "fill"
+        },
+        {
+          "id": "state_c",
+          "label": "Example later ordering",
+          "default": "#F4A261",
+          "paint": "fill"
+        }
+      ],
+      "connector_hints": [
+        {
+          "id": "left",
+          "label": "Left attachment",
+          "role": "attachment",
+          "x": 0.08,
+          "y": 0.5
+        },
+        {
+          "id": "right",
+          "label": "Right attachment",
+          "role": "attachment",
+          "x": 0.92,
+          "y": 0.5
+        },
+        {
+          "id": "top",
+          "label": "Top attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.08
+        },
+        {
+          "id": "bottom",
+          "label": "Bottom attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.92
+        }
+      ]
+    },
+    {
+      "id": "analysis.cell_tracking_trajectory.single_track",
+      "concept_id": "analysis.cell_tracking_trajectory",
+      "name": "Cell Tracking Trajectory — Single cell",
+      "scientific_name": "Cell Tracking Trajectory — Single cell",
+      "synonyms": [
+        "cell migration track",
+        "time lapse trajectory",
+        "single cell path"
+      ],
+      "category": "assay-workflow",
+      "subcategory": "Analytical graphics · schematic templates",
+      "tags": [
+        "Cell Tracking Trajectory",
+        "Single cell",
+        "cell migration track",
+        "time lapse trajectory",
+        "single cell path",
+        "editable vector",
+        "schematic",
+        "example",
+        "template",
+        "not measured data"
+      ],
+      "description": "Editable spatial tracks with ordered positions and endpoint labels or direction arrows for one or two example cells.",
+      "scientific_limitations": "Illustrative editable template with invented positions, not measured data or an analysis result. Replace marks and labels with verified study-specific content before presenting results. Endpoint labels or arrows indicate time order of positions, unlike pseudotime. No speed, elapsed duration, migration bias, physical scale or lineage is encoded.",
+      "scientific_references": [
+        {
+          "id": "tinevez-2017",
+          "citation": "Tinevez JY et al. TrackMate: An open and extensible platform for single-particle tracking. Methods. 2017.",
+          "doi": "10.1016/j.ymeth.2016.09.016",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/27713081/",
+          "use": "Tracking links observed positions over acquisition time. These hand-authored positions represent the drawing convention only, not a computed track."
+        }
+      ],
+      "file": "svg/cell_tracking_trajectory_single_track.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector geometry authored for Superbench Figure Tool from generic scientific concepts and primary-literature conventions. Published figures informed biological meaning and plot conventions only. No artwork, screenshot, measured data, tracing, structural coordinates or third-party vector component was incorporated.",
+      "source_record_id": "source.analysis-graphics.2026-10-15",
+      "rights_record_id": "rights.analysis-graphics.repository-policy-cc0.2026-10-15",
+      "style_family": "figure-studio-soft-line-v1",
+      "style_variant": "standard",
+      "variant_axis": "form",
+      "form_id": "single_track",
+      "form_label": "Single cell",
+      "review_status": "independent_scientific_and_visual_review_passed_2026_10_15",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "reviewed_original_vector",
+      "quality_tier": "reviewed",
+      "reviewer_notes": "Independent scientific and visual review accepted this exact drawing at 64, 256 and 512 px in all three drawing styles on 2026-10-15. Native editor qualification and product inclusion remain pending and are recorded separately from this artwork review and prospective repository CC0 permission.",
+      "editable_region_count": 3,
+      "editable_color_regions": [
+        {
+          "id": "outline",
+          "label": "Contours and labels",
+          "default": "#26323D",
+          "paint": "both"
+        },
+        {
+          "id": "track_a",
+          "label": "Example tracked cell A",
+          "default": "#5EA9DD",
+          "paint": "stroke"
+        },
+        {
+          "id": "time_cue",
+          "label": "Later positions",
+          "default": "#F4A261",
+          "paint": "stroke"
+        }
+      ],
+      "connector_hints": [
+        {
+          "id": "left",
+          "label": "Left attachment",
+          "role": "attachment",
+          "x": 0.08,
+          "y": 0.5
+        },
+        {
+          "id": "right",
+          "label": "Right attachment",
+          "role": "attachment",
+          "x": 0.92,
+          "y": 0.5
+        },
+        {
+          "id": "top",
+          "label": "Top attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.08
+        },
+        {
+          "id": "bottom",
+          "label": "Bottom attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.92
+        }
+      ]
+    },
+    {
+      "id": "analysis.cell_tracking_trajectory.two_tracks",
+      "concept_id": "analysis.cell_tracking_trajectory",
+      "name": "Cell Tracking Trajectory — Two cells",
+      "scientific_name": "Cell Tracking Trajectory — Two cells",
+      "synonyms": [
+        "cell migration track",
+        "time lapse trajectory",
+        "single cell path"
+      ],
+      "category": "assay-workflow",
+      "subcategory": "Analytical graphics · schematic templates",
+      "tags": [
+        "Cell Tracking Trajectory",
+        "Two cells",
+        "cell migration track",
+        "time lapse trajectory",
+        "single cell path",
+        "editable vector",
+        "schematic",
+        "example",
+        "template",
+        "not measured data"
+      ],
+      "description": "Editable spatial tracks with ordered positions and endpoint labels or direction arrows for one or two example cells.",
+      "scientific_limitations": "Illustrative editable template with invented positions, not measured data or an analysis result. Replace marks and labels with verified study-specific content before presenting results. Endpoint labels or arrows indicate time order of positions, unlike pseudotime. No speed, elapsed duration, migration bias, physical scale or lineage is encoded.",
+      "scientific_references": [
+        {
+          "id": "tinevez-2017",
+          "citation": "Tinevez JY et al. TrackMate: An open and extensible platform for single-particle tracking. Methods. 2017.",
+          "doi": "10.1016/j.ymeth.2016.09.016",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/27713081/",
+          "use": "Tracking links observed positions over acquisition time. These hand-authored positions represent the drawing convention only, not a computed track."
+        }
+      ],
+      "file": "svg/cell_tracking_trajectory_two_tracks.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector geometry authored for Superbench Figure Tool from generic scientific concepts and primary-literature conventions. Published figures informed biological meaning and plot conventions only. No artwork, screenshot, measured data, tracing, structural coordinates or third-party vector component was incorporated.",
+      "source_record_id": "source.analysis-graphics.2026-10-15",
+      "rights_record_id": "rights.analysis-graphics.repository-policy-cc0.2026-10-15",
+      "style_family": "figure-studio-soft-line-v1",
+      "style_variant": "standard",
+      "variant_axis": "form",
+      "form_id": "two_tracks",
+      "form_label": "Two cells",
+      "review_status": "independent_scientific_and_visual_review_passed_2026_10_15",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "reviewed_original_vector",
+      "quality_tier": "reviewed",
+      "reviewer_notes": "Independent scientific and visual review accepted this exact drawing at 64, 256 and 512 px in all three drawing styles on 2026-10-15. Native editor qualification and product inclusion remain pending and are recorded separately from this artwork review and prospective repository CC0 permission.",
+      "editable_region_count": 3,
+      "editable_color_regions": [
+        {
+          "id": "outline",
+          "label": "Contours and labels",
+          "default": "#26323D",
+          "paint": "both"
+        },
+        {
+          "id": "track_a",
+          "label": "Example tracked cell A",
+          "default": "#5EA9DD",
+          "paint": "stroke"
+        },
+        {
+          "id": "track_b",
+          "label": "Example tracked cell B",
+          "default": "#E76F51",
+          "paint": "stroke"
+        }
+      ],
+      "connector_hints": [
+        {
+          "id": "left",
+          "label": "Left attachment",
+          "role": "attachment",
+          "x": 0.08,
+          "y": 0.5
+        },
+        {
+          "id": "right",
+          "label": "Right attachment",
+          "role": "attachment",
+          "x": 0.92,
+          "y": 0.5
+        },
+        {
+          "id": "top",
+          "label": "Top attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.08
+        },
+        {
+          "id": "bottom",
+          "label": "Bottom attachment",
+          "role": "attachment",
+          "x": 0.5,
+          "y": 0.92
+        }
+      ]
+    }
+  ],
+  "contribution_license_policy": "original-vectors.cc0.repository-policy.2026-10-15"
+}

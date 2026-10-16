@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+<title id="title">Nucleolus — In nucleus</title>
+<desc id="desc">A nucleolus inside a nuclear envelope, with its smaller internal components shown schematically. Membraneless nucleolar organization is schematic and not to scale. Subcompartment number, shape and composition vary with species and state; no ribosome-production rate or molecular stoichiometry is encoded.</desc>
+<g data-region="nucleus" id="nuclear-interior-fill" fill="#D9D7FF"><ellipse cx="64" cy="64" rx="43" ry="40"/></g>
+<g data-region="outline" id="nuclear-interior-outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="64" cy="64" rx="43" ry="40"/></g>
+<g data-region="outline" id="inner-envelope" fill="none" stroke="#26323D" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M27 54C31 25 102 25 101 74"/></g>
+<g data-region="nucleolus" id="nucleolar-granular-component-fill" fill="#B8B5FF"><ellipse cx="65" cy="66" rx="24" ry="21"/></g>
+<g data-region="outline" id="nucleolar-granular-component-outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="65" cy="66" rx="24" ry="21"/></g>
+<g data-region="fibrillar_component" id="dense-fibrillar-0-fill" fill="#7B78C9"><circle cx="57" cy="61" r="9"/></g>
+<g data-region="fibrillar_centers" id="fibrillar-center-0-fill" fill="#F4A261"><circle cx="57" cy="61" r="3.4"/></g>
+<g data-region="fibrillar_component" id="dense-fibrillar-1-fill" fill="#7B78C9"><circle cx="73" cy="70" r="9"/></g>
+<g data-region="fibrillar_centers" id="fibrillar-center-1-fill" fill="#F4A261"><circle cx="73" cy="70" r="3.4"/></g>
+</svg>

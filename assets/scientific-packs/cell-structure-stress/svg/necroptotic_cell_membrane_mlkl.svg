@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+<title id="title">Necroptotic Cell — Schematic — Membrane-associated MLKL</title>
+<desc id="desc">A swelling cell with abstract membrane-associated MLKL cues and an intracellular vacuole cue. An MLKL-associated mechanism schematic. The clustered marks do not specify MLKL oligomer stoichiometry, a resolved pore structure, RIPK1 dependence or a diagnostic morphology; pathway identity requires independent evidence.</desc>
+<g data-region="cytoplasm" id="cell-body-fill" fill="#C7F2EC"><path d="M98 34C113 47 104 61 109 76C110 91 94 105 76 104C58 118 45 100 30 96C14 90 19 72 18 57C12 40 34 29 45 25C64 13 83 19 98 34Z"/></g>
+<g data-region="outline" id="cell-body-outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M98 34C113 47 104 61 109 76C110 91 94 105 76 104C58 118 45 100 30 96C14 90 19 72 18 57C12 40 34 29 45 25C64 13 83 19 98 34Z"/></g>
+<g data-region="nucleus" id="nucleus-fill" fill="#D9D7FF"><ellipse cx="58" cy="61" rx="18" ry="19"/></g>
+<g data-region="outline" id="nucleus-outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="58" cy="61" rx="18" ry="19"/></g>
+<g data-region="mlkl" id="membrane-associated-mlkl-0-fill" fill="#8EC8FF"><path d="M26 35l3-9 4 4 4-4 3 9-7 3Z"/></g>
+<g data-region="outline" id="membrane-associated-mlkl-0-outline" fill="none" stroke="#26323D" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M26 35l3-9 4 4 4-4 3 9-7 3Z"/></g>
+<g data-region="mlkl" id="membrane-associated-mlkl-1-fill" fill="#8EC8FF"><path d="M80 33l3-9 4 4 4-4 3 9-7 3Z"/></g>
+<g data-region="outline" id="membrane-associated-mlkl-1-outline" fill="none" stroke="#26323D" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M80 33l3-9 4 4 4-4 3 9-7 3Z"/></g>
+<g data-region="mlkl" id="membrane-associated-mlkl-2-fill" fill="#8EC8FF"><path d="M99 71l3-9 4 4 4-4 3 9-7 3Z"/></g>
+<g data-region="outline" id="membrane-associated-mlkl-2-outline" fill="none" stroke="#26323D" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M99 71l3-9 4 4 4-4 3 9-7 3Z"/></g>
+<g data-region="mlkl" id="membrane-associated-mlkl-3-fill" fill="#8EC8FF"><path d="M70 109l3-9 4 4 4-4 3 9-7 3Z"/></g>
+<g data-region="outline" id="membrane-associated-mlkl-3-outline" fill="none" stroke="#26323D" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M70 109l3-9 4 4 4-4 3 9-7 3Z"/></g>
+<g data-region="mlkl" id="membrane-associated-mlkl-4-fill" fill="#8EC8FF"><path d="M14 79l3-9 4 4 4-4 3 9-7 3Z"/></g>
+<g data-region="outline" id="membrane-associated-mlkl-4-outline" fill="none" stroke="#26323D" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 79l3-9 4 4 4-4 3 9-7 3Z"/></g>
+<g data-region="lumen" id="swelling-vacuole-fill" fill="#F7F9FC"><circle cx="78" cy="84" r="8"/></g>
+<g data-region="outline" id="swelling-vacuole-outline" fill="none" stroke="#26323D" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="78" cy="84" r="8"/></g>
+</svg>

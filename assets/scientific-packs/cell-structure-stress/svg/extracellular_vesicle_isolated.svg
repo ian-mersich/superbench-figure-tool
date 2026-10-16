@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+<title id="title">Extracellular Vesicle — Isolated vesicle</title>
+<desc id="desc">A closed extracellular lipid vesicle with illustrative internal cargo and surface components. An isolated EV silhouette cannot establish endosomal biogenesis or justify calling an observed vesicle an exosome. Only the release form illustrates an endosomal-origin model. No size, marker specificity, cargo sequence, purity, subtype or uptake mechanism is asserted.</desc>
+<g data-region="membrane" id="extracellular-vesicle-fill" fill="#7DD3C7"><ellipse cx="65" cy="64" rx="42" ry="39"/></g>
+<g data-region="outline" id="extracellular-vesicle-outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="65" cy="64" rx="42" ry="39"/></g>
+<g data-region="lumen" id="vesicle-lumen-fill" fill="#F7F9FC"><ellipse cx="65" cy="64" rx="34" ry="31"/></g>
+<g data-region="cargo" id="illustrative-rna-cargo" fill="none" stroke="#F4A261" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M43 62q5-12 12 0t13 0t14 0"/></g>
+<g data-region="cargo" id="illustrative-cargo-0-fill" fill="#F4A261"><circle cx="49" cy="80" r="4.5"/></g>
+<g data-region="cargo" id="illustrative-cargo-1-fill" fill="#F4A261"><circle cx="81" cy="47" r="4.5"/></g>
+<g data-region="cargo" id="illustrative-cargo-2-fill" fill="#F4A261"><circle cx="79" cy="83" r="4.5"/></g>
+<g data-region="membrane" id="surface-component-0" fill="none" stroke="#7DD3C7" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M33 38l-3-8"/></g>
+<g data-region="membrane" id="surface-component-1" fill="none" stroke="#7DD3C7" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M94 41l-3-8"/></g>
+<g data-region="membrane" id="surface-component-2" fill="none" stroke="#7DD3C7" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M103 72l-3-8"/></g>
+<g data-region="membrane" id="surface-component-3" fill="none" stroke="#7DD3C7" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M40 96l-3-8"/></g>
+</svg>

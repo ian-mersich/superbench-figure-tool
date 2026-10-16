@@ -17,10 +17,10 @@
     const els = Object.fromEntries([
       "Title", "CloseBtn", "VariantSelect", "Image", "Appearance", "Description",
       "Limitations", "PartsHeading", "Parts", "EditHint", "Status", "ReplacementNote",
-      "InsertBtn", "ReplaceSelectedBtn", "ReplaceAllBtn"
+      "InsertBtn", "ReplaceSelectedBtn", "Eyebrow", "SearchField", "SearchInput", "ScopeField", "ScopeLabel", "IncludeCopies", "EditedField", "AllowEdited"
     ].map((suffix) => [suffix, element(suffix)]));
     if (Object.values(els).some((entry) => !entry)) throw new Error("The Library preview dialog is incomplete.");
-    const state = { open: false, assetId: "", contextId: "", loading: false, busy: false };
+    const state = { open: false, assetId: "", contextId: "", loading: false, busy: false, mode: "preview" };
     let serial = 0;
     let focusOrigin = null;
     let variants = [];
@@ -45,12 +45,14 @@
       const previousId = state.assetId;
       const origin = focusOrigin;
       serial += 1;
-      Object.assign(state, { open: false, assetId: "", contextId: "", loading: false, busy: false });
+      const changing = state.mode === "change";
+      Object.assign(state, { open: false, assetId: "", contextId: "", loading: false, busy: false, mode: "preview" });
       previewReady = false;
       focusOrigin = null;
       if (dialog.open) dialog.close();
       dialog.hidden = true;
       els.Image.removeAttribute("src");
+      if (changing) callbacks.onCloseChange?.();
       if (restoreFocus) focusAfterClose(origin, previousId);
       return true;
     }
@@ -70,14 +72,26 @@
     function updateControls() {
       const info = replacementInfo();
       const unavailable = state.loading || state.busy || !state.open || !previewReady;
+      const changing = state.mode === "change";
       els.CloseBtn.disabled = state.busy;
-      els.VariantSelect.disabled = state.busy || variants.length < 2;
+      els.VariantSelect.disabled = state.busy || !variants.length || (!changing && variants.length < 2);
+      els.SearchField.hidden = !changing;
+      els.SearchInput.disabled = state.busy;
+      els.Eyebrow.textContent = changing ? "Change drawing" : "Library preview";
+      els.InsertBtn.hidden = changing;
       els.InsertBtn.disabled = unavailable;
-      els.ReplaceSelectedBtn.disabled = unavailable || info.selectedDisabled === true || !count(info.selectedCount);
-      els.ReplaceAllBtn.disabled = unavailable || info.allDisabled === true || !count(info.allCount);
-      els.ReplaceSelectedBtn.textContent = `Replace selected (${count(info.selectedCount)})`;
-      els.ReplaceAllBtn.textContent = `Replace all same (${count(info.allCount)})`;
-      els.ReplacementNote.textContent = String(info.note || "");
+      els.ReplaceSelectedBtn.hidden = !changing;
+      els.ReplaceSelectedBtn.disabled = unavailable || info.checking || info.selectedDisabled === true || !count(info.selectedCount)
+        || !variants.some((variant) => variant.id === state.assetId) || (info.edited && !els.AllowEdited.checked);
+      const others = count(info.otherCount);
+      els.ScopeField.hidden = !changing || !others;
+      els.IncludeCopies.disabled = unavailable || info.checking || !others;
+      if (!others) els.IncludeCopies.checked = false;
+      els.ScopeLabel.textContent = `Also change ${others} matching ${others === 1 ? "copy" : "copies"} on this ${info.documentKind || "figure"}`;
+      els.EditedField.hidden = !changing || !info.edited;
+      els.AllowEdited.disabled = unavailable || info.checking;
+      els.ReplaceSelectedBtn.textContent = els.IncludeCopies.checked ? `Change ${others + 1} drawings` : "Change drawing";
+      els.ReplacementNote.textContent = changing ? String(info.note || "") : "Library cards and previews insert a new drawing. Existing artwork stays as it is.";
     }
 
     function renderDetails(source) {
@@ -102,14 +116,23 @@
         item.textContent = "No additional limitations are recorded for this drawing.";
         els.Limitations.append(item);
       }
-      const choices = callbacks.getVariants?.(source) || [];
-      variants = [...new Map([...choices, source]
+      const changing = state.mode === "change";
+      const choices = changing ? callbacks.getChoices?.(els.SearchInput.value) || [] : callbacks.getVariants?.(source) || [];
+      variants = [...new Map([...choices, ...(changing && els.SearchInput.value ? [] : [source])]
         .filter((entry) => entry?.id).map((entry) => [entry.id, entry])).values()];
       els.VariantSelect.replaceChildren();
+      if (changing && !variants.some((variant) => variant.id === source.id)) {
+        const prompt = document.createElement("option");
+        prompt.value = "";
+        prompt.textContent = "Choose a drawing…";
+        prompt.disabled = true;
+        els.VariantSelect.append(prompt);
+      }
       for (const variant of variants) {
         const option = document.createElement("option");
         option.value = variant.id;
-        option.textContent = String(callbacks.choiceLabel?.(variant, variants) || variant.name || variant.id);
+        option.textContent = changing ? String(callbacks.changeChoiceLabel?.(variant) || variant.name || variant.id)
+          : String(callbacks.choiceLabel?.(variant, variants) || variant.name || variant.id);
         els.VariantSelect.append(option);
       }
       els.VariantSelect.value = source.id;
@@ -163,7 +186,7 @@
         renderParts(loaded.regions, loaded.paletteOverrides);
         state.loading = false;
         previewReady = true;
-        els.Status.textContent = "Ready to insert or replace.";
+        els.Status.textContent = state.mode === "change" ? "Choose a drawing, then confirm below." : "Ready to insert.";
         updateControls();
         return true;
       } catch (_error) {
@@ -176,11 +199,15 @@
       }
     }
 
-    async function open(assetId, returnFocus) {
+    async function open(assetId, returnFocus, options = {}) {
       if (state.busy || !callbacks.getAsset?.(String(assetId || ""))) return false;
       if (!state.open) focusOrigin = returnFocus || document.activeElement;
       else if (returnFocus) focusOrigin = returnFocus;
       state.open = true;
+      state.mode = options.mode === "change" ? "change" : "preview";
+      els.SearchInput.value = "";
+      els.IncludeCopies.checked = false;
+      els.AllowEdited.checked = false;
       state.contextId = contextId();
       dialog.hidden = false;
       if (!dialog.open) dialog.showModal();
@@ -197,7 +224,7 @@
       updateControls();
       els.Status.textContent = action === "insert" ? "Inserting drawing…" : "Replacing drawings…";
       try {
-        const success = await callbacks.onAction?.(action, id);
+        const success = await callbacks.onAction?.(action, id, { includeCopies: els.IncludeCopies.checked, allowEdited: els.AllowEdited.checked });
         if (!current(token)) return;
         state.busy = false;
         if (success) close({ restoreFocus: false });
@@ -230,15 +257,23 @@
     dialog.addEventListener("cancel", (event) => { event.preventDefault(); close(); });
     dialog.addEventListener("close", () => { if (!dialog.open) close({ force: true }); });
     els.CloseBtn.addEventListener("click", () => close());
+    els.SearchInput.addEventListener("input", () => {
+      if (!current(serial) || state.busy || state.mode !== "change") return;
+      renderDetails(asset());
+      updateControls();
+      els.Status.textContent = variants.length ? `${variants.length} drawings found. Choose one from Drawing / view.` : "No drawings match. Try another biological term.";
+    });
+    els.IncludeCopies.addEventListener("change", updateControls);
+    els.AllowEdited.addEventListener("change", updateControls);
     els.VariantSelect.addEventListener("change", () => {
       if (current(serial) && !state.busy && variants.some((entry) => entry.id === els.VariantSelect.value)) {
         void showAsset(els.VariantSelect.value);
       }
     });
     for (const [action, button] of [
-      ["insert", els.InsertBtn], ["replace-selected", els.ReplaceSelectedBtn], ["replace-all", els.ReplaceAllBtn]
+      ["insert", els.InsertBtn], ["change", els.ReplaceSelectedBtn]
     ]) button.addEventListener("click", () => { void act(action, button); });
-    const controller = Object.freeze({ open, close, getState: () => ({ ...state }) });
+    const controller = Object.freeze({ open, close, refresh: updateControls, getState: () => ({ ...state }) });
     controllers.set(dialog, controller);
     return controller;
   }

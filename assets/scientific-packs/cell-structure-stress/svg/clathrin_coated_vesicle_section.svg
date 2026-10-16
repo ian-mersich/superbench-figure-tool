@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+<title id="title">Clathrin-coated Vesicle — Section with coat</title>
+<desc id="desc">A detached closed vesicle membrane, internal cargo cues and a surrounding polygonal coat. A detached coated-vesicle schematic, distinct from the existing surface-connected endocytic pit. Cage polygon count, adaptor identity, cage topology, cargo and diameter are not molecularly resolved or measured.</desc>
+<g data-region="membrane" id="closed-vesicle-membrane-fill" fill="#7DD3C7"><circle cx="64" cy="64" r="32"/></g>
+<g data-region="outline" id="closed-vesicle-membrane-outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="64" cy="64" r="32"/></g>
+<g data-region="lumen" id="vesicle-lumen-fill" fill="#F7F9FC"><circle cx="64" cy="64" r="25"/></g>
+<g data-region="cargo" id="cargo-0-fill" fill="#F4A261"><circle cx="53" cy="57" r="4"/></g>
+<g data-region="cargo" id="cargo-1-fill" fill="#F4A261"><circle cx="74" cy="73" r="4"/></g>
+<g data-region="cargo" id="cargo-2-fill" fill="#F4A261"><circle cx="71" cy="49" r="4"/></g>
+<g data-region="coat" id="coat-edge-0" fill="none" stroke="#5EA9DD" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M108.00 64.00L102.11 86.00"/></g>
+<g data-region="coat" id="coat-spoke-0" fill="none" stroke="#5EA9DD" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M108.00 64.00L99.00 64.00"/></g>
+<g data-region="coat" id="coat-edge-1" fill="none" stroke="#5EA9DD" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M102.11 86.00L86.00 102.11"/></g>
+<g data-region="coat" id="coat-spoke-1" fill="none" stroke="#5EA9DD" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M102.11 86.00L94.31 81.50"/></g>
+<g data-region="coat" id="coat-edge-2" fill="none" stroke="#5EA9DD" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M86.00 102.11L64.00 108.00"/></g>
+<g data-region="coat" id="coat-spoke-2" fill="none" stroke="#5EA9DD" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M86.00 102.11L81.50 94.31"/></g>
+<g data-region="coat" id="coat-edge-3" fill="none" stroke="#5EA9DD" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M64.00 108.00L42.00 102.11"/></g>
+<g data-region="coat" id="coat-spoke-3" fill="none" stroke="#5EA9DD" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M64.00 108.00L64.00 99.00"/></g>
+<g data-region="coat" id="coat-edge-4" fill="none" stroke="#5EA9DD" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M42.00 102.11L25.89 86.00"/></g>
+<g data-region="coat" id="coat-spoke-4" fill="none" stroke="#5EA9DD" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M42.00 102.11L46.50 94.31"/></g>
+<g data-region="coat" id="coat-edge-5" fill="none" stroke="#5EA9DD" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M25.89 86.00L20.00 64.00"/></g>
+<g data-region="coat" id="coat-spoke-5" fill="none" stroke="#5EA9DD" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M25.89 86.00L33.69 81.50"/></g>
+<g data-region="coat" id="coat-edge-6" fill="none" stroke="#5EA9DD" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M20.00 64.00L25.89 42.00"/></g>
+<g data-region="coat" id="coat-spoke-6" fill="none" stroke="#5EA9DD" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20.00 64.00L29.00 64.00"/></g>
+<g data-region="coat" id="coat-edge-7" fill="none" stroke="#5EA9DD" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M25.89 42.00L42.00 25.89"/></g>
+<g data-region="coat" id="coat-spoke-7" fill="none" stroke="#5EA9DD" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M25.89 42.00L33.69 46.50"/></g>
+<g data-region="coat" id="coat-edge-8" fill="none" stroke="#5EA9DD" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M42.00 25.89L64.00 20.00"/></g>
+<g data-region="coat" id="coat-spoke-8" fill="none" stroke="#5EA9DD" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M42.00 25.89L46.50 33.69"/></g>
+<g data-region="coat" id="coat-edge-9" fill="none" stroke="#5EA9DD" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M64.00 20.00L86.00 25.89"/></g>
+<g data-region="coat" id="coat-spoke-9" fill="none" stroke="#5EA9DD" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M64.00 20.00L64.00 29.00"/></g>
+<g data-region="coat" id="coat-edge-10" fill="none" stroke="#5EA9DD" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M86.00 25.89L102.11 42.00"/></g>
+<g data-region="coat" id="coat-spoke-10" fill="none" stroke="#5EA9DD" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M86.00 25.89L81.50 33.69"/></g>
+<g data-region="coat" id="coat-edge-11" fill="none" stroke="#5EA9DD" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M102.11 42.00L108.00 64.00"/></g>
+<g data-region="coat" id="coat-spoke-11" fill="none" stroke="#5EA9DD" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M102.11 42.00L94.31 46.50"/></g>
+</svg>

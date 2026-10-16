@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+<title id="title">Nuclear Speckle — Condensate detail</title>
+<desc id="desc">A single irregular membraneless speckle with illustrative RNA–protein material. Speckle contours and internal marks are illustrative. They do not specify SON or SRRM2 localization, RNA sequence, active splicing events, or a measured number of bodies. The outline delimits a condensate, not a lipid membrane.</desc>
+<g data-region="speckle" id="speckle-condensate-fill" fill="#7B78C9"><path d="M31 40Q27 28 42 28Q50 17 64 25Q81 17 87 34Q108 38 101 54Q114 67 99 78Q100 96 81 97Q65 111 52 98Q32 103 28 86Q13 77 24 62Q15 49 31 40Z"/></g>
+<g data-region="outline" id="speckle-condensate-outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M31 40Q27 28 42 28Q50 17 64 25Q81 17 87 34Q108 38 101 54Q114 67 99 78Q100 96 81 97Q65 111 52 98Q32 103 28 86Q13 77 24 62Q15 49 31 40Z"/></g>
+<g data-region="rna_protein" id="ribonucleoprotein-cue-0" fill="none" stroke="#F4A261" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M40 45q5-8 9 0q4 6 8 0"/></g>
+<g data-region="rna_protein" id="ribonucleoprotein-cue-1" fill="none" stroke="#F4A261" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M67 39q5-8 9 0q4 6 8 0"/></g>
+<g data-region="rna_protein" id="ribonucleoprotein-cue-2" fill="none" stroke="#F4A261" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M81 62q5-8 9 0q4 6 8 0"/></g>
+<g data-region="rna_protein" id="ribonucleoprotein-cue-3" fill="none" stroke="#F4A261" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M53 68q5-8 9 0q4 6 8 0"/></g>
+<g data-region="rna_protein" id="ribonucleoprotein-cue-4" fill="none" stroke="#F4A261" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M69 86q5-8 9 0q4 6 8 0"/></g>
+<g data-region="rna_protein" id="ribonucleoprotein-cue-5" fill="none" stroke="#F4A261" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M33 81q5-8 9 0q4 6 8 0"/></g>
+</svg>

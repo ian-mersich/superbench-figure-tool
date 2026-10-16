@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+<title id="title">Phagolysosome — Bacterial cargo</title>
+<desc id="desc">A membrane-bounded phagolysosome containing a rod-shaped cargo cue and lysosomal enzyme cues. A mature degradative compartment schematic, not a demonstration of acidification, successful killing, a bacterial species or a measured digestion stage. Enzyme dots are illustrative and have no molecular count.</desc>
+<g data-region="membrane" id="phagolysosomal-limiting-membrane-fill" fill="#7DD3C7"><path d="M28 39C43 20 80 18 97 36C114 53 108 85 89 100C70 114 38 105 25 86C14 69 16 52 28 39Z"/></g>
+<g data-region="outline" id="phagolysosomal-limiting-membrane-outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M28 39C43 20 80 18 97 36C114 53 108 85 89 100C70 114 38 105 25 86C14 69 16 52 28 39Z"/></g>
+<g data-region="cargo" id="engulfed-bacterial-cargo-fill" fill="#F4A261"><rect x="38" y="54" width="52" height="19" rx="9"/></g>
+<g data-region="outline" id="engulfed-bacterial-cargo-outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><rect x="38" y="54" width="52" height="19" rx="9"/></g>
+<g data-region="outline" id="cargo-interior" fill="none" stroke="#26323D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M50 60h10M68 67h9"/></g>
+<g data-region="enzymes" id="lysosomal-enzyme-cue-0-fill" fill="#7B78C9"><circle cx="36" cy="42" r="3"/></g>
+<g data-region="enzymes" id="lysosomal-enzyme-cue-1-fill" fill="#7B78C9"><circle cx="57" cy="34" r="3"/></g>
+<g data-region="enzymes" id="lysosomal-enzyme-cue-2-fill" fill="#7B78C9"><circle cx="88" cy="45" r="3"/></g>
+<g data-region="enzymes" id="lysosomal-enzyme-cue-3-fill" fill="#7B78C9"><circle cx="94" cy="79" r="3"/></g>
+<g data-region="enzymes" id="lysosomal-enzyme-cue-4-fill" fill="#7B78C9"><circle cx="40" cy="88" r="3"/></g>
+<g data-region="enzymes" id="lysosomal-enzyme-cue-5-fill" fill="#7B78C9"><circle cx="81" cy="94" r="3"/></g>
+</svg>

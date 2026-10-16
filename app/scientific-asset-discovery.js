@@ -97,5 +97,34 @@
     return recommendations;
   }
 
-  return Object.freeze({ DEFAULT_LIMIT, MAX_LIMIT, classifyMatch, recommendQueries });
+  // Compare the editable artwork inside a bundled drawing, excluding its
+  // canvas placement and generated identities. The caller supplies a fresh
+  // source drawing with the current semantic part colors already applied.
+  function drawingContentSignature(record) {
+    const fields = ["type", "left", "top", "width", "height", "scaleX", "scaleY", "angle", "skewX", "skewY",
+      "flipX", "flipY", "originX", "originY", "path", "points", "rx", "ry", "radius", "x1", "y1", "x2", "y2",
+      "fill", "stroke", "strokeWidth", "strokeDashArray", "strokeDashOffset", "strokeLineCap", "strokeLineJoin",
+      "strokeMiterLimit", "fillRule", "paintFirst", "opacity", "visible", "clipPath", "text", "fontFamily", "fontSize",
+      "fontWeight", "fontStyle", "lineHeight", "charSpacing", "textAlign", "styles", "shadow", "globalCompositeOperation",
+      "strokeUniform", "backgroundColor", "filters", "figureStudioAppearanceStack", "figureStudioStrokeWidthProfile",
+      "figureStudioClipMaskMeta", "figureStudioCompoundPathMeta", "figureStudioLiveBooleanMeta"];
+    const normalize = (value) => {
+      if (typeof value === "number") return Math.round(value * 1e6) / 1e6;
+      if (Array.isArray(value)) return value.map(normalize);
+      if (value && typeof value === "object") return Object.fromEntries(Object.keys(value).sort().map((key) => [key, normalize(value[key])]));
+      return value;
+    };
+    const content = (node, root = false) => {
+      const result = {};
+      for (const key of fields) {
+        if (root && ["left", "top", "width", "height", "scaleX", "scaleY", "angle", "skewX", "skewY", "flipX", "flipY", "originX", "originY", "opacity", "visible"].includes(key)) continue;
+        if (Object.hasOwn(node || {}, key)) result[key] = normalize(node[key]);
+      }
+      if (Array.isArray(node?.objects)) result.objects = node.objects.map((child) => content(child));
+      return result;
+    };
+    return JSON.stringify(content(record, true));
+  }
+
+  return Object.freeze({ DEFAULT_LIMIT, MAX_LIMIT, classifyMatch, recommendQueries, drawingContentSignature });
 });

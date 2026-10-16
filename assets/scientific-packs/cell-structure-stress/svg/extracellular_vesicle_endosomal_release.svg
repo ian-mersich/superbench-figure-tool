@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+<title id="title">Extracellular Vesicle — Endosomal release</title>
+<desc id="desc">A multivesicular-endosome profile continuous with the plasma membrane, with internal and released vesicle cues. An isolated EV silhouette cannot establish endosomal biogenesis or justify calling an observed vesicle an exosome. Only the release form illustrates an endosomal-origin model. No size, marker specificity, cargo sequence, purity, subtype or uptake mechanism is asserted.</desc>
+<g data-region="cytoplasm" id="cell-interior-fill" fill="#C7F2EC"><path d="M17 18H83V111H17Z"/></g>
+<g data-region="lumen" id="extracellularly-continuous-endosomal-lumen-fill" fill="#F7F9FC"><path d="M90 45L83 45C67 39 43 44 39 63C34 88 61 99 82 84L90 84Z"/></g>
+<g data-region="membrane" id="endosome-plasma-membrane-continuity-fill" fill="#7DD3C7"><path d="M82 18V45C67 39 43 44 39 63C34 88 61 99 82 84V111H89V77C68 96 43 86 46 65C48 47 72 44 89 56V18Z"/></g>
+<g data-region="outline" id="endosome-plasma-membrane-continuity-outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M82 18V45C67 39 43 44 39 63C34 88 61 99 82 84V111H89V77C68 96 43 86 46 65C48 47 72 44 89 56V18Z"/></g>
+<g data-region="membrane" id="luminal-or-released-vesicle-0-fill" fill="#7DD3C7"><circle cx="58" cy="61" r="7"/></g>
+<g data-region="outline" id="luminal-or-released-vesicle-0-outline" fill="none" stroke="#26323D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="58" cy="61" r="7"/></g>
+<g data-region="cargo" id="cargo-0-fill" fill="#F4A261"><circle cx="58" cy="61" r="2"/></g>
+<g data-region="membrane" id="luminal-or-released-vesicle-1-fill" fill="#7DD3C7"><circle cx="61" cy="80" r="6"/></g>
+<g data-region="outline" id="luminal-or-released-vesicle-1-outline" fill="none" stroke="#26323D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="61" cy="80" r="6"/></g>
+<g data-region="cargo" id="cargo-1-fill" fill="#F4A261"><circle cx="61" cy="80" r="2"/></g>
+<g data-region="membrane" id="luminal-or-released-vesicle-2-fill" fill="#7DD3C7"><circle cx="105" cy="65" r="8"/></g>
+<g data-region="outline" id="luminal-or-released-vesicle-2-outline" fill="none" stroke="#26323D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="105" cy="65" r="8"/></g>
+<g data-region="cargo" id="cargo-2-fill" fill="#F4A261"><circle cx="105" cy="65" r="2"/></g>
+<g data-region="membrane" id="luminal-or-released-vesicle-3-fill" fill="#7DD3C7"><circle cx="105" cy="38" r="6"/></g>
+<g data-region="outline" id="luminal-or-released-vesicle-3-outline" fill="none" stroke="#26323D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="105" cy="38" r="6"/></g>
+<g data-region="cargo" id="cargo-3-fill" fill="#F4A261"><circle cx="105" cy="38" r="2"/></g>
+<g data-region="outline" id="release-direction" fill="none" stroke="#26323D" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M79 65L91 65"/></g>
+<g data-region="outline" id="release-direction-arrowhead" fill="none" stroke="#26323D" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M85.19 68.90L91 65L85.19 61.10"/></g>
+</svg>

@@ -2,9 +2,9 @@
 
 Create editable scientific figures and presentations. [Open the browser editor](https://imersich.com/superbench/figure_tool/).
 
-This is 1.0.0-beta.10. The browser and Superbench packages use the same app, styles, vendors, 406 Library drawings (346 concepts), and 12 scientific scenes. SOURCE_RELEASE.json binds this export to their committed source and shared payload. Installed native-host qualification is separate.
+This is 1.0.0-beta.11. The browser and Superbench packages use the same app, styles, vendors, 486 Library drawings (386 concepts), and 12 scientific scenes. SOURCE_RELEASE.json binds this export to their committed source and shared payload. Installed native-host qualification is separate.
 
-Serve this directory over HTTP and open `web/`. Work stays in the current browser profile; download portable files for backups. First-party code is Apache-2.0 and original artwork is CC0-1.0. See LICENSE, NOTICE, assets/LICENSE-ORIGINAL-ASSETS-CC0-1.0.md and vendor/NOTICE.
+Serve this directory over HTTP and open `web/`. Work stays in the current browser profile; download portable files for backups. First-party code is Apache-2.0 and original artwork is CC0-1.0. See LICENSE, NOTICE, LICENSE_POLICY.md, assets/LICENSE-ORIGINAL-ASSETS-CC0-1.0.md, assets/LICENSE-CELL-STRESS-TME-ANALYSIS-CC0-1.0.md and vendor/NOTICE.
 
 The full release source ZIP includes verified preferred upstream sources under preferred-source-materials/. This slim Git export retains the same lock, complete notices, and fetch/verify instructions in vendor/SOURCE_MATERIALS.md. Fresh upstream compiler rebuilds are not qualified as byte-identical.
 

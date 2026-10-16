@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+<title id="title">Anoikis — Schematic — Detached apoptotic cell</title>
+<desc id="desc">A detached cell above extracellular matrix with condensing chromatin and disengaged attachment cues. Anoikis means apoptosis associated with loss of appropriate matrix attachment. Detachment alone does not imply death; anchorage dependence and susceptibility vary by cell type, transformation state and culture conditions. Fragment number and timing are illustrative.</desc>
+<g data-region="matrix" id="extracellular-matrix" fill="none" stroke="#9FD8B5" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M17 105H111M20 113H108"/></g>
+<g data-region="cytoplasm" id="detached-cell-fill" fill="#C7F2EC"><path d="M32 58Q24 34 42 26Q59 16 77 28Q96 39 86 59Q82 78 63 77Q41 80 32 58Z"/></g>
+<g data-region="outline" id="detached-cell-outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M32 58Q24 34 42 26Q59 16 77 28Q96 39 86 59Q82 78 63 77Q41 80 32 58Z"/></g>
+<g data-region="chromatin" id="condensing-nuclear-fragments-fill" fill="#B8B5FF"><path d="M42 44q9-11 17 0v14q-10 7-17-2Z M67 37q13 1 12 13q-7 9-14 2Z"/></g>
+<g data-region="outline" id="condensing-nuclear-fragments-outline" fill="none" stroke="#26323D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M42 44q9-11 17 0v14q-10 7-17-2Z M67 37q13 1 12 13q-7 9-14 2Z"/></g>
+<g data-region="adhesion" id="disengaged-attachment-cues" fill="none" stroke="#8EC8FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M43 86v10M76 85v11"/></g>
+<g data-region="outline" id="detachment-direction" fill="none" stroke="#26323D" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M99 91L99 74"/></g>
+<g data-region="outline" id="detachment-direction-arrowhead" fill="none" stroke="#26323D" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M102.90 79.81L99 74L95.10 79.81"/></g>
+</svg>

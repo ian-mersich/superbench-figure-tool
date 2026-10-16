@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+<title id="title">Tumor-associated Neutrophil — Tumor context</title>
+<desc id="desc">A lobulated granulocyte shown alone or apposed to tumor-cell context. Tumor association and neutrophil functions require biological evidence. Granule color and lobulation do not classify suppressive, antitumor or other neutrophil states.</desc>
+<g data-region="tumor_context" fill="#D895B3" stroke="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="91" cy="67" r="24"/></g>
+<g data-region="outline" fill="none" stroke="#26323D" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="91" cy="67" r="24"/></g>
+<g data-region="nucleus" fill="#B8B5FF" stroke="none" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="88" cy="68" rx="10.08" ry="8.399999999999999"/></g>
+<g data-region="outline" fill="none" stroke="#26323D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="88" cy="68" rx="10.08" ry="8.399999999999999"/></g>
+<g data-region="cell_body" fill="#C7F2EC" stroke="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="42" cy="61" r="28"/></g>
+<g data-region="outline" fill="none" stroke="#26323D" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="42" cy="61" r="28"/></g>
+<g data-region="nucleus" fill="#B8B5FF" stroke="none" stroke-linecap="round" stroke-linejoin="round"><path d="M27 56C25 44 39 41 44 51C56 45 65 58 54 67C62 79 43 85 38 72C23 77 18 64 27 56Z"/></g>
+<g data-region="outline" fill="none" stroke="#26323D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M27 56C25 44 39 41 44 51C56 45 65 58 54 67C62 79 43 85 38 72C23 77 18 64 27 56Z"/></g>
+<g data-region="granules" fill="#F4A261" stroke="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="44" r="2"/><circle cx="54" cy="43" r="2"/><circle cx="21" cy="75" r="2"/><circle cx="61" cy="72" r="2"/><circle cx="48" cy="84" r="2"/><circle cx="38" cy="36" r="2"/></g>
+</svg>

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+<title id="title">ER Stress / Unfolded Protein Response — Lumenal protein load</title>
+<desc id="desc">An ER lumen containing unfolded protein cues and a paired membrane-associated stress-sensor cue. An IRE1-informed generic ER stress schematic, not the complete PERK, IRE1 and ATF6 branches. Sensor count, activation, XBP1 splicing, apoptosis and adaptive outcome are not measured or implied by shape alone. The arrow indicates a generic downstream signal.</desc>
+<g data-region="er_membrane" id="er-cisterna-fill" fill="#8EC8FF"><path d="M18 28Q64 20 110 28V88Q64 80 18 88Z"/></g>
+<g data-region="outline" id="er-cisterna-outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 28Q64 20 110 28V88Q64 80 18 88Z"/></g>
+<g data-region="lumen" id="er-lumen-fill" fill="#F7F9FC"><path d="M22 35Q64 27 106 35V79Q64 71 22 79Z"/></g>
+<g data-region="unfolded_protein" id="unfolded-protein-0" fill="none" stroke="#E76F51" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M27 47q-1-8 5-6t5 8q-2 6 5 3"/></g>
+<g data-region="unfolded_protein" id="unfolded-protein-1" fill="none" stroke="#E76F51" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M51 37q-1-8 5-6t5 8q-2 6 5 3"/></g>
+<g data-region="unfolded_protein" id="unfolded-protein-2" fill="none" stroke="#E76F51" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M71 55q-1-8 5-6t5 8q-2 6 5 3"/></g>
+<g data-region="unfolded_protein" id="unfolded-protein-3" fill="none" stroke="#E76F51" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M40 66q-1-8 5-6t5 8q-2 6 5 3"/></g>
+<g data-region="unfolded_protein" id="unfolded-protein-4" fill="none" stroke="#E76F51" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M87 39q-1-8 5-6t5 8q-2 6 5 3"/></g>
+<g data-region="stress_sensor" id="stress-sensor-pair" fill="none" stroke="#B8B5FF" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M67 79V96M76 79V96"/></g>
+<g data-region="stress_sensor" id="sensor-cytosolic-domain-a-fill" fill="#B8B5FF"><circle cx="67" cy="103" r="5"/></g>
+<g data-region="outline" id="sensor-cytosolic-domain-a-outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="67" cy="103" r="5"/></g>
+<g data-region="stress_sensor" id="sensor-cytosolic-domain-b-fill" fill="#B8B5FF"><circle cx="76" cy="103" r="5"/></g>
+<g data-region="outline" id="sensor-cytosolic-domain-b-outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="76" cy="103" r="5"/></g>
+</svg>

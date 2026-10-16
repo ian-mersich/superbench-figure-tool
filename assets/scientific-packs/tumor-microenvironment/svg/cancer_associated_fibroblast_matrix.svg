@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+<title id="title">Cancer-associated Fibroblast — Matrix context</title>
+<desc id="desc">A fibroblast in tumor-associated context, shown alone or with surrounding extracellular matrix. CAF populations are heterogeneous. Shape, fibers and matrix do not identify a CAF subtype or a universal marker; add model-specific labels and evidence.</desc>
+<g data-region="matrix" fill="none" stroke="#58B8AE" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M17 23Q51 37 106 22M15 31Q59 46 112 34M15 98Q52 84 111 104M20 108Q55 96 108 112"/></g>
+<g data-region="cell_body" fill="#C7F2EC" stroke="none" stroke-linecap="round" stroke-linejoin="round"><path d="M17 77Q44 48 47 36L57 50Q78 55 110 46L89 66Q81 73 91 96L68 82Q49 76 25 92L38 73Z"/></g>
+<g data-region="outline" fill="none" stroke="#26323D" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 77Q44 48 47 36L57 50Q78 55 110 46L89 66Q81 73 91 96L68 82Q49 76 25 92L38 73Z"/></g>
+<g data-region="cytoskeleton" fill="none" stroke="#58B8AE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M36 75Q52 64 82 56M38 80Q58 74 84 64"/></g>
+<g data-region="nucleus" fill="#B8B5FF" stroke="none" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="64" cy="64" rx="15" ry="8"/></g>
+<g data-region="outline" fill="none" stroke="#26323D" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="64" cy="64" rx="15" ry="8"/></g>
+</svg>

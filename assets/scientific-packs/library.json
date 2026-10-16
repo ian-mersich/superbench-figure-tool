@@ -107,6 +107,45 @@
         "figure",
         "presentation"
       ]
+    },
+    {
+      "id": "cell-structure-stress",
+      "name": "Cell Structures & Stress",
+      "description": "Editable nuclear bodies, cell-surface structures, vesicles, protrusions, death mechanisms and stress responses, with two biological forms for each concept.",
+      "path": "cell-structure-stress/asset-pack.json",
+      "asset_count": 40,
+      "concept_count": 20,
+      "enabled": true,
+      "modes": [
+        "figure",
+        "presentation"
+      ]
+    },
+    {
+      "id": "tumor-microenvironment",
+      "name": "Tumor Microenvironment",
+      "description": "Original editable tumor-associated cells, immune contacts, organized lymphoid tissue and qualitative spatial gradients.",
+      "path": "tumor-microenvironment/asset-pack.json",
+      "asset_count": 20,
+      "concept_count": 10,
+      "enabled": true,
+      "modes": [
+        "figure",
+        "presentation"
+      ]
+    },
+    {
+      "id": "analysis-graphics",
+      "name": "Analysis Graphics",
+      "description": "Editable schematic plot templates. Example geometry only; no measured data, computed statistics or analysis functions.",
+      "path": "analysis-graphics/asset-pack.json",
+      "asset_count": 20,
+      "concept_count": 10,
+      "enabled": true,
+      "modes": [
+        "figure",
+        "presentation"
+      ]
     }
   ]
 }

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+<title id="title">Tumor-associated Neutrophil — Isolated cell</title>
+<desc id="desc">A lobulated granulocyte shown alone or apposed to tumor-cell context. Tumor association and neutrophil functions require biological evidence. Granule color and lobulation do not classify suppressive, antitumor or other neutrophil states.</desc>
+<g data-region="cell_body" fill="#C7F2EC" stroke="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="64" cy="64" r="38"/></g>
+<g data-region="outline" fill="none" stroke="#26323D" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="64" cy="64" r="38"/></g>
+<g data-region="nucleus" fill="#B8B5FF" stroke="none" stroke-linecap="round" stroke-linejoin="round"><path d="M49 59C47 47 61 44 66 54C78 48 87 61 76 70C84 82 65 88 60 75C45 80 40 67 49 59Z"/></g>
+<g data-region="outline" fill="none" stroke="#26323D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M49 59C47 47 61 44 66 54C78 48 87 61 76 70C84 82 65 88 60 75C45 80 40 67 49 59Z"/></g>
+<g data-region="granules" fill="#F4A261" stroke="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="46" cy="47" r="2"/><circle cx="76" cy="46" r="2"/><circle cx="43" cy="78" r="2"/><circle cx="83" cy="75" r="2"/><circle cx="70" cy="87" r="2"/><circle cx="60" cy="39" r="2"/></g>
+</svg>

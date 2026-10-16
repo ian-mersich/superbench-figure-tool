@@ -13,6 +13,14 @@ source records. Reuse permission and inclusion in a reviewed product release
 are separate decisions; an unfinished asset can have CC0 permission while its
 product release review remains pending.
 
+The 80 original drawings added on 2026-10-15 in Cell Structures & Stress,
+Tumor Microenvironment, and Analysis Graphics apply that same original-artwork
+CC0 default prospectively. Their finite scope and current repository-policy
+basis are recorded in the [contribution notice](assets/LICENSE-CELL-STRESS-TME-ANALYSIS-CC0-1.0.md)
+and the three pack-scoped records. They do not inherit or extend the historical
+owner attestations dated 2026-10-10. Scientific and visual acceptance is recorded
+separately from native editor qualification and the product-release decision.
+
 Bundled fonts and libraries keep their original licenses. Full terms and
 attributions are indexed in [vendor/NOTICE](vendor/NOTICE). Apache-2.0 does not
 replace those terms. The application license does not impose conditions on a

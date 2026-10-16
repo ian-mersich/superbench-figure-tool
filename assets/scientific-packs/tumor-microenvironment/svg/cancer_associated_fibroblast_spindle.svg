@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+<title id="title">Cancer-associated Fibroblast — Spindle cell</title>
+<desc id="desc">A fibroblast in tumor-associated context, shown alone or with surrounding extracellular matrix. CAF populations are heterogeneous. Shape, fibers and matrix do not identify a CAF subtype or a universal marker; add model-specific labels and evidence.</desc>
+<g data-region="matrix" fill="none" stroke="#58B8AE" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M26 104Q66 99 105 77M30 113Q70 108 111 88"/></g>
+<g data-region="cell_body" fill="#C7F2EC" stroke="none" stroke-linecap="round" stroke-linejoin="round"><path d="M14 91Q35 58 54 48Q73 41 113 32Q95 58 76 74Q59 84 14 91Z"/></g>
+<g data-region="outline" fill="none" stroke="#26323D" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 91Q35 58 54 48Q73 41 113 32Q95 58 76 74Q59 84 14 91Z"/></g>
+<g data-region="cytoskeleton" fill="none" stroke="#58B8AE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M34 77Q54 65 89 48M36 83Q63 76 93 58"/></g>
+<g data-region="nucleus" fill="#B8B5FF" stroke="none" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="64" cy="64" rx="15" ry="8"/></g>
+<g data-region="outline" fill="none" stroke="#26323D" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="64" cy="64" rx="15" ry="8"/></g>
+</svg>

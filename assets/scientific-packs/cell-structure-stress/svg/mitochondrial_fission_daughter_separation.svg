@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+<title id="title">Mitochondrial Fission — Daughter separation</title>
+<desc id="desc">Two separated daughter mitochondrial profiles with division-machinery disassembly cues. A generic division event, not complete DRP1, actin or ER-contact anatomy. Ring geometry, cristae number, mtDNA partitioning, fragment size, rates and stress or death outcomes are not specified. Separation is shown as a state rather than a measured motion.</desc>
+<g data-region="mitochondria" id="daughter-mitochondrion-a-fill" fill="#8EC8FF"><rect x="16" y="34" width="42" height="25" rx="12.5"/></g>
+<g data-region="outline" id="daughter-mitochondrion-a-outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><rect x="16" y="34" width="42" height="25" rx="12.5"/></g>
+<g data-region="cristae" id="daughter-mitochondrion-a-crista-0" fill="none" stroke="#E76F51" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M23.0 37l-2 19"/></g>
+<g data-region="cristae" id="daughter-mitochondrion-a-crista-1" fill="none" stroke="#E76F51" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M37.0 37l-2 19"/></g>
+<g data-region="cristae" id="daughter-mitochondrion-a-crista-2" fill="none" stroke="#E76F51" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M51.0 37l-2 19"/></g>
+<g data-region="mitochondria" id="daughter-mitochondrion-b-fill" fill="#8EC8FF"><rect x="73" y="72" width="39" height="25" rx="12.5"/></g>
+<g data-region="outline" id="daughter-mitochondrion-b-outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><rect x="73" y="72" width="39" height="25" rx="12.5"/></g>
+<g data-region="cristae" id="daughter-mitochondrion-b-crista-0" fill="none" stroke="#E76F51" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M80.0 75l-2 19"/></g>
+<g data-region="cristae" id="daughter-mitochondrion-b-crista-1" fill="none" stroke="#E76F51" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M92.5 75l-2 19"/></g>
+<g data-region="cristae" id="daughter-mitochondrion-b-crista-2" fill="none" stroke="#E76F51" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M105.0 75l-2 19"/></g>
+<g data-region="division_ring" id="disassembly-cues" fill="none" stroke="#B8B5FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M63 56l4-4M63 67l4 4"/></g>
+</svg>

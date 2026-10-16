@@ -427,6 +427,32 @@ def validate_record_table(pack: dict, field_name: str, *, required: bool) -> set
     return record_ids
 
 
+POLICY_CONTRIBUTION_ID = "original-vectors.cc0.repository-policy.2026-10-15"
+POLICY_CONTRIBUTION_COUNTS = {"cell-structure-stress":40,"tumor-microenvironment":20,"analysis-graphics":20}
+
+
+def policy_contribution(pack: dict) -> bool:
+    """Prospective original contributions under the adopted repository license.
+
+    This does not reinterpret or backdate any historical owner attestation.
+    Exact product inclusion still requires the independent finite successor.
+    """
+    marker = pack.get("contribution_license_policy")
+    if marker is None:
+        if (pack.get("id") in POLICY_CONTRIBUTION_COUNTS
+                and pack.get("release_audit", {}).get("status") != "draft_review_pending"):
+            fail("Prospective contribution requires its repository license policy; no inherited owner grant")
+        return False
+    if (marker != POLICY_CONTRIBUTION_ID or pack.get("id") not in POLICY_CONTRIBUTION_COUNTS
+            or len(pack.get("assets", [])) != POLICY_CONTRIBUTION_COUNTS[pack["id"]]):
+        fail("Unknown or out-of-scope repository-policy contribution")
+    if pack.get("release_audit", {}).get("status") != "rights_cleared_quality_pending":
+        fail("Prospective contribution license clearance must preserve separate pending product approval")
+    if any(asset.get("source_type") != "clean_room_original_vector" for asset in pack.get("assets", [])):
+        fail("Repository-policy contribution covers only its newly constructed original vectors")
+    return True
+
+
 def validate_modern_release_records(pack: dict) -> None:
     pack_id = str(pack.get("id") or "")
     release_reference = pack.get("release_audit") or {}
@@ -475,12 +501,20 @@ def validate_modern_release_records(pack: dict) -> None:
             "rights_basis": "owner_attested_original_output",
             "effective_date": release_reference.get("rights_grant_effective_date"),
         })
+    if policy_contribution(pack) and release_reference.get("status") == "rights_cleared_quality_pending":
+        expected_rights.update(kind="repository_policy_license", status="rights_cleared",
+            rights_basis="repository_policy_original_output", effective_date="2026-10-15")
+        if (rights.get("license_policy") != POLICY_CONTRIBUTION_ID
+                or release_reference.get("rights_grant_effective_date") != "2026-10-15"):
+            fail("Prospective contribution must bind its current repository license policy; no inherited owner grant")
     for label, record, expected in (
         ("source record", source, expected_source),
         ("rights record", rights, expected_rights),
     ):
         for key, expected_value in expected.items():
-            if record.get(key) != expected_value:
+            matches = (record.get(key) is expected_value if isinstance(expected_value, bool)
+                       else record.get(key) == expected_value)
+            if not matches:
                 fail(
                     f"modern-pack {label} {key} must be {expected_value!r}; "
                     f"found {record.get(key)!r}"
@@ -1929,11 +1963,12 @@ def validate_rights_cleared_quality_pending_audit(
 
 
 def validate_release_audit(pack: dict, pack_dir: Path, assets: list[dict]) -> str:
+    contribution = policy_contribution(pack)
     if pack.get("release_audit", {}).get("status") == "draft_review_pending":
         if pack.get("id") in {CORE_PACK_ID, EXPANSION_PACK_ID, IMMUNOLOGY_ONCOLOGY_PACK_ID}:
             fail("historical released packs cannot be downgraded to draft")
         return validate_draft_audit(pack, pack_dir, assets)
-    if pack.get("release_audit", {}).get("status") == "rights_cleared_quality_pending":
+    if pack.get("release_audit", {}).get("status") == "rights_cleared_quality_pending" and not contribution:
         if pack.get("id") in {CORE_PACK_ID, EXPANSION_PACK_ID, IMMUNOLOGY_ONCOLOGY_PACK_ID}:
             fail("historical released packs cannot be downgraded to pending quality release")
         return validate_rights_cleared_quality_pending_audit(pack, pack_dir, assets)
@@ -1976,12 +2011,27 @@ def validate_release_audit(pack: dict, pack_dir: Path, assets: list[dict]) -> st
         fail("release audit asset_count does not match the pack")
     if audit.get("public_distribution_authorized") is not reference.get("public_distribution_authorized"):
         fail("release audit public-distribution state does not match the pack reference")
-    if audit.get("status") != "released":
-        fail("release audit must record released after the explicit owner CC0 decision")
+    if audit.get("status") != ("rights_cleared_quality_pending" if contribution else "released"):
+        fail("release audit must match its recorded license basis and separate product disposition")
     audit_date = validate_iso_date(audit.get("audit_date"), label="release audit audit_date")
     effective_date = validate_iso_date(
-        audit.get("release_effective_date"), label="release audit release_effective_date"
+        audit.get("rights_grant_effective_date") if contribution else audit.get("release_effective_date"),
+        label="contribution license effective date" if contribution else "release audit release_effective_date"
     )
+    if contribution and (audit.get("release_effective_date") is not None
+            or reference.get("release_effective_date") is not None
+            or audit.get("product_release_status") != "pending_quality_and_product_review"
+            or reference.get("product_release_status") != "pending_quality_and_product_review"):
+        fail("Prospective contribution license clearance must preserve separate pending product approval")
+    if contribution and (audit.get("rights_grant_effective_date") != "2026-10-15"
+            or reference.get("rights_grant_effective_date") != "2026-10-15"
+            or audit.get("audit_date") != "2026-10-15"
+            or reference.get("audit_date") != "2026-10-15"):
+        fail("Prospective contribution audit and license must use their current 2026-10-15 date")
+    if contribution and (not isinstance(audit.get("product_release_blocker"), str)
+            or len(audit["product_release_blocker"].strip()) < 40
+            or "product_release" in audit):
+        fail("Prospective contribution audit must state its separate pending product qualification")
     if effective_date > audit_date:
         fail("release audit release_effective_date cannot be later than audit_date")
     if reference.get("audit_date") is not None and reference.get("audit_date") != audit.get("audit_date"):
@@ -2006,8 +2056,9 @@ def validate_release_audit(pack: dict, pack_dir: Path, assets: list[dict]) -> st
     if audit.get("third_party_component_count") != 0:
         fail("release audit currently expects zero declared third-party components")
     rights_basis = audit.get("rights_basis")
-    if not isinstance(rights_basis, dict) or rights_basis.get("status") != "owner_attested_original_output":
-        fail("release audit rights_basis must record owner_attested_original_output")
+    expected_basis = "repository_policy_original_output" if contribution else "owner_attested_original_output"
+    if not isinstance(rights_basis, dict) or rights_basis.get("status") != expected_basis:
+        fail(f"release audit rights_basis must record {expected_basis}")
     is_modern_pack = pack.get("id") != CORE_PACK_ID
     if is_modern_pack:
         concept_count = len(
@@ -2187,7 +2238,7 @@ def validate_release_audit(pack: dict, pack_dir: Path, assets: list[dict]) -> st
         expected_asset_rights_basis = (
             "owner_attested_openai_output"
             if pack.get("id") == CORE_PACK_ID
-            else "owner_attested_original_output"
+            else "repository_policy_original_output" if contribution else "owner_attested_original_output"
         )
         if entry.get("rights_basis") != expected_asset_rights_basis:
             fail(
@@ -2196,12 +2247,14 @@ def validate_release_audit(pack: dict, pack_dir: Path, assets: list[dict]) -> st
             )
         if entry.get("third_party_material") != "none_declared":
             fail(f"{asset_id}: release audit declares third-party material and requires separate disposition")
-        if entry.get("provenance_status") != "owner_attested":
-            fail(f"{asset_id}: release audit provenance_status must be owner_attested")
+        expected_provenance = "original_construction_recorded" if contribution else "owner_attested"
+        if entry.get("provenance_status") != expected_provenance:
+            fail(f"{asset_id}: release audit provenance_status must be {expected_provenance}")
         if entry.get("current_license") != "CC0-1.0":
             fail(f"{asset_id}: released asset must use CC0-1.0")
-        if entry.get("release_disposition") != "released_under_cc0_1_0":
-            fail(f"{asset_id}: release audit disposition is not released_under_cc0_1_0")
+        expected_disposition = "licensed_under_cc0_1_0_product_release_pending" if contribution else "released_under_cc0_1_0"
+        if entry.get("release_disposition") != expected_disposition:
+            fail(f"{asset_id}: release audit disposition must be {expected_disposition}")
 
     if pack.get("id") == CORE_PACK_ID:
         actual_audit_hash = canonical_json_sha256(audit)

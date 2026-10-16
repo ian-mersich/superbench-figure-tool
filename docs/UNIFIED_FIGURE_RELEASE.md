@@ -6,12 +6,19 @@ The browser site and Superbench consume one committed editor and asset collectio
 scientific scenes. Fixes belong here. Do not maintain a second editor in the
 public source checkout or backport individual fixes into the old beta.6 site.
 
-The beta.9 release was published on 15 October 2026. Its immutable runtime source
-is `16d0629e5cc0b1fc5b3fb0af1938fe43ed355c71`, and its selected Superbench package
-is `9c4e3bee373cf7051880a130d3d6802aae4fb2438bcbd7c5aee480563ad782b2`.
+The beta.10 release was published on 15 October 2026. Its immutable runtime source
+is `3f5e4c8570e8fcd0e11fbdc25517fdd383491997`, and its selected Superbench package
+is `4801a585f885d44bc00e9e8fbf5d4815de93faae3ffaff614959893ca7d3ce0d`.
 The deployed HTTPS editor and the actual installed selection passed the same
 710-file payload comparison. The public source/tag, archive identities, CI and
 deployment evidence are recorded in [PUBLIC_PUBLICATION.md](PUBLIC_PUBLICATION.md).
+
+Host-owned appearance and file controls can differ without forking the editor.
+The website has a persistent Light/Dark control; Superbench uses global App
+Settings. Document colors and editing behavior remain shared. Browser preferences
+do not enter saved scientific documents. The boundary and existing appearance
+interface are documented in [Figure host settings](architecture/FIGURE_HOST_SETTINGS.md).
+A browser-only control still ships through the paired release procedure below.
 
 The 15 October product decision is recorded in
 `config/scientific-product-release-2026-10-15.json`. It binds the exact accepted
@@ -101,7 +108,7 @@ headless native checks; a package update does not establish a new MSI qualificat
 For future releases, publishing the public repository/release, updating the
 website, and changing the actual local selected package remain explicit promotion
 steps after the matched candidate is reviewed. Those steps are complete for
-beta.9. All beta.6 repaint/backport candidates remain unpublished historical
+beta.10. All beta.6 repaint/backport candidates remain unpublished historical
 diagnostics. The shared Figure release milestone is complete; the separate
 Windows installer qualification remains on the same roadmap.
 
@@ -117,5 +124,8 @@ public-release build path already emitted the correct manifest.
 
 Do not point either consumer at a newer development commit merely because its
 release tooling changed. A runtime update requires a new intentional shared
-candidate, paired artifacts, qualification and promotion. Keep the immutable
-beta.9 receipts as the evidence for the current release.
+candidate, paired artifacts, qualification and promotion. Keep immutable receipts
+for every release; beta.10's appearance-host and u10g records are the evidence for
+the current selection. Its later browser-preview readiness regression fix and
+publication documentation do not change any of its 710 payload files or require
+repinning either consumer to a tooling-only commit.

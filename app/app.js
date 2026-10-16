@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  const APP_VERSION = "1.0.0-beta.10";
+  const APP_VERSION = "1.0.0-beta.11";
   const PROJECT_SCHEMA = "figureStudio.project.v2";
   const DOCUMENT_KINDS = Object.freeze(["figure", "presentation"]);
   const FIRST_RUN_STORAGE_KEY = "figureStudio.firstRun.v2";
@@ -887,10 +887,6 @@
     assetPaletteSelect: document.getElementById("assetPaletteSelect"),
     assetFavoriteCount: document.getElementById("assetFavoriteCount"),
     assetRecentCount: document.getElementById("assetRecentCount"),
-    assetReplaceBanner: document.getElementById("assetReplaceBanner"),
-    assetReplaceTitle: document.getElementById("assetReplaceTitle"),
-    assetReplaceDetail: document.getElementById("assetReplaceDetail"),
-    cancelAssetReplaceBtn: document.getElementById("cancelAssetReplaceBtn"),
     assetSearchSpotlight: document.getElementById("assetSearchSpotlight"),
     assetGrid: document.getElementById("assetGrid"),
     openMyAssetsBtn: document.getElementById("openMyAssetsBtn"),
@@ -1099,7 +1095,6 @@
     scientificAssetVariantHeading: document.getElementById("scientificAssetVariantHeading"),
     scientificAssetStyleList: document.getElementById("scientificAssetStyleList"),
     replaceScientificAssetBtn: document.getElementById("replaceScientificAssetBtn"),
-    replaceAllScientificAssetsBtn: document.getElementById("replaceAllScientificAssetsBtn"),
     scientificAssetColorControls: document.getElementById("scientificAssetColorControls"),
     scientificAssetColorList: document.getElementById("scientificAssetColorList"),
     resetAssetColorsBtn: document.getElementById("resetAssetColorsBtn"),
@@ -7779,9 +7774,9 @@
       fields += `<div class="simple-style-section simple-style-type-actions">${action("toggle-bold", "Bold", { pressed: ["700", "bold"].includes(String(p.fontWeight?.value)), disabled: !p.fontWeight?.supportedCount })}${action("toggle-italic", "Italic", { pressed: p.fontStyle?.value === "italic", disabled: !p.fontStyle?.supportedCount })}</div>`;
       fields += `<div class="simple-style-section simple-style-text-align" role="group" aria-label="Text alignment">${["left", "center", "right"].map((align) => action(`text-align-${align}`, align[0].toUpperCase() + align.slice(1), { pressed: p.textAlign?.value === align, disabled: !p.textAlign?.supportedCount })).join("")}</div>`;
     }
-    if (context.single && first?.scientificAssetMeta) {
+    if (context.single && bundledScientificAssetObject(first)) {
       const replacement = scientificAssetReplacementInfo();
-      fields += `<section id="assetSelectionControls" aria-label="Selected scientific drawing"><span id="assetSelectionName">Selected drawing</span><div class="asset-selection-actions"><button type="button" data-asset-selection-action="replace-selected"${replacement.selectedDisabled ? " disabled" : ""}>Replace selected (1)</button><button type="button" data-asset-selection-action="replace-all"${replacement.allDisabled ? " disabled" : ""}>Replace all same (${replacement.allCount})</button></div><p class="asset-selection-note">${escapeHtml(replacement.note)}</p></section>`;
+      fields += `<section id="assetSelectionControls" aria-label="Selected scientific drawing"><span id="assetSelectionName">Selected drawing</span><div class="asset-selection-actions"><button type="button" data-asset-selection-action="change-drawing"${replacement.selectedDisabled ? " disabled" : ""}>Change drawing…</button></div><p class="asset-selection-note">${escapeHtml(replacement.note)}</p></section>`;
     }
     if (assetColors) {
       const expanded = document.getElementById("assetSelectionColors")?.open !== false;
@@ -7805,7 +7800,7 @@
     bindSelectionContextSurface(surface);
     bindScientificAssetColorControls(surface);
     surface.querySelectorAll("[data-asset-selection-action]").forEach((button) => {
-      button.addEventListener("click", () => beginScientificAssetReplacement(button.dataset.assetSelectionAction === "replace-all" ? "all-same" : "selected", { preserveFilters: true }));
+      button.addEventListener("click", () => beginScientificAssetReplacement("selected", { returnFocus: button }));
     });
     surface.querySelectorAll("[data-simple-order]").forEach((button) => {
       button.addEventListener("click", () => executeMenuCommand(button.dataset.simpleOrder === "forward" ? "bring-forward" : "send-backward"));
@@ -44285,7 +44280,6 @@
     if (els.assetArtStyleSelect) els.assetArtStyleSelect.value = scientificAssetArtStyle();
     if (els.assetPaletteSelect) els.assetPaletteSelect.value = scientificAssetPalette();
     if (els.myAssetsBackdrop && !els.myAssetsBackdrop.hidden) renderMyAssetsDialogList();
-    renderScientificAssetReplacementBanner();
     renderScientificAssetRelatedSearches("assets");
     if (!scientificAssetPack) {
       cancelScientificAssetPrewarm();
@@ -44304,16 +44298,13 @@
     }
     const assets = filteredScientificAssets();
     const conceptGroups = scientificAssetConceptGroups(assets);
-    const replacing = Boolean(scientificAssetReplacement);
-    const userAssets = replacing || state.assets.discovery !== "all" ? [] : filteredUserAssets();
+    const userAssets = state.assets.discovery !== "all" ? [] : filteredUserAssets();
     renderAssetDiscoveryHeader();
     renderScientificAssetDiscoveryControls();
     const categoryLabel = state.assets.category === "all" ? "All categories" : scientificAssetCategoryLabel(state.assets.category);
     const subcategoryLabel = state.assets.subcategory === "all" ? "" : ` · ${scientificAssetSubcategoryLabel(state.assets.subcategory)}`;
     const discoveryLabel = state.assets.discovery === "favorites" ? " · Favorites" : state.assets.discovery === "recent" ? " · Recent" : "";
-    els.assetPanelStatus.textContent = replacing
-      ? `${conceptGroups.length} replacement concept${conceptGroups.length === 1 ? "" : "s"} / ${assets.length} style${assets.length === 1 ? "" : "s"} / ${categoryLabel}`
-      : `${conceptGroups.length} of ${totalConcepts} concepts · ${assets.length} of ${totalAssets} variants · ${categoryLabel}${subcategoryLabel}${discoveryLabel}${userAssetLibrary.length ? ` · ${userAssetLibrary.length} in My Assets` : ""}`;
+    els.assetPanelStatus.textContent = `${conceptGroups.length} of ${totalConcepts} concepts · ${assets.length} of ${totalAssets} variants · ${categoryLabel}${subcategoryLabel}${discoveryLabel}${userAssetLibrary.length ? ` · ${userAssetLibrary.length} in My Assets` : ""}`;
     if (!conceptGroups.length && !userAssets.length) {
       cancelScientificAssetPrewarm();
       const emptyMessage = state.assets.discovery === "favorites"
@@ -44510,7 +44501,6 @@
   }
 
   function renderScientificAssetFavoriteToggle(conceptId, conceptName) {
-    if (scientificAssetReplacement) return "";
     const favorite = state.assets.favorites.includes(String(conceptId || ""));
     const action = favorite ? "Remove" : "Add";
     return `<button type="button" class="asset-favorite-toggle" data-asset-favorite-concept="${escapeHtml(conceptId)}" aria-pressed="${favorite ? "true" : "false"}" aria-label="${action} ${escapeHtml(conceptName)} ${favorite ? "from" : "to"} favorites" title="${action} ${escapeHtml(conceptName)} ${favorite ? "from" : "to"} favorites">${favorite ? "★" : "☆"}</button>`;
@@ -44518,10 +44508,8 @@
 
   function renderScientificAssetCard(asset, options = {}) {
     const regionCount = Number(asset.editable_region_count || asset.editable_color_regions?.length || 0) || 0;
-    const replacementSource = currentScientificAssetReplacementSource();
-    const replacing = Boolean(replacementSource);
-    const current = replacing && replacementSource.scientificAssetMeta?.assetId === asset.id;
-    const action = replacing ? "Replace with" : "Insert";
+    const current = false;
+    const action = "Insert";
     const displayName = options.displayName || asset.name;
     const styleLabel = asset.style_variant ? ` · ${scientificAssetVariantLabel(asset)}` : "";
     return `
@@ -44537,24 +44525,29 @@
 
   function scientificAssetReplacementInfo(asset = null) {
     const source = selectedScientificAssetObject();
-    const same = source ? scientificAssetSameObjects(source.scientificAssetMeta.assetId) : [];
-    const allCount = same.filter((object) => !object.locked).length;
-    const lockedCount = same.length - allCount;
+    const bundled = bundledScientificAssetObject(source);
+    const session = source?.figureId === scientificAssetReplacement?.sourceFigureId ? scientificAssetReplacement : null;
+    const same = bundled ? scientificAssetSameObjects(source.scientificAssetMeta.assetId) : [];
+    const lockedCount = same.filter((object) => object.locked).length;
+    const otherCount = session?.cleanOtherIds?.length || 0;
+    const allCount = bundled ? otherCount + 1 : 0;
     const nested = Boolean(source && !scientificAssetIsCanvasRoot(source));
     const unchanged = Boolean(asset && asset.id === source?.scientificAssetMeta?.assetId);
-    const selectedDisabled = !source || Boolean(source.locked) || nested || unchanged;
-    const selectionLabel = asset && source ? `Selected: ${source.scientificAssetMeta.assetName || source.name}. ` : "";
-    const scopeNote = `Replace all same applies only to this ${isPresentationDocument() ? "slide" : "figure"}. Size and position are kept.`;
+    const selectedDisabled = !bundled || Boolean(source.locked) || nested || unchanged;
+    const skipped = session?.editedOtherCount || 0;
+    const skipNote = [lockedCount ? `${lockedCount} locked` : "", skipped ? `${skipped} edited` : ""].filter(Boolean).join(" and ");
     return {
       sourceName: source?.scientificAssetMeta?.assetName || source?.name || '',
-      selectedCount: source ? 1 : 0, allCount, lockedCount, selectedDisabled,
+      selectedCount: bundled ? 1 : 0, allCount, otherCount, lockedCount, selectedDisabled,
+      checking: Boolean(session?.checking), edited: Boolean(session?.edited),
+      documentKind: isPresentationDocument() ? "slide" : "figure",
       allDisabled: selectedDisabled || allCount < 2,
-      note: !source ? 'Select one drawing on the canvas to replace it.'
-        : source.locked ? 'Unlock this drawing to replace it or change its colors.'
-        : nested ? 'Exit group editing and ungroup the containing group to replace this drawing or change its part colors.'
-        : unchanged ? 'This drawing is already selected. Choose another view to replace it.'
-        : lockedCount ? `${selectionLabel}${lockedCount} locked ${lockedCount === 1 ? 'copy is' : 'copies are'} kept. ${scopeNote}`
-        : `${selectionLabel}${scopeNote}`
+      note: !bundled ? 'Custom artwork stays editable with the canvas tools.'
+        : source.locked ? 'Unlock this drawing to change it or its colors.'
+        : nested ? 'Exit group editing and ungroup the containing group to change this drawing or its part colors.'
+        : session?.checking ? 'Checking the drawing’s edited parts…'
+        : session ? `Changes ${session.sourceAssetName}. Size, position and rotation are kept.${skipNote ? ` ${skipNote} ${lockedCount + skipped === 1 ? 'copy is' : 'copies are'} kept.` : ''}${unchanged ? ' Choose another drawing to continue.' : ''}`
+        : 'Choose another Library drawing. Your custom artwork stays separate.'
     };
   }
 
@@ -44583,21 +44576,24 @@
     scientificAssetPreviewUi = window.FigureStudioScientificAssetPreview?.create({
       getAsset: findScientificAsset,
       getVariants: (asset) => scientificAssetConceptVariants(scientificAssetConceptId(asset)),
+      getChoices: (query) => window.FigureStudioScientificAssetCatalog.searchAssets(scientificAssetCatalog, query).map((result) => result.asset),
+      changeChoiceLabel: (asset) => `${asset.name} · ${scientificAssetChoiceLabel(asset, scientificAssetConceptVariants(scientificAssetConceptId(asset)))}`,
       choiceLabel: scientificAssetChoiceLabel,
       contextId: scientificAssetPreviewContextId,
       partColorHint: () => isPresentationDocument()
-        ? "After insertion, select the drawing and open Format to change these parts."
-        : "After insertion, select the drawing to change these parts in Style.",
+        ? "Select the drawing and open Format to change these parts."
+        : "Select the drawing to change these parts in Style.",
       loadPreview: async (asset) => {
         const style = scientificAssetArtStyle();
         const regions = styledScientificAssetMetadata(asset, style).editable_color_regions || [];
         const paletteOverrides = window.FigureStudioScientificAssetPalettes?.paletteRegionOverrides(scientificAssetPalette(), asset.editable_color_regions || []) || {};
         const source = await loadScientificAssetSvgSource(asset, style);
         return { svgText: recolorScientificAssetPaletteSvg(source, regions, paletteOverrides).svgText, regions, paletteOverrides,
-          appearanceLabel: `${els.assetArtStyleSelect?.selectedOptions?.[0]?.text || style} · ${els.assetPaletteSelect?.selectedOptions?.[0]?.text || scientificAssetPalette()} · for the next insertion` };
+          appearanceLabel: `${els.assetArtStyleSelect?.selectedOptions?.[0]?.text || style} · ${els.assetPaletteSelect?.selectedOptions?.[0]?.text || scientificAssetPalette()} · ${scientificAssetReplacement ? 'for this change' : 'for the next insertion'}` };
       },
       replacementInfo: scientificAssetReplacementInfo,
-      onAction: async (action, assetId) => {
+      onCloseChange: () => cancelScientificAssetReplacement({ toast: false }),
+      onAction: async (action, assetId, options = {}) => {
         const asset = findScientificAsset(assetId);
         if (!asset) return false;
         let result;
@@ -44605,10 +44601,10 @@
           result = await insertScientificAsset(assetId);
           if (result && scientificAssetReplacement) cancelScientificAssetReplacement({ toast: false });
         } else {
-          const scope = action === 'replace-all' ? 'all-same' : 'selected';
           const info = scientificAssetReplacementInfo(asset);
-          if (scope === 'all-same' ? info.allDisabled : info.selectedDisabled) return false;
-          beginScientificAssetReplacement(scope, { preserveFilters: true, focusSearch: false });
+          if (info.checking || info.selectedDisabled || (info.edited && !options.allowEdited) || !scientificAssetReplacement) return false;
+          scientificAssetReplacement.scope = options.includeCopies ? 'all-same' : 'selected';
+          scientificAssetReplacement.allowEdited = Boolean(options.allowEdited);
           result = await replaceScientificAssetsWithAsset(assetId);
           if (result?.status !== 'ok') return false;
         }
@@ -44678,7 +44674,7 @@
   function currentScientificAssetReplacementSource() {
     if (!scientificAssetReplacement?.sourceFigureId) return null;
     const source = getByFigureId(scientificAssetReplacement.sourceFigureId);
-    if (!source?.scientificAssetMeta || !scientificAssetIsCanvasRoot(source)) {
+    if (!bundledScientificAssetObject(source) || !scientificAssetIsCanvasRoot(source)) {
       scientificAssetReplacement = null;
       return null;
     }
@@ -44687,14 +44683,14 @@
 
   function scientificAssetSameObjects(assetId) {
     const id = String(assetId || "");
-    return (canvas?.getObjects?.() || []).filter((object) => object?.scientificAssetMeta?.assetId === id);
+    return (canvas?.getObjects?.() || []).filter((object) => bundledScientificAssetObject(object) && object.scientificAssetMeta.assetId === id);
   }
 
   function scientificAssetReplacementTargets() {
     const source = currentScientificAssetReplacementSource();
     if (!source) return [];
     return scientificAssetReplacement.scope === "all-same"
-      ? scientificAssetSameObjects(source.scientificAssetMeta.assetId)
+      ? scientificAssetSameObjects(source.scientificAssetMeta.assetId).filter((object) => object === source || scientificAssetReplacement.cleanOtherIds?.includes(object.figureId))
       : [source];
   }
 
@@ -44709,32 +44705,46 @@
       sourceAssetName: source?.scientificAssetMeta?.assetName || "",
       targetCount: targets.length,
       replaceableCount: targets.filter((object) => !object.locked).length,
+      checking: Boolean(scientificAssetReplacement?.checking),
+      edited: Boolean(scientificAssetReplacement?.edited),
+      otherCount: scientificAssetReplacement?.cleanOtherIds?.length || 0,
       busy: Boolean(scientificAssetReplacement?.busy)
     };
   }
 
-  function renderScientificAssetReplacementBanner() {
-    if (!els.assetReplaceBanner) return;
-    const replacement = getScientificAssetReplacementStateForQa();
-    els.assetReplaceBanner.hidden = !replacement.active;
-    if (!replacement.active) return;
-    if (els.assetReplaceTitle) {
-      els.assetReplaceTitle.textContent = replacement.scope === "all-same"
-        ? `Replace all ${replacement.sourceAssetName}`
-        : `Replace ${replacement.sourceAssetName}`;
+  function bundledScientificAssetObject(object) {
+    const meta = object?.scientificAssetMeta;
+    return Boolean(meta?.source_type === "scientific_asset_pack" && findScientificAsset(meta.assetId)
+      && object.figureType === "scientificAsset");
+  }
+
+  async function scientificAssetHasEditedParts(object, expectedCache = new Map()) {
+    try {
+      const meta = object.scientificAssetMeta;
+      const regions = scientificAssetRegions(meta);
+      const colors = scientificAssetColorLayers(meta);
+      const signature = window.FigureStudioScientificAssetDiscovery.drawingContentSignature;
+      const key = JSON.stringify([meta.assetId, meta.originalSvgPath, meta.art_style, regions, colors]);
+      if (!expectedCache.has(key)) expectedCache.set(key, (async () => {
+        const source = await loadScientificAssetSourceSvg(meta);
+        const paletteSvg = recolorScientificAssetPaletteSvg(source, regions, colors.paletteColorOverrides).svgText;
+        const customRegions = regions.filter((region) => Object.hasOwn(colors.customColorOverrides, region.id));
+        const expectedSvg = customRegions.length ? recolorScientificAssetPaletteSvg(paletteSvg, customRegions, colors.customColorOverrides, { allowWhite: true }).svgText : paletteSvg;
+        const loaded = await loadScientificAssetSvg(expectedSvg, regions);
+        if (!loaded.objects?.length) throw new Error("Drawing source unavailable");
+        const expected = fabricRef.util.groupSVGElements(loaded.objects, loaded.options || {});
+        return signature(expected.toObject(CUSTOM_PROPS));
+      })());
+      return signature(object.toObject(CUSTOM_PROPS)) !== await expectedCache.get(key);
+    } catch (_error) {
+      // Unknown/older content is protected as edited rather than guessed clean.
+      return true;
     }
-    if (els.assetReplaceDetail) {
-      const locked = replacement.targetCount - replacement.replaceableCount;
-      els.assetReplaceDetail.textContent = replacement.scope === "all-same"
-        ? `Choose a drawing for ${replacement.replaceableCount} matching ${replacement.replaceableCount === 1 ? "copy" : "copies"}.${locked ? ` ${locked} locked ${locked === 1 ? "copy is" : "copies are"} kept.` : ""}`
-        : "Choose a drawing to replace the selected copy, or Preview to inspect it first.";
-    }
-    if (els.cancelAssetReplaceBtn) els.cancelAssetReplaceBtn.disabled = replacement.busy;
   }
 
   function beginScientificAssetReplacement(scope = "selected", options = {}) {
     const source = selectedScientificAssetObject();
-    if (!source) {
+    if (!bundledScientificAssetObject(source)) {
       showToast("Select one bundled scientific asset to replace");
       return getScientificAssetReplacementStateForQa();
     }
@@ -44747,37 +44757,33 @@
       showLongToast("Exit group editing and ungroup the containing group to replace this drawing.");
       return getScientificAssetReplacementStateForQa();
     }
-    const normalizedScope = scope === "all-same" ? "all-same" : "selected";
-    scientificAssetReplacement = {
-      scope: normalizedScope,
+    const session = scientificAssetReplacement = {
+      scope: "selected",
       sourceFigureId: source.figureId,
       sourceAssetId: source.scientificAssetMeta.assetId,
       sourceAssetName: source.scientificAssetMeta.assetName || source.name || "scientific asset",
-      busy: false
+      busy: false, checking: true, edited: false, cleanOtherIds: [], editedOtherCount: 0
     };
-    if (!options.preserveFilters) {
-      state.assets.search = "";
-      state.assets.category = source.scientificAssetMeta.category || "all";
-      state.assets.subcategory = "all";
-      state.assets.discovery = "all";
-      if (els.assetSearchInput) els.assetSearchInput.value = "";
-      renderAssetCategoryOptions();
-      if (els.assetCategorySelect) els.assetCategorySelect.value = state.assets.category;
-    }
-    setRailVisibility("left", true, { fit: false, focus: false });
-    setRailCollapsed("left", false, { toast: false, focus: false });
-    setSidebarTab("assets");
-    setImportPlacementStatus("");
-    renderScientificAssetPanel();
-    if (options.focusSearch !== false) requestAnimationFrame(() => els.assetSearchInput?.focus());
-    showToast(normalizedScope === "all-same" ? "Choose a replacement for all matching assets" : "Choose a replacement asset");
+    const operation = captureScientificAssetInsertionContext(findScientificAsset(session.sourceAssetId));
+    const candidates = scientificAssetSameObjects(session.sourceAssetId).filter((object) => !object.locked);
+    const expectedCache = new Map();
+    void scientificAssetPreviewUi?.open(options.assetId || session.sourceAssetId, options.returnFocus || document.activeElement, { mode: "change" });
+    void Promise.all(candidates.map(async (object) => ({ object, edited: await scientificAssetHasEditedParts(object, expectedCache) }))).then((results) => {
+      if (scientificAssetReplacement !== session || !scientificAssetInsertionOwnershipIsCurrent(operation)) return;
+      session.edited = results.find((result) => result.object === source)?.edited !== false;
+      session.cleanOtherIds = results.filter((result) => result.object !== source && !result.edited).map((result) => result.object.figureId);
+      session.editedOtherCount = results.filter((result) => result.object !== source && result.edited).length;
+      session.checkedFingerprints = new Map(results.map((result) => [result.object, JSON.stringify(result.object.toObject(CUSTOM_PROPS))]));
+      session.checking = false;
+      scientificAssetPreviewUi?.refresh();
+    });
     return getScientificAssetReplacementStateForQa();
   }
 
   function cancelScientificAssetReplacement(options = {}) {
     const hadReplacement = Boolean(scientificAssetReplacement);
     scientificAssetReplacement = null;
-    renderScientificAssetPanel();
+    scientificAssetPreviewUi?.refresh();
     if (hadReplacement && options.toast !== false) showToast("Asset replacement canceled");
     return getScientificAssetReplacementStateForQa();
   }
@@ -46584,7 +46590,7 @@
     const target = findScientificAsset(assetId);
     const sourceConceptId = scientificAssetConceptId(source?.scientificAssetMeta || target || {});
     const variantAxis = scientificAssetVariantAxis(scientificAssetConceptVariants(sourceConceptId));
-    if (!source || !target) {
+    if (!bundledScientificAssetObject(source) || !target) {
       showToast(`Scientific asset ${variantAxis} is unavailable`);
       return { status: "unavailable" };
     }
@@ -46601,6 +46607,13 @@
       showToast(`Choose a ${variantAxis} from the same scientific concept`);
       return { status: "concept-mismatch" };
     }
+    const operation = captureScientificAssetInsertionContext(target);
+    if (await scientificAssetHasEditedParts(source)) {
+      if (!scientificAssetInsertionOwnershipIsCurrent(operation)) return { status: "cancelled" };
+      beginScientificAssetReplacement("selected", { assetId: target.id });
+      return { status: "confirmation-required", reason: "edited-parts" };
+    }
+    if (!scientificAssetInsertionOwnershipIsCurrent(operation) || selectedScientificAssetObject() !== source) return { status: "cancelled" };
     state.assets.variantByConcept = {
       ...(state.assets.variantByConcept || {}),
       [scientificAssetConceptId(target)]: target.id
@@ -46610,7 +46623,8 @@
       sourceFigureId: source.figureId,
       sourceAssetId: source.scientificAssetMeta.assetId,
       sourceAssetName: source.scientificAssetMeta.assetName || source.name || "scientific asset",
-      busy: false
+      busy: false, checking: false, edited: false, cleanOtherIds: [],
+      checkedFingerprints: new Map([[source, JSON.stringify(source.toObject(CUSTOM_PROPS))]])
     };
     return replaceScientificAssetsWithAsset(target.id);
   }
@@ -46622,12 +46636,21 @@
       showToast(replacement.active ? "Replacement asset not found" : "Start Replace from a selected scientific asset");
       return { status: "unavailable", replacement: getScientificAssetReplacementStateForQa() };
     }
+    if (replacement.checking || (replacement.edited && !scientificAssetReplacement.allowEdited)) return { status: "confirmation-required" };
+    if (replacement.busy) return { status: "busy" };
     if (asset.id === replacement.sourceAssetId) {
       showToast("Choose a different asset");
       return { status: "unchanged", replacement };
     }
     const targets = scientificAssetReplacementTargets();
     const replaceableTargets = targets.filter((object) => !object.locked);
+    const targetFingerprints = replaceableTargets.map((object) => JSON.stringify(object.toObject(CUSTOM_PROPS)));
+    if (replaceableTargets.some((object, index) => scientificAssetReplacement.checkedFingerprints?.get(object) !== targetFingerprints[index])) {
+      cancelScientificAssetReplacement({ toast: false });
+      scientificAssetPreviewUi?.close({ force: true });
+      showToast("The drawing changed. Open Change drawing again to review it.");
+      return { status: "cancelled", reason: "asset-changed" };
+    }
     const lockedSkipped = targets.length - replaceableTargets.length;
     if (!replaceableTargets.length) {
       showToast("Unlock a matching asset before replacing it");
@@ -46707,9 +46730,11 @@
       if (!scientificAssetInsertionOwnershipIsCurrent(operation) || scientificAssetReplacement !== replacementSession) {
         return { status: "cancelled", reason: "document-changed" };
       }
-      if (replaceableTargets.some((object) => !scientificAssetIsCanvasRoot(object) || object.locked)) {
+      if (replaceableTargets.some((object, index) => !scientificAssetIsCanvasRoot(object) || object.locked
+        || JSON.stringify(object.toObject(CUSTOM_PROPS)) !== targetFingerprints[index])) {
         cancelScientificAssetReplacement({ toast: false });
-        showToast("Replacement was cancelled because the drawings changed while loading");
+        scientificAssetPreviewUi?.close({ force: true });
+        showToast("The drawing changed while loading. Your edits were kept.");
         return { status: "cancelled", reason: "asset-changed" };
       }
       canvas.discardActiveObject();
@@ -55649,7 +55674,6 @@
     const locked = Boolean(object.locked);
     const nested = !scientificAssetIsCanvasRoot(object);
     const replacement = scientificAssetReplacementInfo();
-    const sameCount = replacement.allCount;
     const currentAsset = findScientificAsset(meta.assetId);
     const styleVariants = scientificAssetConceptVariants(scientificAssetConceptId(meta));
     const variantAxis = scientificAssetVariantAxis(styleVariants);
@@ -55681,18 +55705,9 @@
       }).join("");
     }
     if (els.replaceScientificAssetBtn) {
+      els.replaceScientificAssetBtn.hidden = !bundledScientificAssetObject(object);
       els.replaceScientificAssetBtn.disabled = replacement.selectedDisabled;
       els.replaceScientificAssetBtn.title = locked ? "Unlock the asset before replacing it" : nested ? replacement.note : "Choose another bundled scientific asset and keep this object's size and position";
-    }
-    if (els.replaceAllScientificAssetsBtn) {
-      els.replaceAllScientificAssetsBtn.textContent = `Replace all same (${sameCount})`;
-      els.replaceAllScientificAssetsBtn.disabled = replacement.allDisabled;
-      els.replaceAllScientificAssetsBtn.title = locked
-        ? "Unlock the asset before replacing it"
-        : nested ? replacement.note
-        : sameCount < 2
-          ? `No other matching copies are in this ${isPresentationDocument() ? "slide" : "figure"}`
-          : `Replace all ${sameCount} unlocked matching copies while keeping each size and position`;
     }
     const replacementNote = document.getElementById("scientificAssetReplacementNote");
     if (replacementNote) replacementNote.textContent = replacement.note;
@@ -95291,10 +95306,6 @@
       }
       const userCard = event.target.closest("[data-user-asset-id]");
       if (userCard) {
-        if (scientificAssetReplacement) {
-          showToast("Choose a bundled scientific asset for this replacement");
-          return;
-        }
         insertUserAsset(userCard.dataset.userAssetId);
         return;
       }
@@ -95302,8 +95313,7 @@
       if (!card) return;
       const conceptId = card.dataset.assetConceptId;
       if (conceptId) state.assets.variantByConcept = { ...(state.assets.variantByConcept || {}), [conceptId]: card.dataset.assetId };
-      if (scientificAssetReplacement) await replaceScientificAssetsWithAsset(card.dataset.assetId);
-      else insertScientificAsset(card.dataset.assetId);
+      insertScientificAsset(card.dataset.assetId);
     };
     if (els.assetGrid) {
       els.assetGrid.addEventListener("click", handleAssetInsertClick);
@@ -95327,9 +95337,6 @@
           els.assetGrid.scrollTop = previousTop;
         });
       }, { passive: true });
-    }
-    if (els.cancelAssetReplaceBtn) {
-      els.cancelAssetReplaceBtn.addEventListener("click", () => cancelScientificAssetReplacement());
     }
     if (els.myAssetsGrid) {
       els.myAssetsGrid.addEventListener("click", async (event) => {
@@ -96513,9 +96520,6 @@
     }
     if (els.replaceScientificAssetBtn) {
       els.replaceScientificAssetBtn.addEventListener("click", () => beginScientificAssetReplacement("selected"));
-    }
-    if (els.replaceAllScientificAssetsBtn) {
-      els.replaceAllScientificAssetsBtn.addEventListener("click", () => beginScientificAssetReplacement("all-same"));
     }
     els.sourceIdInput.addEventListener("change", () => {
       const object = selectedTopLevelObjects()[0];

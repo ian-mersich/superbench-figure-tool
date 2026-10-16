@@ -129,6 +129,20 @@ def test_apache_packages_ship_terms_and_reject_missing_or_changed_notices(tmp_pa
     assert {"app/legal/LICENSE", "app/legal/NOTICE", "app/legal/LICENSE_POLICY.md",
             "app/legal/assets/LICENSE-ORIGINAL-ASSETS-CC0-1.0.md", "app/legal/assets/CC0-1.0.txt"} <= {
         row["path"] for row in manifest["payload_files"]}
+    # The old tiny source remains valid; adding an expansion pack requires its
+    # separate prospective notice in both source and the shipped legal folder.
+    (source / "assets/scientific-packs/cell-structure-stress").mkdir()
+    contribution_notice = "assets/LICENSE-CELL-STRESS-TME-ANALYSIS-CC0-1.0.md"
+    with pytest.raises(producer.ReleaseBuildError, match="LICENSE-CELL-STRESS"):
+        producer.build_tool_package(source, tmp_path / "missing-contribution", source_revision="a" * 40)
+    (source / contribution_notice).write_text("Prospective original contribution terms", encoding="utf-8")
+    bundled_notice = source / "app/legal" / contribution_notice
+    bundled_notice.write_text("Different contribution terms", encoding="utf-8")
+    with pytest.raises(producer.ReleaseBuildError, match="LICENSE-CELL-STRESS"):
+        producer.build_tool_package(source, tmp_path / "different-contribution", source_revision="a" * 40)
+    shutil.copy2(source / contribution_notice, bundled_notice)
+    expanded = producer.build_tool_package(source, tmp_path / "valid-contribution", source_revision="a" * 40)
+    assert "app/legal/" + contribution_notice in {row["path"] for row in expanded["payload_files"]}
     (source / "app/legal/NOTICE").write_text("Changed attribution", encoding="utf-8")
     with pytest.raises(producer.ReleaseBuildError, match="NOTICE"):
         producer.build_tool_package(source, tmp_path / "changed", source_revision="a" * 40)

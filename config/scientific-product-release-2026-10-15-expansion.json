@@ -1,0 +1,223 @@
+{
+  "schema": "figureStudio.scientificProductRelease.v2",
+  "release_id": "cell-stress-tme-analysis.2026-10-15",
+  "release_date": "2026-10-15",
+  "decision": "approved_for_matching_public_web_and_superbench_packages",
+  "scope": "Finite product inclusion after independent scientific/art review and combined native editor QA. Exact package, host, live deployment and installed selection qualification remain separate. Existing owner grants are unchanged.",
+  "user_authorization": {
+    "source": "User instructions in current Figure task",
+    "instruction": "Paraphrase: simplify drawing replacement and add the40 listed cell-structure, stress, tumor/immune and analytical concepts broadly, with switching, selection and save/cold Open in light/dark at all three desktop widths; keep website and Superbench on one shared release.",
+    "rights_basis": "New finite original contributions use the adopted repository CC0 artwork policy prospectively; no new personal owner attestation or extension of historical grants."
+  },
+  "library": {
+    "drawing_count": 486,
+    "concept_count": 386,
+    "pack_count": 11,
+    "scene_count": 12
+  },
+  "asset_file_count": 661,
+  "asset_inventory_sha256": "40a1c2248528b91c0eb5b78b0f30fefdfff8ec8f484446d274be497893c3b158",
+  "identity_method": "JSON canonical SHA-256; other files SHA-256 after CRLF-to-LF normalization. Every asset-root file included.",
+  "predecessor": {
+    "record": "config/scientific-product-release-2026-10-15.json",
+    "sha256": "947cf4bcf7f5c3b9826e1c1a58dee27becf2954e024640e252065ce2318b29e0"
+  },
+  "packs": {
+    "cell-architecture-transport": {
+      "catalog_sha256": "ec0b221148b6b25b287437f605f532d59b84d784ed260f861fb0fb84f4f435f2",
+      "audit_file": "rights-release-record-2026-10-13.json",
+      "audit_sha256": "9bd7a54ed501ddfb24769995f1d3d56b173ec0454a04e87512446e87710816e9",
+      "original_rights_records_sha256": "6f54de2759367391a4d0c6754b098b46bbbc6e93488b9a7832eeec74d6fc2211",
+      "original_rights_grant_date": "2026-10-10",
+      "revision_receipt": "family-expansion-2026-10-13.json",
+      "revision_receipt_sha256": "5b74bb139b1d164566aa9300b9d6961ff89e9f6db06310bc00d2916623fa6849",
+      "drawing_count": 28
+    },
+    "culture-models-assays": {
+      "catalog_sha256": "f9e64bebee918b360cc97b9b4ec89b2e11d52195cf2abca5ac39ca723c7fa60d",
+      "audit_file": "rights-release-record-2026-10-13.json",
+      "audit_sha256": "fcceb4028f164f2da85de5a58ac6d78f5152f2b00924895f619c071c4a829b0e",
+      "original_rights_records_sha256": "800b0017aa314136d39dcc7464ed23f08267b3ab6a28d27603be8a6b2c2391da",
+      "original_rights_grant_date": "2026-10-10",
+      "revision_receipt": "family-expansion-2026-10-13.json",
+      "revision_receipt_sha256": "00ccdf41ddcb9a8849a41f4ed862a18b68bddcbb25a60153554eb4c25286c930",
+      "drawing_count": 24
+    },
+    "microbial-biology": {
+      "catalog_sha256": "9e17fa7d43ba1d7209c6cf8c895384bf8d34fc02c04f897d55417568dd1c6744",
+      "audit_file": "rights-release-record-2026-10-13.json",
+      "audit_sha256": "dc1ec2475e6ff44b1c42b275ae9f3c4e35dc3c3535db37fd7a69ae4334f7c980",
+      "original_rights_records_sha256": "1d99466fe5f54f3f251591eb57f06973d8b06dadb0debec9c17fcc1013129495",
+      "original_rights_grant_date": "2026-10-10",
+      "revision_receipt": "family-expansion-2026-10-13.json",
+      "revision_receipt_sha256": "8eaad1101e95d31b076d515f735a02f94c64bcbf8128839c87a66e451e16497a",
+      "drawing_count": 24
+    },
+    "rna-methods": {
+      "catalog_sha256": "6e77577795470401190cd0f1bed83578ec277cc39f32de79a4f09ba6e0ac908f",
+      "audit_file": "rights-release-record.json",
+      "audit_sha256": "9db4e5bae0f9c1a99fe619e41f342efd01ee723b36300d8fdb8fc701cafc4a84",
+      "original_rights_records_sha256": "b1581a2d4a57cc89a373e233e88cdf18eaa20bd825877dfce31f2e76bf8a26c8",
+      "original_rights_grant_date": "2026-10-10",
+      "revision_receipt": "artwork-revision-2026-10-13.json",
+      "revision_receipt_sha256": "406d859d9678010169cefb0006131c438276ab65f26972bda228822e2a5b1029",
+      "drawing_count": 4
+    },
+    "cell-structure-stress": {
+      "catalog_sha256": "7cfd7b97632a64b88b2468086fecc9792f33d4eb50281007cacbd5617240f8fb",
+      "audit_file": "rights-release-record.json",
+      "audit_sha256": "7c6181e99f05a48aaac5ba28a084eb8a57108ac12047eda210d52d22a575f7ff",
+      "rights_records_sha256": "1b46eaa982923d11a248c65982f90532fe505ffcdee28cfa9c7972f13ce01053",
+      "rights_basis": "repository_policy_original_output",
+      "contribution_effective_date": "2026-10-15",
+      "drawing_count": 40,
+      "concept_count": 20
+    },
+    "tumor-microenvironment": {
+      "catalog_sha256": "f7b549925e7f563656b3457c6a34466796610f0dd1f390984d3f95c9928bd482",
+      "audit_file": "rights-release-record.json",
+      "audit_sha256": "7f57e2d6093a55a4ab5bab50d8d3b190c22e631116afd2783fb244783cef3421",
+      "rights_records_sha256": "55c2387f885a4b61ba2844f57817b2a63bc4150d0aeff0bd507fdb9f9e346cf3",
+      "rights_basis": "repository_policy_original_output",
+      "contribution_effective_date": "2026-10-15",
+      "drawing_count": 20,
+      "concept_count": 10
+    },
+    "analysis-graphics": {
+      "catalog_sha256": "b5d10852475e49541349059e0517d674f4af4da70141b8c479081abd063307b2",
+      "audit_file": "rights-release-record.json",
+      "audit_sha256": "8c9ed1f12ade8f94f74135b5ab31e0b1b345c3ab4f99790c490540566f646433",
+      "rights_records_sha256": "b1693db679e6855c86c7e5be6e1a15abc546cd47bfca54f2dec0ac03549cc3bb",
+      "rights_basis": "repository_policy_original_output",
+      "contribution_effective_date": "2026-10-15",
+      "drawing_count": 20,
+      "concept_count": 10
+    }
+  },
+  "new_packs": {
+    "cell-structure-stress": {
+      "catalog_sha256": "7cfd7b97632a64b88b2468086fecc9792f33d4eb50281007cacbd5617240f8fb",
+      "audit_file": "rights-release-record.json",
+      "audit_sha256": "7c6181e99f05a48aaac5ba28a084eb8a57108ac12047eda210d52d22a575f7ff",
+      "rights_records_sha256": "1b46eaa982923d11a248c65982f90532fe505ffcdee28cfa9c7972f13ce01053",
+      "rights_basis": "repository_policy_original_output",
+      "contribution_effective_date": "2026-10-15",
+      "drawing_count": 40,
+      "concept_count": 20
+    },
+    "tumor-microenvironment": {
+      "catalog_sha256": "f7b549925e7f563656b3457c6a34466796610f0dd1f390984d3f95c9928bd482",
+      "audit_file": "rights-release-record.json",
+      "audit_sha256": "7f57e2d6093a55a4ab5bab50d8d3b190c22e631116afd2783fb244783cef3421",
+      "rights_records_sha256": "55c2387f885a4b61ba2844f57817b2a63bc4150d0aeff0bd507fdb9f9e346cf3",
+      "rights_basis": "repository_policy_original_output",
+      "contribution_effective_date": "2026-10-15",
+      "drawing_count": 20,
+      "concept_count": 10
+    },
+    "analysis-graphics": {
+      "catalog_sha256": "b5d10852475e49541349059e0517d674f4af4da70141b8c479081abd063307b2",
+      "audit_file": "rights-release-record.json",
+      "audit_sha256": "8c9ed1f12ade8f94f74135b5ab31e0b1b345c3ab4f99790c490540566f646433",
+      "rights_records_sha256": "b1693db679e6855c86c7e5be6e1a15abc546cd47bfca54f2dec0ac03549cc3bb",
+      "rights_basis": "repository_policy_original_output",
+      "contribution_effective_date": "2026-10-15",
+      "drawing_count": 20,
+      "concept_count": 10
+    }
+  },
+  "scenes": {
+    "single-cell-rna-workflow": {
+      "scene_sha256": "a7d22e7fa4d7d27a89477bfe0f41ec90e5b1ff7b84c4217d0af61b15f18bf3dd",
+      "preview_sha256": "5420139979016ba5f54e7b99ea5822da2b10646240d3740809340095d7189263"
+    },
+    "spatial-rna-methods": {
+      "scene_sha256": "42887da40bb40cd9a3b8fca1d18ec7a1e6d361c3590e4d46447d43d4ea98bdb7",
+      "preview_sha256": "20019511d3685597ec1685867342b70fae5a79fca02649b7aa96bab5cc562709"
+    }
+  },
+  "scene_rights_sha256": "7b3cead8d915e955918b45a8beb86cb2afef4a0083e846813c7aac74be65f66b",
+  "contribution_notice": {
+    "file": "assets/LICENSE-CELL-STRESS-TME-ANALYSIS-CC0-1.0.md",
+    "sha256": "6b2eee485484822df2a8d8e14238c44b72c2bcd6957a97fcb59740551b05123c"
+  },
+  "license_policy_sha256": "9396cd43f15b3b28745dfe69521d4a9b64edb28bb8aa92a7a66f1cd6a2ff9037",
+  "review": {
+    "scientific_review": "pass",
+    "visual_review": "pass",
+    "editor_checks": "pass",
+    "acceptance_document": "docs/scientific-assets/CELL_STRESS_TME_ANALYSIS_EXPANSION_2026_10_15.md",
+    "acceptance_document_sha256": "1ab42bbcd3c6e9b12e9ac58cc92af2a2a2073807cdb185b425147c60f7379e94",
+    "evidence": [
+      {
+        "file": "qa_artifacts/x11d2/report.json",
+        "sha256": "0e664f07d5ddb8df544ee730427669be987b22d80d1bd0295c9de51b4414ae9c"
+      },
+      {
+        "file": "qa_artifacts/x11w2/report.json",
+        "sha256": "7eac4b801e42acb58db3b49bd8496e466549a9ec8e799fba74a6adf85fdb6b83"
+      },
+      {
+        "file": "qa_artifacts/r11d2/report.json",
+        "sha256": "0ceb200e156497d7ab2db742697f463842735947ef83c1bc6344269ec994cd9c"
+      },
+      {
+        "file": "qa_artifacts/r11w2/report.json",
+        "sha256": "a80fe4697e2dee1eb2b0d0b91d9177d884192df4d554f49625b46071f955f216"
+      },
+      {
+        "file": "qa_artifacts/replacement-assets-20261015/independent-review-cell-structure-stress.json",
+        "sha256": "139effa9493c529bea125a520de838c277705585cac1e1fbbe92f9ff00ea78c1"
+      },
+      {
+        "file": "qa_artifacts/replacement-assets-20261015/independent-review-tumor-analysis.json",
+        "sha256": "640e827e6b634e592b5c0e5ed73fecd4f00ee8f960f820225892feb3006d01e3"
+      },
+      {
+        "file": "qa_artifacts/replacement-assets-20261015/independent-rights-record-review.json",
+        "sha256": "7f8f066dc1fc65b1b493c2160e346fe0194df2997d1a9388d658c2ec73629e8a"
+      },
+      {
+        "file": "qa_artifacts/replacement-assets-20261015/source-ui-independent-review.json",
+        "sha256": "01a7fea3eb2f48787050d178b296851e99fc354fbcf382e011e6aa5f0399abb5"
+      },
+      {
+        "file": "qa_artifacts/replacement-assets-20261015/source-native-independent-review.json",
+        "sha256": "b115faf34dea10b39d1d404fd8842f1c00fb7ff1780b84e7cc049039b5aaa69d"
+      },
+      {
+        "file": "qa_artifacts/replacement-assets-20261015/rights/source-freeze.json",
+        "sha256": "e7630ceaf96b41ae297971b5bbfde1a06bde73d3233f12c9d78f152fd4755ba7"
+      },
+      {
+        "file": "qa_artifacts/u11-source-checkpoint/x11d-completed-all80-case.json",
+        "sha256": "967e7e2b345b908e9a5052633155d7f635455232f9a600e2c0f5f342232dadda"
+      },
+      {
+        "file": "qa_artifacts/x11d/overall-run-interruption.json",
+        "sha256": "14eee13fa9c739ecc67262803229617e8b6b1cac36d4e6c89253ad932dc17dca"
+      },
+      {
+        "file": "qa_artifacts/u11-source-checkpoint/x11w-completed-all80-case.json",
+        "sha256": "39f2f5251fce700af357eb9c2b0e92e005a778065acb0b286b6540dca3db8d01"
+      },
+      {
+        "file": "qa_artifacts/x11w/overall-run-interruption.json",
+        "sha256": "0e1a9a68609a18921f59be17e67ee82fbe0b58861988de69acf2515f322fc5ac"
+      },
+      {
+        "file": "qa_artifacts/replacement-assets-20261015/independent-all80-checkpoint-review.json",
+        "sha256": "94ac44ef82149a09f7d5eccc6888363f674ca64535c78056038f7e989d0d71d0"
+      },
+      {
+        "file": "qa_artifacts/x11t/report.json",
+        "sha256": "e94acb4b3a7398b4fda4c5a1303c0d3a6eadc655733cf749ec180c26398132ae"
+      },
+      {
+        "file": "qa_artifacts/u11-source-checkpoint/interrupted-job-process-tree-review.json",
+        "sha256": "206b96f65a2150df8d91edf0887cc056e9180ef66cfe6ff01a9923e4fdf7302f"
+      }
+    ],
+    "final_package_qualification": "Separate immutable frontend, Core browser/hidden-native, deployed HTTPS and actual installed selection checks remain required before paired promotion."
+  }
+}

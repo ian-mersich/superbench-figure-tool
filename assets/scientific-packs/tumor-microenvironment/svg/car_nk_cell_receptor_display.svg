@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+<title id="title">CAR-NK Cell — Receptor display</title>
+<desc id="desc">An NK-cell schematic with engineered surface-receptor cues, optionally contacting a target. CAR geometry, antigen specificity, signaling domains and receptor number are illustrative. Contact does not imply killing, response rate or a particular clinical construct.</desc>
+<g data-region="cell_body" fill="#C7F2EC" stroke="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="61" cy="67" r="34"/></g>
+<g data-region="outline" fill="none" stroke="#26323D" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="61" cy="67" r="34"/></g>
+<g data-region="nucleus" fill="#B8B5FF" stroke="none" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="58" cy="68" rx="14.28" ry="11.899999999999999"/></g>
+<g data-region="outline" fill="none" stroke="#26323D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="58" cy="68" rx="14.28" ry="11.899999999999999"/></g>
+<g data-region="granules" fill="#F4A261" stroke="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="70" cy="54" r="2.5"/><circle cx="77" cy="62" r="2.5"/><circle cx="75" cy="75" r="2.5"/><circle cx="67" cy="82" r="2.5"/></g>
+<g data-region="receptor" fill="none" stroke="#5EA9DD" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M61 33L61 21"/><path d="M57 17L61 21L65 17"/></g>
+<g data-region="receptor" fill="none" stroke="#5EA9DD" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M84 43L92 34"/><path d="M88 30L92 34L96 30"/></g>
+<g data-region="receptor" fill="none" stroke="#5EA9DD" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M95 67L108 67"/><path d="M104 63L108 67L112 63"/></g>
+<g data-region="receptor" fill="none" stroke="#5EA9DD" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M38 43L30 34"/><path d="M26 30L30 34L34 30"/></g>
+</svg>
