@@ -18,9 +18,12 @@ import zipfile
 SUPPORT_FILES = (
     "LICENSE", "NOTICE", "LICENSE_POLICY.md", "package.json", "requirements-release.txt", ".gitattributes",
     "assets/LICENSE-ORIGINAL-ASSETS-CC0-1.0.md", "assets/CC0-1.0.txt",
-    "assets/LICENSE-CELL-STRESS-TME-ANALYSIS-CC0-1.0.md",
+    "assets/LICENSE-CELL-STRESS-TME-ANALYSIS-CC0-1.0.md", "assets/LICENSE-STYLE-4-CC0-1.0.md",
     "config/scientific-product-release-2026-10-15.json",
     "config/scientific-product-release-2026-10-15-expansion.json",
+    "config/scientific-product-release-2026-10-17-style4.json",
+    "scripts/import-style4-library.py", "scripts/validate-style4-library.py",
+    "scripts/test-style4-library-import.py", "tests/scientificAssetStyleFour.test.mjs", "tests/scientificAssetPrewarmStyle.test.cjs",
     "scripts/figure_tool_package_producer.py", "scripts/scientific_product_release.py",
     "scripts/scientific_family_revision.py", "scripts/export_figure_release_source.py",
     "scripts/check_figure_release_sync.py", "tests/test_figure_release_sync.py",

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Regulatory T Cell</title>
+  <desc id="desc">Editable regulatory t cell schematic with neutral T-cell morphology with a schematic regulatory-context cue; phenotype requires biological evidence.</desc>
+  <g data-region="cell_body" fill="#C7F2EC" stroke="none"><circle cx="63" cy="66" r="39" /></g>
+  <g data-region="nucleus" fill="#B8B5FF" stroke="none"><circle cx="61" cy="66" r="23" /></g>
+  <g data-region="state_features" fill="#E76F51" stroke="none"><circle cx="102" cy="52" r="9" /><path d="M95 52h14M102 45v14" /></g>
+  <g data-region="functional_cues" fill="none" stroke="#58B8AE" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M21 102c20 12 62 12 83 0M37 108v-8m51 8v-8" /></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="63" cy="66" r="39" /><circle cx="61" cy="66" r="23" /><circle cx="102" cy="52" r="9" /></g>
+</svg>

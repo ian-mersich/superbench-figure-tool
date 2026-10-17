@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Chromatin State — Condensed</title>
+  <desc id="desc">Editable condensed form of chromatin accessibility state, shown with open and condensed nucleosome-array forms.</desc>
+  <g data-region="nucleic_acid" fill="none" stroke="#5EA9DD" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 40c22-13 64-14 85 2M18 56c25-12 69-12 93 1M18 73c25-12 69-12 93 1M23 91c23-11 60-11 83 0" /></g>
+  <g data-region="regulatory_feature" fill="none" stroke="#7B78C9" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="30" cy="42" r="9" /><circle cx="54" cy="39" r="9" /><circle cx="79" cy="40" r="9" /><circle cx="101" cy="46" r="9" /><circle cx="28" cy="63" r="9" /><circle cx="52" cy="59" r="9" /><circle cx="77" cy="60" r="9" /><circle cx="101" cy="64" r="9" /><circle cx="30" cy="83" r="9" /><circle cx="55" cy="80" r="9" /><circle cx="80" cy="81" r="9" /><circle cx="101" cy="86" r="9" /></g>
+  <g data-region="process_feature" fill="none" stroke="#F4A261" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M39 109h50M46 103l-7 6 7 6M82 103l7 6-7 6" /></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 40c22-13 64-14 85 2M18 56c25-12 69-12 93 1M18 73c25-12 69-12 93 1M23 91c23-11 60-11 83 0" /></g>
+</svg>

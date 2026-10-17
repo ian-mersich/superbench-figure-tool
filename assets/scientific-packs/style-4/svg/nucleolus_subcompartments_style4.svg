@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc" data-style="Style 4" data-source-asset-id="cellstress.organelle.nucleolus.subcompartments">
+<title id="title">Nucleolus — Subcompartments</title>
+<desc id="desc">A nucleolar granular component containing multiple dense fibrillar components and fibrillar centers. Membraneless nucleolar organization is schematic and not to scale. Subcompartment number, shape and composition vary with species and state; no ribosome-production rate or molecular stoichiometry is encoded.</desc>
+
+<metadata id="source-catalog-entry">{"id": "cellstress.organelle.nucleolus.subcompartments", "concept_id": "cellstress.organelle.nucleolus", "name": "Nucleolus", "scientific_name": "Nucleolus", "category": "organelle", "subcategory": "Cell structures and cell stress", "synonyms": ["ribosome biogenesis compartment", "nucleolar condensate"], "tags": ["nucleolus", "ribosome biogenesis compartment", "nucleolar condensate", "Subcompartments", "cell biology", "editable vector", "schematic"], "description": "A nucleolar granular component containing multiple dense fibrillar components and fibrillar centers.", "file": "svg/nucleolus_subcompartments.svg", "source_type": "clean_room_original_vector", "license": "CC0-1.0", "provenance": "Original editable SVG coordinates authored afresh for cell structures and cell stress. Primary literature supports biological topology and explicit limitations only. No published image, proprietary asset-library artwork, screenshot, tracing, measured coordinates, sequence, or third-party vector component was incorporated. This original-art record does not grant rights or approve release.", "source_record_id": "source.cell-structure-stress.original.2026-10-15", "rights_record_id": "rights.cell-structure-stress.repository-policy-cc0.2026-10-15", "style_family": "figure-studio-soft-line-v1", "variant_axis": "form", "style_variant": "standard", "form_id": "subcompartments", "form_label": "Subcompartments", "review_status": "independent_scientific_and_visual_review_passed_2026_10_15", "style_status": "harmonized_soft_line_v1", "mvp_quality": "reviewed_original_vector", "quality_tier": "reviewed", "editable_region_count": 4, "editable_color_regions": [{"id": "nucleolus", "label": "Nucleolus", "default": "#B8B5FF"}, {"id": "outline", "label": "Structural outlines", "default": "#26323D"}, {"id": "fibrillar_component", "label": "Dense fibrillar component", "default": "#7B78C9"}, {"id": "fibrillar_centers", "label": "Fibrillar centers", "default": "#F4A261"}], "reviewer_notes": "Independent scientific and visual review accepted this exact drawing at 64, 256 and 512 px in all three drawing styles on 2026-10-15. Native editor qualification and product inclusion remain pending and are recorded separately from this artwork review and prospective repository CC0 permission.", "scientific_references": [{"id": "feric2016", "citation": "Feric et al. Coexisting liquid phases underlie nucleolar sub-compartments. Cell (2016).", "doi": "10.1016/j.cell.2016.04.047", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5127388/", "figure": "Figure 1A–G", "use": "Granular material surrounding multiple dense fibrillar components and fibrillar centers; no source artwork or geometry copied."}], "scientific_limitations": "Membraneless nucleolar organization is schematic and not to scale. Subcompartment number, shape and composition vary with species and state; no ribosome-production rate or molecular stoichiometry is encoded."}</metadata><g data-region="nucleolus" id="nucleolus-body-fill" fill="#8E87CF">
+  <path d="M24 53C24 34 40 20 60 18C82 16 102 28 106 48C111 71 94 102 63 106C40 109 20 90 24 53Z"/>
+</g>
+<g data-region="nucleolus" id="nucleolus-granules-fill" fill="#D9D6F4" opacity="0.68">
+  <path d="M31 57C32 44 42 30 58 28C72 26 89 34 95 47C100 60 93 82 77 90C59 99 39 92 33 78C31 72 30 65 31 57Z"/>
+</g>
+<g data-region="outline" id="nucleolus-body-outline" fill="none" stroke="#2B3642" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M24 53C24 34 40 20 60 18C82 16 102 28 106 48C111 71 94 102 63 106C40 109 20 90 24 53Z"/>
+</g>
+<g data-region="fibrillar_component" id="dense-fibrillar-components-fill" fill="#6D64B8">
+  <ellipse cx="46" cy="48" rx="12" ry="10"/>
+  <ellipse cx="79" cy="48" rx="13" ry="11"/>
+  <ellipse cx="65" cy="78" rx="11.5" ry="10"/>
+</g>
+<g data-region="outline" id="dense-fibrillar-components-outline" fill="none" stroke="#2B3642" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" opacity="0.9">
+  <ellipse cx="46" cy="48" rx="12" ry="10"/>
+  <ellipse cx="79" cy="48" rx="13" ry="11"/>
+  <ellipse cx="65" cy="78" rx="11.5" ry="10"/>
+</g>
+<g data-region="fibrillar_centers" id="fibrillar-centers-fill" fill="#E3A16A">
+  <ellipse cx="46" cy="48" rx="3.5" ry="3.1"/>
+  <ellipse cx="79" cy="48" rx="3.8" ry="3.3"/>
+  <ellipse cx="65" cy="78" rx="3.2" ry="2.9"/>
+</g>
+<g data-region="outline" id="surface-granularity" fill="none" stroke="#546273" stroke-width="0.9" stroke-linecap="round" opacity="0.55">
+  <path d="M57 30c4-1 8-1 12 0M37 67c2 6 8 11 14 13M76 90c6-1 10-4 14-9M89 61c2-3 3-6 3-10"/>
+</g>
+
+</svg>

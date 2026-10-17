@@ -44014,6 +44014,18 @@
         baseUrl: pack._assetBaseUrl
       })));
       const assets = scientificAssetCatalog.assets;
+      for (const styleEntry of (library.art_styles || [])) {
+        const relativeFile = String(styleEntry.path || "");
+        const manifestUrl = new URL(relativeFile, libraryBaseUrl).toString();
+        const styleResponse = await fetch(manifestUrl, { cache: "no-store" });
+        if (!styleResponse.ok) throw new Error(`${styleEntry.name} HTTP ${styleResponse.status}`);
+        const styleManifest = await styleResponse.json();
+        if (styleManifest.id !== styleEntry.id) throw new Error("Scientific drawing style identity mismatch");
+        window.FigureStudioScientificAssetArtStyles.attachVariantManifest(assets, styleManifest, {
+          baseUrl: manifestUrl,
+          basePath: `${libraryBasePath}${relativeFile.slice(0, relativeFile.lastIndexOf("/") + 1)}`
+        });
+      }
       scientificAssetPack = {
         ...library,
         id: library.id || "figure-studio-scientific-assets",
@@ -44514,7 +44526,7 @@
     const styleLabel = asset.style_variant ? ` · ${scientificAssetVariantLabel(asset)}` : "";
     return `
       <button type="button" class="asset-card" data-asset-id="${escapeHtml(asset.id)}"${options.conceptId ? ` data-asset-concept-id="${escapeHtml(options.conceptId)}"` : ""} data-replace-current="${current ? "true" : "false"}" aria-label="${action} ${escapeHtml(options.drawingLabel ? `${asset.name} · ${options.drawingLabel}` : displayName)}${escapeHtml(styleLabel)}" title="${action} ${escapeHtml(displayName)}${escapeHtml(styleLabel)} · ${escapeHtml(compactStatus(asset.category))}${regionCount ? ` · ${regionCount} editable parts` : ""}"${current ? " disabled" : ""}>
-        <span class="${escapeHtml(assetThumbClass(asset))}"><img src="${escapeHtml(asset._svgUrl)}" data-asset-style-preview="${escapeHtml(asset.id)}" alt="" loading="lazy" decoding="async"></span>
+        <span class="${escapeHtml(assetThumbClass(asset))}"><img src="${escapeHtml(styledScientificAssetMetadata(asset)._svgUrl)}" data-asset-style-preview="${escapeHtml(asset.id)}" alt="" loading="lazy" decoding="async"></span>
         <span class="asset-card-body">
           <span class="asset-name">${escapeHtml(displayName)}</span>
         </span>
@@ -44644,14 +44656,7 @@
   }
 
   function styledScientificAssetMetadata(asset, style = scientificAssetArtStyle()) {
-    if (style === "soft-color") return asset;
-    const artStyles = window.FigureStudioScientificAssetArtStyles;
-    return {
-      ...asset,
-      style_family: `superbench-${style}-v1`,
-      editable_color_regions: artStyles.transformRegions(asset.editable_color_regions, style),
-      art_style: style
-    };
+    return window.FigureStudioScientificAssetArtStyles.assetForStyle(asset, style);
   }
 
   function hydrateScientificAssetArtStylePreviews() {
@@ -45311,7 +45316,7 @@
   }
 
   function scientificAssetSvgSourceCacheKey(asset, style = "soft-color") {
-    return `${String(asset?.id || "unknown")}:${String(asset?._svgUrl || "")}:${style}`;
+    return `${String(asset?.id || "unknown")}:${String(styledScientificAssetMetadata(asset, style)?._svgUrl || "")}:${style}`;
   }
 
   function scientificAssetSvgSourceIsCached(asset, style = "soft-color") {
@@ -45319,7 +45324,8 @@
   }
 
   function loadScientificAssetSvgSource(asset, style = "soft-color") {
-    if (!asset?._svgUrl) return Promise.reject(new Error(`Missing SVG for ${asset?.name || "scientific asset"}`));
+    const styled = styledScientificAssetMetadata(asset, style);
+    if (!styled?._svgUrl) return Promise.reject(new Error(`Missing SVG for ${asset?.name || "scientific asset"}`));
     const key = scientificAssetSvgSourceCacheKey(asset, style);
     const cached = scientificAssetSvgSourceCache.get(key);
     if (cached) {
@@ -45327,7 +45333,7 @@
       scientificAssetSvgSourceCache.set(key, cached);
       return cached;
     }
-    const request = fetch(asset._svgUrl, { cache: "force-cache" })
+    const request = fetch(styled._svgUrl, { cache: "force-cache" })
       .then((response) => {
         if (!response.ok) throw new Error(`${asset.name} SVG HTTP ${response.status}`);
         return response.text();
@@ -45379,14 +45385,15 @@
 
   async function prewarmScientificAsset(asset) {
     if (!asset) return null;
-    const svgText = await loadScientificAssetSvgSource(asset, scientificAssetArtStyle());
+    const artStyle = scientificAssetArtStyle();
+    const svgText = await loadScientificAssetSvgSource(asset, artStyle);
     const cacheSignature = scientificAssetVectorPrototypeCacheSignature(asset, svgText);
     const cached = cachedScientificAssetVectorPrototype(cacheSignature);
     if (cached) return cached;
     const pendingEntry = scientificAssetVectorPrototypePromiseCache.get(cacheSignature.key);
     if (pendingEntry?.canonicalSvg === cacheSignature.canonicalSvg) return pendingEntry.promise;
     const promise = (async () => {
-      const loaded = await loadScientificAssetSvg(svgText, styledScientificAssetMetadata(asset, scientificAssetArtStyle()).editable_color_regions);
+      const loaded = await loadScientificAssetSvg(svgText, styledScientificAssetMetadata(asset, artStyle).editable_color_regions);
       if (!loaded.objects || !loaded.objects.length) throw new Error("Could not parse SVG asset");
       const prototypeSource = fabricRef.util.groupSVGElements(loaded.objects, loaded.options || {});
       const original = originalSizeForObject(prototypeSource, loaded.options);
@@ -45655,9 +45662,10 @@
       assetId: operation.assetId
     };
     const timestamp = new Date().toISOString();
-    const svgPath = asset.file;
-    const svgUrl = asset._svgUrl;
     const artStyle = scientificAssetArtStyle();
+    const styledSource = styledScientificAssetMetadata(asset, artStyle);
+    const svgPath = styledSource.file;
+    const svgUrl = styledSource._svgUrl;
     const paletteId = scientificAssetPalette();
     const paletteColorOverrides = window.FigureStudioScientificAssetPalettes?.paletteRegionOverrides(paletteId, asset.editable_color_regions || []) || {};
     try {
@@ -45667,7 +45675,10 @@
       const styledAsset = styledScientificAssetMetadata(asset, artStyle);
       const svgText = recolorScientificAssetPaletteSvg(sourceSvg, styledAsset.editable_color_regions, paletteColorOverrides).svgText;
       await scientificAssetInsertionQaDelay();
-      const { group, original, cacheState } = await createScientificAssetVectorObject(styledAsset, svgText, timestamp, { metaOverrides: { paletteId, paletteColorOverrides, customColorOverrides: {}, colorOverrides: paletteColorOverrides } });
+      const { group, original, cacheState } = await createScientificAssetVectorObject(styledAsset, svgText, timestamp, {
+        metaOverrides: { paletteId, paletteColorOverrides, customColorOverrides: {}, colorOverrides: paletteColorOverrides,
+          ...(artStyle === "style-4" ? { originalSvgMarkup: sourceSvg, originalSvgMarkupStored: true } : {}) }
+      });
       if (!scientificAssetInsertionOwnershipIsCurrent(operation)) return cancelScientificAssetInsertion(operation);
       fitScientificAssetObject(group, original.width, original.height);
       placeImportObject(group, null);
@@ -46504,6 +46515,7 @@
       style_variant: asset.style_variant || "default",
       ...(asset.form_id ? { form_id: asset.form_id, form_label: asset.form_label || scientificAssetDrawingLabel(asset) } : {}),
       art_style: asset.art_style || "soft-color",
+      ...(asset.art_style_source_sha256 ? { artStyleSourceSha256: asset.art_style_source_sha256 } : {}),
       assetId: asset.id,
       assetName: asset.name,
       scientificName: asset.scientific_name || asset.name,
@@ -46550,10 +46562,12 @@
     const layers = scientificAssetColorLayers(object.scientificAssetMeta);
     const normalized = String(color).toUpperCase();
     const baseline = layers.paletteColorOverrides[regionId] || scientificRegionDefaultColor(region);
-    if (normalized === String(baseline).toUpperCase()) delete layers.customColorOverrides[regionId];
+    const restoringOriginalPaints = normalized === String(baseline).toUpperCase();
+    if (restoringOriginalPaints) delete layers.customColorOverrides[regionId];
     else layers.customColorOverrides[regionId] = normalized;
     return applyScientificAssetColorOverrides(object, { ...layers.paletteColorOverrides, ...layers.customColorOverrides }, {
-      metadataPatch: layers, forceRegionIds: [regionId], historyLabel: "Asset part color changed"
+      metadataPatch: layers, forceRegionIds: [regionId], paletteOperation: restoringOriginalPaints,
+      preserveComponentPaints: restoringOriginalPaints, historyLabel: "Asset part color changed"
     });
   }
 
@@ -46687,6 +46701,7 @@
           : paletteSvg;
         const { group } = await createScientificAssetVectorObject(styledAsset, preparedSvgText, timestamp, {
           metaOverrides: {
+            ...(artStyle === "style-4" ? { originalSvgMarkup: svgText, originalSvgMarkupStored: true } : {}),
             replaced_from_asset_id: object.scientificAssetMeta.assetId || "",
             replaced_from_asset_name: object.scientificAssetMeta.assetName || object.name || "",
             replaced_from_style_family: object.scientificAssetMeta.style_family || "",
@@ -46900,7 +46915,7 @@
     const packPath = String(meta?.packAssetPath || "").replace(/^\/+/, "");
     if (packPath) return resourceUrl(`${packPath}${rawPath.replace(/^\/+/, "")}`);
     const asset = findScientificAsset(meta?.assetId);
-    return asset?._svgUrl || "";
+    return asset ? styledScientificAssetMetadata(asset, meta?.art_style)._svgUrl : "";
   }
 
   function recolorScientificAssetSvg(svgText, regions, overrides) {

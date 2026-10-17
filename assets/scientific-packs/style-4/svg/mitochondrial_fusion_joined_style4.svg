@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+<title id="title">Mitochondrial Fusion — Joined mitochondrion</title>
+<desc id="desc">A continuous elongated mitochondrial profile with a localized joining-site cue. A membrane-joining schematic, not resolved outer- versus inner-membrane fusion or evidence of content mixing. Tether identity, mitofusin or OPA1 stoichiometry, membrane potential, rate and biological outcome are not specified. Arrows indicate approach.</desc>
+<g data-region="mitochondria" id="joined-mitochondrion-fill" fill="#8EC8FF"><path d="M28 43Q13 47 18 66Q19 84 38 86Q52 87 64 76Q81 87 99 78Q116 69 110 52Q102 35 86 41Q73 45 64 51Q50 37 28 43Z" /></g>
+<g data-region="outline" id="joined-mitochondrion-outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M28 43Q13 47 18 66Q19 84 38 86Q52 87 64 76Q81 87 99 78Q116 69 110 52Q102 35 86 41Q73 45 64 51Q50 37 28 43Z" /></g>
+<g data-region="cristae" id="cristae" fill="none" stroke="#E76F51" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M29 52l-2 18 9 4M45 53l-2 18 8 3M84 50l-3 18 9 3M100 49l-3 15" /></g>
+<g data-region="fusion_site" id="joining-site-cue" fill="none" stroke="#B8B5FF" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M59 53Q65 61 60 73M69 53Q64 61 69 73" /></g>
+</svg>

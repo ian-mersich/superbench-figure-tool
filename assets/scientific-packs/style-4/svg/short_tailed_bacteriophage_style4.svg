@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Short-Tailed Bacteriophage</title>
+  <desc id="desc">A compact phage head with a short noncontractile axial hub and illustrative capsid-associated attachment fibers.</desc>
+  <g data-region="head" fill="#B8B5FF" stroke="none">
+    <path d="M47 22H80L92 36V61L80 76H47L35 61V36Z" />
+  </g>
+  <g data-region="tail" fill="#8EC8FF" stroke="none">
+    <path d="M57 76H71V86L67 91H61L57 86Z" />
+  </g>
+  <g data-region="genome" fill="none" stroke="#E76F51" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M51 33C60 25 78 34 70 42C63 49 48 41 51 53C54 63 72 61 76 52" />
+  </g>
+  <g data-region="fibers" fill="none" stroke="#58B8AE" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M57 80Q47 78 43 66M71 80Q81 78 86 67M57 82Q46 85 35 78M71 82Q82 85 93 78" />
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M47 22H80L92 36V61L80 76H47L35 61V36Z" /><path d="M57 76H71V86L67 91H61L57 86Z" />
+  </g>
+</svg>

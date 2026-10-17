@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Viral Plasma-membrane Budding</title>
+  <desc id="desc">An enveloped viral assembly bud wrapped by the host plasma membrane and joined to the cell by a narrow open membrane neck.</desc>
+  <g data-region="hostmembrane" fill="#7DD3C7" stroke="none">
+    <path d="M18 83H43C52 83 53 77 47 70C35 60 32 42 43 31C54 20 74 22 85 34C97 47 91 62 81 71C75 77 77 83 87 83H110V89H87C66 89 65 77 76 65C82 60 88 49 80 39C70 29 56 27 48 35C39 45 43 57 52 66C61 77 61 89 43 89H18Z" />
+  </g>
+  <g data-region="hostcytoplasm" fill="#D9F4E5" stroke="none">
+    <path d="M18 89H43C61 89 61 77 52 66C43 57 39 45 48 35C56 27 70 29 80 39C88 49 82 60 76 65C65 77 66 89 87 89H110V111H18Z" />
+  </g>
+  <g data-region="viralcontents" fill="#B8B5FF" stroke="none">
+    <path d="M48 53C45 45 49 36 60 34C71 32 81 40 81 49L76 50C76 43 69 38 62 39C55 40 52 45 54 50Z" /><ellipse cx="65" cy="58" rx="5" ry="4" />
+  </g>
+  <g data-region="surfaceproteins" fill="#8EC8FF" stroke="none">
+    <rect x="60.5" y="22" width="3" height="7" /><circle cx="62" cy="20" r="3.5" /><path d="M39 40L42 43L39 46L36 43Z" /><circle cx="35" cy="41" r="3.5" /><path d="M87 40L90 37L93 40L90 44Z" /><circle cx="94" cy="36" r="3.5" />
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M18 83H43C52 83 53 77 47 70C35 60 32 42 43 31C54 20 74 22 85 34C97 47 91 62 81 71C75 77 77 83 87 83H110" /><path d="M18 89H43C61 89 61 77 52 66C43 57 39 45 48 35C56 27 70 29 80 39C88 49 82 60 76 65C65 77 66 89 87 89H110" /><path d="M48 53C45 45 49 36 60 34C71 32 81 40 81 49L76 50C76 43 69 38 62 39C55 40 52 45 54 50Z" stroke-width="1.16" /><ellipse cx="65" cy="58" rx="5" ry="4" stroke-width="0.93" />
+  </g>
+</svg>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Matrix Metalloproteinase</title>
+  <desc id="desc">Editable matrix metalloproteinase schematic with two-domain generic metalloproteinase with a catalytic cleft and metal-ion cue.</desc>
+  <g data-region="protein_domains" fill="#C7F2EC" stroke="none"><path d="M17 43c0-15 13-27 29-27s29 12 29 27-13 27-29 27-29-12-29-27z" /><path d="M70 75c0-17 11-30 25-30s25 13 25 30-11 30-25 30-25-13-25-30z" /></g>
+  <g data-region="metal_center" fill="#F4DC8A" stroke="none"><circle cx="43" cy="43" r="7" /></g>
+  <g data-region="catalytic_structure" fill="none" stroke="#E76F51" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="43" cy="43" r="7" /><path d="M35 34l16 18M51 34L35 52" /><path d="M82 68c9-8 18-8 27 0" /><path d="M61 62c8 5 14 10 19 17" /></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M17 43c0-15 13-27 29-27s29 12 29 27-13 27-29 27-29-12-29-27z" /><path d="M70 75c0-17 11-30 25-30s25 13 25 30-11 30-25 30-25-13-25-30z" /></g>
+</svg>

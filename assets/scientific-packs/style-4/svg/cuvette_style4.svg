@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Spectrophotometer Cuvette</title>
+  <desc id="desc">Editable optical spectrophotometer cuvette schematic with transparent optical cell with sample and light path.</desc>
+  <g data-region="instrument_body" fill="#DCE4EC" stroke="none"><path d="M37 14h54l-5 100H42z" /></g>
+  <g data-region="instrument_detail" fill="#8EC8FF" stroke="none"><path d="M43 58h42l-3 50H46z" /><path d="M46 25h36v25H46z" /></g>
+  <g data-region="operational_cue" fill="none" stroke="#7B78C9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M13 78h28m-9-8 10 8-10 8M87 78h28m-9-8 10 8-10 8" /></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M37 14h54l-5 100H42zM43 58h42l-3 50H46z" /></g>
+</svg>

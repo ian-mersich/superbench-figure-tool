@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">TIGIT Receptor</title>
+  <desc id="desc">Editable tigit receptor schematic with single extracellular immunoglobulin-like head and intracellular inhibitory motif marks.</desc>
+  <g data-region="membrane" fill="#DCE4EC" stroke="none"><path d="M9 88h110v14H9z" /></g>
+  <g data-region="receptor" fill="#C7F2EC" stroke="none"><path d="M54 88V67L42 52l14-18 16 18-12 15v21z" /></g>
+  <g data-region="cytoplasmic_tail" fill="none" stroke="#7B78C9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M57 102v18m0-12 9 4m-9 3-7 3" /></g>
+  <g data-region="tail_motifs" fill="#E76F51" stroke="none"><circle cx="66" cy="112" r="3" /><circle cx="50" cy="118" r="3" /></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 88h110v14H9z" /><path d="M54 88V67L42 52l14-18 16 18-12 15v21z" /></g>
+</svg>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Metastatic Seeding</title>
+  <desc id="desc">Editable metastatic seeding schematic with single disseminated cell progressing to a compact tissue colony.</desc>
+  <g data-region="disseminated_cell" fill="#E76F51" stroke="none"><circle cx="17" cy="64" r="10" /></g>
+  <g data-region="early_seed" fill="#F2B9C5" stroke="none"><circle cx="53" cy="58" r="10" /><circle cx="65" cy="66" r="10" /><circle cx="50" cy="74" r="9" /></g>
+  <g data-region="microscopic_colony" fill="#B8B5FF" stroke="none"><circle cx="93" cy="50" r="11" /><circle cx="108" cy="57" r="11" /><circle cx="91" cy="69" r="11" /><circle cx="108" cy="76" r="11" /><circle cx="99" cy="90" r="10" /></g>
+  <g data-region="seeding_progression" fill="none" stroke="#58B8AE" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 105c21-12 39-10 57 0 18-10 38-12 61 0M10 26c18 8 35 7 50-1 18-9 38-8 61 2" /><path d="M29 64L42 64M36.6 68L42 64L36.6 60" /><path d="M75 66L84 66M78.6 70L84 66L78.6 62" /></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="17" cy="64" r="10" /><circle cx="53" cy="58" r="10" /><circle cx="65" cy="66" r="10" /><circle cx="50" cy="74" r="9" /><circle cx="93" cy="50" r="11" /><circle cx="108" cy="57" r="11" /><circle cx="91" cy="69" r="11" /><circle cx="108" cy="76" r="11" /><circle cx="99" cy="90" r="10" /></g>
+</svg>

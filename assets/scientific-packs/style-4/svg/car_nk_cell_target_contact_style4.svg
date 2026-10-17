@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+<title id="title">CAR-NK Cell — Target contact</title>
+<desc id="desc">An NK-cell schematic with engineered surface-receptor cues, optionally contacting a target. CAR geometry, antigen specificity, signaling domains and receptor number are illustrative. Contact does not imply killing, response rate or a particular clinical construct.</desc>
+<g data-region="target" fill="#D895B3" stroke="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="94" cy="64" r="23" /></g>
+<g data-region="outline" fill="none" stroke="#26323D" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="94" cy="64" r="23" /></g>
+<g data-region="nucleus" fill="#B8B5FF" stroke="none" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="91" cy="65" rx="9.66" ry="8.049999999999999" /></g>
+<g data-region="outline" fill="none" stroke="#26323D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="91" cy="65" rx="9.66" ry="8.049999999999999" /></g>
+<g data-region="cell_body" fill="#C7F2EC" stroke="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="39" cy="64" r="27" /></g>
+<g data-region="outline" fill="none" stroke="#26323D" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="39" cy="64" r="27" /></g>
+<g data-region="nucleus" fill="#B8B5FF" stroke="none" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="36" cy="65" rx="11.34" ry="9.45" /></g>
+<g data-region="outline" fill="none" stroke="#26323D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="36" cy="65" rx="11.34" ry="9.45" /></g>
+<g data-region="granules" fill="#F4A261" stroke="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="48" cy="51" r="2.5" /><circle cx="55" cy="59" r="2.5" /><circle cx="53" cy="72" r="2.5" /><circle cx="45" cy="79" r="2.5" /></g>
+<g data-region="receptor" fill="none" stroke="#5EA9DD" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M64 51H73M69 45V57M64 64H73M69 58V70M64 77H73M69 71V83" /></g>
+<g data-region="receptor" fill="#5EA9DD" stroke="none" stroke-linecap="round" stroke-linejoin="round"><rect x="75" y="48" width="6" height="6" rx="1" /><rect x="75" y="61" width="6" height="6" rx="1" /><rect x="75" y="74" width="6" height="6" rx="1" /></g>
+</svg>

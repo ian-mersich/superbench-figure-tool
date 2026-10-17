@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Tumor-associated Macrophage</title>
+  <desc id="desc">Editable tumor-associated macrophage schematic with large amoeboid macrophage with a kidney-shaped nucleus, vacuoles, and tumor-context cues.</desc>
+  <g data-region="cell_body" fill="#C7F2EC" stroke="none"><path d="M17 68c2-10 8-17 16-22-2-11 8-19 19-18 7-10 21-10 29-3 12-4 24 5 23 17 12 5 15 18 8 27 6 11-2 23-13 25-5 12-20 16-30 8-10 8-25 3-28-9-13 2-25-8-24-21z" /></g>
+  <g data-region="nucleus" fill="#B8B5FF" stroke="none"><path d="M45 43c17-10 38-1 40 15 1 9-8 12-13 16-6 5-5 12-1 19-13 6-29-1-35-14-6-14-2-28 9-36z" /></g>
+  <g data-region="state_features" fill="#E76F51" stroke="none"><circle cx="92" cy="48" r="7" /><circle cx="91" cy="78" r="6" /><circle cx="43" cy="91" r="5" /><path d="M98 41l9-7 8 5-2 10-10 2z" /></g>
+  <g data-region="functional_cues" fill="none" stroke="#58B8AE" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M102 57c7 4 10 10 8 17M31 48c-7 5-10 12-9 20" /></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M17 68c2-10 8-17 16-22-2-11 8-19 19-18 7-10 21-10 29-3 12-4 24 5 23 17 12 5 15 18 8 27 6 11-2 23-13 25-5 12-20 16-30 8-10 8-25 3-28-9-13 2-25-8-24-21z" /><path d="M45 43c17-10 38-1 40 15 1 9-8 12-13 16-6 5-5 12-1 19" /><circle cx="92" cy="48" r="7" /><circle cx="91" cy="78" r="6" /></g>
+</svg>

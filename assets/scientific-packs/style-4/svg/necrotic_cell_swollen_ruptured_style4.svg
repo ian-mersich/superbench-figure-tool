@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+<title id="title">Necrotic Cell — Swollen and ruptured</title>
+<desc id="desc">A swollen cell with a breached plasma membrane, vacuolization cues and released material. A generic lytic morphology, not a diagnosis or a distinct upstream death pathway. Necrosis-like appearance alone cannot distinguish accidental injury, necroptosis, pyroptosis, ferroptosis or late apoptotic secondary necrosis.</desc>
+<g data-region="cytoplasm" id="cell-body-fill" fill="#C7F2EC"><path d="M103 76C106 90 94 103 78 107C55 114 29 100 22 80C12 57 28 28 51 23C71 17 91 23 101 42Z" /></g>
+<g opacity="1"><path d="M103 76C106 90 94 103 78 107C55 114 29 100 22 80C12 57 28 28 51 23C71 17 91 23 101 42Z" fill="#FFFFFF" opacity="0.12" /></g><g data-region="outline" id="breached-membrane" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M103 76C106 90 94 103 78 107C55 114 29 100 22 80C12 57 28 28 51 23C71 17 91 23 101 42" /></g>
+<g data-region="outline" id="rupture-edges" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M99 41l7 5-7 7M104 77l-7-4 6-8" /></g>
+<g data-region="nucleus" id="swollen-nucleus-fill" fill="#D9D7FF"><ellipse cx="54" cy="65" rx="20" ry="19" /></g>
+<g data-region="outline" id="swollen-nucleus-outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="54" cy="65" rx="20" ry="19" /></g>
+<g data-region="lumen" id="vacuolization-cue-0-fill" fill="#F7F9FC"><circle cx="33" cy="46" r="5" /></g>
+<g data-region="outline" id="vacuolization-cue-0-outline" fill="none" stroke="#26323D" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="33" cy="46" r="5" /></g>
+<g data-region="lumen" id="vacuolization-cue-1-fill" fill="#F7F9FC"><circle cx="80" cy="39" r="7" /></g>
+<g data-region="outline" id="vacuolization-cue-1-outline" fill="none" stroke="#26323D" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="80" cy="39" r="7" /></g>
+<g data-region="lumen" id="vacuolization-cue-2-fill" fill="#F7F9FC"><circle cx="85" cy="88" r="7" /></g>
+<g data-region="outline" id="vacuolization-cue-2-outline" fill="none" stroke="#26323D" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="85" cy="88" r="7" /></g>
+<g data-region="debris" id="released-content-0-fill" fill="#F4A261"><circle cx="114" cy="55" r="3.5" /></g>
+<g data-region="debris" id="released-content-1-fill" fill="#F4A261"><circle cx="112" cy="87" r="3.5" /></g>
+<g data-region="debris" id="released-content-2-fill" fill="#F4A261"><circle cx="97" cy="110" r="3.5" /></g>
+</svg>

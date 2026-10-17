@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Urine Sample</title>
+  <desc id="desc">Editable urine biospecimen schematic with lidded specimen cup with amber fluid.</desc>
+  <g data-region="sample_container" fill="#DCE4EC" stroke="none"><path d="M25 34h78l-5 79H30z" /><rect x="19" y="19" width="90" height="18" rx="5" /></g>
+  <g data-region="sample_material" fill="#F4DC8A" stroke="none"><path d="M29 72h70l-3 37H32z" /></g>
+  <g data-region="sample_label" fill="#8EC8FF" stroke="none"><rect x="43" y="44" width="42" height="21" rx="3" /><path d="M51 54h26" /></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M25 34h78l-5 79H30zM19 19h90v18H19zM29 72h70l-3 37H32z" /></g>
+</svg>

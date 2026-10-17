@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Confocal Microscope</title>
+  <desc id="desc">Editable laser-scanning confocal microscope schematic with objective and specimen stage linked to a scanning laser and detector housing.</desc>
+  <g data-region="instrument_body" fill="#DCE4EC" stroke="none"><rect x="13" y="94" width="102" height="22" rx="4" /><path d="M26 32h39l12 13-13 15H42l-8-9H26z" /><rect x="81" y="28" width="31" height="47" rx="4" /></g>
+  <g data-region="instrument_detail" fill="#8EC8FF" stroke="none"><path d="M38 82h56v11H38zM55 62h26v11H55zM51 16h22v16H51z" /><circle cx="94" cy="46" r="8" /></g>
+  <g data-region="operational_cue" fill="none" stroke="#7B78C9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M61 33v29M66 73v10M31 76h65M94 54v22M102 82l-8-6-8 6M24 106h80" /></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 94h102v22H13zM26 32h39l12 13-13 15H42l-8-9H26zM81 28h31v47H81zM38 82h56v11H38zM55 62h26v11H55z" /></g>
+</svg>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+<title id="title">Drug Penetration Gradient — Vessel-to-tissue</title>
+<desc id="desc">Qualitative drug availability decreases away from vascular supply or from an exposed spheroid rim. No dose, transport rate, penetration depth or efficacy is encoded. Actual distributions depend on compound, binding, metabolism, exposure time and tissue; limited penetration is not equivalent to cellular resistance.</desc>
+<g data-region="tissue" fill="#E8EEF7" stroke="none" stroke-linecap="round" stroke-linejoin="round"><rect x="29" y="29" width="82" height="67" rx="6" /></g>
+<g data-region="outline" fill="none" stroke="#26323D" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="29" y="29" width="82" height="67" rx="6" /></g>
+<g data-region="source" fill="#C7F2EC" stroke="none" stroke-linecap="round" stroke-linejoin="round"><rect x="13" y="24" width="13" height="77" rx="6" /></g>
+<g data-region="outline" fill="none" stroke="#26323D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="13" y="24" width="13" height="77" rx="6" /></g>
+<g data-region="outline" fill="none" stroke="#26323D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M32 104L104 104" /><path d="M99.74 106.61L104 104L99.74 101.39" /></g>
+<g data-region="outline" fill="#26323D" stroke="none" stroke-linecap="round" stroke-linejoin="round"><text x="69" y="119" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="8" font-weight="400">Drug high → low</text></g>
+<g data-region="molecule" fill="#7B78C9" stroke="none" stroke-linecap="round" stroke-linejoin="round"><path d="M36 36.8L39.2 40L36 43.2L32.8 40Z" /><path d="M37 52.8L40.2 56L37 59.2L33.8 56Z" /><path d="M36 68.8L39.2 72L36 75.2L32.8 72Z" /><path d="M37 82.8L40.2 86L37 89.2L33.8 86Z" /><path d="M48 41.8L51.2 45L48 48.2L44.8 45Z" /><path d="M50 60.8L53.2 64L50 67.2L46.8 64Z" /><path d="M49 79.8L52.2 83L49 86.2L45.8 83Z" /><path d="M65 46.8L68.2 50L65 53.2L61.8 50Z" /><path d="M64 72.8L67.2 76L64 79.2L60.8 76Z" /><path d="M82 61.8L85.2 65L82 68.2L78.8 65Z" /></g>
+</svg>

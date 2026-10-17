@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Immune-excluded Tumor</title>
+  <desc id="desc">Editable immune-excluded tumor schematic with tumor island encircled by a fibrous boundary with immune cells retained outside.</desc>
+  <g data-region="tumor_island" fill="#F2B9C5" stroke="none"><path d="M30 63c-3-16 6-31 21-37 15-6 31-1 41 10 11 12 12 29 5 44 -7 15-22 24-38 22-18-2-31-18-29-39z" /></g>
+  <g data-region="fibrous_boundary" fill="none" stroke="#F4A261" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="64" cy="64" rx="46" ry="50" /></g>
+  <g data-region="immune_cells" fill="#C7F2EC" stroke="none"><circle cx="18" cy="38" r="7" /><circle cx="18" cy="66" r="7" /><circle cx="27" cy="96" r="7" /><circle cx="105" cy="34" r="7" /><circle cx="111" cy="64" r="7" /><circle cx="101" cy="96" r="7" /></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M30 63c-3-16 6-31 21-37 15-6 31-1 41 10 11 12 12 29 5 44 -7 15-22 24-38 22-18-2-31-18-29-39z" /><ellipse cx="64" cy="64" rx="46" ry="50" /><circle cx="18" cy="38" r="7" /><circle cx="18" cy="66" r="7" /><circle cx="27" cy="96" r="7" /><circle cx="105" cy="34" r="7" /><circle cx="111" cy="64" r="7" /><circle cx="101" cy="96" r="7" /><ellipse cx="50" cy="48" rx="5" ry="7" /><ellipse cx="72" cy="43" rx="5" ry="7" /><ellipse cx="84" cy="61" rx="5" ry="7" /><ellipse cx="66" cy="76" rx="5" ry="7" /><ellipse cx="46" cy="75" rx="5" ry="7" /></g>
+</svg>

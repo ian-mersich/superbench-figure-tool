@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">cDNA Library</title>
+  <desc id="desc">Editable complementary-dna library schematic with collection of indexed double-stranded cDNA fragments.</desc>
+  <g data-region="nucleic_acid" fill="none" stroke="#5EA9DD" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 30l45 18M35 19l45 18M15 65l45 18M44 61l45 18M34 96l45 18M70 89l42 17" /></g>
+  <g data-region="regulatory_feature" fill="none" stroke="#7B78C9" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 30l4-9M63 48l4-9M35 19l4-9M80 37l4-9M15 65l4-9M60 83l4-9M44 61l4-9M89 79l4-9M34 96l4-9M79 114l4-9M70 89l4-9M112 106l4-9" /></g>
+  <g data-region="process_feature" fill="none" stroke="#F4A261" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="17" width="12" height="12" rx="2" /><rect x="76" y="24" width="12" height="12" rx="2" /><rect x="11" y="52" width="12" height="12" rx="2" /><rect x="85" y="66" width="12" height="12" rx="2" /></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 30l45 18M35 19l45 18M15 65l45 18M44 61l45 18M34 96l45 18M70 89l42 17" /></g>
+</svg>

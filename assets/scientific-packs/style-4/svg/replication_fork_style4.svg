@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">DNA Replication Fork</title>
+  <desc id="desc">Editable dna replication fork schematic with unwound DNA fork with nascent leading and lagging strands.</desc>
+  <g data-region="nucleic_acid" fill="none" stroke="#5EA9DD" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 64h36c16 0 28-14 40-35M48 64c16 0 28 14 40 35M15 54h32M15 74h32M59 47l27-27M59 81l27 27" /></g>
+  <g data-region="regulatory_feature" fill="none" stroke="#7B78C9" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M28 54v20M41 54v20M68 39l9 7M79 26l9 7M68 89l9-7M79 102l9-7" /></g>
+  <g data-region="process_feature" fill="none" stroke="#F4A261" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M93 22h19M107 18l5 4-5 4M93 106h19M107 102l5 4-5 4" /></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 64h36c16 0 28-14 40-35M48 64c16 0 28 14 40 35M15 54h32M15 74h32" /></g>
+</svg>

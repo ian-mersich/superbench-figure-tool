@@ -115,7 +115,7 @@
   function transformAsset(svgText, sourceRegions, options = {}) {
     const artStyles = options.artStyles || defaultArtStyles;
     const styleId = artStyles?.normalizeStyle ? artStyles.normalizeStyle(options.styleId)
-      : options.styleId === "cut-paper" || options.styleId === "technical-ink" ? options.styleId : "soft-color";
+      : options.styleId === "cut-paper" || options.styleId === "technical-ink" || options.styleId === "style-4" ? options.styleId : "soft-color";
     if (styleId !== "soft-color" && (!artStyles?.transformSvg || !artStyles?.transformRegions)) {
       throw new Error("Alternate scientific styles require the existing art-style transformer");
     }
@@ -123,7 +123,7 @@
     const originalRegions = Array.isArray(sourceRegions) ? sourceRegions : [];
     const regions = artStyles?.transformRegions ? artStyles.transformRegions(originalRegions, styleId)
       : originalRegions.map((region) => ({ ...region }));
-    const colorOverrides = paletteRegionOverrides(paletteId, originalRegions);
+    const colorOverrides = paletteRegionOverrides(paletteId, options.paletteRegions || originalRegions);
     let result = artStyles?.transformSvg ? artStyles.transformSvg(String(svgText || ""), styleId) : String(svgText || "");
     if (Object.keys(colorOverrides).length) {
       if (typeof options.recolorSvg !== "function") {

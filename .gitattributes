@@ -1,3 +1,6 @@
 * text=auto eol=lf
 assets/scientific-scenes/scenes/single-cell-rna-workflow.scene.json text eol=lf
 assets/scientific-scenes/scenes/spatial-rna-methods.scene.json text eol=lf
+
+# Style 4 source data and recovery records carry raw byte identities.
+assets/scientific-packs/style-4/** -text

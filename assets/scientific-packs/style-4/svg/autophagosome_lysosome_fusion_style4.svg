@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Autophagosome–Lysosome Fusion</title>
+  <desc id="desc">An early autolysosome after outer-membrane fusion, retaining the inner autophagic membrane and its enclosed cargo beside illustrative lysosomal contents.</desc>
+  <g data-region="fused_membrane" fill="#8EC8FF" stroke="none">
+    <path d="M18 62C18 35 39 18 60 28Q72 35 78 40Q82 42 88 37C105 27 116 46 112 69C111 92 96 103 83 91Q77 88 70 97C49 114 21 95 18 62ZM26 62C26 42 40 28 56 35Q68 40 73 48Q81 56 92 45C101 39 107 52 104 68Q102 90 88 82Q76 73 64 89C47 103 28 85 26 62Z" fill-rule="evenodd" />
+  </g>
+  <g data-region="inner_autophagic_membrane" fill="#B8B5FF" stroke="none">
+    <path d="M31 64a18 18 0 1 0 36 0a18 18 0 1 0 -36 0ZM37 64a12 12 0 1 0 24 0a12 12 0 1 0 -24 0Z" fill-rule="evenodd" />
+  </g>
+  <g data-region="cargo" fill="#E76F51" stroke="none">
+    <path d="M42 61Q44 54 49 58Q56 54 57 62Q59 71 51 71Q42 76 42 67Z" />
+  </g>
+  <g data-region="lysosomal_contents" fill="#7DD3C7" stroke="none">
+    <ellipse cx="89" cy="60" rx="6" ry="6" /><ellipse cx="86" cy="75" rx="5" ry="5" />
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M18 62C18 35 39 18 60 28Q72 35 78 40Q82 42 88 37C105 27 116 46 112 69C111 92 96 103 83 91Q77 88 70 97C49 114 21 95 18 62Z" /><path d="M26 62C26 42 40 28 56 35Q68 40 73 48Q81 56 92 45C101 39 107 52 104 68Q102 90 88 82Q76 73 64 89C47 103 28 85 26 62Z" /><ellipse cx="49" cy="64" rx="18" ry="18" /><ellipse cx="49" cy="64" rx="12" ry="12" /><path d="M42 61Q44 54 49 58Q56 54 57 62Q59 71 51 71Q42 76 42 67Z" /><ellipse cx="89" cy="60" rx="6" ry="6" /><ellipse cx="86" cy="75" rx="5" ry="5" />
+  </g>
+</svg>

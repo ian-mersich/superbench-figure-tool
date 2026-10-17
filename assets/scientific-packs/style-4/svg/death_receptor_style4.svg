@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Death Receptor</title>
+  <desc id="desc">Editable death-domain receptor schematic with trimeric membrane receptor with intracellular death domains.</desc>
+  <g data-region="biological_context" fill="#C7F2EC" stroke="none"><path d="M8 77h112v14H8z" /></g>
+  <g data-region="receptor_or_vesicle" fill="none" stroke="#5EA9DD" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M43 79V49M64 79V49M85 79V49M36 49c0-7 5-12 12-12v-9c0-6 5-11 11-11M57 49c0-7 5-12 12-12v-9c0-6 5-11 11-11M78 49c0-7 5-12 12-12v-9c0-6 5-11 11-11M43 91v14M64 91v14M85 91v14" /></g>
+  <g data-region="cargo_or_signal" fill="none" stroke="#F4A261" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M47 18l17-9 17 9" /><circle cx="43" cy="111" r="8" /><circle cx="64" cy="111" r="8" /><circle cx="85" cy="111" r="8" /><path d="M39 111h8M60 111h8M81 111h8" /></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M8 77h112M8 91h112M43 79V49M64 79V49M85 79V49M36 49c0-7 5-12 12-12v-9c0-6 5-11 11-11M57 49c0-7 5-12 12-12v-9c0-6 5-11 11-11M78 49c0-7 5-12 12-12v-9c0-6 5-11 11-11M43 91v14M64 91v14M85 91v14" /></g>
+</svg>

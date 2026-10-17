@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Epithelial Scratch Assay — Irregular scratch lane</title>
+  <desc id="desc">A cell-free scratch gap between epithelial sheets for illustrating a wound-closure experiment.</desc>
+<g data-region="substrate" fill="#C7F2EC" stroke="none">
+<rect x="17" y="17" width="94" height="94" rx="8" />
+</g>
+<g data-region="epithelialcells" fill="#7DD3C7" stroke="none">
+<path d="M25 25H44C50 30 45 37 48 44C51 50 44 57 47 64C52 70 46 78 47 84C45 91 51 98 45 103H25Z" /><path d="M83 25H103V103H81C77 97 83 90 79 83C77 76 83 71 80 64C77 58 83 51 79 45C77 38 83 32 83 25Z" />
+</g>
+<g data-region="nuclei" fill="#7B78C9" stroke="none">
+<ellipse cx="41" cy="34" rx="3.1" ry="4.2" /><ellipse cx="32" cy="55" rx="3.1" ry="4.2" /><ellipse cx="39" cy="70" rx="3.1" ry="4.2" /><ellipse cx="31" cy="94" rx="3.1" ry="4.2" /><ellipse cx="94" cy="34" rx="3.1" ry="4.2" /><ellipse cx="98" cy="54" rx="3.1" ry="4.2" /><ellipse cx="88" cy="70" rx="3.1" ry="4.2" /><ellipse cx="98" cy="94" rx="3.1" ry="4.2" />
+</g>
+<g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+<rect x="17" y="17" width="94" height="94" rx="8" /><path d="M25 25H44C50 30 45 37 48 44C51 50 44 57 47 64C52 70 46 78 47 84C45 91 51 98 45 103H25Z" /><path d="M83 25H103V103H81C77 97 83 90 79 83C77 76 83 71 80 64C77 58 83 51 79 45C77 38 83 32 83 25Z" /><path d="M25 45C35 48 40 45 48 44M35 47L39 61L25 65M39 61L47 64M25 82L35 78L47 76M35 78L38 92L47 94M35 47L32 25M38 92L34 103M81 44L94 45L103 41M94 45L91 60L80 56M91 60L103 64M80 83L94 81L103 85M94 81L96 67M94 81L90 103" stroke-width="0.8" /><g stroke-width="1.1"><ellipse cx="41" cy="34" rx="3.1" ry="4.2" /><ellipse cx="32" cy="55" rx="3.1" ry="4.2" /><ellipse cx="39" cy="70" rx="3.1" ry="4.2" /><ellipse cx="31" cy="94" rx="3.1" ry="4.2" /><ellipse cx="94" cy="34" rx="3.1" ry="4.2" /><ellipse cx="98" cy="54" rx="3.1" ry="4.2" /><ellipse cx="88" cy="70" rx="3.1" ry="4.2" /><ellipse cx="98" cy="94" rx="3.1" ry="4.2" /></g>
+</g>
+</svg>

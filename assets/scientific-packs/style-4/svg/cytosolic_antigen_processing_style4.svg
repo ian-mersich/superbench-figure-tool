@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Cytosolic Antigen Processing and MHC-I Loading</title>
+  <desc id="desc">Editable cytosolic antigen processing and mhc class i loading schematic with protein entry into a proteolytic barrel followed by peptide loading.</desc>
+  <g data-region="cytosolic_substrate" fill="#B8B5FF" stroke="none"><path d="M9 43c7-13 23-13 30-1 10 4 11 18 2 24-8 10-25 7-28-5-8-4-10-12-4-18z" /></g>
+  <g data-region="proteolytic_barrel" fill="#C7F2EC" stroke="none"><rect x="50" y="37" width="29" height="50" rx="9" /><path d="M50 50h29M50 74h29" /></g>
+  <g data-region="peptide_and_mhc_i" fill="#F4A261" stroke="none"><circle cx="58" cy="61" r="3" /><circle cx="68" cy="63" r="3" /><path d="M87 57c8-5 14-5 21 0" /><path d="M94 91V53c0-9 7-15 15-15v53z" /><path d="M84 63c7-6 15-8 25-5" /></g>
+  <g data-region="processing_flow" fill="none" stroke="#7B78C9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M37 57L51 60M44.8818 62.7798L51 60L46.558 54.9573" /><path d="M78 62L91 58M87.0151 63.4112L91 58L84.6624 55.7649" /></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 43c7-13 23-13 30-1 10 4 11 18 2 24-8 10-25 7-28-5-8-4-10-12-4-18z" /><rect x="50" y="37" width="29" height="50" rx="9" /><path d="M50 50h29M50 74h29M94 91V53c0-9 7-15 15-15v53M82 91h34" /></g>
+</svg>

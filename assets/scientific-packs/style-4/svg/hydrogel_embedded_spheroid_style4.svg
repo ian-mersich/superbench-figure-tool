@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Hydrogel-embedded Spheroid — Solid aggregate in gel</title>
+  <desc id="desc">Solid multicellular spheroid fully surrounded by hydrogel, with no invented epithelial lumen.</desc>
+  <g data-region="externalmatrix" fill="#D9F4E5" stroke="none">
+    <path d="M17 108C17 59 30 28 61 26C96 23 111 57 111 108Z" />
+  </g>
+  <g data-region="aggregatecells" fill="#7DD3C7" stroke="none">
+    <path d="M-18 -3C-19 -11 -11 -16 -5 -13C1 -19 11 -15 13 -9C21 -8 23 1 17 6C18 14 9 18 2 14C-5 20 -15 14 -15 9C-22 7 -25 0 -18 -3Z" transform="translate(65 75) scale(1.45)" />
+  </g>
+  <g data-region="nuclei" fill="#B8B5FF" stroke="none">
+    <ellipse cx="50.5" cy="60.5" rx="3.1" ry="3.5" /><ellipse cx="75" cy="73" rx="3.2" ry="3.1" /><ellipse cx="64" cy="91" rx="3.1" ry="2.9" />
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M17 108C17 59 30 28 61 26C96 23 111 57 111 108Z" /><path d="M-18 -3C-19 -11 -11 -16 -5 -13C1 -19 11 -15 13 -9C21 -8 23 1 17 6C18 14 9 18 2 14C-5 20 -15 14 -15 9C-22 7 -25 0 -18 -3Z" transform="translate(65 75) scale(1.45)" /><path d="M-16 -4C-9 -7 -5 -4 -4 3M-4 3C1 0 5 3 6 11M-4 3C-8 7 -6 10 -8 13M1 -13C2 -6 8 -6 13 -8M13 -8C9 -1 12 4 17 5" transform="translate(65 75) scale(1.45)" stroke-width="0.93" />
+  </g>
+</svg>

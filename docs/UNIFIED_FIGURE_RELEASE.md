@@ -2,15 +2,15 @@
 
 The canonical Figure repository is `C:\Users\ianme\Desktop\Projects\superbench_figure_tool`.
 The browser site and Superbench consume one committed editor and asset collection:
-406 Library drawings representing 346 concepts in eight packs, and 12 editable
+486 Library drawings representing 386 concepts in 11 packs, and 12 editable
 scientific scenes. Fixes belong here. Do not maintain a second editor in the
 public source checkout or backport individual fixes into the old beta.6 site.
 
-The beta.10 release was published on 15 October 2026. Its immutable runtime source
-is `3f5e4c8570e8fcd0e11fbdc25517fdd383491997`, and its selected Superbench package
-is `4801a585f885d44bc00e9e8fbf5d4815de93faae3ffaff614959893ca7d3ce0d`.
+The beta.11 release was published on 15 October 2026. Its immutable runtime source
+is `8c755c0ce0b591f178c402dc261e1f64a635b9a0`, and its selected Superbench package
+is `7291043aa2f526aafde5d38c320df41e597d39097b8b2038832bcf2ef55c04d7`.
 The deployed HTTPS editor and the actual installed selection passed the same
-710-file payload comparison. The public source/tag, archive identities, CI and
+800-file payload comparison. The public source/tag, archive identities, CI and
 deployment evidence are recorded in [PUBLIC_PUBLICATION.md](PUBLIC_PUBLICATION.md).
 
 Host-owned appearance and file controls can differ without forking the editor.
@@ -29,6 +29,14 @@ The original 10 October CC0 grants and all predecessor/revision records remain
 unchanged. The strict validator checks those records first, then accepts only the
 finite reviewed product decision. See
 `docs/scientific-assets/REVIEWED_LIBRARY_PRODUCT_RELEASE_2026_10_15.md`.
+
+The finite successor decision in
+`config/scientific-product-release-2026-10-15-expansion.json` adds the reviewed 80
+drawings for 40 concepts. It binds the three new collections, scientific and native
+editing reviews, and the prospective 15 October repository CC0 contribution
+policy. The original grants, predecessor records and source-time acceptance
+document remain unchanged. Current deployment and installed-selection outcomes
+are recorded in `PUBLIC_PUBLICATION.md`; the finite acceptance inputs are preserved.
 
 ## Prepare the matched artifacts
 
@@ -108,7 +116,7 @@ headless native checks; a package update does not establish a new MSI qualificat
 For future releases, publishing the public repository/release, updating the
 website, and changing the actual local selected package remain explicit promotion
 steps after the matched candidate is reviewed. Those steps are complete for
-beta.10. All beta.6 repaint/backport candidates remain unpublished historical
+beta.11. All beta.6 repaint/backport candidates remain unpublished historical
 diagnostics. The shared Figure release milestone is complete; the separate
 Windows installer qualification remains on the same roadmap.
 
@@ -125,7 +133,9 @@ public-release build path already emitted the correct manifest.
 Do not point either consumer at a newer development commit merely because its
 release tooling changed. A runtime update requires a new intentional shared
 candidate, paired artifacts, qualification and promotion. Keep immutable receipts
-for every release; beta.10's appearance-host and u10g records are the evidence for
-the current selection. Its later browser-preview readiness regression fix and
-publication documentation do not change any of its 710 payload files or require
-repinning either consumer to a tooling-only commit.
+for every release; beta.11's `u11r`, `l11s` and Core `g11` records are the evidence
+for the current selection. The first failed live-network and fully rolled-back
+activation attempts remain separate from the accepted fresh workflow and R2
+activation. Later activation-helper and documentation changes do not change any
+of the 800 payload files or require repinning either consumer to a tooling-only
+commit.

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Basement Membrane Segment</title>
+  <desc id="desc">Editable basement membrane segment schematic with double wavy basal sheet with attachment arms and a sparse submembrane mesh.</desc>
+  <g data-region="basement_sheets" fill="none" stroke="#8EC8FF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 48c18-12 36 12 55 0s38 12 57 0M8 62c18-12 36 12 55 0s38 12 57 0" /></g>
+  <g data-region="attachment_arms" fill="none" stroke="#F4A261" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 43V27m0 0-7 7m7-7 7 7M59 45V25m0 0-7 7m7-7 7 7M99 44V27m0 0-7 7m7-7 7 7" /></g>
+  <g data-region="submembrane_mesh" fill="none" stroke="#58B8AE" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 78l17-8 16 12 17-9 17 10 16-11 19 8M22 91l16-10 16 12 18-10 16 10 18-10" /></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 48c18-12 36 12 55 0s38 12 57 0M8 62c18-12 36 12 55 0s38 12 57 0" /><path d="M22 43V27m0 0-7 7m7-7 7 7M59 45V25m0 0-7 7m7-7 7 7M99 44V27m0 0-7 7m7-7 7 7" /><path d="M12 78l17-8 16 12 17-9 17 10 16-11 19 8M22 91l16-10 16 12 18-10 16 10 18-10" /></g>
+</svg>

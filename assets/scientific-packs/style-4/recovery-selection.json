@@ -1,0 +1,216 @@
+{
+  "schema_version": "1.0.0",
+  "id": "style-4-recovery-selection",
+  "source_archive": {
+    "filename": "style4_completed_16.zip",
+    "sha256": "50ef7848520126461ac82f7df0c9fd4682c5211b3d2c98d286067573aa00717f"
+  },
+  "asset_count": 16,
+  "reason": "Recover independently reviewed earlier Style 4 drawings that were replaced by unchanged or only subtly restyled artwork in the final aggregate archive. Runtime filenames and asset IDs stay stable.",
+  "assets": [
+    {
+      "asset_id": "analysis.heatmap.clustered",
+      "member": "svg/style4_heatmap_clustered.svg",
+      "source_sha256": "d95756e4cf0b42fd571767b8bc29eb66dd3d431439b8852d68dab0d30065e8d4",
+      "final_archive_member": "svg/heatmap_clustered_style4.svg",
+      "final_replaced_sha256": "ea8d687abce763ebeeff4b92d8de174581e13a05433996d366bfa2645f499ed5",
+      "reason": "Earlier supplied Style 4 redraw recovered after full-resolution comparison; final aggregate was only subtly restyled.",
+      "corrections": []
+    },
+    {
+      "asset_id": "analysis.heatmap.matrix",
+      "member": "svg/style4_heatmap_matrix.svg",
+      "source_sha256": "138c0df430128038e742c73496fe5e39cd0cbf088f8c8bb9c640479523152f09",
+      "final_archive_member": "svg/heatmap_matrix_style4.svg",
+      "final_replaced_sha256": "abd56cbf85a271da923880cdd5f47ceb6f34d08e5c39983bff4abd98603321ee",
+      "reason": "Earlier supplied Style 4 redraw recovered after full-resolution comparison; final aggregate was only subtly restyled.",
+      "corrections": []
+    },
+    {
+      "asset_id": "analysis.volcano_plot.feature_labels",
+      "member": "svg/style4_volcano_plot_feature_labels.svg",
+      "source_sha256": "999e3c2ff8695f5a6b1cbadc0afbe8f14ab8d97b1a45f2cdab868b43fefcc582",
+      "final_archive_member": "svg/volcano_plot_feature_labels_style4.svg",
+      "final_replaced_sha256": "00682a25ab9d2224d595675fd14c4299e515208b5993b6d180061d2051801ffe",
+      "reason": "Earlier supplied Style 4 redraw recovered after full-resolution comparison; final aggregate was pixel-identical to existing Style 1.",
+      "corrections": []
+    },
+    {
+      "asset_id": "analysis.volcano_plot.overview",
+      "member": "svg/style4_volcano_plot_overview.svg",
+      "source_sha256": "2f8192a49c3094ba6d3628bef4bb2a6b54db3098482675fcf70bd73e38219976",
+      "final_archive_member": "svg/volcano_plot_overview_style4.svg",
+      "final_replaced_sha256": "1805085a89672c70bce1bf6097bbc8fa521c24416969cb6a25ac184fbeaefd07",
+      "reason": "Earlier supplied Style 4 redraw recovered after full-resolution comparison; final aggregate was pixel-identical to existing Style 1.",
+      "corrections": []
+    },
+    {
+      "asset_id": "cellstress.cell.pyroptotic_cell.lytic",
+      "member": "svg/style4_pyroptotic_cell_lytic.svg",
+      "source_sha256": "fa60de0a436da42dfd95f8ff324e4b278ea6fefc6e95a1fe2acaa9d8ed7b6d02",
+      "final_archive_member": "svg/pyroptotic_cell_lytic_style4.svg",
+      "final_replaced_sha256": "76cf94edc1b143da6c18e328170b8f7f999fbaae35cced6b010f904fe463eb66",
+      "reason": "Earlier supplied Style 4 redraw recovered after full-resolution comparison; final aggregate was only subtly restyled.",
+      "corrections": [
+        {
+          "id": "contain-cell-depth-0",
+          "kind": "contain-decorative-path",
+          "body_element_id": "cell-body-fill",
+          "decoration_element_id": "cell-depth",
+          "child_index": 0,
+          "reason": "Keep the nonbiological shading/highlight or internal filament within its unchanged cell/nuclear body contour. No biological outline or live label is changed.",
+          "patches": [
+            {
+              "before": "d=\"M29 92C44 101 64 104 80 101C65 110 45 111 30 102C22 97 17 89 16 80C19 85 23 89 29 92Z\"",
+              "after": "d=\"M33 88C46 98 65 102 82 97C69 104 53 104 40 97C36 94 34 91 33 88Z\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "asset_id": "cellstress.cell.pyroptotic_cell.pore_bearing",
+      "member": "svg/style4_pyroptotic_cell_pore_bearing.svg",
+      "source_sha256": "5da0aebae364167aa639bc6c64dd21bcc09632ec7b2e100e628a5e4e4a038b37",
+      "final_archive_member": "svg/pyroptotic_cell_pore_bearing_style4.svg",
+      "final_replaced_sha256": "3274cf50320a67229bc899948568a294152e2b42925f4709ef7d72a17c5debf2",
+      "reason": "Earlier supplied Style 4 redraw recovered after full-resolution comparison; final aggregate was only subtly restyled.",
+      "corrections": [
+        {
+          "id": "contain-cell-body-depth-0",
+          "kind": "contain-decorative-path",
+          "body_element_id": "cell-body-fill",
+          "decoration_element_id": "cell-body-depth",
+          "child_index": 0,
+          "reason": "Keep the nonbiological shading/highlight or internal filament within its unchanged cell/nuclear body contour. No biological outline or live label is changed.",
+          "patches": [
+            {
+              "before": "d=\"M33 89C52 104 79 103 95 86C87 101 68 111 47 110C33 109 20 101 16 88C22 89 27 90 33 89Z\"",
+              "after": "d=\"M29 88C47 101 72 104 92 89C82 101 63 107 46 104C37 102 31 96 29 88Z\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "asset_id": "cellstress.membrane_signaling.clathrin_coated_vesicle.cage_view",
+      "member": "svg/style4_clathrin_coated_vesicle_cage_view.svg",
+      "source_sha256": "2854e88c4362f9df496d7211367d876fba93d0b1b77a06c564cc40fa30ae38ba",
+      "final_archive_member": "svg/clathrin_coated_vesicle_cage_view_style4.svg",
+      "final_replaced_sha256": "7b40e9e915b06537e118eb222c3445f2461bea2b41343d1be1c581404f7b4780",
+      "reason": "Earlier supplied Style 4 redraw recovered after full-resolution comparison; final aggregate was only subtly restyled.",
+      "corrections": []
+    },
+    {
+      "asset_id": "cellstress.membrane_signaling.clathrin_coated_vesicle.section",
+      "member": "svg/style4_clathrin_coated_vesicle_section.svg",
+      "source_sha256": "093096f5cd0450127fa55e1d3ceb3e8c5159483ab0a6eb143976276e011a092a",
+      "final_archive_member": "svg/clathrin_coated_vesicle_section_style4.svg",
+      "final_replaced_sha256": "3134b47576d67ad6f7ae1a372fbe7fd7950630f8f1e44d163474918fb15db126",
+      "reason": "Earlier supplied Style 4 redraw recovered after full-resolution comparison; final aggregate was only subtly restyled.",
+      "corrections": []
+    },
+    {
+      "asset_id": "cellstress.organelle.nucleolus.nuclear_context",
+      "member": "svg/style4_nucleolus_nuclear_context.svg",
+      "source_sha256": "d2451f0200669c56a8059fcff5e720fff372aba76930571268d8d54db3f84d2c",
+      "final_archive_member": "svg/nucleolus_nuclear_context_style4.svg",
+      "final_replaced_sha256": "0ec0b5e8491b42fe0a9eeb51a9b905e60faa3a4c78c0b67c43005afc6e36c36a",
+      "reason": "Earlier supplied Style 4 redraw recovered after full-resolution comparison; final aggregate was pixel-identical to existing Style 1.",
+      "corrections": [
+        {
+          "id": "contain-nucleus-depth-0",
+          "kind": "contain-decorative-path",
+          "body_element_id": "nucleus-fill",
+          "decoration_element_id": "nucleus-depth",
+          "child_index": 0,
+          "reason": "Keep the nonbiological shading/highlight or internal filament within its unchanged cell/nuclear body contour. No biological outline or live label is changed.",
+          "patches": [
+            {
+              "before": "d=\"M28 60c4-24 24-36 46-37c15 0 29 5 35 14c-6-7-19-12-33-12c-24 1-44 14-48 35z\"",
+              "after": "d=\"M29 60C33 37 51 28 72 27C86 31 97 40 103 49C94 38 83 33 71 32C51 32 35 43 29 60Z\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "asset_id": "cellstress.organelle.nucleolus.subcompartments",
+      "member": "svg/style4_nucleolus_subcompartments.svg",
+      "source_sha256": "6060287690219d11e62db4085d13d2bcff2efe677adbf7220fd4ecddf1614ba7",
+      "final_archive_member": "svg/nucleolus_subcompartments_style4.svg",
+      "final_replaced_sha256": "7f9aca7583448cfd7c56833ad5faed81f17c7cc3b4b46a455b2b7d8ca619afa5",
+      "reason": "Earlier supplied Style 4 redraw recovered after full-resolution comparison; final aggregate was pixel-identical to existing Style 1.",
+      "corrections": []
+    },
+    {
+      "asset_id": "cellstress.organelle.primary_cilium.bent",
+      "member": "svg/style4_primary_cilium_bent.svg",
+      "source_sha256": "2d2c711cc10d599bc9e6ebae0a81e82e5b6cafd4d5070dd517abe93528c01470",
+      "final_archive_member": "svg/primary_cilium_bent_style4.svg",
+      "final_replaced_sha256": "6a43a9b0b03a92ee7ce07407aec727b4147b5ae47d7791063d3d3842a7e48afe",
+      "reason": "Earlier supplied Style 4 redraw recovered after full-resolution comparison; final aggregate was only subtly restyled.",
+      "corrections": []
+    },
+    {
+      "asset_id": "cellstress.organelle.primary_cilium.straight",
+      "member": "svg/style4_primary_cilium_straight.svg",
+      "source_sha256": "479224bb5765a3d316be7319c95b18e2b19607a68e48c8c5790c6050c31b9857",
+      "final_archive_member": "svg/primary_cilium_straight_style4.svg",
+      "final_replaced_sha256": "b4eeb777e838821b422128279728fd8a2018fe459d8d19cc072411a0497cc47f",
+      "reason": "Earlier supplied Style 4 redraw recovered after full-resolution comparison; final aggregate was only subtly restyled.",
+      "corrections": []
+    },
+    {
+      "asset_id": "tme.cancer_associated_fibroblast.matrix",
+      "member": "svg/style4_cancer_associated_fibroblast_matrix.svg",
+      "source_sha256": "17bb2f927fb2c18c9b7f135628bfe28ac358306e857e5474aad393a51172ca5b",
+      "final_archive_member": "svg/cancer_associated_fibroblast_matrix_style4.svg",
+      "final_replaced_sha256": "b8d101b8e3bc2d6f35cc81ec19fea4788ce83bf48570dc55dcff8a5f1ec80ed9",
+      "reason": "Earlier supplied Style 4 redraw recovered after full-resolution comparison; final aggregate was pixel-identical to existing Style 1.",
+      "corrections": []
+    },
+    {
+      "asset_id": "tme.cancer_associated_fibroblast.spindle",
+      "member": "svg/style4_cancer_associated_fibroblast_spindle.svg",
+      "source_sha256": "1aa625dc28b7d53cbc2cd9acea1a8b16065fa12c980d25901020fffb6226e8fc",
+      "final_archive_member": "svg/cancer_associated_fibroblast_spindle_style4.svg",
+      "final_replaced_sha256": "e38b2e9240a7b1c121d3c730fae771d2bdca366cc9693ad4521e93b9684b3082",
+      "reason": "Earlier supplied Style 4 redraw recovered after full-resolution comparison; final aggregate was pixel-identical to existing Style 1.",
+      "corrections": [
+        {
+          "id": "contain-cytoplasmic-fibers-1",
+          "kind": "contain-decorative-path",
+          "body_element_id": "fibroblast-body-fill",
+          "decoration_element_id": "cytoplasmic-fibers",
+          "child_index": 1,
+          "reason": "Keep the nonbiological shading/highlight or internal filament within its unchanged cell/nuclear body contour. No biological outline or live label is changed.",
+          "patches": [
+            {
+              "before": "d=\"M36 84C53 79 72 71 93 59\"",
+              "after": "d=\"M36 84C53 79 70 71 86 62\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "asset_id": "tme.hypoxia_gradient.perivascular",
+      "member": "svg/style4_hypoxia_gradient_perivascular.svg",
+      "source_sha256": "32335e5cac0552b333c287d7c5d70c52b3c9e8737707bc4993b1b332a6ec61bd",
+      "final_archive_member": "svg/hypoxia_gradient_perivascular_style4.svg",
+      "final_replaced_sha256": "8b0a1d94e30ad6e40fd68262ef2d95f3a37475dc39eb1673a2159ef02b87fb9b",
+      "reason": "Earlier supplied Style 4 redraw recovered after full-resolution comparison; final aggregate was pixel-identical to existing Style 1.",
+      "corrections": []
+    },
+    {
+      "asset_id": "tme.hypoxia_gradient.spheroid",
+      "member": "svg/style4_hypoxia_gradient_spheroid.svg",
+      "source_sha256": "5c3e9b7de7cbc1553633aa27035d2b17f4d143e8044f77b08c7941b73678df5d",
+      "final_archive_member": "svg/hypoxia_gradient_spheroid_style4.svg",
+      "final_replaced_sha256": "ad97cb6c768cd966abac931ad93bd30057e3bf5cafa89820a71eb0a8bb8d25b0",
+      "reason": "Earlier supplied Style 4 redraw recovered after full-resolution comparison; final aggregate was pixel-identical to existing Style 1.",
+      "corrections": []
+    }
+  ]
+}

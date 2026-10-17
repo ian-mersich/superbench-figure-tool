@@ -236,6 +236,8 @@ def build_tool_package(
                  "assets/LICENSE-ORIGINAL-ASSETS-CC0-1.0.md", "assets/CC0-1.0.txt"]
         if any((source_root / PACK_ROOT / pack_id).is_dir() for pack_id in scientific_product_release.EXPANSION_PACK_COUNTS):
             terms.append("assets/LICENSE-CELL-STRESS-TME-ANALYSIS-CC0-1.0.md")
+        if (source_root / PACK_ROOT / "style-4").is_dir():
+            terms.append("assets/LICENSE-STYLE-4-CC0-1.0.md")
         for relative in terms:
             canonical = source_root / relative
             bundled = source_root / "app/legal" / relative

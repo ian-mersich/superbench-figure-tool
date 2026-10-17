@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Microcarrier Cell Culture — Cells on carriers</title>
+  <desc id="desc">Distinct carrier particles in culture medium bear adherent cells on their outer surfaces; carriers are not cell aggregates.</desc>
+  <g data-region="vessel" fill="#E8EEF7" stroke="none">
+    <path d="M18 24H24V99C24 104 27 107 32 107H96C101 107 104 104 104 99V24H110V101C110 109 106 113 97 113H31C22 113 18 109 18 101Z" />
+  </g>
+  <g data-region="medium" fill="#8EC8FF" stroke="none">
+    <path d="M24 43H104V99C104 104 101 107 96 107H32C27 107 24 104 24 99Z" />
+  </g>
+  <g data-region="carriers" fill="#C7F2EC" stroke="none">
+    <circle cx="43" cy="72" r="13" /><circle cx="75" cy="84" r="12" />
+  </g>
+  <g data-region="attachedcells" fill="#7DD3C7" stroke="none">
+    <path d="M29 64C29 51 37 49 43 49C52 49 58 54 59 63L53 68C49 58 37 57 33 69Z" /><path d="M72 70C85 65 97 72 97 84L89 89C89 79 80 76 72 79Z" />
+  </g>
+  <g data-region="nuclei" fill="#B8B5FF" stroke="none">
+    <ellipse cx="43" cy="54" rx="3.3" ry="2.5" /><ellipse cx="89" cy="75" rx="2.5" ry="3" transform="rotate(-30 89 75)" />
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M18 24H24V99C24 104 27 107 32 107H96C101 107 104 104 104 99V24H110V101C110 109 106 113 97 113H31C22 113 18 109 18 101Z" /><circle cx="43" cy="72" r="13" /><circle cx="75" cy="84" r="12" /><path d="M29 64C29 51 37 49 43 49C52 49 58 54 59 63L53 68C49 58 37 57 33 69Z" stroke-width="0.8" /><path d="M72 70C85 65 97 72 97 84L89 89C89 79 80 76 72 79Z" stroke-width="0.8" /><path d="M24 43H104" stroke-width="0.93" />
+  </g>
+</svg>

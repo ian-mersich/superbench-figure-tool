@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">qPCR Amplification Curve</title>
+  <desc id="desc">Editable quantitative-pcr amplification curve schematic with sigmoidal amplification traces and threshold.</desc>
+  <g data-region="assay_surface" fill="#F7F9FC" stroke="none"><rect x="10" y="13" width="108" height="102" rx="7" /></g>
+  <g data-region="measured_signal" fill="#B8B5FF" stroke="none"><circle cx="67" cy="68" r="4" /><circle cx="79" cy="68" r="4" /><circle cx="92" cy="68" r="4" /></g>
+  <g data-region="signal_trace" fill="none" stroke="#E76F51" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round"><path d="M22 101c20 0 31-1 38-10 8-10 9-43 25-55 7-5 15-7 24-7M22 105c25 0 38-2 45-12 8-11 10-38 23-47 6-4 12-6 19-6M22 109c29 0 43-2 51-12 8-10 11-29 23-37 4-3 8-4 13-5" /></g>
+  <g data-region="axes_or_structure" fill="none" stroke="#5EA9DD" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 109h91M21 109V24M21 68h91M67 68v41M79 68v41M92 68v41" stroke-dasharray="5 5" /></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="13" width="108" height="102" rx="7" /></g>
+</svg>

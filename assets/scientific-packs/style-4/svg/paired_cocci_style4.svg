@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Coccoid Bacterial Arrangement</title>
+  <desc id="desc">Two separately bounded coccoid bacterial cells with illustrative nucleoid curves.</desc>
+  <g data-region="cells" fill="#7DD3C7" stroke="none">
+    <ellipse cx="43" cy="64" rx="20" ry="20" /><ellipse cx="84" cy="64" rx="20" ry="20" />
+  </g>
+  <g data-region="nucleoids" fill="none" stroke="#B8B5FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M36.3333 61Q48 56 46 67Q40 71 39 66" /><path d="M77.3333 61Q89 56 87 67Q81 71 80 66" />
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="43" cy="64" rx="20" ry="20" /><ellipse cx="84" cy="64" rx="20" ry="20" />
+  </g>
+</svg>

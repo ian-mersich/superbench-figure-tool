@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Tissue Explant</title>
+  <desc id="desc">Editable ex vivo tissue explant schematic with structured tissue fragment supported in culture medium.</desc>
+  <g data-region="model_context" fill="#C7F2EC" stroke="none"><path d="M10 80h108v25c0 8-24 14-54 14s-54-6-54-14z" /></g>
+  <g data-region="primary_population" fill="#8EC8FF" stroke="none"><path d="M28 69c3-20 18-31 40-29 19 1 33 11 35 29-20 12-54 12-75 0z" /></g>
+  <g data-region="secondary_feature" fill="#B8B5FF" stroke="none"><circle cx="44" cy="61" r="5" /><circle cx="61" cy="51" r="5" /><circle cx="79" cy="60" r="5" /><circle cx="57" cy="70" r="4" /><circle cx="88" cy="70" r="4" /></g>
+  <g data-region="model_structure" fill="none" stroke="#F4A261" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M16 80h96M22 94h84M31 69c17-9 48-9 69 0M36 33l-9-13m9 13-12-3m12 3-4-12" /></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 80h108v25c0 8-24 14-54 14s-54-6-54-14zM28 69c3-20 18-31 40-29 19 1 33 11 35 29-20 12-54 12-75 0z" /></g>
+</svg>

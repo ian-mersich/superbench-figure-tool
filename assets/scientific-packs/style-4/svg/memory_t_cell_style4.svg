@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Memory T Cell</title>
+  <desc id="desc">Editable memory t cell schematic with compact lymphocyte with a moderate nucleus, stable surface cues, and an internal recall loop.</desc>
+  <g data-region="cell_body" fill="#C7F2EC" stroke="none"><circle cx="64" cy="66" r="41" /></g>
+  <g data-region="nucleus" fill="#B8B5FF" stroke="none"><ellipse cx="58" cy="67" rx="23" ry="25" /></g>
+  <g data-region="state_features" fill="none" stroke="#E76F51" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><path d="M75 48a20 20 0 1 1-4 34l6-7m-6 7 9 2" /></g>
+  <g data-region="functional_cues" fill="none" stroke="#58B8AE" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M31 42v-11m0 0-5 5m5-5 5 5M96 46v-11m0 0-5 5m5-5 5 5" /></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="64" cy="66" r="41" /><ellipse cx="58" cy="67" rx="23" ry="25" /><path d="M75 48a20 20 0 1 1-4 34l6-7m-6 7 9 2" /></g>
+</svg>

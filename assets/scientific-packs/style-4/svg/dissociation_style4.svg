@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Dissociation</title>
+  <desc id="desc">Editable molecular dissociation relation schematic with bound complex separating into two partners.</desc>
+  <g data-region="relation" fill="none" stroke="#5EA9DD" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M64 42v42M64 42L48 26M64 42l16-16M64 84l-16 16M64 84l16 16" /></g>
+  <g data-region="molecular_state" fill="#B8B5FF" stroke="none"><circle cx="54" cy="64" r="18" /><path d="M74 46l17-14 15 18-17 14z" /></g>
+  <g data-region="relation_cue" fill="none" stroke="#E76F51" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M43 30l-11-9m53 10 11-10M43 98l-11 9m53-9 11 9" /></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="54" cy="64" r="18" /><path d="M74 46l17-14 15 18-17 14z" /></g>
+</svg>

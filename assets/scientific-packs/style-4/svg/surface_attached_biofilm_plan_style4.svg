@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Surface-attached Biofilm — Plan View</title>
+  <desc id="desc">An overhead view of bacterial cells within irregular extracellular matrix on a shared substrate.</desc>
+  <g data-region="surface" fill="#E8EEF7" stroke="none">
+    <path d="M18 18H110V110H18Z" />
+  </g>
+  <g data-region="matrix" fill="#D9F4E5" stroke="none">
+    <path d="M20 47C17 33 31 22 46 26C61 17 83 20 89 29C108 30 113 49 103 60C112 77 103 97 86 97C70 111 54 101 48 102C31 107 16 96 20 81C11 66 12 57 20 47Z" />
+  </g>
+  <g data-region="bacteria" fill="#7DD3C7" stroke="none">
+    <rect x="26" y="41" width="18" height="8" rx="4" transform="rotate(-20 35 45)" /><rect x="55" y="36" width="18" height="8" rx="4" transform="rotate(15 64 40)" /><rect x="78" y="46" width="18" height="8" rx="4" transform="rotate(55 87 50)" /><rect x="35" y="70" width="18" height="8" rx="4" transform="rotate(25 44 74)" /><rect x="62" y="64" width="18" height="8" rx="4" transform="rotate(-30 71 68)" /><rect x="72" y="84" width="18" height="8" rx="4" transform="rotate(-10 81 88)" />
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20 47C17 33 31 22 46 26C61 17 83 20 89 29C108 30 113 49 103 60C112 77 103 97 86 97C70 111 54 101 48 102C31 107 16 96 20 81C11 66 12 57 20 47Z" /><rect x="26" y="41" width="18" height="8" rx="4" transform="rotate(-20 35 45)" /><rect x="55" y="36" width="18" height="8" rx="4" transform="rotate(15 64 40)" /><rect x="78" y="46" width="18" height="8" rx="4" transform="rotate(55 87 50)" /><rect x="35" y="70" width="18" height="8" rx="4" transform="rotate(25 44 74)" /><rect x="62" y="64" width="18" height="8" rx="4" transform="rotate(-30 71 68)" /><rect x="72" y="84" width="18" height="8" rx="4" transform="rotate(-10 81 88)" />
+  </g>
+</svg>

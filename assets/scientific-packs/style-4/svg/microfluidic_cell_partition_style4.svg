@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+<title id="title">Microfluidic Cell Partition</title>
+<desc id="desc">Original plan-view schematic of aqueous cell suspension pinching into separated droplets at an oil-flow junction. An occupied and an empty droplet illustrate non-guaranteed single-cell occupancy. Device geometry, occupancy and sizes are not experimental measurements.</desc>
+<g data-region="chip_body" fill="#E8EEF7" stroke="none"><rect x="15" y="15" width="98" height="98" rx="10" /></g>
+<g data-region="oil_phase" fill="#8EC8FF" stroke="none"><path d="M57 15h14v36l-7 6h49v22H65l6 9v25H57V85l-7-14H15V57h35l7-8V15z" /></g>
+<g data-region="aqueous_partition" fill="#C7F2EC" stroke="none"><path d="M15 58h35c7 0 12 4 15 10-3 6-8 9-15 9H15V58z" /><ellipse cx="81" cy="68" rx="8" ry="7" /><ellipse cx="102" cy="68" rx="7" ry="7" /></g>
+<g data-region="cell" fill="#B8B5FF" stroke="none"><circle cx="29" cy="67" r="3.5" /><circle cx="46" cy="67" r="3.5" /><circle cx="81" cy="68" r="3.5" /></g>
+<g data-region="outline" fill="none" stroke="#26323D" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><rect x="15" y="15" width="98" height="98" rx="10" /><path d="M57 17v32l-7 8H17M71 17v34l-7 6h47M17 77h33l7 8v26M71 111V88l-6-9h46" /><path d="M50 58c7 0 12 4 15 10-3 6-8 9-15 9" /><ellipse cx="81" cy="68" rx="8" ry="7" /><ellipse cx="102" cy="68" rx="7" ry="7" /><circle cx="29" cy="67" r="3.5" /><circle cx="46" cy="67" r="3.5" /><circle cx="81" cy="68" r="3.5" /><path d="M64 29v11m-4-4 4 4 4-4M64 102V91m-4 4 4-4 4 4" /></g>
+</svg>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Epithelial Monolayer</title>
+  <desc id="desc">Editable confluent epithelial monolayer schematic with contiguous polarized cells on a culture surface.</desc>
+  <g data-region="model_context" fill="#C7F2EC" stroke="none"><path d="M9 98h110v15H9z" /></g>
+  <g data-region="primary_population" fill="#8EC8FF" stroke="none"><path d="M13 36h17l4 62H10zM31 36h18l3 62H34zM50 36h18l1 62H52zM69 36h18l-1 62H69zM88 36h18l3 62H86zM107 36h8l4 62h-10z" /></g>
+  <g data-region="secondary_feature" fill="#B8B5FF" stroke="none"><ellipse cx="22" cy="70" rx="7" ry="11" /><ellipse cx="42" cy="70" rx="7" ry="11" /><ellipse cx="60" cy="70" rx="7" ry="11" /><ellipse cx="78" cy="70" rx="7" ry="11" /><ellipse cx="97" cy="70" rx="7" ry="11" /><ellipse cx="112" cy="70" rx="5" ry="11" /></g>
+  <g data-region="model_structure" fill="none" stroke="#F4A261" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 36h110M9 98h110M30 36l4 62M49 36l3 62M68 36l1 62M87 36l-1 62M106 36l3 62" /></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 36h110v77H9z" /></g>
+</svg>

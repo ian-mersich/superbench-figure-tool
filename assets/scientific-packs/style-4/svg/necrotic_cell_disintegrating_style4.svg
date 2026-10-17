@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+<title id="title">Necrotic Cell — Disintegrating</title>
+<desc id="desc">An irregular cell remnant with discontinuous borders and separated cellular debris. A generic lytic morphology, not a diagnosis or a distinct upstream death pathway. Necrosis-like appearance alone cannot distinguish accidental injury, necroptosis, pyroptosis, ferroptosis or late apoptotic secondary necrosis.</desc>
+<g data-region="cytoplasm" id="disintegrating-cell-remnant-fill" fill="#C7F2EC"><path d="M31 29Q66 15 91 33L82 45L100 51L88 64L98 84L80 85L79 104Q47 118 27 87L36 76L20 64L33 55L22 42Z" /></g>
+<g data-region="outline" id="disintegrating-cell-remnant-outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M31 29Q66 15 91 33L82 45L100 51L88 64L98 84L80 85L79 104Q47 118 27 87L36 76L20 64L33 55L22 42Z" /></g>
+<g data-region="nucleus" id="fragment-0-fill" fill="#D9D7FF"><circle cx="52" cy="56" r="13" /></g>
+<g data-region="outline" id="fragment-0-outline" fill="none" stroke="#26323D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="52" cy="56" r="13" /></g>
+<g data-region="nucleus" id="fragment-1-fill" fill="#D9D7FF"><circle cx="63" cy="80" r="10" /></g>
+<g data-region="outline" id="fragment-1-outline" fill="none" stroke="#26323D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="63" cy="80" r="10" /></g>
+<g data-region="debris" id="fragment-2-fill" fill="#F4A261"><circle cx="104" cy="100" r="5" /></g>
+<g data-region="outline" id="fragment-2-outline" fill="none" stroke="#26323D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="104" cy="100" r="5" /></g>
+<g data-region="debris" id="fragment-3-fill" fill="#F4A261"><circle cx="108" cy="41" r="4" /></g>
+<g data-region="outline" id="fragment-3-outline" fill="none" stroke="#26323D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="108" cy="41" r="4" /></g>
+<g data-region="debris" id="fragment-4-fill" fill="#F4A261"><circle cx="19" cy="100" r="4" /></g>
+<g data-region="outline" id="fragment-4-outline" fill="none" stroke="#26323D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="19" cy="100" r="4" /></g>
+</svg>

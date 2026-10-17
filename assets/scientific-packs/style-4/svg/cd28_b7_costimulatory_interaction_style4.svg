@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">CD28–B7 Costimulatory Interaction</title>
+  <desc id="desc">Editable cd28–b7 costimulatory interaction schematic with paired CD28 and B7-family binding partners spanning a cell–cell gap.</desc>
+  <g data-region="membranes" fill="#DCE4EC" stroke="none"><path d="M7 10h114v12H7zM7 106h114v12H7z" /></g>
+  <g data-region="receptor" fill="#C7F2EC" stroke="none"><path d="M49 106V84l-9-13 9-12 9 12-5 13v22zM75 106V84l-5-13 9-12 9 12-9 13v22z" /></g>
+  <g data-region="ligand" fill="#B8B5FF" stroke="none"><path d="M49 22v21l-9 10 9 9 9-9-5-10V22zM75 22v21l-5 10 9 9 9-9-9-10V22z" /></g>
+  <g data-region="interaction_cues" fill="none" stroke="#E76F51" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M52 64l-1 6m26-6 1 6M59 48h10" /></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M49 106V84l-9-13 9-12 9 12-5 13v22zM75 106V84l-5-13 9-12 9 12-9 13v22z" /><path d="M49 22v21l-9 10 9 9 9-9-5-10V22zM75 22v21l-5 10 9 9 9-9-9-10V22z" /><path d="M7 10h114v12H7zM7 106h114v12H7z" /></g>
+</svg>

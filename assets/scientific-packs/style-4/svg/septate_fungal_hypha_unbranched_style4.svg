@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Septate Fungal Hypha — Unbranched</title>
+  <desc id="desc">A continuous unbranched hyphal tube with separated transverse septa retaining open pores.</desc>
+  <g data-region="cellwall" fill="#7DD3C7" stroke="none">
+    <path d="M18 64Q18 48 34 48H94Q111 48 111 64Q111 81 94 81H34Q18 81 18 64Z M24 64Q24 54 34 54H94Q105 54 105 64Q105 75 94 75H34Q24 75 24 64Z" fill-rule="evenodd" />
+  </g>
+  <g data-region="cytoplasm" fill="#D9F4E5" stroke="none">
+    <path d="M24 64Q24 54 34 54H94Q105 54 105 64Q105 75 94 75H34Q24 75 24 64Z" />
+  </g>
+  <g data-region="septa" fill="#E8EEF7" stroke="none">
+    <path d="M47 54H52V60H47Z M47 69H52V75H47Z M77 54H82V60H77Z M77 69H82V75H77Z" />
+  </g>
+  <g data-region="nuclei" fill="#B8B5FF" stroke="none">
+    <ellipse cx="35" cy="64" rx="5" ry="3" /><ellipse cx="65" cy="64" rx="5" ry="3" /><ellipse cx="94" cy="64" rx="4" ry="3" />
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M18 64Q18 48 34 48H94Q111 48 111 64Q111 81 94 81H34Q18 81 18 64Z" /><path d="M24 64Q24 54 34 54H94Q105 54 105 64Q105 75 94 75H34Q24 75 24 64Z" /><path d="M47 54H52V60H47Z M47 69H52V75H47Z M77 54H82V60H77Z M77 69H82V75H77Z" stroke-width="0.93" />
+  </g>
+</svg>

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+<title id="title">Ferroptotic Cell — Schematic — Cell with mitochondrial detail</title>
+<desc id="desc">A cell with symbolic lipid-damage marks and emphasized compact mitochondria with sparse cristae cues. A mechanism-oriented schematic, not a diagnostic appearance. Colored marks mean illustrative lipid peroxidation, not a particular stain or iron count; ferroptosis requires appropriate biochemical, genetic or pharmacological evidence. Mitochondrial changes vary by model.</desc>
+<g data-region="cytoplasm" id="cell-body-fill" fill="#C7F2EC"><path d="M101 43C112 65 100 93 79 104C55 116 28 100 21 80C12 57 29 28 51 23C73 15 91 24 101 43Z" /></g>
+<g opacity="1"><path d="M101 43C112 65 100 93 79 104C55 116 28 100 21 80C12 57 29 28 51 23C73 15 91 24 101 43Z" fill="#FFFFFF" opacity="0.12" /></g><g data-region="outline" id="cell-body-outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M101 43C112 65 100 93 79 104C55 116 28 100 21 80C12 57 29 28 51 23C73 15 91 24 101 43Z" /></g>
+<g data-region="nucleus" id="nucleus-fill" fill="#D9D7FF"><ellipse cx="53" cy="66" rx="18" ry="19" /></g>
+<g data-region="outline" id="nucleus-outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="53" cy="66" rx="18" ry="19" /></g>
+<g data-region="lipid_damage" id="lipid-peroxidation-cue-0" fill="none" stroke="#E76F51" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M35 24l4 6 4-6" /></g>
+<g data-region="lipid_damage" id="lipid-peroxidation-cue-1" fill="none" stroke="#E76F51" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M73 22l4 6 4-6" /></g>
+<g data-region="lipid_damage" id="lipid-peroxidation-cue-2" fill="none" stroke="#E76F51" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M99 50l4 6 4-6" /></g>
+<g data-region="lipid_damage" id="lipid-peroxidation-cue-3" fill="none" stroke="#E76F51" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M93 82l4 6 4-6" /></g>
+<g data-region="lipid_damage" id="lipid-peroxidation-cue-4" fill="none" stroke="#E76F51" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M65 103l4 6 4-6" /></g>
+<g data-region="lipid_damage" id="lipid-peroxidation-cue-5" fill="none" stroke="#E76F51" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 88l4 6 4-6" /></g>
+<g data-region="lipid_damage" id="lipid-peroxidation-cue-6" fill="none" stroke="#E76F51" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 58l4 6 4-6" /></g>
+<g data-region="mitochondria" id="mitochondrial-detail-a-fill" fill="#8EC8FF"><rect x="72" y="48" width="25" height="12" rx="6.0" /></g>
+<g data-region="outline" id="mitochondrial-detail-a-outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><rect x="72" y="48" width="25" height="12" rx="6.0" /></g>
+<g data-region="cristae" id="mitochondrial-detail-a-crista-0" fill="none" stroke="#E76F51" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M79.0 51l-2 6" /></g>
+<g data-region="mitochondria" id="mitochondrial-detail-b-fill" fill="#8EC8FF"><rect x="65" y="83" width="24" height="11" rx="5.5" /></g>
+<g data-region="outline" id="mitochondrial-detail-b-outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><rect x="65" y="83" width="24" height="11" rx="5.5" /></g>
+<g data-region="cristae" id="mitochondrial-detail-b-crista-0" fill="none" stroke="#E76F51" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M72.0 86l-2 5" /></g>
+<g data-region="lipid_damage" id="mitochondrial-damage-cues" fill="none" stroke="#E76F51" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"><path d="M77 45l3-8 4 5M91 78l5-7" /></g>
+</svg>

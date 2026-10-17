@@ -1,0 +1,3890 @@
+[
+  {
+    "asset_id": "analysis.box_plot.horizontal",
+    "name": "Box Plot \u2014 Horizontal groups",
+    "filename": "box_plot_horizontal_style4.svg",
+    "source_package": "batch002",
+    "source_manifest_file": "box_plot_horizontal_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "analysis.box_plot.vertical",
+    "name": "Box Plot \u2014 Vertical groups",
+    "filename": "box_plot_vertical_style4.svg",
+    "source_package": "batch002",
+    "source_manifest_file": "box_plot_vertical_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "analysis.cell_tracking_trajectory.single_track",
+    "name": "Cell Tracking Trajectory \u2014 Single cell",
+    "filename": "cell_tracking_trajectory_single_track_style4.svg",
+    "source_package": "batch002",
+    "source_manifest_file": "cell_tracking_trajectory_single_track_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "analysis.cell_tracking_trajectory.two_tracks",
+    "name": "Cell Tracking Trajectory \u2014 Two cells",
+    "filename": "cell_tracking_trajectory_two_tracks_style4.svg",
+    "source_package": "batch002",
+    "source_manifest_file": "cell_tracking_trajectory_two_tracks_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "analysis.heatmap.clustered",
+    "name": "Heatmap \u2014 Column clustering cue",
+    "filename": "heatmap_clustered_style4.svg",
+    "source_package": "batch002",
+    "source_manifest_file": "heatmap_clustered_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "analysis.heatmap.matrix",
+    "name": "Heatmap \u2014 Value matrix",
+    "filename": "heatmap_matrix_style4.svg",
+    "source_package": "batch002",
+    "source_manifest_file": "heatmap_matrix_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "analysis.kaplan_meier_curve.one_group",
+    "name": "Kaplan\u2013Meier Curve \u2014 Single group",
+    "filename": "kaplan_meier_curve_one_group_style4.svg",
+    "source_package": "batch002",
+    "source_manifest_file": "kaplan_meier_curve_one_group_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "analysis.kaplan_meier_curve.two_groups",
+    "name": "Kaplan\u2013Meier Curve \u2014 Two groups",
+    "filename": "kaplan_meier_curve_two_groups_style4.svg",
+    "source_package": "batch002",
+    "source_manifest_file": "kaplan_meier_curve_two_groups_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "analysis.network_graph.hub",
+    "name": "Network Graph \u2014 Hub arrangement",
+    "filename": "network_graph_hub_style4.svg",
+    "source_package": "batch002",
+    "source_manifest_file": "network_graph_hub_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "analysis.network_graph.modular",
+    "name": "Network Graph \u2014 Modular arrangement",
+    "filename": "network_graph_modular_style4.svg",
+    "source_package": "batch002",
+    "source_manifest_file": "network_graph_modular_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "analysis.pseudotime_trajectory.branching",
+    "name": "Pseudotime Trajectory \u2014 Branching ordering",
+    "filename": "pseudotime_trajectory_branching_style4.svg",
+    "source_package": "batch002",
+    "source_manifest_file": "pseudotime_trajectory_branching_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "analysis.pseudotime_trajectory.linear",
+    "name": "Pseudotime Trajectory \u2014 Continuous ordering",
+    "filename": "pseudotime_trajectory_linear_style4.svg",
+    "source_package": "batch002",
+    "source_manifest_file": "pseudotime_trajectory_linear_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "analysis.scatter_plot.single_series",
+    "name": "Scatter Plot \u2014 Single series with guide",
+    "filename": "scatter_plot_single_series_style4.svg",
+    "source_package": "batch002",
+    "source_manifest_file": "scatter_plot_single_series_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "analysis.scatter_plot.two_series",
+    "name": "Scatter Plot \u2014 Two series",
+    "filename": "scatter_plot_two_series_style4.svg",
+    "source_package": "batch002",
+    "source_manifest_file": "scatter_plot_two_series_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "analysis.umap_scatter.clusters",
+    "name": "UMAP Scatter \u2014 Separated clusters",
+    "filename": "umap_scatter_clusters_style4.svg",
+    "source_package": "batch002",
+    "source_manifest_file": "umap_scatter_clusters_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "analysis.umap_scatter.continuum",
+    "name": "UMAP Scatter \u2014 Continuous state example",
+    "filename": "umap_scatter_continuum_style4.svg",
+    "source_package": "batch002",
+    "source_manifest_file": "umap_scatter_continuum_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "analysis.violin_plot.paired",
+    "name": "Violin Plot \u2014 Separate groups",
+    "filename": "violin_plot_paired_style4.svg",
+    "source_package": "batch002",
+    "source_manifest_file": "violin_plot_paired_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "analysis.violin_plot.split",
+    "name": "Violin Plot \u2014 Split distribution",
+    "filename": "violin_plot_split_style4.svg",
+    "source_package": "batch002",
+    "source_manifest_file": "violin_plot_split_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "analysis.volcano_plot.feature_labels",
+    "name": "Volcano Plot \u2014 Example feature labels",
+    "filename": "volcano_plot_feature_labels_style4.svg",
+    "source_package": "batch002",
+    "source_manifest_file": "volcano_plot_feature_labels_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "analysis.volcano_plot.overview",
+    "name": "Volcano Plot \u2014 Threshold overview",
+    "filename": "volcano_plot_overview_style4.svg",
+    "source_package": "batch002",
+    "source_manifest_file": "volcano_plot_overview_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "cellarch.membrane_signaling.adherens_junction",
+    "name": "Adherens Junction",
+    "filename": "adherens_junction_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "adherens_junction_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "cellarch.membrane_signaling.cis_snare_complex",
+    "name": "Cis-SNARE Complex",
+    "filename": "cis_snare_complex_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "cis_snare_complex_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "cellarch.membrane_signaling.desmosome",
+    "name": "Desmosome",
+    "filename": "desmosome_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "desmosome_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "cellarch.membrane_signaling.er_mitochondrion_contact_site",
+    "name": "ER\u2013Mitochondrion Contact Site",
+    "filename": "er_mitochondrion_contact_site_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "er_mitochondrion_contact_site_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "cellarch.membrane_signaling.er_mitochondrion_tubular_contact",
+    "name": "ER\u2013Mitochondrion Contact \u2014 Tubular ER",
+    "filename": "er_mitochondrion_tubular_contact_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "er_mitochondrion_tubular_contact_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "cellarch.membrane_signaling.focal_adhesion",
+    "name": "Focal Adhesion",
+    "filename": "focal_adhesion_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "focal_adhesion_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "cellarch.membrane_signaling.focal_adhesion_enface",
+    "name": "Focal Adhesion \u2014 En Face",
+    "filename": "focal_adhesion_enface_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "focal_adhesion_enface_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "cellarch.membrane_signaling.gap_junction",
+    "name": "Gap Junction",
+    "filename": "gap_junction_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "gap_junction_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "cellarch.membrane_signaling.gap_junction_plaque",
+    "name": "Gap Junction \u2014 En-face Plaque",
+    "filename": "gap_junction_plaque_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "gap_junction_plaque_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "cellarch.membrane_signaling.hemidesmosome",
+    "name": "Hemidesmosome",
+    "filename": "hemidesmosome_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "hemidesmosome_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "cellarch.membrane_signaling.tight_junction",
+    "name": "Tight Junction",
+    "filename": "tight_junction_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "tight_junction_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "cellarch.membrane_signaling.tight_junction_network",
+    "name": "Tight Junction \u2014 Strand Network",
+    "filename": "tight_junction_network_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "tight_junction_network_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "cellarch.membrane_signaling.trans_snare_complex",
+    "name": "Trans-SNARE Complex",
+    "filename": "trans_snare_complex_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "trans_snare_complex_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "cellarch.organelle.copi_coated_vesicle",
+    "name": "COPI-Coated Vesicle",
+    "filename": "copi_coated_vesicle_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "copi_coated_vesicle_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "cellarch.organelle.copi_golgi_bud",
+    "name": "COPI \u2014 Golgi-connected Bud",
+    "filename": "copi_golgi_bud_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "copi_golgi_bud_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "cellarch.organelle.multivesicular_endosome",
+    "name": "Multivesicular Endosome",
+    "filename": "multivesicular_endosome_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "multivesicular_endosome_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "cellarch.pathway_symbol.autophagosome_lysosome_docking",
+    "name": "Autophagosome\u2013Lysosome \u2014 Pre-fusion Apposition",
+    "filename": "autophagosome_lysosome_docking_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "autophagosome_lysosome_docking_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "cellarch.pathway_symbol.autophagosome_lysosome_fusion",
+    "name": "Autophagosome\u2013Lysosome Fusion",
+    "filename": "autophagosome_lysosome_fusion_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "autophagosome_lysosome_fusion_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "cellarch.pathway_symbol.copii_detached_carrier",
+    "name": "COPII \u2014 Detached Carrier",
+    "filename": "copii_detached_carrier_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "copii_detached_carrier_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "cellarch.pathway_symbol.copii_vesicle_budding",
+    "name": "COPII Vesicle Budding",
+    "filename": "copii_vesicle_budding_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "copii_vesicle_budding_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "cellarch.pathway_symbol.cytoplasmic_dynein_cargo_transport",
+    "name": "Cytoplasmic Dynein Cargo Transport",
+    "filename": "cytoplasmic_dynein_cargo_transport_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "cytoplasmic_dynein_cargo_transport_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "cellarch.pathway_symbol.endosomal_recycling_tubule",
+    "name": "Endosomal Recycling Tubule",
+    "filename": "endosomal_recycling_tubule_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "endosomal_recycling_tubule_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "cellarch.pathway_symbol.escrt_inward_bud",
+    "name": "ESCRT \u2014 Inward Membrane Bud",
+    "filename": "escrt_inward_bud_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "escrt_inward_bud_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "cellarch.pathway_symbol.exportin_cargo_nuclear_export",
+    "name": "Exportin\u2013RanGTP\u2013Cargo Nuclear Export",
+    "filename": "exportin_cargo_nuclear_export_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "exportin_cargo_nuclear_export_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "cellarch.pathway_symbol.importin_cargo_nuclear_import",
+    "name": "Importin\u2013Cargo Nuclear Import",
+    "filename": "importin_cargo_nuclear_import_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "importin_cargo_nuclear_import_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "cellarch.pathway_symbol.kinesin_cargo_transport",
+    "name": "Kinesin Cargo Transport",
+    "filename": "kinesin_cargo_transport_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "kinesin_cargo_transport_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "cellarch.pathway_symbol.myosin_va_cargo_transport",
+    "name": "Myosin-Va Cargo Transport",
+    "filename": "myosin_va_cargo_transport_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "myosin_va_cargo_transport_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "cellarch.pathway_symbol.recycling_endosome_branched",
+    "name": "Recycling Endosome \u2014 Branched Tubules",
+    "filename": "recycling_endosome_branched_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "recycling_endosome_branched_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "cellstress.cell.anoikis.blebbing_apoptotic",
+    "name": "Anoikis \u2014 Schematic",
+    "filename": "anoikis_blebbing_apoptotic_style4.svg",
+    "source_package": "batch001",
+    "source_manifest_file": "anoikis_blebbing_apoptotic_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "cellstress.cell.anoikis.detached_apoptotic",
+    "name": "Anoikis \u2014 Schematic",
+    "filename": "anoikis_detached_apoptotic_style4.svg",
+    "source_package": "batch001",
+    "source_manifest_file": "anoikis_detached_apoptotic_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "cellstress.cell.ferroptotic_cell.lipid_damage",
+    "name": "Ferroptotic Cell \u2014 Schematic",
+    "filename": "ferroptotic_cell_lipid_damage_style4.svg",
+    "source_package": "batch001",
+    "source_manifest_file": "ferroptotic_cell_lipid_damage_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "cellstress.cell.ferroptotic_cell.mitochondrial_detail",
+    "name": "Ferroptotic Cell \u2014 Schematic",
+    "filename": "ferroptotic_cell_mitochondrial_detail_style4.svg",
+    "source_package": "batch001",
+    "source_manifest_file": "ferroptotic_cell_mitochondrial_detail_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "cellstress.cell.filopodium.bundle_detail",
+    "name": "Filopodium",
+    "filename": "filopodium_bundle_detail_style4.svg",
+    "source_package": "batch001",
+    "source_manifest_file": "filopodium_bundle_detail_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "cellstress.cell.filopodium.whole_cell",
+    "name": "Filopodium",
+    "filename": "filopodium_whole_cell_style4.svg",
+    "source_package": "batch001",
+    "source_manifest_file": "filopodium_whole_cell_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "cellstress.cell.lamellipodium.leading_edge_detail",
+    "name": "Lamellipodium",
+    "filename": "lamellipodium_leading_edge_detail_style4.svg",
+    "source_package": "batch001",
+    "source_manifest_file": "lamellipodium_leading_edge_detail_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "cellstress.cell.lamellipodium.whole_cell",
+    "name": "Lamellipodium",
+    "filename": "lamellipodium_whole_cell_style4.svg",
+    "source_package": "batch001",
+    "source_manifest_file": "lamellipodium_whole_cell_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "cellstress.cell.necroptotic_cell.lytic",
+    "name": "Necroptotic Cell \u2014 Schematic",
+    "filename": "necroptotic_cell_lytic_style4.svg",
+    "source_package": "batch001",
+    "source_manifest_file": "necroptotic_cell_lytic_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "cellstress.cell.necroptotic_cell.membrane_mlkl",
+    "name": "Necroptotic Cell \u2014 Schematic",
+    "filename": "necroptotic_cell_membrane_mlkl_style4.svg",
+    "source_package": "batch001",
+    "source_manifest_file": "necroptotic_cell_membrane_mlkl_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "cellstress.cell.necrotic_cell.disintegrating",
+    "name": "Necrotic Cell",
+    "filename": "necrotic_cell_disintegrating_style4.svg",
+    "source_package": "batch001",
+    "source_manifest_file": "necrotic_cell_disintegrating_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "cellstress.cell.necrotic_cell.swollen_ruptured",
+    "name": "Necrotic Cell",
+    "filename": "necrotic_cell_swollen_ruptured_style4.svg",
+    "source_package": "batch001",
+    "source_manifest_file": "necrotic_cell_swollen_ruptured_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "cellstress.cell.pyroptotic_cell.lytic",
+    "name": "Pyroptotic Cell \u2014 Schematic",
+    "filename": "pyroptotic_cell_lytic_style4.svg",
+    "source_package": "batch001",
+    "source_manifest_file": "pyroptotic_cell_lytic_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "cellstress.cell.pyroptotic_cell.pore_bearing",
+    "name": "Pyroptotic Cell \u2014 Schematic",
+    "filename": "pyroptotic_cell_pore_bearing_style4.svg",
+    "source_package": "batch001",
+    "source_manifest_file": "pyroptotic_cell_pore_bearing_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "cellstress.membrane_signaling.caveola.clustered_profiles",
+    "name": "Caveola",
+    "filename": "caveola_clustered_profiles_style4.svg",
+    "source_package": "batch001",
+    "source_manifest_file": "caveola_clustered_profiles_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "cellstress.membrane_signaling.caveola.single_invagination",
+    "name": "Caveola",
+    "filename": "caveola_single_invagination_style4.svg",
+    "source_package": "batch001",
+    "source_manifest_file": "caveola_single_invagination_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "cellstress.membrane_signaling.clathrin_coated_vesicle.cage_view",
+    "name": "Clathrin-coated Vesicle",
+    "filename": "clathrin_coated_vesicle_cage_view_style4.svg",
+    "source_package": "batch001",
+    "source_manifest_file": "clathrin_coated_vesicle_cage_view_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "cellstress.membrane_signaling.clathrin_coated_vesicle.section",
+    "name": "Clathrin-coated Vesicle",
+    "filename": "clathrin_coated_vesicle_section_style4.svg",
+    "source_package": "batch001",
+    "source_manifest_file": "clathrin_coated_vesicle_section_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "cellstress.membrane_signaling.extracellular_vesicle.endosomal_release",
+    "name": "Extracellular Vesicle",
+    "filename": "extracellular_vesicle_endosomal_release_style4.svg",
+    "source_package": "batch001",
+    "source_manifest_file": "extracellular_vesicle_endosomal_release_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "cellstress.membrane_signaling.extracellular_vesicle.isolated",
+    "name": "Extracellular Vesicle",
+    "filename": "extracellular_vesicle_isolated_style4.svg",
+    "source_package": "batch001",
+    "source_manifest_file": "extracellular_vesicle_isolated_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "cellstress.nucleic_acid.condensed_chromosome.metacentric",
+    "name": "Condensed Chromosome",
+    "filename": "condensed_chromosome_metacentric_style4.svg",
+    "source_package": "batch001",
+    "source_manifest_file": "condensed_chromosome_metacentric_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "cellstress.nucleic_acid.condensed_chromosome.submetacentric",
+    "name": "Condensed Chromosome",
+    "filename": "condensed_chromosome_submetacentric_style4.svg",
+    "source_package": "batch001",
+    "source_manifest_file": "condensed_chromosome_submetacentric_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "cellstress.nucleic_acid.dna_damage_foci.clustered",
+    "name": "DNA Damage Foci",
+    "filename": "dna_damage_foci_clustered_style4.svg",
+    "source_package": "batch001",
+    "source_manifest_file": "dna_damage_foci_clustered_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "cellstress.nucleic_acid.dna_damage_foci.dispersed",
+    "name": "DNA Damage Foci",
+    "filename": "dna_damage_foci_dispersed_style4.svg",
+    "source_package": "batch001",
+    "source_manifest_file": "dna_damage_foci_dispersed_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "cellstress.nucleic_acid.replication_stress.reversed_fork",
+    "name": "Replication Stress",
+    "filename": "replication_stress_reversed_fork_style4.svg",
+    "source_package": "batch001",
+    "source_manifest_file": "replication_stress_reversed_fork_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "cellstress.nucleic_acid.replication_stress.stalled_fork",
+    "name": "Replication Stress",
+    "filename": "replication_stress_stalled_fork_style4.svg",
+    "source_package": "batch001",
+    "source_manifest_file": "replication_stress_stalled_fork_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "cellstress.organelle.er_stress_upr.lumenal_load",
+    "name": "ER Stress / Unfolded Protein Response",
+    "filename": "er_stress_upr_lumenal_load_style4.svg",
+    "source_package": "batch001",
+    "source_manifest_file": "er_stress_upr_lumenal_load_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "cellstress.organelle.er_stress_upr.sensor_assembly",
+    "name": "ER Stress / Unfolded Protein Response",
+    "filename": "er_stress_upr_sensor_assembly_style4.svg",
+    "source_package": "batch001",
+    "source_manifest_file": "er_stress_upr_sensor_assembly_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "cellstress.organelle.mitochondrial_fission.constriction",
+    "name": "Mitochondrial Fission",
+    "filename": "mitochondrial_fission_constriction_style4.svg",
+    "source_package": "batch001",
+    "source_manifest_file": "mitochondrial_fission_constriction_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "cellstress.organelle.mitochondrial_fission.daughter_separation",
+    "name": "Mitochondrial Fission",
+    "filename": "mitochondrial_fission_daughter_separation_style4.svg",
+    "source_package": "batch001",
+    "source_manifest_file": "mitochondrial_fission_daughter_separation_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "cellstress.organelle.mitochondrial_fusion.approach_contact",
+    "name": "Mitochondrial Fusion",
+    "filename": "mitochondrial_fusion_approach_contact_style4.svg",
+    "source_package": "batch001",
+    "source_manifest_file": "mitochondrial_fusion_approach_contact_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "cellstress.organelle.mitochondrial_fusion.joined",
+    "name": "Mitochondrial Fusion",
+    "filename": "mitochondrial_fusion_joined_style4.svg",
+    "source_package": "batch001",
+    "source_manifest_file": "mitochondrial_fusion_joined_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "cellstress.organelle.nuclear_speckle.condensate_detail",
+    "name": "Nuclear Speckle",
+    "filename": "nuclear_speckle_condensate_detail_style4.svg",
+    "source_package": "batch001",
+    "source_manifest_file": "nuclear_speckle_condensate_detail_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "cellstress.organelle.nuclear_speckle.nuclear_distribution",
+    "name": "Nuclear Speckle",
+    "filename": "nuclear_speckle_nuclear_distribution_style4.svg",
+    "source_package": "batch001",
+    "source_manifest_file": "nuclear_speckle_nuclear_distribution_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "cellstress.organelle.nucleolus.nuclear_context",
+    "name": "Nucleolus",
+    "filename": "nucleolus_nuclear_context_style4.svg",
+    "source_package": "batch001",
+    "source_manifest_file": "nucleolus_nuclear_context_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "cellstress.organelle.nucleolus.subcompartments",
+    "name": "Nucleolus",
+    "filename": "nucleolus_subcompartments_style4.svg",
+    "source_package": "batch001",
+    "source_manifest_file": "nucleolus_subcompartments_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "cellstress.organelle.phagolysosome.bacterial_cargo",
+    "name": "Phagolysosome",
+    "filename": "phagolysosome_bacterial_cargo_style4.svg",
+    "source_package": "batch001",
+    "source_manifest_file": "phagolysosome_bacterial_cargo_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "cellstress.organelle.phagolysosome.degrading_cargo",
+    "name": "Phagolysosome",
+    "filename": "phagolysosome_degrading_cargo_style4.svg",
+    "source_package": "batch001",
+    "source_manifest_file": "phagolysosome_degrading_cargo_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "cellstress.organelle.primary_cilium.bent",
+    "name": "Primary Cilium",
+    "filename": "primary_cilium_bent_style4.svg",
+    "source_package": "batch001",
+    "source_manifest_file": "primary_cilium_bent_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "cellstress.organelle.primary_cilium.straight",
+    "name": "Primary Cilium",
+    "filename": "primary_cilium_straight_style4.svg",
+    "source_package": "batch001",
+    "source_manifest_file": "primary_cilium_straight_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.antibody.drug_conjugate",
+    "name": "Drug-Conjugated Antibody",
+    "filename": "antibody_drug_conjugate_style4.svg",
+    "source_package": "batch007",
+    "source_manifest_file": "svg/antibody_drug_conjugate_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.antibody.drug_conjugate_manuscript",
+    "name": "Drug-Conjugated Antibody \u2014 Manuscript Line",
+    "filename": "antibody_drug_conjugate_manuscript_style4.svg",
+    "source_package": "batch009",
+    "source_manifest_file": "svg/antibody_drug_conjugate_manuscript_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.antibody.fab_fragment",
+    "name": "Antibody Fab Fragment",
+    "filename": "antibody_fab_fragment_style4.svg",
+    "source_package": "batch009",
+    "source_manifest_file": "svg/antibody_fab_fragment_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.antibody.fc_fragment",
+    "name": "Antibody Fc Fragment",
+    "filename": "antibody_fc_fragment_style4.svg",
+    "source_package": "batch009",
+    "source_manifest_file": "svg/antibody_fc_fragment_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.antibody.igg",
+    "name": "IgG Antibody",
+    "filename": "antibody_igg_style4.svg",
+    "source_package": "batch007",
+    "source_manifest_file": "svg/antibody_igg_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.antibody.igg_manuscript",
+    "name": "IgG Antibody \u2014 Thin",
+    "filename": "antibody_igg_manuscript_style4.svg",
+    "source_package": "batch009",
+    "source_manifest_file": "svg/antibody_igg_manuscript_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.autolysosome",
+    "name": "Autolysosome",
+    "filename": "autolysosome_style4.svg",
+    "source_package": "batch009",
+    "source_manifest_file": "svg/autolysosome_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.cell.apoptotic",
+    "name": "Apoptotic Cell",
+    "filename": "cell_apoptotic_style4.svg",
+    "source_package": "batch007",
+    "source_manifest_file": "svg/cell_apoptotic_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.cell.astrocyte_like",
+    "name": "Astrocyte-Like Cell",
+    "filename": "astrocyte_like_cell_style4.svg",
+    "source_package": "batch008",
+    "source_manifest_file": "svg/astrocyte_like_cell_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.cell.b_cell",
+    "name": "B Cell",
+    "filename": "immune_b_cell_style4.svg",
+    "source_package": "batch008",
+    "source_manifest_file": "svg/immune_b_cell_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.cell.b_cell_manuscript",
+    "name": "B Cell \u2014 Manuscript Line",
+    "filename": "immune_b_cell_manuscript_style4.svg",
+    "source_package": "batch008",
+    "source_manifest_file": "svg/immune_b_cell_manuscript_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.cell.dendritic",
+    "name": "Dendritic Cell",
+    "filename": "immune_dendritic_cell_style4.svg",
+    "source_package": "batch008",
+    "source_manifest_file": "svg/immune_dendritic_cell_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.cell.dendritic_manuscript",
+    "name": "Dendritic Cell \u2014 Manuscript Line",
+    "filename": "immune_dendritic_cell_manuscript_style4.svg",
+    "source_package": "batch008",
+    "source_manifest_file": "svg/immune_dendritic_cell_manuscript_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.cell.dividing",
+    "name": "Dividing Cell",
+    "filename": "cell_dividing_style4.svg",
+    "source_package": "batch007",
+    "source_manifest_file": "svg/cell_dividing_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.cell.epithelial",
+    "name": "Epithelial-Like Cell",
+    "filename": "cell_epithelial_style4.svg",
+    "source_package": "batch007",
+    "source_manifest_file": "svg/cell_epithelial_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.cell.epithelial_apical",
+    "name": "Epithelial Cell \u2014 Apical View",
+    "filename": "cell_epithelial_apical_style4.svg",
+    "source_package": "batch009",
+    "source_manifest_file": "svg/cell_epithelial_apical_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.cell.epithelial_cuboidal",
+    "name": "Cuboidal Epithelial Cell",
+    "filename": "cell_epithelial_cuboidal_style4.svg",
+    "source_package": "batch009",
+    "source_manifest_file": "svg/cell_epithelial_cuboidal_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.cell.generic",
+    "name": "Generic Eukaryotic Cell",
+    "filename": "cell_generic_style4.svg",
+    "source_package": "batch007",
+    "source_manifest_file": "svg/cell_generic_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.cell.generic_cutaway",
+    "name": "Animal Cell Cutaway",
+    "filename": "cell_generic_cutaway_style4.svg",
+    "source_package": "batch009",
+    "source_manifest_file": "svg/cell_generic_cutaway_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.cell.generic_spread",
+    "name": "Spread Animal Cell",
+    "filename": "cell_generic_spread_style4.svg",
+    "source_package": "batch009",
+    "source_manifest_file": "svg/cell_generic_spread_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.cell.immune_round",
+    "name": "Immune-Like Round Cell",
+    "filename": "cell_immune_round_style4.svg",
+    "source_package": "batch008",
+    "source_manifest_file": "svg/cell_immune_round_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.cell.macrophage",
+    "name": "Macrophage",
+    "filename": "immune_macrophage_style4.svg",
+    "source_package": "batch008",
+    "source_manifest_file": "svg/immune_macrophage_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.cell.macrophage_manuscript",
+    "name": "Macrophage \u2014 Manuscript Line",
+    "filename": "immune_macrophage_manuscript_style4.svg",
+    "source_package": "batch008",
+    "source_manifest_file": "svg/immune_macrophage_manuscript_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.cell.neuron_bipolar",
+    "name": "Bipolar Neuron",
+    "filename": "cell_neuron_bipolar_style4.svg",
+    "source_package": "batch009",
+    "source_manifest_file": "svg/cell_neuron_bipolar_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.cell.neuron_like",
+    "name": "Neuron-Like Cell",
+    "filename": "cell_neuron_like_style4.svg",
+    "source_package": "batch008",
+    "source_manifest_file": "svg/cell_neuron_like_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.cell.neuron_pseudounipolar",
+    "name": "Pseudounipolar Neuron",
+    "filename": "cell_neuron_pseudounipolar_style4.svg",
+    "source_package": "batch009",
+    "source_manifest_file": "svg/cell_neuron_pseudounipolar_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.cell.neutrophil",
+    "name": "Neutrophil",
+    "filename": "immune_neutrophil_style4.svg",
+    "source_package": "batch008",
+    "source_manifest_file": "svg/immune_neutrophil_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.cell.neutrophil_manuscript",
+    "name": "Neutrophil \u2014 Manuscript Line",
+    "filename": "immune_neutrophil_manuscript_style4.svg",
+    "source_package": "batch008",
+    "source_manifest_file": "svg/immune_neutrophil_manuscript_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.cell.nk_cell",
+    "name": "Natural Killer Cell",
+    "filename": "immune_nk_cell_style4.svg",
+    "source_package": "batch008",
+    "source_manifest_file": "svg/immune_nk_cell_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.cell.nk_cell_manuscript",
+    "name": "Natural Killer Cell \u2014 Manuscript Line",
+    "filename": "immune_nk_cell_manuscript_style4.svg",
+    "source_package": "batch008",
+    "source_manifest_file": "svg/immune_nk_cell_manuscript_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.cell.t_cell",
+    "name": "T Cell",
+    "filename": "immune_t_cell_style4.svg",
+    "source_package": "batch008",
+    "source_manifest_file": "svg/immune_t_cell_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.cell.t_cell_manuscript",
+    "name": "T Cell \u2014 Manuscript Line",
+    "filename": "immune_t_cell_manuscript_style4.svg",
+    "source_package": "batch008",
+    "source_manifest_file": "svg/immune_t_cell_manuscript_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.cell.tumor_spheroid",
+    "name": "Tumor Spheroid",
+    "filename": "tumor_spheroid_style4.svg",
+    "source_package": "batch008",
+    "source_manifest_file": "svg/tumor_spheroid_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.channel.ion",
+    "name": "Ion Channel",
+    "filename": "ion_channel_style4.svg",
+    "source_package": "batch007",
+    "source_manifest_file": "svg/ion_channel_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.chromatin.loop",
+    "name": "Chromatin Loop",
+    "filename": "chromatin_loop_style4.svg",
+    "source_package": "batch007",
+    "source_manifest_file": "svg/chromatin_loop_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.dna.double_helix",
+    "name": "DNA Double Helix",
+    "filename": "dna_double_helix_style4.svg",
+    "source_package": "batch007",
+    "source_manifest_file": "svg/dna_double_helix_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.dna.double_helix_manuscript",
+    "name": "DNA Double Helix \u2014 Thin line",
+    "filename": "dna_double_helix_manuscript_style4.svg",
+    "source_package": "batch009",
+    "source_manifest_file": "svg/dna_double_helix_manuscript_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.dna.protein_binding",
+    "name": "Protein-DNA Binding",
+    "filename": "protein_dna_binding_style4.svg",
+    "source_package": "batch007",
+    "source_manifest_file": "svg/protein_dna_binding_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.endosome.basic",
+    "name": "Endosome",
+    "filename": "endosome_style4.svg",
+    "source_package": "batch007",
+    "source_manifest_file": "svg/endosome_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.er.rough",
+    "name": "Rough Endoplasmic Reticulum",
+    "filename": "rough_endoplasmic_reticulum_style4.svg",
+    "source_package": "batch007",
+    "source_manifest_file": "svg/rough_endoplasmic_reticulum_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.er.rough_network",
+    "name": "Rough ER Network",
+    "filename": "rough_er_network_style4.svg",
+    "source_package": "batch009",
+    "source_manifest_file": "svg/rough_er_network_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.er.smooth",
+    "name": "Smooth Endoplasmic Reticulum",
+    "filename": "smooth_er_style4.svg",
+    "source_package": "batch009",
+    "source_manifest_file": "svg/smooth_er_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.gene.promoter",
+    "name": "Gene Promoter Segment",
+    "filename": "gene_promoter_segment_style4.svg",
+    "source_package": "batch007",
+    "source_manifest_file": "svg/gene_promoter_segment_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.golgi.basic",
+    "name": "Golgi Apparatus",
+    "filename": "golgi_apparatus_style4.svg",
+    "source_package": "batch007",
+    "source_manifest_file": "svg/golgi_apparatus_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.golgi.oblique",
+    "name": "Golgi Stack \u2014 Oblique View",
+    "filename": "golgi_oblique_style4.svg",
+    "source_package": "batch009",
+    "source_manifest_file": "svg/golgi_oblique_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.golgi.ribbon",
+    "name": "Golgi Ribbon",
+    "filename": "golgi_ribbon_style4.svg",
+    "source_package": "batch009",
+    "source_manifest_file": "svg/golgi_ribbon_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.immune.cytotoxic_granule_release",
+    "name": "Cytotoxic Granule Release",
+    "filename": "immune_cytotoxic_granule_release_style4.svg",
+    "source_package": "batch008",
+    "source_manifest_file": "svg/immune_cytotoxic_granule_release_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.immune.fc_receptor_binding",
+    "name": "Fc Receptor Binding",
+    "filename": "immune_fc_receptor_binding_style4.svg",
+    "source_package": "batch008",
+    "source_manifest_file": "svg/immune_fc_receptor_binding_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.immune.fc_receptor_binding_manuscript",
+    "name": "Fc Receptor Binding \u2014 Manuscript Line",
+    "filename": "immune_fc_receptor_binding_manuscript_style4.svg",
+    "source_package": "batch008",
+    "source_manifest_file": "svg/immune_fc_receptor_binding_manuscript_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.immune.mhc_i_peptide",
+    "name": "MHC-I Peptide Complex",
+    "filename": "immune_mhc_i_peptide_style4.svg",
+    "source_package": "batch008",
+    "source_manifest_file": "svg/immune_mhc_i_peptide_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.immune.mhc_i_peptide_manuscript",
+    "name": "MHC-I Peptide Complex \u2014 Manuscript Line",
+    "filename": "immune_mhc_i_peptide_manuscript_style4.svg",
+    "source_package": "batch008",
+    "source_manifest_file": "svg/immune_mhc_i_peptide_manuscript_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.immune.mhc_ii_peptide",
+    "name": "MHC-II Peptide Complex",
+    "filename": "immune_mhc_ii_peptide_style4.svg",
+    "source_package": "batch008",
+    "source_manifest_file": "svg/immune_mhc_ii_peptide_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.immune.mhc_ii_peptide_manuscript",
+    "name": "MHC-II Peptide Complex \u2014 Manuscript Line",
+    "filename": "immune_mhc_ii_peptide_manuscript_style4.svg",
+    "source_package": "batch008",
+    "source_manifest_file": "svg/immune_mhc_ii_peptide_manuscript_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.immune.pd1_pdl1_checkpoint",
+    "name": "PD-1 PD-L1 Checkpoint",
+    "filename": "immune_pd1_pdl1_checkpoint_style4.svg",
+    "source_package": "batch008",
+    "source_manifest_file": "svg/immune_pd1_pdl1_checkpoint_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.immune.pd1_pdl1_checkpoint_manuscript",
+    "name": "PD-1 PD-L1 Checkpoint \u2014 Manuscript Line",
+    "filename": "immune_pd1_pdl1_checkpoint_manuscript_style4.svg",
+    "source_package": "batch008",
+    "source_manifest_file": "svg/immune_pd1_pdl1_checkpoint_manuscript_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.immune.tcr_engagement",
+    "name": "TCR Peptide-MHC Engagement",
+    "filename": "immune_tcr_engagement_style4.svg",
+    "source_package": "batch008",
+    "source_manifest_file": "svg/immune_tcr_engagement_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.immune.tcr_engagement_manuscript",
+    "name": "TCR Peptide-MHC Engagement \u2014 Manuscript Line",
+    "filename": "immune_tcr_engagement_manuscript_style4.svg",
+    "source_package": "batch008",
+    "source_manifest_file": "svg/immune_tcr_engagement_manuscript_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.lab.conical_tube",
+    "name": "Conical Tube",
+    "filename": "conical_tube_style4.svg",
+    "source_package": "batch008",
+    "source_manifest_file": "svg/conical_tube_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.lab.microcentrifuge_tube",
+    "name": "Microcentrifuge Tube",
+    "filename": "microcentrifuge_tube_style4.svg",
+    "source_package": "batch008",
+    "source_manifest_file": "svg/microcentrifuge_tube_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.lab.microscope",
+    "name": "Microscope",
+    "filename": "microscope_style4.svg",
+    "source_package": "batch008",
+    "source_manifest_file": "svg/microscope_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.lab.petri_dish",
+    "name": "Petri Dish",
+    "filename": "petri_dish_style4.svg",
+    "source_package": "batch007",
+    "source_manifest_file": "svg/petri_dish_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.lab.pipette",
+    "name": "Pipette",
+    "filename": "pipette_style4.svg",
+    "source_package": "batch007",
+    "source_manifest_file": "svg/pipette_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.lab.plate_96_well",
+    "name": "96-Well Plate",
+    "filename": "plate_96_well_style4.svg",
+    "source_package": "batch008",
+    "source_manifest_file": "svg/plate_96_well_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.lab.plate_reader",
+    "name": "Plate Reader Readout",
+    "filename": "plate_reader_readout_style4.svg",
+    "source_package": "batch008",
+    "source_manifest_file": "svg/plate_reader_readout_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.lab.syringe",
+    "name": "Syringe",
+    "filename": "syringe_style4.svg",
+    "source_package": "batch008",
+    "source_manifest_file": "svg/syringe_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.lab.tissue_culture_flask",
+    "name": "Tissue Culture Flask",
+    "filename": "tissue_culture_flask_style4.svg",
+    "source_package": "batch008",
+    "source_manifest_file": "svg/tissue_culture_flask_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.lab.well_plate",
+    "name": "Six-Well Plate",
+    "filename": "well_plate_style4.svg",
+    "source_package": "batch007",
+    "source_manifest_file": "svg/well_plate_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.ligand.generic",
+    "name": "Generic Ligand",
+    "filename": "generic_ligand_style4.svg",
+    "source_package": "batch007",
+    "source_manifest_file": "svg/generic_ligand_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.ligand.peptide",
+    "name": "Peptide Ligand",
+    "filename": "ligand_peptide_style4.svg",
+    "source_package": "batch009",
+    "source_manifest_file": "svg/ligand_peptide_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.ligand.small_molecule",
+    "name": "Small-molecule Ligand Symbol",
+    "filename": "ligand_small_molecule_style4.svg",
+    "source_package": "batch009",
+    "source_manifest_file": "svg/ligand_small_molecule_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.lysosome.basic",
+    "name": "Lysosome",
+    "filename": "lysosome_style4.svg",
+    "source_package": "batch007",
+    "source_manifest_file": "svg/lysosome_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.lysosome.cutaway",
+    "name": "Lysosome Cutaway",
+    "filename": "lysosome_cutaway_style4.svg",
+    "source_package": "batch009",
+    "source_manifest_file": "svg/lysosome_cutaway_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.membrane.plasma_segment",
+    "name": "Plasma Membrane Segment",
+    "filename": "plasma_membrane_segment_style4.svg",
+    "source_package": "batch007",
+    "source_manifest_file": "svg/plasma_membrane_segment_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.membrane_signaling.cytokine_receptor",
+    "name": "Cytokine Receptor",
+    "filename": "cytokine_receptor_style4.svg",
+    "source_package": "batch008",
+    "source_manifest_file": "svg/cytokine_receptor_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.mitochondrion.basic",
+    "name": "Mitochondrion",
+    "filename": "mitochondrion_basic_style4.svg",
+    "source_package": "batch007",
+    "source_manifest_file": "svg/mitochondrion_basic_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.mitochondrion.basic_manuscript",
+    "name": "Mitochondrion \u2014 Thin",
+    "filename": "mitochondrion_basic_manuscript_style4.svg",
+    "source_package": "batch009",
+    "source_manifest_file": "svg/mitochondrion_basic_manuscript_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.mitochondrion.network",
+    "name": "Mitochondrial Network",
+    "filename": "mitochondrion_network_style4.svg",
+    "source_package": "batch009",
+    "source_manifest_file": "svg/mitochondrion_network_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.mitochondrion.tubular",
+    "name": "Tubular Mitochondrion",
+    "filename": "mitochondrion_tubular_style4.svg",
+    "source_package": "batch009",
+    "source_manifest_file": "svg/mitochondrion_tubular_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.model.bacterium_rod",
+    "name": "Rod-Shaped Bacterium",
+    "filename": "rod_bacterium_model_style4.svg",
+    "source_package": "batch009",
+    "source_manifest_file": "svg/rod_bacterium_model_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.model.cell_spheroid_cluster",
+    "name": "Cell Spheroid Cluster",
+    "filename": "cell_spheroid_cluster_style4.svg",
+    "source_package": "batch008",
+    "source_manifest_file": "svg/cell_spheroid_cluster_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.model.fruit_fly",
+    "name": "Fruit Fly Model",
+    "filename": "fruit_fly_model_style4.svg",
+    "source_package": "batch009",
+    "source_manifest_file": "svg/fruit_fly_model_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.model.mouse_manuscript",
+    "name": "Mouse Model \u2014 Manuscript Line",
+    "filename": "mouse_model_manuscript_style4.svg",
+    "source_package": "batch008",
+    "source_manifest_file": "svg/mouse_model_manuscript_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.model.mouse_simple",
+    "name": "Mouse Model",
+    "filename": "mouse_model_style4.svg",
+    "source_package": "batch008",
+    "source_manifest_file": "svg/mouse_model_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.model.nematode",
+    "name": "Nematode Model",
+    "filename": "nematode_model_style4.svg",
+    "source_package": "batch009",
+    "source_manifest_file": "svg/nematode_model_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.model.tumor_glia_coculture",
+    "name": "Tumor-Glia Co-Culture",
+    "filename": "tumor_glia_coculture_style4.svg",
+    "source_package": "batch008",
+    "source_manifest_file": "svg/tumor_glia_coculture_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.model.yeast_budding",
+    "name": "Budding Yeast Model",
+    "filename": "budding_yeast_model_style4.svg",
+    "source_package": "batch009",
+    "source_manifest_file": "svg/budding_yeast_model_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.model.zebrafish",
+    "name": "Zebrafish Model",
+    "filename": "zebrafish_model_style4.svg",
+    "source_package": "batch009",
+    "source_manifest_file": "svg/zebrafish_model_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.mrna.transcript",
+    "name": "mRNA Transcript",
+    "filename": "mrna_transcript_style4.svg",
+    "source_package": "batch007",
+    "source_manifest_file": "svg/mrna_transcript_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.nucleic_acid.crispr_cas9",
+    "name": "CRISPR Cas9 Complex",
+    "filename": "crispr_cas9_complex_style4.svg",
+    "source_package": "batch008",
+    "source_manifest_file": "svg/crispr_cas9_complex_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.nucleic_acid.plasmid_vector",
+    "name": "Plasmid Vector",
+    "filename": "plasmid_vector_style4.svg",
+    "source_package": "batch008",
+    "source_manifest_file": "svg/plasmid_vector_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.nucleic_acid.plasmid_vector_manuscript",
+    "name": "Plasmid Vector \u2014 Manuscript Line",
+    "filename": "plasmid_vector_manuscript_style4.svg",
+    "source_package": "batch008",
+    "source_manifest_file": "svg/plasmid_vector_manuscript_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.nucleus.envelope_detail",
+    "name": "Nuclear Envelope and Pore",
+    "filename": "nucleus_envelope_detail_style4.svg",
+    "source_package": "batch009",
+    "source_manifest_file": "svg/nucleus_envelope_detail_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.nucleus.oval_cutaway",
+    "name": "Nucleus \u2014 Oval Cutaway",
+    "filename": "nucleus_oval_cutaway_style4.svg",
+    "source_package": "batch009",
+    "source_manifest_file": "svg/nucleus_oval_cutaway_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.nucleus.round",
+    "name": "Round Nucleus",
+    "filename": "nucleus_round_style4.svg",
+    "source_package": "batch007",
+    "source_manifest_file": "svg/nucleus_round_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.organelle.autophagosome",
+    "name": "Autophagosome",
+    "filename": "autophagosome_style4.svg",
+    "source_package": "batch008",
+    "source_manifest_file": "svg/autophagosome_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.organelle.lipid_droplet",
+    "name": "Lipid Droplet",
+    "filename": "lipid_droplet_style4.svg",
+    "source_package": "batch008",
+    "source_manifest_file": "svg/lipid_droplet_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.pathway.feedback_loop",
+    "name": "Feedback Loop",
+    "filename": "feedback_loop_style4.svg",
+    "source_package": "batch008",
+    "source_manifest_file": "svg/feedback_loop_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.pathway.metabolic_cycle",
+    "name": "Metabolic Cycle",
+    "filename": "metabolic_cycle_style4.svg",
+    "source_package": "batch008",
+    "source_manifest_file": "svg/metabolic_cycle_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.peroxisome.basic",
+    "name": "Peroxisome",
+    "filename": "peroxisome_style4.svg",
+    "source_package": "batch007",
+    "source_manifest_file": "svg/peroxisome_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.protein.enzyme",
+    "name": "Catalytic Enzyme",
+    "filename": "catalytic_enzyme_style4.svg",
+    "source_package": "batch007",
+    "source_manifest_file": "svg/catalytic_enzyme_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.protein.heterotetramer",
+    "name": "Protein Heterotetramer \u2014 2 + 2",
+    "filename": "protein_heterotetramer_style4.svg",
+    "source_package": "batch009",
+    "source_manifest_file": "svg/protein_heterotetramer_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.protein.homotrimer",
+    "name": "Protein Homotrimer",
+    "filename": "protein_homotrimer_style4.svg",
+    "source_package": "batch009",
+    "source_manifest_file": "svg/protein_homotrimer_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.protein.kinase",
+    "name": "Generic Kinase",
+    "filename": "protein_kinase_style4.svg",
+    "source_package": "batch007",
+    "source_manifest_file": "svg/protein_kinase_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.protein.multimer_complex",
+    "name": "Protein Multimer Complex",
+    "filename": "protein_multimer_complex_style4.svg",
+    "source_package": "batch008",
+    "source_manifest_file": "svg/protein_multimer_complex_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.protein.transcription_factor",
+    "name": "Transcription Factor",
+    "filename": "transcription_factor_style4.svg",
+    "source_package": "batch007",
+    "source_manifest_file": "svg/transcription_factor_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.receptor.extracellular_domain",
+    "name": "Receptor Extracellular Domain",
+    "filename": "receptor_extracellular_domain_style4.svg",
+    "source_package": "batch009",
+    "source_manifest_file": "svg/receptor_extracellular_domain_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.receptor.gpcr_like",
+    "name": "GPCR-Like Receptor",
+    "filename": "gpcr_like_receptor_style4.svg",
+    "source_package": "batch007",
+    "source_manifest_file": "svg/gpcr_like_receptor_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.receptor.membrane",
+    "name": "Membrane Receptor",
+    "filename": "membrane_receptor_style4.svg",
+    "source_package": "batch007",
+    "source_manifest_file": "svg/membrane_receptor_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.receptor.rtk_like",
+    "name": "RTK-Like Receptor",
+    "filename": "rtk_like_receptor_style4.svg",
+    "source_package": "batch007",
+    "source_manifest_file": "svg/rtk_like_receptor_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.receptor.single_pass_unliganded",
+    "name": "Unliganded Single-pass Receptor",
+    "filename": "receptor_single_pass_unliganded_style4.svg",
+    "source_package": "batch009",
+    "source_manifest_file": "svg/receptor_single_pass_unliganded_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.rna.sirna",
+    "name": "siRNA Duplex",
+    "filename": "sirna_duplex_style4.svg",
+    "source_package": "batch007",
+    "source_manifest_file": "svg/sirna_duplex_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.rna.strand",
+    "name": "RNA Strand",
+    "filename": "rna_strand_style4.svg",
+    "source_package": "batch007",
+    "source_manifest_file": "svg/rna_strand_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.rna.strand_linear",
+    "name": "RNA Strand \u2014 Linear",
+    "filename": "rna_strand_linear_style4.svg",
+    "source_package": "batch009",
+    "source_manifest_file": "svg/rna_strand_linear_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.sample.blood_drop",
+    "name": "Blood Drop",
+    "filename": "blood_drop_style4.svg",
+    "source_package": "batch009",
+    "source_manifest_file": "svg/blood_drop_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.sample.blood_tube",
+    "name": "Blood Sample Tube",
+    "filename": "blood_sample_tube_style4.svg",
+    "source_package": "batch009",
+    "source_manifest_file": "svg/blood_sample_tube_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.sample.cell_pellet_tube",
+    "name": "Cell Pellet Tube",
+    "filename": "cell_pellet_tube_style4.svg",
+    "source_package": "batch009",
+    "source_manifest_file": "svg/cell_pellet_tube_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.sample.cryovial",
+    "name": "Cryovial",
+    "filename": "cryovial_style4.svg",
+    "source_package": "batch009",
+    "source_manifest_file": "svg/cryovial_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.sample.tissue_biopsy_core",
+    "name": "Tissue Biopsy Core",
+    "filename": "tissue_biopsy_core_style4.svg",
+    "source_package": "batch009",
+    "source_manifest_file": "svg/tissue_biopsy_core_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.sample.tissue_section_slide",
+    "name": "Tissue Section Slide",
+    "filename": "tissue_section_slide_style4.svg",
+    "source_package": "batch009",
+    "source_manifest_file": "svg/tissue_section_slide_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.symbol.activation_arrow",
+    "name": "Activation Arrow",
+    "filename": "arrow_activation_style4.svg",
+    "source_package": "batch007",
+    "source_manifest_file": "svg/arrow_activation_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.symbol.bidirectional_arrow",
+    "name": "Bidirectional Arrow",
+    "filename": "bidirectional_arrow_style4.svg",
+    "source_package": "batch007",
+    "source_manifest_file": "svg/bidirectional_arrow_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.symbol.cleavage",
+    "name": "Cleavage Symbol",
+    "filename": "cleavage_symbol_style4.svg",
+    "source_package": "batch008",
+    "source_manifest_file": "svg/cleavage_symbol_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.symbol.dashed_arrow",
+    "name": "Dashed Arrow",
+    "filename": "dashed_arrow_style4.svg",
+    "source_package": "batch007",
+    "source_manifest_file": "svg/dashed_arrow_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.symbol.drug_inhibition_badge",
+    "name": "Drug Inhibition Cue",
+    "filename": "drug_inhibition_badge_style4.svg",
+    "source_package": "batch008",
+    "source_manifest_file": "svg/drug_inhibition_badge_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.symbol.inhibition_bar",
+    "name": "Inhibition Bar",
+    "filename": "inhibition_bar_style4.svg",
+    "source_package": "batch007",
+    "source_manifest_file": "svg/inhibition_bar_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.symbol.interaction_cue",
+    "name": "Small-Molecule Interaction Cue",
+    "filename": "small_molecule_interaction_cue_style4.svg",
+    "source_package": "batch008",
+    "source_manifest_file": "svg/small_molecule_interaction_cue_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.symbol.phosphorylation",
+    "name": "Phosphorylation Symbol",
+    "filename": "phosphorylation_symbol_style4.svg",
+    "source_package": "batch008",
+    "source_manifest_file": "svg/phosphorylation_symbol_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.symbol.secretion_arrow",
+    "name": "Secretion Arrow",
+    "filename": "secretion_arrow_style4.svg",
+    "source_package": "batch007",
+    "source_manifest_file": "svg/secretion_arrow_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.symbol.transcription_flow",
+    "name": "Transcription Flow Arrow",
+    "filename": "transcription_flow_arrow_style4.svg",
+    "source_package": "batch007",
+    "source_manifest_file": "svg/transcription_flow_arrow_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.symbol.translocation_arrow",
+    "name": "Translocation Arrow",
+    "filename": "translocation_arrow_style4.svg",
+    "source_package": "batch008",
+    "source_manifest_file": "svg/translocation_arrow_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.transporter.basic",
+    "name": "Membrane Transporter",
+    "filename": "membrane_transporter_style4.svg",
+    "source_package": "batch007",
+    "source_manifest_file": "svg/membrane_transporter_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "core.vesicle",
+    "name": "Vesicle",
+    "filename": "vesicle_style4.svg",
+    "source_package": "batch007",
+    "source_manifest_file": "svg/vesicle_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "culture.assay_workflow.cell_exclusion_gap",
+    "name": "Cell-exclusion Zone Assay",
+    "filename": "cell_exclusion_gap_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "cell_exclusion_gap_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "culture.assay_workflow.clonogenic_colony_formation",
+    "name": "Adherent Clonogenic Colonies",
+    "filename": "clonogenic_colony_formation_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "clonogenic_colony_formation_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "culture.assay_workflow.collagen_gel_contraction",
+    "name": "Cell-laden Collagen-gel Culture",
+    "filename": "collagen_gel_contraction_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "collagen_gel_contraction_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "culture.assay_workflow.collagen_gel_contraction.anchored",
+    "name": "Cell-laden Collagen-gel Culture",
+    "filename": "collagen_gel_contraction_anchored_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "collagen_gel_contraction_anchored_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "culture.assay_workflow.epithelial_scratch_wound",
+    "name": "Epithelial Scratch Assay",
+    "filename": "epithelial_scratch_wound_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "epithelial_scratch_wound_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "culture.assay_workflow.organoid_luminal_microinjection",
+    "name": "Organoid Luminal Microinjection",
+    "filename": "organoid_luminal_microinjection_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "organoid_luminal_microinjection_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "culture.assay_workflow.soft_agar_colony",
+    "name": "Soft-agar Colony Assay",
+    "filename": "soft_agar_colony_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "soft_agar_colony_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "culture.assay_workflow.spheroid_matrix_outgrowth",
+    "name": "Spheroid Matrix-outgrowth Assay",
+    "filename": "spheroid_matrix_outgrowth_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "spheroid_matrix_outgrowth_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "culture.model_system.air_liquid_interface_culture",
+    "name": "Air\u2013Liquid Interface Culture",
+    "filename": "air_liquid_interface_culture_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "air_liquid_interface_culture_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "culture.model_system.hanging_drop_spheroid",
+    "name": "Hanging-drop Spheroid Culture",
+    "filename": "hanging_drop_spheroid_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "hanging_drop_spheroid_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "culture.model_system.hanging_drop_spheroid.array",
+    "name": "Hanging-drop Spheroid Culture",
+    "filename": "hanging_drop_spheroid_array_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "hanging_drop_spheroid_array_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "culture.model_system.hydrogel_embedded_organoid",
+    "name": "Hydrogel-embedded Organoid",
+    "filename": "hydrogel_embedded_organoid_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "hydrogel_embedded_organoid_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "culture.model_system.hydrogel_embedded_organoid.budding",
+    "name": "Hydrogel-embedded Organoid",
+    "filename": "hydrogel_embedded_organoid_budding_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "hydrogel_embedded_organoid_budding_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "culture.model_system.hydrogel_embedded_spheroid",
+    "name": "Hydrogel-embedded Spheroid",
+    "filename": "hydrogel_embedded_spheroid_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "hydrogel_embedded_spheroid_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "culture.model_system.microcarrier_cell_culture",
+    "name": "Microcarrier Cell Culture",
+    "filename": "microcarrier_cell_culture_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "microcarrier_cell_culture_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "culture.model_system.microwell_spheroid_aggregation",
+    "name": "Microwell Spheroid Aggregation",
+    "filename": "microwell_spheroid_aggregation_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "microwell_spheroid_aggregation_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "culture.model_system.microwell_spheroid_aggregation.array",
+    "name": "Microwell Spheroid Aggregation",
+    "filename": "microwell_spheroid_aggregation_array_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "microwell_spheroid_aggregation_array_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "culture.model_system.organoid_stromal_coculture",
+    "name": "Organoid\u2013Stromal Co-culture",
+    "filename": "organoid_stromal_coculture_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "organoid_stromal_coculture_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "culture.model_system.perfusable_microvascular_network",
+    "name": "Perfusable Microvascular Culture",
+    "filename": "perfusable_microvascular_network_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "perfusable_microvascular_network_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "culture.model_system.perfused_tissue_chip",
+    "name": "Perfused Cell\u2013Matrix Culture Chip",
+    "filename": "perfused_tissue_chip_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "perfused_tissue_chip_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "culture.model_system.perfused_tissue_chip.dual_channel",
+    "name": "Perfused Cell\u2013Matrix Culture Chip",
+    "filename": "perfused_tissue_chip_dual_channel_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "perfused_tissue_chip_dual_channel_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "culture.model_system.precision_cut_tissue_slice_culture",
+    "name": "Tissue-slice Culture",
+    "filename": "precision_cut_tissue_slice_culture_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "precision_cut_tissue_slice_culture_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "culture.model_system.precision_cut_tissue_slice_culture.interface",
+    "name": "Tissue-slice Culture",
+    "filename": "precision_cut_tissue_slice_culture_interface_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "precision_cut_tissue_slice_culture_interface_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "culture.model_system.suspension_spheroid_culture",
+    "name": "Spheroid Suspension Culture",
+    "filename": "suspension_spheroid_culture_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "suspension_spheroid_culture_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "exp.assay_workflow.cell_viability_readout",
+    "name": "Cell Viability Readout",
+    "filename": "cell_viability_readout_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "cell_viability_readout_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.assay_workflow.dose_response_curve",
+    "name": "Dose\u2013Response Curve",
+    "filename": "dose_response_curve_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "dose_response_curve_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.assay_workflow.elisa_assay",
+    "name": "ELISA Assay",
+    "filename": "elisa_assay_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "elisa_assay_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.assay_workflow.flow_cytometry_readout.dot_plot",
+    "name": "Flow Cytometry Readout \u2014 Dot Plot",
+    "filename": "flow_cytometry_readout_dot_plot_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "flow_cytometry_readout_dot_plot_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.assay_workflow.flow_cytometry_readout.histogram",
+    "name": "Flow Cytometry Readout \u2014 Histogram",
+    "filename": "flow_cytometry_readout_histogram_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "flow_cytometry_readout_histogram_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.assay_workflow.luminescence_readout",
+    "name": "Luminescence Readout",
+    "filename": "luminescence_readout_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "luminescence_readout_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.assay_workflow.microscopy_field.brightfield",
+    "name": "Microscopy Field \u2014 Brightfield",
+    "filename": "microscopy_field_brightfield_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "microscopy_field_brightfield_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.assay_workflow.microscopy_field.fluorescence",
+    "name": "Microscopy Field \u2014 Fluorescence",
+    "filename": "microscopy_field_fluorescence_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "microscopy_field_fluorescence_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.assay_workflow.pcr_gel_result",
+    "name": "PCR Gel Result",
+    "filename": "pcr_gel_result_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "pcr_gel_result_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.assay_workflow.qpcr_curve",
+    "name": "qPCR Amplification Curve",
+    "filename": "qpcr_curve_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "qpcr_curve_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.assay_workflow.sequencing_reads.paired_end",
+    "name": "Sequencing Reads \u2014 Paired End",
+    "filename": "sequencing_reads_paired_end_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "sequencing_reads_paired_end_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.assay_workflow.sequencing_reads.single_end",
+    "name": "Sequencing Reads \u2014 Single End",
+    "filename": "sequencing_reads_single_end_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "sequencing_reads_single_end_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.assay_workflow.western_blot_result",
+    "name": "Western Blot Result",
+    "filename": "western_blot_result_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "western_blot_result_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.cell.adipocyte",
+    "name": "Adipocyte",
+    "filename": "adipocyte_style4.svg",
+    "source_package": "batch010",
+    "source_manifest_file": "svg/adipocyte_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.cell.basophil",
+    "name": "Basophil",
+    "filename": "basophil_style4.svg",
+    "source_package": "batch010",
+    "source_manifest_file": "svg/basophil_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.cell.cancer_cell.round",
+    "name": "Cancer Cell \u2014 Round",
+    "filename": "cancer_cell_round_style4.svg",
+    "source_package": "batch010",
+    "source_manifest_file": "svg/cancer_cell_round_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.cell.cancer_cell.spindle",
+    "name": "Cancer Cell \u2014 Spindle",
+    "filename": "cancer_cell_spindle_style4.svg",
+    "source_package": "batch010",
+    "source_manifest_file": "svg/cancer_cell_spindle_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.cell.ciliated_epithelial",
+    "name": "Ciliated Epithelial Cell",
+    "filename": "ciliated_epithelial_style4.svg",
+    "source_package": "batch010",
+    "source_manifest_file": "svg/ciliated_epithelial_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.cell.endothelial",
+    "name": "Endothelial Cell",
+    "filename": "endothelial_style4.svg",
+    "source_package": "batch010",
+    "source_manifest_file": "svg/endothelial_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.cell.eosinophil",
+    "name": "Eosinophil",
+    "filename": "eosinophil_style4.svg",
+    "source_package": "batch010",
+    "source_manifest_file": "svg/eosinophil_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.cell.erythrocyte",
+    "name": "Erythrocyte",
+    "filename": "erythrocyte_style4.svg",
+    "source_package": "batch010",
+    "source_manifest_file": "svg/erythrocyte_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.cell.fibroblast",
+    "name": "Fibroblast",
+    "filename": "fibroblast_style4.svg",
+    "source_package": "batch010",
+    "source_manifest_file": "svg/fibroblast_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.cell.goblet_secretory",
+    "name": "Goblet Secretory Cell",
+    "filename": "goblet_secretory_style4.svg",
+    "source_package": "batch010",
+    "source_manifest_file": "svg/goblet_secretory_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.cell.mast_cell",
+    "name": "Mast Cell",
+    "filename": "mast_cell_style4.svg",
+    "source_package": "batch010",
+    "source_manifest_file": "svg/mast_cell_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.cell.microglia_like",
+    "name": "Microglia-like Cell",
+    "filename": "microglia_like_style4.svg",
+    "source_package": "batch010",
+    "source_manifest_file": "svg/microglia_like_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.cell.migrating_cancer",
+    "name": "Migrating Cancer Cell",
+    "filename": "migrating_cancer_style4.svg",
+    "source_package": "batch010",
+    "source_manifest_file": "svg/migrating_cancer_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.cell.monocyte",
+    "name": "Monocyte",
+    "filename": "monocyte_style4.svg",
+    "source_package": "batch010",
+    "source_manifest_file": "svg/monocyte_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.cell.oligodendrocyte_like",
+    "name": "Oligodendrocyte-like Cell",
+    "filename": "oligodendrocyte_like_style4.svg",
+    "source_package": "batch010",
+    "source_manifest_file": "svg/oligodendrocyte_like_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.cell.plasma_cell",
+    "name": "Plasma Cell",
+    "filename": "plasma_cell_style4.svg",
+    "source_package": "batch010",
+    "source_manifest_file": "svg/plasma_cell_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.cell.platelet",
+    "name": "Platelet",
+    "filename": "platelet_style4.svg",
+    "source_package": "batch010",
+    "source_manifest_file": "svg/platelet_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.cell.quiescent",
+    "name": "Quiescent Cell",
+    "filename": "quiescent_style4.svg",
+    "source_package": "batch010",
+    "source_manifest_file": "svg/quiescent_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.cell.schwann_myelin",
+    "name": "Schwann Cell and Myelin",
+    "filename": "schwann_myelin_style4.svg",
+    "source_package": "batch010",
+    "source_manifest_file": "svg/schwann_myelin_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.cell.senescent",
+    "name": "Senescent Cell",
+    "filename": "senescent_style4.svg",
+    "source_package": "batch010",
+    "source_manifest_file": "svg/senescent_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.cell.smooth_muscle",
+    "name": "Smooth Muscle Cell",
+    "filename": "smooth_muscle_style4.svg",
+    "source_package": "batch010",
+    "source_manifest_file": "svg/smooth_muscle_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.cell.stem_progenitor",
+    "name": "Stem or Progenitor Cell",
+    "filename": "stem_progenitor_style4.svg",
+    "source_package": "batch010",
+    "source_manifest_file": "svg/stem_progenitor_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.cell.tumor_cell_cluster",
+    "name": "Tumor Cell Cluster",
+    "filename": "tumor_cell_cluster_style4.svg",
+    "source_package": "batch010",
+    "source_manifest_file": "svg/tumor_cell_cluster_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.clinical_sample.saliva_sample",
+    "name": "Saliva Sample",
+    "filename": "saliva_sample_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "saliva_sample_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.clinical_sample.urine_sample",
+    "name": "Urine Sample",
+    "filename": "urine_sample_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "urine_sample_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.lab_equipment.biosafety_cabinet",
+    "name": "Biosafety Cabinet",
+    "filename": "biosafety_cabinet_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "biosafety_cabinet_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.lab_equipment.blot_imager",
+    "name": "Blot Imager",
+    "filename": "blot_imager_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "blot_imager_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.lab_equipment.blot_transfer",
+    "name": "Blot Transfer Unit",
+    "filename": "blot_transfer_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "blot_transfer_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.lab_equipment.cell_counter",
+    "name": "Automated Cell Counter",
+    "filename": "cell_counter_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "cell_counter_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.lab_equipment.centrifuge",
+    "name": "Benchtop Centrifuge",
+    "filename": "centrifuge_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "centrifuge_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.lab_equipment.co2_incubator",
+    "name": "CO\u2082 Incubator",
+    "filename": "co2_incubator_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "co2_incubator_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.lab_equipment.confocal_microscope",
+    "name": "Confocal Microscope",
+    "filename": "confocal_microscope_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "confocal_microscope_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.lab_equipment.cryostat",
+    "name": "Cryostat",
+    "filename": "cryostat_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "cryostat_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.lab_equipment.cuvette",
+    "name": "Spectrophotometer Cuvette",
+    "filename": "cuvette_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "cuvette_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.lab_equipment.flow_cytometer",
+    "name": "Flow Cytometer",
+    "filename": "flow_cytometer_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "flow_cytometer_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.lab_equipment.gel_electrophoresis",
+    "name": "Gel Electrophoresis Tank",
+    "filename": "gel_electrophoresis_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "gel_electrophoresis_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.lab_equipment.liquid_handler",
+    "name": "Automated Liquid Handler",
+    "filename": "liquid_handler_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "liquid_handler_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.lab_equipment.orbital_shaker",
+    "name": "Orbital Shaker",
+    "filename": "orbital_shaker_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "orbital_shaker_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.lab_equipment.qpcr_instrument",
+    "name": "qPCR Instrument",
+    "filename": "qpcr_instrument_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "qpcr_instrument_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.lab_equipment.reagent_bottle",
+    "name": "Reagent Bottle",
+    "filename": "reagent_bottle_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "reagent_bottle_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.lab_equipment.sequencer",
+    "name": "Sequencing Instrument",
+    "filename": "sequencer_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "sequencer_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.lab_equipment.thermal_cycler",
+    "name": "Thermal Cycler",
+    "filename": "thermal_cycler_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "thermal_cycler_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.membrane_signaling.bcr",
+    "name": "B-cell Receptor",
+    "filename": "bcr_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "bcr_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.membrane_signaling.death_receptor",
+    "name": "Death Receptor",
+    "filename": "death_receptor_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "death_receptor_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.membrane_signaling.endocytosis_pit",
+    "name": "Clathrin-coated Endocytic Pit",
+    "filename": "endocytosis_pit_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "endocytosis_pit_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.membrane_signaling.exocytosis_fusion",
+    "name": "Exocytosis Fusion",
+    "filename": "exocytosis_fusion_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "exocytosis_fusion_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.membrane_signaling.integrin",
+    "name": "Integrin Receptor",
+    "filename": "integrin_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "integrin_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.membrane_signaling.notch_like",
+    "name": "Notch-like Receptor",
+    "filename": "notch_like_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "notch_like_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.membrane_signaling.nuclear_receptor",
+    "name": "Nuclear Receptor",
+    "filename": "nuclear_receptor_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "nuclear_receptor_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.membrane_signaling.tcr",
+    "name": "T-cell Receptor",
+    "filename": "tcr_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "tcr_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.model_system.coculture_dish",
+    "name": "Co-culture Dish",
+    "filename": "coculture_dish_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "coculture_dish_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.model_system.epithelial_monolayer",
+    "name": "Epithelial Monolayer",
+    "filename": "epithelial_monolayer_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "epithelial_monolayer_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.model_system.organoid_lumen",
+    "name": "Lumen-forming Organoid",
+    "filename": "organoid_lumen_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "organoid_lumen_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.model_system.tissue_explant",
+    "name": "Tissue Explant",
+    "filename": "tissue_explant_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "tissue_explant_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.model_system.transwell_culture.coculture",
+    "name": "Transwell Culture \u2014 Coculture",
+    "filename": "transwell_culture_coculture_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "transwell_culture_coculture_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.model_system.transwell_culture.monoculture",
+    "name": "Transwell Culture \u2014 Monoculture",
+    "filename": "transwell_culture_monoculture_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "transwell_culture_monoculture_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.model_system.xenograft_mouse",
+    "name": "Mouse Xenograft Model",
+    "filename": "xenograft_mouse_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "xenograft_mouse_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.nucleic_acid.cdna_library",
+    "name": "cDNA Library",
+    "filename": "cdna_library_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "cdna_library_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.nucleic_acid.chromatin_state.condensed",
+    "name": "Chromatin State \u2014 Condensed",
+    "filename": "chromatin_state_condensed_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "chromatin_state_condensed_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.nucleic_acid.chromatin_state.open",
+    "name": "Chromatin State \u2014 Open",
+    "filename": "chromatin_state_open_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "chromatin_state_open_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.nucleic_acid.enhancer_promoter",
+    "name": "Enhancer\u2013Promoter Interaction",
+    "filename": "enhancer_promoter_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "enhancer_promoter_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.nucleic_acid.mirna",
+    "name": "MicroRNA",
+    "filename": "mirna_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "mirna_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.nucleic_acid.pcr_amplicon",
+    "name": "PCR Amplicon",
+    "filename": "pcr_amplicon_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "pcr_amplicon_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.nucleic_acid.pre_mrna",
+    "name": "Pre-mRNA",
+    "filename": "pre_mrna_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "pre_mrna_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.nucleic_acid.replication_fork",
+    "name": "DNA Replication Fork",
+    "filename": "replication_fork_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "replication_fork_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.nucleic_acid.splicing",
+    "name": "RNA Splicing",
+    "filename": "splicing_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "splicing_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.nucleic_acid.translation",
+    "name": "Translation",
+    "filename": "translation_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "translation_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.nucleic_acid.trna",
+    "name": "Transfer RNA",
+    "filename": "trna_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "trna_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.organelle.actin_cytoskeleton.branched",
+    "name": "Actin Cytoskeleton \u2014 Branched",
+    "filename": "actin_cytoskeleton_branched_style4.svg",
+    "source_package": "batch010",
+    "source_manifest_file": "svg/actin_cytoskeleton_branched_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.organelle.actin_cytoskeleton.bundle",
+    "name": "Actin Cytoskeleton \u2014 Bundle",
+    "filename": "actin_cytoskeleton_bundle_style4.svg",
+    "source_package": "batch010",
+    "source_manifest_file": "svg/actin_cytoskeleton_bundle_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.organelle.centriole_pair",
+    "name": "Centriole Pair",
+    "filename": "centriole_pair_style4.svg",
+    "source_package": "batch010",
+    "source_manifest_file": "svg/centriole_pair_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.organelle.centrosome_spindle",
+    "name": "Centrosome and Mitotic Spindle",
+    "filename": "centrosome_spindle_style4.svg",
+    "source_package": "batch010",
+    "source_manifest_file": "svg/centrosome_spindle_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.organelle.intermediate_filaments",
+    "name": "Intermediate Filaments",
+    "filename": "intermediate_filaments_style4.svg",
+    "source_package": "batch010",
+    "source_manifest_file": "svg/intermediate_filaments_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.organelle.microtubule_network",
+    "name": "Microtubule Network",
+    "filename": "microtubule_network_style4.svg",
+    "source_package": "batch010",
+    "source_manifest_file": "svg/microtubule_network_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.organelle.nuclear_pore",
+    "name": "Nuclear Pore Complex",
+    "filename": "nuclear_pore_style4.svg",
+    "source_package": "batch010",
+    "source_manifest_file": "svg/nuclear_pore_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.organelle.nucleosome",
+    "name": "Nucleosome",
+    "filename": "nucleosome_style4.svg",
+    "source_package": "batch010",
+    "source_manifest_file": "svg/nucleosome_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.organelle.proteasome",
+    "name": "Proteasome",
+    "filename": "proteasome_style4.svg",
+    "source_package": "batch010",
+    "source_manifest_file": "svg/proteasome_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.organelle.ribosome",
+    "name": "Ribosome",
+    "filename": "ribosome_style4.svg",
+    "source_package": "batch010",
+    "source_manifest_file": "svg/ribosome_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.organelle.secretory_granule",
+    "name": "Secretory Granule",
+    "filename": "secretory_granule_style4.svg",
+    "source_package": "batch010",
+    "source_manifest_file": "svg/secretory_granule_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.pathway_symbol.binding_pair",
+    "name": "Binding Pair",
+    "filename": "binding_pair_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "binding_pair_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.pathway_symbol.conversion_arrow",
+    "name": "Conversion Arrow",
+    "filename": "conversion_arrow_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "conversion_arrow_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.pathway_symbol.degradation",
+    "name": "Degradation",
+    "filename": "degradation_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "degradation_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.pathway_symbol.dephosphorylation",
+    "name": "Dephosphorylation",
+    "filename": "dephosphorylation_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "dephosphorylation_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.pathway_symbol.dissociation",
+    "name": "Dissociation",
+    "filename": "dissociation_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "dissociation_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.pathway_symbol.localization_target",
+    "name": "Localization Target",
+    "filename": "localization_target_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "localization_target_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.pathway_symbol.time_course",
+    "name": "Time Course",
+    "filename": "time_course_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "time_course_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.pathway_symbol.ubiquitination",
+    "name": "Ubiquitination",
+    "filename": "ubiquitination_style4.svg",
+    "source_package": "batch011",
+    "source_manifest_file": "ubiquitination_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.protein.adaptor",
+    "name": "Adaptor Protein",
+    "filename": "adaptor_style4.svg",
+    "source_package": "batch010",
+    "source_manifest_file": "svg/adaptor_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.protein.chemokine",
+    "name": "Chemokine",
+    "filename": "chemokine_style4.svg",
+    "source_package": "batch010",
+    "source_manifest_file": "svg/chemokine_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.protein.dimer.heterodimer",
+    "name": "Protein Dimer \u2014 Heterodimer",
+    "filename": "dimer_heterodimer_style4.svg",
+    "source_package": "batch010",
+    "source_manifest_file": "svg/dimer_heterodimer_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.protein.dimer.homodimer",
+    "name": "Protein Dimer \u2014 Homodimer",
+    "filename": "dimer_homodimer_style4.svg",
+    "source_package": "batch010",
+    "source_manifest_file": "svg/dimer_homodimer_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.protein.growth_factor",
+    "name": "Growth Factor",
+    "filename": "growth_factor_style4.svg",
+    "source_package": "batch010",
+    "source_manifest_file": "svg/growth_factor_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.protein.monomer",
+    "name": "Protein Monomer",
+    "filename": "monomer_style4.svg",
+    "source_package": "batch010",
+    "source_manifest_file": "svg/monomer_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.protein.phosphatase",
+    "name": "Protein Phosphatase",
+    "filename": "phosphatase_style4.svg",
+    "source_package": "batch010",
+    "source_manifest_file": "svg/phosphatase_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.protein.protease",
+    "name": "Protease",
+    "filename": "protease_style4.svg",
+    "source_package": "batch010",
+    "source_manifest_file": "svg/protease_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.protein.scaffold",
+    "name": "Scaffold Protein",
+    "filename": "scaffold_style4.svg",
+    "source_package": "batch010",
+    "source_manifest_file": "svg/scaffold_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.protein.transcription_complex",
+    "name": "Transcription Complex",
+    "filename": "transcription_complex_style4.svg",
+    "source_package": "batch010",
+    "source_manifest_file": "svg/transcription_complex_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "exp.protein.ubiquitin_chain",
+    "name": "Polyubiquitin Chain",
+    "filename": "ubiquitin_chain_style4.svg",
+    "source_package": "batch010",
+    "source_manifest_file": "svg/ubiquitin_chain_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "immuno.assay.immunohistochemistry_tissue_field",
+    "name": "Immunohistochemistry Tissue Field",
+    "filename": "immunohistochemistry_tissue_field_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "immunohistochemistry_tissue_field_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.assay.multiplex_immunofluorescence_tissue_field",
+    "name": "Multiplex Immunofluorescence Tissue Field",
+    "filename": "multiplex_immunofluorescence_tissue_field_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "multiplex_immunofluorescence_tissue_field_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.assay.tumor_volume_time_course",
+    "name": "Tumor-volume Time Course",
+    "filename": "tumor_volume_time_course_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "tumor_volume_time_course_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.cell.activated_t_cell",
+    "name": "Activated T Cell",
+    "filename": "activated_t_cell_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "activated_t_cell_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.cell.car_t_cell",
+    "name": "Chimeric Antigen Receptor T Cell",
+    "filename": "car_t_cell_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "car_t_cell_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.cell.cd4_helper_t_cell",
+    "name": "CD4+ Helper T Cell",
+    "filename": "cd4_helper_t_cell_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "cd4_helper_t_cell_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.cell.cd8_cytotoxic_t_cell",
+    "name": "CD8+ Cytotoxic T Cell",
+    "filename": "cd8_cytotoxic_t_cell_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "cd8_cytotoxic_t_cell_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.cell.circulating_tumor_cell",
+    "name": "Circulating Tumor Cell",
+    "filename": "circulating_tumor_cell_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "circulating_tumor_cell_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.cell.exhausted_t_cell",
+    "name": "Exhausted T Cell",
+    "filename": "exhausted_t_cell_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "exhausted_t_cell_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.cell.immature_dendritic_cell",
+    "name": "Immature Dendritic Cell",
+    "filename": "immature_dendritic_cell_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "immature_dendritic_cell_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.cell.lymphatic_endothelial_cell",
+    "name": "Lymphatic Endothelial Cell",
+    "filename": "lymphatic_endothelial_cell_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "lymphatic_endothelial_cell_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.cell.mature_dendritic_cell",
+    "name": "Mature Dendritic Cell",
+    "filename": "mature_dendritic_cell_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "mature_dendritic_cell_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.cell.memory_t_cell",
+    "name": "Memory T Cell",
+    "filename": "memory_t_cell_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "memory_t_cell_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.cell.monocytic_mdsc",
+    "name": "Monocytic Myeloid-derived Suppressor Cell",
+    "filename": "monocytic_mdsc_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "monocytic_mdsc_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.cell.naive_t_cell",
+    "name": "Na\u00efve T Cell",
+    "filename": "naive_t_cell_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "naive_t_cell_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.cell.pericyte",
+    "name": "Pericyte",
+    "filename": "pericyte_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "pericyte_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.cell.polymorphonuclear_mdsc",
+    "name": "Polymorphonuclear Myeloid-derived Suppressor Cell",
+    "filename": "polymorphonuclear_mdsc_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "polymorphonuclear_mdsc_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.cell.regulatory_t_cell",
+    "name": "Regulatory T Cell",
+    "filename": "regulatory_t_cell_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "regulatory_t_cell_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.cell.tumor_associated_macrophage",
+    "name": "Tumor-associated Macrophage",
+    "filename": "tumor_associated_macrophage_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "tumor_associated_macrophage_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.membrane_signaling.b7_costimulatory_ligand",
+    "name": "B7 Costimulatory Ligand",
+    "filename": "b7_costimulatory_ligand_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "b7_costimulatory_ligand_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.membrane_signaling.cd155",
+    "name": "CD155",
+    "filename": "cd155_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "cd155_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.membrane_signaling.cd28_b7_costimulatory_interaction",
+    "name": "CD28\u2013B7 Costimulatory Interaction",
+    "filename": "cd28_b7_costimulatory_interaction_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "cd28_b7_costimulatory_interaction_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.membrane_signaling.cd28_receptor",
+    "name": "CD28 Receptor",
+    "filename": "cd28_receptor_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "cd28_receptor_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.membrane_signaling.cd47_sirpa_checkpoint_interaction",
+    "name": "CD47\u2013SIRP\u03b1 Checkpoint Interaction",
+    "filename": "cd47_sirpa_checkpoint_interaction_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "cd47_sirpa_checkpoint_interaction_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.membrane_signaling.chemokine_receptor",
+    "name": "Chemokine Receptor",
+    "filename": "chemokine_receptor_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "chemokine_receptor_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.membrane_signaling.chimeric_antigen_receptor",
+    "name": "Chimeric Antigen Receptor",
+    "filename": "chimeric_antigen_receptor_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "chimeric_antigen_receptor_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.membrane_signaling.ctla4_b7_checkpoint_interaction",
+    "name": "CTLA-4\u2013B7 Checkpoint Interaction",
+    "filename": "ctla4_b7_checkpoint_interaction_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "ctla4_b7_checkpoint_interaction_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.membrane_signaling.ctla4_receptor",
+    "name": "CTLA-4 Receptor",
+    "filename": "ctla4_receptor_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "ctla4_receptor_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.membrane_signaling.jak_associated_cytokine_receptor",
+    "name": "JAK-associated Cytokine Receptor Complex",
+    "filename": "jak_associated_cytokine_receptor_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "jak_associated_cytokine_receptor_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.membrane_signaling.lag3_mhc2_checkpoint_interaction",
+    "name": "LAG-3\u2013MHC Class II Checkpoint Interaction",
+    "filename": "lag3_mhc2_checkpoint_interaction_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "lag3_mhc2_checkpoint_interaction_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.membrane_signaling.lag3_receptor",
+    "name": "LAG-3 Receptor",
+    "filename": "lag3_receptor_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "lag3_receptor_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.membrane_signaling.tigit_cd155_checkpoint_interaction",
+    "name": "TIGIT\u2013CD155 Checkpoint Interaction",
+    "filename": "tigit_cd155_checkpoint_interaction_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "tigit_cd155_checkpoint_interaction_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.membrane_signaling.tigit_receptor",
+    "name": "TIGIT Receptor",
+    "filename": "tigit_receptor_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "tigit_receptor_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.model.abnormal_tumor_microvessel",
+    "name": "Abnormal Tumor Microvessel",
+    "filename": "abnormal_tumor_microvessel_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "abnormal_tumor_microvessel_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.model.angiogenic_vessel_sprout",
+    "name": "Angiogenic Vessel Sprout",
+    "filename": "angiogenic_vessel_sprout_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "angiogenic_vessel_sprout_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.model.basement_membrane_segment",
+    "name": "Basement Membrane Segment",
+    "filename": "basement_membrane_segment_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "basement_membrane_segment_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.model.collagen_rich_ecm.aligned_fibers",
+    "name": "Collagen-rich Extracellular Matrix \u2014 Aligned Fibers",
+    "filename": "collagen_rich_ecm_aligned_fibers_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "collagen_rich_ecm_aligned_fibers_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.model.collagen_rich_ecm.mesh",
+    "name": "Collagen-rich Extracellular Matrix \u2014 Mesh",
+    "filename": "collagen_rich_ecm_mesh_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "collagen_rich_ecm_mesh_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.model.immune_desert_tumor",
+    "name": "Immune-desert Tumor",
+    "filename": "immune_desert_tumor_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "immune_desert_tumor_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.model.immune_excluded_tumor",
+    "name": "Immune-excluded Tumor",
+    "filename": "immune_excluded_tumor_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "immune_excluded_tumor_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.model.immune_infiltrated_tumor",
+    "name": "Immune-infiltrated Tumor",
+    "filename": "immune_infiltrated_tumor_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "immune_infiltrated_tumor_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.model.lymphatic_vessel_segment",
+    "name": "Lymphatic Vessel Segment",
+    "filename": "lymphatic_vessel_segment_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "lymphatic_vessel_segment_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.model.micrometastatic_colony",
+    "name": "Micrometastatic Colony",
+    "filename": "micrometastatic_colony_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "micrometastatic_colony_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.model.necrotic_tumor_region",
+    "name": "Necrotic Tumor Region",
+    "filename": "necrotic_tumor_region_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "necrotic_tumor_region_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.model.persistent_tumor",
+    "name": "Persistent Tumor after Treatment",
+    "filename": "persistent_tumor_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "persistent_tumor_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.model.tumor_hypoxic_region",
+    "name": "Tumor Hypoxic Region",
+    "filename": "tumor_hypoxic_region_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "tumor_hypoxic_region_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.model.tumor_regression",
+    "name": "Tumor Regression after Treatment",
+    "filename": "tumor_regression_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "tumor_regression_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.pathway.adc_payload_release",
+    "name": "Antibody\u2013drug Conjugate Payload Release",
+    "filename": "adc_payload_release_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "adc_payload_release_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.pathway.adoptive_cell_transfer",
+    "name": "Adoptive Cell Transfer",
+    "filename": "adoptive_cell_transfer_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "adoptive_cell_transfer_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.pathway.antibody_dependent_cellular_cytotoxicity",
+    "name": "Antibody-dependent Cellular Cytotoxicity",
+    "filename": "antibody_dependent_cellular_cytotoxicity_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "antibody_dependent_cellular_cytotoxicity_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.pathway.antibody_dependent_cellular_phagocytosis",
+    "name": "Antibody-dependent Cellular Phagocytosis",
+    "filename": "antibody_dependent_cellular_phagocytosis_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "antibody_dependent_cellular_phagocytosis_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.pathway.apc_t_cell_immune_synapse",
+    "name": "APC\u2013T-cell Immune Synapse",
+    "filename": "apc_t_cell_immune_synapse_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "apc_t_cell_immune_synapse_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.pathway.collective_tumor_invasion",
+    "name": "Collective Tumor Invasion",
+    "filename": "collective_tumor_invasion_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "collective_tumor_invasion_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.pathway.cross_presentation",
+    "name": "Antigen Cross-presentation",
+    "filename": "cross_presentation_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "cross_presentation_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.pathway.cytosolic_antigen_processing",
+    "name": "Cytosolic Antigen Processing and MHC-I Loading",
+    "filename": "cytosolic_antigen_processing_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "cytosolic_antigen_processing_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.pathway.cytotoxic_immune_synapse",
+    "name": "Cytotoxic Immune Synapse",
+    "filename": "cytotoxic_immune_synapse_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "cytotoxic_immune_synapse_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.pathway.ecm_remodeling",
+    "name": "Extracellular-matrix Remodeling",
+    "filename": "ecm_remodeling_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "ecm_remodeling_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.pathway.endosomal_antigen_processing",
+    "name": "Endosomal Antigen Processing and MHC-II Loading",
+    "filename": "endosomal_antigen_processing_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "endosomal_antigen_processing_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.pathway.epithelial_mesenchymal_transition",
+    "name": "Epithelial\u2013Mesenchymal Transition",
+    "filename": "epithelial_mesenchymal_transition_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "epithelial_mesenchymal_transition_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.pathway.leukocyte_recruitment",
+    "name": "Leukocyte Recruitment",
+    "filename": "leukocyte_recruitment_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "leukocyte_recruitment_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.pathway.metastatic_seeding",
+    "name": "Metastatic Seeding",
+    "filename": "metastatic_seeding_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "metastatic_seeding_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.pathway.neoantigen_vaccine",
+    "name": "Neoantigen Vaccine",
+    "filename": "neoantigen_vaccine_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "neoantigen_vaccine_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.pathway.oncolytic_virus",
+    "name": "Oncolytic Virus",
+    "filename": "oncolytic_virus_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "oncolytic_virus_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.pathway.phagocytosis",
+    "name": "Phagocytosis",
+    "filename": "phagocytosis_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "phagocytosis_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.pathway.soluble_factor_gradient",
+    "name": "Soluble-factor Gradient",
+    "filename": "soluble_factor_gradient_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "soluble_factor_gradient_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.pathway.tumor_cell_extravasation",
+    "name": "Tumor-cell Extravasation",
+    "filename": "tumor_cell_extravasation_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "tumor_cell_extravasation_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.pathway.tumor_cell_intravasation",
+    "name": "Tumor-cell Intravasation",
+    "filename": "tumor_cell_intravasation_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "tumor_cell_intravasation_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.protein.bispecific_t_cell_engager",
+    "name": "Bispecific T-cell Engager",
+    "filename": "bispecific_t_cell_engager_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "bispecific_t_cell_engager_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.protein.checkpoint_blocking_antibody",
+    "name": "Checkpoint-blocking Antibody",
+    "filename": "checkpoint_blocking_antibody_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "checkpoint_blocking_antibody_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.protein.generic_cytokine",
+    "name": "Generic Cytokine",
+    "filename": "generic_cytokine_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "generic_cytokine_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.protein.granzyme_b",
+    "name": "Granzyme B",
+    "filename": "granzyme_b_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "granzyme_b_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.protein.matrix_metalloproteinase",
+    "name": "Matrix Metalloproteinase",
+    "filename": "matrix_metalloproteinase_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "matrix_metalloproteinase_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.protein.neoantigen_peptide",
+    "name": "Neoantigen Peptide",
+    "filename": "neoantigen_peptide_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "neoantigen_peptide_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.protein.perforin_1",
+    "name": "Perforin-1",
+    "filename": "perforin_1_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "perforin_1_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "immuno.protein.tumor_associated_antigen",
+    "name": "Tumor-associated Antigen",
+    "filename": "tumor_associated_antigen_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "tumor_associated_antigen_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "microbe.cell.bacterial_endospore",
+    "name": "Bacterial Endospore",
+    "filename": "bacterial_endospore_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "bacterial_endospore_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "microbe.cell.chained_cocci",
+    "name": "Coccoid Bacterial Arrangement \u2014 Chain",
+    "filename": "chained_cocci_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "chained_cocci_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "microbe.cell.encapsulated_bacterium",
+    "name": "Encapsulated Bacterium",
+    "filename": "encapsulated_bacterium_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "encapsulated_bacterium_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "microbe.cell.encapsulated_bacterium_rod",
+    "name": "Encapsulated Bacterium \u2014 Rod",
+    "filename": "encapsulated_bacterium_rod_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "encapsulated_bacterium_rod_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "microbe.cell.endospore_in_mother_cell",
+    "name": "Endospore within Mother Cell",
+    "filename": "endospore_in_mother_cell_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "endospore_in_mother_cell_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "microbe.cell.fungal_germ_tube",
+    "name": "Fungal Germ Tube",
+    "filename": "fungal_germ_tube_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "fungal_germ_tube_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "microbe.cell.fungal_pseudohyphal_chain",
+    "name": "Fungal Pseudohyphal Chain",
+    "filename": "fungal_pseudohyphal_chain_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "fungal_pseudohyphal_chain_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "microbe.cell.paired_cocci",
+    "name": "Coccoid Bacterial Arrangement",
+    "filename": "paired_cocci_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "paired_cocci_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "microbe.cell.septate_fungal_hypha",
+    "name": "Septate Fungal Hypha",
+    "filename": "septate_fungal_hypha_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "septate_fungal_hypha_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "microbe.cell.septate_fungal_hypha_unbranched",
+    "name": "Septate Fungal Hypha \u2014 Unbranched",
+    "filename": "septate_fungal_hypha_unbranched_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "septate_fungal_hypha_unbranched_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "microbe.membrane_signaling.bacterial_flagellar_motor",
+    "name": "Bacterial Flagellar Motor",
+    "filename": "bacterial_flagellar_motor_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "bacterial_flagellar_motor_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "microbe.membrane_signaling.enveloped_virus_membrane_fusion",
+    "name": "Enveloped-virus Membrane Fusion",
+    "filename": "enveloped_virus_membrane_fusion_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "enveloped_virus_membrane_fusion_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "microbe.membrane_signaling.enveloped_virus_plasma_membrane_budding",
+    "name": "Viral Plasma-membrane Budding",
+    "filename": "enveloped_virus_plasma_membrane_budding_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "enveloped_virus_plasma_membrane_budding_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "microbe.membrane_signaling.gram_negative_envelope_segment",
+    "name": "Gram-negative Cell Envelope",
+    "filename": "gram_negative_envelope_segment_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "gram_negative_envelope_segment_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "microbe.membrane_signaling.gram_positive_envelope_segment",
+    "name": "Gram-positive Cell Envelope",
+    "filename": "gram_positive_envelope_segment_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "gram_positive_envelope_segment_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "microbe.membrane_signaling.outer_membrane_vesicle_budding",
+    "name": "Outer-membrane Vesicle Budding",
+    "filename": "outer_membrane_vesicle_budding_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "outer_membrane_vesicle_budding_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "microbe.membrane_signaling.phage_genome_injection",
+    "name": "Contractile-phage Genome Injection",
+    "filename": "phage_genome_injection_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "phage_genome_injection_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "microbe.membrane_signaling.released_outer_membrane_vesicle",
+    "name": "Released Bacterial Outer-Membrane Vesicle",
+    "filename": "released_outer_membrane_vesicle_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "released_outer_membrane_vesicle_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "microbe.model_system.contractile_tailed_bacteriophage",
+    "name": "Contractile-tailed Bacteriophage",
+    "filename": "contractile_tailed_bacteriophage_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "contractile_tailed_bacteriophage_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "microbe.model_system.contractile_tailed_phage_contracted",
+    "name": "Contractile-Tailed Bacteriophage \u2014 Contracted",
+    "filename": "contractile_tailed_phage_contracted_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "contractile_tailed_phage_contracted_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "microbe.model_system.long_noncontractile_bacteriophage",
+    "name": "Long Noncontractile-Tailed Bacteriophage",
+    "filename": "long_noncontractile_bacteriophage_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "long_noncontractile_bacteriophage_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "microbe.model_system.short_tailed_bacteriophage",
+    "name": "Short-Tailed Bacteriophage",
+    "filename": "short_tailed_bacteriophage_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "short_tailed_bacteriophage_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "microbe.model_system.surface_attached_biofilm",
+    "name": "Surface-attached Biofilm",
+    "filename": "surface_attached_biofilm_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "surface_attached_biofilm_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "microbe.model_system.surface_attached_biofilm_plan",
+    "name": "Surface-attached Biofilm \u2014 Plan View",
+    "filename": "surface_attached_biofilm_plan_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "surface_attached_biofilm_plan_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "proteostasis.protein.amorphous_protein_aggregate",
+    "name": "Amorphous Protein Aggregate",
+    "filename": "amorphous_protein_aggregate_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "amorphous_protein_aggregate_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "proteostasis.protein.deubiquitinase_substrate_complex",
+    "name": "Deubiquitinase\u2013Substrate Complex",
+    "filename": "deubiquitinase_substrate_complex_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "deubiquitinase_substrate_complex_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "proteostasis.protein.hsp70_client_complex",
+    "name": "HSP70\u2013Client Complex",
+    "filename": "hsp70_client_complex_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "hsp70_client_complex_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "proteostasis.protein.hsp90_client_complex",
+    "name": "HSP90\u2013Client Complex",
+    "filename": "hsp90_client_complex_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "hsp90_client_complex_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "proteostasis.protein.misfolded_protein",
+    "name": "Misfolded Protein",
+    "filename": "misfolded_protein_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "misfolded_protein_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "proteostasis.protein.proteasomal_substrate_processing",
+    "name": "Proteasomal Substrate Processing",
+    "filename": "proteasomal_substrate_processing_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "proteasomal_substrate_processing_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "proteostasis.protein.ring_e3_ubiquitination_complex",
+    "name": "RING E3 Ubiquitination Complex",
+    "filename": "ring_e3_ubiquitination_complex_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "ring_e3_ubiquitination_complex_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "proteostasis.protein.unfolded_polypeptide",
+    "name": "Unfolded Polypeptide",
+    "filename": "unfolded_polypeptide_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "unfolded_polypeptide_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "rna.assay_workflow.in_situ_rna_puncta",
+    "name": "Illustrative In-situ RNA Puncta Field",
+    "filename": "in_situ_rna_puncta_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "in_situ_rna_puncta_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "rna.assay_workflow.spatial_capture_array",
+    "name": "Tissue-associated Spatial RNA Capture Array",
+    "filename": "spatial_capture_array_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "spatial_capture_array_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "rna.lab_equipment.microfluidic_cell_partition",
+    "name": "Microfluidic Cell Partition",
+    "filename": "microfluidic_cell_partition_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "microfluidic_cell_partition_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "rna.nucleic_acid.barcoded_capture_bead",
+    "name": "Oligo-barcoded RNA Capture Bead",
+    "filename": "barcoded_capture_bead_style4.svg",
+    "source_package": "refined_003_006",
+    "source_manifest_file": "barcoded_capture_bead_style4_refined.svg",
+    "refinement_applied_in_final_package": false
+  },
+  {
+    "asset_id": "tme.cancer_associated_fibroblast.matrix",
+    "name": "Cancer-associated Fibroblast \u2014 Matrix context",
+    "filename": "cancer_associated_fibroblast_matrix_style4.svg",
+    "source_package": "batch002",
+    "source_manifest_file": "cancer_associated_fibroblast_matrix_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "tme.cancer_associated_fibroblast.spindle",
+    "name": "Cancer-associated Fibroblast \u2014 Spindle cell",
+    "filename": "cancer_associated_fibroblast_spindle_style4.svg",
+    "source_package": "batch002",
+    "source_manifest_file": "cancer_associated_fibroblast_spindle_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "tme.car_nk_cell.receptor_display",
+    "name": "CAR-NK Cell \u2014 Receptor display",
+    "filename": "car_nk_cell_receptor_display_style4.svg",
+    "source_package": "batch002",
+    "source_manifest_file": "car_nk_cell_receptor_display_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "tme.car_nk_cell.target_contact",
+    "name": "CAR-NK Cell \u2014 Target contact",
+    "filename": "car_nk_cell_target_contact_style4.svg",
+    "source_package": "batch002",
+    "source_manifest_file": "car_nk_cell_target_contact_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "tme.dendritic_antigen_uptake.particulate",
+    "name": "Dendritic Cell Antigen Uptake \u2014 Particulate antigen",
+    "filename": "dendritic_antigen_uptake_particulate_style4.svg",
+    "source_package": "batch002",
+    "source_manifest_file": "dendritic_antigen_uptake_particulate_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "tme.dendritic_antigen_uptake.soluble",
+    "name": "Dendritic Cell Antigen Uptake \u2014 Soluble antigen",
+    "filename": "dendritic_antigen_uptake_soluble_style4.svg",
+    "source_package": "batch002",
+    "source_manifest_file": "dendritic_antigen_uptake_soluble_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "tme.drug_penetration_gradient.perivascular",
+    "name": "Drug Penetration Gradient \u2014 Vessel-to-tissue",
+    "filename": "drug_penetration_gradient_perivascular_style4.svg",
+    "source_package": "batch002",
+    "source_manifest_file": "drug_penetration_gradient_perivascular_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "tme.drug_penetration_gradient.spheroid",
+    "name": "Drug Penetration Gradient \u2014 Spheroid penetration",
+    "filename": "drug_penetration_gradient_spheroid_style4.svg",
+    "source_package": "batch002",
+    "source_manifest_file": "drug_penetration_gradient_spheroid_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "tme.generic_immune_synapse.cell_pair",
+    "name": "Immune Synapse \u2014 Generic \u2014 Cell pair",
+    "filename": "generic_immune_synapse_cell_pair_style4.svg",
+    "source_package": "batch002",
+    "source_manifest_file": "generic_immune_synapse_cell_pair_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "tme.generic_immune_synapse.interface",
+    "name": "Immune Synapse \u2014 Generic \u2014 Interface close-up",
+    "filename": "generic_immune_synapse_interface_style4.svg",
+    "source_package": "batch002",
+    "source_manifest_file": "generic_immune_synapse_interface_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "tme.hypoxia_gradient.perivascular",
+    "name": "Hypoxia Gradient \u2014 Vessel-to-tissue",
+    "filename": "hypoxia_gradient_perivascular_style4.svg",
+    "source_package": "batch002",
+    "source_manifest_file": "hypoxia_gradient_perivascular_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "tme.hypoxia_gradient.spheroid",
+    "name": "Hypoxia Gradient \u2014 Spheroid section",
+    "filename": "hypoxia_gradient_spheroid_style4.svg",
+    "source_package": "batch002",
+    "source_manifest_file": "hypoxia_gradient_spheroid_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "tme.lactate_metabolite_gradient.radial_source",
+    "name": "Lactate / Metabolite Gradient \u2014 Local radial source",
+    "filename": "lactate_metabolite_gradient_radial_source_style4.svg",
+    "source_package": "batch002",
+    "source_manifest_file": "lactate_metabolite_gradient_radial_source_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "tme.lactate_metabolite_gradient.source_to_tissue",
+    "name": "Lactate / Metabolite Gradient \u2014 Source-to-tissue",
+    "filename": "lactate_metabolite_gradient_source_to_tissue_style4.svg",
+    "source_package": "batch002",
+    "source_manifest_file": "lactate_metabolite_gradient_source_to_tissue_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "tme.macrophage_polarization_cue.multiple_cues",
+    "name": "Macrophage Polarization Cue \u2014 Multiple environmental cues",
+    "filename": "macrophage_polarization_cue_multiple_cues_style4.svg",
+    "source_package": "batch002",
+    "source_manifest_file": "macrophage_polarization_cue_multiple_cues_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "tme.macrophage_polarization_cue.single_cue",
+    "name": "Macrophage Polarization Cue \u2014 One cue and response range",
+    "filename": "macrophage_polarization_cue_single_cue_style4.svg",
+    "source_package": "batch002",
+    "source_manifest_file": "macrophage_polarization_cue_single_cue_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "tme.tertiary_lymphoid_structure.germinal_center",
+    "name": "Tertiary Lymphoid Structure \u2014 With germinal-center cue",
+    "filename": "tertiary_lymphoid_structure_germinal_center_style4.svg",
+    "source_package": "batch002",
+    "source_manifest_file": "tertiary_lymphoid_structure_germinal_center_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "tme.tertiary_lymphoid_structure.primary_follicle",
+    "name": "Tertiary Lymphoid Structure \u2014 B/T organization",
+    "filename": "tertiary_lymphoid_structure_primary_follicle_style4.svg",
+    "source_package": "batch002",
+    "source_manifest_file": "tertiary_lymphoid_structure_primary_follicle_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "tme.tumor_associated_neutrophil.isolated",
+    "name": "Tumor-associated Neutrophil \u2014 Isolated cell",
+    "filename": "tumor_associated_neutrophil_isolated_style4.svg",
+    "source_package": "batch002",
+    "source_manifest_file": "tumor_associated_neutrophil_isolated_style4.svg",
+    "refinement_applied_in_final_package": true
+  },
+  {
+    "asset_id": "tme.tumor_associated_neutrophil.tumor_contact",
+    "name": "Tumor-associated Neutrophil \u2014 Tumor context",
+    "filename": "tumor_associated_neutrophil_tumor_contact_style4.svg",
+    "source_package": "batch002",
+    "source_manifest_file": "tumor_associated_neutrophil_tumor_contact_style4.svg",
+    "refinement_applied_in_final_package": true
+  }
+]

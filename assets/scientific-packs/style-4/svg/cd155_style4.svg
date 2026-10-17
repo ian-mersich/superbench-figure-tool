@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">CD155</title>
+  <desc id="desc">Editable poliovirus receptor schematic with three extracellular immunoglobulin-like domains on a single membrane anchor.</desc>
+  <g data-region="membrane" fill="#DCE4EC" stroke="none"><path d="M9 91h110v14H9z" /></g>
+  <g data-region="ligand_domains" fill="#B8B5FF" stroke="none"><path d="M53 91V78l-10-10 10-11-8-10 10-12 11 12-8 10 10 11-10 10v13z" /></g>
+  <g data-region="membrane_anchor" fill="#C7F2EC" stroke="none"><path d="M54 78h8v13h-8z" /></g>
+  <g data-region="domain_hinges" fill="none" stroke="#E76F51" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M50 47h13m-12 21h13" /></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 91h110v14H9z" /><path d="M53 91V78l-10-10 10-11-8-10 10-12 11 12-8 10 10 11-10 10v13z" /><path d="M54 78h8v13h-8z" /></g>
+</svg>

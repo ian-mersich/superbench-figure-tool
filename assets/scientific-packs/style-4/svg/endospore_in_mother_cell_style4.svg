@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Endospore within Mother Cell</title>
+  <desc id="desc">An illustrative Bacillus-like spore compartment enclosed within the separate mother cell, with spore coat, cortex and two spore membrane boundaries.</desc>
+  <g data-region="mother_cell" fill="#D9F4E5" stroke="none">
+    <path d="M36 42C36 24 48 14 64 14C80 14 94 26 94 43V87C94 106 80 116 64 116C47 116 36 104 36 86Z" />
+  </g>
+  <g data-region="coat" fill="#8EC8FF" stroke="none">
+    <path d="M55 61C62 52 77 54 83 66C90 81 80 98 68 97C53 97 45 76 55 61Z" />
+  </g>
+  <g data-region="cortex" fill="#E8EEF7" stroke="none">
+    <path d="M60 65C65 60 76 61 79 70C84 80 78 91 68 91C57 89 53 74 60 65Z" />
+  </g>
+  <g data-region="core" fill="#7DD3C7" stroke="none">
+    <path d="M63 70C68 65 74 69 76 76C77 85 69 88 63 83C59 80 59 75 63 70Z" />
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M36 42C36 24 48 14 64 14C80 14 94 26 94 43V87C94 106 80 116 64 116C47 116 36 104 36 86Z" /><path d="M55 61C62 52 77 54 83 66C90 81 80 98 68 97C53 97 45 76 55 61Z" /><path d="M60 65C65 60 76 61 79 70C84 80 78 91 68 91C57 89 53 74 60 65Z" stroke-width="2.11" /><path d="M63 70C68 65 74 69 76 76C77 85 69 88 63 83C59 80 59 75 63 70Z" stroke-width="2.11" />
+  </g>
+  <g data-region="outer_spore_membrane" fill="none" stroke="#B8B5FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M60 65C65 60 76 61 79 70C84 80 78 91 68 91C57 89 53 74 60 65Z" />
+  </g>
+  <g data-region="core_membrane" fill="none" stroke="#B8B5FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M63 70C68 65 74 69 76 76C77 85 69 88 63 83C59 80 59 75 63 70Z" />
+  </g>
+</svg>

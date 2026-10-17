@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">JAK-associated Cytokine Receptor Complex</title>
+  <desc id="desc">Editable jak-associated cytokine receptor complex schematic with paired single-pass cytokine receptors with bound intracellular JAK modules.</desc>
+  <g data-region="membrane" fill="#DCE4EC" stroke="none"><path d="M9 71h110v14H9z" /></g>
+  <g data-region="receptor" fill="#C7F2EC" stroke="none"><path d="M42 72V43l-9-10 9-11 9 11-5 10v29zM82 72V43l-5-10 9-11 9 11-9 10v29zM42 85v19M86 85v19" /></g>
+  <g data-region="cytokine" fill="#F4A261" stroke="none"><path d="M49 32c6-8 24-8 30 0l-8 11H57z" /></g>
+  <g data-region="jak_modules" fill="#B8B5FF" stroke="none"><rect x="29" y="94" width="26" height="19" rx="7" /><rect x="73" y="94" width="26" height="19" rx="7" /></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 71h110v14H9z" /><path d="M42 72V43l-9-10 9-11 9 11-5 10v29zM82 72V43l-5-10 9-11 9 11-9 10v29zM42 85v19M86 85v19" /><path d="M49 32c6-8 24-8 30 0l-8 11H57z" /><rect x="29" y="94" width="26" height="19" rx="7" /><rect x="73" y="94" width="26" height="19" rx="7" /></g>
+</svg>

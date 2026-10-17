@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Recycling Endosome — Branched Tubules</title>
+  <desc id="desc">An endosomal compartment continuous with several recycling tubules, with membrane-associated cargo and external sorting proteins.</desc>
+  <g data-region="membrane" fill="#8EC8FF" stroke="none">
+    <path d="M49 29Q31 27 22 43Q10 64 28 81Q39 91 50 86L58 86Q67 86 70 94L79 108Q85 117 94 111Q102 105 96 97L85 80Q80 74 89 70L104 65Q119 59 112 47Q108 40 99 44L84 50Q79 52 78 44V25Q78 13 66 14Q57 15 57 24V29ZM49 37Q34 35 28 47Q18 64 32 75Q41 83 49 78H58Q72 78 77 90L85 103Q89 109 90 104Q91 102 88 98L77 81Q70 68 86 62L102 58Q109 55 106 52Q105 50 101 52L86 58Q69 62 70 44V26Q70 20 66 22Q64 23 64 29V37Z" fill-rule="evenodd" />
+  </g>
+  <g data-region="cargo" fill="#E76F51" stroke="none">
+    <path d="M89 49L86 39Q89 33 94 39L98 49L93 58H89Z M76 97L70 103Q66 104 65 99L72 88Z" />
+  </g>
+  <g data-region="sorting_coat" fill="#7DD3C7" stroke="none">
+    <path d="M83 38Q96 32 103 39L101 44Q95 40 86 44Z M61 90Q67 90 74 98L70 103Q65 96 60 96Z" />
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M49 29Q31 27 22 43Q10 64 28 81Q39 91 50 86L58 86Q67 86 70 94L79 108Q85 117 94 111Q102 105 96 97L85 80Q80 74 89 70L104 65Q119 59 112 47Q108 40 99 44L84 50Q79 52 78 44V25Q78 13 66 14Q57 15 57 24V29Z" /><path d="M49 37Q34 35 28 47Q18 64 32 75Q41 83 49 78H58Q72 78 77 90L85 103Q89 109 90 104Q91 102 88 98L77 81Q70 68 86 62L102 58Q109 55 106 52Q105 50 101 52L86 58Q69 62 70 44V26Q70 20 66 22Q64 23 64 29V37Z" /><path d="M89 49L86 39Q89 33 94 39L98 49L93 58H89Z M76 97L70 103Q66 104 65 99L72 88Z" /><path d="M83 38Q96 32 103 39L101 44Q95 40 86 44Z M61 90Q67 90 74 98L70 103Q65 96 60 96Z" />
+  </g>
+</svg>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+<title id="title">Macrophage Polarization Cue — Multiple environmental cues</title>
+<desc id="desc">Incoming environmental signals around a macrophage, with one-cue and multiple-cue arrangements. Macrophage activation is context-dependent and multidimensional. The response cue is not a universal M1/M2 binary, a measured state transition or evidence of a fixed lineage.</desc>
+<g data-region="cell_body" fill="#C7F2EC" stroke="none" stroke-linecap="round" stroke-linejoin="round"><path d="M35 45Q39 32 52 39Q67 24 79 40Q99 41 91 61Q105 77 87 89Q74 105 57 94Q38 101 31 83Q17 69 30 56Z" /></g>
+<g data-region="outline" fill="none" stroke="#26323D" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M35 45Q39 32 52 39Q67 24 79 40Q99 41 91 61Q105 77 87 89Q74 105 57 94Q38 101 31 83Q17 69 30 56Z" /></g>
+<g data-region="nucleus" fill="#B8B5FF" stroke="none" stroke-linecap="round" stroke-linejoin="round"><path d="M50 54Q34 68 49 80Q60 88 68 77Q51 76 59 62Q63 51 50 54Z" /></g>
+<g data-region="outline" fill="none" stroke="#26323D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M50 54Q34 68 49 80Q60 88 68 77Q51 76 59 62Q63 51 50 54Z" /></g>
+<g data-region="cue_a" fill="#F4A261" stroke="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="25" r="4" /><circle cx="34" cy="15" r="3" /><circle cx="14" cy="40" r="3" /></g>
+<g data-region="cue_a" fill="none" stroke="#F4A261" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M24 31L37 44" /><path d="M32.14 42.83L37 44L35.83 39.14" /></g>
+<g data-region="cue_b" fill="#5EA9DD" stroke="none" stroke-linecap="round" stroke-linejoin="round"><rect x="92" y="17" width="7" height="7" rx="1" /><rect x="106" y="32" width="6" height="6" rx="1" /><rect x="103" y="95" width="7" height="7" rx="1" /></g>
+<g data-region="cue_b" fill="none" stroke="#5EA9DD" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M98 39L86 48" /><path d="M87.84 43.35L86 48L90.98 47.53" /></g>
+<g data-region="cue_b" fill="none" stroke="#5EA9DD" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M101 90L91 83" /><path d="M95.99 83.30L91 83L92.99 87.59" /></g>
+</svg>

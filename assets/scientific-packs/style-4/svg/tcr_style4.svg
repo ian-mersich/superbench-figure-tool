@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">T-cell Receptor</title>
+  <desc id="desc">Editable t-cell antigen receptor complex schematic with paired antigen-recognition chains with associated signaling chains.</desc>
+  <g data-region="biological_context" fill="#C7F2EC" stroke="none"><path d="M8 76h112v15H8z" /></g>
+  <g data-region="receptor_or_vesicle" fill="none" stroke="#5EA9DD" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M44 78V57L31 39M60 78V57l14-18M31 39l10-15 11 15M74 39l11-15 11 15M52 91v19M68 91v19M84 91v16M96 91v16" /></g>
+  <g data-region="cargo_or_signal" fill="none" stroke="#F4A261" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M41 24l11-7 11 7M74 24l11-7 11 7" /><circle cx="52" cy="112" r="6" /><circle cx="68" cy="112" r="6" /><circle cx="84" cy="109" r="5" /><circle cx="96" cy="109" r="5" /></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M8 76h112M8 91h112M44 78V57L31 39M60 78V57l14-18M31 39l10-15 11 15M74 39l11-15 11 15M52 91v19M68 91v19M84 91v16M96 91v16" /></g>
+</svg>

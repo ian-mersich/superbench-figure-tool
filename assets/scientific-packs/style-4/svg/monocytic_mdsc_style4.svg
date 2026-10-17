@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Monocytic Myeloid-derived Suppressor Cell</title>
+  <desc id="desc">Editable monocytic myeloid-derived suppressor cell schematic with monocyte-like suppressor cell with a kidney-shaped nucleus and broad inhibitory-field cues.</desc>
+  <g data-region="cell_body" fill="#C7F2EC" stroke="none"><path d="M20 65c0-26 19-45 46-45 27 1 45 19 44 46 0 26-19 44-46 44-26 0-44-19-44-45z" /></g>
+  <g data-region="nucleus" fill="#B8B5FF" stroke="none"><path d="M47 39c18-9 38 2 39 18 0 9-8 12-14 16-7 4-7 12-3 20-16 6-33-3-38-18-5-15 2-29 16-36z" /></g>
+  <g data-region="state_features" fill="#E76F51" stroke="none"><circle cx="91" cy="39" r="4" /><circle cx="99" cy="56" r="4" /><circle cx="96" cy="77" r="4" /><circle cx="86" cy="93" r="4" /></g>
+  <g data-region="functional_cues" fill="none" stroke="#58B8AE" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M19 48c-10 6-13 16-13 25m103-25c10 6 13 16 13 25" /><path d="M9 44l-3 4 5 1m108-5 3 4-5 1" /></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 65c0-26 19-45 46-45 27 1 45 19 44 46 0 26-19 44-46 44-26 0-44-19-44-45z" /><path d="M47 39c18-9 38 2 39 18 0 9-8 12-14 16-7 4-7 12-3 20" /></g>
+</svg>

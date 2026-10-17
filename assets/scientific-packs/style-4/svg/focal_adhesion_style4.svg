@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Focal Adhesion</title>
+  <desc id="desc">Illustrative integrin-based cell–matrix adhesion, with extracellular matrix outside the membrane and a cytoplasmic adhesion complex connecting to actin filaments.</desc>
+  <g data-region="membrane" fill="#C7F2EC" stroke="none">
+    <rect x="16" y="69" width="96" height="9" rx="2" />
+  </g>
+  <g data-region="adhesion_complex" fill="#8EC8FF" stroke="none">
+    <path d="M45 55L61 40L67 44L56 56H75L79 51L85 56V64H44Z M52 63H60L58 81Q55 102 46 103Q38 99 46 86L51 77Z M70 63H78V77L84 87Q90 102 82 105Q72 105 72 85Z" />
+  </g>
+  <g data-region="actin" fill="#E76F51" stroke="none">
+    <path d="M19 23Q58 26 91 43L87 50Q53 34 17 31Z M18 37Q48 39 77 51L73 58Q46 47 16 45Z" />
+  </g>
+  <g data-region="extracellular_matrix" fill="#9FD8B5" stroke="none">
+    <path d="M16 97Q38 92 61 100Q85 106 112 96V107Q88 116 62 108Q39 101 16 108Z" />
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M16 69H50M50 78H16V69M80 69H112V78H80" /><path d="M45 55L61 40L67 44L56 56H75L79 51L85 56V64H44Z M52 63H60L58 81Q55 102 46 103Q38 99 46 86L51 77Z M70 63H78V77L84 87Q90 102 82 105Q72 105 72 85Z" /><path d="M19 23Q58 26 91 43L87 50Q53 34 17 31Z M18 37Q48 39 77 51L73 58Q46 47 16 45Z" /><path d="M16 97Q38 92 61 100Q85 106 112 96V107Q88 116 62 108Q39 101 16 108Z" />
+  </g>
+</svg>

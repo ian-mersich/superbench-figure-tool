@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+<title id="title">Anoikis — Schematic — Detached blebbing cell</title>
+<desc id="desc">A detached blebbing cell above extracellular matrix with chromatin fragmentation and an apoptotic-body cue. Anoikis means apoptosis associated with loss of appropriate matrix attachment. Detachment alone does not imply death; anchorage dependence and susceptibility vary by cell type, transformation state and culture conditions. Fragment number and timing are illustrative.</desc>
+<g data-region="matrix" id="extracellular-matrix" fill="none" stroke="#9FD8B5" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M17 105H111M20 113H108" /></g>
+<g data-region="cytoplasm" id="detached-blebbing-cell-fill" fill="#C7F2EC"><path d="M35 36Q43 19 64 24Q81 17 91 34Q104 41 94 56Q95 72 78 75Q62 88 49 76Q29 77 29 60Q18 45 35 36Z" /></g>
+<g data-region="outline" id="detached-blebbing-cell-outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M35 36Q43 19 64 24Q81 17 91 34Q104 41 94 56Q95 72 78 75Q62 88 49 76Q29 77 29 60Q18 45 35 36Z" /></g>
+<g data-region="chromatin" id="condensed-chromatin-0-fill" fill="#B8B5FF"><circle cx="48" cy="43" r="9" /></g>
+<g data-region="outline" id="condensed-chromatin-0-outline" fill="none" stroke="#26323D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="48" cy="43" r="9" /></g>
+<g data-region="chromatin" id="condensed-chromatin-1-fill" fill="#B8B5FF"><circle cx="72" cy="40" r="8" /></g>
+<g data-region="outline" id="condensed-chromatin-1-outline" fill="none" stroke="#26323D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="72" cy="40" r="8" /></g>
+<g data-region="chromatin" id="condensed-chromatin-2-fill" fill="#B8B5FF"><circle cx="64" cy="65" r="8" /></g>
+<g data-region="outline" id="condensed-chromatin-2-outline" fill="none" stroke="#26323D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="64" cy="65" r="8" /></g>
+<g data-region="cytoplasm" id="apoptotic-body-fill" fill="#C7F2EC"><circle cx="100" cy="82" r="7" /></g>
+<g data-region="outline" id="apoptotic-body-outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="100" cy="82" r="7" /></g>
+<g data-region="chromatin" id="body-chromatin-fill" fill="#B8B5FF"><circle cx="100" cy="82" r="3" /></g>
+<g data-region="adhesion" id="lost-matrix-attachment-cues" fill="none" stroke="#8EC8FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M35 92v6M62 91v7" /></g>
+</svg>

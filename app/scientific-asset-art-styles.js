@@ -8,9 +8,10 @@
   const SOFT_COLOR = "soft-color";
   const TECHNICAL_INK = "technical-ink";
   const CUT_PAPER = "cut-paper";
+  const STYLE_FOUR = "style-4";
 
   function normalizeStyle(value) {
-    return value === TECHNICAL_INK || value === CUT_PAPER ? value : SOFT_COLOR;
+    return value === TECHNICAL_INK || value === CUT_PAPER || value === STYLE_FOUR ? value : SOFT_COLOR;
   }
 
   function technicalInkColor(hex) {
@@ -71,7 +72,7 @@
   function transformSvg(svgText, style) {
     const source = String(svgText || "");
     const selected = normalizeStyle(style);
-    if (selected === SOFT_COLOR) return source;
+    if (selected === SOFT_COLOR || selected === STYLE_FOUR) return source;
     if (selected === CUT_PAPER) {
       // Make the supplied shapes read as flat color pieces: stronger block color,
       // minimized contour, and square-ended diagram details. Region geometry and
@@ -98,7 +99,7 @@
 
   function transformRegions(regions, style) {
     const selected = normalizeStyle(style);
-    if (selected === SOFT_COLOR) return (regions || []).map((region) => ({ ...region }));
+    if (selected === SOFT_COLOR || selected === STYLE_FOUR) return (regions || []).map((region) => ({ ...region }));
     return (regions || []).map((region) => ({
       ...region,
       default: /^#[0-9a-fA-F]{6}$/.test(String(region.default || ""))
@@ -109,5 +110,61 @@
     }));
   }
 
-  return { SOFT_COLOR, TECHNICAL_INK, CUT_PAPER, normalizeStyle, technicalInkColor, cutPaperColor, transformSvg, transformRegions };
+  function relativeSvgPath(value) {
+    const path = String(value || "");
+    if (!path || /[\\?#:]/.test(path) || path.startsWith("/")
+      || path.split("/").some((part) => !part || part === "." || part === "..")
+      || !path.endsWith(".svg")) throw new Error("Invalid scientific style SVG path");
+    return path;
+  }
+
+  function attachVariantManifest(assets, manifest, options = {}) {
+    if (manifest?.id !== STYLE_FOUR || manifest.schema_version !== "1.0.0") {
+      throw new Error("Unsupported scientific drawing style manifest");
+    }
+    const byId = new Map((assets || []).map((asset) => [asset.id, asset]));
+    const variants = Array.isArray(manifest.assets) ? manifest.assets : [];
+    const seen = new Set();
+    // Validate the complete mapping before attaching anything. A partial or
+    // mismatched source must never quietly display Style 1 under Style 4.
+    const prepared = variants.map((variant) => {
+      const asset = byId.get(variant?.asset_id);
+      if (!asset || seen.has(asset.id)) throw new Error("Unknown or duplicate scientific style drawing");
+      seen.add(asset.id);
+      const file = relativeSvgPath(variant.file);
+      const regions = variant.editable_color_regions;
+      const expected = (asset.editable_color_regions || []).map((region) => region.id).sort();
+      if (!Array.isArray(regions) || JSON.stringify(regions.map((region) => region.id).sort()) !== JSON.stringify(expected)
+        || !/^[a-f0-9]{64}$/.test(variant.sha256 || "")) {
+        throw new Error("Scientific style regions or source identity do not match the drawing");
+      }
+      const svgUrl = new URL(file, options.baseUrl);
+      svgUrl.searchParams.set("v", variant.sha256);
+      return [asset, { ...variant, _svgUrl: svgUrl.toString(),
+        _resourcePath: `${options.basePath || ""}${file}` }];
+    });
+    if (seen.size !== byId.size) throw new Error("Scientific drawing style coverage is incomplete");
+    prepared.forEach(([asset, variant]) => {
+      asset.art_styles = { ...(asset.art_styles || {}), [STYLE_FOUR]: variant };
+    });
+    return assets;
+  }
+
+  function assetForStyle(asset, style) {
+    const selected = normalizeStyle(style);
+    if (selected === SOFT_COLOR) return asset;
+    if (selected === STYLE_FOUR) {
+      const variant = asset?.art_styles?.[STYLE_FOUR];
+      if (!variant?._svgUrl || !variant._resourcePath) throw new Error("Style 4 is unavailable for this drawing");
+      return { ...asset, file: variant._resourcePath, _svgUrl: variant._svgUrl, _packAssetPath: "",
+        style_family: "superbench-style-4-v1", art_style: STYLE_FOUR,
+        art_style_source_sha256: variant.sha256,
+        editable_color_regions: transformRegions(variant.editable_color_regions, STYLE_FOUR) };
+    }
+    return { ...asset, style_family: `superbench-${selected}-v1`, art_style: selected,
+      editable_color_regions: transformRegions(asset.editable_color_regions, selected) };
+  }
+
+  return { SOFT_COLOR, TECHNICAL_INK, CUT_PAPER, STYLE_FOUR, normalizeStyle, technicalInkColor, cutPaperColor,
+    transformSvg, transformRegions, attachVariantManifest, assetForStyle };
 });

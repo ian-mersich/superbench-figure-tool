@@ -147,5 +147,14 @@
         "presentation"
       ]
     }
-  ]
+  ],
+  "art_styles": [
+    {
+      "id": "style-4",
+      "name": "Style 4",
+      "path": "style-4/manifest.json",
+      "asset_count": 486
+    }
+  ],
+  "art_style_notes": "Style 4 adds supplied artwork for all 486 drawings, including 16 earlier batch versions recovered from the downloads. After recovery, 235 drawings still render identically to Style 1; the collection does not contain 486 distinct redesigns."
 }

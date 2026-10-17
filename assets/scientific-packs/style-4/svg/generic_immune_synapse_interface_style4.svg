@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+<title id="title">Immune Synapse — Generic — Interface close-up</title>
+<desc id="desc">Two apposed cell membranes with clustered receptor–ligand contact cues, in whole-cell or interface views. A generic cell-contact diagram. Receptor identity, spatial pattern and downstream response are unspecified; not every synapse forms a stable concentric bull’s-eye.</desc>
+<g data-region="immune_cell" fill="#C7F2EC" stroke="none" stroke-linecap="round" stroke-linejoin="round"><rect x="16" y="20" width="33" height="87" rx="7" /></g>
+<g data-region="outline" fill="none" stroke="#26323D" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><rect x="16" y="20" width="33" height="87" rx="7" /></g>
+<g data-region="partner_cell" fill="#5EA9DD" stroke="none" stroke-linecap="round" stroke-linejoin="round"><rect x="81" y="20" width="31" height="87" rx="7" /></g>
+<g data-region="outline" fill="none" stroke="#26323D" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><rect x="81" y="20" width="31" height="87" rx="7" /></g>
+<g data-region="nucleus" fill="#B8B5FF" stroke="none" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="29" cy="67" rx="7" ry="14" /><ellipse cx="100" cy="67" rx="7" ry="14" /></g>
+<g data-region="outline" fill="none" stroke="#26323D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="29" cy="67" rx="7" ry="14" /><ellipse cx="100" cy="67" rx="7" ry="14" /></g>
+<g data-region="contacts" fill="none" stroke="#F4A261" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M49 36L63.0 36" /><path d="M63.0 32V40" /><path d="M69.0 36L81 36" /><circle cx="67.0" cy="36" r="3" /><path d="M49 55L63.0 55" /><path d="M63.0 51V59" /><path d="M69.0 55L81 55" /><circle cx="67.0" cy="55" r="3" /><path d="M49 74L63.0 74" /><path d="M63.0 70V78" /><path d="M69.0 74L81 74" /><circle cx="67.0" cy="74" r="3" /><path d="M49 93L63.0 93" /><path d="M63.0 89V97" /><path d="M69.0 93L81 93" /><circle cx="67.0" cy="93" r="3" /></g>
+</svg>

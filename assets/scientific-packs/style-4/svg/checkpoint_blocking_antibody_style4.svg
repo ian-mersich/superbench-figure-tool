@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Checkpoint-blocking Antibody</title>
+  <desc id="desc">Editable checkpoint-blocking antibody schematic with antibody occupying a receptor binding face and separating a generic receptor–ligand pair.</desc>
+  <g data-region="checkpoint_partners" fill="#8EC8FF" stroke="none"><rect x="17" y="23" width="24" height="34" rx="11" /><path d="M87 23h24v34H87z" /></g>
+  <g data-region="blocking_antibody" fill="none" stroke="#E76F51" stroke-width="5.2" stroke-linecap="round" stroke-linejoin="round"><path d="M64 84.04L64 65M64 72.84L48.32 49.32M64 72.84L79.68 49.32" /></g>
+  <g data-region="blocked_interface" fill="none" stroke="#F4A261" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M53 30l22 22M75 30L53 52" /></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="17" y="23" width="24" height="34" rx="11" /><path d="M87 23h24v34H87z" /><path d="M9 16h40M79 16h40M9 65h40M79 65h40" /></g>
+</svg>

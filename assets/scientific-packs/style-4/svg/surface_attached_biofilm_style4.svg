@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Surface-attached Biofilm</title>
+  <desc id="desc">An irregular extracellular biofilm matrix containing bacterial clusters and attached to a shared substrate.</desc>
+  <g data-region="matrix" fill="#D9F4E5" stroke="none">
+    <path d="M18 96V81C18 64 27 48 42 48C54 48 55 65 65 59C74 53 77 35 89 36C105 37 108 62 108 82L110 96Z" />
+  </g>
+  <g data-region="bacteria" fill="#7DD3C7" stroke="none">
+    <path d="M30 64Q27 60 30 55Q33 50 37 53L44 60Q47 64 44 68Q41 72 37 69Z" /><path d="M29 83Q26 78 31 75L41 73Q47 73 47 78Q48 83 43 85L35 87Q31 88 29 83Z" /><path d="M47 89Q43 86 46 81L51 75Q54 71 58 74Q62 77 59 82L54 89Q50 92 47 89Z" /><path d="M79 53Q75 49 79 45Q83 41 87 45L93 51Q97 55 93 59Q89 63 85 59Z" /><path d="M74 68Q72 63 78 61L88 59Q94 59 95 64Q96 69 90 71L80 73Q76 73 74 68Z" /><path d="M80 89Q76 85 79 81L85 75Q89 71 93 75Q97 79 93 83L87 90Q83 93 80 89Z" />
+  </g>
+  <g data-region="surface" fill="#E8EEF7" stroke="none">
+    <rect x="16" y="97" width="96" height="11" rx="2" />
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M18 96V81C18 64 27 48 42 48C54 48 55 65 65 59C74 53 77 35 89 36C105 37 108 62 108 82L110 96Z" /><path d="M30 64Q27 60 30 55Q33 50 37 53L44 60Q47 64 44 68Q41 72 37 69Z" /><path d="M29 83Q26 78 31 75L41 73Q47 73 47 78Q48 83 43 85L35 87Q31 88 29 83Z" /><path d="M47 89Q43 86 46 81L51 75Q54 71 58 74Q62 77 59 82L54 89Q50 92 47 89Z" /><path d="M79 53Q75 49 79 45Q83 41 87 45L93 51Q97 55 93 59Q89 63 85 59Z" /><path d="M74 68Q72 63 78 61L88 59Q94 59 95 64Q96 69 90 71L80 73Q76 73 74 68Z" /><path d="M80 89Q76 85 79 81L85 75Q89 71 93 75Q97 79 93 83L87 90Q83 93 80 89Z" /><path d="M16 97H112V108H16Z" />
+  </g>
+</svg>

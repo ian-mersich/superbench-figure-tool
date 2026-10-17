@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Septate Fungal Hypha</title>
+  <desc id="desc">A connected fungal filament with a surrounding wall, transverse septa with open pores and illustrative nuclei.</desc>
+  <g data-region="cellwall" fill="#7DD3C7" stroke="none">
+    <path d="M18 84C18 72 27 68 38 68H63C70 68 75 61 79 52L91 30C95 23 105 26 109 31C111 34 109 39 107 43L94 66C91 71 94 73 101 73H106C111 73 112 79 112 85C112 95 107 101 98 101H36C26 101 18 95 18 84Z M23 84C23 76 29 73 38 73H64C74 73 79 62 84 54L95 33C97 29 103 30 104 34C105 36 104 39 102 42L89 65C84 75 95 78 101 78H105C107 78 107 80 107 85C107 93 104 96 98 96H36C28 96 23 92 23 84Z" fill-rule="evenodd" />
+  </g>
+  <g data-region="cytoplasm" fill="#D9F4E5" stroke="none">
+    <path d="M23 84C23 76 29 73 38 73H64C74 73 79 62 84 54L95 33C97 29 103 30 104 34C105 36 104 39 102 42L89 65C84 75 95 78 101 78H105C107 78 107 80 107 85C107 93 104 96 98 96H36C28 96 23 92 23 84Z" />
+  </g>
+  <g data-region="septa" fill="#E8EEF7" stroke="none">
+    <path d="M46 73H51V81H46Z M46 88H51V96H46Z M89 78H94V82H89Z M89 89H94V96H89Z" />
+  </g>
+  <g data-region="nuclei" fill="#B8B5FF" stroke="none">
+    <ellipse cx="34" cy="84" rx="5" ry="3.5" /><ellipse cx="68" cy="85" rx="5" ry="3.7" /><ellipse cx="98" cy="86" rx="4" ry="3" /><ellipse cx="95" cy="47" rx="3" ry="4" />
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M18 84C18 72 27 68 38 68H63C70 68 75 61 79 52L91 30C95 23 105 26 109 31C111 34 109 39 107 43L94 66C91 71 94 73 101 73H106C111 73 112 79 112 85C112 95 107 101 98 101H36C26 101 18 95 18 84Z" /><path d="M23 84C23 76 29 73 38 73H64C74 73 79 62 84 54L95 33C97 29 103 30 104 34C105 36 104 39 102 42L89 65C84 75 95 78 101 78H105C107 78 107 80 107 85C107 93 104 96 98 96H36C28 96 23 92 23 84Z" /><path d="M46 73H51V81H46Z M46 88H51V96H46Z M89 78H94V82H89Z M89 89H94V96H89Z" stroke-width="1.16" />
+  </g>
+</svg>

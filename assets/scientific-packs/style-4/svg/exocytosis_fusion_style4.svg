@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Exocytosis Fusion</title>
+  <desc id="desc">Editable secretory-vesicle membrane fusion schematic with cargo vesicle merging with the plasma membrane.</desc>
+  <g data-region="biological_context" fill="#C7F2EC" stroke="none"><path d="M8 78h37c5 0 9 4 12 9 2 4 5 6 7 6s5-2 7-6c3-5 7-9 12-9h37v14H87c-10 0-12 19-23 19S51 92 41 92H8z" /></g>
+  <g data-region="receptor_or_vesicle" fill="none" stroke="#5EA9DD" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="64" cy="53" r="30" /><path d="M54 82c3-10 17-10 20 0" /></g>
+  <g data-region="cargo_or_signal" fill="none" stroke="#F4A261" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="51" cy="48" r="5" /><circle cx="68" cy="39" r="5" /><circle cx="77" cy="58" r="5" /><path d="M64 19V8m0 0-5 6m5-6 5 6" /></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M8 78h37c5 0 9 4 12 9 2 4 5 6 7 6s5-2 7-6c3-5 7-9 12-9h37M8 92h33c10 0 12 19 23 19s13-19 23-19h33M34 53a30 30 0 1 1 60 0c0 11-6 22-17 28" /></g>
+</svg>

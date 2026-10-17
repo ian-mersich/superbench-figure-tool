@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Enveloped-virus Membrane Fusion</title>
+  <desc id="desc">An open fusion pore connecting a viral envelope and target membrane, with viral contents exposed to the target-side compartment.</desc>
+  <g data-region="membranes" fill="#7DD3C7" stroke="none">
+    <path d="M18 80H43C50 80 51 75 47 68C36 61 32 44 40 33C51 16 75 18 87 33C96 44 92 59 82 67C77 72 77 80 85 80H110V86H85C68 86 69 68 77 61C85 56 88 45 82 37C72 25 54 23 45 36C39 45 42 57 52 64C59 75 58 86 43 86H18Z" />
+  </g>
+  <g data-region="hostcytoplasm" fill="#D9F4E5" stroke="none">
+    <path d="M18 86H43C58 86 59 75 52 64C42 57 39 45 45 36C54 23 72 25 82 37C88 45 85 56 77 61C69 68 68 86 85 86H110V111H18Z" />
+  </g>
+  <g data-region="viralcontents" fill="#8EC8FF" stroke="none">
+    <path d="M47 41C45 37 50 33 54 38L59 51C61 57 55 60 52 54Z M62 59C62 55 66 55 66 59V82C66 87 62 87 62 82Z" /><ellipse cx="78" cy="100" rx="5" ry="4" />
+  </g>
+  <g data-region="fusionproteins" fill="none" stroke="#E76F51" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M44 61L35 57L34 50M43 62L38 67M84 62L94 55L96 48M85 63L90 68" />
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M18 80H43C50 80 51 75 47 68C36 61 32 44 40 33C51 16 75 18 87 33C96 44 92 59 82 67C77 72 77 80 85 80H110" /><path d="M18 86H43C58 86 59 75 52 64C42 57 39 45 45 36C54 23 72 25 82 37C88 45 85 56 77 61C69 68 68 86 85 86H110" /><path d="M47 41C45 37 50 33 54 38L59 51C61 57 55 60 52 54Z M62 59C62 55 66 55 66 59V82C66 87 62 87 62 82Z" stroke-width="0.93" /><ellipse cx="78" cy="100" rx="5" ry="4" />
+  </g>
+</svg>

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+<title id="title">Nuclear Speckle — In nucleus</title>
+<desc id="desc">Several irregular nuclear speckles positioned separately from a nucleolar context cue. Speckle contours and internal marks are illustrative. They do not specify SON or SRRM2 localization, RNA sequence, active splicing events, or a measured number of bodies. The outline delimits a condensate, not a lipid membrane.</desc>
+<g data-region="nucleus" id="nuclear-interior-fill" fill="#D9D7FF"><ellipse cx="64" cy="64" rx="43" ry="40" /></g>
+<g data-region="outline" id="nuclear-interior-outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="64" cy="64" rx="43" ry="40" /></g>
+<g data-region="speckle" id="nuclear-speckle-0-fill" fill="#7B78C9"><path d="M37 42q-4-7 3-8q7-5 11 1q7 4 2 10q-7 7-13 2Z" /></g>
+<g data-region="speckle" id="nuclear-speckle-1-fill" fill="#7B78C9"><path d="M66 38q-4-7 3-8q7-5 11 1q7 4 2 10q-7 7-13 2Z" /></g>
+<g data-region="speckle" id="nuclear-speckle-2-fill" fill="#7B78C9"><path d="M80 61q-4-7 3-8q7-5 11 1q7 4 2 10q-7 7-13 2Z" /></g>
+<g data-region="speckle" id="nuclear-speckle-3-fill" fill="#7B78C9"><path d="M60 74q-4-7 3-8q7-5 11 1q7 4 2 10q-7 7-13 2Z" /></g>
+<g data-region="speckle" id="nuclear-speckle-4-fill" fill="#7B78C9"><path d="M32 78q-4-7 3-8q7-5 11 1q7 4 2 10q-7 7-13 2Z" /></g>
+<g data-region="nucleolus" id="nucleolar-context-fill" fill="#B8B5FF"><ellipse cx="49" cy="60" rx="8" ry="6" /></g>
+</svg>

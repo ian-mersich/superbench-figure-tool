@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Adherens Junction</title>
+  <desc id="desc">Illustrative cadherin-mediated contact between adjacent cells, with cytoplasmic adhesion adaptors connecting the contact to actin filaments.</desc>
+  <g data-region="membrane" fill="#C7F2EC" stroke="none">
+    <rect x="44" y="18" width="9" height="92" rx="2" /><rect x="75" y="18" width="9" height="92" rx="2" />
+  </g>
+  <g data-region="cadherin" fill="#8EC8FF" stroke="none">
+    <path d="M40 39H54Q60 39 64 44Q68 39 74 39H88V48H74Q68 48 64 44Q60 48 54 48H40Z" /><path d="M40 80H54Q60 80 64 85Q68 80 74 80H88V89H74Q68 89 64 85Q60 89 54 89H40Z" />
+  </g>
+  <g data-region="adaptor" fill="#B8B5FF" stroke="none">
+    <path d="M31 34H36L43 40V47L36 54H31L36 44Z M97 34H92L85 40V47L92 54H97L92 44Z" /><path d="M31 75H36L43 81V88L36 95H31L36 85Z M97 75H92L85 81V88L92 95H97L92 85Z" />
+  </g>
+  <g data-region="actin" fill="#E76F51" stroke="none">
+    <path d="M19 18H26Q22 62 26 110H19Q15 62 19 18Z M31 18H37Q33 61 37 110H31Q27 61 31 18Z M109 18H102Q106 62 102 110H109Q113 62 109 18Z M97 18H91Q95 61 91 110H97Q101 61 97 18Z" />
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M44 18H53V36M44 18V36M44 54V75M53 54V75M44 93V110H53V93M75 18H84V36M75 18V36M75 54V75M84 54V75M75 93V110H84V93" /><path d="M40 39H54Q60 39 64 44Q68 39 74 39H88V48H74Q68 48 64 44Q60 48 54 48H40Z" /><path d="M40 80H54Q60 80 64 85Q68 80 74 80H88V89H74Q68 89 64 85Q60 89 54 89H40Z" /><path d="M31 34H36L43 40V47L36 54H31L36 44Z M97 34H92L85 40V47L92 54H97L92 44Z" /><path d="M31 75H36L43 81V88L36 95H31L36 85Z M97 75H92L85 81V88L92 95H97L92 85Z" /><path d="M19 18H26Q22 62 26 110H19Q15 62 19 18Z M31 18H37Q33 61 37 110H31Q27 61 31 18Z M109 18H102Q106 62 102 110H109Q113 62 109 18Z M97 18H91Q95 61 91 110H97Q101 61 97 18Z" />
+  </g>
+</svg>

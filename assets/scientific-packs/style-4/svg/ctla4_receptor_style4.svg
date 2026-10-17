@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">CTLA-4 Receptor</title>
+  <desc id="desc">Editable cytotoxic t-lymphocyte-associated protein 4 schematic with disulfide-linked CTLA-4 receptor dimer with extracellular immunoglobulin-like heads and inhibitory-tail cues.</desc>
+  <g data-region="membrane" fill="#DCE4EC" stroke="none"><path d="M9 91h110v14H9z" /></g>
+  <g data-region="receptor_domains" fill="#C7F2EC" stroke="none"><path d="M42 91V72l-9-11 4-17 11-7 10 7 4 17-9 11v19z" /><path d="M75 91V72l-9-11 4-17 10-7 11 7 4 17-9 11v19z" /></g>
+  <g data-region="dimer_interface" fill="#B8B5FF" stroke="none"><circle cx="64" cy="48" r="4" /><path d="M58 48h2m8 0h2" /></g>
+  <g data-region="cytoplasmic_tails" fill="none" stroke="#E76F51" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M49 105v14m30-14v14M45 114h8m22 0h8" /></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 91h110v14H9z" /><path d="M42 91V72l-9-11 4-17 11-7 10 7 4 17-9 11v19z" /><path d="M75 91V72l-9-11 4-17 10-7 11 7 4 17-9 11v19z" /><circle cx="64" cy="48" r="4" /></g>
+</svg>

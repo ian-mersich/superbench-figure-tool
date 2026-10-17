@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Transwell Culture — Coculture</title>
+  <desc id="desc">Editable coculture form of permeable-support culture, shown with monoculture and co-culture permeable-insert forms.</desc>
+  <g data-region="model_context" fill="#C7F2EC" stroke="none"><path d="M12 31h104v83H12z" /><path d="M20 73h88v35H20z" /></g>
+  <g data-region="primary_population" fill="#8EC8FF" stroke="none"><circle cx="38" cy="60" r="7" /><circle cx="58" cy="59" r="7" /><circle cx="78" cy="61" r="7" /><circle cx="96" cy="59" r="7" /></g>
+  <g data-region="secondary_feature" fill="#B8B5FF" stroke="none"><path d="M31 91l11-6 11 6-11 6zM61 93l12-7 12 7-12 7zM89 90l10-6 10 6-10 6z" /></g>
+  <g data-region="model_structure" fill="none" stroke="#F4A261" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M25 39h78l-8 37H33zM33 76h62M42 76v10m32-10v10M64 46v8m0 0-5-6m5 6 5-6" /></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 31h104v83H12zM25 39h78l-8 37H33z" /></g>
+</svg>

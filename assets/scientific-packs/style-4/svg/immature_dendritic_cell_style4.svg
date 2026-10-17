@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Immature Dendritic Cell</title>
+  <desc id="desc">Editable immature dendritic cell schematic with rounded dendritic cell with short processes and prominent antigen-capture vesicles.</desc>
+  <g data-region="cell_body" fill="#C7F2EC" stroke="none"><path d="M24 69c-9-8-5-18 5-22-6-12 3-21 15-18 4-13 18-15 26-5 9-8 22-2 22 10 13-3 20 10 12 20 10 7 8 21-3 26 5 12-6 22-18 19-5 12-20 13-27 3-11 7-23-2-22-14-13 0-20-12-13-22z" /></g>
+  <g data-region="nucleus" fill="#B8B5FF" stroke="none"><path d="M50 47c14-9 31-1 32 13 1 7-6 11-5 18 1 8-8 13-16 10-15-5-23-19-17-31 1-4 3-7 6-10z" /></g>
+  <g data-region="state_features" fill="#E76F51" stroke="none"><circle cx="36" cy="57" r="5" /><circle cx="85" cy="47" r="5" /><circle cx="90" cy="76" r="5" /><circle cx="45" cy="88" r="4" /></g>
+  <g data-region="functional_cues" fill="none" stroke="#58B8AE" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M29 47l-9-8m24-10-2-12m50 17 10-8m2 28 12 2m-15 24 9 8m-67 15-6 10M24 69l-12 5" /></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M24 69c-9-8-5-18 5-22-6-12 3-21 15-18 4-13 18-15 26-5 9-8 22-2 22 10 13-3 20 10 12 20 10 7 8 21-3 26 5 12-6 22-18 19-5 12-20 13-27 3-11 7-23-2-22-14-13 0-20-12-13-22z" /><path d="M50 47c14-9 31-1 32 13 1 7-6 11-5 18 1 8-8 13-16 10-15-5-23-19-17-31 1-4 3-7 6-10z" /></g>
+</svg>

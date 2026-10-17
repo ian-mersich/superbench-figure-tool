@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Epithelial–Mesenchymal Transition</title>
+  <desc id="desc">Editable epithelial–mesenchymal transition schematic with joined columnar epithelial cells transitioning to separated spindle-shaped cells.</desc>
+  <g data-region="epithelial_cells" fill="#8EC8FF" stroke="none"><rect x="7" y="39" width="16" height="51" rx="5" /><rect x="23" y="39" width="16" height="51" rx="5" /><rect x="39" y="39" width="16" height="51" rx="5" /></g>
+  <g data-region="mesenchymal_cells" fill="#F4A261" stroke="none"><path d="M79 43c12 8 14 15 0 23-14-8-12-15 0-23z" /><path d="M104 71c13 7 14 14 0 22-14-8-13-15 0-22z" /></g>
+  <g data-region="epithelial_junctions" fill="none" stroke="#58B8AE" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M23 43v43M39 43v43M7 94h48" /></g>
+  <g data-region="state_transition" fill="none" stroke="#7B78C9" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M57 64L73 64M66.925 68.5L73 64L66.925 59.5" /><path d="M86 70L98 76M91.3812 77.1628L98 76L94.9589 70.0073" /></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="39" width="16" height="51" rx="5" /><rect x="23" y="39" width="16" height="51" rx="5" /><rect x="39" y="39" width="16" height="51" rx="5" /><path d="M79 43c12 8 14 15 0 23-14-8-12-15 0-23z" /><path d="M104 71c13 7 14 14 0 22-14-8-13-15 0-22z" /></g>
+</svg>

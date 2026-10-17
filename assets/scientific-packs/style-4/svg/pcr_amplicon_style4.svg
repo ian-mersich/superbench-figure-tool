@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">PCR Amplicon</title>
+  <desc id="desc">Editable polymerase chain reaction amplicon schematic with defined double-stranded DNA segment bounded by primers.</desc>
+  <g data-region="nucleic_acid" fill="none" stroke="#5EA9DD" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 55h98M15 75h98" /></g>
+  <g data-region="regulatory_feature" fill="none" stroke="#7B78C9" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M27 55v20M42 55v20M57 55v20M72 55v20M87 55v20M102 55v20" /></g>
+  <g data-region="process_feature" fill="none" stroke="#F4A261" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 46h27l-7-6m7 6-7 6M113 84H86l7-6m-7 6 7 6" /></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 55h98M15 75h98M15 46h27M113 84H86" /></g>
+</svg>

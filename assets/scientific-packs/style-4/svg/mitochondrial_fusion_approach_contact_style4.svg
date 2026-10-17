@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+<title id="title">Mitochondrial Fusion — Approach and contact</title>
+<desc id="desc">Two mitochondrial profiles approaching a symbolic tethered membrane contact. A membrane-joining schematic, not resolved outer- versus inner-membrane fusion or evidence of content mixing. Tether identity, mitofusin or OPA1 stoichiometry, membrane potential, rate and biological outcome are not specified. Arrows indicate approach.</desc>
+<g data-region="mitochondria" id="approaching-mitochondrion-a-fill" fill="#8EC8FF"><rect x="16" y="52" width="39" height="26" rx="13.0" /></g>
+<g data-region="outline" id="approaching-mitochondrion-a-outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><rect x="16" y="52" width="39" height="26" rx="13.0" /></g>
+<g data-region="cristae" id="approaching-mitochondrion-a-crista-0" fill="none" stroke="#E76F51" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M23.0 55l-2 20" /></g>
+<g data-region="cristae" id="approaching-mitochondrion-a-crista-1" fill="none" stroke="#E76F51" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M35.5 55l-2 20" /></g>
+<g data-region="cristae" id="approaching-mitochondrion-a-crista-2" fill="none" stroke="#E76F51" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M48.0 55l-2 20" /></g>
+<g data-region="mitochondria" id="approaching-mitochondrion-b-fill" fill="#8EC8FF"><rect x="73" y="46" width="39" height="26" rx="13.0" /></g>
+<g data-region="outline" id="approaching-mitochondrion-b-outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><rect x="73" y="46" width="39" height="26" rx="13.0" /></g>
+<g data-region="cristae" id="approaching-mitochondrion-b-crista-0" fill="none" stroke="#E76F51" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M80.0 49l-2 20" /></g>
+<g data-region="cristae" id="approaching-mitochondrion-b-crista-1" fill="none" stroke="#E76F51" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M92.5 49l-2 20" /></g>
+<g data-region="cristae" id="approaching-mitochondrion-b-crista-2" fill="none" stroke="#E76F51" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M105.0 49l-2 20" /></g>
+<g data-region="fusion_site" id="contact-tethers" fill="none" stroke="#B8B5FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M56 58l8 6 8-6M56 71l8-7 8 7" /></g>
+<g data-region="outline" id="approach-a" fill="none" stroke="#26323D" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M28 94L53 94" /></g>
+<g data-region="outline" id="approach-a-arrowhead" fill="none" stroke="#26323D" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M47.19 97.90L53 94L47.19 90.10" /></g>
+<g data-region="outline" id="approach-b" fill="none" stroke="#26323D" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M99 94L75 94" /></g>
+<g data-region="outline" id="approach-b-arrowhead" fill="none" stroke="#26323D" stroke-width="2.75" stroke-linecap="round" stroke-linejoin="round"><path d="M80.81 90.10L75 94L80.81 97.90" /></g>
+</svg>

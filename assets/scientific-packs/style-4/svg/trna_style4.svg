@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Transfer RNA</title>
+  <desc id="desc">Editable transfer rna schematic with cloverleaf transfer RNA with amino-acid attachment site.</desc>
+  <g data-region="nucleic_acid" fill="none" stroke="#5EA9DD" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M64 15v25M64 40c-22-20-39 2-23 17 6 6 15 5 23 1M64 40c22-20 39 2 23 17-6 6-15 5-23 1M64 58c-22 2-25 24-8 30M64 58c22 2 25 24 8 30M56 88l8 24 8-24" /></g>
+  <g data-region="regulatory_feature" fill="none" stroke="#7B78C9" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M56 105h16M57 25h14M41 55l9-7M87 55l-9-7" /></g>
+  <g data-region="process_feature" fill="none" stroke="#F4A261" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="64" cy="13" r="8" /></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M64 15v25M64 40c-22-20-39 2-23 17 6 6 15 5 23 1M64 40c22-20 39 2 23 17-6 6-15 5-23 1M64 58c-22 2-25 24-8 30M64 58c22 2 25 24 8 30M56 88l8 24 8-24" /></g>
+</svg>

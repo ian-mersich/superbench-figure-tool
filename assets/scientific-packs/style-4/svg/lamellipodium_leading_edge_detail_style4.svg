@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+<title id="title">Lamellipodium — Leading-edge detail</title>
+<desc id="desc">An enlarged broad membrane sheet supported by several branched actin cues. A thin sheet-like protrusion schematic. Branch geometry, filament number, force, motility direction and Arp2/3 position are not measured. This form contrasts with a filopodium but does not assert mutually exclusive protrusion types.</desc>
+<g data-region="cytoplasm" id="leading-edge-sheet-fill" fill="#C7F2EC"><path d="M17 98V57Q64 10 111 38V98Z" /></g>
+<g data-region="outline" id="leading-edge-sheet-outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 98V57Q64 10 111 38V98Z" /></g>
+<g data-region="membrane" id="leading-membrane" fill="none" stroke="#7DD3C7" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 57Q62 12 111 38" /></g>
+<g data-region="actin" id="branched-actin-0" fill="none" stroke="#E76F51" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M30 86L45 45M36.75 67.55l-12-6M40.20 58.12l8-4" /></g>
+<g data-region="actin" id="branched-actin-1" fill="none" stroke="#E76F51" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M48 89L64 35M55.20 64.70l-12-6M58.88 52.28l8-4" /></g>
+<g data-region="actin" id="branched-actin-2" fill="none" stroke="#E76F51" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M70 91L82 34M75.40 65.35l-12-6M78.16 52.24l8-4" /></g>
+<g data-region="actin" id="branched-actin-3" fill="none" stroke="#E76F51" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M91 88L104 44M96.85 68.20l-12-6M99.84 58.08l8-4" /></g>
+</svg>

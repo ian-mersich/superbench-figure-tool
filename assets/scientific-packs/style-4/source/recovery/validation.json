@@ -1,0 +1,247 @@
+{
+  "source_zip_sha256": "09a895d64c5504630649e3a13e27c483be76a9d68463d54668fa0a3607ce347e",
+  "source_current_asset_count": 486,
+  "completed_svg_count": 16,
+  "checks": [
+    {
+      "asset_id": "cellstress.organelle.nucleolus.subcompartments",
+      "xml_valid": true,
+      "viewBox_unchanged": true,
+      "all_source_regions_present": true,
+      "source_description_verbatim": true,
+      "labels_match_source": true,
+      "raster_or_external_resources": false,
+      "rendered_512px_alpha_bounds": [
+        89,
+        66,
+        432,
+        430
+      ]
+    },
+    {
+      "asset_id": "cellstress.organelle.primary_cilium.straight",
+      "xml_valid": true,
+      "viewBox_unchanged": true,
+      "all_source_regions_present": true,
+      "source_description_verbatim": true,
+      "labels_match_source": true,
+      "raster_or_external_resources": false,
+      "rendered_512px_alpha_bounds": [
+        55,
+        49,
+        457,
+        444
+      ]
+    },
+    {
+      "asset_id": "cellstress.membrane_signaling.clathrin_coated_vesicle.section",
+      "xml_valid": true,
+      "viewBox_unchanged": true,
+      "all_source_regions_present": true,
+      "source_description_verbatim": true,
+      "labels_match_source": true,
+      "raster_or_external_resources": false,
+      "rendered_512px_alpha_bounds": [
+        74,
+        74,
+        438,
+        438
+      ]
+    },
+    {
+      "asset_id": "cellstress.cell.pyroptotic_cell.pore_bearing",
+      "xml_valid": true,
+      "viewBox_unchanged": true,
+      "all_source_regions_present": true,
+      "source_description_verbatim": true,
+      "labels_match_source": true,
+      "raster_or_external_resources": false,
+      "rendered_512px_alpha_bounds": [
+        54,
+        84,
+        450,
+        454
+      ]
+    },
+    {
+      "asset_id": "tme.cancer_associated_fibroblast.spindle",
+      "xml_valid": true,
+      "viewBox_unchanged": true,
+      "all_source_regions_present": true,
+      "source_description_verbatim": true,
+      "labels_match_source": true,
+      "raster_or_external_resources": false,
+      "rendered_512px_alpha_bounds": [
+        44,
+        120,
+        460,
+        452
+      ]
+    },
+    {
+      "asset_id": "tme.hypoxia_gradient.perivascular",
+      "xml_valid": true,
+      "viewBox_unchanged": true,
+      "all_source_regions_present": true,
+      "source_description_verbatim": true,
+      "labels_match_source": true,
+      "raster_or_external_resources": false,
+      "rendered_512px_alpha_bounds": [
+        48,
+        92,
+        448,
+        479
+      ]
+    },
+    {
+      "asset_id": "analysis.volcano_plot.overview",
+      "xml_valid": true,
+      "viewBox_unchanged": true,
+      "all_source_regions_present": true,
+      "source_description_verbatim": true,
+      "labels_match_source": true,
+      "raster_or_external_resources": false,
+      "rendered_512px_alpha_bounds": [
+        15,
+        47,
+        452,
+        475
+      ]
+    },
+    {
+      "asset_id": "analysis.heatmap.matrix",
+      "xml_valid": true,
+      "viewBox_unchanged": true,
+      "all_source_regions_present": true,
+      "source_description_verbatim": true,
+      "labels_match_source": true,
+      "raster_or_external_resources": false,
+      "rendered_512px_alpha_bounds": [
+        28,
+        44,
+        407,
+        492
+      ]
+    },
+    {
+      "asset_id": "cellstress.organelle.nucleolus.nuclear_context",
+      "xml_valid": true,
+      "viewBox_unchanged": true,
+      "all_source_regions_present": true,
+      "source_description_verbatim": true,
+      "labels_match_source": true,
+      "raster_or_external_resources": false,
+      "rendered_512px_alpha_bounds": [
+        79,
+        91,
+        436,
+        421
+      ]
+    },
+    {
+      "asset_id": "cellstress.organelle.primary_cilium.bent",
+      "xml_valid": true,
+      "viewBox_unchanged": true,
+      "all_source_regions_present": true,
+      "source_description_verbatim": true,
+      "labels_match_source": true,
+      "raster_or_external_resources": false,
+      "rendered_512px_alpha_bounds": [
+        64,
+        60,
+        448,
+        448
+      ]
+    },
+    {
+      "asset_id": "cellstress.membrane_signaling.clathrin_coated_vesicle.cage_view",
+      "xml_valid": true,
+      "viewBox_unchanged": true,
+      "all_source_regions_present": true,
+      "source_description_verbatim": true,
+      "labels_match_source": true,
+      "raster_or_external_resources": false,
+      "rendered_512px_alpha_bounds": [
+        84,
+        80,
+        428,
+        432
+      ]
+    },
+    {
+      "asset_id": "cellstress.cell.pyroptotic_cell.lytic",
+      "xml_valid": true,
+      "viewBox_unchanged": true,
+      "all_source_regions_present": true,
+      "source_description_verbatim": true,
+      "labels_match_source": true,
+      "raster_or_external_resources": false,
+      "rendered_512px_alpha_bounds": [
+        55,
+        78,
+        474,
+        453
+      ]
+    },
+    {
+      "asset_id": "tme.cancer_associated_fibroblast.matrix",
+      "xml_valid": true,
+      "viewBox_unchanged": true,
+      "all_source_regions_present": true,
+      "source_description_verbatim": true,
+      "labels_match_source": true,
+      "raster_or_external_resources": false,
+      "rendered_512px_alpha_bounds": [
+        56,
+        84,
+        452,
+        452
+      ]
+    },
+    {
+      "asset_id": "tme.hypoxia_gradient.spheroid",
+      "xml_valid": true,
+      "viewBox_unchanged": true,
+      "all_source_regions_present": true,
+      "source_description_verbatim": true,
+      "labels_match_source": true,
+      "raster_or_external_resources": false,
+      "rendered_512px_alpha_bounds": [
+        60,
+        44,
+        452,
+        476
+      ]
+    },
+    {
+      "asset_id": "analysis.volcano_plot.feature_labels",
+      "xml_valid": true,
+      "viewBox_unchanged": true,
+      "all_source_regions_present": true,
+      "source_description_verbatim": true,
+      "labels_match_source": true,
+      "raster_or_external_resources": false,
+      "rendered_512px_alpha_bounds": [
+        15,
+        44,
+        452,
+        475
+      ]
+    },
+    {
+      "asset_id": "analysis.heatmap.clustered",
+      "xml_valid": true,
+      "viewBox_unchanged": true,
+      "all_source_regions_present": true,
+      "source_description_verbatim": true,
+      "labels_match_source": true,
+      "raster_or_external_resources": false,
+      "rendered_512px_alpha_bounds": [
+        28,
+        16,
+        391,
+        492
+      ]
+    }
+  ]
+}

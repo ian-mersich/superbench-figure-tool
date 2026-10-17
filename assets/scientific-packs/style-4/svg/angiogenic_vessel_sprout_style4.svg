@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Angiogenic Vessel Sprout</title>
+  <desc id="desc">Editable angiogenic vessel sprout schematic with curved endothelial sprout with a leading tip cell and broad filopodia.</desc>
+  <g data-region="vessel_wall" fill="#C7F2EC" stroke="none"><path d="M9 110c16-20 15-40 27-51 10-10 23-8 35-15 11-7 14-21 23-26 7-4 15-3 23 2l-6 11c-7-4-12-4-16-1-7 5-9 18-18 25-12 10-27 8-35 17 -10 11-9 30-22 46z" /></g>
+  <g data-region="endothelial_nuclei" fill="#B8B5FF" stroke="none"><ellipse cx="25" cy="83" rx="5" ry="9" transform="rotate(18 25 83)" /><ellipse cx="49" cy="57" rx="5" ry="9" transform="rotate(56 49 57)" /><ellipse cx="78" cy="42" rx="5" ry="8" transform="rotate(37 78 42)" /><ellipse cx="101" cy="25" rx="4" ry="7" transform="rotate(67 101 25)" /></g>
+  <g data-region="tip_filopodia" fill="none" stroke="#58B8AE" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><path d="M111 25l12-10M112 27l12 1M109 21l7-15M105 21l1-14M96 26l-4-13" /></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 110c16-20 15-40 27-51 10-10 23-8 35-15 11-7 14-21 23-26 7-4 15-3 23 2l-6 11c-7-4-12-4-16-1-7 5-9 18-18 25-12 10-27 8-35 17 -10 11-9 30-22 46z" /><ellipse cx="25" cy="83" rx="5" ry="9" transform="rotate(18 25 83)" /><ellipse cx="49" cy="57" rx="5" ry="9" transform="rotate(56 49 57)" /><ellipse cx="78" cy="42" rx="5" ry="8" transform="rotate(37 78 42)" /><ellipse cx="101" cy="25" rx="4" ry="7" transform="rotate(67 101 25)" /><path d="M111 25l12-10M112 27l12 1M109 21l7-15M105 21l1-14M96 26l-4-13" /></g>
+</svg>

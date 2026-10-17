@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+<title id="title">Replication Stress — Stalled fork</title>
+<desc id="desc">A parental DNA fork and two nascent DNA strands with an illustrative impediment cue. A DNA topology schematic, not sequence, replication speed, specific replisome proteins or a demonstrated cellular state. Fork reversal is one response to stress and is not inevitable; a stalled Y fork does not itself prove reversal or DNA breakage.</desc>
+<g data-region="parent_dna" id="parental-fork-strands" fill="none" stroke="#8EC8FF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 57H55L103 24M17 68H55L103 103" /></g>
+<g data-region="nascent_dna" id="nascent-strands" fill="none" stroke="#7B78C9" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M65 58L104 33M65 73L102 94" /></g>
+<g data-region="outline" id="double-strand-rung-0" fill="none" stroke="#26323D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 59v7" /></g>
+<g data-region="outline" id="double-strand-rung-1" fill="none" stroke="#26323D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M27 59v7" /></g>
+<g data-region="outline" id="double-strand-rung-2" fill="none" stroke="#26323D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M34 59v7" /></g>
+<g data-region="outline" id="double-strand-rung-3" fill="none" stroke="#26323D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M41 59v7" /></g>
+<g data-region="outline" id="double-strand-rung-4" fill="none" stroke="#26323D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M48 59v7" /></g>
+<g data-region="stress_site" id="fork-obstacle-fill" fill="#E76F51"><path d="M57 40l8-8 8 8-8 8Z" /></g>
+<g data-region="outline" id="fork-obstacle-outline" fill="none" stroke="#26323D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M57 40l8-8 8 8-8 8Z" /></g>
+<g data-region="stress_site" id="stall-site" fill="none" stroke="#E76F51" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M62 47l-6 10" /></g>
+</svg>

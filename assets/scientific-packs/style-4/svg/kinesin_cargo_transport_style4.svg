@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Kinesin Cargo Transport</title>
+  <desc id="desc">Illustrative kinesin-1-like motor with compact microtubule-binding heads and a stalk linking to a generic vesicular cargo.</desc>
+  <g data-region="microtubule" fill="#B8B5FF" stroke="none">
+    <rect x="16" y="95" width="96" height="7" rx="3" /><rect x="16" y="106" width="96" height="7" rx="3" />
+  </g>
+  <g data-region="motor" fill="#5EA9DD" stroke="none">
+    <path d="M64 48H71V73L82 81L78 88L67 81L49 87L44 81L64 72Z" /><path d="M36 83Q45 78 54 83Q59 89 51 94Q40 99 33 91Q30 86 36 83Z M79 83Q88 78 97 83Q102 89 94 94Q83 99 76 91Q73 86 79 83Z" />
+  </g>
+  <g data-region="cargo" fill="#F4A261" stroke="none">
+    <ellipse cx="68" cy="33" rx="21" ry="17" />
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="16" y="95" width="96" height="7" rx="3" /><rect x="16" y="106" width="96" height="7" rx="3" /><path d="M32 96V101M51 96V101M70 96V101M89 96V101M24 107V112M43 107V112M62 107V112M81 107V112M100 107V112" stroke-width="0.95" /><path d="M64 48H71V73L82 81L78 88L67 81L49 87L44 81L64 72Z" /><path d="M36 83Q45 78 54 83Q59 89 51 94Q40 99 33 91Q30 86 36 83Z M79 83Q88 78 97 83Q102 89 94 94Q83 99 76 91Q73 86 79 83Z" /><ellipse cx="68" cy="33" rx="21" ry="17" />
+  </g>
+</svg>

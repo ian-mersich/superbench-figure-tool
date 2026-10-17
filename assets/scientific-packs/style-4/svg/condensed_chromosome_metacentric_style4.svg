@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+<title id="title">Condensed Chromosome — Metacentric</title>
+<desc id="desc">A replicated condensed chromosome with similar-length arms and a central centromere cue. An isolated replicated chromosome schematic, not a karyotype or chromosome-specific anatomy. The X-like silhouette is not a universal chromosome shape or a depiction of DNA helix scale.</desc>
+<g data-region="chromatid" id="replicated-chromosome-fill" fill="#B8B5FF"><path d="M36 24Q29 19 25 28Q22 33 27 42L54 63L28 92Q23 101 30 106Q38 109 43 101L63 75L83 102Q89 110 97 104Q103 99 97 90L73 63L98 40Q104 29 96 24Q87 20 82 30L63 51L45 27Q41 21 36 24Z" /></g>
+<g data-region="outline" id="replicated-chromosome-outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M36 24Q29 19 25 28Q22 33 27 42L54 63L28 92Q23 101 30 106Q38 109 43 101L63 75L83 102Q89 110 97 104Q103 99 97 90L73 63L98 40Q104 29 96 24Q87 20 82 30L63 51L45 27Q41 21 36 24Z" /></g>
+<g data-region="centromere" id="centromere-region-fill" fill="#F4A261"><ellipse cx="63" cy="63" rx="11" ry="7" /></g>
+<g data-region="outline" id="centromere-region-outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="63" cy="63" rx="11" ry="7" /></g>
+<g data-region="outline" id="sister-chromatid-grooves" fill="none" stroke="#26323D" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M36 33L58 56M91 33L68 56M35 98L59 73M91 98L68 73" /></g>
+</svg>

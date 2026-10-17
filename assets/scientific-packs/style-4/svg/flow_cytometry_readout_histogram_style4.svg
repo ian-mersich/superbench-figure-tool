@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Flow Cytometry Readout — Histogram</title>
+  <desc id="desc">Editable histogram form of flow cytometry result, shown with dot-plot and histogram result forms.</desc>
+  <g data-region="assay_surface" fill="#F7F9FC" stroke="none"><rect x="10" y="13" width="108" height="102" rx="7" /></g>
+  <g data-region="measured_signal" fill="#B8B5FF" stroke="none"><path d="M23 103c7-1 10-8 15-28 5-21 11-30 18-24 7 6 8 30 15 41 4 7 8 10 14 11z" opacity="0.55" /></g>
+  <g data-region="signal_trace" fill="none" stroke="#E76F51" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round"><path d="M23 101c11-1 17-9 24-30 8-24 15-31 23-22 8 9 9 29 17 40 6 8 12 11 21 12M23 101c20 0 27-3 34-12 8-10 14-31 23-39 8-7 16-2 20 11 5 18 8 34 11 40" /></g>
+  <g data-region="axes_or_structure" fill="none" stroke="#5EA9DD" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 103h91M21 103V24M70 103V48" /></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="13" width="108" height="102" rx="7" /></g>
+</svg>

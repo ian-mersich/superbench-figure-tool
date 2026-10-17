@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Collagen-rich Extracellular Matrix — Aligned Fibers</title>
+  <desc id="desc">Editable aligned fibers form of collagen-rich extracellular matrix, shown with thick collagen-like fibers arranged as mesh or aligned forms.</desc>
+  <g data-region="matrix_fibers" fill="none" stroke="#8EC8FF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 30c20-12 40-10 62-20M8 51c26-17 48-16 74-32M8 74c26-14 50-20 80-38 M18 96c26-10 50-24 81-42M35 112c28-12 51-28 81-45M62 119c20-11 38-23 58-35" /></g>
+  <g data-region="fiber_crosslinks" fill="none" stroke="#F4A261" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M34 44l7 10M60 36l7 10M55 72l7 10M86 64l7 10M81 96l7 10" /></g>
+  <g data-region="matrix_nodes" fill="#B8B5FF" stroke="none"><ellipse cx="38" cy="49" rx="4" ry="3" /><ellipse cx="64" cy="41" rx="4" ry="3" /><ellipse cx="59" cy="77" rx="4" ry="3" /><ellipse cx="90" cy="69" rx="4" ry="3" /><ellipse cx="85" cy="101" rx="4" ry="3" /></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 30c20-12 40-10 62-20M8 51c26-17 48-16 74-32M8 74c26-14 50-20 80-38 M18 96c26-10 50-24 81-42M35 112c28-12 51-28 81-45M62 119c20-11 38-23 58-35" /><path d="M34 44l7 10M60 36l7 10M55 72l7 10M86 64l7 10M81 96l7 10" /><ellipse cx="38" cy="49" rx="4" ry="3" /><ellipse cx="64" cy="41" rx="4" ry="3" /><ellipse cx="59" cy="77" rx="4" ry="3" /><ellipse cx="90" cy="69" rx="4" ry="3" /><ellipse cx="85" cy="101" rx="4" ry="3" /></g>
+</svg>

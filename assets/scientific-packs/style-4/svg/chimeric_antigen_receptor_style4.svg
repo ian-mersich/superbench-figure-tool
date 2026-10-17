@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Chimeric Antigen Receptor</title>
+  <desc id="desc">Editable chimeric antigen receptor schematic with antibody-like binding head, spacer, transmembrane segment, and modular signaling tail.</desc>
+  <g data-region="membrane" fill="#DCE4EC" stroke="none"><path d="M9 82h110v14H9z" /></g>
+  <g data-region="binding_head" fill="#C7F2EC" stroke="none"><path d="M64 82V62L53 49l-13-8 7-12 17 12 17-12 7 12-13 8-11 13v20z" /></g>
+  <g data-region="spacer" fill="#B8B5FF" stroke="none"><path d="M57 61h14v21H57z" /></g>
+  <g data-region="signaling_modules" fill="none" stroke="#E76F51" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M64 96v10l-10 6 10 7 10-7-10-6M48 108l-7 6m39-6 7 6" /></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 82h110v14H9z" /><path d="M64 82V62L53 49l-13-8 7-12 17 12 17-12 7 12-13 8-11 13v20z" /><path d="M57 61h14v21H57z" /></g>
+</svg>

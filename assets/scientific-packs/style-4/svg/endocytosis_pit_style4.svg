@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Clathrin-coated Endocytic Pit</title>
+  <desc id="desc">Editable clathrin-coated endocytic pit schematic with invaginating coated membrane with captured cargo.</desc>
+  <g data-region="biological_context" fill="#C7F2EC" stroke="none"><path d="M8 40h33c4 0 7 3 8 7 3 19 4 38 15 48 11-10 12-29 15-48 1-4 4-7 8-7h33v14H91c-4 24-10 47-27 58-17-11-23-34-27-58H8z" /></g>
+  <g data-region="receptor_or_vesicle" fill="none" stroke="#5EA9DD" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M40 36c4 26 9 51 24 63 15-12 20-37 24-63" /></g>
+  <g data-region="cargo_or_signal" fill="none" stroke="#F4A261" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="64" cy="61" r="9" /><circle cx="44" cy="31" r="4" /><circle cx="55" cy="25" r="4" /><circle cx="67" cy="23" r="4" /><circle cx="79" cy="26" r="4" /><circle cx="89" cy="32" r="4" /></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M8 40h33c4 0 7 3 8 7 3 19 4 38 15 48 11-10 12-29 15-48 1-4 4-7 8-7h33M8 54h29M91 54h29M40 36c4 26 9 51 24 63 15-12 20-37 24-63" /></g>
+</svg>

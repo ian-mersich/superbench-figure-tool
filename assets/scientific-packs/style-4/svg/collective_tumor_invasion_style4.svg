@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Collective Tumor Invasion</title>
+  <desc id="desc">Editable collective tumor invasion schematic with cohesive tumor-cell group with a connected leader entering a fiber field.</desc>
+  <g data-region="cohesive_tumor_group" fill="#F2B9C5" stroke="none"><circle cx="23" cy="50" r="14" /><circle cx="42" cy="44" r="14" /><circle cx="22" cy="72" r="14" /><circle cx="43" cy="67" r="15" /><circle cx="40" cy="88" r="13" /></g>
+  <g data-region="leader_cell" fill="#E76F51" stroke="none"><path d="M51 58c10-10 22-7 28 3 5 10 0 21-12 25-10-4-14-13-10-22z" /></g>
+  <g data-region="matrix_field" fill="none" stroke="#7B78C9" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M89 14c-8 24-8 47 1 69s8 34 1 42M106 8c-7 25-6 47 2 67s9 35 2 49M120 18c-6 22-5 41 2 60" /></g>
+  <g data-region="invasion_direction" fill="none" stroke="#58B8AE" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M64 64L91 58M85.4954 64.3452L91 58L83.3261 54.5833" /></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="23" cy="50" r="14" /><circle cx="42" cy="44" r="14" /><circle cx="22" cy="72" r="14" /><circle cx="43" cy="67" r="15" /><circle cx="40" cy="88" r="13" /><path d="M51 58c10-10 22-7 28 3 5 10 0 21-12 25-10-4-14-13-10-22z" /></g>
+</svg>

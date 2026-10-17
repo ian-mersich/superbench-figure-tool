@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Leukocyte Recruitment</title>
+  <desc id="desc">Editable leukocyte recruitment schematic with rolling, arrest, and transmigration positions above an endothelial band.</desc>
+  <g data-region="endothelial_band" fill="#C7F2EC" stroke="none"><path d="M5 84c12-10 25-10 37 0 12-10 25-10 37 0 13-10 26-10 44 0v28H5z" /><path d="M5 84h118" /></g>
+  <g data-region="recruited_leukocytes" fill="#8EC8FF" stroke="none"><circle cx="25" cy="39" r="13" /><circle cx="63" cy="57" r="13" /><circle cx="101" cy="88" r="12" /></g>
+  <g data-region="adhesion_contacts" fill="none" stroke="#F4A261" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 54v10M29 53v9M56 70v9M67 70v9M94 72l3 10M107 72l-2 10" /></g>
+  <g data-region="recruitment_route" fill="none" stroke="#7B78C9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M39 35L54 49M46.4884 48.1447L54 49L52.6293 41.5652" /><path d="M76 62L93 81M85.5956 79.4732L93 81L92.3028 73.4721" /><path d="M104 101L104 119M100 113.6L104 119L108 113.6" /></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 84c12-10 25-10 37 0 12-10 25-10 37 0 13-10 26-10 44 0v28H5z" /><path d="M5 84h118" /><circle cx="25" cy="39" r="13" /><circle cx="63" cy="57" r="13" /><circle cx="101" cy="88" r="12" /></g>
+</svg>

@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc" data-style="Style 4" data-source-asset-id="cellstress.organelle.primary_cilium.straight">
+<title id="title">Primary Cilium — Straight projection</title>
+<desc id="desc">A single membrane-covered ciliary projection above an apical surface, with an axonemal cue and basal body. A longitudinal primary-cilium schematic, not a motile cilia brush border. Microtubule number, ciliary pocket geometry, length, bending mechanics, transition zone and species are not specified.</desc>
+
+<metadata id="source-catalog-entry">{"id": "cellstress.organelle.primary_cilium.straight", "concept_id": "cellstress.organelle.primary_cilium", "name": "Primary Cilium", "scientific_name": "Primary Cilium", "category": "organelle", "subcategory": "Cell structures and cell stress", "synonyms": ["nonmotile cilium", "single sensory cilium", "ciliary projection"], "tags": ["primary cilium", "nonmotile cilium", "single sensory cilium", "ciliary projection", "Straight projection", "cell biology", "editable vector", "schematic"], "description": "A single membrane-covered ciliary projection above an apical surface, with an axonemal cue and basal body.", "file": "svg/primary_cilium_straight.svg", "source_type": "clean_room_original_vector", "license": "CC0-1.0", "provenance": "Original editable SVG coordinates authored afresh for cell structures and cell stress. Primary literature supports biological topology and explicit limitations only. No published image, proprietary asset-library artwork, screenshot, tracing, measured coordinates, sequence, or third-party vector component was incorporated. This original-art record does not grant rights or approve release.", "source_record_id": "source.cell-structure-stress.original.2026-10-15", "rights_record_id": "rights.cell-structure-stress.repository-policy-cc0.2026-10-15", "style_family": "figure-studio-soft-line-v1", "variant_axis": "form", "style_variant": "standard", "form_id": "straight", "form_label": "Straight projection", "review_status": "independent_scientific_and_visual_review_passed_2026_10_15", "style_status": "harmonized_soft_line_v1", "mvp_quality": "reviewed_original_vector", "quality_tier": "reviewed", "editable_region_count": 5, "editable_color_regions": [{"id": "cytoplasm", "label": "Cytoplasm", "default": "#C7F2EC"}, {"id": "membrane", "label": "Membrane", "default": "#7DD3C7"}, {"id": "outline", "label": "Structural outlines", "default": "#26323D"}, {"id": "axoneme", "label": "Axonemal microtubule cue", "default": "#8EC8FF"}, {"id": "basal_body", "label": "Basal body", "default": "#B8B5FF"}], "reviewer_notes": "Independent scientific and visual review accepted this exact drawing at 64, 256 and 512 px in all three drawing styles on 2026-10-15. Native editor qualification and product inclusion remain pending and are recorded separately from this artwork review and prospective repository CC0 permission.", "scientific_references": [{"id": "kowal2015", "citation": "Kowal and Falk. Primary cilia found on HeLa and other cancer cells. Cell Biology International (2015).", "doi": "10.1002/cbin.10500", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4609269/", "figure": "Figure 1A–D", "use": "A single ciliary projection adjacent to a basal-body cue; no source artwork or geometry copied."}], "scientific_limitations": "A longitudinal primary-cilium schematic, not a motile cilia brush border. Microtubule number, ciliary pocket geometry, length, bending mechanics, transition zone and species are not specified."}</metadata><g data-region="cytoplasm" id="apical-cytoplasm-fill" fill="#D8F1EA">
+  <path d="M15 88H113V111H15Z"/>
+</g>
+<g data-region="membrane" id="ciliary-membrane-fill" fill="#CFEDE6">
+  <path d="M48 88V30C48 22 53 16 60 14C69 11 78 18 80 28V88H113V95H71V30C71 24 67 20 62 20C56 20 52 24 52 31V95H15V88Z"/>
+</g>
+<g data-region="outline" id="ciliary-membrane-outline" fill="none" stroke="#2B3642" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M48 88V30C48 22 53 16 60 14C69 11 78 18 80 28V88H113V95H71V30C71 24 67 20 62 20C56 20 52 24 52 31V95H15V88Z"/>
+</g>
+<g data-region="axoneme" id="axoneme-microtubules" fill="none" stroke="#4D8BB5" stroke-width="1.7" stroke-linecap="round">
+  <path d="M58 26V89"/>
+  <path d="M64 24V89"/>
+  <path d="M61 24V89" opacity="0.35"/>
+</g>
+<g data-region="basal_body" id="basal-body-fill" fill="#B9B3E6">
+  <rect x="50" y="95" width="22" height="11" rx="4"/>
+  <rect x="57" y="104" width="8" height="4" rx="1.6" fill="#6D64B8" opacity="0.85"/>
+</g>
+<g data-region="outline" id="basal-body-outline" fill="none" stroke="#2B3642" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <rect x="50" y="95" width="22" height="11" rx="4"/>
+</g>
+<g data-region="outline" id="basal-body-striations" fill="none" stroke="#546273" stroke-width="0.9" stroke-linecap="round" opacity="0.8">
+  <path d="M55 98V104M60 98V104M65 98V104"/>
+</g>
+<g data-region="membrane" id="apical-shadow" fill="#97D7C8" opacity="0.55"><rect x="15" y="88" width="98" height="7"/></g>
+
+</svg>

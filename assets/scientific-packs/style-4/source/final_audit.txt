@@ -1,0 +1,4 @@
+expected_assets	486
+final_svg_files	486
+missing_assets	0
+extra_assets	0

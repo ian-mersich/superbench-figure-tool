@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">CD4+ Helper T Cell</title>
+  <desc id="desc">Editable cd4-positive helper t cell schematic with lymphocyte with helper-coreceptor geometry and outward soluble-factor cues.</desc>
+  <g data-region="cell_body" fill="#C7F2EC" stroke="none"><path d="M22 67c0-25 18-44 43-45 26 0 46 19 46 45 0 25-18 43-44 44-26 0-45-18-45-44z" /></g>
+  <g data-region="nucleus" fill="#B8B5FF" stroke="none"><ellipse cx="58" cy="67" rx="23" ry="25" /></g>
+  <g data-region="state_features" fill="#E76F51" stroke="none"><circle cx="100" cy="45" r="4" /><circle cx="111" cy="55" r="3.5" /><circle cx="103" cy="68" r="4" /><circle cx="114" cy="78" r="3" /><circle cx="98" cy="87" r="3.5" /></g>
+  <g data-region="functional_cues" fill="none" stroke="#58B8AE" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M31 41V27m0 0-5 5m5-5 5 5M40 39V27" /><path d="M93 48l6-3m4 23h-7m7 19-7 2" /></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M22 67c0-25 18-44 43-45 26 0 46 19 46 45 0 25-18 43-44 44-26 0-45-18-45-44z" /><ellipse cx="58" cy="67" rx="23" ry="25" /><path d="M31 41V27m0 0-5 5m5-5 5 5M40 39V27" /></g>
+</svg>

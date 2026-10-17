@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+<title id="title">Filopodium — Whole cell</title>
+<desc id="desc">A cell with a slender membrane protrusion supported by parallel actin-bundle cues. A generic filopodial morphology; filament number, crosslinker identity and orientation, force, receptor localization and motility are not specified. The slender protrusion is not a microtubule-based cilium.</desc>
+<g data-region="cytoplasm" id="cell-with-filopodium-fill" fill="#C7F2EC"><path d="M20 98Q15 73 32 58Q48 43 64 55Q73 63 79 59L104 28Q110 21 114 28Q117 32 110 40L84 73Q88 93 69 105Q43 115 20 98Z" /></g>
+<g data-region="outline" id="cell-with-filopodium-outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 98Q15 73 32 58Q48 43 64 55Q73 63 79 59L104 28Q110 21 114 28Q117 32 110 40L84 73Q88 93 69 105Q43 115 20 98Z" /></g>
+<g data-region="nucleus" id="nucleus-fill" fill="#D9D7FF"><ellipse cx="43" cy="85" rx="14" ry="11" /></g>
+<g data-region="outline" id="nucleus-outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="43" cy="85" rx="14" ry="11" /></g>
+<g data-region="actin" id="parallel-actin-bundle" fill="none" stroke="#E76F51" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M62 87L108 33M67 90L111 36M58 84L105 30" /></g>
+</svg>

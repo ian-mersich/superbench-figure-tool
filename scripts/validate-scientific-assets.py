@@ -2613,6 +2613,28 @@ def _register_library_asset(
             state.scoped_search_terms[scope] = (concept, asset_id, is_primary)
 
 
+def validate_registered_art_styles(library_path: Path, library: dict) -> list[dict[str, object]]:
+    """Accept only the finite registered Style 4 addition, with its own audit."""
+    styles = library.get("art_styles", [])
+    if not styles:
+        if "art_style_notes" in library:
+            fail("Drawing-style notes require a registered drawing style")
+        return []
+    if styles != [{"id":"style-4","name":"Style 4","path":"style-4/manifest.json","asset_count":486}]:
+        fail("Scientific drawing styles must exactly match the registered Style 4 manifest")
+    if not isinstance(library.get("art_style_notes"), str) or not library["art_style_notes"].strip():
+        fail("Registered Style 4 requires a visible supplied-artwork limitation")
+    relative = canonical_relative_file(styles[0]["path"], label="Style 4 manifest", suffix=".json")
+    manifest = exact_pack_file(library_path.parent.resolve(), relative, label="Style 4 manifest")
+    script = Path(__file__).with_name("validate-style4-library.py")
+    spec = importlib.util.spec_from_file_location("figure_style4_asset_validator", script)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    result = module.validate(manifest.parent, library_path)
+    return [{"id":"style-4","directory":"style-4","asset_count":result["asset_count"],
+             "file_count":result["file_count"]}]
+
+
 def validate_library(library_path: Path = DEFAULT_LIBRARY) -> dict[str, object]:
     """Validate the installed scientific-library registry and every pack it declares."""
 
@@ -2638,6 +2660,7 @@ def validate_library(library_path: Path = DEFAULT_LIBRARY) -> dict[str, object]:
     rows = library.get("packs")
     if not isinstance(rows, list) or not rows:
         fail(f"{library_path}: packs must be a non-empty list")
+    art_styles = validate_registered_art_styles(library_path, library)
 
     packs_root = library_path.parent.resolve()
     seen_pack_ids: set[str] = set()
@@ -2770,10 +2793,11 @@ def validate_library(library_path: Path = DEFAULT_LIBRARY) -> dict[str, object]:
             "library root contains loose or missing files; "
             f"expected ['library.json'], found {sorted(top_level_files)}"
         )
-    if top_level_directories != seen_pack_ids:
+    registered_directories = seen_pack_ids | {style["directory"] for style in art_styles}
+    if top_level_directories != registered_directories:
         fail(
-            "library root directories must exactly match registered pack ids; "
-            f"expected {sorted(seen_pack_ids)}, found {sorted(top_level_directories)}"
+            "library root directories must exactly match registered pack and drawing-style ids; "
+            f"expected {sorted(registered_directories)}, found {sorted(top_level_directories)}"
         )
 
     return {
@@ -2782,6 +2806,7 @@ def validate_library(library_path: Path = DEFAULT_LIBRARY) -> dict[str, object]:
         "asset_count": total_assets,
         "concept_count": total_concepts,
         "packs": pack_summaries,
+        "art_styles": art_styles,
     }
 
 

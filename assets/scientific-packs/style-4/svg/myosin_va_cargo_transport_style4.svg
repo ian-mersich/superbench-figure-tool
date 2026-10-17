@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Myosin-Va Cargo Transport</title>
+  <desc id="desc">A myosin-Va-like motor linking a symbolic vesicular cargo to an actin filament track.</desc>
+  <g data-region="actin" fill="#E76F51" stroke="none">
+    <path d="M16 100Q30 90 44 99Q58 108 72 99Q87 90 112 100V108Q88 98 73 108Q58 117 44 108Q29 99 16 108Z" />
+  </g>
+  <g data-region="motor" fill="#5EA9DD" stroke="none">
+    <path d="M63 47H71V60L85 78L81 84L67 67L52 86L47 81L63 60Z M44 79Q50 76 56 83Q59 90 51 96Q40 101 35 93Q33 86 44 79Z M83 79Q92 79 96 86Q99 92 90 97Q80 101 76 93Q74 85 83 79Z" />
+  </g>
+  <g data-region="cargo" fill="#F4A261" stroke="none">
+    <ellipse cx="67" cy="31" rx="22" ry="17" />
+  </g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M16 100Q30 90 44 99Q58 108 72 99Q87 90 112 100V108Q88 98 73 108Q58 117 44 108Q29 99 16 108Z" /><path d="M63 47H71V60L85 78L81 84L67 67L52 86L47 81L63 60Z M44 79Q50 76 56 83Q59 90 51 96Q40 101 35 93Q33 86 44 79Z M83 79Q92 79 96 86Q99 92 90 97Q80 101 76 93Q74 85 83 79Z" /><ellipse cx="67" cy="31" rx="22" ry="17" />
+  </g>
+</svg>

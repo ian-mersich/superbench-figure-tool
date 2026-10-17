@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+<title id="title">Drug Penetration Gradient — Spheroid penetration</title>
+<desc id="desc">Qualitative drug availability decreases away from vascular supply or from an exposed spheroid rim. No dose, transport rate, penetration depth or efficacy is encoded. Actual distributions depend on compound, binding, metabolism, exposure time and tissue; limited penetration is not equivalent to cellular resistance.</desc>
+<g data-region="tissue" fill="#E8EEF7" stroke="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="64" cy="62" r="42" /></g>
+<g data-region="outline" fill="none" stroke="#26323D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="64" cy="62" r="42" /></g>
+<g data-region="outline" fill="none" stroke="#26323D" stroke-width="1.3" stroke-dasharray="3 4" stroke-linecap="round" stroke-linejoin="round"><circle cx="64" cy="62" r="27" /><circle cx="64" cy="62" r="13" /></g>
+<g data-region="source" fill="none" stroke="#C7F2EC" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 27Q64 1 111 27" /></g>
+<g data-region="outline" fill="none" stroke="#26323D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M64 12L64 33" /><path d="M61.39 28.74L64 33L66.61 28.74" /></g>
+<g data-region="molecule" fill="#7B78C9" stroke="none" stroke-linecap="round" stroke-linejoin="round"><path d="M35 36.8L38.2 40L35 43.2L31.8 40Z" /><path d="M48 23.8L51.2 27L48 30.2L44.8 27Z" /><path d="M69 19.8L72.2 23L69 26.2L65.8 23Z" /><path d="M91 30.8L94.2 34L91 37.2L87.8 34Z" /><path d="M102 51.8L105.2 55L102 58.2L98.8 55Z" /><path d="M98 75.8L101.2 79L98 82.2L94.8 79Z" /><path d="M80 94.8L83.2 98L80 101.2L76.8 98Z" /><path d="M57 97.8L60.2 101L57 104.2L53.8 101Z" /><path d="M35 85.8L38.2 89L35 92.2L31.8 89Z" /><path d="M24 61.8L27.2 65L24 68.2L20.8 65Z" /><path d="M49 45.8L52.2 49L49 52.2L45.8 49Z" /><path d="M80 58.8L83.2 62L80 65.2L76.8 62Z" /></g>
+<g data-region="outline" fill="#26323D" stroke="none" stroke-linecap="round" stroke-linejoin="round"><text x="64" y="119" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="8" font-weight="400">Drug rim &gt; core</text></g>
+</svg>

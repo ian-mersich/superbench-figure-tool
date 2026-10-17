@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Luminescence Readout</title>
+  <desc id="desc">Editable bioluminescence assay readout schematic with glowing assay well and relative-light-unit bar.</desc>
+  <g data-region="assay_surface" fill="#F7F9FC" stroke="none"><rect x="11" y="15" width="106" height="98" rx="7" /><circle cx="46" cy="63" r="25" /></g>
+  <g data-region="measured_signal" fill="#B8B5FF" stroke="none"><circle cx="46" cy="63" r="12" /><circle cx="46" cy="63" r="5" /><path d="M82 91h9v10h-9zM95 75h9v26h-9z" /></g>
+  <g data-region="signal_trace" fill="none" stroke="#E76F51" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round"><path d="M46 29v12M46 85v12M12 63h12M68 63h12M22 39l9 9M61 78l9 9M22 87l9-9M61 48l9-9" /></g>
+  <g data-region="axes_or_structure" fill="none" stroke="#5EA9DD" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"><path d="M77 101h33M77 101V50" /></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="11" y="15" width="106" height="98" rx="7" /><circle cx="46" cy="63" r="25" /></g>
+</svg>

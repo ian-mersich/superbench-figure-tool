@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+<title id="title">Cell Tracking Trajectory — Two cells</title>
+<desc id="desc">Editable spatial tracks with ordered positions and endpoint labels or direction arrows for one or two example cells. Illustrative editable template with invented positions, not measured data or an analysis result. Replace marks and labels with verified study-specific content before presenting results. Endpoint labels or arrows indicate time order of positions, unlike pseudotime. No speed, elapsed duration, migration bias, physical scale or lineage is encoded.</desc>
+<g data-region="outline" fill="none" stroke="#26323D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M25 20V99H112" /></g>
+<g data-region="outline" fill="#26323D" stroke="none" stroke-linecap="round" stroke-linejoin="round"><text x="69" y="117" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="8" font-weight="400">Position X</text></g>
+<g data-region="outline" fill="#26323D" stroke="none" stroke-linecap="round" stroke-linejoin="round"><text x="10" y="61" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="8" font-weight="400" transform="rotate(-90 10 61)">Position Y</text></g>
+<g data-region="track_a" fill="none" stroke="#5EA9DD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M34 86L47 76L45 61L62 54L69 37L89 32L104 24" /></g>
+<g data-region="track_a" fill="#5EA9DD" stroke="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="34" cy="86" r="3" /><circle cx="47" cy="76" r="3" /><circle cx="45" cy="61" r="3" /><circle cx="62" cy="54" r="3" /><circle cx="69" cy="37" r="3" /><circle cx="89" cy="32" r="3" /><circle cx="104" cy="24" r="3" /></g>
+<g data-region="track_a" fill="none" stroke="#5EA9DD" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M89 32L104 24" /><path d="M101.47 28.31L104 24L99.01 23.70" /></g>
+<g data-region="track_b" fill="none" stroke="#E76F51" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M34 41L49 45L60 70L75 64L91 77L105 85" /></g>
+<g data-region="track_b" fill="#E76F51" stroke="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="34" cy="41" r="3" /><circle cx="49" cy="45" r="3" /><circle cx="60" cy="70" r="3" /><circle cx="75" cy="64" r="3" /><circle cx="91" cy="77" r="3" /><circle cx="105" cy="85" r="3" /></g>
+<g data-region="track_b" fill="none" stroke="#E76F51" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M91 77L105 85" /><path d="M100.00 85.15L105 85L102.60 80.62" /></g>
+<g data-region="outline" fill="#26323D" stroke="none" stroke-linecap="round" stroke-linejoin="round"><text x="30" y="16" text-anchor="start" font-family="Inter, Arial, sans-serif" font-size="7" font-weight="400">Example</text></g>
+</svg>

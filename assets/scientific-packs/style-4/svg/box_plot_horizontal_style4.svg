@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+<title id="title">Box Plot — Horizontal groups</title>
+<desc id="desc">Editable vertical or horizontal box-and-whisker examples with central median lines. Illustrative editable template with invented positions, not measured data or an analysis result. Replace marks and labels with verified study-specific content before presenting results. Boxes stand for the middle quartiles and central lines for medians; whisker rules, sample sizes, outliers and numerical summaries are unspecified.</desc>
+<g data-region="outline" fill="none" stroke="#26323D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M25 20V99H112" /></g>
+<g data-region="outline" fill="#26323D" stroke="none" stroke-linecap="round" stroke-linejoin="round"><text x="69" y="117" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="8" font-weight="400">Value</text></g>
+<g data-region="outline" fill="#26323D" stroke="none" stroke-linecap="round" stroke-linejoin="round"><text x="10" y="61" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="8" font-weight="400" transform="rotate(-90 10 61)">Group</text></g>
+<g data-region="outline" fill="none" stroke="#26323D" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M36 44H93M36 40V48M93 40V48" /></g>
+<g data-region="box_a" fill="#5EA9DD" stroke="none" stroke-linecap="round" stroke-linejoin="round"><rect x="48" y="36" width="23" height="16" rx="1.2" /></g>
+<g data-region="outline" fill="none" stroke="#26323D" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="48" y="36" width="23" height="16" rx="1.2" /></g>
+<g data-region="outline" fill="none" stroke="#26323D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M60 36L60 52" /></g>
+<g data-region="outline" fill="none" stroke="#26323D" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M39 77H101M39 73V81M101 73V81" /></g>
+<g data-region="box_b" fill="#E76F51" stroke="none" stroke-linecap="round" stroke-linejoin="round"><rect x="63" y="69" width="24" height="16" rx="1.2" /></g>
+<g data-region="outline" fill="none" stroke="#26323D" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="63" y="69" width="24" height="16" rx="1.2" /></g>
+<g data-region="outline" fill="none" stroke="#26323D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M75 69L75 85" /></g>
+<g data-region="outline" fill="#26323D" stroke="none" stroke-linecap="round" stroke-linejoin="round"><text x="21" y="47" text-anchor="end" font-family="Inter, Arial, sans-serif" font-size="8" font-weight="400">A</text></g>
+<g data-region="outline" fill="#26323D" stroke="none" stroke-linecap="round" stroke-linejoin="round"><text x="21" y="80" text-anchor="end" font-family="Inter, Arial, sans-serif" font-size="8" font-weight="400">B</text></g>
+<g data-region="outline" fill="#26323D" stroke="none" stroke-linecap="round" stroke-linejoin="round"><text x="110" y="17" text-anchor="end" font-family="Inter, Arial, sans-serif" font-size="7" font-weight="400">Example</text></g>
+</svg>

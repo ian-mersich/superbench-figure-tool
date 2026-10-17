@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Neoantigen Peptide</title>
+  <desc id="desc">Editable tumor neoantigen peptide schematic with one highlighted residue in a schematic MHC presentation groove; mutation origin, presentation and immunogenicity require independent evidence.</desc>
+  <g data-region="presentation_context" fill="#DCE4EC" stroke="none"><path d="M20 31c-4 11 0 23 12 27l17 5v14h18V63l22-5c12-4 16-16 12-27l-9 1c2 7-2 14-10 15l-20 3-22-3c-8-1-12-8-10-15zM51 77h15v28H51z" /></g>
+  <g data-region="peptide_residues" fill="#8EC8FF" stroke="none"><circle cx="29" cy="40" r="4.5" /><circle cx="39" cy="42" r="4.5" /><circle cx="49" cy="40" r="4.5" /><circle cx="59" cy="42" r="4.5" /><circle cx="79" cy="42" r="4.5" /><circle cx="89" cy="40" r="4.5" /><circle cx="99" cy="42" r="4.5" /></g>
+  <g data-region="altered_epitope" fill="#E76F51" stroke="none"><path d="M69 34l5 3v6l-5 4-5-3v-6z" /></g>
+  <g data-region="peptide_backbone" fill="none" stroke="#7B78C9" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M33 41L35 41M43 41l2 0M53 41h2M63 41h1M74 41h1M83 41h2M93 41h2" /></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 31c-4 11 0 23 12 27l17 5v14h18V63l22-5c12-4 16-16 12-27l-9 1c2 7-2 14-10 15l-20 3-22-3c-8-1-12-8-10-15zM51 77h15v28H51z" /><path d="M14 103h100M14 112h100" /><circle cx="29" cy="40" r="4.5" /><circle cx="39" cy="42" r="4.5" /><circle cx="49" cy="40" r="4.5" /><circle cx="59" cy="42" r="4.5" /><circle cx="79" cy="42" r="4.5" /><circle cx="89" cy="40" r="4.5" /><circle cx="99" cy="42" r="4.5" /><path d="M69 34l5 3v6l-5 4-5-3v-6z" /><path d="M78 77l-6-6" /></g>
+  <text data-region="outline" x="84" y="87" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" fill="#2B3642" stroke="none">MHC</text>
+</svg>

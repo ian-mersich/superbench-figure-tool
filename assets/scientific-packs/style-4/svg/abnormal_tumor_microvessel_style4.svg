@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Abnormal Tumor Microvessel</title>
+  <desc id="desc">Editable abnormal tumor microvessel schematic with tortuous uneven microvessel with wall gaps and extravascular droplets.</desc>
+  <g data-region="vessel_wall" fill="#F2B9C5" stroke="none"><path d="M7 47c15-15 29-13 43 2 13 14 25 22 41 10 13-10 20-19 30-14v30 c-9-4-15 4-24 12-19 17-43 5-59-10C27 67 18 69 7 81z" /></g>
+  <g data-region="lumen_and_wall_gaps" fill="#F7F9FC" stroke="none"><path d="M7 59c14-12 25-9 36 3 16 18 35 24 55 7 10-8 16-15 23-12v8 c-7-2-12 5-20 12-22 19-45 11-63-8-10-11-18-12-31 1z" /><path d="M37 49l7-5 7 12-7 6zM84 62l8-5 6 10-7 7z" /></g>
+  <g data-region="endothelial_nuclei" fill="#B8B5FF" stroke="none"><ellipse cx="24" cy="54" rx="7" ry="3.5" transform="rotate(-20 24 54)" /><ellipse cx="63" cy="69" rx="7" ry="3.5" transform="rotate(24 63 69)" /><ellipse cx="105" cy="55" rx="7" ry="3.5" transform="rotate(-35 105 55)" /></g>
+  <g data-region="extravascular_leakage" fill="#E76F51" stroke="none"><path d="M40 31c4 6 6 9 6 13a6 6 0 0 1-12 0c0-4 2-7 6-13z" /><path d="M91 91c4 6 6 9 6 13a6 6 0 0 1-12 0c0-4 2-7 6-13z" /><circle cx="108" cy="93" r="4" /></g>
+  <g data-region="outline" fill="none" stroke="#26323D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 47c13-13 25-13 37-2M53 52c12 13 23 19 36 10M99 55c9-8 15-14 22-10 M7 81c11-12 20-14 31-4M48 83c16 11 34 14 49 4M106 80c6-5 10-8 15-5" /><ellipse cx="24" cy="54" rx="7" ry="3.5" transform="rotate(-20 24 54)" /><ellipse cx="63" cy="69" rx="7" ry="3.5" transform="rotate(24 63 69)" /><ellipse cx="105" cy="55" rx="7" ry="3.5" transform="rotate(-35 105 55)" /><path d="M40 31c4 6 6 9 6 13a6 6 0 0 1-12 0c0-4 2-7 6-13z" /><path d="M91 91c4 6 6 9 6 13a6 6 0 0 1-12 0c0-4 2-7 6-13z" /><circle cx="108" cy="93" r="4" /></g>
+</svg>
