@@ -17296,7 +17296,7 @@ html .figure-studio-root[data-figure-layout]:not([data-document-kind="presentati
     width: 100%;
     min-width: 0;
   }
-  html .figure-studio-root[data-figure-layout] .app-header {
+  html .figure-studio-root[data-figure-layout][data-document-kind] .app-header {
     width: 100vw;
     min-width: 0;
     grid-template-columns: minmax(0, 1fr);
@@ -17305,7 +17305,7 @@ html .figure-studio-root[data-figure-layout]:not([data-document-kind="presentati
   html .figure-studio-root[data-figure-layout]:not([data-document-kind="presentation"]) .app-header {
     grid-template-rows: auto;
   }
-  html .figure-studio-root[data-figure-layout] .figure-layout-header {
+  html .figure-studio-root[data-figure-layout][data-document-kind] .figure-layout-header {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
     grid-template-areas:
