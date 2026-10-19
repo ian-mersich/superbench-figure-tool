@@ -1,6 +1,6 @@
 {
   "name": "@superbench/figure-tool",
-  "version": "1.0.0-beta.12",
+  "version": "1.0.0-beta.13",
   "private": true,
   "license": "Apache-2.0",
   "description": "Superbench Figure Tool scientific figure and presentation editor for Windows.",
@@ -106,7 +106,9 @@
     "qa:native-pdf-double-quote-text-run": "py -3 scripts/check-native-pdf-text-run-edit-browser.py --operator double-quote",
     "qa:native-pdf-form-text-run": "py -3 scripts/check-native-pdf-form-text-run-edit-browser.py",
     "qa:native-pdf-nested-form-text-run": "py -3 scripts/check-native-pdf-nested-form-text-run-edit-browser.py",
-    "qa:native-pdf-subset-tj": "py -3 scripts/check-native-pdf-subset-tj-text-run-browser.py"
+    "qa:native-pdf-subset-tj": "py -3 scripts/check-native-pdf-subset-tj-text-run-browser.py",
+    "qa:action-paint": "node --test tests/actionPaintObserver.test.cjs tests/canvasTextInputPosition.test.cjs tests/scientificRelatedSearchView.test.cjs tests/scientificAssetCatalog.test.mjs tests/scientificAssetDiscovery.test.mjs tests/canvasArtworkRemovalRender.test.mjs tests/smartConnectorLabelPlacement.test.mjs && py -3 -m pytest tests/test_public_repaint_history_raster.py tests/test_figure_repaint_hotfix.py -q && py -3 scripts/run-action-paint-qa.py",
+    "qa:action-paint:release": "node --test tests/actionPaintObserver.test.cjs tests/canvasTextInputPosition.test.cjs tests/scientificRelatedSearchView.test.cjs tests/scientificAssetCatalog.test.mjs tests/scientificAssetDiscovery.test.mjs tests/canvasArtworkRemovalRender.test.mjs tests/smartConnectorLabelPlacement.test.mjs && py -3 -m pytest tests/test_public_repaint_history_raster.py tests/test_figure_repaint_hotfix.py -q && py -3 scripts/run-action-paint-qa.py --release"
   },
   "dependencies": {
     "fabric": "7.3.1",

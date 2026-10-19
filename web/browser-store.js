@@ -35,7 +35,11 @@
     });
   }
   async function save(id, snapshot, name, expectedRevision) {
-    if (snapshot?.workspace?.schema !== "figureStudio.workspaceProject.v1") throw new Error("That browser save is not a Figure project.");
+    if (!["figureStudio.workspaceProject.v1", "figureStudio.workspaceProject.v2"].includes(snapshot?.workspace?.schema)) throw new Error("That browser save is not a Figure project.");
+    // Blob structured cloning keeps the immutable dense source base out of
+    // main-thread JSON, including both retained recovery snapshots.
+    const densePdfAssets = snapshot.densePdfAssets === undefined ? undefined : structuredClone(snapshot.densePdfAssets);
+    if (densePdfAssets !== undefined && (!Array.isArray(densePdfAssets) || densePdfAssets.length > 8)) throw new Error("That browser PDF asset list is invalid.");
     const database = await open();
     return new Promise((resolve, reject) => {
       const transaction = database.transaction(["projects", "summaries"], "readwrite");
@@ -49,7 +53,8 @@
           const previous = request.result;
           if ((previous?.revision ?? null) !== expectedRevision) throw conflict();
           const now = new Date().toISOString();
-          const current = { workspace: snapshot.workspace, thumbnail: snapshot.thumbnail || "", savedAt: now };
+          const current = { workspace: snapshot.workspace, thumbnail: snapshot.thumbnail || "", savedAt: now,
+            ...(densePdfAssets?.length ? { densePdfAssets } : {}) };
           result = {
             id, name: String(name || snapshot.title || "Untitled figure").slice(0, 160),
             revision: (previous?.revision || 0) + 1,

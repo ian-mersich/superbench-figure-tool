@@ -57,3 +57,33 @@ test('Selecting Style 4 keeps shade lists and faithful reset defaults rather tha
  const transformed=styles.transformRegions([variant],'style-4');assert.deepEqual(transformed,[variant]);assert.notEqual(transformed[0],variant);
  assert.equal(styles.normalizeStyle('style-4'),'style-4');assert.equal(styles.normalizeStyle('future-unknown'),'soft-color');
 });
+
+test('Supplied empty region wrappers do not advertise a part color with no visible artwork',()=>{
+ const assets=catalog(),corrected=structuredClone(manifest);
+ const target=corrected.assets[0],empty=target.editable_color_regions[0];
+ empty.no_rendered_paint=true;empty.default_paints=[];
+ styles.attachVariantManifest(assets,corrected,options);
+ const asset=assets.find(a=>a.id===target.asset_id);
+ const variant=styles.assetForStyle(asset,'style-4');
+ assert.deepEqual(variant.editable_color_regions,target.editable_color_regions.slice(1));
+ assert.equal(asset.art_styles['style-4'].editable_color_regions.length,target.editable_color_regions.length);
+ assert.deepEqual(styles.assetForStyle(asset,'soft-color'),asset);
+});
+
+test('The active correction keeps all identities and uses the 243 supplied redraws with visible part controls',()=>{
+ const active=registry.art_styles.find(entry=>entry.id==='style-4');
+ const file=path.join(packsRoot,active.path);
+ const corrected=JSON.parse(fs.readFileSync(file,'utf8'));
+ const assets=catalog();
+ styles.attachVariantManifest(assets,corrected,{...options,baseUrl:pathToFileURL(file).href});
+ assert.equal(corrected.assets.filter(row=>row.file.startsWith('corrected-20261017/svg/')).length,243);
+ let omitted=0;
+ for(const asset of assets){
+  const record=asset.art_styles['style-4'],variant=styles.assetForStyle(asset,'style-4');
+  assert.deepEqual(variant.editable_color_regions,record.editable_color_regions.filter(region=>region.no_rendered_paint!==true));
+  omitted+=record.editable_color_regions.length-variant.editable_color_regions.length;
+  assert.ok(variant.editable_color_regions.length>0);
+  assert.ok(fs.existsSync(new URL(variant._svgUrl)));
+ }
+ assert.equal(omitted,6);
+});

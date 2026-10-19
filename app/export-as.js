@@ -26,6 +26,14 @@
   const MAX_RASTER_DIMENSION = 100000;
   const MAX_RASTER_PIXELS = 144000000;
   const MAX_PACKAGE_BYTES = 512 * 1024 * 1024;
+  const MAX_SVG_BLOB_BYTES = 256 * 1024 * 1024;
+  const SVG_SIGNATURE_BYTES = 256;
+  const blobPrototype = typeof Blob === "function" ? Blob.prototype : null;
+  const blobSize = blobPrototype && Object.getOwnPropertyDescriptor(blobPrototype, "size")?.get;
+  const blobType = blobPrototype && Object.getOwnPropertyDescriptor(blobPrototype, "type")?.get;
+  const blobSlice = blobPrototype?.slice;
+  const blobArrayBuffer = blobPrototype?.arrayBuffer;
+  const preservedSvgBlobs = new WeakMap();
 
   const MIME_TYPES = Object.freeze({
     svg: "image/svg+xml",
@@ -500,6 +508,49 @@
     throw exportError("artifact-bytes-missing", "The export renderer did not return readable file bytes.");
   }
 
+  async function preservedSvgBlob(candidate, format, context) {
+    if (format !== "svg" || context?.allowPreservedSvgBlob !== true) {
+      throw exportError("blob-delivery-unsupported", "This SVG Blob export supports one browser file download. Package, folder and native-file delivery require a separately supported route. No file was created.");
+    }
+    const allowed = ["blob", "filename", "preserveBlob", "warnings"];
+    if (Object.getPrototypeOf(candidate) !== Object.prototype || Reflect.ownKeys(candidate).some((key) => !allowed.includes(key))) {
+      throw exportError("blob-artifact-invalid", "The SVG Blob renderer must return an ordinary Blob export record.");
+    }
+    for (const key of Reflect.ownKeys(candidate)) {
+      const field = Object.getOwnPropertyDescriptor(candidate, key);
+      if (!field.enumerable || !Object.hasOwn(field, "value")) throw exportError("blob-artifact-invalid", "SVG Blob export fields must be own data properties.");
+    }
+    const blob = Object.getOwnPropertyDescriptor(candidate, "blob")?.value;
+    const filename = Object.getOwnPropertyDescriptor(candidate, "filename")?.value;
+    const warnings = Object.getOwnPropertyDescriptor(candidate, "warnings")?.value;
+    if (filename !== undefined && typeof filename !== "string") throw exportError("blob-artifact-invalid", "The SVG Blob filename must be text.");
+    let size, type;
+    try {
+      size = Reflect.apply(blobSize, blob, []);
+      type = Reflect.apply(blobType, blob, []);
+    } catch (_) {
+      throw exportError("blob-artifact-invalid", "The SVG renderer did not return an actual immutable Blob.");
+    }
+    if (!Number.isSafeInteger(size) || size <= 0 || size > MAX_SVG_BLOB_BYTES) {
+      throw exportError("blob-artifact-too-large", "The SVG Blob is empty or exceeds the 256 MiB composition limit.");
+    }
+    if (type !== MIME_TYPES.svg) throw exportError("artifact-format-mismatch", "The SVG Blob must declare image/svg+xml, so Figure Tool did not save it.");
+    // Read a separate bounded prefix only. Never decode or copy the complete
+    // canonical artwork on the main thread, including through renderer methods.
+    const prefix = Reflect.apply(blobSlice, blob, [0, SVG_SIGNATURE_BYTES]);
+    const bytes = new Uint8Array(await Reflect.apply(blobArrayBuffer, prefix, []));
+    validateArtifactSignature(format, bytes);
+    return { blob, size, filename, warnings };
+  }
+
+  function admittedSvgBlob(artifact) {
+    const proof = preservedSvgBlobs.get(artifact);
+    if (!proof || artifact.blob !== proof.blob || artifact.size !== proof.size || artifact.format !== "svg" || artifact.mimeType !== MIME_TYPES.svg) {
+      throw exportError("blob-artifact-invalid", "The SVG Blob artifact changed after its bounded validation. No file was created.");
+    }
+    return proof.blob;
+  }
+
   function startsWith(bytes, values) {
     return values.every((value, index) => bytes[index] === value);
   }
@@ -621,13 +672,19 @@
   async function normalizeArtifact(result, format, suggestedFilename, context) {
     let candidate = result;
     if (candidate == null) throw exportError("renderer-returned-nothing", `The ${format.toUpperCase()} renderer did not create a file.`);
+    const preserve = Object.getOwnPropertyDescriptor(candidate, "preserveBlob");
+    if (preserve && (!Object.hasOwn(preserve, "value") || typeof preserve.value !== "boolean")) {
+      throw exportError("blob-artifact-invalid", "The SVG Blob preservation option must be an own boolean data property.");
+    }
     if (typeof candidate === "string") {
       candidate = candidate.startsWith("data:") ? { dataUrl: candidate } : { text: candidate };
-    } else if (candidate instanceof Uint8Array || candidate instanceof ArrayBuffer || ArrayBuffer.isView(candidate) || (typeof Blob !== "undefined" && candidate instanceof Blob)) {
+    } else if (preserve?.value !== true && (candidate instanceof Uint8Array || candidate instanceof ArrayBuffer || ArrayBuffer.isView(candidate) || (typeof Blob !== "undefined" && candidate instanceof Blob))) {
       candidate = { bytes: candidate };
     }
-    let bytes;
-    if (candidate.pixels) {
+    let bytes, preserved;
+    if (preserve?.value === true) {
+      preserved = await preservedSvgBlob(candidate, format, context);
+    } else if (candidate.pixels) {
       if (format !== "tiff") throw exportError("pixel-artifact-format-invalid", "Raw pixels can only be finalized by the TIFF export path.");
       bytes = encodeTiff(candidate.pixels, {
         dpi: context.resolution?.dpi,
@@ -641,23 +698,27 @@
     } else {
       bytes = await toUint8Array(candidate.bytes ?? candidate.blob);
     }
-    validateArtifactSignature(format, bytes);
-    const filename = basename(candidate.filename || suggestedFilename || `Figure Tool export.${EXTENSIONS[format]}`);
-    return {
+    if (!preserved) validateArtifactSignature(format, bytes);
+    const filename = basename((preserved ? preserved.filename : candidate.filename) || suggestedFilename || `Figure Tool export.${EXTENSIONS[format]}`);
+    const artifact = {
       filename: filename.toLowerCase().endsWith(`.${EXTENSIONS[format]}`) ? filename : `${filename}.${EXTENSIONS[format]}`,
       format,
       mimeType: MIME_TYPES[format],
-      bytes,
-      size: bytes.byteLength,
-      warnings: Array.isArray(candidate.warnings) ? candidate.warnings : []
+      ...(preserved ? { blob: preserved.blob } : { bytes }),
+      size: preserved ? preserved.size : bytes.byteLength,
+      warnings: Array.isArray(preserved ? preserved.warnings : candidate.warnings) ? (preserved ? preserved.warnings : candidate.warnings) : []
     };
+    if (preserved) preservedSvgBlobs.set(artifact, preserved);
+    return artifact;
   }
 
-  async function renderPlan(plan, renderers) {
+  async function renderPlan(plan, renderers, options) {
     const renderer = renderers?.[plan.renderer];
     if (typeof renderer !== "function") {
       throw exportError("renderer-unavailable", `${plan.formatLabel} export has not been connected in this workspace. No file was created.`, { renderer: plan.renderer });
     }
+    const allowPreservedSvgBlob = plan.format === "svg" && !plan.multiFile
+      && deliveryEnvironment(options) === "browser" && ["auto", "file"].includes(plan.requestedDelivery);
     if (!plan.perTarget) {
       const suggestedFilename = `${safeFileStem(plan.document.name)}.${plan.extension}`;
       const result = await renderer({
@@ -671,7 +732,8 @@
       });
       return [await normalizeArtifact(result, plan.format, suggestedFilename, {
         background: plan.background,
-        resolution: null
+        resolution: null,
+        allowPreservedSvgBlob
       })];
     }
     const artifacts = [];
@@ -688,7 +750,8 @@
       });
       artifacts.push(await normalizeArtifact(result, plan.format, target.filename, {
         background: plan.background,
-        resolution: target.resolution
+        resolution: target.resolution,
+        allowPreservedSvgBlob
       }));
     }
     return artifacts;
@@ -818,15 +881,25 @@
         if (!documentRef || !urlApi?.createObjectURL) {
           throw exportError("browser-download-unavailable", "This browser cannot start the requested file download.");
         }
-        const blob = new Blob([artifact.bytes], { type: artifact.mimeType });
+        const blob = Object.hasOwn(artifact, "blob") ? admittedSvgBlob(artifact) : new Blob([artifact.bytes], { type: artifact.mimeType });
         const href = urlApi.createObjectURL(blob);
-        const link = documentRef.createElement("a");
-        link.href = href;
-        link.download = artifact.filename;
-        documentRef.body.appendChild(link);
-        link.click();
-        link.remove();
-        browserRoot.setTimeout(() => urlApi.revokeObjectURL(href), 500);
+        let link, failed = false, failure;
+        try {
+          link = documentRef.createElement("a");
+          link.href = href;
+          link.download = artifact.filename;
+          documentRef.body.appendChild(link);
+          link.click();
+        } catch (error) { failed = true; failure = error; }
+        finally {
+          try { link?.remove(); } catch (error) { if (!failed) { failed = true; failure = error; } }
+          try { browserRoot.setTimeout(() => urlApi.revokeObjectURL(href), 500); }
+          catch (error) {
+            try { urlApi.revokeObjectURL(href); } catch (_) { /* Preserve the first download/cleanup failure. */ }
+            if (!failed) { failed = true; failure = error; }
+          }
+        }
+        if (failed) throw failure;
         return { status: "downloaded", filename: artifact.filename };
       }
     };
@@ -903,6 +976,12 @@
     const environment = validateDeliveryChoice(plan, { ...options, destination });
     const requested = plan.requestedDelivery;
     const multi = artifacts.length > 1;
+    if (artifacts.some((artifact) => Object.hasOwn(artifact, "blob"))) {
+      if (multi || environment !== "browser" || !["auto", "file"].includes(requested) || plan.format !== "svg") {
+        throw exportError("blob-delivery-unsupported", "The preserved SVG Blob cannot use this export destination. No file was created.");
+      }
+      admittedSvgBlob(artifacts[0]);
+    }
     const useFolder = multi
       && environment === "native"
       && typeof destination?.saveFiles === "function"
@@ -985,7 +1064,7 @@
       async exportDocument(document, request = {}) {
         const plan = makePlan(document, request, { getItems });
         validateDeliveryChoice(plan, options);
-        const artifacts = await renderPlan(plan, renderers);
+        const artifacts = await renderPlan(plan, renderers, options);
         return deliver(plan, artifacts, { ...options, renderers }, request);
       }
     });

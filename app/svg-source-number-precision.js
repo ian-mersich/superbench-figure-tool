@@ -3,11 +3,13 @@
  * No source geometry replay, global precision setting or prototype hook.
  */
 (function (root, factory) {
-  const api = factory();
+  const api = factory(typeof module === 'object' && module.exports && typeof require === 'function' ? require('./pdf-dense-page.js') : root.FigureStudioPdfDensePage);
   if (typeof module === 'object' && module.exports) module.exports = api;
   else root.FigureStudioSvgNumberPrecision = api;
-})(typeof globalThis === 'object' ? globalThis : this, function () {
+})(typeof globalThis === 'object' ? globalThis : this, function (densePages) {
   'use strict';
+  const canSerializeDensePage = densePages?.canSerializeSvg;
+  const isDensePage = densePages?.isPage;
   function createSerializer({fabric, precisionObjectsForScene, isNumericSourceObject, positionedTextClass, currentPlanePathClass} = {}) {
     if (!fabric?.util?.joinPath || !fabric?.util?.radiansToDegrees || typeof precisionObjectsForScene !== 'function' || typeof isNumericSourceObject !== 'function') {
       throw new TypeError('SVG numerical preservation requires bundled Fabric and an explicit current-scene numerical scope.');
@@ -16,6 +18,17 @@
     const stockOffset = fabric.Path.prototype._getOffsetTransform;
     const stockSpan = fabric.Text.prototype._createTextCharSpan;
     const stockGroup = fabric.Group.prototype._toSVG;
+    const stockTransform = fabric.FabricObject.prototype.getSvgTransform;
+    const stockOwnMatrix = fabric.FabricObject.prototype.calcOwnMatrix, stockWorldMatrix = fabric.FabricObject.prototype.calcTransformMatrix;
+    const exactDataMethod = (object, key, expected) => {
+      let depth = 0;
+      while (object && ++depth <= 48) {
+        const descriptor = Object.getOwnPropertyDescriptor(object, key);
+        if (descriptor) return Object.hasOwn(descriptor, 'value') && descriptor.value === expected;
+        object = Object.getPrototypeOf(object);
+      }
+      return false;
+    };
     let lastReport = null;
     const auditedShapes = new Set(['Group', 'Path', 'Rect', 'Circle', 'Ellipse', 'Triangle', 'Line', 'Polyline', 'Polygon', 'Text', 'IText', 'Textbox', 'FabricImage', 'Image'].map(name => fabric[name]?.prototype?._toSVG).filter(Boolean));
     const number = value => {
@@ -51,13 +64,16 @@
       if (matches?.length !== 1 || !markup.startsWith('<tspan ')) throw new Error('The audited SVG span writer changed its positional structure.');
       return markup.replace(expression, `${name}="${value}"`);
     }
-    function installNumericWriters(copy, live) {
-      if (live.getSvgTransform !== fabric.FabricObject.prototype.getSvgTransform) throw new Error('An unaudited numerical-source SVG transform writer is unsupported.');
+    function installNumericWriters(copy, live, clipFrame) {
+      const issuedDensePage = typeof isDensePage === 'function' && Reflect.apply(isDensePage, densePages, [live]);
+      const denseWriter = issuedDensePage && typeof canSerializeDensePage === 'function' && Reflect.apply(canSerializeDensePage, densePages, [live]);
+      if (issuedDensePage && !denseWriter) throw new Error('A current private PDF SVG writer scope is required.');
+      if (!exactDataMethod(live, 'getSvgTransform', stockTransform)) throw new Error('An unaudited numerical-source SVG transform writer is unsupported.');
       const sourceWriter = positionedTextClass?.prototype instanceof fabric.IText && live.constructor === positionedTextClass
         && live._toSVG === positionedTextClass.prototype._pdfCurrentPlaneSvgMarkup;
-      if (!auditedShapes.has(live._toSVG) && !sourceWriter) throw new Error('An unaudited numerical-source shape SVG writer is unsupported.');
+      if (!denseWriter && !auditedShapes.has(live._toSVG) && !sourceWriter) throw new Error('An unaudited numerical-source shape SVG writer is unsupported.');
       property(copy, 'getSvgTransform', function (full, additional = '') {
-        return `transform="${matrixString(full ? this.calcTransformMatrix() : this.calcOwnMatrix())}${additional}" `;
+        return `transform="${full && clipFrame ? clipFrame.prefix : ''}${matrixString(full ? this.calcTransformMatrix() : this.calcOwnMatrix())}${additional}" `;
       });
       if (Array.isArray(live.path) && live instanceof fabric.Path) {
         const currentPlanePath = currentPlanePathClass?.prototype instanceof fabric.Path && live.constructor === currentPlanePathClass
@@ -75,7 +91,7 @@
           return pieces;
         });
         property(copy, '_getOffsetTransform', function () { return currentPlanePath ? '' : ` translate(${number(-this.pathOffset.x)}, ${number(-this.pathOffset.y)})`; });
-      } else if (live instanceof fabric.Group && live._toSVG !== stockGroup) {
+      } else if (live instanceof fabric.Group && !denseWriter && live._toSVG !== stockGroup) {
         throw new Error('An unaudited numerical-source Group SVG writer is unsupported.');
       }
       if (live instanceof fabric.Polyline) {
@@ -106,7 +122,7 @@
       // Existing withExportState discards selection before this boundary. Do
       // not invent owner-plane realization or double-apply an AS transform.
       if (canvas.getActiveObject?.() instanceof fabric.ActiveSelection) throw new Error('Numerical-source SVG export requires the existing export-state selection projection.');
-      const copies = new Map(), pending = [], owned = new Set();
+      const copies = new Map(), pending = [], owned = new Set(), numericalCopies = new WeakSet(), absoluteClipFrames = [];
       const canvasCopy = Object.create(canvas);
       const runtime = new Set(['canvas', 'group', 'parent', '_objects', 'clipPath', 'layoutManager', '_cacheCanvas', '_cacheContext', 'matrixCache', 'ownMatrixCache', 'aCoords', 'oCoords', '_eventListeners', '__eventListeners', '_activeObjects', '_element', '_originalElement', '_filteredEl']);
       function dataCopy(value, seen = new Map()) {
@@ -133,7 +149,8 @@
         }
         return copy;
       }
-      function allocate(live, clipEdge = false, clipScope = false, ancestors = new Set(), edgeCopies = new Map()) {
+      function allocate(live, clipEdge = false, clipScope = false, ancestors = new Set(), edgeCopies = new Map(), clipFrame) {
+        if (clipEdge && typeof isDensePage === 'function' && Reflect.apply(isDensePage, densePages, [live])) throw new Error('PDF artwork cannot currently be used as an SVG clipping mask.');
         if (ancestors.has(live)) throw new Error('Cyclic SVG paint/clip ownership is unsupported.');
         if (!clipEdge && owned.has(live)) throw new Error('Shared canonical painted children are unsupported.');
         if (!clipEdge) owned.add(live);
@@ -183,10 +200,14 @@
           property(copy, '_originalElement', elementSnapshot(live._originalElement, live.getSrc(false)));
           property(copy, '_filteredEl', undefined);
         }
-        if (precise) installNumericWriters(copy, live);
+        if (precise) { numericalCopies.add(copy); installNumericWriters(copy, live, clipFrame); }
         const next = new Set(ancestors); next.add(live);
-        if (live.getObjects) property(copy, '_objects', live.getObjects().map(child => allocate(child, clipEdge, precise, next, edgeCopies)));
-        if (live.clipPath) property(copy, 'clipPath', allocate(live.clipPath, true, precise, next));
+        if (live.getObjects) property(copy, '_objects', live.getObjects().map(child => allocate(child, clipEdge, precise, next, edgeCopies, clipFrame)));
+        if (live.clipPath) {
+          const frame = !clipEdge && precise && live.clipPath.absolutePositioned ? {owner:copy,prefix:''} : undefined;
+          property(copy, 'clipPath', allocate(live.clipPath, true, precise, next, new Map(), frame));
+          if (frame) absoluteClipFrames.push(frame);
+        }
         pending.push({live, copy, clipEdge, edgeCopies});
         return copy;
       }
@@ -208,6 +229,25 @@
           return copies.get(link);
         }
         property(copy, 'group', resolve(live.group)); property(copy, 'parent', resolve(live.parent));
+      }
+      for (const frame of absoluteClipFrames) {
+        // Stock absolute clips are declared outside their paint owner's own
+        // transform, but still inside its ordinary SVG ancestors. Cancel only
+        // that proven parent frame; retain the complete world clip matrix C.
+        const parent = frame.owner.group;
+        if (!parent) continue;
+        const seen = new Set();
+        const translation = matrix => Array.isArray(matrix) && matrix.length === 6 && matrix.every(Number.isFinite)
+          && matrix[0] === 1 && matrix[1] === 0 && matrix[2] === 0 && matrix[3] === 1;
+        for (let group = parent; group; group = group.group) {
+          if (seen.has(group) || seen.size >= 48 || !numericalCopies.has(group) || !(group instanceof fabric.Group)
+              || !exactDataMethod(group, 'calcOwnMatrix', stockOwnMatrix) || !exactDataMethod(group, 'calcTransformMatrix', stockWorldMatrix)
+              || !translation(group.calcOwnMatrix())) throw new Error('SVG export supports this clip only inside groups that have been moved without scaling, rotation, or skew.');
+          seen.add(group);
+        }
+        const matrix = parent.calcTransformMatrix();
+        if (!translation(matrix)) throw new Error('SVG export supports this clip only inside groups that have been moved without scaling, rotation, or skew.');
+        frame.prefix = matrixString([1, 0, 0, 1, -matrix[4], -matrix[5]]);
       }
       property(canvasCopy, '_objects', rootCopies);
       property(canvasCopy, '_activeObject', undefined);

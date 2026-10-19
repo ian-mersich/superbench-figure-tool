@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc" data-asset-id="exp.assay_workflow.sequencing_reads.single_end" data-style="Style 4" data-artwork-revision="corrected-2026-10-17">
+  <title id="title">Sequencing Reads — Single End</title>
+  <desc id="desc">Editable single end form of sequencing-read alignment, shown with single-end and paired-end read-alignment forms.</desc>
+  <g data-region="assay_surface" fill="#F8FAFC" stroke="none"><rect x="10" y="13" width="108" height="102" rx="7" data-style4-method="flat-presentation-preserve-geometry"/></g>
+  <g data-region="measured_signal" fill="#B9B3DD" stroke="none"><path d="M20 32h31v8H20zM40 54h34v8H40zM69 76h32v8H69zM28 96h35v8H28z" data-style4-method="flat-presentation-preserve-geometry"/></g>
+  <g data-region="signal_trace" fill="none" stroke="#CD796C" stroke-width="1.984" stroke-linecap="round" stroke-linejoin="round"><path d="M46 36l8 0m-6-5 6 5-6 5M69 58h8m-6-5 6 5-6 5M96 80h8m-6-5 6 5-6 5M58 100h8m-6-5 6 5-6 5" data-style4-method="flat-presentation-preserve-geometry"/></g>
+  <g data-region="axes_or_structure" fill="none" stroke="#629BC0" stroke-width="1.728" stroke-linecap="round" stroke-linejoin="round"><path d="M17 45h94M17 67h94M17 89h94M17 111h94" data-style4-method="flat-presentation-preserve-geometry"/></g>
+  <g data-region="outline" fill="none" stroke="#344955" stroke-width="1.536" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="13" width="108" height="102" rx="7" data-style4-method="flat-presentation-preserve-geometry"/></g>
+</svg>

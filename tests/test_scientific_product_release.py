@@ -169,8 +169,14 @@ def test_successor_rejects_each_unreviewed_change(expanded, mutation):
 @pytest.fixture
 def style_four(expanded):
     """Use the real finite addition while keeping old-decision fixtures exact."""
-    shutil.copytree(ROOT / "assets/scientific-packs/style-4", expanded / "assets/scientific-packs/style-4")
-    for relative in (release.STYLE_FOUR_RECORD, "assets/scientific-packs/library.json",
+    shutil.copytree(ROOT / "assets/scientific-packs/style-4", expanded / "assets/scientific-packs/style-4",
+                    ignore=shutil.ignore_patterns("corrected-20261017", "manifest-corrected-20261017.json"))
+    registry = json.loads((ROOT / "assets/scientific-packs/library.json").read_text(encoding="utf-8"))
+    correction = ROOT / release.STYLE_FOUR_CORRECTION_RECORD
+    if correction.exists():
+        registry.update(json.loads(correction.read_text(encoding="utf-8"))["predecessor_registry_fields"])
+    (expanded / "assets/scientific-packs/library.json").write_text(json.dumps(registry), encoding="utf-8")
+    for relative in (release.STYLE_FOUR_RECORD,
                      "assets/LICENSE-STYLE-4-CC0-1.0.md", "app/legal/assets/LICENSE-STYLE-4-CC0-1.0.md",
                      "docs/scientific-assets/STYLE_4_LIBRARY_2026_10_17.md"):
         target = expanded / relative

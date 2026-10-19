@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc" data-asset-id="exp.assay_workflow.western_blot_result" data-style="Style 4" data-artwork-revision="corrected-2026-10-17">
+  <title id="title">Western Blot Result</title>
+  <desc id="desc">Editable immunoblot result schematic with labeled lanes with target and loading-control bands.</desc>
+  <g data-region="assay_surface" fill="#F8FAFC" stroke="none"><rect x="12" y="16" width="104" height="96" rx="5" data-style4-method="flat-presentation-preserve-geometry"/></g>
+  <g data-region="measured_signal" fill="#B9B3DD" stroke="none"><path d="M23 39h19v7H23zM54 35h19v11H54zM85 41h19v5H85zM23 81h19v7H23zM54 81h19v7H54zM85 81h19v7H85z" data-style4-method="flat-presentation-preserve-geometry"/></g>
+  <g data-region="signal_trace" fill="none" stroke="#CD796C" stroke-width="1.984" stroke-linecap="round" stroke-linejoin="round"><path d="M18 64h92M19 49h-7M19 85h-7M12 49l5-4m-5 4 5 4M12 85l5-4m-5 4 5 4" data-style4-method="flat-presentation-preserve-geometry"/></g>
+  <g data-region="axes_or_structure" fill="none" stroke="#629BC0" stroke-width="1.728" stroke-linecap="round" stroke-linejoin="round"><path d="M18 27h92M18 99h92M18 27v72M48 27v72M79 27v72M110 27v72" opacity="0.65" data-style4-method="flat-presentation-preserve-geometry"/></g>
+  <g data-region="outline" fill="none" stroke="#344955" stroke-width="1.536" stroke-linecap="round" stroke-linejoin="round"><rect x="12" y="16" width="104" height="96" rx="5" data-style4-method="flat-presentation-preserve-geometry"/></g>
+</svg>

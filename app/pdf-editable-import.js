@@ -199,14 +199,41 @@
     return btoa(binary);
   }
 
-  function fontProgram(font) {
+  const DisplayFontBytes = Uint8Array;
+  const displayFontSubarray = DisplayFontBytes.prototype.subarray;
+  // One renderer owns this display-only cache. Compare every byte before reuse;
+  // mutable decoder data, missing fonts and distinct MIME types keep their guards.
+  function displayFontDataUrl(font, data, cache) {
+    const mimetype = font.mimetype || "font/opentype";
+    const cacheable = typeof Buffer !== "function" && Object.getPrototypeOf(data) === DisplayFontBytes.prototype
+      && !Object.hasOwn(data, "length") && !Object.hasOwn(data, "byteLength") && !Object.hasOwn(data, "subarray")
+      && DisplayFontBytes.prototype.subarray === displayFontSubarray && data.subarray === displayFontSubarray;
+    const previous = cacheable ? cache.get(font) : null;
+    let same = Boolean(previous && previous.mimetype === mimetype && previous.bytes.length === data.length);
+    if (same) for (let index = 0; index < data.length; index += 1) {
+      if (data[index] !== previous.bytes[index]) { same = false; break; }
+    }
+    if (same) return previous.dataUrl;
+    // Encode the same private snapshot that is retained for later comparison.
+    // Indexed copying does not dispatch an instance's optional custom iterator.
+    let bytes = data;
+    if (cacheable) {
+      bytes = new DisplayFontBytes(data.length);
+      for (let index = 0; index < data.length; index += 1) bytes[index] = data[index];
+    }
+    const dataUrl = `data:${mimetype};base64,${toBase64(bytes)}`;
+    if (cacheable) cache.set(font, { mimetype, bytes, dataUrl });
+    return dataUrl;
+  }
+
+  function fontProgram(font, cache) {
     const data = font?.data;
     if (!data?.length || font.missingFile) return null;
     return {
       family: font.loadedName,
       originalName: font.name || font.loadedName,
       mimetype: font.mimetype || "font/opentype",
-      dataUrl: `data:${font.mimetype || "font/opentype"};base64,${toBase64(data)}`,
+      dataUrl: displayFontDataUrl(font, data, cache),
       // PDF.js repairs and remaps subset programs for browser rendering. These
       // bytes are explicitly a display font, never native source-write authority.
       representation: "pdfjs-browser-display-font",
@@ -233,6 +260,7 @@
         super(commonObjs, objs, true);
         this.embedFonts = true;
         this.programs = new Map();
+        this.displayFontEncodingCache = new WeakMap();
         this.runGlyphs = new WeakMap();
         this.scopeSerial = 0;
         this.scopeRoots = [];
@@ -267,7 +295,7 @@
         const font = this.commonObjs.get(details[0]);
         if (font.isType3Font) throw new Error("PDF Type3 text needs a glyph interpreter; the original page was retained.");
         if (font.vertical) throw new Error("Vertical PDF text is not yet qualified for editable reconstruction; the original page was retained.");
-        const program = fontProgram(font);
+        const program = fontProgram(font, this.displayFontEncodingCache);
         if (program && !this.programs.has(program.family)) this.programs.set(program.family, program);
         if (!font.missingFile && !program) throw new Error("The embedded PDF font could not be recovered for editable text; the original page was retained.");
         super.setFont(details);
@@ -491,7 +519,7 @@
       const viewport = page.getViewport({ scale: 1 });
       const operators = await page.getOperatorList();
       const logicalRuntime = typeof module === "object" && module.exports ? require("./pdf-logical-text-runtime.js") : globalThis.FigureStudioPdfLogicalTextRuntime;
-      const logicalTextSource = logicalRuntime ? await logicalRuntime.sourceForPage({ handle, page, operators, pdfjs, bytes: data, pageNumber, loadPdfLib }) : null;
+      const logicalTextSource = logicalRuntime ? await logicalRuntime.sourceForPage({ handle, page, operators, pdfjs, bytes: data, pageNumber, loadPdfLib, signal }) : null;
       const { currentPlanePage, currentPlaneViewport } = await prepareCurrentNativePageRoute({ logicalTextSource, logicalRuntime, page, operators, pdfjs, viewport, fabric });
       const prepared = await prepareKnockoutScopes({ operatorList: operators, OPS: pdfjs.OPS, bytes: data, pageNumber, budgets: limits, signal, onProgress, workerUrl: knockoutProofWorkerUrl, readSource: readKnockoutSource });
       const inventory = prepared.inventory;
@@ -511,7 +539,7 @@
       const knockoutSources = prepared.binding ? createKnockoutSources(operators, prepared.binding, viewport, pageNumber) : [];
       const Renderer = prepared.binding ? batching.rendererClass(pdfjs, { fabric, knockoutBinding: prepared.binding, knockoutSources, sourceId: prepared.sourceId, pageNumber, signal, onProgress }) : rendererClass(pdfjs, { logicalTextSource });
       const CurrentRenderer = currentPlanePage
-        ? logicalRuntime.currentNativeRenderer(logicalTextSource, { Base: Renderer, page, operators, pdfjs, viewport: currentPlaneViewport }) : Renderer;
+        ? await logicalRuntime.currentNativeRenderer(logicalTextSource, { Base: Renderer, page, operators, pdfjs, viewport: currentPlaneViewport }) : Renderer;
       const graphics = new CurrentRenderer(page.commonObjs, page.objs);
       graphics.recoveredTextItems = (await page.getTextContent({ disableNormalization: true })).items;
       const svg = await graphics.getSVG(operators, currentPlaneViewport);

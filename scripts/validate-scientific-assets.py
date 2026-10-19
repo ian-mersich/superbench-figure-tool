@@ -2620,7 +2620,9 @@ def validate_registered_art_styles(library_path: Path, library: dict) -> list[di
         if "art_style_notes" in library:
             fail("Drawing-style notes require a registered drawing style")
         return []
-    if styles != [{"id":"style-4","name":"Style 4","path":"style-4/manifest.json","asset_count":486}]:
+    allowed = [[{"id":"style-4","name":"Style 4","path":path,"asset_count":486}]
+               for path in ("style-4/manifest.json", "style-4/manifest-corrected-20261017.json")]
+    if styles not in allowed:
         fail("Scientific drawing styles must exactly match the registered Style 4 manifest")
     if not isinstance(library.get("art_style_notes"), str) or not library["art_style_notes"].strip():
         fail("Registered Style 4 requires a visible supplied-artwork limitation")

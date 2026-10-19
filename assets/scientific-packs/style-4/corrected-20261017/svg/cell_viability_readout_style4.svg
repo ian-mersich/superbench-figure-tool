@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc" data-asset-id="exp.assay_workflow.cell_viability_readout" data-style="Style 4" data-artwork-revision="corrected-2026-10-17">
+  <title id="title">Cell Viability Readout</title>
+  <desc id="desc">Editable cell-viability assay result schematic with live/dead wells and a compact quantitative readout.</desc>
+  <g data-region="assay_surface" fill="#F8FAFC" stroke="none"><rect x="11" y="16" width="106" height="96" rx="7" data-style4-method="flat-presentation-preserve-geometry"/></g>
+  <g data-region="measured_signal" fill="#9FD8B5" stroke="none"><circle cx="31" cy="42" r="7" data-style4-method="flat-presentation-preserve-geometry"/><circle cx="53" cy="35" r="7" data-style4-method="flat-presentation-preserve-geometry"/><circle cx="70" cy="51" r="7" data-style4-method="flat-presentation-preserve-geometry"/><circle cx="40" cy="68" r="7" data-style4-method="flat-presentation-preserve-geometry"/><circle cx="62" cy="78" r="7" data-style4-method="flat-presentation-preserve-geometry"/></g>
+  <g data-region="signal_trace" fill="none" stroke="#CD796C" stroke-width="1.984" stroke-linecap="round" stroke-linejoin="round"><path d="M91 32l13 13m0-13L91 45M86 60l13 13m0-13L86 73M26 94h15l8-10 10 12 10-20 10 18h25" data-style4-method="flat-presentation-preserve-geometry"/></g>
+  <g data-region="axes_or_structure" fill="none" stroke="#629BC0" stroke-width="1.728" stroke-linecap="round" stroke-linejoin="round"><path d="M20 101h88M20 101V26M79 26v75M25 27h48M85 82h18" data-style4-method="flat-presentation-preserve-geometry"/></g>
+  <g data-region="outline" fill="none" stroke="#344955" stroke-width="1.536" stroke-linecap="round" stroke-linejoin="round"><rect x="11" y="16" width="106" height="96" rx="7" data-style4-method="flat-presentation-preserve-geometry"/></g>
+</svg>

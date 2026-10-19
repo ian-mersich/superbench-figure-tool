@@ -152,9 +152,9 @@
     {
       "id": "style-4",
       "name": "Style 4",
-      "path": "style-4/manifest.json",
+      "path": "style-4/manifest-corrected-20261017.json",
       "asset_count": 486
     }
   ],
-  "art_style_notes": "Style 4 adds supplied artwork for all 486 drawings, including 16 earlier batch versions recovered from the downloads. After recovery, 235 drawings still render identically to Style 1; the collection does not contain 486 distinct redesigns."
+  "art_style_notes": "Style 4 includes 243 corrected supplied drawings. The other 243 current variants are retained, including eight earlier recovered drawings. Existing saved artwork keeps its embedded original source."
 }

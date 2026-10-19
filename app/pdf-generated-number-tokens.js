@@ -106,14 +106,13 @@
         if (accepts(token)) return token;
       }
     }
-    refuse('Current operand has no qualified exact decimal spelling within the bounded search.');
+    refuse(`Current operand ${Object.is(value, -0) ? '-0' : String(value)} has no qualified exact decimal spelling within the bounded search.`);
   }
 
   const delimiter = char => !char || WHITESPACE.test(char) || /[\[\]()<>\/%{}]/.test(char);
-  function tokenize(text) {
+  function* scanTokens(text, enforceAggregateNumericBudget = true) {
     if (typeof text !== 'string' || text.length > LIMITS.contentBytes) refuse('Generated content byte-string exceeds its budget.');
     for (let index = 0; index < text.length; index++) if (text.charCodeAt(index) > 255) refuse('Generated content must retain native byte-string values.');
-    const tokens = [];
     let index = 0, numericTokens = 0;
     while (index < text.length) {
       const start = index, char = text[index];
@@ -150,14 +149,19 @@
         const token = text.slice(start, index);
         if (token === 'BI' || token === 'ID' || token === 'EI') refuse('Inline image content is outside numeric spelling qualification.');
         if (DECIMAL.test(token)) {
-          if (++numericTokens > LIMITS.numericTokens || token.length > LIMITS.tokenLength || !Number.isFinite(Number(token))) refuse('Generated numeric operand exceeds its qualification budget.');
+          if (++numericTokens > LIMITS.numericTokens && enforceAggregateNumericBudget) refuse(`Generated content exceeds its ${LIMITS.numericTokens}-numeric-token qualification budget.`);
+          if (token.length > LIMITS.tokenLength) refuse(`Generated operand at offset ${start} exceeds its ${LIMITS.tokenLength}-character qualification budget (${token.length} characters).`);
+          if (!Number.isFinite(Number(token))) refuse(`Generated operand at offset ${start} is not finite.`);
           kind = 'number';
         } else if (/^[+\-.0-9]/.test(token)) refuse('Generated numeric operand has unqualified syntax.');
         else if (!WORDS.has(token)) refuse('Generated content operator is outside the audited grammar.');
       }
-      tokens.push({ kind, offset: start, text: text.slice(start, index) });
+      yield { kind, offset: start, text: text.slice(start, index) };
     }
-    return { tokens, numericTokens };
+  }
+  function tokenize(text) {
+    const tokens = Array.from(scanTokens(text));
+    return { tokens, numericTokens: tokens.filter(token => token.kind === 'number').length };
   }
 
   function certifyRewrite(original, rewritten) {
@@ -180,12 +184,19 @@
 
   function rewriteOwnedContent(text) {
     const inspected = tokenize(text), cache = new Map(), changes = [];
-    const pieces = inspected.tokens.map(token => {
+    const pieces = inspected.tokens.map((token, index) => {
       if (token.kind !== 'number') return token.text;
       const value = Number(token.text), key = Object.is(value, -0) ? '-0' : String(value);
       if (!cache.has(key)) {
         if (cache.size >= LIMITS.uniqueNumbers) refuse('Generated number search exceeds its unique-value budget.');
-        cache.set(key, number(value));
+        try { cache.set(key, number(value)); }
+        catch (error) {
+          if (error?.code === 'PDF_GENERATED_NUMBER_UNSUPPORTED') {
+            const operator = inspected.tokens.slice(index + 1).find(next => next.kind !== 'number' && /^[A-Za-z*'"]+$/.test(next.text));
+            error.message += ` Content offset ${token.offset}, operator ${operator?.text || 'unknown'}.`;
+          }
+          throw error;
+        }
       }
       const replacement = cache.get(key);
       if (replacement !== token.text) changes.push({ offset: token.offset, original: token.text, replacement, value });
@@ -195,5 +206,44 @@
     return { content, ...proof, uniqueNumbers: cache.size, changes };
   }
 
-  return Object.freeze({ number, auditedDecimal, tokenize, rewriteOwnedContent, certifyRewrite, limits: LIMITS });
+  async function rewriteOwnedContentBatched(text, { yieldControl = () => new Promise(resolve => setTimeout(resolve, 0)), signal } = {}) {
+    if (typeof yieldControl !== 'function') refuse('Generated numeric batches require a scheduler.');
+    // The established whole byte envelope still applies. Each independent
+    // proof retains the original token, unique-value and decimal budgets.
+    const output = [];
+    let originals = [], replacements = [], cache = new Map(), numericTokens = 0, changedTokens = 0, batchCount = 0, maxBatchUniqueNumbers = 0, batchBytes=0, maxBatchBytes=0;
+    const cancelled=()=>{if(signal?.aborted){const error=new Error('Generated numeric encoding was cancelled.');error.name='AbortError';throw error;}};
+    async function finishBatch() {
+      if (!originals.length) return;
+      cancelled();
+      const before = originals.join(''), after = replacements.join(''), proof = certifyRewrite(before, after);
+      if(before.length>4000000||after.length>4000000)refuse('Generated numeric batch exceeds the existing four-million-byte lexical proof envelope.');
+      numericTokens += proof.numericTokens; changedTokens += proof.changedTokens;
+      maxBatchUniqueNumbers = Math.max(maxBatchUniqueNumbers,cache.size);
+      maxBatchBytes=Math.max(maxBatchBytes,before.length,after.length);
+      output.push(after);batchCount++;
+      originals=[];replacements=[];cache=new Map();batchBytes=0;
+      await yieldControl();
+      cancelled();
+    }
+    cancelled();
+    for (const token of scanTokens(text, false)) {
+      const value = token.kind === 'number' ? Number(token.text) : null;
+      const key = Object.is(value,-0) ? '-0' : String(value);
+      if (originals.length >= 8192 || batchBytes+token.text.length>4000000 || token.kind === 'number' && !cache.has(key) && cache.size >= LIMITS.uniqueNumbers) await finishBatch();
+      let replacement = token.text;
+      if (token.kind === 'number') {
+        if (!cache.has(key)) cache.set(key,number(value));
+        replacement=cache.get(key);
+      }
+      originals.push(token.text);replacements.push(replacement);batchBytes+=Math.max(token.text.length,replacement.length);
+    }
+    await finishBatch();
+    cancelled();
+    const content=output.join('');
+    if (content.length > LIMITS.contentBytes) refuse('Generated rewritten content byte-string exceeds its budget.');
+    return Object.freeze({content,numericTokens,changedTokens,batchCount,maxBatchUniqueNumbers,maxBatchBytes,completed:true});
+  }
+
+  return Object.freeze({ number, auditedDecimal, tokenize, rewriteOwnedContent, rewriteOwnedContentBatched, certifyRewrite, limits: LIMITS });
 });

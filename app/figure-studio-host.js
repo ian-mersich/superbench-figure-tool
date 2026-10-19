@@ -161,8 +161,8 @@
   function nativeDocumentKind(payload, options = {}) {
     const explicitKind = String(options.documentKind || options.document_kind || "").trim().toLowerCase();
     if (["figure", "presentation", "workspace"].includes(explicitKind)) return explicitKind;
-    if (payload?.schema === "figureStudio.workspaceProject.v1") return "workspace";
-    const project = payload?.schema === "figureStudio.projectPayload.v1" && payload.project
+    if (["figureStudio.workspaceProject.v1", "figureStudio.workspaceProject.v2"].includes(payload?.schema)) return "workspace";
+    const project = ["figureStudio.projectPayload.v1", "figureStudio.projectPayload.v2"].includes(payload?.schema) && payload.project
       ? payload.project
       : payload;
     const kind = String(project?.document?.kind || "").trim().toLowerCase();
@@ -170,7 +170,7 @@
   }
 
   function nativeSuggestedName(payload, options = {}) {
-    const project = payload?.schema === "figureStudio.projectPayload.v1" && payload.project
+    const project = ["figureStudio.projectPayload.v1", "figureStudio.projectPayload.v2"].includes(payload?.schema) && payload.project
       ? payload.project
       : payload;
     return String(options.suggestedName || options.suggested_name || options.filename || project?.title || "").trim();
@@ -212,7 +212,12 @@
       }
       let contents = "";
       try {
-        contents = JSON.stringify(projectPayload, null, 2);
+        if (options.fileBlob !== undefined) {
+          if (typeof Blob !== "function" || !(options.fileBlob instanceof Blob) || !options.fileBlob.size || options.fileBlob.size > MAX_NATIVE_EXPORT_FILE_BYTES) {
+            return nativeDocumentError(documentId, "The prepared document exceeds the desktop file envelope.");
+          }
+          contents = await options.fileBlob.text();
+        } else contents = JSON.stringify(projectPayload, null, 2);
       } catch (_error) {
         return nativeDocumentError(documentId, "The active document could not be prepared for saving.");
       }
@@ -263,6 +268,9 @@
           requestedPath: String(options.requestedPath || options.requested_path || "").trim() || null
         });
         if (result.status !== "opened" || typeof result.contents !== "string") return result;
+        if (typeof Blob === "function" && (result.contents.length > 8388608 || result.contents.includes('"densePdfAssets"'))) {
+          return { ...result, fileBlob: new Blob([result.contents], { type: "application/json" }) };
+        }
         try {
           const payload = JSON.parse(result.contents);
           return { ...result, payload, project: payload };
@@ -292,6 +300,9 @@
         const sourceKind = String(result.documentKind || result.document_kind || "").trim().toLowerCase();
         if (sourceKind === "svg-source" || sourceKind === "pdf-source") {
           return result;
+        }
+        if (typeof Blob === "function" && (result.contents.length > 8388608 || result.contents.includes('"densePdfAssets"'))) {
+          return { ...result, fileBlob: new Blob([result.contents], { type: "application/json" }) };
         }
         try {
           const payload = JSON.parse(result.contents);

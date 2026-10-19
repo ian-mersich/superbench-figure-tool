@@ -349,9 +349,10 @@
               <button type="button" data-figure-layout-command="save-project" data-shared-icon="save" title="Save Figure (Ctrl/Cmd+S)">Save</button>
               <button type="button" data-figure-layout-command="export-as" data-shared-icon="export">Export</button>
             </div>
-            <div id="documentWorkspaceSwitcher" class="document-workspace-switcher" role="tablist" aria-label="Figure Tool workspace">
+            <button type="button" id="projectSlidesToggle" class="project-slides-toggle" aria-expanded="false" aria-controls="projectSlidesPanel" title="Show slides beside your canvas">Slides</button>
+            <div id="documentWorkspaceSwitcher" class="document-workspace-switcher" role="tablist" aria-label="Project views">
               <button type="button" id="figureWorkspaceTab" role="tab" data-document-workspace="figure" aria-selected="true">Figure</button>
-              <button type="button" id="presentationWorkspaceTab" role="tab" data-document-workspace="presentation" aria-selected="false">Presentation</button>
+              <button type="button" id="presentationWorkspaceTab" role="tab" data-document-workspace="presentation" aria-selected="false" title="Edit this project's slides; your Figure stays open">Edit slides</button>
             </div>
             <button type="button" id="contextLearnBtn" class="help-top-button" data-shared-icon="help" title="Read Help for the current workspace">Workspace help</button>
             <button type="button" id="helpCenterBtn" class="help-top-button" data-command="help-center" data-shared-icon="help" title="Search Figure Tool help">Help</button>
@@ -2438,45 +2439,49 @@
       <p class="scientific-symbol-help">Use arrow keys to move through results. Press Enter to insert; Escape closes.</p>
     </section>
     <div id="newDocumentBackdrop" class="new-document-backdrop" hidden>
-      <section id="newDocumentDialog" class="new-document-dialog" role="dialog" aria-modal="true" aria-labelledby="newDocumentTitle">
+      <section id="newDocumentDialog" class="new-document-dialog" role="dialog" aria-modal="true" aria-labelledby="newDocumentTitle" aria-describedby="newDocumentModeDescription">
         <header class="new-document-header">
-          <div><strong id="newDocumentTitle">Start in Figure Tool</strong><span>Choose the document that matches what you are making.</span></div>
+          <strong id="newDocumentTitle">New document</strong>
           <button type="button" id="closeNewDocumentBtn" class="shared-dialog-close" aria-label="Close New document" title="Close">×</button>
         </header>
-        <div class="new-document-kinds" role="radiogroup" aria-label="Document mode">
-          <button type="button" id="newFigureKindBtn" role="radio" aria-checked="true" data-new-document-kind="figure"><strong>Figure</strong><span>One scientific canvas for figures, illustrations, and diagrams.</span></button>
-          <button type="button" id="newPresentationKindBtn" role="radio" aria-checked="false" data-new-document-kind="presentation"><strong>Presentation</strong><span>A consistent multi-slide scientific presentation.</span></button>
+        <div class="new-document-kinds" role="radiogroup" aria-label="Document type">
+          <button type="button" id="newFigureKindBtn" role="radio" aria-checked="true" data-new-document-kind="figure">Figure</button>
+          <button type="button" id="newPresentationKindBtn" role="radio" aria-checked="false" tabindex="-1" data-new-document-kind="presentation">Presentation</button>
         </div>
         <div class="new-document-body">
-          <div class="new-document-presets" role="radiogroup" aria-label="Document size">
-            <button type="button" id="newDoubleColumnPresetBtn" role="radio" aria-checked="true" data-new-document-preset="double-column" data-figure-preset><strong>Double column</strong><span>7.1 &times; 5 in</span></button>
-            <button type="button" id="newSingleColumnPresetBtn" role="radio" aria-checked="false" data-new-document-preset="single-column" data-figure-preset><strong>Single column</strong><span>3.35 &times; 4.8 in</span></button>
-            <button type="button" id="newFullPagePresetBtn" role="radio" aria-checked="false" data-new-document-preset="full-page" data-figure-preset><strong>Full page</strong><span>8.5 &times; 11 in</span></button>
-            <button type="button" id="newGraphicalAbstractPresetBtn" role="radio" aria-checked="false" data-new-document-preset="graphical-abstract" data-figure-preset><strong>Graphical abstract</strong><span>7.1 &times; 3.2 in</span></button>
-            <button type="button" id="newPresentationWidePresetBtn" role="radio" aria-checked="false" data-new-document-preset="presentation-wide" data-presentation-preset hidden><strong>Widescreen</strong><span>13.333 &times; 7.5 in · 16:9</span></button>
-            <button type="button" id="newPresentationStandardPresetBtn" role="radio" aria-checked="false" data-new-document-preset="presentation-standard" data-presentation-preset hidden><strong>Standard</strong><span>10 &times; 7.5 in · 4:3</span></button>
-            <button type="button" id="newCustomPresetBtn" role="radio" aria-checked="false" data-new-document-preset="custom"><strong>Custom</strong><span>Set width and height</span></button>
-          </div>
           <div class="new-document-settings">
-            <label>Name<input id="newDocumentNameInput" type="text" maxlength="80" value="Untitled figure"></label>
+            <label>Name<input id="newDocumentNameInput" type="text" maxlength="80" value="Untitled figure" autocomplete="off"></label>
+            <label>Size<select id="newDocumentSizeInput">
+              <option value="double-column" data-figure-preset>Canvas · 7.1 × 5 in</option>
+              <option value="a4" data-figure-preset>A4 · 210 × 297 mm</option>
+              <option value="full-page" data-figure-preset>US Letter · 8.5 × 11 in</option>
+              <option value="presentation-wide" data-presentation-preset hidden>Widescreen · 16:9</option>
+              <option value="presentation-standard" data-presentation-preset hidden>Standard · 4:3</option>
+              <option value="custom">Custom</option>
+            </select></label>
             <div class="new-document-dimensions">
-              <label>Width<input id="newDocumentWidthInput" type="number" min="0.5" max="200" step="0.1" value="7.1"></label>
-              <label>Height<input id="newDocumentHeightInput" type="number" min="0.5" max="200" step="0.1" value="5"></label>
-              <label>Units<select id="newDocumentUnitsInput"><option value="in">Inches</option></select></label>
+              <label>Width<input id="newDocumentWidthInput" type="number" min="0.5" max="200" step="any" value="7.1"></label>
+              <label>Height<input id="newDocumentHeightInput" type="number" min="0.5" max="200" step="any" value="5"></label>
+              <label>Units<select id="newDocumentUnitsInput"><option value="in">Inches</option><option value="mm">Millimeters</option><option value="cm">Centimeters</option></select></label>
             </div>
             <div id="newDocumentPresentationSettings" class="new-document-presentation-settings" hidden>
               <label>Starting layout<select id="newDocumentLayoutInput"><option value="title">Title slide</option><option value="title-content">Title + content</option><option value="scientific-result">Scientific result</option><option value="blank">Blank</option></select></label>
               <label>Theme<select id="newDocumentThemeInput"><option value="scientific">Scientific blue</option><option value="teal">Clinical teal</option><option value="warm">Editorial warm</option></select></label>
             </div>
-            <p id="newDocumentModeDescription">Creates one editable scientific canvas.</p>
-            <div class="new-document-open-actions" aria-label="Open an existing document">
-              <strong>Open existing</strong>
-              <button type="button" data-new-document-open="figure">Open Figure</button>
-              <button type="button" data-new-document-open="presentation">Open Presentation</button>
-              <button type="button" id="openArtworkDocumentBtn">Open PDF or SVG</button>
-              <input id="openArtworkDocumentInput" type="file" accept="application/pdf,.pdf,image/svg+xml,.svg" hidden>
-            </div>
+            <p id="newDocumentModeDescription">One canvas for your figure or diagram. You can change its size later.</p>
           </div>
+          <aside class="new-document-preview" aria-label="Canvas preview">
+            <div class="new-document-preview-stage"><div id="newDocumentPreviewPaper" class="new-document-preview-paper"></div></div>
+            <span id="newDocumentPreviewDimensions">7.1 × 5 in</span>
+            <span id="newDocumentPreviewKind">One canvas</span>
+          </aside>
+        </div>
+        <div class="new-document-open-actions" aria-label="Open an existing document">
+          <span>Open existing</span>
+          <button type="button" data-new-document-open="figure">Figure…</button>
+          <button type="button" data-new-document-open="presentation">Presentation…</button>
+          <button type="button" id="openArtworkDocumentBtn">PDF or SVG…</button>
+          <input id="openArtworkDocumentInput" type="file" accept="application/pdf,.pdf,image/svg+xml,.svg" hidden>
         </div>
         <footer class="new-document-actions"><button type="button" id="cancelNewDocumentBtn" class="shared-secondary-action">Cancel</button><button type="button" id="createNewDocumentBtn" class="accent-command shared-primary-action">Create</button></footer>
       </section>
@@ -2532,6 +2537,7 @@
     <script src="pdf-generated-number-tokens.js?v=20261008-current1" defer></script>
     <script src="pdf-svg-materializer.js?v=20261008-currentplanes1" defer></script>
     <script src="pdf-scene-number-precision.js?v=20261007-editable1" defer></script>
+    <script src="pdf-current-native-operator-snapshots.js?v=20261016-batches1" defer></script>
     <script src="pdf-current-native-clip-planes.js?v=20261008-currentplanes1" defer></script>
     <script src="pdf-current-native-local-svg.js?v=20261008-currentplanes1" defer></script>
     <script src="pdf-current-native-plane-materializer.js?v=20261008-currentplanes1" defer></script>
@@ -2539,6 +2545,21 @@
     <script src="pdf-editable-import.js?v=20261008-currentplanes1" defer></script>
     <script src="pdf-operator-optimizer.js?v=20261007-editable1" defer></script>
     <script src="pdf-editable-import-batching.js?v=20261008-currentplanes1" defer></script>
+    <script src="pdf-native-glyph-records.js?v=20261016-dense1" defer></script>
+    <script src="pdf-dense-source-numbers.js?v=20261016-dense1" defer></script>
+    <script src="pdf-dense-font-repertoire.js?v=20261016-dense1" defer></script>
+    <script src="pdf-dense-text-state.js?v=20261016-dense1" defer></script>
+    <script src="pdf-dense-leaf-store.js?v=20261016-dense1" defer></script>
+    <script src="pdf-dense-source-owner-profiles.js?v=20261016-dense1" defer></script>
+    <script src="pdf-dense-group-history.js?v=20261016-dense1" defer></script>
+    <script src="pdf-dense-native-canvas.js?v=20261016-dense1" defer></script>
+    <script src="pdf-dense-vector-replay.js?v=20261016-dense1" defer></script>
+    <script src="pdf-dense-document-session.js?v=20261016-dense1" defer></script>
+    <script src="pdf-dense-native-proxies.js?v=20261016-dense1" defer></script>
+    <script src="pdf-dense-native-text.js?v=20261016-dense1" defer></script>
+    <script src="pdf-dense-svg-composer.js?v=20261016-dense1" defer></script>
+    <script src="pdf-dense-page.js?v=20261016-dense1" defer></script>
+    <script src="pdf-dense-file-codec.js?v=20261016-dense1" defer></script>
     <script src="svg-source-number-precision.js?v=20261008-source1" defer></script>
     <script src="pdf-paint-hit-test.js?v=20261007-editable1" defer></script>
     <script src="pdf-history-node-store.js?v=20261007-editable1" defer></script>

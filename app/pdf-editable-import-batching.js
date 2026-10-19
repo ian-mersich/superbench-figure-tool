@@ -133,7 +133,7 @@
       const page = await handle.getPage(pageNumber), viewport = page.getViewport({ scale: 1 });
       const operators = await page.getOperatorList();
       const logicalRuntime = typeof module === "object" && module.exports ? require("./pdf-logical-text-runtime.js") : globalThis.FigureStudioPdfLogicalTextRuntime;
-      const logicalTextSource = logicalRuntime ? await logicalRuntime.sourceForPage({ handle, page, operators, pdfjs, bytes: data, pageNumber, loadPdfLib }) : null;
+      const logicalTextSource = logicalRuntime ? await logicalRuntime.sourceForPage({ handle, page, operators, pdfjs, bytes: data, pageNumber, loadPdfLib, signal }) : null;
       const { currentPlanePage, currentPlaneViewport } = await base.prepareCurrentNativePageRoute({ logicalTextSource, logicalRuntime, page, operators, pdfjs, viewport, fabric });
       const prepared = await base.prepareKnockoutScopes({ operatorList: operators, OPS: pdfjs.OPS, bytes: data, pageNumber, budgets: limits, signal, onProgress, workerUrl: knockoutProofWorkerUrl, readSource: readKnockoutSource });
       const inventory = prepared.inventory;
@@ -149,7 +149,7 @@
       const knockoutSources = prepared.binding ? base.createKnockoutSources(operators, prepared.binding, viewport, pageNumber) : [];
       const Renderer = rendererClass(pdfjs, { batchSize, signal, markRectangleScopes, sourceId, pageNumber, onProgress, fabric, knockoutBinding: prepared.binding, knockoutSources, logicalTextSource });
       const CurrentRenderer = currentPlanePage
-        ? logicalRuntime.currentNativeRenderer(logicalTextSource, { Base: Renderer, page, operators, pdfjs, viewport: currentPlaneViewport }) : Renderer;
+        ? await logicalRuntime.currentNativeRenderer(logicalTextSource, { Base: Renderer, page, operators, pdfjs, viewport: currentPlaneViewport }) : Renderer;
       const graphics = new CurrentRenderer(page.commonObjs, page.objs);
       const textContent = await page.getTextContent({ disableNormalization: true });
       graphics.recoveredTextItems = textContent.items;

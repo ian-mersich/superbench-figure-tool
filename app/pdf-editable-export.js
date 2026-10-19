@@ -15,6 +15,74 @@
     throw error;
   }
 
+  function prepareStandardMinusGlyphs(pdf, entries) {
+    // Helvetica contains /minus, although WinAnsi has no code for U+2212.
+    // Reserve an XML-illegal control code in this new PDF instance only. The
+    // generated Type1 encoding is completed before these bytes can be delivered.
+    // Current native logical text and registered display programs keep their
+    // existing, independently qualified font path.
+    const elements = new Set(), records = new Map();
+    const names = { normal: "Helvetica", bold: "Helvetica-Bold", italic: "Helvetica-Oblique", bolditalic: "Helvetica-BoldOblique" };
+    const reject = (message) => fail("PDF_EXPORT_STANDARD_MINUS_INVALID", message);
+    for (const { element, family, style } of entries) {
+      const firstFamily = String(family || "").split(",")[0].trim().replace(/^['"]|['"]$/g, "").toLowerCase();
+      if (!["helvetica", "arial", "sans-serif"].includes(firstFamily) || !Object.hasOwn(names, style)
+          || element.children.length || element.textContent !== "−" || element.getAttribute("data-pdf-unicode") !== "−"
+          || element.closest?.("[data-figure-studio-native-logical-glyph]")) continue;
+      const font = pdf?.internal?.getFont?.("helvetica", style);
+      if (!font?.isStandardFont || font.fontName !== "helvetica" || font.fontStyle !== style || font.postScriptName !== names[style]
+          || font.encoding !== "WinAnsiEncoding" || !font.metadata?.Unicode?.encoding?.WinAnsiEncoding
+          || !Number.isFinite(font.metadata.Unicode.widths?.fof) || font.metadata.Unicode.widths.fof <= 0) {
+        reject("The current Helvetica standard font is unavailable.");
+      }
+      if (!records.has(font)) records.set(font, { font, style, postScriptName: names[style], metadata: font.metadata, originalUnicode: font.metadata.Unicode });
+      elements.add(element);
+    }
+    // Clone the shared vendor tables: another PDF instance must remain exact.
+    for (const record of records.values()) {
+      const u = record.originalUnicode;
+      record.unicode = { ...u, widths: { ...u.widths, 8722: 0.584 * u.widths.fof },
+        encoding: { ...u.encoding, WinAnsiEncoding: { ...u.encoding.WinAnsiEncoding, 8722: 31 } } };
+      record.font.metadata.Unicode = record.unicode;
+    }
+    for (const element of elements) {
+      element.setAttribute("font-family", "helvetica");
+      element.style.setProperty("font-family", "helvetica");
+    }
+    return {
+      elements,
+      async complete(bytes, { pdfLib } = {}) {
+        if (!records.size) return bytes;
+        if (!pdfLib?.PDFDocument || !pdfLib?.PDFRef || !pdfLib?.PDFDict || !pdfLib?.PDFName) reject("The standard-font PDF writer is unavailable.");
+        const document = await pdfLib.PDFDocument.load(bytes), name = pdfLib.PDFName.of, pending = [];
+        for (const { font, style, postScriptName, metadata, unicode } of records.values()) {
+          if (pdf.internal.getFont("helvetica", style) !== font || !font.isStandardFont || font.fontName !== "helvetica"
+              || font.fontStyle !== style || font.postScriptName !== postScriptName || font.encoding !== "WinAnsiEncoding"
+              || font.metadata !== metadata || metadata.Unicode !== unicode || unicode.encoding.WinAnsiEncoding[8722] !== 31
+              || unicode.widths[8722] !== 0.584 * unicode.widths.fof) reject("The standard minus font changed during export.");
+          // A clipped-away scalar may leave this font unused in the new PDF.
+          if (font.objectNumber === undefined) continue;
+          if (!Number.isSafeInteger(font.objectNumber) || font.objectNumber <= 0) reject("The generated standard font reference is invalid.");
+          const dictionary = document.context.lookup(pdfLib.PDFRef.of(font.objectNumber), pdfLib.PDFDict);
+          if (String(dictionary.get(name("Type"))) !== "/Font" || String(dictionary.get(name("Subtype"))) !== "/Type1"
+              || String(dictionary.get(name("BaseFont"))) !== "/" + font.postScriptName
+              || String(dictionary.get(name("Encoding"))) !== "/WinAnsiEncoding"
+              || ["Widths", "FontDescriptor", "ToUnicode"].some(key => dictionary.has(name(key)))) {
+            reject("The generated font differs from the current standard Helvetica resource.");
+          }
+          pending.push(dictionary);
+        }
+        for (const dictionary of pending) {
+          dictionary.set(name("Encoding"), document.context.obj({ Type: name("Encoding"), BaseEncoding: name("WinAnsiEncoding"), Differences: [31, name("minus")] }));
+          dictionary.set(name("FirstChar"), document.context.obj(31));
+        }
+        // /minus has its standard Adobe glyph name and therefore retains U+2212
+        // during extraction, just as the source's Helvetica Differences does.
+        return pending.length ? document.save({ useObjectStreams: false }) : bytes;
+      }
+    };
+  }
+
   function bytesFromDataUrl(dataUrl) {
     const match = String(dataUrl || "").match(/^data:([^;,]+);base64,([A-Za-z0-9+/]*={0,2})$/);
     if (!match || match[2].length % 4 !== 0) fail("PDF_EXPORT_FONT_DATA_INVALID", "An imported PDF display font has invalid embedded bytes.");
@@ -202,7 +270,178 @@
     return characters.map((fontChar, index) => ({ fontChar, x: xs[index], y: ys.length === characters.length ? ys[index] : ys[0], glyph: glyphs?.[index] || null }));
   }
 
-  function prepareSvgForJsPdf(svgRoot) {
+  function useOwnedPageCropForJsPdf(svgRoot) {
+    // The detached PDF conversion already has this exact, explicit page crop.
+    // Keep it and suppress only svg2pdf's redundant root viewport crop.
+    if (svgRoot?.localName !== "svg" || svgRoot.namespaceURI !== SVG_NS
+        || svgRoot.getAttribute("data-export-clip") !== "clip-to-artboard"
+        || svgRoot.getAttribute("overflow") !== "hidden") return false;
+    const numeric = (text) => {
+      if (typeof text !== "string" || !/^[+-]?(?:\d*\.\d+|\d+\.?\d*)(?:e[+-]?\d+)?$/i.test(text.trim())) return null;
+      const value = Number(text);
+      return Number.isFinite(value) ? value : null;
+    };
+    const box = String(svgRoot.getAttribute("viewBox") || "").trim().split(/[ ,]+/).map(numeric);
+    if (box.length !== 4 || box.some(value => value === null) || box[2] <= 0 || box[3] <= 0) return false;
+    const contents = Array.from(svgRoot.children).filter(child => child.getAttribute("data-figure-studio-export-content") === "true");
+    if (contents.length !== 1 || contents[0].localName !== "g" || contents[0].namespaceURI !== SVG_NS
+        || contents[0].hasAttribute("transform") || contents[0].hasAttribute("style")) return false;
+    if (Array.from(svgRoot.children).some(child => child !== contents[0]
+        && !["defs", "style", "metadata", "title", "desc"].includes(child.localName))) return false;
+    const match = String(contents[0].getAttribute("clip-path") || "").match(/^url\(#(figure-studio-clip-[A-Za-z0-9_-]+)\)$/);
+    if (!match) return false;
+    const clips = Array.from(svgRoot.querySelectorAll("[id]")).filter(node => node.getAttribute("id") === match[1]);
+    const clip = clips[0];
+    if (clips.length !== 1 || clip.localName !== "clipPath" || clip.namespaceURI !== SVG_NS
+        || clip.parentNode?.localName !== "defs" || clip.parentNode.parentNode !== svgRoot
+        || clip.getAttribute("clipPathUnits") !== "userSpaceOnUse" || clip.children.length !== 1
+        || clip.hasAttribute("transform") || clip.hasAttribute("style")) return false;
+    const rect = clip.children[0];
+    if (rect.localName !== "rect" || rect.namespaceURI !== SVG_NS || rect.children.length
+        || ["transform", "style", "rx", "ry", "clip-path", "mask"].some(key => rect.hasAttribute(key))
+        || rect.hasAttribute("clip-rule") && rect.getAttribute("clip-rule") !== "nonzero") return false;
+    const crop = ["x", "y", "width", "height"].map(name => numeric(rect.getAttribute(name)));
+    if (!crop.every((value, index) => value !== null && value === box[index])) return false;
+    svgRoot.setAttribute("overflow", "visible");
+    return true;
+  }
+
+  function preserveCurrentPathArguments(svgRoot) {
+    // Fabric paints a Path by first subtracting pathOffset from each command,
+    // then applying its current object matrix. svg2pdf instead combines that
+    // translation into the matrix. The two arithmetic orders can differ by
+    // an ULP. Its clip matrix/inverse pair can introduce the same drift.
+    // Use only current SVG commands and matrices from this detached export.
+    const identity = [1, 0, 0, 1, 0, 0];
+    const multiply = (a, b) => [a[0]*b[0]+a[2]*b[1], a[1]*b[0]+a[3]*b[1], a[0]*b[2]+a[2]*b[3], a[1]*b[2]+a[3]*b[3], a[0]*b[4]+a[2]*b[5]+a[4], a[1]*b[4]+a[3]*b[5]+a[5]];
+    const num = value => Object.is(value, -0) ? "-0" : String(value);
+    const matrix = value => `matrix(${value.map(num).join(" ")})`;
+    const unqualified = Symbol("unqualified-current-svg-geometry");
+    const unsupported = () => { throw unqualified; };
+    const transform = (text = "") => {
+      const tokens = [...text.matchAll(/(matrix|translate|scale)\s*\(([^)]*)\)/g)];
+      if (tokens.map(row => row[0]).join("").replace(/\s/g, "") !== text.replace(/\s/g, "")) unsupported();
+      return tokens.map(row => {
+        const values = row[2].trim().split(/[ ,]+/).map(Number);
+        if (!values.every(Number.isFinite)) unsupported();
+        if (row[1] === "matrix" && values.length === 6) return values;
+        if (row[1] === "translate" && [1, 2].includes(values.length)) return [1,0,0,1,values[0],values[1] ?? 0];
+        if (row[1] === "scale" && [1, 2].includes(values.length)) return [values[0],0,0,values[1] ?? values[0],0,0];
+        unsupported();
+      });
+    };
+    const path = (text, translation = [0, 0], world = null) => {
+      const tokens = String(text || "").match(/[MLCQZ]|[+-]?(?:\d*\.\d+|\d+\.?\d*)(?:e[+-]?\d+)?/g) || [];
+      if (!tokens.length || String(text).replace(/[MLCQZ]|[+-]?(?:\d*\.\d+|\d+\.?\d*)(?:e[+-]?\d+)?|[\s,]/g, "")) unsupported();
+      const sizes = {M:2,L:2,C:6,Q:4,Z:0}, result = [];
+      for (let index = 0; index < tokens.length;) {
+        const command = tokens[index++], size = sizes[command];
+        if (size === undefined) unsupported();
+        const row = [command];
+        for (let offset = 0; offset < size; offset += 2) {
+          const x = Number(tokens[index++]) + translation[0], y = Number(tokens[index++]) + translation[1];
+          if (![x, y].every(Number.isFinite)) unsupported();
+          row.push(...(world ? [world[0]*x+world[2]*y+world[4],world[1]*x+world[3]*y+world[5]] : [x,y]));
+        }
+        result.push(row);
+      }
+      return result.map(row => row.map(value => typeof value === "number" ? num(value) : value).join(" ")).join(" ");
+    };
+    const operations = [], definitions = [], ids = new Map();
+    for (const element of svgRoot.querySelectorAll("[id]")) {
+      const id = element.getAttribute("id");
+      if (ids.has(id)) return false;
+      ids.set(id, element);
+    }
+    let ordinal = 0;
+    function pathPlane(element, parent, bake = false) {
+      const transforms = transform(element.getAttribute("transform") || "");
+      let translation = [0, 0];
+      const last = transforms.at(-1);
+      // Stock Path's offset is a final literal translation. Subtract before
+      // the matrix, exactly as its native Canvas command writer does.
+      if (last && /translate\s*\([^)]*\)\s*$/.test(element.getAttribute("transform") || "")) {
+        transforms.pop(); translation = last.slice(4);
+      }
+      const world = transforms.reduce(multiply, parent);
+      return {world, d:path(element.getAttribute("d"), translation, bake ? world : null)};
+    }
+    function clip(reference, owner) {
+      const match = /^url\(#([^\s)]+)\)$/.exec(reference || ""), original = match && ids.get(match[1]);
+      if (!original || original.localName !== "clipPath" || original.children.length !== 1
+          || original.hasAttribute("clip-path") || original.hasAttribute("style")
+          || original.hasAttribute("clipPathUnits") && original.getAttribute("clipPathUnits") !== "userSpaceOnUse") unsupported();
+      let plane = transform(original.getAttribute("transform") || "").reduce(multiply, owner), shape = original.children[0];
+      let rule = original.getAttribute("clip-rule") || "nonzero";
+      while (shape.localName === "g" && shape.children.length === 1) {
+        if (shape.hasAttribute("clip-path") || String(shape.getAttribute("style") || "").trim()
+            || shape.hasAttribute("mask") || shape.hasAttribute("filter")) unsupported();
+        rule = shape.getAttribute("clip-rule") || rule;
+        plane = transform(shape.getAttribute("transform") || "").reduce(multiply, plane); shape = shape.children[0];
+      }
+      let d;
+      if (shape.localName === "path") d = pathPlane(shape, plane, true).d;
+      else if (shape.localName === "rect" && !shape.hasAttribute("rx") && !shape.hasAttribute("ry")) {
+        const [x,y,w,h] = ["x","y","width","height"].map(name => Number(shape.getAttribute(name) || 0));
+        if (![x,y,w,h].every(Number.isFinite) || w <= 0 || h <= 0) unsupported();
+        plane = transform(shape.getAttribute("transform") || "").reduce(multiply, plane);
+        d = path(`M ${x} ${y} L ${x+w} ${y} L ${x+w} ${y+h} L ${x} ${y+h} Z`, [0,0], plane);
+      } else unsupported();
+      if (shape.hasAttribute("clip-path") || shape.hasAttribute("mask") || shape.hasAttribute("filter")
+          || String(shape.getAttribute("style") || "").trim()) unsupported();
+      rule = shape.getAttribute("clip-rule") || rule;
+      if (!["nonzero", "evenodd"].includes(rule)) unsupported();
+      const definition = svgRoot.ownerDocument.createElementNS(SVG_NS, "clipPath"), leaf = svgRoot.ownerDocument.createElementNS(SVG_NS, "path");
+      let id; do { id = `figure-studio-native-clip-${ordinal++}`; } while (ids.has(id));
+      definition.setAttribute("id", id); definition.setAttribute("clipPathUnits", "userSpaceOnUse");
+      leaf.setAttribute("d", d);
+      leaf.setAttribute("clip-rule", rule);
+      definition.appendChild(leaf); definitions.push(definition); ids.set(id, definition);
+      return `url(#${id})`;
+    }
+    function visit(element, parent = identity) {
+      if (["defs","clipPath","metadata","desc","title","style"].includes(element.localName)) {
+        if (element.localName === "style" && element.textContent.replace(/@font-face\s*\{[^}]+\}/gi, "").trim()) unsupported();
+        return;
+      }
+      if (!["svg","g","path","rect","text"].includes(element.localName)) unsupported();
+      if (element.localName === "svg" && element !== svgRoot || element.hasAttribute("class")) unsupported();
+      // A clip on a transformed leaf uses that leaf's user space. Baking it
+      // into the scene plane while retaining the leaf matrix would apply the
+      // matrix twice. Keep those exports on their existing writer route.
+      if (["path","rect","text"].includes(element.localName) && element.hasAttribute("clip-path")) unsupported();
+      if (["mask","filter","vector-effect"].some(name => element.hasAttribute(name))
+          || /(?:url\s*\(|filter\s*:|mask\s*:|vector-effect\s*:|transform\s*:)/i.test(element.getAttribute("style") || "")
+          || ["fill","stroke"].some(name => /url\s*\(/i.test(element.getAttribute(name) || ""))) unsupported();
+      if (element.localName === "text") for (const child of element.querySelectorAll("*")) {
+        if (child.localName !== "tspan" || ["transform","clip-path","mask","filter","class"].some(name => child.hasAttribute(name))) unsupported();
+      }
+      let world = transform(element.getAttribute("transform") || "").reduce(multiply, parent);
+      const changes = {};
+      if (element.hasAttribute("clip-path")) changes["clip-path"] = clip(element.getAttribute("clip-path"), world);
+      if (element.localName === "path") {
+        const current = pathPlane(element, parent); world = current.world;
+        changes.d = current.d; changes.transform = matrix(world);
+      } else if (["rect","text"].includes(element.localName)) changes.transform = matrix(world);
+      else if (element.hasAttribute("transform")) changes.transform = null;
+      operations.push({element, changes});
+      if (!["path","rect","text"].includes(element.localName)) for (const child of element.children) visit(child, world);
+    }
+    try {
+      for (const style of svgRoot.querySelectorAll("style")) if (style.textContent.replace(/@font-face\s*\{[^}]+\}/gi, "").trim()) unsupported();
+      visit(svgRoot);
+    } catch (error) { if (error === unqualified) return false; throw error; }
+    // Admission is complete before touching the detached conversion tree.
+    for (const {element, changes} of operations) for (const [name, value] of Object.entries(changes)) {
+      if (value === null) element.removeAttribute(name); else element.setAttribute(name, value);
+    }
+    let defs = Array.from(svgRoot.children).find(element => element.localName === "defs");
+    if (!defs && definitions.length) { defs = svgRoot.ownerDocument.createElementNS(SVG_NS, "defs"); svgRoot.appendChild(defs); }
+    for (const definition of definitions) defs.appendChild(definition);
+    return true;
+  }
+
+  function prepareSvgForJsPdf(svgRoot, { qualifiedSourceScene = false } = {}) {
     const document = svgRoot?.ownerDocument;
     if (!document?.createElementNS || !document?.createDocumentFragment) fail("PDF_EXPORT_SVG_UNAVAILABLE", "PDF export requires a parsed SVG document.");
     const normalize = (element) => {
@@ -214,6 +453,8 @@
     // svg2pdf dispatches on tagName rather than localName. It also reads only a
     // scalar tspan x/y; separate spans retain the imported PDF's glyph positions.
     const root = normalize(svgRoot);
+    useOwnedPageCropForJsPdf(root);
+    if (qualifiedSourceScene) preserveCurrentPathArguments(root);
     for (const span of root.querySelectorAll("tspan")) {
       const glyphs = span.hasAttribute("data-pdf-glyph-map") ? JSON.parse(span.getAttribute("data-pdf-glyph-map")) : null;
       const positions = positionedGlyphs(span.textContent, span.getAttribute("x"), span.getAttribute("y"), glyphs);
@@ -240,20 +481,164 @@
     return root;
   }
 
+  function ownCurrentTextNumberWriter(pdf) {
+    const numbers = typeof module === "object" && module.exports && typeof require === "function"
+      ? require("./pdf-generated-number-tokens.js") : globalThis.FigureStudioPdfGeneratedNumbers;
+    const descriptor = Object.getOwnPropertyDescriptor(pdf, "text");
+    if (typeof descriptor?.value !== "function" || !descriptor.configurable || !pdf.internal?.pages
+        || typeof pdf.internal.getCurrentPageInfo !== "function" || !numbers?.number || !numbers?.tokenize) {
+      fail("PDF_EXPORT_CURRENT_TEXT_UNSUPPORTED", "The current native text number writer is unavailable.");
+    }
+    const original = descriptor.value, spellings = new Map();
+    const spelling = value => {
+      const key = Object.is(value, -0) ? "-0" : String(value);
+      if (!spellings.has(key)) {
+        let token;
+        try { token=numbers.number(value); }
+        catch (error) { if (error?.code !== "PDF_GENERATED_NUMBER_UNSUPPORTED") throw error; token=null; }
+        if(spellings.size>=numbers.limits.uniqueNumbers)spellings.delete(spellings.keys().next().value);
+        spellings.set(key,token);
+      }
+      return spellings.get(key);
+    };
+    function currentTextRow(row) {
+      const tokens = numbers.tokenize(row).tokens.filter(token => token.kind === "number" || token.text.trim());
+      const matrices = tokens.map((token, index) => token.text === "Tm" ? index : -1).filter(index => index >= 0);
+      if (matrices.length !== 1) return row;
+      const at = matrices[0], operands = tokens.slice(at - 6, at);
+      if (operands.length !== 6 || operands.some(token => token.kind !== "number")) return row;
+      const values = operands.map(token => Number(token.text));
+      if (values.every(value => spelling(value) !== null)) return row;
+      // Some finite values have no equivalent <=256-character spelling under
+      // both native Number conversion and the bundled PDF decimal accumulator.
+      // A native text move supplies the same current origin without changing
+      // the text's linear plane, glyph, font, or logical parent membership.
+      if (!["BT", "ET", "Tm"].every(op => tokens.filter(token => token.text === op).length === 1)
+          || tokens.filter(token => ["Tj", "TJ"].includes(token.text)).length !== 1
+          || tokens.some(token => ["Td", "TD", "T*", "Tz", "Ts"].includes(token.text))) return row;
+      const [a,b,c,d,e,f] = values, determinant = a*d-b*c;
+      if (!determinant || !Number.isFinite(determinant) || !values.slice(0,4).every(value => spelling(value) !== null)) return row;
+      const origins = value => [...new Set([Math.trunc(value), Math.floor(value), Math.ceil(value), 0])];
+      for (const x of origins(e)) for (const y of origins(f)) {
+        const dx=e-x, dy=f-y, tx=(d*dx-c*dy)/determinant, ty=(-b*dx+a*dy)/determinant;
+        if (![tx,ty].every(Number.isFinite) || !Object.is(a*tx+c*ty+x,e) || !Object.is(b*tx+d*ty+y,f)) continue;
+        const replacement = [a,b,c,d,x,y,tx,ty].map(spelling);
+        if (replacement.some(value => value === null)) continue;
+        return row.slice(0,operands[0].offset) + replacement.slice(0,6).join(" ") + " Tm\n"
+          + replacement.slice(6).join(" ") + " Td" + row.slice(tokens[at].offset + 2);
+      }
+      return row;
+    }
+    const writer = function (...args) {
+      if (this !== pdf || Object.getOwnPropertyDescriptor(pdf,"text")?.value !== writer) fail("PDF_EXPORT_CURRENT_TEXT_UNSUPPORTED", "The current native text writer ownership changed.");
+      const page = pdf.internal.getCurrentPageInfo().pageNumber, rows = pdf.internal.pages[page], start = rows?.length;
+      if (!Array.isArray(rows) || page !== 1) fail("PDF_EXPORT_CURRENT_TEXT_UNSUPPORTED", "The current text number writer requires one generated page.");
+      const result = Reflect.apply(original,pdf,args);
+      const changes = rows.slice(start).map(row => typeof row === "string" ? currentTextRow(row) : row);
+      for (let index=0;index<changes.length;index++) rows[start+index]=changes[index];
+      return result;
+    };
+    Object.defineProperty(pdf,"text",{...descriptor,value:writer});
+    let detached=false;
+    return {detach(){
+      if (detached) return;
+      if (Object.getOwnPropertyDescriptor(pdf,"text")?.value !== writer) fail("PDF_EXPORT_CURRENT_TEXT_UNSUPPORTED", "The current native text writer ownership changed before cleanup.");
+      Object.defineProperty(pdf,"text",descriptor);detached=true;
+    }};
+  }
+
+  function ownCurrentMatrixNumberWriter(pdf, { heightPt } = {}) {
+    const numbers = typeof module === "object" && module.exports && typeof require === "function"
+      ? require("./pdf-generated-number-tokens.js") : globalThis.FigureStudioPdfGeneratedNumbers;
+    const descriptor=Object.getOwnPropertyDescriptor(pdf,"setCurrentTransformationMatrix");
+    if(typeof descriptor?.value!=="function"||!descriptor.configurable||typeof pdf.Matrix!=="function"
+        ||!pdf.internal?.pages||!Number.isFinite(heightPt)||!numbers?.number||!numbers?.tokenize)fail("PDF_EXPORT_CURRENT_MATRIX_UNSUPPORTED","The current native matrix number writer is unavailable.");
+    const original=descriptor.value,cache=new Map(),stack=[];
+    const multiply=(a,b)=>[a[0]*b[0]+a[2]*b[1],a[1]*b[0]+a[3]*b[1],a[0]*b[2]+a[2]*b[3],a[1]*b[2]+a[3]*b[3],a[0]*b[4]+a[2]*b[5]+a[4],a[1]*b[4]+a[3]*b[5]+a[5]];
+    let world=[96/72,0,0,-96/72,0,heightPt*(96/72)],cursor=0;
+    const spelling=value=>{
+      const key=Object.is(value,-0)?"-0":String(value);
+      if(!cache.has(key)){
+        let token;try{token=numbers.number(value);}catch(error){if(error?.code!=="PDF_GENERATED_NUMBER_UNSUPPORTED")throw error;token=null;}
+        if(cache.size>=numbers.limits.uniqueNumbers)cache.delete(cache.keys().next().value);
+        cache.set(key,token);
+      }
+      return cache.get(key);
+    };
+    function currentPlane(rows){
+      if(cursor>rows.length)fail("PDF_EXPORT_CURRENT_MATRIX_UNSUPPORTED","The current native page rows changed during matrix emission.");
+      for(;cursor<rows.length;cursor++){
+        if(typeof rows[cursor]!=="string")fail("PDF_EXPORT_CURRENT_MATRIX_UNSUPPORTED","The native matrix page row is unavailable.");
+        let operands=[];
+        for(const token of numbers.tokenize(rows[cursor]).tokens){
+          if(token.kind==="number"){operands.push(Number(token.text));continue;}
+          if(!token.text.trim()||token.text.startsWith("%"))continue;
+          if(token.text==="q")stack.push(world.slice());
+          else if(token.text==="Q"){if(!stack.length)fail("PDF_EXPORT_CURRENT_MATRIX_UNSUPPORTED","The native graphics-state stack changed.");world=stack.pop();}
+          else if(token.text==="cm"){
+            if(operands.length!==6)fail("PDF_EXPORT_CURRENT_MATRIX_UNSUPPORTED","The native matrix row changed its operand structure.");
+            world=multiply(world,operands);
+          }
+          operands=[];
+        }
+      }
+      return world;
+    }
+    const writer=function(matrix){
+      if(this!==pdf||Object.getOwnPropertyDescriptor(pdf,"setCurrentTransformationMatrix")?.value!==writer
+          ||matrix?.constructor!==pdf.Matrix)fail("PDF_EXPORT_CURRENT_MATRIX_UNSUPPORTED","The current native matrix writer ownership changed.");
+      const page=pdf.internal.getCurrentPageInfo().pageNumber,rows=pdf.internal.pages[page];
+      if(page!==1||!Array.isArray(rows))fail("PDF_EXPORT_CURRENT_MATRIX_UNSUPPORTED","The current matrix number writer requires one generated page.");
+      const values=[matrix.a,matrix.b,matrix.c,matrix.d,matrix.e,matrix.f];
+      if(!values.every(Number.isFinite))fail("PDF_EXPORT_CURRENT_MATRIX_UNSUPPORTED","The current native matrix is not finite.");
+      const parent=currentPlane(rows);
+      if(values.every(value=>spelling(value)!==null))return Reflect.apply(original,pdf,[matrix]);
+      if(!values.slice(0,4).every(value=>spelling(value)!==null))return Reflect.apply(original,pdf,[matrix]);
+      const target=multiply(parent,values),origins=value=>[...new Set([Math.trunc(value),Math.floor(value),Math.ceil(value),0])];
+      for(const x of origins(values[4]))for(const y of origins(values[5])){
+        const translation=[1,0,0,1,x,y],residual=[...values.slice(0,4),values[4]-x,values[5]-y];
+        if(![...translation,...residual].every(value=>spelling(value)!==null))continue;
+        const actual=multiply(multiply(parent,translation),residual);
+        if(!actual.every((value,index)=>Object.is(value,target[index])))continue;
+        Reflect.apply(original,pdf,[pdf.Matrix(...translation)]);
+        return Reflect.apply(original,pdf,[pdf.Matrix(...residual)]);
+      }
+      return Reflect.apply(original,pdf,[matrix]);
+    };
+    Object.defineProperty(pdf,"setCurrentTransformationMatrix",{...descriptor,value:writer});
+    let detached=false;
+    return {detach(){if(detached)return;if(Object.getOwnPropertyDescriptor(pdf,"setCurrentTransformationMatrix")?.value!==writer)fail("PDF_EXPORT_CURRENT_MATRIX_UNSUPPORTED","The native matrix writer ownership changed before cleanup.");Object.defineProperty(pdf,"setCurrentTransformationMatrix",descriptor);detached=true;}};
+  }
+
   async function renderCurrentPixelPage(pdf, svg, { widthPt, heightPt, qualifiedSourceScene = false } = {}) {
     if (!qualifiedSourceScene || svg?.localName !== "svg" || svg?.namespaceURI !== SVG_NS
         || ![widthPt, heightPt].every(value => Number.isFinite(value) && value > 0)
         || !["advancedAPI", "compatAPI", "isAdvancedAPI", "saveGraphicsState", "restoreGraphicsState", "setCurrentTransformationMatrix", "Matrix", "svg"].every(key => typeof pdf?.[key] === "function")) {
       fail("PDF_EXPORT_CURRENT_PAGE_UNSUPPORTED", "The current PDF page-coordinate export is unavailable.");
     }
-    const widthPx = widthPt * 96 / 72, heightPx = heightPt * 96 / 72;
     const box = String(svg?.getAttribute?.("viewBox") || "").trim().split(/[ ,]+/).map(Number);
+    const physicalPoints = value => {
+      const match = /^([+-]?(?:\d*\.\d+|\d+\.?\d*)(?:e[+-]?\d+)?)in$/i.exec(String(value));
+      return match ? Number(match[1]) * 72 : null;
+    };
+    const widthPx = box[2], heightPx = box[3];
+    // Check the declared physical dimensions in their forward conversion.
+    // Multiplying an already-converted point value by 96/72 is not an exact
+    // inverse for every finite artboard size. It must not reject those pages
+    // or rescale their current SVG coordinate planes.
+    const samePhysicalPage = Object.is(physicalPoints(svg.getAttribute("width")), widthPt)
+      && Object.is(physicalPoints(svg.getAttribute("height")), heightPt);
     if (box.length !== 4 || !box.every(Number.isFinite) || box[0] !== 0 || box[1] !== 0
-        || !Object.is(box[2], widthPx) || !Object.is(box[3], heightPx)
+        || widthPx <= 0 || heightPx <= 0
+        || !(samePhysicalPage || Object.is(widthPx, widthPt * 96 / 72) && Object.is(heightPx, heightPt * 96 / 72))
         || !Object.is(pdf.internal?.pageSize?.getWidth?.(), widthPt) || !Object.is(pdf.internal?.pageSize?.getHeight?.(), heightPt)) {
       fail("PDF_EXPORT_CURRENT_PAGE_UNSUPPORTED", "This export region cannot preserve its current page-coordinate planes exactly.");
     }
     const wasAdvanced = pdf.isAdvancedAPI();
+    const textNumbers = ownCurrentTextNumberWriter(pdf);
+    let matrixNumbers;
+    try{matrixNumbers=ownCurrentMatrixNumberWriter(pdf,{heightPt});}
+    catch(error){textNumbers.detach();throw error;}
     let saved = false;
     try {
       pdf.advancedAPI();
@@ -264,7 +649,7 @@
       return await pdf.svg(svg, { x: 0, y: 0, width: widthPx, height: heightPx });
     } finally {
       try { if (saved) { pdf.advancedAPI(); pdf.restoreGraphicsState(); } }
-      finally { if (!wasAdvanced) pdf.compatAPI(); }
+      finally { try { if (!wasAdvanced) pdf.compatAPI(); } finally { try{matrixNumbers.detach();}finally{textNumbers.detach();} } }
     }
   }
 
@@ -486,5 +871,5 @@
     };
   }
 
-  return { SCHEMA, detectFontProgram, normalizeGlyphMap, positionedGlyphs, prepareSvgForJsPdf, renderCurrentPixelPage, ownSourcePaintObserver, rewriteToUnicodeCMap, registerFontsWithJsPdf, embedSvgFonts, restorePdfUnicode };
+  return { SCHEMA, prepareStandardMinusGlyphs, detectFontProgram, normalizeGlyphMap, positionedGlyphs, prepareSvgForJsPdf, renderCurrentPixelPage, ownCurrentTextNumberWriter, ownCurrentMatrixNumberWriter, ownSourcePaintObserver, rewriteToUnicodeCMap, registerFontsWithJsPdf, embedSvgFonts, restorePdfUnicode };
 });

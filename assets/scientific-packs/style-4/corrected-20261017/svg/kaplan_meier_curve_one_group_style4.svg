@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc" data-asset-id="analysis.kaplan_meier_curve.one_group" data-style="Style 4" data-artwork-revision="corrected-2026-10-17">
+<title id="title">Kaplan–Meier Curve — Single group</title>
+<desc id="desc">Editable nonincreasing step curves with censor marks, for one or two illustrative groups. Illustrative editable template with invented positions, not measured data or an analysis result. Replace marks and labels with verified study-specific content before presenting results. No cohort, event count, at-risk table, follow-up duration, uncertainty or hazard ratio is supplied. Example censor marks are not event drops.</desc>
+<g data-region="outline" fill="none" stroke="#344955" stroke-width="1.28" stroke-linecap="round" stroke-linejoin="round"><path d="M25 20V99H112" data-style4-method="flat-presentation-preserve-geometry"/></g>
+<g data-region="outline" fill="#344955" stroke="none" stroke-linecap="round" stroke-linejoin="round"><text x="69" y="117" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" font-weight="400">Time</text></g>
+<g data-region="outline" fill="#344955" stroke="none" stroke-linecap="round" stroke-linejoin="round"><text x="10" y="61" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" font-weight="400" transform="rotate(-90 10 61)">Survival</text></g>
+<g data-region="outline" fill="#344955" stroke="none" stroke-linecap="round" stroke-linejoin="round"><text x="20" y="25" text-anchor="end" font-family="Arial, sans-serif" font-size="7" font-weight="400">1</text></g>
+<g data-region="outline" fill="#344955" stroke="none" stroke-linecap="round" stroke-linejoin="round"><text x="20" y="101" text-anchor="end" font-family="Arial, sans-serif" font-size="7" font-weight="400">0</text></g>
+<g data-region="curve_a" fill="none" stroke="#629BC0" stroke-width="1.728" stroke-linecap="round" stroke-linejoin="round"><path d="M26 25H43V34H57V43H73V54H88V62H109" data-style4-method="flat-presentation-preserve-geometry"/></g>
+<g data-region="censor_a" fill="none" stroke="#629BC0" stroke-width="1.024" stroke-linecap="round" stroke-linejoin="round"><path d="M34 22V28M64 40V46M97 59V65" data-style4-method="flat-presentation-preserve-geometry"/></g>
+<g data-region="outline" fill="#344955" stroke="none" stroke-linecap="round" stroke-linejoin="round"><text x="110" y="17" text-anchor="end" font-family="Arial, sans-serif" font-size="7" font-weight="400">Example</text></g>
+</svg>

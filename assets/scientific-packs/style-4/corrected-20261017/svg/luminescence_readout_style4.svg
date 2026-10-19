@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc" data-asset-id="exp.assay_workflow.luminescence_readout" data-style="Style 4" data-artwork-revision="corrected-2026-10-17">
+  <title id="title">Luminescence Readout</title>
+  <desc id="desc">Editable bioluminescence assay readout schematic with glowing assay well and relative-light-unit bar.</desc>
+  <g data-region="assay_surface" fill="#F8FAFC" stroke="none"><rect x="11" y="15" width="106" height="98" rx="7" data-style4-method="flat-presentation-preserve-geometry"/><circle cx="46" cy="63" r="25" data-style4-method="flat-presentation-preserve-geometry"/></g>
+  <g data-region="measured_signal" fill="#B9B3DD" stroke="none"><circle cx="46" cy="63" r="12" data-style4-method="flat-presentation-preserve-geometry"/><circle cx="46" cy="63" r="5" data-style4-method="flat-presentation-preserve-geometry"/><path d="M82 91h9v10h-9zM95 75h9v26h-9z" data-style4-method="flat-presentation-preserve-geometry"/></g>
+  <g data-region="signal_trace" fill="none" stroke="#CD796C" stroke-width="1.984" stroke-linecap="round" stroke-linejoin="round"><path d="M46 29v12M46 85v12M12 63h12M68 63h12M22 39l9 9M61 78l9 9M22 87l9-9M61 48l9-9" data-style4-method="flat-presentation-preserve-geometry"/></g>
+  <g data-region="axes_or_structure" fill="none" stroke="#629BC0" stroke-width="1.728" stroke-linecap="round" stroke-linejoin="round"><path d="M77 101h33M77 101V50" data-style4-method="flat-presentation-preserve-geometry"/></g>
+  <g data-region="outline" fill="none" stroke="#344955" stroke-width="1.536" stroke-linecap="round" stroke-linejoin="round"><rect x="11" y="15" width="106" height="98" rx="7" data-style4-method="flat-presentation-preserve-geometry"/><circle cx="46" cy="63" r="25" data-style4-method="flat-presentation-preserve-geometry"/></g>
+</svg>

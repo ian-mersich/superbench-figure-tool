@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc" data-asset-id="exp.assay_workflow.pcr_gel_result" data-style="Style 4" data-artwork-revision="corrected-2026-10-17">
+  <title id="title">PCR Gel Result</title>
+  <desc id="desc">Editable dna electrophoresis result schematic with ladder and sample lanes with resolved DNA bands.</desc>
+  <g data-region="assay_surface" fill="#F8FAFC" stroke="none"><rect x="13" y="13" width="102" height="102" rx="6" data-style4-method="flat-presentation-preserve-geometry"/></g>
+  <g data-region="measured_signal" fill="#B9B3DD" stroke="none"><path d="M22 36h14v4H22zM22 47h14v4H22zM22 60h14v4H22zM22 76h14v4H22zM22 96h14v4H22zM47 58h15v6H47zM47 86h15v6H47zM72 49h15v6H72zM72 86h15v6H72zM96 58h12v6H96zM96 86h12v6H96z" data-style4-method="flat-presentation-preserve-geometry"/></g>
+  <g data-region="signal_trace" fill="none" stroke="#CD796C" stroke-width="1.984" stroke-linecap="round" stroke-linejoin="round"><path d="M29 26v80M55 26v80M80 26v80M102 26v80M110 30v67m0 0-5-7m5 7 5-7" opacity="0.65" data-style4-method="flat-presentation-preserve-geometry"/></g>
+  <g data-region="axes_or_structure" fill="none" stroke="#629BC0" stroke-width="1.728" stroke-linecap="round" stroke-linejoin="round"><path d="M20 22h18v8H20zM46 22h18v8H46zM71 22h18v8H71zM94 22h16v8H94z" data-style4-method="flat-presentation-preserve-geometry"/></g>
+  <g data-region="outline" fill="none" stroke="#344955" stroke-width="1.536" stroke-linecap="round" stroke-linejoin="round"><rect x="13" y="13" width="102" height="102" rx="6" data-style4-method="flat-presentation-preserve-geometry"/></g>
+</svg>

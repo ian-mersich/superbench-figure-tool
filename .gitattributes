@@ -1,4 +1,9 @@
 * text=auto eol=lf
+# These regression baselines retain recorded raw-byte digests.
+tests/fixtures/pdf-dense-canvas-restore-app959.json -text
+app/pdf-dense-leaf-store.js -text
+scripts/check-pdf-dense-slides-copy-browser.py -text
+scripts/check-pdf-dense-svg-composer-browser.py -text
 assets/scientific-scenes/scenes/single-cell-rna-workflow.scene.json text eol=lf
 assets/scientific-scenes/scenes/spatial-rna-methods.scene.json text eol=lf
 

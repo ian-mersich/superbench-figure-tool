@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc" data-asset-id="exp.assay_workflow.microscopy_field.brightfield" data-style="Style 4" data-artwork-revision="corrected-2026-10-17">
+  <title id="title">Microscopy Field — Brightfield</title>
+  <desc id="desc">Editable brightfield form of microscopy image field, shown with brightfield and fluorescence image-field forms.</desc>
+  <g data-region="assay_surface" fill="#F8FAFC" stroke="none"><rect x="10" y="13" width="108" height="102" rx="7" data-style4-method="flat-presentation-preserve-geometry"/></g>
+  <g data-region="measured_signal" fill="#B9B3DD" stroke="none"><ellipse cx="34" cy="39" rx="9" ry="7" data-style4-method="flat-presentation-preserve-geometry"/><ellipse cx="76" cy="36" rx="10" ry="7" data-style4-method="flat-presentation-preserve-geometry"/><ellipse cx="48" cy="78" rx="10" ry="8" data-style4-method="flat-presentation-preserve-geometry"/><ellipse cx="89" cy="76" rx="10" ry="8" data-style4-method="flat-presentation-preserve-geometry"/></g>
+  <g data-region="signal_trace" fill="none" stroke="#CD796C" stroke-width="1.984" stroke-linecap="round" stroke-linejoin="round"><path d="M17 42c3-16 16-25 31-20 13 4 19 17 14 30M58 39c4-17 19-25 34-18 12 6 15 20 8 32M28 80c2-17 16-27 32-22 14 5 20 20 14 34M69 79c3-18 18-28 34-21 12 6 16 20 9 33" data-style4-method="flat-presentation-preserve-geometry"/></g>
+  <g data-region="axes_or_structure" fill="none" stroke="#629BC0" stroke-width="1.728" stroke-linecap="round" stroke-linejoin="round"><path d="M80 103h27M80 99v8M107 99v8" data-style4-method="flat-presentation-preserve-geometry"/></g>
+  <g data-region="outline" fill="none" stroke="#344955" stroke-width="1.536" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="13" width="108" height="102" rx="7" data-style4-method="flat-presentation-preserve-geometry"/></g>
+</svg>

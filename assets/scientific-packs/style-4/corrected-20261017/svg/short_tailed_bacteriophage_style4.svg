@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc" data-asset-id="microbe.model_system.short_tailed_bacteriophage" data-style="Style 4" data-artwork-revision="corrected-2026-10-17">
+  <title id="title">Short-Tailed Bacteriophage</title>
+  <desc id="desc">A compact phage head with a short noncontractile axial hub and illustrative capsid-associated attachment fibers.</desc>
+  <g data-region="head" fill="#B9B3DD" stroke="none">
+    <path d="M45.178 24.126 Q47 22 49.8 22 L77.2 22 Q80 22 81.822 24.126 L90.178 33.874 Q92 36 92 38.8 L92 58.2 Q92 61 90.251 63.186 L81.749 73.814 Q80 76 77.2 76 L49.8 76 Q47 76 45.251 73.814 L36.749 63.186 Q35 61 35 58.2 L35 38.8 Q35 36 36.822 33.874 Z" id="s4-part-1" data-style4-method="component-contour-redraw"/>
+  <path d="M89.33 33.654L89.7 36L89.7 55.4L89.506 57.198L88.923 58.861L87.951 60.386L78.837 71.682L78.166 72.228L76.65 72.957L74.9 73.2L47.5 73.2L46.596 73.139L44.963 72.654L45.631 73.488L46.207 74.117L47.48 75.001L48.966 75.443L49.817 75.5L77.183 75.5L78.806 75.277L80.181 74.616L80.793 74.117L89.852 62.884L90.772 61.441L91.317 59.889L91.5 58.187L91.452 37.942L90.745 35.596Z" fill="#294652" stroke="none" fill-rule="evenodd" opacity="0.22" data-region="head" data-tone="shade" id="s4-part-1-shade"/><path d="M36.637 62.172L36.25 59.7L36.25 40.3L36.452 38.508L37.06 36.866L38.072 35.374L47.062 24.976L48.494 24.031L50.144 23.559L51.05 23.5L78.45 23.5L80.208 23.736L81.061 24.062L79.546 22.987L77.184 22.5L49.816 22.5L48.18 22.718L46.146 23.851L37.211 34.189L36.255 35.596L35.69 37.123L35.5 38.814L35.5 58.187L35.683 59.889Z" fill="#FFFFFF" stroke="none" fill-rule="evenodd" opacity="0.62" data-region="head" data-tone="highlight" id="s4-part-1-highlight"/></g>
+  <g data-region="tail" fill="#89B8D8" stroke="none">
+    <path d="M57 77.4 Q57 76 58.4 76 L69.6 76 Q71 76 71 77.4 L71 84.719 Q71 86 70.2 87 L67.75 90.063 Q67 91 65.8 91 L62.2 91 Q61 91 60.25 90.063 L57.8 87 Q57 86 57 84.719 Z" id="s4-part-2" data-style4-method="component-contour-redraw"/>
+  <path d="M69.6 76.502L69.578 83.638L69.044 85.159L65.8 89.084L64.787 89.474L60.42 89.474L61.086 90.171L62.217 90.5L65.783 90.5L66.67 90.314L67.37 89.738L70.022 86.39L70.423 85.432L70.5 84.706L70.5 77.423L70.394 76.852L70.148 76.606Z" fill="#294652" stroke="none" fill-rule="evenodd" opacity="0.22" data-region="tail" data-tone="shade" id="s4-part-2-shade"/><path d="M57.896 86.244L57.84 78.3L58.19 77.25L59.24 76.9L70.41 76.9L70.292 76.708L69.577 76.5L58.423 76.5L57.708 76.708L57.5 77.423L57.5 84.706Z" fill="#FFFFFF" stroke="none" fill-rule="evenodd" opacity="0.62" data-region="tail" data-tone="highlight" id="s4-part-2-highlight"/></g>
+  <g data-region="genome" fill="none" stroke="#CD796C" stroke-width="1.677" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M51 33C60 25 78 34 70 42C63 49 48 41 51 53C54 63 72 61 76 52" id="s4-part-3" data-style4-method="retained-structural-cue"/>
+  </g>
+  <g data-region="fibers" fill="none" stroke="#6EADA1" stroke-width="1.677" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M57 80Q47 78 43 66M71 80Q81 78 86 67M57 82Q46 85 35 78M71 82Q82 85 93 78" id="s4-part-4" data-style4-method="retained-structural-cue"/>
+  </g>
+  <g data-region="outline" fill="none" stroke="#344955" stroke-width="2.135" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M45.178 24.126 Q47 22 49.8 22 L77.2 22 Q80 22 81.822 24.126 L90.178 33.874 Q92 36 92 38.8 L92 58.2 Q92 61 90.251 63.186 L81.749 73.814 Q80 76 77.2 76 L49.8 76 Q47 76 45.251 73.814 L36.749 63.186 Q35 61 35 58.2 L35 38.8 Q35 36 36.822 33.874 Z" id="s4-part-5" data-style4-method="component-contour-redraw"/><path d="M57 77.4 Q57 76 58.4 76 L69.6 76 Q71 76 71 77.4 L71 84.719 Q71 86 70.2 87 L67.75 90.063 Q67 91 65.8 91 L62.2 91 Q61 91 60.25 90.063 L57.8 87 Q57 86 57 84.719 Z" id="s4-part-6" data-style4-method="component-contour-redraw"/>
+  </g>
+</svg>

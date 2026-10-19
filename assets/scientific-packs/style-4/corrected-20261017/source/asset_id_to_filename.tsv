@@ -1,0 +1,487 @@
+asset_id	filename	name	collection	status
+analysis.umap_scatter.clusters	umap_scatter_clusters_style4.svg	UMAP Scatter — Separated clusters	analysis-graphics	corrected_flagged_artwork
+analysis.umap_scatter.continuum	umap_scatter_continuum_style4.svg	UMAP Scatter — Continuous state example	analysis-graphics	corrected_flagged_artwork
+analysis.volcano_plot.overview	volcano_plot_overview_style4.svg	Volcano Plot — Threshold overview	analysis-graphics	corrected_flagged_artwork
+analysis.volcano_plot.feature_labels	volcano_plot_feature_labels_style4.svg	Volcano Plot — Example feature labels	analysis-graphics	corrected_flagged_artwork
+analysis.heatmap.matrix	heatmap_matrix_style4.svg	Heatmap — Value matrix	analysis-graphics	retained_artwork
+analysis.heatmap.clustered	heatmap_clustered_style4.svg	Heatmap — Column clustering cue	analysis-graphics	retained_artwork
+analysis.kaplan_meier_curve.one_group	kaplan_meier_curve_one_group_style4.svg	Kaplan–Meier Curve — Single group	analysis-graphics	corrected_flagged_artwork
+analysis.kaplan_meier_curve.two_groups	kaplan_meier_curve_two_groups_style4.svg	Kaplan–Meier Curve — Two groups	analysis-graphics	corrected_flagged_artwork
+analysis.violin_plot.paired	violin_plot_paired_style4.svg	Violin Plot — Separate groups	analysis-graphics	corrected_flagged_artwork
+analysis.violin_plot.split	violin_plot_split_style4.svg	Violin Plot — Split distribution	analysis-graphics	corrected_flagged_artwork
+analysis.box_plot.vertical	box_plot_vertical_style4.svg	Box Plot — Vertical groups	analysis-graphics	retained_artwork
+analysis.box_plot.horizontal	box_plot_horizontal_style4.svg	Box Plot — Horizontal groups	analysis-graphics	retained_artwork
+analysis.scatter_plot.single_series	scatter_plot_single_series_style4.svg	Scatter Plot — Single series with guide	analysis-graphics	corrected_flagged_artwork
+analysis.scatter_plot.two_series	scatter_plot_two_series_style4.svg	Scatter Plot — Two series	analysis-graphics	corrected_flagged_artwork
+analysis.network_graph.hub	network_graph_hub_style4.svg	Network Graph — Hub arrangement	analysis-graphics	corrected_flagged_artwork
+analysis.network_graph.modular	network_graph_modular_style4.svg	Network Graph — Modular arrangement	analysis-graphics	corrected_flagged_artwork
+analysis.pseudotime_trajectory.linear	pseudotime_trajectory_linear_style4.svg	Pseudotime Trajectory — Continuous ordering	analysis-graphics	corrected_flagged_artwork
+analysis.pseudotime_trajectory.branching	pseudotime_trajectory_branching_style4.svg	Pseudotime Trajectory — Branching ordering	analysis-graphics	corrected_flagged_artwork
+analysis.cell_tracking_trajectory.single_track	cell_tracking_trajectory_single_track_style4.svg	Cell Tracking Trajectory — Single cell	analysis-graphics	corrected_flagged_artwork
+analysis.cell_tracking_trajectory.two_tracks	cell_tracking_trajectory_two_tracks_style4.svg	Cell Tracking Trajectory — Two cells	analysis-graphics	corrected_flagged_artwork
+cellarch.membrane_signaling.tight_junction	tight_junction_style4.svg	Tight Junction	cell-architecture-transport	corrected_flagged_artwork
+cellarch.membrane_signaling.adherens_junction	adherens_junction_style4.svg	Adherens Junction	cell-architecture-transport	corrected_flagged_artwork
+cellarch.membrane_signaling.desmosome	desmosome_style4.svg	Desmosome	cell-architecture-transport	corrected_flagged_artwork
+cellarch.membrane_signaling.gap_junction	gap_junction_style4.svg	Gap Junction	cell-architecture-transport	retained_artwork
+cellarch.membrane_signaling.focal_adhesion	focal_adhesion_style4.svg	Focal Adhesion	cell-architecture-transport	corrected_flagged_artwork
+cellarch.membrane_signaling.hemidesmosome	hemidesmosome_style4.svg	Hemidesmosome	cell-architecture-transport	corrected_flagged_artwork
+cellarch.pathway_symbol.kinesin_cargo_transport	kinesin_cargo_transport_style4.svg	Kinesin Cargo Transport	cell-architecture-transport	retained_artwork
+cellarch.pathway_symbol.cytoplasmic_dynein_cargo_transport	cytoplasmic_dynein_cargo_transport_style4.svg	Cytoplasmic Dynein Cargo Transport	cell-architecture-transport	retained_artwork
+cellarch.pathway_symbol.copii_vesicle_budding	copii_vesicle_budding_style4.svg	COPII Vesicle Budding	cell-architecture-transport	retained_artwork
+cellarch.organelle.copi_coated_vesicle	copi_coated_vesicle_style4.svg	COPI-Coated Vesicle	cell-architecture-transport	corrected_flagged_artwork
+cellarch.membrane_signaling.trans_snare_complex	trans_snare_complex_style4.svg	Trans-SNARE Complex	cell-architecture-transport	corrected_flagged_artwork
+cellarch.organelle.multivesicular_endosome	multivesicular_endosome_style4.svg	Multivesicular Endosome	cell-architecture-transport	corrected_flagged_artwork
+cellarch.pathway_symbol.endosomal_recycling_tubule	endosomal_recycling_tubule_style4.svg	Endosomal Recycling Tubule	cell-architecture-transport	corrected_flagged_artwork
+cellarch.pathway_symbol.autophagosome_lysosome_fusion	autophagosome_lysosome_fusion_style4.svg	Autophagosome–Lysosome Fusion	cell-architecture-transport	corrected_flagged_artwork
+cellarch.pathway_symbol.importin_cargo_nuclear_import	importin_cargo_nuclear_import_style4.svg	Importin–Cargo Nuclear Import	cell-architecture-transport	corrected_flagged_artwork
+cellarch.membrane_signaling.er_mitochondrion_contact_site	er_mitochondrion_contact_site_style4.svg	ER–Mitochondrion Contact Site	cell-architecture-transport	corrected_flagged_artwork
+cellarch.membrane_signaling.tight_junction_network	tight_junction_network_style4.svg	Tight Junction — Strand Network	cell-architecture-transport	corrected_flagged_artwork
+cellarch.membrane_signaling.gap_junction_plaque	gap_junction_plaque_style4.svg	Gap Junction — En-face Plaque	cell-architecture-transport	corrected_flagged_artwork
+cellarch.membrane_signaling.focal_adhesion_enface	focal_adhesion_enface_style4.svg	Focal Adhesion — En Face	cell-architecture-transport	corrected_flagged_artwork
+cellarch.pathway_symbol.copii_detached_carrier	copii_detached_carrier_style4.svg	COPII — Detached Carrier	cell-architecture-transport	corrected_flagged_artwork
+cellarch.organelle.copi_golgi_bud	copi_golgi_bud_style4.svg	COPI — Golgi-connected Bud	cell-architecture-transport	corrected_flagged_artwork
+cellarch.pathway_symbol.recycling_endosome_branched	recycling_endosome_branched_style4.svg	Recycling Endosome — Branched Tubules	cell-architecture-transport	corrected_flagged_artwork
+cellarch.membrane_signaling.er_mitochondrion_tubular_contact	er_mitochondrion_tubular_contact_style4.svg	ER–Mitochondrion Contact — Tubular ER	cell-architecture-transport	corrected_flagged_artwork
+cellarch.pathway_symbol.autophagosome_lysosome_docking	autophagosome_lysosome_docking_style4.svg	Autophagosome–Lysosome — Pre-fusion Apposition	cell-architecture-transport	corrected_flagged_artwork
+cellarch.pathway_symbol.myosin_va_cargo_transport	myosin_va_cargo_transport_style4.svg	Myosin-Va Cargo Transport	cell-architecture-transport	corrected_flagged_artwork
+cellarch.membrane_signaling.cis_snare_complex	cis_snare_complex_style4.svg	Cis-SNARE Complex	cell-architecture-transport	corrected_flagged_artwork
+cellarch.pathway_symbol.escrt_inward_bud	escrt_inward_bud_style4.svg	ESCRT — Inward Membrane Bud	cell-architecture-transport	corrected_flagged_artwork
+cellarch.pathway_symbol.exportin_cargo_nuclear_export	exportin_cargo_nuclear_export_style4.svg	Exportin–RanGTP–Cargo Nuclear Export	cell-architecture-transport	corrected_flagged_artwork
+cellstress.organelle.nucleolus.subcompartments	nucleolus_subcompartments_style4.svg	Nucleolus	cell-structure-stress	corrected_flagged_artwork
+cellstress.organelle.nucleolus.nuclear_context	nucleolus_nuclear_context_style4.svg	Nucleolus	cell-structure-stress	corrected_flagged_artwork
+cellstress.organelle.nuclear_speckle.nuclear_distribution	nuclear_speckle_nuclear_distribution_style4.svg	Nuclear Speckle	cell-structure-stress	corrected_flagged_artwork
+cellstress.organelle.nuclear_speckle.condensate_detail	nuclear_speckle_condensate_detail_style4.svg	Nuclear Speckle	cell-structure-stress	corrected_flagged_artwork
+cellstress.nucleic_acid.condensed_chromosome.metacentric	condensed_chromosome_metacentric_style4.svg	Condensed Chromosome	cell-structure-stress	corrected_flagged_artwork
+cellstress.nucleic_acid.condensed_chromosome.submetacentric	condensed_chromosome_submetacentric_style4.svg	Condensed Chromosome	cell-structure-stress	corrected_flagged_artwork
+cellstress.organelle.primary_cilium.straight	primary_cilium_straight_style4.svg	Primary Cilium	cell-structure-stress	retained_artwork
+cellstress.organelle.primary_cilium.bent	primary_cilium_bent_style4.svg	Primary Cilium	cell-structure-stress	retained_artwork
+cellstress.membrane_signaling.caveola.single_invagination	caveola_single_invagination_style4.svg	Caveola	cell-structure-stress	corrected_flagged_artwork
+cellstress.membrane_signaling.caveola.clustered_profiles	caveola_clustered_profiles_style4.svg	Caveola	cell-structure-stress	corrected_flagged_artwork
+cellstress.membrane_signaling.clathrin_coated_vesicle.section	clathrin_coated_vesicle_section_style4.svg	Clathrin-coated Vesicle	cell-structure-stress	retained_artwork
+cellstress.membrane_signaling.clathrin_coated_vesicle.cage_view	clathrin_coated_vesicle_cage_view_style4.svg	Clathrin-coated Vesicle	cell-structure-stress	retained_artwork
+cellstress.membrane_signaling.extracellular_vesicle.isolated	extracellular_vesicle_isolated_style4.svg	Extracellular Vesicle	cell-structure-stress	corrected_flagged_artwork
+cellstress.membrane_signaling.extracellular_vesicle.endosomal_release	extracellular_vesicle_endosomal_release_style4.svg	Extracellular Vesicle	cell-structure-stress	corrected_flagged_artwork
+cellstress.organelle.phagolysosome.bacterial_cargo	phagolysosome_bacterial_cargo_style4.svg	Phagolysosome	cell-structure-stress	corrected_flagged_artwork
+cellstress.organelle.phagolysosome.degrading_cargo	phagolysosome_degrading_cargo_style4.svg	Phagolysosome	cell-structure-stress	corrected_flagged_artwork
+cellstress.cell.lamellipodium.whole_cell	lamellipodium_whole_cell_style4.svg	Lamellipodium	cell-structure-stress	corrected_flagged_artwork
+cellstress.cell.lamellipodium.leading_edge_detail	lamellipodium_leading_edge_detail_style4.svg	Lamellipodium	cell-structure-stress	corrected_flagged_artwork
+cellstress.cell.filopodium.whole_cell	filopodium_whole_cell_style4.svg	Filopodium	cell-structure-stress	corrected_flagged_artwork
+cellstress.cell.filopodium.bundle_detail	filopodium_bundle_detail_style4.svg	Filopodium	cell-structure-stress	corrected_flagged_artwork
+cellstress.cell.necrotic_cell.swollen_ruptured	necrotic_cell_swollen_ruptured_style4.svg	Necrotic Cell	cell-structure-stress	retained_artwork
+cellstress.cell.necrotic_cell.disintegrating	necrotic_cell_disintegrating_style4.svg	Necrotic Cell	cell-structure-stress	corrected_flagged_artwork
+cellstress.cell.ferroptotic_cell.lipid_damage	ferroptotic_cell_lipid_damage_style4.svg	Ferroptotic Cell — Schematic	cell-structure-stress	retained_artwork
+cellstress.cell.ferroptotic_cell.mitochondrial_detail	ferroptotic_cell_mitochondrial_detail_style4.svg	Ferroptotic Cell — Schematic	cell-structure-stress	retained_artwork
+cellstress.cell.pyroptotic_cell.pore_bearing	pyroptotic_cell_pore_bearing_style4.svg	Pyroptotic Cell — Schematic	cell-structure-stress	retained_artwork
+cellstress.cell.pyroptotic_cell.lytic	pyroptotic_cell_lytic_style4.svg	Pyroptotic Cell — Schematic	cell-structure-stress	retained_artwork
+cellstress.cell.necroptotic_cell.membrane_mlkl	necroptotic_cell_membrane_mlkl_style4.svg	Necroptotic Cell — Schematic	cell-structure-stress	retained_artwork
+cellstress.cell.necroptotic_cell.lytic	necroptotic_cell_lytic_style4.svg	Necroptotic Cell — Schematic	cell-structure-stress	retained_artwork
+cellstress.cell.anoikis.detached_apoptotic	anoikis_detached_apoptotic_style4.svg	Anoikis — Schematic	cell-structure-stress	corrected_flagged_artwork
+cellstress.cell.anoikis.blebbing_apoptotic	anoikis_blebbing_apoptotic_style4.svg	Anoikis — Schematic	cell-structure-stress	corrected_flagged_artwork
+cellstress.nucleic_acid.dna_damage_foci.dispersed	dna_damage_foci_dispersed_style4.svg	DNA Damage Foci	cell-structure-stress	corrected_flagged_artwork
+cellstress.nucleic_acid.dna_damage_foci.clustered	dna_damage_foci_clustered_style4.svg	DNA Damage Foci	cell-structure-stress	corrected_flagged_artwork
+cellstress.nucleic_acid.replication_stress.stalled_fork	replication_stress_stalled_fork_style4.svg	Replication Stress	cell-structure-stress	corrected_flagged_artwork
+cellstress.nucleic_acid.replication_stress.reversed_fork	replication_stress_reversed_fork_style4.svg	Replication Stress	cell-structure-stress	corrected_flagged_artwork
+cellstress.organelle.er_stress_upr.lumenal_load	er_stress_upr_lumenal_load_style4.svg	ER Stress / Unfolded Protein Response	cell-structure-stress	corrected_flagged_artwork
+cellstress.organelle.er_stress_upr.sensor_assembly	er_stress_upr_sensor_assembly_style4.svg	ER Stress / Unfolded Protein Response	cell-structure-stress	corrected_flagged_artwork
+cellstress.organelle.mitochondrial_fission.constriction	mitochondrial_fission_constriction_style4.svg	Mitochondrial Fission	cell-structure-stress	corrected_flagged_artwork
+cellstress.organelle.mitochondrial_fission.daughter_separation	mitochondrial_fission_daughter_separation_style4.svg	Mitochondrial Fission	cell-structure-stress	corrected_flagged_artwork
+cellstress.organelle.mitochondrial_fusion.approach_contact	mitochondrial_fusion_approach_contact_style4.svg	Mitochondrial Fusion	cell-structure-stress	corrected_flagged_artwork
+cellstress.organelle.mitochondrial_fusion.joined	mitochondrial_fusion_joined_style4.svg	Mitochondrial Fusion	cell-structure-stress	corrected_flagged_artwork
+core.cell.generic	cell_generic_style4.svg	Generic Eukaryotic Cell	core-biology	retained_artwork
+core.cell.epithelial	cell_epithelial_style4.svg	Epithelial-Like Cell	core-biology	retained_artwork
+core.nucleus.round	nucleus_round_style4.svg	Round Nucleus	core-biology	retained_artwork
+core.mitochondrion.basic	mitochondrion_basic_style4.svg	Mitochondrion	core-biology	retained_artwork
+core.dna.double_helix	dna_double_helix_style4.svg	DNA Double Helix	core-biology	retained_artwork
+core.chromatin.loop	chromatin_loop_style4.svg	Chromatin Loop	core-biology	retained_artwork
+core.antibody.igg	antibody_igg_style4.svg	IgG Antibody	core-biology	retained_artwork
+core.receptor.membrane	membrane_receptor_style4.svg	Membrane Receptor	core-biology	retained_artwork
+core.channel.ion	ion_channel_style4.svg	Ion Channel	core-biology	retained_artwork
+core.vesicle	vesicle_style4.svg	Vesicle	core-biology	retained_artwork
+core.lab.pipette	pipette_style4.svg	Pipette	core-biology	retained_artwork
+core.lab.petri_dish	petri_dish_style4.svg	Petri Dish	core-biology	retained_artwork
+core.lab.well_plate	well_plate_style4.svg	Six-Well Plate	core-biology	retained_artwork
+core.symbol.activation_arrow	arrow_activation_style4.svg	Activation Arrow	core-biology	retained_artwork
+core.symbol.inhibition_bar	inhibition_bar_style4.svg	Inhibition Bar	core-biology	retained_artwork
+core.membrane.plasma_segment	plasma_membrane_segment_style4.svg	Plasma Membrane Segment	core-biology	retained_artwork
+core.golgi.basic	golgi_apparatus_style4.svg	Golgi Apparatus	core-biology	retained_artwork
+core.er.rough	rough_endoplasmic_reticulum_style4.svg	Rough Endoplasmic Reticulum	core-biology	retained_artwork
+core.lysosome.basic	lysosome_style4.svg	Lysosome	core-biology	retained_artwork
+core.endosome.basic	endosome_style4.svg	Endosome	core-biology	retained_artwork
+core.peroxisome.basic	peroxisome_style4.svg	Peroxisome	core-biology	retained_artwork
+core.cell.apoptotic	cell_apoptotic_style4.svg	Apoptotic Cell	core-biology	retained_artwork
+core.cell.dividing	cell_dividing_style4.svg	Dividing Cell	core-biology	retained_artwork
+core.protein.kinase	protein_kinase_style4.svg	Generic Kinase	core-biology	retained_artwork
+core.protein.transcription_factor	transcription_factor_style4.svg	Transcription Factor	core-biology	retained_artwork
+core.protein.enzyme	catalytic_enzyme_style4.svg	Catalytic Enzyme	core-biology	retained_artwork
+core.ligand.generic	generic_ligand_style4.svg	Generic Ligand	core-biology	retained_artwork
+core.receptor.rtk_like	rtk_like_receptor_style4.svg	RTK-Like Receptor	core-biology	retained_artwork
+core.receptor.gpcr_like	gpcr_like_receptor_style4.svg	GPCR-Like Receptor	core-biology	retained_artwork
+core.transporter.basic	membrane_transporter_style4.svg	Membrane Transporter	core-biology	retained_artwork
+core.antibody.drug_conjugate	antibody_drug_conjugate_style4.svg	Drug-Conjugated Antibody	core-biology	retained_artwork
+core.rna.strand	rna_strand_style4.svg	RNA Strand	core-biology	retained_artwork
+core.mrna.transcript	mrna_transcript_style4.svg	mRNA Transcript	core-biology	retained_artwork
+core.rna.sirna	sirna_duplex_style4.svg	siRNA Duplex	core-biology	retained_artwork
+core.gene.promoter	gene_promoter_segment_style4.svg	Gene Promoter Segment	core-biology	retained_artwork
+core.symbol.transcription_flow	transcription_flow_arrow_style4.svg	Transcription Flow Arrow	core-biology	retained_artwork
+core.dna.protein_binding	protein_dna_binding_style4.svg	Protein-DNA Binding	core-biology	retained_artwork
+core.symbol.dashed_arrow	dashed_arrow_style4.svg	Dashed Arrow	core-biology	retained_artwork
+core.symbol.bidirectional_arrow	bidirectional_arrow_style4.svg	Bidirectional Arrow	core-biology	retained_artwork
+core.symbol.secretion_arrow	secretion_arrow_style4.svg	Secretion Arrow	core-biology	retained_artwork
+core.symbol.translocation_arrow	translocation_arrow_style4.svg	Translocation Arrow	core-biology	retained_artwork
+core.symbol.phosphorylation	phosphorylation_symbol_style4.svg	Phosphorylation Symbol	core-biology	retained_artwork
+core.symbol.cleavage	cleavage_symbol_style4.svg	Cleavage Symbol	core-biology	retained_artwork
+core.symbol.drug_inhibition_badge	drug_inhibition_badge_style4.svg	Drug Inhibition Cue	core-biology	retained_artwork
+core.symbol.interaction_cue	small_molecule_interaction_cue_style4.svg	Small-Molecule Interaction Cue	core-biology	retained_artwork
+core.lab.microcentrifuge_tube	microcentrifuge_tube_style4.svg	Microcentrifuge Tube	core-biology	retained_artwork
+core.lab.conical_tube	conical_tube_style4.svg	Conical Tube	core-biology	retained_artwork
+core.lab.syringe	syringe_style4.svg	Syringe	core-biology	retained_artwork
+core.lab.microscope	microscope_style4.svg	Microscope	core-biology	retained_artwork
+core.lab.tissue_culture_flask	tissue_culture_flask_style4.svg	Tissue Culture Flask	core-biology	retained_artwork
+core.lab.plate_96_well	plate_96_well_style4.svg	96-Well Plate	core-biology	retained_artwork
+core.lab.plate_reader	plate_reader_readout_style4.svg	Plate Reader Readout	core-biology	retained_artwork
+core.cell.tumor_spheroid	tumor_spheroid_style4.svg	Tumor Spheroid	core-biology	retained_artwork
+core.cell.neuron_like	cell_neuron_like_style4.svg	Neuron-Like Cell	core-biology	retained_artwork
+core.cell.immune_round	cell_immune_round_style4.svg	Immune-Like Round Cell	core-biology	retained_artwork
+core.organelle.lipid_droplet	lipid_droplet_style4.svg	Lipid Droplet	core-biology	retained_artwork
+core.organelle.autophagosome	autophagosome_style4.svg	Autophagosome	core-biology	retained_artwork
+core.nucleic_acid.plasmid_vector	plasmid_vector_style4.svg	Plasmid Vector	core-biology	retained_artwork
+core.nucleic_acid.crispr_cas9	crispr_cas9_complex_style4.svg	CRISPR Cas9 Complex	core-biology	retained_artwork
+core.protein.multimer_complex	protein_multimer_complex_style4.svg	Protein Multimer Complex	core-biology	retained_artwork
+core.membrane_signaling.cytokine_receptor	cytokine_receptor_style4.svg	Cytokine Receptor	core-biology	retained_artwork
+core.pathway.metabolic_cycle	metabolic_cycle_style4.svg	Metabolic Cycle	core-biology	retained_artwork
+core.pathway.feedback_loop	feedback_loop_style4.svg	Feedback Loop	core-biology	retained_artwork
+core.cell.astrocyte_like	astrocyte_like_cell_style4.svg	Astrocyte-Like Cell	core-biology	retained_artwork
+core.model.cell_spheroid_cluster	cell_spheroid_cluster_style4.svg	Cell Spheroid Cluster	core-biology	retained_artwork
+core.model.tumor_glia_coculture	tumor_glia_coculture_style4.svg	Tumor-Glia Co-Culture	core-biology	retained_artwork
+core.model.mouse_simple	mouse_model_style4.svg	Mouse Model	core-biology	retained_artwork
+core.model.mouse_manuscript	mouse_model_manuscript_style4.svg	Mouse Model — Manuscript Line	core-biology	retained_artwork
+core.cell.t_cell	immune_t_cell_style4.svg	T Cell	core-biology	retained_artwork
+core.cell.t_cell_manuscript	immune_t_cell_manuscript_style4.svg	T Cell — Manuscript Line	core-biology	retained_artwork
+core.cell.b_cell	immune_b_cell_style4.svg	B Cell	core-biology	retained_artwork
+core.cell.nk_cell	immune_nk_cell_style4.svg	Natural Killer Cell	core-biology	retained_artwork
+core.cell.macrophage	immune_macrophage_style4.svg	Macrophage	core-biology	retained_artwork
+core.cell.macrophage_manuscript	immune_macrophage_manuscript_style4.svg	Macrophage — Manuscript Line	core-biology	retained_artwork
+core.cell.dendritic	immune_dendritic_cell_style4.svg	Dendritic Cell	core-biology	retained_artwork
+core.cell.neutrophil	immune_neutrophil_style4.svg	Neutrophil	core-biology	retained_artwork
+core.immune.mhc_i_peptide	immune_mhc_i_peptide_style4.svg	MHC-I Peptide Complex	core-biology	retained_artwork
+core.immune.mhc_ii_peptide	immune_mhc_ii_peptide_style4.svg	MHC-II Peptide Complex	core-biology	retained_artwork
+core.immune.tcr_engagement	immune_tcr_engagement_style4.svg	TCR Peptide-MHC Engagement	core-biology	retained_artwork
+core.immune.pd1_pdl1_checkpoint	immune_pd1_pdl1_checkpoint_style4.svg	PD-1 PD-L1 Checkpoint	core-biology	retained_artwork
+core.immune.fc_receptor_binding	immune_fc_receptor_binding_style4.svg	Fc Receptor Binding	core-biology	retained_artwork
+core.immune.cytotoxic_granule_release	immune_cytotoxic_granule_release_style4.svg	Cytotoxic Granule Release	core-biology	retained_artwork
+core.immune.mhc_i_peptide_manuscript	immune_mhc_i_peptide_manuscript_style4.svg	MHC-I Peptide Complex — Manuscript Line	core-biology	retained_artwork
+core.immune.mhc_ii_peptide_manuscript	immune_mhc_ii_peptide_manuscript_style4.svg	MHC-II Peptide Complex — Manuscript Line	core-biology	retained_artwork
+core.immune.tcr_engagement_manuscript	immune_tcr_engagement_manuscript_style4.svg	TCR Peptide-MHC Engagement — Manuscript Line	core-biology	retained_artwork
+core.immune.pd1_pdl1_checkpoint_manuscript	immune_pd1_pdl1_checkpoint_manuscript_style4.svg	PD-1 PD-L1 Checkpoint — Manuscript Line	core-biology	retained_artwork
+core.immune.fc_receptor_binding_manuscript	immune_fc_receptor_binding_manuscript_style4.svg	Fc Receptor Binding — Manuscript Line	core-biology	retained_artwork
+core.cell.b_cell_manuscript	immune_b_cell_manuscript_style4.svg	B Cell — Manuscript Line	core-biology	retained_artwork
+core.cell.nk_cell_manuscript	immune_nk_cell_manuscript_style4.svg	Natural Killer Cell — Manuscript Line	core-biology	retained_artwork
+core.cell.dendritic_manuscript	immune_dendritic_cell_manuscript_style4.svg	Dendritic Cell — Manuscript Line	core-biology	retained_artwork
+core.cell.neutrophil_manuscript	immune_neutrophil_manuscript_style4.svg	Neutrophil — Manuscript Line	core-biology	retained_artwork
+core.sample.blood_tube	blood_sample_tube_style4.svg	Blood Sample Tube	core-biology	retained_artwork
+core.sample.blood_drop	blood_drop_style4.svg	Blood Drop	core-biology	retained_artwork
+core.sample.tissue_biopsy_core	tissue_biopsy_core_style4.svg	Tissue Biopsy Core	core-biology	retained_artwork
+core.sample.tissue_section_slide	tissue_section_slide_style4.svg	Tissue Section Slide	core-biology	retained_artwork
+core.sample.cell_pellet_tube	cell_pellet_tube_style4.svg	Cell Pellet Tube	core-biology	retained_artwork
+core.sample.cryovial	cryovial_style4.svg	Cryovial	core-biology	retained_artwork
+core.antibody.igg_manuscript	antibody_igg_manuscript_style4.svg	IgG Antibody — Thin	core-biology	retained_artwork
+core.antibody.drug_conjugate_manuscript	antibody_drug_conjugate_manuscript_style4.svg	Drug-Conjugated Antibody — Manuscript Line	core-biology	retained_artwork
+core.dna.double_helix_manuscript	dna_double_helix_manuscript_style4.svg	DNA Double Helix — Thin line	core-biology	retained_artwork
+core.nucleic_acid.plasmid_vector_manuscript	plasmid_vector_manuscript_style4.svg	Plasmid Vector — Manuscript Line	core-biology	retained_artwork
+core.mitochondrion.basic_manuscript	mitochondrion_basic_manuscript_style4.svg	Mitochondrion — Thin	core-biology	retained_artwork
+core.rna.strand_linear	rna_strand_linear_style4.svg	RNA Strand — Linear	core-biology	retained_artwork
+core.model.yeast_budding	budding_yeast_model_style4.svg	Budding Yeast Model	core-biology	retained_artwork
+core.model.bacterium_rod	rod_bacterium_model_style4.svg	Rod-Shaped Bacterium	core-biology	retained_artwork
+core.model.zebrafish	zebrafish_model_style4.svg	Zebrafish Model	core-biology	retained_artwork
+core.model.fruit_fly	fruit_fly_model_style4.svg	Fruit Fly Model	core-biology	retained_artwork
+core.model.nematode	nematode_model_style4.svg	Nematode Model	core-biology	retained_artwork
+core.cell.generic_spread	cell_generic_spread_style4.svg	Spread Animal Cell	core-biology	retained_artwork
+core.cell.generic_cutaway	cell_generic_cutaway_style4.svg	Animal Cell Cutaway	core-biology	retained_artwork
+core.cell.epithelial_apical	cell_epithelial_apical_style4.svg	Epithelial Cell — Apical View	core-biology	retained_artwork
+core.cell.epithelial_cuboidal	cell_epithelial_cuboidal_style4.svg	Cuboidal Epithelial Cell	core-biology	retained_artwork
+core.cell.neuron_bipolar	cell_neuron_bipolar_style4.svg	Bipolar Neuron	core-biology	retained_artwork
+core.cell.neuron_pseudounipolar	cell_neuron_pseudounipolar_style4.svg	Pseudounipolar Neuron	core-biology	retained_artwork
+core.nucleus.oval_cutaway	nucleus_oval_cutaway_style4.svg	Nucleus — Oval Cutaway	core-biology	retained_artwork
+core.nucleus.envelope_detail	nucleus_envelope_detail_style4.svg	Nuclear Envelope and Pore	core-biology	retained_artwork
+core.mitochondrion.tubular	mitochondrion_tubular_style4.svg	Tubular Mitochondrion	core-biology	retained_artwork
+core.mitochondrion.network	mitochondrion_network_style4.svg	Mitochondrial Network	core-biology	retained_artwork
+core.golgi.oblique	golgi_oblique_style4.svg	Golgi Stack — Oblique View	core-biology	retained_artwork
+core.golgi.ribbon	golgi_ribbon_style4.svg	Golgi Ribbon	core-biology	retained_artwork
+core.er.rough_network	rough_er_network_style4.svg	Rough ER Network	core-biology	retained_artwork
+core.er.smooth	smooth_er_style4.svg	Smooth Endoplasmic Reticulum	core-biology	retained_artwork
+core.antibody.fab_fragment	antibody_fab_fragment_style4.svg	Antibody Fab Fragment	core-biology	retained_artwork
+core.antibody.fc_fragment	antibody_fc_fragment_style4.svg	Antibody Fc Fragment	core-biology	retained_artwork
+core.receptor.single_pass_unliganded	receptor_single_pass_unliganded_style4.svg	Unliganded Single-pass Receptor	core-biology	retained_artwork
+core.receptor.extracellular_domain	receptor_extracellular_domain_style4.svg	Receptor Extracellular Domain	core-biology	retained_artwork
+core.ligand.peptide	ligand_peptide_style4.svg	Peptide Ligand	core-biology	retained_artwork
+core.ligand.small_molecule	ligand_small_molecule_style4.svg	Small-molecule Ligand Symbol	core-biology	retained_artwork
+core.lysosome.cutaway	lysosome_cutaway_style4.svg	Lysosome Cutaway	core-biology	retained_artwork
+core.autolysosome	autolysosome_style4.svg	Autolysosome	core-biology	retained_artwork
+core.protein.homotrimer	protein_homotrimer_style4.svg	Protein Homotrimer	core-biology	retained_artwork
+core.protein.heterotetramer	protein_heterotetramer_style4.svg	Protein Heterotetramer — 2 + 2	core-biology	retained_artwork
+exp.cell.erythrocyte	erythrocyte_style4.svg	Erythrocyte	core-experimental-biology	retained_artwork
+exp.cell.platelet	platelet_style4.svg	Platelet	core-experimental-biology	retained_artwork
+exp.cell.monocyte	monocyte_style4.svg	Monocyte	core-experimental-biology	retained_artwork
+exp.cell.plasma_cell	plasma_cell_style4.svg	Plasma Cell	core-experimental-biology	retained_artwork
+exp.cell.mast_cell	mast_cell_style4.svg	Mast Cell	core-experimental-biology	retained_artwork
+exp.cell.eosinophil	eosinophil_style4.svg	Eosinophil	core-experimental-biology	retained_artwork
+exp.cell.basophil	basophil_style4.svg	Basophil	core-experimental-biology	retained_artwork
+exp.cell.microglia_like	microglia_like_style4.svg	Microglia-like Cell	core-experimental-biology	retained_artwork
+exp.cell.oligodendrocyte_like	oligodendrocyte_like_style4.svg	Oligodendrocyte-like Cell	core-experimental-biology	retained_artwork
+exp.cell.schwann_myelin	schwann_myelin_style4.svg	Schwann Cell and Myelin	core-experimental-biology	retained_artwork
+exp.cell.fibroblast	fibroblast_style4.svg	Fibroblast	core-experimental-biology	retained_artwork
+exp.cell.endothelial	endothelial_style4.svg	Endothelial Cell	core-experimental-biology	retained_artwork
+exp.cell.smooth_muscle	smooth_muscle_style4.svg	Smooth Muscle Cell	core-experimental-biology	retained_artwork
+exp.cell.adipocyte	adipocyte_style4.svg	Adipocyte	core-experimental-biology	retained_artwork
+exp.cell.cancer_cell.round	cancer_cell_round_style4.svg	Cancer Cell — Round	core-experimental-biology	retained_artwork
+exp.cell.cancer_cell.spindle	cancer_cell_spindle_style4.svg	Cancer Cell — Spindle	core-experimental-biology	retained_artwork
+exp.cell.migrating_cancer	migrating_cancer_style4.svg	Migrating Cancer Cell	core-experimental-biology	retained_artwork
+exp.cell.tumor_cell_cluster	tumor_cell_cluster_style4.svg	Tumor Cell Cluster	core-experimental-biology	retained_artwork
+exp.cell.stem_progenitor	stem_progenitor_style4.svg	Stem or Progenitor Cell	core-experimental-biology	retained_artwork
+exp.cell.ciliated_epithelial	ciliated_epithelial_style4.svg	Ciliated Epithelial Cell	core-experimental-biology	retained_artwork
+exp.cell.goblet_secretory	goblet_secretory_style4.svg	Goblet Secretory Cell	core-experimental-biology	retained_artwork
+exp.cell.senescent	senescent_style4.svg	Senescent Cell	core-experimental-biology	retained_artwork
+exp.cell.quiescent	quiescent_style4.svg	Quiescent Cell	core-experimental-biology	retained_artwork
+exp.organelle.centriole_pair	centriole_pair_style4.svg	Centriole Pair	core-experimental-biology	retained_artwork
+exp.organelle.centrosome_spindle	centrosome_spindle_style4.svg	Centrosome and Mitotic Spindle	core-experimental-biology	retained_artwork
+exp.organelle.actin_cytoskeleton.bundle	actin_cytoskeleton_bundle_style4.svg	Actin Cytoskeleton — Bundle	core-experimental-biology	retained_artwork
+exp.organelle.actin_cytoskeleton.branched	actin_cytoskeleton_branched_style4.svg	Actin Cytoskeleton — Branched	core-experimental-biology	retained_artwork
+exp.organelle.microtubule_network	microtubule_network_style4.svg	Microtubule Network	core-experimental-biology	retained_artwork
+exp.organelle.intermediate_filaments	intermediate_filaments_style4.svg	Intermediate Filaments	core-experimental-biology	retained_artwork
+exp.organelle.nuclear_pore	nuclear_pore_style4.svg	Nuclear Pore Complex	core-experimental-biology	retained_artwork
+exp.organelle.nucleosome	nucleosome_style4.svg	Nucleosome	core-experimental-biology	retained_artwork
+exp.organelle.ribosome	ribosome_style4.svg	Ribosome	core-experimental-biology	retained_artwork
+exp.organelle.secretory_granule	secretory_granule_style4.svg	Secretory Granule	core-experimental-biology	retained_artwork
+exp.organelle.proteasome	proteasome_style4.svg	Proteasome	core-experimental-biology	retained_artwork
+exp.protein.monomer	monomer_style4.svg	Protein Monomer	core-experimental-biology	retained_artwork
+exp.protein.dimer.homodimer	dimer_homodimer_style4.svg	Protein Dimer — Homodimer	core-experimental-biology	retained_artwork
+exp.protein.dimer.heterodimer	dimer_heterodimer_style4.svg	Protein Dimer — Heterodimer	core-experimental-biology	retained_artwork
+exp.protein.phosphatase	phosphatase_style4.svg	Protein Phosphatase	core-experimental-biology	retained_artwork
+exp.protein.protease	protease_style4.svg	Protease	core-experimental-biology	retained_artwork
+exp.protein.adaptor	adaptor_style4.svg	Adaptor Protein	core-experimental-biology	retained_artwork
+exp.protein.scaffold	scaffold_style4.svg	Scaffold Protein	core-experimental-biology	retained_artwork
+exp.protein.ubiquitin_chain	ubiquitin_chain_style4.svg	Polyubiquitin Chain	core-experimental-biology	retained_artwork
+exp.protein.chemokine	chemokine_style4.svg	Chemokine	core-experimental-biology	retained_artwork
+exp.protein.growth_factor	growth_factor_style4.svg	Growth Factor	core-experimental-biology	retained_artwork
+exp.protein.transcription_complex	transcription_complex_style4.svg	Transcription Complex	core-experimental-biology	retained_artwork
+exp.membrane_signaling.tcr	tcr_style4.svg	T-cell Receptor	core-experimental-biology	corrected_flagged_artwork
+exp.membrane_signaling.bcr	bcr_style4.svg	B-cell Receptor	core-experimental-biology	corrected_flagged_artwork
+exp.membrane_signaling.integrin	integrin_style4.svg	Integrin Receptor	core-experimental-biology	corrected_flagged_artwork
+exp.membrane_signaling.death_receptor	death_receptor_style4.svg	Death Receptor	core-experimental-biology	corrected_flagged_artwork
+exp.membrane_signaling.notch_like	notch_like_style4.svg	Notch-like Receptor	core-experimental-biology	corrected_flagged_artwork
+exp.membrane_signaling.nuclear_receptor	nuclear_receptor_style4.svg	Nuclear Receptor	core-experimental-biology	corrected_flagged_artwork
+exp.membrane_signaling.endocytosis_pit	endocytosis_pit_style4.svg	Clathrin-coated Endocytic Pit	core-experimental-biology	corrected_flagged_artwork
+exp.membrane_signaling.exocytosis_fusion	exocytosis_fusion_style4.svg	Exocytosis Fusion	core-experimental-biology	corrected_flagged_artwork
+exp.nucleic_acid.replication_fork	replication_fork_style4.svg	DNA Replication Fork	core-experimental-biology	corrected_flagged_artwork
+exp.nucleic_acid.enhancer_promoter	enhancer_promoter_style4.svg	Enhancer–Promoter Interaction	core-experimental-biology	corrected_flagged_artwork
+exp.nucleic_acid.chromatin_state.open	chromatin_state_open_style4.svg	Chromatin State — Open	core-experimental-biology	corrected_flagged_artwork
+exp.nucleic_acid.chromatin_state.condensed	chromatin_state_condensed_style4.svg	Chromatin State — Condensed	core-experimental-biology	corrected_flagged_artwork
+exp.nucleic_acid.pre_mrna	pre_mrna_style4.svg	Pre-mRNA	core-experimental-biology	corrected_flagged_artwork
+exp.nucleic_acid.splicing	splicing_style4.svg	RNA Splicing	core-experimental-biology	corrected_flagged_artwork
+exp.nucleic_acid.trna	trna_style4.svg	Transfer RNA	core-experimental-biology	corrected_flagged_artwork
+exp.nucleic_acid.mirna	mirna_style4.svg	MicroRNA	core-experimental-biology	corrected_flagged_artwork
+exp.nucleic_acid.translation	translation_style4.svg	Translation	core-experimental-biology	corrected_flagged_artwork
+exp.nucleic_acid.cdna_library	cdna_library_style4.svg	cDNA Library	core-experimental-biology	corrected_flagged_artwork
+exp.nucleic_acid.pcr_amplicon	pcr_amplicon_style4.svg	PCR Amplicon	core-experimental-biology	corrected_flagged_artwork
+exp.pathway_symbol.conversion_arrow	conversion_arrow_style4.svg	Conversion Arrow	core-experimental-biology	corrected_flagged_artwork
+exp.pathway_symbol.binding_pair	binding_pair_style4.svg	Binding Pair	core-experimental-biology	corrected_flagged_artwork
+exp.pathway_symbol.dissociation	dissociation_style4.svg	Dissociation	core-experimental-biology	corrected_flagged_artwork
+exp.pathway_symbol.degradation	degradation_style4.svg	Degradation	core-experimental-biology	corrected_flagged_artwork
+exp.pathway_symbol.ubiquitination	ubiquitination_style4.svg	Ubiquitination	core-experimental-biology	corrected_flagged_artwork
+exp.pathway_symbol.dephosphorylation	dephosphorylation_style4.svg	Dephosphorylation	core-experimental-biology	corrected_flagged_artwork
+exp.pathway_symbol.localization_target	localization_target_style4.svg	Localization Target	core-experimental-biology	corrected_flagged_artwork
+exp.pathway_symbol.time_course	time_course_style4.svg	Time Course	core-experimental-biology	corrected_flagged_artwork
+exp.lab_equipment.centrifuge	centrifuge_style4.svg	Benchtop Centrifuge	core-experimental-biology	corrected_flagged_artwork
+exp.lab_equipment.flow_cytometer	flow_cytometer_style4.svg	Flow Cytometer	core-experimental-biology	corrected_flagged_artwork
+exp.lab_equipment.thermal_cycler	thermal_cycler_style4.svg	Thermal Cycler	core-experimental-biology	corrected_flagged_artwork
+exp.lab_equipment.qpcr_instrument	qpcr_instrument_style4.svg	qPCR Instrument	core-experimental-biology	corrected_flagged_artwork
+exp.lab_equipment.gel_electrophoresis	gel_electrophoresis_style4.svg	Gel Electrophoresis Tank	core-experimental-biology	corrected_flagged_artwork
+exp.lab_equipment.blot_transfer	blot_transfer_style4.svg	Blot Transfer Unit	core-experimental-biology	corrected_flagged_artwork
+exp.lab_equipment.blot_imager	blot_imager_style4.svg	Blot Imager	core-experimental-biology	corrected_flagged_artwork
+exp.lab_equipment.sequencer	sequencer_style4.svg	Sequencing Instrument	core-experimental-biology	corrected_flagged_artwork
+exp.lab_equipment.biosafety_cabinet	biosafety_cabinet_style4.svg	Biosafety Cabinet	core-experimental-biology	corrected_flagged_artwork
+exp.lab_equipment.co2_incubator	co2_incubator_style4.svg	CO₂ Incubator	core-experimental-biology	corrected_flagged_artwork
+exp.lab_equipment.confocal_microscope	confocal_microscope_style4.svg	Confocal Microscope	core-experimental-biology	corrected_flagged_artwork
+exp.lab_equipment.cryostat	cryostat_style4.svg	Cryostat	core-experimental-biology	corrected_flagged_artwork
+exp.lab_equipment.liquid_handler	liquid_handler_style4.svg	Automated Liquid Handler	core-experimental-biology	corrected_flagged_artwork
+exp.lab_equipment.cell_counter	cell_counter_style4.svg	Automated Cell Counter	core-experimental-biology	corrected_flagged_artwork
+exp.lab_equipment.orbital_shaker	orbital_shaker_style4.svg	Orbital Shaker	core-experimental-biology	corrected_flagged_artwork
+exp.lab_equipment.reagent_bottle	reagent_bottle_style4.svg	Reagent Bottle	core-experimental-biology	corrected_flagged_artwork
+exp.lab_equipment.cuvette	cuvette_style4.svg	Spectrophotometer Cuvette	core-experimental-biology	corrected_flagged_artwork
+exp.assay_workflow.flow_cytometry_readout.dot_plot	flow_cytometry_readout_dot_plot_style4.svg	Flow Cytometry Readout — Dot Plot	core-experimental-biology	corrected_flagged_artwork
+exp.assay_workflow.flow_cytometry_readout.histogram	flow_cytometry_readout_histogram_style4.svg	Flow Cytometry Readout — Histogram	core-experimental-biology	corrected_flagged_artwork
+exp.assay_workflow.qpcr_curve	qpcr_curve_style4.svg	qPCR Amplification Curve	core-experimental-biology	corrected_flagged_artwork
+exp.assay_workflow.pcr_gel_result	pcr_gel_result_style4.svg	PCR Gel Result	core-experimental-biology	corrected_flagged_artwork
+exp.assay_workflow.western_blot_result	western_blot_result_style4.svg	Western Blot Result	core-experimental-biology	corrected_flagged_artwork
+exp.assay_workflow.microscopy_field.brightfield	microscopy_field_brightfield_style4.svg	Microscopy Field — Brightfield	core-experimental-biology	corrected_flagged_artwork
+exp.assay_workflow.microscopy_field.fluorescence	microscopy_field_fluorescence_style4.svg	Microscopy Field — Fluorescence	core-experimental-biology	corrected_flagged_artwork
+exp.assay_workflow.sequencing_reads.single_end	sequencing_reads_single_end_style4.svg	Sequencing Reads — Single End	core-experimental-biology	corrected_flagged_artwork
+exp.assay_workflow.sequencing_reads.paired_end	sequencing_reads_paired_end_style4.svg	Sequencing Reads — Paired End	core-experimental-biology	corrected_flagged_artwork
+exp.assay_workflow.elisa_assay	elisa_assay_style4.svg	ELISA Assay	core-experimental-biology	corrected_flagged_artwork
+exp.assay_workflow.cell_viability_readout	cell_viability_readout_style4.svg	Cell Viability Readout	core-experimental-biology	corrected_flagged_artwork
+exp.assay_workflow.dose_response_curve	dose_response_curve_style4.svg	Dose–Response Curve	core-experimental-biology	corrected_flagged_artwork
+exp.assay_workflow.luminescence_readout	luminescence_readout_style4.svg	Luminescence Readout	core-experimental-biology	corrected_flagged_artwork
+exp.model_system.organoid_lumen	organoid_lumen_style4.svg	Lumen-forming Organoid	core-experimental-biology	corrected_flagged_artwork
+exp.model_system.epithelial_monolayer	epithelial_monolayer_style4.svg	Epithelial Monolayer	core-experimental-biology	corrected_flagged_artwork
+exp.model_system.coculture_dish	coculture_dish_style4.svg	Co-culture Dish	core-experimental-biology	corrected_flagged_artwork
+exp.model_system.xenograft_mouse	xenograft_mouse_style4.svg	Mouse Xenograft Model	core-experimental-biology	corrected_flagged_artwork
+exp.model_system.tissue_explant	tissue_explant_style4.svg	Tissue Explant	core-experimental-biology	corrected_flagged_artwork
+exp.model_system.transwell_culture.monoculture	transwell_culture_monoculture_style4.svg	Transwell Culture — Monoculture	core-experimental-biology	corrected_flagged_artwork
+exp.model_system.transwell_culture.coculture	transwell_culture_coculture_style4.svg	Transwell Culture — Coculture	core-experimental-biology	corrected_flagged_artwork
+exp.clinical_sample.saliva_sample	saliva_sample_style4.svg	Saliva Sample	core-experimental-biology	corrected_flagged_artwork
+exp.clinical_sample.urine_sample	urine_sample_style4.svg	Urine Sample	core-experimental-biology	corrected_flagged_artwork
+culture.model_system.perfused_tissue_chip	perfused_tissue_chip_style4.svg	Perfused Cell–Matrix Culture Chip	culture-models-assays	retained_artwork
+culture.model_system.air_liquid_interface_culture	air_liquid_interface_culture_style4.svg	Air–Liquid Interface Culture	culture-models-assays	retained_artwork
+culture.model_system.hydrogel_embedded_organoid	hydrogel_embedded_organoid_style4.svg	Hydrogel-embedded Organoid	culture-models-assays	retained_artwork
+culture.model_system.hanging_drop_spheroid	hanging_drop_spheroid_style4.svg	Hanging-drop Spheroid Culture	culture-models-assays	retained_artwork
+culture.model_system.microwell_spheroid_aggregation	microwell_spheroid_aggregation_style4.svg	Microwell Spheroid Aggregation	culture-models-assays	retained_artwork
+culture.assay_workflow.epithelial_scratch_wound	epithelial_scratch_wound_style4.svg	Epithelial Scratch Assay	culture-models-assays	retained_artwork
+culture.assay_workflow.clonogenic_colony_formation	clonogenic_colony_formation_style4.svg	Adherent Clonogenic Colonies	culture-models-assays	retained_artwork
+culture.assay_workflow.soft_agar_colony	soft_agar_colony_style4.svg	Soft-agar Colony Assay	culture-models-assays	retained_artwork
+culture.assay_workflow.collagen_gel_contraction	collagen_gel_contraction_style4.svg	Cell-laden Collagen-gel Culture	culture-models-assays	retained_artwork
+culture.model_system.precision_cut_tissue_slice_culture	precision_cut_tissue_slice_culture_style4.svg	Tissue-slice Culture	culture-models-assays	retained_artwork
+culture.assay_workflow.organoid_luminal_microinjection	organoid_luminal_microinjection_style4.svg	Organoid Luminal Microinjection	culture-models-assays	retained_artwork
+culture.model_system.perfusable_microvascular_network	perfusable_microvascular_network_style4.svg	Perfusable Microvascular Culture	culture-models-assays	corrected_flagged_artwork
+culture.model_system.perfused_tissue_chip.dual_channel	perfused_tissue_chip_dual_channel_style4.svg	Perfused Cell–Matrix Culture Chip	culture-models-assays	retained_artwork
+culture.model_system.hydrogel_embedded_organoid.budding	hydrogel_embedded_organoid_budding_style4.svg	Hydrogel-embedded Organoid	culture-models-assays	retained_artwork
+culture.model_system.hanging_drop_spheroid.array	hanging_drop_spheroid_array_style4.svg	Hanging-drop Spheroid Culture	culture-models-assays	retained_artwork
+culture.model_system.microwell_spheroid_aggregation.array	microwell_spheroid_aggregation_array_style4.svg	Microwell Spheroid Aggregation	culture-models-assays	retained_artwork
+culture.assay_workflow.collagen_gel_contraction.anchored	collagen_gel_contraction_anchored_style4.svg	Cell-laden Collagen-gel Culture	culture-models-assays	retained_artwork
+culture.model_system.precision_cut_tissue_slice_culture.interface	precision_cut_tissue_slice_culture_interface_style4.svg	Tissue-slice Culture	culture-models-assays	retained_artwork
+culture.model_system.hydrogel_embedded_spheroid	hydrogel_embedded_spheroid_style4.svg	Hydrogel-embedded Spheroid	culture-models-assays	retained_artwork
+culture.model_system.organoid_stromal_coculture	organoid_stromal_coculture_style4.svg	Organoid–Stromal Co-culture	culture-models-assays	retained_artwork
+culture.model_system.microcarrier_cell_culture	microcarrier_cell_culture_style4.svg	Microcarrier Cell Culture	culture-models-assays	retained_artwork
+culture.model_system.suspension_spheroid_culture	suspension_spheroid_culture_style4.svg	Spheroid Suspension Culture	culture-models-assays	retained_artwork
+culture.assay_workflow.spheroid_matrix_outgrowth	spheroid_matrix_outgrowth_style4.svg	Spheroid Matrix-outgrowth Assay	culture-models-assays	retained_artwork
+culture.assay_workflow.cell_exclusion_gap	cell_exclusion_gap_style4.svg	Cell-exclusion Zone Assay	culture-models-assays	retained_artwork
+immuno.cell.regulatory_t_cell	regulatory_t_cell_style4.svg	Regulatory T Cell	immunology-oncology	corrected_flagged_artwork
+immuno.cell.exhausted_t_cell	exhausted_t_cell_style4.svg	Exhausted T Cell	immunology-oncology	corrected_flagged_artwork
+immuno.cell.activated_t_cell	activated_t_cell_style4.svg	Activated T Cell	immunology-oncology	corrected_flagged_artwork
+immuno.cell.naive_t_cell	naive_t_cell_style4.svg	Naïve T Cell	immunology-oncology	corrected_flagged_artwork
+immuno.cell.cd8_cytotoxic_t_cell	cd8_cytotoxic_t_cell_style4.svg	CD8+ Cytotoxic T Cell	immunology-oncology	corrected_flagged_artwork
+immuno.cell.cd4_helper_t_cell	cd4_helper_t_cell_style4.svg	CD4+ Helper T Cell	immunology-oncology	corrected_flagged_artwork
+immuno.cell.car_t_cell	car_t_cell_style4.svg	Chimeric Antigen Receptor T Cell	immunology-oncology	corrected_flagged_artwork
+immuno.cell.immature_dendritic_cell	immature_dendritic_cell_style4.svg	Immature Dendritic Cell	immunology-oncology	corrected_flagged_artwork
+immuno.cell.mature_dendritic_cell	mature_dendritic_cell_style4.svg	Mature Dendritic Cell	immunology-oncology	corrected_flagged_artwork
+immuno.cell.tumor_associated_macrophage	tumor_associated_macrophage_style4.svg	Tumor-associated Macrophage	immunology-oncology	corrected_flagged_artwork
+immuno.cell.monocytic_mdsc	monocytic_mdsc_style4.svg	Monocytic Myeloid-derived Suppressor Cell	immunology-oncology	corrected_flagged_artwork
+immuno.cell.polymorphonuclear_mdsc	polymorphonuclear_mdsc_style4.svg	Polymorphonuclear Myeloid-derived Suppressor Cell	immunology-oncology	corrected_flagged_artwork
+immuno.cell.circulating_tumor_cell	circulating_tumor_cell_style4.svg	Circulating Tumor Cell	immunology-oncology	corrected_flagged_artwork
+immuno.cell.memory_t_cell	memory_t_cell_style4.svg	Memory T Cell	immunology-oncology	corrected_flagged_artwork
+immuno.cell.pericyte	pericyte_style4.svg	Pericyte	immunology-oncology	corrected_flagged_artwork
+immuno.cell.lymphatic_endothelial_cell	lymphatic_endothelial_cell_style4.svg	Lymphatic Endothelial Cell	immunology-oncology	corrected_flagged_artwork
+immuno.membrane_signaling.ctla4_receptor	ctla4_receptor_style4.svg	CTLA-4 Receptor	immunology-oncology	corrected_flagged_artwork
+immuno.membrane_signaling.cd28_b7_costimulatory_interaction	cd28_b7_costimulatory_interaction_style4.svg	CD28–B7 Costimulatory Interaction	immunology-oncology	corrected_flagged_artwork
+immuno.membrane_signaling.ctla4_b7_checkpoint_interaction	ctla4_b7_checkpoint_interaction_style4.svg	CTLA-4–B7 Checkpoint Interaction	immunology-oncology	corrected_flagged_artwork
+immuno.membrane_signaling.lag3_mhc2_checkpoint_interaction	lag3_mhc2_checkpoint_interaction_style4.svg	LAG-3–MHC Class II Checkpoint Interaction	immunology-oncology	corrected_flagged_artwork
+immuno.membrane_signaling.tigit_cd155_checkpoint_interaction	tigit_cd155_checkpoint_interaction_style4.svg	TIGIT–CD155 Checkpoint Interaction	immunology-oncology	corrected_flagged_artwork
+immuno.membrane_signaling.cd47_sirpa_checkpoint_interaction	cd47_sirpa_checkpoint_interaction_style4.svg	CD47–SIRPα Checkpoint Interaction	immunology-oncology	corrected_flagged_artwork
+immuno.membrane_signaling.chimeric_antigen_receptor	chimeric_antigen_receptor_style4.svg	Chimeric Antigen Receptor	immunology-oncology	corrected_flagged_artwork
+immuno.membrane_signaling.chemokine_receptor	chemokine_receptor_style4.svg	Chemokine Receptor	immunology-oncology	corrected_flagged_artwork
+immuno.membrane_signaling.jak_associated_cytokine_receptor	jak_associated_cytokine_receptor_style4.svg	JAK-associated Cytokine Receptor Complex	immunology-oncology	corrected_flagged_artwork
+immuno.membrane_signaling.cd28_receptor	cd28_receptor_style4.svg	CD28 Receptor	immunology-oncology	corrected_flagged_artwork
+immuno.membrane_signaling.b7_costimulatory_ligand	b7_costimulatory_ligand_style4.svg	B7 Costimulatory Ligand	immunology-oncology	corrected_flagged_artwork
+immuno.membrane_signaling.lag3_receptor	lag3_receptor_style4.svg	LAG-3 Receptor	immunology-oncology	corrected_flagged_artwork
+immuno.membrane_signaling.tigit_receptor	tigit_receptor_style4.svg	TIGIT Receptor	immunology-oncology	corrected_flagged_artwork
+immuno.membrane_signaling.cd155	cd155_style4.svg	CD155	immunology-oncology	corrected_flagged_artwork
+immuno.protein.generic_cytokine	generic_cytokine_style4.svg	Generic Cytokine	immunology-oncology	corrected_flagged_artwork
+immuno.protein.neoantigen_peptide	neoantigen_peptide_style4.svg	Neoantigen Peptide	immunology-oncology	retained_artwork
+immuno.protein.tumor_associated_antigen	tumor_associated_antigen_style4.svg	Tumor-associated Antigen	immunology-oncology	retained_artwork
+immuno.protein.checkpoint_blocking_antibody	checkpoint_blocking_antibody_style4.svg	Checkpoint-blocking Antibody	immunology-oncology	corrected_flagged_artwork
+immuno.protein.bispecific_t_cell_engager	bispecific_t_cell_engager_style4.svg	Bispecific T-cell Engager	immunology-oncology	corrected_flagged_artwork
+immuno.protein.perforin_1	perforin_1_style4.svg	Perforin-1	immunology-oncology	corrected_flagged_artwork
+immuno.protein.granzyme_b	granzyme_b_style4.svg	Granzyme B	immunology-oncology	corrected_flagged_artwork
+immuno.protein.matrix_metalloproteinase	matrix_metalloproteinase_style4.svg	Matrix Metalloproteinase	immunology-oncology	corrected_flagged_artwork
+immuno.pathway.phagocytosis	phagocytosis_style4.svg	Phagocytosis	immunology-oncology	corrected_flagged_artwork
+immuno.pathway.endosomal_antigen_processing	endosomal_antigen_processing_style4.svg	Endosomal Antigen Processing and MHC-II Loading	immunology-oncology	corrected_flagged_artwork
+immuno.pathway.cytosolic_antigen_processing	cytosolic_antigen_processing_style4.svg	Cytosolic Antigen Processing and MHC-I Loading	immunology-oncology	corrected_flagged_artwork
+immuno.pathway.cross_presentation	cross_presentation_style4.svg	Antigen Cross-presentation	immunology-oncology	corrected_flagged_artwork
+immuno.pathway.apc_t_cell_immune_synapse	apc_t_cell_immune_synapse_style4.svg	APC–T-cell Immune Synapse	immunology-oncology	corrected_flagged_artwork
+immuno.pathway.cytotoxic_immune_synapse	cytotoxic_immune_synapse_style4.svg	Cytotoxic Immune Synapse	immunology-oncology	corrected_flagged_artwork
+immuno.pathway.antibody_dependent_cellular_cytotoxicity	antibody_dependent_cellular_cytotoxicity_style4.svg	Antibody-dependent Cellular Cytotoxicity	immunology-oncology	corrected_flagged_artwork
+immuno.pathway.soluble_factor_gradient	soluble_factor_gradient_style4.svg	Soluble-factor Gradient	immunology-oncology	corrected_flagged_artwork
+immuno.pathway.leukocyte_recruitment	leukocyte_recruitment_style4.svg	Leukocyte Recruitment	immunology-oncology	corrected_flagged_artwork
+immuno.pathway.ecm_remodeling	ecm_remodeling_style4.svg	Extracellular-matrix Remodeling	immunology-oncology	corrected_flagged_artwork
+immuno.pathway.epithelial_mesenchymal_transition	epithelial_mesenchymal_transition_style4.svg	Epithelial–Mesenchymal Transition	immunology-oncology	corrected_flagged_artwork
+immuno.pathway.collective_tumor_invasion	collective_tumor_invasion_style4.svg	Collective Tumor Invasion	immunology-oncology	corrected_flagged_artwork
+immuno.pathway.tumor_cell_intravasation	tumor_cell_intravasation_style4.svg	Tumor-cell Intravasation	immunology-oncology	corrected_flagged_artwork
+immuno.pathway.tumor_cell_extravasation	tumor_cell_extravasation_style4.svg	Tumor-cell Extravasation	immunology-oncology	corrected_flagged_artwork
+immuno.pathway.metastatic_seeding	metastatic_seeding_style4.svg	Metastatic Seeding	immunology-oncology	corrected_flagged_artwork
+immuno.pathway.adoptive_cell_transfer	adoptive_cell_transfer_style4.svg	Adoptive Cell Transfer	immunology-oncology	corrected_flagged_artwork
+immuno.pathway.adc_payload_release	adc_payload_release_style4.svg	Antibody–drug Conjugate Payload Release	immunology-oncology	corrected_flagged_artwork
+immuno.pathway.neoantigen_vaccine	neoantigen_vaccine_style4.svg	Neoantigen Vaccine	immunology-oncology	corrected_flagged_artwork
+immuno.pathway.oncolytic_virus	oncolytic_virus_style4.svg	Oncolytic Virus	immunology-oncology	corrected_flagged_artwork
+immuno.pathway.antibody_dependent_cellular_phagocytosis	antibody_dependent_cellular_phagocytosis_style4.svg	Antibody-dependent Cellular Phagocytosis	immunology-oncology	corrected_flagged_artwork
+immuno.model.tumor_hypoxic_region	tumor_hypoxic_region_style4.svg	Tumor Hypoxic Region	immunology-oncology	retained_artwork
+immuno.model.angiogenic_vessel_sprout	angiogenic_vessel_sprout_style4.svg	Angiogenic Vessel Sprout	immunology-oncology	corrected_flagged_artwork
+immuno.model.abnormal_tumor_microvessel	abnormal_tumor_microvessel_style4.svg	Abnormal Tumor Microvessel	immunology-oncology	corrected_flagged_artwork
+immuno.model.collagen_rich_ecm.mesh	collagen_rich_ecm_mesh_style4.svg	Collagen-rich Extracellular Matrix — Mesh	immunology-oncology	corrected_flagged_artwork
+immuno.model.collagen_rich_ecm.aligned_fibers	collagen_rich_ecm_aligned_fibers_style4.svg	Collagen-rich Extracellular Matrix — Aligned Fibers	immunology-oncology	corrected_flagged_artwork
+immuno.model.micrometastatic_colony	micrometastatic_colony_style4.svg	Micrometastatic Colony	immunology-oncology	corrected_flagged_artwork
+immuno.model.immune_infiltrated_tumor	immune_infiltrated_tumor_style4.svg	Immune-infiltrated Tumor	immunology-oncology	corrected_flagged_artwork
+immuno.model.immune_excluded_tumor	immune_excluded_tumor_style4.svg	Immune-excluded Tumor	immunology-oncology	corrected_flagged_artwork
+immuno.model.immune_desert_tumor	immune_desert_tumor_style4.svg	Immune-desert Tumor	immunology-oncology	corrected_flagged_artwork
+immuno.model.necrotic_tumor_region	necrotic_tumor_region_style4.svg	Necrotic Tumor Region	immunology-oncology	corrected_flagged_artwork
+immuno.model.tumor_regression	tumor_regression_style4.svg	Tumor Regression after Treatment	immunology-oncology	corrected_flagged_artwork
+immuno.model.persistent_tumor	persistent_tumor_style4.svg	Persistent Tumor after Treatment	immunology-oncology	corrected_flagged_artwork
+immuno.model.lymphatic_vessel_segment	lymphatic_vessel_segment_style4.svg	Lymphatic Vessel Segment	immunology-oncology	corrected_flagged_artwork
+immuno.model.basement_membrane_segment	basement_membrane_segment_style4.svg	Basement Membrane Segment	immunology-oncology	corrected_flagged_artwork
+immuno.assay.immunohistochemistry_tissue_field	immunohistochemistry_tissue_field_style4.svg	Immunohistochemistry Tissue Field	immunology-oncology	corrected_flagged_artwork
+immuno.assay.multiplex_immunofluorescence_tissue_field	multiplex_immunofluorescence_tissue_field_style4.svg	Multiplex Immunofluorescence Tissue Field	immunology-oncology	corrected_flagged_artwork
+immuno.assay.tumor_volume_time_course	tumor_volume_time_course_style4.svg	Tumor-volume Time Course	immunology-oncology	retained_artwork
+microbe.membrane_signaling.gram_negative_envelope_segment	gram_negative_envelope_segment_style4.svg	Gram-negative Cell Envelope	microbial-biology	retained_artwork
+microbe.membrane_signaling.gram_positive_envelope_segment	gram_positive_envelope_segment_style4.svg	Gram-positive Cell Envelope	microbial-biology	retained_artwork
+microbe.cell.encapsulated_bacterium	encapsulated_bacterium_style4.svg	Encapsulated Bacterium	microbial-biology	retained_artwork
+microbe.membrane_signaling.bacterial_flagellar_motor	bacterial_flagellar_motor_style4.svg	Bacterial Flagellar Motor	microbial-biology	retained_artwork
+microbe.cell.bacterial_endospore	bacterial_endospore_style4.svg	Bacterial Endospore	microbial-biology	retained_artwork
+microbe.model_system.surface_attached_biofilm	surface_attached_biofilm_style4.svg	Surface-attached Biofilm	microbial-biology	corrected_flagged_artwork
+microbe.cell.septate_fungal_hypha	septate_fungal_hypha_style4.svg	Septate Fungal Hypha	microbial-biology	retained_artwork
+microbe.membrane_signaling.outer_membrane_vesicle_budding	outer_membrane_vesicle_budding_style4.svg	Outer-membrane Vesicle Budding	microbial-biology	retained_artwork
+microbe.model_system.contractile_tailed_bacteriophage	contractile_tailed_bacteriophage_style4.svg	Contractile-tailed Bacteriophage	microbial-biology	retained_artwork
+microbe.membrane_signaling.phage_genome_injection	phage_genome_injection_style4.svg	Contractile-phage Genome Injection	microbial-biology	retained_artwork
+microbe.membrane_signaling.enveloped_virus_membrane_fusion	enveloped_virus_membrane_fusion_style4.svg	Enveloped-virus Membrane Fusion	microbial-biology	retained_artwork
+microbe.membrane_signaling.enveloped_virus_plasma_membrane_budding	enveloped_virus_plasma_membrane_budding_style4.svg	Viral Plasma-membrane Budding	microbial-biology	retained_artwork
+microbe.cell.encapsulated_bacterium_rod	encapsulated_bacterium_rod_style4.svg	Encapsulated Bacterium — Rod	microbial-biology	corrected_flagged_artwork
+microbe.model_system.surface_attached_biofilm_plan	surface_attached_biofilm_plan_style4.svg	Surface-attached Biofilm — Plan View	microbial-biology	corrected_flagged_artwork
+microbe.cell.septate_fungal_hypha_unbranched	septate_fungal_hypha_unbranched_style4.svg	Septate Fungal Hypha — Unbranched	microbial-biology	retained_artwork
+microbe.model_system.contractile_tailed_phage_contracted	contractile_tailed_phage_contracted_style4.svg	Contractile-Tailed Bacteriophage — Contracted	microbial-biology	retained_artwork
+microbe.membrane_signaling.released_outer_membrane_vesicle	released_outer_membrane_vesicle_style4.svg	Released Bacterial Outer-Membrane Vesicle	microbial-biology	corrected_flagged_artwork
+microbe.cell.endospore_in_mother_cell	endospore_in_mother_cell_style4.svg	Endospore within Mother Cell	microbial-biology	retained_artwork
+microbe.cell.paired_cocci	paired_cocci_style4.svg	Coccoid Bacterial Arrangement	microbial-biology	corrected_flagged_artwork
+microbe.cell.chained_cocci	chained_cocci_style4.svg	Coccoid Bacterial Arrangement — Chain	microbial-biology	corrected_flagged_artwork
+microbe.cell.fungal_pseudohyphal_chain	fungal_pseudohyphal_chain_style4.svg	Fungal Pseudohyphal Chain	microbial-biology	retained_artwork
+microbe.cell.fungal_germ_tube	fungal_germ_tube_style4.svg	Fungal Germ Tube	microbial-biology	corrected_flagged_artwork
+microbe.model_system.short_tailed_bacteriophage	short_tailed_bacteriophage_style4.svg	Short-Tailed Bacteriophage	microbial-biology	corrected_flagged_artwork
+microbe.model_system.long_noncontractile_bacteriophage	long_noncontractile_bacteriophage_style4.svg	Long Noncontractile-Tailed Bacteriophage	microbial-biology	corrected_flagged_artwork
+proteostasis.protein.unfolded_polypeptide	unfolded_polypeptide_style4.svg	Unfolded Polypeptide	protein-homeostasis	corrected_flagged_artwork
+proteostasis.protein.misfolded_protein	misfolded_protein_style4.svg	Misfolded Protein	protein-homeostasis	corrected_flagged_artwork
+proteostasis.protein.hsp70_client_complex	hsp70_client_complex_style4.svg	HSP70–Client Complex	protein-homeostasis	retained_artwork
+proteostasis.protein.hsp90_client_complex	hsp90_client_complex_style4.svg	HSP90–Client Complex	protein-homeostasis	retained_artwork
+proteostasis.protein.ring_e3_ubiquitination_complex	ring_e3_ubiquitination_complex_style4.svg	RING E3 Ubiquitination Complex	protein-homeostasis	retained_artwork
+proteostasis.protein.deubiquitinase_substrate_complex	deubiquitinase_substrate_complex_style4.svg	Deubiquitinase–Substrate Complex	protein-homeostasis	retained_artwork
+proteostasis.protein.proteasomal_substrate_processing	proteasomal_substrate_processing_style4.svg	Proteasomal Substrate Processing	protein-homeostasis	retained_artwork
+proteostasis.protein.amorphous_protein_aggregate	amorphous_protein_aggregate_style4.svg	Amorphous Protein Aggregate	protein-homeostasis	corrected_flagged_artwork
+rna.lab_equipment.microfluidic_cell_partition	microfluidic_cell_partition_style4.svg	Microfluidic Cell Partition	rna-methods	corrected_flagged_artwork
+rna.nucleic_acid.barcoded_capture_bead	barcoded_capture_bead_style4.svg	Oligo-barcoded RNA Capture Bead	rna-methods	corrected_flagged_artwork
+rna.assay_workflow.spatial_capture_array	spatial_capture_array_style4.svg	Tissue-associated Spatial RNA Capture Array	rna-methods	corrected_flagged_artwork
+rna.assay_workflow.in_situ_rna_puncta	in_situ_rna_puncta_style4.svg	Illustrative In-situ RNA Puncta Field	rna-methods	corrected_flagged_artwork
+tme.cancer_associated_fibroblast.spindle	cancer_associated_fibroblast_spindle_style4.svg	Cancer-associated Fibroblast — Spindle cell	tumor-microenvironment	corrected_flagged_artwork
+tme.cancer_associated_fibroblast.matrix	cancer_associated_fibroblast_matrix_style4.svg	Cancer-associated Fibroblast — Matrix context	tumor-microenvironment	corrected_flagged_artwork
+tme.tumor_associated_neutrophil.isolated	tumor_associated_neutrophil_isolated_style4.svg	Tumor-associated Neutrophil — Isolated cell	tumor-microenvironment	corrected_flagged_artwork
+tme.tumor_associated_neutrophil.tumor_contact	tumor_associated_neutrophil_tumor_contact_style4.svg	Tumor-associated Neutrophil — Tumor context	tumor-microenvironment	corrected_flagged_artwork
+tme.car_nk_cell.receptor_display	car_nk_cell_receptor_display_style4.svg	CAR-NK Cell — Receptor display	tumor-microenvironment	corrected_flagged_artwork
+tme.car_nk_cell.target_contact	car_nk_cell_target_contact_style4.svg	CAR-NK Cell — Target contact	tumor-microenvironment	corrected_flagged_artwork
+tme.generic_immune_synapse.cell_pair	generic_immune_synapse_cell_pair_style4.svg	Immune Synapse — Generic — Cell pair	tumor-microenvironment	corrected_flagged_artwork
+tme.generic_immune_synapse.interface	generic_immune_synapse_interface_style4.svg	Immune Synapse — Generic — Interface close-up	tumor-microenvironment	corrected_flagged_artwork
+tme.dendritic_antigen_uptake.soluble	dendritic_antigen_uptake_soluble_style4.svg	Dendritic Cell Antigen Uptake — Soluble antigen	tumor-microenvironment	corrected_flagged_artwork
+tme.dendritic_antigen_uptake.particulate	dendritic_antigen_uptake_particulate_style4.svg	Dendritic Cell Antigen Uptake — Particulate antigen	tumor-microenvironment	corrected_flagged_artwork
+tme.macrophage_polarization_cue.single_cue	macrophage_polarization_cue_single_cue_style4.svg	Macrophage Polarization Cue — One cue and response range	tumor-microenvironment	corrected_flagged_artwork
+tme.macrophage_polarization_cue.multiple_cues	macrophage_polarization_cue_multiple_cues_style4.svg	Macrophage Polarization Cue — Multiple environmental cues	tumor-microenvironment	corrected_flagged_artwork
+tme.tertiary_lymphoid_structure.primary_follicle	tertiary_lymphoid_structure_primary_follicle_style4.svg	Tertiary Lymphoid Structure — B/T organization	tumor-microenvironment	corrected_flagged_artwork
+tme.tertiary_lymphoid_structure.germinal_center	tertiary_lymphoid_structure_germinal_center_style4.svg	Tertiary Lymphoid Structure — With germinal-center cue	tumor-microenvironment	corrected_flagged_artwork
+tme.hypoxia_gradient.perivascular	hypoxia_gradient_perivascular_style4.svg	Hypoxia Gradient — Vessel-to-tissue	tumor-microenvironment	corrected_flagged_artwork
+tme.hypoxia_gradient.spheroid	hypoxia_gradient_spheroid_style4.svg	Hypoxia Gradient — Spheroid section	tumor-microenvironment	corrected_flagged_artwork
+tme.drug_penetration_gradient.perivascular	drug_penetration_gradient_perivascular_style4.svg	Drug Penetration Gradient — Vessel-to-tissue	tumor-microenvironment	corrected_flagged_artwork
+tme.drug_penetration_gradient.spheroid	drug_penetration_gradient_spheroid_style4.svg	Drug Penetration Gradient — Spheroid penetration	tumor-microenvironment	corrected_flagged_artwork
+tme.lactate_metabolite_gradient.source_to_tissue	lactate_metabolite_gradient_source_to_tissue_style4.svg	Lactate / Metabolite Gradient — Source-to-tissue	tumor-microenvironment	corrected_flagged_artwork
+tme.lactate_metabolite_gradient.radial_source	lactate_metabolite_gradient_radial_source_style4.svg	Lactate / Metabolite Gradient — Local radial source	tumor-microenvironment	corrected_flagged_artwork

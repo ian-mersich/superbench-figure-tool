@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc" data-asset-id="exp.assay_workflow.elisa_assay" data-style="Style 4" data-artwork-revision="corrected-2026-10-17">
+  <title id="title">ELISA Assay</title>
+  <desc id="desc">Editable enzyme-linked immunosorbent assay schematic with capture and detection layers in a colorimetric well.</desc>
+  <g data-region="assay_surface" fill="#F8FAFC" stroke="none"><path d="M18 37h92l-11 70H29z" data-style4-method="flat-presentation-preserve-geometry"/></g>
+  <g data-region="measured_signal" fill="#B9B3DD" stroke="none"><circle cx="40" cy="73" r="4" data-style4-method="flat-presentation-preserve-geometry"/><circle cx="55" cy="65" r="4" data-style4-method="flat-presentation-preserve-geometry"/><circle cx="72" cy="72" r="4" data-style4-method="flat-presentation-preserve-geometry"/><circle cx="88" cy="64" r="4" data-style4-method="flat-presentation-preserve-geometry"/><circle cx="62" cy="88" r="4" data-style4-method="flat-presentation-preserve-geometry"/><circle cx="82" cy="89" r="4" data-style4-method="flat-presentation-preserve-geometry"/></g>
+  <g data-region="signal_trace" fill="none" stroke="#CD796C" stroke-width="1.984" stroke-linecap="round" stroke-linejoin="round"><path d="M34 95V74m0 0-8-10m8 10 8-10M58 95V70m0 0-8-10m8 10 8-10M82 95V73m0 0-8-10m8 10 8-10M106 26L90 45m16-19-3 13m3-13-13 2" data-style4-method="flat-presentation-preserve-geometry"/></g>
+  <g data-region="axes_or_structure" fill="none" stroke="#629BC0" stroke-width="1.728" stroke-linecap="round" stroke-linejoin="round"><path d="M18 37h92M29 107h70M25 54h78" data-style4-method="flat-presentation-preserve-geometry"/></g>
+  <g data-region="outline" fill="none" stroke="#344955" stroke-width="1.536" stroke-linecap="round" stroke-linejoin="round"><path d="M18 37h92l-11 70H29z" data-style4-method="flat-presentation-preserve-geometry"/></g>
+</svg>

@@ -4,13 +4,15 @@
   const clipPlanes=typeof module==='object'&&module.exports?require('./pdf-current-native-clip-planes.js'):root.FigureStudioPdfCurrentNativeClipPlanes;
   const localSvg=typeof module==='object'&&module.exports?require('./pdf-current-native-local-svg.js'):root.FigureStudioPdfCurrentNativeLocalSvg;
   const nativePlanes=typeof module==='object'&&module.exports?require('./pdf-current-native-plane-materializer.js'):root.FigureStudioPdfCurrentNativePlaneMaterializer;
-  const api=factory(protocol,generatedNumbers,clipPlanes,localSvg,nativePlanes);
+  const operatorSnapshots=typeof module==='object'&&module.exports?require('./pdf-current-native-operator-snapshots.js'):root.FigureStudioPdfCurrentNativeOperatorSnapshots;
+  const api=factory(protocol,generatedNumbers,clipPlanes,localSvg,nativePlanes,operatorSnapshots);
   if(typeof module==='object'&&module.exports)module.exports=api;
   else root.FigureStudioPdfLogicalTextRuntime=api;
-})(typeof globalThis!=='undefined'?globalThis:this,function(protocol,generatedNumbers,clipPlanes,localSvg,nativePlanes){
+})(typeof globalThis!=='undefined'?globalThis:this,function(protocol,generatedNumbers,clipPlanes,localSvg,nativePlanes,operatorSnapshots){
 'use strict';
 const ATTR='data-figure-studio-native-logical-glyph';
 const sources=new WeakMap();
+const sameCurrentOperators=(operators,snapshot,signal)=>operatorSnapshots?.isIssued(snapshot)?operatorSnapshots.same(operators,snapshot,{signal}):clipPlanes.sameOperators(operators,snapshot);
 const clone=value=>JSON.parse(JSON.stringify(value));
 const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
 const multiply=(a,b)=>[a[0]*b[0]+a[2]*b[1],a[1]*b[0]+a[3]*b[1],a[0]*b[2]+a[2]*b[3],a[1]*b[2]+a[3]*b[3],a[0]*b[4]+a[2]*b[5]+a[4],a[1]*b[4]+a[3]*b[5]+a[5]];
@@ -28,7 +30,7 @@ const PAINTS=['fill','eoFill','stroke','closeStroke','fillStroke','eoFillStroke'
 // Native font/glyph/show/order only. Geometry is read later from the current
 // decoded SVG/native object hierarchy. This never measures or renders text.
 async function nativeShows(pdfjs,page,operators,{currentClipAuthority=null}={}){
-  const currentPlaneShows=currentClipAuthority?clipPlanes?.currentShows(currentClipAuthority,operators,pdfjs.OPS):null;
+  const currentPlaneShows=currentClipAuthority?(clipPlanes?.isBatchedAuthority(currentClipAuthority)?await clipPlanes.currentShowsBatched(currentClipAuthority,operators,pdfjs.OPS):clipPlanes?.currentShows(currentClipAuthority,operators,pdfjs.OPS)):null;
   if(currentClipAuthority&&!currentPlaneShows)refuse('Current native clip authority is unavailable.');
   const fonts=new Map(),names=new Map(Object.entries(pdfjs.OPS).map(([name,id])=>[id,name]));
   for(let i=0;i<operators.fnArray.length;i++)if(operators.fnArray[i]===pdfjs.OPS.setFont){const id=operators.argsArray[i][0];if(!fonts.has(id)){const font=await new Promise(resolve=>page.commonObjs.get(id,resolve));fonts.set(id,{font,programSha256:font.data?await digest(font.data):null});}}
@@ -53,7 +55,7 @@ async function nativeShows(pdfjs,page,operators,{currentClipAuthority=null}={}){
     if(name==='endPath'){if(pendingClip!==null){current.clips.push(pendingClip.operator);current.clipSources.push(pendingClip.source);pendingClip=null;}pathPoints=null;continue;}
     if(name==='showText'||name==='showSpacedText'){
       const glyphs=args[0]?.filter?.(glyph=>glyph&&typeof glyph==='object')||[],entry=current.font,font=entry?.font;
-      if(!font||font.vertical||font.isType3Font||glyphs.length!==1||!Number.isFinite(current.size)||current.size<=0||current.groupDepth)refuse('Own-export logical source requires scalar horizontal native text shows outside Forms.');
+      if(!font||font.vertical||font.isType3Font||glyphs.length!==1||!Number.isFinite(current.size)||current.size<=0||current.groupDepth)refuse(`Own-export logical source requires scalar horizontal native text shows outside Forms (show ${index}, glyphs ${glyphs.length}, font ${font?.name||'missing'}, vertical ${Boolean(font?.vertical)}, Type3 ${Boolean(font?.isType3Font)}, size ${current.size}, Form depth ${current.groupDepth}).`);
       const glyph=glyphs[0];
       shows.push({unicode:glyph.unicode,fontChar:glyph.fontChar,sourceFontName:font.name,fontSize:current.size,fontWeight:font.bold?'bold':'normal',fontStyle:font.italic?'italic':'normal',sourceEmbeddedProgram:!font.missingFile,programSha256:entry.programSha256,sourceAdvance:glyph.width*(font.fontMatrix?.[0]||.001),sourceTextShowIndex:index++,nativeShowGlyphCount:1,sourceOperatorIndex:operation,paintOrdinal:paintOrdinal++,clipOperatorIndexes:current.clips.slice(),nativeClipSources:clone(current.clipSources)});continue;
     }
@@ -71,9 +73,9 @@ async function completeOwnExport(bytes,capture,{pdfjs,pdfLib}) {
   // Authenticate the actual writer's original rows before any numeric rewrite.
   const {document,content}=await protocol.readContent(bytes,pdfLib);
   let marker=await capture.finish(content),finalBytes=bytes,finalContent=content;
-  if(!generatedNumbers?.rewriteOwnedContent||!generatedNumbers?.auditedDecimal||!protocol.rebindOwnGeneratedContent) refuse('Own generated number preservation is unavailable.');
-  const rewritten=generatedNumbers.rewriteOwnedContent(content);
-  const rebound=await protocol.rebindOwnGeneratedContent(marker,content,rewritten.content,{decodeNumericToken:generatedNumbers.auditedDecimal});
+  if(!generatedNumbers?.rewriteOwnedContentBatched||!generatedNumbers?.auditedDecimal||!protocol.rebindOwnGeneratedContentBatched) refuse('Own generated number preservation is unavailable.');
+  const rewritten=await generatedNumbers.rewriteOwnedContentBatched(content);
+  const rebound=await protocol.rebindOwnGeneratedContentBatched(marker,content,rewritten.content,{decodeNumericToken:generatedNumbers.auditedDecimal});
   marker=rebound.marker;
   if(rewritten.content!==content){
     const page=document.getPages()[0],name=pdfLib.PDFName.of;
@@ -90,7 +92,7 @@ async function completeOwnExport(bytes,capture,{pdfjs,pdfLib}) {
   await protocol.validateNativeShows(marker,finalContent,shows);
   return protocol.attachMarker(finalBytes,marker,pdfLib);
 }
-async function sourceForPage({handle,page,operators,pdfjs,bytes,pageNumber,loadPdfLib}){
+async function sourceForPage({handle,page,operators,pdfjs,bytes,pageNumber,loadPdfLib,signal}){
   const info=(await handle.getMetadata()).info,raw=info?.Custom?.[protocol.INFO_KEY];
   if(raw===undefined)return null;
   if(typeof raw!=='string'||raw.length>2000000||pageNumber!==1||handle.numPages!==1||typeof loadPdfLib!=='function')refuse('Malformed or unsupported native logical source descriptor.');
@@ -103,18 +105,37 @@ async function sourceForPage({handle,page,operators,pdfjs,bytes,pageNumber,loadP
   await protocol.validateNativeShows(marker,content,shows);
   if(clipPlanes&&await digest(new Uint8Array(bytes))!==bytesSha256)refuse('Authenticated input bytes changed during current source validation.');
   const token=Object.freeze({schema:'figureStudio.currentPdfLogicalTextSource.v1',contentSha256:marker.contentSha256,nativeGlyphCount:shows.length});
-  let operatorSnapshot=null;if(clipPlanes){try{operatorSnapshot=clipPlanes.captureOperators(operators);}catch(error){if(error.code!=='PDF_LOGICAL_TEXT_UNSUPPORTED')throw error;}}
-  sources.set(token,{marker,content,shows,observed:0,spans:new WeakSet(),svgSha256:null,handle,pageNumber,bytesSha256,page,operators,pdfjs,operatorSnapshot,currentClipAuthority:null});return token;
+  let operatorSnapshot=null;if(clipPlanes){try{operatorSnapshot=clipPlanes.captureOperators(operators);}catch(error){if(error.code!=='PDF_LOGICAL_TEXT_UNSUPPORTED')throw error;if(operatorSnapshots)operatorSnapshot=await operatorSnapshots.capture(operators,{signal});}}
+  sources.set(token,{marker,content,shows,observed:0,spans:new WeakSet(),svgSha256:null,handle,pageNumber,bytesSha256,page,operators,pdfjs,operatorSnapshot,currentClipAuthority:null,signal});return token;
+}
+async function sourceForCanonicalReplayPage({handle,page,operators,pdfjs,bytes,pageNumber,loadPdfLib,signal}){
+  // Fixed module lookup is lazy so the detached current owner does not create
+  // an adapter/runtime/CommonJS initialization cycle.
+  const info=(await handle.getMetadata()).info,raw=info?.Custom?.FigureStudioCurrentCanonicalReplayV1;
+  if(raw===undefined)return null;
+  const canonical=typeof module==='object'&&module.exports?require('./pdf-dense-current-canonical-transport.js'):globalThis.FigureStudioPdfDenseCurrentCanonicalTransport;
+  if(!canonical?.sourceMarker||!canonical?.validateMarker)refuse('Canonical current source transport is unavailable.');
+  if(info?.Custom?.[protocol.INFO_KEY]!==undefined||typeof raw!=='string'||raw.length>2000000||pageNumber!==1||handle.numPages!==1||typeof loadPdfLib!=='function')refuse('Conflicting, malformed or unsupported canonical replay source descriptor.');
+  let descriptor;try{descriptor=JSON.parse(raw);}catch(_){refuse('Malformed canonical replay source descriptor.');}
+  canonical.validateMarker(descriptor);
+  const bytesSha256=await digest(new Uint8Array(bytes)),pdfLib=await loadPdfLib(),checked=await canonical.readMarker(bytes,pdfLib);
+  if(!same(descriptor,checked))refuse('Canonical source native information/content binding differs.');
+  const marker=await canonical.sourceMarker(bytes,pdfLib),{content}=await protocol.readContent(bytes,pdfLib),shows=await nativeShows(pdfjs,page,operators);
+  await protocol.validateNativeShows(marker,content,shows);
+  if(await digest(new Uint8Array(bytes))!==bytesSha256)refuse('Authenticated canonical input bytes changed during source validation.');
+  const token=Object.freeze({schema:'figureStudio.currentCanonicalPdfLogicalTextSource.v1',contentSha256:marker.contentSha256,nativeGlyphCount:shows.length});
+  let operatorSnapshot=null;try{operatorSnapshot=clipPlanes.captureOperators(operators);}catch(error){if(error.code!=='PDF_LOGICAL_TEXT_UNSUPPORTED')throw error;operatorSnapshot=await operatorSnapshots.capture(operators,{signal});}
+  sources.set(token,{marker,content,shows,observed:0,spans:new WeakSet(),svgSha256:null,handle,pageNumber,bytesSha256,page,operators,pdfjs,operatorSnapshot,currentClipAuthority:null,signal});return token;
 }
 async function bindCurrentClipPlanes(token,{page,operators,pdfjs,viewport}){
   const source=sources.get(token);
-  if(!source||source.page!==page||source.operators!==operators||source.pdfjs!==pdfjs||source.observed!==0||source.svgSha256!==null||source.currentClipAuthority||!clipPlanes||!source.operatorSnapshot||!clipPlanes.sameOperators(operators,source.operatorSnapshot))refuse('Current clip plane route requires the unchanged private authenticated native source page/operators.');
+  if(!source||source.page!==page||source.operators!==operators||source.pdfjs!==pdfjs||source.observed!==0||source.svgSha256!==null||source.currentClipAuthority||!clipPlanes||!source.operatorSnapshot||!await sameCurrentOperators(operators,source.operatorSnapshot,source.signal))refuse('Current clip plane route requires the unchanged private authenticated native source page/operators.');
   if(!source.handle||await source.handle.getPage(source.pageNumber)!==page||typeof source.handle.getData!=='function'||await digest(await source.handle.getData())!==source.bytesSha256)refuse('Current native page/operators must belong to the actual decoded handle for the authenticated source bytes.');
   const actualOperators=await page.getOperatorList(),view=page.view,expected=page.getViewport({scale:96/72});
   if(actualOperators!==operators||!Array.isArray(view)||view.length!==4||!view.every(Number.isFinite)||view[0]!==0||view[1]!==0||!(view[2]>0&&view[3]>0)||page.rotate!==0||page.userUnit!==1||!viewport||!viewport.transform||viewport.transform.length!==6||viewport.transform.some((value,index)=>!Object.is(value,expected.transform[index]))||!Object.is(viewport.width,expected.width)||!Object.is(viewport.height,expected.height))refuse('Current clip plane route requires the genuine native unrotated unit-one pixel viewport.');
-  const currentClipAuthority=clipPlanes.bindCurrentOperators(operators,pdfjs.OPS,viewport),shows=await nativeShows(pdfjs,page,operators,{currentClipAuthority});
+  const currentClipAuthority=operatorSnapshots?.isIssued(source.operatorSnapshot)?await clipPlanes.bindCurrentOperatorsBatched(operators,pdfjs.OPS,viewport,source.operatorSnapshot,{signal:source.signal}):clipPlanes.bindCurrentOperators(operators,pdfjs.OPS,viewport),shows=await nativeShows(pdfjs,page,operators,{currentClipAuthority});
   await protocol.validateNativeShows(source.marker,source.content,shows);
-  if(!clipPlanes.sameOperators(operators,source.operatorSnapshot)||source.observed!==0||source.svgSha256!==null||source.currentClipAuthority)refuse('Current authenticated clip source changed during plane proof.');
+  if(!await sameCurrentOperators(operators,source.operatorSnapshot,source.signal)||source.observed!==0||source.svgSha256!==null||source.currentClipAuthority)refuse('Current authenticated clip source changed during plane proof.');
   source.shows=shows;source.currentClipAuthority=currentClipAuthority;return currentClipAuthority;
 }
 function observeDecodedText(token,span,recovered,font,nativeSize){
@@ -178,9 +199,13 @@ async function finishDecodedSvg(token,svgText,svg){
   if(!svg||!matrixApi)refuse('Current native decoded SVG hierarchy is unavailable.');
   const spans=Array.from(svg.querySelectorAll('tspan')).filter(span=>span.hasAttribute(ATTR));
   if(spans.length!==source.shows.length)refuse('Current SVG source scalar text membership differs.');
-  try{source.svgGlyphs=spans.map((span,index)=>{if(span.getAttribute(ATTR)!==String(index))refuse('Current SVG scalar text order changed.');return {effectiveClip:source.currentClipAuthority?clipPlanes.matchDecodedSvgClip(source.currentClipAuthority,span,svg,index,svgRectangle):decodedSvgClip(span,svg,source.shows[index],matrixApi)};});}
+  try{if(source.currentClipAuthority){
+    spans.forEach((span,index)=>{if(span.getAttribute(ATTR)!==String(index))refuse('Current SVG scalar text order changed.');});
+    source.svgGlyphs=(await clipPlanes.matchDecodedSvgClipsBatched(source.currentClipAuthority,spans,svg,svgRectangle,{svgText,signal:source.signal})).map(effectiveClip=>({effectiveClip}));
+  }else source.svgGlyphs=spans.map((span,index)=>{if(span.getAttribute(ATTR)!==String(index))refuse('Current SVG scalar text order changed.');return {effectiveClip:source.currentClipAuthority?clipPlanes.matchDecodedSvgClip(source.currentClipAuthority,span,svg,index,svgRectangle):decodedSvgClip(span,svg,source.shows[index],matrixApi)};});}
   catch(error){if(error.code!=='PDF_LOGICAL_TEXT_UNSUPPORTED')throw error;source.unsupportedGeometry=String(error.message);}
   source.svgSha256=await digest(new TextEncoder().encode(svgText));
+  if((source.currentClipAuthority||operatorSnapshots?.isIssued(source.operatorSnapshot))&&new XMLSerializer().serializeToString(svg)!==svgText)refuse('Current native SVG changed during completion hashing.');
   if(source.currentClipAuthority&&!source.unsupportedGeometry){source.svg=svg;source.domSnapshot=JSON.stringify(currentSvgDom(svg));}
   return token;
 }
@@ -232,18 +257,19 @@ function isConstructedCurrentPlaneObjects(result) {
       || result.runCount !== receipt.runCount || result.nativeGlyphCount !== receipt.nativeGlyphCount) return false;
   try { return sameConstructedPlaneMethods(receipt.methods) && currentConstructedPlaneSnapshot(result.root) === receipt.snapshot; } catch (_) { return false; }
 }
-function currentNativeRenderer(token, { Base, page, operators, pdfjs, viewport }) {
+async function currentNativeRenderer(token, { Base, page, operators, pdfjs, viewport }) {
   const source = sources.get(token);
   if (!source || source.page !== page || source.operators !== operators || source.pdfjs !== pdfjs
       || !source.currentClipAuthority || source.observed !== 0 || source.svgSha256 !== null || !localSvg
-      || !clipPlanes.sameOperators(operators, source.operatorSnapshot)) refuse('Current native SVG rendering requires the privately bound unchanged source page.');
-  return localSvg.createGraphicsClass(Base, { authority: source.currentClipAuthority, operators, pdfjs, viewport });
+      || !await sameCurrentOperators(operators, source.operatorSnapshot,source.signal)) refuse('Current native SVG rendering requires the privately bound unchanged source page.');
+  const options={ authority: source.currentClipAuthority, operators, pdfjs, viewport, signal: source.signal };
+  return operatorSnapshots?.isIssued(source.operatorSnapshot)?localSvg.createGraphicsClassBatched(Base,options,source.operatorSnapshot):localSvg.createGraphicsClass(Base,options);
 }
 async function constructCurrentPlaneObjects({ token, svgText, svg, fabric, materializer }) {
   const source = sources.get(token);
   if (!source || !source.currentClipAuthority || source.svg !== svg || source.constructed || source.unsupportedGeometry
       || !source.svgSha256 || source.svgSha256 !== await digest(new TextEncoder().encode(svgText)) || !nativePlanes
-      || !clipPlanes.sameOperators(source.operators, source.operatorSnapshot)) refuse('Current native plane construction requires its completed privately authenticated SVG.');
+      || !await sameCurrentOperators(source.operators, source.operatorSnapshot,source.signal)) refuse('Current native plane construction requires its completed privately authenticated SVG.');
   const dom = currentSvgDom(svg);
   if (JSON.stringify(dom) !== source.domSnapshot) refuse('Current decoded SVG changed after native clip validation.');
   const spans = Array.from(svg.querySelectorAll('tspan')).filter(span => source.spans.has(span));
@@ -266,9 +292,9 @@ async function constructCurrentPlaneObjects({ token, svgText, svg, fabric, mater
   const validated = await protocol.validatePackets(source.marker, source.content, glyphs.map(glyph => glyph.packet));
   const input = { schema: 'figureStudio.currentNativePdfPlaneHandoffInput.v1', dom,
     runs: validated.map(run => ({ run: source.marker.runs.find(row => row.id === run.id), shows: run.members.map(member => glyphs[member.sourceTextShowIndex]) })) };
-  if (source.domSnapshot !== JSON.stringify(currentSvgDom(svg)) || !clipPlanes.sameOperators(source.operators, source.operatorSnapshot)) refuse('Current native construction inputs changed during validation.');
-  const result = await nativePlanes.construct(fabric, materializer, input);
-  if (source.domSnapshot !== JSON.stringify(currentSvgDom(svg)) || !clipPlanes.sameOperators(source.operators, source.operatorSnapshot)) refuse('Current native construction inputs changed during native object creation.');
+  if (!await sameCurrentOperators(source.operators, source.operatorSnapshot,source.signal) || source.domSnapshot !== JSON.stringify(currentSvgDom(svg))) refuse('Current native construction inputs changed during validation.');
+  const result = await nativePlanes.construct(fabric, materializer, input,{signal:source.signal});
+  if (!await sameCurrentOperators(source.operators, source.operatorSnapshot,source.signal) || source.domSnapshot !== JSON.stringify(currentSvgDom(svg))) refuse('Current native construction inputs changed during native object creation.');
   source.constructed = true;
   const report = Object.freeze({ status: 'complete', unsupported: [], runCount: validated.length, nativeGlyphCount: glyphs.length,
     objectCount: result.paints.length, pathCount: result.paints.filter(row => row.kind === 'path' || row.kind === 'rect').length });
@@ -323,5 +349,5 @@ async function coalesceCurrentObjects(objects,{token,svgText,fabric,TextClass,de
   }
   return {objects:objects.filter(object=>!removed.has(object)).map(object=>replacements.get(object)||object),status:'coalesced-current-native-source',runCount:runs.length,nativeGlyphCount:packets.length};
 }
-return {ATTR,ownExportObserver,nativeShows,decodeShows,completeOwnExport,sourceForPage,bindCurrentClipPlanes,currentNativeRenderer,constructCurrentPlaneObjects,isConstructedCurrentPlaneObjects,observeDecodedText,svgMatrix,svgRectangle,decodedSvgClip,finishDecodedSvg,rectanglePoints,currentClip,coalesceCurrentObjects};
+return {ATTR,ownExportObserver,nativeShows,decodeShows,completeOwnExport,sourceForPage,sourceForCanonicalReplayPage,bindCurrentClipPlanes,currentNativeRenderer,constructCurrentPlaneObjects,isConstructedCurrentPlaneObjects,observeDecodedText,svgMatrix,svgRectangle,decodedSvgClip,finishDecodedSvg,rectanglePoints,currentClip,coalesceCurrentObjects};
 });

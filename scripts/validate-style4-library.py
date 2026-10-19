@@ -114,12 +114,30 @@ def validate(style_dir: Path, library: Path = IMPORT.LIBRARY, *, expected_count:
     if recovery:
         expected_files.add("recovery-selection.json")
     actual_files = {path.relative_to(style_dir).as_posix() for path in style_dir.rglob("*") if path.is_file()}
+    correction = None
+    correction_manifest = "manifest-corrected-20261017.json"
+    descriptor = json.loads(library.read_text(encoding="utf-8"))
+    selected_correction = any(item.get("path") == "style-4/" + correction_manifest for item in descriptor.get("art_styles", []))
+    if (style_dir / correction_manifest).is_file() or selected_correction:
+        correction_spec = importlib.util.spec_from_file_location("style4_correction", ROOT / "scripts/import-style4-correction.py")
+        correction_import = importlib.util.module_from_spec(correction_spec)
+        correction_spec.loader.exec_module(correction_import)
+        correction = correction_import.validate_overlay(style_dir, library)
+        # Ignore only the exact files whose identity and selection were just
+        # validated. Historical manifests, source records and SVGs still pass
+        # every original check above without exemptions.
+        actual_files -= set(correction.pop("owned_files"))
     if actual_files != expected_files:
         raise ValueError(f"Unexpected or missing Style 4 files: {sorted(actual_files ^ expected_files)}")
     if source_archive is not None:
         files = IMPORT.build_import(source_archive, library, expected_count=expected_count, recovery_archive=recovery_archive)
-        IMPORT.write_import(files, style_dir, check=True)
-    return {"status": "PASS", "asset_count": len(assets), "file_count": len(actual_files), "duplicate_id_repairs": id_repairs, "regions_with_multiple_paints": multicolor_regions, "recovered_asset_count": len(selected), "corrected_asset_count": sum(bool(entry.get("corrections")) for entry in selected.values()), "source_archive_verified": source_archive is not None}
+        for relative, data in files.items():
+            if (style_dir / relative).read_bytes() != data:
+                raise ValueError(f"Imported output differs from reproducible source: {relative}")
+    result = {"status": "PASS", "asset_count": len(assets), "file_count": len(actual_files), "duplicate_id_repairs": id_repairs, "regions_with_multiple_paints": multicolor_regions, "recovered_asset_count": len(selected), "corrected_asset_count": sum(bool(entry.get("corrections")) for entry in selected.values()), "source_archive_verified": source_archive is not None}
+    if correction:
+        result["correction_overlay"] = correction
+    return result
 
 
 def main() -> int:

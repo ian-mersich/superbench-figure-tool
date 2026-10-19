@@ -49,7 +49,7 @@
       "Supported run-level text spans remain editable. Superscript, subscript, baseline shift, strike, highlight, and text effects are approximated with warnings.",
       "Gradient and pattern paints use the first supported solid color when available; otherwise they are omitted with a warning.",
       "Groups containing unsupported Figure Tool vector children are embedded as one editable-position SVG image.",
-      "Elbow and curved connectors are reduced to straight connectors."
+      "Legacy elbow and curved connectors are reduced to straight connectors. Native arrows or their containing groups use SVG images; their internal shapes, endpoints, and attachments are not independently editable."
     ],
     unsupported: [
       "SmartArt and diagrams",
@@ -645,7 +645,8 @@
     const rotation = Math.round(finite(bounds.rotation) * 60000);
     const flipH = options.flipH ? " flipH=\"1\"" : "";
     const flipV = options.flipV ? " flipV=\"1\"" : "";
-    return `<a:xfrm${rotation ? ` rot="${rotation}"` : ""}${flipH}${flipV}><a:off x="${toEmu(bounds.x)}" y="${toEmu(bounds.y)}"/><a:ext cx="${toEmu(bounds.width)}" cy="${toEmu(bounds.height)}"/></a:xfrm>`;
+    const positionEmu = options.nativeSvgRoot === true ? (value) => Math.round(finite(value) * EMU_PER_POINT) : toEmu;
+    return `<a:xfrm${rotation ? ` rot="${rotation}"` : ""}${flipH}${flipV}><a:off x="${positionEmu(bounds.x)}" y="${positionEmu(bounds.y)}"/><a:ext cx="${toEmu(bounds.width)}" cy="${toEmu(bounds.height)}"/></a:xfrm>`;
   }
 
   function groupTransformXml(object) {
@@ -1301,6 +1302,7 @@
   }
 
   function svgElementForFabric(object, options = {}, svgState = { clipCount: 0 }) {
+    if (!fabricObjectExportable(object)) return "";
     const type = String(object?.type || "").toLowerCase();
     const opacity = clamp(object?.opacity == null ? 1 : object.opacity, 0, 1);
     const fillSource = solidPaintCandidate(object?.fill, "");
@@ -1573,6 +1575,53 @@
     return Boolean(object) && object.visible !== false && object.excludeFromExport !== true;
   }
 
+  function requiresNativeSvgRoot(object) {
+    if (!fabricObjectExportable(object)) return false;
+    if (String(object.figureType || "").toLowerCase() === "smartconnector" && Object.prototype.hasOwnProperty.call(object.smartConnectorMeta || {}, "geometrySpace")) {
+      if (object.smartConnectorMeta.geometrySpace !== "object") throw new Error("This arrow uses unsupported coordinates and cannot be exported to PowerPoint.");
+      return true;
+    }
+    return (object.objects || []).some(requiresNativeSvgRoot)
+      || Boolean(object.clipPath && requiresNativeSvgRoot({ ...object.clipPath, visible: true, excludeFromExport: false }));
+  }
+
+  async function prepareNativeSvgProject(payload, options) {
+    if (typeof options.resolveNativeSvgRoot !== "function") return payload;
+    // The callback receives only detached JSON; native reconstruction and SVG
+    // capture cannot mutate the live project or its frozen export descriptor.
+    const prepared = JSON.parse(JSON.stringify(payload));
+    const project = rawProject(prepared) || {};
+    const pages = Array.isArray(project.deck?.pages) && project.deck.pages.length ? project.deck.pages
+      : [{ id: "slide-1", artboard: project.artboard || defaultArtboardForProject(project), fabric: project.fabric }];
+    for (let slideIndex = 0; slideIndex < pages.length; slideIndex += 1) {
+      const page = pages[slideIndex];
+      const fabric = page.fabric || (page.fabricRef === "project.fabric" || page.id === project.deck?.activePageId ? project.fabric : null) || { objects: [] };
+      const replacements = [];
+      for (let objectIndex = 0; objectIndex < (fabric.objects || []).length; objectIndex += 1) {
+        const object = fabric.objects[objectIndex];
+        if (!requiresNativeSvgRoot(object)) { replacements.push(object); continue; }
+        const captured = await options.resolveNativeSvgRoot(object, { project, page, fabric, slideIndex, objectIndex });
+        const bounds = captured?.bounds;
+        if (!captured || !/^\s*<svg\b/i.test(captured.svg || "") || !bounds || ![bounds.left, bounds.top, bounds.width, bounds.height].every(Number.isFinite) || bounds.width <= 0 || bounds.height <= 0) {
+          const error = new Error("The native arrow SVG could not be prepared. Export PDF or slide PNG instead.");
+          error.code = "pptx-native-arrow-svg-required";
+          throw error;
+        }
+        replacements.push({ type: "image", figureId: object.figureId || object.id || "", name: object.name || object.figureName || "Arrow artwork",
+          left: bounds.left, top: bounds.top, width: bounds.width, height: bounds.height, originX: "left", originY: "top",
+          scaleX: 1, scaleY: 1, angle: 0, skewX: 0, skewY: 0, flipX: false, flipY: false, opacity: 1,
+          src: captured.svg, mediaType: "image/svg+xml", figureStudioPptxNativeSvg: { schema: "figureStudio.pptxNativeSvg.v1" } });
+      }
+      page.fabric = { ...fabric, objects: replacements };
+      delete page.fabricRef;
+    }
+    if (Array.isArray(project.deck?.pages) && project.deck.pages.length) {
+      const active = pages.find((page) => page.id === project.deck.activePageId) || pages[0];
+      project.fabric = active.fabric;
+    } else project.fabric = pages[0].fabric;
+    return prepared;
+  }
+
   function labelAnchorY(label, parentBounds, scaleToPoints) {
     const align = labelVerticalAlignForFabric(label);
     if (align === "middle") return parentBounds.y + parentBounds.height / 2;
@@ -1747,6 +1796,11 @@
 
   function fabricObjectToCanonical(object, scaleToPoints, warnings, context, options = {}) {
     if (!fabricObjectExportable(object)) return null;
+    if (requiresNativeSvgRoot(object)) {
+      const error = new Error("Native arrows require SVG preparation for PowerPoint export. Export through Figure Tool, or use PDF or slide PNG.");
+      error.code = "pptx-native-arrow-svg-required";
+      throw error;
+    }
     const type = String(object.type || "").toLowerCase();
     const figureType = String(object.figureType || "").toLowerCase();
     const bounds = fabricBounds(object, scaleToPoints);
@@ -1793,7 +1847,10 @@
     if (type === "rect") return shapePaint(finite(object.rx, 0) > 0 || finite(object.ry, 0) > 0 ? "roundRect" : "rect");
     if (type === "ellipse" || type === "circle") return shapePaint("ellipse");
     if (type === "triangle") return shapePaint("triangle");
-    if (type === "image") return { kind: "image", ...common, src: object.src || object.dataUrl || object._element?.src || "", mediaType: object.mediaType || "", alt: object.alt || object.name || "" };
+    if (type === "image") {
+      if (object.figureStudioPptxNativeSvg?.schema === "figureStudio.pptxNativeSvg.v1") warnings.add("native-arrow-root-as-svg", "An arrow or containing group was embedded as one SVG image. Its internal shapes, arrow endpoints and attachments are not independently editable in PowerPoint.", { ...context, objectName: common.name, action: "embedded-svg" });
+      return { kind: "image", ...common, src: object.src || object.dataUrl || object._element?.src || "", mediaType: object.mediaType || "", alt: object.alt || object.name || "", ...(object.figureStudioPptxNativeSvg?.schema === "figureStudio.pptxNativeSvg.v1" ? { nativeSvgRoot: true } : {}) };
+    }
     if (type === "group" && fabricGroupSupportsEditablePptx(object)) {
       const dimensions = fabricRawDimensions(object);
       const coordinateWidth = dimensions.width * scaleToPoints;
@@ -1810,7 +1867,7 @@
   }
 
   function rawProject(payload) {
-    return payload?.schema === "figureStudio.projectPayload.v1" && payload.project ? payload.project : payload;
+    return ["figureStudio.projectPayload.v1", "figureStudio.projectPayload.v2"].includes(payload?.schema) && payload.project ? payload.project : payload;
   }
 
   function defaultArtboardForProject(project) {
@@ -1859,7 +1916,8 @@
   }
 
   async function exportProject(payload, options = {}) {
-    const mapped = projectToPresentation(payload, options);
+    const prepared = await prepareNativeSvgProject(payload, options);
+    const mapped = projectToPresentation(prepared, options);
     const result = await exportPresentation(mapped.presentation, options);
     result.warnings = [...mapped.warnings, ...result.warnings];
     result.projectSchema = rawProject(payload)?.schema || "legacy";
@@ -2720,6 +2778,7 @@
     exportPresentation,
     importPptx,
     projectToPresentation,
+    requiresNativeSvgRoot,
     presentationToFigureStudioProject,
     inspectPackage,
     normalizePresentation,

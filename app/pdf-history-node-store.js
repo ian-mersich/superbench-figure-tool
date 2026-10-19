@@ -8,6 +8,7 @@
   const SCHEMA = "figureStudio.runtimePdfHistory.v1";
   const REF_KEY = "$figureStudioPdfHistoryNode";
   const PREFIX = `{"schema":"${SCHEMA}"`;
+  const DENSE_PAGE_SCHEMA = "figureStudio.pdfDensePage.v1";
   const own = (value, key) => Object.prototype.hasOwnProperty.call(value, key);
   const isObject = (value) => value && typeof value === "object" && !Array.isArray(value);
   const isRef = (value) => isObject(value) && Object.keys(value).length === 1 && own(value, REF_KEY) && Number.isSafeInteger(value[REF_KEY]) && value[REF_KEY] > 0;
@@ -91,12 +92,63 @@
       return output;
     }
 
+    _sourceIdentity(value, builder, resolveReferences = true) {
+      if (resolveReferences && isRef(value)) return (this._nodes.get(value[REF_KEY]) || builder?.staged.get(value[REF_KEY]))?.sourceIdentity || null;
+      return isObject(value) && typeof value.sha256 === "string" && /^[a-f0-9]{64}$/.test(value.sha256) && Number.isSafeInteger(value.byteLength) && value.byteLength > 0
+        && Number.isSafeInteger(value.pageNumber) && value.pageNumber > 0
+        ? Object.freeze({ sha256: value.sha256, byteLength: value.byteLength, pageNumber: value.pageNumber }) : null;
+    }
+
+    _externalIndex(value, builder, resolveReferences = true) {
+      const pending = [value], seen = new Set(), records = new Map();
+      let complete = true;
+      const add = row => records.set(JSON.stringify([row.assetId, row.stateId, row.source.sha256, row.source.byteLength, row.source.pageNumber]), row);
+      while (pending.length) {
+        const item = pending.pop();
+        if (!item || typeof item !== "object" || seen.has(item)) continue;
+        seen.add(item);
+        if (resolveReferences && isRef(item)) {
+          const entry = this._nodes.get(item[REF_KEY]) || builder?.staged.get(item[REF_KEY]);
+          if (!entry || !entry.externalReferences || entry.externalComplete === false) complete = false;
+          for (const row of entry?.externalReferences || []) add(row);
+          continue;
+        }
+        if (item.schema === DENSE_PAGE_SCHEMA) {
+          const source = this._sourceIdentity(item.source, builder, resolveReferences);
+          if (typeof item.assetId !== "string" || !item.assetId || item.assetId.length > 256
+              || typeof item.stateId !== "string" || !item.stateId || item.stateId.length > 256 || !source) complete = false;
+          else add(Object.freeze({ assetId: item.assetId, stateId: item.stateId, source }));
+        }
+        for (const key of Object.keys(item)) pending.push(item[key]);
+      }
+      return { externalReferences: Object.freeze([...records.values()]), externalComplete: complete };
+    }
+
+    _externalSnapshotInfo(snapshot) {
+      if (typeof snapshot !== "string") throw new Error("History reachability requires serialized snapshot strings.");
+      const info = this._snapshotInfo(snapshot);
+      if (!info.externalReferences) {
+        // Raw legacy frames are indexed once. Current encoders register their
+        // already-owned encoded state in _finish, without a second JSON parse.
+        const value = this.isCompact(snapshot) ? this._envelope(snapshot).state : JSON.parse(snapshot);
+        Object.assign(info, this._externalIndex(value, null, this.isCompact(snapshot)));
+      }
+      if (info.externalComplete === false) throw new Error("PDF history external source references are incomplete; source owners cannot be collected.");
+      return info;
+    }
+
+    indexExternalReferences(snapshot) {
+      const info = this._externalSnapshotInfo(snapshot);
+      // Never expose the pool's cached arrays or reachability Sets.
+      return { externalReferences: info.externalReferences.map(row => ({ assetId: row.assetId, stateId: row.stateId, source: { ...row.source } })), complete: true };
+    }
+
     _snapshotInfo(snapshot) {
-      if (!this.isCompact(snapshot)) return { bytes: byteLength(snapshot), approximateStringHeapBytes: snapshot.length * 2, refs: new Set() };
       let info = this._snapshots.get(snapshot);
       if (!info) {
-        const envelope = this._envelope(snapshot);
-        info = { ...textMetrics(snapshot), refs: this._references(envelope.state) };
+        const envelope = this.isCompact(snapshot) ? this._envelope(snapshot) : null;
+        info = { ...textMetrics(snapshot), refs: envelope ? this._references(envelope.state) : new Set(),
+          ...(envelope ? this._externalIndex(envelope.state) : {}) };
         this._snapshots.set(snapshot, info);
       }
       return info;
@@ -127,7 +179,8 @@
         }
       }
       const id = this._nextId++;
-      const entry = Object.freeze({ id, json, hash, bytes: metrics.bytes, approximateStringHeapBytes: metrics.approximateStringHeapBytes, refs: Object.freeze([...this._references(value)]) });
+      const entry = Object.freeze({ id, json, hash, bytes: metrics.bytes, approximateStringHeapBytes: metrics.approximateStringHeapBytes,
+        refs: Object.freeze([...this._references(value)]), sourceIdentity: this._sourceIdentity(value, builder), ...this._externalIndex(value, builder) });
       builder.staged.set(id, entry);
       builder.stageBytes += entry.bytes;
       builder.stageHeapBytes += entry.approximateStringHeapBytes;
@@ -165,7 +218,13 @@
     }
 
     _finish(builder, state) {
-      if (!builder.pdfNodeCount || builder.reserved) return { snapshot: builder.snapshot ?? JSON.stringify(builder.sourceValue), compacted: false, reason: builder.reserved ? "reserved-source-field" : "no-pdf-nodes", sourceBytes: builder.sourceBytes, snapshotBytes: builder.sourceBytes, newNodeCount: 0, newNodeBytes: 0 };
+      if (!builder.pdfNodeCount || builder.reserved) {
+        const snapshot = builder.snapshot ?? JSON.stringify(builder.sourceValue);
+        const rawState = builder.reserved ? (builder.sourceValue || JSON.parse(snapshot)) : state;
+        this._snapshots.set(snapshot, { bytes: builder.sourceBytes, approximateStringHeapBytes: snapshot.length * 2, refs: new Set(),
+          ...this._externalIndex(rawState, null, false) });
+        return { snapshot, compacted: false, reason: builder.reserved ? "reserved-source-field" : "no-pdf-nodes", sourceBytes: builder.sourceBytes, snapshotBytes: builder.sourceBytes, newNodeCount: 0, newNodeBytes: 0 };
+      }
       const snapshot = JSON.stringify({ schema: SCHEMA, session: this.sessionId, state });
       const metrics = textMetrics(snapshot), roots = this._references(state);
       // All parsing/predicate/serialization work succeeds before pooled records
@@ -175,7 +234,7 @@
         const bucket = this._index.get(entry.hash) || [];
         bucket.push(id); this._index.set(entry.hash, bucket);
       }
-      this._snapshots.set(snapshot, { ...metrics, refs: roots });
+      this._snapshots.set(snapshot, { ...metrics, refs: roots, ...this._externalIndex(state, builder) });
       for (const [value, scope, memo] of builder.memoUpdates || []) {
         const scopes = this._memo.get(value) || new Map();
         scopes.set(scope, memo); this._memo.set(value, scopes);
@@ -374,6 +433,24 @@
     }
 
     expand(snapshot) { return JSON.stringify(this.parse(snapshot)); }
+
+    externalReferences(snapshots, { includePins = true } = {}) {
+      if (!Array.isArray(snapshots) || typeof includePins !== "boolean") throw new Error("External history references require snapshot roots and a pin policy.");
+      // Validate every reachable node/session before returning any collection
+      // decision. A malformed root can never partially release a source owner.
+      const reachable = this._reachable(snapshots, includePins), records = new Map();
+      const add = rows => { for (const row of rows) records.set(JSON.stringify([row.assetId, row.stateId, row.source.sha256, row.source.byteLength, row.source.pageNumber]), row); };
+      for (const snapshot of reachable.snapshotSet) add(this._externalSnapshotInfo(snapshot).externalReferences);
+      if (includePins && this._builder) {
+        // The walker may not have visited a later raw descriptor yet. Refuse a
+        // source-collection decision until the entire encode commits instead
+        // of traversing the complete input again at every cooperative yield.
+        throw new Error("Pending PDF history external references are incomplete; retain source owners until encoding settles.");
+      }
+      return { densePdf: [...records.values()].map(row => ({ assetId: row.assetId, stateId: row.stateId, source: { ...row.source } })),
+        snapshotCount: reachable.snapshotSet.size, nodeCount: reachable.ids.size, pinCount: includePins ? this._pins.size : 0,
+        includesPendingEncoder: Boolean(includePins && this._builder), complete: true };
+    }
 
     pin(snapshots) {
       const token = { snapshots: [...snapshots] };

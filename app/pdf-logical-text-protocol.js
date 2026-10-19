@@ -11,6 +11,13 @@ const INFO_KEY = 'FigureStudioLogicalTextV1';
 const validatedMarkers = new WeakMap();
 const validatedRuns = new WeakMap();
 const captureIssuedMarkers = new WeakMap();
+const bundledStyleFonts = new WeakMap();
+const BUNDLED_STYLE_PROGRAMS = Object.freeze([
+  ['normal', 'DejaVuSans.ttf', '3fdf69cabf06049ea70a00b5919340e2ce1e6d02b0cc3c4b44fb6801bd1e0d22', 0],
+  ['bold', 'DejaVuSans-Bold.ttf', 'b184b89e3c1075f22f6b71575b6fc20d4972b3cfd3b23322ca6fd596dcaef167', 1],
+  ['italic', 'DejaVuSans-Oblique.ttf', 'ccdf74b350f11fd3dd5774de50e5e6346a1a5da1f5b7d5fb83590665e97a5213', 2],
+  ['bolditalic', 'DejaVuSans-BoldOblique.ttf', '6edf0283160186af451cbee71e7b845f2e4cabf264bb992ce668c83c25465e6f', 3]
+]);
 const STYLE_KEYS = ['fontFamily', 'fontSize', 'fontWeight', 'fontStyle'];
 const bytes = value => Uint8Array.from(value, character => character.charCodeAt(0));
 async function hash(value) {
@@ -22,6 +29,43 @@ const clone = value => JSON.parse(JSON.stringify(value));
 const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
 const finite = values => Array.isArray(values) && values.every(Number.isFinite);
 function refuse(message) { const error = new Error(message); error.code = 'PDF_LOGICAL_TEXT_UNSUPPORTED'; throw error; }
+function bundledFontFamily(style) {
+  const suffix = {normal:'',bold:'-Bold',italic:'-Oblique',bolditalic:'-BoldOblique'}[style];
+  if (suffix === undefined) refuse('The scientific font style is unsupported.');
+  return 'FigureStudioUnicode' + suffix;
+}
+async function certifyBundledFontStyles(pdf) {
+  const pending = [];
+  for (const [style, filename, digest, bits] of BUNDLED_STYLE_PROGRAMS) {
+    const fontName = bundledFontFamily(style);
+    const font = pdf?.internal?.getFont?.(fontName, style), metadata = font?.metadata;
+    if (!font || font.isStandardFont || font.fontName !== fontName || font.fontStyle !== style
+        || font.postScriptName !== filename || !(metadata?.rawData instanceof Uint8Array)
+        || metadata.head?.macStyle !== bits || metadata.os2?.selection !== (bits ? (bits & 1 ? 32 : 0) | (bits & 2 ? 1 : 0) : 64)
+        || metadata.post?.italicAngle !== (bits & 2 ? -720896 : 0)
+        || !Number.isSafeInteger(metadata.flags) || await hash(metadata.rawData) !== digest) {
+      refuse('The bundled scientific font differs from its qualified native style program.');
+    }
+    pending.push({ pdf, font, fontName, style, filename, metadata, rawData: metadata.rawData, digest, bits,
+      flags: (metadata.flags & ~(64 | 262144)) | (bits & 1 ? 262144 : 0) | (bits & 2 ? 64 : 0),
+      italicAngle: metadata.post.italicAngle / 65536 });
+  }
+  // Set PDF descriptors from the actual program after all four inputs pass.
+  // jsPDF otherwise leaves every bundled style at regular/zero inclination.
+  for (const proof of pending) {
+    proof.metadata.flags = proof.flags;
+    proof.metadata.italicAngle = proof.italicAngle;
+    bundledStyleFonts.set(proof.font, proof);
+  }
+  return pending.length;
+}
+function currentBundledStyle(font, pdf) {
+  const proof = bundledStyleFonts.get(font);
+  return proof?.pdf === pdf && font.fontName === proof.fontName && font.fontStyle === proof.style && font.postScriptName === proof.filename
+    && font.metadata === proof.metadata && proof.metadata.rawData === proof.rawData
+    && proof.metadata.flags === proof.flags && proof.metadata.italicAngle === proof.italicAngle
+    && proof.metadata.head.macStyle === proof.bits ? proof : null;
+}
 function keys(object, expected) {
   if (!object || typeof object !== 'object' || Array.isArray(object) || !same(Object.keys(object).sort(), [...expected].sort())) refuse('Malformed or geometry-bearing logical text marker.');
 }
@@ -60,6 +104,7 @@ function createEmissionCapture(parents, { pdf } = {}) {
   if (!Array.isArray(parents) || !parents.length || parents.length > 2048) refuse('Current source parent list unavailable.');
   const authority = new WeakMap(), runs = [], records = [];
   let active = null, finished = false, totalLeaves = 0;
+  const usedStyleProofs = new Set();
   parents.forEach((parent, index) => {
     if (!parent?.owner || typeof parent.owner !== 'object' || authority.has(parent.owner) || !Array.isArray(parent.leaves) || !parent.leaves.length) refuse('Ambiguous current source parent identity.');
     const leaves = new WeakMap();
@@ -83,8 +128,15 @@ function createEmissionCapture(parents, { pdf } = {}) {
       // jsPDF's embedded postScriptName is its VFS filename; /BaseFont is
       // fontName. Keep that actual native resource distinction explicit.
       // Styled embedded aliases need an additional source-program style proof.
-      if (!font.isStandardFont && style !== 'normal') refuse('Styled embedded source program lacks native style certification.');
-      const nativeFont = [font.isStandardFont ? font.postScriptName : font.fontName, pdf.getFontSize(), style.includes('bold') ? 'bold' : 'normal', style.includes('italic') ? 'italic' : 'normal'];
+      const styleProof = currentBundledStyle(font, pdf);
+      if (bundledStyleFonts.has(font) && !styleProof) refuse('The native scientific font style changed during export.');
+      if (!font.isStandardFont && style !== 'normal' && !styleProof) refuse('Styled embedded source program lacks native style certification.');
+      if (styleProof) usedStyleProofs.add(styleProof);
+      // Each certified embedded variant has its own program/family. PDF.js
+      // exposes that program with normal CSS styling; adding bold/italic again
+      // would synthesize a second style on top of its actual glyph outlines.
+      const nativeFont = [font.isStandardFont ? font.postScriptName : font.fontName, pdf.getFontSize(),
+        !styleProof && style.includes('bold') ? 'bold' : 'normal', !styleProof && style.includes('italic') ? 'italic' : 'normal'];
       active = { parent, leaf, runIndex: owner.index, unicode: glyph.unicode, nativeFont, start: pageRows.length, pageRows };
     },
     afterText(parent, leaf, pageRows) {
@@ -100,6 +152,9 @@ function createEmissionCapture(parents, { pdf } = {}) {
       for (const parent of parents) if (authority.get(parent.owner).count !== parent.leaves.length) refuse('Missing native source glyph emission.');
       if (records.length !== runs.reduce((sum, run) => sum + run.glyphCount, 0)) refuse('Extra or missing source glyph emissions.');
       const pageRows = records[0].pageRows;
+      for (const proof of usedStyleProofs) {
+        if (!currentBundledStyle(proof.font, pdf) || await hash(proof.rawData) !== proof.digest) refuse('The native scientific font program changed during export.');
+      }
       // This exact prefix is the existing jsPDF page array; advanced API may
       // append one final Q while serializing. No substring/range matching.
       const body = pageRows.join('\n');
@@ -121,30 +176,34 @@ const CONTENT_BYTE_LIMIT = 4000000;
 const CONTENT_TOKEN_LIMIT = 200000;
 const NUMERIC_BYTE_LIMIT = 4096;
 const PDF_DECIMAL = /^[+-]?(?:\d+(?:\.\d*)?|\.\d+)$/;
-function generatedContentTokens(content) {
-  if (typeof content !== 'string' || content.length > CONTENT_BYTE_LIMIT) refuse('Generated content byte budget exceeded or content unavailable.');
+function* generatedContentTokenIterator(content, batched = false) {
+  if (typeof content !== 'string' || content.length > CONTENT_BYTE_LIMIT * (batched ? 8 : 1)) refuse('Generated content byte budget exceeded or content unavailable.');
   for (let i = 0; i < content.length; i++) if (content.charCodeAt(i) > 255) refuse('Generated content is not an exact PDF byte string.');
   const whitespace = character => character === '\x00' || character === '\t' || character === '\n' || character === '\f' || character === '\r' || character === ' ';
   const delimiter = character => '()<>[]{}/%'.includes(character);
-  const tokens = [], containers = [];
+  const containers = [];
+  let batchTokens=0,batchBytes=0;
   function push(kind, start, end) {
-    if (tokens.length >= CONTENT_TOKEN_LIMIT) refuse('Generated content token budget exceeded.');
-    tokens.push({ kind, raw: content.slice(start, end) });
+    if(end-start>CONTENT_BYTE_LIMIT)refuse('Generated lexical token exceeds its byte budget.');
+    if(batched&&(batchTokens>=CONTENT_TOKEN_LIMIT||batchBytes+end-start>CONTENT_BYTE_LIMIT)){batchTokens=0;batchBytes=0;}
+    if (batchTokens >= CONTENT_TOKEN_LIMIT) refuse('Generated content token budget exceeded.');
+    batchTokens++;batchBytes+=end-start;
+    return { kind, raw: content.slice(start, end) };
   }
   for (let i = 0; i < content.length;) {
     const start = i, character = content[i];
     if (whitespace(character)) {
       while (i < content.length && whitespace(content[i])) i++;
-      push('bytes', start, i); continue;
+      yield push('bytes', start, i); continue;
     }
     if (character === '%') {
       while (i < content.length && content[i] !== '\n' && content[i] !== '\r') i++;
-      push('bytes', start, i); continue;
+      yield push('bytes', start, i); continue;
     }
     if (character === '/') {
       i++;
       while (i < content.length && !whitespace(content[i]) && !delimiter(content[i])) i++;
-      push('bytes', start, i); continue;
+      yield push('bytes', start, i); continue;
     }
     if (character === '(') {
       let depth = 1; i++;
@@ -158,7 +217,7 @@ function generatedContentTokens(content) {
         } else if (current === ')') depth--;
       }
       if (depth) refuse('Unclosed generated literal string.');
-      push('bytes', start, i); continue;
+      yield push('bytes', start, i); continue;
     }
     if (character === '<' && content[i + 1] !== '<') {
       i++;
@@ -167,17 +226,17 @@ function generatedContentTokens(content) {
         i++;
       }
       if (i === content.length) refuse('Unclosed generated hexadecimal string.');
-      push('bytes', start, ++i); continue;
+      yield push('bytes', start, ++i); continue;
     }
     if (character === '[' || character === '<' && content[i + 1] === '<') {
       const entry = character === '[' ? ']' : '>>';
       if (containers.length >= 32) refuse('Generated object nesting budget exceeded.');
-      containers.push(entry); i += entry.length; push('bytes', start, i); continue;
+      containers.push(entry); i += entry.length; yield push('bytes', start, i); continue;
     }
     if (character === ']' || character === '>' && content[i + 1] === '>') {
       const entry = character === ']' ? ']' : '>>';
       if (containers.pop() !== entry) refuse('Unbalanced generated content objects.');
-      i += entry.length; push('bytes', start, i); continue;
+      i += entry.length; yield push('bytes', start, i); continue;
     }
     if (delimiter(character)) refuse('Unsupported generated content delimiter.');
     while (i < content.length && !whitespace(content[i]) && !delimiter(content[i])) i++;
@@ -186,24 +245,31 @@ function generatedContentTokens(content) {
     const numeric = PDF_DECIMAL.test(raw);
     if (!numeric && /^[+\-.0-9]/.test(raw)) refuse('Unsupported generated numeric spelling.');
     if (numeric && (raw.length > NUMERIC_BYTE_LIMIT || !Number.isFinite(Number(raw)))) refuse('Nonfinite or over-budget generated decimal token.');
-    push(numeric ? 'number' : 'bytes', start, i);
+    yield push(numeric ? 'number' : 'bytes', start, i);
   }
   if (containers.length) refuse('Unclosed generated content objects.');
-  return tokens;
 }
-async function rebindOwnGeneratedContent(marker, originalContent, rewrittenContent, { decodeNumericToken } = {}) {
+async function rebindGeneratedContent(marker, originalContent, rewrittenContent, { decodeNumericToken, yieldControl = () => new Promise(resolve => setTimeout(resolve, 0)), signal } = {}, batched = false) {
   validateMarker(marker);
   const issued = captureIssuedMarkers.get(marker);
   if (!issued || issued.used || issued.busy || issued.fingerprint !== JSON.stringify(marker) || originalContent !== issued.content) refuse('Numeric rebind requires an unchanged, unused marker issued by the exact current emission capture.');
   if (typeof decodeNumericToken !== 'function') refuse('Audited native decimal decoder unavailable.');
+  if(batched&&typeof yieldControl!=='function')refuse('Generated numeric proof batches require a scheduler.');
+  const cancelled=()=>{if(signal?.aborted){const error=new Error('Generated numeric proof was cancelled.');error.name='AbortError';throw error;}};
   issued.busy = true;
   try {
+    cancelled();
     if (await hash(bytes(originalContent)) !== marker.contentSha256) refuse('Captured generated content digest changed.');
-    const original = generatedContentTokens(originalContent), rewritten = generatedContentTokens(rewrittenContent);
-    if (original.length !== rewritten.length) refuse('Generated content token structure changed.');
-    let numericTokenCount = 0, changedNumericTokenCount = 0, signedZeroTokenCount = 0;
-    for (let i = 0; i < original.length; i++) {
-      const before = original[i], after = rewritten[i];
+    cancelled();
+    const original = generatedContentTokenIterator(originalContent,batched), rewritten = generatedContentTokenIterator(rewrittenContent,batched);
+    let numericTokenCount = 0, changedNumericTokenCount = 0, signedZeroTokenCount = 0,tokenCount=0;
+    while(true){
+      const left=original.next(),right=rewritten.next();
+      if(left.done!==right.done)refuse('Generated content token structure changed.');
+      if(left.done)break;
+      const before = left.value, after = right.value;
+      tokenCount++;
+      if(batched&&tokenCount%8192===0){cancelled();await yieldControl();cancelled();}
       if (before.kind !== after.kind) refuse('Generated content token kind changed.');
       if (before.kind !== 'number') {
         if (before.raw !== after.raw) refuse('Generated nonnumeric token or whitespace bytes changed.');
@@ -224,11 +290,14 @@ async function rebindOwnGeneratedContent(marker, originalContent, rewrittenConte
     const rebound = validateMarker({ ...clone(marker), contentSha256 });
     // This marker deliberately has no final native validation authority. The
     // rewritten PDF still needs validateNativeShows before attachMarker.
-    const proof = Object.freeze({ schema: 'figureStudio.ownGeneratedDecimalRebind.v1', originalContentSha256: issued.contentSha256, contentSha256, tokenCount: original.length, numericTokenCount, changedNumericTokenCount, signedZeroTokenCount, nonnumericBytesExact: true, numericValuesObjectIsExact: true, auditedDecoderEveryFinalNumericTokenExact: true, finalNativeShowsValidationRequired: true });
+    cancelled();
+    const proof = Object.freeze({ schema: 'figureStudio.ownGeneratedDecimalRebind.v1', originalContentSha256: issued.contentSha256, contentSha256, tokenCount, numericTokenCount, changedNumericTokenCount, signedZeroTokenCount, nonnumericBytesExact: true, numericValuesObjectIsExact: true, auditedDecoderEveryFinalNumericTokenExact: true, finalNativeShowsValidationRequired: true });
     issued.used = true; issued.content = null;
     return { marker: rebound, proof };
   } finally { issued.busy = false; }
 }
+function rebindOwnGeneratedContent(marker,originalContent,rewrittenContent,options){return rebindGeneratedContent(marker,originalContent,rewrittenContent,options,false);}
+function rebindOwnGeneratedContentBatched(marker,originalContent,rewrittenContent,options){return rebindGeneratedContent(marker,originalContent,rewrittenContent,options,true);}
 async function validatePackets(marker, decodedFinalContent, packets) {
   if (marker == null) return null; // Untagged external PDF route stays unchanged.
   validateMarker(marker);
@@ -384,5 +453,5 @@ function installInstanceObserver(pdf, capture) {
     delete pdf[key]; detached = true;
   };
 }
-return { SCHEMA, SOURCE_SCHEMA, INFO_KEY, validateMarker, currentScalarParents, createEmissionCapture, installInstanceObserver, rebindOwnGeneratedContent, validateNativeShows, validatePackets, capturedStyle, fontSourceKey, sourceFontFor, sourceStylesMatch, clipIdentity, combineNativeRun, createNativeText, readContent, attachMarker, readMarker };
+return { SCHEMA, SOURCE_SCHEMA, INFO_KEY, bundledFontFamily, certifyBundledFontStyles, validateMarker, currentScalarParents, createEmissionCapture, installInstanceObserver, rebindOwnGeneratedContent, rebindOwnGeneratedContentBatched, validateNativeShows, validatePackets, capturedStyle, fontSourceKey, sourceFontFor, sourceStylesMatch, clipIdentity, combineNativeRun, createNativeText, readContent, attachMarker, readMarker };
 });

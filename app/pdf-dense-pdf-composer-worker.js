@@ -1,0 +1,4 @@
+'use strict';
+importScripts('../vendor/pdf-lib/pdf-lib.min.js','./pdf-generated-number-tokens.js','./pdf-dense-pdf-composer.js','./pdf-dense-pdf-composer-preflight.js','./pdf-dense-pdf-composer-core.js');
+const protocol='figureStudio.pdfDensePdfComposer.v1';let busy=false;
+self.onmessage=async event=>{const request=event.data;if(busy||request?.protocol!==protocol||typeof request.requestId!=='string')return;busy=true;const started=performance.now();try{const {pdfBlob,metrics}=await FigureStudioPdfDensePdfComposerCore.compose(request.input,{deadlineMs:request.deadlineMs});self.postMessage({protocol,requestId:request.requestId,type:'complete',result:pdfBlob,metrics:{...metrics,elapsedMs:performance.now()-started}});}catch(error){self.postMessage({protocol,requestId:request.requestId,type:'error',name:error?.name||'Error',code:error?.code||'',message:String(error?.message||error)});}};

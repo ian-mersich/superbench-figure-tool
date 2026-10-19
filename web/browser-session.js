@@ -235,19 +235,29 @@
     saving = (async () => {
       try {
         feedback("Saving in this browser…", "saving");
-        const snapshot = api().captureBrowserSession();
-        const record = await store.save(currentId, snapshot, customName, revision);
+        const owner = { app: api(), id: currentId, revision, name: customName };
+        const snapshot = await (owner.app.captureBrowserSessionAsync
+          ? owner.app.captureBrowserSessionAsync() : owner.app.captureBrowserSession());
+        // A project switch or iframe reload must never commit an old snapshot
+        // into a different browser record or acknowledge the new editor.
+        if (api() !== owner.app || currentId !== owner.id || revision !== owner.revision) return false;
+        const record = await store.save(owner.id, snapshot, owner.name, owner.revision);
+        if (api() !== owner.app || currentId !== owner.id || revision !== owner.revision) return false;
         revision = record.revision;
         savedKey = snapshot.key;
         observedKey = savedKey;
-        const current = api().acknowledgeBrowserSession(savedKey);
+        const current = owner.app.acknowledgeBrowserSession(savedKey, snapshot);
         failed = false;
         feedback(current
           ? `Saved in this browser · ${new Date(record.updatedAt).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}`
           : "New edits waiting for browser save…", current ? "saved" : "pending");
         if (library.open) await renderLibrary();
         return true;
-      } catch (error) { failure(error); return false; }
+      } catch (error) {
+        if (error.code === "BROWSER_CAPTURE_STALE") feedback("New edits waiting for browser save…", "pending");
+        else failure(error);
+        return false;
+      }
     })();
     try { return await saving; } finally { saving = null; }
   }
@@ -260,7 +270,7 @@
       if (!record) throw new Error("Browser save no longer exists.");
       const snapshot = previousIndex === null ? record.current : record.previous[previousIndex];
       if (!snapshot) throw new Error("That earlier save is no longer available.");
-      const restored = await api().restoreBrowserSession(snapshot.workspace);
+      const restored = await api().restoreBrowserSession(snapshot.workspace, { densePdfAssets: snapshot.densePdfAssets });
       currentId = previousIndex === null ? id : crypto.randomUUID();
       revision = previousIndex === null ? record.revision : null;
       customName = previousIndex === null ? record.name : `${record.name} — recovered`;
@@ -284,8 +294,10 @@
     });
     return node;
   }
-  function download(workspace, name) {
-    const blob = new Blob([JSON.stringify(workspace, null, 2)], { type: "application/json" });
+  async function download(snapshot, name) {
+    const blob = snapshot.densePdfAssets?.length
+      ? await api().encodeBrowserSessionSnapshot(snapshot)
+      : new Blob([JSON.stringify(snapshot.workspace, null, 2)], { type: "application/json" });
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = url;
@@ -318,7 +330,7 @@
       actions.append(button("Download project", async () => {
         if (entry.id === currentId && !await save()) return;
         const record = await store.get(entry.id);
-        if (record) download(record.current.workspace, record.name);
+        if (record) await download(record.current, record.name);
       }));
       actions.append(button("Rename", async () => {
         const name = window.prompt("Name this browser save:", entry.name);

@@ -1,0 +1,1167 @@
+{
+  "schema": "figureStudio.scientificProductRelease.v4",
+  "release_id": "user-supplied-style-4-correction.2026-10-17",
+  "release_date": "2026-10-17",
+  "decision": "approved_for_matching_public_web_and_superbench_packages",
+  "library": {
+    "drawing_count": 486,
+    "concept_count": 386,
+    "pack_count": 11,
+    "scene_count": 12,
+    "drawing_style_count": 4,
+    "style_4_variant_count": 486
+  },
+  "predecessor": {
+    "record": "config/scientific-product-release-2026-10-17-style4.json",
+    "sha256": "209bee13006174034ca1616e5f6cfec3d38f86b4db9f725de8db38bbb83fea40"
+  },
+  "predecessor_registry_fields": {
+    "art_styles": [
+      {
+        "id": "style-4",
+        "name": "Style 4",
+        "path": "style-4/manifest.json",
+        "asset_count": 486
+      }
+    ],
+    "art_style_notes": "Style 4 adds supplied artwork for all 486 drawings, including 16 earlier batch versions recovered from the downloads. After recovery, 235 drawings still render identically to Style 1; the collection does not contain 486 distinct redesigns."
+  },
+  "source_archive": {
+    "filename": "style4_corrected_486.zip",
+    "sha256": "2df0cd5e62cb1a78f02709b8f3befbfc01475acdb001d9bf795766bb5c540448",
+    "svg_count": 486
+  },
+  "style_4": {
+    "manifest": "assets/scientific-packs/style-4/manifest-corrected-20261017.json",
+    "corrected_asset_count": 243,
+    "retained_asset_count": 243,
+    "manifest_sha256": "a1a05aa118b103b54550d792d95d126790b79fedd762696822ca1cae24a00a17"
+  },
+  "user_authorization": {
+    "instruction": "\"style4_corrected_486\" in downloads, supplied as the corrected artwork package for the existing Style 4 Library addition.",
+    "new_personal_attestation": false
+  },
+  "review": {
+    "input_integrity": "pass",
+    "independent_visual_review": "pass",
+    "native_editor_smoke": "pass",
+    "acceptance_document": "docs/scientific-assets/STYLE_4_CORRECTION_2026_10_17.md",
+    "evidence": [
+      {
+        "file": "qa_artifacts/style4-corrected-20261017/import-validation.json",
+        "sha256": "0ed065cc816689e685f3709a1c60f8f0c8630616b86795ab840d443f56948414"
+      },
+      {
+        "file": "qa_artifacts/style4-corrected-20261017/render/report.json",
+        "sha256": "3b98cf43918d02522867fae71d591cc9e21775e74377e1660e767ae438fe9944"
+      },
+      {
+        "file": "qa_artifacts/style4-corrected-20261017/independent-artwork-review.json",
+        "sha256": "04ed7b58351545c9e3efb0dc96762c79e0a715a83ad3afbbb6cedee6bc7cf82e"
+      },
+      {
+        "file": "qa_artifacts/style4-corrected-20261017/smoke/report.json",
+        "sha256": "efba80f6155f99243810e412ba75d426c1a0f50cdc0fb41ce50cc09c89345a54"
+      },
+      {
+        "file": "qa_artifacts/style4-corrected-20261017/independent-final-smoke-review.json",
+        "sha256": "d57359d137a0775a63b96cf0f58040744db2f85ed3419f7a4af03b1d02f2eace"
+      }
+    ],
+    "acceptance_document_sha256": "64958660c9ae71da04e3cf033e13d1b49c4f60d4d41f39d124be07c33ddf780b",
+    "scope": "Source inclusion only: exact corrected artwork and empty-region part-color compatibility. One 1440x1000 light browser-hosted native editor case, 129 checks, three actual Save/cold-Open pairs, and four independently accepted original-resolution captures. The full width/theme matrix, Windows host, frozen package, installed selection and public deployment were not requalified."
+  },
+  "registry_sha256": "838d657476bca212b808fe7e980d61efcb94de293bab6e7f28e40b9b3ed77d12",
+  "asset_inventory_sha256": "c62aeaeadec1394941f0e6aa5b0a18b14d37c3f8587b2242bfc69ff20624489b",
+  "asset_file_count": 1408,
+  "added_asset_files": [
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/README.md",
+      "sha256": "89823503605cc4d7dc305eda58de921cc65f099ef5c85be62001765a661b1ffe"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/source/README.txt",
+      "sha256": "5c30ffa23ba5693b498d1a41bf5f2e230ac0d3f42bf7a45763c947fe113bb8a6"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/source/asset_id_to_filename.json",
+      "sha256": "e09580f32f26d563cc1e7d07da9bf08c8c497a16cab98b2b4a85c120c8873cdf"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/source/asset_id_to_filename.tsv",
+      "sha256": "458f21ed62081c0706f61f8e9b36df18ba09f405105611dcf9515f373002d475"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/source/asset_manifest.json",
+      "sha256": "b3675a9899808f5b23725010c8e36ac3540cb931a689512c497011d65ddf3c9a"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/abnormal_tumor_microvessel_style4.svg",
+      "sha256": "694c62a2072c615324cba748d59ca61692824b12ffe42b4a87ab4013b3727e83"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/activated_t_cell_style4.svg",
+      "sha256": "dc413f94733ba19df65b3bf40a55493f53d5e87febdc5087f8df9900ba756be9"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/adc_payload_release_style4.svg",
+      "sha256": "ae10700d3873d084f569b24905dee18feca348ba8d19c4a04353791b80c4ea07"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/adherens_junction_style4.svg",
+      "sha256": "c4b7a3ca5515cc3489a7b5d551cd6b05d9bff8a5fa1e0448b1c6382e75339785"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/adoptive_cell_transfer_style4.svg",
+      "sha256": "07d9c57237d566b6b1f8e60913ae08d8137626e81756116248fa5d8185cc205f"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/amorphous_protein_aggregate_style4.svg",
+      "sha256": "d7604bccdae755897c9908caa2de9a83bc8ccce0e6f30a8aa614f6d36963bd3e"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/angiogenic_vessel_sprout_style4.svg",
+      "sha256": "01a1c3879cffa5a5247b09101e3fcd18fada67bddf3bac65ef8684f6d278ad7e"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/anoikis_blebbing_apoptotic_style4.svg",
+      "sha256": "ee4c3a19f65fef01f6673a7fa39146b4d3f9dbe110178cc2e661ff2d8352894f"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/anoikis_detached_apoptotic_style4.svg",
+      "sha256": "689d4f7f82e1b351ac7fb89c538603649e5f5d9b6ed28e7bf1e3ad37018afc22"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/antibody_dependent_cellular_cytotoxicity_style4.svg",
+      "sha256": "30b76486df1ec866703a83b236686128884b87a1add032fbcaa6d264e1c7c4e7"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/antibody_dependent_cellular_phagocytosis_style4.svg",
+      "sha256": "dc873d6f5fdba36a23d3185d1b89bdbe13b9a5deeb62e798ec84ace3de9bb432"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/apc_t_cell_immune_synapse_style4.svg",
+      "sha256": "d23b2bf0ef7b205084be3bb3adedc51351f7f29201a08da02a653a6aa3118df2"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/autophagosome_lysosome_docking_style4.svg",
+      "sha256": "b4b3331f88c0f8cad853c3c1d17064906bd719cee66966b1a0e3999a846b3110"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/autophagosome_lysosome_fusion_style4.svg",
+      "sha256": "eee6acc38cb7f762518822ed945eeaf0fdc4836b365ec48938642fe7d62cd232"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/b7_costimulatory_ligand_style4.svg",
+      "sha256": "b0893a0992df859c697caa67ca037fc5d5cb88f0669b73897a979978063d73b9"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/barcoded_capture_bead_style4.svg",
+      "sha256": "eb5fd62b2dd86bdae428f721cf25e4f91dbb15099ea524f25d209f6f22a4a3bd"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/basement_membrane_segment_style4.svg",
+      "sha256": "f337a6e75549c820de58c8559ce9af6dfa47b41ec0eb7d5cfcc020c992652a14"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/bcr_style4.svg",
+      "sha256": "eb84a7ec226666da369ce90bd46999b41f19352f7495ad06ae61a54c83eb4ca7"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/binding_pair_style4.svg",
+      "sha256": "7e33f7245d6c1be0829852b97460b3d73d0170a078f621774108b59d1a997f6b"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/biosafety_cabinet_style4.svg",
+      "sha256": "3c852f96b07f463b76761e4e3b7f55cafcc2ecb6328693d87de9a6affc33cc74"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/bispecific_t_cell_engager_style4.svg",
+      "sha256": "38d03efb60ac4c56060b68cdb0a17f3bf03328c9d60101c57d62c49f85ae362c"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/blot_imager_style4.svg",
+      "sha256": "52faca4a679d157b3be39d59b36dff687b8af33cd0adb8f26b70867a3ef1f320"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/blot_transfer_style4.svg",
+      "sha256": "cb324bdfd5a65515d801b8aaffd69c2731ae16ee4e17272003fa03be7997e96c"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/cancer_associated_fibroblast_matrix_style4.svg",
+      "sha256": "00d6ed12a865e84725316842fdd9f0a29b0e01d280d8f4ff6b2834d765ab80ee"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/cancer_associated_fibroblast_spindle_style4.svg",
+      "sha256": "56949630faecc2e4fb64f8d0410daaf9767af886fbed31e76f4a87fd30e84b7f"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/car_nk_cell_receptor_display_style4.svg",
+      "sha256": "9e3663dc0e198df8eeb631ff70d5a44932dee8e036b695a0693f6de1715bc738"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/car_nk_cell_target_contact_style4.svg",
+      "sha256": "1639cc6c109028765746b297ababe54bc1596585f425bc3d74f80db3d1500143"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/car_t_cell_style4.svg",
+      "sha256": "9fd9f5be5f65b70690bcb1ee1fcf35226fe4401a2cdd08e93ff74f6fb60bd995"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/caveola_clustered_profiles_style4.svg",
+      "sha256": "cbc2bd220cfcd10e8af517863f1c71447087caa3252b21ae33841fd65213b317"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/caveola_single_invagination_style4.svg",
+      "sha256": "8970f52a96c1aa1db63c96ef50880946397fae6e1b0b847e62a29d604fd2259e"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/cd155_style4.svg",
+      "sha256": "a253614ee06317c3c166f7a3ddbfcdc3749c6ac83b809c242b11c802bb49eb4c"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/cd28_b7_costimulatory_interaction_style4.svg",
+      "sha256": "9059681d31b815bd2feb2c1f5ad2737e6316c63798adece6f6190fcb696c22c6"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/cd28_receptor_style4.svg",
+      "sha256": "8800c9981629a1bee5effedf0f27e73d917cc518d9f2f5c005ca336c7f89a524"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/cd47_sirpa_checkpoint_interaction_style4.svg",
+      "sha256": "18c8d54793c5183234fab9a7aade460f1fdd249f8d5a7a38c47c40daf225d051"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/cd4_helper_t_cell_style4.svg",
+      "sha256": "a0255c45eadae8142dfc334545650d1f8ec1b10be3da24a62b10a73c2c271e54"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/cd8_cytotoxic_t_cell_style4.svg",
+      "sha256": "d6a61f8c3852d02b96b74a7eb6bf005eb26ce59d206fed23d44c7b445acc7c0c"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/cdna_library_style4.svg",
+      "sha256": "d26491cf4564da1a52f23f0a230fcb93bdf91b1ab77454a764e80b5c37eeb209"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/cell_counter_style4.svg",
+      "sha256": "b2db5a661adafa413f871d4c69aa2c0cea2553d23e19fccef034fdf15b8db528"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/cell_tracking_trajectory_single_track_style4.svg",
+      "sha256": "78154d2e5b60c184d1066fc11be0c268cf5b0e2d183350a44463d64f9db4964b"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/cell_tracking_trajectory_two_tracks_style4.svg",
+      "sha256": "b82c4d81a541b1ca1782a7d890877b612f6c77c47490bb24104fb42a7b3472f6"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/cell_viability_readout_style4.svg",
+      "sha256": "e0c85aada030a276fc55142217f0870209e017d67c558b42e9bd24e4f35e33a7"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/centrifuge_style4.svg",
+      "sha256": "2dea6b5dce5af31678f3baf81127c093562abeb5352d441412fc04d6669f6e1d"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/chained_cocci_style4.svg",
+      "sha256": "3915bf73b8650e1ba2ec0b4ed950d365e2bd7b1ee8eeba86ea374e16dd6d773b"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/checkpoint_blocking_antibody_style4.svg",
+      "sha256": "f5ccf41fe35bdbb937046c741763b3b2b85cfbac1058c22af95ffd9af2435901"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/chemokine_receptor_style4.svg",
+      "sha256": "2ae1ea6fe103f1a610a3c04cbf030c5011b98cbb9e707e88d5997a56915a3f8a"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/chimeric_antigen_receptor_style4.svg",
+      "sha256": "0bf7ab55d3959a9f70be9d555414352834cb4f847c80ea51e3757d24c7cba1a1"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/chromatin_state_condensed_style4.svg",
+      "sha256": "18346dda81b14e890bda64b666602397ecf6c9161df175e5afb5113e53547540"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/chromatin_state_open_style4.svg",
+      "sha256": "654854875abe327187d74d12eeca4bb889548cde50c545bd25ff1285e0abab9c"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/circulating_tumor_cell_style4.svg",
+      "sha256": "803050e1b87fa71e8f4ce07ec73b0ad6fa1e5b746413b126a09d5ab3f608785b"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/cis_snare_complex_style4.svg",
+      "sha256": "1d2cb8331af86b02f456170532bbc5481e6fbb7077b9acf12432599007f20805"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/co2_incubator_style4.svg",
+      "sha256": "b13e9d608b73876bef3a49eac47c7a2ed0d17c1c451aa5bb116f2845c0cee255"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/coculture_dish_style4.svg",
+      "sha256": "0b1266ecf1b518a031009c6459f8775ce9f952cf4f26783d4fb696d37c9136ab"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/collagen_rich_ecm_aligned_fibers_style4.svg",
+      "sha256": "c548ef898141b09aef30df45e88e2efd4c4eff743f2d0e93fd7f67853a68b7d9"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/collagen_rich_ecm_mesh_style4.svg",
+      "sha256": "87c10227ac819bc4d3125682469c4edcabab75efce51b162fd2438ca14b16768"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/collective_tumor_invasion_style4.svg",
+      "sha256": "323e34a4ab06e72adf65004a0090dbaff0794e824dce531f0f6a7021ebd052cc"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/condensed_chromosome_metacentric_style4.svg",
+      "sha256": "6790dbd8a8c8471b30fcf217b98f90172db38fb6aa0fe8fec5868ad255b548ee"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/condensed_chromosome_submetacentric_style4.svg",
+      "sha256": "cb02303cfac8375ba09fe572367faf8681b0f9c64b902eec78111465c6f35a53"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/confocal_microscope_style4.svg",
+      "sha256": "ccd951717b55f23fdfff53dea58655c539bbabb255adb1bdc882e15d9a862d01"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/conversion_arrow_style4.svg",
+      "sha256": "865d6e8aed6d19173c9d81ed79f6ef172d7ecea295425d39fbfb768873a62414"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/copi_coated_vesicle_style4.svg",
+      "sha256": "36fee766406e68443f73d4ef4686f95306e792d99fc8e5cba75aaae1ebcf53d3"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/copi_golgi_bud_style4.svg",
+      "sha256": "cd257432ff09ea1000d692116c97ad6fad4a4a0a602b63d1fdb38d651fc737e1"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/copii_detached_carrier_style4.svg",
+      "sha256": "8e55222a6ff3791bac8e0cf960718b1d29c15729e8588663afebd19b7dc6a64d"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/cross_presentation_style4.svg",
+      "sha256": "cd25ceba08660bb5df175c610f0fbb69f89f5ced3614d6c756d40ecea39daf03"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/cryostat_style4.svg",
+      "sha256": "18d91b8d7d829f043d8decb769a8eaf35ee21384bed522f36d05f2bfd59c52af"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/ctla4_b7_checkpoint_interaction_style4.svg",
+      "sha256": "1835ac98e13a11215bcd6993f7475ebee5d247798a0f664a257e06da5c536dbc"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/ctla4_receptor_style4.svg",
+      "sha256": "bf76fbb4ce746e0677db35bcb8d2d8b8c9efc6b5555d12dd9274396d7e7ce93d"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/cuvette_style4.svg",
+      "sha256": "7fe360a8d493fae150785cf0b34f9827b8347e266e1c8b423772273c553a4367"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/cytosolic_antigen_processing_style4.svg",
+      "sha256": "0d8271abde8aba929788b0670f854675fa8f6ae184e08568b35dfdaa0a3f7a06"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/cytotoxic_immune_synapse_style4.svg",
+      "sha256": "9fc0eb99570a542d08b92b173721c34a7cfda4b96d5d128930be6a548c6dc92d"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/death_receptor_style4.svg",
+      "sha256": "32a18a9d267660cdb99cb5f7a044a0fe28bdf54fb9ef0e1d491ff88d71b45cc0"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/degradation_style4.svg",
+      "sha256": "2a6ac662223724b515770fc759a464adddc40cc8af4b385c014e44899b4f7171"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/dendritic_antigen_uptake_particulate_style4.svg",
+      "sha256": "bb221db47e098174bc63e4d181d57a783c4647121af8fd5835944c9a33a3ad25"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/dendritic_antigen_uptake_soluble_style4.svg",
+      "sha256": "ef20d27e61c6a3e71cd6a3c85dd0cefda0df733c40caf8343f2560c993a824f7"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/dephosphorylation_style4.svg",
+      "sha256": "26eafca0c7f01f5f010f5ee60ddd8a2181abf8acc5d054b4d22bbe66b224ec03"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/desmosome_style4.svg",
+      "sha256": "fb1a6872f26b550265bced9f2e00745de9f257d8292ed1ca1c8d1380b91dfb04"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/dissociation_style4.svg",
+      "sha256": "3af53d50391e740fa7cfa0eb27e4fec87e7e0ce7176177d2e3a8c10ea84efa9c"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/dna_damage_foci_clustered_style4.svg",
+      "sha256": "3fd8fc94b273e4bac498250a2fdedd3cafec1027472c5df139800f0d81f5d406"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/dna_damage_foci_dispersed_style4.svg",
+      "sha256": "61d9623e6bbc0311a133f4685eabffd985f86aba6f62acf77c5a1651a8ceb45b"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/dose_response_curve_style4.svg",
+      "sha256": "01ab2a9fd164923c608c21c54ec210e130a70ead672e851622df1dc147da3246"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/drug_penetration_gradient_perivascular_style4.svg",
+      "sha256": "419d457511962d2e9e501e2aa56efa95a121b11f847c50aaff7fa29e22d4ceeb"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/drug_penetration_gradient_spheroid_style4.svg",
+      "sha256": "8a0539760c140dacf32968edc8f2af2617cb1eee5f29e68c1a73031e309917ff"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/ecm_remodeling_style4.svg",
+      "sha256": "f66d42d05ff3b45e7584c7d2657e9cff9968a466c7652878f936db72ef296c22"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/elisa_assay_style4.svg",
+      "sha256": "d87759d715d381078bedf98604b593eb379a4484d37a1b2fe55069bda6f9c2a8"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/encapsulated_bacterium_rod_style4.svg",
+      "sha256": "9161f1b5e232e1411da03b1630f757693bb6343f67b11669bfb914a85cd2912d"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/endocytosis_pit_style4.svg",
+      "sha256": "918e1f0a0baeef85207cf26e22bc25800db06bfaa2bcc7622e31213f58554904"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/endosomal_antigen_processing_style4.svg",
+      "sha256": "c23d9b87434ac5df0c6cf0004cb2af00650e2fec02f5996360e8ee0356b82f0c"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/endosomal_recycling_tubule_style4.svg",
+      "sha256": "1d95d69f27bda64f2eb612c9f7f89f3691687bdb6025bbd8192c0ff2ceb8d36c"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/enhancer_promoter_style4.svg",
+      "sha256": "44303882bca5dadaea0209afa2bbff4f300f68a13af9c0af2ffeb56300f854cd"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/epithelial_mesenchymal_transition_style4.svg",
+      "sha256": "ec54dd49b67ea25a51a0fc4cf22929132f234685fbe72b4eeb05bae434791c2c"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/epithelial_monolayer_style4.svg",
+      "sha256": "d0b88dee4d61b48248252c24d1d0922b5449a713860412158d88a69066d14c09"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/er_mitochondrion_contact_site_style4.svg",
+      "sha256": "80d2d68d08efe1d9f3c5cc198ee96e342a073b4ae21e2a98c012d4ac5ad224ac"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/er_mitochondrion_tubular_contact_style4.svg",
+      "sha256": "0da5fac0d1051d030fa8922ad62640c789bf0c26a56ba7dd776b4600ee15c0c9"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/er_stress_upr_lumenal_load_style4.svg",
+      "sha256": "88b34c1ba296de4d76725efa68241d7040e227f32113aefd955815c3250864d8"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/er_stress_upr_sensor_assembly_style4.svg",
+      "sha256": "c1cc5d55e34886a1b3febb096b9bf0044e46a24661d88866de928c54fef7d773"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/escrt_inward_bud_style4.svg",
+      "sha256": "9f0194ac69f13fa17642732f70aef5b444d520da66188129b54cf2e83b011ccd"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/exhausted_t_cell_style4.svg",
+      "sha256": "10a9745ee753f167254658d2b12cbab882df83a9d95a1cb8331aaeac2ca2d30a"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/exocytosis_fusion_style4.svg",
+      "sha256": "5d12d59785b250fc53da562fd111bf26bb41f9d2627b8b631b425be1021a3205"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/exportin_cargo_nuclear_export_style4.svg",
+      "sha256": "c3f1d268ac293a7f7570734ed3e6c28b02e1e2e1f0b568d4c8b2e62a2f8d29c5"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/extracellular_vesicle_endosomal_release_style4.svg",
+      "sha256": "a48228c9ccd0ba6666ccda39c587a3c0f797b685e124fa64207d3ea2564222ba"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/extracellular_vesicle_isolated_style4.svg",
+      "sha256": "ea68d1ce4868cfeefbfc1a906eba794bd86955ab4f5ce13fb2257df25310c142"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/filopodium_bundle_detail_style4.svg",
+      "sha256": "c92c11ef6452310f78fc43a1665a846eed9db74f561f3aac47c43edf76e20707"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/filopodium_whole_cell_style4.svg",
+      "sha256": "91658b8cb08bd1f81d715cdc76953249e906d9ca3157d48020228a69e9da47de"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/flow_cytometer_style4.svg",
+      "sha256": "5179e451714aae029aeb5093b45bbf05cbc84b64f6c1c6e3953b2a795277a777"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/flow_cytometry_readout_dot_plot_style4.svg",
+      "sha256": "0646c75835f78fa30dcdf533058effa20e6f7316750ddfdef5b3cd678b6e5648"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/flow_cytometry_readout_histogram_style4.svg",
+      "sha256": "cf8e4f8c6b8eebb79818aedb278b7642f2c03ab86899a6c91fd9f3e010b365ff"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/focal_adhesion_enface_style4.svg",
+      "sha256": "ffba318ad844dfad2bf1408f1894885edebb497b0f9b43b3d4e0342ce020eb44"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/focal_adhesion_style4.svg",
+      "sha256": "994d9c264c786f44bd7401eb6e25a7b9e79b1276786c6a778a19646e1965f923"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/fungal_germ_tube_style4.svg",
+      "sha256": "7c4187c315a23e86696609f1aea3436e2ad9c96dfee2c4c9879fa22b2ddadf2f"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/gap_junction_plaque_style4.svg",
+      "sha256": "e23f455ddef9b4c56486e3a9fb5641a8b7f8269158174db41a18230b2f4acb9b"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/gel_electrophoresis_style4.svg",
+      "sha256": "c56bb73eca024ea5f975c029e869ed5f96fa5f249f159cc39b4fe86336b9e660"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/generic_cytokine_style4.svg",
+      "sha256": "d317a826d91346b7f0b954874cf7c7eb801e5a0e449210b660174a53348209bd"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/generic_immune_synapse_cell_pair_style4.svg",
+      "sha256": "d9e48f444106a90c983f231b9893255a6defc0a956fcd718e1774f3b46d87bb0"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/generic_immune_synapse_interface_style4.svg",
+      "sha256": "239a86d8dd53f7b98356d5e3678d1697a9bcaf1da91d75510d77f535b0118edb"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/granzyme_b_style4.svg",
+      "sha256": "dcbb51e018ab36e86c40886a07ca7c9f4a2dd7c56e75cfdf5c5d12422b790ff7"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/hemidesmosome_style4.svg",
+      "sha256": "72f96deb50b8f76ebf1cf72970539226c0029c7fe4bfbd0198293c2e91a37cc4"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/hypoxia_gradient_perivascular_style4.svg",
+      "sha256": "bc3658dfa8cdfee08fcb3139505267c03a4aa6ebcedf1e427b751ba611d34190"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/hypoxia_gradient_spheroid_style4.svg",
+      "sha256": "4b554de73986dea1ad36b72d46eb913411ab11d625406c219a9a6d6c663041c2"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/immature_dendritic_cell_style4.svg",
+      "sha256": "32df3a1573759a0f752ebc47b17a6d7eea5a5e66082e30b1d4772b6ea9b909be"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/immune_desert_tumor_style4.svg",
+      "sha256": "e890aa735d429b7742ab95211489367a9006af303f3740a2c7ec3f8348c02150"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/immune_excluded_tumor_style4.svg",
+      "sha256": "ab9a476617f06f1c4843b65d3ac232c940272ab6a8486d1bb9de6f7931e6d63d"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/immune_infiltrated_tumor_style4.svg",
+      "sha256": "8fb6e40869700bbb9ccf95e16350c00ae80d41280e4a405d335cdb1061e82fdf"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/immunohistochemistry_tissue_field_style4.svg",
+      "sha256": "49e91a0a0a2e197b29c58ab6580b8a8128bd2442a51f2ca9f27c3eaa9b36315c"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/importin_cargo_nuclear_import_style4.svg",
+      "sha256": "68d5131b744c17f4f45de99bad4efcfcf83c3f4c2908e31b0f22a33cd8d72358"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/in_situ_rna_puncta_style4.svg",
+      "sha256": "2f0e082be61a2c80213369f0669e0d7208548b7fb29d224922d0cdb39d0aa0fd"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/integrin_style4.svg",
+      "sha256": "77dfc9c192834851d95dfa2aa27fb8376be275f4389c638321af9a910d9529a9"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/jak_associated_cytokine_receptor_style4.svg",
+      "sha256": "25c126d8bd09703621cc3b57dd17458ac444676f53ab53232cf7032892d2c9d8"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/kaplan_meier_curve_one_group_style4.svg",
+      "sha256": "9d2d56ff0344b69b628ea545878f6b766e6ecd303f39c38a5ccc8d3c711db353"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/kaplan_meier_curve_two_groups_style4.svg",
+      "sha256": "84f1242b2511b1330cf7d59b1ca682110c48680437c3232d82291b9f6600ae5b"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/lactate_metabolite_gradient_radial_source_style4.svg",
+      "sha256": "5df38d4d1479ed96e2e877584bb541f10158a7213ea62a594aa5aa795e42386f"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/lactate_metabolite_gradient_source_to_tissue_style4.svg",
+      "sha256": "cfeb33216dbc5ffe27e84977562ba0094bb74ae1d7666ac9428e95db2a986166"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/lag3_mhc2_checkpoint_interaction_style4.svg",
+      "sha256": "6cae9348390a3f2ebcb7110dc98479910138f2e1ee318ecefd9017570ad20485"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/lag3_receptor_style4.svg",
+      "sha256": "2ba81928a6873875aac5e94330aa8cf046c7617810a5d7ef724e521fa51aedd8"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/lamellipodium_leading_edge_detail_style4.svg",
+      "sha256": "b7f6a08502913a15bc30338df39ad9280ea83569cc62a324a5cc72595bacd88e"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/lamellipodium_whole_cell_style4.svg",
+      "sha256": "a0490798d8011ff5f838f39b35d714f2d4110da6a104fb540c01f20b240f9107"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/leukocyte_recruitment_style4.svg",
+      "sha256": "f26a2f8479c6adf636e5911f5c61dd77c9a8ee7dfd599811d5b6d5ed319b59ea"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/liquid_handler_style4.svg",
+      "sha256": "0ccabf82d2bfea68d06288d8697f664d57dfc948e42b7085f1c8020fca03b9d5"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/localization_target_style4.svg",
+      "sha256": "4ff32f9ead68cb7b2dc770fd3febdc505b1be54a53f87908911ff92f420796ac"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/long_noncontractile_bacteriophage_style4.svg",
+      "sha256": "4a936308a499b28d98ab51c08f6a590bad52466160c8e5008e514e1b844cdaf7"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/luminescence_readout_style4.svg",
+      "sha256": "05d61938355660e005dffb426047b0f05bd18a1bf1d6e2141d629e0dec7b670f"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/lymphatic_endothelial_cell_style4.svg",
+      "sha256": "f5e2cf662ca503e32ff1e8de18445ab713b4446f8716f567650f073dcc6c13e9"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/lymphatic_vessel_segment_style4.svg",
+      "sha256": "45fcb673ccea5e237beb45f43d469635b5fead282cbfccb911d4df092b6bb418"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/macrophage_polarization_cue_multiple_cues_style4.svg",
+      "sha256": "467e57ac9a0e065a65f49d7e599106c7d86515de263230f0c9b91f768ab234b8"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/macrophage_polarization_cue_single_cue_style4.svg",
+      "sha256": "8c26dbfa37acb074f0f718797d9a642acbfda40aaa0f4a1702383639a8beaf16"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/matrix_metalloproteinase_style4.svg",
+      "sha256": "7b5516835eab037debc7ef93ccbf597d7d12ff46cbcf0cdd4b657981f8d33cb2"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/mature_dendritic_cell_style4.svg",
+      "sha256": "f020dd20627674878b0954ac375798611455ed399cc6415af910582974676fc1"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/memory_t_cell_style4.svg",
+      "sha256": "a822b899c8a42d642e12d6f3d42a6b85a24dab453eceb7d2f1c9fcb19bc01e58"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/metastatic_seeding_style4.svg",
+      "sha256": "29ade501ceed3b58eebcda04d7bb199d9bc13af7f14c00e99631c7815b47e60e"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/microfluidic_cell_partition_style4.svg",
+      "sha256": "31695dc7137353e98e3a46a38d71ebbb7036f4f071a8f7399e843ee53ee29220"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/micrometastatic_colony_style4.svg",
+      "sha256": "8a9b77cd1134e805a13927b7f55fc34f38261737163aad61c45e0b0ea54a0fba"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/microscopy_field_brightfield_style4.svg",
+      "sha256": "2934d8f8238038b47439d621ae6bf093dbd0a2afe47e208f4058057b95268eff"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/microscopy_field_fluorescence_style4.svg",
+      "sha256": "8493d27723d058ce7a9ab2fe73a2a657ffa7ba98ba4d323b283f92c78e81bc62"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/mirna_style4.svg",
+      "sha256": "1ab37ab0ee717056fe939f64eccbfd67d715e2ef768b2643530f04601910ea13"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/misfolded_protein_style4.svg",
+      "sha256": "0617372f2d7601fd32bdf5bffcfbd3bc91fa6e8719423692eb1c13d37217319d"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/mitochondrial_fission_constriction_style4.svg",
+      "sha256": "f6f6ba69ebcd2787f5f3fd2ee66e6f9e8be90c7d6061f233919185f1a1727760"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/mitochondrial_fission_daughter_separation_style4.svg",
+      "sha256": "cd0d748cb34fae7030f50b91c961ec595eda3d33757a6c2f33cc21dac7f012e6"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/mitochondrial_fusion_approach_contact_style4.svg",
+      "sha256": "03a9ffc60df654e48b15c696376d121dcc6685331880ed28192f61f03371c6c0"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/mitochondrial_fusion_joined_style4.svg",
+      "sha256": "f8326e7a492020408e3358463d43a1657277a93510e98a00b2d29d5c7c72c65f"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/monocytic_mdsc_style4.svg",
+      "sha256": "e34a2b928e94cd1a7a25254f07288c26abdd389aaebfb8bca2e40f534ff28504"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/multiplex_immunofluorescence_tissue_field_style4.svg",
+      "sha256": "a785d8c4eda737a7b511678a7d97a1039cf4e1379585a62d75d22335b7fef508"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/multivesicular_endosome_style4.svg",
+      "sha256": "2f09945203b27858e88a7b5489b6196e365ba4dfdaf4993ca163d4c8045e6fe3"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/myosin_va_cargo_transport_style4.svg",
+      "sha256": "25cb4209aeec7306cb9bb0e307660469cdb38884a5e6936110b6258dce615fd1"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/naive_t_cell_style4.svg",
+      "sha256": "640ce5c45ecffa578a180028cc93615e52db9294ca1d40f0f14be160311dc758"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/necrotic_cell_disintegrating_style4.svg",
+      "sha256": "489bc8e20dd701095dc60dd8beac650fdd25ddaf80ba910b6b74465451f8b511"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/necrotic_tumor_region_style4.svg",
+      "sha256": "0986a75a0bd6384be805f9947f4234082a3087eee8d763b6450a3eb3007919b6"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/neoantigen_vaccine_style4.svg",
+      "sha256": "32dc91916fe9dc7be7a2f61229ddbe9802130ed07e33ffa3fbeeef2c1bcfa317"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/network_graph_hub_style4.svg",
+      "sha256": "77cc367093d77729c52818db8fbee5285a89119f821fb83089e98c294bdbfb73"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/network_graph_modular_style4.svg",
+      "sha256": "1547f366af87ca0cae1573427a65019592282c7edd3303e59989ee5e13843579"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/notch_like_style4.svg",
+      "sha256": "566839627d7442f36e45b46b7f281297587b512137c3e68079bd7972fe7492f1"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/nuclear_receptor_style4.svg",
+      "sha256": "91d473e222f4088c908e6658d7a54ed7de98a7869f662420c38c85307a37ffd0"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/nuclear_speckle_condensate_detail_style4.svg",
+      "sha256": "463abdc82a238de0470b3321f5e5bb5ba4ac573cbbed4ae614ffafd21bcd721c"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/nuclear_speckle_nuclear_distribution_style4.svg",
+      "sha256": "a62f6ce6a496f60192aeb4ed3254871e1caf8976e884900d36dbd9e955707309"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/nucleolus_nuclear_context_style4.svg",
+      "sha256": "62de2da565df603e1a6111e117e83f34e1bc89b6681aaf0d19d1ec9e13bc15ab"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/nucleolus_subcompartments_style4.svg",
+      "sha256": "1bdb1c9bc57de6defb9dc5c53d6496d370b437bea6a3d3463da5279fa9658249"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/oncolytic_virus_style4.svg",
+      "sha256": "58754761e8aeee73b47e0e3390a1f80cfba279c3b9848695a81708b212e256c5"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/orbital_shaker_style4.svg",
+      "sha256": "56f957d0653081cb55c6939e2b275eba26629651fc932ba964b72d33759c4fc7"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/organoid_lumen_style4.svg",
+      "sha256": "0972643750b355be88433abc1d41bc2c10e4c3917e6cec0fe83d0bd37e37ded5"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/paired_cocci_style4.svg",
+      "sha256": "1a0d7318574588292d6f7df0cf974122913cbe388e81c27b3121f945f0d68d65"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/pcr_amplicon_style4.svg",
+      "sha256": "207cca8d9d4c0fec1834be877266729351766e28f28d2421870f067f3255191c"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/pcr_gel_result_style4.svg",
+      "sha256": "e44cacc83505426f8552613b35b1d4cf1bd05fe2c49e8af1f56c3fd44216a2b3"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/perforin_1_style4.svg",
+      "sha256": "8681f466121350850d9ad1690caacf8be267e11e067756d63a90ee47294b0a54"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/perfusable_microvascular_network_style4.svg",
+      "sha256": "311eba05ae9770b0f9236e1e9df7d989d564399c6f45fe587743908a9becc87d"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/pericyte_style4.svg",
+      "sha256": "4b67115641004959719b5a8f0a5fc4402d6c3bec22e12515e9e9552440c40cfe"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/persistent_tumor_style4.svg",
+      "sha256": "a2252aacafdd22dfd6325398ff145069a8a2ac56b7bd52606e8430a44a5a047d"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/phagocytosis_style4.svg",
+      "sha256": "8f07f6d39482d0c26592209f95eedd59701c7f04f4cd38175467d5a327812069"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/phagolysosome_bacterial_cargo_style4.svg",
+      "sha256": "cd5bb68bb0f14631090ec1e0122518d45b2f850a06ace578adbe1fa9132bc058"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/phagolysosome_degrading_cargo_style4.svg",
+      "sha256": "6b73e415d48033ca4cc292b84d57a8ac21aa08679ea84a59691a32f6e0d511a3"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/polymorphonuclear_mdsc_style4.svg",
+      "sha256": "93f35fc6c580e6aaba7a7d7494f1d122576eddd5ec98871530a548490a35b341"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/pre_mrna_style4.svg",
+      "sha256": "8d442eced7277c27f10a2c0ae876afdc5cfff74c84315b0e1695f2587f35a58e"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/pseudotime_trajectory_branching_style4.svg",
+      "sha256": "c879ba2f95b9af443017fd6201f57f4074996f87617765b6e1ce0a6ea9b753f5"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/pseudotime_trajectory_linear_style4.svg",
+      "sha256": "0e613b4fd75473796937a65a356c8a593b09eb49062e3879cbc1ed3f90a92ad9"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/qpcr_curve_style4.svg",
+      "sha256": "2209ab3c367c49d1666c3da590f136c63280f9c3cc3cce51d8dd5957151aad80"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/qpcr_instrument_style4.svg",
+      "sha256": "a8ff26aa1b05e85de3b332d37761117d7232710e685ecdadd3d4ce62554b1a60"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/reagent_bottle_style4.svg",
+      "sha256": "599ed7df08110994846ca950e86ce5309db4fe5be44e4d976a348524e9126894"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/recycling_endosome_branched_style4.svg",
+      "sha256": "a1a04b3f28f980e81fa4bec89ed96d42f554194705bf47c40afd29a4feaeefaf"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/regulatory_t_cell_style4.svg",
+      "sha256": "7e78ffcee0045a12b3e6fc58cf09a11b8138590ea66cd3b4bdcae6bfb516e737"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/released_outer_membrane_vesicle_style4.svg",
+      "sha256": "258030e90289b5f733d0014e7b09b1735afd0738c9299cd74932538a11e43ec4"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/replication_fork_style4.svg",
+      "sha256": "65c30c50437f289f2b667bde31d08b93349eaa708074592071329946d1a35ad8"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/replication_stress_reversed_fork_style4.svg",
+      "sha256": "e907b9ed363eae3f871b4410fb3ea159877c1070e8bdda209d3d972a324de42d"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/replication_stress_stalled_fork_style4.svg",
+      "sha256": "bb7b9331eed549b2819d974ec11ab1962bd9be4feed5e94879b0ffa4cc4b3ef7"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/saliva_sample_style4.svg",
+      "sha256": "ade51aafc3e8a4c8d3eb4453617768b512f086828daf7da9793b753e8ba7f839"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/scatter_plot_single_series_style4.svg",
+      "sha256": "97f11296105bf0605b4510cf7d28f3ad19bf6cb208776240ad944a3c4bd67914"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/scatter_plot_two_series_style4.svg",
+      "sha256": "d93cc409e21ca0376d2e48359fd666959c9376e4bc553d92ba0c986d23a8bde9"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/sequencer_style4.svg",
+      "sha256": "94be3c4dcbfb446364c5da496818ac4a8c64bcdf167cc3e5fb921de8f8e70a28"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/sequencing_reads_paired_end_style4.svg",
+      "sha256": "207fd129e5a8041446731710405079010f9fd0f562ae7da48ba650fafeaa757f"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/sequencing_reads_single_end_style4.svg",
+      "sha256": "5317320c480c57d92d300018620f344712ec885e9361d4220a8440e9e42b01ed"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/short_tailed_bacteriophage_style4.svg",
+      "sha256": "5621d287f20116cc29ed901c03cec744c9d4b927988e6950376addc9a698fb41"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/soluble_factor_gradient_style4.svg",
+      "sha256": "ae0f7e32b69fe4a84907808c721acbff1e69890af577bd2115cdbb20aac0791e"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/spatial_capture_array_style4.svg",
+      "sha256": "e584111f6456dc527772df1a4a4d4a7f93418d256dd6f58f89c54079f3e631a0"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/splicing_style4.svg",
+      "sha256": "6ca7dfc5f1f3d43fd17a7d851d1478d1325ee48ff5030b680505a66c34dc70b7"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/surface_attached_biofilm_plan_style4.svg",
+      "sha256": "ae5ba86a9547834a6d0a15289e5d4d239bd58f36f5a8559bc54d60c61971ff77"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/surface_attached_biofilm_style4.svg",
+      "sha256": "cb728a2f684383f495578f53108b72f85c33afaa6f19c6a95d00c1ec4ee9bf95"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/tcr_style4.svg",
+      "sha256": "e0ffce04261b4475c62b6d173def8cbd9c1d918799cc75f7812f7a39d925aa15"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/tertiary_lymphoid_structure_germinal_center_style4.svg",
+      "sha256": "879c7e8c493c9a97a2bdf374ae5d66e1e756418de80c021318e1cb1ca4ea6b9e"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/tertiary_lymphoid_structure_primary_follicle_style4.svg",
+      "sha256": "2aa70026cf98960ef961eba7dd0e6857a52cd0fe7dbe08104f31b88944aa5447"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/thermal_cycler_style4.svg",
+      "sha256": "432a69917455f4bf7ee48fbe3ef66ade80639b8dbc3ab6cd95f95bdf6597fd08"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/tight_junction_network_style4.svg",
+      "sha256": "adc179bb20202ecb387d7b348159fdb38138455d1c3b080c0ab1782bd4203394"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/tight_junction_style4.svg",
+      "sha256": "81bb648cbdf9bc2c1fd448e642726efb3dcbcfde4f6e43d18ce5cad105fe29b6"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/tigit_cd155_checkpoint_interaction_style4.svg",
+      "sha256": "d21e12ae5ae2e11696a61f393401744563db322a3102d9accc1f5e3decbff761"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/tigit_receptor_style4.svg",
+      "sha256": "0ada3c8c6f2be9059a482882c390a2c489783b26113a489ce85f1c9409ade46d"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/time_course_style4.svg",
+      "sha256": "a2dae2dff3881a9891972129af6e43d44f0cbbdcda1b8909499a9cadcf476467"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/tissue_explant_style4.svg",
+      "sha256": "7f7a1b4fd4c615ed4e447c24dbe3eecfce9f15325d7ea8cf9bb9220f3914fd48"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/trans_snare_complex_style4.svg",
+      "sha256": "bae1fcc91cf8a6073299cd4856f19424924370e3df66e38c239159eddeffced9"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/translation_style4.svg",
+      "sha256": "ef4b5a3f795ddba125aca44cefba023d5334d63f515b787fcc09f9af0b2840b9"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/transwell_culture_coculture_style4.svg",
+      "sha256": "ec0b58ce34ce35c985e2800ae8d2130f0ed671f68e4a13c350068db5a466938d"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/transwell_culture_monoculture_style4.svg",
+      "sha256": "03a320a4cc0cf9b4308702bbe59edd05a1a59e4e8f876e9919dd7074e7b11f08"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/trna_style4.svg",
+      "sha256": "724f7b15ef54b6aa235c0b3af0c6bc4675c7148e76e689f04253b78565d3845c"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/tumor_associated_macrophage_style4.svg",
+      "sha256": "32d5c6fce32a0753d7ff95cd688385c2d85f48e8d54385d183a27d4745b2f272"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/tumor_associated_neutrophil_isolated_style4.svg",
+      "sha256": "68ae0ee3c68e9aaf74aaf623534d9ec4e2c63ab37336e07564ac2af9d9ece19e"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/tumor_associated_neutrophil_tumor_contact_style4.svg",
+      "sha256": "4df5028fc2f8af8f6aaddce9832253a2bf3ae65d5ad958fda3fa06f95e979acc"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/tumor_cell_extravasation_style4.svg",
+      "sha256": "b59a3c45268fbc9085ab6f67590e7657075c632b0373b6f01e043d19d1c654fd"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/tumor_cell_intravasation_style4.svg",
+      "sha256": "eb83baab3735187b18727ca138739ad5632c39987ae7f83fd4b3fa742899444f"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/tumor_regression_style4.svg",
+      "sha256": "0d4b24ba444f94a751f80397969f198527b6616ed17a306313ed6b97976bc2fa"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/ubiquitination_style4.svg",
+      "sha256": "6f1f8bb0b322602f5ad53c5879e989d70504bcf493f5b0e10408f80fdee03bf6"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/umap_scatter_clusters_style4.svg",
+      "sha256": "c9f47ea43ccef3fa080c7161b4965903e2b7667a5b3c68e29498650df704290c"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/umap_scatter_continuum_style4.svg",
+      "sha256": "50e3e5ca68a2dfb6d8dee31c87e07509710cd8f42b29dd3e47469269cd912be8"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/unfolded_polypeptide_style4.svg",
+      "sha256": "c480b6513b9726acf0aeee562fa28a6ce31c70e8372d67bc3ee6b4eb4736bf08"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/urine_sample_style4.svg",
+      "sha256": "2ec472a4eecc7535764ca2003cfc5c9b81558f5e360e361d61ad0d144d00cedd"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/violin_plot_paired_style4.svg",
+      "sha256": "c050b44e66cc290d1950e9aa584ca3da1b4e00fe1932de01c862513db6e80669"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/violin_plot_split_style4.svg",
+      "sha256": "5c0963cbff3f13e31e7d5a9809af3359cab97cb795f94acae674571af64a42f0"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/volcano_plot_feature_labels_style4.svg",
+      "sha256": "3ccae4bb775cbe32a022dbea62664fa0f33c4b1884857113e62f781679b8f04e"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/volcano_plot_overview_style4.svg",
+      "sha256": "20f1b8955f74594ad0febd897cd383cc02b5ab968cf761437b93c667f798734a"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/western_blot_result_style4.svg",
+      "sha256": "5377271f48a7ae4e1284ef090b7ad43ebf2fde56bccf821c729af1d6dc949d5d"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/corrected-20261017/svg/xenograft_mouse_style4.svg",
+      "sha256": "dd93f2ef4dd733d2b9f0f717f93857864e43e2bb9761b2c8077d211618865161"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/manifest-corrected-20261017.json",
+      "sha256": "a1a05aa118b103b54550d792d95d126790b79fedd762696822ca1cae24a00a17"
+    }
+  ],
+  "source_qualification": {
+    "all_svg_render_checks": 976,
+    "rendered_svg_count": 486,
+    "independently_reviewed_drawings": 216,
+    "native_editor_checks": 129,
+    "native_editor_cases": 1,
+    "actual_save_cold_open_pairs": 3,
+    "helper_sha256": "7e7f143df6957c4d51488913016810634ec3bc6b126af8062a1028630daa4109",
+    "selected_shared_package_unchanged": "1.0.0-beta.12"
+  },
+  "packs": {
+    "cell-architecture-transport": {
+      "catalog_sha256": "ec0b221148b6b25b287437f605f532d59b84d784ed260f861fb0fb84f4f435f2",
+      "audit_file": "rights-release-record-2026-10-13.json",
+      "audit_sha256": "9bd7a54ed501ddfb24769995f1d3d56b173ec0454a04e87512446e87710816e9",
+      "original_rights_records_sha256": "6f54de2759367391a4d0c6754b098b46bbbc6e93488b9a7832eeec74d6fc2211",
+      "original_rights_grant_date": "2026-10-10",
+      "revision_receipt": "family-expansion-2026-10-13.json",
+      "revision_receipt_sha256": "5b74bb139b1d164566aa9300b9d6961ff89e9f6db06310bc00d2916623fa6849",
+      "drawing_count": 28
+    },
+    "culture-models-assays": {
+      "catalog_sha256": "f9e64bebee918b360cc97b9b4ec89b2e11d52195cf2abca5ac39ca723c7fa60d",
+      "audit_file": "rights-release-record-2026-10-13.json",
+      "audit_sha256": "fcceb4028f164f2da85de5a58ac6d78f5152f2b00924895f619c071c4a829b0e",
+      "original_rights_records_sha256": "800b0017aa314136d39dcc7464ed23f08267b3ab6a28d27603be8a6b2c2391da",
+      "original_rights_grant_date": "2026-10-10",
+      "revision_receipt": "family-expansion-2026-10-13.json",
+      "revision_receipt_sha256": "00ccdf41ddcb9a8849a41f4ed862a18b68bddcbb25a60153554eb4c25286c930",
+      "drawing_count": 24
+    },
+    "microbial-biology": {
+      "catalog_sha256": "9e17fa7d43ba1d7209c6cf8c895384bf8d34fc02c04f897d55417568dd1c6744",
+      "audit_file": "rights-release-record-2026-10-13.json",
+      "audit_sha256": "dc1ec2475e6ff44b1c42b275ae9f3c4e35dc3c3535db37fd7a69ae4334f7c980",
+      "original_rights_records_sha256": "1d99466fe5f54f3f251591eb57f06973d8b06dadb0debec9c17fcc1013129495",
+      "original_rights_grant_date": "2026-10-10",
+      "revision_receipt": "family-expansion-2026-10-13.json",
+      "revision_receipt_sha256": "8eaad1101e95d31b076d515f735a02f94c64bcbf8128839c87a66e451e16497a",
+      "drawing_count": 24
+    },
+    "rna-methods": {
+      "catalog_sha256": "6e77577795470401190cd0f1bed83578ec277cc39f32de79a4f09ba6e0ac908f",
+      "audit_file": "rights-release-record.json",
+      "audit_sha256": "9db4e5bae0f9c1a99fe619e41f342efd01ee723b36300d8fdb8fc701cafc4a84",
+      "original_rights_records_sha256": "b1581a2d4a57cc89a373e233e88cdf18eaa20bd825877dfce31f2e76bf8a26c8",
+      "original_rights_grant_date": "2026-10-10",
+      "revision_receipt": "artwork-revision-2026-10-13.json",
+      "revision_receipt_sha256": "406d859d9678010169cefb0006131c438276ab65f26972bda228822e2a5b1029",
+      "drawing_count": 4
+    },
+    "cell-structure-stress": {
+      "catalog_sha256": "7cfd7b97632a64b88b2468086fecc9792f33d4eb50281007cacbd5617240f8fb",
+      "audit_file": "rights-release-record.json",
+      "audit_sha256": "7c6181e99f05a48aaac5ba28a084eb8a57108ac12047eda210d52d22a575f7ff",
+      "rights_records_sha256": "1b46eaa982923d11a248c65982f90532fe505ffcdee28cfa9c7972f13ce01053",
+      "rights_basis": "repository_policy_original_output",
+      "contribution_effective_date": "2026-10-15",
+      "drawing_count": 40,
+      "concept_count": 20
+    },
+    "tumor-microenvironment": {
+      "catalog_sha256": "f7b549925e7f563656b3457c6a34466796610f0dd1f390984d3f95c9928bd482",
+      "audit_file": "rights-release-record.json",
+      "audit_sha256": "7f57e2d6093a55a4ab5bab50d8d3b190c22e631116afd2783fb244783cef3421",
+      "rights_records_sha256": "55c2387f885a4b61ba2844f57817b2a63bc4150d0aeff0bd507fdb9f9e346cf3",
+      "rights_basis": "repository_policy_original_output",
+      "contribution_effective_date": "2026-10-15",
+      "drawing_count": 20,
+      "concept_count": 10
+    },
+    "analysis-graphics": {
+      "catalog_sha256": "b5d10852475e49541349059e0517d674f4af4da70141b8c479081abd063307b2",
+      "audit_file": "rights-release-record.json",
+      "audit_sha256": "8c9ed1f12ade8f94f74135b5ab31e0b1b345c3ab4f99790c490540566f646433",
+      "rights_records_sha256": "b1693db679e6855c86c7e5be6e1a15abc546cd47bfca54f2dec0ac03549cc3bb",
+      "rights_basis": "repository_policy_original_output",
+      "contribution_effective_date": "2026-10-15",
+      "drawing_count": 20,
+      "concept_count": 10
+    }
+  },
+  "scenes": {
+    "single-cell-rna-workflow": {
+      "scene_sha256": "a7d22e7fa4d7d27a89477bfe0f41ec90e5b1ff7b84c4217d0af61b15f18bf3dd",
+      "preview_sha256": "5420139979016ba5f54e7b99ea5822da2b10646240d3740809340095d7189263"
+    },
+    "spatial-rna-methods": {
+      "scene_sha256": "42887da40bb40cd9a3b8fca1d18ec7a1e6d361c3590e4d46447d43d4ea98bdb7",
+      "preview_sha256": "20019511d3685597ec1685867342b70fae5a79fca02649b7aa96bab5cc562709"
+    }
+  }
+}

@@ -159,7 +159,8 @@
       return { ...asset, file: variant._resourcePath, _svgUrl: variant._svgUrl, _packAssetPath: "",
         style_family: "superbench-style-4-v1", art_style: STYLE_FOUR,
         art_style_source_sha256: variant.sha256,
-        editable_color_regions: transformRegions(variant.editable_color_regions, STYLE_FOUR) };
+        editable_color_regions: transformRegions(variant.editable_color_regions, STYLE_FOUR)
+          .filter((region) => region.no_rendered_paint !== true) };
     }
     return { ...asset, style_family: `superbench-${selected}-v1`, art_style: selected,
       editable_color_regions: transformRegions(asset.editable_color_regions, selected) };

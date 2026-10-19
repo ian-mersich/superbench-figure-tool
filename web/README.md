@@ -86,6 +86,14 @@ exists. Transactions update the document and its list entry atomically, and opti
 revision checks reject conflicting writes from another tab. Browser save success is shown
 only after transaction completion. Failed saves keep live edits and the last successful copy;
 the user can download, retry, or save a separate copy for a conflict.
+Browser autosave prepares the portable workspace with the same `app/file-formats.js`
+serializer in a bundled worker. The editor posts already detached tab snapshots;
+it does not stringify the entire workspace on the main thread for this step.
+New typing, formatting or a different project can continue while serialization
+runs. The completed save acknowledges only its captured source; later edits stay
+pending. Worker failures use the existing save-failure and download controls.
+Live-scene capture, worker transport, thumbnails and IndexedDB writes still have
+main-thread costs; this change does not establish dense-PDF responsiveness.
 To remove the currently open project's browser copy, first open another project or return
 to the initial Saved work list. This prevents the open editor from claiming a deleted copy is saved.
 
@@ -100,6 +108,14 @@ Run `python scripts/check-figure-editor-usability-browser.py` from this Figure r
 for current shared-editor and browser-shell authoring acceptance. The following extended
 save and packaging checks belong to the consuming Superbench repository and exercise its
 selected immutable Figure release.
+
+Run `node --test tests/browserCompletedCapture.test.mjs` for completed-capture
+invalidation, byte-identical portable workspaces, the bundled worker and save
+ownership controls. Run `py -3 scripts/check-browser-workspace-worker-browser.py`
+for actual typing, the visible Bold control, IndexedDB autosave and cold Resume.
+That deterministic race check holds only the final response from a real worker;
+it is a behavior check, not a performance measurement. Its evidence stays under
+`qa_artifacts/browser-workspace-worker/`.
 
 Run `python scripts/check-figure-browser-saves.py` from `core/` for persistent-profile,
 embedded-image, file round-trip, failed-transaction, recovery and competing-tab checks.

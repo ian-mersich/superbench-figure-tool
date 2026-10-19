@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc" data-asset-id="exp.pathway_symbol.time_course" data-style="Style 4" data-artwork-revision="corrected-2026-10-17">
+  <title id="title">Time Course</title>
+  <desc id="desc">Editable experimental time-course notation schematic with directed timeline with baseline, treatment, and ordered sampling cues.</desc>
+  <g data-region="relation" fill="none" stroke="#629BC0" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 72h103m-9-9 10 9-10 9" data-style4-method="flat-presentation-preserve-geometry"/></g>
+  <g data-region="molecular_state" fill="#B9B3DD" stroke="none"><circle cx="26" cy="72" r="7" data-style4-method="flat-presentation-preserve-geometry"/><circle cx="51" cy="72" r="7" data-style4-method="flat-presentation-preserve-geometry"/><circle cx="76" cy="72" r="7" data-style4-method="flat-presentation-preserve-geometry"/><circle cx="101" cy="72" r="7" data-style4-method="flat-presentation-preserve-geometry"/></g>
+  <g data-region="relation_cue" fill="none" stroke="#CD796C" stroke-width="2.048" stroke-linecap="round" stroke-linejoin="round"><path d="M26 55V42m-7 0h14M51 55V31l7 7H44l7-7M76 55V23m-6 0h12l-2 12h-8zM101 55V14m-6 0h12l-2 12h-8z" data-style4-method="flat-presentation-preserve-geometry"/></g>
+  <g data-region="outline" fill="none" stroke="#344955" stroke-width="1.536" stroke-linecap="round" stroke-linejoin="round"><path d="M12 72h103M26 55v34M51 55v34M76 55v34M101 55v34" data-style4-method="flat-presentation-preserve-geometry"/></g>
+</svg>

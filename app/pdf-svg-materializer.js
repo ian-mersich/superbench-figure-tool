@@ -24,10 +24,22 @@
     const ObjectClass = fabric.FabricObject || fabric.Object;
     if (ObjectClass) ObjectClass.customProperties = Array.from(new Set([...(ObjectClass.customProperties || []), "objectCaching", "noScaleCache"]));
   }
+  function isNativeRectangleDisplayPath(object, options = {}) {
+    const Path = pathClassByFabric.get(options.fabric);
+    return Boolean(Path && object?.constructor === Path && object.pdfDisplayFillPolicy === "pdf-opaque-axis-rectangle-device-pixels-v1");
+  }
   const number = (value, fallback = 0) => Number.isFinite(Number(value)) ? Number(value) : fallback;
   const tag = (element) => String(element?.localName || element?.nodeName || "").replace(/^.*:/, "").toLowerCase();
   const numbers = (value) => (String(value || "").match(/[+-]?(?:\d*\.\d+|\d+\.?\d*)(?:e[+-]?\d+)?/gi) || []).map(Number);
-  const clone = (value) => value == null ? value : JSON.parse(JSON.stringify(value));
+  const clone = (value) => {
+    if (value == null) return value;
+    // The browser loads this module before the precision module. Resolve only
+    // at an actual clone boundary and keep the original unsupported expression.
+    const precision = typeof module === "object" && module.exports
+      ? require("./pdf-scene-number-precision.js") : globalThis.FigureStudioPdfSceneNumberPrecision;
+    const ownedParse = precision?.ownedJsonParserForCurrentIntrinsics?.();
+    return ownedParse ? ownedParse(JSON.stringify(value)) : JSON.parse(JSON.stringify(value));
+  };
   const escapeXml = (value) => String(value ?? "").replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&apos;" })[char]);
   function xmlGlyph(fontChar, unicode) {
     if (!/[\x00-\x08\x0b\x0c\x0e-\x1f]/.test(fontChar)) return fontChar;
@@ -167,6 +179,26 @@
       const authority = graph(object);
       return { graph: { ...authority, data: "world-clip-authority" }, data: JSON.stringify(rows) };
     }
+    function* clipWorldGraphSteps(object, ownerWorld) {
+      if (!object) return { graph: yield* graphSteps(null), data: "null" };
+      const rows = [], seen = new Set();
+      function* visit(row, worldOwner) {
+        if (!row || seen.has(row)) throw new Error("Shared or cyclic clip ownership.");
+        seen.add(row);
+        yield row;
+        const own = row.calcOwnMatrix(), world = row.absolutePositioned ? own : multiply(worldOwner, own);
+        if (!world.every(Number.isFinite)) throw new Error("Nonfinite clip world.");
+        rows.push([values.filter(key => !["left", "top"].includes(key)).map(key => row[key]),
+          row.path || null, row.points || null, row.pathOffset || null, own.slice(0, 4), world, effects(row)]);
+        for (const child of row.getObjects?.() || []) yield* visit(child, world);
+        if (row.clipPath) yield* visit(row.clipPath, world);
+        if (row.mask) yield* visit(row.mask, world);
+      }
+      yield* visit(object, ownerWorld);
+      const authority = yield* graphSteps(object);
+      yield object;
+      return { graph: { ...authority, data: "world-clip-authority" }, data: JSON.stringify(rows) };
+    }
     function sameWorldClip(left, right) {
       return left && right && left.data === right.data && sameGraph(left.graph, right.graph);
     }
@@ -193,6 +225,32 @@
       visit(object);
       return { refs, links, data: JSON.stringify(rows) };
     }
+    function* graphSteps(object) {
+      if (!object) return { refs: [], links: [], data: "null" };
+      const refs = [], links = [], rows = [], seen = new Set();
+      function* visit(row) {
+        if (!row || seen.has(row)) return;
+        seen.add(row); refs.push(row);
+        yield row;
+        if (numeric.some(key => row[key] !== undefined && !Number.isFinite(row[key]))) throw new Error("Nonfinite geometry.");
+        if (typeof row.text === "string" && textNumeric.some(key => !Number.isFinite(row[key]))) throw new Error("Nonfinite text inputs.");
+        const own = row.calcOwnMatrix?.(), center = row.getRelativeCenterPoint?.();
+        if ((own && !own.every(Number.isFinite)) || (center && ![center.x, center.y].every(Number.isFinite))) throw new Error("Nonfinite affine geometry.");
+        const children = Array.from(row.getObjects?.() || []);
+        links.push({ group: row.group, parent: row.parent, children, clip: row.clipPath, mask: row.mask, source: row.pdfTextSource });
+        rows.push([values.map(key => row[key]), row.path || null, row.points || null,
+          row.pathOffset || null, own || null, center ? [center.x, center.y] : null, row.isStrokeAccountedForInDimensions?.(),
+          effects(row), typeof row.text === "string" ? [row.text, row.styles || null, row.fontFamily, row.fontSize,
+            row.fontWeight, row.fontStyle, row.textAlign, row.lineHeight, row.charSpacing, row.direction,
+            typographyGeometry(row.figureStudioTypographyMeta), listGeometry(row.figureStudioListMeta), row.pdfTextAuthoringFrame || null, row.pdfTextAuthoringPlane || null, row.pdfTextSource || null] : null,
+          children.length, Boolean(row.clipPath), Boolean(row.mask)]);
+        for (const child of children) yield* visit(child);
+        yield* visit(row.clipPath); yield* visit(row.mask);
+      }
+      yield* visit(object);
+      yield object;
+      return { refs, links, data: JSON.stringify(rows) };
+    }
     function sameGraph(left, right) {
       return Boolean(left && right && left.data === right.data && left.refs.length === right.refs.length
         && left.refs.every((object, index) => object === right.refs[index])
@@ -216,9 +274,57 @@
             object.fontStyle, object.textAlign, object.lineHeight, object.charSpacing, object.direction,
             object.styles || null, typographyGeometry(object.figureStudioTypographyMeta), listGeometry(object.figureStudioListMeta), object.pdfTextAuthoringFrame || null, object.pdfTextAuthoringPlane || null] : null,
           effects(object)]),
+        // The explicit rectangle display class retains native Path geometry.
+        // Its in-place import promotion must keep the same qualified UI drag
+        // path; the remaining source, clip, effect and graph checks still apply.
+        translation: (object.constructor === fabric.Path || isNativeRectangleDisplayPath(object, { fabric }))
+          && typeof object.pdfSourceId === "string" && object.pdfSourceId
+          && object.importMeta?.mimeType === "application/pdf" && !object.clipPath && !object.mask
+          && !nonlocalEffects(object) ? JSON.stringify([
+            values.filter(key => key !== "left" && key !== "top").map(key => object[key]),
+            object.path, object.pathOffset, object.points || null, object.pdfSourceId, object.pdfSourcePageNumber,
+            effects(object)
+          ], (_key, value) => typeof value === "number" && Object.is(value, -0) ? { negativeZero: true } : value) : null,
         clip: graph(object.clipPath), worldClip: clipWorldGraph(object.clipPath, object.calcTransformMatrix()), mask: graph(object.mask), subtree: graph(object), effects: JSON.stringify(effects(object)),
         owner: object.group, parent: object.parent, manager: object.layoutManager, strategy: object.layoutManager?.strategy,
         children: Array.from(object.getObjects?.() || []).map(child => ({ ref: child, geometry: geometry(child, ancestors) })),
+        sourceRef: object.pdfTextSource, sourceData: JSON.stringify(object.pdfTextSource || null), inputs,
+        linear: JSON.stringify([object.calcOwnMatrix().slice(0, 4), object.originX, object.originY, object.flipX, object.flipY,
+          object.scaleX, object.scaleY, object.angle, object.skewX, object.skewY]) };
+    }
+    function* childrenGeometrySteps(object, ancestry) {
+      const children = [];
+      for (const child of Array.from(object.getObjects?.() || [])) children.push({ ref: child, geometry: yield* geometrySteps(child, ancestry) });
+      return children;
+    }
+    function* geometrySteps(object, ancestry = new Set()) {
+      if (ancestry.has(object)) return null;
+      const ancestors = new Set(ancestry); ancestors.add(object);
+      yield object;
+      if (numeric.some(key => object[key] !== undefined && !Number.isFinite(object[key]))) return null;
+      if (typeof object.text === "string" && textNumeric.some(key => !Number.isFinite(object[key]))) return null;
+      const inputs = typeof object.text === "string" ? JSON.stringify([object.text, object.fontFamily, object.fontSize,
+        object.fontWeight, object.fontStyle, object.textAlign, object.lineHeight, object.charSpacing, object.direction,
+        object.styles || null, typographyGeometry(object.figureStudioTypographyMeta)]) : null;
+      return { data: JSON.stringify([values.map(key => object[key]), object.path || null, object.points || null,
+          typeof object.text === "string" ? [object.text, object.fontFamily, object.fontSize, object.fontWeight,
+            object.fontStyle, object.textAlign, object.lineHeight, object.charSpacing, object.direction,
+            object.styles || null, typographyGeometry(object.figureStudioTypographyMeta), listGeometry(object.figureStudioListMeta), object.pdfTextAuthoringFrame || null, object.pdfTextAuthoringPlane || null] : null,
+          effects(object)]),
+        // The explicit rectangle display class retains native Path geometry.
+        // Its in-place import promotion must keep the same qualified UI drag
+        // path; the remaining source, clip, effect and graph checks still apply.
+        translation: (object.constructor === fabric.Path || isNativeRectangleDisplayPath(object, { fabric }))
+          && typeof object.pdfSourceId === "string" && object.pdfSourceId
+          && object.importMeta?.mimeType === "application/pdf" && !object.clipPath && !object.mask
+          && !nonlocalEffects(object) ? JSON.stringify([
+            values.filter(key => key !== "left" && key !== "top").map(key => object[key]),
+            object.path, object.pathOffset, object.points || null, object.pdfSourceId, object.pdfSourcePageNumber,
+            effects(object)
+          ], (_key, value) => typeof value === "number" && Object.is(value, -0) ? { negativeZero: true } : value) : null,
+        clip: yield* graphSteps(object.clipPath), worldClip: yield* clipWorldGraphSteps(object.clipPath, object.calcTransformMatrix()), mask: yield* graphSteps(object.mask), subtree: yield* graphSteps(object), effects: JSON.stringify(effects(object)),
+        owner: object.group, parent: object.parent, manager: object.layoutManager, strategy: object.layoutManager?.strategy,
+        children: yield* childrenGeometrySteps(object, ancestors),
         sourceRef: object.pdfTextSource, sourceData: JSON.stringify(object.pdfTextSource || null), inputs,
         linear: JSON.stringify([object.calcOwnMatrix().slice(0, 4), object.originX, object.originY, object.flipX, object.flipY,
           object.scaleX, object.scaleY, object.angle, object.skewX, object.skewY]) };
@@ -234,6 +340,13 @@
       if (!linear.every(Number.isFinite) || frameValues.some(key => typeof target[key] === "number" && !Number.isFinite(target[key]))) return null;
       return { data: JSON.stringify([frameValues.map(key => target[key]), linear, effects(target)]),
         clip: graph(target.clipPath), mask: graph(target.mask) };
+    }
+    function* frameSteps(target) {
+      yield target;
+      const linear = target.calcTransformMatrix().slice(0, 4);
+      if (!linear.every(Number.isFinite) || frameValues.some(key => typeof target[key] === "number" && !Number.isFinite(target[key]))) return null;
+      return { data: JSON.stringify([frameValues.map(key => target[key]), linear, effects(target)]),
+        clip: yield* graphSteps(target.clipPath), mask: yield* graphSteps(target.mask) };
     }
     function sourceText(object) {
       const TextClass = classByFabric.get(fabric);
@@ -288,7 +401,8 @@
       const Text = classByFabric.get(fabric);
       const Path = typeof registerCurrentPlanePathClass === "function" ? registerCurrentPlanePathClass(fabric) : null;
       const Current = currentPlaneGroupByFabric.get(fabric), Isolated = groupClassByFabric.get(fabric);
-      if (![fabric.Path, fabric.Rect, fabric.Group, Isolated, Current, Text, Path].filter(Boolean).includes(object.constructor)) return null;
+      if (!isNativeRectangleDisplayPath(object, { fabric })
+          && ![fabric.Path, fabric.Rect, fabric.Group, Isolated, Current, Text, Path].filter(Boolean).includes(object.constructor)) return null;
       let local;
       if (Text && object.constructor === Text && Text.prototype._pdfCurrentNativePlane) {
         const plane = Text.prototype._pdfCurrentNativePlane.call(object);
@@ -360,9 +474,16 @@
     function compatibleReflow(object, after, before, context) {
       if (sameGeometry(after, before)) return true;
       if (!after || !before || after.owner !== before.owner || after.parent !== before.parent
-          || after.manager !== before.manager || after.strategy !== before.strategy
-          || context.type !== "object_modifying" || context.trigger !== "changed") return false;
-      if (sourceText(object)) return after.inputs !== before.inputs && after.linear === before.linear
+          || after.manager !== before.manager || after.strategy !== before.strategy) return false;
+      const translating = ["object_modifying", "object_modified"].includes(context.type)
+        && ["moving", "modified"].includes(context.trigger)
+        && context.e?.transform?.action === "drag";
+      if (translating && context.e.transform.target === object && after.translation && after.translation === before.translation
+          && after.linear === before.linear && currentPlaneContains(object, object.group)) return true;
+      // A retained descendant translation can bubble through the unchanged
+      // native parent frames without recentering every neighboring mark.
+      if (!(context.type === "object_modifying" && context.trigger === "changed") && !translating) return false;
+      if (sourceText(object)) return !translating && after.inputs !== before.inputs && after.linear === before.linear
         && after.sourceRef === before.sourceRef && after.sourceData === before.sourceData
         && sameWorldClip(after.worldClip, before.worldClip) && sameGraph(after.mask, before.mask)
         && after.effects === before.effects && (strictlyInside(object, object.group)
@@ -385,13 +506,28 @@
         this._authoringGeometry = null;
         this._authoringFrame = null;
       }
+      *_captureAuthoringLayout(target) {
+        try {
+          const members = Array.from(target.getObjects()), snapshots = [];
+          for (const object of members) snapshots.push(yield* geometrySteps(object));
+          return { members, geometry: snapshots, frame: yield* frameSteps(target) };
+        } catch (_) {
+          return { members: null, geometry: null, frame: null };
+        }
+      }
+      _publishAuthoringLayout(snapshot) {
+        this._authoringMembers = snapshot.members;
+        this._authoringGeometry = snapshot.geometry;
+        this._authoringFrame = snapshot.frame;
+      }
       _seed(target) {
         try {
-          this._authoringMembers = Array.from(target.getObjects());
-          this._authoringGeometry = this._authoringMembers.map(object => geometry(object));
-          this._authoringFrame = frame(target);
+          const members = Array.from(target.getObjects());
+          const snapshots = members.map(object => geometry(object));
+          const ownerFrame = frame(target);
+          this._publishAuthoringLayout({ members, geometry: snapshots, frame: ownerFrame });
         } catch (_) {
-          this._authoringMembers = null; this._authoringGeometry = null; this._authoringFrame = null;
+          this._publishAuthoringLayout({ members: null, geometry: null, frame: null });
         }
       }
       subscribeTargets(context) {
@@ -479,7 +615,54 @@
     return Manager ? new Manager() : null;
   }
 
-  function finalizeImportedAuthoringLayout(objects, { fabric } = {}) {
+  function finalizeImportedAuthoringLayout(objects, options = {}) {
+    const steps = importedAuthoringLayoutSteps(objects, options);
+    let step;
+    do { step = steps.next(); } while (!step.done);
+    return step.value;
+  }
+
+  // Only unpublished, caller-owned import graphs may cross task boundaries.
+  // Editing and restoration deliberately retain the synchronous entry above.
+  async function finalizeImportedAuthoringLayoutAsync(objects, options = {}) {
+    const roots = Array.from(objects || []), steps = importedAuthoringLayoutSteps(roots, { ...options, cooperative: true });
+    const now = () => globalThis.performance?.now?.() ?? Date.now();
+    const maxSliceMs = Number.isFinite(options.maxSliceMs) ? Math.max(0, options.maxSliceMs) : 16;
+    const yieldToUi = options.yieldToUi || (() => new Promise(resolve => setTimeout(resolve, 0)));
+    const current = object => {
+      if (options.signal?.aborted) {
+        const error = new Error("PDF authoring layout capture was cancelled."); error.name = "AbortError"; throw error;
+      }
+      if (object?.canvas) throw new Error("Cooperative PDF layout capture requires detached import objects.");
+    };
+    const capturedObjects = new Set();
+    const detached = () => {
+      for (const object of roots) current(object);
+      for (const object of capturedObjects) current(object);
+    };
+    let started = now(), visited = 0, uiYieldCount = 0;
+    try {
+      detached();
+      for (;;) {
+        const step = steps.next();
+        current(step.value);
+        if (step.done) { detached(); return step.value; }
+        if (step.value && typeof step.value === "object") capturedObjects.add(step.value);
+        visited++;
+        const elapsed = now() - started;
+        if (elapsed < maxSliceMs) continue;
+        options.onProgress?.({ stage: "authoring-layout", completed: visited, uiYieldCount: ++uiYieldCount, elapsedMs: elapsed });
+        await yieldToUi();
+        current(step.value);
+        detached();
+        started = now();
+      }
+    } finally {
+      steps.return();
+    }
+  }
+
+  function* importedAuthoringLayoutSteps(objects, { fabric, cooperative = false } = {}) {
     // Import construction attaches shared clips and adopts nested groups after
     // their native initialization layouts. Capture that completed CURRENT
     // hierarchy once; editing and restoration keep their existing guards.
@@ -493,6 +676,7 @@
       const object = pending.pop();
       if (!object || seen.has(object)) continue;
       seen.add(object);
+      yield object;
       const children = Array.from(object.getObjects?.() || []);
       pending.push(...children.filter(child => child.group === object && child.parent === object));
       completed.push({ object, children });
@@ -505,7 +689,11 @@
         || object.constructor === currentPlaneGroupByFabric.get(fabric) && Linear && manager?.strategy?.constructor === Linear;
       if (owner && manager?.constructor === Manager && children.length
           && children.every(child => child.group === object && child.parent === object && manager._subscriptions?.has(child))) {
-        manager._seed(object);
+        if (cooperative) {
+          const snapshot = yield* manager._captureAuthoringLayout(object);
+          yield object;
+          manager._publishAuthoringLayout(snapshot);
+        } else manager._seed(object);
         captured++;
       }
     }
@@ -599,7 +787,13 @@
         let current = this.clipPath;
         for (let depth = 0; current && depth < 48; depth++) {
           if (current.clipPath || current.inverted || current.absolutePositioned || current.shadow || current.opacity !== 1
-              || current.backgroundColor || current.mask || current.globalCompositeOperation !== "source-over") return null;
+              || current.backgroundColor || current.mask || current.filters?.length || current.resizeFilter
+              || current.figureStudioAppearanceStack || current.figureStudioAppearanceMeta
+              || current.globalCompositeOperation !== "source-over"
+              || current.calcOwnMatrix !== current.constructor.prototype.calcOwnMatrix
+              || current.drawObject !== current.constructor.prototype.drawObject
+              || current._render !== current.constructor.prototype._render) return null;
+          if (![Path, fabric.Group, PdfIsolatedGroup, CurrentGroup].includes(current.constructor)) return null;
           const own = current.calcOwnMatrix();
           if (!own.every(value => Number.isFinite(value) && Math.abs(value) <= 1e8)) return null;
           planes.push(own);
@@ -617,22 +811,32 @@
         }
         return null;
       }
+      _pdfVectorClip() {
+        if (this.opacity !== 1 || this.shadow || this.mask || this.backgroundColor || this.filters?.length || this.resizeFilter
+            || this.figureStudioAppearanceStack || this.figureStudioAppearanceMeta
+            || ![undefined, "source-over"].includes(this.globalCompositeOperation)) return null;
+        return simpleNativeClip(this.clipPath, fabric);
+      }
       drawObject(context, forClipping, cache) {
         const clip = !forClipping && this._currentNativePlaneClip();
-        if (!clip) return super.drawObject(context, forClipping, cache);
+        const vector = !forClipping && !clip && this._pdfVectorClip();
+        if (!clip && !vector) return super.drawObject(context, forClipping, cache);
         context.save();
         try {
-          context.save();
-          try { for (const matrix of clip.planes) context.transform(...matrix); clip.path._renderPathCommands(context); }
-          finally { context.restore(); }
-          context.clip(clip.rule);
+          if (vector) applySimpleNativeClip(context, vector);
+          else {
+            context.save();
+            try { for (const matrix of clip.planes) context.transform(...matrix); clip.path._renderPathCommands(context); }
+            finally { context.restore(); }
+            context.clip(clip.rule);
+          }
           this.__pdfCurrentNativeClipActive = true;
           return super.drawObject(context, forClipping, cache);
         } finally { this.__pdfCurrentNativeClipActive = false; context.restore(); }
       }
       _drawClipPath(context, clip, cache) { if (!this.__pdfCurrentNativeClipActive) return super._drawClipPath(context, clip, cache); }
 
-      needsItsOwnCache() { return !this._currentNativePlaneClip() && (this.opacity < 1 || super.needsItsOwnCache()); }
+      needsItsOwnCache() { return !this._currentNativePlaneClip() && !this._pdfVectorClip() && (this.opacity < 1 || super.needsItsOwnCache()); }
       toObject(properties = []) { return super.toObject([...properties, ...META_PROPS]); }
     }
     fabric.classRegistry?.setClass(PdfIsolatedGroup);
@@ -658,6 +862,37 @@
     return { left, top, width: right - left, height: bottom - top };
   }
 
+  function exactRectangleBounds(path) {
+    if (!rectangleBounds(path)) return null;
+    const corners = path.slice(0, 4), x = new Set(corners.map(row => row[1])), y = new Set(corners.map(row => row[2]));
+    if (x.size !== 2 || y.size !== 2 || new Set(corners.map(row => `${row[1]},${row[2]}`)).size !== 4) return null;
+    if (corners.some((point, index) => point[1] !== corners[(index + 1) % 4][1] && point[2] !== corners[(index + 1) % 4][2])) return null;
+    if (path[4][0] === "L" && (path[4][1] !== path[0][1] || path[4][2] !== path[0][2])) return null;
+    return { left: Math.min(...x), right: Math.max(...x), top: Math.min(...y), bottom: Math.max(...y) };
+  }
+
+  function axisDeviceRectangle(matrix, bounds) {
+    if (!matrix.every(Number.isFinite) || matrix[1] !== 0 || matrix[2] !== 0 || !matrix[0] || !matrix[3]) return null;
+    const x = [matrix[0] * bounds.left + matrix[4], matrix[0] * bounds.right + matrix[4]];
+    const y = [matrix[3] * bounds.top + matrix[5], matrix[3] * bounds.bottom + matrix[5]];
+    if (![...x, ...y].every(value => Number.isFinite(value) && Math.abs(value) <= 1e8)) return null;
+    return { left: Math.min(...x), right: Math.max(...x), top: Math.min(...y), bottom: Math.max(...y) };
+  }
+
+  function rectangleDeviceSpan(low, high) {
+    // Opaque PDF rectangle coverage uses a whole-device-pixel span. Choose the
+    // ceil-width span with greatest coverage; clip rectangles use outer bounds.
+    // This follows CFX_RenderDevice::DrawPath's no-stroke rectangle branch:
+    // https://pdfium.googlesource.com/pdfium/+/a644535827f8020fdf0a436eaa69dd9196262012/core/fxge/cfx_renderdevice.cpp
+    let start = Math.floor(low), end = Math.ceil(high);
+    const count = Math.max(1, Math.ceil(high - low));
+    if (start === end) end++;
+    if (end - start >= count + 1) {
+      if (low - start > end - high) start++; else end--;
+    }
+    return [start, end];
+  }
+
   function hardRectangle(clip) {
     if (!clip || clip.clipPath || clip.getObjects || clip.inverted || clip.absolutePositioned || clip.shadow || number(clip.opacity, 1) !== 1) return null;
     const type = String(clip.constructor?.type || clip.type).toLowerCase();
@@ -666,40 +901,169 @@
     return bounds ? { ...bounds, left: bounds.left - clip.pathOffset.x, top: bounds.top - clip.pathOffset.y } : null;
   }
 
+  function simpleNativeClip(clip, fabric) {
+    const layers = [], seen = new Set();
+    for (let current = clip; current; current = current.clipPath) {
+      if (seen.has(current) || layers.length >= 48) return null;
+      seen.add(current);
+      const clip = current;
+      if (clip.inverted || clip.absolutePositioned || clip.shadow || clip.mask
+          || clip.opacity !== 1 || clip.backgroundColor || clip.filters?.length || clip.resizeFilter
+          || clip.figureStudioAppearanceStack || clip.figureStudioAppearanceMeta
+          || ![undefined, "source-over"].includes(clip.globalCompositeOperation)) return null;
+      const Class = clip.constructor;
+      if (![fabric.Path, fabric.Rect].includes(Class) || clip._render !== Class.prototype._render
+          || clip.drawObject !== Class.prototype.drawObject || clip.calcOwnMatrix !== Class.prototype.calcOwnMatrix) return null;
+      const matrix = clip.calcOwnMatrix();
+      if (!matrix.every(value => Number.isFinite(value) && Math.abs(value) <= 1e8)
+          || matrix[0] * matrix[3] - matrix[1] * matrix[2] === 0) return null;
+      if (Class === fabric.Path && clip._renderPathCommands === fabric.Path.prototype._renderPathCommands
+          && clip.path?.length && clip.path.every(row => row.length === ({ M: 3, L: 3, C: 7, Q: 5, Z: 1 })[row[0]]
+            && row.slice(1).every(Number.isFinite)) && ["nonzero", "evenodd"].includes(clip.fillRule)) {
+        layers.push({ object: clip, matrix, path: true, rule: clip.fillRule });
+      } else if (Class === fabric.Rect && !clip.rx && !clip.ry && clip.width > 0 && clip.height > 0
+          && [clip.width, clip.height].every(Number.isFinite)) {
+        layers.push({ object: clip, matrix, path: false, rule: "nonzero" });
+      } else return null;
+    }
+    return layers.length ? { layers } : null;
+  }
+
+  function applySimpleNativeClip(context, clip) {
+    const matrices = [];
+    for (const layer of clip.layers) {
+      matrices.push(layer.matrix);
+      context.beginPath();
+      context.save();
+      try {
+        // Nested relative clip planes intersect. Restore only the transform
+        // before committing each clip, so every intersection remains active.
+        for (const matrix of matrices) context.transform(...matrix);
+        if (layer.path) layer.object._renderPathCommands(context);
+        else context.rect(-layer.object.width / 2, -layer.object.height / 2, layer.object.width, layer.object.height);
+      } finally { context.restore(); }
+      context.clip(layer.rule);
+    }
+  }
+
   function registerPathClass(fabric) {
     preserveRenderPolicy(fabric);
     if (pathClassByFabric.has(fabric)) return pathClassByFabric.get(fabric);
     if (!fabric.Path) throw new Error("Fabric editable paths are unavailable.");
     class PdfNativeRectClippedPath extends fabric.Path {
       static type = "PdfNativeRectClippedPath";
+      _pdfDeviceRectangle(context) {
+        if (this.constructor !== PdfNativeRectClippedPath || !this.pdfSourceId
+            || this.pdfDisplayFillPolicy !== "pdf-opaque-axis-rectangle-device-pixels-v1"
+            || this._render !== fabric.Path.prototype._render || this._renderPathCommands !== fabric.Path.prototype._renderPathCommands
+            || this._renderPaintInOrder !== fabric.Path.prototype._renderPaintInOrder || this._renderFill !== fabric.Path.prototype._renderFill
+            || this._setFillStyles !== fabric.Path.prototype._setFillStyles || this.hasStroke !== fabric.Path.prototype.hasStroke
+            || this.drawObject !== PdfNativeRectClippedPath.prototype.drawObject || this._drawClipPath !== PdfNativeRectClippedPath.prototype._drawClipPath
+            || this._nativeRectangle !== PdfNativeRectClippedPath.prototype._nativeRectangle
+            || this.hasStroke() || typeof this.fill !== "string" || !/^#[0-9a-f]{6}$/i.test(this.fill) || this.opacity !== 1 || this.objectCaching !== false
+            || this.shadow || this.mask || this.backgroundColor || this.filters?.length || this.resizeFilter
+            || this.figureStudioAppearanceStack || this.figureStudioAppearanceMeta
+            || ![undefined, "source-over"].includes(this.globalCompositeOperation)
+            || context.globalAlpha !== 1 || context.globalCompositeOperation !== "source-over"
+            || context.filter && context.filter !== "none"
+            || context.shadowBlur || context.shadowOffsetX || context.shadowOffsetY
+            || typeof context.getTransform !== "function") return null;
+        let owner = this.group, depth = 0;
+        while (owner) {
+          if (++depth > 48 || owner.ownCaching || owner.clipPath || owner.opacity !== 1 || owner.shadow || owner.mask
+              || owner.filters?.length || owner.resizeFilter || owner.figureStudioAppearanceStack || owner.figureStudioAppearanceMeta
+              || ![undefined, "source-over"].includes(owner.globalCompositeOperation)) return null;
+          owner = owner.group;
+        }
+        const bounds = exactRectangleBounds(this.path);
+        if (!bounds) return null;
+        const transform = context.getTransform(), matrix = [transform.a, transform.b, transform.c, transform.d, transform.e, transform.f];
+        const device = axisDeviceRectangle(matrix, { left: bounds.left - this.pathOffset.x, right: bounds.right - this.pathOffset.x,
+          top: bounds.top - this.pathOffset.y, bottom: bounds.bottom - this.pathOffset.y });
+        if (!device) return null;
+        let [left, right] = rectangleDeviceSpan(device.left, device.right), [top, bottom] = rectangleDeviceSpan(device.top, device.bottom);
+        if (this.clipPath) {
+          const clipBounds = this._nativeRectangle();
+          if (!clipBounds || this.clipPath.constructor === fabric.Path && !exactRectangleBounds(this.clipPath.path)) return null;
+          const clip = axisDeviceRectangle(multiply(matrix, this.clipPath.calcOwnMatrix()), {
+            left: clipBounds.left, right: clipBounds.left + clipBounds.width,
+            top: clipBounds.top, bottom: clipBounds.top + clipBounds.height });
+          if (!clip) return null;
+          left = Math.max(left, Math.floor(clip.left)); right = Math.min(right, Math.ceil(clip.right));
+          top = Math.max(top, Math.floor(clip.top)); bottom = Math.min(bottom, Math.ceil(clip.bottom));
+        }
+        return { left, top, right, bottom };
+      }
+      _setStrokeStyles(context, object) {
+        super._setStrokeStyles(context, object);
+        // Native PDF canvases display very thin strokes at a minimum of one
+        // device pixel. Keep the declared width in the object and all exports;
+        // this qualified case changes only the current Canvas paint state.
+        if (this.constructor !== PdfNativeRectClippedPath || object !== this
+            || this.pdfDisplayStrokePolicy !== "pdf-minimum-isotropic-device-pixel-v1"
+            || typeof this.stroke !== "string" || !this.stroke || /url\s*\(/i.test(this.stroke)
+            || !Number.isFinite(this.strokeWidth) || this.strokeWidth <= 0 || this.strokeUniform
+            || this.opacity !== 1 || this.strokeDashArray?.length || this.shadow || this.mask
+            || this.filters?.length || this.resizeFilter || this.figureStudioAppearanceStack
+            || this.figureStudioAppearanceMeta || ![undefined, "source-over"].includes(this.globalCompositeOperation)
+            || typeof context.getTransform !== "function") return;
+        const matrix = context.getTransform();
+        if (matrix.b !== 0 || matrix.c !== 0 || !Number.isFinite(matrix.a) || !Number.isFinite(matrix.d)
+            || matrix.a === 0 || Math.abs(matrix.a) !== Math.abs(matrix.d)) return;
+        const minimum = 1 / Math.abs(matrix.a);
+        if (Number.isFinite(minimum)) context.lineWidth = Math.max(context.lineWidth, minimum);
+      }
       _nativeRectangle() {
         const proof = this.pdfNativeRectClip;
-        if (!proof || proof.schema !== "figureStudio.pdfRectangleScope.v1" || this.shadow || this.backgroundColor || this.hasStroke() || typeof this.fill !== "string" || /^\s*url\s*\(/i.test(this.fill) || (this.globalCompositeOperation && this.globalCompositeOperation !== "source-over")) return null;
+        if (!proof || proof.schema !== "figureStudio.pdfRectangleScope.v1" || this.opacity !== 1 || this.shadow || this.mask
+            || this.backgroundColor || this.filters?.length || this.resizeFilter || this.figureStudioAppearanceStack
+            || this.figureStudioAppearanceMeta || this.hasStroke() || typeof this.fill !== "string" || /^\s*url\s*\(/i.test(this.fill)
+            || (this.globalCompositeOperation && this.globalCompositeOperation !== "source-over")
+            || simpleNativeClip(this.clipPath, fabric)?.layers.length !== 1) return null;
         // The proof is only a candidate. Editing canonical path/clip geometry
         // invalidates it and restores Fabric's general clipping implementation.
         const bounds = hardRectangle(this.clipPath);
         if (!bounds || JSON.stringify(this.path) !== proof.path || JSON.stringify(this.clipPath.path || ["rect", this.clipPath.width, this.clipPath.height]) !== proof.clipGeometry) return null;
         return bounds;
       }
-      needsItsOwnCache() { return this._nativeRectangle() ? false : super.needsItsOwnCache(); }
+      _nativeVectorClip() {
+        if (this.opacity !== 1 || this.shadow || this.mask || this.backgroundColor || this.filters?.length || this.resizeFilter
+            || this.figureStudioAppearanceStack || this.figureStudioAppearanceMeta
+            || ![undefined, "source-over"].includes(this.globalCompositeOperation)) return null;
+        return simpleNativeClip(this.clipPath, fabric);
+      }
+      needsItsOwnCache() { return this._nativeRectangle() || this._nativeVectorClip() ? false : super.needsItsOwnCache(); }
       drawObject(context, forClipping, cache) {
+        const device = !forClipping && this._pdfDeviceRectangle(context);
+        if (device) {
+          context.save();
+          try {
+            context.setTransform(1, 0, 0, 1, 0, 0);context.fillStyle = this.fill;
+            if (device.right > device.left && device.bottom > device.top) context.fillRect(device.left, device.top, device.right - device.left, device.bottom - device.top);
+          } finally { context.restore(); }
+          return;
+        }
         const rectangle = !forClipping && this._nativeRectangle();
-        if (!rectangle) return super.drawObject(context, forClipping, cache);
+        const vector = !rectangle && !forClipping && this._nativeVectorClip();
+        if (!rectangle && !vector) return super.drawObject(context, forClipping, cache);
         const matrix = this.clipPath.calcOwnMatrix();
         context.save();
         try {
-          context.beginPath();
-          context.save();
-          context.transform(...matrix);
-          context.rect(rectangle.left, rectangle.top, rectangle.width, rectangle.height);
-          context.restore();
-          context.clip(this.clipPath.fillRule === "evenodd" ? "evenodd" : "nonzero");
+          if (vector) applySimpleNativeClip(context, vector);
+          else {
+            context.beginPath();
+            context.save();
+            context.transform(...matrix);
+            context.rect(rectangle.left, rectangle.top, rectangle.width, rectangle.height);
+            context.restore();
+            context.clip(this.clipPath.fillRule === "evenodd" ? "evenodd" : "nonzero");
+          }
           this.__pdfNativeClipActive = true;
           super.drawObject(context, forClipping, cache);
         } finally { this.__pdfNativeClipActive = false; context.restore(); }
       }
       _drawClipPath(context, clip, cache) { if (!this.__pdfNativeClipActive) super._drawClipPath(context, clip, cache); }
-      toObject(properties = []) { return { ...super.toObject([...properties, ...META_PROPS]), pdfNativeRectClip: clone(this.pdfNativeRectClip) }; }
+      toObject(properties = []) { return { ...super.toObject([...properties, "pdfDisplayStrokePolicy", "pdfDisplayFillPolicy", ...META_PROPS]), pdfNativeRectClip: clone(this.pdfNativeRectClip) }; }
     }
     fabric.classRegistry?.setClass(PdfNativeRectClippedPath);
     pathClassByFabric.set(fabric, PdfNativeRectClippedPath);
@@ -799,6 +1163,9 @@
         if (Object.hasOwn(options, "pdfTextAuthoringPlane")) this.pdfTextAuthoringPlane = clone(options.pdfTextAuthoringPlane);
         if (this.pdfTextSource?.currentNativeGlyphPlanes || this.pdfTextAuthoringPlane) this.__pdfLayoutAnchor = undefined;
         this.initDimensions();
+        // Fabric may hover a grouped text child before Canvas activates it.
+        // Activation still computes the real control coordinates via setCoords.
+        this.oCoords ||= {};
         if (this.pdfTextSource?.currentNativeGlyphPlanes || this.pdfTextAuthoringPlane) this._toSVG = this._pdfCurrentPlaneSvgMarkup;
         this.on?.("changed", () => { this.dirty = true; this.initDimensions(); });
       }
@@ -813,7 +1180,7 @@
         const coordinate = value => (typeof value === "number" || typeof value === "string" && /^[+-]?(?:\d*\.\d+|\d+\.?\d*)(?:e[+-]?\d+)?$/i.test(value))
           && Number.isFinite(Number(value)) && Math.abs(Number(value)) <= 1e8;
         const numbers = entry => ({ ...entry, x: Number(entry.x), y: Number(entry.y) });
-        if (this.constructor !== PdfPositionedText || !this._pdfPaintFrameSupported()) return null;
+        if (this.constructor !== PdfPositionedText || !this._pdfCurrentPlaneSupported()) return null;
         if (native && native.schema === "figureStudio.currentNativeGlyphPlanes.v1"
             && keys(native, ["schema", "entries"]) && this._pdfPlainPaintData(native, 0, { remaining: 12000 }) && native.entries?.length === source.glyphs.length
             && native.entries.length <= 4096 && native.entries.every((entry, index) => matrices(entry.matrices)
@@ -841,16 +1208,50 @@
       }
       _pdfCurrentPlaneEntries(plane) {
         if (plane.kind === "source") return plane.entries;
-        return this._textLines[0].map((char, charIndex) => ({ ...plane.first, charIndex, charCount: 1,
-          x: plane.first.x + this.__charBounds[0][charIndex].left, y: plane.first.y }));
+        const entries = [];
+        let start = 0;
+        this._textLines.forEach((line, lineIndex) => {
+          const offset = this._pdfCurrentLineOffset(lineIndex);
+          line.forEach((char, columnIndex) => entries.push({ ...plane.first, lineIndex, columnIndex,
+            charIndex: start + columnIndex, charCount: 1,
+            x: this.__charBounds[lineIndex][columnIndex].left === 0 ? plane.first.x : plane.first.x + this.__charBounds[lineIndex][columnIndex].left,
+            y: lineIndex === 0 ? plane.first.y : plane.first.y + offset }));
+          start += line.length + 1;
+        });
+        return entries;
+      }
+      _pdfCurrentLineOffset(lineIndex) {
+        let offset = 0;
+        for (let index = 0; index < lineIndex; index++) offset += this.getHeightOfLine(index);
+        return offset + (this.getHeightOfLineImpl(lineIndex) - this.getHeightOfLineImpl(0)) * (1 - this._fontSizeFraction);
+      }
+      _pdfCurrentPlaneSupported() {
+        if (this._pdfPaintFrameSupported()) return true;
+        if ((!this.pdfTextSource?.currentNativeGlyphPlanes && !this.pdfTextAuthoringPlane)
+            || this._textLines?.length < 2 || this._textLines?.length > 64 || this.text.length > 4096) return false;
+        // Keep the legacy single-line frame predicate unchanged. Current native
+        // planes additionally support bounded native line layout with exactly
+        // the same paint, style, font, direction and effect restrictions.
+        const facade = Object.create(this);
+        facade._textLines = [this._textLines[0]];
+        return PdfPositionedText.prototype._pdfPaintFrameSupported.call(facade);
       }
       _pdfCurrentPlaneBounds(plane) {
         const points = [];
-        for (const entry of this._pdfCurrentPlaneEntries(plane)) {
+        const entries = this._pdfCurrentPlaneEntries(plane);
+        if (plane.kind === "authored") this._textLines.forEach((line, lineIndex) => {
+          if (!line.length) entries.push({ ...plane.first, lineIndex, columnIndex: 0, charIndex: 0, charCount: 0,
+            y: lineIndex === 0 ? plane.first.y : plane.first.y + this._pdfCurrentLineOffset(lineIndex) });
+        });
+        // An emptied live label still owns a finite caret and drawing plane.
+        // It has no painted glyph, so use the first declaration's empty em box.
+        if (!entries.length) entries.push({ ...plane.first, charIndex: 0, charCount: 0 });
+        for (const entry of entries) {
           let matrix = [1, 0, 0, 1, 0, 0];
           for (const local of entry.matrices) matrix = multiply(matrix, local);
-          const declaration = this.getCompleteStyleDeclaration(0, entry.charIndex), char = this._textLines[0][entry.charIndex];
-          const width = this._measureChar(char, declaration).width, height = declaration.fontSize;
+          const lineIndex = entry.lineIndex || 0, columnIndex = entry.columnIndex ?? entry.charIndex;
+          const declaration = this.getCompleteStyleDeclaration(lineIndex, columnIndex), char = this._textLines[lineIndex][columnIndex];
+          const width = char === undefined ? 0 : this._measureChar(char, declaration).width, height = declaration.fontSize;
           // Conservative current native font em bounds include overhangs. They
           // are computed from current paint declarations, never cached world ink.
           for (const [x, y] of [[entry.x - height, entry.y - 2 * height], [entry.x + width + height, entry.y - 2 * height],
@@ -858,6 +1259,47 @@
         }
         return { left: Math.min(...points.map(point => point.x)), right: Math.max(...points.map(point => point.x)),
           top: Math.min(...points.map(point => point.y)), bottom: Math.max(...points.map(point => point.y)) };
+      }
+      _pdfCurrentInputPlane() {
+        // Native onInput inserts inherited styles before updating the text.
+        // That invalidates source-layout matching, but does not change the
+        // current declaring plane. Admit only a still-identical declaration.
+        if (!this.pdfTextSource?.currentNativeGlyphPlanes && !this.pdfTextAuthoringPlane) return null;
+        const plane = this._pdfCurrentNativePlane();
+        if (plane) return plane;
+        if (!this._pdfCurrentPlaneSupported()) return null;
+        const prior = this.__pdfCurrentPlaneBefore, source = this.pdfTextSource?.currentNativeGlyphPlanes;
+        const authored = this.pdfTextAuthoringPlane;
+        const declaration = authored?.schema === "figureStudio.currentTextAuthoringPlane.v1"
+          && authored.sourceSchema === this.pdfTextSource?.schema ? authored
+          : source?.schema === "figureStudio.currentNativeGlyphPlanes.v1" ? source.entries?.[0] : null;
+        if (!prior?.first || !declaration || !this._pdfPlainPaintData(declaration, 0, { remaining: 12000 })
+            || !Object.is(prior.first.x, Number(declaration.x)) || !Object.is(prior.first.y, Number(declaration.y))
+            || !Array.isArray(declaration.matrices) || prior.first.matrices.length !== declaration.matrices.length
+            || !declaration.matrices.every((matrix, index) => Array.isArray(matrix) && matrix.length === 6
+              && matrix.every((value, column) => Object.is(value, prior.first.matrices[index][column])))) return null;
+        return prior;
+      }
+      updateFromTextArea() {
+        const textarea = this.hiddenTextarea;
+        const inputLines = textarea && typeof textarea.value === "string" && textarea.value.length <= 4096
+          ? this._splitTextIntoLines(textarea.value).lines.length : null;
+        if (inputLines === null || inputLines > 64
+            || !(this._pdfCurrentInputPlane() || inputLines === 1 && this._pdfPaintFrameAnchor())) {
+          return super.updateFromTextArea();
+        }
+        // Native origin repositioning can replace an already solved baseline.
+        // Current glyph planes and admitted one-line paint frames instead let
+        // initDimensions preserve their geometry before caret/selection update.
+        this.cursorOffsetCache = {};
+        this.text = textarea.value;
+        this.set("dirty", true);
+        this.initDimensions();
+        this.setCoords();
+        const selection = this.fromStringToGraphemeSelection(textarea.selectionStart, textarea.selectionEnd, textarea.value);
+        this.selectionEnd = this.selectionStart = selection.selectionEnd;
+        if (!this.inCompositionMode) this.selectionStart = selection.selectionStart;
+        this.updateTextareaPosition();
       }
       _getNonTransformedDimensions() {
         const plane = this._pdfCurrentNativePlane();
@@ -879,15 +1321,31 @@
         return Object.fromEntries(Object.entries({ tl: [bounds.left, bounds.top], tr: [bounds.right, bounds.top],
           bl: [bounds.left, bounds.bottom], br: [bounds.right, bounds.bottom] }).map(([key, point]) => [key, fabric.util.transformPoint(new fabric.Point(...point), own)]));
       }
+      _pdfCurrentControlFacade(plane) {
+        const bounds = this._pdfCurrentPlaneBounds(plane), facade = Object.create(this);
+        const center = new fabric.Point((bounds.left + bounds.right) / 2, (bounds.top + bounds.bottom) / 2), world = this.calcTransformMatrix();
+        facade.width = bounds.right - bounds.left;
+        facade.height = bounds.bottom - bounds.top;
+        facade.calcTransformMatrix = () => multiply(world, [1, 0, 0, 1, center.x, center.y]);
+        facade.getCenterPoint = () => fabric.util.transformPoint(new fabric.Point((bounds.left + bounds.right) / 2,
+          (bounds.top + bounds.bottom) / 2), world);
+        facade._getTransformedDimensions = options => fabric.IText.prototype._getTransformedDimensions.call(this,
+          { ...options, width: bounds.right - bounds.left, height: bounds.bottom - bounds.top });
+        return facade;
+      }
       calcOCoords() {
         const plane = this._pdfCurrentNativePlane();
         if (!plane) return super.calcOCoords();
-        const bounds = this._pdfCurrentPlaneBounds(plane), facade = Object.create(this);
-        facade.getCenterPoint = () => fabric.util.transformPoint(new fabric.Point((bounds.left + bounds.right) / 2,
-          (bounds.top + bounds.bottom) / 2), this.calcTransformMatrix());
-        facade._getTransformedDimensions = options => fabric.IText.prototype._getTransformedDimensions.call(this,
-          { ...options, width: bounds.right - bounds.left, height: bounds.bottom - bounds.top });
-        return fabric.IText.prototype.calcOCoords.call(facade);
+        return fabric.IText.prototype.calcOCoords.call(this._pdfCurrentControlFacade(plane));
+      }
+      _renderControls(context, options) {
+        const plane = this._pdfCurrentNativePlane();
+        if (!plane) return super._renderControls(context, options);
+        // Literal PDF glyph coordinates can be far from the identity text
+        // owner's origin. Native editing borders must use the same tight
+        // glyph bounds as the handles, rather than crossing the figure from
+        // that unrelated origin. Only the drawing facade changes.
+        return fabric.IText.prototype._renderControls.call(this._pdfCurrentControlFacade(plane), context, options);
       }
       _pdfWithCurrentPlane(context, entry, work) {
         context.save();
@@ -895,11 +1353,21 @@
         finally { context.restore(); }
       }
       _pdfCurrentPlaneCaret(plane, selection = this.selectionStart) {
+        if (this._textLines.length > 1) {
+          const { lineIndex, charIndex } = this.get2DCursorLocation(selection);
+          const declaration = this.getCompleteStyleDeclaration(lineIndex, Math.max(0, charIndex - 1));
+          const entry = { ...plane.first, lineIndex, columnIndex: charIndex, charIndex: selection, charCount: 0,
+            x: this.__charBounds[lineIndex][charIndex].left === 0 ? plane.first.x : plane.first.x + this.__charBounds[lineIndex][charIndex].left,
+            y: lineIndex === 0 ? plane.first.y : plane.first.y + this._pdfCurrentLineOffset(lineIndex) };
+          return { entry, declaration, x: entry.x, y: entry.y };
+        }
         const entries = this._pdfCurrentPlaneEntries(plane), last = selection >= this._text.length;
+        if (!entries.length) return { entry: { ...plane.first, charIndex: 0, charCount: 0 },
+          declaration: this.getCompleteStyleDeclaration(0, 0), x: plane.first.x, y: plane.first.y };
         const index = last ? entries.length - 1 : Math.max(0, entries.findIndex(entry => selection < entry.charIndex + entry.charCount));
         const entry = entries[index], declaration = this.getCompleteStyleDeclaration(0, entry.charIndex);
         const width = last ? this._measureChar(this._textLines[0][entry.charIndex], declaration).width : 0;
-        return { entry, declaration, x: entry.x + width, y: entry.y };
+        return { entry, declaration, x: width === 0 ? entry.x : entry.x + width, y: entry.y };
       }
       _renderCursor(context, boundaries, selection) {
         const plane = this._pdfCurrentNativePlane();
@@ -941,22 +1409,33 @@
         context.fillStyle = this.selectionColor;
         for (const entry of this._pdfCurrentPlaneEntries(plane)) {
           if (entry.charIndex < selection.selectionStart || entry.charIndex >= selection.selectionEnd) continue;
-          const declaration = this.getCompleteStyleDeclaration(0, entry.charIndex), width = this._measureChar(this._textLines[0][entry.charIndex], declaration).width;
+          const lineIndex = entry.lineIndex || 0, columnIndex = entry.columnIndex ?? entry.charIndex;
+          const declaration = this.getCompleteStyleDeclaration(lineIndex, columnIndex), width = this._measureChar(this._textLines[lineIndex][columnIndex], declaration).width;
           this._pdfWithCurrentPlane(context, entry, () => context.fillRect(entry.x, entry.y - declaration.fontSize * (1 - this._fontSizeFraction), width, declaration.fontSize));
         }
       }
       _pdfCurrentPlaneSvgMarkup() {
         const plane = this._pdfCurrentNativePlane();
         if (!plane) return super._toSVG();
+        const authoredLines = new Map();
         const spans = this._pdfCurrentPlaneEntries(plane).map(entry => {
-          const declaration = this.getCompleteStyleDeclaration(0, entry.charIndex), unicode = this._textLines[0].slice(entry.charIndex, entry.charIndex + entry.charCount).join("");
+          const lineIndex = entry.lineIndex || 0, columnIndex = entry.columnIndex ?? entry.charIndex;
+          const declaration = this.getCompleteStyleDeclaration(lineIndex, columnIndex), unicode = this._textLines[lineIndex].slice(columnIndex, columnIndex + entry.charCount).join("");
           const source = plane.kind === "source" ? this.pdfTextSource.glyphs.find(glyph => glyph.charIndex === entry.charIndex) : null;
           const mapped = source ? { text: source.fontChar, declaration } : this._mapped(unicode, declaration);
           const glyph = mapped.text, styles = this.getSvgSpanStyles(mapped.declaration, true);
           const opens = entry.matrices.map(matrix => `<g transform="matrix(${matrix.map(value => Object.is(value, -0) ? "-0" : String(value)).join(" ")})">`).join("");
-          return opens + `<text xml:space="preserve"><tspan data-pdf-unicode="${escapeXml(unicode)}" data-pdf-glyph-map="${escapeXml(JSON.stringify([{ unicode, fontChar: glyph }]))}" x="${Object.is(entry.x, -0) ? "-0" : entry.x}" y="${Object.is(entry.y, -0) ? "-0" : entry.y}" style="${styles}">${escapeXml(xmlGlyph(glyph, unicode))}</tspan></text>` + "</g>".repeat(entry.matrices.length);
+          const span = `<tspan data-pdf-unicode="${escapeXml(unicode)}" data-pdf-glyph-map="${escapeXml(JSON.stringify([{ unicode, fontChar: glyph }]))}" x="${Object.is(entry.x, -0) ? "-0" : entry.x}" y="${Object.is(entry.y, -0) ? "-0" : entry.y}" style="${styles}">${escapeXml(xmlGlyph(glyph, unicode))}</tspan>`;
+          if (plane.kind === "authored") {
+            if (!authoredLines.has(lineIndex)) authoredLines.set(lineIndex, { opens, spans: [], depth: entry.matrices.length });
+            authoredLines.get(lineIndex).spans.push(span);
+            return "";
+          }
+          return opens + `<text xml:space="preserve">${span}</text>` + "</g>".repeat(entry.matrices.length);
         });
-        return ['<g style="' + this.getSvgStyles(true) + '" ', "COMMON_PARTS", ">\n", ...spans, "</g>\n"];
+        const markup = plane.kind === "authored" ? Array.from(authoredLines.values(), line =>
+          line.opens + `<text xml:space="preserve">${line.spans.join("")}</text>` + "</g>".repeat(line.depth)) : spans;
+        return ['<g style="' + this.getSvgStyles(true) + '" ', "COMMON_PARTS", ">\n", ...markup, "</g>\n"];
       }
 
       _pdfNominalAnchorPoint() {
@@ -1100,7 +1579,7 @@
         super.initDimensions();
         if (!this.pdfTextSource || !this._textLines?.length) return;
         let nativePlane = this._pdfCurrentNativePlane();
-        if (!nativePlane && nativePlaneBefore && this._pdfPaintFrameSupported()) {
+        if (!nativePlane && nativePlaneBefore && this._pdfCurrentPlaneSupported()) {
           this.pdfTextAuthoringPlane = { schema: "figureStudio.currentTextAuthoringPlane.v1", sourceSchema: this.pdfTextSource.schema,
             matrices: clone(nativePlaneBefore.first.matrices), x: Object.is(nativePlaneBefore.first.x, -0) ? "-0" : nativePlaneBefore.first.x,
             y: Object.is(nativePlaneBefore.first.y, -0) ? "-0" : nativePlaneBefore.first.y,
@@ -1278,7 +1757,7 @@
         return { ...measured, width: right };
       }
       _renderChars(method, context, line, left, top, lineIndex) {
-        const nativePlane = lineIndex === 0 && this._pdfCurrentNativePlane();
+        const nativePlane = this._pdfCurrentNativePlane();
         if (nativePlane) {
           if (nativePlane.kind === "source") {
             for (const entry of nativePlane.entries) {
@@ -1288,13 +1767,14 @@
             }
           } else {
             this._pdfWithCurrentPlane(context, nativePlane.first, () => {
-              this._textLines[0].forEach((char, charIndex) => {
-                const declaration = this.getCompleteStyleDeclaration(0, charIndex), glyph = this._mapped(char, declaration), box = this.__charBounds[0][charIndex];
-                const original = this._getStyleDeclaration(0, charIndex), fallback = glyph.declaration.fontFamily !== declaration.fontFamily;
-                if (fallback) { this.styles[0] ||= {}; this.styles[0][charIndex] = { ...original, fontFamily: glyph.declaration.fontFamily }; }
-                try { super._renderChar(method, context, 0, charIndex, glyph.text,
-                  nativePlane.first.x + box.left, nativePlane.first.y + (box.deltaY || 0)); }
-                finally { if (fallback) this.styles[0][charIndex] = original; }
+              const baseline = lineIndex === 0 ? nativePlane.first.y : nativePlane.first.y + this._pdfCurrentLineOffset(lineIndex);
+              this._textLines[lineIndex].forEach((char, charIndex) => {
+                const declaration = this.getCompleteStyleDeclaration(lineIndex, charIndex), glyph = this._mapped(char, declaration), box = this.__charBounds[lineIndex][charIndex];
+                const original = this._getStyleDeclaration(lineIndex, charIndex), styles = this.styles, fallback = glyph.declaration.fontFamily !== declaration.fontFamily;
+                if (fallback) this.styles = { ...styles, [lineIndex]: { ...styles?.[lineIndex], [charIndex]: { ...original, fontFamily: glyph.declaration.fontFamily } } };
+                try { super._renderChar(method, context, lineIndex, charIndex, glyph.text,
+                  box.left === 0 ? nativePlane.first.x : nativePlane.first.x + box.left, box.deltaY ? baseline + box.deltaY : baseline); }
+                finally { if (fallback) this.styles = styles; }
               });
             });
           }
@@ -1314,11 +1794,11 @@
           if (/^\s+$/.test(line[index])) continue;
           const declaration = this.getCompleteStyleDeclaration(lineIndex, index);
           const glyph = this._mapped(line[index], declaration);
-          const original = this._getStyleDeclaration(lineIndex, index);
+          const original = this._getStyleDeclaration(lineIndex, index), styles = this.styles;
           const fallback = glyph.declaration.fontFamily !== declaration.fontFamily;
-          if (fallback) { this.styles[lineIndex] ||= {}; this.styles[lineIndex][index] = { ...original, fontFamily: glyph.declaration.fontFamily }; }
+          if (fallback) this.styles = { ...styles, [lineIndex]: { ...styles?.[lineIndex], [index]: { ...original, fontFamily: glyph.declaration.fontFamily } } };
           try { super._renderChar(method, context, lineIndex, index, glyph.text, left + this.__charBounds[lineIndex][index].left, baseline); }
-          finally { if (fallback) this.styles[lineIndex][index] = original; }
+          finally { if (fallback) this.styles = styles; }
         }
       }
       getSvgSpanStyles(declaration, useWhiteSpace) {
@@ -2008,7 +2488,7 @@ async function construct(fabric,materializer,fixture,prepared,options={}){
   const object=await CurrentGroup.fromObject(raw);object.setCoords();if(!same(object.calcOwnMatrix(),own))refuse('Native Noop group matrix changed.');for(let i=0;i<children.length;i++)if(!same(object.getObjects()[i].calcOwnMatrix(),children[i].object.calcOwnMatrix()))refuse('Native Noop child matrix changed.');groups.push({ownMatrix:own,width,height,metadata});
   return {object,raw,source:{kind:'group',literalMatrix:own,ownMatrix:own,width,height,metadata,children:children.map(c=>c.source),clip:clipPlan}};
  }
- const value=await build(root);const seeded=materializer.finalizeImportedAuthoringLayout([value.object],{fabric});return {root:value.object,sourceTree:value.source,leaves,clips,groups,seeded};
+ const value=await build(root);const seeded=await materializer.finalizeImportedAuthoringLayoutAsync([value.object],{fabric,signal:options.signal,yieldToUi:options.yieldToUi});return {root:value.object,sourceTree:value.source,leaves,clips,groups,seeded};
 }
 return Object.freeze({ construct, admitted });
   })();
@@ -2108,8 +2588,8 @@ return Object.freeze({ construct, admitted });
       const currentPlan = { ...qualified, svgText: JSON.stringify(currentRoot) };
       if (ownSvgDeclaringPlaneCandidate.admitted(fixture, currentPlan)) {
         const local = await ownSvgDeclaringPlaneCandidate.construct(fabric,
-          { glyphPlan, registerTextClass, registerCurrentPlaneGroupClass, registerAuthoringLayoutManager, finalizeImportedAuthoringLayout }, fixture, currentPlan,
-          { sourceFontPrograms, loadedFonts: fontResult.loaded, fallbackFont: options.fallbackFont });
+          { glyphPlan, registerTextClass, registerCurrentPlaneGroupClass, registerAuthoringLayoutManager, finalizeImportedAuthoringLayoutAsync }, fixture, currentPlan,
+          { sourceFontPrograms, loadedFonts: fontResult.loaded, fallbackFont: options.fallbackFont, signal: options.signal, yieldToUi: options.yieldToUi });
         report.sourceDrawableCount = local.leaves.length;
         report.vectorCount = local.leaves.filter(source => source.kind !== "text").length;
         report.textRunCount = local.leaves.filter(source => source.kind === "text").length;
@@ -2204,7 +2684,10 @@ return Object.freeze({ construct, admitted });
         const textOptions = { fontFamily, fontSize: length(style(span, "font-size"), 10), fontWeight: style(span, "font-weight", "normal"), fontStyle: style(span, "font-style", "normal"), textAlign: "left", originX: "center", originY: "center", fill: style(span, "fill", "#000000"), stroke: style(span, "stroke", null), strokeWidth: length(style(span, "stroke-width"), 0), objectCaching: false, editable: true };
         const font = sourceFontPrograms.find((candidate) => candidate.family === fontFamily);
         const textSource = { schema: "figureStudio.pdfPositionedText.v1", text: unicode, anchor: style(span, "text-anchor", "start"), fontFamily, originalFontName: span.getAttribute("data-pdf-original-font") || element.getAttribute("data-pdf-original-font") || fontFamily, displayFontFamily: fontFamily, sourceEmbeddedProgram: Boolean(font?.dataUrl && fontResult.loaded.includes(fontFamily)), fontSubstitutionFamily: span.getAttribute("data-pdf-font-substitution") || element.getAttribute("data-pdf-font-substitution") || "", fontSize: textOptions.fontSize, fontWeight: textOptions.fontWeight, fontStyle: textOptions.fontStyle, map: { ...(font?.unicodeToFontChar || {}), ...plan.map }, unicodeAdvances: { ...(font?.unicodeAdvances || {}), ...plan.unicodeAdvances }, glyphs: plan.glyphs, fallbackFont: options.fallbackFont || "Arial" };
-        const meta = { ...metadata(span, order.get(element) + segmentIndex / 1000, groupPath(element), "text"), figureStudioSvgTextMeta: { schema: "figureStudio.svgPositionedText.v1", sourceText: unicode, sourceGlyphText: raw, x: plan.firstX, y: plan.firstY, xPositions: x, yPositions: y, fontFamily, fontSize: textOptions.fontSize } };
+        // This inspection record follows the document's existing JSON number
+        // semantics from its first capture. The actual plan/textSource above
+        // keep their literal native glyph positions and paint authority.
+        const meta = { ...metadata(span, order.get(element) + segmentIndex / 1000, groupPath(element), "text"), figureStudioSvgTextMeta: JSON.parse(JSON.stringify({ schema: "figureStudio.svgPositionedText.v1", sourceText: unicode, sourceGlyphText: raw, x: plan.firstX, y: plan.firstY, xPositions: x, yPositions: y, fontFamily, fontSize: textOptions.fontSize })) };
         if (options.logicalTextSource && span.hasAttribute("data-figure-studio-native-logical-glyph")) meta.figureStudioPdfLogicalGlyphIndex = Number(span.getAttribute("data-figure-studio-native-logical-glyph"));
         const textPlan = { key, unicode, plan, textSource, textOptions, meta, matrix: compositeMatrix(span, root, view.matrix), anchor: style(span, "text-anchor", "start") };
         textPlans.push(textPlan);
@@ -2260,6 +2743,20 @@ return Object.freeze({ construct, admitted });
       const source = sourceByKey.get(original.__pdfSvgKey);
       if (!source) { unsupported(root, "unmapped-object", "An SVG object lost its source identity."); continue; }
       let object = original;
+      // The parser's complete Path already owns its exact clip and transform.
+      // Specialize rendering in place; rebuilding it would remeasure geometry.
+      const nativePdfRectangle = options.nativePdfStrokeDisplay === true && source.tag === "path"
+        && exactRectangleBounds(object.path) && !object.hasStroke() && typeof object.fill === "string" && /^#[0-9a-f]{6}$/i.test(object.fill);
+      if (object.constructor === fabric.Path && (simpleNativeClip(object.clipPath, fabric)
+          || nativePdfRectangle
+          || options.nativePdfStrokeDisplay === true && typeof object.stroke === "string" && object.stroke
+            && Number.isFinite(object.strokeWidth) && object.strokeWidth > 0)) {
+        Object.setPrototypeOf(object, PathClass.prototype);
+      }
+      if (options.nativePdfStrokeDisplay === true && object.constructor === PathClass && source.tag === "path") {
+        object.pdfDisplayStrokePolicy = "pdf-minimum-isotropic-device-pixel-v1";
+        if (nativePdfRectangle) object.pdfDisplayFillPolicy = "pdf-opaque-axis-rectangle-device-pixels-v1";
+      }
       if (source.knockoutEntry) {
         object = materializeKnockoutProxy(original, source.knockoutEntry, fabric);
         report.vectorCount += 2;
@@ -2308,7 +2805,18 @@ return Object.freeze({ construct, admitted });
     }
     initializeImportedClipRuleDefaults(hierarchyObjects);
     const hierarchy = await groupHierarchy(hierarchyObjects, descriptors, fabric, options.onDiagnostic, checkpoint);
-    finalizeImportedAuthoringLayout(hierarchy.objects, { fabric });
+    // Hierarchy construction can attach inherited clips after parsing. Adopt
+    // the final eligible Path in place, retaining every path, clip and pose.
+    const pendingNativeClips = [...hierarchy.objects];
+    let finalizedNativeClips = 0;
+    while (pendingNativeClips.length) {
+      const object = pendingNativeClips.pop();
+      if (object.constructor === fabric.Path && simpleNativeClip(object.clipPath, fabric)) Object.setPrototypeOf(object, PathClass.prototype);
+      for (const child of object.getObjects?.() || []) pendingNativeClips.push(child);
+      if (++finalizedNativeClips % batchSize === 0) await checkpoint("finalize-vector-clips", finalizedNativeClips, report.sourceDrawableCount);
+    }
+    await finalizeImportedAuthoringLayoutAsync(hierarchy.objects, { fabric, signal: options.signal,
+      yieldToUi: options.yieldToUi, onProgress: options.onProgress });
     report.groupCount = hierarchy.count;
     if (knockoutEntries.size) {
       report.knockoutGroupCount = knockoutEntries.size;
@@ -2324,5 +2832,5 @@ return Object.freeze({ construct, admitted });
     return { objects: hierarchy.objects, options: { ...(loaded.options || {}), width: view.width, height: view.height }, report };
   }
 
-  return Object.freeze({ SCHEMA, materialize, prepareSvgOpenDocument, validateKnockoutMarker, extractKnockoutRoots, materializeKnockoutProxy, registerTextClass, registerGroupClass, registerCurrentPlaneGroupClass, registerAuthoringLayoutManager, createAuthoringLayoutManager, finalizeImportedAuthoringLayout, registerPathClass, registerCurrentPlanePathClass, registerFonts, prepareGroupRelease, multiply, transformMatrix, viewport, glyphPlan, xmlGlyph, rectangleBounds });
+  return Object.freeze({ SCHEMA, materialize, prepareSvgOpenDocument, validateKnockoutMarker, extractKnockoutRoots, materializeKnockoutProxy, registerTextClass, registerGroupClass, registerCurrentPlaneGroupClass, registerAuthoringLayoutManager, createAuthoringLayoutManager, finalizeImportedAuthoringLayout, finalizeImportedAuthoringLayoutAsync, registerPathClass, registerCurrentPlanePathClass, isNativeRectangleDisplayPath, registerFonts, prepareGroupRelease, multiply, transformMatrix, viewport, glyphPlan, xmlGlyph, rectangleBounds });
 });

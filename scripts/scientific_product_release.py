@@ -101,6 +101,8 @@ BASELINE_PACK_IDS = frozenset({"core-biology", "core-experimental-biology", "imm
 def active_record_path(record: dict | None) -> str | None:
     if record is None:
         return None
+    if record.get("schema") == "figureStudio.scientificProductRelease.v4":
+        return STYLE_FOUR_CORRECTION_RECORD
     if record.get("schema") == "figureStudio.scientificProductRelease.v3":
         return STYLE_FOUR_RECORD
     return EXPANSION_RECORD if record.get("schema") == "figureStudio.scientificProductRelease.v2" else RECORD
@@ -108,7 +110,11 @@ def active_record_path(record: dict | None) -> str | None:
 
 def baseline_inventory(root: Path, *, inventory_override: list | None = None) -> list[dict[str, str]]:
     """Reconstruct only the immutable predecessor, never a future approval."""
-    if inventory_override is None and (root / STYLE_FOUR_RECORD).exists():
+    if inventory_override is None and (root / STYLE_FOUR_CORRECTION_RECORD).exists():
+        inventory_override, registry_override = style_four_correction_predecessor(root, _style_four_correction_record(root))
+        inventory_override = style_four_predecessor_inventory(root, _style_four_record(root),
+            inventory_override=inventory_override, registry_override=registry_override)
+    elif inventory_override is None and (root / STYLE_FOUR_RECORD).exists():
         inventory_override = style_four_predecessor_inventory(root, _style_four_record(root))
     inventory = asset_inventory(root) if inventory_override is None else inventory_override
     registry_path = root / "assets/scientific-packs/library.json"
@@ -216,9 +222,10 @@ def _style_four_record(root: Path) -> dict:
     return record
 
 
-def style_four_predecessor_inventory(root: Path, record: dict) -> list[dict[str, str]]:
+def style_four_predecessor_inventory(root: Path, record: dict, *, inventory_override: list | None = None,
+                                   registry_override: dict | None = None) -> list[dict[str, str]]:
     """Remove only this decision's declared additions, never unknown art."""
-    inventory = asset_inventory(root)
+    inventory = asset_inventory(root) if inventory_override is None else inventory_override
     additions = record.get("added_asset_files", [])
     _style_four_need(isinstance(additions, list) and bool(additions), "finite added file list is missing")
     paths = [row.get("path", "") for row in additions if isinstance(row, dict)]
@@ -231,7 +238,8 @@ def style_four_predecessor_inventory(root: Path, record: dict) -> list[dict[str,
     _style_four_need(actual == additions, "exact finite Style 4 file inventory mismatch")
     excluded = set(paths)
     result = [dict(row) for row in inventory if row["path"] not in excluded]
-    registry = json.loads((root / "assets/scientific-packs/library.json").read_text(encoding="utf-8"))
+    registry = (json.loads((root / "assets/scientific-packs/library.json").read_text(encoding="utf-8"))
+                if registry_override is None else dict(registry_override))
     registry.pop("art_styles", None)
     registry.pop("art_style_notes", None)
     for row in result:
@@ -240,7 +248,8 @@ def style_four_predecessor_inventory(root: Path, record: dict) -> list[dict[str,
     return result
 
 
-def _validate_style_four(root: Path, *, required: bool = False) -> dict | None:
+def _validate_style_four(root: Path, *, required: bool = False, inventory_override: list | None = None,
+                         registry_override: dict | None = None) -> dict | None:
     record = _style_four_record(root)
     need = _style_four_need
     need(record.get("schema") == "figureStudio.scientificProductRelease.v3"
@@ -249,16 +258,18 @@ def _validate_style_four(root: Path, *, required: bool = False) -> dict | None:
     need(record.get("library") == STYLE_FOUR_LIBRARY, "finite collection count mismatch")
     need(record.get("predecessor") == {"record":EXPANSION_RECORD,"sha256":EXPANSION_RECORD_SHA256},
          "predecessor decision differs")
-    inventory = asset_inventory(root)
-    predecessor_inventory = style_four_predecessor_inventory(root, record)
+    inventory = asset_inventory(root) if inventory_override is None else inventory_override
+    predecessor_inventory = style_four_predecessor_inventory(root, record, inventory_override=inventory,
+                                                            registry_override=registry_override)
     predecessor = _validate_expansion(root, required=True, inventory_override=predecessor_inventory)
     need(record.get("packs") == predecessor["packs"] and record.get("scenes") == predecessor["scenes"],
          "historical product approvals changed")
     need(record.get("asset_inventory_sha256") == canonical(inventory)
          and record.get("asset_file_count") == len(inventory), "complete reviewed asset inventory mismatch")
     registry_path = root / "assets/scientific-packs/library.json"
-    registry = json.loads(registry_path.read_text(encoding="utf-8"))
-    need(record.get("registry_sha256") == file_identity(registry_path), "registered drawing styles differ")
+    registry = (json.loads(registry_path.read_text(encoding="utf-8"))
+                if registry_override is None else registry_override)
+    need(record.get("registry_sha256") == canonical(registry), "registered drawing styles differ")
     need(registry.get("art_styles") == [{"id":"style-4","name":"Style 4",
          "path":"style-4/manifest.json","asset_count":486}], "finite registered style differs")
     manifest_path = root / STYLE_FOUR_MANIFEST
@@ -346,8 +357,145 @@ def _validate_style_four(root: Path, *, required: bool = False) -> dict | None:
     return record
 
 
+# A finite correction selects newer supplied SVGs without rewriting the original
+# Style 4 inventory, its provenance, or the accepted v1-v3 decisions.
+STYLE_FOUR_CORRECTION_RECORD = "config/scientific-product-release-2026-10-17-style4-correction.json"
+STYLE_FOUR_CORRECTION_RECORD_SHA256 = "15543ecc8f4babdf0d160186239c1f3ff3f7c4b7d87eb0c8c1445b4734f1a128"
+STYLE_FOUR_CORRECTION_MANIFEST = "assets/scientific-packs/style-4/manifest-corrected-20261017.json"
+STYLE_FOUR_CORRECTION_PREFIX = "assets/scientific-packs/style-4/corrected-20261017/"
+STYLE_FOUR_CORRECTION_ARCHIVE_SHA256 = "2df0cd5e62cb1a78f02709b8f3befbfc01475acdb001d9bf795766bb5c540448"
+
+
+def _correction_need(condition: bool, message: str) -> None:
+    if not condition:
+        raise ValueError("Scientific product release Style 4 correction: " + message)
+
+
+def _style_four_correction_record(root: Path) -> dict:
+    path = root / STYLE_FOUR_CORRECTION_RECORD
+    _correction_need(path.is_file() and not path.is_symlink(), "decision must be an ordinary file")
+    record = json.loads(path.read_text(encoding="utf-8"))
+    _correction_need(canonical(record) == STYLE_FOUR_CORRECTION_RECORD_SHA256, "decision exact identity mismatch")
+    return record
+
+
+def style_four_correction_predecessor(root: Path, record: dict) -> tuple[list[dict[str, str]], dict]:
+    """Reconstruct v3 by removing only this exact append-only correction."""
+    inventory = asset_inventory(root)
+    additions = record.get("added_asset_files", [])
+    need = _correction_need
+    need(isinstance(additions, list) and bool(additions), "finite added file list is missing")
+    paths = [row.get("path", "") for row in additions if isinstance(row, dict)]
+    need(len(paths) == len(additions) == len(set(paths))
+         and all((path == STYLE_FOUR_CORRECTION_MANIFEST or path.startswith(STYLE_FOUR_CORRECTION_PREFIX))
+                 and "\\" not in path and ":" not in path and ".." not in PurePosixPath(path).parts
+                 for path in paths), "added file list is unsafe, duplicate or outside this correction")
+    actual = [row for row in inventory if row["path"] == STYLE_FOUR_CORRECTION_MANIFEST
+              or row["path"].startswith(STYLE_FOUR_CORRECTION_PREFIX)]
+    need(actual == additions, "exact correction file inventory mismatch")
+    previous_fields = record.get("predecessor_registry_fields", {})
+    need(set(previous_fields) == {"art_styles", "art_style_notes"}, "predecessor registry fields differ")
+    registry = json.loads((root / "assets/scientific-packs/library.json").read_text(encoding="utf-8"))
+    registry.update(previous_fields)
+    predecessor = _style_four_record(root)
+    need(canonical(registry) == predecessor.get("registry_sha256"), "historical registry cannot be reconstructed")
+    excluded = set(paths)
+    result = [dict(row) for row in inventory if row["path"] not in excluded]
+    for row in result:
+        if row["path"] == "assets/scientific-packs/library.json":
+            row["sha256"] = canonical(registry)
+    return result, registry
+
+
+def _validate_style_four_correction(root: Path, *, required: bool = False) -> dict | None:
+    record = _style_four_correction_record(root)
+    need = _correction_need
+    need(record.get("schema") == "figureStudio.scientificProductRelease.v4"
+         and record.get("release_id") == "user-supplied-style-4-correction.2026-10-17"
+         and record.get("release_date") == "2026-10-17", "decision schema/date mismatch")
+    need(record.get("library") == STYLE_FOUR_LIBRARY, "finite collection count differs")
+    need(record.get("predecessor") == {"record": STYLE_FOUR_RECORD, "sha256": STYLE_FOUR_RECORD_SHA256},
+         "predecessor decision differs")
+    inventory, registry = style_four_correction_predecessor(root, record)
+    predecessor = _validate_style_four(root, required=True, inventory_override=inventory, registry_override=registry)
+    need(record.get("packs") == predecessor["packs"] and record.get("scenes") == predecessor["scenes"],
+         "historical product approvals changed")
+    current_inventory = asset_inventory(root)
+    need(record.get("asset_inventory_sha256") == canonical(current_inventory)
+         and record.get("asset_file_count") == len(current_inventory), "complete corrected asset inventory mismatch")
+    current_registry = json.loads((root / "assets/scientific-packs/library.json").read_text(encoding="utf-8"))
+    need(record.get("registry_sha256") == canonical(current_registry), "registered correction differs")
+    need(current_registry.get("art_styles") == [{"id": "style-4", "name": "Style 4",
+         "path": "style-4/manifest-corrected-20261017.json", "asset_count": 486}], "registered correction manifest differs")
+    source = record.get("source_archive", {})
+    need(source.get("filename") == "style4_corrected_486.zip"
+         and source.get("sha256") == STYLE_FOUR_CORRECTION_ARCHIVE_SHA256 and source.get("svg_count") == 486,
+         "supplied correction archive differs")
+    binding = record.get("style_4", {})
+    manifest_path = root / STYLE_FOUR_CORRECTION_MANIFEST
+    need(binding.get("manifest") == STYLE_FOUR_CORRECTION_MANIFEST
+         and binding.get("manifest_sha256") == file_identity(manifest_path)
+         and binding.get("corrected_asset_count") == 243 and binding.get("retained_asset_count") == 243,
+         "finite correction manifest differs")
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    old_manifest = json.loads((root / STYLE_FOUR_MANIFEST).read_text(encoding="utf-8"))
+    need(manifest.get("schema_version") == "1.0.0" and manifest.get("id") == "style-4"
+         and manifest.get("asset_count") == 486, "correction manifest schema/count differs")
+    need(manifest.get("correction_archive", {}).get("sha256") == STYLE_FOUR_CORRECTION_ARCHIVE_SHA256
+         and manifest.get("prior_manifest") == {"file": "manifest.json",
+             "sha256": hashlib.sha256((root / STYLE_FOUR_MANIFEST).read_bytes()).hexdigest()},
+         "correction manifest source/predecessor differs")
+    old = {row["asset_id"]: row for row in old_manifest["assets"]}
+    variants = manifest.get("assets", [])
+    need(len(variants) == len({row.get("asset_id") for row in variants}) == 486
+         and {row.get("asset_id") for row in variants} == set(old), "exact existing drawing identities required")
+    added = {row["path"]: row["sha256"] for row in record["added_asset_files"]}
+    corrected = []
+    for row in variants:
+        if row == old[row["asset_id"]]:
+            continue
+        file = str(row.get("file", ""))
+        need(file.startswith("corrected-20261017/svg/") and file.endswith(".svg")
+             and "\\" not in file and ":" not in file and ".." not in PurePosixPath(file).parts,
+             "corrected variant path is unsafe")
+        need(added.get(STYLE_FOUR_PREFIX + file) == row.get("sha256")
+             and row.get("prior_style4_record") == old[row["asset_id"]],
+             "corrected SVG bytes or original variant record differ")
+        corrected.append(row["asset_id"])
+    need(len(corrected) == 243 and manifest.get("corrected_asset_count") == 243
+         and manifest.get("retained_asset_count") == 243, "exact 243 corrected and 243 retained drawings required")
+    authorization = record.get("user_authorization", {})
+    need(bool(authorization.get("instruction")) and authorization.get("new_personal_attestation") is False,
+         "actual user instruction and non-attestation boundary required")
+    review = record.get("review", {})
+    document = "docs/scientific-assets/STYLE_4_CORRECTION_2026_10_17.md"
+    need(review.get("acceptance_document") == document
+         and file_identity(root / document) == review.get("acceptance_document_sha256"), "correction review document differs")
+    decision = record.get("decision")
+    need(decision in {"pending_input_and_editor_review", "approved_for_matching_public_web_and_superbench_packages"},
+         "unsupported correction decision")
+    if decision != "approved_for_matching_public_web_and_superbench_packages":
+        if required:
+            need(False, "correction approval remains pending")
+        return None
+    need(all(review.get(key) == "pass" for key in ("input_integrity", "independent_visual_review", "native_editor_smoke")),
+         "completed input, independent visual and editor smoke reviews required")
+    evidence = review.get("evidence", [])
+    need(len(evidence) >= 2 and len({row.get("file") for row in evidence}) == len(evidence)
+         and all(row.get("file") and len(row.get("sha256", "")) == 64
+                 and all(char in "0123456789abcdef" for char in row["sha256"]) for row in evidence),
+         "concrete correction review evidence required")
+    return record
+
+
 def validate(root: Path, *, required: bool = False) -> dict | None:
     root = Path(root)
+    if (root / STYLE_FOUR_CORRECTION_RECORD).exists():
+        return _validate_style_four_correction(root, required=required)
+    if (root / STYLE_FOUR_CORRECTION_MANIFEST).exists() or (root / STYLE_FOUR_CORRECTION_PREFIX).exists():
+        if required:
+            _correction_need(False, "correction product decision is missing")
+        return None
     if (root / STYLE_FOUR_RECORD).exists():
         return _validate_style_four(root, required=required)
     registry_path = root / "assets/scientific-packs/library.json"

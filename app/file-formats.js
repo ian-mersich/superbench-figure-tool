@@ -18,8 +18,10 @@
 
   const VERSION = "1.0.0";
   const DOCUMENT_PAYLOAD_SCHEMA = "figureStudio.projectPayload.v1";
+  const OBJECT_CONNECTOR_DOCUMENT_PAYLOAD_SCHEMA = "figureStudio.projectPayload.v2";
   const DOCUMENT_SCHEMA = "figureStudio.project.v2";
   const WORKSPACE_SCHEMA = "figureStudio.workspaceProject.v1";
+  const OBJECT_CONNECTOR_WORKSPACE_SCHEMA = "figureStudio.workspaceProject.v2";
   const SHARED_GROUP_IMPORT_META_SCHEMA_PREFIX = "figureStudio.sharedGroupImportMeta.";
   const SHARED_GROUP_IMPORT_META_SCHEMA = "figureStudio.sharedGroupImportMeta.v1";
   const MAX_FILE_BYTES = 256 * 1024 * 1024;
@@ -31,6 +33,7 @@
     workspace: ".fsproject"
   });
   const LEGACY_EXTENSIONS = Object.freeze([".figurestudio", ".figure-studio.json"]);
+  const POSITIONED_PDF_TEXT_SCHEMAS = new Set(["figureStudio.pdfPositionedText.v1", "figureStudio.pdfPositionedText.v2"]);
   const RUNTIME_KEYS = new Set([
     "dirty",
     "directselection",
@@ -67,6 +70,50 @@
 
   function isRecord(value) {
     return Boolean(value) && typeof value === "object" && !Array.isArray(value);
+  }
+
+  function isDocumentPayloadSchema(schema) {
+    return schema === DOCUMENT_PAYLOAD_SCHEMA || schema === OBJECT_CONNECTOR_DOCUMENT_PAYLOAD_SCHEMA;
+  }
+
+  function isWorkspaceSchema(schema) {
+    return schema === WORKSPACE_SCHEMA || schema === OBJECT_CONNECTOR_WORKSPACE_SCHEMA;
+  }
+
+  function requiresObjectConnectorReader(value) {
+    const pending = [value], seen = new Set();
+    let required = false;
+    while (pending.length) {
+      const row = pending.pop();
+      if (!row || typeof row !== "object" || seen.has(row)) continue;
+      seen.add(row);
+      if (row.figureType === "smartConnector" && Object.prototype.hasOwnProperty.call(row.smartConnectorMeta || {}, "geometrySpace")) {
+        if (row.smartConnectorMeta.geometrySpace !== "object") fail("unsupported_connector_geometry", "This arrow uses coordinates from a newer Figure Tool version.");
+        required = true;
+      }
+      for (const entry of Object.values(row)) if (entry && typeof entry === "object") pending.push(entry);
+    }
+    return required;
+  }
+
+  function documentPayloadSchemaForProject(project) {
+    return requiresObjectConnectorReader(project) ? OBJECT_CONNECTOR_DOCUMENT_PAYLOAD_SCHEMA : DOCUMENT_PAYLOAD_SCHEMA;
+  }
+
+  // This small version check also runs on a worker response before persistence.
+  // It never repairs a stale worker's downgraded envelope or clones its artwork.
+  function assertReaderEnvelopeVersions(payload) {
+    if (isWorkspaceSchema(payload?.schema)) {
+      let newerDocument = false;
+      for (const document of payload.documents || []) {
+        assertReaderEnvelopeVersions(document.payload);
+        newerDocument ||= document.payload.schema === OBJECT_CONNECTOR_DOCUMENT_PAYLOAD_SCHEMA;
+      }
+      if (newerDocument && payload.schema !== OBJECT_CONNECTOR_WORKSPACE_SCHEMA) fail("connector_reader_version_required", "These arrows require the updated Figure Tool project format. Reload the editor before saving.");
+      return;
+    }
+    if (!isDocumentPayloadSchema(payload?.schema) || !isRecord(payload.project)) fail("invalid_document_envelope", "That save is not a supported Figure Tool document.");
+    if (requiresObjectConnectorReader(payload.project) && payload.schema !== OBJECT_CONNECTOR_DOCUMENT_PAYLOAD_SCHEMA) fail("connector_reader_version_required", "These arrows require the updated Figure Tool document format. Reload the editor before saving.");
   }
 
   function normalizeKind(value) {
@@ -176,7 +223,7 @@
     seen.add(value);
     const values = Array.isArray(value) ? value : Object.values(value);
     for (const entry of values) {
-      if (isRecord(entry) && [DOCUMENT_PAYLOAD_SCHEMA, WORKSPACE_SCHEMA].includes(entry.schema)) {
+      if (isRecord(entry) && (isDocumentPayloadSchema(entry.schema) || isWorkspaceSchema(entry.schema))) {
         fail("recursive_payload", "A document payload cannot contain another document or workspace envelope.");
       }
       assertNoNestedEnvelope(entry, seen);
@@ -185,10 +232,11 @@
   }
 
   function validateDocumentEnvelope(payload, expectedKind = "") {
-    if (!isRecord(payload) || payload.schema !== DOCUMENT_PAYLOAD_SCHEMA || !isRecord(payload.project)) {
+    if (!isRecord(payload) || !isDocumentPayloadSchema(payload.schema) || !isRecord(payload.project)) {
       fail("invalid_document_envelope", `Expected a ${DOCUMENT_PAYLOAD_SCHEMA} document envelope.`);
     }
     const kind = projectKind(payload.project);
+    assertReaderEnvelopeVersions(payload);
     const normalizedExpected = expectedKind ? normalizeKind(expectedKind) : "";
     if (expectedKind && !normalizedExpected) fail("invalid_expected_kind", "Expected kind must be Figure or Presentation.");
     if (normalizedExpected && kind !== normalizedExpected) {
@@ -200,26 +248,27 @@
 
   function classifyPayload(payload, options = {}) {
     if (!isRecord(payload)) fail("invalid_payload", "The file must contain a JSON object.");
-    if (payload.schema === WORKSPACE_SCHEMA) {
+    if (isWorkspaceSchema(payload.schema)) {
       validateWorkspaceProject(payload);
       return Object.freeze({
         format: "workspace",
         kind: "workspace",
-        schema: WORKSPACE_SCHEMA,
+        schema: payload.schema,
         envelope: true,
         legacy: false
       });
     }
-    if (payload.schema === DOCUMENT_PAYLOAD_SCHEMA) {
+    if (isDocumentPayloadSchema(payload.schema)) {
       if (isRecord(payload.project) && !Object.prototype.hasOwnProperty.call(payload.project, "schema")) {
         if (!options.allowHistorical) {
           fail("invalid_document_schema", `Expected ${DOCUMENT_SCHEMA}.`);
         }
         const project = canonicalLegacyProject(payload.project);
+        assertReaderEnvelopeVersions({ schema: payload.schema, project });
         return Object.freeze({
           format: "document",
           kind: project.document.kind,
-          schema: DOCUMENT_PAYLOAD_SCHEMA,
+          schema: payload.schema,
           envelope: true,
           legacy: true,
           legacyShape: true
@@ -229,13 +278,14 @@
       return Object.freeze({
         format: "document",
         kind,
-        schema: DOCUMENT_PAYLOAD_SCHEMA,
+        schema: payload.schema,
         envelope: true,
         legacy: false
       });
     }
     if (payload.schema === DOCUMENT_SCHEMA) {
       const kind = projectKind(payload);
+      requiresObjectConnectorReader(payload);
       assertNoNestedEnvelope(payload);
       return Object.freeze({
         format: "document",
@@ -250,6 +300,7 @@
         fail("unsupported_payload_schema", "This is not a supported Figure Tool document or project file.");
       }
       const project = canonicalLegacyProject(payload);
+      requiresObjectConnectorReader(project);
       return Object.freeze({
         format: "document",
         kind: project.document.kind,
@@ -404,6 +455,98 @@
     return cloneCompactImportMetadata(value);
   }
 
+  function* containsCompactableImportGroupSteps(value, seen = new Set()) {
+    if (!value || typeof value !== "object" || seen.has(value)) return false;
+    seen.add(value);
+    if (!Array.isArray(value) && importedVectorChildren(value).length) return true;
+    yield 1;
+    for (const entry of Array.isArray(value) ? value : Object.values(value)) {
+      if (yield* containsCompactableImportGroupSteps(entry, seen)) return true;
+      yield 1;
+    }
+    return false;
+  }
+
+  function* jsonValuesEqualSteps(left, right) {
+    if (left === right) return true;
+    if (left === null || right === null || typeof left !== typeof right || typeof left !== "object") return false;
+    if (Array.isArray(left) !== Array.isArray(right)) return false;
+    const leftKeys = Object.keys(left), rightKeys = Object.keys(right);
+    if (leftKeys.length !== rightKeys.length) return false;
+    for (const key of leftKeys) {
+      if (!Object.prototype.hasOwnProperty.call(right, key) || !(yield* jsonValuesEqualSteps(left[key], right[key]))) return false;
+      yield 1;
+    }
+    return true;
+  }
+
+  function* cloneCompactImportMetadataSteps(value, active = new Set(), omitImportMeta = false, createRecord = () => ({})) {
+    if (!value || typeof value !== "object") return value;
+    if (active.has(value)) fail("invalid_payload", "The payload must be finite, acyclic JSON data.");
+    active.add(value);
+    if (Array.isArray(value)) {
+      const result = new Array(value.length);
+      for (let index = 0; index < value.length; index++) {
+        if (index in value) result[index] = yield* cloneCompactImportMetadataSteps(value[index], active, false, createRecord);
+        yield 1;
+      }
+      active.delete(value);
+      return result;
+    }
+    const result = createRecord(), sharedChildrenSet = new Set(importedVectorChildren(value));
+    for (const [key, entry] of Object.entries(value)) {
+      if (omitImportMeta && key === "importMeta") continue;
+      if (key === "objects" && Array.isArray(entry)) {
+        result.objects = [];
+        for (const child of entry) {
+          const compactChild = sharedChildrenSet.has(child);
+          const copy = yield* cloneCompactImportMetadataSteps(child, active, compactChild, createRecord);
+          if (compactChild) {
+            const overrides = createRecord(), removed = [];
+            for (const field of Object.keys(value.importMeta || {})) {
+              if (!Object.prototype.hasOwnProperty.call(child.importMeta || {}, field)) removed.push(field);
+              yield 1;
+            }
+            for (const [field, fieldValue] of Object.entries(child.importMeta || {})) {
+              if (!Object.prototype.hasOwnProperty.call(value.importMeta || {}, field)
+                  || !(yield* jsonValuesEqualSteps(value.importMeta[field], fieldValue))) {
+                Object.defineProperty(overrides, field, {value: fieldValue, enumerable: true, writable: true, configurable: true});
+              }
+              yield 1;
+            }
+            const reference = createRecord();
+            Object.defineProperties(reference, {
+              schema: {value: SHARED_GROUP_IMPORT_META_SCHEMA, enumerable: true, writable: true, configurable: true},
+              groupId: {value: String(value.groupId || value.importMeta.importBatchId || ""), enumerable: true, writable: true, configurable: true},
+              overrides: {value: yield* cloneCompactImportMetadataSteps(overrides, active, false, createRecord), enumerable: true, writable: true, configurable: true},
+              removed: {value: removed, enumerable: true, writable: true, configurable: true}
+            });
+            copy.importMeta = reference;
+          }
+          result.objects.push(copy);
+          yield 1;
+        }
+      } else Object.defineProperty(result, key, {value: yield* cloneCompactImportMetadataSteps(entry, active, false, createRecord), enumerable: true, writable: true, configurable: true});
+      yield 1;
+    }
+    active.delete(value);
+    return result;
+  }
+
+  async function compactSharedGroupImportMetadataAsync(value, {yieldEvery = 128, yieldToUi = () => new Promise(resolve => setTimeout(resolve, 0)), maxSliceMs = 8, signal, createRecord = () => ({})} = {}) {
+    if (!Number.isSafeInteger(yieldEvery) || yieldEvery < 1 || typeof yieldToUi !== "function" || !Number.isFinite(maxSliceMs) || maxSliceMs <= 0 || typeof createRecord !== "function") throw new Error("Project metadata capture requires bounded batches, a yield callback and a record factory.");
+    async function run(steps) {
+      let count = 0, started = performance.now();
+      while (true) {
+        if (signal?.aborted) throw signal.reason || new Error("Project metadata capture was cancelled.");
+        const step = steps.next();
+        if (step.done) return step.value;
+        if (++count % yieldEvery === 0 || performance.now() - started >= maxSliceMs) { await yieldToUi(); started = performance.now(); }
+      }
+    }
+    return await run(containsCompactableImportGroupSteps(value)) ? run(cloneCompactImportMetadataSteps(value, new Set(), false, createRecord)) : value;
+  }
+
   function resolveSharedGroupImportMetaReference(reference, parentGroup) {
     if (!isRecordLike(reference) || typeof reference.schema !== "string"
       || !reference.schema.startsWith(SHARED_GROUP_IMPORT_META_SCHEMA_PREFIX)) return null;
@@ -495,16 +638,17 @@
 
   function serializeDocument(projectOrEnvelope, options = {}) {
     if (typeof options === "string") options = { kind: options };
-    const sourceEnvelope = isRecord(projectOrEnvelope) && projectOrEnvelope.schema === DOCUMENT_PAYLOAD_SCHEMA
+    const sourceEnvelope = isRecord(projectOrEnvelope) && isDocumentPayloadSchema(projectOrEnvelope.schema)
       ? projectOrEnvelope
       : { schema: DOCUMENT_PAYLOAD_SCHEMA, project: projectOrEnvelope };
     const envelope = {
       schema: DOCUMENT_PAYLOAD_SCHEMA,
       project: cloneJson(cloneCompactImportMetadata(sourceEnvelope.project))
     };
+    envelope.schema = documentPayloadSchemaForProject(envelope.project);
     validateDocumentEnvelope(envelope, options.kind || "");
     assertWithinSize(envelope, Number(options.maxBytes) > 0 ? Number(options.maxBytes) : MAX_FILE_BYTES);
-    return { schema: DOCUMENT_PAYLOAD_SCHEMA, project: cloneJson(envelope.project) };
+    return { schema: envelope.schema, project: cloneJson(envelope.project) };
   }
 
   function normalizedIdentifier(value, label) {
@@ -537,7 +681,7 @@
 
   function literalPdfStringMap(owner, key, entry) {
     const knownMap = owner.representation === "pdfjs-browser-display-font" && ["fontCharToUnicode", "unicodeToFontChar"].includes(key)
-      || owner.schema === "figureStudio.pdfPositionedText.v1" && key === "map";
+      || POSITIONED_PDF_TEXT_SCHEMAS.has(owner.schema) && key === "map";
     return knownMap && isRecord(entry) && Object.values(entry).every(item => typeof item === "string");
   }
 
@@ -571,6 +715,11 @@
       // Glyph dictionaries contain literal text, including slash and backslash,
       // rather than resources. Non-string entries keep the recursive guards.
       if (literalPdfStringMap(value, key, entry)) continue;
+      // This typed edit descriptor stores a human-readable action label, not
+      // an Undo stack. Only its literal string survives this narrow context;
+      // runtime siblings and malformed labels retain the recursive guards.
+      if (literalContext === "pdf-edit-descriptor" && value.schema === "figureStudio.pdfNativeEditDescriptor.v1"
+          && key === "history_label" && typeof entry === "string") continue;
       const normalizedKey = key.toLowerCase().replace(/[^a-z0-9]/g, "");
       if (
         RUNTIME_KEYS.has(normalizedKey)
@@ -582,7 +731,7 @@
       }
       const literalText = typeof entry === "string" && (
         value.schema === "figureStudio.svgPositionedText.v1" && ["sourceText", "sourceGlyphText"].includes(key)
-        || value.schema === "figureStudio.pdfPositionedText.v1" && key === "text"
+        || POSITIONED_PDF_TEXT_SCHEMAS.has(value.schema) && key === "text"
         || literalContext === "pdf-glyph" && pdfGlyphRecord(value) && ["unicode", "fontChar"].includes(key));
       const pathLikeKey = !literalText && (/(path|file|directory|location|uri|source|target|runtime|repo|worktree)/.test(normalizedKey)
         || /(?:src|url|href)$/.test(normalizedKey));
@@ -590,7 +739,8 @@
         fail("absolute_path_not_portable", `Workspace projects cannot contain an absolute machine path at ${path}.${key}.`);
       }
       let childContext = "";
-      if (value.schema === "figureStudio.pdfPositionedText.v1" && key === "glyphs" && Array.isArray(entry)) childContext = "pdf-glyph";
+      if (value.schema === "figureStudio.pdfNativeEditPlan.v1" && key === "edit_descriptors" && Array.isArray(entry)) childContext = "pdf-edit-descriptor";
+      if (POSITIONED_PDF_TEXT_SCHEMAS.has(value.schema) && key === "glyphs" && Array.isArray(entry)) childContext = "pdf-glyph";
       if (value.schema === "figureStudio.pdfKnockout.v1" && key === "members" && Array.isArray(entry)) childContext = "pdf-knockout-member";
       if ((value.schema === "figureStudio.pdfKnockout.v1" || literalContext === "pdf-knockout-member") && key === "instructions" && Array.isArray(entry)) childContext = "pdf-instruction";
       // /GS0 and /Fm0 are retained PDF dictionary names, not machine paths.
@@ -654,17 +804,18 @@
           kind,
           title: String(tab.title || payload.project.title || "").trim().slice(0, 200),
           filename: safeDisplayFilename(tab.filename || "", kind),
-          payload: { schema: DOCUMENT_PAYLOAD_SCHEMA, project: payload.project },
+          payload: { schema: payload.schema, project: payload.project },
           view: portableView(tab.view || {})
         });
       }
       output.workspaces[kind].activeId = activeId;
     }
+    if (output.documents.some((document) => document.payload.schema === OBJECT_CONNECTOR_DOCUMENT_PAYLOAD_SCHEMA)) output.schema = OBJECT_CONNECTOR_WORKSPACE_SCHEMA;
     return output;
   }
 
   function validateWorkspaceProject(payload, options = {}) {
-    if (!isRecord(payload) || payload.schema !== WORKSPACE_SCHEMA) {
+    if (!isRecord(payload) || !isWorkspaceSchema(payload.schema)) {
       fail("invalid_workspace_schema", `Expected ${WORKSPACE_SCHEMA}.`);
     }
     const allowedTopKeys = new Set(["schema", "activeKind", "workspaces", "documents"]);
@@ -678,6 +829,7 @@
     if (!isRecord(payload.workspaces) || !Array.isArray(payload.documents) || !payload.documents.length) {
       fail("invalid_workspace", "A workspace project must contain its ordered documents and workspace state.");
     }
+    assertReaderEnvelopeVersions(payload);
     const workspaceKeys = Object.keys(payload.workspaces);
     if (workspaceKeys.length !== 2 || !DOCUMENT_KINDS.every((kind) => workspaceKeys.includes(kind))) {
       fail("invalid_workspace", "Workspace state must contain exactly Figure and Presentation collections.");
@@ -747,9 +899,21 @@
   }
 
   function serializeWorkspaceProject(source, options = {}) {
-    const candidate = source?.schema === WORKSPACE_SCHEMA
+    const candidate = isWorkspaceSchema(source?.schema)
       ? cloneJson(cloneCompactImportMetadata(source), "invalid_workspace")
       : canonicalWorkspaceFromSource(source);
+    if (Array.isArray(candidate.documents)) {
+      // The candidate is already detached. Change only its version headers;
+      // reserializing every document would copy artwork again and strip fields
+      // that the existing workspace envelope legitimately retains.
+      candidate.documents.forEach((document) => {
+        if (isDocumentPayloadSchema(document?.payload?.schema) && isRecord(document.payload.project)) {
+          document.payload.schema = documentPayloadSchemaForProject(document.payload.project);
+        }
+      });
+      candidate.schema = candidate.documents.some((document) => document.payload.schema === OBJECT_CONNECTOR_DOCUMENT_PAYLOAD_SCHEMA)
+        ? OBJECT_CONNECTOR_WORKSPACE_SCHEMA : WORKSPACE_SCHEMA;
+    }
     const validated = validateWorkspaceProject(candidate, options);
     const byId = new Map(validated.documents.map((document) => [document.id, document]));
     validated.documents = DOCUMENT_KINDS.flatMap((kind) =>
@@ -819,7 +983,7 @@
       extension: nameClassification.extension,
       legacy: nameClassification.legacy,
       requiresSaveAs: nameClassification.requiresSaveAs,
-      payload: { schema: DOCUMENT_PAYLOAD_SCHEMA, project: parsedProject },
+      payload: { schema: documentPayload.schema, project: parsedProject },
       project: parsedProject
     };
   }
@@ -837,8 +1001,15 @@
   return Object.freeze({
     VERSION,
     DOCUMENT_PAYLOAD_SCHEMA,
+    OBJECT_CONNECTOR_DOCUMENT_PAYLOAD_SCHEMA,
     DOCUMENT_SCHEMA,
     WORKSPACE_SCHEMA,
+    OBJECT_CONNECTOR_WORKSPACE_SCHEMA,
+    isDocumentPayloadSchema,
+    isWorkspaceSchema,
+    requiresObjectConnectorReader,
+    documentPayloadSchemaForProject,
+    assertReaderEnvelopeVersions,
     MAX_FILE_BYTES,
     LEGACY_OPEN_MINIMUM_BETA_CYCLES,
     DOCUMENT_KINDS,
@@ -851,6 +1022,7 @@
     serializeDocument,
     serializeWorkspaceProject,
     compactSharedGroupImportMetadata,
+    compactSharedGroupImportMetadataAsync,
     hydrateSharedGroupImportMetadata,
     resolveSharedGroupImportMetadataForObjects,
     validateWorkspaceProject

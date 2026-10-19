@@ -2,15 +2,15 @@
 
 The canonical Figure repository is `C:\Users\ianme\Desktop\Projects\superbench_figure_tool`.
 The browser site and Superbench consume one committed editor and asset collection:
-486 Library drawings representing 386 concepts in 11 packs, and 12 editable
+486 Library drawings representing 386 concepts in 11 packs, four drawing styles, and 12 editable
 scientific scenes. Fixes belong here. Do not maintain a second editor in the
 public source checkout or backport individual fixes into the old beta.6 site.
 
-The beta.11 release was published on 15 October 2026. Its immutable runtime source
-is `8c755c0ce0b591f178c402dc261e1f64a635b9a0`, and its selected Superbench package
-is `7291043aa2f526aafde5d38c320df41e597d39097b8b2038832bcf2ef55c04d7`.
+The beta.12 release was published on 17 October 2026. Its immutable runtime source
+is `649b413ba392c0220d8405327a9fe9ba11dd7ff8`, and its selected Superbench package
+is `880c806ca35f171f80ffcd71fd102390ee5c64bf037b0a19d3c5c22025e50c73`.
 The deployed HTTPS editor and the actual installed selection passed the same
-800-file payload comparison. The public source/tag, archive identities, CI and
+1,299-file payload comparison. The public source/tag, archive identities, CI and
 deployment evidence are recorded in [PUBLIC_PUBLICATION.md](PUBLIC_PUBLICATION.md).
 
 Host-owned appearance and file controls can differ without forking the editor.
@@ -37,6 +37,13 @@ editing reviews, and the prospective 15 October repository CC0 contribution
 policy. The original grants, predecessor records and source-time acceptance
 document remain unchanged. Current deployment and installed-selection outcomes
 are recorded in `PUBLIC_PUBLICATION.md`; the finite acceptance inputs are preserved.
+
+The finite Style 4 successor is
+`config/scientific-product-release-2026-10-17-style4.json`. It binds the supplied
+486 alternate SVGs, the selected earlier-batch recoveries and their exact source
+identities. Historical grants and prior decisions are preserved. Source-time
+acceptance is separate from the later package, native, live website and actual
+installed-selection outcomes recorded in `PUBLIC_PUBLICATION.md`.
 
 ## Prepare the matched artifacts
 
@@ -116,7 +123,7 @@ headless native checks; a package update does not establish a new MSI qualificat
 For future releases, publishing the public repository/release, updating the
 website, and changing the actual local selected package remain explicit promotion
 steps after the matched candidate is reviewed. Those steps are complete for
-beta.11. All beta.6 repaint/backport candidates remain unpublished historical
+beta.12. All beta.6 repaint/backport candidates remain unpublished historical
 diagnostics. The shared Figure release milestone is complete; the separate
 Windows installer qualification remains on the same roadmap.
 

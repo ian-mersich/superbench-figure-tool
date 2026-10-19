@@ -743,6 +743,11 @@
     cancelCloseDocumentBtn: document.getElementById("cancelCloseDocumentBtn"),
     confirmCloseDocumentBtn: document.getElementById("confirmCloseDocumentBtn"),
     newDocumentNameInput: document.getElementById("newDocumentNameInput"),
+    newDocumentSizeInput: document.getElementById("newDocumentSizeInput"),
+    newDocumentUnitsInput: document.getElementById("newDocumentUnitsInput"),
+    newDocumentPreviewPaper: document.getElementById("newDocumentPreviewPaper"),
+    newDocumentPreviewDimensions: document.getElementById("newDocumentPreviewDimensions"),
+    newDocumentPreviewKind: document.getElementById("newDocumentPreviewKind"),
     newDocumentWidthInput: document.getElementById("newDocumentWidthInput"),
     newDocumentHeightInput: document.getElementById("newDocumentHeightInput"),
     newDocumentLayoutInput: document.getElementById("newDocumentLayoutInput"),
@@ -1299,6 +1304,10 @@
   let pdfSourceReplacementState = { status: "idle", requestId: "", returnFocus: null };
   let pdfSourceReplacementRequestSerial = 0;
   let clipboard = [];
+  let denseClipboardCopy = null;
+  let clipboardPreparation = Promise.resolve();
+  let clipboardCopyEpoch = 0;
+  let pendingDenseClipboardCapture = null;
   let isRestoring = false;
   let masterLayoutEditor = { active: false, mode: "", masterId: "", layoutId: "", returnPageId: "", draftName: "", returnSelectionIds: [] };
   let lastDeckOrphanBlock = null;
@@ -1365,10 +1374,151 @@
   let undoStack = [];
   let redoStack = [];
   const pdfHistoryNodeStore = globalThis.FigureStudioPdfHistoryNodeStore ? new globalThis.FigureStudioPdfHistoryNodeStore.Store() : null;
+  const densePdfTextDirty = new WeakSet();
+  let densePdfEditCompletion = Promise.resolve();
+  let densePdfEditPending = 0;
+  let lastDensePdfAdmission = null;
+  let lastDensePdfEditFailure = null;
+  let lastDensePdfCopyAdmission = null;
+  const densePdfParsedHydrations = new WeakMap();
+  function densePdfApi() { return globalThis.FigureStudioPdfDensePage; }
+  function clearEditorCanvas() {
+    const dense = densePdfApi(), scope = dense?.beginSceneReplacement(canvas);
+    let didFail = false;
+    try { return canvas.clear(); }
+    catch (error) { didFail = true;throw error; }
+    finally { if (scope) { try { dense.finishSceneReplacement(scope); } catch (error) { if (!didFail) throw error; } } }
+  }
+  function requestCanvasArtworkRender() {
+    // Selection changes can share a task with removing artwork. Their overlay
+    // optimization must not suppress the paint of the changed document.
+    selectionOverlayRenderOnly = false;
+    suppressNextFullCanvasRender = false;
+    canvas.requestRenderAll();
+  }
+  function densePdfPageForObject(object) {
+    const api = densePdfApi(), page = api?.pageForObject(object);
+    return page && api.isPage(page) ? page : null;
+  }
+  function hasPendingDensePageEdits() {
+    return Boolean(densePdfEditPending || allCanvasObjectsDeep().some((page) => densePdfApi()?.isPage(page)
+      && densePdfApi().textEntries(page).some((row) => densePdfTextDirty.has(row.object))));
+  }
+  function queueDensePdfEdit(page, mutate, label, pointContinuity = null) {
+    const ownerCanvas = canvas, documentId = currentTransformDocumentId();
+    densePdfEditPending++;
+    lastDensePdfEditFailure = null;
+    const task = densePdfEditCompletion.catch(() => {}).then(async () => {
+      const unlock = lockPdfHistoryMutations();
+      try {
+        const keepPoints = pointContinuity && densePdfPointIntentIsCurrent(pointContinuity);
+        await mutate();
+        if (canvas !== ownerCanvas || currentTransformDocumentId() !== documentId || !densePdfApi().isPage(page)) throw new Error("The document changed before the PDF edit completed.");
+        const intentCurrent = keepPoints && densePdfPointIntentIsCurrent(pointContinuity);
+        let boundPoints = null;
+        if (intentCurrent) {
+          const resolved = resolveDensePdfPointHistoryState(pointContinuity.saved, page);
+          if (resolved && resolved.object !== pointContinuity.activeObject) {
+            bindDensePdfPointSelection(resolved);
+            boundPoints = resolved;
+          }
+          else {
+            stopPathNodeEdit({ sync: false });
+            canvas.setActiveObject(page);
+          }
+        } else if (!pointContinuity) canvas.setActiveObject(page);
+        else {
+          // Retire only the spent UI references. A later tool or selection
+          // intent must survive; never put its old source control back.
+          if (pathNodeEdit === pointContinuity.editState) stopPathNodeEdit({ sync: false });
+          if (canvas.getActiveObject() === pointContinuity.activeObject) canvas.discardActiveObject();
+        }
+        canvas.requestRenderAll();
+        syncUi();
+        if (boundPoints && (densePdfApi().objectById(page, boundPoints.object.figureId) !== boundPoints.object
+            || densePdfApi().descriptor(page).stateId !== boundPoints.stateId || !canUsePathPointEditing(boundPoints.object))) {
+          stopPathNodeEdit({ sync: false });
+          canvas.setActiveObject(page);
+          throw new Error("The current PDF point controls changed while the editor was being updated.");
+        }
+        if (intentCurrent) await commitPdfHistory(label, { undoDirectSelectionState: pointContinuity.saved });
+        else await commitPdfHistory(label);
+        return page;
+      } finally { unlock(); }
+    });
+    densePdfEditCompletion = task.finally(() => { densePdfEditPending--; });
+    void densePdfEditCompletion.catch((error) => { lastDensePdfEditFailure = { code: error?.code || "", message: error?.message || String(error), ...(error?.detail ? { detail: structuredClone(error.detail) } : {}) };showLongToast(error?.message || "Could not complete the PDF edit."); });
+    return task;
+  }
+  function commitDensePdfText(target) {
+    const page = densePdfPageForObject(target);
+    if (!page || !densePdfTextDirty.has(target)) return densePdfEditCompletion;
+    densePdfTextDirty.delete(target);
+    return queueDensePdfEdit(page, () => densePdfApi().commitText(target), "PDF text updated").catch((error) => { if (densePdfApi().isPage(page)) densePdfTextDirty.add(target); throw error; });
+  }
+  async function flushDensePdfEdits({ waitForClipboard = true } = {}) {
+    if (waitForClipboard && pendingDenseClipboardCapture) await pendingDenseClipboardCapture.promise;
+    const active = canvas?.getActiveObject();
+    if (densePdfPageForObject(active) && active.isEditing) active.exitEditing();
+    await densePdfEditCompletion;
+  }
+  async function encodeFigureStudioFile(shell, { signal } = {}) {
+    const references = browserDenseAssetReferences(shell);
+    if (!references.size) return new Blob([JSON.stringify(shell, null, 2)], { type: "application/json" });
+    const assets = await densePdfApi().saveAssets([...references.keys()], { signal });
+    validateBrowserDenseAssetBindings(shell, assets);
+    return globalThis.FigureStudioPdfDenseFileCodec.encode({ shell, assets }, { signal });
+  }
+  async function parseFigureStudioFileBlob(file) {
+    const codec = globalThis.FigureStudioPdfDenseFileCodec;
+    if (!codec) return parseFigureStudioFileContents(await file.text(), file.name);
+    const decoded = await codec.decode({ blob: file, filename: file.name });
+    if (!decoded.assets.length) return parseFigureStudioFileContents(decoded.shell, file.name);
+    validateBrowserDenseAssetBindings(decoded.shell, decoded.assets);
+    const bindings = await densePdfApi().hydrateAssets(decoded.assets);
+    try {
+      await yieldPdfHistoryToUi();
+      const shell = densePdfApi().rebindAssets(decoded.shell, bindings), parsed = parseFigureStudioFileContents(shell, file.name);
+      await yieldPdfHistoryToUi();
+      densePdfParsedHydrations.set(parsed, bindings);return parsed;
+    } catch (error) { try { densePdfApi().discardHydratedAssets(bindings); } catch {}throw error; }
+  }
+  async function openDecodedFigureStudioFile(parsed, options) {
+    const bindings = densePdfParsedHydrations.get(parsed);
+    let settled = false;
+    try {
+      const result = await openParsedFigureStudioFile(parsed, options);
+      if (!result && bindings) { settled = true; densePdfApi().discardHydratedAssets(bindings); }
+      else if (bindings) densePdfApi().commitHydratedAssets(bindings);
+      return result;
+    } catch (error) { if (bindings && !settled) { try { densePdfApi().discardHydratedAssets(bindings); } catch {} }throw error; }
+    finally { densePdfParsedHydrations.delete(parsed); }
+  }
+  function discardDecodedFigureStudioFile(parsed) {
+    const bindings = parsed && densePdfParsedHydrations.get(parsed);
+    if (bindings) { densePdfParsedHydrations.delete(parsed); densePdfApi().discardHydratedAssets(bindings); }
+  }
+  async function focusDensePdfPath(page, scenePoint) {
+    const ownerCanvas = canvas, documentId = currentTransformDocumentId(), unlock = lockPdfHistoryMutations();
+    try {
+      const local = fabricRef.util.transformPoint(scenePoint, fabricRef.util.invertTransform(page.calcTransformMatrix()));
+      const hit = await densePdfApi().read(page, "hitPath", { x: local.x + page.width / 2, y: local.y + page.height / 2, limit: 1 });
+      if (!hit.result.length) return;
+      const path = await densePdfApi().acquirePath(page, hit.result[0].id, { pointsOnly: true });
+      if (canvas !== ownerCanvas || currentTransformDocumentId() !== documentId) return;
+      if (!canUsePathPointEditing(path)) { showLongToast("Point editing is unavailable for this PDF path. Check whether the path or its containing group is locked."); return; }
+      path.set({ lockMovementX: true, lockMovementY: true });
+      canvas.setActiveObject(path);
+      startPathNodeEdit(path, { toast: false });
+      canvas.requestRenderAll();syncUi();
+    } catch (error) { showLongToast(error?.message || "Could not select that PDF path."); }
+    finally { unlock(); }
+  }
   let pdfHistoryMovePending = false;
   let pdfHistoryMoveCompletion = null;
   let latestHistoryStateCache = { documentId: "", snapshot: "", stateObject: null };
   let documentRuntimeRestoreFailed = false;
+  let projectPayloadRestoreAttempt = null;
   let pdfHistoryMutationLockDepth = 0;
   let pdfHistoryMutationCompletion = null;
   let pdfHistoryMutationLockState = null;
@@ -1379,6 +1529,7 @@
   let textHistoryPending = null;
   const textExitModifiedTargets = new WeakSet();
   const sourceTextHistoryBatches = new WeakMap();
+  const browserAsyncCaptureOwners = new WeakMap();
   let pendingScientificTextStyle = null;
   let scientificSymbolPopoverState = null;
   let scientificSymbolCategory = "all";
@@ -1388,6 +1539,13 @@
   let presentationRenderEpoch = 0;
   let presentationCanvasLayout = null;
   const presentationState = { active: false, pageIndex: 0, notesOpen: false, returnState: null, returnFocus: null };
+  // Slides and Figure documents already share the portable project. This view
+  // reuses the right rail without storing panel state in scientific artwork.
+  let projectSlidesOpen = false;
+  let projectSlidesBusy = false;
+  let denseSlideCopyPending = false;
+  let projectSlidesDeckId = "";
+  let projectSlidesListMarkup = "";
   const slideSortDrag = { active: false, started: false, pageId: "", beforeId: "", pointerId: null, startX: 0, startY: 0, suppressClick: false };
   const collapsedDeckSectionIds = new Set();
   let historyPrunedCount = 0;
@@ -1408,6 +1566,7 @@
   let lastDenseDirectSelectionMaterialization = null;
   let denseDirectSelectionPending = false;
   const artifactStore = new Map();
+  let denseFigureHistoryArtifactCapture = null;
   const missingExternalArtifactRefsById = new Map();
   const pdfSourceFontProgramCache = new Map();
   const nativePdfIrCache = new Map();
@@ -1512,6 +1671,7 @@
   let paintedVectorDirectSelectionCycle = { clientPoint: null, ids: [], index: -1, tool: "" };
   let smartConnectorInteraction = { start: null, hover: null, reassign: null, bend: null, endpoint: null };
   let smartConnectorMissingTargetTimer = 0;
+  let smartConnectorMissingTargetCleanup = null;
   let connectorActionPopover = null;
   let penToolState = {
     anchors: [],
@@ -1839,6 +1999,7 @@
   let pendingNativeWindowDocumentState = "";
   let requestedNativeWindowDocumentState = "";
   let documentMutationTrackingSuppressed = 0;
+  let inspectorDenseSvgProxyMetaCache = null;
   let pendingProjectOpenKind = "";
   let pendingBrowserOpenOperation = null;
   let documentFileOperationCounter = 0;
@@ -2053,12 +2214,13 @@
         toolbar.querySelector('details').open = false;
         if (button.dataset.deckTool) return activateTool(button.dataset.deckTool);
         if (command === 'format') {
+          if (projectSlidesOpen) { setProjectSlidesOpen(false); root.dataset.deckFormat = 'closed'; }
           root.dataset.deckFormat = root.dataset.deckFormat === 'open' ? 'closed' : 'open';
           button.setAttribute('aria-pressed', String(root.dataset.deckFormat === 'open'));
           setInspectorTab('properties');
         } else if (command === 'design' || command === 'assets') {
           const pane = command === 'design' ? 'design' : 'assets';
-          const nextPane = root.dataset.deckPane === pane ? 'slides' : pane;
+          const nextPane = root.dataset.deckPane === pane ? (projectSlidesOpen ? 'assets' : 'slides') : pane;
           setSidebarTab(nextPane === 'assets' ? 'assets' : 'slides', { presentationPane: nextPane });
           if (pane === 'design') setPanelCollapsed(root.querySelector('.deck-theme-panel'), false);
         } else {
@@ -2089,7 +2251,8 @@
       syncChromePanels({ persist: true, updateStage: true });
     }
     if (presentation) {
-      const pane = normalizePresentationPane(state.ui.presentationPane);
+      const restoredPane = normalizePresentationPane(state.ui.presentationPane);
+      const pane = projectSlidesOpen && restoredPane === 'slides' ? 'assets' : restoredPane;
       // Passive restoration must not invoke the Assets action's search focus.
       setSidebarTab(pane === 'assets' ? 'tools' : 'slides', { presentationPane: pane });
     }
@@ -2099,6 +2262,200 @@
     return ['slides', 'design', 'assets'].includes(pane)
       ? pane
       : ['tools', 'assets'].includes(sidebarTab) ? 'assets' : 'slides';
+  }
+
+  function projectSlidesTarget() {
+    const bucket = documentWorkspaceBucket('presentation');
+    const tab = isPresentationDocument() ? activeDocumentTab()
+      : bucket.tabs.find((item) => item.id === projectSlidesDeckId)
+        || bucket.tabs.find((item) => item.id === bucket.activeId) || bucket.tabs[0];
+    const project = tab?.payload?.project || tab?.payload;
+    return { tab, deck: tab?.id === activeDocumentTab()?.id ? state.deck : project?.deck };
+  }
+
+  function syncProjectSlidesChrome() {
+    const root = figureStudioRoot();
+    if (!root) return;
+    root.dataset.projectSlides = projectSlidesOpen ? 'open' : 'closed';
+    const visible = projectSlidesOpen && state.ui.rightInspectorVisible !== false;
+    document.getElementById('projectSlidesToggle')?.setAttribute('aria-expanded', String(visible));
+    root.querySelector('[data-deck-command="format"]')?.setAttribute('aria-pressed', String(!projectSlidesOpen && state.ui.rightInspectorVisible !== false && root.dataset.deckFormat === 'open'));
+    if (projectSlidesOpen) {
+      if (isPresentationDocument()) root.dataset.deckFormat = 'open';
+      const title = els.inspector?.querySelector('.rail-window-bar strong');
+      if (title) title.textContent = 'Slides';
+      els.inspector?.setAttribute('aria-label', 'Slides panel');
+    } else {
+      els.inspector?.setAttribute('aria-label', isPresentationDocument() ? 'Slide formatting' : 'Inspector panel');
+    }
+  }
+
+  function setProjectSlidesOpen(open) {
+    projectSlidesOpen = Boolean(open);
+    state.ui.rightInspectorVisible = true;
+    if (projectSlidesOpen) {
+      railLayout.right.collapsed = false;
+      if (isPresentationDocument()) {
+        // Keep the Library available at left, rather than two slide lists.
+        setSidebarTab('tools', { presentationPane: 'assets' });
+      }
+    }
+    syncProjectSlidesChrome();
+    syncChromePanels({ persist: true, updateStage: true });
+    renderProjectSlidesPane();
+    try { localStorage.setItem('figureStudio.projectSlides.v1', JSON.stringify({ open: projectSlidesOpen })); }
+    catch (_error) { /* A panel remains usable without preference storage. */ }
+  }
+
+  function renderProjectSlidesPane() {
+    const panel = document.getElementById('projectSlidesPanel');
+    if (!panel || !projectSlidesOpen) return;
+    syncProjectSlidesChrome();
+    const { tab, deck } = projectSlidesTarget();
+    const pages = deck?.pages || [];
+    if (tab?.id === activeDocumentTab()?.id && !isRestoring) {
+      const currentPage = pages.find((page) => page.id === deck.activePageId);
+      if (currentPage && !currentPage.thumbnail && canvas?.getObjects?.().some(isFigureObject)) {
+        // PPTX files may arrive without cached previews. Show their actual
+        // artwork rather than a misleading "Blank slide" placeholder.
+        currentPage.thumbnail = buildDeckThumbnailDataUrl();
+      }
+    }
+    const current = Math.max(0, pages.findIndex((page) => page.id === deck.activePageId));
+    const select = panel.querySelector('[data-project-slide-deck]');
+    const choices = documentWorkspaceBucket('presentation').tabs;
+    const signature = JSON.stringify(choices.map((item) => [item.id, item.title]));
+    if (select.dataset.options !== signature) {
+      select.innerHTML = choices.length ? choices.map((item) => `<option value="${escapeHtml(item.id)}">${escapeHtml(item.title || 'Untitled presentation')}</option>`).join('') : '<option value="">No slides yet</option>';
+      select.dataset.options = signature;
+    }
+    select.disabled = projectSlidesBusy || !choices.length || isPresentationDocument();
+    if (tab) select.value = tab.id;
+    panel.querySelector('[data-project-slide-status]').textContent = projectSlidesBusy ? 'Updating slides…'
+      : pages.length ? `${pages.length} slide${pages.length === 1 ? '' : 's'} · ${isPresentationDocument() ? 'Editing' : 'Current'} slide ${current + 1}`
+        : 'Create a blank slide or make a slide from this canvas.';
+    const list = panel.querySelector('[data-project-slide-list]');
+    const markup = pages.map((page, index) => `<button type="button" class="project-slide-card${index === current ? ' active' : ''}" data-project-slide-id="${escapeHtml(page.id)}" aria-label="Open slide ${index + 1}: ${escapeHtml(page.label || 'Untitled')}" aria-current="${index === current ? 'page' : 'false'}" title="Open this slide for editing">
+      <span class="project-slide-preview">${page.thumbnail ? `<img src="${escapeHtml(page.thumbnail)}" alt="" draggable="false">` : '<span>Blank slide</span>'}</span>
+      <span class="project-slide-label">${index + 1}. ${escapeHtml(page.label || 'Untitled')}</span></button>`).join('');
+    if (projectSlidesListMarkup !== markup) { list.innerHTML = markup; projectSlidesListMarkup = markup; }
+    panel.querySelector('[data-project-slide-copy-actions]').hidden = isPresentationDocument();
+    panel.querySelector('[data-project-slide-copy-note]').hidden = isPresentationDocument();
+    panel.querySelectorAll('[data-project-slide-action]').forEach((button) => {
+      const action = button.dataset.projectSlideAction;
+      button.disabled = projectSlidesBusy || (['edit', 'play', 'copy-current'].includes(action) && !pages.length)
+        || (action === 'remove' && pages.length <= 1)
+        || (action === 'earlier' && (!pages.length || current === 0))
+        || (action === 'later' && (!pages.length || current === pages.length - 1));
+    });
+    panel.setAttribute('aria-busy', String(projectSlidesBusy));
+  }
+
+  async function runProjectSlideAction(action, pageId = '') {
+    if (projectSlidesBusy || documentWorkspaceState.switching || exportAsDialogState.exporting) return;
+    if (['copy-current', 'copy-new'].includes(action) && activeDocumentTab()?.kind === 'figure' && selectionHasDensePdfPages(canvas?.getObjects?.() || [])) {
+      try { return await runDenseFigureSlideCopy(action, pageId); }
+      catch (error) { try { showLongToast(error?.message || 'The canvas could not be copied to Slides.'); } catch {}throw error; }
+    }
+    if (['copy-current', 'copy-new'].includes(action)) refuseDenseArtworkHandoff(canvas?.getObjects?.() || []);
+    if (action === 'style') return setProjectSlidesOpen(false);
+    if (action === 'save') return executeMenuCommand('save-workspace-project');
+    const source = activeDocumentTab();
+    if (!source) return;
+    const keepFigure = source.kind === 'figure' && !['edit', 'play', 'open'].includes(action);
+    const previousInert = els.studioShell?.inert;
+    projectSlidesBusy = true;
+    renderProjectSlidesPane();
+    // Switching native document runtimes is transactional from the user's view.
+    // Block input while a target deck and its artwork are being restored.
+    if (els.studioShell) els.studioShell.inert = true;
+    try {
+      let copy = null;
+      if (['copy-current', 'copy-new'].includes(action)) {
+        const selectionIds = selectedTopLevelObjects().map((object) => object.figureId);
+        const exportAudit = lastProxyExportAudit;
+        try { copy = await buildCurrentFigureHandoff(); }
+        finally {
+          // Export temporarily clears a Fabric ActiveSelection. A placed copy
+          // must leave both the source selection and its export record intact.
+          lastProxyExportAudit = exportAudit;
+          setActiveObjects(selectionIds.map(getByFigureId).filter(Boolean));
+          captureActiveDocumentTab();
+        }
+      }
+      let { tab } = projectSlidesTarget();
+      let created = false;
+      if (!tab) {
+        const result = await createNewDocumentTab({ kind: 'presentation', name: 'Untitled presentation', preset: 'presentation-wide', layoutId: 'blank' });
+        if (result?.status !== 'ok') throw new Error('Finish the current edit before creating slides.');
+        tab = result.tab;
+        created = true;
+      } else if (tab.id !== activeDocumentTab()?.id) {
+        await activateDocumentTab(tab.id);
+      }
+      if (activeDocumentTab()?.id !== tab.id) throw new Error('The slides could not be opened. Your Figure stays open.');
+      projectSlidesDeckId = tab.id;
+      if (pageId && pageId !== state.deck.activePageId) await restoreDeckPage(pageId, { captureCurrent: true });
+      if ((action === 'new' || action === 'copy-new') && !created) createDeckSlide({ layoutId: 'blank' });
+      if (action === 'earlier' || action === 'later') await moveDeckSlide(state.deck.activePageId, action === 'earlier' ? -1 : 1);
+      if (action === 'remove') await deleteCurrentSlide();
+      if (copy) await importHandoffPayload(copy);
+      captureActiveDocumentTab();
+      if (!keepFigure) setSidebarTab('tools', { presentationPane: 'assets' });
+      if (action === 'play') {
+        if (els.studioShell) els.studioShell.inert = previousInert || false;
+        await startPresentation({ returnFocus: document.getElementById('projectSlidesToggle') });
+      }
+    } catch (error) {
+      showLongToast(error.message || 'The slides could not be changed.');
+      throw error;
+    } finally {
+      try {
+        if (keepFigure && allDocumentTabs().some((tab) => tab.id === source.id) && activeDocumentTab()?.id !== source.id) await activateDocumentTab(source.id);
+      } finally {
+        projectSlidesBusy = false;
+        if (els.studioShell && !presentationState.active) els.studioShell.inert = previousInert || false;
+        syncProjectSlidesChrome();
+        syncChromePanels({ persist: false, updateStage: true });
+        renderProjectSlidesPane();
+      }
+    }
+    if (keepFigure && ['copy-current', 'copy-new'].includes(action)) showLongToast('Editable canvas copy added to the slide. Your source Figure stays unchanged.');
+  }
+
+  function setupProjectSlidesPane() {
+    if (document.getElementById('projectSlidesPanel')) return;
+    const panel = document.createElement('section');
+    panel.id = 'projectSlidesPanel';
+    panel.className = 'project-slides-panel';
+    panel.setAttribute('aria-label', 'Project slides');
+    panel.innerHTML = `<div class="project-slides-controls">
+      <label>Presentation<select data-project-slide-deck aria-label="Presentation in this project"></select></label>
+      <div class="project-slide-actions"><button type="button" data-project-slide-action="new">New slide</button><button type="button" data-project-slide-action="play">Play</button></div>
+      <div class="project-slide-copy-actions" data-project-slide-copy-actions><button type="button" data-project-slide-action="copy-new">Create slide from canvas</button><button type="button" data-project-slide-action="copy-current">Add canvas copy to slide</button></div>
+      <p data-project-slide-copy-note>Placed copies stay separate from the source Figure.</p>
+      <p class="project-slide-status" data-project-slide-status role="status"></p>
+    </div><div class="project-slide-list" data-project-slide-list aria-label="Slides in this project"></div>
+    <div class="project-slides-footer"><div class="project-slide-actions"><button type="button" data-project-slide-action="edit">Edit slide</button><button type="button" data-project-slide-action="earlier" aria-label="Move current slide earlier" title="Move current slide earlier">↑</button><button type="button" data-project-slide-action="later" aria-label="Move current slide later" title="Move current slide later">↓</button><button type="button" data-project-slide-action="remove">Remove</button></div>
+    <button type="button" data-project-slide-action="save">Save project…</button><p>Save Figures and slides together.</p><button type="button" data-project-slide-action="style">Back to formatting</button></div>`;
+    els.inspector.append(panel);
+    document.getElementById('projectSlidesToggle')?.addEventListener('click', () => {
+      if (projectSlidesOpen && state.ui.rightInspectorVisible !== false) setRailVisibility('right', false, { fit: false });
+      else setProjectSlidesOpen(true);
+    });
+    panel.addEventListener('change', (event) => {
+      if (event.target.matches('[data-project-slide-deck]')) { projectSlidesDeckId = event.target.value; renderProjectSlidesPane(); }
+    });
+    panel.addEventListener('click', (event) => {
+      const button = event.target.closest('button');
+      if (!button || button.disabled) return;
+      const action = button.dataset.projectSlideAction || (button.dataset.projectSlideId ? 'open' : '');
+      if (action) void runProjectSlideAction(action, button.dataset.projectSlideId || '').catch((error) => console.warn('Slide action failed', error));
+    });
+    try { projectSlidesOpen = JSON.parse(localStorage.getItem('figureStudio.projectSlides.v1') || 'null')?.open === true; }
+    catch (_error) { /* Default to the current Figure layout. */ }
+    syncProjectSlidesChrome();
+    renderProjectSlidesPane();
   }
 
   function presentationPaneTitle() {
@@ -2120,6 +2477,567 @@
     return id ? allDocumentTabs().find((tab) => tab.kind === 'figure' && tab.id === id) || null : null;
   }
 
+  // Issued only by the local dense handoff below; ordinary opens never enter
+  // these checks. This retains no old native forest across the project loader.
+  const denseFigureHandoffLoads = new WeakSet();
+
+  function denseFigureHandoffContext(options) {
+    const context = options?.denseFigureHandoff;
+    if (context && !denseFigureHandoffLoads.has(context)) throw new Error("The Figure copy request is foreign.");
+    return context;
+  }
+
+  function denseFigureHandoffEqual(a, b) {
+    if (Object.is(a, b)) return true;
+    if (!a || !b || typeof a !== "object" || typeof b !== "object" || Array.isArray(a) !== Array.isArray(b)) return false;
+    if (Array.isArray(a) && a.length !== b.length) return false;
+    if (!Array.isArray(a)) for (const value of [a, b]) {
+      const prototype = Object.getPrototypeOf(value);
+      if (prototype && Object.getPrototypeOf(prototype) !== null) return false;
+    }
+    const keys = Object.keys(a), other = Object.keys(b);
+    return keys.length === other.length && keys.every((key, index) => key === other[index] && denseFigureHandoffEqual(a[key], b[key]));
+  }
+
+  function denseFigureHandoffJsonMetadata(value) {
+    const restored = JSON.parse(JSON.stringify(value)), entries = value.pdfSources?.entries, output = restored.pdfSources?.entries;
+    // normalizePdfSourceRegistry always recreates this own optional field.
+    // Prove every other entry key survived before restoring its original order.
+    if (entries && output) for (const id of Object.keys(entries)) {
+      const entry = entries[id], encoded = output[id], name = "native_pdf_typed_revision";
+      if (!entry || !encoded || typeof entry !== "object" || typeof encoded !== "object" || Array.isArray(entry) || Array.isArray(encoded)) continue;
+      const descriptor = Object.getOwnPropertyDescriptor(entry, name);
+      if (!descriptor?.enumerable || !("value" in descriptor) || descriptor.value !== undefined || Object.hasOwn(encoded, name)) continue;
+      const keys = Object.keys(entry), retained = keys.filter(key => key !== name), encodedKeys = Object.keys(encoded);
+      if (retained.length !== encodedKeys.length || retained.some((key, index) => key !== encodedKeys[index])) continue;
+      const rebuilt = {};
+      for (const key of keys) Object.defineProperty(rebuilt, key, {
+        value: key === name ? undefined : encoded[key], enumerable: true, configurable: true, writable: true
+      });
+      output[id] = rebuilt;
+    }
+    return restored;
+  }
+
+  function denseFigureHandoffWitness(roots, { fork = false } = {}) {
+    const api = densePdfApi(), group = roots[0], children = groupChildren(group);
+    if (roots.length !== 1 || group?.constructor !== fabricRef.Group || children.length !== 2 || !api.isPage(children[0])
+        || children[1]?.constructor !== fabricRef.Rect) throw new Error("Choose one local group containing a PDF page followed by a rectangle.");
+    installPdfSourceSerializationPrecision(roots);
+    const fields = [...denseCanvasPoseFields, "opacity", "strokeWidth", "strokeDashOffset", "strokeMiterLimit", "strokeDashArray", "rx", "ry"];
+    const records = roots.map(object => object.toObject(CUSTOM_PROPS));
+    if (!denseFigureHandoffEqual(records, JSON.parse(JSON.stringify(records)))) throw new Error("This artwork contains values that cannot yet make an exact Figure copy.");
+    const rows = [group, ...children].map(object => {
+      if (inheritedMasterMeta(object) || object.clipPath || object.mask || object.shadow
+          || [object.fill, object.stroke].some(paint => paint != null && typeof paint !== "string")) throw new Error("This group has an appearance that cannot yet make an exact Figure copy.");
+      const raw = Object.fromEntries(fields.filter(key => key in object).map(key => [key, Array.isArray(object[key]) ? object[key].slice() : object[key]]));
+      if (!denseFigureHandoffEqual(raw, JSON.parse(JSON.stringify(raw)))) throw new Error("This artwork contains values that cannot yet make an exact Figure copy.");
+      return { raw, own: Array.from(object.calcOwnMatrix()), world: Array.from(object.calcTransformMatrix()) };
+    });
+    const page = children[0], descriptor = api.descriptor(page), inspection = api.inspectionState(page);
+    if (inspection.updating || inspection.revision !== inspection.renderRevision) throw new Error("Wait for the PDF artwork to finish updating.");
+    if (fork) { records[0].objects[0].densePdf.assetId = "fork";records[0].objects[0].densePdf.stateId = "fork"; }
+    return { records, rows, source: descriptor.source, text: api.textEntries(page).map(row => ({ id: row.id, record: row.object.toObject(CUSTOM_PROPS) })) };
+  }
+
+  function denseFigureSlideCopyMetadata() {
+    return { document: state.document, deck: state.deck, artboard: state.artboard, settings: state.settings,
+      import: state.import, export: state.export, preflight: state.preflight, guides: state.guides, layoutAids: state.layoutAids,
+      components: state.components, documentStyles: state.documentStyles, publicationTypography: state.publicationTypography,
+      deckTemplates: state.deckTemplates, pdfSources: state.pdfSources, view: state.view, ui: state.ui,
+      userAssets: userAssetLibrary, graphicStyles: graphicStyleLibrary, swatches: swatchLibrary, patterns: patternLibrary,
+      brushes: strokeBrushLibrary, panelLabelCounter, packageImportState, collapsedDeckSectionIds: Array.from(collapsedDeckSectionIds),
+      lastPreflightReport, alignmentState, lastRepeatTransform, selectedGuideId };
+  }
+
+  function createDenseFigureSlideArtifactCapture() {
+    let frontier = captureArtifactStoreSnapshot(), pending = null;
+    const sameArtifacts = expected => denseFigureHandoffEqual(Array.from(artifactStore), Array.from(expected));
+    return Object.freeze({
+      beforeSet(id, entry) {
+        if (pending || !sameArtifacts(frontier)) throw new Error("An unrelated artifact changed during slide history preparation.");
+        const next = new Map(frontier);next.set(id, cloneManifestValue(entry, entry));pending = next;
+      },
+      afterSet() {
+        if (!pending || !sameArtifacts(pending)) throw new Error("An unrelated artifact changed during slide history preparation.");
+        frontier = pending;pending = null;
+      },
+      current() { if (pending || !sameArtifacts(frontier)) throw new Error("An unrelated artifact changed during slide history preparation."); },
+      canRestore() { return sameArtifacts(frontier) || Boolean(pending && sameArtifacts(pending)); }
+    });
+  }
+
+  function prepareDenseFigureSlideHistory(project, fabric, timestamp) {
+    const capture = denseFigureHistoryArtifactCapture;
+    if (!capture) throw new Error("The slide history capture owner is missing.");
+    capture.current();
+    const beforeArtifacts = captureArtifactStoreSnapshot(), metadata = structuredClone(denseFigureSlideCopyMetadata());
+    const native = denseFigureHandoffWitness(canvas.getObjects());
+    const serialized = serializeEditorStateForHistory({ fabricSnapshot: fabric, deckSnapshot: project.deck, captureDeck: false });
+    const rebuilt = buildProjectJson({ fabricSnapshot: fabric, captureDeck: false, snapshotTimestamp: timestamp });
+    if (!denseFigureHandoffEqual(rebuilt, project) || !denseFigureHandoffEqual(denseFigureSlideCopyMetadata(), metadata)
+        || !denseFigureHandoffEqual(denseFigureHandoffWitness(canvas.getObjects()), native)) throw new Error("History preparation changed the admitted slide artwork or metadata.");
+    capture.current();
+    if (!serialized || typeof serialized.snapshot !== "string") throw new Error("The slide history snapshot could not be prepared.");
+    const limits = structuredClone(mountOptions.history), historyStore = pdfHistoryNodeStore;
+    const history = { beforeUndo: undoStack.slice(), beforeRedo: redoStack.slice(),
+      undo: planHistoryStackPrune([...undoStack, serialized.snapshot], { maxSteps: limits.maxUndoSteps, maxBytes: limits.maxUndoApproxBytes }).stack,
+      redo: [] };
+    const artifacts = captureArtifactStoreSnapshot(), witness = structuredClone(serialized);
+    const beforeWitness = structuredClone(Array.from(beforeArtifacts)), artifactWitness = structuredClone(Array.from(artifacts)), historyWitness = structuredClone(history);
+    return Object.freeze({ serialized, beforeArtifacts, artifacts, history,
+      validate() {
+        if (!denseFigureHandoffEqual(serialized, witness) || !denseFigureHandoffEqual(Array.from(beforeArtifacts), beforeWitness)
+            || !denseFigureHandoffEqual(Array.from(artifacts), artifactWitness) || !denseFigureHandoffEqual(history, historyWitness)
+            || pdfHistoryNodeStore !== historyStore || !denseFigureHandoffEqual(mountOptions.history, limits)) throw new Error("The prepared slide history changed before publication.");
+      }
+    });
+  }
+
+  function assertDenseFigureSlideTargetLayout(deck, page) {
+    const master = deck.masters?.find(item => item.id === page.masterId) || deck.masters?.[0];
+    const layout = master?.layouts?.find(item => item.id === page.layoutId);
+    const appliedBlank = page.layoutId === "blank" && layout?.id === "blank"
+      && Array.isArray(layout.placeholders) && layout.placeholders.length === 0
+      && Array.isArray(master?.scene?.objects) && master.scene.objects.length === 0;
+    if (master?.scene?.objects?.length || page.layoutApplied === true && !appliedBlank) {
+      throw new Error("Choose a slide without inherited artwork for this PDF copy.");
+    }
+  }
+
+  async function runDenseFigureSlideCopy(action, pageId = "") {
+    if (!["copy-current", "copy-new"].includes(action) || activeDocumentTab()?.kind !== "figure") throw new Error("Choose a Figure before copying its canvas to Slides.");
+    if (projectSlidesBusy || denseSlideCopyPending || masterLayoutEditor.active || presentationState.active || documentWorkspaceState.switching
+        || isRestoring || isApplyingHistory || activeDocumentFileOperation || exportStateDepth || suspendedState.active
+        || isGroupIsolationActive() || transientCanvasTransform || isolationTransform || nativePathEdit.active
+        || pathNodeEdit.dragging || pathNodeEdit.segmentDrag || pathNodeEdit.marquee || smartConnectorMissingTargetTimer) throw new Error("Finish the current action before copying this Figure to Slides.");
+    const api = densePdfApi(), sourceCanvas = canvas, sourceTab = activeDocumentTab(), sourcePage = canvasLoadDeckPage();
+    const requestedDeckPreference = projectSlidesDeckId;
+    const requested = projectSlidesTarget(), targetTab = requested.tab;
+    if (!targetTab || targetTab.kind !== "presentation") throw new Error("Create or open a presentation, then choose it in Slides before copying this PDF artwork.");
+    const targetProject = normalizedProjectFromPayload(targetTab.payload), targetPageId = pageId || requested.deck?.activePageId;
+    const savedTargetPage = targetProject?.deck?.pages?.find(page => page.id === targetPageId);
+    if (!savedTargetPage) throw new Error("Choose an available slide before copying this Figure.");
+    if (targetPageId !== targetProject.deck.activePageId) throw new Error("Open the destination slide in Slides before copying this PDF artwork.");
+    const savedTargetFabric = savedTargetPage.fabricRef === "project.fabric" ? targetProject.fabric : savedTargetPage.fabric;
+    if (action === "copy-current" && savedTargetFabric?.objects?.length) throw new Error("Choose an empty slide, or use Create slide from canvas for this PDF artwork.");
+    assertDenseFigureSlideTargetLayout(targetProject.deck, savedTargetPage);
+    const roots = sourceCanvas.getObjects().slice(), sourceWitness = denseFigureHandoffWitness(roots), forkWitness = denseFigureHandoffWitness(roots, { fork: true });
+    const sourceFrame = sourceCanvas.toJSON(CUSTOM_PROPS);denseDeckCopyFrame(sourceFrame);
+    const frameFields = ["backgroundColor", "overlayColor", "backgroundImage", "overlayImage", "clipPath"];
+    const frameValues = frameFields.map(key => sourceCanvas[key]);
+    if (frameValues.some((value, index) => !Object.is(value, index === 0 ? sourceFrame.background : undefined))) throw new Error("This Figure background cannot yet make an exact slide copy.");
+    const sourceArtboard = structuredClone(state.artboard), sourceRevision = projectRevision, generation = workspaceProjectGeneration;
+    const sourceView = structuredClone(state.view), sourceSelection = selectedTopLevelObjects().map(object => object.figureId), sourceTool = state.tool;
+    const sourceUndo = undoStack.slice(), sourceRedo = redoStack.slice(), sourceGuide = selectedGuideId;
+    flushSpeakerNotesHistory();
+    const pendingText = textHistoryPending, pendingNotes = speakerNotesHistoryPending, notesTimer = speakerNotesHistoryTimer;
+    let metadata = structuredClone(denseFigureSlideCopyMetadata()), capturing = false;
+    const withoutCapture = value => {
+      const output = structuredClone(value), page = output.deck?.pages?.find(item => item.id === sourcePage?.id);
+      if (page) for (const key of ["fabric", "artboard", "guides", "objectLayers", "savedSelections", "updatedAt", "thumbnail", "objectCount"]) delete page[key];
+      return output;
+    };
+    if (!denseFigureHandoffEqual(denseFigureSlideCopyMetadata(), denseFigureHandoffJsonMetadata(denseFigureSlideCopyMetadata()))) throw new Error("This Figure contains values that cannot yet make an exact slide copy.");
+    const tabs = allDocumentTabs().slice(), pins = new Map(tabs.map(tab => [tab, structuredClone(tab)]));
+    const sourceArtifacts = captureArtifactStoreSnapshot(), sourceMissing = structuredClone(Array.from(missingExternalArtifactRefsById));
+    let expectedTab = sourceTab, expectedIntent = nativeCanvasLoadState(canvas).intent, owner, navigating, plannedTab, sourceNative = true;
+    let token, prepared, staging, committed = false, returned = false, sourceStates, drafts, targetMetadata, targetSnapshot, targetRoots, targetArtifacts, targetMissing;
+    let releaseHistory = () => {}, releasePreparedHistory = () => {}, preparedHistory, admission, captureProjection;
+    const outer = () => {
+      if (canvas !== sourceCanvas || workspaceProjectGeneration !== generation || nativeCanvasLoadState(canvas).intent !== expectedIntent
+          || densePdfApi() !== api || activeDocumentTab() !== expectedTab || allDocumentTabs().length !== tabs.length
+          || projectSlidesDeckId !== requestedDeckPreference
+          || tabs.some((tab, index) => allDocumentTabs()[index] !== tab)) throw new Error("The requested slide copy was superseded.");
+      for (const tab of tabs) if (!denseFigureHandoffEqual(tab, pins.get(tab))) throw new Error("A saved document changed while the slide copy was being prepared.");
+      if (sourceStates) api.validateAssetStates(sourceStates);
+      if (speakerNotesHistoryPending !== pendingNotes || speakerNotesHistoryTimer !== notesTimer || textHistoryPending !== pendingText) throw new Error("A pending edit changed while the slide copy was being prepared.");
+    };
+    const current = () => {
+      outer();owner?.();preparedHistory?.validate();
+      if (sourceNative) {
+        if (!denseFigureHandoffEqual(denseFigureHandoffWitness(canvas.getObjects()), sourceWitness)) throw new Error("The Figure artwork changed while its slide copy was being prepared.");
+        if (!navigating && (projectRevision !== sourceRevision || state.tool !== sourceTool || selectedGuideId !== sourceGuide
+            || !denseFigureHandoffEqual(state.view, sourceView) || !denseFigureHandoffEqual(selectedTopLevelObjects().map(object => object.figureId), sourceSelection)
+            || !denseFigureHandoffEqual(undoStack, sourceUndo) || !denseFigureHandoffEqual(redoStack, sourceRedo)
+            || !denseFigureHandoffEqual(capturing ? withoutCapture(denseFigureSlideCopyMetadata()) : denseFigureSlideCopyMetadata(), capturing ? withoutCapture(metadata) : metadata))) throw new Error("The Figure changed while its slide copy was being prepared.");
+        if (drafts) api.validateDraftCapture(drafts);
+        if (!navigating && (!denseFigureHandoffEqual(Array.from(artifactStore), Array.from(sourceArtifacts))
+            || !denseFigureHandoffEqual(Array.from(missingExternalArtifactRefsById), sourceMissing))) throw new Error("The Figure artifacts changed while its slide copy was being prepared.");
+      } else if (!navigating && targetMetadata && expectedTab === targetTab) {
+        if (!denseFigureHandoffEqual(denseFigureSlideCopyMetadata(), targetMetadata)
+            || !denseFigureHandoffEqual(denseDeckCopyLocalSnapshot(), targetSnapshot)
+            || !denseFigureHandoffEqual(Array.from(artifactStore), Array.from(targetArtifacts))
+            || !denseFigureHandoffEqual(Array.from(missingExternalArtifactRefsById), targetMissing)
+            || canvas.getObjects().length !== targetRoots.length || targetRoots.some((object, index) => canvas.getObjects()[index] !== object)) throw new Error("The destination slide changed while its copy was being prepared.");
+      }
+    };
+    const context = {
+      current,
+      beforeTabCapture(tab, project, payload) {
+        current();if (!capturing || tab !== sourceTab || captureProjection) throw new Error("The source capture request is foreign.");
+        captureProjection = structuredClone(pins.get(sourceTab));publishDocumentTabCapture(captureProjection, project, payload);
+      },
+      afterTabCapture(tab) {
+        if (tab !== sourceTab || !captureProjection || !denseFigureHandoffEqual(tab, captureProjection)) throw new Error("The source tab changed outside its exact capture projection.");
+        pins.set(sourceTab, captureProjection);captureProjection = null;
+      },
+      captureTab(tab) { current();if (tab !== expectedTab) throw new Error("The captured document is foreign."); },
+      beforeSwitch(from, to) {
+        current();if (from !== expectedTab || to !== plannedTab) throw new Error("The requested slide destination changed.");
+        const project = normalizedProjectFromPayload(to.payload);
+        navigating = { tab: to, project, tabRevision: Number(to.projectRevision) || 0,
+          payloadRevision: Number(to.payload?.projectRevision ?? to.payload?.projectRef?.projectRevision ?? project?.projectRevision ?? 0) || 0,
+          priorRevision: projectRevision, step: 0 };
+        expectedTab = to;owner = null;
+      },
+      switching(tab) { outer();if (navigating?.tab !== tab) throw new Error("The restored document is foreign."); },
+      pin(revision = projectRevision, install = false) {
+        outer();const next = navigating;
+        if (!next || state.document?.id !== next.project.document?.id || state.document?.kind !== next.tab.kind
+            || canvasLoadDeckPage()?.id !== next.project.deck?.activePageId) throw new Error("The restored document does not match the requested copy destination.");
+        const allowed = install && next.step === 0 ? next.priorRevision
+          : !install && next.step === 1 ? next.payloadRevision
+          : !install && next.step === 2 ? next.payloadRevision + 1
+          : !install && next.step === 3 ? next.tabRevision : NaN;
+        if (revision !== allowed || projectRevision !== revision) throw new Error("The document history changed during slide copy navigation.");
+        next.step++;owner = canvasLoadMainOwner(canvas);
+      },
+      intent(intent) {
+        if (!navigating || navigating.step !== 1 || intent.target !== sourceCanvas || nativeCanvasLoadState(canvas).intent !== intent) throw new Error("The slide copy canvas is foreign.");
+        const previous = expectedIntent;expectedIntent = intent;
+        try { outer(); } catch (error) { expectedIntent = previous;throw error; }
+      },
+      beforeInstall() { current();sourceNative = false; },
+      loaded() {
+        current();if (navigating?.tab === sourceTab && (!denseFigureHandoffEqual(denseFigureHandoffWitness(canvas.getObjects()), sourceWitness)
+            || frameValues.some((value, index) => !Object.is(canvas[frameFields[index]], value)))) throw new Error("The source Figure could not be restored exactly.");
+      },
+      historyWillPublish(snapshot) {
+        current();if (!navigating || navigating.step !== 2 || typeof snapshot !== "string" || undoStack.length || redoStack.length) throw new Error("The navigation history frontier changed.");
+        navigating.historySnapshot = snapshot;
+      },
+      settled() {
+        outer();if (navigating?.step !== 4 || documentWorkspaceState.switching) throw new Error("The slide copy navigation did not finish.");
+        owner = canvasLoadMainOwner(canvas);navigating = null;
+      },
+      recoverable() {
+        try {
+          outer();if (navigating) {
+            const revision = navigating.step <= 1 ? navigating.priorRevision
+              : navigating.step === 2 ? navigating.payloadRevision
+              : navigating.step === 3 ? navigating.payloadRevision + 1 : navigating.tabRevision;
+            const ownedHistory = navigating.step === 2 && typeof navigating.historySnapshot === "string"
+              && projectRevision === navigating.payloadRevision + 1 && undoStack.length === 1 && undoStack[0] === navigating.historySnapshot && !redoStack.length;
+            if (projectRevision !== revision && !ownedHistory) return false;
+          }
+          return true;
+        } catch { return false; }
+      }
+    };
+    const previousInert = els.studioShell?.inert;
+    projectSlidesBusy = true;denseSlideCopyPending = true;denseFigureHandoffLoads.add(context);
+    if (els.studioShell) els.studioShell.inert = true;
+    try {
+      renderProjectSlidesPane();
+      if (pdfHistoryMovePending) await pdfHistoryMoveCompletion;
+      if (pdfHistoryMutationLockDepth) await pdfHistoryMutationCompletion;
+      await flushDensePdfEdits();current();
+      const retained = [...new Set([...browserDenseAssetReferences(fileFormatApi().serializeWorkspaceProject(workspaceProjectSourceFromTabs())).keys(), api.descriptor(groupChildren(roots[0])[0]).assetId])];
+      sourceStates = api.captureAssetStates(retained);drafts = captureDenseCopyDrafts(roots);releaseHistory = pinPdfHistorySnapshots([...undoStack, ...redoStack]);
+      token = await api.captureSceneCopy(roots, { properties: CUSTOM_PROPS });current();
+      const captured = api.sceneCopySnapshot(token);
+      if (!denseFigureHandoffEqual(captured.scene, sourceWitness.records) || !denseFigureHandoffEqual(captured.transforms, sourceWitness.rows.slice(0, 1).map(row => row.world))
+          || captured.hadParents.some(Boolean)) throw new Error("The captured Figure does not match its native artwork.");
+      const expectedCapture = { artboard: presentationDefaultArtboard(), guides: localDeckGuideState(state.guides),
+        objectLayers: normalizeObjectLayerState(sourcePage.objectLayers), savedSelections: normalizeSavedSelectionState(sourcePage.savedSelections), objectCount: roots.filter(isFigureObject).length };
+      const expectedFabric = fileFormatApi().compactSharedGroupImportMetadata(compactReusableArtworkReferences(stripMasterInheritanceFromSnapshot(canonicalizeLiveBooleanFabricSnapshot(sourceFrame)), { detached: true }));
+      capturing = true;
+      const workspace = cloneDocumentTabValue(await workspaceProjectSourceAsync({ flushTextHistory: false, denseFigureHandoff: context }));current();
+      const capturedProject = normalizedProjectFromPayload(workspace.figure.tabs.find(tab => tab.id === sourceTab.id)?.payload);
+      if (!capturedProject || Object.keys(expectedCapture).some(key => !denseFigureHandoffEqual(sourcePage[key], expectedCapture[key]))
+          || !denseFigureHandoffEqual(fileFormatApi().compactSharedGroupImportMetadata(sourcePage.fabric), expectedFabric)
+          || !denseFigureHandoffEqual(fileFormatApi().compactSharedGroupImportMetadata(capturedProject.fabric), expectedFabric)
+          || !denseFigureHandoffEqual(sourceTab.undoStack, sourceUndo) || !denseFigureHandoffEqual(sourceTab.redoStack, sourceRedo)
+          || !denseFigureHandoffEqual(sourceTab.selectionIds, sourceSelection) || !denseFigureHandoffEqual(sourceTab.view, sourceView)
+          || sourceTab.projectRevision !== sourceRevision) throw new Error("The Figure capture did not preserve its exact source state.");
+      metadata = structuredClone(denseFigureSlideCopyMetadata());capturing = false;current();
+      plannedTab = targetTab;
+      const restored = await activateDocumentTab(targetTab.id, { denseFigureHandoff: context });current();
+      if (restored !== targetTab) throw new Error("The requested presentation could not be opened.");
+      // A page switch uses the existing loader too. This initial caller takes
+      // the captured current page; another requested page is refused explicitly.
+      if (state.deck.activePageId !== targetPageId) throw new Error("Open the destination slide in Slides before copying this PDF artwork.");
+      const targetPage = canvasLoadDeckPage();
+      assertDenseFigureSlideTargetLayout(state.deck, targetPage);
+      refuseDenseMasterScene(deckLayoutRecord(targetPage).master?.scene);
+      const initial = denseDeckCopyLocalSnapshot();denseDeckCopyFrame(initial);
+      if (canvas.getObjects().some(inheritedMasterMeta) || composeDeckPageSnapshot(targetPage, initial).objects.length !== initial.objects.length) throw new Error("Choose a slide without inherited artwork for this PDF copy.");
+      if (action === "copy-current" && initial.objects.length) throw new Error("Choose an empty slide for this PDF copy.");
+      if (!(sourceArtboard.widthIn > 0 && sourceArtboard.heightIn > 0 && sourceArtboard.widthIn <= state.artboard.widthIn && sourceArtboard.heightIn <= state.artboard.heightIn)) throw new Error("Choose a slide large enough to keep this Figure at its original size.");
+      targetRoots = canvas.getObjects().slice();targetSnapshot = initial;targetMetadata = structuredClone(denseFigureSlideCopyMetadata());
+      targetArtifacts = captureArtifactStoreSnapshot();targetMissing = structuredClone(Array.from(missingExternalArtifactRefsById));current();
+      prepared = await api.prepareCapturedSceneCopy(token, { retainedAssetIds: retained, consume: true, installationCanvas: sourceCanvas });token = null;current();
+      if (!denseFigureHandoffEqual(denseFigureHandoffWitness(prepared.objects, { fork: true }), forkWitness)) throw new Error("This artwork cannot yet be copied to Slides without changing its native values.");
+      const copiedGroup = prepared.objects[0];
+      copiedGroup.importMeta = { ...(copiedGroup.importMeta || {}), bsdResultProvenance: {
+        ...(copiedGroup.importMeta?.bsdResultProvenance || {}), source_app: "Figure Tool", source_kind: "figure-studio-figure",
+        source_label: sourceTab.title || "Figure", figure_studio_figure: { document_id: sourceTab.id, document_revision: sourceRevision }
+      } };
+      const timestamp = new Date().toISOString(), projected = cloneDocumentTabValue(state.deck);
+      const copy = action === "copy-new" ? defaultDeckPage(`Slide ${projected.pages.length + 1}`) : cloneDocumentTabValue(targetPage);
+      if (action === "copy-new") {
+        copy.layoutId = "blank";copy.layoutApplied = false;copy.artboard = { ...presentationDefaultArtboard() };
+        copy.appearanceOverrides = { ...(copy.appearanceOverrides || {}), artboard: { ...copy.artboard } };
+        copy.createdAt = timestamp;projected.pages.push(copy);
+      } else projected.pages[projected.pages.findIndex(page => page.id === targetPageId)] = copy;
+      copy.updatedAt = timestamp;projected.activePageId = copy.id;
+      copy.fabric = { ...initial, objects: prepared.objects.map(object => object.toObject(CUSTOM_PROPS)) };
+      if (composeDeckPageSnapshot(copy, copy.fabric).objects.length !== prepared.objects.length) throw new Error("This slide layout adds inherited artwork that cannot yet be copied exactly.");
+      const appearance = resolvedDeckAppearance(copy);
+      if (sourceArtboard.widthIn > appearance.artboard.widthIn || sourceArtboard.heightIn > appearance.artboard.heightIn) throw new Error("The new slide is too small to retain the Figure's original size.");
+      staging = new fabricRef.StaticCanvas(null, { width: appearance.artboard.widthIn * INCH, height: appearance.artboard.heightIn * INCH, renderOnAddRemove: false, enableRetinaScaling: false });
+      staging.add(...prepared.objects);
+      const priorArtifacts = captureArtifactStoreSnapshot();
+      const stagingArtifacts = createDenseFigureSlideArtifactCapture();
+      const staged = withDenseDeckStagingCanvas(staging, projected, () => {
+        applyDeckAppearanceToCanvas(copy);applyInheritedCanvasState();reconcileObjectLayersForCanvas();refreshCanvasArtifactRefs();
+        copy.fabric = denseDeckCopyLocalSnapshot();copy.objectCount = staging.getObjects().filter(isFigureObject).length;copy.thumbnail = buildDeckThumbnailDataUrl();
+        if (!copy.thumbnail) throw new Error("The slide preview could not be prepared. Nothing was copied.");
+        const project = buildProjectJson({ fabricSnapshot: copy.fabric, captureDeck: false, snapshotTimestamp: timestamp });
+        const beforeHistory = captureArtifactStoreSnapshot();
+        const artifacts = new Map([...beforeHistory].filter(([id]) => !priorArtifacts.has(id)));
+        const expectedBeforeHistory = new Map([...priorArtifacts, ...artifacts]);
+        if (!denseFigureHandoffEqual(Array.from(beforeHistory), Array.from(expectedBeforeHistory))) throw new Error("The staged slide cache changed before history preparation.");
+        preparedHistory = prepareDenseFigureSlideHistory(project, copy.fabric, timestamp);
+        releasePreparedHistory = pinPdfHistorySnapshots([preparedHistory.serialized.snapshot]);
+        preparedHistory.validate();
+        return { project, artifacts };
+      }, { artifactCapture: stagingArtifacts });
+      const completedStage = staging;staging = null;await releaseDenseDeckStagingCanvas(completedStage);current();
+      const destination = workspace.presentation.tabs.find(tab => tab.id === targetTab.id);
+      if (!destination) throw new Error("The requested presentation is no longer available.");
+      destination.payload = buildProjectPayload(staged.project);
+      const shell = fileFormatApi().serializeWorkspaceProject(workspace), ids = [...browserDenseAssetReferences(shell).keys()], allStates = api.captureAssetStates(ids);
+      const valid = () => { current();api.validateAssetStates(allStates); };
+      valid();const assets = await api.saveAssets(ids);valid();validateBrowserDenseAssetBindings(shell, assets);
+      admission = await globalThis.FigureStudioPdfDenseFileCodec.admitCopy({ shell, assets, copiedScene: copy.fabric.objects });valid();
+      const changedTab = structuredClone(pins.get(targetTab));
+      if (pdfHistoryNodeStore) {
+        for (const tab of tabs) {
+          const projectedTab = tab === targetTab ? changedTab : structuredClone(pins.get(tab));
+          if (tab === targetTab) { projectedTab.undoStack = preparedHistory.history.undo.slice();projectedTab.redoStack = preparedHistory.history.redo.slice(); }
+          const live = new Set([...(projectedTab.undoStack || []), ...(projectedTab.redoStack || [])]);
+          for (const key of ["historySelection", "historyDirectSelection", "historyUndoDirectSelection"]) {
+            if (Array.isArray(projectedTab[key])) projectedTab[key] = projectedTab[key].filter(([snapshot]) => live.has(snapshot));
+          }
+          if (tab !== targetTab && !denseFigureHandoffEqual(projectedTab, pins.get(tab))) throw new Error("Another document's saved history needs updating before this copy.");
+        }
+      }
+      // The insertion publisher must prove its own native mutation frontier;
+      // it may not recover over a newer tab, load intent or adopted native view.
+      const publication = denseFigureSlidePublicationGuard({ context, canvas: sourceCanvas, tab: targetTab, intent: expectedIntent,
+        generation, projected, copy, roots: targetRoots, targetRoots: prepared.objects, revision: projectRevision, artifacts: staged.artifacts, preparedHistory });
+      publishDenseDeckSlideCopy({ sourceCanvas, roots: targetRoots, projected, copy, project: staged.project, targetRoots: prepared.objects,
+        prepared, preparedHistory, current, timestamp, artifacts: staged.artifacts, sourceUi: {}, historyLabel: "Figure copied to slide", publication,
+        validateOwners: () => { api.validateAssetStates(allStates); } });
+      prepared = null;committed = true;lastDensePdfCopyAdmission = admission;
+      publication.assertCommitted();
+      owner = null;targetMetadata = null;targetSnapshot = null;targetRoots = null;
+      changedTab.dirty = true;changedTab.saveLabel = "Figure copied to slide";changedTab.title = String(state.document?.title || targetTab.title || "").trim();
+      if (!documentDirty || documentSaveStateLabel !== changedTab.saveLabel || !denseFigureHandoffEqual(targetTab, changedTab)) throw new Error("The copied presentation changed before it could be captured.");
+      pins.set(targetTab, changedTab);current();
+      captureActiveDocumentTab({ flushTextHistory: false });pins.set(targetTab, structuredClone(targetTab));owner = canvasLoadMainOwner(canvas);current();
+      plannedTab = sourceTab;
+      const sourceRestored = await activateDocumentTab(sourceTab.id, { denseFigureHandoff: context });current();
+      if (sourceRestored !== sourceTab || projectRevision !== sourceRevision || state.tool !== sourceTool || selectedGuideId !== sourceGuide
+          || !denseFigureHandoffEqual(state.view, sourceView) || !denseFigureHandoffEqual(selectedTopLevelObjects().map(object => object.figureId), sourceSelection)
+          || !denseFigureHandoffEqual(undoStack, sourceUndo) || !denseFigureHandoffEqual(redoStack, sourceRedo)) throw new Error("The slide was copied, but the Figure's editing state could not be restored exactly.");
+      returned = true;projectSlidesDeckId = targetTab.id;
+      showLongToast("Editable canvas copy added to the slide. Your source Figure stays unchanged.");
+      return { status: "ok", copied: true, sourceDocumentId: sourceTab.id, documentId: targetTab.id, pageId: copy.id };
+    } catch (error) {
+      if (navigating && context.recoverable()) documentRuntimeRestoreFailed = true;
+      let mayReturn = false;try { current();mayReturn = true; } catch {}
+      if (!committed && expectedTab === targetTab && !navigating && mayReturn) {
+        try {
+          targetMetadata = null;owner = null;plannedTab = sourceTab;
+          await activateDocumentTab(sourceTab.id, { denseFigureHandoff: context });current();
+        } catch (recoveryError) { console.warn("Slide copy failed; source restoration also failed", recoveryError); }
+      }
+      if (committed) console.warn("The slide copy was committed; returning to Figure needs attention", error);
+      throw error;
+    } finally {
+      if (staging) try { await releaseDenseDeckStagingCanvas(staging); } catch {}
+      if (prepared) try { api.discardSceneCopy(prepared); } catch {}
+      if (token) try { api.releaseSceneCopy(token); } catch {}
+      try { releasePreparedHistory(); } catch {}
+      try { releaseHistory(); } catch {}
+      denseFigureHandoffLoads.delete(context);projectSlidesBusy = false;denseSlideCopyPending = false;
+      if (els.studioShell && !presentationState.active) els.studioShell.inert = previousInert || false;
+      let currentUi = returned;try { current();currentUi = true; } catch {}
+      if (currentUi) try { syncProjectSlidesChrome();renderProjectSlidesPane(); } catch {}
+    }
+  }
+
+  async function editDensePresentationArtworkInFigure(selected, sourceTab) {
+    if (denseSlideCopyPending || masterLayoutEditor.active || presentationState.active || documentWorkspaceState.switching
+        || isRestoring || isApplyingHistory || activeDocumentFileOperation || exportStateDepth || suspendedState.active
+        || isGroupIsolationActive() || transientCanvasTransform || isolationTransform || nativePathEdit.active
+        || pathNodeEdit.dragging || pathNodeEdit.segmentDrag || pathNodeEdit.marquee || smartConnectorMissingTargetTimer) throw new Error("Finish the current action before copying this group into Figure.");
+    // Settle only the note work present at the synchronous request boundary.
+    // Every later read pins its exact pending identity/timer before any await.
+    flushSpeakerNotesHistory();
+    const api = densePdfApi(), sourceCanvas = canvas, sourcePage = activeDeckPage(), sourceDeck = state.deck;
+    if (selected.length !== 1 || canvas.getObjects().length !== 1 || canvas.getObjects()[0] !== selected[0]) throw new Error("This first PDF copy supports one complete local group on the slide.");
+    refuseDenseMasterScene(deckLayoutRecord(sourcePage).master?.scene);
+    const sourceWitness = denseFigureHandoffWitness(selected), forkWitness = denseFigureHandoffWitness(selected, { fork: true });
+    const frame = sourceCanvas.toJSON(CUSTOM_PROPS);denseDeckCopyFrame(frame);
+    const frameValues = ["backgroundColor", "overlayColor", "backgroundImage", "overlayImage", "clipPath"].map(key => sourceCanvas[key]);
+    if (frameValues.some((value, index) => !Object.is(value, index === 0 ? frame.background : undefined))) throw new Error("This slide background cannot yet make an exact Figure copy.");
+    const originalRevision = projectRevision, generation = workspaceProjectGeneration, roots = selected.slice(), selection = selectedTopLevelObjects().slice();
+    for (const value of [state.document, state.deck, state.artboard, state.view, state.ui]) {
+      if (!denseFigureHandoffEqual(value, JSON.parse(JSON.stringify(value)))) throw new Error("This slide contains values that cannot yet make an exact Figure copy.");
+    }
+    const view = JSON.stringify(state.view), guide = selectedGuideId, tool = state.tool, pendingText = textHistoryPending;
+    const pendingNotes = speakerNotesHistoryPending, notesTimer = speakerNotesHistoryTimer;
+    const sourceData = () => ({ document: state.document, deck: state.deck, artboard: state.artboard, settings: state.settings,
+      import: state.import, export: state.export, preflight: state.preflight, guides: state.guides, layoutAids: state.layoutAids,
+      components: state.components, documentStyles: state.documentStyles, publicationTypography: state.publicationTypography,
+      deckTemplates: state.deckTemplates, pdfSources: state.pdfSources, view: state.view, ui: state.ui,
+      userAssets: userAssetLibrary, graphicStyles: graphicStyleLibrary, swatches: swatchLibrary, patterns: patternLibrary,
+      brushes: strokeBrushLibrary, panelLabelCounter });
+    const sourceMetadata = (capture = false) => {
+      const value = structuredClone(sourceData());
+      if (capture) for (const key of ["fabric", "artboard", "guides", "objectLayers", "savedSelections", "updatedAt", "thumbnail", "objectCount"])
+        delete value.deck.pages.find(page => page.id === sourcePage.id)[key];
+      return value;
+    };
+    let metadata = sourceMetadata(), metadataWithoutCapture = sourceMetadata(true), capturingWorkspace = false;
+    if (!denseFigureHandoffEqual(sourceData(), denseFigureHandoffJsonMetadata(sourceData()))) throw new Error("This slide contains values that cannot yet make an exact Figure copy.");
+    const artifactsBefore = captureArtifactStoreSnapshot(), missingBefore = Array.from(missingExternalArtifactRefsById, ([id, value]) => [id, cloneManifestValue(value)]);
+    let prepared, committed = false, opening = false, recovering = false, sourceNative = true, owner, openedTab, expectedRevision = originalRevision;
+    let expectedIntent = nativeCanvasLoadState(canvas).intent, topology, sourceStates, drafts, copyWitness, pinHistory = () => {}, savedTab, sourcePayload, pin;
+    const outer = () => {
+      if (canvas !== sourceCanvas || workspaceProjectGeneration !== generation || nativeCanvasLoadState(canvas).intent !== expectedIntent
+          || densePdfApi() !== api || topology && (allDocumentTabs().length !== topology.length || topology.some((tab, index) => allDocumentTabs()[index] !== tab))) throw new Error("The requested Figure copy was superseded.");
+      if (sourceStates) api.validateAssetStates(sourceStates);
+      if (sourcePayload && sourceTab.payload !== sourcePayload) throw new Error("The saved source slide changed during Figure copy.");
+      if (speakerNotesHistoryPending !== pendingNotes || speakerNotesHistoryTimer !== notesTimer) throw new Error("Speaker notes changed while the Figure copy was being prepared.");
+    };
+    const current = () => {
+      outer();if (owner) owner();
+      if (sourceNative) {
+        if (!opening && (activeDocumentTab() !== sourceTab || canvasLoadDeckPage() !== sourcePage || state.deck !== sourceDeck || projectRevision !== originalRevision
+            || state.tool !== tool || selectedGuideId !== guide || JSON.stringify(state.view) !== view || textHistoryPending !== pendingText
+            || selectedTopLevelObjects().length !== selection.length || selection.some((object, index) => selectedTopLevelObjects()[index] !== object))) throw new Error("The source slide changed while its Figure copy was being prepared.");
+        if (!denseFigureHandoffEqual(denseFigureHandoffWitness(canvas.getObjects()), sourceWitness)) throw new Error("The source artwork changed while its Figure copy was being prepared.");
+        if (!opening && ((capturingWorkspace ? !denseFigureHandoffEqual(sourceMetadata(true), metadataWithoutCapture) : !denseFigureHandoffEqual(sourceMetadata(), metadata))
+            || !denseFigureHandoffEqual(Array.from(artifactStore), Array.from(artifactsBefore))
+            || !denseFigureHandoffEqual(Array.from(missingExternalArtifactRefsById), missingBefore))) throw new Error("The source document metadata changed while its Figure copy was being prepared.");
+        if (drafts) api.validateDraftCapture(drafts);
+      }
+    };
+    const context = {
+      current,
+      pin(revision = expectedRevision, install = false) {
+        outer();if (projectRevision !== revision || !install && pin && (state.document !== pin.document || state.deck !== pin.deck || activeDocumentTab() !== pin.tab)) throw new Error("The document history or owner changed during Figure copy.");
+        expectedRevision = revision;pin = { document: state.document, deck: state.deck, tab: activeDocumentTab() };owner = canvasLoadMainOwner(canvas);
+      },
+      intent(intent) { if (intent.target !== sourceCanvas || nativeCanvasLoadState(canvas).intent !== intent) throw new Error("The Figure copy canvas is foreign.");expectedIntent = intent; },
+      beforeInstall() { current();sourceNative = false; },
+      loaded() {
+        current();if (!denseFigureHandoffEqual(denseFigureHandoffWitness(canvas.getObjects()), recovering ? sourceWitness : copyWitness)
+            || frameValues.some((value, index) => !Object.is(canvas[["backgroundColor", "overlayColor", "backgroundImage", "overlayImage", "clipPath"][index]], value))) throw new Error("The restored artwork does not match its exact Figure copy.");
+      },
+      commit() { current();context.loaded();api.commitSceneCopy(prepared);prepared = null;committed = true; },
+      published(tab) { openedTab = tab;topology = allDocumentTabs().slice();pin = { document: state.document, deck: state.deck, tab };owner = canvasLoadMainOwner(canvas); },
+      settled() { owner = canvasLoadMainOwner(canvas); },
+      sourceTab() { return savedTab; },
+      recoverable() { try { outer();if (projectRevision !== expectedRevision) return false;return true; } catch { return false; } }
+    };
+    denseFigureHandoffLoads.add(context);denseSlideCopyPending = true;
+    try {
+      if (pdfHistoryMovePending) await pdfHistoryMoveCompletion;
+      if (pdfHistoryMutationLockDepth) await pdfHistoryMutationCompletion;
+      await flushDensePdfEdits();current();
+      const retained = [...new Set([...browserDenseAssetReferences(fileFormatApi().serializeWorkspaceProject(workspaceProjectSourceFromTabs())).keys(), api.descriptor(groupChildren(roots[0])[0]).assetId])];
+      sourceStates = api.captureAssetStates(retained);drafts = captureDenseCopyDrafts(roots);pinHistory = pinPdfHistorySnapshots([...undoStack, ...redoStack]);
+      current();prepared = await api.prepareSceneCopy(roots, { properties: CUSTOM_PROPS, retainedAssetIds: retained, retirementCanvas: sourceCanvas });current();
+      if (!denseFigureHandoffEqual(denseFigureHandoffWitness(prepared.objects, { fork: true }), forkWitness)) throw new Error("This ordinary artwork cannot yet be copied into Figure without changing its values.");
+      copyWitness = denseFigureHandoffWitness(prepared.objects);
+      const copiedScene = JSON.parse(JSON.stringify(copyWitness.records));api.retireSceneCopyViews(prepared);current();
+      // Only these exact captureActiveDeckPage writes may advance the metadata
+      // pin. Everything else, including all other pages and preferences, stays
+      // exact. Native scene/drafts/owners and pending notes stay guarded too.
+      const expectedCapture = { artboard: presentationDefaultArtboard(), guides: localDeckGuideState(state.guides),
+        objectLayers: normalizeObjectLayerState(sourcePage.objectLayers), savedSelections: normalizeSavedSelectionState(sourcePage.savedSelections),
+        objectCount: roots.filter(isFigureObject).length };
+      const expectedFabric = fileFormatApi().compactSharedGroupImportMetadata(compactReusableArtworkReferences(
+        stripMasterInheritanceFromSnapshot(canonicalizeLiveBooleanFabricSnapshot(frame)), { detached: true }));
+      current();capturingWorkspace = true;
+      const workspace = cloneDocumentTabValue(await workspaceProjectSourceAsync({ flushTextHistory: false }));current();
+      const capturedProject = normalizedProjectFromPayload(workspace.presentation.tabs.find(tab => tab.id === sourceTab.id)?.payload);
+      const capturedPage = capturedProject?.deck?.pages.find(page => page.id === sourcePage.id);
+      if (!capturedPage || Object.keys(expectedCapture).some(key => !denseFigureHandoffEqual(sourcePage[key], expectedCapture[key]))
+          || !Object.is(sourcePage.updatedAt, capturedPage.updatedAt) || !Object.is(sourcePage.thumbnail, capturedPage.thumbnail)
+          || !denseFigureHandoffEqual(fileFormatApi().compactSharedGroupImportMetadata(sourcePage.fabric), expectedFabric)
+          || !denseFigureHandoffEqual(fileFormatApi().compactSharedGroupImportMetadata(capturedProject.fabric), expectedFabric)) throw new Error("The source capture did not preserve its exact slide metadata.");
+      capturingWorkspace = false;metadata = sourceMetadata();metadataWithoutCapture = sourceMetadata(true);current();
+      savedTab = sourceTab;sourcePayload = sourceTab.payload;topology = allDocumentTabs().slice();
+      const project = cloneDocumentTabValue(normalizedProjectFromPayload(savedTab.payload)), id = allocateDocumentTabId();
+      project.fabric = { ...frame, objects: copiedScene };
+      project.document = { id, kind: "figure", pageGeometry: { mode: "per-page", defaultArtboard: { ...state.artboard } } };
+      project.title = `${selected[0].name || "Slide artwork"} — copy`;delete project.deck;delete project.manifest;
+      const payload = buildProjectPayload(project);payload.projectRevision = 0;if (payload.projectRef) payload.projectRef.projectRevision = 0;
+      workspace.figure.tabs.push({ id, kind: "figure", title: project.title, payload });workspace.figure.activeId = id;workspace.activeKind = "figure";
+      const projectedShell = fileFormatApi().serializeWorkspaceProject(workspace), ids = [...browserDenseAssetReferences(projectedShell).keys()];
+      const assets = await api.saveAssets(ids);current();validateBrowserDenseAssetBindings(projectedShell, assets);
+      const admission = await globalThis.FigureStudioPdfDenseFileCodec.admitCopy({ shell: projectedShell, assets, copiedScene });current();
+      const artifacts = Array.from(artifactStore.entries()), missing = Array.from(missingExternalArtifactRefsById.entries());
+      const opened = await openProjectPayloadInNewTab(payload, { id, title: project.title, dirty: true, hasPersistedCopy: false,
+        requiresSaveAs: true, sourceFormat: "slide-artwork-copy", toast: false, denseFigureHandoff: context,
+        prepare() { artifacts.forEach(([key, value]) => artifactStore.set(key, cloneDocumentTabValue(value, value)));
+          missing.forEach(([key, value]) => missingExternalArtifactRefsById.set(key, cloneDocumentTabValue(value, value))); },
+        onDenseOpening() { current();opening = true;context.pin(); }
+      });
+      if (!opened) throw new Error("The document became busy before its Figure copy opened.");
+      openedTab = opened;
+      lastDensePdfCopyAdmission = admission;
+      try {
+        context.current();setActiveObjects(copiedScene.map(object => getByFigureId(object.figureId)).filter(Boolean));context.current();syncUi();
+        context.current();activateTool("select", { toast: false });context.current();
+        document.dispatchEvent(new CustomEvent("freebench:figure-document-opened", { detail: { mode: "figure", documentId: opened.id } }));
+        context.current();fitToScreen();context.current();showLongToast("Artwork copied into Figure. The original slide stays unchanged.");
+      }
+      catch (error) { console.warn("The Figure copy opened; its selection refresh failed", error); }
+      return { status: "ok", sourceDocumentId: sourceTab.id, documentId: opened.id, copied: true };
+    } catch (error) {
+      if (!committed && opening && context.recoverable()) {
+        try {
+          recovering = true;sourceNative = false;owner = null;
+          documentWorkspaceState.activeKind = savedTab.kind;documentWorkspaceBucket(savedTab.kind).activeId = savedTab.id;
+          await restoreDocumentTabRuntime(savedTab, { denseFigureHandoff: context });
+          context.loaded();
+          if (projectRevision !== originalRevision || activeDocumentTab() !== sourceTab || JSON.stringify(state.view) !== view
+              || selectedGuideId !== guide || state.tool !== tool) throw new Error("The source slide could not be restored exactly.");
+        } catch (recoveryError) {
+          // Content failure and ownership are separate: an owned partial restore
+          // must fail visibly, while a newer canvas/document owns its own flag.
+          if (canvas === sourceCanvas && workspaceProjectGeneration === generation && nativeCanvasLoadState(canvas).intent === expectedIntent
+              && activeDocumentTab() === savedTab && documentWorkspaceState.activeKind === savedTab.kind) documentRuntimeRestoreFailed = true;
+          console.warn("Figure copy failed; source restoration also failed", recoveryError);
+        }
+      }
+      if (committed) { console.warn("The Figure copy opened; its final refresh failed", error);return { status: "committed", sourceDocumentId: sourceTab.id, documentId: openedTab?.id || "", copied: true }; }
+      throw error;
+    } finally {
+      if (prepared) try { api.discardSceneCopy(prepared); } catch (error) { console.warn("Could not retire an unused Figure copy", error); }
+      try { pinHistory(); } catch (error) { console.warn("Could not release the Figure copy history pin", error); }
+      denseFigureHandoffLoads.delete(context);denseSlideCopyPending = false;
+    }
+  }
+
   async function editPresentationArtworkInFigure() {
     if (!isPresentationDocument() || documentWorkspaceState.switching) return { status: 'unavailable' };
     const selected = selectedTopLevelObjects();
@@ -2128,7 +3046,10 @@
     const source = presentationFigureSource();
     if (source) {
       await activateDocumentTab(source.id);
+    } else if (selectionHasDensePdfPages(selected)) {
+      return editDensePresentationArtworkInFigure(selected, sourceTab);
     } else {
+      refuseDenseArtworkHandoff(selected);
       // Keep native objects, original PDF sources, components and asset bytes.
       // This is an explicit independent copy; the slide is never replaced here.
       const project = cloneDocumentTabValue(buildProjectJson());
@@ -2577,6 +3498,13 @@
       buildProjectPayload,
       getBrowserSessionState,
       captureBrowserSession,
+      captureBrowserSessionAsync,
+      encodeBrowserSessionSnapshot,
+      hasPendingDensePageEdits,
+      getDensePdfAdmissionForQa: () => lastDensePdfAdmission && { ...lastDensePdfAdmission },
+      getDensePdfEditStateForQa: () => ({ pending: densePdfEditPending, failure: lastDensePdfEditFailure && structuredClone(lastDensePdfEditFailure) }),
+      getDensePdfCopyStateForQa: () => ({ clipboard: Boolean(denseClipboardCopy), admission: lastDensePdfCopyAdmission && structuredClone(lastDensePdfCopyAdmission) }),
+      getBrowserSerializationMetricsForQa: () => ({ ...captureBrowserSessionAsync.lastMetrics }),
       restoreBrowserSession,
       acknowledgeBrowserSession,
       openBrowserFile: () => browserSessionAvailable() ? openProjectCommand() : null,
@@ -3814,6 +4742,7 @@
       redoForQa: redo,
       getHistoryStateForQa: () => ({ undoDepth: undoStack.length, redoDepth: redoStack.length }),
       buildProjectJsonForQa: buildProjectJson,
+      capturePdfFabricSnapshotForQa: capturePdfFabricSnapshotAsync,
       loadProjectPayloadForQa(payload, options = {}) {
         return loadProjectPayload(payload, { ...options, source: options.source || "qa-native-pdf-reload" });
       },
@@ -3947,6 +4876,7 @@
       startPresentationForQa: (fromBeginning = false) => startPresentation({ fromBeginning: Boolean(fromBeginning) }),
       movePresentationSlideForQa: movePresentationSlide,
       togglePresentationNotesForQa: (open) => togglePresentationNotes({ open, focus: false }),
+      getPresentationCanvasForQa: () => presentationCanvas,
       exitPresentationForQa: () => exitPresentation({ restoreFocus: false }),
       getActiveSlideObjectIdsForQa: () => canvas?.getObjects?.().filter(isFigureObject).map((object) => object.figureId || "").filter(Boolean) || [],
       createResultTableCardForQa: createResultTableCard,
@@ -4905,18 +5835,31 @@
     };
   }
 
-  function captureActiveDocumentTab() {
+  function captureActiveDocumentTab(options = {}) {
+    const handoff = options.denseFigureHandoff ? denseFigureHandoffContext(options) : null;handoff?.current();
     const tab = activeDocumentTab();
     if (!tab || !canvas || documentWorkspaceState.switching || documentRuntimeRestoreFailed) return tab;
-    flushTextHistory();
+    if (options.flushTextHistory !== false) flushTextHistory();
     flushSpeakerNotesHistory();
+    // A completed browser capture is reusable only for the exact observed
+    // source state. Explicit saves and document switches still capture afresh.
+    delete tab.browserCapture;
+    const browserCaptureKey = browserSessionAvailable() ? getBrowserSessionState().key : "";
     // buildProjectJson captures the current page from its complete live scene.
     const project = buildProjectJson();
+    const payload = cloneDocumentTabValue(buildProjectPayload(project), project);
+    handoff?.beforeTabCapture?.(tab, project, payload);
+    const captured = publishDocumentTabCapture(tab, project, payload, browserCaptureKey);
+    handoff?.afterTabCapture?.(tab);
+    return captured;
+  }
+
+  function publishDocumentTabCapture(tab, project, payload, browserCaptureKey = "") {
     tab.kind = normalizeDocumentKind(state.document?.kind);
     tab.title = String(state.document?.title || tab.title || "").trim();
     tab.dirty = Boolean(documentDirty);
     tab.saveLabel = documentSaveStateLabel;
-    tab.payload = cloneDocumentTabValue(buildProjectPayload(project), project);
+    tab.payload = payload;
     tab.projectRevision = projectRevision;
     tab.undoStack = [...undoStack];
     tab.redoStack = [...redoStack];
@@ -4944,6 +5887,12 @@
       ...(tab.exportTarget && typeof tab.exportTarget === "object" ? cloneDocumentTabValue(tab.exportTarget, {}) : {}),
       settings: cloneDocumentTabValue(state.export, null)
     };
+    if (browserCaptureKey && getBrowserSessionState().key === browserCaptureKey) {
+      Object.defineProperty(tab, "browserCapture", {
+        value: { key: browserCaptureKey, payload: tab.payload, pendingTextHistory: textHistoryPending },
+        writable: true, configurable: true
+      });
+    }
     return tab;
   }
 
@@ -5061,6 +6010,7 @@
     });
     updateWindowDocumentState();
     syncDocumentFileSurface();
+    renderProjectSlidesPane();
   }
 
   function initializeDocumentWorkspace() {
@@ -5094,7 +6044,7 @@
     const initialId = activeDocumentTab()?.id || "";
     for (const kind of DOCUMENT_KINDS) {
       if (documentWorkspaceBucket(kind).tabs.length) continue;
-      const created = createNewDocumentTab({ kind, discardUnsaved: true });
+      const created = await createNewDocumentTab({ kind, discardUnsaved: true });
       if (created?.status !== "ok" || !created.tab) {
         throw new Error(`Figure Tool could not initialize its ${kind === "figure" ? "Figure" : "Present"} workspace.`);
       }
@@ -5111,14 +6061,16 @@
   }
 
   async function restoreDocumentTabRuntime(target, options = {}) {
+    const handoff = denseFigureHandoffContext(options);handoff?.current();
     clearSmartGuideCandidateCache();
     restoreDocumentTabArtifacts(target);
     await loadProjectPayload(target.payload, {
-      markSaved: false,
+      denseFigureHandoff: handoff, markSaved: false,
       toast: false,
       historyLabel: options.historyLabel || `Switched to ${documentTabDisplayName(target)}`,
       preferredActiveId: target.selectionIds?.[0] || ""
     });
+    handoff?.current();
     undoStack = [...(target.undoStack || [])];
     redoStack = [...(target.redoStack || [])];
     restoreDocumentTabMaps(target);
@@ -5145,10 +6097,12 @@
     if (selected.length) setActiveObjects(selected);
     else canvas.discardActiveObject();
     if (target.directSelection) restoreDirectSelectionHistoryState(target.directSelection);
+    // Pin the retained tab only after its synchronous metadata/view/selection restoration.
+    handoff?.pin(projectRevision);
     const retainedSnapshot = undoStack.at(-1);
     if (pdfHistoryNodeStore?.isCompact(retainedSnapshot)) {
       const unlock = lockPdfHistoryMutations();
-      try { await seedPdfHistoryStateCache(retainedSnapshot); }
+      try { await seedPdfHistoryStateCache(retainedSnapshot);handoff?.current(); }
       finally { unlock(); }
     }
     syncHistoryButtons();
@@ -5157,44 +6111,60 @@
     syncUi();
     updateStage();
     renderDocumentTabs();
+    handoff?.current();
     return target;
   }
 
   async function activateDocumentTab(tabId, options = {}) {
+    const handoff = options.denseFigureHandoff ? denseFigureHandoffContext(options) : null;handoff?.current();
     if (pdfHistoryMovePending) await pdfHistoryMoveCompletion;
+    handoff?.current();
     if (pdfHistoryMutationLockDepth) await pdfHistoryMutationCompletion;
+    handoff?.current();
     const target = allDocumentTabs().find((tab) => tab.id === tabId);
     if (!target || documentWorkspaceState.switching) return null;
-    if (exportAsDialogState.exporting) {
+    if (exportAsDialogState.exporting || exportStateDepth > 0) {
       showToast("Finish the current export before switching documents.");
       return null;
     }
     const current = activeDocumentTab();
     if (current?.id === target.id) return target;
+    await flushDensePdfEdits();handoff?.current();
+    if (documentWorkspaceState.switching || exportStateDepth > 0 || activeDocumentTab() !== current || !allDocumentTabs().includes(target)) return null;
+    if (!handoff && smartConnectorMissingTargetTimer) flushMissingSmartConnectorTargetCleanup();
     clearLayerTreeTransientUi();
     if (presentationState.active) exitPresentation({ restoreFocus: false });
-    captureActiveDocumentTab();
+    if (handoff?.captureTab) handoff.captureTab(current);
+    else captureActiveDocumentTab();
     clearPendingScientificTextStyle("document-tab-switched");
     closeScientificSymbolPopover();
+    handoff?.beforeSwitch?.(current, target);
     documentWorkspaceState.switching = true;
     documentMutationTrackingSuppressed += 1;
+    let restored = false;
     try {
       documentWorkspaceState.activeKind = target.kind;
       documentWorkspaceBucket(target.kind).activeId = target.id;
-      return await restoreDocumentTabRuntime(target);
+      handoff?.switching?.(target);
+      const result = await restoreDocumentTabRuntime(target, handoff ? { denseFigureHandoff: handoff } : {});
+      restored = true;return result;
     } finally {
       documentMutationTrackingSuppressed = Math.max(0, documentMutationTrackingSuppressed - 1);
-      documentWorkspaceState.switching = false;
+      if (!handoff || handoff.recoverable()) { documentWorkspaceState.switching = false;if (restored) handoff?.settled(); }
     }
   }
 
-  function createNewDocumentTab(options = {}) {
-    if (pdfHistoryMovePending || pdfHistoryMutationLockDepth) return { status: "busy" };
+  async function createNewDocumentTab(options = {}) {
+    if (pdfHistoryMovePending) await pdfHistoryMoveCompletion;
+    if (pdfHistoryMutationLockDepth) await pdfHistoryMutationCompletion;
     if (documentWorkspaceState.switching) return { status: "busy" };
-    if (exportAsDialogState.exporting) {
+    if (exportAsDialogState.exporting || exportStateDepth > 0) {
       showToast("Finish the current export before creating another document.");
       return { status: "busy" };
     }
+    const previousOwner = activeDocumentTab();
+    await flushDensePdfEdits();
+    if (documentWorkspaceState.switching || exportStateDepth > 0 || activeDocumentTab() !== previousOwner) return { status: "busy" };
     clearLayerTreeTransientUi();
     if (presentationState.active) exitPresentation({ restoreFocus: false });
     const previousTab = captureActiveDocumentTab();
@@ -5245,28 +6215,37 @@
   }
 
   async function openProjectPayloadInNewTab(payload, options = {}) {
+    const handoff = denseFigureHandoffContext(options);handoff?.current();
     if (pdfHistoryMovePending) await pdfHistoryMoveCompletion;
+    handoff?.current();
     if (pdfHistoryMutationLockDepth) await pdfHistoryMutationCompletion;
-    if (documentWorkspaceState.switching) return null;
+    handoff?.current();
+    if (documentWorkspaceState.switching || exportAsDialogState.exporting || exportStateDepth > 0) return null;
+    const previousOwner = activeDocumentTab();
+    await flushDensePdfEdits();handoff?.current();
+    if (documentWorkspaceState.switching || exportStateDepth > 0 || activeDocumentTab() !== previousOwner) return null;
     clearLayerTreeTransientUi();
     const project = normalizedProjectFromPayload(payload);
     const descriptor = normalizeProjectDocument(project);
     if (presentationState.active) exitPresentation({ restoreFocus: false });
-    const previousTab = captureActiveDocumentTab();
+    const previousTab = handoff ? handoff.sourceTab() : captureActiveDocumentTab();
+    if (handoff) options.onDenseOpening();
     clearPendingScientificTextStyle("document-opened");
     closeScientificSymbolPopover();
     documentWorkspaceState.switching = true;
     documentMutationTrackingSuppressed += 1;
     try {
-      documentWorkspaceState.activeKind = descriptor.kind;
+      documentWorkspaceState.activeKind = descriptor.kind;handoff?.pin(undefined, true);
       artifactStore.clear();
       missingExternalArtifactRefsById.clear();
       if (typeof options.prepare === "function") await options.prepare();
+      handoff?.current();
       await loadProjectPayload(payload, {
-        markSaved: false,
+        denseFigureHandoff: handoff, markSaved: false,
         toast: options.toast,
         historyLabel: options.historyLabel || `${documentKindLabel()} opened`
       });
+      handoff?.current();
       if (options.view) {
         state.view = cloneDocumentTabValue(options.view, state.view);
         updateStage();
@@ -5298,8 +6277,9 @@
         try { await hostAdapter?.releaseDocument?.(previousTab.nativeDocumentId || previousTab.id); }
         catch (error) { console.warn("Could not release the replaced native document binding", error); }
       }
+      handoff?.commit();
       bucket.tabs.push(tab);
-      bucket.activeId = tab.id;
+      bucket.activeId = tab.id;handoff?.published(tab);
       documentDirty = tab.dirty;
       documentSaveStateLabel = tab.saveLabel;
       syncDocumentSaveState();
@@ -5308,7 +6288,7 @@
       return tab;
     } finally {
       documentMutationTrackingSuppressed = Math.max(0, documentMutationTrackingSuppressed - 1);
-      documentWorkspaceState.switching = false;
+      if (!handoff || handoff.recoverable()) { documentWorkspaceState.switching = false;handoff?.settled(); }
     }
   }
 
@@ -5339,10 +6319,27 @@
     }
   }
 
-  async function openWorkspaceProjectPayload(workspace, options = {}) {
+  async function openWorkspaceProjectPayload(workspace, options = {}, parsedOwner = null) {
+    const validatedWorkspace = fileFormatApi().validateWorkspaceProject(workspace);
     if (pdfHistoryMovePending) await pdfHistoryMoveCompletion;
     if (pdfHistoryMutationLockDepth) await pdfHistoryMutationCompletion;
-    workspace = fileFormatApi().validateWorkspaceProject(workspace);
+    if (exportAsDialogState.exporting || exportStateDepth > 0) return null;
+    const previousOwner = activeDocumentTab();
+    await flushDensePdfEdits();
+    if (documentWorkspaceState.switching || exportStateDepth > 0 || activeDocumentTab() !== previousOwner) return null;
+    // Only the exact privately decoded workspace opts into this extra turn.
+    // Read notes directly: activeDeckPage() also normalizes the saved deck.
+    const ownedDenseOpen = parsedOwner && densePdfParsedHydrations.has(parsedOwner) && parsedOwner.workspace === workspace;
+    const notesPage = ownedDenseOpen
+      ? state.deck?.pages?.find((page) => page.id === state.deck.activePageId) || state.deck?.pages?.[0] || null : null;
+    const openOwner = ownedDenseOpen ? {
+      workspace, bindings: densePdfParsedHydrations.get(parsedOwner), tab: previousOwner, canvas,
+      revision: projectRevision, generation: workspaceProjectGeneration, topology: workspaceTopologyFingerprint(),
+      pendingText: textHistoryPending, pendingNotes: speakerNotesHistoryPending,
+      notesPage, notesPageId: state.deck?.activePageId, speakerNotes: notesPage?.speakerNotes,
+      pendingClipboard: pendingDenseClipboardCapture
+    } : null;
+    workspace = validatedWorkspace;
     const preparedDocuments = workspace.documents.map((document) => {
       const project = normalizedProjectFromPayload(document.payload);
       const descriptor = normalizeProjectDocument(project);
@@ -5351,6 +6348,19 @@
       }
       return { ...document, project };
     });
+    if (openOwner) {
+      await yieldPdfHistoryToUi();
+      const currentNotesPage = state.deck?.pages?.find((page) => page.id === state.deck.activePageId) || state.deck?.pages?.[0] || null;
+      if (!densePdfParsedHydrations.has(parsedOwner) || densePdfParsedHydrations.get(parsedOwner) !== openOwner.bindings
+          || parsedOwner.workspace !== openOwner.workspace || activeDocumentTab() !== openOwner.tab || canvas !== openOwner.canvas
+          || projectRevision !== openOwner.revision || workspaceProjectGeneration !== openOwner.generation
+          || workspaceTopologyFingerprint() !== openOwner.topology || textHistoryPending !== openOwner.pendingText
+          || speakerNotesHistoryPending !== openOwner.pendingNotes || currentNotesPage !== openOwner.notesPage
+          || state.deck?.activePageId !== openOwner.notesPageId || currentNotesPage?.speakerNotes !== openOwner.speakerNotes
+          || pendingDenseClipboardCapture !== openOwner.pendingClipboard || documentWorkspaceState.switching
+          || exportAsDialogState.exporting || exportStateDepth > 0 || pdfHistoryMovePending || pdfHistoryMutationLockDepth
+          || densePdfEditPending || hasPendingDensePageEdits()) return null;
+    }
     if (documentWorkspaceState.switching) return null;
     if (
       hasUnsavedWorkspaceChanges()
@@ -5509,7 +6519,7 @@
         filename: options.filename || parsed.filename,
         path: options.path || "",
         requiresSaveAs: false
-      });
+      }, parsed);
     }
     return openProjectPayloadInNewTab(parsed.payload, {
       id: options.id,
@@ -5659,17 +6669,19 @@
     const filename = launchEntry.filename;
     let parsed;
     try {
-      parsed = parseFigureStudioFileContents(result.payload || result.project || result.contents, filename);
+      parsed = result.fileBlob ? await parseFigureStudioFileBlob(new File([result.fileBlob], filename, { type: "application/json" }))
+        : parseFigureStudioFileContents(result.payload || result.project || result.contents, filename);
       assertExpectedOpenKind(parsed, reportedKind);
       if (parsed.legacy) throw new Error("Only current Figure or Presentation documents can open when Figure Tool starts.");
     } catch (error) {
+      try { discardDecodedFigureStudioFile(parsed); } catch {}
       await releaseNativeOpenBinding(result.documentId || documentId);
       showLongToast(error.message || "Figure Tool could not open the requested document.");
       return false;
     }
     let tab;
     try {
-      tab = await openParsedFigureStudioFile(parsed, {
+      tab = await openDecodedFigureStudioFile(parsed, {
         id: result.documentId || documentId,
         nativeDocumentId: result.documentId || documentId,
         filename,
@@ -5697,7 +6709,10 @@
   async function switchDocumentWorkspace(kind) {
     const normalized = normalizeDocumentKind(kind);
     if (normalized === documentWorkspaceState.activeKind) return activeDocumentTab();
-    if (exportAsDialogState.exporting) {
+    const previousOwner = activeDocumentTab();
+    await flushDensePdfEdits();
+    if (documentWorkspaceState.switching || activeDocumentTab() !== previousOwner) return null;
+    if (exportAsDialogState.exporting || exportStateDepth > 0) {
       showToast("Finish the current export before switching workspaces.");
       return null;
     }
@@ -5709,7 +6724,7 @@
     closeScientificSymbolPopover();
     const bucket = documentWorkspaceBucket(normalized);
     if (!bucket.tabs.length) {
-      const created = createNewDocumentTab({ kind: normalized });
+      const created = await createNewDocumentTab({ kind: normalized });
       return created?.tab || null;
     }
     return activateDocumentTab(bucket.activeId);
@@ -5792,11 +6807,13 @@
     if (pdfHistoryMutationLockDepth) await pdfHistoryMutationCompletion;
     const tab = allDocumentTabs().find((item) => item.id === tabId);
     if (!tab || documentWorkspaceState.switching) return { status: "missing" };
-    if (exportAsDialogState.exporting) {
+    if (exportAsDialogState.exporting || exportStateDepth > 0) {
       showToast("Finish the current export before closing a document.");
       return { status: "busy" };
     }
     if (tab.id === activeDocumentTab()?.id) {
+      await flushDensePdfEdits();
+      if (documentWorkspaceState.switching || exportStateDepth > 0 || tab !== activeDocumentTab()) return { status: "cancelled" };
       clearLayerTreeTransientUi();
       captureActiveDocumentTab();
     }
@@ -5823,11 +6840,12 @@
       const otherKind = tab.kind === "figure" ? "presentation" : "figure";
       const other = documentWorkspaceBucket(otherKind);
       if (other.tabs.length) await activateDocumentTab(other.activeId);
-      else createNewDocumentTab({ kind: tab.kind });
+      else await createNewDocumentTab({ kind: tab.kind });
     } else if (wasBucketActive) {
       bucket.activeId = "";
     }
     renderDocumentTabs();
+    collectPdfHistoryNodes();
     return { status: "closed", id: tab.id };
   }
 
@@ -6021,14 +7039,27 @@
     return document.querySelector(".figure-studio-root") || document.getElementById("figureStudioRoot");
   }
 
+  function viewportRefitIsBlocked() {
+    return isRestoring || documentWorkspaceState.switching || isApplyingHistory || pdfHistoryMovePending
+      || pdfHistoryMutationLockDepth || documentRuntimeRestoreFailed || denseSlideCopyPending || projectSlidesBusy;
+  }
+
   function scheduleViewportRefit() {
-    if (!editorProductReady || !viewFollowsViewport || viewportRefitFrame || figureLayoutTransition) return;
+    if (!editorProductReady || !canvas || !viewFollowsViewport || viewportRefitFrame || figureLayoutTransition || viewportRefitIsBlocked()) return;
+    const owner = canvasUiDeliveryOwner(), tab = activeDocumentTab(), document = state.document, generation = workspaceProjectGeneration;
+    const view = state.view, zoom = view.zoom, panX = view.panX, panY = view.panY;
     scheduleViewportLayoutStableMarker();
-    viewportRefitFrame = window.requestAnimationFrame(() => {
+    const frame = window.requestAnimationFrame(() => {
+      if (viewportRefitFrame !== frame) return;
       viewportRefitFrame = 0;
-      if (editorProductReady && viewFollowsViewport && !figureLayoutTransition) fitToScreen({ followViewport: true });
+      if (!editorProductReady || !viewFollowsViewport || figureLayoutTransition || viewportRefitIsBlocked()
+          || !canvasUiDeliveryIsCurrent(owner) || activeDocumentTab() !== tab || state.document !== document
+          || workspaceProjectGeneration !== generation || state.view !== view || !Object.is(view.zoom, zoom)
+          || !Object.is(view.panX, panX) || !Object.is(view.panY, panY)) return;
+      fitToScreen({ followViewport: true, forceRender: false });
       scheduleViewportLayoutStableMarker();
     });
+    viewportRefitFrame = frame;
   }
 
   function scheduleViewportLayoutStableMarker() {
@@ -6115,6 +7146,7 @@
       globalThis.FigureStudioPdfSvgMaterializer?.registerGroupClass(fabricRef);
       globalThis.FigureStudioPdfSvgMaterializer?.registerPathClass?.(fabricRef);
       globalThis.FigureStudioPdfSvgMaterializer?.registerCurrentPlanePathClass?.(fabricRef);
+      globalThis.FigureStudioPdfCurrentNativePlaneMaterializer?.registerImageClass?.(fabricRef);
       initializePdfSourceSerializationPrecision();
       graphicStyleLibrary = normalizeGraphicStyleLibrary([]);
       lastGraphicStyleId = graphicStyleLibrary[0]?.id || "";
@@ -6531,9 +7563,42 @@
       fabricRef.FabricObject.customProperties = CUSTOM_PROPS;
     }
     installScientificTypographyStyleCopy();
+    installCanvasTextInputPosition();
     installManualKerningRenderer();
     installParagraphListRenderer();
     installAppearanceStackRenderer();
+  }
+
+  function installCanvasTextInputPosition() {
+    const prototype = fabricRef?.IText?.prototype;
+    if (!prototype || prototype._figureStudioTextInputPositionInstalled || typeof prototype._calcTextareaPosition !== "function") return;
+    const original = prototype._calcTextareaPosition;
+    prototype._calcTextareaPosition = function (...args) {
+      const position = original.apply(this, args);
+      const element = this.canvas?.upperCanvasEl;
+      const ownerDocument = element?.ownerDocument;
+      const view = ownerDocument?.defaultView;
+      if (!element || !view || (this.hiddenTextareaContainer && this.hiddenTextareaContainer !== ownerDocument.body)) return position;
+      const rect = element.getBoundingClientRect();
+      if (!(element.clientWidth > 0 && element.clientHeight > 0 && rect.width > 0 && rect.height > 0)) return position;
+      // Fabric positions its native text input in unscaled canvas CSS pixels.
+      // Our stage also has a CSS zoom. Keep the input at the displayed caret,
+      // including IME placement, without extending the document below the editor.
+      const scaleX = rect.width / element.clientWidth;
+      const scaleY = rect.height / element.clientHeight;
+      const offset = this.canvas._offset || { left: 0, top: 0 };
+      const height = clamp((Number(position.charHeight) || parseFloat(position.fontSize) || 1) * scaleY, 1, Math.max(1, view.innerHeight - 8));
+      const left = rect.left + (parseFloat(position.left) - offset.left) * scaleX;
+      const top = rect.top + (parseFloat(position.top) - offset.top) * scaleY;
+      return {
+        ...position,
+        left: `${view.scrollX + clamp(left, 0, Math.max(0, view.innerWidth - 8))}px`,
+        top: `${view.scrollY + clamp(top, 0, Math.max(0, view.innerHeight - height - 8))}px`,
+        fontSize: `${height}px`,
+        charHeight: height
+      };
+    };
+    prototype._figureStudioTextInputPositionInstalled = true;
   }
 
   function installScientificTypographyStyleCopy() {
@@ -7324,6 +8389,14 @@
           && isLineVectorObject(active)
           && active.findControl?.(canvas.getViewportPoint(event), pointerType === "touch")
         ) return finish(targetInfo(active));
+        if (isGroupIsolationActive() && ["select", "freeTransform"].includes(state.tool)) {
+          // Match the child shown by Isolation Mode before Fabric chooses its
+          // transform owner. The non-interactive enclosing group otherwise wins
+          // the stock target walk while the inspector still names the child.
+          if (active && objectIsWithinGroup(active, activeIsolationGroup())
+              && active.findControl?.(canvas.getViewportPoint(event), pointerType === "touch")) return finish(targetInfo(active));
+          return finish(targetInfo(isolationChildAtScenePoint(activeIsolationGroup(), canvasPoint(event))));
+        }
         const found = fabricFindTarget(event, skipGroup);
         const target = found?.target || found;
         const point = canvasPoint(event);
@@ -7349,13 +8422,19 @@
         return finish(targetInfo(recovered, found));
       };
     }
-    canvas.on("selection:created", onCanvasSelectionChanged);
-    canvas.on("selection:updated", onCanvasSelectionChanged);
-    canvas.on("selection:cleared", () => {
+    const selectionEventCanvas = canvas;
+    canvas.on("selection:created", (event) => onCanvasSelectionChanged(event, selectionEventCanvas));
+    canvas.on("selection:updated", (event) => onCanvasSelectionChanged(event, selectionEventCanvas));
+    canvas.on("selection:cleared", (event) => {
+      if (selectionEventCanvas !== canvas) return;
+      if (coalesceDenseCanvasUi(selectionEventCanvas)) return;
       selectionOverlayRenderOnly = true;
-      onCanvasSelectionChanged();
+      onCanvasSelectionChanged(event, selectionEventCanvas);
     });
     canvas.on("object:added", (event) => {
+      if (selectionEventCanvas !== canvas) return;
+      const publication = denseCanvasPublication(selectionEventCanvas);
+      if (publication?.oldRoots.has(event.target)) return;
       installPdfSourceSerializationPrecision([event.target]);
       clearSmartGuideCandidateCache();
       if (isFigureObject(event.target)) {
@@ -7364,6 +8443,8 @@
       }
     });
     canvas.on("object:removed", (event) => {
+      if (selectionEventCanvas !== canvas) return;
+      if (coalesceDenseCanvasUi(selectionEventCanvas)) return;
       clearSmartGuideCandidateCache();
       if (isSmartConnectorObject(event.target)) {
         const label = smartConnectorLabelObject(event.target);
@@ -7381,6 +8462,8 @@
       beginPptxLabelTransform(transformTarget);
     });
     canvas.on("object:modified", (event) => {
+      const densePage = densePdfPageForObject(event.target);
+      if (densePage && event.target !== densePage) return;
       const completedTextBatch = event.target && textExitModifiedTargets.has(event.target) && !event.transform && !event.action;
       if (event.target) textExitModifiedTargets.delete(event.target);
       flushObjectInteractionSnap(event.target);
@@ -7451,6 +8534,13 @@
     canvas.on("text:changed", (event) => {
       const target = event.target;
       if (!target || typeof target.text !== "string") return;
+      if (densePdfPageForObject(target)) {
+        densePdfTextDirty.add(target);
+        markDocumentDirty("PDF text updated");
+        renderSelectionContextBar();
+        syncInspector();
+        return;
+      }
       applyPendingScientificTextStyleAfterInput(target);
       syncScientificTypographyRangeRuns(target);
       if (target.figureType === "connectorLabel") {
@@ -7487,6 +8577,7 @@
     });
     canvas.on("text:editing:exited", (event) => {
       const target = event?.target;
+      if (densePdfPageForObject(target)) { void commitDensePdfText(target).catch(() => {}); return; }
       const pending = textHistoryPending;
       const qualifyingSourceExit = qualifyingSourceTextHistoryTarget(target);
       clearPendingScientificTextStyle("editing-ended");
@@ -7589,12 +8680,15 @@
     canvas.requestRenderAll?.();
   }
 
-  function onCanvasSelectionChanged() {
+  function onCanvasSelectionChanged(event, target = canvas) {
+    if (target !== canvas) return;
+    if (coalesceDenseCanvasUi(target)) return;
+    const delivery = canvasUiDeliveryOwner(target);
     const startedAt = performance.now();
     const audit = { startedAt, phases: {} };
     const phase = (name) => { audit.phases[name] = performance.now() - startedAt; };
     selectionOverlayRenderOnly = true;
-    window.queueMicrotask(() => { selectionOverlayRenderOnly = false; });
+    window.queueMicrotask(() => { if (canvasUiDeliveryIsCurrent(delivery)) selectionOverlayRenderOnly = false; });
     selectedGuideId = "";
     syncLineVectorSelectionChrome();
     syncSelectionChromeForZoom();
@@ -7611,6 +8705,8 @@
     phase("objectStatusOverlay");
     renderIsolationSelectionOverlay();
     phase("isolationOverlay");
+    if (canvasUiDeliveryIsCurrent(delivery)) renderSmartConnectorOverlay();
+    phase("smartConnectorOverlay");
     scheduleSelectionUiSync();
     phase("scheduledAdvancedSync");
     audit.totalMs = performance.now() - startedAt;
@@ -7853,7 +8949,8 @@
   }
 
   function syncSelectionEssentials() {
-    if (!canvas) return;
+    if (!canvas || coalesceDenseCanvasUi(canvas)) return;
+    const delivery = canvasUiDeliveryOwner();
     const selected = selectedTopLevelObjects();
     const first = selected[0] || null;
     // Keep the canvas selection and status response inside the input frame. The
@@ -7861,16 +8958,22 @@
     // does not need to block the selected-object paint.
     cancelSelectionEssentialsSync();
     if (els.selectionContextBar) els.selectionContextBar.dataset.selectionUiState = "pending";
-    selectionEssentialsFrame = window.requestAnimationFrame(() => {
+    const frame = window.requestAnimationFrame(() => {
+      if (selectionEssentialsFrame !== frame) return;
       selectionEssentialsFrame = 0;
+      if (!canvasUiDeliveryIsCurrent(delivery)) return;
       // Let the selected-object outline reach the screen before rebuilding the
       // contextual form. One short post-frame delay also avoids competing with
       // the browser's second confirmation frame on cold launch.
-      selectionEssentialsTimer = window.setTimeout(() => {
+      const timer = window.setTimeout(() => {
+        if (selectionEssentialsTimer !== timer) return;
         selectionEssentialsTimer = 0;
+        if (!canvasUiDeliveryIsCurrent(delivery)) return;
         renderSelectionContextEssentials(selectedTopLevelObjects());
       }, 18);
+      selectionEssentialsTimer = timer;
     });
+    selectionEssentialsFrame = frame;
     if (els.inspector) {
       els.inspector.classList.toggle("has-selection", Boolean(selected.length));
       els.inspector.classList.toggle("multi-selection", selected.length > 1);
@@ -7934,11 +9037,14 @@
   }
 
   function requestSelectionOverlayRender() {
-    if (!canvas || selectionOverlayRenderFrame) return;
-    selectionOverlayRenderFrame = window.requestAnimationFrame(() => {
+    if (!canvas || coalesceDenseCanvasUi(canvas) || selectionOverlayRenderFrame) return;
+    const delivery = canvasUiDeliveryOwner(), frame = window.requestAnimationFrame(() => {
+      if (selectionOverlayRenderFrame !== frame) return;
       selectionOverlayRenderFrame = 0;
+      if (!canvasUiDeliveryIsCurrent(delivery)) return;
       renderSelectionOverlayOnTop();
     });
+    selectionOverlayRenderFrame = frame;
   }
 
   function renderSelectionOverlayOnTop() {
@@ -7958,6 +9064,8 @@
   }
 
   function scheduleSelectionUiSync() {
+    if (coalesceDenseCanvasUi(canvas)) return;
+    const delivery = canvasUiDeliveryOwner();
     cancelSelectionUiSync();
     if ((canvas?.getObjects?.().length || 0) >= 300) {
       // Dense documents keep the fast contextual strip authoritative until
@@ -7965,10 +9073,19 @@
       return;
     }
     const revision = selectionUiRevision;
-    selectionUiFrame = window.requestAnimationFrame(() => {
+    const frame = window.requestAnimationFrame(() => {
+      if (selectionUiFrame !== frame) return;
       selectionUiFrame = 0;
-      selectionUiTimer = window.setTimeout(() => syncSelectionUi(revision), 140);
+      if (!canvasUiDeliveryIsCurrent(delivery)) return;
+      const timer = window.setTimeout(() => {
+        if (selectionUiTimer !== timer) return;
+        selectionUiTimer = 0;
+        if (!canvasUiDeliveryIsCurrent(delivery)) return;
+        syncSelectionUi(revision);
+      }, 140);
+      selectionUiTimer = timer;
     });
+    selectionUiFrame = frame;
   }
 
   function artboardPx() {
@@ -8130,12 +9247,22 @@
 
   function denseSvgProxyMetaForObject(object) {
     if (!object) return null;
+    const cache = inspectorDenseSvgProxyMetaCache;
+    const cacheable = cache && (typeof object === "object" || typeof object === "function");
+    if (cacheable && cache.has(object)) return cache.get(object);
     const meta = object.importMeta?.denseSvgProxy || object.importMeta?.dense_svg_proxy || null;
-    if (meta && typeof meta === "object") return meta;
+    if (meta && typeof meta === "object") {
+      if (cacheable) cache.set(object, meta);
+      return meta;
+    }
     for (const child of groupChildren(object)) {
       const childMeta = denseSvgProxyMetaForObject(child);
-      if (childMeta) return childMeta;
+      if (childMeta) {
+        if (cacheable) cache.set(object, childMeta);
+        return childMeta;
+      }
     }
+    if (cacheable) cache.set(object, null);
     return null;
   }
 
@@ -8438,12 +9565,11 @@
       persistence_mode: options.persistence_mode || options.persistenceMode || priorRef.persistence_mode || "embedded",
       notes: options.notes || priorRef.notes || ""
     });
-    artifactStore.set(artifactId, {
-      ref,
-      dataUrl: text,
-      sizeBytes,
-      last_seen_at: now
-    });
+    const entry = { ref, dataUrl: text, sizeBytes, last_seen_at: now };
+    const historyCapture = denseFigureHistoryArtifactCapture;
+    historyCapture?.beforeSet(artifactId, entry);
+    artifactStore.set(artifactId, entry);
+    historyCapture?.afterSet();
     return ref;
   }
 
@@ -8780,7 +9906,7 @@
   }
 
   function normalizedProjectFromPayload(payload) {
-    return payload?.schema === "figureStudio.projectPayload.v1" && payload.project
+    return ["figureStudio.projectPayload.v1", "figureStudio.projectPayload.v2"].includes(payload?.schema) && payload.project
       ? payload.project
       : payload;
   }
@@ -9206,7 +10332,8 @@
     const classes = [
       materializer?.registerTextClass(fabricRef),
       materializer?.registerGroupClass(fabricRef),
-      materializer?.registerPathClass?.(fabricRef)
+      materializer?.registerPathClass?.(fabricRef),
+      globalThis.FigureStudioPdfCurrentNativePlaneMaterializer?.registerImageClass?.(fabricRef)
     ];
     pdfSourceSerializationPrecision = module.createInstaller({
       fabric: fabricRef,
@@ -9231,7 +10358,7 @@
     // SVG provenance grants number preservation only. Source groups receive
     // their own precise frame through current canonical ancestor closure;
     // they do not confer precision to subsequently authored ordinary children.
-    return Boolean(pdfSourceIdForObject(object) || (typeof object?.getObjects !== "function" && svgNumericSourceIdentityForObject(object)));
+    return Boolean(densePdfApi()?.isPage(object) || pdfSourceIdForObject(object) || (typeof object?.getObjects !== "function" && svgNumericSourceIdentityForObject(object)));
   }
 
   function currentSvgSourceGraph(roots, strict = false, exportedPaintOnly = false) {
@@ -11733,7 +12860,7 @@
   function createDefaultFigure() {
     resetPrecisionToolTransientState();
     stopPathNodeEdit({ sync: false });
-    canvas.clear();
+    clearEditorCanvas();
     canvas.backgroundColor = "#ffffff";
     state.ui.activeTemplate = "";
     syncUi();
@@ -11879,6 +13006,7 @@
   }
 
   function normalizeDeckMasterScene(value) {
+    refuseDenseMasterScene(value);
     const scene = value && typeof value === "object" && !Array.isArray(value)
       ? JSON.parse(JSON.stringify(value))
       : { objects: [] };
@@ -12662,6 +13790,7 @@
     ensureDeckState();
     if (masterLayoutEditor.active) return null;
     const source = options.sourceId ? state.deck.masters.find((item) => item.id === options.sourceId) : null;
+    if (source) refuseDenseMasterScene(source.scene);
     const name = String(options.name || (source ? `${source.name} copy` : `Master ${state.deck.masters.length + 1}`)).trim().slice(0, 80);
     if (!name) return null;
     const now = new Date().toISOString();
@@ -12839,6 +13968,7 @@
     const meta = inheritedMasterMeta(inherited);
     const page = activeDeckPage();
     if (!inherited || !meta || !page || masterLayoutEditor.active) return false;
+    refuseDenseArtworkHandoff([inherited]);
     const clone = await inherited.clone(CUSTOM_PROPS);
     clone.set({
       figureId: makeId(clone.figureType || "object"),
@@ -12992,7 +14122,7 @@
     masterLayoutEditor = { active: true, mode: "layout", masterId: record.master.id, layoutId: record.layout.id, returnPageId: page.id, draftName: record.layout.name, returnSelectionIds: selectedTopLevelObjects().map((object) => object.figureId).filter(Boolean) };
     applyingDeckLayoutUpdate = true; isRestoring = true;
     try {
-      canvas.clear();
+      clearEditorCanvas();
       const appearance = resolvedDeckAppearance(page);
       state.artboard = { ...appearance.artboard };
       state.layoutAids = normalizeDeckLayoutAids(page.layoutAidOverrides || record.master.layoutAids);
@@ -13013,14 +14143,26 @@
     const visit = (candidate) => {
       if (!candidate || visited.has(candidate)) return false;
       visited.add(candidate);
-      if (isReferenceObject(candidate)
+      if (densePdfApi()?.isPage(candidate) || densePdfPageForObject(candidate)
+        || isReferenceObject(candidate)
         || sourceBackedResultMeta(candidate)
         || nativePdfDescriptorTreeForObject(candidate)
         || proxyPanelForObject(candidate)) return true;
       if (candidate.clipPath && visit(candidate.clipPath)) return true;
+      if (candidate.mask && visit(candidate.mask)) return true;
       return groupChildren(candidate).some(visit);
     };
     return visit(object);
+  }
+
+  function refuseDenseMasterScene(scene) {
+    if (scene && browserDenseAssetReferences({ scene }).size) throw new Error("Editable PDF artwork must stay on a slide; PDF masters are not supported yet.");
+  }
+
+  function refuseDenseArtworkHandoff(objects) {
+    if (objects.some((object) => clipboardObjectTree(object).some((child) => densePdfApi()?.isPage(child) || densePdfPageForObject(child)))) {
+      throw new Error("Copying editable PDF artwork between Figures, slides or inherited items is not supported yet.");
+    }
   }
 
   function canStoreOnDeckMaster(object) {
@@ -13035,6 +14177,7 @@
     const page = activeDeckPage();
     const master = deckMaster(masterId);
     if (!page || !master || masterLayoutEditor.active) return false;
+    refuseDenseMasterScene(master.scene);
     captureActiveDeckPage();
     masterLayoutEditor = {
       active: true,
@@ -13048,7 +14191,7 @@
     applyingDeckLayoutUpdate = true;
     isRestoring = true;
     try {
-      canvas.clear();
+      clearEditorCanvas();
       state.artboard = { ...resolvedDeckAppearance(page).artboard };
       state.guides = normalizeGuideState(master.guides);
       state.guides.locked = false;
@@ -13356,7 +14499,10 @@
     // slide artwork while its layout definitions are being adjusted.
     if (masterLayoutEditor.active) return page;
     syncScientificTypographyRangesFromLiveStyles(canvas.getObjects());
-    const fabricSnapshot = stripMasterInheritanceFromSnapshot(canonicalizeLiveBooleanFabricSnapshot(options.fabric || canvas.toJSON(CUSTOM_PROPS)));
+    // detachedFabric transfers a separate, exclusively owned canonical tree.
+    // The caller must never share this mutable page scene with project.fabric.
+    const fabricSnapshot = options.detachedFabric === true && options.fabric ? options.fabric
+      : stripMasterInheritanceFromSnapshot(canonicalizeLiveBooleanFabricSnapshot(options.fabric || canvas.toJSON(CUSTOM_PROPS)));
     page.artboard = { ...(isPresentationDocument() ? presentationDefaultArtboard() : state.artboard) };
     page.guides = localDeckGuideState(state.guides);
     page.objectLayers = normalizeObjectLayerState(page.objectLayers);
@@ -13408,6 +14554,37 @@
     return deck;
   }
 
+  async function deckSnapshotForSerializationAsync(activeFabric, options = {}) {
+    const api = globalThis.FigureStudioPdfSceneNumberPrecision;
+    const sourceDeck = state.deck || { activePageId: "", pages: [] };
+    const activePageId = String(sourceDeck.activePageId || "");
+    const fields = {};
+    Object.keys(sourceDeck).filter((key) => key !== "pages").forEach((key) => {
+      Object.defineProperty(fields, key, { value: sourceDeck[key], enumerable: true, writable: true, configurable: true });
+    });
+    const deck = await api.cloneJsonAsync(fields, options);
+    deck.pages = [];
+    for (const page of Array.isArray(sourceDeck.pages) ? sourceDeck.pages : []) {
+      if (!page || typeof page !== "object") { deck.pages.push(page); continue; }
+      if (String(page.id || "") === activePageId) {
+        const compactPage = {};
+        Object.keys(page).filter((key) => key !== "fabric").forEach((key) => {
+          Object.defineProperty(compactPage, key, { value: page[key], enumerable: true, writable: true, configurable: true });
+        });
+        compactPage.fabricRef = "project.fabric";
+        deck.pages.push(await api.cloneJsonAsync(compactPage, options));
+      } else {
+        const compactPage = await fileFormatApi().compactSharedGroupImportMetadataAsync(page, options);
+        deck.pages.push(await api.cloneJsonAsync(compactPage, options));
+      }
+    }
+    if (!deck.pages.length && activeFabric) {
+      // Keep the existing canonical empty-deck metadata and its generated ID.
+      return deckSnapshotForSerialization(activeFabric);
+    }
+    return deck;
+  }
+
   function buildDeckThumbnailDataUrl() {
     if (!canvas) return "";
     try {
@@ -13428,6 +14605,7 @@
   }
 
   async function restoreDeckPage(pageId, options = {}) {
+    await flushDensePdfEdits();
     ensureDeckState();
     const page = state.deck.pages.find((item) => item.id === pageId);
     if (!page || !canvas) return null;
@@ -13560,25 +14738,75 @@
     const page = pages[presentationState.pageIndex];
     const staticCanvas = presentationCanvasForQa();
     if (!page || !staticCanvas) return false;
-    const epoch = ++presentationRenderEpoch;
+    const epoch = ++presentationRenderEpoch, deck = state.deck, index = presentationState.pageIndex;
+    const document = state.document, generation = workspaceProjectGeneration;
+    const current = () => {
+      if (!presentationState.active || epoch !== presentationRenderEpoch || presentationCanvas !== staticCanvas
+          || state.deck !== deck || state.deck.pages !== pages || pages[index] !== page || presentationState.pageIndex !== index
+          || state.document !== document || workspaceProjectGeneration !== generation) throw new Error("The presented slide changed during native restoration.");
+    };
+    const intent = beginNativeCanvasLoad(staticCanvas, current);
     const artboard = page.artboard || resolvedDeckAppearance(page).artboard || state.artboard;
     const width = Math.max(1, Math.round((Number(artboard.widthIn) || 7.1) * INCH));
     const height = Math.max(1, Math.round((Number(artboard.heightIn) || 5) * INCH));
-    presentationCanvasLayout = { width, height };
-    staticCanvas.setDimensions({ width, height }, { cssOnly: false });
-    staticCanvas.backgroundColor = resolvedDeckAppearance(page).background || "#ffffff";
     const localSnapshot = page.fabric || (page.id === state.deck.activePageId ? stripMasterInheritanceFromSnapshot(canonicalizeLiveBooleanFabricSnapshot(canvas?.toJSON(CUSTOM_PROPS))) : null) || { objects: [] };
     const fabricSnapshot = composeDeckPageSnapshot(page, localSnapshot);
-    const result = staticCanvas.loadFromJSON(JSON.parse(JSON.stringify(fabricSnapshot)));
-    if (result && typeof result.then === "function") await result;
+    if (intent.state.opaque) assertDenseCanvasIdle(intent);
+    // Keep the existing no-yield path when no native predecessor is pending.
+    if (intent.state.pending.size && !await awaitPresentationNativeCalls(intent)) return false;
+    assertNativeCanvasLoad(intent);
+    if (densePdfApi()?.hasDenseCanvasRestore(fabricSnapshot) === true) {
+      const prior = capturePresentationCanvasFrame(staticCanvas);
+      try { await loadStaticCanvasJson(staticCanvas, JSON.parse(JSON.stringify(fabricSnapshot)), {
+        intent,
+        beforeInstall: () => {
+          current();presentationCanvasLayout = { width, height };
+          staticCanvas.setDimensions({ width, height }, { cssOnly: false });
+          current();staticCanvas.backgroundColor = resolvedDeckAppearance(page).background || "#ffffff";
+        },
+        complete: () => current(),
+        rollbackUi: () => restorePresentationCanvasFrame(prior, current)
+      }); } catch (error) {
+        if (intent.state.intent !== intent && intent.cancelledController === intent.prepareController
+            && intent.prepareController?.signal.aborted && Object.hasOwn(intent, "cancellationFailure") && intent.cancellationFailure === error) return false;
+        throw error;
+      }
+    } else {
+      presentationCanvasLayout = { width, height };
+      staticCanvas.setDimensions({ width, height }, { cssOnly: false });
+      staticCanvas.backgroundColor = resolvedDeckAppearance(page).background || "#ffffff";
+      const api = densePdfApi(), replacement = api?.beginSceneReplacement(staticCanvas), renderFlag = staticCanvas.renderOnAddRemove;
+      let observable = false, loadFailed = false;
+      try {
+        const result = trackNativeCanvasCall(intent, () => staticCanvas.loadFromJSON(JSON.parse(JSON.stringify(fabricSnapshot))));
+        if (result && typeof result.then === "function") { observable = true;await result; }
+      } catch (error) {
+        observable = true;
+        loadFailed = true;
+        try { assertNativeCanvasLoad(intent);staticCanvas.renderOnAddRemove = renderFlag; } catch (_error) { /* Preserve the primary failure and a newer owner. */ }
+        throw error;
+      } finally {
+        // A callbackless legacy return is opaque, not proof of settlement.
+        if (replacement && observable) try { api.finishSceneReplacement(replacement); } catch (error) { if (!loadFailed) throw error; }
+      }
+    }
     if (!presentationState.active || epoch !== presentationRenderEpoch) return false;
+    assertNativeCanvasLoad(intent);
     staticCanvas.renderAll();
+    assertNativeCanvasLoad(intent);
     if (els.presentationSlideCounter) els.presentationSlideCounter.textContent = `${presentationState.pageIndex + 1} / ${pages.length}`;
     if (els.presentationNotesText) els.presentationNotesText.textContent = speakerNotesForPage(page) || "No speaker notes for this slide.";
-    requestAnimationFrame(() => requestAnimationFrame(fitPresentationCanvasToOverlay));
+    requestAnimationFrame(() => {
+      if (intent.state.intent !== intent) return;
+      try { assertNativeCanvasLoad(intent); } catch (_error) { return; }
+      requestAnimationFrame(() => {
+        if (intent.state.intent !== intent) return;
+        try { assertNativeCanvasLoad(intent); } catch (_error) { return; }
+        fitPresentationCanvasToOverlay();
+      });
+    });
     return true;
   }
-
   function presentationReturnState() {
     return {
       activePageId: state.deck?.activePageId || "",
@@ -13624,8 +14852,12 @@
     els.presentationOverlay?.classList.remove("has-presenter-notes");
     if (els.presentationNotesDrawer) els.presentationNotesDrawer.hidden = true;
     if (els.presentationNotesBtn) els.presentationNotesBtn.setAttribute("aria-expanded", "false");
-    await renderPresentationSlide();
-    requestAnimationFrame(() => els.presentationExitBtn?.focus({ preventScroll: true }));
+    const render = renderPresentationSlide(), epoch = presentationRenderEpoch;
+    const rendered = await render;
+    if (rendered === false || !presentationState.active || epoch !== presentationRenderEpoch) return false;
+    requestAnimationFrame(() => {
+      if (presentationState.active && epoch === presentationRenderEpoch) els.presentationExitBtn?.focus({ preventScroll: true });
+    });
     return true;
   }
 
@@ -13656,6 +14888,10 @@
     presentationState.active = false;
     presentationState.notesOpen = false;
     presentationCanvasLayout = null;
+    let retirementFailed = false, retirementFailure;
+    try { retirePresentationCanvas(presentationCanvas); } catch (error) { retirementFailed = true;retirementFailure = error; }
+    let uiFailed = false, uiFailure;
+    try {
     if (els.presentationOverlay) els.presentationOverlay.hidden = true;
     els.presentationOverlay?.classList.remove("has-presenter-notes");
     if (els.presentationNotesDrawer) els.presentationNotesDrawer.hidden = true;
@@ -13677,6 +14913,9 @@
       syncUi();
     }
     if (options.restoreFocus !== false) restorePresentationFocus();
+    } catch (error) { uiFailed = true;uiFailure = error; }
+    if (retirementFailed) throw retirementFailure;
+    if (uiFailed) throw uiFailure;
     return true;
   }
 
@@ -13718,6 +14957,8 @@
       return null;
     }
     ensureDeckState();
+    const sourcePage = activeDeckPage();
+    if (options.fromCurrent && selectionHasDensePdfPages(canvas.getObjects())) return duplicateDenseDeckSlide(sourcePage, { fromCurrent: true, label: options.label });
     captureActiveDeckPage();
     const index = state.deck.pages.length + 1;
     const page = defaultDeckPage(options.label || `Slide ${index}`);
@@ -13741,7 +14982,7 @@
     }
     updateStage();
     if (options.fromCurrent) {
-      const previous = state.deck.pages[state.deck.pages.length - 2];
+      const previous = sourcePage;
       page.fabric = JSON.parse(JSON.stringify(previous?.fabric || page.fabric));
       page.artboard = { ...(previous?.artboard || state.artboard) };
       restoreDeckPage(page.id, { captureCurrent: false, historyLabel: "Slide duplicated" });
@@ -13762,10 +15003,357 @@
     return page;
   }
 
+  function denseDeckCopyFrame(snapshot) {
+    if (!snapshot || Object.keys(snapshot).some((key) => !["version", "objects", "background"].includes(key))
+        || (snapshot.background != null && typeof snapshot.background !== "string")) {
+      throw new Error("This slide has a canvas-level image, clip or appearance that cannot be duplicated yet.");
+    }
+  }
+
+  function withDenseDeckStagingCanvas(staging, deck, run, options = {}) {
+    const previous = { canvas, deck: state.deck, artboard: state.artboard, guides: state.guides, layoutAids: state.layoutAids,
+      isRestoring, documentMutationTrackingSuppressed, artifacts: captureArtifactStoreSnapshot() };
+    let failed = false, failure, result;
+    const artifactCapture = options.artifactCapture, priorCapture = artifactCapture ? denseFigureHistoryArtifactCapture : null;
+    try {
+      if (artifactCapture && priorCapture) throw new Error("A slide history capture is already active.");
+      if (artifactCapture) denseFigureHistoryArtifactCapture = artifactCapture;
+      canvas = staging;state.deck = deck;
+      const page = activeDeckPage();
+      state.artboard = { ...resolvedDeckAppearance(page).artboard };
+      state.guides = effectiveDeckGuideState(page);state.layoutAids = effectiveDeckLayoutAids(page);
+      isRestoring = true;documentMutationTrackingSuppressed++;
+      result = run();
+      if (result && typeof result.then === "function") {
+        void Promise.resolve(result).catch(() => {});
+        throw new Error("Slide staging must finish synchronously.");
+      }
+    } catch (error) { failed = true;failure = error;
+    } finally {
+      // Only native rendering owned by this off-canvas instance can be queued
+      // here. App selection/completion callbacks never run in this scope.
+      try { staging.cancelRequestedRender(); } catch (error) { if (!failed) { failed = true;failure = error; } }
+      if (artifactCapture) denseFigureHistoryArtifactCapture = priorCapture;
+      try { if (!artifactCapture || artifactCapture.canRestore()) restoreArtifactStoreSnapshot(previous.artifacts); } catch (error) { if (!failed) { failed = true;failure = error; } } finally {
+        canvas = previous.canvas;state.deck = previous.deck;state.artboard = previous.artboard;state.guides = previous.guides;
+        state.layoutAids = previous.layoutAids;isRestoring = previous.isRestoring;
+        documentMutationTrackingSuppressed = previous.documentMutationTrackingSuppressed;
+      }
+    }
+    if (failed) throw failure;
+    return result;
+  }
+
+  function denseDeckCopyLocalSnapshot(ownerCanvas = canvas) {
+    installPdfSourceSerializationPrecision(ownerCanvas.getObjects());
+    return stripMasterInheritanceFromSnapshot(canonicalizeLiveBooleanFabricSnapshot(ownerCanvas.toJSON(CUSTOM_PROPS)));
+  }
+
+  async function releaseDenseDeckStagingCanvas(staging) {
+    let failed = false, failure;
+    for (const object of staging.getObjects().slice()) {
+      try { staging.remove(object); } catch (error) { if (!failed) { failed = true;failure = error; } }
+    }
+    try { await staging.dispose(); } catch (error) { if (!failed) { failed = true;failure = error; } }
+    if (failed) throw failure;
+  }
+
+  function restoreDenseDeckCopyUi(saved) {
+    if (!saved || canvas !== saved.canvas || activeDocumentTab() !== saved.tab || activeDeckPage() !== saved.page
+        || state.tool !== saved.tool || canvas.getActiveObject() || JSON.stringify(state.view) !== saved.viewKey
+        || (!saved.rolledBack && selectionUiRevision !== saved.clearedRevision)) return;
+    // Restoration reuses the actual originals. UI hints cannot acquire a new
+    // source or move a canonical checkpoint, and later user intent wins.
+    if (restoreGroupIsolationHistoryState(saved.isolation)) {
+      if (saved.points) restoreDirectSelectionHistoryState(saved.points);
+    } else if (saved.points) restoreDirectSelectionHistoryState(saved.points);
+    else setActiveObjects(saved.selection.filter((object) => (canvas.getObjects().includes(object)
+      || canvas.getObjects().some((root) => objectIsWithinGroup(object, root)))));
+    requestCanvasArtworkRender();
+  }
+
+  async function duplicateDenseDeckSlide(source, options = {}) {
+    if (denseSlideCopyPending || masterLayoutEditor.active || presentationState.active || documentWorkspaceState.switching
+        || isRestoring || isApplyingHistory || activeDocumentFileOperation || exportStateDepth) throw new Error("Finish the current action before duplicating this slide.");
+    const sourceCanvas = canvas, tab = activeDocumentTab(), tabId = tab?.id, documentId = currentTransformDocumentId(), deck = state.deck, requestedOrder = deckPageIdOrder().join("\0");
+    const requested = () => {
+      if (canvas !== sourceCanvas || activeDocumentTab() !== tab || tab?.id !== tabId || currentTransformDocumentId() !== documentId || state.deck !== deck || activeDeckPage() !== source
+          || deckPageIdOrder().join("\0") !== requestedOrder || documentWorkspaceState.switching) throw new Error("The requested source slide changed before duplication.");
+    };
+    requested();refuseDenseMasterScene(deckLayoutRecord(source).master?.scene);
+    denseDeckCopyFrame(source.fabric);
+    const initialRoots = canvas.getObjects();
+    if (initialRoots.some((object) => inheritedMasterMeta(object) && selectionHasDensePdfPages([object]))) throw new Error("Editable PDF master projections cannot be duplicated yet.");
+    if (initialRoots.some((object) => !inheritedMasterMeta(object) && clipboardObjectTree(object).some((child) => child !== object && inheritedMasterMeta(child)))) throw new Error("Mixed local and inherited groups cannot be duplicated yet.");
+    if (pathNodeEdit.dragging || pathNodeEdit.segmentDrag || pathNodeEdit.marquee) throw new Error("Finish moving the selected points before duplicating this slide.");
+    denseSlideCopyPending = true;
+    let prepared, staging, inherited = [], committed = false, sourceUi;
+    try {
+      if (pdfHistoryMovePending) await pdfHistoryMoveCompletion;
+      if (pdfHistoryMutationLockDepth) await pdfHistoryMutationCompletion;
+      await flushDensePdfEdits();requested();flushSpeakerNotesHistory();
+      sourceUi = { canvas, tab, page: source, tool: state.tool, viewKey: JSON.stringify(state.view), selection: selectedTopLevelObjects().slice(),
+        points: captureDirectSelectionHistoryState(), isolation: captureGroupIsolationHistoryState(), rolledBack: false };
+      exitGroupIsolation({ selectGroup: false, sync: false, toast: false });stopPathNodeEdit({ sync: false });
+      canvas.discardActiveObject();cancelSelectionEssentialsSync();cancelSelectionUiSync();
+      sourceUi.clearedRevision = selectionUiRevision;
+      const workspace = cloneDocumentTabValue(await workspaceProjectSourceAsync({ flushTextHistory: false }));requested();
+      const shell = fileFormatApi().serializeWorkspaceProject(workspace), references = browserDenseAssetReferences(shell), api = densePdfApi();
+      const roots = canvas.getObjects().slice(), local = roots.filter((object) => !inheritedMasterMeta(object));
+      if (roots.some((object) => inheritedMasterMeta(object) && selectionHasDensePdfPages([object]))) throw new Error("Editable PDF master projections cannot be duplicated yet.");
+      if (local.some((object) => clipboardObjectTree(object).some((child) => child !== object && inheritedMasterMeta(child)))) throw new Error("Mixed local and inherited groups cannot be duplicated yet.");
+      const initial = denseDeckCopyLocalSnapshot();denseDeckCopyFrame(initial);
+      const metadata = JSON.stringify(deck), revision = projectRevision, generation = workspaceProjectGeneration, topology = workspaceTopologyFingerprint();
+      const pendingText = textHistoryPending, pendingNotes = speakerNotesHistoryPending, notesTimer = speakerNotesHistoryTimer, tool = state.tool;
+      const drafts = captureDenseCopyDrafts(roots), states = api.captureAssetStates([...references.keys()]);
+      const sourceTransforms = roots.map((object) => Array.from(object.calcTransformMatrix()));
+      const current = () => {
+        requested();api.validateDraftCapture(drafts);api.validateAssetStates(states);
+        if (projectRevision !== revision || workspaceProjectGeneration !== generation || workspaceTopologyFingerprint() !== topology
+            || JSON.stringify(deck) !== metadata || textHistoryPending !== pendingText || speakerNotesHistoryPending !== pendingNotes
+            || speakerNotesHistoryTimer !== notesTimer || state.tool !== tool || canvas.getActiveObject() || densePdfEditPending
+            || selectionUiRevision !== sourceUi.clearedRevision || JSON.stringify(state.view) !== sourceUi.viewKey
+            || pdfHistoryMovePending || pdfHistoryMutationLockDepth || isRestoring || isApplyingHistory || activeDocumentFileOperation || exportStateDepth
+            || roots.length !== canvas.getObjects().length || roots.some((object, index) => canvas.getObjects()[index] !== object
+              || !Array.from(object.calcTransformMatrix()).every((value, i) => Object.is(value, sourceTransforms[index][i])))
+            || JSON.stringify(denseDeckCopyLocalSnapshot()) !== JSON.stringify(initial)) throw new Error("The slide changed while its copy was being prepared.");
+      };
+      current();prepared = await api.prepareSceneCopy(local, { properties: CUSTOM_PROPS, retainedAssetIds: [...references.keys()] });current();
+      const timestamp = new Date().toISOString();
+      const copy = options.fromCurrent ? defaultDeckPage(options.label || `Slide ${deck.pages.length + 1}`)
+        : { ...cloneDocumentTabValue(source), id: makeId("slide"), label: `${source.label || "Figure"} copy` };
+      if (options.fromCurrent) copy.appearanceOverrides = { ...(copy.appearanceOverrides || {}), artboard: { ...presentationDefaultArtboard() } };
+      copy.createdAt = timestamp;copy.updatedAt = timestamp;
+      const projected = cloneDocumentTabValue(deck), index = options.fromCurrent ? projected.pages.length : projected.pages.findIndex((page) => page.id === source.id) + 1;
+      projected.pages.splice(index, 0, copy);projected.activePageId = copy.id;
+      const localFabric = { ...initial, objects: prepared.objects.map((object) => object.toObject(CUSTOM_PROPS)) };
+      copy.fabric = localFabric;copy.artboard = cloneDocumentTabValue(source.artboard);
+      refuseDenseMasterScene(deckLayoutRecord(copy).master?.scene);
+      const composed = composeDeckPageSnapshot(copy, localFabric), inheritedRecords = composed.objects.slice(0, composed.objects.length - prepared.objects.length);
+      for (const record of inheritedRecords) {
+        refuseDenseMasterScene({ objects: [record] });
+        // One native root per await gives this transaction custody of every
+        // successful sibling before the next constructor can fail.
+        const objects = await fabricRef.util.enlivenObjects([record]);inherited.push(...objects);current();
+        if (objects.length !== 1) throw new Error("The copied slide projection is incomplete.");
+      }
+      const targetRoots = [...inherited, ...prepared.objects], appearance = resolvedDeckAppearance(copy);
+      staging = new fabricRef.StaticCanvas(null, { width: appearance.artboard.widthIn * INCH, height: appearance.artboard.heightIn * INCH,
+        renderOnAddRemove: false, enableRetinaScaling: false });
+      staging.add(...targetRoots);
+      const priorArtifacts = captureArtifactStoreSnapshot();
+      const staged = withDenseDeckStagingCanvas(staging, projected, () => {
+        applyDeckAppearanceToCanvas(copy);applyInheritedCanvasState();reconcileObjectLayersForCanvas();
+        refreshCanvasArtifactRefs();
+        copy.fabric = denseDeckCopyLocalSnapshot();copy.objectCount = staging.getObjects().filter(isFigureObject).length;
+        copy.thumbnail = buildDeckThumbnailDataUrl();
+        if (!copy.thumbnail) throw new Error("The slide preview could not be prepared. Nothing was duplicated.");
+        const project = buildProjectJson({ fabricSnapshot: copy.fabric, captureDeck: false, snapshotTimestamp: timestamp });
+        return { project, artifacts: new Map([...captureArtifactStoreSnapshot()].filter(([id]) => !priorArtifacts.has(id))) };
+      });
+      const { project } = staged;
+      const completedStage = staging;staging = null;await releaseDenseDeckStagingCanvas(completedStage);current();
+      const destination = workspace.presentation.tabs.find((item) => item.id === tab.id);
+      if (!destination) throw new Error("The presentation is no longer available.");
+      destination.payload = buildProjectPayload(project);
+      const projectedShell = fileFormatApi().serializeWorkspaceProject(workspace), ids = [...browserDenseAssetReferences(projectedShell).keys()];
+      const allStates = api.captureAssetStates(ids), valid = () => { current();api.validateAssetStates(allStates); };
+      valid();const assets = await api.saveAssets(ids);valid();validateBrowserDenseAssetBindings(projectedShell, assets);
+      const admission = await globalThis.FigureStudioPdfDenseFileCodec.admitCopy({ shell: projectedShell, assets, copiedScene: copy.fabric.objects });valid();
+      publishDenseDeckSlideCopy({ sourceCanvas, roots, projected, copy, project, targetRoots, prepared, current, timestamp, artifacts: staged.artifacts,
+        sourceUi, validateOwners: () => { api.validateDraftCapture(drafts);api.validateAssetStates(allStates); } });
+      committed = true;lastDensePdfCopyAdmission = admission;
+      try { updateStage();syncUi();fitToScreen();showToast("Slide duplicated"); } catch (error) { console.warn("Slide copied; its display refresh failed", error); }
+      return copy;
+    } finally {
+      // Preserve the primary failure (including falsy values); each cleanup is
+      // attempted independently and cannot strand another prepared owner.
+      if (staging) try { await releaseDenseDeckStagingCanvas(staging); } catch {}
+      if (!committed) {
+        for (const object of inherited) try { object.dispose?.(); } catch {}
+        if (prepared) try { densePdfApi().discardSceneCopy(prepared); } catch {}
+        try { restoreDenseDeckCopyUi(sourceUi); } catch {}
+      }
+      denseSlideCopyPending = false;
+    }
+  }
+
+  function denseFigureSlidePublicationGuard(plan) {
+    const target = plan.canvas, tab = plan.tab, payload = tab.payload, document = state.document, originalDeck = state.deck;
+    const originalRoots = plan.roots.slice(), newRoots = plan.targetRoots.slice();
+    const originalRecords = originalRoots.map(object => object.toObject(CUSTOM_PROPS)), candidate = denseFigureHandoffWitness(newRoots);
+    const candidateMetadata = structuredClone(denseFigureSlideCopyMetadata()), candidateArtifacts = captureArtifactStoreSnapshot(), candidateMissing = structuredClone(Array.from(missingExternalArtifactRefsById));
+    candidateMetadata.deck = structuredClone(plan.projected);candidateMetadata.artboard = { ...resolvedDeckAppearance(plan.copy).artboard };
+    candidateMetadata.guides = effectiveDeckGuideState(plan.copy);candidateMetadata.layoutAids = effectiveDeckLayoutAids(plan.copy);candidateMetadata.selectedGuideId = "";
+    for (const [id, value] of plan.artifacts || []) if (!candidateArtifacts.has(id)) candidateArtifacts.set(id, cloneManifestValue(value, value));
+    plan.preparedHistory?.validate();
+    if (plan.preparedHistory && !denseFigureHandoffEqual(Array.from(candidateArtifacts), Array.from(plan.preparedHistory.beforeArtifacts))) throw new Error("The prepared history cache does not match its admitted slide.");
+    let frontier = originalRoots, pending, installed = false, history = false, pendingHistory;
+    let artifactFrontier = candidateArtifacts, artifactPending = null;
+    const matchesArtifacts = value => denseFigureHandoffEqual(Array.from(artifactStore), Array.from(value));
+    const ownHistory = () => pendingHistory && redoStack.length === 0 && (denseFigureHandoffEqual(undoStack, [...pendingHistory.undo, pendingHistory.snapshot])
+      || plan.preparedHistory && denseFigureHandoffEqual(undoStack, plan.preparedHistory.history.undo));
+    const sameRoots = values => target.getObjects().length === values.length && values.every((object, index) => target.getObjects()[index] === object);
+    const identity = (rollback = false) => {
+      if (canvas !== target || activeDocumentTab() !== tab || tab.payload !== payload || state.document !== document
+          || workspaceProjectGeneration !== plan.generation || nativeCanvasLoadState(target).intent !== plan.intent
+          || projectRevision !== plan.revision + (history || rollback && ownHistory() ? 1 : 0)
+          || state.deck !== (installed ? plan.projected : originalDeck)) throw new Error("The slide copy publication was superseded.");
+      if (plan.preparedHistory) {
+        plan.preparedHistory.validate();const expected = plan.preparedHistory.history;
+        const exactHistory = history ? denseFigureHandoffEqual(undoStack, expected.undo) && denseFigureHandoffEqual(redoStack, expected.redo)
+          : denseFigureHandoffEqual(undoStack, expected.beforeUndo) && denseFigureHandoffEqual(redoStack, expected.beforeRedo);
+        if (!exactHistory && !(rollback && ownHistory())) throw new Error("The copied slide history changed during publication.");
+      }
+      if (installed && (!denseFigureHandoffEqual(denseFigureSlideCopyMetadata(), candidateMetadata)
+          || !(rollback && artifactPending ? artifactPending.some(matchesArtifacts) : matchesArtifacts(artifactFrontier))
+          || !denseFigureHandoffEqual(Array.from(missingExternalArtifactRefsById), candidateMissing))) {
+        try {
+          const differences = [];
+          const visit = (actual, expected, path, depth) => {
+            if (differences.length >= 64 || denseFigureHandoffEqual(actual, expected)) return;
+            if (depth >= 12 || !actual || !expected || typeof actual !== "object" || typeof expected !== "object") { differences.push(path);return; }
+            const keys = Object.keys(actual), other = Object.keys(expected);
+            if (!denseFigureHandoffEqual(keys, other)) differences.push(`${path}.[keys]`);
+            for (const key of new Set([...keys, ...other])) visit(actual[key], expected[key], `${path}.${key}`, depth + 1);
+          };
+          visit(denseFigureSlideCopyMetadata(), candidateMetadata, "metadata", 0);
+          console.warn("Slide copy admitted metadata changed paths:", differences.join(", "),
+            "artifacts:", !matchesArtifacts(artifactFrontier),
+            "missingArtifacts:", !denseFigureHandoffEqual(Array.from(missingExternalArtifactRefsById), candidateMissing));
+        } catch { /* Preserve the original publication failure. */ }
+        throw new Error("The admitted slide metadata changed during publication.");
+      }
+    };
+    const geometry = values => {
+      if (values === newRoots) {
+        if (!denseFigureHandoffEqual(denseFigureHandoffWitness(newRoots), candidate)) throw new Error("The prepared slide artwork changed during publication.");
+      } else if (values === originalRoots && !denseFigureHandoffEqual(originalRoots.map(object => object.toObject(CUSTOM_PROPS)), originalRecords)) throw new Error("The destination artwork changed during publication.");
+    };
+    const current = () => { identity();if (!sameRoots(frontier)) throw new Error("The slide copy native membership changed.");geometry(frontier); };
+    return {
+      beforeMetadata() { current();plan.context.current(); },
+      metadataInstalled() { installed = true;current(); },
+      beforeRemove() { current();pending = [frontier, []]; },
+      removed() { frontier = [];pending = null;current(); },
+      beforeAdd() { current();pending = [frontier, newRoots]; },
+      added() { frontier = newRoots;pending = null;current(); },
+      current,
+      installPreparedHistoryArtifacts() {
+        current();plan.preparedHistory.validate();
+        for (const [id, value] of plan.preparedHistory.artifacts) {
+          if (artifactFrontier.has(id) && denseFigureHandoffEqual(artifactFrontier.get(id), value)) continue;
+          const entry = cloneManifestValue(value, value), next = new Map(artifactFrontier);next.set(id, cloneManifestValue(entry, entry));
+          artifactPending = [artifactFrontier, next];
+          artifactStore.set(id, entry);
+          artifactFrontier = next;artifactPending = null;current();
+        }
+        if (!denseFigureHandoffEqual(Array.from(artifactFrontier), Array.from(plan.preparedHistory.artifacts))) throw new Error("The prepared history cache installation was incomplete.");
+        plan.preparedHistory.validate();current();
+      },
+      beforeHistory(snapshot) { current();pendingHistory = { snapshot, undo: undoStack.slice() }; },
+      historyCommitted() { history = true;current(); },
+      canRollback() {
+        try {
+          identity(true);const matches = pending ? pending.find(sameRoots) : sameRoots(frontier) ? frontier : null;
+          if (!matches) return false;geometry(matches);return true;
+        } catch { return false; }
+      },
+      assertCommitted() { if (!history) throw new Error("The slide copy history was not committed.");current(); }
+    };
+  }
+
+  function publishDenseDeckSlideCopy(plan) {
+    const api = densePdfApi();plan.current();
+    if (smartConnectorMissingTargetTimer) throw new Error("Finish updating slide connections before duplicating.");
+    for (const [id, entry] of plan.artifacts || []) {
+      const existing = artifactStore.get(id), metrics = artifactDataUrlContentMetrics(entry.dataUrl);
+      if (typeof entry.dataUrl !== "string" || !entry.dataUrl.startsWith("data:") || entry.ref?.artifact_id !== id
+          || entry.sizeBytes !== metrics.sizeBytes || entry.ref.size_bytes !== metrics.sizeBytes || entry.ref.hash !== metrics.hash
+          || (existing && (existing.dataUrl !== entry.dataUrl || existing.sizeBytes !== entry.sizeBytes
+            || JSON.stringify(existing.ref) !== JSON.stringify(entry.ref)))) throw new Error("A copied image artifact changed before slide publication.");
+    }
+    const old = { deck: state.deck, artboard: state.artboard, guides: state.guides, layoutAids: state.layoutAids,
+      background: canvas.backgroundColor, guide: selectedGuideId, restoring: isRestoring, tracking: documentMutationTrackingSuppressed,
+      history: captureVectorEngineHistoryState(), cache: latestHistoryStateCache, tab: activeDocumentTab(),
+      tabUndo: activeDocumentTab()?.undoStack, tabRedo: activeDocumentTab()?.redoStack, artifacts: captureArtifactStoreSnapshot() };
+    const releaseOld = pinPdfHistorySnapshots([...undoStack, ...redoStack]);
+    let replacement, unlock = () => {}, releaseCandidate = () => {}, mutating = false, suppressed = false, published = false, failed = false, failure;
+    const attempt = (run) => { try { run(); } catch (error) { if (!failed) { failed = true;failure = error; } } };
+    try {
+      unlock = lockPdfHistoryMutations();
+      plan.publication?.beforeMetadata();
+      replacement = api.beginSceneReplacement(canvas);isRestoring = true;documentMutationTrackingSuppressed++;suppressed = true;
+      mutating = true;
+      for (const [id, entry] of plan.artifacts || []) if (!artifactStore.has(id)) artifactStore.set(id, cloneManifestValue(entry, entry));
+      state.deck = plan.projected;state.artboard = { ...resolvedDeckAppearance(plan.copy).artboard };
+      state.guides = effectiveDeckGuideState(plan.copy);state.layoutAids = effectiveDeckLayoutAids(plan.copy);selectedGuideId = "";
+      plan.publication?.metadataInstalled();
+      plan.publication?.beforeRemove();canvas.remove(...plan.roots);plan.publication?.removed();
+      plan.publication?.beforeAdd();canvas.add(...plan.targetRoots);plan.publication?.added();
+      completeLoadedCanvasScene();applyDeckAppearanceToCanvas(plan.copy);applyInheritedCanvasState();reconcileObjectLayersForCanvas();canvas.discardActiveObject();
+      const actual = denseDeckCopyLocalSnapshot();
+      if (JSON.stringify(actual) !== JSON.stringify(plan.copy.fabric)) throw new Error("The copied slide changed during native reconciliation.");
+      const installed = buildProjectJson({ fabricSnapshot: actual, captureDeck: false, snapshotTimestamp: plan.timestamp });
+      if (JSON.stringify(installed) !== JSON.stringify(plan.project)) throw new Error("The copied slide metadata changed during publication.");
+      plan.publication?.current();
+      plan.validateOwners();
+      let serialized;
+      if (plan.preparedHistory) {
+        plan.preparedHistory.validate();
+        if (!plan.publication) throw new Error("Prepared slide history requires its publication owner.");
+        plan.publication.installPreparedHistoryArtifacts();serialized = plan.preparedHistory.serialized;
+      } else serialized = serializeEditorStateForHistory({ fabricSnapshot: actual, deckSnapshot: installed.deck, captureDeck: false });
+      releaseCandidate = pinPdfHistorySnapshots([serialized.snapshot]);
+      plan.publication?.current();
+      plan.publication?.beforeHistory(serialized.snapshot);
+      commitSerializedHistory(plan.historyLabel || "Slide duplicated", { markDirty: false }, serialized);
+      plan.publication?.historyCommitted();
+      api.commitSceneCopy(plan.prepared);published = true;
+    } catch (error) { failed = true;failure = error;
+      if (mutating && (!plan.publication || plan.publication.canRollback())) {
+      for (const object of canvas.getObjects().slice()) attempt(() => canvas.remove(object));
+      state.deck = old.deck;state.artboard = old.artboard;state.guides = old.guides;state.layoutAids = old.layoutAids;selectedGuideId = old.guide;
+      attempt(() => setDeckCanvasBackground(old.background));
+      for (const object of plan.roots) attempt(() => { if (!canvas.getObjects().includes(object)) canvas.add(object); });
+      attempt(() => restoreVectorEngineHistoryState(old.history));latestHistoryStateCache = old.cache;
+      attempt(() => restoreArtifactStoreSnapshot(old.artifacts));
+      if (old.tab) { old.tab.undoStack = old.tabUndo;old.tab.redoStack = old.tabRedo; }
+      plan.sourceUi.rolledBack = true;
+      }
+    } finally {
+      // Object removal/selection callbacks can queue global work. Nothing from
+      // a rejected candidate may execute later against the restored scene.
+      const owns = !plan.publication || published || plan.sourceUi.rolledBack || plan.publication.canRollback();
+      if (owns) {
+        attempt(() => { if (smartConnectorMissingTargetTimer) window.clearTimeout(smartConnectorMissingTargetTimer);smartConnectorMissingTargetTimer = 0; });
+        attempt(cancelSelectionEssentialsSync);attempt(cancelSelectionUiSync);
+        attempt(() => { if (selectionOverlayRenderFrame) window.cancelAnimationFrame(selectionOverlayRenderFrame);selectionOverlayRenderFrame = 0; });
+        isRestoring = old.restoring;
+      }
+      if (suppressed) documentMutationTrackingSuppressed = plan.publication ? Math.max(0, documentMutationTrackingSuppressed - 1) : old.tracking;
+      if (replacement) attempt(() => api.finishSceneReplacement(replacement));
+      attempt(releaseCandidate);attempt(releaseOld);attempt(unlock);
+    }
+    if (!published) { if (failed) throw failure;throw new Error("The slide copy was not published."); }
+    for (const object of plan.roots) try { object.dispose?.(); } catch (error) { console.warn("Previous slide view cleanup failed", error); }
+    if (failed) console.warn("Slide copied; view cleanup needs attention", failure);
+    try { plan.publication?.assertCommitted();requestCanvasArtworkRender();plan.publication?.assertCommitted();emitProjectChanged(plan.historyLabel || "Slide duplicated"); } catch (error) { console.warn("Slide copied; notification failed", error); }
+  }
+
+  function handleDeckCopyAction(action) {
+    try {
+      const result = action();
+      if (result && typeof result.then === "function") void result.catch((error) => showLongToast(error?.message || "The slide artwork could not be copied."));
+      return result;
+    } catch (error) { showLongToast(error?.message || "The slide artwork could not be copied.");return null; }
+  }
+
   function duplicateCurrentSlide() {
     if (!isPresentationDocument()) return null;
     const page = activeDeckPage();
     if (!page) return null;
+    if (selectionHasDensePdfPages(canvas.getObjects())) return duplicateDenseDeckSlide(page);
     captureActiveDeckPage();
     const copy = {
       ...JSON.parse(JSON.stringify(page)),
@@ -13912,6 +15500,14 @@
   function duplicateDeckSlideById(pageId) {
     const index = slideIndex(pageId);
     if (index < 0) return null;
+    const requested = state.deck.pages[index], sourceCanvas = canvas, documentId = currentTransformDocumentId(), order = deckPageIdOrder().join("\0");
+    if (state.deck.activePageId !== pageId && browserDenseAssetReferences({ fabric: requested.fabric }).size) {
+      return restoreDeckPage(pageId, { captureCurrent: true, historyLabel: "" }).then(() => {
+        if (canvas !== sourceCanvas || currentTransformDocumentId() !== documentId || activeDeckPage() !== requested
+            || state.deck.activePageId !== pageId || deckPageIdOrder().join("\0") !== order) throw new Error("The requested source slide changed before duplication.");
+        return duplicateDenseDeckSlide(requested);
+      });
+    }
     if (state.deck.activePageId !== pageId) {
       return restoreDeckPage(pageId, { captureCurrent: true, historyLabel: "" }).then(() => duplicateCurrentSlide());
     }
@@ -15915,14 +17511,20 @@
 
   function componentProtectedDescendantReason(object) {
     let reason = "";
+    const seen = new Set();
     const visit = (node, isRoot = false) => {
-      if (!node || reason) return;
+      if (!node || reason || seen.has(node)) return;
+      seen.add(node);
       if (node.locked) reason = "locked-artwork";
       else if (sourceBackedResultMeta(node) || linkedPanelMeta(node)) reason = "protected-results-source";
-      else if (nativePdfDescriptorTreeForObject(node)) reason = "native-pdf-source";
+      else if (densePdfPageForObject(node) || nativePdfDescriptorTreeForObject(node)) reason = "native-pdf-source";
       else if (proxyPanelForObject(node)) reason = "protected-proxy-source";
       else if (!isRoot && componentInstanceMeta(node)) reason = "nested-component";
-      if (!reason) groupChildren(node).forEach((child) => visit(child, false));
+      if (!reason) {
+        groupChildren(node).forEach((child) => visit(child, false));
+        visit(node.clipPath, false);
+        visit(node.mask, false);
+      }
     };
     visit(object, true);
     return reason;
@@ -16558,7 +18160,7 @@
     resetPrecisionToolTransientState();
     stopPathNodeEdit({ sync: false });
     if (isGroupIsolationActive()) exitGroupIsolation({ selectGroup: false, sync: false, toast: false, liveBooleanCommit: true });
-    canvas.clear();
+    clearEditorCanvas();
     canvas.backgroundColor = "#ffffff";
     state.components = { schema: "figureStudio.components.v2", masters: [] };
     const source = sourceMeta({ sourceId: "qa-scientific-component", kind: "qa" });
@@ -16643,7 +18245,7 @@
       return instance;
     };
     for (let index = 0; index < 3; index += 1) {
-      canvas.clear();
+      clearEditorCanvas();
       canvas.backgroundColor = "#ffffff";
       const page = defaultDeckPage(pageNames[index]);
       page.layoutId = "blank";
@@ -16745,7 +18347,7 @@
       unrelatedId: ""
     };
     for (let index = 0; index < 2; index += 1) {
-      canvas.clear();
+      clearEditorCanvas();
       canvas.backgroundColor = "#ffffff";
       const page = defaultDeckPage(`${presentation ? "Slide" : "Figure"} ${index + 1} — ${index ? "Dose response" : "Calcium signaling"}`);
       page.layoutId = "blank";
@@ -16849,7 +18451,7 @@
     state.publicationTypography = normalizePublicationTypographyState(null);
     const masters = normalizeDeckMasters(state.deck?.masters);
     state.deck = { activePageId: "", themeId: "scientific", layouts: masters.flatMap((master) => master.layouts.map((layout) => layout.id)), masters, pages: [], sections: [], guidePresets: [] };
-    canvas.clear();
+    clearEditorCanvas();
     canvas.backgroundColor = "#ffffff";
     const page = defaultDeckPage("Figure 1 — cytokine response");
     page.layoutId = "blank";
@@ -16948,7 +18550,7 @@
       targetSizesPt: Object.fromEntries(api.ROLES.map((role) => [role, api.defaultProfile().roles[role].finalSizePt]))
     };
 
-    canvas.clear();
+    clearEditorCanvas();
     canvas.backgroundColor = "#ffffff";
     const firstPage = defaultDeckPage("Figure 1 — transformed panels");
     firstPage.layoutId = "blank";
@@ -17018,7 +18620,7 @@
     canvas.requestRenderAll();
     captureActiveDeckPage({ updateThumbnail: false });
 
-    canvas.clear();
+    clearEditorCanvas();
     canvas.backgroundColor = "#ffffff";
     const secondPage = defaultDeckPage("Figure 2 — inactive area text");
     secondPage.layoutId = "blank";
@@ -17085,7 +18687,7 @@
     state.publicationTypography = normalizePublicationTypographyState(null);
     const masters = normalizeDeckMasters(state.deck?.masters);
     state.deck = { activePageId: "", themeId: "scientific", layouts: masters.flatMap((master) => master.layouts.map((layout) => layout.id)), masters, pages: [], sections: [], guidePresets: [] };
-    canvas.clear();
+    clearEditorCanvas();
     canvas.backgroundColor = "#ffffff";
     const page = defaultDeckPage("Figure 1 — row threshold");
     page.layoutId = "blank";
@@ -17831,7 +19433,7 @@
     }
     state.tool = "select";
     updateStage();
-    canvas.clear();
+    clearEditorCanvas();
     canvas.backgroundColor = "#ffffff";
     if (id === "graphical-abstract") {
       buildGraphicalAbstractTemplate();
@@ -20654,6 +22256,11 @@
 
   function attachVariableStrokeRenderer(object) {
     if (!object || isLineVectorObject(object) || object._figureStudioVariableStrokeRendererAttached || !fabricRef?.Path?.prototype?._render) return object;
+    // A uniform source rectangle already has its native fill renderer. Keep
+    // that exact dispatch during import/reopen; selecting a variable profile
+    // calls this function again and installs the ordinary stroke wrapper.
+    if (globalThis.FigureStudioPdfSvgMaterializer?.isNativeRectangleDisplayPath?.(object, { fabric: fabricRef })
+        && object._render === fabricRef.Path.prototype._render && !variableStrokeProfileActive(object)) return object;
     object._figureStudioVariableStrokeRendererAttached = true;
     object._render = function renderFigureStudioVariableStroke(ctx) {
       const variable = variableStrokeProfileActive(this);
@@ -20970,9 +22577,11 @@
   }
 
   function normalizeSmartConnectorMeta(value = {}) {
+    if (Object.prototype.hasOwnProperty.call(value, "geometrySpace") && value.geometrySpace !== "object") throw new Error("This arrow uses unsupported coordinates.");
     const route = String(value.route || "straight").toLowerCase();
     return {
       schema: "figureStudio.smartConnector.v1",
+      ...(value.geometrySpace === "object" ? { geometrySpace: "object" } : {}),
       start: {
         objectId: String(value.start?.objectId || value.startObjectId || ""),
         anchor: normalizeConnectorPortRole(value.start?.anchor, "right"),
@@ -20990,6 +22599,8 @@
       clearance: clamp(Number(value.clearance || 18) || 18, 10, 40),
       manualBends: normalizeSmartConnectorBends(value.manualBends),
       autoBends: normalizeSmartConnectorBends(value.autoBends),
+      ...(typeof value.curveOffset === "number" && Number.isFinite(value.curveOffset) ? { curveOffset: value.curveOffset } : {}),
+      ...(value.curveSide === 1 || value.curveSide === -1 ? { curveSide: value.curveSide } : {}),
       label: String(value.label || "").slice(0, 80),
       labelOffset: {
         x: clamp(Number(value.labelOffset?.x || 0) || 0, -2000, 2000),
@@ -21039,6 +22650,128 @@
     return fallback && Number.isFinite(Number(fallback.x)) && Number.isFinite(Number(fallback.y))
       ? { role: endpoint.anchor || "right", x: Number(fallback.x), y: Number(fallback.y) }
       : null;
+  }
+
+  function smartConnectorObjectInverse(connector, own = false) {
+    const matrix = own ? connector.calcOwnMatrix() : connector.calcTransformMatrix();
+    const [a, b, c, d] = matrix, determinant = a * d - b * c;
+    if (!matrix.every(Number.isFinite) || Math.abs(determinant) <= 1e-12) throw new Error("This arrow has a singular transform. Reset its scale before editing it.");
+    const inverse = fabricRef.util.invertTransform(matrix);
+    if (Math.hypot(a, b, c, d) * Math.hypot(...inverse.slice(0, 4)) > 1e8) throw new Error("This arrow's scale is too small to edit reliably.");
+    return inverse;
+  }
+
+  function smartConnectorObjectPoint(connector, point, toScene = false, vector = false) {
+    const offset = connector.pathOffset || { x: 0, y: 0 };
+    const matrix = toScene ? connector.calcTransformMatrix() : smartConnectorObjectInverse(connector);
+    const input = toScene && !vector ? fabricPoint(point.x - offset.x, point.y - offset.y) : fabricPoint(point.x, point.y);
+    const result = fabricRef.util.transformPoint(input, matrix, vector);
+    return { x: result.x + (!toScene && !vector ? offset.x : 0), y: result.y + (!toScene && !vector ? offset.y : 0) };
+  }
+
+  function smartConnectorEndpointGeometryPoint(connector, endpoint) {
+    if (connector.smartConnectorMeta?.geometrySpace !== "object") return connectorEndpointPointInParent(connector, endpoint);
+    const target = getByFigureId(endpoint?.objectId || "");
+    const anchor = connectorAnchorPoints(target).find((item) => item.role === normalizeConnectorPortRole(endpoint?.anchor, "right"));
+    if (anchor) return smartConnectorObjectPoint(connector, anchor);
+    const point = endpoint?.point;
+    return point && Number.isFinite(Number(point.x)) && Number.isFinite(Number(point.y)) ? { x: Number(point.x), y: Number(point.y) } : null;
+  }
+
+  function smartConnectorEndpointScenePoint(connector, endpoint) {
+    if (connector.smartConnectorMeta?.geometrySpace !== "object") return connectorEndpointPoint(endpoint);
+    const point = smartConnectorEndpointGeometryPoint(connector, endpoint);
+    return point ? smartConnectorObjectPoint(connector, point, true) : null;
+  }
+
+  function smartConnectorTrueParent(connector) {
+    if (connector.parent && !isActiveSelectionObject(connector.parent)) return connector.parent;
+    return connector.group && !isActiveSelectionObject(connector.group) ? connector.group : null;
+  }
+
+  function prepareSmartConnectorTransfer(roots) {
+    const seen = new Set(), connectors = [], conversions = [];
+    const visit = (object) => {
+      if (!object || seen.has(object)) return;
+      seen.add(object);
+      if (isSmartConnectorObject(object)) connectors.push(object);
+      groupChildren(object).forEach(visit);
+    };
+    for (const object of roots) {
+      let root = object, parent = smartConnectorTrueParent(root);
+      while (parent) { root = parent; parent = smartConnectorTrueParent(root); }
+      visit(root);
+    }
+    try {
+      for (const connector of connectors) {
+        const meta = normalizeSmartConnectorMeta(connector.smartConnectorMeta);
+        smartConnectorObjectInverse(connector);
+        if (connector.strokeUniform) {
+          const rigid = ([a, b, c, d]) => Math.abs(Math.hypot(a, b) - 1) <= 1e-8 && Math.abs(Math.hypot(c, d) - 1) <= 1e-8 && Math.abs(a * c + b * d) <= 1e-8;
+          if (!rigid(connector.calcTransformMatrix()) || !rigid(connector.calcOwnMatrix()) || [...seen].some((object) => isGroupObject(object) && !rigid(object.calcTransformMatrix()))) throw new Error("Reset this arrow's scale before moving it between groups with a uniform stroke.");
+        }
+        if (meta.geometrySpace === "object") {
+          if (connector.originX !== "center" || connector.originY !== "center" || meta.route === "elbow" && (meta.routeMode !== "manual" || !meta.manualBends.length)) throw new Error("Choose Straight or Curved before moving this arrow between groups.");
+          continue;
+        }
+        if (meta.route === "elbow" && (meta.routeMode !== "manual" || !meta.manualBends.length)) throw new Error("Change this older arrow to Straight or Curved before grouping it.");
+        if (meta.label) throw new Error("Remove this older arrow's label before grouping it, then add the label again.");
+        const candidate = new fabricRef.Path(connector.path.map((row) => row.slice()));
+        ["left", "top", "originX", "originY", "scaleX", "scaleY", "angle", "skewX", "skewY", "flipX", "flipY", "stroke", "strokeWidth", "strokeUniform", "strokeLineCap", "strokeLineJoin", "strokeDashArray", "strokeDashOffset", "opacity", "fill", "paintFirst", "strokeMiterLimit"].forEach((key) => { candidate[key] = Array.isArray(connector[key]) ? connector[key].slice() : connector[key]; });
+        candidate.figureType = "smartConnector";
+        candidate.styleMeta = cloneManifestValue(connector.styleMeta, {});
+        if (connector.group) {
+          candidate.group = Object.create(connector.group);
+          candidate.group.set = function () { return this; };
+        }
+        const parentMatrix = smartConnectorTrueParent(connector)?.calcTransformMatrix();
+        const convert = (point) => smartConnectorObjectPoint(connector, parentMatrix ? fabricRef.util.transformPoint(fabricPoint(point.x, point.y), parentMatrix) : point);
+        // Legacy midpoint fallbacks use the serialized scene plane in an active
+        // selection; other legacy records retain their literal native parent.
+        const convertEndpoint = (point) => meta.labelPlacement === "midpoint" && isActiveSelectionObject(connector.group) ? smartConnectorObjectPoint(connector, point) : convert(point);
+        ["start", "end"].forEach((key) => { if (meta[key].point) meta[key].point = convertEndpoint(meta[key].point); });
+        ["manualBends", "autoBends"].forEach((key) => { meta[key] = meta[key].map(convertEndpoint); });
+        const labelOffset = fabricRef.util.transformPoint(fabricPoint(meta.labelOffset.x, meta.labelOffset.y), smartConnectorObjectInverse(connector, true), true);
+        if (Math.max(Math.abs(labelOffset.x), Math.abs(labelOffset.y)) > 2000) throw new Error("Reset this older arrow's label position before grouping it.");
+        meta.labelOffset = { x: labelOffset.x, y: labelOffset.y };
+        meta.geometrySpace = "object";
+        meta.labelPlacement = "midpoint";
+        candidate.smartConnectorMeta = meta;
+        const center = candidate.getRelativeCenterPoint();
+        candidate.set({ originX: "center", originY: "center" });
+        candidate.setPositionByOrigin(center, "center", "center");
+        updateObjectSpaceSmartConnectorGeometry(candidate, meta);
+        const originalMatrix = connector.calcTransformMatrix(), candidateMatrix = candidate.calcTransformMatrix();
+        if (!originalMatrix.slice(0, 4).every((value, index) => Math.abs(value - candidateMatrix[index]) < 1e-9) || candidate.path.length !== connector.path.length) throw new Error("This older arrow's shape cannot be grouped without changing it. Draw a new arrow instead.");
+        connector.path.forEach((row, index) => {
+          const replacement = candidate.path[index];
+          if (row[0] !== replacement[0] || row.length !== replacement.length) throw new Error("This older arrow has custom geometry. Draw a new arrow before grouping it.");
+          for (let column = 1; column < row.length; column += 2) {
+            const before = fabricRef.util.transformPoint(fabricPoint(row[column] - connector.pathOffset.x, row[column + 1] - connector.pathOffset.y), originalMatrix);
+            const after = fabricRef.util.transformPoint(fabricPoint(replacement[column] - candidate.pathOffset.x, replacement[column + 1] - candidate.pathOffset.y), candidateMatrix);
+            if (Math.hypot(before.x - after.x, before.y - after.y) > .005) throw new Error("This older arrow's shape cannot be grouped without changing it. Draw a new arrow instead.");
+          }
+        });
+        for (const key of ["stroke", "strokeWidth", "strokeUniform", "strokeLineCap", "strokeLineJoin", "strokeDashArray", "strokeDashOffset", "opacity", "fill", "paintFirst", "strokeMiterLimit"]) {
+          if (JSON.stringify(connector[key]) !== JSON.stringify(candidate[key])) throw new Error("This older arrow's stroke cannot be grouped without changing it.");
+        }
+        conversions.push({ connector, meta: candidate.smartConnectorMeta });
+      }
+      return { status: "ready", conversions };
+    } catch (error) {
+      showToast(error.message);
+      return { status: "blocked", reason: "smart-connector-geometry", message: error.message };
+    }
+  }
+
+  function commitSmartConnectorTransfer(prepared) {
+    prepared.conversions.forEach(({ connector, meta }) => {
+      const center = connector.getRelativeCenterPoint();
+      connector.set({ originX: "center", originY: "center" });
+      connector.setPositionByOrigin(center, "center", "center");
+      connector.smartConnectorMeta = meta;
+      updateObjectSpaceSmartConnectorGeometry(connector, meta);
+    });
   }
 
   function smartConnectorSerializedGeometryFacade(object, views) {
@@ -21109,13 +22842,32 @@
     };
   }
 
+  function smartConnectorInitialCurveSide(start, end) {
+    const dx = end.x - start.x, dy = end.y - start.y;
+    return (Math.abs(dx) >= Math.abs(dy) ? dx : dy) < 0 ? -1 : 1;
+  }
+
+  function smartConnectorCurveFrame(start, end, curveSide = 1) {
+    const dx = end.x - start.x, dy = end.y - start.y, length = Math.hypot(dx, dy);
+    // The directed normal varies continuously as an endpoint moves. Its stored
+    // side changes only on Reverse, never when the chord crosses an axis/angle.
+    const direction = curveSide === -1 ? -1 : 1;
+    return { midpoint: { x: start.x + dx / 2, y: start.y + dy / 2 }, length,
+      normal: length ? { x: -dy * direction / length, y: dx * direction / length } : { x: 0, y: direction } };
+  }
+
+  function smartConnectorCurveControl(start, end, curveOffset, curveSide) {
+    const frame = smartConnectorCurveFrame(start, end, curveSide);
+    const offset = typeof curveOffset === "number" && Number.isFinite(curveOffset)
+      ? curveOffset : Math.min(56, Math.max(22, frame.length * .24));
+    return { x: frame.midpoint.x + frame.normal.x * offset, y: frame.midpoint.y + frame.normal.y * offset };
+  }
+
   function smartConnectorRoute(start, end, route, options = {}) {
     const dx = end.x - start.x;
     const dy = end.y - start.y;
     if (route === "curved") {
-      const control = Math.abs(dx) >= Math.abs(dy)
-        ? { x: start.x + dx / 2, y: start.y + (Math.sign(dy || 1) * Math.min(56, Math.max(22, Math.abs(dx) * .24))) }
-        : { x: start.x + (Math.sign(dx || 1) * Math.min(56, Math.max(22, Math.abs(dy) * .24))), y: start.y + dy / 2 };
+      const control = smartConnectorCurveControl(start, end, options.curveOffset, options.curveSide);
       return {
         path: `M ${roundPathCoord(start.x)} ${roundPathCoord(start.y)} Q ${roundPathCoord(control.x)} ${roundPathCoord(control.y)} ${roundPathCoord(end.x)} ${roundPathCoord(end.y)}`,
         startVector: { x: control.x - start.x, y: control.y - start.y },
@@ -21407,11 +23159,69 @@
     });
     connector.smartConnectorMeta = meta;
     updateSmartConnectorGeometry(connector);
+    if (meta.route !== "elbow") {
+      const marked = normalizeSmartConnectorMeta(connector.smartConnectorMeta);
+      ["start", "end"].forEach((key) => { marked[key].point = smartConnectorObjectPoint(connector, marked[key].point); });
+      marked.geometrySpace = "object";
+      marked.labelPlacement = "midpoint";
+      const center = connector.getRelativeCenterPoint();
+      connector.set({ originX: "center", originY: "center" });
+      connector.setPositionByOrigin(center, "center", "center");
+      connector.smartConnectorMeta = marked;
+      updateSmartConnectorGeometry(connector);
+    }
     return connector;
+  }
+
+  function updateObjectSpaceSmartConnectorGeometry(connector, meta) {
+    if (meta.route === "elbow" && (meta.routeMode !== "manual" || !meta.manualBends.length)) throw new Error("Automatic routing is unavailable for this arrow. Keep its manual bends or choose Straight or Curved.");
+    if (connector.originX !== "center" || connector.originY !== "center") throw new Error("This arrow has unsupported coordinate origins.");
+    smartConnectorObjectInverse(connector);
+    meta.labelPlacement = "midpoint";
+    const start = smartConnectorEndpointGeometryPoint(connector, meta.start), end = smartConnectorEndpointGeometryPoint(connector, meta.end);
+    if (!start || !end) return false;
+    const oldOffset = connector.pathOffset || { x: 0, y: 0 }, center = connector.getRelativeCenterPoint(), own = connector.calcOwnMatrix();
+    if (meta.route === "curved") meta.curveSide ??= smartConnectorInitialCurveSide(start, end);
+    let bends = [];
+    if (meta.route === "elbow") {
+      shiftConnectorBendsForSharedEndpointMove(meta, start, end);
+      if (meta.manualOrthogonal) meta.manualBends = orthogonalManualBends(start, end, meta.manualBends);
+      bends = meta.manualBends;
+    }
+    meta.start.point = { x: start.x, y: start.y };
+    meta.end.point = { x: end.x, y: end.y };
+    const resolved = (endpoint) => connectorAnchorPoints(getByFigureId(endpoint.objectId || "")).some((point) => point.role === normalizeConnectorPortRole(endpoint.anchor, "right"));
+    meta.detached = !(resolved(meta.start) && resolved(meta.end));
+    meta.routingState = "clear";
+    const style = readStyle(connector);
+    const routed = smartConnectorPathData(start, end, style, meta.route, { curveOffset: meta.curveOffset, curveSide: meta.curveSide, bends });
+    const replacement = new fabricRef.Path(routed.path), offset = replacement.pathOffset;
+    connector.set({
+      path: replacement.path.map((command) => command.slice()), width: replacement.width, height: replacement.height,
+      pathOffset: fabricPoint(offset.x, offset.y), fill: "", stroke: style.stroke ?? "#0f766e",
+      strokeWidth: Number(style.strokeWidth || 2) || 2, strokeDashArray: lineDashArrayForStyle(style) || null,
+      strokeDashOffset: Number(style.strokeDashOffset || 0) || 0,
+      strokeLineCap: normalizeStrokeLineCap(style.strokeLineCap || "round"), strokeLineJoin: normalizeStrokeLineJoin(style.strokeLineJoin || "round"), opacity: Number(style.opacity ?? 1)
+    });
+    // Raw authoring coordinates stay fixed when path bounds change. Compensate
+    // the native center using the complete own linear map, including skew/flip.
+    const shift = fabricRef.util.transformPoint(fabricPoint(offset.x - oldOffset.x, offset.y - oldOffset.y), own, true);
+    connector.setPositionByOrigin(fabricPoint(center.x + shift.x, center.y + shift.y), "center", "center");
+    connector.smartConnectorMeta = meta;
+    connector._smartConnectorBends = bends;
+    connector._smartConnectorRoutingState = "clear";
+    const labelPoint = fabricRef.util.transformPoint(fabricPoint(routed.labelPoint.x - offset.x, routed.labelPoint.y - offset.y), connector.calcOwnMatrix());
+    connector._smartConnectorLabelPoint = { x: labelPoint.x, y: labelPoint.y };
+    connector._smartConnectorLabelLayout = null;
+    connector._smartConnectorRenderedOrigin = { left: connector.left, top: connector.top };
+    connector.dirty = true;
+    connector.setCoords?.();
+    return true;
   }
 
   function updateSmartConnectorGeometry(connector) {
     if (!isSmartConnectorObject(connector)) return false;
+    if (connector.smartConnectorMeta?.geometrySpace === "object") return updateObjectSpaceSmartConnectorGeometry(connector, normalizeSmartConnectorMeta(connector.smartConnectorMeta));
     const meta = normalizeSmartConnectorMeta(connector.smartConnectorMeta);
     const startTarget = meta.start.objectId ? getByFigureId(meta.start.objectId) : null;
     const endTarget = meta.end.objectId ? getByFigureId(meta.end.objectId) : null;
@@ -21420,6 +23230,11 @@
     let start = connectorEndpointPointInParent(connector, meta.start, geometryViews);
     let end = connectorEndpointPointInParent(connector, meta.end, geometryViews);
     if (!start || !end) return false;
+    if (meta.route === "curved" && meta.curveSide === undefined) {
+      // Seed an older connector once from its current arc. Persisting this
+      // orientation prevents later endpoint motion from choosing a new side.
+      meta.curveSide = smartConnectorInitialCurveSide(start, end);
+    }
     const startPoint = { x: roundPathCoord(start.x), y: roundPathCoord(start.y) };
     const endPoint = { x: roundPathCoord(end.x), y: roundPathCoord(end.y) };
     if (!geometryViews) {
@@ -21449,7 +23264,8 @@
     const localStart = { x: start.x - minX, y: start.y - minY };
     const localEnd = { x: end.x - minX, y: end.y - minY };
     const style = readStyle(connector);
-    const routed = smartConnectorPathData(localStart, localEnd, style, meta.route, { bends: renderBends.map((point) => ({ x: point.x - minX, y: point.y - minY })) });
+    const routed = smartConnectorPathData(localStart, localEnd, style, meta.route, { curveOffset: meta.curveOffset, curveSide: meta.curveSide,
+      bends: renderBends.map((point) => ({ x: point.x - minX, y: point.y - minY })) });
     const replacement = new fabricRef.Path(routed.path);
     const replacementWidth = Number(replacement.width || 0);
     const replacementHeight = Number(replacement.height || 0);
@@ -21459,8 +23275,6 @@
       width: replacementWidth,
       height: replacementHeight,
       pathOffset: replacementOffset,
-      left: minX + replacementOffset.x - replacementWidth / 2,
-      top: minY + replacementOffset.y - replacementHeight / 2,
       fill: "",
       stroke: style.stroke ?? "#0f766e",
       strokeWidth: Number(style.strokeWidth || 2) || 2,
@@ -21470,6 +23284,9 @@
       strokeLineJoin: normalizeStrokeLineJoin(style.strokeLineJoin || "round"),
       opacity: Number(style.opacity ?? 1)
     });
+    // Fabric origins include the final stroke and object transform. Anchor the
+    // native path center in its parent plane so stroke width cannot shift it.
+    connector.setPositionByOrigin(fabricPoint(minX + replacementOffset.x, minY + replacementOffset.y), "center", "center");
     connector.smartConnectorMeta = meta;
     connector._smartConnectorBends = routing.bends;
     connector._smartConnectorRoutingState = routing.state;
@@ -21483,24 +23300,58 @@
     return true;
   }
 
-  function scheduleMissingSmartConnectorTargetCleanup() {
-    if (smartConnectorMissingTargetTimer) window.clearTimeout(smartConnectorMissingTargetTimer);
-    smartConnectorMissingTargetTimer = window.setTimeout(() => {
-      smartConnectorMissingTargetTimer = 0;
-      let changed = false;
-      allCanvasObjectsDeep().filter(isSmartConnectorObject).forEach((connector) => {
-        const meta = normalizeSmartConnectorMeta(connector.smartConnectorMeta);
-        ["start", "end"].forEach((endpoint) => {
-          if (meta[endpoint].objectId && !getByFigureId(meta[endpoint].objectId)) {
-            meta[endpoint].objectId = "";
-            changed = true;
-          }
-        });
-        meta.detached = !(meta.start.objectId && meta.end.objectId);
-        connector.smartConnectorMeta = meta;
+  function missingSmartConnectorCleanupIsCurrent(job) {
+    return canvasUiDeliveryIsCurrent(job.owner) && activeDocumentTab() === job.tab && state.document === job.document
+      && canvasLoadDeckPage() === job.page && workspaceProjectGeneration === job.generation && nativePdfLifecycleEpoch === job.epoch;
+  }
+
+  function runMissingSmartConnectorTargetCleanup(job) {
+    if (smartConnectorMissingTargetCleanup !== job || smartConnectorMissingTargetTimer !== job.timer) return;
+    smartConnectorMissingTargetCleanup = null;
+    smartConnectorMissingTargetTimer = 0;
+    if (!missingSmartConnectorCleanupIsCurrent(job)) return;
+    const current = () => {
+      if (!missingSmartConnectorCleanupIsCurrent(job)) throw new Error("The document changed while updating connections.");
+    };
+    let changed = false;
+    allCanvasObjectsDeep().filter(isSmartConnectorObject).forEach((connector) => {
+      current();
+      const meta = normalizeSmartConnectorMeta(connector.smartConnectorMeta);
+      ["start", "end"].forEach((endpoint) => {
+        current();
+        if (meta[endpoint].objectId && !getByFigureId(meta[endpoint].objectId)) {
+          meta[endpoint].objectId = "";
+          changed = true;
+        }
       });
-      if (changed) refreshSmartConnectors();
-    }, 0);
+      current();
+      meta.detached = !(meta.start.objectId && meta.end.objectId);
+      connector.smartConnectorMeta = meta;
+    });
+    current();
+    if (changed) refreshSmartConnectors();
+    current();
+  }
+
+  function flushMissingSmartConnectorTargetCleanup() {
+    if (!smartConnectorMissingTargetTimer) return;
+    const job = smartConnectorMissingTargetCleanup;
+    if (!job || job.timer !== smartConnectorMissingTargetTimer || !missingSmartConnectorCleanupIsCurrent(job)) {
+      throw new Error("Finish updating connections before switching documents.");
+    }
+    window.clearTimeout(job.timer);
+    runMissingSmartConnectorTargetCleanup(job);
+    if (smartConnectorMissingTargetTimer) throw new Error("Finish updating connections before switching documents.");
+  }
+
+  function scheduleMissingSmartConnectorTargetCleanup() {
+    if (coalesceDenseCanvasUi(canvas)) return;
+    if (smartConnectorMissingTargetTimer) window.clearTimeout(smartConnectorMissingTargetTimer);
+    const job = { owner: canvasUiDeliveryOwner(), tab: activeDocumentTab(), document: state.document,
+      page: canvasLoadDeckPage(), generation: workspaceProjectGeneration, epoch: nativePdfLifecycleEpoch, timer: 0 };
+    job.timer = window.setTimeout(() => runMissingSmartConnectorTargetCleanup(job), 0);
+    smartConnectorMissingTargetCleanup = job;
+    smartConnectorMissingTargetTimer = job.timer;
   }
 
   function smartConnectorLabelObject(connector) {
@@ -21538,13 +23389,21 @@
     };
   }
 
-  function syncSmartConnectorLabel(connector) {
+  function syncSmartConnectorLabel(connector, context = null) {
+    const current = () => { if (context) assertCanvasRestoreCompletion(context); };
+    current();
     if (!isSmartConnectorObject(connector)) return;
     const meta = normalizeSmartConnectorMeta(connector.smartConnectorMeta);
     const label = String(meta.label || "").trim();
     let text = smartConnectorLabelObject(connector);
     if (!label) {
-      if (text) canvas.remove(text);
+      if (text) {
+        current();
+        const completion = context?.completion;
+        if (completion) densePdfApi().removeCanvasRestoreConnectorText(completion, { connector, text, parent: canvas, slot: canvas.getObjects().indexOf(text), reason: "empty" });
+        canvas.remove(text);
+        current();
+      }
       return;
     }
     if (!text) {
@@ -21555,19 +23414,27 @@
         ...(meta.labelPlacement === "midpoint" ? { fontFamily: DEFAULT_FONT_FAMILY } : {})
       }), "connectorLabel", "Connector label", sourceMeta({ kind: "connector-label" }), {});
       text.smartConnectorMeta = { connectorId: connector.figureId };
+      current();
+      const completion = context?.completion;
+      if (completion) densePdfApi().registerCanvasRestoreConnectorText(completion, { connector, text });
       canvas.add(text);
+      current();
     }
     text.set({
       text: label,
       fill: readStyle(connector).stroke || "#0f766e"
     });
+    current();
     const base = smartConnectorLabelBasePosition(connector, meta, text);
     const offsetOwner = isActiveSelectionObject(connector.group) ? { group: null } : connector;
-    const offset = meta.labelPlacement === "midpoint"
+    const offset = meta.geometrySpace === "object"
+      ? (() => { const scene = smartConnectorObjectPoint(connector, meta.labelOffset, true, true); const local = sceneDeltaToObjectParent(text, scene.x, scene.y); return { x: local.dx, y: local.dy }; })()
+      : meta.labelPlacement === "midpoint"
       ? smartConnectorLabelOffsetInParent(offsetOwner, text, meta.labelOffset)
       : meta.labelOffset;
     text.set({ left: base.left + offset.x, top: base.top + offset.y });
     text.setCoords?.();
+    current();
   }
 
   function syncSmartConnectorMetaFromLabel(labelObject, options = {}) {
@@ -21583,7 +23450,9 @@
         y: Number(labelObject.top || 0) - base.top
       };
       const offsetOwner = isActiveSelectionObject(connector.group) ? { group: null } : connector;
-      const offset = meta.labelPlacement === "midpoint"
+      const offset = meta.geometrySpace === "object"
+        ? smartConnectorObjectPoint(connector, labelObject.group ? fabricRef.util.transformPoint(fabricPoint(localOffset.x, localOffset.y), labelObject.group.calcTransformMatrix(), true) : localOffset, false, true)
+        : meta.labelPlacement === "midpoint"
         ? smartConnectorLabelOffsetInParent(labelObject, offsetOwner, localOffset)
         : localOffset;
       meta.labelOffset = { x: clamp(offset.x, -2000, 2000), y: clamp(offset.y, -2000, 2000) };
@@ -21632,21 +23501,31 @@
     bucket.recalculatedObjectIds = [...ids];
   }
 
-  function refreshSmartConnectors() {
+  function refreshSmartConnectors(context = null) {
+    const current = () => { if (context) assertCanvasRestoreCompletion(context); };
+    current();
     if (!canvas) return [];
     const objects = allCanvasObjectsDeep();
     const connectors = objects.filter(isSmartConnectorObject).sort((left, right) => String(left.figureId || "").localeCompare(String(right.figureId || "")));
     const connectorIds = new Set(connectors.map((connector) => connector.figureId).filter(Boolean));
     objects.filter((object) => object.figureType === "connectorLabel" && !connectorIds.has(object.smartConnectorMeta?.connectorId)).forEach((label) => {
+      current();
+      const parent = label.group?.remove ? label.group : canvas;
+      const completion = context?.completion;
+      if (completion) densePdfApi().removeCanvasRestoreConnectorText(completion, { text: label, parent, slot: parent.getObjects().indexOf(label), reason: "orphan" });
       if (label.group?.remove) label.group.remove(label);
       else canvas.remove(label);
+      current();
     });
     // A bounded settle lets freshly projected peer labels participate in deterministic lane scoring.
     const refreshed = [];
     [0, 1, 2, 3].forEach(() => connectors.forEach((connector) => {
+      current();
       if (updateSmartConnectorGeometry(connector)) {
+        current();
         refreshed.push(connector);
-        syncSmartConnectorLabel(connector);
+        syncSmartConnectorLabel(connector, context);
+        current();
       }
     }));
     recordDependencyRefreshForQa("connector", "global", refreshed);
@@ -21704,6 +23583,10 @@
   function swapSmartConnectorEndpoints(connector = selectedTopLevelObjects()[0], options = {}) {
     if (!isSmartConnectorObject(connector)) return { status: "unavailable" };
     const meta = normalizeSmartConnectorMeta(connector.smartConnectorMeta);
+    if (meta.route === "curved") {
+      const from = smartConnectorEndpointGeometryPoint(connector, meta.start), to = smartConnectorEndpointGeometryPoint(connector, meta.end);
+      meta.curveSide = -(meta.curveSide ?? (from && to ? smartConnectorInitialCurveSide(from, to) : 1));
+    }
     const start = cloneManifestValue(meta.start, {});
     meta.start = cloneManifestValue(meta.end, {});
     meta.end = start;
@@ -21740,6 +23623,13 @@
 
   function translateDetachedSmartConnector(connector, dx, dy, options = {}) {
     if (!smartConnectorFullyDetached(connector) || (!dx && !dy)) return false;
+    if (connector.smartConnectorMeta?.geometrySpace === "object") {
+      moveObjectBySceneDelta(connector, dx, dy);
+      updateSmartConnectorGeometry(connector);
+      syncSmartConnectorLabel(connector);
+      if (options.sync !== false) syncUi();
+      return true;
+    }
     const meta = normalizeSmartConnectorMeta(connector.smartConnectorMeta);
     ["start", "end"].forEach((endpoint) => {
       const point = connectorEndpointPoint(meta[endpoint]);
@@ -21757,6 +23647,11 @@
 
   function translateDetachedSmartConnectorFromCanvasMove(connector) {
     if (!smartConnectorFullyDetached(connector)) return false;
+    if (connector.smartConnectorMeta?.geometrySpace === "object") {
+      updateSmartConnectorGeometry(connector);
+      syncSmartConnectorLabel(connector);
+      return true;
+    }
     const origin = connector._smartConnectorRenderedOrigin;
     if (!origin) return false;
     const dx = Number(connector.left || 0) - Number(origin.left || 0);
@@ -21938,12 +23833,12 @@
   function renderSmartConnectorOverlay() {
     const overlay = els.smartConnectorOverlay;
     if (!overlay) return;
-    const selectedConnector = selectedTopLevelObjects().length === 1 && isSmartConnectorObject(selectedTopLevelObjects()[0])
+    const selectedConnector = selectedTopLevelObjects().length === 1 && isSmartConnectorObject(selectedTopLevelObjects()[0]) && !selectedTopLevelObjects()[0].locked
       ? selectedTopLevelObjects()[0]
       : null;
-    const endpointDragging = Boolean(smartConnectorInteraction.endpoint?.dragging);
+    const endpointDragging = Boolean(smartConnectorInteraction.endpoint?.dragging && smartConnectorInteraction.endpoint.endpoint !== "curve");
     const active = state.tool === "smartConnector" || Boolean(smartConnectorInteraction.reassign) || endpointDragging;
-    const directEditing = state.tool === "directSelect" && Boolean(selectedConnector);
+    const directEditing = Boolean(selectedConnector) && (state.tool === "directSelect" || state.tool === "select" && simpleFigureLayout());
     const editingBends = directEditing && selectedConnector?.smartConnectorMeta?.route === "elbow";
     if (!active && !directEditing) {
       overlay.hidden = true;
@@ -21983,7 +23878,7 @@
     if (directEditing) {
       const meta = normalizeSmartConnectorMeta(selectedConnector.smartConnectorMeta);
       ["start", "end"].forEach((endpoint) => {
-        const point = connectorEndpointPoint(meta[endpoint]);
+        const point = smartConnectorEndpointScenePoint(selectedConnector, meta[endpoint]);
         if (!point) return;
         const node = document.createElement("button");
         node.type = "button";
@@ -22015,8 +23910,9 @@
         node.className = "smart-connector-bend";
         node.dataset.connectorId = selectedConnector.figureId;
         node.dataset.bendIndex = String(index);
-        node.style.left = `${bend.x}px`;
-        node.style.top = `${bend.y}px`;
+        const point = meta.geometrySpace === "object" ? smartConnectorObjectPoint(selectedConnector, bend, true) : bend;
+        node.style.left = `${point.x}px`;
+        node.style.top = `${point.y}px`;
         node.title = meta.routeMode === "manual" ? `Move manual bend ${index + 1}` : `Make bend ${index + 1} manual`;
         node.setAttribute("aria-label", node.title);
         if (smartConnectorInteraction.bend?.connectorId === selectedConnector.figureId && smartConnectorInteraction.bend?.index === index) node.classList.add("is-selected");
@@ -22031,7 +23927,55 @@
         overlay.appendChild(node);
       });
     }
+    if (directEditing && selectedConnector.smartConnectorMeta?.route === "curved") {
+      const point = smartConnectorCurveHandlePoint(selectedConnector);
+      if (point) {
+        const node = document.createElement("button");
+        node.type = "button";
+        node.className = "smart-connector-bend is-curve";
+        node.dataset.connectorId = selectedConnector.figureId;
+        node.dataset.connectorEndpoint = "curve";
+        node.style.left = `${point.x}px`;
+        node.style.top = `${point.y}px`;
+        node.title = "Curve bend: drag or use arrow keys; Delete restores the automatic curve";
+        node.setAttribute("aria-label", "Curve bend");
+        if (smartConnectorInteraction.endpoint?.connectorId === selectedConnector.figureId && smartConnectorInteraction.endpoint.endpoint === "curve") node.classList.add("is-selected");
+        node.addEventListener("pointerdown", (event) => beginSmartConnectorEndpointDrag(event, selectedConnector, "curve"));
+        node.addEventListener("keydown", onSmartConnectorEndpointKeyDown);
+        overlay.appendChild(node);
+      }
+    }
     overlay.hidden = !overlay.childElementCount;
+  }
+
+  function smartConnectorCurveHandlePoint(connector) {
+    const meta = normalizeSmartConnectorMeta(connector.smartConnectorMeta);
+    if (meta.route !== "curved") return null;
+    const start = smartConnectorEndpointGeometryPoint(connector, meta.start), end = smartConnectorEndpointGeometryPoint(connector, meta.end);
+    if (!start || !end) return null;
+    const control = smartConnectorCurveControl(start, end, meta.curveOffset, meta.curveSide ?? smartConnectorInitialCurveSide(start, end));
+    const point = fabricPoint((start.x + 2 * control.x + end.x) / 4, (start.y + 2 * control.y + end.y) / 4);
+    return meta.geometrySpace === "object" ? smartConnectorObjectPoint(connector, point, true) : connector.group ? fabricRef.util.transformPoint(point, connector.group.calcTransformMatrix()) : point;
+  }
+
+  function setSmartConnectorCurvePoint(connector, point, options = {}) {
+    if (!isSmartConnectorObject(connector) || connector.locked || !Number.isFinite(point?.x) || !Number.isFinite(point?.y)) return false;
+    const meta = normalizeSmartConnectorMeta(connector.smartConnectorMeta);
+    if (meta.route !== "curved") return false;
+    const start = smartConnectorEndpointGeometryPoint(connector, meta.start), end = smartConnectorEndpointGeometryPoint(connector, meta.end);
+    if (!start || !end) return false;
+    meta.curveSide ??= smartConnectorInitialCurveSide(start, end);
+    const frame = smartConnectorCurveFrame(start, end, meta.curveSide), local = meta.geometrySpace === "object" ? smartConnectorObjectPoint(connector, point) : scenePointToObjectParent(connector, point);
+    // The handle sits on the painted quadratic at t=.5, halfway from the
+    // chord midpoint to its control, rather than on an invisible control arm.
+    meta.curveOffset = roundPathCoord(2 * ((local.x - frame.midpoint.x) * frame.normal.x + (local.y - frame.midpoint.y) * frame.normal.y));
+    connector.smartConnectorMeta = meta;
+    updateSmartConnectorGeometry(connector);
+    syncSmartConnectorLabel(connector);
+    requestCanvasArtworkRender();
+    if (options.sync !== false) syncUi();
+    if (options.history) commitHistory("Connector curvature moved");
+    return true;
   }
 
   function nearestSmartConnectorPort(point, connector, tolerance = 24 / Math.max(.25, state.view.zoom)) {
@@ -22060,22 +24004,24 @@
   function setSmartConnectorEndpoint(connector, endpoint, point, port = null, options = {}) {
     if (!isSmartConnectorObject(connector) || !["start", "end"].includes(endpoint) || !point) return false;
     const meta = normalizeSmartConnectorMeta(connector.smartConnectorMeta);
+    const local = meta.geometrySpace === "object" ? smartConnectorObjectPoint(connector, point) : point;
     meta[endpoint] = {
       objectId: port?.object?.figureId || "",
       anchor: port?.anchor?.role || meta[endpoint].anchor,
-      point: { x: roundPathCoord(point.x), y: roundPathCoord(point.y) }
+      point: { x: roundPathCoord(local.x), y: roundPathCoord(local.y) }
     };
     meta.detached = !(meta.start.objectId && meta.end.objectId);
     connector.smartConnectorMeta = meta;
     updateSmartConnectorGeometry(connector);
     syncSmartConnectorLabel(connector);
-    canvas.requestRenderAll();
+    requestCanvasArtworkRender();
     if (options.sync !== false) syncUi();
     return true;
   }
 
   function beginSmartConnectorEndpointDrag(event, connector, endpoint) {
-    if (!isSmartConnectorObject(connector) || !["start", "end"].includes(endpoint)) return;
+    if (!isSmartConnectorObject(connector) || connector.locked || !["start", "end", "curve"].includes(endpoint)
+        || endpoint === "curve" && normalizeSmartConnectorMeta(connector.smartConnectorMeta).route !== "curved") return;
     event.preventDefault();
     event.stopPropagation();
     const meta = normalizeSmartConnectorMeta(connector.smartConnectorMeta);
@@ -22085,7 +24031,7 @@
       dragging: {
         dirty: false,
         originalMeta: cloneManifestValue(meta, {}),
-        originalPoint: cloneManifestValue(connectorEndpointPoint(meta[endpoint]), null)
+        originalPoint: cloneManifestValue(endpoint === "curve" ? smartConnectorCurveHandlePoint(connector) : smartConnectorEndpointScenePoint(connector, meta[endpoint]), null)
       }
     };
     smartConnectorInteraction.hover = null;
@@ -22098,8 +24044,16 @@
     const connector = getByFigureId(edit?.connectorId || "");
     if (!edit?.dragging || !isSmartConnectorObject(connector)) return false;
     event.preventDefault();
+    if (edit.endpoint === "curve") {
+      const raw = constrainedConnectorEndpointPoint(canvasPointFromClient(event), edit.dragging.originalPoint, event.shiftKey);
+      const point = event.altKey || event.ctrlKey || event.metaKey ? raw : snapWorkspacePoint(raw, { grid: false, excludeObjects: [connector] });
+      if (!setSmartConnectorCurvePoint(connector, point, { sync: false })) return false;
+      edit.dragging.dirty = true;
+      renderSmartConnectorOverlay();
+      return true;
+    }
     const meta = normalizeSmartConnectorMeta(connector.smartConnectorMeta);
-    const opposite = connectorEndpointPoint(meta[edit.endpoint === "start" ? "end" : "start"]);
+    const opposite = smartConnectorEndpointScenePoint(connector, meta[edit.endpoint === "start" ? "end" : "start"]);
     const bypassSnapping = Boolean(event.altKey || event.ctrlKey || event.metaKey);
     const raw = constrainedConnectorEndpointPoint(canvasPointFromClient(event), opposite, event.shiftKey);
     const point = bypassSnapping
@@ -22122,9 +24076,12 @@
     smartConnectorInteraction.endpoint = { connectorId: edit.connectorId, endpoint: edit.endpoint, dragging: null };
     smartConnectorInteraction.hover = null;
     if (changed) {
-      commitHistory(`Connector ${edit.endpoint} endpoint moved`);
-      const attached = Boolean(normalizeSmartConnectorMeta(connector?.smartConnectorMeta)[edit.endpoint].objectId);
-      showToast(attached ? "Connector endpoint attached" : "Connector endpoint detached");
+      commitHistory(edit.endpoint === "curve" ? "Connector curvature moved" : `Connector ${edit.endpoint} endpoint moved`);
+      if (edit.endpoint === "curve") showToast("Connector curvature updated");
+      else {
+        const attached = Boolean(normalizeSmartConnectorMeta(connector?.smartConnectorMeta)[edit.endpoint].objectId);
+        showToast(attached ? "Connector endpoint attached" : "Connector endpoint detached");
+      }
     }
     syncUi();
     return true;
@@ -22138,15 +24095,16 @@
     smartConnectorInteraction.endpoint = { connectorId: edit.connectorId, endpoint: edit.endpoint, dragging: null };
     smartConnectorInteraction.hover = null;
     refreshSmartConnectors();
+    requestCanvasArtworkRender();
     syncUi();
-    showToast("Endpoint move canceled");
+    showToast(edit.endpoint === "curve" ? "Curvature move canceled" : "Endpoint move canceled");
     return true;
   }
 
   function nudgeSmartConnectorEndpoint(connector, endpoint, dx, dy) {
     if (!isSmartConnectorObject(connector) || !["start", "end"].includes(endpoint)) return false;
     const meta = normalizeSmartConnectorMeta(connector.smartConnectorMeta);
-    const point = connectorEndpointPoint(meta[endpoint]);
+    const point = smartConnectorEndpointScenePoint(connector, meta[endpoint]);
     if (!point) return false;
     setSmartConnectorEndpoint(connector, endpoint, { x: point.x + dx, y: point.y + dy }, null, { sync: false });
     smartConnectorInteraction.endpoint = { connectorId: connector.figureId, endpoint, dragging: null };
@@ -22158,7 +24116,7 @@
   function detachSmartConnectorEndpoint(connector, endpoint) {
     if (!isSmartConnectorObject(connector) || !["start", "end"].includes(endpoint)) return false;
     const meta = normalizeSmartConnectorMeta(connector.smartConnectorMeta);
-    const point = connectorEndpointPoint(meta[endpoint]);
+    const point = smartConnectorEndpointScenePoint(connector, meta[endpoint]);
     if (!point) return false;
     setSmartConnectorEndpoint(connector, endpoint, point, null, { sync: false });
     smartConnectorInteraction.endpoint = { connectorId: connector.figureId, endpoint, dragging: null };
@@ -22171,7 +24129,26 @@
   function onSmartConnectorEndpointKeyDown(event) {
     const connector = getByFigureId(event.currentTarget?.dataset.connectorId || "");
     const endpoint = event.currentTarget?.dataset.connectorEndpoint || "";
-    if (!isSmartConnectorObject(connector) || !["start", "end"].includes(endpoint)) return;
+    if (!isSmartConnectorObject(connector) || connector.locked || !["start", "end", "curve"].includes(endpoint)) return;
+    if (endpoint === "curve") {
+      if (["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"].includes(event.key)) {
+        event.preventDefault(); event.stopPropagation();
+        const point = smartConnectorCurveHandlePoint(connector), step = event.shiftKey ? 10 : 1;
+        if (point) setSmartConnectorCurvePoint(connector, {
+          x: point.x + (event.key === "ArrowRight" ? step : event.key === "ArrowLeft" ? -step : 0),
+          y: point.y + (event.key === "ArrowDown" ? step : event.key === "ArrowUp" ? -step : 0)
+        }, { history: true });
+      } else if (["Delete", "Backspace"].includes(event.key)) {
+        event.preventDefault(); event.stopPropagation();
+        const meta = normalizeSmartConnectorMeta(connector.smartConnectorMeta);
+        delete meta.curveOffset;
+        connector.smartConnectorMeta = meta;
+        updateSmartConnectorGeometry(connector); syncSmartConnectorLabel(connector); requestCanvasArtworkRender(); syncUi();
+        commitHistory("Automatic connector curve restored");
+      }
+      focusSmartConnectorHandle(connector, endpoint);
+      return;
+    }
     if (["Enter", " "].includes(event.key)) {
       event.preventDefault();
       event.stopPropagation();
@@ -22189,13 +24166,21 @@
         event.key === "ArrowRight" ? step : event.key === "ArrowLeft" ? -step : 0,
         event.key === "ArrowDown" ? step : event.key === "ArrowUp" ? -step : 0
       );
+      focusSmartConnectorHandle(connector, endpoint);
       return;
     }
     if (["Delete", "Backspace"].includes(event.key)) {
       event.preventDefault();
       event.stopPropagation();
       detachSmartConnectorEndpoint(connector, endpoint);
+      focusSmartConnectorHandle(connector, endpoint);
     }
+  }
+
+  function focusSmartConnectorHandle(connector, endpoint) {
+    const handles = els.smartConnectorOverlay?.querySelectorAll?.("[data-connector-endpoint]") || [];
+    const handle = Array.from(handles).find(node => node.dataset.connectorId === connector.figureId && node.dataset.connectorEndpoint === endpoint);
+    handle?.focus({ preventScroll: true });
   }
 
   function manualBendsForConnector(connector) {
@@ -22208,10 +24193,11 @@
   function setSmartConnectorManualBends(connector, bends, options = {}) {
     if (!isSmartConnectorObject(connector)) return false;
     const meta = normalizeSmartConnectorMeta(connector.smartConnectorMeta);
+    if (meta.geometrySpace === "object" && !normalizeSmartConnectorBends(bends).length) { showToast("Keep one manual bend, or choose Straight or Curved."); return false; }
     meta.route = "elbow";
     meta.routeMode = "manual";
-    const start = connectorEndpointPoint(meta.start);
-    const end = connectorEndpointPoint(meta.end);
+    const start = meta.geometrySpace === "object" ? smartConnectorEndpointGeometryPoint(connector, meta.start) : connectorEndpointPoint(meta.start);
+    const end = meta.geometrySpace === "object" ? smartConnectorEndpointGeometryPoint(connector, meta.end) : connectorEndpointPoint(meta.end);
     meta.manualBends = meta.manualOrthogonal ? orthogonalManualBends(start, end, bends) : normalizeSmartConnectorBends(bends);
     connector.smartConnectorMeta = meta;
     refreshSmartConnectors();
@@ -22225,8 +24211,8 @@
     const bends = manualBendsForConnector(connector);
     if (bends.length >= 12) return { status: "limit" };
     const endpoints = normalizeSmartConnectorMeta(connector.smartConnectorMeta);
-    const start = connectorEndpointPoint(endpoints.start);
-    const end = connectorEndpointPoint(endpoints.end);
+    const start = endpoints.geometrySpace === "object" ? smartConnectorEndpointGeometryPoint(connector, endpoints.start) : connectorEndpointPoint(endpoints.start);
+    const end = endpoints.geometrySpace === "object" ? smartConnectorEndpointGeometryPoint(connector, endpoints.end) : connectorEndpointPoint(endpoints.end);
     if (!start || !end) return { status: "unavailable" };
     const points = [start, ...bends, end];
     let insertIndex = 0;
@@ -22252,6 +24238,7 @@
     if (!isSmartConnectorObject(connector)) return false;
     const bends = manualBendsForConnector(connector);
     if (index < 0 || index >= bends.length) return false;
+    if (bends.length === 1 && connector.smartConnectorMeta?.geometrySpace === "object") { showToast("Keep one manual bend, or change this arrow to Straight or Curved."); return false; }
     bends.splice(index, 1);
     if (bends.length) setSmartConnectorManualBends(connector, bends, { sync: options.sync });
     else resetSmartConnectorRouting(connector, { sync: options.sync, toast: false });
@@ -22264,6 +24251,7 @@
   function resetSmartConnectorRouting(connector = selectedTopLevelObjects()[0], options = {}) {
     if (!isSmartConnectorObject(connector)) return false;
     const meta = normalizeSmartConnectorMeta(connector.smartConnectorMeta);
+    if (meta.geometrySpace === "object" && meta.route === "elbow") { showToast("Keep this arrow's manual bends, or choose Straight or Curved."); return false; }
     meta.routeMode = "auto";
     meta.manualBends = [];
     meta.autoBends = [];
@@ -22280,13 +24268,14 @@
   function toggleSmartConnectorManualOrthogonal(connector = selectedTopLevelObjects()[0], options = {}) {
     if (!isSmartConnectorObject(connector)) return false;
     const meta = normalizeSmartConnectorMeta(connector.smartConnectorMeta);
-    const start = connectorEndpointPoint(meta.start);
-    const end = connectorEndpointPoint(meta.end);
+    const start = meta.geometrySpace === "object" ? smartConnectorEndpointGeometryPoint(connector, meta.start) : connectorEndpointPoint(meta.start);
+    const end = meta.geometrySpace === "object" ? smartConnectorEndpointGeometryPoint(connector, meta.end) : connectorEndpointPoint(meta.end);
     if (!start || !end) return false;
     meta.route = "elbow";
     meta.routeMode = "manual";
     meta.manualOrthogonal = !meta.manualOrthogonal;
     const sourceBends = meta.manualBends.length ? meta.manualBends : normalizeSmartConnectorBends(connector._smartConnectorBends || meta.autoBends);
+    if (meta.geometrySpace === "object" && !sourceBends.length) { showToast("Add a manual bend before changing its alignment."); return false; }
     meta.manualBends = meta.manualOrthogonal ? orthogonalManualBends(start, end, sourceBends) : sourceBends;
     connector.smartConnectorMeta = meta;
     refreshSmartConnectors();
@@ -22300,7 +24289,8 @@
   function moveSmartConnectorBend(connector, index, point, options = {}) {
     const bends = manualBendsForConnector(connector);
     if (!isSmartConnectorObject(connector) || !bends[index]) return false;
-    bends[index] = { x: roundPathCoord(point.x), y: roundPathCoord(point.y) };
+    const local = connector.smartConnectorMeta?.geometrySpace === "object" ? smartConnectorObjectPoint(connector, point) : point;
+    bends[index] = { x: roundPathCoord(local.x), y: roundPathCoord(local.y) };
     setSmartConnectorManualBends(connector, bends, { sync: options.sync });
     smartConnectorInteraction.bend = { connectorId: connector.figureId, index, dragging: smartConnectorInteraction.bend?.dragging || null };
     if (options.history) commitHistory("Connector bend moved");
@@ -22348,7 +24338,8 @@
     if (["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"].includes(event.key)) {
       event.preventDefault();
       event.stopPropagation();
-      const current = manualBendsForConnector(connector)[index];
+      const bend = manualBendsForConnector(connector)[index];
+      const current = bend && connector.smartConnectorMeta?.geometrySpace === "object" ? smartConnectorObjectPoint(connector, bend, true) : bend;
       if (!current) return;
       const step = event.shiftKey ? 10 : 1;
       moveSmartConnectorBend(connector, index, { x: current.x + (event.key === "ArrowRight" ? step : event.key === "ArrowLeft" ? -step : 0), y: current.y + (event.key === "ArrowDown" ? step : event.key === "ArrowUp" ? -step : 0) }, { history: true });
@@ -22368,6 +24359,7 @@
     const normalized = { objectId: target.figureId, anchor: anchor.role, point: { x: anchor.x, y: anchor.y } };
     const reassignment = smartConnectorInteraction.reassign;
     if (reassignment?.connector && isSmartConnectorObject(reassignment.connector)) {
+      if (reassignment.connector.smartConnectorMeta?.geometrySpace === "object") normalized.point = smartConnectorObjectPoint(reassignment.connector, anchor);
       reassignment.connector.smartConnectorMeta = normalizeSmartConnectorMeta({
         ...reassignment.connector.smartConnectorMeta,
         [reassignment.endpoint]: normalized,
@@ -22579,7 +24571,7 @@
 
   function createScientificAnnotationScenarioForQa(options = {}) {
     if (!canvas) return { status: "not-ready" };
-    if (options.clear === true) canvas.clear();
+    if (options.clear === true) clearEditorCanvas();
     const source = sourceMeta({ sourceId: "qa-scientific-annotations", kind: "qa-scientific-figure" });
     const panelA = makeRect(118, 168, 210, 142, { fill: "#e8f4f2", stroke: "#0f766e", strokeWidth: 3, rx: 10, ry: 10 }, "Microscopy panel", source);
     const panelB = makeRect(410, 168, 210, 142, { fill: "#eef3fb", stroke: "#2f78b7", strokeWidth: 3, rx: 10, ry: 10 }, "Treatment panel", source);
@@ -22606,7 +24598,7 @@
 
   function createDependencyRefreshScenarioForQa(options = {}) {
     if (!canvas) return { status: "not-ready" };
-    if (options.clear === true) canvas.clear();
+    if (options.clear === true) clearEditorCanvas();
     const source = sourceMeta({ sourceId: "qa-dependency-refresh", kind: "qa-dependency-refresh" });
     const background = Array.from({ length: 180 }, (_, index) => {
       const column = index % 20;
@@ -22809,6 +24801,8 @@
     }
     if (state.tool === "directSelect") {
       const directPoint = canvasPoint(event.e);
+      const densePage = densePdfPageForObject(event.target) || canvas.getObjects().find((object) => densePdfApi()?.isPage(object) && object.containsPoint(directPoint));
+      if (densePage && !Array.isArray(event.target?.path)) { void focusDensePdfPath(densePage, directPoint); return; }
       // Library SVGs arrive as one grouped object. Resolve the painted path
       // under the pointer before Fabric's group target is treated as an opaque
       // object; one Point Selection click should expose its anchors.
@@ -22955,6 +24949,25 @@
     }
     if (state.tool === "pdfGradient" || state.tool === "pattern") return;
     if (state.tool === "select" || state.tool === "freeTransform") {
+      if (isGroupIsolationActive()) {
+        // Fabric has already started a scale/rotation handle before delivering
+        // mouse:down. Its handle may be outside this child's painted shape.
+        const transform = canvas._currentTransform;
+        if (transform?.corner && transform.target === canvas.getActiveObject()
+            && objectIsWithinGroup(transform.target, activeIsolationGroup())) return;
+        const child = isolationChildAtScenePoint(activeIsolationGroup(), canvasPoint(event.e));
+        if (child) {
+          if (event.e.shiftKey || event.e.metaKey || event.e.ctrlKey) {
+            // This gesture changes the isolated selection. Leave collective
+            // transforms to its existing handles; a native body transform
+            // would otherwise move only the primary while showing both.
+            if (transform?.target === child && transform.action === "drag" && !transform.actionPerformed) canvas.endCurrentTransform(event.e);
+            toggleIsolatedObjectSelection(child, { toast: true });
+          }
+          else if (!isolatedSelectedObjects().includes(child) || isolatedSelectedObjects().length > 1) selectIsolatedObject(child);
+        } else selectIsolatedObjects([]);
+        return;
+      }
       if (!event.target) {
         const lineTarget = nearestEditablePathObjectForPoint(
           canvasPoint(event.e),
@@ -23357,7 +25370,19 @@
     return true;
   }
 
+  function editDensePdfTextAtEvent(page, event) {
+    const candidates = densePdfApi().textEntries(page);
+    const entry = candidates.find((row) => row.object === event.target || event.subTargets?.includes(row.object))
+      || candidates.find((row) => row.object.containsPoint(canvasPoint(event.e)));
+    if (entry) editTextOnCanvas(entry.object, { pointerEvent: event.e });
+  }
+
   function onCanvasDoubleClick(event) {
+    const densePage = densePdfPageForObject(event.target);
+    if (densePage && !isPresentationDocument()) {
+      editDensePdfTextAtEvent(densePage, event);
+      return;
+    }
     if (isPresentationDocument() && !masterLayoutEditor.active) {
       activateSlideTextPlaceholder(event.target);
       // A placed PDF or grouped Figure stays a slide object. Detailed editing
@@ -23374,6 +25399,11 @@
     }
     if (isGroupIsolationActive()) {
       const child = isolationChildAtScenePoint(activeIsolationGroup(), canvasPoint(event.e));
+      const denseChildPage = densePdfPageForObject(child);
+      if (denseChildPage) {
+        editDensePdfTextAtEvent(denseChildPage, event);
+        return;
+      }
       if (child?.importMeta?.mimeType === "application/pdf" && child !== activeIsolationGroup()) {
         if (canEnterGroupIsolation(child)) enterGroupIsolation(child, { origin: "double-click" });
         else if (supportsText(child)) editTextOnCanvas(child, { pointerEvent: event.e });
@@ -23574,7 +25604,7 @@
   function createLineGeometryReviewScenarioForQa(options = {}) {
     if (!canvas) return { status: "not-ready" };
     stopPathNodeEdit({ sync: false });
-    if (options.clear !== false) canvas.clear();
+    if (options.clear !== false) clearEditorCanvas();
     state.settings.showGrid = false;
     state.settings.snapToGrid = false;
     state.settings.snapToGuides = false;
@@ -23649,7 +25679,7 @@
 
   function createSmartConnectorScenarioForQa(options = {}) {
     if (!canvas) return { status: "not-ready" };
-    if (options.clear === true) canvas.clear();
+    if (options.clear === true) clearEditorCanvas();
     smartConnectorScenarioObjects().forEach((object) => canvas.remove(object));
     const source = sourceMeta({ sourceId: "qa-smart-connectors", kind: "qa-scientific-figure" });
     const cell = makeEllipse(118, 152, 126, 92, { fill: "#d7f2ee", stroke: "#0f766e", strokeWidth: 3 }, "Activated T cell", source);
@@ -23668,7 +25698,7 @@
 
   function createSmartConnectorRoutingScenarioForQa(options = {}) {
     if (!canvas) return { status: "not-ready" };
-    if (options.clear === true) canvas.clear();
+    if (options.clear === true) clearEditorCanvas();
     smartConnectorScenarioObjects().forEach((object) => canvas.remove(object));
     const source = sourceMeta({ sourceId: "qa-smart-connectors", kind: "qa-pathway-routing" });
     const ligand = makeEllipse(82, 198, 104, 72, { fill: "#d7f2ee", stroke: "#0f766e", strokeWidth: 3 }, "IL-2 ligand", source);
@@ -23682,7 +25712,7 @@
     const second = makeSmartConnector({ objectId: receptor.figureId, anchor: "right" }, { objectId: transcription.figureId, anchor: "left" }, { route: "elbow", stroke: "#2f78b7", strokeWidth: 2.5, label: "STAT5 relay" }, "Receptor to program", source);
     const third = makeSmartConnector({ objectId: kinase.figureId, anchor: "bottom" }, { objectId: nucleus.figureId, anchor: "top" }, { route: "elbow", stroke: "#7c3aed", strokeWidth: 2.5, label: "Nuclear entry" }, "Kinase to nucleus", source);
     canvas.add(first, second, third);
-    [first, second, third].forEach(syncSmartConnectorLabel);
+    [first, second, third].forEach((connector) => syncSmartConnectorLabel(connector));
     canvas.setActiveObject(first);
     syncUi();
     return {
@@ -23696,7 +25726,7 @@
     if (!canvas) return { status: "not-ready" };
     if (options.clear !== false) {
       buildDeckLayout("blank", { reset: true });
-      canvas.clear();
+      clearEditorCanvas();
     }
     smartConnectorScenarioObjects().forEach((object) => canvas.remove(object));
     state.settings.showGrid = false;
@@ -23792,7 +25822,7 @@
     );
     const connectors = [blockade, engagement, recruitment, suppression, dephosphorylation, restoration];
     canvas.add(...connectors);
-    connectors.forEach(syncSmartConnectorLabel);
+    connectors.forEach((connector) => syncSmartConnectorLabel(connector));
     canvas.setActiveObject(recruitment);
     state.tool = "select";
     updateStage();
@@ -23822,7 +25852,7 @@
 
   function createSmartConnectorConstrainedScenarioForQa(options = {}) {
     if (!canvas) return { status: "not-ready" };
-    if (options.clear === true) canvas.clear();
+    if (options.clear === true) clearEditorCanvas();
     smartConnectorScenarioObjects().forEach((object) => canvas.remove(object));
     const source = sourceMeta({ sourceId: "qa-smart-connectors", kind: "qa-constrained-routing" });
     const art = artboardPx();
@@ -23846,7 +25876,7 @@
 
   function createSmartConnectorLabelConstrainedScenarioForQa(options = {}) {
     if (!canvas) return { status: "not-ready" };
-    if (options.clear === true) canvas.clear();
+    if (options.clear === true) clearEditorCanvas();
     smartConnectorScenarioObjects().forEach((object) => canvas.remove(object));
     const source = sourceMeta({ sourceId: "qa-smart-connectors", kind: "qa-label-constrained-routing" });
     const art = artboardPx();
@@ -23872,7 +25902,7 @@
 
   function createSmartConnectorGroupCopyScenarioForQa(options = {}) {
     if (!canvas) return { status: "not-ready" };
-    if (options.clear === true) canvas.clear();
+    if (options.clear === true) clearEditorCanvas();
     smartConnectorScenarioObjects().forEach((object) => canvas.remove(object));
     const source = sourceMeta({ sourceId: "qa-smart-connectors", kind: "qa-group-copy-routing" });
     const receptor = makeRect(0, 0, 124, 58, { fill: "#e5effa", stroke: "#2f78b7", strokeWidth: 3, rx: 10, ry: 10 }, "Receptor", source);
@@ -23917,8 +25947,8 @@
         const meta = normalizeSmartConnectorMeta(connector.smartConnectorMeta);
         const style = readStyle(connector);
         const bends = normalizeSmartConnectorBends(connector._smartConnectorBends || meta.autoBends);
-        const start = connectorEndpointPoint(meta.start);
-        const end = connectorEndpointPoint(meta.end);
+        const start = smartConnectorEndpointScenePoint(connector, meta.start);
+        const end = smartConnectorEndpointScenePoint(connector, meta.end);
         const routeBlockedBounds = smartConnectorRoutingBlockedRects(connector, meta);
         const labelBlockedBounds = smartConnectorLabelBlockedRects(connector);
         const labelObject = smartConnectorLabelObject(connector);
@@ -23970,6 +26000,7 @@
     const connector = getByFigureId(connectorId);
     if (!isSmartConnectorObject(connector)) return { status: "not-found", connectorId };
     const meta = normalizeSmartConnectorMeta({ ...connector.smartConnectorMeta, ...patch });
+    if (meta.geometrySpace === "object" && meta.route === "elbow" && (meta.routeMode !== "manual" || !meta.manualBends.length)) return { status: "blocked", reason: "object-space-auto-route" };
     connector.smartConnectorMeta = meta;
     refreshSmartConnectors();
     syncUi();
@@ -25132,7 +27163,7 @@
       preset: "double-column",
       layoutId: "blank"
     });
-    canvas.clear();
+    clearEditorCanvas();
     canvas.backgroundColor = "#ffffff";
     const source = sourceMeta({ sourceId: "qa-outlined-text-roundtrip", kind: "qa" });
     const heading = makeTextbox(
@@ -26917,7 +28948,7 @@
     // Direct Selection owns its point marquee and selected-path body gestures.
     // Fabric's rectangular ActiveSelection must not move points merely because
     // the pointer is in empty space between separate selected paths.
-    canvas.selection = !panning && selecting && state.tool !== "directSelect";
+    canvas.selection = !panning && selecting && state.tool !== "directSelect" && !isGroupIsolationActive();
     canvas.skipTargetFind = panning || (!drawing && !targetFinding);
     canvas.defaultCursor = panning
       ? "grab"
@@ -27978,7 +30009,7 @@
   function createPrecisionToolScenarioForQa() {
     cancelPenPath({ toast: false });
     if (pathNodeEdit.object) stopPathNodeEdit({ sync: false });
-    canvas.clear();
+    clearEditorCanvas();
     canvas.backgroundColor = "#ffffff";
     const target = makeRect(125, 120, 170, 112, { fill: "#d9f4ef", stroke: "#285f66", strokeWidth: 2 }, "Appearance target", sourceMeta({ kind: "qa" }));
     const source = makeRect(390, 120, 170, 112, { fill: "#f2a766", stroke: "#7a3f24", strokeWidth: 6 }, "Appearance source", sourceMeta({ kind: "qa" }));
@@ -29243,6 +31274,7 @@
     if (els.canvasStage.style.height !== height) els.canvasStage.style.height = height;
     els.canvasStage.style.transform = `translate(${state.view.panX}px, ${state.view.panY}px) scale(${state.view.zoom})`;
     els.pathNodeOverlay?.style.setProperty("--path-node-inverse-zoom", String(1 / Math.max(0.08, state.view.zoom)));
+    els.canvasStage.style.setProperty("--canvas-handle-inverse-zoom", String(1 / Math.max(0.08, state.view.zoom)));
     els.canvasStage.classList.toggle("grid", state.settings.showGrid);
     els.canvasStage.style.backgroundSize = `${GRID}px ${GRID}px`;
     els.zoomLabel.textContent = `${Math.round(state.view.zoom * 100)}%`;
@@ -29596,10 +31628,10 @@
     else requestAnimationFrame(() => requestAnimationFrame(recordAudit));
   }
 
-  function settleFabricScreenScaleNow() {
+  function settleFabricScreenScaleNow(options = {}) {
     if (viewportRenderQualityTimer) window.clearTimeout(viewportRenderQualityTimer);
     viewportRenderQualityTimer = 0;
-    refreshFabricScreenScaleAfterSettle({ immediate: true, forceRender: true });
+    refreshFabricScreenScaleAfterSettle({ immediate: true, forceRender: options.forceRender !== false });
   }
 
   function scheduleFabricScreenScaleRefresh() {
@@ -30382,6 +32414,9 @@
   function clipboardSelectionGuard(operation = "copy", selection = selectedTopLevelObjects()) {
     const selected = uniqueObjects(selection || []).filter(Boolean);
     if (!selected.length) return { status: "empty", count: 0, objects: [] };
+    if (selected.some((object) => densePdfPageForObject(object) && !densePdfApi().isPage(object))) {
+      return { status: "blocked", count: 0, objects: [], reason: "pdf-edit-control" };
+    }
     const blocked = selected.flatMap((object) => clipboardObjectTree(object)).find((object) => (
       object.locked || isReferenceObject(object) || inheritedMasterMeta(object)
     ));
@@ -30409,6 +32444,10 @@
   function clipboardGuardToast(result, operation) {
     if (result.status !== "blocked") return;
     const label = operation === "cut" ? "Cut" : "Copy";
+    if (result.reason === "pdf-edit-control") {
+      showLongToast("Select the PDF page to copy its editable artwork. Text selection keeps the normal text clipboard.");
+      return;
+    }
     const detail = result.reason === "reference"
       ? "reference artwork"
       : result.reason === "inherited-master"
@@ -30425,9 +32464,121 @@
       if (options.toast !== false) clipboardGuardToast(guarded, "copy");
       return guarded;
     }
-    clipboard = guarded.objects.slice();
+    const epoch = ++clipboardCopyEpoch;
+    if (selectionHasDensePdfPages(guarded.objects)) {
+      const capture = { objects: guarded.objects.slice(), canvas, documentId: currentTransformDocumentId(), promise: null };
+      pendingDenseClipboardCapture = capture;
+      const preparation = captureDenseClipboard(guarded, epoch, options).finally(() => {
+        if (pendingDenseClipboardCapture === capture) pendingDenseClipboardCapture = null;
+      });
+      capture.promise = preparation;
+      clipboardPreparation = preparation;
+      void preparation.catch((error) => {
+        if (clipboardPreparation === preparation) clipboardPreparation = Promise.resolve();
+        if (epoch === clipboardCopyEpoch && options.toast !== false) showLongToast(error?.message || "Could not copy this PDF artwork.");
+      });
+      return preparation;
+    }
+    pendingDenseClipboardCapture = null;
+    replaceEditorClipboard(guarded.objects.slice());
+    clipboardPreparation = Promise.resolve();
     if (options.toast !== false) showToast(`${guarded.count === 1 ? "Object" : `${guarded.count} objects`} copied`);
     return guarded;
+  }
+
+  function selectionHasDensePdfPages(objects) {
+    return objects.some((object) => clipboardObjectTree(object).some((child) => densePdfApi()?.isPage(child)));
+  }
+
+  function replaceEditorClipboard(objects, captured = null) {
+    const previous = denseClipboardCopy;
+    clipboard = objects;
+    denseClipboardCopy = captured;
+    if (previous) densePdfApi().releaseSceneCopy(previous.handle);
+  }
+
+  function copiedOrigin(record, transform, hadParent = false) {
+    const origin = { ...record, group: hadParent ? {} : null };
+    const children = (record.objects || []).map((child) => copiedOrigin(child, null, true));
+    origin.getObjects = () => children;
+    if (record.clipPath) origin.clipPath = copiedOrigin(record.clipPath, null, false);
+    if (record.mask) origin.mask = copiedOrigin(record.mask, null, false);
+    if (transform) origin.calcTransformMatrix = () => transform.slice();
+    return origin;
+  }
+
+  async function denseCopyDestinationAssetIds(assertCurrent) {
+    assertCurrent();
+    const source = await workspaceProjectSourceAsync({ flushTextHistory: false });assertCurrent();
+    return [...browserDenseAssetReferences(fileFormatApi().serializeWorkspaceProject(source)).keys()];
+  }
+
+  function captureDenseCopyDrafts(objects = allCanvasObjectsDeep()) {
+    const native = new Set(), seen = new Set(), pending = objects.slice();
+    while (pending.length) {
+      const object = pending.pop();if (!object || seen.has(object)) continue;seen.add(object);
+      if (seen.size > 100000) throw new Error("The copied artwork exceeds the document scene limit.");
+      if (densePdfApi()?.isPage(object)) { for (const row of densePdfApi().textEntries(object)) native.add(row.object); }
+      else pending.push(...groupChildren(object));
+      if (object.clipPath) pending.push(object.clipPath);if (object.mask) pending.push(object.mask);
+    }
+    return densePdfApi().captureDrafts([...native]);
+  }
+
+  async function admitDenseSceneCopy(objects, assertCurrent) {
+    const generation = workspaceProjectGeneration, topology = workspaceTopologyFingerprint();
+    const current = () => {
+      assertCurrent();
+      if (workspaceProjectGeneration !== generation || workspaceTopologyFingerprint() !== topology) throw new Error("The open documents changed while the artwork was being copied.");
+    };
+    current();
+    const source = await workspaceProjectSourceAsync({ flushTextHistory: false });current();
+    const shell = fileFormatApi().serializeWorkspaceProject(source);
+    installPdfSourceSerializationPrecision(objects);
+    const copiedScene = await globalThis.FigureStudioPdfSceneNumberPrecision.cloneJsonAsync(objects.map((object) => object.toObject(CUSTOM_PROPS)), {
+      yieldEvery: 128, maxSliceMs: 8, yieldToUi: async () => { current();await yieldPdfHistoryToUi();current(); }
+    });current();
+    const references = browserDenseAssetReferences(shell), added = browserDenseAssetReferences({ objects: copiedScene });
+    for (const [id, descriptor] of added) {
+      if (references.has(id)) throw new Error("A PDF copy must have its own edit history.");
+      references.set(id, descriptor);
+    }
+    const api = densePdfApi(), ids = [...references.keys()], states = api.captureAssetStates(ids);
+    const valid = () => { current();api.validateAssetStates(states); };
+    valid();const assets = await api.saveAssets(ids);valid();
+    if (!Array.isArray(assets) || assets.length !== references.size || new Set(assets.map((asset) => asset.assetId)).size !== references.size) throw new Error("The copied artwork has an incomplete PDF asset set.");
+    for (const asset of assets) {
+      const descriptor = references.get(asset.assetId);
+      if (descriptor?.stateId !== asset.savedStateId || descriptor.source.byteLength !== asset.sourceBytes.length
+          || descriptor.source.pageNumber !== asset.pageNumber
+          || asset.source && (asset.source.sha256 !== descriptor.source.sha256 || asset.source.byteLength !== descriptor.source.byteLength)) throw new Error("The PDF artwork changed while the copy was being checked.");
+    }
+    const receipt = await globalThis.FigureStudioPdfDenseFileCodec.admitCopy({ shell, assets, copiedScene });valid();
+    lastDensePdfCopyAdmission = receipt;
+    return receipt;
+  }
+
+  async function captureDenseClipboard(guarded, epoch, options) {
+    const sourceCanvas = canvas, documentId = currentTransformDocumentId();
+    if (pdfHistoryMovePending) await pdfHistoryMoveCompletion;
+    if (pdfHistoryMutationLockDepth) await pdfHistoryMutationCompletion;
+    await flushDensePdfEdits({ waitForClipboard: false });
+    if (canvas !== sourceCanvas || documentWorkspaceState.switching || currentTransformDocumentId() !== documentId || epoch !== clipboardCopyEpoch) return { status: "cancelled", count: 0 };
+    installPdfSourceSerializationPrecision(guarded.objects);
+    const revision = projectRevision, handle = await densePdfApi().captureSceneCopy(guarded.objects, { properties: CUSTOM_PROPS });
+    if (canvas !== sourceCanvas || documentWorkspaceState.switching || currentTransformDocumentId() !== documentId || projectRevision !== revision || epoch !== clipboardCopyEpoch) {
+      densePdfApi().releaseSceneCopy(handle);return { status: "cancelled", count: 0 };
+    }
+    try {
+      const snapshot = densePdfApi().sceneCopySnapshot(handle);
+      const origins = snapshot.scene.map((record, index) => copiedOrigin(record, snapshot.transforms[index], snapshot.hadParents[index]));
+      replaceEditorClipboard(origins, { handle, refs: guarded.objects.map((object) => new WeakRef(object)), origins });
+    } catch (error) {
+      if (denseClipboardCopy?.handle !== handle) try { densePdfApi().releaseSceneCopy(handle); } catch {}
+      throw error;
+    }
+    if (options.toast !== false) showToast(`${guarded.count === 1 ? "Object" : `${guarded.count} objects`} copied`);
+    return { status: "ok", count: guarded.count };
   }
 
   function rebindClipboardCloneRelations(clones, originalByClone) {
@@ -30562,6 +32713,14 @@
   }
 
   async function pasteClipboardSelection(options = {}) {
+    const intendedCanvas = canvas, intendedDocumentId = currentTransformDocumentId();
+    await clipboardPreparation;
+    if (denseClipboardCopy || hasPendingDensePageEdits()) {
+      if (pdfHistoryMovePending) await pdfHistoryMoveCompletion;
+      if (pdfHistoryMutationLockDepth) await pdfHistoryMutationCompletion;
+      await flushDensePdfEdits();
+    }
+    if (canvas !== intendedCanvas || currentTransformDocumentId() !== intendedDocumentId || documentWorkspaceState.switching) return { status: "cancelled", count: 0 };
     const originals = clipboard.slice().filter(Boolean);
     if (!originals.length) return { status: "empty", count: 0 };
     const placement = normalizedPastePlacement(options.placement);
@@ -30569,9 +32728,25 @@
     const destination = isGroupIsolationActive() ? activeIsolationGroup() : canvas;
     const destinationLayerId = destination === canvas ? activeObjectLayerState().activeLayerId : "";
     if (!destination) return { status: "blocked", count: 0, reason: "destination-unavailable" };
+    const sourceCanvas = canvas, documentId = currentTransformDocumentId(), revision = projectRevision, captured = denseClipboardCopy;
+    const drafts = captured ? captureDenseCopyDrafts() : null;
+    const destinationCurrent = () => canvas === sourceCanvas && currentTransformDocumentId() === documentId
+      && !documentWorkspaceState.switching && projectRevision === revision
+      && !densePdfEditPending && !pdfHistoryMutationLockDepth && !pdfHistoryMovePending && !hasPendingDensePageEdits()
+      && (isGroupIsolationActive() ? activeIsolationGroup() : canvas) === destination;
     const originalByClone = new Map();
-    const clones = await Promise.all(originals.map(async (object) => {
-      const clone = await object.clone(CUSTOM_PROPS);
+    let prepared = null, published = false, pasteFailed = false;
+    try {
+    if (captured) {
+      const retainedAssetIds = await denseCopyDestinationAssetIds(() => {
+        if (!destinationCurrent() || captured !== denseClipboardCopy) throw new Error("The destination changed before Paste finished.");
+        densePdfApi().validateDraftCapture(drafts);
+      });
+      prepared = await densePdfApi().prepareCapturedSceneCopy(captured.handle, { retainedAssetIds });
+    }
+    const clones = prepared ? [...prepared.objects] : await cloneNativeObjectsForCommand(originals);
+    clones.forEach((clone, index) => {
+      const object = originals[index];
       clone.set({
         figureId: makeId(object.figureType || "object"),
         name: `${object.name || humanizeType(object.figureType)} copy`,
@@ -30580,23 +32755,35 @@
       detachDenseDirectLifecycleForClone(clone, object);
       preparePastedCloneForDestination(clone, object, destination, offset);
       originalByClone.set(clone, object);
-      return clone;
-    }));
+    });
+    if (!destinationCurrent() || captured !== denseClipboardCopy) {
+      if (!prepared) clones.forEach((clone) => clone.dispose?.());
+      return { status: "cancelled", count: 0, reason: "document-changed" };
+    }
+    if (drafts) densePdfApi().validateDraftCapture(drafts);
+    if (prepared) await admitDenseSceneCopy(clones, () => {
+      if (!destinationCurrent() || captured !== denseClipboardCopy) throw new Error("The destination changed before Paste finished.");
+      densePdfApi().validateDraftCapture(drafts);
+    });
     if (options.ownershipContext) {
       const ownership = revalidateObjectContextCommandAfterAwait(options.ownershipContext);
       if (ownership.status !== "ok") {
         if (options.toast !== false) showToast(ownership.message);
+        if (!prepared) clones.forEach((clone) => clone.dispose?.());
         return { status: "cancelled", count: 0, reason: ownership.reason };
       }
     }
     canvas.discardActiveObject();
     rebindClipboardCloneRelations(clones, originalByClone);
-    addPastedClones(clones, originals, placement, destination);
+    const stackOriginals = captured ? captured.refs.map((ref) => ref.deref()) : originals;
+    addPastedClones(clones, stackOriginals, placement, destination);
     if (destination !== canvas && offset) clones.forEach((clone) => moveObjectBySceneDelta(clone, offset, offset));
     refreshSmartConnectors();
     refreshScientificAnnotations();
     if (destination !== canvas) selectIsolatedObjects(clones, { sync: false });
     else setActiveObjects(clones);
+    if (prepared) { densePdfApi().commitSceneCopy(prepared);prepared = null; }
+    published = true;
     const historyLabel = pastePlacementLabel(placement);
     commitHistory(historyLabel);
     if (options.toast !== false) {
@@ -30604,6 +32791,12 @@
       showToast(`${countLabel} ${placement === "offset" ? "pasted" : `pasted ${placement.replace("in-", "in ")}`}`);
     }
     return { status: "ok", count: clones.length, placement };
+    } catch (error) { pasteFailed = true;throw error; }
+    finally {
+      if (prepared) {
+        discardUnpublishedDenseCopy(prepared, () => destination, pasteFailed);
+      }
+    }
   }
 
   function cutSelectionToClipboard(options = {}) {
@@ -30612,22 +32805,65 @@
       if (options.toast !== false) clipboardGuardToast(guarded, "cut");
       return guarded;
     }
-    clipboard = guarded.objects.slice();
+    if (selectionHasDensePdfPages(guarded.objects)) return cutDenseSelectionToClipboard(guarded, options);
+    ++clipboardCopyEpoch;
+    replaceEditorClipboard(guarded.objects.slice());
+    clipboardPreparation = Promise.resolve();
+    return removeCutSelection(guarded, options);
+  }
+
+  async function cutDenseSelectionToClipboard(guarded, options) {
+    const sourceCanvas = canvas, documentId = currentTransformDocumentId();
+    const pending = copySelectionToClipboard({ ...options, toast: false }), epoch = clipboardCopyEpoch;
+    const result = await pending;
+    if (result.status !== "ok" || canvas !== sourceCanvas || currentTransformDocumentId() !== documentId
+        || clipboardCopyEpoch !== epoch
+        || !guarded.objects.every((object) => collectionObjects(object.group || canvas).includes(object))) return { status: "cancelled", count: 0 };
+    return removeCutSelection(guarded, options);
+  }
+
+  function removeCutSelection(guarded, options) {
+    const scope = densePdfApi()?.beginSceneReplacement(canvas);
+    let failed = false;
+    try {
     guarded.objects.forEach((object) => {
       const parent = object.group || canvas;
       removeObjectFromCollection(parent, object);
       if (parent !== canvas) refreshObjectHierarchy(parent);
     });
+    } catch (error) { failed = true;throw error; }
+    finally { if (scope) try { densePdfApi().finishSceneReplacement(scope); } catch (error) { if (!failed) throw error; } }
     if (isGroupIsolationActive()) {
       const replacement = selectableIsolationChildren()[0] || null;
       if (replacement) selectIsolatedObject(replacement, { sync: false });
       else selectIsolatedObjects([], { sync: false });
     } else canvas.discardActiveObject();
-    canvas.requestRenderAll();
+    requestCanvasArtworkRender();
     syncUi();
     commitHistory("Selection cut");
     if (options.toast !== false) showToast(`${guarded.count === 1 ? "Object" : `${guarded.count} objects`} cut`);
     return guarded;
+  }
+
+  async function cloneNativeObjectsForCommand(objects) {
+    const results = await Promise.allSettled(objects.map((object) => object.clone(CUSTOM_PROPS)));
+    const failure = results.find((result) => result.status === "rejected");
+    if (failure) {
+      for (const result of results) if (result.status === "fulfilled") try { result.value.dispose?.(); } catch {}
+      throw failure.reason;
+    }
+    return results.map((result) => result.value);
+  }
+
+  function discardUnpublishedDenseCopy(prepared, destinationForClone, preserveFailure = false) {
+    let failed = false, failure;
+    const attempt = (operation) => { try { operation(); } catch (error) { if (!failed) { failed = true;failure = error; } } };
+    for (const clone of prepared.objects) attempt(() => {
+      const parent = destinationForClone(clone);
+      if (collectionObjects(parent).includes(clone)) removeObjectFromCollection(parent, clone);
+    });
+    attempt(() => densePdfApi().discardSceneCopy(prepared));
+    if (failed && !preserveFailure) throw failure;
   }
 
   function applyLock(object, locked) {
@@ -30683,6 +32919,7 @@
     syncCommandButtons();
     syncHistoryButtons();
     syncMenuState();
+    renderProjectSlidesPane();
   }
 
   function renderDeckMasterNavigator() {
@@ -31097,6 +33334,7 @@
       syncInspector();
       syncMenuState();
       syncHistoryButtons();
+      renderSmartConnectorOverlay();
     });
     saveFigureLayoutPreferences();
     if (liveTextInput && editingObject.isEditing && liveTextInput.isConnected) {
@@ -31129,7 +33367,7 @@
   }
 
   function simpleStyleIsVisible() {
-    return state.ui.rightInspectorVisible !== false && (!simpleFigureLayout()
+    return state.ui.rightInspectorVisible !== false && (projectSlidesOpen || !simpleFigureLayout()
       || selectedTopLevelObjects().length > 0 || figureSimpleDocumentSetupOpen || figureSimplePropertiesExpanded);
   }
 
@@ -31150,7 +33388,7 @@
     const style = document.getElementById("figureStyleToggle");
     if (style) {
       style.textContent = activeFigureLayout() === "simple" ? "Style" : "Inspector";
-      style.setAttribute("aria-pressed", String(simpleStyleIsVisible()));
+      style.setAttribute("aria-pressed", String(!projectSlidesOpen && simpleStyleIsVisible()));
     }
     root.querySelectorAll('[data-command="toggle-left-sidebar"] span').forEach((label) => {
       label.textContent = isPresentationDocument() ? "Slides" : "Library";
@@ -31171,6 +33409,7 @@
     });
     const zoom = document.getElementById("figureSimpleZoomLabel");
     if (zoom) zoom.textContent = `${Math.round(state.view.zoom * 100)}%`;
+    syncProjectSlidesChrome();
   }
 
   function showFigureDocumentSetup() {
@@ -31203,6 +33442,7 @@
     };
     figureLayoutContext = isPresentationDocument() ? "presentation" : "figure";
     applyFigureLayoutProfile(figureLayoutPreferences[figureLayoutContext === "presentation" ? "presentation" : activeFigureLayout()]);
+    setupProjectSlidesPane();
     const root = figureStudioRoot();
     root?.addEventListener("pointerdown", (event) => {
       if (event.target.closest?.("[data-figure-layout-choice]") && canvas?.getActiveObject?.()?.isEditing) {
@@ -31227,6 +33467,11 @@
       setRailVisibility("left", state.ui.leftSidebarVisible === false, { fit: false });
     });
     document.getElementById("figureStyleToggle")?.addEventListener("click", () => {
+      if (projectSlidesOpen) {
+        setProjectSlidesOpen(false);
+        if (!simpleStyleIsVisible()) showFigureDocumentSetup();
+        return;
+      }
       if (figureSimpleDocumentSetupOpen && !simpleFigureLayout()) {
         figureSimpleDocumentSetupOpen = false;
         syncFigureLayoutChrome();
@@ -31437,7 +33682,8 @@
     const minimumWidth = side === "left" ? 232 : 260;
     const source = value || defaultFloatingRailRect(side);
     const width = clamp(Number(source.width) || minimumWidth, minimumWidth, Math.max(minimumWidth, workspaceWidth - 24));
-    const height = clamp(Number(source.height) || 480, 260, Math.max(260, workspaceHeight - 24));
+    const minimumHeight = side === "right" && projectSlidesOpen ? Math.min(560, workspaceHeight - 24) : 260;
+    const height = clamp(Number(source.height) || 480, minimumHeight, Math.max(minimumHeight, workspaceHeight - 24));
     return {
       left: clamp(Number(source.left) || 0, 8, Math.max(8, workspaceWidth - width - 8)),
       top: clamp(Number(source.top) || 0, 8, Math.max(8, workspaceHeight - height - 8)),
@@ -31514,14 +33760,14 @@
       if (restore) restore.hidden = visible;
       const panelName = side === "left"
         ? leftRailPanelName()
-        : (isPresentationDocument() ? "Slide formatting" : simpleFigureLayout() && !figureSimplePropertiesExpanded ? "Style panel" : "Inspector panel");
+        : (projectSlidesOpen ? "Slides panel" : isPresentationDocument() ? "Slide formatting" : simpleFigureLayout() && !figureSimplePropertiesExpanded ? "Style panel" : "Inspector panel");
       if (resizeHandle) resizeHandle.setAttribute("aria-label", `Resize ${panelName.toLowerCase()}${isPresentationDocument() && railDockEdge(side) === "bottom" ? " height" : ""}`);
       els.workspace.querySelectorAll(`[data-rail-dock-position="${side}"]`).forEach((select) => {
         select.value = railDockEdge(side);
         select.setAttribute("aria-label", `${panelName} position`);
       });
       if (restore) {
-        const restoreLabel = side === "left" && isPresentationDocument() ? presentationPaneTitle() : (side === "left" ? "Library" : simpleFigureLayout() && !figureSimplePropertiesExpanded ? "Style" : "Inspector");
+        const restoreLabel = side === "right" && projectSlidesOpen ? "Slides" : side === "left" && isPresentationDocument() ? presentationPaneTitle() : (side === "left" ? "Library" : simpleFigureLayout() && !figureSimplePropertiesExpanded ? "Style" : "Inspector");
         restore.textContent = restoreLabel;
         restore.title = `Show ${panelName}`;
         restore.setAttribute("aria-label", `Show ${panelName}`);
@@ -31734,7 +33980,7 @@
     if (railLayout.left.mode === "floating" && railLayout.left.collapsed === true) {
       setRailCollapsed("left", false, { toast: false, focus: false, preserveWorkspace: true });
     }
-    setSidebarTab("slides");
+    setSidebarTab(projectSlidesOpen ? "tools" : "slides", { presentationPane: projectSlidesOpen ? "assets" : "slides" });
     if (layoutChanged) requestAnimationFrame(fitToScreen);
     return true;
   }
@@ -32234,13 +34480,22 @@
 
   function newDocumentFocusableElements() {
     return Array.from(els.newDocumentDialog?.querySelectorAll?.('button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])') || [])
-      .filter((element) => element.offsetParent !== null);
+      .filter((element) => element.offsetParent !== null && element.tabIndex !== -1);
   }
 
   function handleNewDocumentDialogKeyDown(event) {
     if (event.key === "Escape") {
       event.preventDefault();
       closeNewDocumentDialog();
+      return true;
+    }
+    const kindButton = event.target?.closest?.("[data-new-document-kind]");
+    if (kindButton && ["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) {
+      event.preventDefault();
+      const nextKind = event.key === "Home" ? "figure" : event.key === "End" ? "presentation"
+        : kindButton.dataset.newDocumentKind === "figure" ? "presentation" : "figure";
+      selectNewDocumentKind(nextKind);
+      els.newDocumentDialog.querySelector(`[data-new-document-kind="${nextKind}"]`)?.focus();
       return true;
     }
     if (event.key !== "Tab") return false;
@@ -32255,9 +34510,67 @@
     return true;
   }
 
+  function newDocumentUnitFactor(unit = els.newDocumentUnitsInput?.value) {
+    return unit === "mm" ? 25.4 : unit === "cm" ? 2.54 : 1;
+  }
+
+  function newDocumentDimensionValue(value) {
+    return Number(Number(value).toFixed(6));
+  }
+
+  function updateNewDocumentPreview() {
+    const width = Number(els.newDocumentWidthInput?.value);
+    const height = Number(els.newDocumentHeightInput?.value);
+    const factor = newDocumentUnitFactor();
+    const valid = Number.isFinite(width) && Number.isFinite(height)
+      && width >= 0.5 * factor && width <= 200 * factor
+      && height >= 0.5 * factor && height <= 200 * factor;
+    if (els.createNewDocumentBtn) els.createNewDocumentBtn.disabled = !valid;
+    for (const input of [els.newDocumentWidthInput, els.newDocumentHeightInput]) {
+      if (!input) continue;
+      input.min = String(0.5 * factor);
+      input.max = String(200 * factor);
+    }
+    if (els.newDocumentPreviewPaper) {
+      els.newDocumentPreviewPaper.hidden = !valid;
+      if (valid) {
+        const scale = 140 / Math.max(width, height);
+        els.newDocumentPreviewPaper.style.width = `${width * scale}px`;
+        els.newDocumentPreviewPaper.style.height = `${height * scale}px`;
+      }
+    }
+    if (els.newDocumentPreviewDimensions) {
+      els.newDocumentPreviewDimensions.textContent = valid
+        ? `${newDocumentDimensionValue(width)} × ${newDocumentDimensionValue(height)} ${els.newDocumentUnitsInput?.value || "in"}`
+        : "Enter a valid width and height";
+    }
+    if (els.newDocumentPreviewKind) {
+      els.newDocumentPreviewKind.textContent = selectedNewDocumentKind() === "presentation" ? "Slide size" : "One canvas";
+    }
+    return valid;
+  }
+
+  function changeNewDocumentUnits() {
+    const previousUnit = els.newDocumentUnitsInput?.dataset.previousUnit || "in";
+    const previousFactor = newDocumentUnitFactor(previousUnit);
+    const factor = newDocumentUnitFactor();
+    const preset = selectedNewDocumentPreset();
+    if (preset !== "custom") {
+      if (els.newDocumentUnitsInput) els.newDocumentUnitsInput.dataset.previousUnit = els.newDocumentUnitsInput.value;
+      selectNewDocumentPreset(preset);
+      return;
+    }
+    for (const input of [els.newDocumentWidthInput, els.newDocumentHeightInput]) {
+      if (!input || input.value === "") continue;
+      const value = Number(input.value);
+      if (Number.isFinite(value)) input.value = String(newDocumentDimensionValue(value / previousFactor * factor));
+    }
+    if (els.newDocumentUnitsInput) els.newDocumentUnitsInput.dataset.previousUnit = els.newDocumentUnitsInput.value;
+    updateNewDocumentPreview();
+  }
+
   function selectedNewDocumentPreset() {
-    return els.newDocumentDialog?.querySelector('[data-new-document-preset][aria-checked="true"]:not([hidden])')?.dataset?.newDocumentPreset
-      || (selectedNewDocumentKind() === "presentation" ? "presentation-wide" : "double-column");
+    return els.newDocumentSizeInput?.value || "custom";
   }
 
   function selectedNewDocumentKind() {
@@ -32267,35 +34580,41 @@
   function selectNewDocumentKind(kind, options = {}) {
     const normalized = normalizeDocumentKind(kind);
     els.newDocumentDialog?.querySelectorAll("[data-new-document-kind]").forEach((button) => {
-      button.setAttribute("aria-checked", String(button.dataset.newDocumentKind === normalized));
+      const selected = button.dataset.newDocumentKind === normalized;
+      button.setAttribute("aria-checked", String(selected));
+      button.tabIndex = selected ? 0 : -1;
     });
-    els.newDocumentDialog?.querySelectorAll("[data-figure-preset]").forEach((button) => { button.hidden = normalized !== "figure"; });
-    els.newDocumentDialog?.querySelectorAll("[data-presentation-preset]").forEach((button) => { button.hidden = normalized !== "presentation"; });
+    els.newDocumentSizeInput?.querySelectorAll("[data-figure-preset]").forEach((option) => {
+      option.hidden = option.disabled = normalized !== "figure";
+    });
+    els.newDocumentSizeInput?.querySelectorAll("[data-presentation-preset]").forEach((option) => {
+      option.hidden = option.disabled = normalized !== "presentation";
+    });
     if (els.newDocumentPresentationSettings) els.newDocumentPresentationSettings.hidden = normalized !== "presentation";
     if (els.newDocumentModeDescription) {
       els.newDocumentModeDescription.textContent = normalized === "presentation"
-        ? "Creates a slide deck with one shared slide size, layouts, themes, notes, and presentation controls."
-        : "Creates one editable scientific canvas for figures, illustrations, and diagrams.";
+        ? "Start with one slide. Add more slides as you go."
+        : "One canvas for your figure or diagram. You can change its size later.";
     }
     const fallbackPreset = normalized === "presentation" ? "presentation-wide" : "double-column";
-    const requestedPreset = options.preset || fallbackPreset;
-    selectNewDocumentPreset(requestedPreset);
+    selectNewDocumentPreset(options.preset || fallbackPreset);
     if (els.newDocumentNameInput && options.preserveName !== true) {
       els.newDocumentNameInput.value = peekUntitledDocumentName(normalized);
     }
-    if (els.createNewDocumentBtn) els.createNewDocumentBtn.textContent = normalized === "presentation" ? "Create Presentation" : "Create Figure";
+    if (els.createNewDocumentBtn) els.createNewDocumentBtn.textContent = "Create";
     return normalized;
   }
 
   function selectNewDocumentPreset(presetId) {
-    const preset = PRESETS[presetId] || PRESETS.custom;
-    els.newDocumentDialog?.querySelectorAll("[data-new-document-preset]").forEach((button) => {
-      button.setAttribute("aria-checked", String(button.dataset.newDocumentPreset === presetId));
-    });
+    const preset = presetId === "a4" ? { widthIn: 210 / 25.4, heightIn: 297 / 25.4 } : PRESETS[presetId] || PRESETS.custom;
+    const available = Array.from(els.newDocumentSizeInput?.options || []).some((option) => option.value === presetId && !option.disabled);
+    if (els.newDocumentSizeInput) els.newDocumentSizeInput.value = available ? presetId : "custom";
     if (presetId !== "custom") {
-      if (els.newDocumentWidthInput) els.newDocumentWidthInput.value = String(preset.widthIn);
-      if (els.newDocumentHeightInput) els.newDocumentHeightInput.value = String(preset.heightIn);
+      const factor = newDocumentUnitFactor();
+      if (els.newDocumentWidthInput) els.newDocumentWidthInput.value = String(newDocumentDimensionValue(preset.widthIn * factor));
+      if (els.newDocumentHeightInput) els.newDocumentHeightInput.value = String(newDocumentDimensionValue(preset.heightIn * factor));
     }
+    updateNewDocumentPreview();
     return preset;
   }
 
@@ -32303,12 +34622,16 @@
     if (!els.newDocumentBackdrop || !els.newDocumentDialog) return createNewDocumentTab(options);
     const active = options.returnFocus || document.activeElement;
     newDocumentFocusReturnTarget = active?.closest?.(".app-menu")?.querySelector?.(".menu-trigger") || active || document.getElementById("newProjectBtn");
+    if (els.newDocumentUnitsInput) {
+      els.newDocumentUnitsInput.value = "in";
+      els.newDocumentUnitsInput.dataset.previousUnit = "in";
+    }
     const kind = selectNewDocumentKind(options.kind || state.document?.kind || "figure", { preset: options.preset, preserveName: false });
     if (els.newDocumentNameInput) els.newDocumentNameInput.value = options.name || peekUntitledDocumentName(kind);
     if (els.newDocumentLayoutInput) els.newDocumentLayoutInput.value = options.layoutId || (kind === "presentation" ? "title" : "blank");
     if (els.newDocumentThemeInput) els.newDocumentThemeInput.value = options.themeId || "scientific";
     els.newDocumentBackdrop.hidden = false;
-    requestAnimationFrame(() => els.newDocumentDialog.querySelector('[data-new-document-kind][aria-checked="true"]')?.focus());
+    requestAnimationFrame(() => els.newDocumentNameInput?.focus());
     return { status: "open" };
   }
 
@@ -32346,14 +34669,16 @@
     return true;
   }
 
-  function createNewDocumentFromDialog() {
+  async function createNewDocumentFromDialog() {
     const kind = selectedNewDocumentKind();
     const preset = selectedNewDocumentPreset();
-    const widthIn = clamp(Number(els.newDocumentWidthInput?.value) || PRESETS[preset]?.widthIn || 7.1, 0.5, 200);
-    const heightIn = clamp(Number(els.newDocumentHeightInput?.value) || PRESETS[preset]?.heightIn || 5, 0.5, 200);
-    const result = createNewDocumentTab({
+    if (!updateNewDocumentPreview()) return { status: "invalid-dimensions" };
+    const factor = newDocumentUnitFactor();
+    const widthIn = clamp(Number(els.newDocumentWidthInput?.value) / factor, 0.5, 200);
+    const heightIn = clamp(Number(els.newDocumentHeightInput?.value) / factor, 0.5, 200);
+    const result = await createNewDocumentTab({
       kind,
-      preset,
+      preset: preset === "a4" ? "custom" : preset,
       widthIn,
       heightIn,
       layoutId: kind === "presentation" ? (els.newDocumentLayoutInput?.value || "title") : "blank",
@@ -32368,6 +34693,7 @@
 
   function newProject(options = {}) {
     if (pdfHistoryMovePending || pdfHistoryMutationLockDepth) return { status: "busy" };
+    if (hasPendingDensePageEdits()) return { status: "busy" };
     const kind = normalizeDocumentKind(options.kind || "figure");
     if (
       options.discardUnsaved !== true
@@ -34744,7 +37070,7 @@
     if (command === "present-current-slide") return startPresentation({ fromBeginning: false, returnFocus: document.querySelector('[data-menu="view"] .menu-trigger') });
     if (command === "toggle-speaker-notes") return toggleSpeakerNotesDrawer();
     if (command === "new-slide") return createDeckSlide({ layoutId: 'title-content' });
-    if (command === "duplicate-slide") return duplicateCurrentSlide();
+    if (command === "duplicate-slide") return handleDeckCopyAction(duplicateCurrentSlide);
     if (command === "delete-slide") return deleteCurrentSlide();
     if (command === "open-project") return openProjectCommand();
     if (command === "recent-documents") return openRecentDocuments({ returnFocus: commandTrigger });
@@ -35114,9 +37440,11 @@
       const filename = result.filename || filenameFromPath(result.path);
       let parsed;
       try {
-        parsed = parseFigureStudioFileContents(result.payload || result.project || result.contents, filename);
+        parsed = result.fileBlob ? await parseFigureStudioFileBlob(new File([result.fileBlob], filename, { type: "application/json" }))
+          : parseFigureStudioFileContents(result.payload || result.project || result.contents, filename);
         assertExpectedOpenKind(parsed, options.expectedKind || "");
       } catch (error) {
+        try { discardDecodedFigureStudioFile(parsed); } catch {}
         await releaseNativeOpenBinding(result.documentId || documentId);
         const message = error.message || "Figure Tool could not open that document.";
         finishDocumentFileOperation(operation, "failure", message);
@@ -35126,7 +37454,7 @@
       }
       let tab;
       try {
-        tab = await openParsedFigureStudioFile(parsed, {
+        tab = await openDecodedFigureStudioFile(parsed, {
           id: result.documentId || documentId,
           nativeDocumentId: result.documentId || documentId,
           filename,
@@ -35804,6 +38132,7 @@
     const pathEditing = Boolean(first && isPathNodeEditing(first));
     const selectedPathHandle = pathEditing ? selectedPathHandleDescriptor(first) : null;
     const selectedHandleCount = selectedPathHandleLayoutItems().length;
+    const nativePointTarget = Boolean(densePdfApi()?.pageForObject(first));
     const actions = {
       copy: clipboardSelectionGuard("copy", selected).status === "ok",
       cut: clipboardSelectionGuard("cut", selected).status === "ok",
@@ -35898,18 +38227,18 @@
         && nativePdfSourceForObject(first).available,
       "edit-path-nodes": (lineContext || pathContext) && selected.length === 1 && isDirectSelectionEditableObject(first),
       "finish-path-edit": pathEditing,
-      "path-add-point": pathEditing && Boolean(selectedPathHandle),
-      "path-delete-point": pathEditing && pathTopologyActionState("delete").enabled,
-      "path-smooth": pathEditing && Boolean(selectedPathHandle),
-      "path-corner": pathEditing && Boolean(selectedPathHandle),
-      "path-symmetric": pathEditing && Boolean(selectedPathHandle),
-      "path-segment-straight": pathEditing && Boolean(pathNodeEdit.selectedSegment || selectedPathHandle),
-      "path-segment-curve": pathEditing && Boolean(pathNodeEdit.selectedSegment || selectedPathHandle),
-      "path-split": pathEditing && pathTopologyActionState("split").enabled,
-      "path-join": pathEditing && pathTopologyActionState("join").enabled,
-      "path-close": context.kind === "path",
-      "path-open": context.kind === "path",
-      "path-simplify": context.kind === "path",
+      "path-add-point": !nativePointTarget && pathEditing && Boolean(selectedPathHandle),
+      "path-delete-point": !nativePointTarget && pathEditing && pathTopologyActionState("delete").enabled,
+      "path-smooth": !nativePointTarget && pathEditing && Boolean(selectedPathHandle),
+      "path-corner": !nativePointTarget && pathEditing && Boolean(selectedPathHandle),
+      "path-symmetric": !nativePointTarget && pathEditing && Boolean(selectedPathHandle),
+      "path-segment-straight": !nativePointTarget && pathEditing && Boolean(pathNodeEdit.selectedSegment || selectedPathHandle),
+      "path-segment-curve": !nativePointTarget && pathEditing && Boolean(pathNodeEdit.selectedSegment || selectedPathHandle),
+      "path-split": !nativePointTarget && pathEditing && pathTopologyActionState("split").enabled,
+      "path-join": !nativePointTarget && pathEditing && pathTopologyActionState("join").enabled,
+      "path-close": !nativePointTarget && context.kind === "path",
+      "path-open": !nativePointTarget && context.kind === "path",
+      "path-simplify": !nativePointTarget && context.kind === "path",
       "boolean-unite": selectedShapeBooleanContext().enabled,
       "boolean-intersect": selectedShapeBooleanContext().enabled,
       "boolean-subtract": selectedShapeBooleanContext().enabled,
@@ -37082,7 +39411,7 @@
     }
     try {
       const descriptor = options.documentDescriptor || activeExportDocumentDescriptor();
-      const result = await api.exportProject(descriptor.project, { filename });
+      const result = await api.exportProject(descriptor.project, { filename, resolveNativeSvgRoot: capturePptxNativeSvgRoot });
       const warnings = normalizePptxWarnings(result?.warnings);
       const resolvedFilename = String(result?.filename || filename);
       if (options.download !== false && result?.blob) downloadBlob(resolvedFilename, result.blob);
@@ -37438,8 +39767,8 @@
       els.editPathNodesBtn.textContent = isPathNodeEditing(selectedPathToolObject) ? `Done ${nodeCopy}` : `Edit ${nodeCopy}`;
       els.editPathNodesBtn.classList.toggle("active", isPathNodeEditing(selectedPathToolObject));
     }
-    if (els.closePathBtn) els.closePathBtn.disabled = !pathEditable || primitiveDirectShape || isLineVectorObject(selectedPathToolObject) || !singlePathContour || isClosedPathObject(selectedPathToolObject);
-    if (els.openPathBtn) els.openPathBtn.disabled = !pathEditable || primitiveDirectShape || isLineVectorObject(selectedPathToolObject) || !singlePathContour || !isClosedPathObject(selectedPathToolObject);
+    if (els.closePathBtn) els.closePathBtn.disabled = !pathEditable || !canUseBezierNodeEditing(selectedPathToolObject) || primitiveDirectShape || isLineVectorObject(selectedPathToolObject) || !singlePathContour || isClosedPathObject(selectedPathToolObject);
+    if (els.openPathBtn) els.openPathBtn.disabled = !pathEditable || !canUseBezierNodeEditing(selectedPathToolObject) || primitiveDirectShape || isLineVectorObject(selectedPathToolObject) || !singlePathContour || !isClosedPathObject(selectedPathToolObject);
     if (els.simplifyPathBtn) els.simplifyPathBtn.disabled = !pathEditable || primitiveDirectShape || isLineVectorObject(selectedPathToolObject) || !canSimplifyPathObject(selectedPathToolObject);
     syncPathActionButtons(pathEditable && !primitiveDirectShape ? selectedPathToolObject : null);
     syncPathNodeEditForSelection((appearancePatternEdit.active || pdfGradientEdit.active || appearanceGradientEdit.active) ? selectedPathToolObject : pathEditable && !primitiveDirectShape ? selectedPathToolObject : null);
@@ -37487,6 +39816,7 @@
   }
 
   function isDirectSelectionEditableObject(object) {
+    if (densePdfApi()?.pageForObject(object)) return canUsePathPointEditing(object) && !isSmartConnectorObject(object);
     return Boolean(
       (isEditablePathObject(object) || isPrimitiveShapeDirectSelectable(object))
       && !isSmartConnectorObject(object)
@@ -37714,7 +40044,7 @@
   }
 
   function canSimplifyPathObject(object) {
-    return isEditablePathObject(object) && object.path.length > 16;
+    return canUseBezierNodeEditing(object) && object.path.length > 16;
   }
 
   function isPathNodeEditing(object) {
@@ -37726,9 +40056,10 @@
     const selectedEndpoints = selectedPathEndpointItems();
     const editing = Boolean(object && isPathNodeEditing(object));
     const lineVector = isLineVectorObject(object);
-    const deleteState = pathTopologyActionState("delete");
-    const splitState = pathTopologyActionState("split");
-    const joinState = pathTopologyActionState("join");
+    const topologyStates = pathTopologyUiStates();
+    const deleteState = topologyStates.delete;
+    const splitState = topologyStates.split;
+    const joinState = topologyStates.join;
     if (els.deletePathNodeBtn) {
       els.deletePathNodeBtn.disabled = !editing || !deleteState.enabled;
       els.deletePathNodeBtn.title = deleteState.enabled ? "Delete selected anchors; remove a path contour if too few anchors remain" : deleteState.reason;
@@ -37758,7 +40089,8 @@
     const targetSegments = selectedSegment ? [selectedSegment] : selectedEndpoints.map((item) => (
       pathSegmentDescriptors(item.object).find((segment) => segment.startCommandIndex === item.descriptor.commandIndex)
     )).filter(Boolean);
-    const segmentReady = Boolean(targetSegments.length);
+    const segmentReady = Boolean(targetSegments.length) && selectedEndpoints.every((item) => canUseBezierNodeEditing(item.object))
+      && (!selectedSegmentObject || canUseBezierNodeEditing(selectedSegmentObject));
     const segmentIsCurved = (segment) => ["C", "Q", "S"].includes(String(segment?.type || "").toUpperCase());
     if (els.straightPathSegmentBtn) {
       els.straightPathSegmentBtn.disabled = lineVector || !editing || !segmentReady || targetSegments.every((segment) => !segmentIsCurved(segment));
@@ -37948,7 +40280,7 @@
       return false;
     }
     object = ensureDirectSelectionPathObject(object, options);
-    if (!canUseBezierNodeEditing(object)) {
+    if (!canUsePathPointEditing(object)) {
       if (options.toast !== false) showToast("Release or unlock this artwork before editing its nodes");
       return false;
     }
@@ -37970,10 +40302,12 @@
       marquee: null
     };
     object.set({ hasControls: false, hasBorders: false });
-    renderPathNodeOverlay();
-    updatePathNodeStatus(object);
+    if (options.deferInitialVisuals !== true) {
+      renderPathNodeOverlay();
+      updatePathNodeStatus(object);
+    }
     syncPathActionButtons(object);
-    syncInspector();
+    if (options.deferInitialVisuals !== true) syncInspector();
     if (els.editPathNodesBtn) {
       els.editPathNodesBtn.textContent = isLineVectorObject(object) ? "Done endpoints" : "Done nodes";
       els.editPathNodesBtn.classList.add("active");
@@ -38378,7 +40712,7 @@
   function createStrokeBrushScenarioForQa() {
     if (strokeWidthEdit.active) cancelStrokeWidthEdit({ sync: false, toast: false });
     if (pathNodeEdit.object) stopPathNodeEdit({ sync: false });
-    canvas.clear();
+    clearEditorCanvas();
     canvas.backgroundColor = "#ffffff";
     const curve = makePathShape(120, 170, "M 0 92 C 72 4 154 8 248 82", { fill: "", stroke: "#176b73", strokeWidth: 7 }, "path", "Variable-width curve", sourceMeta({ kind: "qa" }));
     const line = makeLine(132, 350, 238, 0, { stroke: "#345e9d", strokeWidth: 5 }, "Brush line", sourceMeta({ kind: "qa" }));
@@ -38398,7 +40732,7 @@
   function createSelectedArtBrushScenarioForQa() {
     if (strokeWidthEdit.active) cancelStrokeWidthEdit({ sync: false, toast: false });
     if (pathNodeEdit.object) stopPathNodeEdit({ sync: false });
-    canvas.clear();
+    clearEditorCanvas();
     canvas.backgroundColor = "#ffffff";
     const sourceBody = makePathShape(88, 92, "M 0 18 C 18 -2 52 -2 72 18 C 52 38 18 38 0 18 Z", { fill: "#2a9d8f", stroke: "#14535a", strokeWidth: 2 }, "path", "Selected brush leaf", sourceMeta({ kind: "qa" }));
     const sourceVein = makePathShape(96, 109, "M 0 0 C 18 -7 40 -7 58 0", { fill: "", stroke: "#f4a261", strokeWidth: 3 }, "path", "Selected brush vein", sourceMeta({ kind: "qa" }));
@@ -38426,7 +40760,7 @@
     if (strokeWidthEdit.active) cancelStrokeWidthEdit({ sync: false, toast: false });
     if (pathNodeEdit.object) stopPathNodeEdit({ sync: false });
     exitGroupIsolation({ selectGroup: false, sync: false, toast: false });
-    canvas.clear();
+    clearEditorCanvas();
     canvas.backgroundColor = "#ffffff";
     const source = sourceMeta({ kind: "qa-art-brush-expand" });
     const body = makePathShape(0, 0, "M 0 18 C 18 -2 52 -2 72 18 C 52 38 18 38 0 18 Z", { fill: "#2a9d8f", stroke: "#14535a", strokeWidth: 2 }, "path", "Grouped brush leaf", source);
@@ -38464,7 +40798,7 @@
     if (strokeWidthEdit.active) cancelStrokeWidthEdit({ sync: false, toast: false });
     if (pathNodeEdit.object) stopPathNodeEdit({ sync: false });
     exitGroupIsolation({ selectGroup: false, sync: false, toast: false });
-    canvas.clear();
+    clearEditorCanvas();
     canvas.backgroundColor = "#ffffff";
     const entries = [
       ["phospholipid-monolayer", 76, 72, "M 0 28 C 62 -12 144 -8 224 30", "Phospholipid monolayer"],
@@ -39982,7 +42316,7 @@
     const seen = new Set();
     const objects = [];
     [pathNodeEdit.object, ...(Array.isArray(pathNodeEdit.objects) ? pathNodeEdit.objects : [])].forEach((object) => {
-      if (!object || !canUseBezierNodeEditing(object)) return;
+      if (!object || !canUsePathPointEditing(object)) return;
       const id = pathEditObjectId(object);
       if (seen.has(id)) return;
       seen.add(id);
@@ -40222,6 +42556,7 @@
   }
 
   function renderPathSegmentTargets(object) {
+    if (densePdfApi()?.pageForObject(object)) return;
     pathSegmentDescriptors(object).forEach((segment) => {
       const samples = samplePathSegment(segment, 12).map((point) => pathLocalPointToCanvas(object, point));
       for (let index = 0; index < samples.length - 1; index += 1) {
@@ -40292,7 +42627,7 @@
   }
 
   function beginPathSegmentDrag(event, object, segment) {
-    if (!object || !segment || object.locked) return;
+    if (!object || !segment || object.locked || densePdfApi()?.pageForObject(object)) return;
     resetPaintedVectorDirectSelectionCycle();
     event.preventDefault();
     event.stopPropagation();
@@ -43285,8 +45620,7 @@
     return { enabled: Boolean(enabled), reason: enabled ? "" : String(reason || "This path operation is unavailable.") };
   }
 
-  function pathTopologyDeleteState() {
-    const selected = selectedPathHandleLayoutItems();
+  function pathTopologyDeleteState(selected = selectedPathHandleLayoutItems()) {
     if (!selected.length) return topologyActionResult(false, "Select one or more editable anchors with Direct Selection.");
     if (selected.some((item) => item.descriptor.handleType !== "endpoint")) {
       return topologyActionResult(false, "Delete Anchors works with anchor points, not curve handles.");
@@ -43319,8 +45653,7 @@
       && !isSmartConnectorObject(object) && !object.figureStudioAnnotationMeta && !object.scientificCalloutMeta);
   }
 
-  function pathTopologySplitState() {
-    const selected = selectedPathHandleLayoutItems();
+  function pathTopologySplitState(selected = selectedPathHandleLayoutItems()) {
     if (selected.length !== 1) return topologyActionResult(false, "Select exactly one anchor to cut a path.");
     const item = selected[0];
     if (item.descriptor.handleType !== "endpoint") return topologyActionResult(false, "Select an anchor point, not a curve handle.");
@@ -43332,8 +45665,7 @@
     return topologyActionResult(true);
   }
 
-  function pathTopologyJoinState() {
-    const selected = selectedPathHandleLayoutItems();
+  function pathTopologyJoinState(selected = selectedPathHandleLayoutItems()) {
     if (selected.some((item) => item.descriptor.handleType !== "endpoint")) {
       return topologyActionResult(false, "Join Endpoints works with open endpoints, not curve handles.");
     }
@@ -43364,6 +45696,26 @@
     if (action === "split" || action === "path-split") return pathTopologySplitState();
     if (action === "join" || action === "path-join") return pathTopologyJoinState();
     return topologyActionResult(false);
+  }
+
+  function pathTopologyUiStates() {
+    const api = densePdfApi();
+    const candidates = [pathNodeEdit.object, ...(Array.isArray(pathNodeEdit.objects) ? pathNodeEdit.objects : [])].filter(Boolean);
+    const nativeOnly = candidates.length && candidates.every((object) => {
+      const page = api?.pageForObject(object);
+      return page && api.isPage(page) && globalThis.FigureStudioPdfDenseNativeProxies?.isProxy(object);
+    });
+    if (!nativeOnly) return {
+      delete: pathTopologyActionState("delete"),
+      split: pathTopologyActionState("split"),
+      join: pathTopologyActionState("join")
+    };
+    const selected = selectedPathHandleLayoutItems();
+    return {
+      delete: pathTopologyDeleteState(selected),
+      split: pathTopologySplitState(selected),
+      join: pathTopologyJoinState(selected)
+    };
   }
 
   function pathContourRecords(object) {
@@ -43558,6 +45910,26 @@
       && !isReferenceObject(object)
       && !bezierEditingSourceProtected(object)
     );
+  }
+
+  function canUsePathPointEditing(object) {
+    const page = densePdfApi()?.pageForObject(object);
+    if (!page) return canUseBezierNodeEditing(object);
+    if (!densePdfApi().isPage(page) || !globalThis.FigureStudioPdfDenseNativeProxies?.canEditPoints(object)) return false;
+    // The private proxy verifies its complete native source tree and mapping.
+    // Only that tree up to its actual Page may retain source-backed ancestry.
+    const seen = new Set();
+    let current = object;
+    while (current) {
+      if (seen.has(current) || seen.size >= 48 || current.locked || current.visible === false || isReferenceObject(current)
+          || inheritedMasterMeta(current) || (componentInstanceMeta(current) && !componentInstanceMeta(current).detached && !componentInstanceMeta(current).override)) return false;
+      seen.add(current);
+      if (current === page) {
+        return ![page.group, page.parent].filter(Boolean).some((ancestor) => seen.has(ancestor) || bezierEditingSourceProtected(ancestor));
+      }
+      current = current.group || current.parent || null;
+    }
+    return false;
   }
 
   function bezierEditingSourceProtected(object, protectionByObject = null) {
@@ -44571,13 +46943,23 @@
     const options = scope === 'scenes'
       ? { scope, category: scientificSceneCategory === 'all' ? '' : scientificSceneCategory, mode: normalizeDocumentKind(state.document?.kind), limit: 3 }
       : { scope, category: state.assets.category, subcategory: state.assets.subcategory, discovery: state.assets.discovery,
-          favoriteConceptIds: state.assets.favorites, recentConceptIds: state.assets.recent, limit: 3 };
+          favoriteConceptIds: state.assets.discovery === "favorites" ? state.assets.favorites : [],
+          recentConceptIds: state.assets.discovery === "recent" ? state.assets.recent : [], limit: 3 };
+    // Loaded catalog/library objects are replaced atomically. Selection/history
+    // refreshes do not change search inputs; preserve their existing suggestions
+    // instead of repeating the same catalog searches in the artwork input task.
+    const inputKey = JSON.stringify([query, options]);
+    const pack = scope === "assets" ? scientificAssetPack : null;
+    const prior = surface._figureStudioRelatedSearchView;
+    if (prior?.source === source && prior.pack === pack && prior.inputKey === inputKey
+      && prior.html === surface.innerHTML && prior.hidden === surface.hidden) return;
     const suggestions = query && source ? window.FigureStudioScientificAssetDiscovery?.recommendQueries(source, query, options) || [] : [];
     const noResults = query && source && !(scope === 'scenes' ? filteredScientificScenes() : filteredScientificAssets()).length;
     surface.hidden = !suggestions.length && !noResults;
     surface.innerHTML = suggestions.length
       ? `<span>Related searches</span>${suggestions.map((item) => `<button type="button" data-asset-related-query="${escapeHtml(item.query)}" data-library-scope="${scope}" title="Search ${escapeHtml(item.label)} in ${scope === 'scenes' ? 'Scenes' : 'Assets'}; ${item.count} matching concept${item.count === 1 ? '' : 's'}">${escapeHtml(item.label)}</button>`).join('')}`
       : noResults ? `<span>Try another term or keep your filters and</span><button type="button" data-asset-clear-search data-library-scope="${scope}">Clear search</button>` : '';
+    surface._figureStudioRelatedSearchView = { source, pack, inputKey, html: surface.innerHTML, hidden: surface.hidden };
   }
 
   function scientificAssetPreviewContextId() {
@@ -46353,7 +48735,7 @@
   async function useScientificSceneAsNewFigure(sceneId) {
     const prepared = await prepareScientificScene(sceneId);
     const canvasSettings = prepared.definition.canvas || {};
-    const created = createNewDocumentTab({
+    const created = await createNewDocumentTab({
       kind: "figure",
       preset: "custom",
       widthIn: clamp(Number(canvasSettings.width_in) || 10, .5, 200),
@@ -47013,6 +49395,8 @@
   }
 
   function selectionPropertyObjects(property, selection = selectedTopLevelObjects(), capabilitiesByObject = null) {
+    const transformProperty = ["x", "y", "width", "height", "rotation", "shear"].includes(property);
+    let transformAllowed;
     return (selection || []).filter((object) => {
       if (!object || object.locked || isReferenceObject(object) || inheritedMasterMeta(object)) return false;
       let caps;
@@ -47021,7 +49405,10 @@
         caps = inspectorCapabilities(object, [object]);
         capabilitiesByObject?.set(object, caps);
       }
-      if (["x", "y", "width", "height", "rotation", "shear"].includes(property)) return numericTransformSelectionGuard(selection).status === "ok";
+      if (transformProperty) {
+        if (transformAllowed === undefined) transformAllowed = numericTransformSelectionGuard(selection).status === "ok";
+        return transformAllowed;
+      }
       if (property === "text") return selection.length === 1 && supportsText(object);
       if (property === "fill") return Boolean(caps.fill);
       if (property === "stroke") return Boolean(caps.stroke);
@@ -47189,9 +49576,10 @@
     const transformGuard = numericTransformSelectionGuard(selected);
     const anchorXs = selectedHandleItems.map((item) => item.point.x / INCH);
     const anchorYs = selectedHandleItems.map((item) => item.point.y / INCH);
-    const topologyDelete = pathTopologyActionState("delete");
-    const topologySplit = pathTopologyActionState("split");
-    const topologyJoin = pathTopologyActionState("join");
+    const topologyStates = pathTopologyUiStates();
+    const topologyDelete = topologyStates.delete;
+    const topologySplit = topologyStates.split;
+    const topologyJoin = topologyStates.join;
     const anchor = selectedHandleItems.length ? {
       label: selectedHandleItems.length > 1
         ? `${selectedHandleItems.length} selected anchors`
@@ -47891,6 +50279,7 @@
       const connector = selectedTopLevelObjects()[0];
       if (!isSmartConnectorObject(connector)) return { status: "unavailable" };
       const meta = normalizeSmartConnectorMeta(connector.smartConnectorMeta);
+      if (property === "connectorRoute" && value === "elbow" && meta.geometrySpace === "object") { showToast("Keep this arrow Straight or Curved. Draw a separate Elbow arrow for automatic routing."); return { status: "blocked", reason: "object-space-auto-route" }; }
       if (property === "connectorRoute") {
         meta.route = String(value || "straight");
         if (meta.route !== "elbow") {
@@ -47900,7 +50289,7 @@
           smartConnectorInteraction.bend = null;
         }
       }
-      else meta.label = String(value || "").slice(0, 80);
+      else { meta.label = String(value || "").slice(0, 80); if (meta.geometrySpace === "object") meta.labelPlacement = "midpoint"; }
       connector.smartConnectorMeta = normalizeSmartConnectorMeta(meta);
       refreshSmartConnectors();
       syncUi();
@@ -48186,7 +50575,7 @@
         ${group("path-paint", "Path appearance", `${p.fill?.supportedCount ? selectionContextColorField("fill", "Fill", p.fill) : ""}${p.stroke?.supportedCount ? selectionContextColorField("stroke", "Stroke", p.stroke) : ""}${p.strokeWidth?.supportedCount ? selectionContextNumberField("strokeWidth", "Width", p.strokeWidth, { min: 0, step: "0.25" }) : ""}`)}
         ${context.kind === "mixed-vector"
           ? group("pathfinder", "Pathfinder", `${action("shape-builder", "Builder")}${action("make-live-boolean", "Live", { title: "Create an editable live compound" })}<details class="context-strip-connector-more context-strip-pathfinder-more"><summary data-context-disclosure="pathfinder-more" title="More Pathfinder actions">More</summary><div class="context-strip-connector-menu context-strip-pathfinder-menu" popover="manual" role="group" aria-label="Pathfinder actions">${action("boolean-unite", "Unite")}${action("boolean-intersect", "Intersect")}${action("boolean-subtract", "Subtract")}${action("boolean-divide", "Divide")}</div></details>`, "context-strip-secondary")
-          : group("path-edit", "Path editing", action("edit-path-nodes", context.pathEditing ? "Finish" : "Edit nodes", { disabled: !context.pathEditing && !canUseBezierNodeEditing(context.first) }))}`;
+          : group("path-edit", "Path editing", action("edit-path-nodes", context.pathEditing ? "Finish" : "Edit nodes", { disabled: !context.pathEditing && !canUsePathPointEditing(context.first) }))}`;
     } else if (context.kind === "live-boolean") {
       const live = context.liveBoolean || normalizeLiveBooleanMeta();
       controls = `${transform}
@@ -48282,10 +50671,18 @@
   }
 
   function syncInspector() {
-    const focused = captureSelectionControlFocus();
-    syncInspectorControls();
-    if (els.inspector) els.inspector.dataset.selectionUiState = "complete";
-    if (focused.root && !focused.element.isConnected) restoreSelectionControlFocus(focused);
+    // Selection controls repeatedly inspect the same immutable group tree during
+    // this synchronous refresh. Keep subtree lookups local to this read scope.
+    const previousCache = inspectorDenseSvgProxyMetaCache;
+    inspectorDenseSvgProxyMetaCache = previousCache || new WeakMap();
+    try {
+      const focused = captureSelectionControlFocus();
+      syncInspectorControls();
+      if (els.inspector) els.inspector.dataset.selectionUiState = "complete";
+      if (focused.root && !focused.element.isConnected) restoreSelectionControlFocus(focused);
+    } finally {
+      inspectorDenseSvgProxyMetaCache = previousCache;
+    }
   }
 
   function syncInspectorControls() {
@@ -48400,7 +50797,7 @@
     document.querySelectorAll("#fontStyleGroup button").forEach((button) => {
       button.disabled = !caps.font;
     });
-    renderAppearanceStructureInspector(single ? first : null, selected);
+    renderAppearanceStructureInspector(single ? first : null, selected, selectionContext);
     renderReferenceInspector(single ? first : null);
     renderScientificAssetInspector(single ? first : null);
     renderSourceBackedInspector(single ? first : null);
@@ -49222,11 +51619,12 @@
     const sourceId = pdfSourceIdForObject(object);
     const pageNumber = pdfSourcePageNumberForObject(object);
     const pageEntry = pdfSourcePageEntryForObject(object);
-    const rows = pdfTextObjectRows(object);
-    const editableText = rows.filter((item) => item.pdfTextRepresentation === "editable-text" && isCanvasTextObject(item));
+    const densePage = densePdfPageForObject(object);
+    const rows = densePage ? densePdfApi().textEntries(densePage).map((row) => row.object) : pdfTextObjectRows(object);
+    const editableText = densePage ? rows : rows.filter((item) => item.pdfTextRepresentation === "editable-text" && isCanvasTextObject(item));
     const outlineRows = rows.filter((item) => item.pdfTextRepresentation === "fidelity-outline");
     const graphicsRows = rows.filter((item) => item.pdfTextRepresentation === "editable-graphics");
-    const currentMode = String(object?.pdfTextMode || object?.importMeta?.pdfTextMode || object?.importMeta?.pdf_text_mode || pageEntry?.canvas_text_mode || "outlines");
+    const currentMode = densePage ? "editable" : String(object?.pdfTextMode || object?.importMeta?.pdfTextMode || object?.importMeta?.pdf_text_mode || pageEntry?.canvas_text_mode || "outlines");
     const available = Boolean(sourceId && editableText.length);
     const fontReviewCount = editableText.filter((item) => {
       const status = pdfTextFontReviewStatus(item);
@@ -49307,6 +51705,11 @@
   }
 
   async function setPdfTextModeForObject(object, requestedMode, options = {}) {
+    if (densePdfPageForObject(object)) {
+      const textState = pdfTextEditingStateForObject(object);
+      if (requestedMode !== "editable") showToast("PDF labels remain editable. Double-click a label to edit its text.");
+      return { status: requestedMode === "editable" ? "ok" : "unavailable", ...textState };
+    }
     let textState = pdfTextEditingStateForObject(object);
     const mode = requestedMode === "editable" ? "editable" : "outlines";
     if (!textState.available) {
@@ -50885,7 +53288,7 @@
     panel.querySelector("[data-appearance-stack-clear]")?.addEventListener("click", () => clearAppearanceStack(object));
   }
 
-  function renderAppearanceStructureInspector(object, selected = selectedTopLevelObjects()) {
+  function renderAppearanceStructureInspector(object, selected = selectedTopLevelObjects(), resolvedContext = null) {
     if (!els.appearanceStructureInspector) return;
     const selection = selected || [];
     if (!selection.length) {
@@ -50895,7 +53298,7 @@
     }
     if (isPresentationDocument()) {
       els.appearanceStructureInspector.hidden = false;
-      const context = resolveSelectionContext(selection);
+      const context = resolvedContext || resolveSelectionContext(selection);
       if (inheritedMasterMeta(selection[0])?.kind === 'layout' && supportsText(selection[0])) {
         els.appearanceStructureInspector.innerHTML = '<p>Use this slide’s text placeholder.</p><button type="button" data-deck-edit-text>Edit text</button>';
         els.appearanceStructureInspector.querySelector('[data-deck-edit-text]').addEventListener('click', () => {
@@ -50914,7 +53317,7 @@
     }
     const first = object || selection[0];
     const single = selection.length === 1;
-    const selectionContext = resolveSelectionContext(selection);
+    const selectionContext = resolvedContext || resolveSelectionContext(selection);
     const status = appearanceInspectorStatus(first, selection);
     const vector = appearanceInspectorVectorSummary(first, selection);
     const feature = appearanceInspectorFeatureSummary(first, status);
@@ -50931,6 +53334,7 @@
     const pdfVisualProof = single ? nativePdfVisualProofForObject(first) : null;
     const svgImportReport = single ? syncSvgImportReportOnObject(first) : null;
     const pdfEntrySummary = single ? pdfEntrySummaryForObject(first) : null;
+    const densePdfInspectorPage = single ? pdfDenseInspectorPageForObject(first) : null;
     const nativePatternResource = single ? {
       name: first?.denseSvgProxyLayerMeta?.materialization_native_pattern_resource_name || "",
       xref: Number(first?.denseSvgProxyLayerMeta?.materialization_native_pattern_xref || 0) || 0,
@@ -51411,12 +53815,14 @@
           <p>Conversion is reversible. Verified source fonts are reused on demand; unsupported runs stay as vector outlines. Native updates cover exact Tj, position-preserving TJ, and page-owned quote-operator runs when the source has a supported one-byte font or a proven embedded simple-subset map. Type0/CID text, shaped text, inherited-font, dependent-following, and ambiguous runs remain source-backed.</p>
         </details>
       </div>` : ""}
-      ${pdfEntrySummary ? pdfEntrySummaryInspectorHtml(first) : ""}
+      ${single ? pdfEntrySummaryInspectorHtml(first) : ""}
       ${appearanceInspectorDetailsHtml("path-vector-geometry", "Path and vector geometry", `
         <dl>
           <dt>Bounds</dt><dd>${bbox ? `${fmt(bbox.width / INCH, 2)} x ${fmt(bbox.height / INCH, 2)} in` : "Multiple bounds"}</dd>
           <dt>Editable paths</dt><dd>${vector.editablePathCount.toLocaleString()} path${vector.editablePathCount === 1 ? "" : "s"}${vector.pathNodeCount ? `, ${vector.pathNodeCount.toLocaleString()} anchor/control handle${vector.pathNodeCount === 1 ? "" : "s"}` : ""}</dd>
-          <dt>PDF path source</dt><dd>${vector.nativePathAvailable
+          <dt>PDF path source</dt><dd${densePdfInspectorPage ? ' data-qa-dense-pdf-path-source' : ""}>${densePdfInspectorPage
+            ? "Original PDF retained; use Point Selection for supported path points."
+            : vector.nativePathAvailable
             ? status.nativeState.nativePathRow?.cloneAndRebindSharedForm
               ? "Selected PDF use; export clones and rebinds only this instance"
               : "Available for precise path editing"
@@ -51426,7 +53832,7 @@
         </dl>
         <div class="asi-actions">
           ${appearanceActionButtonHtml("edit-path-nodes", "Edit nodes", pathEditEnabled)}
-          ${appearanceActionButtonHtml(
+          ${densePdfInspectorPage ? "" : appearanceActionButtonHtml(
             "native-pdf-edit-path",
             status.nativeState.nativePathRow?.cloneAndRebindSharedForm
               ? "Edit selected PDF instance"
@@ -51434,7 +53840,7 @@
             nativePathEnabled,
             `title="${escapeHtml(nativePathEnabled ? "Edit the exact linked PDF path" : "No exact native PDF path is available for this selection")}"`
           )}
-          ${appearanceActionButtonHtml(
+          ${densePdfInspectorPage ? "" : appearanceActionButtonHtml(
             "native-pdf-convert-path-overlay",
             pdfEntrySummary && !Number(pdfEntrySummary.editability?.nativeEditablePathCount || 0) ? "No path to convert" : "Convert native path overlay",
             Boolean(status.nativeState.commands?.["native-pdf-convert-path-overlay"]),
@@ -51907,7 +54313,9 @@
     if (!objectMayHaveStatusBadges(object)) return items;
     const status = appearanceInspectorStatus(object, [object]);
     const feature = appearanceInspectorFeatureSummary(object, status);
-    if (status.sourceBacked) items.push({ label: "Source", kind: "source", title: "Source-backed object; unsupported native features remain preserved." });
+    // The context bar and inspector already identify an isolated PDF child as
+    // source-backed. An extra canvas badge can hide an adjacent plotted mark.
+    if (status.sourceBacked && !(isGroupIsolationActive() && pdfDirectLeafSourceIdentity(object))) items.push({ label: "Source", kind: "source", title: "Source-backed object; unsupported native features remain preserved." });
     if (status.proxyBacked) items.push({ label: "Proxy", kind: "proxy", title: "Canvas uses a lightweight/source-backed proxy." });
     if (status.nativePdf) items.push({ label: "PDF", kind: "pdf", title: "Native PDF metadata is available for bounded writer actions." });
     if (feature.featureTypes.includes("clip_path")) items.push({ label: "Clip", kind: "clip", title: "Clip path structure detected." });
@@ -52277,6 +54685,7 @@
     const targets = linePickerSelectionTargets();
     if (linePickerMode === "selection") {
       if (!linePickerCanApply(preset, targets)) return;
+      if (preset.route === "elbow" && targets.some((object) => object.smartConnectorMeta?.geometrySpace === "object")) { showToast("Keep this arrow Straight or Curved. Draw a separate Elbow arrow for automatic routing."); return; }
       canvas.discardActiveObject();
       const selected = targets.map((object) => {
         const patch = api.stylePatch(preset);
@@ -55296,6 +57705,8 @@
     const editablePathCount = objectStack.filter(isEditablePathObject).length;
     const nativeEditablePathCount = pdfEntryNativeEditablePathCount(object);
     const source = nativePdfSourceForObject(object);
+    const densePage = densePdfPageForObject(object);
+    const denseStatistics = densePage ? object.importMeta?.pdfEditableImport?.statistics : null;
     const sourceBytesRetained = Boolean(source.available || object.importMeta?.sourcePdfDataUrl || object.importMeta?.source_pdf_data_url);
     const directSelectionAvailable = reconstructedObjects > 0 || editablePathCount > 0 || nativeEditablePathCount > 0;
     const sourceBackedResult = actualMode === "source-backed" || actualMode === "source-backed-fallback" || actualMode === "partial-reconstruction";
@@ -55327,8 +57738,12 @@
         reconstructedObjectCount: reconstructedObjects,
         editablePathCount,
         nativeEditablePathCount,
+        ...(densePage ? { sourcePathCount: Number(denseStatistics?.pathCount || 0), editableTextCount: densePdfApi().textEntries(densePage).length,
+          activePathControlCount: densePage.toObject().densePdf.viewPathIds.length } : {}),
         directSelectionAvailable,
-        directSelectionStatus: directSelectionAvailable
+        directSelectionStatus: densePage
+          ? "Double-click a label to edit its text; use Direct Selection for supported path points"
+          : directSelectionAvailable
           ? "Available for reconstructed or exactly linked objects"
           : "Unavailable; use Selection to move, scale, or arrange the placed page",
         editPdfPathAvailable: nativeEditablePathCount > 0 && sourceBytesRetained,
@@ -55597,7 +58012,45 @@
     });
   }
 
+  function pdfDenseInspectorPageForObject(object) {
+    const api = densePdfApi();
+    const page = densePdfPageForObject(object);
+    if (!page || !api?.isPage(page)) return null;
+    // Retired controls retain a weak Page association. Only current native
+    // children may show the live owner's display summary.
+    if (object !== page && (!object.figureId || api.objectById(page, object.figureId) !== object)) return null;
+    return page;
+  }
+
+  function pdfDenseEntrySummaryInspectorHtml(object) {
+    const api = densePdfApi();
+    const page = pdfDenseInspectorPageForObject(object);
+    if (!page) return null;
+    let summary;
+    try { summary = api.inspectionState(page); }
+    catch (_error) {
+      return appearanceInspectorDetailsHtml("pdf-entry-summary", "PDF artwork", '<p class="asi-status-note review">The current PDF artwork summary is unavailable. Wait for the artwork to finish updating.</p>', true, "asi-source-card");
+    }
+    const controls = `${summary.activePathControlCount.toLocaleString()} active path control${summary.activePathControlCount === 1 ? "" : "s"}`;
+    return appearanceInspectorDetailsHtml("pdf-entry-summary", "PDF artwork", `
+      <div data-qa-pdf-entry-summary data-qa-pdf-entry-private="true" data-qa-pdf-source-path-count="${summary.sourcePathCount}" data-qa-pdf-label-count="${summary.editableTextCount}" data-qa-pdf-path-control-count="${summary.activePathControlCount}">
+        <div class="asi-pdf-text-run-header"><strong>Editable PDF with source retained</strong><span class="asi-status-chip editable">Editable</span></div>
+        <dl>
+          <dt>Content</dt><dd>${summary.sourcePathCount.toLocaleString()} source paths; ${summary.editableTextCount.toLocaleString()} editable labels; ${controls}</dd>
+          <dt>Editing</dt><dd>Double-click a label to edit its text. Use Point Selection to edit supported paths.</dd>
+          <dt>Source</dt><dd>Original PDF retained; page ${summary.pageNumber}</dd>
+          <dt>Project file</dt><dd>Save keeps the original PDF and your current edits.</dd>
+          <dt>SVG export</dt><dd>Exports current paths and text as vectors for supported scenes. Review the exported figure at its final output size.</dd>
+          <dt>PDF export</dt><dd>PDF export for this editable artwork is still in development. Use SVG or save the project to retain your edits.</dd>
+        </dl>
+        ${summary.updating ? '<p class="asi-status-note">Updating artwork…</p>' : ""}
+      </div>
+    `, true, "asi-source-card");
+  }
+
   function pdfEntrySummaryInspectorHtml(object) {
+    const denseCard = pdfDenseEntrySummaryInspectorHtml(object);
+    if (denseCard !== null) return denseCard;
     const summary = pdfEntrySummaryForObject(object);
     if (!summary) return "";
     const batch = pdfEntryBatchSummaryForObject(object);
@@ -55611,7 +58064,9 @@
         <div class="asi-pdf-text-run-header"><strong>Actual result: ${escapeHtml(summary.resultLabel || "PDF import")}</strong><span class="asi-status-chip ${sourceBacked ? "source" : "editable"}">${escapeHtml(statusLabel)}</span></div>
         <dl>
           <dt>Chosen mode</dt><dd>${escapeHtml(summary.requestedModeLabel || pdfEntryModeLabel(summary.requestedMode))}</dd>
-          <dt>Editable content</dt><dd>${Number(editability.reconstructedObjectCount || 0).toLocaleString()} reconstructed object${Number(editability.reconstructedObjectCount || 0) === 1 ? "" : "s"}; ${Number(editability.editablePathCount || 0).toLocaleString()} canvas path${Number(editability.editablePathCount || 0) === 1 ? "" : "s"}; ${Number(editability.nativeEditablePathCount || 0).toLocaleString()} native editable path${Number(editability.nativeEditablePathCount || 0) === 1 ? "" : "s"}</dd>
+          <dt>Editable content</dt><dd>${editability.sourcePathCount !== undefined
+            ? `${Number(editability.sourcePathCount).toLocaleString()} source paths; ${Number(editability.editableTextCount).toLocaleString()} editable labels; ${Number(editability.activePathControlCount).toLocaleString()} active path controls`
+            : `${Number(editability.reconstructedObjectCount || 0).toLocaleString()} reconstructed objects; ${Number(editability.editablePathCount || 0).toLocaleString()} canvas paths; ${Number(editability.nativeEditablePathCount || 0).toLocaleString()} native editable paths`}</dd>
           <dt>Direct Selection</dt><dd>${escapeHtml(editability.directSelectionStatus || "Unavailable")}</dd>
           <dt>Source</dt><dd>${source.bytesRetained ? "Original PDF bytes retained" : "Source bytes unavailable"}${source.identityRetained ? "; page identity retained" : ""}</dd>
           <dt>SVG export</dt><dd>${escapeHtml(summary.export?.svg || "Review required")}</dd>
@@ -55839,6 +58294,7 @@
     if (inheritedMasterMeta(first)) return "Inherited from the slide master or layout. Choose Override to edit it on this slide.";
     if (first.figureStudioMasterOverride) return "Local override: this item no longer follows master edits until it is reset.";
     if (first.locked) return "Locked object: unlock it before editing geometry or style.";
+    if (densePdfApi()?.isPage(first)) return "Editable PDF page: choose Point Selection and click artwork to edit a supported path. Double-click a label to edit its text. Save keeps the source PDF and your edits.";
     if (isLiveBooleanGroup(first)) {
       const parts = liveBooleanParts(first);
       return parts.meta.state === "constrained"
@@ -59798,7 +62254,9 @@
   }
 
   function getByFigureId(id) {
-    return allCanvasObjectsDeep().find((object) => object.figureId === id);
+    const objects = allCanvasObjectsDeep(), api = densePdfApi(), activePage = densePdfPageForObject(canvas?.getActiveObject());
+    return (activePage && api.objectById(activePage, id)) || objects.find((object) => object.figureId === id)
+      || objects.filter((page) => api?.isPage(page)).map((page) => api.objectById(page, id)).find(Boolean);
   }
 
   function selectObjectById(id) {
@@ -60040,8 +62498,9 @@
     }, primary, secondary);
   }
 
-  function compactPatternReferencesInValue(value) {
+  function compactPatternReferencesInValue(value, options = {}) {
     const linked = new Map(normalizePatternLibrary(patternLibrary).patterns.map((entry) => [entry.id, entry.pattern.tileMarkup]));
+    if (options.detached === true && !linked.size) return value;
     const visit = (item) => {
       if (Array.isArray(item)) return item.map(visit);
       if (!item || typeof item !== "object") return item;
@@ -60097,8 +62556,8 @@
     return visit(value);
   }
 
-  function compactReusableArtworkReferences(value) {
-    return compactStrokeBrushReferencesInValue(compactPatternReferencesInValue(value));
+  function compactReusableArtworkReferences(value, options = {}) {
+    return compactStrokeBrushReferencesInValue(compactPatternReferencesInValue(value, options));
   }
 
   function patternSelectionSources(selection = selectedTopLevelObjects()) {
@@ -60281,7 +62740,7 @@
   function createPatternScenarioForQa() {
     if (!canvas) return { status: "not-ready" };
     if (appearancePatternEdit.active) cancelAppearancePatternEdit({ sync: false, toast: false });
-    canvas.clear();
+    clearEditorCanvas();
     canvas.backgroundColor = "#ffffff";
     patternLibrary = normalizePatternLibrary(null);
     const source = sourceMeta({ sourceId: "qa-vector-pattern", kind: "qa" });
@@ -63617,6 +66076,7 @@
       if (!object || seen.has(object)) return null;
       seen.add(object);
       if (String(object.figureId || "") === requested) return object;
+      if (densePdfApi()?.isPage(object)) return densePdfApi().objectById(object, requested);
       for (const attached of [object.clipPath, object.mask]) {
         const attachedMatch = visit(attached);
         if (attachedMatch) return attachedMatch;
@@ -63770,9 +66230,12 @@
     groupIsolation.selectedObjects = selected;
     groupIsolation.selected = selected.at(-1) || null;
     selectionOverlayRenderOnly = true;
-    window.queueMicrotask(() => { selectionOverlayRenderOnly = false; });
-    canvas.discardActiveObject();
-    if (groupIsolation.selected) canvas.setActiveObject(groupIsolation.selected);
+    const delivery = canvasUiDeliveryOwner();
+    window.queueMicrotask(() => { if (canvasUiDeliveryIsCurrent(delivery)) selectionOverlayRenderOnly = false; });
+    if (canvas.getActiveObject() !== groupIsolation.selected) {
+      canvas.discardActiveObject();
+      if (groupIsolation.selected) canvas.setActiveObject(groupIsolation.selected);
+    }
     requestSelectionOverlayRender();
     if (options.sync !== false) {
       syncSelectionStatusOnly();
@@ -63903,6 +66366,7 @@
     if (pathNodeEdit.object && objectIsWithinGroup(pathNodeEdit.object, root)) stopPathNodeEdit({ sync: false });
     [...groupIsolation.path].reverse().forEach(restoreIsolationGroupSettings);
     groupIsolation = { path: [], selected: null, selectedObjects: [], guardingSelection: false };
+    syncToolMode();
     if (options.selectGroup !== false && root && (canvas?.getObjects?.() || []).includes(root)) {
       selectionOverlayRenderOnly = true;
       window.queueMicrotask(() => { selectionOverlayRenderOnly = false; });
@@ -65060,23 +67524,58 @@
     const selected = candidates.filter((object) => !denseSourceHasIsolatedEdits(object));
     if (selected.length !== candidates.length) showLongToast("Restore isolated source edits before duplicating this dense source.");
     if (!selected.length) return { status: "empty", objectIds: [] };
+    if (selected.some((object) => densePdfPageForObject(object) && !densePdfApi().isPage(object))) {
+      showLongToast("Select the PDF page to duplicate its editable artwork.");
+      return { status: "blocked", reason: "pdf-edit-control", objectIds: [] };
+    }
+    const denseCopy = selectionHasDensePdfPages(selected), originCanvas = canvas;
+    if (denseCopy) {
+      if (pdfHistoryMovePending) await pdfHistoryMoveCompletion;
+      if (pdfHistoryMutationLockDepth) await pdfHistoryMutationCompletion;
+      await flushDensePdfEdits();
+      if (canvas !== originCanvas || currentTransformDocumentId() !== originDocumentId || documentWorkspaceState.switching) return { status: "cancelled", objectIds: [] };
+    }
+    const originRevision = projectRevision, originTransforms = selected.map((object) => Array.from(object.calcTransformMatrix()));
+    const sourceDrafts = denseCopy ? captureDenseCopyDrafts() : null;
+    if (denseCopy) installPdfSourceSerializationPrecision(selected);
     const clones = [];
     const parentByClone = new Map();
     const originalByClone = new Map();
     const offset = options.offset === false
       ? { x: 0, y: 0 }
       : { x: Number(options.offset?.x ?? 24) || 0, y: Number(options.offset?.y ?? 24) || 0 };
-    const cloned = await Promise.all(selected.map(async (object) => ({ object, clone: await object.clone(CUSTOM_PROPS) })));
-    const originStillActive = !documentWorkspaceState.switching
+    let prepared = null, copyFailed = false;
+    try {
+    if (denseCopy) {
+      const retainedAssetIds = await denseCopyDestinationAssetIds(() => {
+        if (canvas !== originCanvas || currentTransformDocumentId() !== originDocumentId || projectRevision !== originRevision
+            || documentWorkspaceState.switching || densePdfEditPending || pdfHistoryMutationLockDepth || pdfHistoryMovePending || hasPendingDensePageEdits()) throw new Error("The document changed before duplication finished.");
+        densePdfApi().validateDraftCapture(sourceDrafts);
+      });
+      prepared = await densePdfApi().prepareSceneCopy(selected, { properties: CUSTOM_PROPS, retainedAssetIds });
+    }
+    const copiedObjects = prepared ? [...prepared.objects] : await cloneNativeObjectsForCommand(selected);
+    const cloned = selected.map((object, index) => ({ object, clone: copiedObjects[index] }));
+    const originStillActive = canvas === originCanvas && !documentWorkspaceState.switching && projectRevision === originRevision
+      && !densePdfEditPending && !pdfHistoryMutationLockDepth && !pdfHistoryMovePending && !hasPendingDensePageEdits()
       && currentTransformDocumentId() === originDocumentId
-      && selected.every((object) => {
+      && selected.every((object, index) => {
+        if (!Array.from(object.calcTransformMatrix()).every((number, i) => Object.is(number, originTransforms[index][i]))) return false;
         if (object.figureId && getByFigureId(object.figureId) === object) return true;
         return (canvas?.getObjects?.() || []).some((root) => root === object || objectIsWithinGroup(object, root));
       });
     if (!originStillActive) {
       if (options.toast !== false) showToast("Document changed before duplication finished. Nothing was duplicated.");
+      if (!prepared) copiedObjects.forEach((clone) => clone.dispose?.());
       return { status: "cancelled", reason: "document-changed", documentId: originDocumentId, objectIds: [] };
     }
+    if (sourceDrafts) densePdfApi().validateDraftCapture(sourceDrafts);
+    if (prepared) await admitDenseSceneCopy(copiedObjects, () => {
+      if (canvas !== originCanvas || currentTransformDocumentId() !== originDocumentId || projectRevision !== originRevision
+          || documentWorkspaceState.switching || densePdfEditPending || pdfHistoryMutationLockDepth || pdfHistoryMovePending || hasPendingDensePageEdits()) throw new Error("The document changed before duplication finished.");
+      densePdfApi().validateDraftCapture(sourceDrafts);
+      if (!selected.every((object, index) => Array.from(object.calcTransformMatrix()).every((number, i) => Object.is(number, originTransforms[index][i])))) throw new Error("The source artwork moved before duplication finished.");
+    });
     cloned.forEach(({ object, clone }) => {
       const referenceClone = isReferenceObject(object);
       const parent = isGroupIsolationActive() && objectIsWithinGroup(object, isolationRootGroup()) ? object.group || null : null;
@@ -65089,6 +67588,12 @@
         figureStudioPptxLabelMeta: pptxLabelMeta,
         locked: referenceClone
       });
+      if ((denseCopy || object.smartConnectorMeta?.geometrySpace === "object") && !parent && object.group instanceof fabricRef.ActiveSelection) {
+        // Selected roots currently store coordinates in the temporary native
+        // selection plane. Publish the duplicate in its actual world plane.
+        prepareCloneForGroupInsertion(clone, object);
+        if (offset.x || offset.y) moveObjectBySceneDelta(clone, offset.x, offset.y);
+      }
       if (pptxLabelMeta) clone.figureStudioPptxLabelMeta = cloneManifestValue(pptxLabelMeta, null);
       detachDenseDirectLifecycleForClone(clone, object);
       applyLock(clone, referenceClone);
@@ -65115,8 +67620,15 @@
     if (topLevelClones.length === clones.length) setActiveObjects(clones);
     else selectIsolatedObjects(clones.filter((clone) => parentByClone.get(clone)), { sync: false });
     syncUi();
+    if (prepared) { densePdfApi().commitSceneCopy(prepared);prepared = null; }
     if (options.history !== false) commitHistory(options.historyLabel || "Selection duplicated");
     return { status: "ok", documentId: originDocumentId, objectIds: clones.map((clone) => clone.figureId || ""), clones };
+    } catch (error) { copyFailed = true;throw error; }
+    finally {
+      if (prepared) {
+        discardUnpublishedDenseCopy(prepared, (clone) => parentByClone.get(clone) || originCanvas, copyFailed);
+      }
+    }
   }
 
   async function duplicateAndRepeatSelection(options = {}) {
@@ -65201,7 +67713,7 @@
       const meta = normalizeSmartConnectorMeta(connector.smartConnectorMeta);
       return ["start", "end"].map((endpoint) => {
         if (!removedIds.has(String(meta[endpoint]?.objectId || ""))) return null;
-        const anchor = connectorEndpointPoint(meta[endpoint]);
+        const anchor = smartConnectorEndpointScenePoint(connector, meta[endpoint]);
         return anchor ? { connector, endpoint, scenePoint: { x: anchor.x, y: anchor.y } } : null;
       }).filter(Boolean);
     });
@@ -65213,7 +67725,7 @@
       const meta = normalizeSmartConnectorMeta(connector.smartConnectorMeta);
       if (getByFigureId(meta[endpoint].objectId || "")) return;
       meta[endpoint].objectId = "";
-      const local = scenePointToObjectParent(connector, scenePoint);
+      const local = meta.geometrySpace === "object" ? smartConnectorObjectPoint(connector, scenePoint) : scenePointToObjectParent(connector, scenePoint);
       meta[endpoint].point = { x: roundPathCoord(local.x), y: roundPathCoord(local.y) };
       connector.smartConnectorMeta = meta;
     });
@@ -65221,6 +67733,15 @@
   }
 
   function deleteSelection() {
+    const pendingCopy = pendingDenseClipboardCapture;
+    if (pendingCopy && pendingCopy.objects.some((object) => selectedTopLevelObjects().includes(object))) {
+      const selected = selectedTopLevelObjects().slice();
+      return pendingCopy.promise.then((result) => {
+        if (result.status !== "ok" || canvas !== pendingCopy.canvas || currentTransformDocumentId() !== pendingCopy.documentId
+            || selected.length !== selectedTopLevelObjects().length || !selected.every((object, index) => object === selectedTopLevelObjects()[index])) return { status: "cancelled" };
+        return deleteSelection();
+      }, () => ({ status: "cancelled", reason: "copy-failed" }));
+    }
     if (liveBooleanEdit.active) {
       showToast("Release or expand the live compound before deleting retained shapes");
       return { status: "blocked", reason: "live-compound-edit" };
@@ -65230,7 +67751,9 @@
     let changed = false;
     let blockedSourceCount = 0;
     canvas.discardActiveObject();
-    selection.forEach((object) => {
+    const dense = densePdfApi(), denseReplacement = dense?.beginSceneReplacement(canvas);
+    let deletionFailed = false;
+    try { selection.forEach((object) => {
       if (denseSourceHasIsolatedEdits(object)) {
         blockedSourceCount += 1;
         return;
@@ -65245,14 +67768,15 @@
         }
         changed = true;
       }
-    });
+    }); } catch (error) { deletionFailed = true;throw error; }
+    finally { if (denseReplacement) { try { dense.finishSceneReplacement(denseReplacement); } catch (error) { if (!deletionFailed) throw error; } } }
     detachRemovedObjectConnectorEndpoints(detachedConnectorEndpoints);
     if (isGroupIsolationActive()) {
       const replacement = selectableIsolationChildren()[0] || null;
       if (replacement) selectIsolatedObject(replacement, { sync: false });
       else selectIsolatedObjects([], { sync: false });
     }
-    canvas.requestRenderAll();
+    requestCanvasArtworkRender();
     syncUi();
     if (blockedSourceCount) showLongToast("Restore isolated source edits before deleting this dense source.");
     if (changed) commitHistory("Selection deleted");
@@ -65386,6 +67910,17 @@
 
   function tryRouteOrdinaryPathOperandEdit(pathSnapshots, touched, options = {}) {
     if (!Array.isArray(pathSnapshots) || !pathSnapshots.length || !(touched instanceof Map) || !touched.size) return false;
+    const dense = [...touched.keys()].filter((object) => densePdfPageForObject(object));
+    if (dense.length) {
+      const page = densePdfPageForObject(dense[0]);
+      if (dense.length !== touched.size || dense.some((object) => densePdfPageForObject(object) !== page)) {
+        showLongToast("Edit PDF points within one PDF page at a time.");
+        return true;
+      }
+      const continuity = captureDensePdfPointContinuity(page, dense);
+      void queueDensePdfEdit(page, () => densePdfApi().commitPaths(dense), options.historyLabel || "PDF points updated", continuity).catch(() => {});
+      return true;
+    }
     const planningStartedAt = vectorEngineMetricNow();
     const desired = pathSnapshots.map((snapshot) => {
       const object = objectForPathHandleRef({ objectId: snapshot.objectId });
@@ -65773,7 +68308,7 @@
     });
     refreshImageFramesForObjects(objects);
     restoreNumericTransformSelection(objects);
-    canvas.requestRenderAll();
+    requestCanvasArtworkRender();
     syncUi();
     commitHistory("Selection aligned");
     const keyAfter = keyObject ? keyObject.getBoundingRect() : null;
@@ -65951,7 +68486,7 @@
     else alignmentState.verticalGap = gap;
     refreshImageFramesForObjects(objects);
     restoreNumericTransformSelection(objects);
-    canvas.requestRenderAll();
+    requestCanvasArtworkRender();
     syncUi();
     commitHistory("Selection distributed");
     const keyAfter = keyObject ? keyObject.getBoundingRect() : null;
@@ -67071,7 +69606,7 @@
   function closeSelectedPath() {
     const object = selectedTopLevelObjects()[0];
     const contours = pathContourDescriptors(object?.path);
-    if (!isEditablePathObject(object) || object.locked || contours.length !== 1 || contours[0].closed) return;
+    if (!canUseBezierNodeEditing(object) || object.locked || contours.length !== 1 || contours[0].closed) return;
     object.path = [...object.path, ["Z"]];
     const style = readStyle(object);
     if (!isVisiblePaint(normalizeSvgPaint(style.fill))) {
@@ -67090,7 +69625,7 @@
   function openSelectedPath() {
     const object = selectedTopLevelObjects()[0];
     const contours = pathContourDescriptors(object?.path);
-    if (!isEditablePathObject(object) || object.locked || contours.length !== 1 || !contours[0].closed) return;
+    if (!canUseBezierNodeEditing(object) || object.locked || contours.length !== 1 || !contours[0].closed) return;
     object.path = object.path.slice(0, -1);
     object.set({ fill: "" });
     object.styleMeta = { ...readStyle(object), fill: "" };
@@ -68959,6 +71494,7 @@
     });
     setLiveBooleanCanonicalVisibility(group, { editing: false });
     selectLiveBooleanObject(group);
+    requestCanvasArtworkRender();
     commitHistory(`Live ${compactStatus(mode)} compound created`);
     if (options.toast !== false) showToast(geometry.status === "empty" ? "Live compound has no visible overlap" : "Live compound created");
     return { status: "ok", operation: mode, objectId: group.figureId, operandIds: sourceIds, resultObjectId: result.figureId, state: group.figureStudioLiveBooleanMeta.state };
@@ -68998,7 +71534,7 @@
     if (parent) insertObjectIntoCollection(parent, restored, snapshot.index);
     else insertCanvasObjectAtIndex(restored, snapshot.index);
     if (options.select !== false) restoreLiveBooleanSelectionPath(snapshot.ancestorIds, restored);
-    else canvas.requestRenderAll();
+    requestCanvasArtworkRender();
     return restored;
   }
 
@@ -69022,6 +71558,7 @@
     syncToolMode();
     renderGroupIsolationBar();
     syncUi();
+    if (options.render !== false) requestCanvasArtworkRender();
     if (options.toast !== false) showToast("Edit the retained shapes, then choose Done");
     return { status: "ok", objectId: group.figureId, operandIds: parts.operands.map((object) => object.figureId) };
   }
@@ -69120,6 +71657,7 @@
     setLiveBooleanCanonicalVisibility(rebuilt, { editing: false });
     liveBooleanEdit = { active: false, groupId: "", snapshot: "", requestId: "", sessionEpoch, committing: false };
     restoreLiveBooleanSelectionPath(ancestorIds, rebuilt);
+    requestCanvasArtworkRender();
     commitHistory("Live compound shapes updated");
     if (options.toast !== false) showToast(geometry.status === "empty" ? "Live compound has no visible result" : "Live compound updated");
     return { status: "ok", objectId: rebuilt.figureId, state: rebuilt.figureStudioLiveBooleanMeta.state, resultObjectId: rebuilt.figureStudioLiveBooleanMeta.resultObjectId };
@@ -69131,7 +71669,7 @@
     const parts = liveBooleanParts(group);
     if (parts.meta.operation === mode) return { status: "noop", operation: mode, objectId: group.figureId };
     const snapshot = liveBooleanSnapshot(group);
-    startLiveBooleanEdit(group, { toast: false });
+    startLiveBooleanEdit(group, { toast: false, render: false });
     group.figureStudioLiveBooleanMeta = normalizeLiveBooleanMeta({ ...group.figureStudioLiveBooleanMeta, operation: mode });
     const result = await finishLiveBooleanEdit({ toast: false });
     if (result.status !== "ok") {
@@ -69258,7 +71796,7 @@
     if (isGroupIsolationActive()) exitGroupIsolation({ selectGroup: false, sync: false, toast: false, liveBooleanCommit: true });
     liveBooleanSessionEpoch += 1;
     liveBooleanEdit = { active: false, groupId: "", snapshot: "", requestId: "", sessionEpoch: liveBooleanSessionEpoch, committing: false };
-    canvas.clear();
+    clearEditorCanvas();
     canvas.backgroundColor = "#ffffff";
     const membrane = baseMeta(new fabricRef.Rect({
       left: 190, top: 165, width: 250, height: 150, rx: 42, ry: 42,
@@ -69579,7 +72117,7 @@
     cancelShapeBuilder({ restoreSelection: false });
     if (pathNodeEdit.object) stopPathNodeEdit({ sync: false });
     buildDeckLayout("blank", { reset: true });
-    canvas.clear();
+    clearEditorCanvas();
     canvas.backgroundColor = "#ffffff";
     const source = sourceMeta({ kind: "qa-authored-vector" });
     const receptor = makeRect(208, 176, 230, 148, { fill: "#bfe8df", stroke: "#176b68", strokeWidth: 3, rx: 34, ry: 34 }, "Receptor domain", source);
@@ -69607,7 +72145,7 @@
     cancelShapeBuilder({ restoreSelection: false });
     if (pathNodeEdit.object) stopPathNodeEdit({ sync: false });
     buildDeckLayout("blank", { reset: true });
-    canvas.clear();
+    clearEditorCanvas();
     canvas.backgroundColor = "#ffffff";
     const source = sourceMeta({ kind: "qa-authored-vector" });
     const fillRule = String(options.fillRule || options.fill_rule || "evenodd").toLowerCase() === "nonzero" ? "nonzero" : "evenodd";
@@ -69648,7 +72186,7 @@
     cancelShapeBuilder({ restoreSelection: false });
     if (pathNodeEdit.object) stopPathNodeEdit({ sync: false });
     buildDeckLayout("blank", { reset: true });
-    canvas.clear();
+    clearEditorCanvas();
     canvas.backgroundColor = "#ffffff";
     const ordinary = makeRect(92, 154, 180, 126, { fill: "#d9f1eb", stroke: "#176b68", strokeWidth: 2 }, "Ordinary authored shape", sourceMeta({ kind: "authored-vector" }));
     const pathAt = (left, top, name) => makePathShape(left, top, "M 0 0 L 148 0 L 148 108 L 0 108 Z", { fill: "#e8e3f7", stroke: "#5b4b8a", strokeWidth: 2 }, "path", name, sourceMeta({ kind: "authored-vector" }));
@@ -70735,7 +73273,7 @@
     });
     refreshSmartConnectors();
     restoreNumericTransformSelection(objects);
-    canvas.requestRenderAll();
+    requestCanvasArtworkRender();
     syncUi();
     if (options.history !== false) commitHistory(label);
     return {
@@ -71021,6 +73559,14 @@
     return collection === canvas ? canvas.getObjects() : groupChildren(collection);
   }
 
+  function collectionObjectIndices(collection) {
+    const indices = new Map();
+    collectionObjects(collection).forEach((object, index) => {
+      if (!indices.has(object)) indices.set(object, index);
+    });
+    return indices;
+  }
+
   function insertObjectIntoCollection(collection, object, index) {
     if (!collection || !object) return false;
     if (collection === canvas) {
@@ -71051,6 +73597,9 @@
       showToast("Select sibling objects inside the same group to group them");
       return null;
     }
+    const connectorTransfer = prepareSmartConnectorTransfer(objects);
+    if (connectorTransfer.status === "blocked") return null;
+    commitSmartConnectorTransfer(connectorTransfer);
     const parentObjects = collectionObjects(parent);
     const ordered = objects.slice().sort((a, b) => parentObjects.indexOf(a) - parentObjects.indexOf(b));
     const insertIndex = Math.min(...ordered.map((object) => parentObjects.indexOf(object)).filter((index) => index >= 0));
@@ -71107,6 +73656,9 @@
       return false;
     }
     const { parent, target, moving } = reparent;
+    const connectorTransfer = prepareSmartConnectorTransfer([parent, target, ...moving]);
+    if (connectorTransfer.status === "blocked") return false;
+    commitSmartConnectorTransfer(connectorTransfer);
     const snapshots = new Map(moving.map((object) => [object, sceneTransformSnapshot(object)]));
     moving.forEach((object) => parent.remove?.(object));
     configureIsolationGroup(target);
@@ -71130,6 +73682,9 @@
     }
     const childGroup = activeIsolationGroup();
     const parent = childGroup.group;
+    const connectorTransfer = prepareSmartConnectorTransfer([parent, ...moving]);
+    if (connectorTransfer.status === "blocked") return false;
+    commitSmartConnectorTransfer(connectorTransfer);
     const parentObjects = collectionObjects(parent);
     const insertIndex = Math.max(0, parentObjects.indexOf(childGroup) + 1);
     const snapshots = new Map(moving.map((object) => [object, sceneTransformSnapshot(object)]));
@@ -71168,7 +73723,9 @@
     return Boolean(
       object
       && (
-        nativePdfSourceForObject(object).available
+        densePdfPageForObject(object)
+        || selectionHasDensePdfPages([object])
+        || nativePdfSourceForObject(object).available
         || sourceBackedResultMeta(object)
         || isDenseSvgProxyObject(object)
         || isProxyBackedPanel(object)
@@ -71186,8 +73743,9 @@
     const effectiveParent = (object) => isActiveSelectionObject(object?.group) ? null : object?.group || null;
     const sharedParent = selected.length > 0 && selected.every((object) => effectiveParent(object) === parent);
     const collection = parent || canvas;
+    const indices = sharedParent ? collectionObjectIndices(collection) : null;
     const ordered = sharedParent
-      ? selected.slice().sort((a, b) => collectionObjects(collection).indexOf(a) - collectionObjects(collection).indexOf(b))
+      ? selected.slice().sort((a, b) => (indices.get(a) ?? -1) - (indices.get(b) ?? -1))
       : selected;
     return { selected, parent, collection, sharedParent, ordered };
   }
@@ -71257,8 +73815,9 @@
   }
 
   function insertionIndexAfterRemovingSelection(context) {
+    const order = collectionObjectIndices(context.collection);
     const indices = context.ordered
-      .map((object) => collectionObjects(context.collection).indexOf(object))
+      .map((object) => order.get(object) ?? -1)
       .filter((index) => index >= 0)
       .sort((a, b) => a - b);
     if (!indices.length) return collectionObjects(context.collection).length;
@@ -71700,7 +74259,7 @@
     if (!canvas) return { status: "not-ready" };
     exitGroupIsolation({ selectGroup: false, sync: false, toast: false });
     stopPathNodeEdit({ sync: false });
-    canvas.clear();
+    clearEditorCanvas();
     canvas.backgroundColor = "#ffffff";
     const kind = String(options.kind || "compound").toLowerCase();
     const source = sourceMeta({ sourceId: "qa-structure-authoring", kind: "qa" });
@@ -71852,9 +74411,11 @@
       return;
     }
     const groupId = makeId("group");
-    const groupLayerId = objects.slice().sort((a, b) => canvas.getObjects().indexOf(a) - canvas.getObjects().indexOf(b)).at(-1)?.figureStudioLayerId || activeObjectLayerState().activeLayerId;
-    const insertIndex = Math.min(...objects.map((object) => canvas.getObjects().indexOf(object)).filter((index) => index >= 0));
+    const indices = collectionObjectIndices(canvas);
+    const groupLayerId = objects.slice().sort((a, b) => (indices.get(a) ?? -1) - (indices.get(b) ?? -1)).at(-1)?.figureStudioLayerId || activeObjectLayerState().activeLayerId;
+    const insertIndex = Math.min(...objects.map((object) => indices.get(object) ?? -1).filter((index) => index >= 0));
     const group = createGroupFromSelection(active, objects, insertIndex);
+    if (!group) return;
     groupChildren(group).forEach((child) => {
       child.groupId = groupId;
       child.figureStudioLayerId = groupLayerId;
@@ -71875,12 +74436,16 @@
   }
 
   function createGroupFromSelection(active, objects, insertIndex) {
+    const connectorTransfer = prepareSmartConnectorTransfer(objects);
+    if (connectorTransfer.status === "blocked") return null;
+    commitSmartConnectorTransfer(connectorTransfer);
     if (typeof active.toGroup === "function") {
       return active.toGroup();
     }
+    const indices = collectionObjectIndices(canvas);
     const ordered = objects
       .slice()
-      .sort((a, b) => canvas.getObjects().indexOf(a) - canvas.getObjects().indexOf(b));
+      .sort((a, b) => (indices.get(a) ?? -1) - (indices.get(b) ?? -1));
     const authoringLayout = globalThis.FigureStudioPdfSvgMaterializer?.createAuthoringLayoutManager?.(ordered, {
       fabric: fabricRef, isPdfSourceObject: (object) => Boolean(pdfSourceIdForObject(object))
     });
@@ -71975,8 +74540,11 @@
     if (isGroupIsolationActive() && active.group === activeIsolationGroup()) {
       return ungroupIsolatedSelection(active, options);
     }
+    const connectorTransfer = prepareSmartConnectorTransfer([active]);
+    if (connectorTransfer.status === "blocked") return connectorTransfer;
     const release = preparePdfGroupRelease(active);
     if (release.status === "blocked") return release;
+    commitSmartConnectorTransfer(connectorTransfer);
     const historyLabel = options.historyLabel || "Selection ungrouped";
     const groupImportMeta = active.importMeta ? importMeta(active.importMeta) : null;
     const groupPdfMeta = active.pdfConversionMeta || groupImportMeta?.convertedPdf || null;
@@ -72042,8 +74610,11 @@
   function ungroupIsolatedSelection(group, options = {}) {
     const parent = group?.group || null;
     if (!parent || !isGroupObject(group) || group.locked) return [];
+    const connectorTransfer = prepareSmartConnectorTransfer([parent, group]);
+    if (connectorTransfer.status === "blocked") return connectorTransfer;
     const release = preparePdfGroupRelease(group);
     if (release.status === "blocked") return release;
+    commitSmartConnectorTransfer(connectorTransfer);
     const parentObjects = collectionObjects(parent);
     const insertIndex = Math.max(0, parentObjects.indexOf(group));
     const groupImportMeta = group.importMeta ? importMeta(group.importMeta) : null;
@@ -72334,6 +74905,7 @@
     setActiveObjects(objects);
     const active = canvas.getActiveObject();
     const group = createGroupFromSelection(active, objects, Number.isFinite(insertIndex) ? insertIndex : canvas.getObjects().length);
+    if (!group) return;
     const figureType = meta.releasedFromFigureType || (mode === SVG_VECTOR_GROUP_IMPORT ? "svg" : "scientificAsset");
     groupChildren(group).forEach((child) => {
       child.groupId = meta.importBatchId || context.batchId;
@@ -72684,6 +75256,7 @@
     if (!target || target.locked) return false;
     const textTarget = editableTextTargetForObject(target);
     if (!textTarget || textTarget.locked || typeof textTarget.enterEditing !== "function") return false;
+    if (densePdfPageForObject(textTarget)) densePdfApi().prepareTextEditing(textTarget);
     if (isGroupObject(target) && textTarget.group === target) {
       if (activeIsolationGroup() !== target) {
         if (!enterGroupIsolation(target, { child: textTarget, toast: false })) return false;
@@ -72785,8 +75358,12 @@
     state.view.zoom = clamp(zoom, 0.08, 5);
     state.view.panX = (layout.width - art.width * state.view.zoom) / 2;
     state.view.panY = (layout.height - art.height * state.view.zoom) / 2;
+    const backingWidth = canvas?.width, backingHeight = canvas?.height, backingRatio = activeScreenPixelRatio;
     updateStage();
-    settleFabricScreenScaleNow();
+    settleFabricScreenScaleNow({
+      forceRender: options.forceRender !== false || canvas?.width !== backingWidth
+        || canvas?.height !== backingHeight || activeScreenPixelRatio !== backingRatio
+    });
     return true;
   }
 
@@ -73112,7 +75689,7 @@
     return Boolean(SourceText && target?.constructor === SourceText && target.figureType === "text"
         && ["figureStudio.pdfPositionedText.v1", "figureStudio.pdfPositionedText.v2"].includes(target.pdfTextSource?.schema)
         && typeof target._textBeforeEdit === "string" && target._textBeforeEdit !== target.text
-        && target._pdfPaintFrameAnchor?.() && !isAreaTextObject(target) && !layoutMetaForObject(target)
+        && (target._pdfPaintFrameAnchor?.() || target._pdfCurrentNativePlane?.()) && !isAreaTextObject(target) && !layoutMetaForObject(target)
         && !inheritedMasterMeta(target) && !target.figureStudioAnnotationMeta
         && !calloutForTextTarget(target) && !transientTransformHasLiveDependents(target)
         && !canvas.getObjects().some(object => object.figureStudioLayoutPlaceholder || object.figureStudioLayoutBinding));
@@ -73174,7 +75751,17 @@
       objectId: String(target?.figureId || ""),
       label: "Text updated"
     };
-    textHistoryTimer = setTimeout(() => flushTextHistory(), Math.max(0, Number(delay) || 0));
+    textHistoryTimer = setTimeout(() => {
+      // A recovered scientific label is one text-editing transaction. Rendering
+      // a large figure can outlast the idle delay between ordinary keystrokes;
+      // do not turn that rendering cost into one Undo entry per character.
+      // Explicit Save, Undo, document changes and editing exit still flush it.
+      if (target?.isEditing && qualifyingSourceTextHistoryTarget(target)) {
+        textHistoryTimer = null;
+        return;
+      }
+      flushTextHistory();
+    }, Math.max(0, Number(delay) || 0));
     return { status: "queued", documentId: tab.id, objectId: String(target?.figureId || "") };
   }
 
@@ -73725,7 +76312,7 @@
 
   function editorStateObject(options = {}) {
     syncScientificTypographyRangesFromLiveStyles(canvas.getObjects());
-    const fabric = compactReusableArtworkReferences(stripMasterInheritanceFromSnapshot(canonicalizeLiveBooleanFabricSnapshot(canvas.toJSON(CUSTOM_PROPS)), { copy: false }));
+    const fabric = options.fabricSnapshot || compactReusableArtworkReferences(stripMasterInheritanceFromSnapshot(canonicalizeLiveBooleanFabricSnapshot(canvas.toJSON(CUSTOM_PROPS)), { copy: false }));
     if (options.captureDeck !== false) captureActiveDeckPage({ fabric, updateThumbnail: false });
     refreshCanvasArtifactRefs();
     return {
@@ -73738,7 +76325,7 @@
       import: state.import,
       export: state.export,
       preflight: state.preflight,
-      deck: compactReusableArtworkReferences(deckSnapshotForSerialization(fabric)),
+      deck: options.deckSnapshot || compactReusableArtworkReferences(deckSnapshotForSerialization(fabric)),
       deckTemplates: normalizeDeckTemplateLibrary(state.deckTemplates),
       components: normalizeComponentLibrary(state.components),
       documentStyles: normalizeDocumentStyleLibrary(state.documentStyles),
@@ -73932,7 +76519,11 @@
 
   function stringifyEditorStateForHistory(value, stats = {}) {
     const compacted = fileFormatApi().compactSharedGroupImportMetadata(value);
-    return JSON.stringify(compacted, (_key, item) => {
+    return JSON.stringify(compacted, historyJsonReplacer(stats));
+  }
+
+  function historyJsonReplacer(stats = {}) {
+    return (_key, item) => {
       if (typeof item === "string" && item.startsWith("data:") && item.length >= HISTORY_DATA_URL_DEDUP_MIN_CHARS) {
         const ref = registerDataUrlArtifact(item, {
           source_kind: "local_import",
@@ -73951,7 +76542,7 @@
         }
       }
       return item;
-    });
+    };
   }
 
   function hydrateArtifactRefPlaceholders(value, missing = []) {
@@ -74055,6 +76646,14 @@
   }
 
   function yieldPdfHistoryToUi() {
+    // Prioritized scheduler continuations can outrank ordinary timer tasks.
+    // Return to the timer queue regularly while keeping the short yields fast.
+    const now = performance.now();
+    if (!Number.isFinite(yieldPdfHistoryToUi.lastTimerYield)
+        || now - yieldPdfHistoryToUi.lastTimerYield >= 48) {
+      yieldPdfHistoryToUi.lastTimerYield = now;
+      return new Promise((resolve) => setTimeout(resolve, 0));
+    }
     if (typeof globalThis.scheduler?.yield === "function") return globalThis.scheduler.yield();
     return new Promise((resolve) => {
       const channel = new MessageChannel();
@@ -74070,12 +76669,40 @@
   async function serializePdfEditorStateForHistory(options = {}) {
     if (!pdfHistoryNodeStore || !Object.keys(state.pdfSources?.entries || {}).length) return serializeEditorStateForHistory(options);
     const stats = {};
-    const artifactSnapshot = stringifyEditorStateForHistory(editorStateObject(options), stats);
-    const canonical = JSON.parse(artifactSnapshot);
     const yieldToUi = yieldPdfHistoryToUi;
+    const api = globalThis.FigureStudioPdfSceneNumberPrecision;
+    const batches = { yieldEvery: 128, yieldToUi, createRecord: api.createPlainJsonRecord };
+    const fabric = await capturePdfFabricSnapshotAsync(batches);
+    if (options.captureDeck !== false) {
+      const pageSource = await fileFormatApi().compactSharedGroupImportMetadataAsync(fabric, batches);
+      const pageFabric = await api.cloneJsonAsync(pageSource, batches);
+      captureActiveDeckPage({ fabric: pageFabric, detachedFabric: true, updateThumbnail: false });
+    }
+    const deck = compactReusableArtworkReferences(await deckSnapshotForSerializationAsync(fabric, batches), { detached: true });
+    const stateObject = editorStateObject({ ...options, captureDeck: false, fabricSnapshot: fabric, deckSnapshot: deck });
+    const compacted = await fileFormatApi().compactSharedGroupImportMetadataAsync(stateObject, batches);
+    const canonical = await api.cloneJsonAsync(compacted, { ...batches, replacer: historyJsonReplacer(stats) });
     await pdfHistoryNodeStore.freezeDetachedJsonAsync(canonical, { yieldEvery: 128, yieldToUi });
     const encoded = await pdfHistoryNodeStore.compactImmutableAsync(canonical, { yieldEvery: 128, yieldToUi });
-    return historySerializationResult(encoded, artifactSnapshot, stats, canonical);
+    return historySerializationResult(encoded, null, stats, canonical);
+  }
+
+  async function capturePdfFabricSnapshotAsync(options = {}) {
+    const api = globalThis.FigureStudioPdfSceneNumberPrecision;
+    const assertCurrent = () => options.assertCurrent?.();
+    const yieldToUi = options.yieldToUi || yieldPdfHistoryToUi;
+    const batches = { yieldEvery: options.yieldEvery ?? 128, maxSliceMs: options.maxSliceMs ?? 8, signal: options.signal,
+      yieldToUi: async () => { assertCurrent(); await yieldToUi(); assertCurrent(); } };
+    assertCurrent();
+    syncScientificTypographyRangesFromLiveStyles(canvas.getObjects());
+    const raw = await pdfSourceSerializationPrecision.canvasToObjectAsync(canvas, [], batches);
+    // Match buildProjectJson's Fabric branch before shared-import compaction.
+    // Native custom-property values may alias live state until the final clone.
+    const normalized = compactReusableArtworkReferences(stripMasterInheritanceFromSnapshot(
+      canonicalizeLiveBooleanFabricSnapshot(raw), { copy: false }), { detached: true });
+    const detached = await api.cloneJsonAsync(normalized, batches);
+    assertCurrent();
+    return detached;
   }
 
   async function seedPdfHistoryStateCache(snapshot) {
@@ -74102,12 +76729,11 @@
   }
 
   function pinPdfHistorySnapshots(snapshots) {
-    return pdfHistoryNodeStore && snapshots.some((snapshot) => pdfHistoryNodeStore.isCompact(snapshot))
-      ? pdfHistoryNodeStore.pin(snapshots) : () => {};
+    return pdfHistoryNodeStore ? pdfHistoryNodeStore.pin(snapshots) : () => {};
   }
 
   function collectPdfHistoryNodes({ syncActiveTab = true } = {}) {
-    if (!pdfHistoryNodeStore?.nodeCount) return;
+    if (!pdfHistoryNodeStore) return;
     const active = activeDocumentTab();
     if (active && syncActiveTab && !documentWorkspaceState.switching && !documentRuntimeRestoreFailed) {
       active.undoStack = [...undoStack];
@@ -74125,7 +76751,19 @@
         if (Array.isArray(tab[key])) tab[key] = tab[key].filter(([snapshot]) => tabLive.has(snapshot));
       }
     }
-    return pdfHistoryNodeStore.collect(roots);
+    const dense = densePdfApi();
+    let retained;
+    try {
+      retained = new Set(pdfHistoryNodeStore.externalReferences(roots, { includePins: true }).densePdf.map((row) => row.assetId));
+      for (const tab of allDocumentTabs()) for (const id of browserDenseAssetReferences(tab.payload).keys()) retained.add(id);
+    } catch (_error) {
+      // An unfinished encoder or unresolved history root retains every source
+      // owner. A later completed transaction will make the next decision.
+      return { sourceCollectionDeferred: true };
+    }
+    const result = pdfHistoryNodeStore.collect(roots);
+    dense?.collect(retained);
+    return result;
   }
 
   function historyStackArtifactDedupStats(stack) {
@@ -74161,14 +76799,10 @@
     lastHistoryPrunedAt = new Date().toISOString();
   }
 
-  function pruneHistoryStack(stack, { maxSteps, maxBytes, reasonPrefix }) {
+  function planHistoryStackPrune(source, { maxSteps, maxBytes }) {
+    const stack = source.slice();
     if (pdfHistoryNodeStore && stack.some((snapshot) => pdfHistoryNodeStore.isCompact(snapshot))) {
-      const plan = pdfHistoryNodeStore.planPrune(stack, { maxSteps, maxBytes });
-      stack.splice(0, stack.length, ...plan.stack);
-      if (plan.pruned) noteHistoryPrune(plan.latestExceedsBudget
-        ? `${reasonPrefix}: latest snapshot exceeds byte budget`
-        : `${reasonPrefix}: pruned to ${stack.length} step(s), ${plan.totalBytes} byte(s)`, plan.pruned);
-      return { pruned: plan.pruned, totalBytes: plan.totalBytes };
+      return pdfHistoryNodeStore.planPrune(stack, { maxSteps, maxBytes });
     }
     let pruned = 0;
     while (stack.length > maxSteps) {
@@ -74181,13 +76815,16 @@
       totalBytes -= approxSerializedBytes(removed);
       pruned += 1;
     }
-    if (pruned) {
-      const reason = totalBytes > maxBytes && stack.length <= 1
-        ? `${reasonPrefix}: latest snapshot exceeds byte budget`
-        : `${reasonPrefix}: pruned to ${stack.length} step(s), ${totalBytes} byte(s)`;
-      noteHistoryPrune(reason, pruned);
-    }
-    return { pruned, totalBytes };
+    return { stack, pruned, totalBytes, latestExceedsBudget: stack.length <= 1 && totalBytes > maxBytes };
+  }
+
+  function pruneHistoryStack(stack, { maxSteps, maxBytes, reasonPrefix }) {
+    const plan = planHistoryStackPrune(stack, { maxSteps, maxBytes });
+    stack.splice(0, stack.length, ...plan.stack);
+    if (plan.pruned) noteHistoryPrune(plan.latestExceedsBudget
+      ? `${reasonPrefix}: latest snapshot exceeds byte budget`
+      : `${reasonPrefix}: pruned to ${stack.length} step(s), ${plan.totalBytes} byte(s)`, plan.pruned);
+    return { pruned: plan.pruned, totalBytes: plan.totalBytes };
   }
 
   function pruneHistoryStacks(reasonPrefix = "undo history budget") {
@@ -74235,6 +76872,8 @@
   }
 
   function commitSerializedHistory(label, options, serialized) {
+    const handoff = options.denseFigureHandoff ? denseFigureHandoffContext(options) : null;
+    handoff?.historyWillPublish?.(serialized.snapshot);
     const snapshot = serialized.snapshot;
     if (undoStack[undoStack.length - 1] === snapshot) {
       if (serialized.cacheableState) {
@@ -74281,7 +76920,7 @@
       commandIndex: Number(ref?.commandIndex),
       handleType: String(ref?.handleType || "endpoint")
     });
-    return {
+    const saved = {
       primaryObjectId: pathEditObjectId(pathNodeEdit.object),
       objectIds: pathNodeEditObjects().map(pathEditObjectId),
       selectedHandles: selectedPathHandleRefs().map(stripHandle),
@@ -74293,10 +76932,153 @@
         endCommandIndex: Number(pathNodeEdit.selectedSegment.endCommandIndex)
       } : null
     };
+    const page = densePdfPageForObject(pathNodeEdit.object);
+    if (page && saved.objectIds.length === 1 && !saved.selectedSegment
+        && densePdfApi().objectById(page, saved.primaryObjectId) === pathNodeEdit.object
+        && canUsePathPointEditing(pathNodeEdit.object)) {
+      const descriptor = densePdfApi().descriptor(page);
+      saved.densePage = { figureId: page.figureId, assetId: descriptor.assetId,
+        source: structuredClone(descriptor.source), topology: pathNodeEdit.object.path.map((command) => [command[0], command.length]) };
+    }
+    return saved;
+  }
+
+  function densePdfPointSourceMatches(actual, expected) {
+    if (!actual || !expected || typeof actual !== "object" || typeof expected !== "object") return false;
+    const keys = Reflect.ownKeys(actual), other = Reflect.ownKeys(expected);
+    return keys.length === other.length && keys.every((key, index) => {
+      const a = Object.getOwnPropertyDescriptor(actual, key), b = Object.getOwnPropertyDescriptor(expected, other[index]);
+      return typeof key === "string" && key === other[index] && a && b && Object.hasOwn(a, "value") && Object.hasOwn(b, "value")
+        && (a.value === null || typeof a.value !== "object") && Object.is(a.value, b.value);
+    });
+  }
+
+  function captureDensePdfPointContinuity(page, objects) {
+    if (objects.length !== 1 || pathNodeEdit.object !== objects[0] || canvas.getActiveObject() !== objects[0]) return null;
+    const saved = captureDirectSelectionHistoryState();
+    if (!saved?.densePage || densePdfPageForObject(objects[0]) !== page) return null;
+    const resolved = resolveDensePdfPointHistoryState(saved, page);
+    if (!resolved || resolved.object !== objects[0] || (pathNodeEdit.selectedHandles || []).some((ref) => ref.object !== objects[0])) return null;
+    return { page, canvas, documentId: currentTransformDocumentId(), saved, editState: pathNodeEdit,
+      activeObject: objects[0], selected: pathNodeEdit.selected,
+      handleRefs: (pathNodeEdit.selectedHandles || []).map((ref) => ({ objectId: ref.objectId, nodeId: ref.nodeId,
+        commandIndex: ref.commandIndex, handleType: ref.handleType })) };
+  }
+
+  function densePdfPointIntentIsCurrent(intent) {
+    return canvas === intent.canvas && currentTransformDocumentId() === intent.documentId && state.tool === "directSelect"
+      && pathNodeEdit === intent.editState && pathNodeEdit.object === intent.activeObject
+      && canvas.getActiveObject() === intent.activeObject && pathNodeEdit.selected === intent.selected
+      && !pathNodeEdit.dragging && !pathNodeEdit.segmentDrag && !pathNodeEdit.marquee
+      && (pathNodeEdit.selectedHandles || []).length === intent.handleRefs.length
+      && intent.handleRefs.every((ref, index) => ["objectId", "nodeId", "commandIndex", "handleType"]
+        .every((key) => Object.is(ref[key], pathNodeEdit.selectedHandles[index][key])));
+  }
+
+  function densePdfPointHistoryPage(saved, expectedPage = null) {
+    const hint = saved?.densePage, api = densePdfApi();
+    const arity = { M: 3, L: 3, C: 7, Z: 1 };
+    if (!hint || typeof hint.figureId !== "string" || !hint.figureId || hint.figureId.length > 256
+        || typeof hint.assetId !== "string" || !hint.assetId || hint.assetId.length > 128
+        || !Array.isArray(saved.objectIds) || saved.objectIds.length !== 1 || saved.objectIds[0] !== saved.primaryObjectId
+        || typeof saved.primaryObjectId !== "string" || !saved.primaryObjectId || saved.primaryObjectId.length > 256
+        || saved.selectedSegment || !Array.isArray(saved.selectedHandles) || !Array.isArray(hint.topology)
+        || !hint.topology.length || hint.topology.length > 4096 || saved.selectedHandles.length > hint.topology.length * 3
+        || Array.from(hint.topology).some((command) => !Array.isArray(command) || command.length !== 2 || typeof command[0] !== "string"
+          || !Object.hasOwn(arity, command[0]) || arity[command[0]] !== command[1])
+        || Array.from(saved.selectedHandles).some((ref) => !ref || ref.objectId !== saved.primaryObjectId || typeof ref.nodeId !== "string" || !ref.nodeId || ref.nodeId.length > 512
+          || !Number.isSafeInteger(ref.commandIndex) || ref.commandIndex < 0 || ref.commandIndex >= hint.topology.length
+          || !["endpoint", "control1", "control2"].includes(ref.handleType)
+          || (ref.handleType === "endpoint" ? hint.topology[ref.commandIndex][0] === "Z" : hint.topology[ref.commandIndex][0] !== "C"))
+        || new Set(saved.selectedHandles.map((ref) => JSON.stringify([ref.objectId, ref.nodeId, ref.commandIndex, ref.handleType]))).size !== saved.selectedHandles.length) return null;
+    // Source path IDs repeat in independent copies. Resolve the Page first;
+    // the UI hint never chooses a checkpoint or grants native source authority.
+    const matches = allCanvasObjectsDeep().filter((object) => api.isPage(object) && object.figureId === hint.figureId);
+    if (matches.length !== 1 || expectedPage && matches[0] !== expectedPage) return null;
+    const page = matches[0], descriptor = api.descriptor(page);
+    if (descriptor.assetId !== hint.assetId || !densePdfPointSourceMatches(descriptor.source, hint.source)) return null;
+    return { page, descriptor };
+  }
+
+  function resolveDensePdfPointHistoryState(saved, expectedPage = null) {
+    const bound = densePdfPointHistoryPage(saved, expectedPage), api = densePdfApi();
+    if (!bound) return null;
+    const { page, descriptor } = bound, hint = saved.densePage;
+    const object = api.objectById(page, saved.primaryObjectId);
+    if (!object || api.pageForObject(object) !== page || !canUsePathPointEditing(object)
+        || object.path.length !== hint.topology.length || object.path.some((command, index) => command[0] !== hint.topology[index]?.[0]
+          || command.length !== hint.topology[index]?.[1])) return null;
+    const available = pathHandleDescriptors(object).map((item) => qualifyPathHandle(object, item));
+    if (saved.selectedHandles.length > available.length) return null;
+    const selected = saved.selectedHandles.map((ref) => available.find((item) => item.objectId === ref.objectId
+      && item.commandIndex === ref.commandIndex && item.handleType === ref.handleType && item.nodeId === ref.nodeId));
+    if (selected.some((item) => !item) || new Set(selected).size !== selected.length) return null;
+    return { page, object, selected, stateId: descriptor.stateId };
+  }
+
+  async function restoreDensePdfPointHistoryState(saved) {
+    const bound = densePdfPointHistoryPage(saved), api = densePdfApi();
+    if (!bound) return false;
+    const { page, descriptor } = bound, ownerCanvas = canvas, documentId = currentTransformDocumentId();
+    const ui = { tool: state.tool, editState: pathNodeEdit, active: canvas.getActiveObject(), object: pathNodeEdit.object,
+      objects: (pathNodeEdit.objects || []).slice(), selected: pathNodeEdit.selected, segment: pathNodeEdit.selectedSegment,
+      dragging: pathNodeEdit.dragging, segmentDrag: pathNodeEdit.segmentDrag, marquee: pathNodeEdit.marquee,
+      handles: (pathNodeEdit.selectedHandles || []).map((ref) => ({ objectId: ref.objectId, nodeId: ref.nodeId,
+        commandIndex: ref.commandIndex, handleType: ref.handleType })) };
+    const unlock = lockPdfHistoryMutations();
+    try {
+      // The initial history snapshot may predate Point Selection. Rebuild only
+      // this disposable view after the target's private checkpoint was restored;
+      // the UI hint never selects a checkpoint or supplies path operands.
+      if (!api.objectById(page, saved.primaryObjectId)) {
+        await api.acquirePath(page, saved.primaryObjectId, { pointsOnly: true });
+        const current = densePdfPointHistoryPage(saved, page);
+        if (canvas !== ownerCanvas || currentTransformDocumentId() !== documentId || !current
+            || current.descriptor.stateId !== descriptor.stateId) throw new Error("The PDF history source changed while its point controls were being restored.");
+        if (state.tool !== ui.tool || pathNodeEdit !== ui.editState || canvas.getActiveObject() !== ui.active
+            || pathNodeEdit.object !== ui.object || pathNodeEdit.selected !== ui.selected || pathNodeEdit.selectedSegment !== ui.segment
+            || pathNodeEdit.dragging !== ui.dragging || pathNodeEdit.segmentDrag !== ui.segmentDrag || pathNodeEdit.marquee !== ui.marquee
+            || (pathNodeEdit.objects || []).length !== ui.objects.length || ui.objects.some((object, index) => pathNodeEdit.objects[index] !== object)
+            || (pathNodeEdit.selectedHandles || []).length !== ui.handles.length
+            || ui.handles.some((ref, index) => ["objectId", "nodeId", "commandIndex", "handleType"]
+              .some((key) => !Object.is(ref[key], pathNodeEdit.selectedHandles[index][key])))) return false;
+      }
+      const resolved = resolveDensePdfPointHistoryState(saved, page);
+      if (!resolved) throw new Error("The current PDF history path no longer has its qualified point controls.");
+      return bindDensePdfPointSelection(resolved);
+    } finally { unlock(); }
+  }
+
+  function bindDensePdfPointSelection(resolved) {
+    const { page, object, selected, stateId } = resolved, api = densePdfApi();
+    if (!api.isPage(page) || api.objectById(page, object.figureId) !== object || api.descriptor(page).stateId !== stateId
+        || !canUsePathPointEditing(object)) throw new Error("The current PDF point controls changed before selection could be restored.");
+    state.tool = "directSelect";
+    syncToolMode();
+    startPathNodeEdit(object, { toast: false, deferInitialVisuals: true });
+    pathNodeEdit.selectedHandles = selected;
+    pathNodeEdit.selected = selected.at(-1) || null;
+    // One actual native path only: never reparent source children into a
+    // Fabric ActiveSelection to restore several selected handles.
+    ensureDirectSelectionCanvasCollection();
+    if (pathNodeEdit.object !== object || api.objectById(page, object.figureId) !== object
+        || api.descriptor(page).stateId !== stateId || !canUsePathPointEditing(object)) {
+      stopPathNodeEdit({ sync: false });
+      canvas.setActiveObject(page);
+      throw new Error("The current PDF point controls changed while selection was being restored.");
+    }
+    renderPathNodeOverlay();
+    updatePathNodeStatus(object);
+    syncInspector();
+    return true;
   }
 
   function restoreDirectSelectionHistoryState(saved) {
     if (!saved?.primaryObjectId) return false;
+    if (saved.densePage) {
+      const resolved = resolveDensePdfPointHistoryState(saved);
+      return resolved ? bindDensePdfPointSelection(resolved) : false;
+    }
     const resolve = (id) => getByFigureId(id) || findNestedObjectByFigureId(id);
     const objects = uniqueObjects((saved.objectIds || []).map(resolve))
       .filter((object) => canUseBezierNodeEditing(object));
@@ -74391,7 +77173,9 @@
     isApplyingHistory = false;
     updateStage();
     syncUi();
-    restoreDirectSelectionHistoryState(directSelectionState || historyDirectSelectionState.get(snapshot));
+    const restoredDirectSelection = directSelectionState || historyDirectSelectionState.get(snapshot);
+    if (restoredDirectSelection?.densePage) await restoreDensePdfPointHistoryState(restoredDirectSelection);
+    else restoreDirectSelectionHistoryState(restoredDirectSelection);
     renderAssetCategoryOptions();
     renderScientificAssetPanel();
     syncHistoryButtons();
@@ -74598,6 +77382,7 @@
         return { status: "busy" };
       }
       const pendingEdit = commitPendingDocumentEditsForSave();
+      await flushDensePdfEdits();
       const sourceTab = activeDocumentTab();
       const sourceTabId = sourceTab?.id || "";
       const sourceWorkspaceGeneration = workspaceProjectGeneration;
@@ -74658,6 +77443,7 @@
         const nativeSave = hostAdapter[saveAs ? "saveProjectAs" : "saveProject"].bind(hostAdapter);
         const result = await nativeSave(payload, {
           documentId: sourceTab?.nativeDocumentId || sourceTabId || allocateDocumentTabId(),
+          ...(browserDenseAssetReferences(payload).size ? { fileBlob: await encodeFigureStudioFile(payload) } : {}),
           suggestedName: documentNativeSaveFilename(sourceTab),
           documentKind: normalizeDocumentKind(state.document?.kind)
         });
@@ -74730,7 +77516,7 @@
         }
         filename = normalizeProjectFilename(requested, sourceTab?.kind);
       }
-      downloadText(filename, JSON.stringify(payload, null, 2), "application/json");
+      downloadBlob(filename, await encodeFigureStudioFile(payload));
       if (sourceTab) {
         sourceTab.filename = filename;
         sourceTab.path = "";
@@ -74770,6 +77556,7 @@
     const active = activeDocumentTab();
     const ready = browserSessionAvailable() && editorProductReady && Boolean(canvas && active);
     const busy = !ready || documentRuntimeRestoreFailed || documentWorkspaceState.switching || isRestoring || isApplyingHistory || pdfHistoryMovePending || pdfHistoryMutationLockDepth
+      || densePdfEditPending > 0
       || documentMutationTrackingSuppressed > 0 || Boolean(activeDocumentFileOperation)
       || exportStateDepth > 0 || pdfDocumentImportDepth > 0
       || Boolean(els.newDocumentBackdrop && !els.newDocumentBackdrop.hidden);
@@ -74787,29 +77574,234 @@
   }
 
   function captureBrowserSession() {
-    if (getBrowserSessionState().busy) throw new Error("Finish the current file action before saving in this browser.");
-    const workspace = fileFormatApi().serializeWorkspaceProject(workspaceProjectSource());
+    const sourceState = getBrowserSessionState();
+    if (sourceState.busy) throw new Error("Finish the current file action before saving in this browser.");
+    const workspace = fileFormatApi().serializeWorkspaceProject(workspaceProjectSource({ flushTextHistory: false, reuseBrowserCaptureKey: sourceState.key }));
     let thumbnail = "";
     try { thumbnail = canvas.toDataURL({ format: "png", multiplier: Math.min(1, 240 / canvas.getWidth()) }); }
     catch { /* A thumbnail failure must not prevent saving the actual document. */ }
     return { ...getBrowserSessionState(), workspace, thumbnail };
   }
 
-  async function restoreBrowserSession(workspace) {
+  function serializeBrowserWorkspaceInWorker(source) {
+    return new Promise((resolve, reject) => {
+      let worker, timeout, serialized;
+      const started = performance.now();
+      let sourcePostMessageMs = 0;
+      const finish = (error, result) => {
+        clearTimeout(timeout);
+        worker?.terminate();
+        if (error) reject(error); else resolve(result);
+      };
+      try {
+        worker = new Worker(new URL("app/browser-workspace-worker.js", RESOURCE_BASE_URL));
+        worker.onerror = () => finish(new Error("Could not prepare the browser save. Download your work and retry."));
+        worker.onmessageerror = () => finish(new Error("Could not receive the browser save. Download your work and retry."));
+        worker.onmessage = ({ data }) => {
+          if (data?.type === "workspace-error") {
+            const error = new Error(data.message || "Could not prepare the browser save.");
+            if (data.code) error.code = data.code;
+            finish(error);
+          } else if (data?.type === "workspace-serialized") {
+            try { fileFormatApi().assertReaderEnvelopeVersions(data.workspace); }
+            catch (error) { finish(error); return; }
+            serialized = data;
+          } else if (data?.type === "workspace-transport-complete" && serialized) {
+            finish(null, { workspace: serialized.workspace, metrics: {
+              sourcePostMessageMs, workerSerializeMs: serialized.workerSerializeMs,
+              workerReturnPostMessageMs: data.workerReturnPostMessageMs,
+              totalElapsedMs: performance.now() - started
+            } });
+          } else {
+            finish(new Error("The browser save worker returned an invalid response."));
+          }
+        };
+        timeout = setTimeout(() => finish(new Error("The browser save took too long. Download your work and retry.")), 60000);
+        // Structured clone captures these already detached tab payloads at this
+        // boundary. Do not stringify/clone the complete workspace on this thread.
+        const posted = performance.now();
+        worker.postMessage({ type: "serialize-workspace", source });
+        sourcePostMessageMs = performance.now() - posted;
+      } catch (error) { finish(error); }
+    });
+  }
+
+  function browserDenseAssetReferences(workspace) {
+    const pending = [[workspace, 0]], seen = new WeakSet(), references = new Map();
+    // These are the serialized document/scene containers. PDF operator arrays,
+    // glyph maps, path operands and import metadata are never scene children.
+    const containers = ["documents", "payload", "project", "figure", "presentation", "tabs", "fabric", "scene", "objects", "clipPath", "mask",
+      "deck", "pages", "masters", "layouts", "elements", "components", "fabricObject", "userAssets", "fabricObjects", "deckTemplates"];
+    let count = 0;
+    while (pending.length) {
+      const [row, depth] = pending.pop();
+      if (!row || typeof row !== "object" || seen.has(row)) continue;
+      if (++count > 100000 || depth > 48) throw new Error("The browser project exceeds the bounded PDF document envelope.");
+      seen.add(row);
+      const descriptor = row.densePdf;
+      if (descriptor?.schema === "figureStudio.pdfDensePage.v1") {
+        if (typeof descriptor.assetId !== "string" || !descriptor.assetId || typeof descriptor.stateId !== "string" || !descriptor.stateId
+            || !/^[a-f0-9]{64}$/.test(descriptor.source?.sha256) || !Number.isSafeInteger(descriptor.source.byteLength)
+            || descriptor.source.byteLength < 1 || !Number.isSafeInteger(descriptor.source.pageNumber) || descriptor.source.pageNumber < 1) {
+          throw new Error("A browser PDF view has incomplete source ownership.");
+        }
+        const previous = references.get(descriptor.assetId);
+        if (previous && (previous.stateId !== descriptor.stateId || previous.source.sha256 !== descriptor.source.sha256
+            || previous.source.byteLength !== descriptor.source.byteLength || previous.source.pageNumber !== descriptor.source.pageNumber)) {
+          throw new Error("A browser PDF asset refers to different document states.");
+        }
+        references.set(descriptor.assetId, descriptor);
+        if (references.size > 8) throw new Error("A browser project may contain at most eight distinct PDF source owners.");
+      }
+      if (Array.isArray(row)) {
+        for (const value of row) if (value && typeof value === "object") pending.push([value, depth + 1]);
+      } else {
+        for (const key of containers) if (row[key] && typeof row[key] === "object") pending.push([row[key], depth + 1]);
+      }
+    }
+    return references;
+  }
+
+  function validateBrowserDenseAssetBindings(workspace, assets) {
+    const references = browserDenseAssetReferences(workspace);
+    if (!Array.isArray(assets) || assets.length !== references.size || new Set(assets.map((asset) => asset.assetId)).size !== assets.length) {
+      throw new Error("A browser PDF view has no matching saved source asset.");
+    }
+    for (const asset of assets) {
+      const descriptor = references.get(asset.assetId);
+      if (!descriptor || asset.savedStateId !== descriptor.stateId || asset.pageNumber !== descriptor.source.pageNumber
+          || asset.sourceBytes?.byteLength !== descriptor.source.byteLength
+          || asset.source && asset.source.sha256 !== descriptor.source.sha256) {
+        throw new Error("The browser PDF source asset and captured document state differ.");
+      }
+    }
+    return references;
+  }
+
+  async function encodeBrowserSessionSnapshot(snapshot, { signal } = {}) {
+    if (!browserSessionAvailable()) throw new Error("Browser saves are available in the web editor.");
+    // IndexedDB and the outer browser host belong to a different realm. Clone
+    // small records, typed source bytes and immutable Blobs into this app realm.
+    const owned = structuredClone({ shell: snapshot?.workspace, assets: snapshot?.densePdfAssets || [] });
+    validateBrowserDenseAssetBindings(owned.shell, owned.assets);
+    const codec = globalThis.FigureStudioPdfDenseFileCodec;
+    if (!codec) throw new Error("The PDF project file worker is unavailable.");
+    return codec.encode(owned, { signal });
+  }
+
+  async function captureBrowserSessionAsync() {
+    const sourceState = getBrowserSessionState();
+    if (sourceState.busy) throw new Error("Finish the current file action before saving in this browser.");
+    const dense = densePdfApi();
+    const dirtyLabels = allCanvasObjectsDeep().filter((page) => dense?.isPage(page)).flatMap((page) => dense.textEntries(page)
+      .filter((row) => densePdfTextDirty.has(row.object)).map((row) => row.object));
+    const denseDraftCapture = dirtyLabels.length ? dense.captureDrafts(dirtyLabels) : null;
+    const assertDraftCurrent = () => {
+      try { if (denseDraftCapture) dense.validateDraftCapture(denseDraftCapture); }
+      catch (error) { throw Object.assign(new Error(error.message || "New PDF label edits are waiting for browser save."), { code: "BROWSER_CAPTURE_STALE" }); }
+    };
+    const sourceOwner = activeDocumentTab();
+    const sourceCanvas = canvas;
+    const sourcePendingText = textHistoryPending, sourcePendingNotes = speakerNotesHistoryPending;
+    const captureOptions = { flushTextHistory: false, reuseBrowserCaptureKey: sourceState.key };
+    const needsCooperativeCapture = Object.keys(state.pdfSources?.entries || {}).length
+      && !canReuseBrowserCapture(sourceOwner, captureOptions);
+    const source = needsCooperativeCapture
+      ? await workspaceProjectSourceAsync(captureOptions)
+      : workspaceProjectSource(captureOptions);
+    assertDraftCurrent();
+    let thumbnail = "";
+    try { thumbnail = canvas.toDataURL({ format: "png", multiplier: Math.min(1, 240 / canvas.getWidth()) }); }
+    catch { /* A thumbnail failure must not prevent saving the actual document. */ }
+    const capturedState = getBrowserSessionState();
+    const capturedPayload = source[normalizeDocumentKind(sourceOwner?.kind)]?.tabs.find((tab) => tab.id === sourceOwner.id)?.payload;
+    if (capturedState.busy || capturedState.key !== sourceState.key || activeDocumentTab() !== sourceOwner || canvas !== sourceCanvas
+        || textHistoryPending !== sourcePendingText || speakerNotesHistoryPending !== sourcePendingNotes
+        || sourceOwner.payload !== capturedPayload) {
+      throw Object.assign(new Error("New edits are waiting for browser save."), { code: "BROWSER_CAPTURE_STALE" });
+    }
+    const captureOwner = { key: sourceState.key, tab: sourceOwner, canvas: sourceCanvas, generation: workspaceProjectGeneration, payload: sourceOwner.payload,
+      pendingTextHistory: textHistoryPending, pendingNotes: speakerNotesHistoryPending, denseDraftCapture };
+    const result = await serializeBrowserWorkspaceInWorker(source);
+    assertDraftCurrent();
+    captureBrowserSessionAsync.lastMetrics = result.metrics;
+    const references = browserDenseAssetReferences(result.workspace);
+    let densePdfAssets;
+    if (references.size) {
+      const assertCurrent = () => {
+        const current = getBrowserSessionState();
+        if (current.busy || current.key !== captureOwner.key || activeDocumentTab() !== captureOwner.tab || canvas !== captureOwner.canvas
+            || workspaceProjectGeneration !== captureOwner.generation || captureOwner.tab.payload !== captureOwner.payload
+            || textHistoryPending !== captureOwner.pendingTextHistory || speakerNotesHistoryPending !== captureOwner.pendingNotes
+            || densePdfEditPending > 0 || !denseDraftCapture && hasPendingDensePageEdits()) {
+          throw Object.assign(new Error("New edits are waiting for browser save."), { code: "BROWSER_CAPTURE_STALE" });
+        }
+        assertDraftCurrent();
+      };
+      assertCurrent();
+      if (!dense) throw new Error("The PDF document owner is unavailable.");
+      try { densePdfAssets = await dense.saveAssets(Array.from(references.keys()), { draftCapture: denseDraftCapture }); }
+      catch (error) { assertDraftCurrent();throw error; }
+      assertCurrent();
+      validateBrowserDenseAssetBindings(result.workspace, densePdfAssets);
+    }
+    // This key belongs to the posted snapshot, even when newer edits or a
+    // different project arrive while its worker is running. Acknowledge uses
+    // the live key and cannot mark those later edits saved.
+    const snapshot = { ...sourceState, workspace: result.workspace, thumbnail, ...(densePdfAssets ? { densePdfAssets } : {}) };
+    captureOwner.densePdfAssets = densePdfAssets;
+    browserAsyncCaptureOwners.set(snapshot, captureOwner);
+    return snapshot;
+  }
+
+  async function restoreBrowserSession(workspace, { densePdfAssets } = {}) {
+    fileFormatApi().assertReaderEnvelopeVersions(workspace);
     if (pdfHistoryMovePending) await pdfHistoryMoveCompletion;
     if (pdfHistoryMutationLockDepth) await pdfHistoryMutationCompletion;
     if (!browserSessionAvailable()) throw new Error("Browser saves are available in the web editor.");
     if (documentWorkspaceState.switching || activeDocumentFileOperation) throw new Error("A file action is already in progress.");
-    // The standard opener validates every document before replacing state and rolls back on failure.
-    const tab = await openWorkspaceProjectPayload(workspace, { discardUnsaved: true, requiresSaveAs: true });
-    if (!tab) throw new Error("Could not reopen that browser save.");
-    closeNewDocumentDialog();
-    acknowledgeBrowserSession(getBrowserSessionState().key);
-    return getBrowserSessionState();
+    let bindings, dense;
+    try {
+      if (densePdfAssets?.length || browserDenseAssetReferences(workspace).size) {
+        const owned = structuredClone({ shell: workspace, assets: densePdfAssets || [] });
+        validateBrowserDenseAssetBindings(owned.shell, owned.assets);
+        const codec = globalThis.FigureStudioPdfDenseFileCodec;
+        if (!codec) throw new Error("The PDF project file worker is unavailable.");
+        codec.inspectEncode(owned);
+        dense = globalThis.FigureStudioPdfDensePage;
+        if (!dense || typeof dense.discardHydratedAssets !== "function") throw new Error("The PDF browser recovery owner is unavailable.");
+        const owner = { tab: activeDocumentTab(), canvas, generation: workspaceProjectGeneration, key: getBrowserSessionState().key,
+          pendingText: textHistoryPending, pendingNotes: speakerNotesHistoryPending };
+        bindings = await dense.hydrateAssets(owned.assets);
+        const current = getBrowserSessionState();
+        if (current.busy || current.key !== owner.key || activeDocumentTab() !== owner.tab || canvas !== owner.canvas
+            || workspaceProjectGeneration !== owner.generation || textHistoryPending !== owner.pendingText || speakerNotesHistoryPending !== owner.pendingNotes) {
+          throw Object.assign(new Error("The open work changed while its browser copy was being restored."), { code: "BROWSER_CAPTURE_STALE" });
+        }
+        workspace = dense.rebindAssets(owned.shell, bindings);
+      }
+      // The standard opener validates every document before replacing state and rolls back on failure.
+      const tab = await openWorkspaceProjectPayload(workspace, { discardUnsaved: true, requiresSaveAs: true });
+      if (!tab) throw new Error("Could not reopen that browser save.");
+      if (bindings) { dense.commitHydratedAssets(bindings); bindings = null; }
+      closeNewDocumentDialog();
+      acknowledgeBrowserSession(getBrowserSessionState().key);
+      return getBrowserSessionState();
+    } catch (error) {
+      if (bindings) { try { dense.discardHydratedAssets(bindings); } catch {} }
+      throw error;
+    }
   }
 
-  function acknowledgeBrowserSession(key) {
+  function acknowledgeBrowserSession(key, snapshot) {
     if (!browserSessionAvailable() || getBrowserSessionState().key !== key) return false;
+    const owner = snapshot && browserAsyncCaptureOwners.get(snapshot);
+    if (snapshot !== undefined && !owner) return false;
+    if (owner && (owner.key !== key || snapshot.key !== key)) return false;
+    if (owner && snapshot.densePdfAssets !== owner.densePdfAssets) return false;
+    if (owner?.denseDraftCapture) { try { densePdfApi().validateDraftCapture(owner.denseDraftCapture); } catch { return false; } }
+    if (owner && (activeDocumentTab() !== owner.tab || canvas !== owner.canvas || workspaceProjectGeneration !== owner.generation || owner.tab.payload !== owner.payload
+      || textHistoryPending !== owner.pendingTextHistory || speakerNotesHistoryPending !== owner.pendingNotes)) return false;
     allDocumentTabs().forEach((tab) => {
       tab.hasPersistedCopy = true;
       tab.sourceFormat = "browser";
@@ -74820,8 +77812,75 @@
     return true;
   }
 
-  function workspaceProjectSource() {
-    captureActiveDocumentTab();
+  function canReuseBrowserCapture(tab, options = {}) {
+    const completed = tab?.browserCapture;
+    return options.flushTextHistory === false && typeof options.reuseBrowserCaptureKey === "string"
+      && options.reuseBrowserCaptureKey && completed?.key === options.reuseBrowserCaptureKey
+      && completed.payload === tab.payload && completed.pendingTextHistory === textHistoryPending
+      && !speakerNotesHistoryPending && browserSessionAvailable()
+      && getBrowserSessionState().key === options.reuseBrowserCaptureKey;
+  }
+
+  async function workspaceProjectSourceAsync(options = {}) {
+    const handoff = options.denseFigureHandoff ? denseFigureHandoffContext(options) : null;handoff?.current();
+    const tab = activeDocumentTab();
+    if (!Object.keys(state.pdfSources?.entries || {}).length || canReuseBrowserCapture(tab, options)) {
+      return workspaceProjectSource(options);
+    }
+    const sourceCanvas = canvas, generation = workspaceProjectGeneration, payload = tab?.payload;
+    const key = options.reuseBrowserCaptureKey || getBrowserSessionState().key;
+    const pendingText = textHistoryPending;
+    const importOwner = options.importCapture === true && pdfDocumentImportDepth > 0
+      ? { depth: pdfDocumentImportDepth, fileOperation: activeDocumentFileOperation } : null;
+    flushSpeakerNotesHistory();
+    const pendingNotes = speakerNotesHistoryPending;
+    // Derived import and typography metadata must be current before reading the
+    // live scene. The public key plus transaction identities guard every yield.
+    syncScientificTypographyRangesFromLiveStyles(canvas.getObjects());
+    canvas.getObjects().forEach(syncPdfEntrySummaryOnObject);
+    syncPdfEntryBatchSummariesOnCanvas();
+    const assertCurrent = () => {
+      handoff?.current();
+      const current = getBrowserSessionState();
+      const ownedImport = importOwner && editorProductReady && !documentRuntimeRestoreFailed
+        && pdfDocumentImportDepth === importOwner.depth && activeDocumentFileOperation === importOwner.fileOperation
+        && !documentWorkspaceState.switching && !isRestoring && !isApplyingHistory && !pdfHistoryMovePending
+        && !pdfHistoryMutationLockDepth && !documentMutationTrackingSuppressed && !exportStateDepth
+        && !(els.newDocumentBackdrop && !els.newDocumentBackdrop.hidden);
+      const ownedNativeCopy = handoff && !browserSessionAvailable() && editorProductReady && !documentRuntimeRestoreFailed
+        && !activeDocumentFileOperation && !pdfDocumentImportDepth && !documentWorkspaceState.switching && !isRestoring && !isApplyingHistory
+        && !pdfHistoryMovePending && !pdfHistoryMutationLockDepth && !documentMutationTrackingSuppressed && !exportStateDepth
+        && !(els.newDocumentBackdrop && !els.newDocumentBackdrop.hidden);
+      if ((current.busy && !ownedImport && !ownedNativeCopy) || current.key !== key || activeDocumentTab() !== tab || canvas !== sourceCanvas
+          || workspaceProjectGeneration !== generation || tab?.payload !== payload
+          || textHistoryPending !== pendingText || speakerNotesHistoryPending !== pendingNotes) {
+        throw Object.assign(new Error("New edits are waiting for browser save."), { code: "BROWSER_CAPTURE_STALE" });
+      }
+    };
+    assertCurrent();
+    const batches = { yieldEvery: 128, maxSliceMs: 8,
+      yieldToUi: async () => { assertCurrent(); await yieldPdfHistoryToUi(); assertCurrent(); } };
+    const precision = globalThis.FigureStudioPdfSceneNumberPrecision;
+    batches.createRecord = precision.createPlainJsonRecord;
+    const fabric = await capturePdfFabricSnapshotAsync({ ...batches, assertCurrent });
+    const deckFabric = await precision.cloneJsonAsync(fabric, batches);
+    assertCurrent();
+    const project = await buildProjectJsonAsync({ fabricSnapshot: fabric, detachedDeckFabric: deckFabric }, batches);
+    const compacted = await fileFormatApi().compactSharedGroupImportMetadataAsync(buildProjectPayload(project), batches);
+    const detachedPayload = await precision.cloneJsonAsync(compacted, batches);
+    assertCurrent();
+    handoff?.beforeTabCapture?.(tab, project, detachedPayload);
+    publishDocumentTabCapture(tab, project, detachedPayload, browserSessionAvailable() ? key : "");
+    handoff?.afterTabCapture?.(tab);
+    return workspaceProjectSourceFromTabs();
+  }
+
+  function workspaceProjectSource(options = {}) {
+    if (!canReuseBrowserCapture(activeDocumentTab(), options)) captureActiveDocumentTab(options);
+    return workspaceProjectSourceFromTabs();
+  }
+
+  function workspaceProjectSourceFromTabs() {
     const source = { activeKind: documentWorkspaceState.activeKind };
     for (const kind of DOCUMENT_KINDS) {
       const bucket = documentWorkspaceBucket(kind);
@@ -74857,6 +77916,7 @@
       return { status: "busy" };
     }
     try {
+      await flushDensePdfEdits();
       if (documentRuntimeRestoreFailed) await restoreDocumentTabRuntime(activeDocumentTab());
       if (pdfDocumentImportDepth > 0) {
         showToast("Finish opening the PDF before saving.");
@@ -74878,6 +77938,7 @@
         const nativeSave = hostAdapter[saveAs ? "saveProjectAs" : "saveProject"].bind(hostAdapter);
         result = await nativeSave(workspace, {
           documentId: workspaceProjectBinding.documentId || "figure-studio-workspace-project",
+          ...(browserDenseAssetReferences(workspace).size ? { fileBlob: await encodeFigureStudioFile(workspace) } : {}),
           suggestedName: workspaceProjectSaveFilename(),
           documentKind: "workspace"
         });
@@ -74914,7 +77975,7 @@
           if (requested === null) return null;
           filename = normalizeWorkspaceProjectFilename(requested);
         }
-        downloadText(filename, JSON.stringify(workspace, null, 2), "application/json");
+        downloadBlob(filename, await encodeFigureStudioFile(workspace));
         workspaceProjectBinding = {
           ...workspaceProjectBinding,
           filename,
@@ -74962,6 +78023,10 @@
   }
 
   function attachProjectPayloadAliases(payload) {
+    if (payload?.schema === "figureStudio.projectPayload.v2") {
+      const aliases = new Set(["artboard", "settings", "importSettings", "exportSettings", "preflightSettings", "deck", "fabric", "manifest"]);
+      return Object.fromEntries(Object.entries(payload).filter(([key]) => !aliases.has(key)));
+    }
     ["artboard", "settings", "importSettings", "exportSettings", "preflightSettings", "deck", "fabric", "manifest"].forEach((key) => {
       Object.defineProperty(payload, key, {
         configurable: true,
@@ -74976,14 +78041,15 @@
 
   function buildProjectPayload(projectJson) {
     if (!canvas && suspendedState.active && suspendedState.payload) {
-      return suspendedState.payload?.schema === "figureStudio.projectPayload.v1"
-        ? attachProjectPayloadAliases(suspendedState.payload)
-        : suspendedState.payload;
+      const cached = suspendedState.payload;
+      if (!["figureStudio.projectPayload.v1", "figureStudio.projectPayload.v2"].includes(cached.schema)) return cached;
+      const schema = fileFormatApi().documentPayloadSchemaForProject(cached.project);
+      return attachProjectPayloadAliases(schema === cached.schema ? cached : { ...cached, schema });
     }
     const project = projectJson || buildProjectJson();
     const timestamp = new Date().toISOString();
     return attachProjectPayloadAliases({
-      schema: "figureStudio.projectPayload.v1",
+      schema: fileFormatApi().documentPayloadSchemaForProject(project),
       app: "Figure Tool",
       version: APP_VERSION,
       mode: mountOptions.mode,
@@ -75085,7 +78151,8 @@
     });
     const currentStorageMode = options.storageMode || activeStorageMode();
     const threshold = Number(options.externalizeAssetBytesThreshold || activeExternalizeThreshold()) || DEFAULT_EXTERNALIZE_ASSET_BYTES_THRESHOLD;
-    const embeddedProjectEstimate = Number(options.embeddedProjectEstimateBytes || 0) || (embeddedBytes ? approxSerializedBytes(buildProjectJsonWithoutManifestForSizeProbe()) : 0);
+    const embeddedProjectEstimate = Number(options.embeddedProjectEstimateBytes || 0) || (embeddedBytes
+      ? approxSerializedBytes(buildProjectJsonWithoutManifestForSizeProbe({ fabric: options.fabricSnapshot })) : 0);
     const refProjectEstimate = Math.max(0, embeddedProjectEstimate - Math.max(0, externalizedBytes - (externalizedCount * 600)));
     return {
       schema: "figureStudio.assetStorage.v1",
@@ -75130,10 +78197,10 @@
     };
   }
 
-  function buildProjectJsonWithoutManifestForSizeProbe() {
+  function buildProjectJsonWithoutManifestForSizeProbe(options = {}) {
     if (!canvas) return {};
     syncScientificTypographyRangesFromLiveStyles(canvas.getObjects());
-    const fabric = compactReusableArtworkReferences(stripMasterInheritanceFromSnapshot(
+    const fabric = options.fabric ? fileFormatApi().compactSharedGroupImportMetadata(options.fabric) : compactReusableArtworkReferences(stripMasterInheritanceFromSnapshot(
       canonicalizeLiveBooleanFabricSnapshot(canvas.toJSON(CUSTOM_PROPS))
     ));
     const patternSources = serializePatternLibrary();
@@ -75828,7 +78895,7 @@
     exitGroupIsolation({ selectGroup: false, sync: false, toast: false });
     resetPrecisionToolTransientState();
     stopPathNodeEdit({ sync: false });
-    canvas.clear();
+    clearEditorCanvas();
     canvas.backgroundColor = "#ffffff";
     state.artboard = { preset: "graphical-abstract", widthIn: 10, heightIn: 5.625 };
     const page = activeDeckPage();
@@ -76775,19 +79842,44 @@
 
   function projectPayloadForPackageZip(payload) {
     const clone = JSON.parse(JSON.stringify(payload || {}));
-    const project = clone?.schema === "figureStudio.projectPayload.v1" && clone.project ? clone.project : clone;
+    const project = ["figureStudio.projectPayload.v1", "figureStudio.projectPayload.v2"].includes(clone?.schema) && clone.project ? clone.project : clone;
     if (project?.manifest) {
       delete project.manifest;
       project.manifestRef = "manifest.json";
     }
-    if (clone?.schema === "figureStudio.projectPayload.v1") {
+    if (fileFormatApi().requiresObjectConnectorReader(project)) {
+      if (project === clone) return { schema: "figureStudio.projectPayload.v2", project };
+      clone.schema = "figureStudio.projectPayload.v2";
+      ["artboard", "settings", "importSettings", "exportSettings", "preflightSettings", "deck", "fabric", "manifest"].forEach((key) => delete clone[key]);
+    }
+    if (["figureStudio.projectPayload.v1", "figureStudio.projectPayload.v2"].includes(clone?.schema)) {
       delete clone.manifest;
       clone.project = project;
     }
     return clone;
   }
 
-  function buildProjectJson() {
+  function buildProjectJson(options = {}) {
+    const steps = buildProjectJsonSteps(options);
+    let step;
+    do { step = steps.next(); } while (!step.done);
+    return step.value;
+  }
+
+  async function buildProjectJsonAsync(options, batches) {
+    const steps = buildProjectJsonSteps(options);
+    let prepared;
+    while (true) {
+      const step = steps.next(prepared);
+      if (step.done) return step.value;
+      prepared = step.value?.prepareDeck
+        ? await deckSnapshotForSerializationAsync(step.value.prepareDeck, batches)
+        : undefined;
+      await batches.yieldToUi();
+    }
+  }
+
+  function* buildProjectJsonSteps(options = {}) {
     if (!canvas && suspendedState.active && suspendedState.payload?.project) {
       const project = JSON.parse(JSON.stringify(suspendedState.payload.project));
       const descriptor = normalizeProjectDocument(project);
@@ -76806,18 +79898,26 @@
     syncScientificTypographyRangesFromLiveStyles(canvas.getObjects());
     canvas.getObjects().forEach(syncPdfEntrySummaryOnObject);
     syncPdfEntryBatchSummariesOnCanvas();
-    const fabric = compactReusableArtworkReferences(stripMasterInheritanceFromSnapshot(canonicalizeLiveBooleanFabricSnapshot(canvas.toJSON(CUSTOM_PROPS)), { copy: false }));
-    captureActiveDeckPage({ fabric });
+    const fabric = options.fabricSnapshot
+      || compactReusableArtworkReferences(stripMasterInheritanceFromSnapshot(canonicalizeLiveBooleanFabricSnapshot(canvas.toJSON(CUSTOM_PROPS)), { copy: false }));
+    // Reuse this complete detached scene for the storage estimate instead of
+    // serializing the same dense live canvas again.
+    if (options.captureDeck !== false) captureActiveDeckPage(options.detachedDeckFabric
+      ? { fabric: options.detachedDeckFabric, detachedFabric: true }
+      : { fabric });
+    yield;
     refreshCanvasArtifactRefs();
     const artifactRefs = artifactRefsFromObjects();
-    const assetStorage = artifactStorageSummary(artifactRefs);
-    return {
+    yield;
+    const assetStorage = artifactStorageSummary(artifactRefs, { fabricSnapshot: fabric });
+    yield;
+    const project = {
       schema: PROJECT_SCHEMA,
       document: serializedDocumentDescriptor(),
       title: state.document?.title || `Untitled ${documentKindLabel({ lower: true })}`,
       app: "Figure Tool",
       version: APP_VERSION,
-      savedAt: new Date().toISOString(),
+      savedAt: options.snapshotTimestamp || new Date().toISOString(),
       rendering: "fabric.js",
       assetStorage,
       artifactRefs,
@@ -76826,8 +79926,12 @@
       guides: normalizeGuideState(state.guides),
       importSettings: { ...state.import },
       exportSettings: { ...state.export },
-      preflightSettings: { ...state.preflight },
-      deck: compactReusableArtworkReferences(deckSnapshotForSerialization(fabric)),
+      preflightSettings: { ...state.preflight }
+    };
+    const preparedDeck = yield { prepareDeck: fabric };
+    project.deck = compactReusableArtworkReferences(preparedDeck || deckSnapshotForSerialization(fabric));
+    yield;
+    Object.assign(project, {
       deckTemplates: normalizeDeckTemplateLibrary(state.deckTemplates),
       components: normalizeComponentLibrary(state.components),
       documentStyles: normalizeDocumentStyleLibrary(state.documentStyles),
@@ -76839,9 +79943,21 @@
       swatches: serializeSwatchLibrary(),
       patterns: serializePatternLibrary(),
       brushes: serializeStrokeBrushLibrary(),
-      fabric,
-      manifest: buildManifest({ captureDeck: false, detail: "compact", assetStorage })
-    };
+      fabric
+    });
+    yield;
+    // The manifest needs the same exact variable-stroke inventory as the
+    // synchronous path. Read it in bounded groups before assembling metadata.
+    const objects = allCanvasObjectsDeep();
+    let variableStrokeObjectCount = 0;
+    for (let start = 0; start < objects.length; start += 64) {
+      for (const object of objects.slice(start, start + 64)) {
+        if (variableStrokeProfileActive(object)) variableStrokeObjectCount++;
+      }
+      yield;
+    }
+    project.manifest = buildManifest({ captureDeck: false, detail: "compact", assetStorage, variableStrokeObjectCount, snapshotTimestamp: options.snapshotTimestamp });
+    return project;
   }
 
   function buildManifest(options = {}) {
@@ -76854,7 +79970,7 @@
     const objects = figureObjects.map((object, index) => detail === "compact"
       ? compactObjectManifest(object, index)
       : objectManifest(object, index));
-    const timestamp = new Date().toISOString();
+    const timestamp = options.snapshotTimestamp || new Date().toISOString();
     const artboard = artboardManifest();
     const objectCountByType = countObjectsByType(figureObjects);
     const artifactRefs = artifactRefsFromObjects();
@@ -76921,7 +80037,9 @@
         patternCount: normalizePatternLibrary(patternLibrary).patterns.length,
         strokeBrushCount: normalizeStrokeBrushLibrary(strokeBrushLibrary).brushes.length,
         customStrokeBrushCount: serializeStrokeBrushLibrary().brushes.length,
-        variableStrokeObjectCount: allCanvasObjectsDeep().filter((object) => variableStrokeProfileActive(object)).length,
+        variableStrokeObjectCount: Object.hasOwn(options, "variableStrokeObjectCount")
+          ? options.variableStrokeObjectCount
+          : allCanvasObjectsDeep().filter((object) => variableStrokeProfileActive(object)).length,
         variableStrokeNativePdfEquivalence: false
       },
       deck: {
@@ -77305,15 +80423,23 @@
     if (!value || typeof value !== "object") return artboardManifest();
     const widthIn = Number(value.widthIn ?? value.width_in) || Number(value.width || value.widthPx || 0) / INCH || state.artboard.widthIn;
     const heightIn = Number(value.heightIn ?? value.height_in) || Number(value.height || value.heightPx || 0) / INCH || state.artboard.heightIn;
+    const defaultArtboard = state.document?.pageGeometry?.defaultArtboard;
+    const pdfPrecision = value.scenePrecision === "pdf-points" || (
+      defaultArtboard?.scenePrecision === "pdf-points"
+      && Math.abs(Number(defaultArtboard.widthIn) - widthIn) < 1e-10
+      && Math.abs(Number(defaultArtboard.heightIn) - heightIn) < 1e-10
+    );
+    const sceneDimension = (inches) => Math.max(1, pdfPrecision ? inches * INCH : Math.round(inches * INCH));
     return {
       preset: value.preset || "custom",
       presetName: value.presetName || value.label || "Custom",
+      ...(pdfPrecision ? { scenePrecision: "pdf-points" } : {}),
       width: widthIn,
       height: heightIn,
       widthIn,
       heightIn,
-      widthPx: Math.max(1, Math.round(widthIn * INCH)),
-      heightPx: Math.max(1, Math.round(heightIn * INCH)),
+      widthPx: sceneDimension(widthIn),
+      heightPx: sceneDimension(heightIn),
       units: { physical: "in", canvas: "px" },
       pixelsPerInch: INCH
     };
@@ -77611,16 +80737,27 @@
   }
 
   function runTextPreflight(objects, issues, settings, safeFonts) {
-    const textEntries = [];
-    objects.forEach((object) => collectTextEntries(object, object, textEntries));
+    const textEntries = [], nativeInventories = [];
+    objects.forEach((object) => collectTextEntries(object, object, textEntries, nativeInventories));
     const fontFamilies = new Set();
+
+    nativeInventories.forEach((entry) => {
+      if (!entry.count) return;
+      issues.push(preflightIssue("info", "pdf-native-editable-text-inventory", entry.object,
+        `${entry.count} editable PDF label${entry.count === 1 ? " is" : "s are"} retained in "${entry.object.name || "PDF artwork"}".`,
+        "These labels retain their source glyphs and fonts. Figure Check does not measure their final text size or verify the embedded PDF fonts. Review readability at the final output size."));
+    });
 
     textEntries.forEach((entry) => {
       const fontPt = pxToPt(entry.effectiveFontPx);
       if (fontPt < 6) {
         issues.push(preflightIssue("error", "tiny-text", entry.topLevel, `Text "${shortText(entry.text)}" is ${fmt(fontPt, 1)} pt.`, "Increase this text to at least 7-8 pt for manuscript readability."));
       } else if (fontPt < settings.minTextPt) {
-        issues.push(preflightIssue("warning", "small-text", entry.topLevel, `Text "${shortText(entry.text)}" is ${fmt(fontPt, 1)} pt, below the ${fmt(settings.minTextPt, 1)} pt preflight threshold.`, "Increase font size or display the panel larger."));
+        const size = fmt(fontPt, 1), threshold = fmt(settings.minTextPt, 1);
+        const measurement = Number(size) >= Number(threshold)
+          ? "just below the configured preflight threshold"
+          : `${size} pt, below the ${threshold} pt preflight threshold`;
+        issues.push(preflightIssue("warning", "small-text", entry.topLevel, `Text "${shortText(entry.text)}" is ${measurement}.`, "Increase font size or display the panel larger."));
       } else if (fontPt < 8) {
         issues.push(preflightIssue("info", "readability-risk", entry.topLevel, `Text "${shortText(entry.text)}" is ${fmt(fontPt, 1)} pt; many journals prefer 7-8 pt minimum after final sizing.`, "Review final exported size before submission."));
       }
@@ -77637,7 +80774,7 @@
     if (fontFamilies.size > 1) {
       issues.push(preflightIssue("info", "mixed-fonts", null, `The figure uses ${fontFamilies.size} font families.`, "Keep manuscript figures typographically consistent unless mixed fonts are intentional."));
     }
-    if (!textEntries.length) {
+    if (!textEntries.length && !nativeInventories.some((entry) => entry.count > 0)) {
       issues.push(preflightIssue("info", "no-editable-text-found", null, "No editable text objects were detected.", "If imported labels were converted to paths, Figure Tool cannot yet detect or edit them as text."));
     }
   }
@@ -77801,11 +80938,13 @@
         missingImportMeta += 1;
         issues.push(preflightIssue("warning", "missing-import-metadata", object, `Imported object "${name}" is missing import metadata.`, "Re-import the panel or add provenance before manuscript handoff."));
       }
-      if ((mode === PDF_JS_SVG_VECTOR_IMPORT || mode === PDF_EDITABLE_VECTOR_IMPORT || mode === PDF_LOCAL_SVG_VECTOR_IMPORT) && Number(object.importMeta?.importPartIndex || 0) <= 0) {
+      if (!densePdfApi()?.isPage?.(object) && (mode === PDF_JS_SVG_VECTOR_IMPORT || mode === PDF_EDITABLE_VECTOR_IMPORT || mode === PDF_LOCAL_SVG_VECTOR_IMPORT) && Number(object.importMeta?.importPartIndex || 0) <= 0) {
         const local = mode === PDF_LOCAL_SVG_VECTOR_IMPORT;
         issues.push(preflightIssue("info", local ? "pdf-legacy-editable-vector" : "pdf-js-svg-vector", object, `PDF panel "${name}" imported as editable vector objects through the ${local ? "legacy local conversion" : "PDF.js SVG"} pathway.`, "Review visually against the source PDF; PDF reconstruction can still be approximate, but individual imported paths/text are selectable."));
-        if (!Number(object.importMeta?.svgTextElementCount || 0)) {
-          issues.push(preflightIssue("warning", "pdf-vector-text-not-inspectable", object, `PDF vector import preserved geometry for "${name}", but no SVG text elements were detected.`, "Labels may be converted to paths, so text-size and font preflight cannot inspect this imported panel."));
+        const retainedText = [], nativeInventories = [];
+        collectTextEntries(object, object, retainedText, nativeInventories);
+        if (!retainedText.some((entry) => entry.text.trim()) && !nativeInventories.some((entry) => entry.count > 0)) {
+          issues.push(preflightIssue("warning", "pdf-vector-text-not-inspectable", object, `PDF panel "${name}" has no editable text labels.`, "Labels may be outlines or part of an image, so text-size and font checks cannot inspect them."));
         }
       }
       if (mode === PDF_PLACED_IMPORT) {
@@ -78194,13 +81333,16 @@
   function runArtifactStoragePreflight(issues) {
     const assetStorage = artifactStorageSummary();
     const warnings = new Set(assetStorage.warnings || []);
+    const nativePdfArtwork = selectionHasDensePdfPages(canvas.getObjects());
     if (warnings.has("external_package_recommended")) {
       issues.push(preflightIssue(
         "warning",
-        "external-package-recommended",
+        nativePdfArtwork ? "pdf-source-portable-save" : "external-package-recommended",
         null,
         `This project contains about ${fmt(Number(assetStorage.embedded_size_bytes || 0) / 1000000, 1)} MB of embedded asset data.`,
-        "Use Export Project + Assets ZIP to keep project JSON smaller while keeping large rasters/PDF previews in an assets folder."
+        nativePdfArtwork
+          ? "Use Save or Browser files > Download to keep a portable Figure Tool project with the original PDF and edits. Export Project + Assets ZIP is not yet supported for this editable PDF artwork."
+          : "Use Export Project + Assets ZIP to keep project JSON smaller while keeping large rasters/PDF previews in an assets folder."
       ));
     }
     if (warnings.has("large_embedded_fallbacks")) {
@@ -78209,7 +81351,9 @@
         "large-embedded-fallbacks",
         null,
         "Large embedded fallback assets are present.",
-        "Keep source files or external package assets with the project so recovery does not depend on one large JSON file."
+        nativePdfArtwork
+          ? "Keep the original source files and a saved Figure Tool project together. Save or Browser files > Download retains the original PDF and edits."
+          : "Keep source files or external package assets with the project so recovery does not depend on one large JSON file."
       ));
     }
     if (warnings.has("external_artifact_missing")) {
@@ -78227,7 +81371,9 @@
         "host-artifact-cache-unavailable",
         null,
         "Large assets are still embedded because the host artifact cache has not stored them yet.",
-        "Generate or refresh the Figure package from Story so large assets can be written as file-backed host artifacts."
+        nativePdfArtwork
+          ? "Save a portable Figure Tool project with the original PDF and edits. Host package export for this editable PDF artwork is not yet supported."
+          : "Generate or refresh the Figure package from Story so large assets can be written as file-backed host artifacts."
       ));
     }
     if (assetStorage.externalized_asset_count > 0 || assetStorage.host_artifact_cache_count > 0) {
@@ -78526,7 +81672,12 @@
     showToast(`Selected ${object.name || humanizeType(object.figureType)}`);
   }
 
-  function collectTextEntries(object, topLevel, entries) {
+  function collectTextEntries(object, topLevel, entries, nativeInventories = []) {
+    const dense = densePdfApi();
+    if (dense?.isPage?.(object)) {
+      nativeInventories.push({ object, count: dense.textEntries(object).length });
+      return;
+    }
     if (isTextLike(object)) {
       const scaling = typeof object.getObjectScaling === "function"
         ? object.getObjectScaling()
@@ -78539,7 +81690,7 @@
         effectiveFontPx: Math.abs(Number(object.fontSize || 0) * Number(scaling.scaleY || scaling.y || 1))
       });
     }
-    groupChildren(object).forEach((child) => collectTextEntries(child, topLevel, entries));
+    groupChildren(object).forEach((child) => collectTextEntries(child, topLevel, entries, nativeInventories));
   }
 
   function isTextLike(object) {
@@ -78635,8 +81786,11 @@
     const comma = text.indexOf(",");
     if (comma < 0) return approxSerializedBytes(text);
     const payload = text.slice(comma + 1);
+    // FileReader's canonical Base64 padding encodes no source bytes. Count it
+    // without decoding or copying the potentially large retained asset.
+    const padding = payload.endsWith("==") ? 2 : (payload.endsWith("=") ? 1 : 0);
     return /;base64/i.test(text.slice(0, comma))
-      ? Math.floor(payload.length * 0.75)
+      ? Math.max(0, Math.floor(payload.length * 0.75) - padding)
       : approxSerializedBytes(safeDecodeDataUrlPayload(payload));
   }
 
@@ -79005,18 +82159,18 @@
     for (const file of projectCandidates) {
       let parsed = null;
       try {
-        parsed = parseFigureStudioFileContents(await file.text(), file.name);
+        parsed = await parseFigureStudioFileBlob(file);
       } catch (_error) {
         continue;
       }
       if (parsed.format === "workspace") {
-        await openParsedFigureStudioFile(parsed, { filename: file.name });
+        await openDecodedFigureStudioFile(parsed, { filename: file.name });
         showLongToast(`Opened project ${file.name}.`);
         return true;
       }
       const assetFiles = files.filter((item) => item !== file && !projectCandidates.includes(item));
       let rehydrated = 0;
-      await openParsedFigureStudioFile(parsed, {
+      await openDecodedFigureStudioFile(parsed, {
         filename: parsed.filename,
         historyLabel: `Project loaded: ${file.name}`,
         prepare: async () => {
@@ -79064,6 +82218,7 @@
     }
     const project = projectPayloadWithPackageSlides(JSON.parse(bytesToText(projectEntry.bytes)), byPackagePath);
     if (!isFigureStudioProjectPayload(project)) throw new Error("This package does not contain a Figure Tool document.");
+    fileFormatApi().classifyPayload(project, { allowHistorical: true });
     const packageDeck = packageDeckFromSlideEntries(byPackagePath, project?.project?.deck || project?.deck || null);
     const assetEntries = entries.filter((entry) => /^assets\//i.test(packageRelativePath(entry.path)));
     let rehydrated = 0;
@@ -79109,7 +82264,7 @@
 
   function projectPayloadWithPackageSlides(payload, byPackagePath) {
     const clone = JSON.parse(JSON.stringify(payload || {}));
-    const project = clone?.schema === "figureStudio.projectPayload.v1" && clone.project ? clone.project : clone;
+    const project = ["figureStudio.projectPayload.v1", "figureStudio.projectPayload.v2"].includes(clone?.schema) && clone.project ? clone.project : clone;
     const manifestEntry = byPackagePath?.get?.("manifest.json");
     if (project && typeof project === "object" && !project.manifest && manifestEntry) {
       try {
@@ -79148,7 +82303,7 @@
         })
       };
     }
-    if (clone?.schema === "figureStudio.projectPayload.v1") {
+    if (["figureStudio.projectPayload.v1", "figureStudio.projectPayload.v2"].includes(clone?.schema)) {
       clone.project = project;
       if (Object.prototype.hasOwnProperty.call(clone, "deck")) clone.deck = project.deck;
       if (Object.prototype.hasOwnProperty.call(clone, "fabric")) clone.fabric = project.fabric;
@@ -79312,13 +82467,14 @@
       }
       let parsed = null;
       try {
-        parsed = parseFigureStudioFileContents(await file.text(), file.name);
+        parsed = await parseFigureStudioFileBlob(file);
         assertExpectedOpenKind(parsed, options.expectedKind || "");
       } catch (error) {
+        try { discardDecodedFigureStudioFile(parsed); } catch {}
         showLongToast(error.message || "That file is not a Figure Tool document.");
         return;
       }
-      await openParsedFigureStudioFile(parsed, {
+      await openDecodedFigureStudioFile(parsed, {
         filename: parsed.filename,
         expectedKind: options.expectedKind,
         historyLabel: `Opened ${file.name}`
@@ -79349,21 +82505,31 @@
   }
 
   async function loadProjectPayload(payload, options = {}) {
-    if (pdfHistoryMovePending) await pdfHistoryMoveCompletion;
-    if (pdfHistoryMutationLockDepth) await pdfHistoryMutationCompletion;
-    const sourceProject = payload?.schema === "figureStudio.projectPayload.v1" && payload.project
+    const handoff = denseFigureHandoffContext(options);handoff?.current();
+    if (fileFormatApi().classifyPayload(payload, { allowHistorical: true }).format !== "document") {
+      throw new Error("Choose a Figure or Presentation document to open in this tab.");
+    }
+    const sourceProject = ["figureStudio.projectPayload.v1", "figureStudio.projectPayload.v2"].includes(payload?.schema) && payload.project
       ? payload.project
       : payload;
     const project = fileFormatApi().compactSharedGroupImportMetadata(sourceProject);
     if (!project || !project.fabric || !project.artboard) throw new Error("That file is not a Figure Tool document.");
+    if (pdfHistoryMovePending) await pdfHistoryMoveCompletion;
+    handoff?.current();
+    if (pdfHistoryMutationLockDepth) await pdfHistoryMutationCompletion;
+    handoff?.current();
+    await flushDensePdfEdits();handoff?.current();
+
     // Saved work can restore the same document/page IDs on the reused canvas.
     // Pending artwork operations still belong to the previous document content.
     scientificAssetDocumentGeneration += 1;
     scientificAssetPreviewUi?.close({ force: true, restoreFocus: false });
     if (scientificAssetReplacement) cancelScientificAssetReplacement({ toast: false });
-    await assertSavedTypedNativePdfSourcesBeforeRestore(project);
+    await assertSavedTypedNativePdfSourcesBeforeRestore(project);handoff?.current();
     if (pdfHistoryMovePending) await pdfHistoryMoveCompletion;
+    handoff?.current();
     if (pdfHistoryMutationLockDepth) await pdfHistoryMutationCompletion;
+    handoff?.current();
     flushSpeakerNotesHistory();
     nativePdfLifecycleEpoch += 1;
     if (!canvas && suspendedState.active) {
@@ -79378,9 +82544,16 @@
     resetPrecisionToolTransientState();
     stopPathNodeEdit({ sync: false });
     if (nativePathEdit.active) stopNativePathEdit({ toast: false });
+    const restoreTarget = canvas, restoreTab = activeDocumentTab(), restoreGeneration = workspaceProjectGeneration;
+    const attempt = {};projectPayloadRestoreAttempt = attempt;
+    let restoreDocument = state.document, metadataInstalled = false, restoreIntent = nativeCanvasLoadState(restoreTarget).intent;
+    const ownsRestore = () => projectPayloadRestoreAttempt === attempt && canvas === restoreTarget && activeDocumentTab() === restoreTab
+      && workspaceProjectGeneration === restoreGeneration && state.document === restoreDocument
+      && nativeCanvasLoadState(restoreTarget).intent === restoreIntent;
     try {
       isRestoring = true;
       state.document = normalizeProjectDocument(project);
+      restoreDocument = state.document;metadataInstalled = true;
       state.artboard = {
         preset: project.artboard.preset || "custom",
         ...(project.artboard.scenePrecision === "pdf-points" || state.document?.pageGeometry?.defaultArtboard?.scenePrecision === "pdf-points" ? { scenePrecision: "pdf-points" } : {}),
@@ -79427,10 +82600,15 @@
         };
         updateStage();
       }
-      await loadCanvasJson(composeDeckPageSnapshot(activePage, activePage?.fabric || project.fabric), { missing: missingArtifactRefs });
+      handoff?.pin(undefined, true);
+      await loadCanvasJson(composeDeckPageSnapshot(activePage, activePage?.fabric || project.fabric), {
+        missing: missingArtifactRefs, denseFigureHandoff: handoff,
+        onNativeCanvasLoadIntent: (intent) => { restoreIntent = intent; }
+      });
+      handoff?.current();
       resolveGlobalSwatchLinks({ render: false });
       migrateLegacyPdfSourcesFromCanvas();
-      await refreshCommittedTypedNativePdfPreviews();
+      await refreshCommittedTypedNativePdfPreviews();handoff?.current();
       const restoredPdfTextPages = new Map();
       allEditablePdfTextObjects().forEach((object) => {
         const key = `${pdfSourceIdForObject(object)}:${pdfSourcePageNumberForObject(object)}`;
@@ -79438,10 +82616,10 @@
       });
       for (const object of restoredPdfTextPages.values()) {
         if (pdfTextEditingStateForObject(object).mode !== "editable") continue;
-        await ensurePdfSourceFontsForObject(object, { sync: false });
+        await ensurePdfSourceFontsForObject(object, { sync: false });handoff?.current();
         applyPdfTextModeVisibility(pdfTextEditingStateForObject(object), "editable");
       }
-      await upgradePdfHybridRasterBackgroundProxies();
+      await upgradePdfHybridRasterBackgroundProxies();handoff?.current();
       refreshCanvasArtifactRefs();
       canvas.getObjects().filter(isFigureObject).forEach((object) => applyLock(object, Boolean(object.locked)));
       applyInheritedCanvasState();
@@ -79452,7 +82630,7 @@
       setImportPlacementStatus("");
       panelLabelCounter = Number(project.panelLabelCounter) || canvas.getObjects().filter((object) => object.figureType === "panelLabel").length;
       projectRevision = Number(payload?.projectRevision ?? payload?.projectRef?.projectRevision ?? project?.projectRevision ?? 0) || 0;
-      isRestoring = false;
+      isRestoring = false;handoff?.pin(projectRevision);
       updateStage();
       fitToScreen();
       // Apply local mode layout before the new/cold document's navigator default.
@@ -79462,7 +82640,10 @@
       syncUi();
       undoStack = [];
       redoStack = [];
-      await commitPdfHistory(options.historyLabel || "Project loaded", { markDirty: false });
+      handoff?.current();
+      const beforeHistoryRevision = projectRevision;
+      await commitPdfHistory(options.historyLabel || "Project loaded", handoff ? { markDirty: false, denseFigureHandoff: handoff } : { markDirty: false });
+      handoff?.pin(beforeHistoryRevision + 1);handoff?.loaded();
       documentRuntimeRestoreFailed = false;
       if (options.markSaved !== false) {
         markDocumentSaved(options.historyLabel || `${documentKindLabel()} loaded`, { forceNotify: true });
@@ -79476,9 +82657,13 @@
         if (options.toast !== false) showLongToast(`Project loaded with ${missingArtifactRefs.length} missing external asset reference${missingArtifactRefs.length === 1 ? "" : "s"}.`);
       } else if (options.toast !== false) showToast(`${documentKindLabel()} loaded`);
       if (els.sourcesLimitsPanel?.classList.contains("is-open")) await openSourcesLimits({ refresh: true });
+      handoff?.current();
       return buildProjectPayload();
     } catch (error) {
-      isRestoring = false;
+      if (ownsRestore()) {
+        isRestoring = false;
+        if (metadataInstalled) documentRuntimeRestoreFailed = true;
+      }
       throw error;
     }
   }
@@ -79492,56 +82677,572 @@
     }
   }
 
+  function completeLoadedCanvasScene(context = null) {
+    const current = () => { if (context) assertCanvasRestoreCompletion(context); };
+    current();
+    fileFormatApi().resolveSharedGroupImportMetadataForObjects(canvas.getObjects())
+      .forEach(({ object, importMeta }) => {
+        current();
+        if (typeof object.set === "function") object.set("importMeta", importMeta);
+        else object.importMeta = importMeta;
+        current();
+      });
+    installPdfSourceSerializationPrecision(canvas.getObjects());
+    current();
+    restoreSerializedIsolationSettings();
+    current();
+    reconcileParagraphListRendering(canvas.getObjects());
+    current();
+    reconcileAuthoredStructureMetadata(canvas.getObjects());
+    current();
+    reconcileLiveBooleanStructures(canvas.getObjects());
+    current();
+    reconcileCalloutTextFit(canvas.getObjects());
+    current();
+    reconcileAppearanceStacks(canvas.getObjects());
+    current();
+    reconcileVariableStrokeRenderers(canvas.getObjects());
+    current();
+    hydrateScientificTypographyRenderingFromCanonicalRanges(canvas.getObjects());
+    current();
+    refreshSmartConnectors(context);
+    current();
+    refreshScientificAnnotations();
+    current();
+    // Native fromObject subscribes layout before every saved field and later
+    // reconciliation has settled. Seed the completed restored source hierarchy
+    // before its first child edit, as the public import path does.
+    globalThis.FigureStudioPdfSvgMaterializer?.finalizeImportedAuthoringLayout?.(canvas.getObjects(), { fabric: fabricRef });
+    current();
+    canvas.requestRenderAll();
+    current();
+  }
+
+  // Canvas restoration is local to an actual native target. This state neither
+  // supplies PDF authority nor treats cancellation as native settlement.
+  const nativeCanvasLoads = new WeakMap();
+  const nativeCanvasLoadIntents = new WeakSet();
+  const denseCanvasPublications = new WeakMap();
+
+  function nativeCanvasLoadState(target) {
+    let value = nativeCanvasLoads.get(target);
+    if (!value) { value = { intent: null, pending: new Set(), restoring: new Set(), opaque: false, retirement: null };nativeCanvasLoads.set(target, value); }
+    return value;
+  }
+
+  function beginNativeCanvasLoad(target, assertOwner = () => {}) {
+    if (!target) throw new Error("The native canvas is unavailable.");
+    const state = nativeCanvasLoadState(target), intent = { target, state, assertOwner, controller: null };
+    const previous = state.intent;
+    state.intent = intent;nativeCanvasLoadIntents.add(intent);
+    if (previous?.controller) {
+      previous.cancelledController = previous.controller;
+      previous.controller.abort();
+    }
+    assertNativeCanvasLoad(intent);return intent;
+  }
+
+  function assertNativeCanvasLoad(intent) {
+    if (!nativeCanvasLoadIntents.has(intent) || intent.state.intent !== intent) throw new Error("The native canvas load was superseded.");
+    const result = intent.assertOwner();
+    if (result && typeof result.then === "function") {
+      void Promise.resolve(result).catch(() => {});
+      throw new Error("Native canvas ownership checks must be synchronous.");
+    }
+  }
+
+  function trackNativeCanvasCall(intent, invoke, callbackObserved = false) {
+    assertNativeCanvasLoad(intent);
+    let resolveSettlement;
+    const record = { settled: false, settlement: new Promise((resolve) => { resolveSettlement = resolve; }) }, state = intent.state;
+    state.pending.add(record);
+    const settled = () => {
+      if (record.settled) return;
+      record.settled = true;state.pending.delete(record);resolveSettlement();
+      finishNativeCanvasRetirement(state);
+    };
+    let result;
+    try { result = invoke(settled); }
+    catch (error) { settled();throw error; }
+    if (result && typeof result.then === "function") {
+      void Promise.resolve(result).then(settled, settled);
+    } else if (!callbackObserved) {
+      // These old callbackless calls have no honest settlement observation.
+      state.opaque = true;
+    }
+    return result;
+  }
+
+  function assertDenseCanvasIdle(intent) {
+    assertNativeCanvasLoad(intent);
+    if (intent.state.pending.size || intent.state.opaque) throw new Error("The previous native canvas load has not settled.");
+  }
+
+  async function awaitPresentationNativeCalls(intent) {
+    if (!nativeCanvasLoadIntents.has(intent)) assertNativeCanvasLoad(intent);
+    for (;;) {
+      // Only a proven replacement of this issued target intent is a stale
+      // waiter. Genuine owner failures, including falsy values, still throw.
+      if (intent.state.intent !== intent) return false;
+      assertNativeCanvasLoad(intent);
+      if (intent.state.opaque) assertDenseCanvasIdle(intent);
+      const pending = [...intent.state.pending];
+      if (!pending.length) return true;
+      await Promise.all(pending.map((record) => record.settlement));
+    }
+  }
+
+  function finishNativeCanvasRetirement(state) {
+    const retirement = state.retirement;
+    if (!retirement || state.intent !== retirement.intent || state.pending.size || state.restoring.size || state.opaque) return;
+    state.retirement = null;
+    const target = retirement.intent.target, api = densePdfApi();let scope, failed = false, failure;
+    const attempt = (operation) => { try { operation(); } catch (error) { if (!failed) { failed = true;failure = error; } } };
+    attempt(() => { scope = api?.beginSceneReplacement(target); });
+    const owned = (operation) => {
+      if (state.intent !== retirement.intent) throw new Error("The native canvas retirement was superseded.");
+      operation();
+      if (state.intent !== retirement.intent) throw new Error("The native canvas retirement was superseded.");
+    };
+    attempt(() => owned(() => target.clear()));
+    // A native event can throw after collection mutation. Finish independent
+    // detach attempts, without overwriting a newer target intent.
+    if (state.intent === retirement.intent) for (const object of target.getObjects().slice()) attempt(() => {
+      if (state.intent !== retirement.intent) return;
+      owned(() => target.remove(object));
+    });
+    if (state.intent === retirement.intent) for (const key of ["backgroundImage", "backgroundColor", "overlayImage", "overlayColor", "clipPath"]) attempt(() => owned(() => {
+      target[key] = undefined;
+    }));
+    if (scope) attempt(() => api.finishSceneReplacement(scope));
+    retirement.settled = true;retirement.failed = failed;retirement.failure = failure;state.lastRetirement = retirement;
+  }
+
+  function retirePresentationCanvas(target) {
+    if (!target) return;
+    const intent = beginNativeCanvasLoad(target), retirement = { intent, settled: false, failed: false, failure: undefined };
+    intent.state.retirement = retirement;finishNativeCanvasRetirement(intent.state);
+    if (retirement.failed) throw retirement.failure;
+  }
+
+  function denseCanvasPublication(target = canvas) {
+    const scope = target && denseCanvasPublications.get(target);
+    if (!scope) return null;
+    // Native events can belong to a reentrant newer operation. An old App
+    // event scope must not throw into that operation; transaction paths retain
+    // their explicit ownership assertions before/after native work.
+    try { assertNativeCanvasLoad(scope.intent); } catch (_error) { return null; }
+    return scope;
+  }
+
+  function assertCanvasRestoreCompletion(context) {
+    assertNativeCanvasLoad(context.intent);
+    if (!context.active || canvas !== context.target || denseCanvasPublications.get(context.target)?.completionContext !== context) throw new Error("The native canvas completion was superseded.");
+  }
+
+  function coalesceDenseCanvasUi(target = canvas) {
+    const scope = denseCanvasPublication(target);
+    if (!scope) return false;
+    scope.uiPending = true;return true;
+  }
+
+  function canvasUiDeliveryOwner(target = canvas) {
+    return { target, intent: target && nativeCanvasLoadState(target).intent };
+  }
+
+  function canvasUiDeliveryIsCurrent(owner) {
+    return canvas === owner.target && nativeCanvasLoadState(owner.target).intent === owner.intent;
+  }
+
+  function canvasLoadDeckPage() {
+    const deck = state.deck, pages = deck?.pages;
+    return Array.isArray(pages) ? pages.find((page) => page.id === deck.activePageId) || pages[0] || null : null;
+  }
+
+  function canvasLoadMainOwner(target) {
+    const tab = activeDocumentTab(), document = state.document, deck = state.deck;
+    const page = canvasLoadDeckPage(), revision = projectRevision, generation = workspaceProjectGeneration;
+    const topology = workspaceTopologyFingerprint(), payload = tab?.payload, documentId = currentTransformDocumentId();
+    const restoreView = { zoom: state.view?.zoom, panX: state.view?.panX, panY: state.view?.panY };
+    const text = textHistoryPending, notes = speakerNotesHistoryPending, notesTimer = speakerNotesHistoryTimer;
+    const switching = documentWorkspaceState.switching, restoring = isRestoring, applyingHistory = isApplyingHistory;
+    return () => {
+      if (canvas !== target || activeDocumentTab() !== tab || tab?.payload !== payload || state.document !== document
+          || state.deck !== deck || canvasLoadDeckPage() !== page || currentTransformDocumentId() !== documentId
+          || projectRevision !== revision || workspaceProjectGeneration !== generation || workspaceTopologyFingerprint() !== topology
+          || textHistoryPending !== text || speakerNotesHistoryPending !== notes || speakerNotesHistoryTimer !== notesTimer
+          || documentWorkspaceState.switching !== switching || isRestoring !== restoring || isApplyingHistory !== applyingHistory) {
+        try {
+          const changed = [
+            ["canvas", canvas !== target], ["tab", activeDocumentTab() !== tab], ["tabPayload", tab?.payload !== payload],
+            ["document", state.document !== document], ["deck", state.deck !== deck], ["page", canvasLoadDeckPage() !== page],
+            ["documentId", currentTransformDocumentId() !== documentId], ["revision", projectRevision !== revision],
+            ["workspaceGeneration", workspaceProjectGeneration !== generation], ["tabTopology", workspaceTopologyFingerprint() !== topology],
+            ["pendingText", textHistoryPending !== text], ["pendingNotes", speakerNotesHistoryPending !== notes],
+            ["notesTimer", speakerNotesHistoryTimer !== notesTimer], ["switching", documentWorkspaceState.switching !== switching],
+            ["restoring", isRestoring !== restoring], ["applyingHistory", isApplyingHistory !== applyingHistory]
+          ].filter(([, differs]) => differs).map(([field]) => field);
+          console.warn("Native canvas restore owner changed:", changed.join(", "));
+          if (changed.includes("tabTopology")) console.warn("Native canvas restore viewport:", JSON.stringify({ before: restoreView, after: { zoom: state.view?.zoom, panX: state.view?.panX, panY: state.view?.panY } }));
+        } catch { /* Diagnostics must preserve the original restoration failure. */ }
+        throw new Error("The document changed during native canvas restoration.");
+      }
+    };
+  }
+
+  function canvasLoadUiIntent(target) {
+    const active = target.getActiveObject?.(), selected = target.getActiveObjects?.().slice() || [], tool = state.tool;
+    const points = pathNodeEdit, pointObject = points.object, pointSelected = points.selected, pointSegment = points.selectedSegment;
+    const handles = (points.selectedHandles || []).map((ref) => ({ object: ref.object, objectId: ref.objectId, nodeId: ref.nodeId, commandIndex: ref.commandIndex, handleType: ref.handleType }));
+    const isolation = groupIsolation, path = isolation.path.slice(), isolated = isolation.selectedObjects.slice(), isolatedSelected = isolation.selected;
+    const guide = selectedGuideId, guides = state.guides, page = canvasLoadDeckPage(), layer = page?.objectLayers, activeLayer = layer?.activeLayerId;
+    const transform = transientCanvasTransform, isolatedTransform = isolationTransform, nativeTransform = target._currentTransform, editing = active?.isEditing;
+    return () => {
+      if (canvas !== target || state.tool !== tool || target.getActiveObject?.() !== active
+          || (target.getActiveObjects?.() || []).length !== selected.length || selected.some((object, index) => target.getActiveObjects()[index] !== object)
+          || pathNodeEdit !== points || points.object !== pointObject || points.selected !== pointSelected || points.selectedSegment !== pointSegment
+          || points.dragging || points.segmentDrag || points.marquee
+          || (points.selectedHandles || []).length !== handles.length || handles.some((ref, index) => ["object", "objectId", "nodeId", "commandIndex", "handleType"].some((key) => !Object.is(points.selectedHandles[index][key], ref[key])))
+          || groupIsolation !== isolation || isolation.path.length !== path.length || path.some((object, index) => isolation.path[index] !== object)
+          || isolation.selected !== isolatedSelected || isolation.selectedObjects.length !== isolated.length || isolated.some((object, index) => isolation.selectedObjects[index] !== object)
+          || selectedGuideId !== guide || state.guides !== guides || canvasLoadDeckPage() !== page || page?.objectLayers?.activeLayerId !== activeLayer) {
+        throw new Error("The canvas selection changed during native canvas restoration.");
+      }
+      if (transientCanvasTransform !== transform || isolationTransform !== isolatedTransform || target._currentTransform !== nativeTransform || active?.isEditing !== editing) throw new Error("The canvas interaction changed during native restoration.");
+    };
+  }
+
+  const denseCanvasPoseFields = Object.freeze(["left", "top", "width", "height", "originX", "originY", "scaleX", "scaleY", "angle", "skewX", "skewY", "flipX", "flipY"]);
+  const denseCanvasUiFields = Object.freeze(["interactive", "subTargetCheck", "objectCaching", "figureStudioIsolationMeta", "hasControls", "hasBorders", "selectable", "evented", "figureStudioLayerId", "padding", "cornerSize", "borderColor", "lockMovementX", "lockMovementY", "lockScalingX", "lockScalingY", "lockRotation"]);
+
+  function canvasOwnDescriptors(object, keys) {
+    return keys.map((key) => [key, Object.getOwnPropertyDescriptor(object, key)]);
+  }
+
+  function restoreCanvasOwnDescriptors(object, rows) {
+    for (const [key, descriptor] of rows) {
+      if (descriptor) Object.defineProperty(object, key, descriptor);
+      else delete object[key];
+    }
+  }
+
+  function denseCanvasUiObjects(roots) {
+    const objects = [], seen = new Set(), api = densePdfApi();
+    const visit = (object) => {
+      if (!object || seen.has(object)) return;seen.add(object);objects.push(object);
+      if (!api?.isPage(object)) groupChildren(object).forEach(visit);
+    };
+    roots.forEach(visit);return objects;
+  }
+
+  function captureDenseCanvasUi(target) {
+    const roots = target.getObjects().slice(), active = target.getActiveObject?.(), wrapper = isActiveSelectionObject(active) ? active : null;
+    const objects = denseCanvasUiObjects(roots), page = canvasLoadDeckPage();
+    const layerAssociation = page && Object.getOwnPropertyDescriptor(page, "objectLayers");
+    const layer = layerAssociation && Object.hasOwn(layerAssociation, "value") && layerAssociation.value;
+    const rows = objects.map((object) => ({ object, pose: canvasOwnDescriptors(object, denseCanvasPoseFields), ui: canvasOwnDescriptors(object, denseCanvasUiFields),
+      group: object.group, parent: object.parent, canvas: object.canvas,
+      own: Array.from(object.calcOwnMatrix()), world: Array.from(object.calcTransformMatrix()) }));
+    const pointHint = captureDirectSelectionHistoryState(), pointAsset = pointHint?.densePage && densePdfApi().captureAssetStates([pointHint.densePage.assetId]);
+    return { target, roots, rows, selected: target.getActiveObjects?.().slice() || [], wrapper,
+      wrapperPose: wrapper && canvasOwnDescriptors(wrapper, denseCanvasPoseFields), wrapperUi: wrapper && canvasOwnDescriptors(wrapper, denseCanvasUiFields),
+      isolation: { ...groupIsolation, path: groupIsolation.path.slice(), selectedObjects: groupIsolation.selectedObjects.slice() },
+      points: pathNodeEdit, pointHint, pointAsset, tool: state.tool, guide: selectedGuideId,
+      page, layerAssociation, layer, layerDescriptors: layer && typeof layer === "object" ? Object.getOwnPropertyDescriptors(layer) : null,
+      overlayOnly: selectionOverlayRenderOnly, suppressRender: suppressNextFullCanvasRender, focus: document.activeElement };
+  }
+
+  function restoreDenseCanvasUi(saved, assertCurrent, paint = () => {}) {
+    const target = saved.target;let failed = false, failure;
+    const attempt = (operation) => { try { assertCurrent();const result = operation();assertCurrent();return result; } catch (error) { if (!failed) { failed = true;failure = error; } } };
+    const current = () => { try { assertCurrent(); } catch (error) { if (failed) throw failure;throw error; } };
+    const exactRoots = () => target.getObjects().length === saved.roots.length && saved.roots.every((object, index) => target.getObjects()[index] === object && object.canvas === target);
+    assertCurrent();if (canvas !== target || !exactRoots()) throw new Error("The original native canvas is no longer owned.");
+    for (const row of saved.rows) attempt(() => restoreCanvasOwnDescriptors(row.object, row.ui));
+    current();
+    groupIsolation = { ...saved.isolation, path: saved.isolation.path.slice(), selected: null, selectedObjects: [] };
+    // Native selection events may throw after committing membership. Continue
+    // literal recovery only while that exact expected membership is now owned.
+    attempt(() => target.discardActiveObject());
+    current();
+    if (saved.isolation.path.length) {
+      groupIsolation.selectedObjects = saved.isolation.selectedObjects.slice();groupIsolation.selected = saved.isolation.selected;
+      if (saved.isolation.selected) attempt(() => target.setActiveObject(saved.isolation.selected));
+    } else if (saved.selected.length === 1) {
+      attempt(() => target.setActiveObject(saved.selected[0]));
+    } else if (saved.selected.length > 1) {
+      attempt(() => {
+        const selection = new fabricRef.ActiveSelection(saved.selected, { canvas: target });
+        configureActiveSelection(selection);target.setActiveObject(selection);
+      });
+    }
+    const selected = target.getActiveObjects?.() || [], expected = saved.isolation.path.length ? (saved.isolation.selected ? [saved.isolation.selected] : []) : saved.selected;
+    current();
+    if (!exactRoots() || selected.length !== expected.length || expected.some((object, index) => selected[index] !== object)) {
+      if (failed) throw failure;
+      throw new Error("The original native selection was superseded.");
+    }
+    const wrapper = saved.wrapper ? target.getActiveObject() : null;
+    if (saved.wrapper) attempt(() => {
+      if (!isActiveSelectionObject(wrapper)) throw new Error("The native selection wrapper changed.");
+      restoreCanvasOwnDescriptors(wrapper, saved.wrapperPose);restoreCanvasOwnDescriptors(wrapper, saved.wrapperUi);
+    });
+    for (const row of saved.rows) attempt(() => restoreCanvasOwnDescriptors(row.object, row.pose));
+    current();
+    groupIsolation = { ...saved.isolation, path: saved.isolation.path.slice(), selectedObjects: saved.isolation.selectedObjects.slice() };
+    pathNodeEdit = saved.points;state.tool = saved.tool;
+    // Lifecycle changes invalidate only the disposable binding. Resolve the
+    // retained native control synchronously; never acquire or move a journal.
+    if (saved.pointHint?.densePage) attempt(() => {
+      densePdfApi().validateAssetStates(saved.pointAsset);
+      const resolved = resolveDensePdfPointHistoryState(saved.pointHint);
+      if (!resolved || resolved.object !== saved.points.object) throw new Error("The retained PDF point source changed during restoration.");
+      bindDensePdfPointSelection(resolved);
+    });
+    attempt(paint);
+    for (const row of saved.rows) attempt(() => restoreCanvasOwnDescriptors(row.object, row.ui));
+    if (saved.wrapper) attempt(() => restoreCanvasOwnDescriptors(wrapper, saved.wrapperUi));
+    for (const row of saved.rows) attempt(() => row.object.setCoords?.());
+    attempt(() => wrapper?.setCoords?.());
+    attempt(() => {
+      if (saved.page) {
+        if (saved.layerAssociation) Object.defineProperty(saved.page, "objectLayers", saved.layerAssociation);
+        else delete saved.page.objectLayers;
+      }
+      if (saved.layerDescriptors) {
+        for (const key of Reflect.ownKeys(saved.layer)) if (!Object.hasOwn(saved.layerDescriptors, key)) delete saved.layer[key];
+        Object.defineProperties(saved.layer, saved.layerDescriptors);
+      }
+    });
+    current();
+    selectedGuideId = saved.guide;selectionOverlayRenderOnly = saved.overlayOnly;suppressNextFullCanvasRender = saved.suppressRender;
+    attempt(() => {
+      for (const row of saved.rows) {
+        const own = row.object.calcOwnMatrix(), world = row.object.calcTransformMatrix();
+        if (own.some((value, index) => !Object.is(value, row.own[index])) || world.some((value, index) => !Object.is(value, row.world[index]))) throw new Error("The native selection pose could not be restored exactly.");
+        if (row.object.group !== (row.group === saved.wrapper ? wrapper : row.group)
+            || row.object.parent !== (row.parent === saved.wrapper ? wrapper : row.parent) || row.object.canvas !== row.canvas) throw new Error("The original native selection membership changed.");
+      }
+    });
+    attempt(() => { if (saved.focus?.isConnected) saved.focus.focus({ preventScroll: true }); });
+    current();if (failed) throw failure;
+  }
+
+  function cancelDenseCanvasUiJobs(target) {
+    if (target !== canvas) return;
+    cancelSelectionEssentialsSync();cancelSelectionUiSync();
+    if (selectionOverlayRenderFrame) window.cancelAnimationFrame(selectionOverlayRenderFrame);
+    selectionOverlayRenderFrame = 0;
+  }
+
+  function capturePresentationCanvasFrame(target) {
+    const wrap = els.presentationOverlay?.querySelector(".presentation-canvas-wrap");
+    const nodes = [...new Set([target.lowerCanvasEl, target.upperCanvasEl, target.wrapperEl, els.presentationCanvas, wrap].filter(Boolean))];
+    const contexts = [...new Set([target.contextContainer, target.contextTop].filter(Boolean))].map((context) => {
+      const matrix = context.getTransform();return { context, matrix: [matrix.a, matrix.b, matrix.c, matrix.d, matrix.e, matrix.f] };
+    });
+    return { target, layout: presentationCanvasLayout, logical: canvasOwnDescriptors(target, ["width", "height", "backgroundColor"]),
+      width: target.width, height: target.height, contexts,
+      nodes: nodes.map((node) => ({ node, width: node.width, height: node.height, style: node.style?.cssText,
+        widthAttribute: node.getAttribute?.("width"), heightAttribute: node.getAttribute?.("height") })),
+      counter: els.presentationSlideCounter?.textContent, notes: els.presentationNotesText?.textContent,
+      fit: els.presentationOverlay && Object.getOwnPropertyDescriptors(els.presentationOverlay.dataset) };
+  }
+
+  function restorePresentationCanvasFrame(saved, current) {
+    let failed = false, failure;
+    const attempt = (operation) => { try { current();operation(); } catch (error) { if (!failed) { failed = true;failure = error; } } };
+    attempt(() => saved.target.setDimensions({ width: saved.width, height: saved.height }, { cssOnly: false }));
+    attempt(() => restoreCanvasOwnDescriptors(saved.target, saved.logical));
+    for (const row of saved.nodes) attempt(() => {
+      if (row.width !== undefined && row.node.width !== row.width) row.node.width = row.width;
+      if (row.height !== undefined && row.node.height !== row.height) row.node.height = row.height;
+      if (row.style !== undefined && row.node.style.cssText !== row.style) row.node.style.cssText = row.style;
+      for (const [name, value] of [["width", row.widthAttribute], ["height", row.heightAttribute]]) {
+        if (value === null && row.node.getAttribute?.(name) !== null) row.node.removeAttribute?.(name);
+        else if (value !== undefined && value !== null && row.node.getAttribute?.(name) !== value) row.node.setAttribute?.(name, value);
+      }
+    });
+    // Any genuinely necessary backing-size restoration resets its context.
+    // Restore the captured native retina transform after all such writes.
+    for (const row of saved.contexts) attempt(() => row.context.setTransform(...row.matrix));
+    attempt(() => {
+      presentationCanvasLayout = saved.layout;
+      if (els.presentationSlideCounter) els.presentationSlideCounter.textContent = saved.counter;
+      if (els.presentationNotesText) els.presentationNotesText.textContent = saved.notes;
+      if (saved.fit) {
+        const dataset = els.presentationOverlay.dataset;
+        for (const key of Reflect.ownKeys(dataset)) if (!Object.hasOwn(saved.fit, key)) delete dataset[key];
+        Object.defineProperties(dataset, saved.fit);
+      }
+    });
+    if (failed) throw failure;
+  }
+
+  function paintDenseCanvasUi(target, intent) {
+    assertNativeCanvasLoad(intent);if (target !== canvas) return;
+    // A final derivation deliberately does not run selection-change handlers:
+    // those clear the selected guide and normalize the layer association.
+    renderGroupIsolationBar();renderIsolationSelectionOverlay();renderObjectStatusOverlay();
+    syncSelectionStatusOnly();syncPathActionButtons();syncInspector();syncCommandButtons();syncHistoryButtons();syncMenuState();
+    requestCanvasArtworkRender();
+  }
+
+  function commitDenseCanvasLoad(intent, receipt, hooks = {}, api = densePdfApi()) {
+    const target = intent.target, main = target === canvas;
+    let scope = null, suppressed = false, pageOwnsReceipt = false, failed = false;
+    const callHook = (name, ...args) => {
+      const result = hooks[name]?.(...args);
+      if (result && typeof result.then === "function") {
+        void Promise.resolve(result).catch(() => {});
+        throw new Error("Native canvas restore hooks must be synchronous.");
+      }
+      return result;
+    };
+    try {
+      assertDenseCanvasIdle(intent);
+      if (main && smartConnectorMissingTargetTimer) throw new Error("Finish updating connections before restoring this canvas.");
+      const saved = main ? hooks.rollbackSnapshot || captureDenseCanvasUi(target) : null;
+      scope = { intent, uiPending: false, phase: "install", completion: null, completionContext: null, oldRoots: new Set(saved?.roots || target.getObjects()) };
+      denseCanvasPublications.set(target, scope);
+      if (main) { cancelDenseCanvasUiJobs(target);documentMutationTrackingSuppressed += 1;suppressed = true; }
+      const commit = api.commitCanvasRestore;
+      const callbacks = {
+        beforeInstall: (actual) => {
+          assertNativeCanvasLoad(intent);
+          if (main) nativePdfLifecycleEpoch += 1;
+          callHook("beforeInstall", actual);
+        },
+        complete: (actual, completion) => {
+          assertNativeCanvasLoad(intent);if (actual !== target) throw new Error("The native canvas target changed.");
+          scope.completion = completion;
+          const context = { target, intent, completion, active: true };scope.completionContext = context;
+          try {
+            if (hooks.complete) callHook("complete", actual, completion);else if (main) completeLoadedCanvasScene(context);
+            if (main) paintDenseCanvasUi(target, intent);
+          }
+          finally { context.active = false;scope.completion = null;scope.completionContext = null; }
+        },
+        rollbackUi: (actual) => {
+          assertNativeCanvasLoad(intent);if (actual !== target) throw new Error("The native canvas rollback target changed.");
+          scope.phase = "rollback";cancelDenseCanvasUiJobs(target);
+          let restoreFailed = false, restoreFailure;
+          try { if (saved) restoreDenseCanvasUi(saved, () => assertNativeCanvasLoad(intent), () => paintDenseCanvasUi(target, intent)); } catch (error) { restoreFailed = true;restoreFailure = error; }
+          try { callHook("rollbackUi", actual); } catch (error) { if (!restoreFailed) { restoreFailed = true;restoreFailure = error; } }
+          if (restoreFailed) throw restoreFailure;
+        }
+      };
+      // The actual private Page commit consumes a valid receipt immediately on
+      // entry. Until this invocation, all preflight/setup exits remain ours.
+      pageOwnsReceipt = true;
+      return Reflect.apply(commit, api, [receipt, callbacks]);
+    } catch (error) { failed = true;throw error;
+    } finally {
+      if (scope) {
+        scope.completion = null;
+        scope.completionContext = null;
+        if (denseCanvasPublications.get(target) === scope) denseCanvasPublications.delete(target);
+      }
+      if (suppressed) documentMutationTrackingSuppressed = Math.max(0, documentMutationTrackingSuppressed - 1);
+      if (!pageOwnsReceipt) try { api.discardCanvasRestore(receipt); } catch (error) { if (!failed) throw error; }
+    }
+  }
+
+  async function restoreDenseCanvasLoad(intent, json, hooks = {}) {
+    const api = densePdfApi();assertDenseCanvasIdle(intent);
+    if (intent.target === canvas && smartConnectorMissingTargetTimer) throw new Error("Finish updating connections before restoring this canvas.");
+    const uiCurrent = hooks.uiCurrent || (intent.target === canvas ? canvasLoadUiIntent(intent.target) : () => {});
+    uiCurrent();
+    // Retain old private point/source witnesses before native preparation may
+    // intentionally move a source journal. Rollback must not bless that newer
+    // source head merely by taking a later snapshot of the old view.
+    const rollbackSnapshot = intent.target === canvas ? captureDenseCanvasUi(intent.target) : null;
+    let installing = false, receipt, replacement, failed = false;
+    let nativeAbortEvent, nativeAbortObserved = false, recordNativeAbort;
+    const controller = new AbortController(), operation = {};intent.controller = controller;intent.prepareController = controller;intent.state.restoring.add(operation);
+    const current = () => { assertDenseCanvasIdle(intent);if (!installing) uiCurrent(); };
+    try {
+      current();replacement = api.beginSceneReplacement(intent.target);
+      recordNativeAbort = (event) => {
+        if (replacement.signal.aborted && controller.signal.aborted && intent.cancelledController === controller) {
+          nativeAbortObserved = true;nativeAbortEvent = event;
+        }
+      };
+      replacement.signal.addEventListener("abort", recordNativeAbort, { once: true });
+      receipt = await api.prepareCanvasRestore(replacement, json, { signal: controller.signal, assertCurrent: current });
+      current();installing = true;
+      const prepared = receipt;receipt = null;
+      return commitDenseCanvasLoad(intent, prepared, { ...hooks, rollbackSnapshot }, api);
+    } catch (error) {
+      const name = error && typeof error === "object" && Object.getOwnPropertyDescriptor(error, "name");
+      if (controller.signal.aborted && intent.cancelledController === controller
+          && ((nativeAbortObserved && error === nativeAbortEvent)
+            || (name && Object.hasOwn(name, "value") && name.value === "AbortError"))) intent.cancellationFailure = error;
+      failed = true;throw error;
+    } finally {
+      let cleanupFailed = false, cleanupFailure;
+      if (recordNativeAbort) try { replacement.signal.removeEventListener("abort", recordNativeAbort); } catch (error) { cleanupFailed = true;cleanupFailure = error; }
+      if (receipt) try { api.discardCanvasRestore(receipt); } catch (error) { if (!cleanupFailed) { cleanupFailed = true;cleanupFailure = error; } }
+      if (replacement) try { api.finishSceneReplacement(replacement); } catch (error) { if (!cleanupFailed) { cleanupFailed = true;cleanupFailure = error; } }
+      intent.state.restoring.delete(operation);if (intent.controller === controller) intent.controller = null;
+      finishNativeCanvasRetirement(intent.state);
+      if (!failed && cleanupFailed) throw cleanupFailure;
+    }
+  }
+
+
   async function loadCanvasJson(json, options = {}) {
+    const handoff = denseFigureHandoffContext(options);handoff?.current();
+    const target = canvas, intent = beginNativeCanvasLoad(target, canvasLoadMainOwner(target));
+    // Private project-loader observation: retain this issued intent, never a later canvas owner.
+    options.onNativeCanvasLoadIntent?.(intent);
+    handoff?.intent(intent);
+    const api = densePdfApi(), dense = api?.hasDenseCanvasRestore(json) === true;
+    const intended = dense && json && typeof json === "object" ? JSON.stringify(json) : json;
+    const uiCurrent = dense ? canvasLoadUiIntent(target) : null;
+    if (dense) assertDenseCanvasIdle(intent);
     const editablePdf = globalThis.FigureStudioPdfEditableImport;
     if (editablePdf) await editablePdf.registerFonts(editablePdf.fontsInWorkspace(state.pdfSources));
+    assertNativeCanvasLoad(intent);
+    if (uiCurrent) uiCurrent();
+    const missing = Array.isArray(options.missing) ? options.missing : [];
+    const input = dense && json && typeof json === "object" ? JSON.parse(intended) : json;
+    if (dense && json && typeof json === "object" && JSON.stringify(json) !== intended) throw new Error("The requested native canvas recipe changed.");
+    const compacted = input && typeof input === "object" ? fileFormatApi().compactSharedGroupImportMetadata(input) : input;
+    const hydrated = compacted && typeof compacted === "object" ? hydrateArtifactRefPlaceholders(JSON.parse(JSON.stringify(compacted)), missing) : compacted;
+    if (dense) {
+      if (transientCanvasTransform || isolationTransform || pathNodeEdit.dragging || pathNodeEdit.segmentDrag || pathNodeEdit.marquee || nativePathEdit.active
+          || target.getActiveObject?.()?.isEditing || densePdfEditPending) throw new Error("Finish editing before restoring this canvas.");
+      return restoreDenseCanvasLoad(intent, hydrated, { uiCurrent, beforeInstall: handoff ? () => handoff.beforeInstall() : undefined });
+    }
+    handoff?.current();handoff?.beforeInstall();
     nativePdfLifecycleEpoch += 1;
+    const denseReplacement = api?.beginSceneReplacement(target), renderFlag = target.renderOnAddRemove;
+    let loadFailed = false;
     return new Promise((resolve, reject) => {
       try {
-        const missing = Array.isArray(options.missing) ? options.missing : [];
-        const compacted = json && typeof json === "object"
-          ? fileFormatApi().compactSharedGroupImportMetadata(json)
-          : json;
-        const hydrated = compacted && typeof compacted === "object"
-          ? hydrateArtifactRefPlaceholders(JSON.parse(JSON.stringify(compacted)), missing)
-          : compacted;
-        const restoreSharedImportMetadata = () => {
-          fileFormatApi().resolveSharedGroupImportMetadataForObjects(canvas.getObjects())
-            .forEach(({ object, importMeta }) => {
-              if (typeof object.set === "function") object.set("importMeta", importMeta);
-              else object.importMeta = importMeta;
-            });
-        };
-        const finishLoad = () => runCanvasLoadCompletion(resolve, reject, () => {
-          restoreSharedImportMetadata();
-          installPdfSourceSerializationPrecision(canvas.getObjects());
-          restoreSerializedIsolationSettings();
-          reconcileParagraphListRendering(canvas.getObjects());
-          reconcileAuthoredStructureMetadata(canvas.getObjects());
-          reconcileLiveBooleanStructures(canvas.getObjects());
-          reconcileCalloutTextFit(canvas.getObjects());
-          reconcileAppearanceStacks(canvas.getObjects());
-          reconcileVariableStrokeRenderers(canvas.getObjects());
-          hydrateScientificTypographyRenderingFromCanonicalRanges(canvas.getObjects());
-          refreshSmartConnectors();
-          refreshScientificAnnotations();
-          canvas.requestRenderAll();
-        });
-        const result = canvas.loadFromJSON(hydrated);
+        const finishLoad = () => runCanvasLoadCompletion(resolve, reject, () => { assertNativeCanvasLoad(intent);completeLoadedCanvasScene(); });
+        const result = trackNativeCanvasCall(intent, () => target.loadFromJSON(hydrated, undefined, denseReplacement ? { signal: denseReplacement.signal } : undefined));
         if (result && typeof result.then === "function") {
           result.then(finishLoad).catch(reject);
         } else {
-          canvas.loadFromJSON(hydrated, finishLoad);
+          trackNativeCanvasCall(intent, (settled) => target.loadFromJSON(hydrated, () => { settled();finishLoad(); }), true);
         }
       } catch (error) {
         reject(error);
       }
+    }).catch((error) => {
+      loadFailed = true;
+      try { assertNativeCanvasLoad(intent);target.renderOnAddRemove = renderFlag; } catch (_error) { /* Preserve the primary failure and a newer owner. */ }
+      throw error;
+    }).finally(() => {
+      if (denseReplacement) { try { api.finishSceneReplacement(denseReplacement); } catch (error) { if (!loadFailed) throw error; } }
     });
   }
-
   async function suspendEditor(options = {}) {
     if (pdfHistoryMovePending) await pdfHistoryMoveCompletion;
     if (pdfHistoryMutationLockDepth) await pdfHistoryMutationCompletion;
+    await flushDensePdfEdits();
     if (suspendedState.active) {
       return {
         suspended: true,
@@ -79579,7 +83280,7 @@
         const disposeResult = canvas.dispose();
         if (disposeResult && typeof disposeResult.then === "function") await disposeResult;
       } else {
-        canvas.clear();
+        clearEditorCanvas();
       }
     } finally {
       canvas = null;
@@ -81204,6 +84905,7 @@
       throw error;
     }
 
+    refuseDenseArtworkHandoff(canvas.getObjects());
     captureActiveDocumentTab();
     const documentRevision = Number(projectRevision);
     if (!Number.isFinite(documentRevision)) {
@@ -81272,7 +84974,7 @@
       error.code = "figure_studio_figure_handoff_requires_presentation";
       throw error;
     }
-    prepareDerivedFigureHandoffDocument(normalized);
+    await prepareDerivedFigureHandoffDocument(normalized);
     if (typeof hostAdapter?.importHandoffPayload === "function") {
       await withTimeout(
         hostAdapter.importHandoffPayload(normalized),
@@ -81336,7 +85038,7 @@
     };
   }
 
-  function prepareDerivedFigureHandoffDocument(payload) {
+  async function prepareDerivedFigureHandoffDocument(payload) {
     const derived = payload?.provenance?.derived_figure;
     if (!derived || typeof derived !== "object") return null;
     const documentId = String(derived.document_id || "").trim();
@@ -81346,7 +85048,7 @@
     if (!documentId || !projectId || !Number.isFinite(widthIn) || widthIn <= 0 || !Number.isFinite(heightIn) || heightIn <= 0) {
       throw new Error("The derived Figure Tool document identity or physical size is incomplete.");
     }
-    const created = createNewDocumentTab({
+    const created = await createNewDocumentTab({
       id: documentId,
       nativeDocumentId: documentId,
       kind: "figure",
@@ -82215,7 +85917,7 @@
     if (!/<svg(?:\s|>)/i.test(svgText)) throw new Error("That file is not a readable SVG.");
     const title = String(file.name || "Untitled figure").replace(/\.svg$/i, "").trim() || "Untitled figure";
     if (!isStoryFigureMode() && options.asNewTab !== false) {
-      createNewDocumentTab({ kind: "figure", name: title, preset: "double-column", layoutId: "blank" });
+      await createNewDocumentTab({ kind: "figure", name: title, preset: "double-column", layoutId: "blank" });
     } else {
       newProject({ kind: "figure", name: title, preset: "double-column", layoutId: "blank", discardUnsaved: true });
     }
@@ -82239,7 +85941,7 @@
     resetPrecisionToolTransientState();
     stopPathNodeEdit({ sync: false });
     stopNativePathEdit({ sync: false });
-    canvas.clear();
+    clearEditorCanvas();
     canvas.backgroundColor = "#ffffff";
     state.artboard = {
       preset: "custom",
@@ -82282,7 +85984,7 @@
     try {
       if (!isStoryFigureMode() && options.asNewTab !== false) {
         const title = String(file.name || "Untitled figure").replace(/\.pdf$/i, "").trim() || "Untitled figure";
-        createNewDocumentTab({ kind: "figure", name: title, preset: "double-column", layoutId: "blank" });
+        await createNewDocumentTab({ kind: "figure", name: title, preset: "double-column", layoutId: "blank" });
       } else if (documentDirty && !options.skipConfirm && !confirmDiscardUnsavedChanges("open this PDF as a new figure")) return null;
       const timestamp = new Date().toISOString();
       const pdfEntryMode = normalizePdfEntryMode(options.pdfEntryMode || options.pdf_entry_mode || state.import?.pdfMode || "editable");
@@ -82301,7 +86003,14 @@
         const editable = actualMode === "editable-reconstruction" || actualMode === "partial-reconstruction";
         markDocumentDirty(`Opened ${file.name} as ${editable ? "editable reconstruction" : "a source-backed figure"}`);
         await new Promise((resolve) => window.setTimeout(resolve, 0));
-        captureActiveDocumentTab();
+        try {
+          await workspaceProjectSourceAsync({ flushTextHistory: false,
+            reuseBrowserCaptureKey: getBrowserSessionState().key, importCapture: true });
+        } catch (error) {
+          // A user may continue editing while the detached capture yields. The
+          // opened live scene stays dirty and the next save captures those edits.
+          if (error?.code !== "BROWSER_CAPTURE_STALE") throw error;
+        }
       }
       return opened;
     } finally {
@@ -82380,11 +86089,21 @@
           });
           sourceBackedPageCount += 1;
         } else try {
-          vector = await withTimeout(
-            renderPdfPageAsSvg(file, pageNumber),
-            PDF_VECTOR_IMPORT_TIMEOUT_MS,
-            `Editable PDF import timed out on page ${pageNumber} after ${Math.round(PDF_VECTOR_IMPORT_TIMEOUT_MS / 1000)} seconds.`
-          );
+          const renderController = new AbortController();
+          const renderPromise = renderPdfPageAsSvg(file, pageNumber, { signal: renderController.signal });
+          try {
+            vector = await withTimeout(
+              renderPromise,
+              PDF_VECTOR_IMPORT_TIMEOUT_MS,
+              `Editable PDF import timed out on page ${pageNumber} after ${Math.round(PDF_VECTOR_IMPORT_TIMEOUT_MS / 1000)} seconds.`
+            );
+          } catch (renderError) {
+            // The fallback is published only after the original reconstruction
+            // has stopped and released its decoded page. Keep its original error.
+            renderController.abort();
+            await renderPromise.catch(() => {});
+            throw renderError;
+          }
           vector.conversionMeta = normalizePdfConversionMeta({
             ...(vector.conversionMeta || {}),
             sourceFilename: file.name,
@@ -82491,7 +86210,9 @@
         await commitPdfHistory(`PDF opened: ${file.name}`);
         const page = activeDeckPage();
         if (page) page.thumbnail = buildDeckThumbnailDataUrl();
-        showLongToast(batchSummary?.mixedResult
+        showLongToast(importedObjects.every((object) => densePdfApi()?.isPage(object))
+          ? `Opened ${file.name} with all PDF paths and ${importedObjects.reduce((total, object) => total + densePdfApi().textEntries(object).length, 0)} editable labels. Double-click a label to edit it.`
+          : batchSummary?.mixedResult
           ? `${batchSummary.summaryLabel}. Each selected page outcome and export meaning are in Properties.`
           : editablePageCount
             ? `Opened ${file.name} as editable reconstruction. ${editablePageCount} page${editablePageCount === 1 ? "" : "s"} contains supported selectable objects; unsupported content remains source-backed. Details are in Properties.`
@@ -84958,8 +88679,11 @@
 
   function explodeGroupToActiveSelection(group, options = {}) {
     if (!options.releasePrepared) {
+      const connectorTransfer = prepareSmartConnectorTransfer([group]);
+      if (connectorTransfer.status === "blocked") throw new Error(connectorTransfer.message);
       const release = preparePdfGroupRelease(group);
       if (release.status === "blocked") throw new Error(release.message);
+      commitSmartConnectorTransfer(connectorTransfer);
     }
     const objects = typeof group.removeAll === "function"
       ? group.removeAll()
@@ -86779,12 +90503,34 @@
     }
   }
 
-  async function renderPdfPageAsSvg(file, pageNumber = 1) {
+  async function renderPdfPageAsSvg(file, pageNumber = 1, { signal } = {}) {
+    signal?.throwIfAborted();
     const requestedPage = Math.max(1, Math.round(Number(pageNumber) || 1));
+    if (!isBsdHostedSurface() && file.size >= 262144 && densePdfApi() && globalThis.FigureStudioPdfDenseDocumentSession) {
+      let session;
+      try {
+        lastDensePdfAdmission = { status: "opening", pageNumber: requestedPage };
+        const bytes = new Uint8Array(await file.arrayBuffer());
+        session = await globalThis.FigureStudioPdfDenseDocumentSession.open({ bytes, pageNumber: requestedPage, signal });
+        const densePage = await densePdfApi().create({ session, bytes, signal });
+        const frame = session.frame, statistics = session.statistics;
+        lastDensePdfAdmission = { status: "ready", pageNumber: requestedPage, paintCount: statistics.paintCount };
+        return { densePage, svgText: "", width: frame.width, height: frame.height, sourceWidth: frame.width, sourceHeight: frame.height,
+          pageNumber: requestedPage, pageCount: session.source.pageCount, operatorCount: statistics.operatorCount,
+          analysis: { textElementCount: statistics.textShowCount, pathElementCount: statistics.pathCount, imageElementCount: 0 },
+          editableImport: { status: "reconstructed", mode: "complete-source-native-page", fonts: [], statistics }, canvasTextMode: "editable-positioned-text" };
+      } catch (error) {
+        lastDensePdfAdmission = { status: "refused", pageNumber: requestedPage, code: error.code || "", reason: error.message || String(error) };
+        session?.close();
+        if (signal?.aborted || error.name === "AbortError") throw error;
+        if (!["PDF_DENSE_UNSUPPORTED", "PDF_DENSE_REPLAY_UNSUPPORTED", "PDF_DENSE_NATIVE_TEXT_REFUSED"].includes(error.code)) throw error;
+      }
+    }
     const editablePdf = globalThis.FigureStudioPdfEditableImport;
     if (editablePdf) {
       const renderPage = globalThis.FigureStudioPdfEditableImportBatching?.renderPageBatched || editablePdf.renderPage;
-      const vector = await renderPage({ pdfjs: await importPdfJsSvgBackend(), bytes: new Uint8Array(await file.arrayBuffer()), pageNumber: requestedPage, loadPdfLib: ensurePdfLib, fabric: fabricRef });
+      const vector = await renderPage({ pdfjs: await importPdfJsSvgBackend(), bytes: new Uint8Array(await file.arrayBuffer()), pageNumber: requestedPage, loadPdfLib: ensurePdfLib, fabric: fabricRef, signal });
+      signal?.throwIfAborted();
       vector.analysis = analyzeSvgFragment(vector.svgText, vector.svgElement);
       vector.canvasTextMode = "editable-positioned-text";
       return vector;
@@ -87193,6 +90939,29 @@
   }
 
   async function addPdfMaterializedVectorObject(vector, file, timestamp, dropPoint, options = {}) {
+    if (vector.densePage) {
+      const object = vector.densePage;
+      if (!densePdfApi()?.isPage(object)) throw new Error("The PDF page has no completed source owner.");
+      const pageNumber = vector.pageNumber || options.pageNumber || 1;
+      object.set({ figureId: makeId("pdf"), figureType: "pdf", name: options.selectionName || file.name,
+        pdfTextMode: "editable",
+        pdfSourceId: options.pdfSourceId || "", pdfSourcePageNumber: pageNumber,
+        source: sourceMeta({ sourceId: `${file.name} page ${pageNumber}`, filename: file.name, kind: "editable-pdf-page", importedAt: timestamp }),
+        importMeta: importMeta({ sourceFilename: file.name, mimeType: "application/pdf", importMode: PDF_JS_SVG_VECTOR_IMPORT,
+          originalWidth: vector.sourceWidth, originalHeight: vector.sourceHeight, pageNumber, pageCount: vector.pageCount,
+          pdfSourceId: options.pdfSourceId || "", pdfSourcePageNumber: pageNumber, openedAsDocument: Boolean(options.openedAsDocument),
+          vectorPreserving: true, textPreserved: "editable-positioned-text", pdfEditableImport: { mode: vector.editableImport.mode,
+            statistics: { paintCount: vector.editableImport.statistics.paintCount, pathCount: vector.editableImport.statistics.pathCount,
+              textShowCount: vector.editableImport.statistics.textShowCount, clipCount: vector.editableImport.statistics.clipCount } },
+          releasedForContentEditing: true, releasedForPathEditing: true,
+          editablePanelImport: false, imported_at: timestamp, notes: "PDF paths and text remain editable; the original source is retained." }) });
+      let placementScale = TEXT_POINTS_TO_CANVAS;
+      if (!options.openAsDocument) placementScale *= fitImportObject(object, vector.width * TEXT_POINTS_TO_CANVAS, vector.height * TEXT_POINTS_TO_CANVAS);
+      object.scale(placementScale);object.setCoords();
+      if (!options.openAsDocument) placeImportObject(object, dropPoint);
+      for (const entry of densePdfApi().textEntries(object)) entry.object.set({ lockMovementX: true, lockMovementY: true });
+      canvas.add(object);canvas.setActiveObject(object);canvas.requestRenderAll();syncUi();recordImportPlacementSelection(object);return object;
+    }
     const module = globalThis.FigureStudioPdfSvgMaterializer;
     if (!module) throw new Error("Editable PDF reconstruction is unavailable.");
     const currentNative = vector.currentPlaneObjects;
@@ -87202,7 +90971,8 @@
     const loaded = currentNative
       ? { objects: [currentNative.root], options: { width: vector.currentPlanePage.widthPx, height: vector.currentPlanePage.heightPx },
           report: currentNative.report }
-      : await module.materialize(vector.svgText, { fabric: fabricRef, fonts: vector.editableImport.fonts, svgElement: vector.svgElement, logicalTextSource: vector.logicalTextSource });
+      : await module.materialize(vector.svgText, { fabric: fabricRef, fonts: vector.editableImport.fonts, svgElement: vector.svgElement,
+          logicalTextSource: vector.logicalTextSource, nativePdfStrokeDisplay: true });
     if (loaded.report.status !== "complete") throw new Error(`This PDF could not be fully reconstructed: ${loaded.report.unsupported.map((row) => row.reason || row.detail || row).join(", ") || "font recovery failed"}.`);
     vector.editableImport.materialization = loaded.report;
     const { fonts, ...summary } = vector.editableImport;
@@ -87279,7 +91049,10 @@
       if (++prepared % 128 === 0) await new Promise((resolve) => window.setTimeout(resolve, 0));
     }
     await new Promise((resolve) => window.setTimeout(resolve, 0));
-    if (currentNative) module.finalizeImportedAuthoringLayout([imported.object], { fabric: fabricRef });
+    // The source import also acquired its final parent placement and source
+    // metadata above. Seed the native layout from that completed hierarchy,
+    // so its first child drag has the same baseline as later edits.
+    await module.finalizeImportedAuthoringLayoutAsync([imported.object], { fabric: fabricRef, signal: options?.signal, yieldToUi: yieldPdfHistoryToUi });
     canvas.add(imported.object);
     canvas.setActiveObject(imported.object);
     canvas.requestRenderAll();
@@ -91146,25 +94919,28 @@
   }
 
   async function withExportState(context, fn) {
-    const active = canvas.getActiveObject();
-    const allFigureObjects = canvas.getObjects().filter(isFigureObject);
+    const exportCanvas = canvas, documentId = currentTransformDocumentId();
+    const ownsCanvas = () => canvas === exportCanvas && currentTransformDocumentId() === documentId;
+    const assertOwner = () => { if (!ownsCanvas()) throw new Error("The document changed during export. No file was created."); };
+    const active = exportCanvas.getActiveObject();
+    const allFigureObjects = exportCanvas.getObjects().filter(isFigureObject);
     const exportObjects = allFigureObjects.flatMap((object) => objectTree(object));
     const visibleSet = context.visibleObjects ? new Set(context.visibleObjects) : null;
     const hiddenSet = context.hiddenObjects ? new Set(context.hiddenObjects) : null;
-    const backgroundColor = canvas.backgroundColor;
+    const backgroundColor = exportCanvas.backgroundColor;
     const exportState = exportObjects.map((object) => ({
       object,
       visible: object.visible,
       excludeFromExport: object.excludeFromExport
     }));
-    let proxySwaps = [];
+    let proxySwaps = [], exportFailed = false;
     // Source previews can be hidden/swapped while an export is assembled. Never
     // admit a project/browser save until the original display state is restored.
     exportStateDepth += 1;
     try {
-      canvas.discardActiveObject();
+      exportCanvas.discardActiveObject();
       if (context.transparentBackground) {
-        canvas.set({ backgroundColor: "" });
+        exportCanvas.set({ backgroundColor: "" });
       }
       if (visibleSet) {
         allFigureObjects.forEach((object) => {
@@ -91215,6 +94991,7 @@
           console.warn("Could not hydrate full-resolution proxy sources for export", error);
         }
       }
+      assertOwner();
       const proxyFallbackCount = attemptFullResolution
         ? Math.max(0, proxyObjects.length - proxySwaps.length)
         : proxyObjects.length;
@@ -91234,10 +95011,14 @@
           ? "Figure Tool attempted to hydrate full-resolution raster sources for this export."
           : "Figure Tool used stable proxy previews for proxy-backed raster/PDF panels."
       };
-      canvas.requestRenderAll();
+      exportCanvas.requestRenderAll();
       await nextFrame();
-      return await fn();
-    } finally {
+      assertOwner();
+      const result = await fn();
+      assertOwner();
+      return result;
+    } catch (error) { exportFailed = true; throw error; }
+    finally {
       try {
         try {
           await restoreProxyPanelSwaps(proxySwaps);
@@ -91249,12 +95030,17 @@
           object.set({ visible, excludeFromExport });
           if (changed) object.dirty = true;
         });
-        if (context.transparentBackground) {
-          canvas.set({ backgroundColor });
+        if (ownsCanvas()) {
+          if (context.transparentBackground) exportCanvas.set({ backgroundColor });
+          const roots = exportCanvas.getObjects();
+          const stillPresent = active && (isActiveSelectionObject(active)
+            ? active.getObjects().every((object) => roots.includes(object))
+            : roots.some((root) => root === active || objectIsWithinGroup(active, root)));
+          if (stillPresent) exportCanvas.setActiveObject(active);
+          // Complete the restored paint before a browser thumbnail/save can run.
+          exportCanvas.renderAll();
         }
-        if (active) canvas.setActiveObject(active);
-        // Complete the restored paint before a browser thumbnail/save can run.
-        canvas.renderAll();
+        if (!exportFailed) assertOwner();
       } finally {
         exportStateDepth -= 1;
       }
@@ -92211,10 +95997,15 @@
       backgroundColor: exportBackgroundForPage(page, background)
     });
     const snapshot = exportPageFabric(project, page);
-    await loadStaticCanvasJson(staticCanvas, snapshot);
-    staticCanvas.set({ backgroundColor: exportBackgroundForPage(page, background) });
-    staticCanvas.renderAll();
-    return { staticCanvas, page, width, height, artboard };
+    try {
+      await loadStaticCanvasJson(staticCanvas, snapshot);
+      staticCanvas.set({ backgroundColor: exportBackgroundForPage(page, background) });
+      staticCanvas.renderAll();
+      return { staticCanvas, page, width, height, artboard };
+    } catch (error) {
+      try { await staticCanvas.dispose?.(); } catch (_) { /* Preserve the original construction failure. */ }
+      throw error;
+    }
   }
 
   function reviewedLiveFigureExportContext(descriptor, target, format) {
@@ -92251,9 +96042,24 @@
 
   async function renderExportPageSvg({ document: descriptor, target, background, scope }) {
     if (descriptor?.kind === "figure" && scope === "current" && (!background || background.mode === "document")) {
+      const assertOwner = svgExportDocumentGuard();
+      await flushDensePdfEdits();
+      assertOwner();
+      const revision = projectRevision;
+      const assertContext = () => { assertOwner(); if (projectRevision !== revision) throw new Error("The artwork changed during SVG export."); };
       const context = reviewedLiveFigureExportContext(descriptor, target, "svg");
-      const text = await withProxyExportFallback(context, (activeContext) => buildSvgExport(activeContext), "SVG export");
+      if (selectionHasDensePdfPages(canvas.getObjects())) {
+        const blob = await withProxyExportFallback(context, (activeContext) => { assertContext(); return buildSvgExportBlob(activeContext, { assertContext }); }, "SVG export");
+        assertContext();
+        return { blob, filename: target?.filename, preserveBlob: true };
+      }
+      const text = await withProxyExportFallback(context, (activeContext) => { assertContext(); return buildSvgExport(activeContext); }, "SVG export");
+      assertContext();
       return { text, filename: target?.filename };
+    }
+    const project = descriptor.project, page = target?.source || target || project.deck?.pages?.[0] || {};
+    if (browserDenseAssetReferences(exportPageFabric(project, page)).size) {
+      throw new Error("For editable PDF artwork, export the current Figure with its document background. Other SVG export scopes are not yet supported.");
     }
     const rendered = await createExportStaticCanvas(descriptor, target, background);
     try {
@@ -92339,10 +96145,61 @@
     return renderExportDocumentPdf(context);
   }
 
+  async function capturePptxNativeSvgRoot(object, context) {
+    const artboard = context.page.artboard || context.project.artboard || context.project.document?.pageGeometry?.defaultArtboard;
+    const page = { ...context.page, artboard, fabric: { ...context.fabric, objects: [object] } };
+    delete page.fabricRef;
+    const descriptor = { project: { ...context.project, artboard, fabric: page.fabric, deck: { activePageId: page.id, pages: [page] } } };
+    const rendered = await createExportStaticCanvas(descriptor, page, { mode: "transparent" });
+    const filteredGroups = [];
+    let failed = false;
+    try {
+      const root = rendered.staticCanvas.getObjects()[0];
+      if (!root || rendered.staticCanvas.getObjects().length !== 1) throw new Error("The arrow artwork could not be reconstructed for PowerPoint export.");
+      let padding = 2;
+      const rigid = ([a, b, c, d]) => Math.abs(Math.hypot(a, b) - 1) <= 1e-8 && Math.abs(Math.hypot(c, d) - 1) <= 1e-8 && Math.abs(a * c + b * d) <= 1e-8;
+      const visit = (node, clipping = false) => {
+        if (!node || !clipping && (node.visible === false || node.excludeFromExport === true)) return;
+        const matrix = node.calcTransformMatrix();
+        if (!matrix.every(Number.isFinite)) throw new Error("The arrow artwork has invalid geometry. Export PDF or slide PNG instead.");
+        if (node.shadow || node.mask || node.globalCompositeOperation && node.globalCompositeOperation !== "source-over" || node.clipPath?.inverted) throw new Error("This arrow group contains effects that cannot be preserved in PowerPoint SVG. Export PDF or slide PNG instead.");
+        if ([node.fill, node.stroke].some((paint) => paint && typeof paint === "object" && !Array.isArray(paint.colorStops))) throw new Error("This arrow group contains an image pattern. Export PDF or slide PNG instead.");
+        if (String(node.type || "").toLowerCase() === "image" && !/^data:image\//i.test(node.getSrc?.() || "")) throw new Error("An image inside this arrow group is not embedded. Export PDF or slide PNG instead.");
+        if (node.strokeUniform && (!rigid(matrix) || !rigid(node.calcOwnMatrix()) || node.group && !rigid(node.group.calcTransformMatrix()))) throw new Error("This arrow group uses a transformed uniform stroke. Export PDF or slide PNG instead.");
+        node.setCoords?.();
+        const strokeWidth = node.stroke ? Math.max(0, Number(node.strokeWidth) || 0) : 0;
+        const join = node.strokeLineJoin === "miter" ? Math.max(1, Number(node.strokeMiterLimit) || 4) : Math.SQRT2;
+        padding = Math.max(padding, strokeWidth * join * (node.strokeUniform ? 1 : Math.hypot(...matrix.slice(0, 4))) / 2 + 2);
+        const children = node.getObjects?.();
+        if (children) {
+          // Retain the native frame and each child's plane. Native Group.toSVG
+          // ignores child export flags; filtering its detached enumeration must
+          // not run fit-content layout or reposition the surviving children.
+          filteredGroups.push([node, node._objects]);
+          node._objects = children.filter((child) => child.visible !== false && child.excludeFromExport !== true);
+          node._objects.forEach((child) => visit(child, clipping));
+        }
+        if (node.clipPath) visit(node.clipPath, true);
+      };
+      visit(root);
+      if (rendered.staticCanvas.clipPath) visit(rendered.staticCanvas.clipPath, true);
+      const nativeBounds = root.getBoundingRect();
+      const bounds = { left: nativeBounds.left - padding, top: nativeBounds.top - padding, width: nativeBounds.width + 2 * padding, height: nativeBounds.height + 2 * padding };
+      if (![bounds.left, bounds.top, bounds.width, bounds.height].every(Number.isFinite) || bounds.width <= 0 || bounds.height <= 0) throw new Error("The arrow artwork has invalid export bounds.");
+      rendered.staticCanvas.set({ backgroundColor: "", backgroundImage: undefined, overlayColor: "", overlayImage: undefined });
+      const svg = rendered.staticCanvas.toSVG({ suppressPreamble: true, width: bounds.width, height: bounds.height, viewBox: { x: bounds.left, y: bounds.top, width: bounds.width, height: bounds.height } });
+      return { svg, bounds };
+    } catch (error) { failed = true; throw error; }
+    finally {
+      filteredGroups.reverse().forEach(([group, children]) => { group._objects = children; });
+      try { await rendered.staticCanvas.dispose?.(); } catch (error) { if (!failed) throw error; }
+    }
+  }
+
   async function renderExportPresentationPptx({ document: descriptor }) {
     const api = pptxV1Api();
     if (!api?.exportProject) throw new Error("PPTX support is unavailable in this installation.");
-    const result = await api.exportProject(descriptor.project, { filename: `${descriptor.displayName}.pptx` });
+    const result = await api.exportProject(descriptor.project, { filename: `${descriptor.displayName}.pptx`, resolveNativeSvgRoot: capturePptxNativeSvgRoot });
     return { blob: result.blob, filename: result.filename, warnings: normalizePptxWarnings(result.warnings) };
   }
 
@@ -92494,9 +96351,73 @@
     next.disabled = exportAsDialogState.previewIndex >= plan.targets.length - 1;
   }
 
+  function captureFigureCheckLiveState(ownerCanvas) {
+    const dense = densePdfApi(), roots = ownerCanvas.getObjects().slice(), guarded = new Map();
+    if (roots.length > 10000) throw new Error("The Figure Check scene exceeds its existing SVG ownership envelope.");
+    const fields = ["group", "parent", "width", "height", "opacity", "visible", "excludeFromExport", "clipPath", "mask", "fill", "stroke", "strokeWidth", "shadow", "globalCompositeOperation", "inverted", "absolutePositioned", "rx", "ry", "path", "pathOffset", "fillRule", "clipRule"];
+    const nativeLabels = [], assetIds = new Set();
+    let nativePages = 0;
+    const sameList = (before, after) => before.length === after.length && before.every((value, index) => Object.is(value, after[index]));
+    const stateOf = (object) => ({ values: fields.map((field) => object[field]), matrix: Array.from(object.calcOwnMatrix()) });
+    const visit = (object, depth = 0) => {
+      if (!object || guarded.has(object)) return;
+      if (depth > 48 || guarded.size >= 100000) throw new Error("The Figure Check scene exceeds its existing SVG ownership envelope.");
+      const nativePage = dense.isPage(object), children = nativePage ? [] : groupChildren(object).slice();
+      guarded.set(object, { ...stateOf(object), children, nativePage });
+      if (nativePage) {
+        if (++nativePages > 8) throw new Error("The Figure Check scene exceeds its existing eight-PDF SVG envelope.");
+        assetIds.add(dense.descriptor(object).assetId);
+        nativeLabels.push(...dense.textEntries(object).map((entry) => entry.object));
+      }
+      children.forEach((child) => visit(child, depth + 1));
+      visit(object.clipPath, depth + 1);
+      visit(object.mask, depth + 1);
+      visit(object.group, depth + 1);
+    };
+    roots.forEach((object) => visit(object));
+    const drafts = dense.captureDrafts(nativeLabels), assets = dense.captureAssetStates([...assetIds]);
+    const current = () => {
+      if (!sameList(roots, ownerCanvas.getObjects())) throw new Error("The artwork changed during Figure Check.");
+      for (const [object, before] of guarded) {
+        const after = stateOf(object);
+        if (before.nativePage && !dense.isPage(object) || !sameList(before.values, after.values) || !sameList(before.matrix, after.matrix)
+            || !sameList(before.children, before.nativePage ? [] : groupChildren(object))) {
+          throw new Error("The artwork placement or clipping changed during Figure Check.");
+        }
+      }
+      dense.validateAssetStates(assets);
+      dense.validateDraftCapture(drafts);
+    };
+    current();
+    return current;
+  }
+
   async function buildExportFigureCheck(descriptor, plan, epoch) {
     const pageReports = [];
     const targets = plan.targets || [];
+    if (!exportReviewCoordinator.isCurrent(epoch)) return null;
+    const liveReview = descriptor?.kind === "figure" && plan.format === "svg" && plan.scope === "current"
+      && (!plan.background || plan.background.mode === "document") && targets.length === 1
+      && String(targets[0].id || "") === String(descriptor.activePageId || "")
+      && selectionHasDensePdfPages(canvas.getObjects());
+    const ownerCanvas = liveReview ? canvas : null;
+    const assertOwner = liveReview ? svgExportDocumentGuard() : null;
+    let assertScene = null;
+    const revision = projectRevision;
+    const assertLive = () => {
+      if (!liveReview) return;
+      assertOwner();
+      if (projectRevision !== revision || densePdfEditPending || pdfHistoryMovePending || pdfHistoryMutationLockDepth || hasPendingDensePageEdits()) {
+        throw new Error("The artwork changed during Figure Check. Open Export As again after the edit finishes.");
+      }
+      reviewedLiveFigureExportContext(descriptor, targets[0], "svg");
+      assertScene?.();
+    };
+    if (liveReview) {
+      assertLive();
+      assertScene = captureFigureCheckLiveState(ownerCanvas);
+      assertLive();
+    }
     if (targets.length > DECK_PDF_EXPORT_MAX_SLIDES) {
       const issue = preflightIssue(
         "error",
@@ -92522,14 +96443,22 @@
     }
     for (let index = 0; index < targets.length; index += 1) {
       if (!exportReviewCoordinator.isCurrent(epoch)) return null;
+      assertLive();
       const target = targets[index];
       const progress = exportAsDialogState.backdrop?.querySelector("[data-export-review-progress]");
       if (progress) progress.textContent = `Checking ${target.label || `page ${index + 1}`} (${index + 1} of ${targets.length})…`;
-      const rendered = await createExportStaticCanvas(descriptor, target, plan.background);
+      const rendered = liveReview ? null : await createExportStaticCanvas(descriptor, target, plan.background);
       try {
+        if (!exportReviewCoordinator.isCurrent(epoch)) return null;
+        assertLive();
+        if (liveReview) {
+          await yieldPdfHistoryToUi();
+          if (!exportReviewCoordinator.isCurrent(epoch)) return null;
+          assertLive();
+        }
         const report = buildPreflightReport({
-          objects: rendered.staticCanvas.getObjects(),
-          artboard: rendered.artboard,
+          objects: liveReview ? ownerCanvas.getObjects().slice() : rendered.staticCanvas.getObjects(),
+          artboard: liveReview ? (target.source?.artboard || target.geometry || descriptor.artboard) : rendered.artboard,
           exportRegion: "artboard",
           includeExportSettings: false,
           includeDocumentChecks: index === 0,
@@ -92538,17 +96467,23 @@
           pageId: target.id,
           pageLabel: target.label || `Page ${index + 1}`
         });
+        if (!exportReviewCoordinator.isCurrent(epoch)) return null;
+        assertLive();
         pageReports.push(report);
       } finally {
-        rendered.staticCanvas.dispose?.();
+        rendered?.staticCanvas.dispose?.();
       }
       await nextFrame();
+      if (!exportReviewCoordinator.isCurrent(epoch)) return null;
+      assertLive();
     }
     let issues = canonicalizePreflightIssues(pageReports.flatMap((report) => report.issues || []));
     runExportPlanPreflight(descriptor, plan, issues);
     addPassIssues(issues);
     issues = canonicalizePreflightIssues(issues);
     const first = pageReports[0] || buildPreflightReport({ includeExportSettings: false, generatedFrom: "export-review" });
+    if (!exportReviewCoordinator.isCurrent(epoch)) return null;
+    assertLive();
     return {
       ...first,
       schema: "figureStudio.figureCheck.v2",
@@ -92827,9 +96762,8 @@
             </dl>
             <p class="export-preview-limitations" data-export-preview-limitations></p>
           </section>
-          <p data-export-as-status class="export-as-status" role="status" aria-live="polite" hidden></p>
         </div>
-        <footer><span>Export is available when the preview is ready.</span><button type="button" data-export-as-cancel>Cancel</button><button type="button" class="accent-command" data-export-as-submit disabled>Preparing export…</button></footer>
+        <footer><p data-export-as-status class="export-as-status" role="status" aria-live="polite" hidden></p><span data-export-as-ready-hint>Export is available when the preview is ready.</span><button type="button" data-export-as-cancel>Cancel</button><button type="button" class="accent-command" data-export-as-submit disabled>Preparing export…</button></footer>
       </section>`;
     figureStudioRoot().appendChild(backdrop);
     backdrop.querySelectorAll("[data-export-as-close],[data-export-as-cancel]").forEach((button) => button.addEventListener("click", closeExportAsDialog));
@@ -92914,10 +96848,22 @@
       : `${format.label} is a vector/document format; DPI does not apply.`;
   }
 
-  function openExportAsDialog(options = {}) {
+  async function openExportAsDialog(options = {}) {
     if (isBsdHostedCommandBlocked("export-as")) return null;
     if (isStoryFigureMode()) {
       showLongToast("Export As is available in standalone Figure Tool.");
+      return null;
+    }
+    const ownerCanvas = canvas, documentId = currentTransformDocumentId();
+    const generation = workspaceProjectGeneration, topology = workspaceTopologyFingerprint();
+    try {
+      await flushDensePdfEdits();
+      if (canvas !== ownerCanvas || currentTransformDocumentId() !== documentId || workspaceProjectGeneration !== generation
+          || workspaceTopologyFingerprint() !== topology || documentWorkspaceState.switching) {
+        throw new Error("The document changed before Export As opened. Open it again from the current document.");
+      }
+    } catch (error) {
+      showLongToast(error?.message || "Could not finish the current edit before opening Export As.");
       return null;
     }
     const backdrop = ensureExportAsDialog();
@@ -93073,6 +97019,11 @@
 
   async function exportSvg() {
     try {
+      const assertOwner = svgExportDocumentGuard();
+      await flushDensePdfEdits();
+      assertOwner();
+      const revision = projectRevision;
+      const assertContext = () => { assertOwner(); if (projectRevision !== revision) throw new Error("The artwork changed during SVG export."); };
       if (isStoryFigureMode() && hostCapabilities.preferHostExport && hostCapabilities.canExportFigurePackage) {
         await exportFigurePackage({ format: "svg", includeSvg: true });
         showToast("SVG export sent to host");
@@ -93083,8 +97034,10 @@
       const svgContext = exportContextForFormat(context, "svg");
       showToast(`Exporting SVG: ${context.label}`);
       await nextFrame();
-      const svgText = await withProxyExportFallback(svgContext, (activeContext) => buildSvgExport(activeContext), "SVG export");
-      downloadText(exportFilename("figure-studio-export", "svg", context), svgText, "image/svg+xml");
+      assertContext();
+      const blob = await withProxyExportFallback(svgContext, (activeContext) => { assertContext(); return buildSvgExportBlob(activeContext, { assertContext }); }, "SVG export");
+      assertContext();
+      downloadBlob(exportFilename("figure-studio-export", "svg", context), blob);
       showToast("SVG exported");
     } catch (error) {
       console.error(error);
@@ -93341,6 +97294,28 @@
     ));
   }
 
+  function pdfMissingRegisteredSpaceElements(pdf, svg) {
+    const registered = pdf?.getFontList?.() || {};
+    return [...svg.querySelectorAll("text, tspan, textPath")].filter((element) => {
+      // Imported XML-illegal display codes for source word spaces become a
+      // literal space. Some subset display programs have no U+0020 glyph.
+      // Only this independently positioned, empty-ink scalar needs fallback;
+      // changing a whole label would discard its retained font and spacing.
+      if (element.children.length || element.textContent !== " ") return false;
+      const families = String(svgStyleValue(element, "font-family") || "").split(",")
+        .map((family) => family.trim().replace(/^['"]|['"]$/g, ""));
+      const weight = String(svgStyleValue(element, "font-weight") || "normal").toLowerCase();
+      const bold = ["bold", "bolder"].includes(weight) || Number(weight) >= 600;
+      const italic = /^(italic|oblique)/.test(String(svgStyleValue(element, "font-style") || "normal").toLowerCase());
+      const style = bold ? (italic ? "bolditalic" : "bold") : (italic ? "italic" : "normal");
+      const family = families.find((name) => registered[name]?.includes(style));
+      if (!family || !/^figurepdf[a-z0-9_-]*$/i.test(family)) return false;
+      const font = pdf.internal?.getFont?.(family, style), codeMap = font?.metadata?.cmap?.unicode?.codeMap;
+      if (font?.fontName !== family || font.fontStyle !== style || !codeMap || !font.metadata.glyf) return false;
+      return !Object.hasOwn(codeMap, 32) || codeMap[32] === 0;
+    });
+  }
+
   async function loadPdfUnicodeFontPrograms() {
     if (!pdfUnicodeFontProgramsPromise) {
       pdfUnicodeFontProgramsPromise = Promise.all(PDF_UNICODE_FONT_VARIANTS.map(async (variant) => {
@@ -93358,22 +97333,37 @@
   }
 
   async function preparePdfSvgUnicodeText(pdf, svg) {
-    const elements = pdfUnicodeTextElements(svg).filter((element) => !svgTextRegisteredCustomFont(pdf, element));
-    if (!elements.length) return { fallbackRunCount: 0, family: "" };
+    const unicodeElements = pdfUnicodeTextElements(svg).filter((element) => !svgTextRegisteredCustomFont(pdf, element));
+    const standardMinus = globalThis.FigureStudioPdfEditableExport?.prepareStandardMinusGlyphs(pdf, unicodeElements.map(element => {
+      const weight = String(svgStyleValue(element, "font-weight") || "normal").toLowerCase();
+      const bold = ["bold", "bolder"].includes(weight) || Number(weight) >= 600;
+      const italic = /^(italic|oblique)/.test(String(svgStyleValue(element, "font-style") || "normal").toLowerCase());
+      return { element, family: svgStyleValue(element, "font-family"), style: bold ? (italic ? "bolditalic" : "bold") : (italic ? "italic" : "normal") };
+    }));
+    const elements = [...new Set([
+      ...unicodeElements.filter(element => !standardMinus?.elements.has(element)),
+      ...pdfMissingRegisteredSpaceElements(pdf, svg)
+    ])];
+    if (!elements.length) return { fallbackRunCount: 0, family: "", standardMinus };
     if (!pdf?.addFileToVFS || !pdf?.addFont) throw new Error("PDF export cannot register the bundled scientific text font.");
     const programs = await loadPdfUnicodeFontPrograms();
+    const protocol = globalThis.FigureStudioPdfLogicalTextProtocol;
     programs.forEach((program) => {
       pdf.addFileToVFS(program.filename, program.base64);
-      pdf.addFont(program.filename, PDF_UNICODE_FONT_FAMILY, program.style, "Identity-H");
+      pdf.addFont(program.filename, protocol.bundledFontFamily(program.style), program.style, "Identity-H");
     });
-    const registeredStyles = pdf.getFontList?.()[PDF_UNICODE_FONT_FAMILY] || [];
-    const missingStyle = PDF_UNICODE_FONT_VARIANTS.find((variant) => !registeredStyles.includes(variant.style));
+    const missingStyle = PDF_UNICODE_FONT_VARIANTS.find((variant) => !pdf.getFontList?.()[protocol.bundledFontFamily(variant.style)]?.includes(variant.style));
     if (missingStyle) throw new Error(`PDF export could not register the bundled scientific text font (${missingStyle.style}).`);
+    await globalThis.FigureStudioPdfLogicalTextProtocol.certifyBundledFontStyles(pdf);
     elements.forEach((element) => {
-      element.setAttribute("font-family", PDF_UNICODE_FONT_FAMILY);
-      element.style.setProperty("font-family", PDF_UNICODE_FONT_FAMILY);
+      const weight = String(svgStyleValue(element, "font-weight") || "normal").toLowerCase();
+      const bold = ["bold", "bolder"].includes(weight) || Number(weight) >= 600;
+      const italic = /^(italic|oblique)/.test(String(svgStyleValue(element, "font-style") || "normal").toLowerCase());
+      const family = protocol.bundledFontFamily(bold ? (italic ? "bolditalic" : "bold") : (italic ? "italic" : "normal"));
+      element.setAttribute("font-family", family);
+      element.style.setProperty("font-family", family);
     });
-    return { fallbackRunCount: elements.length, family: PDF_UNICODE_FONT_FAMILY };
+    return { fallbackRunCount: elements.length, family: PDF_UNICODE_FONT_FAMILY, standardMinus };
   }
 
   function documentPdfSourceExportMetadata() {
@@ -93392,6 +97382,7 @@
         importMode,
         releasedForContentEditing,
         releasedForPathEditing: meta.releasedForPathEditing === true || meta.released_for_path_editing === true,
+        editableCanvasPath: isEditablePathObject(object),
         reconstructedEditable: releasedForContentEditing || [PDF_JS_SVG_VECTOR_IMPORT, PDF_EDITABLE_VECTOR_IMPORT, PDF_LOCAL_SVG_VECTOR_IMPORT, PYMUPDF_SVG_VECTOR_IMPORT].includes(importMode),
         sourceBackedPlacement: [PDF_PLACED_IMPORT, PDF_LIGHTWEIGHT_EDIT_IMPORT].includes(importMode),
         nativeEquivalent: false
@@ -93416,7 +97407,7 @@
         sourceBytesRetained: String(entry.data_url || "").startsWith("data:application/pdf"),
         pageNumbers: [...new Set(sourceObjects.map((record) => record.pageNumber))].sort((left, right) => left - right),
         objectCount: sourceObjects.length,
-        editablePathCount: sourceObjects.filter((record) => record.releasedForPathEditing).length,
+        editablePathCount: sourceObjects.filter((record) => record.releasedForPathEditing && record.editableCanvasPath).length,
         releasedObjectCount: sourceObjects.filter((record) => record.releasedForContentEditing).length,
         importModes: [...new Set(sourceObjects.map((record) => record.importMode).filter(Boolean))],
         exportBehavior,
@@ -93429,11 +97420,42 @@
       objects: records,
       sourceCount: sources.length,
       reconstructedObjectCount: records.filter((record) => record.releasedForContentEditing).length,
-      editablePathCount: records.filter((record) => record.releasedForPathEditing).length,
+      editablePathCount: records.filter((record) => record.releasedForPathEditing && record.editableCanvasPath).length,
       sourceBytesRetained: sources.every((source) => source.sourceBytesRetained),
       exportBehavior: [...new Set(sources.map((source) => source.exportBehavior))].join(","),
       nativeEquivalent: false
     };
+  }
+
+  function svgExportDocumentGuard() {
+    const ownerCanvas = canvas, documentId = currentTransformDocumentId();
+    const generation = workspaceProjectGeneration, topology = workspaceTopologyFingerprint();
+    return () => {
+      if (canvas !== ownerCanvas || currentTransformDocumentId() !== documentId || workspaceProjectGeneration !== generation
+          || workspaceTopologyFingerprint() !== topology || documentWorkspaceState.switching) {
+        throw new Error("The document changed during SVG export. Export it again from the current document.");
+      }
+    };
+  }
+
+  async function buildSvgExportBlob(context, { assertContext = () => {} } = {}) {
+    const ownerCanvas = canvas, assertOwner = svgExportDocumentGuard();
+    assertContext();
+    assertOwner();
+    await flushDensePdfEdits();
+    assertContext();
+    assertOwner();
+    resolveGlobalSwatchLinks({ render: false });
+    const revision = projectRevision;
+    const assertCurrent = () => {
+      assertContext();
+      assertOwner();
+      if (projectRevision !== revision || densePdfEditPending || pdfHistoryMovePending || pdfHistoryMutationLockDepth || hasPendingDensePageEdits()) {
+        throw new Error("The artwork changed during SVG export. Export it again after the edit finishes.");
+      }
+    };
+    assertCurrent();
+    return densePdfApi().exportSceneSvg(ownerCanvas.getObjects().slice(), () => buildSvgExport(context), { assertCurrent });
   }
 
   function buildSvgExport(context) {
@@ -93653,22 +97675,38 @@
     return { status: "cancelling", completed: deckPdfExport.completed, total: deckPdfExport.total };
   }
 
-  async function loadStaticCanvasJson(staticCanvas, json) {
+  async function loadStaticCanvasJson(staticCanvas, json, options = {}) {
+    const intent = options.intent || beginNativeCanvasLoad(staticCanvas, options.assertCurrent);
+    if (!nativeCanvasLoadIntents.has(intent) || intent.target !== staticCanvas) throw new Error("The native static canvas intent is foreign.");
+    assertNativeCanvasLoad(intent);
+    if (densePdfApi()?.hasDenseCanvasRestore(json) === true) {
+      await restoreDenseCanvasLoad(intent, json, options);
+      return staticCanvas;
+    }
     // Fabric 6+ returns a Promise and reserves the second argument for an
     // object reviver. Passing a completion callback there resolves on the
     // first object, which can leave an offscreen export canvas empty.
+    const renderFlag = staticCanvas.renderOnAddRemove, api = densePdfApi(), replacement = api?.beginSceneReplacement(staticCanvas);
+    let loadFailed = false;
     const majorVersion = Number.parseInt(String(fabricRef?.version || "0").split(".")[0], 10);
-    if (majorVersion >= 6) {
-      await staticCanvas.loadFromJSON(json);
-      return staticCanvas;
+    try {
+      if (majorVersion >= 6) {
+        await trackNativeCanvasCall(intent, () => staticCanvas.loadFromJSON(json));
+        assertNativeCanvasLoad(intent);return staticCanvas;
+      }
+      await new Promise((resolve, reject) => {
+        try { trackNativeCanvasCall(intent, (settled) => staticCanvas.loadFromJSON(json, () => { settled();resolve(); }), true); }
+        catch (error) { reject(error); }
+      });
+      assertNativeCanvasLoad(intent);return staticCanvas;
+    } catch (error) {
+      loadFailed = true;
+      try { assertNativeCanvasLoad(intent);staticCanvas.renderOnAddRemove = renderFlag; } catch (_error) { /* Preserve the primary failure and a newer owner. */ }
+      throw error;
+    } finally {
+      if (replacement) try { api.finishSceneReplacement(replacement); } catch (error) { if (!loadFailed) throw error; }
     }
-    await new Promise((resolve, reject) => {
-      try { staticCanvas.loadFromJSON(json, resolve); }
-      catch (error) { reject(error); }
-    });
-    return staticCanvas;
   }
-
   async function buildDeckPagePdfBlob(page, options = {}) {
     const artboard = page?.artboard || options.defaultArtboard || state.artboard;
     const widthIn = Number(artboard?.widthIn) || 7.1;
@@ -93693,9 +97731,13 @@
       });
       pdf.setProperties?.({ title: page?.label || "Figure Tool slide", creator: `Figure Tool ${APP_VERSION}` });
       const parsed = parseSvgExportDocument(staticCanvas.toSVG(), "Slide PDF export");
-      await preparePdfSvgUnicodeText(pdf, parsed.documentElement);
+      const unicodePreparation = await preparePdfSvgUnicodeText(pdf, parsed.documentElement);
       await pdf.svg(parsed.documentElement, { x: 0, y: 0, width: widthIn * 72, height: heightIn * 72 });
-      return pdf.output("blob");
+      let bytes = pdf.output("arraybuffer");
+      if (unicodePreparation.standardMinus?.elements.size) {
+        bytes = await unicodePreparation.standardMinus.complete(bytes, { pdfLib: await ensurePdfLib() });
+      }
+      return new Blob([bytes], { type: "application/pdf" });
     } finally { staticCanvas.dispose?.(); }
   }
 
@@ -93969,7 +98011,10 @@
         : { ...context, useFullResolutionProxySources: useFullProxySources };
       const svgText = await withExportState(svgContext, () => buildSvgExport(svgContext));
       const doc = parseSvgExportDocument(svgText, "PDF export");
-      const svg = globalThis.FigureStudioPdfEditableExport?.prepareSvgForJsPdf(doc.documentElement) || doc.documentElement;
+      const numericSourceScene = pdfSourceSerializationPrecision.precisionObjectsForScene(canvas.getObjects(), {
+        isPdfObject: sourceNumericPrecisionForObject
+      }).size > 0;
+      const svg = globalThis.FigureStudioPdfEditableExport?.prepareSvgForJsPdf(doc.documentElement, { qualifiedSourceScene: numericSourceScene }) || doc.documentElement;
       const editableFonts = editablePdfFontsForSvg(svg);
       const widthPt = context.widthIn * 72;
       const heightPt = context.heightIn * 72;
@@ -93982,9 +98027,6 @@
         const replacement = object.figureStudioPdfSourceReplacement || null;
         return replacement ? `${replacement.currentFilename || "placed PDF"} page ${Number(replacement.selectedPage || 1)}` : "";
       }).filter(Boolean);
-      const numericSourceScene = pdfSourceSerializationPrecision.precisionObjectsForScene(canvas.getObjects(), {
-        isPdfObject: sourceNumericPrecisionForObject
-      }).size > 0;
       const pdf = new window.jspdf.jsPDF({
         orientation,
         unit: "pt",
@@ -93993,7 +98035,7 @@
         ...(numericSourceScene ? { floatPrecision: 20 } : {})
       });
       const registeredSourceFonts = [...registerPdfSourceFontsWithJsPdf(pdf), ...(globalThis.FigureStudioPdfEditableExport?.registerFontsWithJsPdf(pdf, editableFonts) || [])];
-      await preparePdfSvgUnicodeText(pdf, svg);
+      const unicodePreparation = await preparePdfSvgUnicodeText(pdf, svg);
       const nativeTextStreamMutated = canvas.getObjects().some((object) => object.pdfTextNativeStreamMutated === true);
       lastPdfSourceFontExportAudit = {
         schema: "figureStudio.pdfSourceFontExportAudit.v1",
@@ -94025,6 +98067,10 @@
         finally { sourcePaintExport?.detach(); }
       }
       let baseBytes = pdf.output("arraybuffer");
+      if (unicodePreparation.standardMinus?.elements.size) {
+        pdfLib = pdfLib || await ensurePdfLib();
+        baseBytes = await unicodePreparation.standardMinus.complete(baseBytes, { pdfLib });
+      }
       if (editableFonts.length) {
         pdfLib = pdfLib || await ensurePdfLib();
         baseBytes = await globalThis.FigureStudioPdfEditableExport.restorePdfUnicode(baseBytes, { pdfLib, fonts: editableFonts });
@@ -94531,8 +98577,13 @@
       mountObjectContextMenuCore(els.objectContextMenu, OBJECT_CONTEXT_CORE_COMMANDS);
       els.objectContextMenu.addEventListener("click", (event) => {
         const item = event.target.closest("[data-context-command]");
-        if (!item) return;
-        executeContextCommand(item.dataset.contextCommand);
+        if (!item || item.disabled) return;
+        const showCommandError = (error) => showLongToast(error?.message || "The action could not be completed.");
+        try {
+          void Promise.resolve(executeContextCommand(item.dataset.contextCommand)).catch(showCommandError);
+        } catch (error) {
+          showCommandError(error);
+        }
       });
     }
     if (els.slideContextMenu) {
@@ -94540,7 +98591,7 @@
       els.slideContextMenu.addEventListener("click", (event) => {
         const item = event.target.closest("[data-slide-command]");
         if (!item) return;
-        executeSlideContextCommand(item.dataset.slideCommand);
+        void executeSlideContextCommand(item.dataset.slideCommand).catch((error) => showLongToast(error?.message || "The slide action could not be completed."));
       });
     }
     if (els.layerContextMenu) {
@@ -94912,7 +98963,7 @@
       const name = window.prompt("Section name", deckSectionNameSuggestion());
       if (name !== null) addDeckSectionBefore(state.deck.activePageId, name);
     });
-    if (els.duplicateSlideBtn) els.duplicateSlideBtn.addEventListener("click", duplicateCurrentSlide);
+    if (els.duplicateSlideBtn) els.duplicateSlideBtn.addEventListener("click", () => handleDeckCopyAction(duplicateCurrentSlide));
     if (els.deleteSlideBtn) els.deleteSlideBtn.addEventListener("click", deleteCurrentSlide);
     if (els.speakerNotesToggleBtn) els.speakerNotesToggleBtn.addEventListener("click", () => toggleSpeakerNotesDrawer());
     if (els.speakerNotesCloseBtn) els.speakerNotesCloseBtn.addEventListener("click", () => toggleSpeakerNotesDrawer({ open: false }));
@@ -94946,11 +98997,11 @@
     if (els.newDeckMasterBtn) {
       els.newDeckMasterBtn.addEventListener("click", () => {
         const name = window.prompt("New master name", `Master ${state.deck.masters.length + 1}`);
-        if (name !== null) createDeckMaster({ name });
+        if (name !== null) handleDeckCopyAction(() => createDeckMaster({ name }));
       });
     }
     if (els.duplicateDeckMasterBtn) {
-      els.duplicateDeckMasterBtn.addEventListener("click", () => createDeckMaster({ sourceId: activeDeckPage()?.masterId }));
+      els.duplicateDeckMasterBtn.addEventListener("click", () => handleDeckCopyAction(() => createDeckMaster({ sourceId: activeDeckPage()?.masterId })));
     }
     if (els.renameDeckMasterBtn) {
       els.renameDeckMasterBtn.addEventListener("click", () => {
@@ -94959,7 +99010,7 @@
         if (name !== null) renameDeckMaster(master.id, name);
       });
     }
-    if (els.editDeckMasterBtn) els.editDeckMasterBtn.addEventListener("click", () => editDeckMaster());
+    if (els.editDeckMasterBtn) els.editDeckMasterBtn.addEventListener("click", () => handleDeckCopyAction(() => editDeckMaster()));
     if (els.moveDeckMasterEarlierBtn) els.moveDeckMasterEarlierBtn.addEventListener("click", () => moveDeckMaster(activeDeckPage()?.masterId, -1));
     if (els.moveDeckMasterLaterBtn) els.moveDeckMasterLaterBtn.addEventListener("click", () => moveDeckMaster(activeDeckPage()?.masterId, 1));
     if (els.deleteDeckMasterBtn) els.deleteDeckMasterBtn.addEventListener("click", () => deleteDeckMaster(activeDeckPage()?.masterId));
@@ -95017,7 +99068,7 @@
       }
     });
     if (els.cancelDeckReassignBtn) els.cancelDeckReassignBtn.addEventListener("click", () => { lastDeckOrphanBlock = null; syncDeckThemeControls(); });
-    if (els.overrideMasterItemBtn) els.overrideMasterItemBtn.addEventListener("click", () => { void overrideSelectedInheritedItem(); });
+    if (els.overrideMasterItemBtn) els.overrideMasterItemBtn.addEventListener("click", () => handleDeckCopyAction(() => overrideSelectedInheritedItem()));
     if (els.resetMasterItemBtn) els.resetMasterItemBtn.addEventListener("click", () => { void resetSelectedInheritedItem(); });
     if (els.detachMasterItemBtn) els.detachMasterItemBtn.addEventListener("click", detachSelectedInheritedItem);
     if (els.layoutAidsScopeSelect) els.layoutAidsScopeSelect.addEventListener("change", () => syncLayoutAidControls());
@@ -95612,9 +99663,8 @@
     els.newDocumentDialog?.querySelectorAll("[data-new-document-kind]").forEach((button) => {
       button.addEventListener("click", () => selectNewDocumentKind(button.dataset.newDocumentKind));
     });
-    els.newDocumentDialog?.querySelectorAll("[data-new-document-preset]").forEach((button) => {
-      button.addEventListener("click", () => selectNewDocumentPreset(button.dataset.newDocumentPreset));
-    });
+    els.newDocumentSizeInput?.addEventListener("change", () => selectNewDocumentPreset(els.newDocumentSizeInput.value));
+    els.newDocumentUnitsInput?.addEventListener("change", changeNewDocumentUnits);
     els.newDocumentWidthInput?.addEventListener("input", () => selectNewDocumentPreset("custom"));
     els.newDocumentHeightInput?.addEventListener("input", () => selectNewDocumentPreset("custom"));
     els.closeNewDocumentBtn?.addEventListener("click", () => closeNewDocumentDialog());
@@ -95647,7 +99697,7 @@
       if (event.target === els.newDocumentBackdrop) closeNewDocumentDialog();
     });
     if (els.templateGallery) {
-      els.templateGallery.addEventListener("click", (event) => {
+      els.templateGallery.addEventListener("click", async (event) => {
         const card = event.target.closest("[data-template-id]");
         if (!card) return;
         const templateId = card.dataset.templateId;
@@ -95658,7 +99708,7 @@
             label: template?.label || `Slide ${state.deck.pages.length + 1}`
           });
         } else {
-          const created = createNewDocumentTab({ kind: "figure", name: template?.label, preset: template?.preset });
+          const created = await createNewDocumentTab({ kind: "figure", name: template?.label, preset: template?.preset });
           if (created?.status !== "ok") return;
           applyFigureTemplate(templateId);
         }
