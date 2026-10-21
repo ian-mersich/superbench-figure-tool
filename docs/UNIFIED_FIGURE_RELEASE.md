@@ -6,12 +6,29 @@ The browser site and Superbench consume one committed editor and asset collectio
 scientific scenes. Fixes belong here. Do not maintain a second editor in the
 public source checkout or backport individual fixes into the old beta.6 site.
 
-The beta.12 release was published on 17 October 2026. Its immutable runtime source
-is `649b413ba392c0220d8405327a9fe9ba11dd7ff8`, and its selected Superbench package
-is `880c806ca35f171f80ffcd71fd102390ee5c64bf037b0a19d3c5c22025e50c73`.
-The deployed HTTPS editor and the actual installed selection passed the same
-1,299-file payload comparison. The public source/tag, archive identities, CI and
-deployment evidence are recorded in [PUBLIC_PUBLICATION.md](PUBLIC_PUBLICATION.md).
+The [beta.13 release](https://github.com/ian-mersich/superbench-figure-tool/releases/tag/v1.0.0-beta.13)
+was published on 19 October 2026. Its immutable runtime source is
+`848c74d90d3b213d3361dd1f04cbc68717ea0220`, and its selected Superbench package is
+`60b3f932b73bfdaa7dc558f22f8b4e87658898835f2c27fae1f203f4e6afb15d`.
+The [HTTPS editor](https://imersich.com/superbench/figure_tool/) and actual
+installed selection passed the same 1,583-file payload comparison; the Core pin,
+active selection and trust record match. Beta.12 is retained for rollback.
+Final interactive HTTPS qualification and independent visual review are pending.
+A beta.14 candidate is now being prepared from the accepted 21 October
+[selection interaction slice](architecture/SELECTION_BODY_INTERACTION_2026_10_21.md).
+Its working-source browser checks do not replace exact-package native and HTTPS
+qualification; beta.13 remains selected until paired promotion succeeds.
+The public source/tag, archive identities, exact-commit CI, native qualification
+and deployment evidence are recorded in the
+[beta.13 publication checkpoint](PUBLIC_PUBLICATION.md#beta13--document-setup-and-curved-arrow-editing-19-october-2026).
+
+Beta.13 combines the reviewed document setup, compact editing controls,
+curved-arrow editing and saved-file compatibility work, plus the narrow-window
+Presentation menu correction and updated Style 4 artwork. See the
+[pre-plan source record](architecture/FIGURE_PREPLAN_SYNC_2026_10_19.md) for the
+bounded component checks and earlier candidate state. Scientific PDF V1 and its
+opening/performance qualification remain unfinished. The Fabric controls pilot
+and PDF importer comparison remain experimental and were not adopted.
 
 Host-owned appearance and file controls can differ without forking the editor.
 The website has a persistent Light/Dark control; Superbench uses global App
@@ -122,15 +139,25 @@ headless native checks; a package update does not establish a new MSI qualificat
 
 For future releases, publishing the public repository/release, updating the
 website, and changing the actual local selected package remain explicit promotion
-steps after the matched candidate is reviewed. Those steps are complete for
-beta.12. All beta.6 repaint/backport candidates remain unpublished historical
-diagnostics. The shared Figure release milestone is complete; the separate
-Windows installer qualification remains on the same roadmap.
+steps after the matched candidate is reviewed. Public source/release publication,
+website deployment and actual desktop selection are complete for beta.13;
+final interactive HTTPS acceptance is still pending. All beta.6 repaint/backport
+candidates remain unpublished historical diagnostics. The separate Windows
+installer qualification remains on the same roadmap.
 
 ## Tooling changes after publication
 
 The canonical development repository can advance its packaging scripts, tests
 and release documentation without repackaging the installed or deployed editor.
+In particular, later beta.13 documentation commits do not replace runtime source
+`848c74d90d3b213d3361dd1f04cbc68717ea0220` or package
+`60b3f932b73bfdaa7dc558f22f8b4e87658898835f2c27fae1f203f4e6afb15d`.
+Keep both consumer pins, the public `v1.0.0-beta.13` tag and the existing archives
+bound to that qualified runtime. Current beta.13 evidence is in `qa_artifacts/v13/`,
+`qa_artifacts/sync19/` and the Core paired-promotion record linked from the
+[publication checkpoint](PUBLIC_PUBLICATION.md#beta13--document-setup-and-curved-arrow-editing-19-october-2026).
+
+The following beta.9 and beta.11 tooling/activation records remain historical.
 The subsequent private-review eligibility correction changes only the producer
 and its regression tests. It does not change any payload file, version, source
 pin, public tag, archive, or installed selection. The original beta.9 source
@@ -141,7 +168,7 @@ Do not point either consumer at a newer development commit merely because its
 release tooling changed. A runtime update requires a new intentional shared
 candidate, paired artifacts, qualification and promotion. Keep immutable receipts
 for every release; beta.11's `u11r`, `l11s` and Core `g11` records are the evidence
-for the current selection. The first failed live-network and fully rolled-back
+for that historical selection. The first failed live-network and fully rolled-back
 activation attempts remain separate from the accepted fresh workflow and R2
 activation. Later activation-helper and documentation changes do not change any
 of the 800 payload files or require repinning either consumer to a tooling-only

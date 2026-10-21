@@ -1638,6 +1638,7 @@
     segmentDrag: null,
     marquee: null
   };
+  let nativePathBodyDrag = null;
   let drawInteraction = null;
   let knifeInteraction = null;
   let knifeTargetId = "";
@@ -8279,7 +8280,7 @@
     canvas.upperCanvasEl?.addEventListener("pointerdown", (event) => {
       canvas._figureStudioPointerType = event.pointerType === "touch" ? "touch" : "mouse";
       canvas._figureStudioPointerId = event.pointerId;
-      if (beginSelectedPathBodyDrag(event)) return;
+      prepareNativePathBodyDrag(event);
       const active = canvas.getActiveObject?.();
       const viewportPoint = canvas.getViewportPoint(event);
       const control = state.tool === "freeTransform" && isLineVectorObject(active)
@@ -8377,6 +8378,11 @@
           });
           return result;
         };
+        // A painted selected body was resolved before Fabric's pointerdown.
+        // Keep its existing selection as the native transform owner, including
+        // point subsets and isolated siblings. Empty collective bounds never
+        // enter this branch.
+        if (nativePathBodyDrag?.canvas === canvas) return finish(targetInfo(nativePathBodyDrag.target));
         const ownedTransientTarget = transientCanvasTransform?.canvas === canvas
           && canvas._currentTransform?.target === transientCanvasTransform.target
           ? transientCanvasTransform.target
@@ -8454,6 +8460,11 @@
       if (isFigureObject(event.target)) markDocumentDirty("Object removed");
     });
     canvas.on("before:transform", (event) => {
+      if (nativePathBodyDrag?.canvas === canvas && event.transform?.target === nativePathBodyDrag.target) {
+        event.transform.action = "selectedPoints";
+        event.transform.actionHandler = updateNativePathBodyDrag;
+        return;
+      }
       const transformTarget = event.target || event.transform?.target || null;
       pendingRepeatTransform = captureRepeatTransformCandidate(transformTarget, {
         action: event.transform?.action || event.transform?.corner || "transform"
@@ -8462,6 +8473,10 @@
       beginPptxLabelTransform(transformTarget);
     });
     canvas.on("object:modified", (event) => {
+      if (event.transform?.action === "selectedPoints") {
+        finishNativePathBodyDrag();
+        return;
+      }
       const densePage = densePdfPageForObject(event.target);
       if (densePage && event.target !== densePage) return;
       const completedTextBatch = event.target && textExitModifiedTargets.has(event.target) && !event.transform && !event.action;
@@ -8597,6 +8612,9 @@
       syncUi();
     });
     canvas.on("mouse:down", onCanvasMouseDown);
+    canvas.on("mouse:up", () => {
+      if (nativePathBodyDrag?.canvas === canvas) finishNativePathBodyDrag();
+    });
     canvas.on("mouse:move", onCanvasMouseMove);
     canvas.on("mouse:up", onCanvasMouseUp);
     canvas.on("mouse:dblclick", onCanvasDoubleClick);
@@ -24758,6 +24776,7 @@
   }
 
   function onCanvasMouseDown(event) {
+    if (nativePathBodyDrag?.canvas === canvas) return;
     // A new pointer interaction owns the main thread. Cancel any delayed,
     // selection-wide inspector reconciliation so it cannot interrupt dragging,
     // resizing, or the first paint of a context menu.
@@ -28945,9 +28964,8 @@
     const selecting = state.tool === "select" || state.tool === "directSelect" || state.tool === "freeTransform" || gradientEditing || patternEditing || widthEditing;
     const targetFinding = selecting || state.tool === "eyedropper" || state.tool === "smartConnector" || state.tool === "scientificCallout" || isAnchorTool();
     canvas.isDrawingMode = drawing;
-    // Direct Selection owns its point marquee and selected-path body gestures.
-    // Fabric's rectangular ActiveSelection must not move points merely because
-    // the pointer is in empty space between separate selected paths.
+    // Point marquees stay independent of Fabric's object marquee. Only a
+    // painted selected body can start the native selected-point transform.
     canvas.selection = !panning && selecting && state.tool !== "directSelect" && !isGroupIsolationActive();
     canvas.skipTargetFind = panning || (!drawing && !targetFinding);
     canvas.defaultCursor = panning
@@ -40062,7 +40080,7 @@
     const joinState = topologyStates.join;
     if (els.deletePathNodeBtn) {
       els.deletePathNodeBtn.disabled = !editing || !deleteState.enabled;
-      els.deletePathNodeBtn.title = deleteState.enabled ? "Delete selected anchors; remove a path contour if too few anchors remain" : deleteState.reason;
+      els.deletePathNodeBtn.title = deleteState.enabled ? "Delete selected anchors; remove a path when its last anchor is deleted" : deleteState.reason;
     }
     if (els.splitPathNodeBtn) {
       els.splitPathNodeBtn.disabled = lineVector || !editing || !splitState.enabled;
@@ -40317,6 +40335,7 @@
   }
 
   function stopPathNodeEdit(options = {}) {
+    if (nativePathBodyDrag) cancelNativePathBodyDrag();
     const sync = options.sync !== false;
     const object = pathNodeEdit.object;
     pathNodeEditObjects().forEach((item) => {
@@ -42474,10 +42493,12 @@
       editObjects.forEach((item) => item.set({ hasControls: false, hasBorders: false }));
       const merged = [...existing];
       handles.forEach((handle) => {
-        if (!merged.some((item) => samePathHandle(item, handle))) merged.push(handle);
+        const index = merged.findIndex((item) => samePathHandle(item, handle));
+        if (marquee.additive && index >= 0) merged.splice(index, 1);
+        else if (index < 0) merged.push(handle);
       });
       pathNodeEdit.selectedHandles = merged;
-      pathNodeEdit.selected = handles.at(-1) || merged.at(-1) || null;
+      pathNodeEdit.selected = merged.at(-1) || null;
       pathNodeEdit.selectedSegment = null;
       ensureDirectSelectionCanvasCollection();
       showToast(`${merged.length} handle${merged.length === 1 ? "" : "s"} selected`);
@@ -42779,12 +42800,12 @@
     els.pathNodeOverlay.appendChild(line);
   }
 
-  function beginSelectedPathBodyDrag(event) {
+  function prepareNativePathBodyDrag(event) {
     if (state.tool !== "directSelect" || event.button !== 0 || event.isPrimary === false
         || event.altKey || pathNodeEdit.dragging || pathNodeEdit.segmentDrag || pathNodeEdit.marquee) return false;
     const selected = selectedPathHandleRefs();
     if (!selected.length) return false;
-    const point = canvasPointFromClient(event);
+    const point = canvas.getScenePoint(event);
     const found = canvas.findTarget?.(event);
     const front = isGroupIsolationActive()
       ? isolationRootGroup()?.scientificAssetMeta
@@ -42801,11 +42822,102 @@
     const primary = selected.find((handle) => handle.objectId === pathEditObjectId(object) && handle.handleType === "endpoint")
       || selected.find((handle) => handle.objectId === pathEditObjectId(object));
     if (!primary) return false;
-    // Own the gesture before Fabric discards the multi-path point selection or
-    // starts moving only the hit object. Empty collective bounds never qualify.
+    // Fabric owns pointer routing, the transform lifecycle and rendering. This
+    // transaction supplies selected operands, not a second drag event loop.
     cancelSelectionUiSync();
-    event.stopImmediatePropagation();
-    beginPathNodeDrag(event, primary.commandIndex, primary.handleType, object, { body: true });
+    els.viewport?.focus?.({ preventScroll: true });
+    const objects = pathNodeEditObjects().filter((item) => selected.some((ref) => ref.objectId === pathEditObjectId(item)));
+    const target = canvas.getActiveObject() || object;
+    const targetEvented = target.evented;
+    // An ActiveSelection hides object hit bounds in point mode. The explicit
+    // painted hit above lets this gesture use it without Fabric clearing it.
+    target.set({ evented: true });
+    nativePathBodyDrag = {
+      canvas,
+      target,
+      targetEvented,
+      body: true,
+      dirty: false,
+      pointerId: event.pointerId,
+      startPoint: point,
+      handles: selected.map((ref) => ({ ...ref })),
+      translations: pathBodyDragTranslations(selected),
+      pathSnapshots: objects.filter((item) => !isLineVectorObject(item)).map((item) => ({
+        objectId: pathEditObjectId(item), path: copyPathCommands(item.path),
+        bezierNodeMeta: cloneManifestValue(item.figureStudioBezierNodeMeta, null)
+      })),
+      lineSnapshots: objects.filter(isLineVectorObject).map((item) => ({
+        objectId: pathEditObjectId(item),
+        endpoints: cloneManifestValue(lineVectorEndpoints(item), null),
+        sceneEndpoints: cloneManifestValue(lineVectorSceneEndpoints(item), null)
+      })),
+      lineHandles: selected.flatMap((ref) => {
+        const item = objectForPathHandleRef(ref);
+        const descriptor = isLineVectorObject(item) && pathHandleDescriptors(item).find((candidate) => samePathHandle(qualifyPathHandle(item, candidate), ref));
+        return descriptor ? [{ ref, point: pathHandleCanvasPoint(item, descriptor) }] : [];
+      })
+    };
+    return true;
+  }
+
+  function updateNativePathBodyDrag(event) {
+    const gesture = nativePathBodyDrag;
+    if (!gesture || gesture.canvas !== canvas) return false;
+    const point = snapWorkspacePoint(canvas.getScenePoint(event), { grid: false, excludeObjects: pathNodeEditObjects(), bypass: snappingBypassed(event) });
+    const dx = point.x - gesture.startPoint.x, dy = point.y - gesture.startPoint.y;
+    if (!gesture.dirty && Math.hypot(dx, dy) * Math.max(0.08, state.view.zoom) < 3) return false;
+    gesture.translations.forEach((entry) => {
+      const object = objectForPathHandleRef(entry);
+      if (!object) return;
+      const inverse = entry.inverseSceneMatrix;
+      const localDx = inverse[0] * dx + inverse[2] * dy, localDy = inverse[1] * dx + inverse[3] * dy;
+      const commands = copyPathCommands(entry.path);
+      if (entry.wholePath) object.path = fabricRef.util.transformPath(commands, [1, 0, 0, 1, localDx, localDy]);
+      else {
+        entry.operands.forEach(({ commandIndex, xIndex, yIndex }) => {
+          commands[commandIndex][xIndex] += localDx;
+          commands[commandIndex][yIndex] += localDy;
+        });
+        object.path = commands;
+      }
+      object.set({ path: object.path });
+      object.dirty = true;
+      object.setCoords();
+      // A cached parent must paint the changed child on the same native frame.
+      for (let parent = object.group; parent; parent = parent.group) parent.dirty = true;
+    });
+    gesture.lineHandles.forEach(({ ref, point: origin }) => {
+      const object = objectForPathHandleRef(ref);
+      const descriptor = object && pathHandleDescriptors(object).find((item) => samePathHandle(qualifyPathHandle(object, item), ref));
+      if (descriptor) setPathHandleCanvasPoint(object, descriptor, { x: origin.x + dx, y: origin.y + dy });
+    });
+    gesture.dirty = true;
+    renderPathNodeOverlay();
+    return true;
+  }
+
+  function finishNativePathBodyDrag() {
+    const gesture = nativePathBodyDrag;
+    if (!gesture) return false;
+    nativePathBodyDrag = null;
+    gesture.target.set({ evented: gesture.targetEvented });
+    hideGuideSnapCue();
+    hideSmartGuideCues();
+    finishPathHandleDrag(gesture);
+    return true;
+  }
+
+  function cancelNativePathBodyDrag(event) {
+    const gesture = nativePathBodyDrag;
+    if (!gesture || (event?.pointerId != null && gesture.pointerId !== event.pointerId)) return false;
+    nativePathBodyDrag = null;
+    gesture.target.set({ evented: gesture.targetEvented });
+    // Cancel the native transform before its pointerup can emit a modification.
+    if (canvas?._currentTransform?.action === "selectedPoints") {
+      canvas._currentTransform.actionPerformed = false;
+      canvas.endCurrentTransform(event);
+    }
+    restorePathHandleDrag(gesture, event);
     return true;
   }
 
@@ -42848,7 +42960,7 @@
     });
   }
 
-  function beginPathNodeDrag(event, commandIndex, handleType, object = pathNodeEdit.object, options = {}) {
+  function beginPathNodeDrag(event, commandIndex, handleType, object = pathNodeEdit.object) {
     if (!object) return;
     resetPaintedVectorDirectSelectionCycle();
     event.preventDefault();
@@ -42876,12 +42988,11 @@
       && handleType === "endpoint"
       && !currentHandleSelected
       && (!lineEndpoint || crossObjectSelection);
-    if (!options.body) selectPathHandle(object, commandIndex, handleType, {
+    selectPathHandle(object, commandIndex, handleType, {
       additive: modifierAddsHandle,
       preserveExisting: true
     });
-    const startPoint = options.body ? canvasPointFromClient(event)
-      : pathHandleCanvasPoint(object, selectedPathHandleDescriptor(object));
+    const startPoint = pathHandleCanvasPoint(object, selectedPathHandleDescriptor(object));
     const selectedHandleStarts = selectedPathHandleRefs().map((descriptor) => {
       const handleObject = objectForPathHandleRef(descriptor);
       const handleDescriptor = handleObject
@@ -42915,8 +43026,6 @@
       objectId: pathEditObjectId(object),
       commandIndex,
       handleType,
-      body: options.body === true,
-      bodyTranslations: options.body ? pathBodyDragTranslations(existingHandles) : [],
       dirty: false,
       startPoint,
       lastPoint: startPoint,
@@ -42929,16 +43038,19 @@
       currentHandleSelected,
       selectionModifier
     };
-    if (!options.body) {
-      event.currentTarget.classList.add("dragging");
-      event.currentTarget.classList.add("selected");
-    }
+    event.currentTarget.classList.add("dragging");
+    event.currentTarget.classList.add("selected");
   }
 
   function cancelPathNodeDrag(event = null) {
     const dragging = pathNodeEdit.dragging;
     if (!dragging) return false;
     if (event?.pointerId != null && dragging.pointerId != null && event.pointerId !== dragging.pointerId) return false;
+    pathNodeEdit.dragging = null;
+    return restorePathHandleDrag(dragging, event);
+  }
+
+  function restorePathHandleDrag(dragging, event) {
     event?.preventDefault?.();
     const snapshots = Array.isArray(dragging.lineSnapshots) ? dragging.lineSnapshots : [];
     snapshots.forEach((snapshot) => {
@@ -42961,8 +43073,8 @@
       }
       object.dirty = true;
       object.setCoords?.();
+      for (let parent = object.group; parent; parent = parent.group) parent.dirty = true;
     });
-    pathNodeEdit.dragging = null;
     resetPaintedVectorDirectSelectionCycle();
     try {
       els.pathNodeOverlay?.releasePointerCapture?.(dragging.pointerId);
@@ -42997,7 +43109,7 @@
     const descriptor = pathHandleDescriptors(object).find((item) => samePathHandle(item, dragging));
     if (!descriptor) return;
     let point = snapWorkspacePoint(canvasPointFromClient(event), { grid: false, excludeObjects: pathNodeEditObjects(), bypass: snappingBypassed(event) });
-    if (!dragging.body && event.shiftKey && isLineVectorObject(object) && descriptor.lineEndpointRole) {
+    if (event.shiftKey && isLineVectorObject(object) && descriptor.lineEndpointRole) {
       const oppositeRole = descriptor.lineEndpointRole === "start" ? "end" : "start";
       const oppositeDescriptor = lineVectorEndpointDescriptors(object)
         .find((item) => item.lineEndpointRole === oppositeRole);
@@ -43013,7 +43125,7 @@
           y: opposite.y + Math.sin(angle) * length
         };
       }
-    } else if (!dragging.body && event.shiftKey && descriptor.handleType !== "endpoint") {
+    } else if (event.shiftKey && descriptor.handleType !== "endpoint") {
       const anchorDescriptor = controlNodeDescriptor(object, descriptor);
       if (anchorDescriptor) {
         const anchor = pathHandleCanvasPoint(object, anchorDescriptor);
@@ -43028,39 +43140,19 @@
     const startPoint = dragging.startPoint || pathHandleCanvasPoint(object, descriptor);
     const dx = point.x - startPoint.x;
     const dy = point.y - startPoint.y;
-    if (dragging.body && !dragging.dirty && Math.hypot(dx, dy) * Math.max(0.08, state.view.zoom) < 3) return;
     const handles = Array.isArray(dragging.handles) && dragging.handles.length ? dragging.handles : [dragging];
     const previewMetricStartedAt = handles.every((handle) => isOrdinaryVectorEnginePathPreviewCandidate(objectForPathHandleRef(handle)))
       ? vectorEngineMetricNow()
       : null;
-    const translatedObjects = new Set();
-    (dragging.bodyTranslations || []).forEach((entry) => {
-      const translated = objectForPathHandleRef(entry);
-      if (!translated) return;
-      const inverse = entry.inverseSceneMatrix;
-      const localDx = inverse[0] * dx + inverse[2] * dy;
-      const localDy = inverse[1] * dx + inverse[3] * dy;
-      translated.path = entry.wholePath
-        ? fabricRef.util.transformPath(copyPathCommands(entry.path), [1, 0, 0, 1, localDx, localDy])
-        : copyPathCommands(entry.path);
-      if (!entry.wholePath) entry.operands.forEach(({ commandIndex, xIndex, yIndex }) => {
-        translated.path[commandIndex][xIndex] += localDx;
-        translated.path[commandIndex][yIndex] += localDy;
-      });
-      translated.set?.({ path: translated.path });
-      translated.dirty = true;
-      translated.setCoords?.();
-      translatedObjects.add(translated);
-    });
     handles.forEach((handleRef) => {
       const handleObject = objectForPathHandleRef(handleRef);
-      if (!handleObject || translatedObjects.has(handleObject)) return;
+      if (!handleObject) return;
       const handleDescriptor = pathHandleDescriptors(handleObject).find((item) => samePathHandle(qualifyPathHandle(handleObject, item), handleRef));
       if (!handleDescriptor) return;
       const origin = handleRef.point || pathHandleCanvasPoint(handleObject, handleDescriptor);
       setPathHandleCanvasPoint(handleObject, handleDescriptor, { x: origin.x + dx, y: origin.y + dy });
     });
-    if (!dragging.body && descriptor.handleType !== "endpoint") {
+    if (descriptor.handleType !== "endpoint") {
       const nodeDescriptor = controlNodeDescriptor(object, descriptor);
       const initialType = BEZIER_NODE_TYPES.has(dragging.initialNodeType) ? dragging.initialNodeType : "corner";
       const requestedType = event.altKey ? (initialType === "corner" ? "symmetric" : "corner") : initialType;
@@ -43131,6 +43223,23 @@
     }
     hideGuideSnapCue();
     hideSmartGuideCues();
+    finishPathHandleDrag(dragging);
+  }
+
+  function finishPathHandleDrag(dragging) {
+    const changed = (dragging.pathSnapshots || []).some((snapshot) => {
+      const object = objectForPathHandleRef(snapshot);
+      return object && JSON.stringify(object.path) !== JSON.stringify(snapshot.path);
+    }) || (dragging.lineSnapshots || []).some((snapshot) => {
+      const object = objectForPathHandleRef(snapshot);
+      return object && JSON.stringify(lineVectorEndpoints(object)) !== JSON.stringify(snapshot.endpoints);
+    });
+    if (dragging.body && dragging.dirty && !changed) {
+      renderPathNodeOverlay();
+      updatePathNodeStatus(pathNodeEdit.object);
+      syncInspector();
+      return;
+    }
     if (dragging.dirty) {
       const touchedObjects = new Map();
       (dragging.handles || [dragging]).forEach((handle) => {
@@ -43194,6 +43303,7 @@
   }
 
   function cancelPathNodePointer(event) {
+    if (cancelNativePathBodyDrag(event)) return true;
     const marquee = pathNodeEdit.marquee;
     if (marquee) {
       if (
@@ -45591,7 +45701,7 @@
     const contour = pathContourRecords(object)[descriptor.contourIndex];
     if (!contour || !pathTopologyCommandsSupported(object, contour.commands)) return false;
     const endpoints = pathNodeDescriptors(object).filter((item) => item.contourIndex === descriptor.contourIndex);
-    return endpoints.length > (descriptor.contourClosed ? 3 : 2);
+    return endpoints.length > 1;
   }
 
   function topologyCommandTypeSupported(command) {
@@ -45641,8 +45751,8 @@
       if (!contour || !pathTopologyCommandsSupported(entry.object, contour.commands)) {
         return topologyActionResult(false, "This path uses curve commands that cannot be changed safely.");
       }
-      // Deleting below the drawable minimum removes that contour, rather
-      // than leaving a degenerate path or blocking deletion of an asset part.
+      // A contour may retain one editable anchor. Only deleting its final
+      // anchor removes it; short paths remain selectable and undoable.
       if (!nodes.length) return topologyActionResult(false, "This path has no editable anchors.");
     }
     return topologyActionResult(true);
@@ -66136,6 +66246,24 @@
     roots.forEach(visit);
   }
 
+  function canonicalizeSavedIsolationSnapshot(snapshot) {
+    const visit = (record) => {
+      if (!record || typeof record !== "object") return;
+      const original = record.figureStudioIsolationMeta;
+      if (original) {
+        record.interactive = original.interactive === true;
+        record.subTargetCheck = original.subTargetCheck === true;
+        record.objectCaching = original.objectCaching !== false;
+        delete record.figureStudioIsolationMeta;
+      }
+      (record.objects || []).forEach(visit);
+      visit(record.clipPath);
+      visit(record.mask);
+    };
+    (snapshot?.objects || []).forEach(visit);
+    return snapshot;
+  }
+
   function selectableIsolationChildren(group = activeIsolationGroup()) {
     return groupChildren(group).filter((child) => child && child.visible !== false && !child.locked && !child.pdfPageFrame);
   }
@@ -69258,15 +69386,15 @@
       byObject.get(item.object).push({ nodeId: qualifyPathHandle(item.object, item.descriptor).nodeId, nodeIndex: item.descriptor.nodeIndex, contourIndex: item.descriptor.contourIndex });
     });
     // Stage the whole batch on detached paths before touching the canvas.
-    // A short contour disappears as a unit; other contours retain their IDs,
-    // geometry and appearance. Only an object with no contours is removed.
+    // Only an empty contour disappears. Other contours retain their IDs,
+    // geometry and appearance, including a single remaining editable anchor.
     const plans = [];
     for (const [object, nodes] of byObject) {
       const isLine = canDeleteAuthoredLineEndpoints(object);
       const records = isLine ? [] : pathContourRecords(object);
       const removedContourIndices = new Set(records.flatMap((record, index) => {
         const selectedCount = new Set(nodes.filter((node) => node.contourIndex === index).map((node) => node.nodeId)).size;
-        return selectedCount && record.nodes.length - selectedCount < (record.closed ? 3 : 2) ? [index] : [];
+        return selectedCount && record.nodes.length - selectedCount === 0 ? [index] : [];
       }));
       const retained = records.filter((_record, index) => !removedContourIndices.has(index));
       const parent = topologyParent(object);
@@ -78200,9 +78328,9 @@
   function buildProjectJsonWithoutManifestForSizeProbe(options = {}) {
     if (!canvas) return {};
     syncScientificTypographyRangesFromLiveStyles(canvas.getObjects());
-    const fabric = options.fabric ? fileFormatApi().compactSharedGroupImportMetadata(options.fabric) : compactReusableArtworkReferences(stripMasterInheritanceFromSnapshot(
+    const fabric = canonicalizeSavedIsolationSnapshot(options.fabric ? fileFormatApi().compactSharedGroupImportMetadata(options.fabric) : compactReusableArtworkReferences(stripMasterInheritanceFromSnapshot(
       canonicalizeLiveBooleanFabricSnapshot(canvas.toJSON(CUSTOM_PROPS))
-    ));
+    )));
     const patternSources = serializePatternLibrary();
     const brushSources = serializeStrokeBrushLibrary();
     return {
@@ -79898,8 +80026,8 @@
     syncScientificTypographyRangesFromLiveStyles(canvas.getObjects());
     canvas.getObjects().forEach(syncPdfEntrySummaryOnObject);
     syncPdfEntryBatchSummariesOnCanvas();
-    const fabric = options.fabricSnapshot
-      || compactReusableArtworkReferences(stripMasterInheritanceFromSnapshot(canonicalizeLiveBooleanFabricSnapshot(canvas.toJSON(CUSTOM_PROPS)), { copy: false }));
+    const fabric = canonicalizeSavedIsolationSnapshot(options.fabricSnapshot
+      || compactReusableArtworkReferences(stripMasterInheritanceFromSnapshot(canonicalizeLiveBooleanFabricSnapshot(canvas.toJSON(CUSTOM_PROPS)), { copy: false })));
     // Reuse this complete detached scene for the storage estimate instead of
     // serializing the same dense live canvas again.
     if (options.captureDeck !== false) captureActiveDeckPage(options.detachedDeckFabric
@@ -101098,6 +101226,10 @@
     }
     if (event.key === "Escape" && isGroupIsolationActive()) {
       event.preventDefault();
+      if (nativePathBodyDrag || pathNodeEdit.dragging || pathNodeEdit.segmentDrag || pathNodeEdit.marquee) {
+        cancelPathNodePointer(event);
+        return;
+      }
       exitGroupIsolation();
       return;
     }
@@ -101435,7 +101567,7 @@
         cancelDrawToolInteraction();
         return;
       }
-      if (pathNodeEdit.dragging || pathNodeEdit.segmentDrag || pathNodeEdit.marquee) {
+      if (nativePathBodyDrag || pathNodeEdit.dragging || pathNodeEdit.segmentDrag || pathNodeEdit.marquee) {
         event.preventDefault();
         cancelPathNodePointer(event);
         return;
