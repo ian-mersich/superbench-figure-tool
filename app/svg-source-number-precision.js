@@ -10,7 +10,7 @@
   'use strict';
   const canSerializeDensePage = densePages?.canSerializeSvg;
   const isDensePage = densePages?.isPage;
-  function createSerializer({fabric, precisionObjectsForScene, isNumericSourceObject, positionedTextClass, currentPlanePathClass} = {}) {
+  function createSerializer({fabric, precisionObjectsForScene, isNumericSourceObject, positionedTextClass, currentPlanePathClass, currentPlaneImageClass} = {}) {
     if (!fabric?.util?.joinPath || !fabric?.util?.radiansToDegrees || typeof precisionObjectsForScene !== 'function' || typeof isNumericSourceObject !== 'function') {
       throw new TypeError('SVG numerical preservation requires bundled Fabric and an explicit current-scene numerical scope.');
     }
@@ -19,6 +19,9 @@
     const stockSpan = fabric.Text.prototype._createTextCharSpan;
     const stockGroup = fabric.Group.prototype._toSVG;
     const stockTransform = fabric.FabricObject.prototype.getSvgTransform;
+    const currentImageSvg = currentPlaneImageClass?.prototype?._toSVG;
+    const isCurrentImage = object => currentPlaneImageClass?.prototype instanceof fabric.FabricImage && object.constructor === currentPlaneImageClass
+      && currentPlaneImageClass.prototype._toSVG === currentImageSvg && exactDataMethod(object, '_toSVG', currentImageSvg);
     const stockOwnMatrix = fabric.FabricObject.prototype.calcOwnMatrix, stockWorldMatrix = fabric.FabricObject.prototype.calcTransformMatrix;
     const exactDataMethod = (object, key, expected) => {
       let depth = 0;
@@ -71,7 +74,7 @@
       if (!exactDataMethod(live, 'getSvgTransform', stockTransform)) throw new Error('An unaudited numerical-source SVG transform writer is unsupported.');
       const sourceWriter = positionedTextClass?.prototype instanceof fabric.IText && live.constructor === positionedTextClass
         && live._toSVG === positionedTextClass.prototype._pdfCurrentPlaneSvgMarkup;
-      if (!denseWriter && !auditedShapes.has(live._toSVG) && !sourceWriter) throw new Error('An unaudited numerical-source shape SVG writer is unsupported.');
+      if (!denseWriter && !auditedShapes.has(live._toSVG) && !sourceWriter && !isCurrentImage(live)) throw new Error('An unaudited numerical-source shape SVG writer is unsupported.');
       property(copy, 'getSvgTransform', function (full, additional = '') {
         return `transform="${full && clipFrame ? clipFrame.prefix : ''}${matrixString(full ? this.calcTransformMatrix() : this.calcOwnMatrix())}${additional}" `;
       });
@@ -189,7 +192,7 @@
         property(copy, 'canvas', canvasCopy);
         property(copy, '_eventListeners', {}); property(copy, '__eventListeners', {}); property(copy, '_activeObjects', []);
         if (live instanceof fabric.FabricImage) {
-          if (live._toSVG !== fabric.FabricImage.prototype._toSVG || live.getSrc !== fabric.FabricImage.prototype.getSrc) throw new Error('An unaudited SVG image reader is unsupported.');
+          if (live._toSVG !== fabric.FabricImage.prototype._toSVG && !isCurrentImage(live) || live.getSrc !== fabric.FabricImage.prototype.getSrc) throw new Error('An unaudited SVG image reader is unsupported.');
           // Stock Image SVG reads these element fields only. Snapshot DOM/canvas
           // sources rather than retaining a writable live element in a facade.
           function elementSnapshot(element, source) {

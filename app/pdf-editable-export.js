@@ -793,6 +793,94 @@
     return changes ? generated.save({ useObjectStreams: false }) : input;
   }
 
+  function ownImageInterpolationObserver(pdf, svg) {
+    const elements = new Map(Array.from(svg.querySelectorAll('image[data-pdf-image-interpolate]'), element => [element, element.getAttribute('data-pdf-image-interpolate')]));
+    if (!elements.size) return null;
+    const key = '__figureStudioImageInterpolationObserver';
+    const reject = message => fail('PDF_EXPORT_IMAGE_INTERPOLATION_INVALID', message);
+    if (!pdf || key in pdf || !Object.isExtensible(pdf) || typeof pdf.addImage !== 'function'
+        || [...elements.values()].some(value => value !== 'true' && value !== 'false')) reject('The current PDF image interpolation writer is unavailable.');
+    const sources = new Map(), records = [], begun = new Map(), emitted = new Map(), addImage = pdf.addImage;
+    let failure = null, detached = false;
+    const observer = { begin(element) {
+      if (elements.has(element)) begun.set(element, (begun.get(element) || 0) + 1);
+    }, afterImage(element) {
+      if (elements.has(element)) emitted.set(element, (emitted.get(element) || 0) + 1);
+    }, alias(element, data) {
+      try {
+        if (Object.getOwnPropertyDescriptor(pdf, key)?.value !== observer || pdf.addImage !== addImage) reject('The PDF image interpolation writer ownership changed.');
+        if (!elements.has(element)) return undefined;
+        const value = elements.get(element);
+        if (!svg.contains(element) || element.getAttribute('data-pdf-image-interpolate') !== value || typeof data !== 'string') reject('The current explicit image setting changed during export.');
+        let policies = sources.get(data);
+        if (!policies) sources.set(data, policies = new Map());
+        if (!policies.has(value)) {
+          // Exact native input plus policy, rather than a pixel-only hash. The
+          // native writer still handles image decoding, alpha, placement and reuse.
+          let serial = records.length, alias;
+          const occupied = Object.values(pdf.internal.collections.addImage_images || {}).map(image => image.alias);
+          do { alias = `figure-studio-image-interpolation-${serial++}`; } while (occupied.includes(alias) || records.some(record => record.alias === alias));
+          policies.set(value, alias); records.push({ alias, interpolate: value === 'true' });
+        }
+        return policies.get(value);
+      } catch (error) { failure = error; throw error; }
+    } };
+    Object.defineProperty(pdf, key, { value: observer, configurable: true });
+    return {
+      detach() {
+        if (detached) return;
+        if (Object.getOwnPropertyDescriptor(pdf, key)?.value !== observer) reject('The PDF image interpolation writer ownership changed before cleanup.');
+        delete pdf[key]; detached = true;
+      },
+      async complete(bytes, { pdfLib } = {}) {
+        if (failure) throw failure; // svg2pdf catches image errors; never deliver that partial page.
+        if (!detached || pdf.addImage !== addImage) reject('The PDF image interpolation writer was not released.');
+        const hidden = element => {
+          let visibility = null;
+          for (let node = element; node; node = node.parentNode) {
+            if ((node.style?.display || node.getAttribute?.('display')) === 'none') return true;
+            const current = node.style?.visibility || node.getAttribute?.('visibility');
+            if (visibility === null && current && current !== 'inherit') visibility = current;
+            if (node === svg) break;
+          }
+          return visibility === 'hidden';
+        };
+        if ([...begun].some(([element, count]) => emitted.get(element) !== count)
+            || !begun.size && [...elements.keys()].some(element => !hidden(element))) reject('An explicit PDF image was not completely emitted by the native writer.');
+        if (!records.length) return bytes;
+        const document = await pdfLib.PDFDocument.load(bytes, { updateMetadata: false }), name = pdfLib.PDFName.of, pending = [], seen = new Set();
+        for (const record of records) {
+          const matches = Object.values(pdf.internal.collections.addImage_images || {}).filter(image => image.alias === record.alias);
+          if (matches.length !== 1) reject('The native image resource identity changed.');
+          const image = matches[0];
+          if (!Number.isSafeInteger(image.index) || image.index < 0 || !Number.isSafeInteger(image.objectId) || image.objectId <= 0 || seen.has(image.objectId)) reject('The native image resource reference changed.');
+          seen.add(image.objectId);
+          const references = document.getPages().map(page => page.node.Resources()?.lookup(name('XObject'), pdfLib.PDFDict)?.get(name(`I${image.index}`))).filter(Boolean);
+          if (!references.length || references.some(ref => !(ref instanceof pdfLib.PDFRef) || ref.objectNumber !== image.objectId || ref.generationNumber !== 0)) reject('The native image index no longer selects its emitted PDF resource.');
+          const stream = document.context.lookup(pdfLib.PDFRef.of(image.objectId), pdfLib.PDFRawStream), dictionary = stream.dict;
+          const sameData = (actual, expected) => typeof expected === 'string' && actual.length === expected.length && actual.every((value, index) => value === expected.charCodeAt(index));
+          if (String(dictionary.get(name('Subtype'))) !== '/Image' || dictionary.get(name('Width'))?.asNumber() !== image.width
+              || dictionary.get(name('Height'))?.asNumber() !== image.height || dictionary.get(name('BitsPerComponent'))?.asNumber() !== image.bitsPerComponent
+              || dictionary.has(name('Interpolate')) || !sameData(stream.contents, image.data)) reject('The emitted image differs from its native writer resource.');
+          if (image.sMask !== undefined) {
+            const ref = dictionary.get(name('SMask'));
+            if (!(ref instanceof pdfLib.PDFRef) || ref.objectNumber !== image.objectId + 1) reject('The native image alpha reference changed.');
+            const mask = document.context.lookup(ref, pdfLib.PDFRawStream);
+            if (String(mask.dict.get(name('Subtype'))) !== '/Image' || String(mask.dict.get(name('ColorSpace'))) !== '/DeviceGray'
+                || mask.dict.get(name('BitsPerComponent'))?.asNumber() !== (image.sMaskBitsPerComponent ?? image.bitsPerComponent)
+                || mask.dict.get(name('Width'))?.asNumber() !== image.width || mask.dict.get(name('Height'))?.asNumber() !== image.height
+                || !sameData(mask.contents, image.sMask)) reject('The emitted image alpha differs from its native writer resource.');
+          } else if (dictionary.has(name('SMask'))) reject('The emitted image acquired an unexpected alpha resource.');
+          pending.push([dictionary, record.interpolate]);
+        }
+        // Change only the sampling declaration on resources already emitted by
+        // jsPDF. Stream bytes, soft masks, content operators and clips stay native.
+        for (const [dictionary, value] of pending) dictionary.set(name('Interpolate'), document.context.obj(value));
+        return document.save({ useObjectStreams: false, updateFieldAppearances: false });
+      }
+    };
+  }
+
   function ownSourcePaintObserver(pdf, svg, { qualifiedSourceScene = false } = {}) {
     // Qualification comes from the current canvas source-ownership predicate.
     // Paint values come only from this temporary SVG's resolved native context.
@@ -871,5 +959,5 @@
     };
   }
 
-  return { SCHEMA, prepareStandardMinusGlyphs, detectFontProgram, normalizeGlyphMap, positionedGlyphs, prepareSvgForJsPdf, renderCurrentPixelPage, ownCurrentTextNumberWriter, ownCurrentMatrixNumberWriter, ownSourcePaintObserver, rewriteToUnicodeCMap, registerFontsWithJsPdf, embedSvgFonts, restorePdfUnicode };
+  return { SCHEMA, prepareStandardMinusGlyphs, detectFontProgram, normalizeGlyphMap, positionedGlyphs, prepareSvgForJsPdf, renderCurrentPixelPage, ownCurrentTextNumberWriter, ownCurrentMatrixNumberWriter, ownSourcePaintObserver, ownImageInterpolationObserver, rewriteToUnicodeCMap, registerFontsWithJsPdf, embedSvgFonts, restorePdfUnicode };
 });

@@ -291,6 +291,17 @@
         // path is not a second editable paint and must not enter the scene.
         if (clipped && unpainted) element.remove();
       }
+      paintInlineImageXObject(data, mask) {
+        const result = super.paintInlineImageXObject(data, mask);
+        // SVGGraphics omits /Interpolate. Carry an explicit decoder Boolean
+        // to the editable image without changing the absent-hint default.
+        if (!mask && typeof data.interpolate === "boolean") {
+          const image = this.tgrp?.lastElementChild;
+          if (image?.localName !== "image") throw new Error("The PDF image lost its decoded interpolation setting.");
+          image.setAttribute("data-pdf-image-interpolate", String(data.interpolate));
+        }
+        return result;
+      }
       setFont(details) {
         const font = this.commonObjs.get(details[0]);
         if (font.isType3Font) throw new Error("PDF Type3 text needs a glyph interpreter; the original page was retained.");

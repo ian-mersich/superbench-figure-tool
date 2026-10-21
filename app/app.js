@@ -94796,6 +94796,13 @@
 
   function decorateSvgImportedElementObject(object, element) {
     if (!object || !element) return object;
+    const imageHint = String(element.localName || element.nodeName || "").toLowerCase() === "image"
+      ? element.getAttribute("data-pdf-image-interpolate") : null;
+    if (imageHint === "true" || imageHint === "false") {
+      const planes = globalThis.FigureStudioPdfCurrentNativePlaneMaterializer;
+      if (!planes?.retainImageInterpolation) throw new Error("The copied image cannot preserve its interpolation setting.");
+      planes.retainImageInterpolation(fabricRef, object, imageHint === "true");
+    }
     const sourceOrder = Number(element.getAttribute("data-figure-studio-source-order"));
     const figureType = importedVectorFigureType(object);
     const sourceId = element.id || "";
@@ -97280,7 +97287,8 @@
         precisionObjectsForScene: pdfSourceSerializationPrecision.precisionObjectsForScene,
         isNumericSourceObject: sourceNumericPrecisionForObject,
         positionedTextClass: globalThis.FigureStudioPdfSvgMaterializer?.registerTextClass(fabricRef),
-        currentPlanePathClass: globalThis.FigureStudioPdfSvgMaterializer?.registerCurrentPlanePathClass(fabricRef)
+        currentPlanePathClass: globalThis.FigureStudioPdfSvgMaterializer?.registerCurrentPlanePathClass(fabricRef),
+        currentPlaneImageClass: globalThis.FigureStudioPdfCurrentNativePlaneMaterializer?.registerImageClass(fabricRef)
       });
       return serializer.canvasToSVG(canvas);
     } finally {
@@ -97860,8 +97868,11 @@
       pdf.setProperties?.({ title: page?.label || "Figure Tool slide", creator: `Figure Tool ${APP_VERSION}` });
       const parsed = parseSvgExportDocument(staticCanvas.toSVG(), "Slide PDF export");
       const unicodePreparation = await preparePdfSvgUnicodeText(pdf, parsed.documentElement);
-      await pdf.svg(parsed.documentElement, { x: 0, y: 0, width: widthIn * 72, height: heightIn * 72 });
+      const imageExport = globalThis.FigureStudioPdfEditableExport.ownImageInterpolationObserver(pdf, parsed.documentElement);
+      try { await pdf.svg(parsed.documentElement, { x: 0, y: 0, width: widthIn * 72, height: heightIn * 72 }); }
+      finally { imageExport?.detach(); }
       let bytes = pdf.output("arraybuffer");
+      if (imageExport) bytes = await imageExport.complete(bytes, { pdfLib: await ensurePdfLib() });
       if (unicodePreparation.standardMinus?.elements.size) {
         bytes = await unicodePreparation.standardMinus.complete(bytes, { pdfLib: await ensurePdfLib() });
       }
@@ -98182,8 +98193,9 @@
       });
       const logicalRuntime = globalThis.FigureStudioPdfLogicalTextRuntime;
       const logicalExport = !passthroughObjects.length && logicalRuntime ? logicalRuntime.ownExportObserver(pdf, svg) : null;
-      let sourcePaintExport = null;
+      let sourcePaintExport = null, imageExport = null;
       try {
+        imageExport = globalThis.FigureStudioPdfEditableExport.ownImageInterpolationObserver(pdf, svg);
         if (numericSourceScene && !passthroughObjects.length) {
           sourcePaintExport = globalThis.FigureStudioPdfEditableExport.ownSourcePaintObserver(pdf, svg, { qualifiedSourceScene: numericSourceScene });
         }
@@ -98192,9 +98204,13 @@
         } else await pdf.svg(svg, { x: 0, y: 0, width: widthPt, height: heightPt });
       } finally {
         try { logicalExport?.detach(); }
-        finally { sourcePaintExport?.detach(); }
+        finally { try { sourcePaintExport?.detach(); } finally { imageExport?.detach(); } }
       }
       let baseBytes = pdf.output("arraybuffer");
+      if (imageExport) {
+        pdfLib = pdfLib || await ensurePdfLib();
+        baseBytes = await imageExport.complete(baseBytes, { pdfLib });
+      }
       if (unicodePreparation.standardMinus?.elements.size) {
         pdfLib = pdfLib || await ensurePdfLib();
         baseBytes = await unicodePreparation.standardMinus.complete(baseBytes, { pdfLib });

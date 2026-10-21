@@ -2649,7 +2649,10 @@ return Object.freeze({ construct, admitted });
         const key = `pdf-svg-object-${++nextKey}`;
         element.setAttribute(KEY, key);
         const knockoutEntry = knockoutEntries.get(element.getAttribute("data-pdf-knockout-proxy-key"));
-        sourceByKey.set(key, { element, clipRef: clipReference(element), meta: metadata(element, order.get(element), groupPath(element), knockoutEntry ? "group" : tag(element) === "image" ? "image" : "path"), ...(knockoutEntry ? { knockoutEntry } : {}) });
+        const imageHint = options.nativePdfStrokeDisplay === true && tag(element) === "image"
+          ? element.getAttribute("data-pdf-image-interpolate") : null;
+        sourceByKey.set(key, { element, clipRef: clipReference(element), meta: metadata(element, order.get(element), groupPath(element), knockoutEntry ? "group" : tag(element) === "image" ? "image" : "path"),
+          ...(["true", "false"].includes(imageHint) ? { imageInterpolation: imageHint === "true" } : {}), ...(knockoutEntry ? { knockoutEntry } : {}) });
         continue;
       }
       const spans = Array.from(element.querySelectorAll("tspan")).filter((span) => !span.querySelector("tspan"));
@@ -2780,7 +2783,17 @@ return Object.freeze({ construct, admitted });
           object.clipPath = original.clipPath;
         }
         report.textRunCount++;
-      } else if (source.tag === "image") report.imageCount++; else report.vectorCount++;
+      } else if (source.tag === "image") {
+        if (typeof source.imageInterpolation === "boolean") {
+          const planes = typeof module === "object" && module.exports
+            ? require("./pdf-current-native-plane-materializer.js") : globalThis.FigureStudioPdfCurrentNativePlaneMaterializer;
+          // Reuse the existing image serializer in place: native Fabric omits
+          // imageSmoothing from Save. Pixels, pose and clipping stay untouched.
+          if (!planes?.retainImageInterpolation) throw new Error("The editable PDF image cannot preserve its interpolation setting.");
+          planes.retainImageInterpolation(fabric, object, source.imageInterpolation);
+        }
+        report.imageCount++;
+      } else report.vectorCount++;
       object.set(source.meta);
       object.__pdfSvgClipRef = source.clipRef;
       sourceByKey.delete(original.__pdfSvgKey);

@@ -109,15 +109,15 @@
       "version": "2.7.0",
       "path": "vendor/svg2pdf/svg2pdf.umd.min.js",
       "global": "jsPDF.svg",
-      "bytes": 87557,
-      "sha256": "483a688ce22e3fb1905dd2a4e23831ee50c4d8fe1d5772027554b6062f723024",
+      "bytes": 87768,
+      "sha256": "ef3b6bfe55ca2d883c77467ab98533425021c172bb5af703de2df3964b0212a9",
       "local_patch": {
         "schema": "figureStudio.vendorLocalPatch.v1",
         "id": "figure-studio-current-source-text-and-paint-observers-v1",
         "upstream_runtime_bytes": 87158,
         "upstream_runtime_sha256": "7c91b939405364524ccda0eafac0b42b456594504acfa7de0eac83d1b6347723",
         "optional_instance_property": "__figureStudioLogicalTextObserver",
-        "review_scope": "Two retained optional per-instance before/after source-owner observations surrounding unchanged native pdf.text calls, plus one optional per-instance current resolved source path paint observation immediately before unchanged native fill/stroke calls. The app-owned paint observer reasserts current solid RGB through existing native string-channel setters and current cap through the existing native cap setter. No global/prototype formatter, native path/text arguments, fonts, geometry, clips, order, package version, or license change.",
+        "review_scope": "Two retained optional per-instance before/after source-owner observations surrounding unchanged native pdf.text calls, plus one optional per-instance current resolved source path paint observation immediately before unchanged native fill/stroke calls. The app-owned paint observer reasserts current solid RGB through existing native string-channel setters and current cap through the existing native cap setter. No global/prototype formatter, native path/text arguments, fonts, geometry, clips, order, package version, or license change. One optional per-instance image alias observation supplies separate native image resources for explicit opposing interpolation settings; the app completes only their Boolean sampling declarations. The native addImage, decoded pixels, alpha masks, placement and same-policy reuse remain native.",
         "anchors": [
           {
             "rawBeforeAnchor": "e.pdf.text(this.texts[i],l[i]-y,u[i],{baseline:q(b),angle:e.transform,renderingMode:\"fill\"===x?void 0:x,charSpace:0===r?void 0:r})",
@@ -130,6 +130,14 @@
           {
             "rawBeforeAnchor": "case 3:return i=n,a=\"evenodd\"===t.attributeState.fillRule,e&&r||t.withinUse?a?t.pdf.fillStrokeEvenOdd(i):t.pdf.fillStroke(i):e?a?t.pdf.fillEvenOdd(i):t.pdf.fill(i):r?t.pdf.stroke():t.pdf.discardPath(),[2]",
             "rawAfterAnchor": "case 3:return t.pdf.__figureStudioSourcePaintObserver?.beforePathPaint(this.element,t),i=n,a=\"evenodd\"===t.attributeState.fillRule,e&&r||t.withinUse?a?t.pdf.fillStrokeEvenOdd(i):t.pdf.fillStroke(i):e?a?t.pdf.fillEvenOdd(i):t.pdf.fill(i):r?t.pdf.stroke():t.pdf.discardPath(),[2]"
+          },
+          {
+            "rawBeforeAnchor": "t.pdf.addImage(g,\"\",0,0,y,b)",
+            "rawAfterAnchor": "t.pdf.addImage(g,\"\",0,0,y,b,t.pdf.__figureStudioImageInterpolationObserver?.alias(this.element,g)),t.pdf.__figureStudioImageInterpolationObserver?.afterImage(this.element)"
+          },
+          {
+            "rawBeforeAnchor": "var r,i,n,a,o,l,u,h,c,p,d,g,v,y,b,x,S,w;return s(this,(function(s){switch(s.label){case 0:return this.imageLoadingPromise?",
+            "rawAfterAnchor": "var r,i,n,a,o,l,u,h,c,p,d,g,v,y,b,x,S,w;return s(this,(function(s){switch(s.label){case 0:return t.pdf.__figureStudioImageInterpolationObserver?.begin(this.element),this.imageLoadingPromise?"
           }
         ],
         "raw_inverse_exact": true,
@@ -137,7 +145,8 @@
         "upstream_identity_changed": false,
         "optional_instance_properties": [
           "__figureStudioLogicalTextObserver",
-          "__figureStudioSourcePaintObserver"
+          "__figureStudioSourcePaintObserver",
+          "__figureStudioImageInterpolationObserver"
         ]
       }
     },

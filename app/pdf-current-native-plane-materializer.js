@@ -47,8 +47,19 @@ function registerImageClass(fabric){
    try{return super._renderFill(context);}finally{context.imageSmoothingEnabled=initial;}
   }
   toObject(properties=[]){return super.toObject([...properties,'imageSmoothing','pdfNativeImageInterpolationPolicy',...META]);}
+  _toSVG(){
+   const markup=super._toSVG();
+   if(typeof this.imageSmoothing!=='boolean'||this.pdfNativeImageInterpolationPolicy==='native-scale-default-v1')return markup;
+   return markup.map(part=>part.replace('<image ',`<image data-pdf-image-interpolate="${this.imageSmoothing}" `));
+  }
  }
  fabric.classRegistry.setClass(PdfCurrentPlaneImage);imageClasses.set(fabric,PdfCurrentPlaneImage);return PdfCurrentPlaneImage;
+}
+function retainImageInterpolation(fabric,object,value){
+ const Image=fabric.FabricImage||fabric.Image;
+ if(typeof value!=='boolean'||object?.constructor!==Image)refuse('The editable image cannot preserve its explicit interpolation setting.');
+ Object.setPrototypeOf(object,registerImageClass(fabric).prototype);
+ object.set('imageSmoothing',value);return object;
 }
 // The inherited general transform parser multiplies by identity, which can
 // normalize signed zero. Refuse raw signed zero before inherited
@@ -256,5 +267,5 @@ function constructTextPlanes(fabric,materializer,{dom,model}={},options){
  if(!model?.source?.currentNativeGlyphPlanes||typeof model.options?.text!=='string'||model.options.text.length>4096||!Array.isArray(model.source.glyphs)||!model.source.glyphs.length||model.source.glyphs.length>4096)refuse('A bounded source glyph-plane model is required.');
  return constructInternal(fabric,materializer,{dom,runs:[]},options,model);
 }
-return Object.freeze({construct,constructTextPlanes,registerImageClass});
+return Object.freeze({construct,constructTextPlanes,registerImageClass,retainImageInterpolation});
 });
