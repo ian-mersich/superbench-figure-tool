@@ -1357,6 +1357,7 @@
   let transientCanvasTransform = null;
   let transientCanvasRenderFrame = 0;
   let forceFullCanvasRender = null;
+  const issuedUniformPathRenderers = new WeakMap();
   let incrementalCanvasPaint = false;
   let lastTransientCanvasAudit = null;
   let pointerStatusFrame = 0;
@@ -7956,6 +7957,13 @@
       audit.reason = "unsupported-transform";
       return;
     }
+    if (state.tool === "directSelect") {
+      // Point editing and group entry already own their native gesture. A
+      // whole-object bitmap preview can otherwise start on the same click,
+      // cancel the artwork repaint and later composite a resampled neighbor.
+      audit.reason = "point-editing";
+      return;
+    }
     if (isActiveSelectionObject(target) || target.group || !(canvas.getObjects?.() || []).includes(target)) {
       audit.reason = "not-a-top-level-object";
       return;
@@ -8232,6 +8240,9 @@
     const renderFullCanvas = canvas.renderAll.bind(canvas);
     const drawFullCanvasControls = canvas.drawControls?.bind(canvas);
     forceFullCanvasRender = renderFullCanvas;
+    globalThis.FigureStudioNativePathSceneTransform.install({ fabric: fabricRef, canvas,
+      isIsolated: () => isGroupIsolationActive(),
+      isNativePath: isNativeUniformPathPaint });
     const retainCanvasPerformanceAudit = (list, audit) => {
       list.push(audit);
       if (list.length > 48) list.splice(0, list.length - 48);
@@ -22272,6 +22283,11 @@
     return drawStrokeWidthOutline(ctx, samples, profile, Number(style.strokeWidth || 1), color, style);
   }
 
+  function isNativeUniformPathPaint(object) {
+    return !isSmartConnectorObject(object) && !isLineVectorObject(object) && !variableStrokeProfileActive(object)
+      && (object._render === fabricRef.Path.prototype._render || issuedUniformPathRenderers.get(object) === object._render);
+  }
+
   function attachVariableStrokeRenderer(object) {
     if (!object || isLineVectorObject(object) || object._figureStudioVariableStrokeRendererAttached || !fabricRef?.Path?.prototype?._render) return object;
     // A uniform source rectangle already has its native fill renderer. Keep
@@ -22288,6 +22304,7 @@
       this.stroke = savedStroke;
       if (variable) renderVariableStrokeOutline(ctx, this);
     };
+    issuedUniformPathRenderers.set(object, object._render);
     object.objectCaching = false;
     return object;
   }
@@ -24857,8 +24874,11 @@
         if (!path) beginPathHandleMarquee(event);
         return;
       }
-      const explicitCandidate = event.target && isDirectSelectionEditableObject(event.target)
-        ? ensureDirectSelectionPathObject(event.target)
+      const isolatedTarget = isGroupIsolationActive()
+        ? isolationChildAtScenePoint(activeIsolationGroup(), directPoint) : null;
+      const candidate = isolatedTarget || event.target;
+      const explicitCandidate = candidate && isDirectSelectionEditableObject(candidate)
+        ? ensureDirectSelectionPathObject(candidate)
         : null;
       // Filled primitives retain normal object precedence. Stroke-only artwork
       // is resolved through one distance-ranked painted-geometry path so
@@ -25416,8 +25436,10 @@
       });
       return;
     }
+    let editableTarget = event.target;
     if (isGroupIsolationActive()) {
       const child = isolationChildAtScenePoint(activeIsolationGroup(), canvasPoint(event.e));
+      editableTarget = child || event.target;
       const denseChildPage = densePdfPageForObject(child);
       if (denseChildPage) {
         editDensePdfTextAtEvent(denseChildPage, event);
@@ -25428,8 +25450,8 @@
         else if (supportsText(child)) editTextOnCanvas(child, { pointerEvent: event.e });
         return;
       }
-      if (canEnterGroupIsolation(event.target)) {
-        enterGroupIsolation(event.target, { origin: "double-click" });
+      if (canEnterGroupIsolation(editableTarget)) {
+        enterGroupIsolation(editableTarget, { origin: "double-click" });
         return;
       }
     }
@@ -25438,7 +25460,7 @@
       enterGroupIsolation(event.target, { child, origin: "double-click" });
       return;
     }
-    editTextOnCanvas(event.target, { pointerEvent: event.e });
+    editTextOnCanvas(editableTarget, { pointerEvent: event.e });
   }
 
   function onCanvasMouseMove(event) {
@@ -42860,19 +42882,15 @@
     return true;
   }
 
-  function updateNativePathBodyDrag(event) {
-    const gesture = nativePathBodyDrag;
-    if (!gesture || gesture.canvas !== canvas) return false;
-    const point = snapWorkspacePoint(canvas.getScenePoint(event), { grid: false, excludeObjects: pathNodeEditObjects(), bypass: snappingBypassed(event) });
-    const dx = point.x - gesture.startPoint.x, dy = point.y - gesture.startPoint.y;
-    if (!gesture.dirty && Math.hypot(dx, dy) * Math.max(0.08, state.view.zoom) < 3) return false;
-    gesture.translations.forEach((entry) => {
+  function translatePathGestureOperands(entries, dx, dy) {
+    entries.forEach((entry) => {
       const object = objectForPathHandleRef(entry);
       if (!object) return;
       const inverse = entry.inverseSceneMatrix;
       const localDx = inverse[0] * dx + inverse[2] * dy, localDy = inverse[1] * dx + inverse[3] * dy;
       const commands = copyPathCommands(entry.path);
-      if (entry.wholePath) object.path = fabricRef.util.transformPath(commands, [1, 0, 0, 1, localDx, localDy]);
+      if (dx === 0 && dy === 0) object.path = commands;
+      else if (entry.wholePath) object.path = fabricRef.util.transformPath(commands, [1, 0, 0, 1, localDx, localDy]);
       else {
         entry.operands.forEach(({ commandIndex, xIndex, yIndex }) => {
           commands[commandIndex][xIndex] += localDx;
@@ -42886,6 +42904,15 @@
       // A cached parent must paint the changed child on the same native frame.
       for (let parent = object.group; parent; parent = parent.group) parent.dirty = true;
     });
+  }
+
+  function updateNativePathBodyDrag(event) {
+    const gesture = nativePathBodyDrag;
+    if (!gesture || gesture.canvas !== canvas) return false;
+    const point = snapWorkspacePoint(canvas.getScenePoint(event), { grid: false, excludeObjects: pathNodeEditObjects(), bypass: snappingBypassed(event) });
+    const dx = point.x - gesture.startPoint.x, dy = point.y - gesture.startPoint.y;
+    if (!gesture.dirty && Math.hypot(dx, dy) * Math.max(0.08, state.view.zoom) < 3) return false;
+    translatePathGestureOperands(gesture.translations, dx, dy);
     gesture.lineHandles.forEach(({ ref, point: origin }) => {
       const object = objectForPathHandleRef(ref);
       const descriptor = object && pathHandleDescriptors(object).find((item) => samePathHandle(qualifyPathHandle(object, item), ref));
@@ -43017,7 +43044,7 @@
     const pathSnapshots = [...new Set(selectedHandleStarts.map((item) => objectForPathHandleRef(item)).filter((item) => item && !isLineVectorObject(item)))]
       .map((item) => ({
         objectId: pathEditObjectId(item),
-        path: cloneManifestValue(item.path, []),
+        path: copyPathCommands(item.path),
         bezierNodeMeta: cloneManifestValue(item.figureStudioBezierNodeMeta, null)
       }));
     const activeDescriptor = selectedPathHandleDescriptor(object);
@@ -43030,6 +43057,8 @@
       startPoint,
       lastPoint: startPoint,
       handles: selectedHandleStarts,
+      pointerStartPoint: canvas.getScenePoint(event),
+      translations: pathBodyDragTranslations(selectedHandleStarts),
       pointerId: event.pointerId,
       lineSnapshots,
       pathSnapshots,
@@ -43064,9 +43093,13 @@
     pathSnapshots.forEach((snapshot) => {
       const object = objectForPathHandleRef({ objectId: snapshot.objectId });
       if (!object || !Array.isArray(snapshot.path)) return;
-      object.path = cloneManifestValue(snapshot.path, snapshot.path);
+      object.path = copyPathCommands(snapshot.path);
       object.set?.({ path: object.path });
-      if (snapshot.bezierNodeMeta) setBezierNodeMeta(object, snapshot.bezierNodeMeta);
+      if (snapshot.bezierNodeMeta) {
+        const metadata = cloneManifestValue(snapshot.bezierNodeMeta, null);
+        object.figureStudioBezierNodeMeta = metadata;
+        object.set?.({ figureStudioBezierNodeMeta: metadata });
+      }
       else {
         delete object.figureStudioBezierNodeMeta;
         object.set?.({ figureStudioBezierNodeMeta: undefined });
@@ -43106,9 +43139,13 @@
     const object = objectForPathHandleRef(dragging) || pathNodeEdit.object;
     if (!dragging || !object) return;
     event.preventDefault();
-    const descriptor = pathHandleDescriptors(object).find((item) => samePathHandle(item, dragging));
+    let descriptor = pathHandleDescriptors(object).find((item) => samePathHandle(item, dragging));
     if (!descriptor) return;
-    let point = snapWorkspacePoint(canvasPointFromClient(event), { grid: false, excludeObjects: pathNodeEditObjects(), bypass: snappingBypassed(event) });
+    const pointer = canvas.getScenePoint(event);
+    const startPoint = dragging.startPoint || pathHandleCanvasPoint(object, descriptor);
+    const pointerStart = dragging.pointerStartPoint || startPoint;
+    // Keep the handle's grab offset before applying snapping or angle constraints.
+    let point = snapWorkspacePoint({ x: startPoint.x + (pointer.x - pointerStart.x), y: startPoint.y + (pointer.y - pointerStart.y) }, { grid: false, excludeObjects: pathNodeEditObjects(), bypass: snappingBypassed(event) });
     if (event.shiftKey && isLineVectorObject(object) && descriptor.lineEndpointRole) {
       const oppositeRole = descriptor.lineEndpointRole === "start" ? "end" : "start";
       const oppositeDescriptor = lineVectorEndpointDescriptors(object)
@@ -43137,22 +43174,24 @@
         point = { x: anchor.x + Math.cos(angle) * length, y: anchor.y + Math.sin(angle) * length };
       }
     }
-    const startPoint = dragging.startPoint || pathHandleCanvasPoint(object, descriptor);
     const dx = point.x - startPoint.x;
     const dy = point.y - startPoint.y;
     const handles = Array.isArray(dragging.handles) && dragging.handles.length ? dragging.handles : [dragging];
     const previewMetricStartedAt = handles.every((handle) => isOrdinaryVectorEnginePathPreviewCandidate(objectForPathHandleRef(handle)))
       ? vectorEngineMetricNow()
       : null;
+    translatePathGestureOperands(dragging.translations || [], dx, dy);
     handles.forEach((handleRef) => {
       const handleObject = objectForPathHandleRef(handleRef);
-      if (!handleObject) return;
+      if (!handleObject || (!isLineVectorObject(handleObject) && dragging.translations)) return;
       const handleDescriptor = pathHandleDescriptors(handleObject).find((item) => samePathHandle(qualifyPathHandle(handleObject, item), handleRef));
       if (!handleDescriptor) return;
       const origin = handleRef.point || pathHandleCanvasPoint(handleObject, handleDescriptor);
       setPathHandleCanvasPoint(handleObject, handleDescriptor, { x: origin.x + dx, y: origin.y + dy });
     });
-    if (descriptor.handleType !== "endpoint") {
+    descriptor = pathHandleDescriptors(object).find((item) => samePathHandle(item, dragging)) || descriptor;
+    dragging.nodeTypeEdit = false;
+    if (descriptor.handleType !== "endpoint" && (dx !== 0 || dy !== 0 || event.altKey)) {
       const nodeDescriptor = controlNodeDescriptor(object, descriptor);
       const initialType = BEZIER_NODE_TYPES.has(dragging.initialNodeType) ? dragging.initialNodeType : "corner";
       const requestedType = event.altKey ? (initialType === "corner" ? "symmetric" : "corner") : initialType;
@@ -43180,6 +43219,7 @@
       } else if (nodeDescriptor) {
         setBezierNodeType(object, nodeDescriptor, "corner");
       }
+      dragging.nodeTypeEdit = Boolean(event.altKey && nodeDescriptor && bezierNodeType(object, nodeDescriptor) !== initialType);
     }
     dragging.lastPoint = point;
     dragging.dirty = true;
@@ -43234,10 +43274,8 @@
       const object = objectForPathHandleRef(snapshot);
       return object && JSON.stringify(lineVectorEndpoints(object)) !== JSON.stringify(snapshot.endpoints);
     });
-    if (dragging.body && dragging.dirty && !changed) {
-      renderPathNodeOverlay();
-      updatePathNodeStatus(pathNodeEdit.object);
-      syncInspector();
+    if (dragging.dirty && !changed && !dragging.nodeTypeEdit) {
+      restorePathHandleDrag(dragging);
       return;
     }
     if (dragging.dirty) {
@@ -43274,7 +43312,16 @@
           });
         });
         syncInspector();
-        commitHistory(historyLabel, pdfIncrementalHistoryOptions([...touchedObjects.keys()]));
+        const historyOptions = pdfIncrementalHistoryOptions([...touchedObjects.keys()]);
+        if (historyOptions.incrementalObjects?.length) {
+          // Reconstructed scientific PDFs use the same cooperative history
+          // capture as PDF Open. A synchronous snapshot can block subsequent
+          // paint and input after the edited point is already visible.
+          void commitPdfPointHistory(historyLabel, historyOptions).catch((error) => {
+            console.error("Figure Tool could not record a PDF point edit", error);
+            showLongToast("Could not complete the point edit. The previous editing state has been retained.");
+          });
+        } else commitHistory(historyLabel, historyOptions);
       }
       if (dragging.body) {
         showToast("Selection moved");
@@ -66206,6 +66253,7 @@
 
   function configureIsolationGroup(group) {
     if (!isGroupObject(group)) return false;
+    const cacheModeChanged = group.objectCaching !== false;
     if (!group.figureStudioIsolationMeta) {
       group.figureStudioIsolationMeta = {
         interactive: group.interactive === true,
@@ -66221,12 +66269,14 @@
     groupChildren(group).forEach(ensureIsolationObjectIdentity);
     group.dirty = true;
     group.setCoords?.();
+    if (cacheModeChanged) requestCanvasArtworkRender();
     return true;
   }
 
   function restoreIsolationGroupSettings(group) {
     const original = group?.figureStudioIsolationMeta;
     if (!group || !original) return false;
+    const cacheModeChanged = group.objectCaching !== (original.objectCaching !== false);
     group.set({
       interactive: original.interactive === true,
       subTargetCheck: original.subTargetCheck === true,
@@ -66235,6 +66285,7 @@
     delete group.figureStudioIsolationMeta;
     group.dirty = true;
     group.setCoords?.();
+    if (cacheModeChanged) requestCanvasArtworkRender();
     return true;
   }
 
@@ -76999,6 +77050,67 @@
     }
   }
 
+  async function commitPdfPointHistory(label, options = {}) {
+    const ownerCanvas = canvas, ownerTab = activeDocumentTab(), documentId = currentTransformDocumentId();
+    const snapshot = undoStack.at(-1), historyBefore = captureVectorEngineHistoryState();
+    const preferredActiveId = selectedTopLevelObjects()[0]?.figureId || null;
+    const directSelectionState = captureDirectSelectionHistoryState(), isolationState = captureGroupIsolationHistoryState();
+    const recoveryOptions = { preferredActiveId, directSelectionState,
+      dirtyBefore: documentDirty, saveLabelBefore: documentSaveStateLabel,
+      viewBefore: cloneDocumentTabValue(state.view, {}), uiBefore: cloneDocumentTabValue(state.ui, {}) };
+    const release = pinPdfHistorySnapshots([...historyBefore.undoStack, ...historyBefore.redoStack]), unlock = lockPdfHistoryMutations();
+    try {
+      await commitPdfHistory(label, options);
+    } catch (error) {
+      isApplyingHistory = false;
+      if (snapshot && canvas === ownerCanvas && activeDocumentTab() === ownerTab && currentTransformDocumentId() === documentId) {
+        restoreVectorEngineHistoryState(historyBefore);
+        documentDirty = recoveryOptions.dirtyBefore;
+        documentSaveStateLabel = recoveryOptions.saveLabelBefore;
+        try {
+          await restoreHistorySnapshot(snapshot, preferredActiveId, directSelectionState, isolationState);
+        } catch (rollbackError) {
+          retainPublishedPdfHistoryRecovery(snapshot, ownerTab, recoveryOptions);
+          console.error("Figure Tool retained the previous state after a PDF point recovery failure", rollbackError);
+        }
+        syncDocumentSaveState();
+      }
+      throw error;
+    } finally {
+      isApplyingHistory = false;
+      release();
+      unlock();
+    }
+  }
+
+  function retainPublishedPdfHistoryRecovery(snapshot, ownerTab, options = {}) {
+    // Save/tab recovery reads this complete published authority if a live
+    // canvas restore fails. The same path also protects failed Undo/Redo.
+    documentRuntimeRestoreFailed = true;
+    latestHistoryStateCache = { documentId: "", snapshot: "", stateObject: null };
+    const recovery = fileFormatApi().hydrateSharedGroupImportMetadata(pdfHistoryNodeStore.parse(snapshot));
+    hydrateArtifactRefPlaceholders(recovery);
+    if (!ownerTab) return;
+    const retainedProject = normalizedProjectFromPayload(ownerTab.payload);
+    const project = { ...retainedProject, ...recovery,
+      importSettings: recovery.import, exportSettings: recovery.export, preflightSettings: recovery.preflight };
+    ownerTab.payload = buildProjectPayload(project);
+    ownerTab.projectRevision = projectRevision;
+    ownerTab.dirty = options.dirtyBefore;
+    ownerTab.saveLabel = options.saveLabelBefore;
+    ownerTab.undoStack = [...undoStack];
+    ownerTab.redoStack = [...redoStack];
+    ownerTab.historySelection = Array.from(historySelectionState.entries());
+    ownerTab.historyDirectSelection = Array.from(historyDirectSelectionState.entries());
+    ownerTab.historyUndoDirectSelection = Array.from(historyUndoDirectSelectionState.entries());
+    ownerTab.selectionIds = historySelectionState.get(snapshot) || (options.preferredActiveId ? [options.preferredActiveId] : []);
+    ownerTab.directSelection = cloneDocumentTabValue(options.directSelectionState, null);
+    ownerTab.view = options.viewBefore;
+    ownerTab.uiContext = options.uiBefore;
+    ownerTab.artifacts = Array.from(artifactStore.entries());
+    ownerTab.missingArtifacts = Array.from(missingExternalArtifactRefsById.entries());
+  }
+
   function commitSerializedHistory(label, options, serialized) {
     const handoff = options.denseFigureHandoff ? denseFigureHandoffContext(options) : null;
     handoff?.historyWillPublish?.(serialized.snapshot);
@@ -77394,32 +77506,9 @@
           try {
             await restoreHistorySnapshot(prepared.currentSnapshot, preferredActiveId, directSelectionState, isolationState, prepared.rollbackState);
           } catch (rollbackError) {
-            // Retain the complete history head independently of a partially
-            // restored canvas. Save/tab recovery must load this authority first.
-            documentRuntimeRestoreFailed = true;
-            latestHistoryStateCache = { documentId: "", snapshot: "", stateObject: null };
-            const recovery = fileFormatApi().hydrateSharedGroupImportMetadata(pdfHistoryNodeStore.parse(prepared.currentSnapshot));
-            hydrateArtifactRefPlaceholders(recovery);
-            if (ownerTab) {
-              const retainedProject = normalizedProjectFromPayload(ownerTab.payload);
-              const project = { ...retainedProject, ...recovery,
-                importSettings: recovery.import, exportSettings: recovery.export, preflightSettings: recovery.preflight };
-              ownerTab.payload = buildProjectPayload(project);
-              ownerTab.projectRevision = projectRevision;
-              ownerTab.dirty = dirtyBefore;
-              ownerTab.saveLabel = saveLabelBefore;
-              ownerTab.undoStack = [...undoStack];
-              ownerTab.redoStack = [...redoStack];
-              ownerTab.historySelection = Array.from(historySelectionState.entries());
-              ownerTab.historyDirectSelection = Array.from(historyDirectSelectionState.entries());
-              ownerTab.historyUndoDirectSelection = Array.from(historyUndoDirectSelectionState.entries());
-              ownerTab.selectionIds = historySelectionState.get(prepared.currentSnapshot) || (preferredActiveId ? [preferredActiveId] : []);
-              ownerTab.directSelection = cloneDocumentTabValue(directSelectionState, null);
-              ownerTab.view = viewBefore;
-              ownerTab.uiContext = uiBefore;
-              ownerTab.artifacts = Array.from(artifactStore.entries());
-              ownerTab.missingArtifacts = Array.from(missingExternalArtifactRefsById.entries());
-            }
+            retainPublishedPdfHistoryRecovery(prepared.currentSnapshot, ownerTab, {
+              preferredActiveId, directSelectionState, dirtyBefore, saveLabelBefore, viewBefore, uiBefore
+            });
             console.error("Figure Tool could not restore the previous artwork after a history failure", rollbackError);
           }
         }

@@ -6,45 +6,54 @@ The browser site and Superbench consume one committed editor and asset collectio
 scientific scenes. Fixes belong here. Do not maintain a second editor in the
 public source checkout or backport individual fixes into the old beta.6 site.
 
-The [beta.14 release](https://github.com/ian-mersich/superbench-figure-tool/releases/tag/v1.0.0-beta.14)
+The [beta.15 release](https://github.com/ian-mersich/superbench-figure-tool/releases/tag/v1.0.0-beta.15)
 was published on 21 October 2026. Its immutable runtime source is
-`4598703fd1dfd80642983705365f3d07c84f3d1b`, and its selected Superbench package is
-`d44ffb7f767f68fec6db512f51c5955e8be9ee844a5c35816bc8df58d6b245aa`.
+`1a20663eacd6e2ab9059bad1b2d57094dfeda2e0`, and its selected Superbench package is
+`c2daf1a7736f1dcb90e5be15dac5111eac840f9b3b3bcb472fdce88c01034538`.
 The [HTTPS editor](https://imersich.com/superbench/figure_tool/) and actual
 installed selection match all 1,583 payload files; the Core pin, active selection
-and trust record agree. Beta.13 is retained for rollback. Reopen the desktop app
-or refresh the website to load the new editor; an already running app retains
-its loaded version.
+and trust record agree. Beta.14 is retained for rollback. The desktop host is
+unchanged. Reopen the desktop app or refresh the website to load the new editor;
+an already running app retains its loaded version.
 
-This release delivers the 21 October
-[selection interaction slice](architecture/SELECTION_BODY_INTERACTION_2026_10_21.md).
-Exact-package native qualification passed 186 checks across six width/theme
-cases, packaged interaction qualification passed 33 checks, and live HTTPS
-qualification passed 702 checks across the public root and six desktop cases.
-Native visual review accepted all 24 original captures; live visual review
-accepted all 25 originals, including the public root. The public source/tag,
-archive identities, exact-commit CI,
-qualification scopes and deployment are recorded in the
-[beta.14 publication checkpoint](PUBLIC_PUBLICATION.md#beta14--selection-movement-and-editing-continuity-21-october-2026).
+This release delivers the reviewed explicit image-interpolation corrections:
+editable PDF Open and native-format Save/cold Open, actual artwork PDF export,
+and Figure-to-slide copy followed by actual slide PDF export. The copied slide
+retains the existing editable SVG/PNG snapshot semantics with fresh identities,
+without transferring original-PDF editing authority. Its qualification covers
+copy, entry into the slide editor, exports and Save/reopen; new post-copy content
+mutation was not qualified. The beta.14
+[selection interaction slice](architecture/SELECTION_BODY_INTERACTION_2026_10_21.md)
+remains included and passes the 33-check actual-package regression.
 
-Beta.13 previously combined the reviewed document setup, compact editing controls,
-curved-arrow editing and saved-file compatibility work, plus the narrow-window
-Presentation menu correction and updated Style 4 artwork. See the
-[pre-plan source record](architecture/FIGURE_PREPLAN_SYNC_2026_10_19.md) for the
-bounded component checks and earlier candidate state. Scientific PDF V1 and its
-opening/performance qualification remain unfinished. The Fabric controls pilot
-and PDF importer comparison remain experimental and were not adopted.
+Separate exact-package groups pass 50 Figure/image checks, 22 slide checks,
+186 native checks across six cases and 12 hosts, and 119 Core browser checks
+across six cases. Native and Core browser visual reviews each accept 24 originals.
+Actual HTTPS qualification passes 702 checks; independent live review accepts
+25 originals and replays 18 saved-content comparisons. The public source/tag,
+archive identities, exact-commit CI, qualification scopes and deployment are in
+the [beta.15 publication checkpoint](PUBLIC_PUBLICATION.md#beta15--explicit-pdf-image-settings-and-shared-delivery-21-october-2026).
 
-A beta.15 candidate is being qualified from the reviewed explicit image
-interpolation work: editable PDF Open and native-format Save, artwork PDF export,
-and Figure-to-slide copy with actual slide PDF export. It reuses the registered
-image serializer and bundled writer with reconstructible local patch anchors.
-The native qualification fixture includes the actual accepted slide download and
-its source Figure alongside the original Library drawings. Beta.14 remains
-installed and deployed until exact-package native/browser qualification and
-paired promotion pass. Full selection parity, Figure 2 typography and general
-PDF v1 acceptance remain open; see the
-[source qualification](architecture/PDF_IMAGE_INTERPOLATION_EXPORT_2026_10_21.md).
+Beta.13 previously combined document setup, compact editing controls, curved-arrow
+editing, saved-file compatibility and narrow-window Presentation menus. Beta.14
+delivered the native Fabric selection movement and editing-continuity changes.
+The explicit image work now ships in beta.15. Full Selection/Direct Selection,
+genuine Figure 2 typography/geometry, general PDF fidelity and performance/memory
+acceptance remain open. Continue substantive selection behavior and the measured
+Figure 2 typography case next; the reuse-first roadmap and full v1 requirements
+remain unchanged. The earlier Fabric controls pilot and importer comparison retain
+their original experimental scope. See the
+[image source qualification](architecture/PDF_IMAGE_INTERPOLATION_EXPORT_2026_10_21.md).
+
+A beta.16 candidate is being qualified from the committed anchor/curve work at
+`c9c92b5ed325bd3fd1da27d61c8ec0b949d59170`. It corrects off-center grabs,
+attached tangent movement, nested Direct Selection painting and cooperative PDF
+point-history recovery. Its source matrices and actual Affinity comparison are
+recorded in [point and curve continuity](architecture/POINT_AND_CURVE_CONTINUITY_2026_10_21.md).
+The coordinator will qualify the exact committed LF payload before native/public
+delivery. Beta.15 remains selected and deployed until that process passes. Tiny
+ordinary Undo translations and sparse edge-pixel differences retain their precise
+bounded disposition; full selection and scientific-PDF v1 are not accepted.
 
 Host-owned appearance and file controls can differ without forking the editor.
 The website has a persistent Light/Dark control; Superbench uses global App
