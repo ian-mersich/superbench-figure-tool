@@ -12,7 +12,8 @@
     "pdfjs-svg-legacy": "3.11.174",
     "svg2pdf.js": "2.7.0",
     "polygon-clipping": "0.15.7",
-    "dejavu-sans": "2.35"
+    "dejavu-sans": "2.35",
+    "pdfium-wasm": "158.0.8111.0"
   },
   "source_receipts": [
     {
@@ -79,7 +80,10 @@
     "vendor/pdfjs/pdf.mjs",
     "vendor/pdfjs/pdf.worker.mjs",
     "vendor/pdfjs-legacy/pdf.js",
-    "vendor/pdfjs-legacy/pdf.worker.js"
+    "vendor/pdfjs-legacy/pdf.worker.js",
+    "vendor/pdfium/pdfium.esm.js",
+    "vendor/pdfium/pdfium.js",
+    "vendor/pdfium/pdfium.wasm"
   ],
   "runtime_files": [
     {
@@ -247,6 +251,36 @@
       "sha256": "343e858b9e2e5353e0476ece39272e9c1e79f44f34bf845ca104f4189e7dc24c",
       "source": "Exact package/legacy/build/pdf.worker.js member from npm pdfjs-dist-3.11.174.tgz",
       "tarball_shasum_sha1": "5ff47b80f2d58c8dd0d74f615e7c6a7e7e704c4b"
+    },
+    {
+      "path": "vendor/pdfium/pdfium.esm.js",
+      "bytes": 168051,
+      "sha256": "1e1e859bef696fbb858b25b884a0ded18181c373702af7f80ce3db7e7838033e",
+      "kind": "derived-isolated-factory",
+      "id": "pdfium-isolated-factory",
+      "package": "pdfium-wasm",
+      "version": "158.0.8111.0",
+      "source": "Pinned bblanchon supplier binary_artifacts record; factory derivation separately reviewed."
+    },
+    {
+      "path": "vendor/pdfium/pdfium.js",
+      "bytes": 165418,
+      "sha256": "9bdac90c5714c50187d5a96ce04b2dd9b01c5a8e6ded68978536ee3820f6e218",
+      "kind": "supplier-artifact-member",
+      "id": "pdfium-supplier-loader",
+      "package": "pdfium-wasm",
+      "version": "158.0.8111.0",
+      "source": "Pinned bblanchon supplier binary_artifacts record; factory derivation separately reviewed."
+    },
+    {
+      "path": "vendor/pdfium/pdfium.wasm",
+      "bytes": 5457970,
+      "sha256": "bf6edcba65565259103e2fd655faea698b2a0b28800de8b81fe09ebb21ff263d",
+      "kind": "supplier-artifact-member",
+      "id": "pdfium-wasm",
+      "package": "pdfium-wasm",
+      "version": "158.0.8111.0",
+      "source": "Pinned bblanchon supplier binary_artifacts record; factory derivation separately reviewed."
     }
   ],
   "license_files": [
@@ -297,25 +331,163 @@
       "path": "vendor/licenses/dejavu-sans-LICENSE.txt",
       "bytes": 4814,
       "sha256": "a6ed0d41ebee3ca53d22f4d55be20d64291a4f5fa8e303468839993343a830eb"
+    },
+    {
+      "path": "vendor/pdfium/notices/supplier/LICENSE",
+      "bytes": 1177,
+      "sha256": "ba26c1263131696b86c10496b5066b918a20b7161822a80c274d0080105f6c93",
+      "package": "pdfium-wasm"
     }
   ],
   "source_metadata_files": [
     {
       "path": "vendor/source-lock.json",
-      "bytes": 10044,
-      "sha256": "d44b312f8f185ded21629d29fd424ca5b6762f9d7244204f8830a0db6fe50d35"
+      "bytes": 25206,
+      "sha256": "36fae3f90806ee4a4e74a9c8afb043ca61a8b3743dc5b2a4c2c928bbab0d274c"
     },
     {
       "path": "vendor/SOURCE_MATERIALS.md",
-      "bytes": 6276,
-      "sha256": "86705cf0b54123e84cf5617b56651d374f16a1ec45e9ef000598d8fc0edaaa60"
+      "bytes": 8325,
+      "sha256": "0dd643f99d2f7bf14e9bc7dc4e86dbc32499f3a8f7b20b26f136a31efdb38cb7"
     }
   ],
   "notice_files": [
     {
       "path": "vendor/NOTICE",
-      "bytes": 121132,
-      "sha256": "f6320a7800a65f53c49db053d965901de1df64bdedd406b397b63a329823552e"
+      "bytes": 541081,
+      "sha256": "17255dd0791e28beac6a32d42a848d7500edf424d2a0a90d77085c88e18f0850"
+    }
+  ],
+  "native_artifact_files": [
+    {
+      "path": "vendor/pdfium/notices/supplier/abseil.txt",
+      "bytes": 11361,
+      "sha256": "c79a7fea0e3cac04cd43f20e7b648e5a0ff8fa5344e644b0ee09ca1162b62747"
+    },
+    {
+      "path": "vendor/pdfium/notices/supplier/agg23.txt",
+      "bytes": 725,
+      "sha256": "c110d3ea2ad77467ce0dcff7d3337e6c8be8049a5103f4b9bd5fd911a77972e5"
+    },
+    {
+      "path": "vendor/pdfium/notices/supplier/dragonbox-Apache2-LLVM.txt",
+      "bytes": 12262,
+      "sha256": "9e45e856bedccee9f67254082ca11851d954de2fed7448c4bed19ad9aab99a91"
+    },
+    {
+      "path": "vendor/pdfium/notices/supplier/dragonbox-Boost.txt",
+      "bytes": 1338,
+      "sha256": "c9bff75738922193e67fa726fa225535870d2aa1059f91452c411736284ad566"
+    },
+    {
+      "path": "vendor/pdfium/notices/supplier/fast_float.txt",
+      "bytes": 1079,
+      "sha256": "e562f3f974ced7e69dd1db77b820b36bcf8f30377f1aa105723fba449c53c4e6"
+    },
+    {
+      "path": "vendor/pdfium/notices/supplier/freetype.txt",
+      "bytes": 6741,
+      "sha256": "f4b133e25df1f86ad3ffea453aa0e613f0474f34778dbbb3e437e7b2724937d8"
+    },
+    {
+      "path": "vendor/pdfium/notices/supplier/harfbuzz.txt",
+      "bytes": 1971,
+      "sha256": "ba8f810f2455c2f08e2d56bb49b72f37fcf68f1f4fade38977cfd7372050ad64"
+    },
+    {
+      "path": "vendor/pdfium/notices/supplier/highway.txt",
+      "bytes": 11357,
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    },
+    {
+      "path": "vendor/pdfium/notices/supplier/icu.txt",
+      "bytes": 27718,
+      "sha256": "e55522d81edc687a341a4411e0776e54ca654e90147f354a90458aaced4116af"
+    },
+    {
+      "path": "vendor/pdfium/notices/supplier/lcms.txt",
+      "bytes": 1353,
+      "sha256": "7312b68c5b25e9bf2b828706fb4e29588f22705112f411fd42e1f7d84c3d139a"
+    },
+    {
+      "path": "vendor/pdfium/notices/supplier/libjpeg_turbo.ijg",
+      "bytes": 12799,
+      "sha256": "75815e3bf6484201a3c3d17a1bbf10f2e8e3237f84df10a2357ea896db2a81d6"
+    },
+    {
+      "path": "vendor/pdfium/notices/supplier/libjpeg_turbo.md",
+      "bytes": 5620,
+      "sha256": "96f5b328adbb78eeaaec6980d73fd558cb1e4d62560ed615646bc3cf5e532430"
+    },
+    {
+      "path": "vendor/pdfium/notices/supplier/libopenjpeg.txt",
+      "bytes": 1794,
+      "sha256": "c5ab0890a737c2dfa7ba675036554f6d17741d98629b0c2a145354d00617e6b2"
+    },
+    {
+      "path": "vendor/pdfium/notices/supplier/libpng.txt",
+      "bytes": 5345,
+      "sha256": "bdb0a645ea18c60507d0368379b1ac5474b92255fcc2d115e07486a7672ba526"
+    },
+    {
+      "path": "vendor/pdfium/notices/supplier/pdfium.txt",
+      "bytes": 12818,
+      "sha256": "961eacd9633fff6d051db7208b755e9210e30efac7adec3e6a6d52798f0ccf0e"
+    },
+    {
+      "path": "vendor/pdfium/notices/supplier/simdutf.txt",
+      "bytes": 1059,
+      "sha256": "fc8dbc04e03ad4efc08a647ffe7f995b811a95bc04c0e85a56d5277c6593fa5f"
+    },
+    {
+      "path": "vendor/pdfium/notices/supplier/zlib.txt",
+      "bytes": 1332,
+      "sha256": "33fd641c9f3b0e0be64bc78fea9e94807674cdd70c48477599226cb8956565fe"
+    },
+    {
+      "path": "vendor/pdfium/notices/supplemental/emscripten-license.txt",
+      "bytes": 5093,
+      "sha256": "620a78084fc7ca97c0b5dea9abf891f3ffcadfdbf305276f099c9c4e12fc1d86"
+    },
+    {
+      "path": "vendor/pdfium/notices/supplemental/emscripten-musl-copyright.txt",
+      "bytes": 6204,
+      "sha256": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af"
+    },
+    {
+      "path": "vendor/pdfium/notices/supplemental/emscripten-libcxx-license.txt",
+      "bytes": 16703,
+      "sha256": "539dd7aed86e8a4f12cbdd0e6c50c189c7d74847e4fecc64ce2c6ee3a01da38b"
+    },
+    {
+      "path": "vendor/pdfium/notices/supplemental/emscripten-libcxxabi-license.txt",
+      "bytes": 16706,
+      "sha256": "e2b35be49f7284a45b7baca8fc7b3ab7440e7902392b2528a457816b5bb2a15c"
+    },
+    {
+      "path": "vendor/pdfium/notices/supplemental/emscripten-compiler-rt-license.txt",
+      "bytes": 16708,
+      "sha256": "1a8f1058753f1ba890de984e48f0242a3a5c29a6a8f2ed9fd813f36985387e8d"
+    },
+    {
+      "path": "vendor/pdfium/notices/supplemental/emscripten-dlmalloc-source.txt",
+      "bytes": 236511,
+      "sha256": "bc66b32f9a9562b6546cce3c9b1e5d04d91b177ef4682fabc7fe3230efd70150"
+    },
+    {
+      "path": "vendor/pdfium/notices/supplemental/libyuv-LICENSE.txt",
+      "bytes": 1506,
+      "sha256": "2b2cc1180c7e6988328ad2033b04b80117419db9c4c584918bbb3cfec7e9364f"
+    },
+    {
+      "path": "vendor/pdfium/PROVENANCE.json",
+      "bytes": 1286,
+      "sha256": "4f55b78242b8c7733deb71105fe6fdd92e15f88509c2c69a4d45281853942e06"
+    },
+    {
+      "path": "vendor/pdfium/WRAPPER-LICENSE.md",
+      "bytes": 1072,
+      "sha256": "b60c044f81876f350bf5e309071bfc2057c444efd07d2b82790b786049d9d83f"
     }
   ]
 }

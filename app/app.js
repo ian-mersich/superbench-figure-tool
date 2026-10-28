@@ -1397,6 +1397,20 @@
     suppressNextFullCanvasRender = false;
     canvas.requestRenderAll();
   }
+  function retireUnusedPdfTextFonts(excludingTabId = "") {
+    const raster = globalThis.FigureStudioPdfiumTextRasterizer, editable = globalThis.FigureStudioPdfEditableImport;
+    if (!raster || !editable) return;
+    const activeId = activeDocumentTab()?.id, families = new Set();
+    const include = sources => editable.fontsInWorkspace(sources).forEach(font => families.add(font.family));
+    if (activeId && activeId !== excludingTabId) include(state.pdfSources);
+    for (const tab of allDocumentTabs()) {
+      if (tab.id === activeId || tab.id === excludingTabId) continue;
+      include((tab.payload?.project || tab.payload)?.pdfSources);
+    }
+    // Explicitly close native pages/fonts/documents and release their tiles.
+    // No native resource is retained by a serialized scene or history record.
+    raster.retainFamilies(families);
+  }
   function densePdfPageForObject(object) {
     const api = densePdfApi(), page = api?.pageForObject(object);
     return page && api.isPage(page) ? page : null;
@@ -1567,6 +1581,7 @@
   let lastDenseDirectSelectionMaterialization = null;
   let denseDirectSelectionPending = false;
   const artifactStore = new Map();
+  const artifactDataUrlMetricsCache = createArtifactDataUrlMetricsCache();
   let denseFigureHistoryArtifactCapture = null;
   const missingExternalArtifactRefsById = new Map();
   const pdfSourceFontProgramCache = new Map();
@@ -1784,6 +1799,7 @@
   let layerRevealTimer = null;
   let layerRevealRequestSerial = 0;
   let layerDropStatusTimer = null;
+  let layerDropStatusClearAfter = 0;
   const NUMERIC_TRANSFORM_REFERENCES = Object.freeze([
     "top-left", "top-center", "top-right",
     "middle-left", "center", "middle-right",
@@ -3097,7 +3113,7 @@
   function updatePresentationObjectContextMenu() {
     const menu = els.objectContextMenu;
     restoreObjectContextMenuChildren(menu);
-    const commands = new Set(['cut', 'copy', 'paste', 'duplicate', 'delete', 'group', 'ungroup', 'bring-to-front', 'send-to-back', 'edit-text', 'edit-in-figure']);
+    const commands = new Set(['cut', 'copy', 'paste', 'duplicate', 'delete', 'group', 'ungroup', 'bring-to-front', 'send-to-back', 'edit-text', 'edit-in-figure', 'reveal-in-layers']);
     mountObjectContextMenuRelevant(menu, commands, new Set());
     menu.querySelectorAll('[data-context-command]').forEach((button) => {
       const command = button.dataset.contextCommand;
@@ -3548,6 +3564,17 @@
       setFigureLayoutForQa: (layout) => setFigureLayout(layout, { toast: false }),
       resetFigureLayoutForQa: () => resetFigureLayout({ toast: false }),
       getWorkbenchFocusStateForQa,
+      observeCanvasRenderForQa: (observer) => {
+        if (!canvas || typeof observer !== "function") throw new Error("A canvas render observer is required.");
+        const target = canvas;
+        const notify = phase => event => observer({ phase, context: event.ctx,
+          kind: event.ctx === target.contextContainer ? "artwork" : event.ctx === target.contextTop ? "selection" : "derived",
+          viewportTransform: [...target.viewportTransform],
+          backingWidth: event.ctx?.canvas?.width, backingHeight: event.ctx?.canvas?.height });
+        const before = target.on("before:render", notify("before"));
+        const after = target.on("after:render", notify("after"));
+        return () => { before();after(); };
+      },
       getCanvasInteractionPerformanceForQa: (since = 0) => ({
         hitTest: cloneManifestValue(lastCanvasHitTestPerformanceAudit, null),
         fullRender: cloneManifestValue(lastFullCanvasRenderPerformanceAudit, null),
@@ -5909,6 +5936,7 @@
 
   function restoreDocumentTabArtifacts(tab) {
     artifactStore.clear();
+    artifactDataUrlMetricsCache.clear();
     missingExternalArtifactRefsById.clear();
     (tab.artifacts || []).forEach(([key, value]) => artifactStore.set(key, cloneDocumentTabValue(value, value)));
     (tab.missingArtifacts || []).forEach(([key, value]) => missingExternalArtifactRefsById.set(key, cloneDocumentTabValue(value, value)));
@@ -6239,6 +6267,7 @@
     try {
       documentWorkspaceState.activeKind = descriptor.kind;handoff?.pin(undefined, true);
       artifactStore.clear();
+      artifactDataUrlMetricsCache.clear();
       missingExternalArtifactRefsById.clear();
       if (typeof options.prepare === "function") await options.prepare();
       handoff?.current();
@@ -6400,6 +6429,7 @@
       for (const document of preparedDocuments) {
         documentWorkspaceState.activeKind = document.kind;
         artifactStore.clear();
+        artifactDataUrlMetricsCache.clear();
         missingExternalArtifactRefsById.clear();
         await loadProjectPayload(document.payload, {
           markSaved: false,
@@ -6831,6 +6861,7 @@
     const wasBucketActive = bucket.activeId === tab.id;
     const wasVisible = documentWorkspaceState.activeKind === tab.kind && wasBucketActive;
     bucket.tabs.splice(index, 1);
+    retireUnusedPdfTextFonts(tab.id);
     try { await hostAdapter?.releaseDocument?.(tab.nativeDocumentId || tab.id); }
     catch (error) { console.warn("Could not release the native document binding", error); }
     if (bucket.tabs.length) {
@@ -7615,6 +7646,7 @@
       });
       return complete;
     };
+    globalThis.FigureStudioPdfSvgMaterializer?.bindStartupTextStyleDeclaration?.(fabricRef, original, prototype.getCompleteStyleDeclaration);
     if (typeof prototype._createTextCharSpan === "function") {
       const createTextCharSpan = prototype._createTextCharSpan;
       prototype._createTextCharSpan = function (...args) {
@@ -7736,6 +7768,7 @@
       renderLine.call(this, method, context, line, left, top, lineIndex, ...rest);
       if (!isAreaTextObject(this)) renderSemanticListMarker(this, context, left, top, lineIndex);
     };
+    globalThis.FigureStudioPdfSvgMaterializer?.bindStartupTextLineRenderer(fabricRef, renderLine, prototype._renderTextLine);
     prototype.render = function renderWithSemanticAreaListMarkers(context) {
       renderObject.call(this, context);
       renderSemanticAreaListMarkers(this, context);
@@ -8242,7 +8275,8 @@
     forceFullCanvasRender = renderFullCanvas;
     globalThis.FigureStudioNativePathSceneTransform.install({ fabric: fabricRef, canvas,
       isIsolated: () => isGroupIsolationActive(),
-      isNativePath: isNativeUniformPathPaint });
+      isNativePath: isNativeUniformPathPaint,
+      importedPaintKind: object => globalThis.FigureStudioPdfSvgMaterializer?.nativeScenePaintKind(object, fabricRef) });
     const retainCanvasPerformanceAudit = (list, audit) => {
       list.push(audit);
       if (list.length > 48) list.splice(0, list.length - 48);
@@ -9611,6 +9645,7 @@
 
   function restoreArtifactStoreSnapshot(snapshot) {
     artifactStore.clear();
+    artifactDataUrlMetricsCache.clear();
     (snapshot instanceof Map ? snapshot : new Map()).forEach((entry, artifactId) => {
       artifactStore.set(artifactId, cloneManifestValue(entry, entry));
     });
@@ -10547,7 +10582,8 @@
       svg_edit_index: cloneManifestValue(svgEditIndex || previous.svg_edit_index || null, null),
       text_span_count: Number(tree?.object_counts?.text_span_count || previous.text_span_count || 0) || 0,
       canvas_text_mode: vector.canvasTextMode || vector.canvas_text_mode || conversion.canvasTextMode || conversion.canvas_text_mode || previous.canvas_text_mode || "vector-outlines",
-      editable_text_materialized: Boolean(vector.editableImport?.status === "reconstructed" || previous.editable_text_materialized),
+      editable_text_materialized: vector.editableImport?.status === "unsupported" ? false
+        : Boolean(vector.editableImport?.status === "reconstructed" || previous.editable_text_materialized),
       editable_import: cloneManifestValue(vector.editableImport || previous.editable_import || null, null),
       updated_at: new Date().toISOString()
     };
@@ -14539,7 +14575,8 @@
     page.fabric = fabricSnapshot;
     page.updatedAt = new Date().toISOString();
     page.objectCount = canvas.getObjects().filter(isFigureObject).length;
-    if (options.updateThumbnail !== false) page.thumbnail = buildDeckThumbnailDataUrl();
+    if (options.updateThumbnail !== false) page.thumbnail = Object.hasOwn(options, "thumbnail")
+      ? options.thumbnail : buildDeckThumbnailDataUrl();
     return page;
   }
 
@@ -14614,12 +14651,10 @@
     return deck;
   }
 
-  function buildDeckThumbnailDataUrl() {
-    if (!canvas) return "";
-    try {
-      const art = artboardPx();
-      const scale = Math.min(1, 240 / Math.max(1, art.width), 150 / Math.max(1, art.height));
-      return canvas.toDataURL({
+  function deckThumbnailRenderOptions() {
+    const art = artboardPx();
+    const scale = Math.min(1, 240 / Math.max(1, art.width), 150 / Math.max(1, art.height));
+    return {
         format: "png",
         left: 0,
         top: 0,
@@ -14627,10 +14662,41 @@
         height: art.height,
         multiplier: Math.max(0.08, scale),
         enableRetinaScaling: false
-      });
+    };
+  }
+
+  function deckThumbnailViewportTransform(target, options = deckThumbnailRenderOptions()) {
+    // Literal native StaticCanvas.toCanvasElement transform for these options.
+    // Thumbnail rendering disables retina scaling and starts on an identity ctx.
+    const multiplier = options.multiplier, zoom = target.getZoom() * multiplier;
+    const viewport = target.viewportTransform;
+    return [zoom, 0, 0, zoom, (viewport[4] - options.left) * multiplier, (viewport[5] - options.top) * multiplier];
+  }
+
+  function buildDeckThumbnailDataUrl() {
+    if (!canvas) return "";
+    try {
+      return canvas.toDataURL(deckThumbnailRenderOptions());
     } catch {
       return "";
     }
+  }
+
+  async function buildDeckThumbnailDataUrlAsync(ownerCanvas, current) {
+    current();
+    if (!ownerCanvas) return "";
+    // Fabric's PNG Blob path uses the same render operands as toDataURL.
+    // Capture every requested thumbnail; only its encoding may complete later.
+    let blob;
+    try { blob = await ownerCanvas.toBlob(deckThumbnailRenderOptions()); }
+    catch (error) { current(); if (error?.name === "AbortError") throw error; return ""; }
+    current();
+    if (!blob) return "";
+    let thumbnail;
+    try { thumbnail = await readAsDataUrl(blob); }
+    catch (error) { current(); if (error?.name === "AbortError") throw error; return ""; }
+    current();
+    return thumbnail;
   }
 
   async function restoreDeckPage(pageId, options = {}) {
@@ -32922,7 +32988,12 @@
   }
 
   function syncUi() {
-    if (!canvas) return;
+    if (!beginFullUiSync()) return;
+    completeFullUiSync();
+  }
+
+  function beginFullUiSync() {
+    if (!canvas) return false;
     // Explicit full synchronizations supersede any selection fast-path frame
     // queued by Fabric during the same command. Otherwise that older frame can
     // replace the completed contextual controls with the essentials strip.
@@ -32940,6 +33011,10 @@
     syncTemplateButtons();
     syncChromePanels();
     renderMissingAssetRecoveryPanel();
+    return true;
+  }
+
+  function completeFullUiSync() {
     if (state.ui.inspectorTab === "layers") renderLayers();
     if (document.querySelector('[data-sidebar-tab="slides"].active')) renderDeckNavigator();
     syncDeckThemeControls();
@@ -32960,6 +33035,41 @@
     syncHistoryButtons();
     syncMenuState();
     renderProjectSlidesPane();
+  }
+
+  async function syncUiForPdfOpen(current) {
+    current();
+    const ownerCanvas = canvas;
+    if (!beginFullUiSync()) return;
+    current();
+    // Final Open Fit owns the first completed page paint. Retire the earlier
+    // queued add/UI paint before returning to the timer queue.
+    cancelPendingPdfOpenPaint(ownerCanvas);
+    await new Promise((resolve) => window.setTimeout(resolve, 0));
+    current();
+    completeFullUiSync();
+    current();
+    cancelPendingPdfOpenPaint(ownerCanvas);
+  }
+
+  function cancelPendingPdfOpenPaint(ownerCanvas) {
+    if (viewportRenderQualityTimer) window.clearTimeout(viewportRenderQualityTimer);
+    viewportRenderQualityTimer = 0;
+    ownerCanvas.cancelRequestedRender();
+  }
+
+  function finishPdfOpenPublication(publication) {
+    if (!publication) return;
+    try {
+      if (publication.needsPaint && canvas === publication.canvas
+          && currentTransformDocumentId() === publication.documentId) {
+        publication.canvas.requestRenderAll();
+      }
+    } catch (_error) {
+      // Recovery paint must not replace the import's primary failure.
+    } finally {
+      publication.release();
+    }
   }
 
   function renderDeckMasterNavigator() {
@@ -34778,6 +34888,7 @@
       state.documentStyles = normalizeDocumentStyleLibrary();
       state.publicationTypography = normalizePublicationTypographyState(null);
       state.pdfSources = defaultPdfSourceRegistry();
+      retireUnusedPdfTextFonts();
       state.layers = { collapsedBatches: {}, collapsedGroups: {}, pdfParts: defaultPdfPartsManagerFilters() };
       rasterSegmentationPreview = null;
       pdfPartsIsolationSnapshot = null;
@@ -34795,6 +34906,7 @@
       lastStrokeBrushId = strokeBrushLibrary.brushes[0]?.id || "";
       recolorSelectionState = null;
       artifactStore.clear();
+      artifactDataUrlMetricsCache.clear();
       missingExternalArtifactRefsById.clear();
       pdfSourceFontProgramCache.clear();
       lastPdfSourceFontExportAudit = null;
@@ -42245,6 +42357,33 @@
     void nudgeSelectedPdfGradientHandle(move[0], move[1]);
   }
 
+  function pathHandleEventTarget(event, element, object, descriptor) {
+    const fallback = { element, object, descriptor };
+    // Keyboard activation belongs to the focused button, including coincident
+    // handles reached through the existing Tab/Shift+Tab navigation.
+    if (event.type === "click" && event.detail === 0) return fallback;
+    if (!Number.isFinite(event.clientX) || !Number.isFinite(event.clientY) || !document.elementsFromPoint) return fallback;
+    const candidates = document.elementsFromPoint(event.clientX, event.clientY).flatMap((handle) => {
+      // Browser hit testing retains the actual rounded/clipped hit regions.
+      // A bounding rectangle alone would also admit invisible corner space.
+      if (!handle.matches?.(".path-node-handle") || !els.pathNodeOverlay?.contains(handle) || handle.disabled) return [];
+      const ref = { objectId: String(handle.dataset.objectId || ""), commandIndex: Number(handle.dataset.commandIndex), handleType: String(handle.dataset.handleType || "") };
+      const owner = objectForPathHandleRef(ref);
+      if (!owner || !pathNodeEditObjects().includes(owner)) return [];
+      const current = pathHandleDescriptors(owner).find((item) => item.commandIndex === ref.commandIndex && item.handleType === ref.handleType);
+      if (!current) return [];
+      const box = handle.getBoundingClientRect();
+      return [{ element: handle, object: owner, descriptor: current,
+        distance: (event.clientX - box.left - box.width / 2) ** 2 + (event.clientY - box.top - box.height / 2) ** 2,
+        selected: isPathHandleSelected(qualifyPathHandle(owner, current)),
+        identity: `${ref.objectId}/${ref.commandIndex}/${ref.handleType}` }];
+    });
+    candidates.sort((a, b) => a.distance - b.distance || Number(b.selected) - Number(a.selected)
+      || Number(b.descriptor.handleType === "endpoint") - Number(a.descriptor.handleType === "endpoint")
+      || (a.identity < b.identity ? -1 : a.identity > b.identity ? 1 : 0));
+    return candidates[0] || fallback;
+  }
+
   function renderPathNodeOverlay() {
     const object = pathNodeEdit.object;
     if (!els.pathNodeOverlay || !object || !isEditablePathObject(object)) {
@@ -42302,29 +42441,31 @@
       handle.style.top = `${point.y}px`;
       handle.title = descriptor.handleType === "endpoint"
         ? `Move ${pathHandleLabel(descriptor)}`
-        : `Move ${pathHandleLabel(descriptor)}. Shift constrains the angle; Alt breaks or reforms paired handles.`;
+        : `Move ${pathHandleLabel(descriptor)}. Shift constrains the angle; Alt moves only this handle.`;
       handle.setAttribute("aria-label", `Move ${pathHandleLabel(descriptor)}`);
       if (pathNodeEdit.dragging && samePathHandle(pathNodeEdit.dragging, qualified)) handle.classList.add("dragging");
       if (isPathHandleSelected(qualified)) handle.classList.add("selected");
       handle.addEventListener("pointerdown", (event) => {
-        if (isAnchorTool() && descriptor.handleType === "endpoint") {
+        const hit = pathHandleEventTarget(event, handle, item, descriptor);
+        if (isAnchorTool() && hit.descriptor.handleType === "endpoint") {
           event.preventDefault();
           event.stopPropagation();
-          selectPathHandle(item, descriptor.commandIndex, "endpoint");
+          selectPathHandle(hit.object, hit.descriptor.commandIndex, "endpoint");
           if (state.tool === "deleteAnchor") deleteSelectedPathNode();
           else if (state.tool === "anchorConvert") {
-            if (bezierNodeType(item, descriptor) === "corner") smoothSelectedPathNode();
+            if (bezierNodeType(hit.object, hit.descriptor) === "corner") smoothSelectedPathNode();
             else cornerSelectedPathNode();
           }
           renderPathNodeOverlay();
           return;
         }
-        beginPathNodeDrag(event, descriptor.commandIndex, descriptor.handleType, item);
+        beginPathNodeDrag(event, hit.descriptor.commandIndex, hit.descriptor.handleType, hit.object, hit.element);
       });
       handle.addEventListener("click", (event) => {
         event.preventDefault();
         event.stopPropagation();
-        selectPathHandle(item, descriptor.commandIndex, descriptor.handleType, { additive: Boolean(event.shiftKey || event.metaKey || event.ctrlKey) });
+        const hit = pathHandleEventTarget(event, handle, item, descriptor);
+        selectPathHandle(hit.object, hit.descriptor.commandIndex, hit.descriptor.handleType, { additive: Boolean(event.shiftKey || event.metaKey || event.ctrlKey) });
         renderPathNodeOverlay();
       });
       handle.addEventListener("keydown", (event) => onPathHandleKeyDown(event, descriptor, item));
@@ -42674,6 +42815,7 @@
     resetPaintedVectorDirectSelectionCycle();
     event.preventDefault();
     event.stopPropagation();
+    els.viewport?.focus?.({ preventScroll: true });
     try {
       // Segment targets are rebuilt while the path is reshaped. Capture on the
       // stable overlay so pointerup/cancel remains deterministic off canvas.
@@ -42681,8 +42823,14 @@
     } catch (_error) {
       // Synthetic browser input may not expose pointer capture.
     }
-    const point = snapWorkspacePoint(canvasPointFromClient(event), { grid: false, excludeObjects: [object], bypass: snappingBypassed(event) });
-    const localPoint = canvasPointToPathLocal(object, point);
+    const pointer = canvas.getScenePoint(event);
+    const t = closestSegmentT(object, segment, pointer);
+    const point = pathLocalPointToCanvas(object, segmentPointAt(segment, t));
+    const selectedBefore = pathNodeEdit.selected && { ...pathNodeEdit.selected };
+    const selectionBefore = selectedPathHandleRefs().map((handle) => ({ ...handle }));
+    const selectedSegmentBefore = pathNodeEdit.selectedSegment && { ...pathNodeEdit.selectedSegment };
+    const objectBefore = pathNodeEdit.object;
+    const objectsBefore = pathNodeEditObjects().slice();
     pathNodeEdit.object = object;
     pathNodeEdit.objects = pathNodeEditObjects().includes(object) ? pathNodeEditObjects() : [object, ...pathNodeEditObjects()];
     pathNodeEdit.selectedSegment = qualifyPathSegment(object, segment);
@@ -42695,14 +42843,59 @@
         type: segment.type
       },
       startCanvasPoint: point,
-      startLocalPoint: localPoint,
+      pointerStartPoint: pointer,
+      inverseSceneMatrix: fabricRef.util.invertTransform(pathObjectSceneMatrix(object)),
+      t,
       pathSnapshot: copyPathCommands(object.path),
       bezierNodeMeta: cloneManifestValue(object.figureStudioBezierNodeMeta, null),
+      selectedBefore,
+      selectionBefore,
+      selectedSegmentBefore,
+      objectBefore,
+      objectsBefore,
       pointerId: event.pointerId,
       dirty: false
     };
     syncInspector();
     renderPathNodeOverlay();
+  }
+
+  function pathSegmentDragCommands(drag, dx, dy) {
+    const commands = copyPathCommands(drag.pathSnapshot);
+    // Derive every sample from the original operands, including a literal
+    // return to the grab. Never accumulate rounded per-event control deltas.
+    if (dx === 0 && dy === 0) return commands;
+    const index = drag.segment.endCommandIndex;
+    let command = commands[index];
+    let type = String(command?.[0] || "").toUpperCase();
+    if (!["C", "Q"].includes(type)) {
+      const cubic = cubicCommandPreservingSegment(commands, index);
+      if (!cubic) return commands;
+      if (type === "Z") commands.splice(index, 1, cubic, ["Z"]);
+      else commands[index] = cubic;
+      command = cubic;
+      type = "C";
+    }
+    const inverse = drag.inverseSceneMatrix;
+    const localDx = inverse[0] * dx + inverse[2] * dy;
+    const localDy = inverse[1] * dx + inverse[3] * dy;
+    const t = drag.t, u = 1 - t;
+    if (type === "Q") {
+      const weight = 2 * u * t;
+      command[1] += localDx / weight;
+      command[2] += localDy / weight;
+    } else {
+      // The two Bernstein weights describe this material point's response to
+      // its controls. The minimum-displacement solution moves that point by
+      // the pointer vector while retaining both endpoints and other segments.
+      const first = 3 * u * u * t, second = 3 * u * t * t;
+      const squared = first * first + second * second;
+      command[1] += localDx * first / squared;
+      command[2] += localDy * first / squared;
+      command[3] += localDx * second / squared;
+      command[4] += localDy * second / squared;
+    }
+    return commands;
   }
 
   function updatePathSegmentDrag(event) {
@@ -42711,41 +42904,20 @@
     const object = objectForPathHandleRef(drag);
     if (!object || object.locked) return false;
     event.preventDefault?.();
-    let command = object.path?.[drag.segment.endCommandIndex];
-    if (!Array.isArray(command)) return true;
-    const current = canvasPointToPathLocal(object, canvasPointFromClient(event));
-    let type = String(command[0] || "").toUpperCase();
-    if (!["C", "Q"].includes(type)) {
-      const cubic = cubicCommandPreservingSegment(object.path, drag.segment.endCommandIndex);
-      if (cubic) {
-        if (type === "Z") object.path.splice(drag.segment.endCommandIndex, 1, cubic, ["Z"]);
-        else object.path[drag.segment.endCommandIndex] = cubic;
-        command = cubic;
-        type = "C";
-      }
-    }
-    if (type === "C") {
-      command[1] = roundPathCoord(command[1] + (current.x - drag.startLocalPoint.x) * 0.5);
-      command[2] = roundPathCoord(command[2] + (current.y - drag.startLocalPoint.y) * 0.5);
-      command[3] = roundPathCoord(command[3] + (current.x - drag.startLocalPoint.x) * 0.5);
-      command[4] = roundPathCoord(command[4] + (current.y - drag.startLocalPoint.y) * 0.5);
-    } else if (type === "Q") {
-      command[1] = current.x;
-      command[2] = current.y;
-    } else {
-      const previous = previousPathEndpointDescriptor(object, drag.segment.endCommandIndex);
-      const start = previous ? pathCommandEndpoint(previous.command) : null;
-      const end = pathCommandEndpoint(command);
-      if (start && end) {
-        const controls = straightControls(start, end);
-        object.path[drag.segment.endCommandIndex] = ["C", current.x, current.y, controls.c2.x, controls.c2.y, end.x, end.y];
-      }
-    }
-    drag.startLocalPoint = current;
-    drag.dirty = true;
+    const pointer = canvas.getScenePoint(event);
+    const current = snapWorkspacePoint({
+      x: drag.startCanvasPoint.x + (pointer.x - drag.pointerStartPoint.x),
+      y: drag.startCanvasPoint.y + (pointer.y - drag.pointerStartPoint.y)
+    }, { grid: false, excludeObjects: [object], bypass: snappingBypassed(event) });
+    const returned = pointer.x === drag.pointerStartPoint.x && pointer.y === drag.pointerStartPoint.y;
+    const dx = returned ? 0 : current.x - drag.startCanvasPoint.x;
+    const dy = returned ? 0 : current.y - drag.startCanvasPoint.y;
+    object.path = pathSegmentDragCommands(drag, dx, dy);
+    drag.dirty = JSON.stringify(object.path) !== JSON.stringify(drag.pathSnapshot);
     object.dirty = true;
     if (typeof object.set === "function") object.set({ path: object.path });
     object.setCoords?.();
+    for (let parent = object.group; parent; parent = parent.group) parent.dirty = true;
     renderPathNodeOverlay();
     canvas.requestRenderAll();
     return true;
@@ -42764,15 +42936,24 @@
       // Pointer capture may already be gone after an outside-canvas pointerup.
     }
     if (object && drag.dirty) {
-      if (pdfSourceIdForObject(object)) setPathCommandsWithSceneStableFrame(object, object.path || []);
+      setPathCommandsWithSceneStableFrame(object, object.path || []);
       recordPathGeometryEdit(object, "path_segment_reshape", object.path || [], {
         action: "reshape_path_segment",
         command_index: drag.segment.endCommandIndex,
         commandIndex: drag.segment.endCommandIndex,
         historyLabel: "Path segment reshaped"
       });
-      commitHistory("Path segment reshaped", pdfIncrementalHistoryOptions([object]));
       syncInspector();
+      // Final path dimensions can rebase ancestor paint transforms after the
+      // last pointer preview. Publish that settled frame before history yields.
+      requestCanvasArtworkRender();
+      const options = pdfIncrementalHistoryOptions([object]);
+      if (options.incrementalObjects?.length) {
+        void commitPdfPointHistory("Path segment reshaped", options).catch((error) => {
+          console.error("Figure Tool could not record a PDF segment edit", error);
+          showLongToast("Could not complete the segment edit. The previous editing state has been retained.");
+        });
+      } else commitHistory("Path segment reshaped", options);
     }
     renderPathNodeOverlay();
     return true;
@@ -42794,10 +42975,23 @@
     if (object && Array.isArray(drag.pathSnapshot)) {
       object.path = copyPathCommands(drag.pathSnapshot);
       object.set?.({ path: object.path });
-      if (drag.bezierNodeMeta) setBezierNodeMeta(object, drag.bezierNodeMeta);
+      if (drag.bezierNodeMeta) {
+        const metadata = cloneManifestValue(drag.bezierNodeMeta, null);
+        object.figureStudioBezierNodeMeta = metadata;
+        object.set?.({ figureStudioBezierNodeMeta: metadata });
+      } else {
+        delete object.figureStudioBezierNodeMeta;
+        object.set?.({ figureStudioBezierNodeMeta: undefined });
+      }
       object.dirty = true;
       object.setCoords?.();
+      for (let parent = object.group; parent; parent = parent.group) parent.dirty = true;
     }
+    pathNodeEdit.selectedHandles = drag.selectionBefore || [];
+    pathNodeEdit.selected = drag.selectedBefore || null;
+    pathNodeEdit.selectedSegment = drag.selectedSegmentBefore || null;
+    pathNodeEdit.object = drag.objectBefore || null;
+    pathNodeEdit.objects = drag.objectsBefore || [];
     renderPathNodeOverlay();
     canvas?.requestRenderAll?.();
     syncInspector();
@@ -42825,8 +43019,7 @@
   function prepareNativePathBodyDrag(event) {
     if (state.tool !== "directSelect" || event.button !== 0 || event.isPrimary === false
         || event.altKey || pathNodeEdit.dragging || pathNodeEdit.segmentDrag || pathNodeEdit.marquee) return false;
-    const selected = selectedPathHandleRefs();
-    if (!selected.length) return false;
+    let selected = selectedPathHandleRefs();
     const point = canvas.getScenePoint(event);
     const found = canvas.findTarget?.(event);
     const front = isGroupIsolationActive()
@@ -42834,6 +43027,25 @@
         ? scientificAssetEditablePathAtPoint(activeIsolationGroup(), point, event.pointerType === "touch" ? "touch" : "mouse")
         : isolationChildAtScenePoint(activeIsolationGroup(), point)
       : found?.target || found;
+    if (isEditablePathObject(front) && isDirectSelectionEditableObject(front) && hasVisiblePathFill(front)
+        && (!selected.length || (!event.shiftKey && !event.metaKey && !event.ctrlKey
+          && !selected.some((handle) => handle.objectId === pathEditObjectId(front))))
+        && vectorPaintedHitTest(front, point, event.pointerType === "touch" ? "touch" : "mouse")) {
+      // Establish the complete point selection before Fabric chooses this
+      // pointerdown's transform. A filled-body click is not an anchor hit just
+      // because an anchor happens to be nearby.
+      if (isGroupIsolationActive()) {
+        if (!selectIsolatedObject(front, { sync: false, toast: false, revealInLayers: false })) return false;
+      } else canvas.setActiveObject(front);
+      startPathNodeEdit(front, { toast: false, deferInitialVisuals: true });
+      pathNodeEdit.selectedHandles = pathNodeDescriptors(front).map((descriptor) => qualifyPathHandle(front, descriptor));
+      pathNodeEdit.selected = pathNodeEdit.selectedHandles.at(-1) || null;
+      selected = selectedPathHandleRefs();
+      renderPathNodeOverlay();
+      updatePathNodeStatus(front);
+      syncInspector();
+    }
+    if (!selected.length) return false;
     const object = pathNodeEditObjects().slice().reverse().find((item) => (
       isDirectSelectionEditableObject(item)
       && (front === item || objectIsWithinGroup(item, front))
@@ -42966,7 +43178,17 @@
       if (!wholePath) descriptors.forEach((descriptor) => {
         const anchor = descriptor.handleType === "endpoint" ? descriptor : controlNodeDescriptor(object, descriptor);
         const selectedDirectly = selectedForObject.some((handle) => samePathHandle(qualifyPathHandle(object, descriptor), handle));
-        const selectedAnchor = anchor && selectedForObject.some((handle) => samePathHandle(qualifyPathHandle(object, anchor), handle));
+        let selectedAnchor = anchor && selectedForObject.some((handle) => samePathHandle(qualifyPathHandle(object, anchor), handle));
+        // A quadratic segment has one control shared by its two anchors. Carry
+        // it with either selected anchor, including an explicit closing seam.
+        if (!selectedAnchor && descriptor.handleType === "control1" && String(descriptor.command?.[0]).toUpperCase() === "Q") {
+          const contour = pathContourForCommand(object.path, descriptor.commandIndex);
+          const incoming = endpoints.find((endpoint) => endpoint.commandIndex === descriptor.commandIndex)
+            || (contour?.explicitCommandIndex === descriptor.commandIndex
+              ? endpoints.find((endpoint) => endpoint.contourIndex === contour.contourIndex && endpoint.isContourStart)
+              : null);
+          selectedAnchor = incoming && selectedForObject.some((handle) => samePathHandle(qualifyPathHandle(object, incoming), handle));
+        }
         if (!selectedDirectly && !selectedAnchor) return;
         add(descriptor.commandIndex, descriptor.xIndex, descriptor.yIndex);
         if (descriptor.handleType === "endpoint" && descriptor.isContourStart) {
@@ -42987,7 +43209,7 @@
     });
   }
 
-  function beginPathNodeDrag(event, commandIndex, handleType, object = pathNodeEdit.object) {
+  function beginPathNodeDrag(event, commandIndex, handleType, object = pathNodeEdit.object, handleElement = event.currentTarget) {
     if (!object) return;
     resetPaintedVectorDirectSelectionCycle();
     event.preventDefault();
@@ -43067,8 +43289,8 @@
       currentHandleSelected,
       selectionModifier
     };
-    event.currentTarget.classList.add("dragging");
-    event.currentTarget.classList.add("selected");
+    handleElement.classList.add("dragging");
+    handleElement.classList.add("selected");
   }
 
   function cancelPathNodeDrag(event = null) {
@@ -43162,6 +43384,8 @@
           y: opposite.y + Math.sin(angle) * length
         };
       }
+    } else if (event.shiftKey && descriptor.handleType === "endpoint") {
+      point = constrainStraightLineDragPoint(startPoint, point);
     } else if (event.shiftKey && descriptor.handleType !== "endpoint") {
       const anchorDescriptor = controlNodeDescriptor(object, descriptor);
       if (anchorDescriptor) {
@@ -43191,11 +43415,34 @@
     });
     descriptor = pathHandleDescriptors(object).find((item) => samePathHandle(item, dragging)) || descriptor;
     dragging.nodeTypeEdit = false;
-    if (descriptor.handleType !== "endpoint" && (dx !== 0 || dy !== 0 || event.altKey)) {
+    const returnedControl = descriptor.handleType !== "endpoint" && dx === 0 && dy === 0;
+    const initialPath = descriptor.handleType !== "endpoint"
+      && dragging.pathSnapshots?.find((snapshot) => snapshot.objectId === pathEditObjectId(object));
+    if (returnedControl && initialPath) {
+      // Returning to the grab is a no-op even after a modifier changed the
+      // tangent relationship. Preserve complete original metadata, including
+      // its absence, rather than normalizing it through a node conversion.
+      if (initialPath.bezierNodeMeta) {
+        object.figureStudioBezierNodeMeta = cloneManifestValue(initialPath.bezierNodeMeta, null);
+        object.set?.({ figureStudioBezierNodeMeta: object.figureStudioBezierNodeMeta });
+      } else {
+        delete object.figureStudioBezierNodeMeta;
+        object.set?.({ figureStudioBezierNodeMeta: undefined });
+      }
+    }
+    if (descriptor.handleType !== "endpoint" && !returnedControl) {
       const nodeDescriptor = controlNodeDescriptor(object, descriptor);
       const initialType = BEZIER_NODE_TYPES.has(dragging.initialNodeType) ? dragging.initialNodeType : "corner";
-      const requestedType = event.altKey ? (initialType === "corner" ? "symmetric" : "corner") : initialType;
+      const requestedType = event.altKey ? "corner" : initialType;
       const opposite = oppositePathControlDescriptor(object, descriptor);
+      // Alt edits one side, including an already-corner node. Read the other
+      // side from pointerdown, so prior coupled samples or selection membership
+      // cannot accumulate a deformation into the nominally untouched handle.
+      const initialOpposite = event.altKey && opposite && initialPath?.path?.[opposite.commandIndex];
+      if (initialOpposite) {
+        opposite.command[opposite.xIndex] = initialOpposite[opposite.xIndex];
+        opposite.command[opposite.yIndex] = initialOpposite[opposite.yIndex];
+      }
       const oppositeSelected = opposite && handles.some((handle) => (
         handle.objectId === pathEditObjectId(object)
         && samePathHandle(handle, opposite)
@@ -43312,6 +43559,9 @@
           });
         });
         syncInspector();
+        // Fit-content layout can rebase siblings while settling the path frame.
+        // Queue the resulting artwork before cooperative history capture yields.
+        requestCanvasArtworkRender();
         const historyOptions = pdfIncrementalHistoryOptions([...touchedObjects.keys()]);
         if (historyOptions.incrementalObjects?.length) {
           // Reconstructed scientific PDFs use the same cooperative history
@@ -45689,7 +45939,43 @@
   }
 
   function closestSegmentRawT(object, segment, canvasPoint) {
-    const samples = samplePathSegment(segment, 48);
+    // Authoring interpolation rounds stored coordinates. Nearest-point search
+    // must instead minimize distance to the continuous painted curve: rounding
+    // each de Casteljau step creates false minima and changes the control split
+    // of an off-center segment drag even when its material point looks correct.
+    const endpoint = (command, fallback) => {
+      const indices = pathEndpointIndices(command);
+      return indices ? { x: Number(command[indices[0]]), y: Number(command[indices[1]]) } : fallback;
+    };
+    const type = String(segment.type || "").toUpperCase();
+    const command = segment.command;
+    const start = endpoint(segment.previousCommand, segment.start);
+    const end = type === "Z"
+      ? endpoint(object.path?.[segment.subpathStartCommandIndex], segment.end)
+      : endpoint(command, segment.end);
+    const points = [start];
+    if (type === "C") {
+      points.push({ x: Number(command[1]), y: Number(command[2]) }, { x: Number(command[3]), y: Number(command[4]) });
+    } else if (type === "S") {
+      const previous = segment.previousCommand, previousType = String(previous?.[0] || "").toUpperCase();
+      const index = previousType === "C" ? 3 : previousType === "S" ? 1 : null;
+      points.push(index === null ? start : { x: start.x * 2 - Number(previous[index]), y: start.y * 2 - Number(previous[index + 1]) });
+      points.push({ x: Number(command[1]), y: Number(command[2]) });
+    } else if (type === "Q") {
+      points.push({ x: Number(command[1]), y: Number(command[2]) });
+    }
+    points.push(end);
+    const pointAt = (t) => {
+      const working = points.map((point) => ({ ...point }));
+      for (let count = working.length - 1; count > 0; count -= 1) {
+        for (let index = 0; index < count; index += 1) {
+          working[index].x += (working[index + 1].x - working[index].x) * t;
+          working[index].y += (working[index + 1].y - working[index].y) * t;
+        }
+      }
+      return working[0];
+    };
+    const samples = Array.from({ length: 49 }, (_, index) => pointAt(index / 48));
     let best = { t: 0.5, distance: Infinity, index: 0 };
     for (let index = 0; index < samples.length - 1; index += 1) {
       const a = pathLocalPointToCanvas(object, samples[index]);
@@ -45709,12 +45995,12 @@
     let low = Math.max(0, (best.index - 1) / (samples.length - 1));
     let high = Math.min(1, (best.index + 2) / (samples.length - 1));
     const squaredDistance = (t) => {
-      const point = pathLocalPointToCanvas(object, segmentPointAt(segment, t));
+      const point = pathLocalPointToCanvas(object, pointAt(t));
       const dx = point.x - canvasPoint.x;
       const dy = point.y - canvasPoint.y;
       return dx * dx + dy * dy;
     };
-    for (let iteration = 0; iteration < 18; iteration += 1) {
+    for (let iteration = 0; iteration < 36; iteration += 1) {
       const left = low + (high - low) / 3;
       const right = high - (high - low) / 3;
       if (squaredDistance(left) <= squaredDistance(right)) high = right;
@@ -58741,19 +59027,24 @@
     if (!status) return;
     clearTimeout(layerDropStatusTimer);
     const text = String(message || "").trim();
-    status.textContent = text;
-    status.hidden = !text;
+    if (status.textContent !== text) {
+      status.textContent = text;
+      status.scrollTop = 0;
+    }
+    status.hidden = !text && !layerTreeDrag.active;
+    if (layerTreeDrag.active) status.dataset.layerDragActive = "true";
+    else delete status.dataset.layerDragActive;
     status.dataset.layerDropState = text ? String(options.kind || "info") : "";
-    if (text && Number(options.clearAfter || 0) > 0) {
-      layerDropStatusTimer = setTimeout(() => {
-        status.textContent = "";
-        status.hidden = true;
-        status.dataset.layerDropState = "";
-      }, Number(options.clearAfter));
+    layerDropStatusClearAfter = text ? Math.max(0, Number(options.clearAfter) || 0) : 0;
+    // Keep the status slot and its text stable for the held native gesture.
+    // Its ordinary transient timer starts when the drag owner releases it.
+    if (!layerTreeDrag.active && layerDropStatusClearAfter > 0) {
+      layerDropStatusTimer = setTimeout(() => setLayerDropStatus(""), layerDropStatusClearAfter);
     }
   }
 
   function clearLayerTreeDrag(options = {}) {
+    const wasActive = layerTreeDrag.active;
     clearLayerDropMarkers();
     layerTreeDrag = {
       active: false,
@@ -58764,7 +59055,16 @@
       targetElement: null,
       lastInvalid: null
     };
-    if (options.keepStatus !== true) setLayerDropStatus("");
+    const status = els.layerDropStatus || document.getElementById("layerDropStatus");
+    if (options.keepStatus === true && status) {
+      delete status.dataset.layerDragActive;
+      if (wasActive) {
+        setLayerDropStatus(status.textContent, {
+          kind: status.dataset.layerDropState,
+          clearAfter: layerDropStatusClearAfter
+        });
+      }
+    } else setLayerDropStatus("");
   }
 
   function clearLayerTreeTransientUi() {
@@ -59261,6 +59561,13 @@
       if (els.objectSearchScope) els.objectSearchScope.value = "layer";
       setLayerDropStatus("Layers search cleared to reveal the selected artwork.", { kind: "info", clearAfter: 3200 });
     }
+    if (isPresentationDocument()) {
+      figureStudioRoot().dataset.deckFormat = 'open';
+      if (projectSlidesOpen) setProjectSlidesOpen(false);
+      if (railLayout.right.mode === 'floating' && railLayout.right.collapsed) {
+        setRailCollapsed('right', false, { toast: false, focus: false, preserveWorkspace: true });
+      }
+    }
     state.ui.rightInspectorVisible = true;
     syncChromePanels();
     setInspectorTab("layers");
@@ -59681,8 +59988,8 @@
       const parent = findNestedObjectByFigureId(record.parentId);
       const siblings = parent && recallAvailable(parent) ? available.filter((object) => object.group === parent) : [];
       if (siblings.length) {
-        selectLayerTreeObject(siblings[0], { toast: false });
-        siblings.slice(1).forEach((object) => selectLayerTreeObject(object, { additive: true, toast: false }));
+        selectLayerTreeObject(siblings[0], { sync: false, toast: false });
+        siblings.slice(1).forEach((object) => selectLayerTreeObject(object, { additive: true, sync: false, toast: false }));
         restored = siblings;
       }
     } else {
@@ -59820,8 +60127,8 @@
     const selectedIds = new Set(selectedObjects.map((object) => String(object.figureId || "")).filter(Boolean));
     const selectionPathIds = layerTreeSelectionPathIds(selectedObjects);
     const selectedLayerIds = new Set(selectedObjects.map((object) => objectLayerId(topLevelLayerObject(object))).filter(Boolean));
-    let rows = Array.from(els.layersList.querySelectorAll(".layer-item[data-layer-id]"));
-    let renderedIds = new Set(rows.map((row) => String(row.dataset.layerId || "")));
+    let rows = Array.from(els.layersList.querySelectorAll(".layer-item[data-layer-id], .layer-child-item[data-layer-child-id]"));
+    let renderedIds = new Set(rows.map((row) => String(row.dataset.layerChildId || row.dataset.layerId || "")));
     const missingSelectedPath = Array.from(selectionPathIds).some((id) => !renderedIds.has(String(id)));
     if (missingSelectedPath && !layerTreeDrag.active) {
       const selected = new Set(selectedObjects.map((object) => object.figureId));
@@ -59835,16 +60142,19 @@
           section?.querySelector(".object-layer-body")?.prepend(replacement);
         }
       });
-      rows = Array.from(els.layersList.querySelectorAll(".layer-item[data-layer-id]"));
-      renderedIds = new Set(rows.map((row) => String(row.dataset.layerId || "")));
+      rows = Array.from(els.layersList.querySelectorAll(".layer-item[data-layer-id], .layer-child-item[data-layer-child-id]"));
+      renderedIds = new Set(rows.map((row) => String(row.dataset.layerChildId || row.dataset.layerId || "")));
       if (Array.from(selectionPathIds).some((id) => !renderedIds.has(String(id))) && !rows.length) {
         renderLayers();
         return;
       }
     }
     rows.forEach((row) => {
-      const id = String(row.dataset.layerId || "");
-      row.classList.toggle("selected", selectedIds.has(id));
+      const id = String(row.dataset.layerChildId || row.dataset.layerId || "");
+      const selected = row.dataset.layerClipPath === "true"
+        ? Boolean(id && String(pathNodeEdit.object?.figureId || "") === id)
+        : selectedIds.has(id);
+      row.classList.toggle("selected", selected);
       row.classList.toggle("contains-selected-child", !selectedIds.has(id) && selectionPathIds.has(id));
     });
     els.layersList.querySelectorAll(".object-layer[data-object-layer-id]").forEach((section) => {
@@ -66418,6 +66728,7 @@
     requestSelectionOverlayRender();
     if (options.sync !== false) {
       syncSelectionStatusOnly();
+      syncInspector();
       scheduleSelectionUiSync();
     }
     if (options.toast && selected.length > 1) showToast(`${selected.length} group objects selected`);
@@ -66460,6 +66771,7 @@
     renderGroupIsolationBar();
     syncSelectionStatusOnly();
     syncMenuState();
+    syncInspector();
     scheduleSelectionUiSync();
     requestSelectionOverlayRender();
     if (options.toast !== false) showToast(`Editing inside ${group.name || "group"}`);
@@ -66497,8 +66809,8 @@
       }
     }
     return options.additive
-      ? toggleIsolatedObjectSelection(object, { toast: options.toast !== false })
-      : selectIsolatedObject(object, { toast: options.toast !== false });
+      ? toggleIsolatedObjectSelection(object, { sync: options.sync, toast: options.toast !== false })
+      : selectIsolatedObject(object, { sync: options.sync, toast: options.toast !== false });
   }
 
   function exitIsolationToLevel(level) {
@@ -67795,6 +68107,7 @@
       if (offset.x || offset.y) items.forEach((clone) => moveObjectBySceneDelta(clone, offset.x, offset.y));
       refreshObjectHierarchy(items.at(-1));
     });
+    if (grouped.size) requestCanvasArtworkRender();
     if (options.repeatOperation) applyRepeatOperation(clones, options.repeatOperation);
     if (topLevelClones.length === clones.length) setActiveObjects(clones);
     else selectIsolatedObjects(clones.filter((clone) => parentByClone.get(clone)), { sync: false });
@@ -75626,7 +75939,6 @@
       return;
     }
     const missing = getMissingExternalArtifactRefs();
-    const resolved = resolvedExternalArtifactRefCount();
     updatePackageImportState({ missing_asset_count: missing.length });
     if (!missing.length) {
       els.assetRecoveryPanel.hidden = true;
@@ -75634,6 +75946,7 @@
       els.assetRecoverySummary.textContent = "";
       return;
     }
+    const resolved = resolvedExternalArtifactRefCount();
     els.assetRecoveryPanel.hidden = false;
     els.assetRecoverySummary.innerHTML = `
       ${missing.length} external asset${missing.length === 1 ? "" : "s"} missing. Figure Tool is showing placeholders until the matching asset file${missing.length === 1 ? "" : "s"} are located.
@@ -76850,7 +77163,7 @@
     const stats = {};
     const yieldToUi = yieldPdfHistoryToUi;
     const api = globalThis.FigureStudioPdfSceneNumberPrecision;
-    const batches = { yieldEvery: 128, yieldToUi, createRecord: api.createPlainJsonRecord };
+    const batches = { yieldEvery: 1024, maxSliceMs: 8, yieldToUi, createRecord: api.createPlainJsonRecord };
     const fabric = await capturePdfFabricSnapshotAsync(batches);
     if (options.captureDeck !== false) {
       const pageSource = await fileFormatApi().compactSharedGroupImportMetadataAsync(fabric, batches);
@@ -78075,14 +78388,14 @@
       }
     };
     assertCurrent();
-    const batches = { yieldEvery: 128, maxSliceMs: 8,
+    const batches = { yieldEvery: 1024, maxSliceMs: 8,
       yieldToUi: async () => { assertCurrent(); await yieldPdfHistoryToUi(); assertCurrent(); } };
     const precision = globalThis.FigureStudioPdfSceneNumberPrecision;
     batches.createRecord = precision.createPlainJsonRecord;
     const fabric = await capturePdfFabricSnapshotAsync({ ...batches, assertCurrent });
     const deckFabric = await precision.cloneJsonAsync(fabric, batches);
     assertCurrent();
-    const project = await buildProjectJsonAsync({ fabricSnapshot: fabric, detachedDeckFabric: deckFabric }, batches);
+    const project = await buildProjectJsonAsync({ fabricSnapshot: fabric, detachedDeckFabric: deckFabric, assertCurrent }, batches);
     const compacted = await fileFormatApi().compactSharedGroupImportMetadataAsync(buildProjectPayload(project), batches);
     const detachedPayload = await precision.cloneJsonAsync(compacted, batches);
     assertCurrent();
@@ -80084,14 +80397,25 @@
   }
 
   async function buildProjectJsonAsync(options, batches) {
-    const steps = buildProjectJsonSteps(options);
+    const steps = buildProjectJsonSteps({ ...options, prepareThumbnailAsync: true });
     let prepared;
     while (true) {
       const step = steps.next(prepared);
       if (step.done) return step.value;
-      prepared = step.value?.prepareDeck
-        ? await deckSnapshotForSerializationAsync(step.value.prepareDeck, batches)
-        : undefined;
+      if (step.value?.prepareThumbnail) {
+        const { ownerCanvas, page } = step.value.prepareThumbnail;
+        const current = () => {
+          options.assertCurrent?.();
+          if (masterLayoutEditor.active || canvas !== ownerCanvas || activeDeckPage() !== page) {
+            throw Object.assign(new Error("The page changed while its thumbnail was being captured."), { code: "BROWSER_CAPTURE_STALE" });
+          }
+        };
+        const thumbnail = await buildDeckThumbnailDataUrlAsync(ownerCanvas, current);
+        current();
+        prepared = { page, thumbnail };
+      } else prepared = step.value?.prepareDeck
+          ? await deckSnapshotForSerializationAsync(step.value.prepareDeck, batches)
+          : undefined;
       await batches.yieldToUi();
     }
   }
@@ -80119,9 +80443,16 @@
       || compactReusableArtworkReferences(stripMasterInheritanceFromSnapshot(canonicalizeLiveBooleanFabricSnapshot(canvas.toJSON(CUSTOM_PROPS)), { copy: false })));
     // Reuse this complete detached scene for the storage estimate instead of
     // serializing the same dense live canvas again.
-    if (options.captureDeck !== false) captureActiveDeckPage(options.detachedDeckFabric
-      ? { fabric: options.detachedDeckFabric, detachedFabric: true }
-      : { fabric });
+    const thumbnailCapture = options.prepareThumbnailAsync && options.captureDeck !== false
+      && !masterLayoutEditor.active && activeDeckPage()
+      ? yield { prepareThumbnail: { ownerCanvas: canvas, page: activeDeckPage() } } : null;
+    if (thumbnailCapture && (masterLayoutEditor.active || activeDeckPage() !== thumbnailCapture.page)) {
+      throw Object.assign(new Error("The page changed while its thumbnail was being captured."), { code: "BROWSER_CAPTURE_STALE" });
+    }
+    if (options.captureDeck !== false) captureActiveDeckPage({
+      ...(options.detachedDeckFabric ? { fabric: options.detachedDeckFabric, detachedFabric: true } : { fabric }),
+      ...(thumbnailCapture ? { thumbnail: thumbnailCapture.thumbnail } : {})
+    });
     yield;
     refreshCanvasArtifactRefs();
     const artifactRefs = artifactRefsFromObjects();
@@ -82011,13 +82342,52 @@
       : approxSerializedBytes(safeDecodeDataUrlPayload(payload));
   }
 
+  function createArtifactDataUrlMetricsCache(maximumEntries = 32, maximumStringBytes = 8 * 1024 * 1024) {
+    if (!Number.isSafeInteger(maximumEntries) || maximumEntries < 1 || !Number.isSafeInteger(maximumStringBytes) || maximumStringBytes < 0) {
+      throw new TypeError("Invalid embedded-source measurement cache bounds.");
+    }
+    const entries = new Map();
+    let stringBytes = 0;
+    return Object.freeze({
+      measure(source, compute) {
+        if (typeof source !== "string") throw new TypeError("Embedded-source measurement key must be a string.");
+        const prior = entries.get(source);
+        if (prior) {
+          entries.delete(source);
+          entries.set(source, prior);
+          return prior;
+        }
+        const measured = compute();
+        if (!Number.isSafeInteger(measured.sizeBytes) || measured.sizeBytes < 0 || typeof measured.hash !== "string") {
+          throw new TypeError("Invalid embedded-source measurements.");
+        }
+        const metrics = Object.freeze({ sizeBytes: measured.sizeBytes, hash: measured.hash });
+        const bytes = source.length * 2;
+        if (bytes > maximumStringBytes) return metrics;
+        while (entries.size >= maximumEntries || stringBytes + bytes > maximumStringBytes) {
+          const oldest = entries.keys().next().value;
+          stringBytes -= oldest.length * 2;
+          entries.delete(oldest);
+        }
+        entries.set(source, metrics);
+        stringBytes += bytes;
+        return metrics;
+      },
+      clear() { entries.clear(); stringBytes = 0; },
+      get size() { return entries.size; },
+      get stringBytes() { return stringBytes; }
+    });
+  }
+
   function artifactDataUrlContentMetrics(text, cache = null) {
     const source = String(text || "");
     if (cache?.has(source)) return cache.get(source);
-    const metrics = {
+    // This bounded memo holds only measurements of the literal immutable URL,
+    // never a serialized reference's asserted size/hash or a decoded resource.
+    const metrics = artifactDataUrlMetricsCache.measure(source, () => ({
       sizeBytes: dataUrlByteLength(source),
       hash: stableStringHash(source)
-    };
+    }));
     if (cache) cache.set(source, metrics);
     return metrics;
   }
@@ -82931,7 +83301,9 @@
     // before its first child edit, as the public import path does.
     globalThis.FigureStudioPdfSvgMaterializer?.finalizeImportedAuthoringLayout?.(canvas.getObjects(), { fabric: fabricRef });
     current();
-    canvas.requestRenderAll();
+    retireUnusedPdfTextFonts();
+    current();
+    requestCanvasArtworkRender();
     current();
   }
 
@@ -83419,7 +83791,8 @@
     const uiCurrent = dense ? canvasLoadUiIntent(target) : null;
     if (dense) assertDenseCanvasIdle(intent);
     const editablePdf = globalThis.FigureStudioPdfEditableImport;
-    if (editablePdf) await editablePdf.registerFonts(editablePdf.fontsInWorkspace(state.pdfSources));
+    if (editablePdf) await editablePdf.registerFonts(editablePdf.fontsInWorkspace(state.pdfSources), undefined,
+      { current: () => { assertNativeCanvasLoad(intent);handoff?.current();if (uiCurrent) uiCurrent(); } });
     assertNativeCanvasLoad(intent);
     if (uiCurrent) uiCurrent();
     const missing = Array.isArray(options.missing) ? options.missing : [];
@@ -86176,6 +86549,7 @@
     state.settings = { showGrid: false, snapToGrid: false, snapToGuides: false, snapToObjects: false, smartGuides: true };
     state.deck = { activePageId: "", pages: [] };
     state.pdfSources = defaultPdfSourceRegistry();
+    retireUnusedPdfTextFonts();
     state.layers = { collapsedBatches: {}, collapsedGroups: {}, pdfParts: defaultPdfPartsManagerFilters() };
     state.ui.activeTemplate = "";
     state.tool = "select";
@@ -86244,6 +86618,7 @@
       pdfPageRange: options.pdfPageRange || options.pdf_page_range || state.import?.pdfPageRange
     });
     let pdfDocument = null;
+    let openPublication = null;
     pdfDocumentImportDepth += 1;
     try {
       showToast(importSettings.pdfPageMode === "first" ? "Opening PDF" : "Opening PDF pages");
@@ -86259,6 +86634,12 @@
         const sourceViewport = sourcePage.getViewport({ scale: 1 });
         prepareCanvasForOpenedPdf({ sourceWidth: sourceViewport.width, sourceHeight: sourceViewport.height }, file);
       }
+      const importOwnerCanvas=canvas,importOwnerDocumentId=currentTransformDocumentId();
+      const assertImportOwner=()=>{
+        options.signal?.throwIfAborted();options.current?.();
+        if(canvas!==importOwnerCanvas || currentTransformDocumentId()!==importOwnerDocumentId)
+          throw Object.assign(new Error('The document changed while its PDF import was being prepared.'), {code:'PDF_IMPORT_SUPERSEDED'});
+      };
       const pdfSourceId = registerPdfDocumentSource({
         dataUrl: sourcePdfDataUrl,
         filename: file.name,
@@ -86321,6 +86702,7 @@
             await renderPromise.catch(() => {});
             throw renderError;
           }
+          assertImportOwner();
           vector.conversionMeta = normalizePdfConversionMeta({
             ...(vector.conversionMeta || {}),
             sourceFilename: file.name,
@@ -86346,8 +86728,18 @@
             guardrailError.code = "PDF_VECTOR_PARSE_GUARDRAIL";
             throw guardrailError;
           }
-          if (!vector.editableImport) registerPdfSourcePage(pdfSourceId, pageNumber, vector);
+          // Root the completed decoded font programs before detached layout /
+          // display preparation yields. Closing another tab must not retire
+          // resources still owned by this source page. The same page record is
+          // refreshed with final materialization below, or replaced by fallback.
+          registerPdfSourcePage(pdfSourceId, pageNumber, vector);
+          if (options.openAsDocument && pages.length === 1 && !vector.densePage) {
+            assertImportOwner();
+            openPublication ||= { canvas: importOwnerCanvas, documentId: importOwnerDocumentId,
+              needsPaint: false, release: lockPdfHistoryMutations() };
+          }
           object = await addPdfSvgVectorObject(vector, file, timestamp, pagePoint, {
+            signal: renderController.signal, current: assertImportOwner, openPublication,
             importMode: PDF_JS_SVG_VECTOR_IMPORT,
             sourceKind: "pdf-js-svg-vector-page",
             sourceNotes: `Figure Tool retained the original PDF source while reconstructing page ${pageNumber} as selectable vector artwork with the bundled PDF.js SVG backend.`,
@@ -86364,11 +86756,14 @@
           if (vector.editableImport) registerPdfSourcePage(pdfSourceId, pageNumber, vector);
           editablePageCount += 1;
         } catch (vectorError) {
+          if(vectorError?.name==='AbortError' || vectorError?.code==='PDF_IMPORT_SUPERSEDED')throw vectorError;
+          assertImportOwner();
           const fallbackReason = pdfVectorFallbackReason(vectorError);
           const rendered = await renderPdfDocumentPage(pdfjs, pdfDocument, pageNumber, {
             extractText: false,
             scale: PDF_PLACED_PREVIEW_SCALE
           });
+          assertImportOwner();
           registerPdfSourcePage(pdfSourceId, pageNumber, {
             editableImport: globalThis.FigureStudioPdfEditableImport ? { schema: globalThis.FigureStudioPdfEditableImport.SCHEMA, status: "unsupported", reason: fallbackReason, fonts: [], unsupported: vectorError.report?.unsupported || [] } : null,
             canvasTextMode: "placed-preview",
@@ -86381,6 +86776,7 @@
               converterVersion: "5.7.284"
             }
           });
+          retireUnusedPdfTextFonts();
           object = await importPdfPlacedPath(file, timestamp, pagePoint, fallbackReason, {
             rendered,
             sourcePdfDataUrl,
@@ -86422,11 +86818,23 @@
       if (options.openAsDocument && importedObjects.length) {
         state.tool = "select";
         await new Promise((resolve) => window.setTimeout(resolve, 0));
-        fitToScreen();
+        if (openPublication) assertImportOwner();
+        const fitted = fitToScreen();
+        if (openPublication && fitted) openPublication.needsPaint = false;
         await new Promise((resolve) => window.setTimeout(resolve, 0));
+        if (openPublication) assertImportOwner();
         await commitPdfHistory(`PDF opened: ${file.name}`);
+        if (openPublication) assertImportOwner();
         const page = activeDeckPage();
-        if (page) page.thumbnail = buildDeckThumbnailDataUrl();
+        if (page) {
+          const currentThumbnail = () => {
+            assertImportOwner();
+            if (activeDeckPage() !== page) throw Object.assign(new Error("The page changed while its PDF thumbnail was being captured."), { code: "PDF_IMPORT_SUPERSEDED" });
+          };
+          const thumbnail = await buildDeckThumbnailDataUrlAsync(importOwnerCanvas, currentThumbnail);
+          currentThumbnail();
+          page.thumbnail = thumbnail;
+        }
         showLongToast(importedObjects.every((object) => densePdfApi()?.isPage(object))
           ? `Opened ${file.name} with all PDF paths and ${importedObjects.reduce((total, object) => total + densePdfApi().textEntries(object).length, 0)} editable labels. Double-click a label to edit it.`
           : batchSummary?.mixedResult
@@ -86440,10 +86848,12 @@
       if (importedObjects[0] && options.placementReview?.reviewedPlacement) importedObjects[0]._placementReviewApplied = true;
       return importedObjects[0] || null;
     } catch (error) {
+      if(error?.name==='AbortError' || error?.code==='PDF_IMPORT_SUPERSEDED')throw error;
       const message = error?.message || String(error || "Unknown PDF import failure");
       console.error("Bundled PDF import failed", error);
       throw new Error(`Could not open ${file.name || "this PDF"} with Figure Tool's bundled PDF support. ${message}`);
     } finally {
+      finishPdfOpenPublication(openPublication);
       try {
         await pdfDocument?.destroy?.();
       } catch (_error) {
@@ -89282,6 +89692,7 @@
       const reader = new FileReader();
       reader.onload = () => resolve(String(reader.result || ""));
       reader.onerror = () => reject(reader.error);
+      reader.onabort = () => reject(reader.error || new DOMException("File reading was cancelled.", "AbortError"));
       reader.readAsDataURL(file);
     });
   }
@@ -91156,6 +91567,13 @@
   }
 
   async function addPdfMaterializedVectorObject(vector, file, timestamp, dropPoint, options = {}) {
+    const ownerCanvas=canvas,ownerDocumentId=currentTransformDocumentId();
+    const current=()=>{
+      options.signal?.throwIfAborted();options.current?.();
+      if(canvas!==ownerCanvas || currentTransformDocumentId()!==ownerDocumentId)
+        throw Object.assign(new Error('The document changed while its PDF text display was being prepared.'), {code:'PDF_IMPORT_SUPERSEDED'});
+    };
+    current();
     if (vector.densePage) {
       const object = vector.densePage;
       if (!densePdfApi()?.isPage(object)) throw new Error("The PDF page has no completed source owner.");
@@ -91190,6 +91608,7 @@
           report: currentNative.report }
       : await module.materialize(vector.svgText, { fabric: fabricRef, fonts: vector.editableImport.fonts, svgElement: vector.svgElement,
           logicalTextSource: vector.logicalTextSource, nativePdfStrokeDisplay: true });
+    current();
     if (loaded.report.status !== "complete") throw new Error(`This PDF could not be fully reconstructed: ${loaded.report.unsupported.map((row) => row.reason || row.detail || row).join(", ") || "font recovery failed"}.`);
     vector.editableImport.materialization = loaded.report;
     const { fonts, ...summary } = vector.editableImport;
@@ -91270,10 +91689,45 @@
     // metadata above. Seed the native layout from that completed hierarchy,
     // so its first child drag has the same baseline as later edits.
     await module.finalizeImportedAuthoringLayoutAsync([imported.object], { fabric: fabricRef, signal: options?.signal, yieldToUi: yieldPdfHistoryToUi });
-    canvas.add(imported.object);
-    canvas.setActiveObject(imported.object);
-    canvas.requestRenderAll();
-    syncUi();
+    current();
+    if (options.openAsDocument && globalThis.FigureStudioPdfiumTextRasterizer?.diagnostics().ready) {
+      fitToScreen({ forceRender: false });
+      const transform=canvas.contextContainer.getTransform();
+      await module.prepareImportedTextDisplayAsync([imported.object], { fabric: fabricRef,
+        contextTransform: [transform.a,transform.b,transform.c,transform.d,transform.e,transform.f],
+        viewportTransform: [...canvas.viewportTransform], signal: options?.signal, yieldToUi: yieldPdfHistoryToUi,
+        screenSceneTransform: (context, object, plane) => globalThis.FigureStudioNativePathSceneTransform
+          .setScreenPreparationTransform({ fabric: fabricRef, canvas, context, object, plane }),
+        current });
+      current();
+      // The deck's unchanged native thumbnail render uses a separate device
+      // phase. Prepare that derived scale cooperatively before publication too.
+      await module.prepareImportedTextDisplayAsync([imported.object], { fabric: fabricRef,
+        contextTransform: [1,0,0,1,0,0], viewportTransform: deckThumbnailViewportTransform(ownerCanvas),
+        signal: options?.signal, yieldToUi: yieldPdfHistoryToUi, current });
+    }
+    current();
+    const openPublication = options.openAsDocument
+      && options.openPublication?.canvas === ownerCanvas
+      && options.openPublication.documentId === ownerDocumentId ? options.openPublication : null;
+    if (openPublication) {
+      const renderOnAddRemove = ownerCanvas.renderOnAddRemove;
+      ownerCanvas.renderOnAddRemove = false;
+      openPublication.needsPaint = true;
+      try {
+        ownerCanvas.add(imported.object);
+        ownerCanvas.setActiveObject(imported.object);
+      } finally {
+        ownerCanvas.renderOnAddRemove = renderOnAddRemove;
+      }
+      await syncUiForPdfOpen(current);
+      current();
+    } else {
+      canvas.add(imported.object);
+      canvas.setActiveObject(imported.object);
+      canvas.requestRenderAll();
+      syncUi();
+    }
     recordImportPlacementSelection(imported.object);
     return imported.object;
   }

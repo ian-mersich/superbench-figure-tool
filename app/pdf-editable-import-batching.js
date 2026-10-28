@@ -23,6 +23,8 @@
         const names = new Map(Object.entries(pdfjs.OPS).map(([name, id]) => [id, name]));
         const paintIds = new Set(PAINT_NAMES.map((name) => pdfjs.OPS[name]).filter(Number.isInteger));
         let paintIndex = 0, proofCount = 0, yieldedBatches = 0, maxBatchExecutionMs = 0;
+        let interpretationYieldCount = 0, maxSynchronousSliceMs = 0;
+        const yieldTask = options.yieldTask || (() => new Promise(resolve => setTimeout(resolve, 0)));
         let skippedKnockoutEnd = -1, knockoutCount = 0;
         const knockoutSources = options.knockoutSources || [];
         if (knockoutSources.length && !base.isTrustedKnockoutSources(knockoutSources)) throw new Error("Knockout rendering requires the current importer source map.");
@@ -30,7 +32,17 @@
         const start = performance.now();
         await optimizer.executeOperatorBatches(operatorList, async (canonical, { start, end }) => {
           const batchStarted = performance.now();
+          let sliceStarted = batchStarted;
           for (let index = start; index < end; index++) {
+            // Operator counts alone do not bound image decoding time. Yield
+            // between complete original operators, retaining every open scope.
+            if (performance.now() - sliceStarted >= 8) {
+              maxSynchronousSliceMs = Math.max(maxSynchronousSliceMs, performance.now() - sliceStarted);
+              await yieldTask();
+              if (options.signal?.aborted) throw Object.assign(new Error("PDF interpretation was cancelled."), { name: "AbortError" });
+              interpretationYieldCount++;
+              sliceStarted = performance.now();
+            }
             const fnId = canonical.fnArray[index], args = canonical.argsArray[index] || [];
             if (index <= skippedKnockoutEnd) {
               if (paintIds.has(fnId)) paintIndex++;
@@ -109,13 +121,14 @@
             }
             if (paintIds.has(fnId)) paintIndex++;
           }
+          maxSynchronousSliceMs = Math.max(maxSynchronousSliceMs, performance.now() - sliceStarted);
           yieldedBatches++;
           maxBatchExecutionMs = Math.max(maxBatchExecutionMs, performance.now() - batchStarted);
           options.onProgress?.({ stage: "interpret", processedOperatorCount: end, originalOperatorCount: canonical.fnArray.length, paintCount: paintIndex, rectangleProofCount: proofCount });
         }, { batchSize: options.batchSize || 2048, signal: options.signal, ...(options.yieldTask ? { yieldTask: options.yieldTask } : {}) });
         if (scopeKinds.length || neutralParents.length || this.transparencyScopes.length || clipProofs.size || paintProofs.size || this.extraStack.length || this.transformStack.length) throw new Error("Batched PDF scope or proof state is unbalanced.");
         if (knockoutCount !== knockoutSources.length) throw new Error("A proved knockout source was not emitted at its original scope.");
-        this.batchReport = { operatorCount: operatorList.fnArray.length, paintCount: paintIndex, rectangleProofCount: proofCount, batchCount: yieldedBatches, interpretationElapsedMs: performance.now() - start, maxBatchExecutionMs, canonicalGeometryRewritten: false, ...(knockoutCount ? { knockoutGroupCount: knockoutCount, canonicalKnockoutPaintCount: knockoutCount * 2 } : {}) };
+        this.batchReport = { operatorCount: operatorList.fnArray.length, paintCount: paintIndex, rectangleProofCount: proofCount, batchCount: yieldedBatches, interpretationElapsedMs: performance.now() - start, maxBatchExecutionMs, interpretationYieldCount, maxSynchronousSliceMs, canonicalGeometryRewritten: false, ...(knockoutCount ? { knockoutGroupCount: knockoutCount, canonicalKnockoutPaintCount: knockoutCount * 2 } : {}) };
         return svg;
       }
     };

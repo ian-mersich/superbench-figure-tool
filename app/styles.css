@@ -6154,6 +6154,7 @@ html .figure-studio-root .path-node-overlay button:is(
 }
 
 .path-node-handle.selected {
+  z-index: 4;
   outline: 0;
 }
 
@@ -6180,6 +6181,7 @@ html .figure-studio-root .path-node-overlay button:is(
 }
 
 .path-node-handle.dragging {
+  z-index: 5;
   cursor: grabbing;
 }
 
@@ -7113,8 +7115,26 @@ html .figure-studio-root .path-node-overlay button:is(
   background: var(--field-strong);
 }
 
+.layer-drop-status-slot {
+  position: relative;
+  /* Reserve message space even while hidden, so native drag targets stay put. */
+  block-size: calc(5.4em + 14px);
+  min-block-size: calc(5.4em + 14px);
+  font-size: 9.5px;
+}
+
 .layer-drop-status {
-  margin: 0 0 5px;
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline: 0;
+  z-index: 5;
+  box-sizing: border-box;
+  max-block-size: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overflow-wrap: anywhere;
+  scrollbar-gutter: stable;
+  margin: 0;
   padding: 6px 8px;
   border: 1px solid var(--accent-line);
   border-radius: 7px;
@@ -7127,6 +7147,10 @@ html .figure-studio-root .path-node-overlay button:is(
 
 .layer-drop-status[hidden] {
   display: none;
+}
+
+.layer-drop-status[data-layer-drag-active="true"] {
+  pointer-events: none;
 }
 
 .layer-drop-status.layer-drop-rejected,
@@ -16926,8 +16950,8 @@ html .figure-studio-root[data-document-kind="presentation"] .workspace[data-rail
 html .figure-studio-root[data-document-kind="presentation"] .left-panel[hidden] { display:none !important; }
 html .figure-studio-root[data-document-kind="presentation"] .inspector { display:none !important; }
 html .figure-studio-root[data-document-kind="presentation"][data-deck-format="open"] .inspector {
-  display:block !important; position:relative !important; inset:auto !important; width:auto !important;
-  min-width:0; grid-column:4; grid-row:1; border-radius:0; box-shadow:none; overflow:auto;
+  display:flex !important; flex-direction:column; position:relative !important; inset:auto !important; width:auto !important;
+  min-width:0; min-height:0; grid-column:4; grid-row:1; border-radius:0; box-shadow:none; overflow:auto;
   background:var(--bsd-standalone-surface-raised, #fff);
 }
 html .figure-studio-root[data-document-kind="presentation"][data-deck-format="open"] .workspace[data-rail-dock-right="left"] .inspector:not(.is-floating):not([hidden]) { grid-column:2; }

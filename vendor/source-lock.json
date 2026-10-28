@@ -91,30 +91,500 @@
     }
   ],
   "npm_packages": [
-    {"name":"fabric","version":"7.3.1","integrity":"sha512-RoLAQzUX+/3RNMYKliuN0P2HXdSDEGzyjS7FnmEbo3nhb8LFh59T+l3f6ApIu5LT4YB49YfMNrEajeIbutmD7Q==","license":"MIT","embedded_in":["fabric runtime; package source and source map"]},
-    {"name":"jspdf","version":"4.2.1","integrity":"sha512-YyAXyvnmjTbR4bHQRLzex3CuINCDlQnBqoSYyjJwTP2x9jDLuKDzy7aKUl0hgx3uhcl7xzg32agn5vlie6HIlQ==","license":"MIT","embedded_in":["jsPDF runtime; package source map and module headers"]},
-    {"name":"pdf-lib","version":"1.17.1","integrity":"sha512-V/mpyJAoTsN4cnP31vc0wfNA1+p20evqqnap0KLoRUN0Yk/p3wN52DOEsL4oBFcLdb76hlpKPtzJIgo67j/XLw==","license":"MIT","embedded_in":["pdf-lib runtime and source map"]},
-    {"name":"pdfjs-dist","version":"5.7.284","integrity":"sha512-h4EdYQczmGhbOlqc3PPZwxevn7ApdWPbovAuWXOB/DjIyigSnwfy2oze7c6mRcSr9XgLp3eN3EeL4DyySTPMFw==","license":"Apache-2.0","embedded_in":["current PDF.js runtime and worker"]},
-    {"name":"pdfjs-dist","version":"3.11.174","integrity":"sha512-TdTZPf1trZ8/UFu5Cx/GXB7GZM30LT+wWUNfsi6Bq8ePLnb+woNKtDymI2mxZYBpMbonNFqKmiz684DIfnd8dA==","license":"Apache-2.0","embedded_in":["legacy PDF.js SVG runtime and worker"]},
-    {"name":"svg2pdf.js","version":"2.7.0","integrity":"sha512-nXK4Wx28H0KtOktanm5nsphl1KMEoLNMelAT/776qxPAj9DshwYcqgdpKuBnY1nrcYOriQFHVQLE4tIag+aDJA==","license":"MIT","embedded_in":["svg2pdf runtime; package source map"]},
-    {"name":"polygon-clipping","version":"0.15.7","integrity":"sha512-nhfdr83ECBg6xtqOAJab1tbksbBAOMUltN60bU+llHVOL0e5Onm1WpAXXWXVB39L8AJFssoIhEVuy/S90MmotA==","license":"MIT","embedded_in":["polygon-clipping runtime; package source map"]},
-    {"name":"@babel/runtime","version":"7.28.6","integrity":"sha512-05WQkdpL9COIMz4LjTxGpPNCdlpyimKppYNoJ5Di5EUObifl8t4tuLuUBBZEpoLYOmfvIWrsp9fCl0HoPRVTdA==","license":"MIT","embedded_in":["jsPDF generated bundle helpers"]},
-    {"name":"fflate","version":"0.8.1","integrity":"sha512-/exOvEuc+/iaUm105QIiOt4LpBdMTWsXxqR0HDF35vx3fmaKzw7354gTilCh5rkzEt8WYyG//ku3h3nRmd7CHQ==","license":"MIT","embedded_in":["jsPDF generated bundle"]},
-    {"name":"fast-png","version":"6.4.0","integrity":"sha512-kAqZq1TlgBjZcLr5mcN6NP5Rv4V2f22z00c3g8vRrwkcqjerx7BEhPbOnWCPqaHUl2XWQBJQvOT/FQhdMT7X/Q==","license":"MIT","embedded_in":["jsPDF generated bundle"]},
-    {"name":"iobuffer","version":"5.4.0","integrity":"sha512-DRebOWuqDvxunfkNJAlc3IzWIPD5xVxwUNbHr7xKB8E6aLJxIPfNX3CoMJghcFjpv6RWQsrcJbghtEwSPoJqMA==","license":"MIT","embedded_in":["fast-png source map and jsPDF generated bundle"]},
-    {"name":"pako","version":"2.1.0","integrity":"sha512-w+eufiZ1WuJYgPXbV/PO3NCMEc3xqylkKHzp8bxp1uW4qaSNQUkwmLLEc3kKsfz8lpV1F8Ht3U1Cm+9Srog2ug==","license":"MIT AND Zlib","embedded_in":["jsPDF generated bundle; fast-png dependency"]},
-    {"name":"@pdf-lib/standard-fonts","version":"1.0.0","integrity":"sha512-hU30BK9IUN/su0Mn9VdlVKsWBS6GyhVfqjwl1FjZN4TxP6cCw0jP2w7V3Hf5uX7M0AZJ16vey9yE0ny7Sa59ZA==","license":"MIT","embedded_in":["pdf-lib generated bundle"]},
-    {"name":"@pdf-lib/upng","version":"1.0.1","integrity":"sha512-dQK2FUMQtowVP00mtIksrlZhdFXQZPC+taih1q4CvPZ5vqdxR/LKBaFg0oAfzd1GlHZXXSPdQfzQnt+ViGvEIQ==","license":"MIT","embedded_in":["pdf-lib generated bundle"]},
-    {"name":"pako","version":"1.0.10","integrity":"sha512-0DTvPVU3ed8+HNXOu5Bs+o//Mbdj9VNQMUOe9oKCwh8l0GNwpTDMKCWbRjgtD291AWnkAgkqA/LOnQS8AmS1tw==","license":"MIT AND Zlib","embedded_in":["pdf-lib standard-fonts generated bundle"]},
-    {"name":"pako","version":"1.0.11","integrity":"sha512-4hLB8Py4zZce5s4yd9XzopqwVv/yGNhV1Bl8NTmCq1763HeK2+EwVTv+leGeL13Dnh2wfbqowVPXCIO0z4taYw==","license":"MIT AND Zlib","embedded_in":["pdf-lib generated bundle"]},
-    {"name":"tslib","version":"1.11.1","integrity":"sha512-aZW88SY8kQbU7gpV19lN24LtXh/yD4ZZg6qieAJDDg+YBsJcSmLGK9QpnUjAKVG/xefmvJGd1WUmfpT/g6AJGA==","license":"Apache-2.0","embedded_in":["pdf-lib and svg2pdf generated bundles"]},
-    {"name":"core-js","version":"3.32.2","integrity":"sha512-pxXSw1mYZPDGvTQqEc5vgIb83jGQKFGYWY76z4a7weZXUolw3G+OvpZqSRcfYOoOVUQJYEPsWeQK8pKEnUtWxQ==","license":"MIT","embedded_in":["legacy PDF.js runtime and worker"]},
-    {"name":"cssesc","version":"3.0.0","integrity":"sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==","license":"MIT","embedded_in":["svg2pdf generated bundle"]},
-    {"name":"font-family-papandreou","version":"0.2.0-patch1","integrity":"sha512-l6WMbeh7+Zd4TTu3yUUPR5KOepiuGLd/QAPfTIoX8ipTko0IF7PU6dsM4YM2zCDToEPIPSyCBKEJnKlSdYMgaA==","license":"MIT","embedded_in":["svg2pdf generated bundle"]},
-    {"name":"specificity","version":"0.4.1","integrity":"sha512-1klA3Gi5PD1Wv9Q0wUoOQN1IWAuPu0D1U03ThXTr0cJ20+/iq2tHSDnK7Kk/0LXJ1ztUB2/1Os0wKmfyNgUQfg==","license":"MIT","embedded_in":["svg2pdf generated bundle"]},
-    {"name":"svgpath","version":"2.5.0","integrity":"sha512-o/vohwqjUO9nDAh4rcjE3KaW/v//At8UJu2LJMybXidf5QLQLVA4bxH0//4YCsr+1H4Gw1Wi/Jc62ynzSBYidw==","license":"MIT","embedded_in":["svg2pdf generated bundle"]},
-    {"name":"robust-predicates","version":"3.0.2","integrity":"sha512-IXgzBWvWQwE6PrDI05OvmXUIruQTcoMDzRsOd5CDvHCVLcLHMTSYvOK5Cm46kWqlV3yAbuSpBZdJ5oP5OUoStg==","license":"Unlicense","embedded_in":["polygon-clipping generated bundle"]},
-    {"name":"splaytree","version":"3.1.2","integrity":"sha512-4OM2BJgC5UzrhVnnJA4BkHKGtjXNzzUfpQjCO8I05xYPsfS/VuQDwjCGGMi8rYQilHEV4j8NBqTFbls/PZEE7A==","license":"MIT","embedded_in":["polygon-clipping generated bundle"]}
+    {
+      "name": "fabric",
+      "version": "7.3.1",
+      "integrity": "sha512-RoLAQzUX+/3RNMYKliuN0P2HXdSDEGzyjS7FnmEbo3nhb8LFh59T+l3f6ApIu5LT4YB49YfMNrEajeIbutmD7Q==",
+      "license": "MIT",
+      "embedded_in": [
+        "fabric runtime; package source and source map"
+      ]
+    },
+    {
+      "name": "jspdf",
+      "version": "4.2.1",
+      "integrity": "sha512-YyAXyvnmjTbR4bHQRLzex3CuINCDlQnBqoSYyjJwTP2x9jDLuKDzy7aKUl0hgx3uhcl7xzg32agn5vlie6HIlQ==",
+      "license": "MIT",
+      "embedded_in": [
+        "jsPDF runtime; package source map and module headers"
+      ]
+    },
+    {
+      "name": "pdf-lib",
+      "version": "1.17.1",
+      "integrity": "sha512-V/mpyJAoTsN4cnP31vc0wfNA1+p20evqqnap0KLoRUN0Yk/p3wN52DOEsL4oBFcLdb76hlpKPtzJIgo67j/XLw==",
+      "license": "MIT",
+      "embedded_in": [
+        "pdf-lib runtime and source map"
+      ]
+    },
+    {
+      "name": "pdfjs-dist",
+      "version": "5.7.284",
+      "integrity": "sha512-h4EdYQczmGhbOlqc3PPZwxevn7ApdWPbovAuWXOB/DjIyigSnwfy2oze7c6mRcSr9XgLp3eN3EeL4DyySTPMFw==",
+      "license": "Apache-2.0",
+      "embedded_in": [
+        "current PDF.js runtime and worker"
+      ]
+    },
+    {
+      "name": "pdfjs-dist",
+      "version": "3.11.174",
+      "integrity": "sha512-TdTZPf1trZ8/UFu5Cx/GXB7GZM30LT+wWUNfsi6Bq8ePLnb+woNKtDymI2mxZYBpMbonNFqKmiz684DIfnd8dA==",
+      "license": "Apache-2.0",
+      "embedded_in": [
+        "legacy PDF.js SVG runtime and worker"
+      ]
+    },
+    {
+      "name": "svg2pdf.js",
+      "version": "2.7.0",
+      "integrity": "sha512-nXK4Wx28H0KtOktanm5nsphl1KMEoLNMelAT/776qxPAj9DshwYcqgdpKuBnY1nrcYOriQFHVQLE4tIag+aDJA==",
+      "license": "MIT",
+      "embedded_in": [
+        "svg2pdf runtime; package source map"
+      ]
+    },
+    {
+      "name": "polygon-clipping",
+      "version": "0.15.7",
+      "integrity": "sha512-nhfdr83ECBg6xtqOAJab1tbksbBAOMUltN60bU+llHVOL0e5Onm1WpAXXWXVB39L8AJFssoIhEVuy/S90MmotA==",
+      "license": "MIT",
+      "embedded_in": [
+        "polygon-clipping runtime; package source map"
+      ]
+    },
+    {
+      "name": "@babel/runtime",
+      "version": "7.28.6",
+      "integrity": "sha512-05WQkdpL9COIMz4LjTxGpPNCdlpyimKppYNoJ5Di5EUObifl8t4tuLuUBBZEpoLYOmfvIWrsp9fCl0HoPRVTdA==",
+      "license": "MIT",
+      "embedded_in": [
+        "jsPDF generated bundle helpers"
+      ]
+    },
+    {
+      "name": "fflate",
+      "version": "0.8.1",
+      "integrity": "sha512-/exOvEuc+/iaUm105QIiOt4LpBdMTWsXxqR0HDF35vx3fmaKzw7354gTilCh5rkzEt8WYyG//ku3h3nRmd7CHQ==",
+      "license": "MIT",
+      "embedded_in": [
+        "jsPDF generated bundle"
+      ]
+    },
+    {
+      "name": "fast-png",
+      "version": "6.4.0",
+      "integrity": "sha512-kAqZq1TlgBjZcLr5mcN6NP5Rv4V2f22z00c3g8vRrwkcqjerx7BEhPbOnWCPqaHUl2XWQBJQvOT/FQhdMT7X/Q==",
+      "license": "MIT",
+      "embedded_in": [
+        "jsPDF generated bundle"
+      ]
+    },
+    {
+      "name": "iobuffer",
+      "version": "5.4.0",
+      "integrity": "sha512-DRebOWuqDvxunfkNJAlc3IzWIPD5xVxwUNbHr7xKB8E6aLJxIPfNX3CoMJghcFjpv6RWQsrcJbghtEwSPoJqMA==",
+      "license": "MIT",
+      "embedded_in": [
+        "fast-png source map and jsPDF generated bundle"
+      ]
+    },
+    {
+      "name": "pako",
+      "version": "2.1.0",
+      "integrity": "sha512-w+eufiZ1WuJYgPXbV/PO3NCMEc3xqylkKHzp8bxp1uW4qaSNQUkwmLLEc3kKsfz8lpV1F8Ht3U1Cm+9Srog2ug==",
+      "license": "MIT AND Zlib",
+      "embedded_in": [
+        "jsPDF generated bundle; fast-png dependency"
+      ]
+    },
+    {
+      "name": "@pdf-lib/standard-fonts",
+      "version": "1.0.0",
+      "integrity": "sha512-hU30BK9IUN/su0Mn9VdlVKsWBS6GyhVfqjwl1FjZN4TxP6cCw0jP2w7V3Hf5uX7M0AZJ16vey9yE0ny7Sa59ZA==",
+      "license": "MIT",
+      "embedded_in": [
+        "pdf-lib generated bundle"
+      ]
+    },
+    {
+      "name": "@pdf-lib/upng",
+      "version": "1.0.1",
+      "integrity": "sha512-dQK2FUMQtowVP00mtIksrlZhdFXQZPC+taih1q4CvPZ5vqdxR/LKBaFg0oAfzd1GlHZXXSPdQfzQnt+ViGvEIQ==",
+      "license": "MIT",
+      "embedded_in": [
+        "pdf-lib generated bundle"
+      ]
+    },
+    {
+      "name": "pako",
+      "version": "1.0.10",
+      "integrity": "sha512-0DTvPVU3ed8+HNXOu5Bs+o//Mbdj9VNQMUOe9oKCwh8l0GNwpTDMKCWbRjgtD291AWnkAgkqA/LOnQS8AmS1tw==",
+      "license": "MIT AND Zlib",
+      "embedded_in": [
+        "pdf-lib standard-fonts generated bundle"
+      ]
+    },
+    {
+      "name": "pako",
+      "version": "1.0.11",
+      "integrity": "sha512-4hLB8Py4zZce5s4yd9XzopqwVv/yGNhV1Bl8NTmCq1763HeK2+EwVTv+leGeL13Dnh2wfbqowVPXCIO0z4taYw==",
+      "license": "MIT AND Zlib",
+      "embedded_in": [
+        "pdf-lib generated bundle"
+      ]
+    },
+    {
+      "name": "tslib",
+      "version": "1.11.1",
+      "integrity": "sha512-aZW88SY8kQbU7gpV19lN24LtXh/yD4ZZg6qieAJDDg+YBsJcSmLGK9QpnUjAKVG/xefmvJGd1WUmfpT/g6AJGA==",
+      "license": "Apache-2.0",
+      "embedded_in": [
+        "pdf-lib and svg2pdf generated bundles"
+      ]
+    },
+    {
+      "name": "core-js",
+      "version": "3.32.2",
+      "integrity": "sha512-pxXSw1mYZPDGvTQqEc5vgIb83jGQKFGYWY76z4a7weZXUolw3G+OvpZqSRcfYOoOVUQJYEPsWeQK8pKEnUtWxQ==",
+      "license": "MIT",
+      "embedded_in": [
+        "legacy PDF.js runtime and worker"
+      ]
+    },
+    {
+      "name": "cssesc",
+      "version": "3.0.0",
+      "integrity": "sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==",
+      "license": "MIT",
+      "embedded_in": [
+        "svg2pdf generated bundle"
+      ]
+    },
+    {
+      "name": "font-family-papandreou",
+      "version": "0.2.0-patch1",
+      "integrity": "sha512-l6WMbeh7+Zd4TTu3yUUPR5KOepiuGLd/QAPfTIoX8ipTko0IF7PU6dsM4YM2zCDToEPIPSyCBKEJnKlSdYMgaA==",
+      "license": "MIT",
+      "embedded_in": [
+        "svg2pdf generated bundle"
+      ]
+    },
+    {
+      "name": "specificity",
+      "version": "0.4.1",
+      "integrity": "sha512-1klA3Gi5PD1Wv9Q0wUoOQN1IWAuPu0D1U03ThXTr0cJ20+/iq2tHSDnK7Kk/0LXJ1ztUB2/1Os0wKmfyNgUQfg==",
+      "license": "MIT",
+      "embedded_in": [
+        "svg2pdf generated bundle"
+      ]
+    },
+    {
+      "name": "svgpath",
+      "version": "2.5.0",
+      "integrity": "sha512-o/vohwqjUO9nDAh4rcjE3KaW/v//At8UJu2LJMybXidf5QLQLVA4bxH0//4YCsr+1H4Gw1Wi/Jc62ynzSBYidw==",
+      "license": "MIT",
+      "embedded_in": [
+        "svg2pdf generated bundle"
+      ]
+    },
+    {
+      "name": "robust-predicates",
+      "version": "3.0.2",
+      "integrity": "sha512-IXgzBWvWQwE6PrDI05OvmXUIruQTcoMDzRsOd5CDvHCVLcLHMTSYvOK5Cm46kWqlV3yAbuSpBZdJ5oP5OUoStg==",
+      "license": "Unlicense",
+      "embedded_in": [
+        "polygon-clipping generated bundle"
+      ]
+    },
+    {
+      "name": "splaytree",
+      "version": "3.1.2",
+      "integrity": "sha512-4OM2BJgC5UzrhVnnJA4BkHKGtjXNzzUfpQjCO8I05xYPsfS/VuQDwjCGGMi8rYQilHEV4j8NBqTFbls/PZEE7A==",
+      "license": "MIT",
+      "embedded_in": [
+        "polygon-clipping generated bundle"
+      ]
+    }
   ],
-  "font_source_note": "The DejaVu source repository is included for editable glyph sources. The distributed TTFs originate from matplotlib 3.10.9 mpl-data/fonts/ttf; this repository archive is not claimed to rebuild those exact TTF bytes."
+  "font_source_note": "The DejaVu source repository is included for editable glyph sources. The distributed TTFs originate from matplotlib 3.10.9 mpl-data/fonts/ttf; this repository archive is not claimed to rebuild those exact TTF bytes.",
+  "binary_artifacts": [
+    {
+      "id": "pdfium-wasm-158.0.8111.0",
+      "kind": "supplier-binary-release",
+      "package": "pdfium-wasm",
+      "version": "158.0.8111.0",
+      "publisher": "bblanchon/pdfium-binaries",
+      "release_tag": "chromium/8111",
+      "release_url": "https://github.com/bblanchon/pdfium-binaries/releases/tag/chromium%2F8111",
+      "archive": {
+        "url": "https://github.com/bblanchon/pdfium-binaries/releases/download/chromium/8111/pdfium-wasm.tgz",
+        "bytes": 2637606,
+        "sha256": "ed8ee2e70c628a4bd261fade8e381079aca250aeb5b1f3192c59682f8441fdcd"
+      },
+      "builder_commit": "2de99cdab0cd84493538ce141342515b95ebb15c",
+      "reference_pdfium_commit": "a50f1a5953264de698f398fe3a2ef6153677fafa",
+      "reference_source_authority": "Release/recipe-consistent reference; separately fetched source SHA is not build-attested.",
+      "emscripten_version": "3.1.72",
+      "emscripten_commit": "437140d149d9c977ffc8b09dbaf9b0f5a02db190",
+      "runtime_files": [
+        {
+          "path": "vendor/pdfium/pdfium.esm.js",
+          "bytes": 168051,
+          "sha256": "1e1e859bef696fbb858b25b884a0ded18181c373702af7f80ce3db7e7838033e",
+          "kind": "derived-isolated-factory"
+        },
+        {
+          "path": "vendor/pdfium/pdfium.js",
+          "bytes": 165418,
+          "sha256": "9bdac90c5714c50187d5a96ce04b2dd9b01c5a8e6ded68978536ee3820f6e218",
+          "kind": "supplier-artifact-member"
+        },
+        {
+          "path": "vendor/pdfium/pdfium.wasm",
+          "bytes": 5457970,
+          "sha256": "bf6edcba65565259103e2fd655faea698b2a0b28800de8b81fe09ebb21ff263d",
+          "kind": "supplier-artifact-member"
+        }
+      ],
+      "notices": [
+        {
+          "path": "vendor/pdfium/notices/supplier/LICENSE",
+          "bytes": 1177,
+          "sha256": "ba26c1263131696b86c10496b5066b918a20b7161822a80c274d0080105f6c93",
+          "component": "supplier-mit",
+          "source_url": "https://github.com/bblanchon/pdfium-binaries/releases/download/chromium/8111/pdfium-wasm.tgz",
+          "archive_member": "LICENSE",
+          "text_encoding": "utf-8"
+        },
+        {
+          "path": "vendor/pdfium/notices/supplier/abseil.txt",
+          "bytes": 11361,
+          "sha256": "c79a7fea0e3cac04cd43f20e7b648e5a0ff8fa5344e644b0ee09ca1162b62747",
+          "component": "abseil.txt",
+          "source_url": "https://github.com/bblanchon/pdfium-binaries/releases/download/chromium/8111/pdfium-wasm.tgz",
+          "archive_member": "licenses/abseil.txt",
+          "text_encoding": "utf-8"
+        },
+        {
+          "path": "vendor/pdfium/notices/supplier/agg23.txt",
+          "bytes": 725,
+          "sha256": "c110d3ea2ad77467ce0dcff7d3337e6c8be8049a5103f4b9bd5fd911a77972e5",
+          "component": "agg23.txt",
+          "source_url": "https://github.com/bblanchon/pdfium-binaries/releases/download/chromium/8111/pdfium-wasm.tgz",
+          "archive_member": "licenses/agg23.txt",
+          "text_encoding": "utf-8"
+        },
+        {
+          "path": "vendor/pdfium/notices/supplier/dragonbox-Apache2-LLVM.txt",
+          "bytes": 12262,
+          "sha256": "9e45e856bedccee9f67254082ca11851d954de2fed7448c4bed19ad9aab99a91",
+          "component": "dragonbox-Apache2-LLVM.txt",
+          "source_url": "https://github.com/bblanchon/pdfium-binaries/releases/download/chromium/8111/pdfium-wasm.tgz",
+          "archive_member": "licenses/dragonbox-Apache2-LLVM.txt",
+          "text_encoding": "utf-8"
+        },
+        {
+          "path": "vendor/pdfium/notices/supplier/dragonbox-Boost.txt",
+          "bytes": 1338,
+          "sha256": "c9bff75738922193e67fa726fa225535870d2aa1059f91452c411736284ad566",
+          "component": "dragonbox-Boost.txt",
+          "source_url": "https://github.com/bblanchon/pdfium-binaries/releases/download/chromium/8111/pdfium-wasm.tgz",
+          "archive_member": "licenses/dragonbox-Boost.txt",
+          "text_encoding": "utf-8"
+        },
+        {
+          "path": "vendor/pdfium/notices/supplier/fast_float.txt",
+          "bytes": 1079,
+          "sha256": "e562f3f974ced7e69dd1db77b820b36bcf8f30377f1aa105723fba449c53c4e6",
+          "component": "fast_float.txt",
+          "source_url": "https://github.com/bblanchon/pdfium-binaries/releases/download/chromium/8111/pdfium-wasm.tgz",
+          "archive_member": "licenses/fast_float.txt",
+          "text_encoding": "utf-8"
+        },
+        {
+          "path": "vendor/pdfium/notices/supplier/freetype.txt",
+          "bytes": 6741,
+          "sha256": "f4b133e25df1f86ad3ffea453aa0e613f0474f34778dbbb3e437e7b2724937d8",
+          "component": "freetype.txt",
+          "source_url": "https://github.com/bblanchon/pdfium-binaries/releases/download/chromium/8111/pdfium-wasm.tgz",
+          "archive_member": "licenses/freetype.txt",
+          "text_encoding": "latin-1"
+        },
+        {
+          "path": "vendor/pdfium/notices/supplier/harfbuzz.txt",
+          "bytes": 1971,
+          "sha256": "ba8f810f2455c2f08e2d56bb49b72f37fcf68f1f4fade38977cfd7372050ad64",
+          "component": "harfbuzz.txt",
+          "source_url": "https://github.com/bblanchon/pdfium-binaries/releases/download/chromium/8111/pdfium-wasm.tgz",
+          "archive_member": "licenses/harfbuzz.txt",
+          "text_encoding": "utf-8"
+        },
+        {
+          "path": "vendor/pdfium/notices/supplier/highway.txt",
+          "bytes": 11357,
+          "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+          "component": "highway.txt",
+          "source_url": "https://github.com/bblanchon/pdfium-binaries/releases/download/chromium/8111/pdfium-wasm.tgz",
+          "archive_member": "licenses/highway.txt",
+          "text_encoding": "utf-8"
+        },
+        {
+          "path": "vendor/pdfium/notices/supplier/icu.txt",
+          "bytes": 27718,
+          "sha256": "e55522d81edc687a341a4411e0776e54ca654e90147f354a90458aaced4116af",
+          "component": "icu.txt",
+          "source_url": "https://github.com/bblanchon/pdfium-binaries/releases/download/chromium/8111/pdfium-wasm.tgz",
+          "archive_member": "licenses/icu.txt",
+          "text_encoding": "utf-8"
+        },
+        {
+          "path": "vendor/pdfium/notices/supplier/lcms.txt",
+          "bytes": 1353,
+          "sha256": "7312b68c5b25e9bf2b828706fb4e29588f22705112f411fd42e1f7d84c3d139a",
+          "component": "lcms.txt",
+          "source_url": "https://github.com/bblanchon/pdfium-binaries/releases/download/chromium/8111/pdfium-wasm.tgz",
+          "archive_member": "licenses/lcms.txt",
+          "text_encoding": "utf-8"
+        },
+        {
+          "path": "vendor/pdfium/notices/supplier/libjpeg_turbo.ijg",
+          "bytes": 12799,
+          "sha256": "75815e3bf6484201a3c3d17a1bbf10f2e8e3237f84df10a2357ea896db2a81d6",
+          "component": "libjpeg_turbo.ijg",
+          "source_url": "https://github.com/bblanchon/pdfium-binaries/releases/download/chromium/8111/pdfium-wasm.tgz",
+          "archive_member": "licenses/libjpeg_turbo.ijg",
+          "text_encoding": "utf-8"
+        },
+        {
+          "path": "vendor/pdfium/notices/supplier/libjpeg_turbo.md",
+          "bytes": 5620,
+          "sha256": "96f5b328adbb78eeaaec6980d73fd558cb1e4d62560ed615646bc3cf5e532430",
+          "component": "libjpeg_turbo.md",
+          "source_url": "https://github.com/bblanchon/pdfium-binaries/releases/download/chromium/8111/pdfium-wasm.tgz",
+          "archive_member": "licenses/libjpeg_turbo.md",
+          "text_encoding": "utf-8"
+        },
+        {
+          "path": "vendor/pdfium/notices/supplier/libopenjpeg.txt",
+          "bytes": 1794,
+          "sha256": "c5ab0890a737c2dfa7ba675036554f6d17741d98629b0c2a145354d00617e6b2",
+          "component": "libopenjpeg.txt",
+          "source_url": "https://github.com/bblanchon/pdfium-binaries/releases/download/chromium/8111/pdfium-wasm.tgz",
+          "archive_member": "licenses/libopenjpeg.txt",
+          "text_encoding": "utf-8"
+        },
+        {
+          "path": "vendor/pdfium/notices/supplier/libpng.txt",
+          "bytes": 5345,
+          "sha256": "bdb0a645ea18c60507d0368379b1ac5474b92255fcc2d115e07486a7672ba526",
+          "component": "libpng.txt",
+          "source_url": "https://github.com/bblanchon/pdfium-binaries/releases/download/chromium/8111/pdfium-wasm.tgz",
+          "archive_member": "licenses/libpng.txt",
+          "text_encoding": "utf-8"
+        },
+        {
+          "path": "vendor/pdfium/notices/supplier/pdfium.txt",
+          "bytes": 12818,
+          "sha256": "961eacd9633fff6d051db7208b755e9210e30efac7adec3e6a6d52798f0ccf0e",
+          "component": "pdfium.txt",
+          "source_url": "https://github.com/bblanchon/pdfium-binaries/releases/download/chromium/8111/pdfium-wasm.tgz",
+          "archive_member": "licenses/pdfium.txt",
+          "text_encoding": "utf-8"
+        },
+        {
+          "path": "vendor/pdfium/notices/supplier/simdutf.txt",
+          "bytes": 1059,
+          "sha256": "fc8dbc04e03ad4efc08a647ffe7f995b811a95bc04c0e85a56d5277c6593fa5f",
+          "component": "simdutf.txt",
+          "source_url": "https://github.com/bblanchon/pdfium-binaries/releases/download/chromium/8111/pdfium-wasm.tgz",
+          "archive_member": "licenses/simdutf.txt",
+          "text_encoding": "utf-8"
+        },
+        {
+          "path": "vendor/pdfium/notices/supplier/zlib.txt",
+          "bytes": 1332,
+          "sha256": "33fd641c9f3b0e0be64bc78fea9e94807674cdd70c48477599226cb8956565fe",
+          "component": "zlib.txt",
+          "source_url": "https://github.com/bblanchon/pdfium-binaries/releases/download/chromium/8111/pdfium-wasm.tgz",
+          "archive_member": "licenses/zlib.txt",
+          "text_encoding": "utf-8"
+        },
+        {
+          "path": "vendor/pdfium/notices/supplemental/emscripten-license.txt",
+          "bytes": 5093,
+          "sha256": "620a78084fc7ca97c0b5dea9abf891f3ffcadfdbf305276f099c9c4e12fc1d86",
+          "component": "emscripten-license.txt",
+          "source_url": "https://raw.githubusercontent.com/emscripten-core/emscripten/3.1.72/LICENSE",
+          "text_encoding": "utf-8"
+        },
+        {
+          "path": "vendor/pdfium/notices/supplemental/emscripten-musl-copyright.txt",
+          "bytes": 6204,
+          "sha256": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af",
+          "component": "emscripten-musl-copyright.txt",
+          "source_url": "https://raw.githubusercontent.com/emscripten-core/emscripten/3.1.72/system/lib/libc/musl/COPYRIGHT",
+          "text_encoding": "utf-8"
+        },
+        {
+          "path": "vendor/pdfium/notices/supplemental/emscripten-libcxx-license.txt",
+          "bytes": 16703,
+          "sha256": "539dd7aed86e8a4f12cbdd0e6c50c189c7d74847e4fecc64ce2c6ee3a01da38b",
+          "component": "emscripten-libcxx-license.txt",
+          "source_url": "https://raw.githubusercontent.com/emscripten-core/emscripten/3.1.72/system/lib/libcxx/LICENSE.TXT",
+          "text_encoding": "utf-8"
+        },
+        {
+          "path": "vendor/pdfium/notices/supplemental/emscripten-libcxxabi-license.txt",
+          "bytes": 16706,
+          "sha256": "e2b35be49f7284a45b7baca8fc7b3ab7440e7902392b2528a457816b5bb2a15c",
+          "component": "emscripten-libcxxabi-license.txt",
+          "source_url": "https://raw.githubusercontent.com/emscripten-core/emscripten/3.1.72/system/lib/libcxxabi/LICENSE.TXT",
+          "text_encoding": "utf-8"
+        },
+        {
+          "path": "vendor/pdfium/notices/supplemental/emscripten-compiler-rt-license.txt",
+          "bytes": 16708,
+          "sha256": "1a8f1058753f1ba890de984e48f0242a3a5c29a6a8f2ed9fd813f36985387e8d",
+          "component": "emscripten-compiler-rt-license.txt",
+          "source_url": "https://raw.githubusercontent.com/emscripten-core/emscripten/3.1.72/system/lib/compiler-rt/LICENSE.TXT",
+          "text_encoding": "utf-8"
+        },
+        {
+          "path": "vendor/pdfium/notices/supplemental/emscripten-dlmalloc-source.txt",
+          "bytes": 236511,
+          "sha256": "bc66b32f9a9562b6546cce3c9b1e5d04d91b177ef4682fabc7fe3230efd70150",
+          "component": "emscripten-dlmalloc-source.txt",
+          "source_url": "https://raw.githubusercontent.com/emscripten-core/emscripten/3.1.72/system/lib/dlmalloc.c",
+          "text_encoding": "utf-8"
+        },
+        {
+          "path": "vendor/pdfium/notices/supplemental/libyuv-LICENSE.txt",
+          "bytes": 1506,
+          "sha256": "2b2cc1180c7e6988328ad2033b04b80117419db9c4c584918bbb3cfec7e9364f",
+          "component": "libyuv-LICENSE.txt",
+          "source_url": "https://chromium.googlesource.com/libyuv/libyuv/+/eb8eda9c7973704d1103a535059224df7a6063b5/LICENSE?format=TEXT",
+          "text_encoding": "utf-8"
+        }
+      ],
+      "historical_inputs": [
+        {
+          "path": "vendor/pdfium/PROVENANCE.json",
+          "bytes": 1286,
+          "sha256": "4f55b78242b8c7733deb71105fe6fdd92e15f88509c2c69a4d45281853942e06",
+          "meaning": "Unchanged historical beeaf5 candidate; not authority for the replacement runtime."
+        },
+        {
+          "path": "vendor/pdfium/WRAPPER-LICENSE.md",
+          "bytes": 1072,
+          "sha256": "b60c044f81876f350bf5e309071bfc2057c444efd07d2b82790b786049d9d83f",
+          "meaning": "Unchanged historical beeaf5 candidate; not authority for the replacement runtime."
+        }
+      ],
+      "facade_source": "Exact supplier pdfium.js enclosed by the separately reviewed isolated factory; one locateFile resource-token adaptation.",
+      "notice_admission": "supplier-release-and-explicit-supplements",
+      "legal_clearance": false
+    }
+  ]
 }

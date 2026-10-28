@@ -1,0 +1,53 @@
+// Derived factory for the byte-exact bblanchon PDFium 158.0.8111.0 classic loader.
+// The supplier source follows unchanged inside this lexical scope. See artifact-manifest.json.
+// This facade changes initialization/resource plumbing only; it adds no native rendering policy.
+export default function createPdfium(figureModuleOptions = {}) {
+  return new Promise((figureResolve, figureReject) => {
+    if (!figureModuleOptions || typeof figureModuleOptions !== 'object') {
+      throw new TypeError('PDFium factory options must be an object');
+    }
+    const figureReady = figureModuleOptions.onRuntimeInitialized;
+    const figureLocate = figureModuleOptions.locateFile;
+    const figureInstantiate = figureModuleOptions.instantiateWasm;
+    for (const [figureName, figureCallback] of [
+      ['onRuntimeInitialized', figureReady], ['locateFile', figureLocate], ['instantiateWasm', figureInstantiate]
+    ]) {
+      if (figureCallback !== undefined && typeof figureCallback !== 'function') {
+        throw new TypeError(`PDFium ${figureName} must be a function`);
+      }
+    }
+    var Module = {
+      ...figureModuleOptions,
+      locateFile(figurePath, figurePrefix) {
+        if (figurePath !== 'pdfium.wasm') throw new Error(`Unexpected PDFium resource: ${figurePath}`);
+        // Preserve the existing Figure factory caller's single accepted resource token.
+        return figureLocate
+          ? figureLocate.call(Module, 'pdfium.esm.wasm', figurePrefix)
+          : new URL('pdfium.wasm', import.meta.url).href;
+      },
+      onRuntimeInitialized(...figureArgs) {
+        try {
+          figureReady?.apply(Module, figureArgs);
+          figureResolve(Module);
+        } catch (figureError) {
+          figureReject(figureError);
+          throw figureError;
+        }
+      },
+      instantiateWasm(figureImports, figureReceive) {
+        try {
+          if (figureInstantiate) return figureInstantiate.call(Module, figureImports, figureReceive);
+          // Reuse the supplier's own loader. Its classic createWasm discards this Promise;
+          // observing it here gives the factory a rejection path without a global listener.
+          wasmBinaryFile ??= findWasmBinary();
+          Promise.resolve(instantiateAsync(wasmBinary, wasmBinaryFile, figureImports,
+            figureResult => figureReceive(figureResult.instance, figureResult.module)))
+            .catch(figureReject);
+          return {};
+        } catch (figureError) {
+          figureReject(figureError);
+          throw figureError;
+        }
+      }
+    };
+    // BEGIN BYTE-EXACT SUPPLIER SOURCE

@@ -53,3 +53,26 @@ To write the reconstructed bytes elsewhere, replace `--check` with `--output <pa
 ## Reproducibility boundary
 
 The source repository archives and npm tarballs are identified by immutable commit/hash data, and extracted files are checked against the generated inventory. This provides the preferred editable sources, source maps, dependency package contents, build scripts, and notices needed for inspection and modification. A fresh upstream compilation remains unqualified until it is performed with the upstream toolchain and dependencies and compared against the relevant npm bundle. Do not describe the npm distribution itself as the full preferred source where the source lock includes a separate repository snapshot.
+
+## PDFium browser binary release
+
+`binary_artifacts` in the same source lock records the immutable bblanchon 158.0.8111.0 supplier release, archive/module/WASM hashes, the isolated factory derivation, and the exact supplier/supplemental notices. This is a binary-artifact record, not an npm package or an assertion that the reference PDFium checkout reproduces the binary. The separately fetched PDFium reference SHA is not build-attested.
+
+The small distributable notice tree is `vendor/pdfium/notices/`; complete supplier MIT, PDFium/component terms and supplemental Emscripten/libyuv terms are included in `vendor/NOTICE`. The older `vendor/pdfium/PROVENANCE.json` and `WRAPPER-LICENSE.md` remain unchanged historical evidence of the retired local candidate, including its redistribution hold; they are not the replacement artifact authority.
+
+After preparing/verifying the ordinary pinned repository/npm source material against this lock, generate the distributable notices with:
+
+```powershell
+python scripts/build-vendor-notice.py --repository-root . --source-materials <verified-source-materials> --output vendor/NOTICE --app-notice-output app/legal/NOTICE --root-notice-output NOTICE
+```
+
+The validator verifies native runtime/notices against the binary-artifact record and requires the FreeType/IJG credits in the distribution notices. Upstream binary signature availability and notice admission do not qualify rendering, editing, memory or performance.
+
+The isolated JavaScript factory is reproducible from the unmodified supplier
+`vendor/pdfium/pdfium.js` and the exact prefix/suffix under
+`scripts/pdfium-factory/`. Run `python scripts/build-pdfium-factory.py --check`
+to verify these inputs and the complete derived output without executing WASM.
+Omit `--check` to reproduce `vendor/pdfium/pdfium.esm.js`. This concatenation
+does not compile PDFium or make a stronger claim about its underlying source
+revision. The supplier's `pdfium.wasm` lookup is mapped to the existing
+`pdfium.esm.wasm` resource token used by the native adapter.

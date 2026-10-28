@@ -11,3 +11,10 @@ and attribution requirements. See vendor/NOTICE and vendor/licenses/.
 
 The license does not claim ownership of imported user figures, data, or media,
 or grant rights to third-party material or trademarks.
+
+## PDFium runtime acknowledgements
+
+This product includes PDFium from the pinned bblanchon/pdfium-binaries release.
+This software is based in part on the work of the FreeType Team (https://freetype.org/).
+This software is based in part on the work of the Independent JPEG Group.
+Complete supplier and supplemental component terms accompany the distribution in vendor/NOTICE and vendor/pdfium/notices/.

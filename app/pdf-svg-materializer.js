@@ -18,6 +18,83 @@
   const authoringLayoutByFabric = new WeakMap();
   const pathClassByFabric = new WeakMap();
   const fontProgramsByDocument = new WeakMap();
+  const scenePaintBindings = new WeakMap(), clipPaintBindings = new WeakMap();
+  const startupTextLineRenderers = new WeakMap();
+  const startupTextStyleDeclarations = new WeakMap(), primitiveTextBindings = new WeakMap();
+  const sceneTransformApi = () => typeof module === "object" && module.exports
+    ? require("./native-path-scene-transform.js") : globalThis.FigureStudioNativePathSceneTransform;
+  function bindScenePaint(Class, kind, names, fabric) {
+    scenePaintBindings.set(Class, { kind, methods: Object.fromEntries(names.map(key => [key, Class.prototype[key]])) });
+    if (!clipPaintBindings.has(fabric)) clipPaintBindings.set(fabric, [fabric.Path, fabric.Rect].filter(Boolean).map(Class => ({ Class,
+      methods: Object.fromEntries(["_render", "drawObject", "calcOwnMatrix", "_renderPathCommands"].map(key => [key, Class.prototype[key]])) })));
+  }
+  // A deferred native-text module may register this class before App installs
+  // its canonical paragraph renderer. Accept that one explicit startup handoff
+  // by exact previous/replacement references; never refresh arbitrary methods
+  // on later register/Open/history calls.
+  function bindStartupTextLineRenderer(fabric, previous, replacement) {
+    const Text = classByFabric.get(fabric), binding = Text && scenePaintBindings.get(Text);
+    const issued = startupTextLineRenderers.get(fabric);
+    if (typeof previous !== "function" || typeof replacement !== "function" || previous === replacement
+        || fabric.Text?.prototype._renderTextLine !== replacement || Text && Text.prototype._renderTextLine !== replacement) return false;
+    if (issued) return issued.previous === previous && issued.replacement === replacement;
+    if (binding && binding.methods._renderTextLine !== previous) return false;
+    startupTextLineRenderers.set(fabric, { previous, replacement });
+    if (binding) binding.methods._renderTextLine = replacement;
+    return true;
+  }
+  // App's scientific-style copier is one explicit startup replacement. Keep
+  // exact previous/replacement references; later Open/reviver calls never
+  // refresh these identities to adopt an arbitrary style implementation.
+  function bindStartupTextStyleDeclaration(fabric, previous, replacement) {
+    const Text=classByFabric.get(fabric),binding=primitiveTextBindings.get(fabric),issued=startupTextStyleDeclarations.get(fabric);
+    if(typeof previous!=="function" || typeof replacement!=="function" || previous===replacement
+        || fabric.Text?.prototype.getCompleteStyleDeclaration!==replacement
+        || Text && Text.prototype.getCompleteStyleDeclaration!==replacement)return false;
+    if(issued)return issued.previous===previous && issued.replacement===replacement;
+    if(binding && binding.completeAtRegistration!==previous)return false;
+    startupTextStyleDeclarations.set(fabric,{previous,replacement});
+    if(binding)binding.complete=replacement;
+    return true;
+  }
+  function nativeSceneClip(clip, fabric) {
+    const proof = simpleNativeClip(clip, fabric), bindings = clipPaintBindings.get(fabric);
+    return proof && proof.layers.every(layer => {
+      const binding = bindings?.find(item => layer.object.constructor === item.Class);
+      return binding && Object.entries(binding.methods).every(([key, method]) => layer.object[key] === method);
+    });
+  }
+  // This is paint admission only. It neither changes source data nor supplies a
+  // geometry/number authority. Exact lazily registered methods also cover Open
+  // and history revivers; unknown subclasses and clip implementations fall back.
+  function nativeScenePaintKind(object, fabric) {
+    if (!object || !fabric) return null;
+    const binding = scenePaintBindings.get(object.constructor);
+    if (!binding) {
+      const Image = fabric.FabricImage || fabric.Image;
+      if (Image && object.constructor === Image && object.pdfSourceId && object.figureStudioSvgElementTag === "image"
+          && Number.isFinite(object.figureStudioSvgSourceOrder) && !object.clipPath) return "image";
+      return object.constructor === fabric.Path && object.pdfSourceId
+        && object.figureStudioSvgElementTag === "path" && Number.isFinite(object.figureStudioSvgSourceOrder)
+        && !object.clipPath ? "path" : null;
+    }
+    if (!Object.entries(binding.methods).every(([key, method]) => object[key] === method)) return null;
+    if (binding.kind === "text") {
+      return !object.clipPath && ["figureStudio.pdfPositionedText.v1", "figureStudio.pdfPositionedText.v2"].includes(object.pdfTextSource?.schema) ? "text" : null;
+    }
+    if (object.clipPath) {
+      if (!nativeSceneClip(object.clipPath, fabric)) return null;
+      // The separate current-plane clip painter retains its native policy.
+      if (binding.kind === "group" && (object._currentNativePlaneClip() || !object._pdfVectorClip())) return null;
+      if (binding.kind === "path" && !object._nativeRectangle() && !object._nativeVectorClip()) return null;
+    }
+    return binding.kind;
+  }
+  function transformNativeClip(context, object, matrices, fabric) {
+    if (!sceneTransformApi()?.setImportedClipTransform({ fabric, object, context, matrices })) {
+      for (const matrix of matrices) context.transform(...matrix);
+    }
+  }
   const importerApi = () => typeof module === "object" && module.exports ? require("./pdf-editable-import.js") : globalThis.FigureStudioPdfEditableImport;
   const knockoutApi = () => typeof module === "object" && module.exports ? require("./pdf-knockout.js") : globalThis.FigureStudioPdfKnockout;
   function preserveRenderPolicy(fabric) {
@@ -823,7 +900,7 @@
         if (!clip && !vector) return super.drawObject(context, forClipping, cache);
         context.save();
         try {
-          if (vector) applySimpleNativeClip(context, vector);
+          if (vector) applySimpleNativeClip(context, vector, this, fabric);
           else {
             context.save();
             try { for (const matrix of clip.planes) context.transform(...matrix); clip.path._renderPathCommands(context); }
@@ -841,6 +918,8 @@
     }
     fabric.classRegistry?.setClass(PdfIsolatedGroup);
     groupClassByFabric.set(fabric, PdfIsolatedGroup);
+    bindScenePaint(PdfIsolatedGroup, "group", ["render", "drawObject", "_render", "calcOwnMatrix", "calcTransformMatrix",
+      "_currentNativePlaneClip", "_pdfVectorClip", "_drawClipPath", "needsItsOwnCache"], fabric);
     registerCurrentPlaneGroupClass(fabric, PdfIsolatedGroup);
     return PdfIsolatedGroup;
   }
@@ -929,7 +1008,7 @@
     return layers.length ? { layers } : null;
   }
 
-  function applySimpleNativeClip(context, clip) {
+  function applySimpleNativeClip(context, clip, owner, fabric) {
     const matrices = [];
     for (const layer of clip.layers) {
       matrices.push(layer.matrix);
@@ -938,7 +1017,7 @@
       try {
         // Nested relative clip planes intersect. Restore only the transform
         // before committing each clip, so every intersection remains active.
-        for (const matrix of matrices) context.transform(...matrix);
+        transformNativeClip(context, owner, matrices, fabric);
         if (layer.path) layer.object._renderPathCommands(context);
         else context.rect(-layer.object.width / 2, -layer.object.height / 2, layer.object.width, layer.object.height);
       } finally { context.restore(); }
@@ -1049,11 +1128,11 @@
         const matrix = this.clipPath.calcOwnMatrix();
         context.save();
         try {
-          if (vector) applySimpleNativeClip(context, vector);
+          if (vector) applySimpleNativeClip(context, vector, this, fabric);
           else {
             context.beginPath();
             context.save();
-            context.transform(...matrix);
+            transformNativeClip(context, this, [matrix], fabric);
             context.rect(rectangle.left, rectangle.top, rectangle.width, rectangle.height);
             context.restore();
             context.clip(this.clipPath.fillRule === "evenodd" ? "evenodd" : "nonzero");
@@ -1067,6 +1146,9 @@
     }
     fabric.classRegistry?.setClass(PdfNativeRectClippedPath);
     pathClassByFabric.set(fabric, PdfNativeRectClippedPath);
+    bindScenePaint(PdfNativeRectClippedPath, "path", ["render", "drawObject", "calcOwnMatrix", "calcTransformMatrix",
+      "_renderPathCommands", "_renderPaintInOrder", "_renderFill", "_renderStroke", "_setFillStyles", "_setStrokeStyles",
+      "_pdfDeviceRectangle", "_nativeRectangle", "_nativeVectorClip", "_drawClipPath", "needsItsOwnCache"], fabric);
     return PdfNativeRectClippedPath;
   }
 
@@ -1151,6 +1233,11 @@
     if (classByFabric.has(fabric)) return classByFabric.get(fabric);
     const Base = fabric.IText || fabric.Text;
     if (!Base) throw new Error("Fabric editable text is unavailable.");
+    const primitiveBinding={completeAtRegistration:Base.prototype.getCompleteStyleDeclaration,
+      complete:startupTextStyleDeclarations.get(fabric)?.replacement,
+      methods:["_renderChar","_getStyleDeclaration","_getFontDeclaration","_setFillStyles","handleFiller"]
+        .map(name=>[name,Base.prototype[name]])};
+    primitiveTextBindings.set(fabric,primitiveBinding);
     class PdfPositionedText extends Base {
       static type = "PdfPositionedText";
       constructor(text, options = {}) {
@@ -1756,6 +1843,40 @@
         bounds[this._textLines[0].length] = { left: right, width: 0, kernedWidth: 0, height: this.fontSize, deltaY: 0 };
         return { ...measured, width: right };
       }
+      _pdfRenderChar(method, context, lineIndex, charIndex, text, left, top, glyphToken) {
+        const raster = globalThis.FigureStudioPdfiumTextRasterizer;
+        const declaration = this.getCompleteStyleDeclaration(lineIndex, charIndex);
+        const embedded = this.pdfTextSource?.schema === "figureStudio.pdfPositionedText.v2"
+          ? this._sourceFont(declaration)?.sourceEmbeddedProgram === true
+          : this._usesSourceGlyphMap() && declaration.fontFamily === this.pdfTextSource?.fontFamily;
+        if (!raster || !embedded) return super._renderChar(method, context, lineIndex, charIndex, text, left, top);
+        const unsupported=Boolean(this.shadow || this.path || this.direction === "rtl" || this.mask || this.filters?.length || this.resizeFilter
+          || this.figureStudioAppearanceStack || this.figureStudioAppearanceMeta);
+        const request={method,family:declaration.fontFamily,weight:declaration.fontWeight,style:declaration.fontStyle,fontSize:declaration.fontSize,unsupported};
+        if(method==="fillText" && !unsupported && raster.paintPrimitiveFill && this.constructor===PdfPositionedText
+            && primitiveBinding.complete && this.getCompleteStyleDeclaration===primitiveBinding.complete
+            && primitiveBinding.methods.every(([name,expected])=>typeof expected==="function" && this[name]===expected)
+            && !declaration.stroke && !declaration.textBackgroundColor && !this.textBackgroundColor && !this.backgroundColor && !declaration.backgroundColor
+            && !declaration.underline && !declaration.overline && !declaration.linethrough
+            && !this.underline && !this.overline && !this.linethrough) {
+          const style=this._getStyleDeclaration(lineIndex,charIndex),prototype=style && Object.getPrototypeOf(style);
+          const delta=style && Object.getOwnPropertyDescriptor(style,"deltaY"),background=style && Object.getOwnPropertyDescriptor(style,"textBackgroundColor");
+          if(style && (prototype===Object.prototype || prototype===null)
+              && (!delta || Object.hasOwn(delta,"value") && (delta.value===undefined || Number.isFinite(delta.value)))
+              && (!background || Object.hasOwn(background,"value") && !background.value)) {
+            // Literal stock _renderChar: only truthy raw-style deltaY shifts
+            // the baseline. Primitive fill has numeric zero filler offsets.
+            const y=delta?.value ? top+delta.value : top;
+            const painted=raster.paintPrimitiveFill(context,{...request,text,x:left,y,fill:declaration.fill,preparation:false},glyphToken);
+            if(painted===true)return;
+            if(painted===false)return super._renderChar(method,context,lineIndex,charIndex,text,left,top);
+          }
+        }
+        // Fabric still sets the exact character font, deltaY and paint offsets.
+        // The receiver-correct facade intercepts only its final fillText call,
+        // after current-native glyph planes and every parent transform apply.
+        return raster.withFillPainter(context, request, painter => super._renderChar(method, painter, lineIndex, charIndex, text, left, top),undefined,glyphToken);
+      }
       _renderChars(method, context, line, left, top, lineIndex) {
         const nativePlane = this._pdfCurrentNativePlane();
         if (nativePlane) {
@@ -1763,7 +1884,7 @@
             for (const entry of nativePlane.entries) {
               const glyph = this.pdfTextSource.glyphs.find(glyph => glyph.charIndex === entry.charIndex);
               if (!/^\s+$/u.test(glyph.unicode)) this._pdfWithCurrentPlane(context, entry, () =>
-                super._renderChar(method, context, 0, glyph.charIndex, glyph.fontChar, entry.x, entry.y));
+                this._pdfRenderChar(method, context, 0, glyph.charIndex, glyph.fontChar, entry.x, entry.y,glyph));
             }
           } else {
             this._pdfWithCurrentPlane(context, nativePlane.first, () => {
@@ -1772,7 +1893,7 @@
                 const declaration = this.getCompleteStyleDeclaration(lineIndex, charIndex), glyph = this._mapped(char, declaration), box = this.__charBounds[lineIndex][charIndex];
                 const original = this._getStyleDeclaration(lineIndex, charIndex), styles = this.styles, fallback = glyph.declaration.fontFamily !== declaration.fontFamily;
                 if (fallback) this.styles = { ...styles, [lineIndex]: { ...styles?.[lineIndex], [charIndex]: { ...original, fontFamily: glyph.declaration.fontFamily } } };
-                try { super._renderChar(method, context, lineIndex, charIndex, glyph.text,
+                try { this._pdfRenderChar(method, context, lineIndex, charIndex, glyph.text,
                   box.left === 0 ? nativePlane.first.x : nativePlane.first.x + box.left, box.deltaY ? baseline + box.deltaY : baseline); }
                 finally { if (fallback) this.styles = styles; }
               });
@@ -1785,7 +1906,7 @@
         if (paint) left = paint.x;
         const source = lineIndex === 0 && this._sourceLayout();
         if (source) {
-          for (const glyph of source.glyphs) if (!/^\s+$/.test(glyph.unicode)) super._renderChar(method, context, 0, glyph.charIndex, glyph.fontChar, left + glyph.x, baseline + glyph.y);
+          for (const glyph of source.glyphs) if (!/^\s+$/.test(glyph.unicode)) this._pdfRenderChar(method, context, 0, glyph.charIndex, glyph.fontChar, left + glyph.x, baseline + glyph.y,glyph);
           return;
         }
         // Drawing individually permits explicit fallback for a newly typed glyph
@@ -1797,7 +1918,7 @@
           const original = this._getStyleDeclaration(lineIndex, index), styles = this.styles;
           const fallback = glyph.declaration.fontFamily !== declaration.fontFamily;
           if (fallback) this.styles = { ...styles, [lineIndex]: { ...styles?.[lineIndex], [index]: { ...original, fontFamily: glyph.declaration.fontFamily } } };
-          try { super._renderChar(method, context, lineIndex, index, glyph.text, left + this.__charBounds[lineIndex][index].left, baseline); }
+          try { this._pdfRenderChar(method, context, lineIndex, index, glyph.text, left + this.__charBounds[lineIndex][index].left, baseline); }
           finally { if (fallback) this.styles = styles; }
         }
       }
@@ -1881,7 +2002,57 @@
     }
     fabric.classRegistry?.setClass(PdfPositionedText);
     classByFabric.set(fabric, PdfPositionedText);
+    bindScenePaint(PdfPositionedText, "text", ["render", "drawObject", "_render", "calcOwnMatrix", "calcTransformMatrix",
+      "_renderChar", "_renderChars", "_pdfRenderChar", "_pdfWithCurrentPlane", "_pdfCurrentNativePlane", "_renderText", "_renderTextFill", "_renderTextStroke",
+      "_renderTextLine", "_renderTextCommon", "needsItsOwnCache"], fabric);
     return PdfPositionedText;
+  }
+
+  // Prepare only derived display resources from detached, finalized IText.
+  // Thumbnail preparation retains literal native ancestor transforms. Explicit
+  // screen preparation shares the first live paint's admitted world transform.
+  // No await occurs in a Canvas scope; this never publishes paint pixels.
+  async function prepareImportedTextDisplayAsync(roots, options = {}) {
+    const raster=globalThis.FigureStudioPdfiumTextRasterizer;
+    if(!raster?.withPreparation || !raster.diagnostics().ready)return {preparedTextObjects:0,uiYieldCount:0};
+    const Text=registerTextClass(options.fabric),document=options.document || globalThis.document;
+    const surface=document.createElement('canvas');surface.width=2;surface.height=2;
+    const context=surface.getContext('2d'),now=()=>globalThis.performance?.now?.() ?? Date.now();
+    const maxSliceMs=Number.isFinite(options.maxSliceMs)?Math.max(0,options.maxSliceMs):8;
+    const yieldToUi=options.yieldToUi || (()=>new Promise(resolve=>setTimeout(resolve,0)));
+    const pending=Array.from(roots || [],object=>({object,ancestors:[]}));
+    let started=now(),preparedTextObjects=0,uiYieldCount=0;
+    const current=()=>{options.signal?.throwIfAborted();options.current?.();};
+    try{
+      while(pending.length){
+        current();const {object,ancestors}=pending.pop();
+        if(object.canvas)throw new Error('PDF text display preparation requires detached import objects.');
+        const children=object.getObjects?.() || [];
+        for(let i=children.length-1;i>=0;i--)pending.push({object:children[i],ancestors:[...ancestors,object]});
+        if(object instanceof Text && [object,...ancestors].every(owner=>owner.objectCaching===false
+            && owner.visible!==false && owner.opacity===1 && !owner.shadow
+            && (!owner.globalCompositeOperation || owner.globalCompositeOperation==='source-over') && owner.needsItsOwnCache?.()!==true)){
+          let collected;
+          context.save();
+          try{
+            context.setTransform(...options.contextTransform);
+            context.transform(...options.viewportTransform);
+            const matrix=options.screenSceneTransform && context.getTransform();
+            const shared=matrix && options.screenSceneTransform(context,object,[matrix.a,matrix.b,matrix.c,matrix.d,matrix.e,matrix.f]);
+            if(!shared)for(const owner of [...ancestors,object])context.transform(...owner.calcOwnMatrix());
+            if(raster.collectPreparation && raster.prepareCollectedAsync)collected=raster.collectPreparation(context,()=>object._render(context));
+            else raster.withPreparation(context,()=>object._render(context));
+            preparedTextObjects++;
+          }finally{context.restore();}
+          if(collected){
+            const prepared=await raster.prepareCollectedAsync(collected,{maxSliceMs,yieldToUi,current,signal:options.signal});
+            uiYieldCount+=prepared.uiYieldCount;
+          }
+        }
+        if(now()-started>=maxSliceMs){current();await yieldToUi();current();uiYieldCount++;started=now();}
+      }
+      current();return {preparedTextObjects,uiYieldCount};
+    }finally{surface.width=0;surface.height=0;}
   }
 
   async function registerFonts(fonts, options = {}) {
@@ -1890,18 +2061,26 @@
     const loaded = [], failures = [];
     const programs = document && (fontProgramsByDocument.get(document) || new Map());
     if (document && !fontProgramsByDocument.has(document)) fontProgramsByDocument.set(document, programs);
-    for (const font of fonts || []) {
+    for (const input of fonts || []) {
+      options.current?.();
+      const font = { family: input?.family, dataUrl: input?.dataUrl, weight: input?.weight, style: input?.style };
       if (!font?.family || !font.dataUrl) continue;
       if (!/^data:(?:font\/|application\/(?:font|octet-stream|x-font))/i.test(font.dataUrl)) { failures.push({ family: font.family, reason: "Font is not an embedded program." }); continue; }
       try {
         if (!FontFaceCtor || !document?.fonts) throw new Error("Browser font loading is unavailable.");
-        if (programs.get(font.family) === font.dataUrl) { loaded.push(font.family); continue; }
-        const face = new FontFaceCtor(font.family, `url(${JSON.stringify(font.dataUrl)})`, { weight: String(font.weight || "normal"), style: font.style || "normal" });
-        await face.load();
-        document.fonts.add(face);
-        programs.set(font.family, font.dataUrl);
+        if (programs.get(font.family) !== font.dataUrl) {
+          const face = new FontFaceCtor(font.family, `url(${JSON.stringify(font.dataUrl)})`, { weight: String(font.weight || "normal"), style: font.style || "normal" });
+          await face.load();
+          options.current?.();
+          document.fonts.add(face);
+          programs.set(font.family, font.dataUrl);
+        }
+        // No asynchronous paint completion: native font resources settle with
+        // the existing awaited FontFace registration before scene installation.
+        await globalThis.FigureStudioPdfiumTextRasterizer?.registerFont(font, options);
+        options.current?.();
         loaded.push(font.family);
-      } catch (error) { failures.push({ family: font.family, reason: String(error.message || error) }); }
+      } catch (error) { options.current?.();failures.push({ family: font.family, reason: String(error.message || error) }); }
     }
     return { loaded, failures };
   }
@@ -2845,5 +3024,5 @@ return Object.freeze({ construct, admitted });
     return { objects: hierarchy.objects, options: { ...(loaded.options || {}), width: view.width, height: view.height }, report };
   }
 
-  return Object.freeze({ SCHEMA, materialize, prepareSvgOpenDocument, validateKnockoutMarker, extractKnockoutRoots, materializeKnockoutProxy, registerTextClass, registerGroupClass, registerCurrentPlaneGroupClass, registerAuthoringLayoutManager, createAuthoringLayoutManager, finalizeImportedAuthoringLayout, finalizeImportedAuthoringLayoutAsync, registerPathClass, registerCurrentPlanePathClass, isNativeRectangleDisplayPath, registerFonts, prepareGroupRelease, multiply, transformMatrix, viewport, glyphPlan, xmlGlyph, rectangleBounds });
+  return Object.freeze({ SCHEMA, materialize, prepareSvgOpenDocument, validateKnockoutMarker, extractKnockoutRoots, materializeKnockoutProxy, registerTextClass, registerGroupClass, registerCurrentPlaneGroupClass, registerAuthoringLayoutManager, createAuthoringLayoutManager, finalizeImportedAuthoringLayout, finalizeImportedAuthoringLayoutAsync, prepareImportedTextDisplayAsync, nativeScenePaintKind, bindStartupTextLineRenderer, bindStartupTextStyleDeclaration, registerPathClass, registerCurrentPlanePathClass, isNativeRectangleDisplayPath, registerFonts, prepareGroupRelease, multiply, transformMatrix, viewport, glyphPlan, xmlGlyph, rectangleBounds });
 });

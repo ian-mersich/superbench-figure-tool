@@ -6,54 +6,76 @@ The browser site and Superbench consume one committed editor and asset collectio
 scientific scenes. Fixes belong here. Do not maintain a second editor in the
 public source checkout or backport individual fixes into the old beta.6 site.
 
-The [beta.15 release](https://github.com/ian-mersich/superbench-figure-tool/releases/tag/v1.0.0-beta.15)
-was published on 21 October 2026. Its immutable runtime source is
-`1a20663eacd6e2ab9059bad1b2d57094dfeda2e0`, and its selected Superbench package is
+## Beta.17 integration candidate — 23 October 2026
+
+The accepted `00c6ccfe` checkpoint is being prepared as a paired beta.17
+candidate. Its product logic is exact to `58e17ccb`; the package version change
+adds no editing behavior. Against the delivered beta.16, the candidate includes
+the accepted selection, handle, Layers/Isolation, native PDF glyph painting and
+cooperative Open changes. Private candidates 4/5/6, Figure 4 knockout experiments
+and untracked experiments are excluded by building the committed revision.
+
+This is candidate preparation, not publication or installed selection. Qualify
+the exact paired artifacts and six desktop width/theme cases before promotion.
+The single passing Figure 2 journey does not establish repeated v1 performance;
+the later repeated Open check still fails its original limits. General reference
+parity, dense editing and memory, arbitrary editable PDF fidelity, and Figure 4
+typography/export remain unfinished. Preserve the current fallback/export warnings
+and the original failed results. Beta.16 remains installed and public until a
+qualified successor is promoted. Figure implementation is paused during this
+integration window; the reuse-first roadmap remains unchanged.
+
+## Current delivered release
+
+The delivered beta.16 point/curve package uses immutable source
+`d170100675e2ed96dffccc2fd6ae3cd207a8c484`, semantic package
+`ceec84e7e18bd0945a99874817b9ff59f444ffa001eb87fa49b6a8c6587ce54d`, with 1,584 shared payload files.
+Its public source commit is `5a0627773b4cb93196300dd2bca6a654b956fc27` and website
+consumer commit is `29ab77f6b34a3d8f2874aa539dffb312b914118e`. The 486-drawing Library,
+four styles and 12 scenes are unchanged. See the
+[beta.16 checkpoint](PUBLIC_PUBLICATION.md#beta16--point-and-curve-continuity).
+
+**Beta.16 is published, deployed and installed**, with beta.15 retained for
+rollback. All 1,584 raw HTTPS payload files match the actual installed package;
+the Core pin, active selection and trust record agree. Actual HTTPS qualification
+and independent live review pass; see the paired publication checkpoint for scope.
+
+The actual LF beta.16 package passes 532 checks: 270 ordinary point/curve,
+192 genuine Figure 2 and 33 selection checks (495 normal), plus 37 separate
+post-Store.collect failure/recovery checks. The fault run does not qualify normal
+timing. Independent runtime visual review accepts the declared captures; the
+consolidated saved-file/PDF-content audit passes 161 checks. Combined native
+qualification passes 186 checks across six width/theme cases and 12 fresh hosts,
+with 24 independently accepted original captures. Core browser qualification
+passes 119 checks across six cases, also with 24 independently accepted originals.
+
+The first native attempt remains a retained failure: its 45-second auto-close
+could precede the unchanged 60-second inspection budget. One reviewed CLI-only
+amendment uses 60-second auto-close for the fresh complete run; all 12 inspection
+budgets are nonnegative. No product code, 250 ms paint criterion, content check
+or performance threshold was changed by this lifecycle correction.
+
+The [point and curve slice](architecture/POINT_AND_CURVE_CONTINUITY_2026_10_21.md)
+corrects off-center anchor grabs, attached tangent movement, nested Direct
+Selection painting and cooperative PDF history recovery. The actual Affinity
+3.3.1 comparison uses the unchanged 1,592,921-byte Figure 2 and its single red
+marker; it establishes that bounded gesture, not overall parity or a speedup.
+Tiny ordinary Undo translations and sparse edge-pixel differences retain their
+documented limits. General Selection/Direct Selection, sustained dense dragging,
+Figure 2 typography, corpus fidelity and scientific PDF v1 remain open.
+
+The user requested a joint project summary before another Figure task.
+Next implementation is on hold. The reuse-first roadmap and full scientific PDF
+v1 requirements are unchanged; the remaining work is a backlog for that review,
+not an instruction to start another slice.
+
+Beta.15 is the previous delivered image-interpolation checkpoint, from source
+`1a20663eacd6e2ab9059bad1b2d57094dfeda2e0` and package
 `c2daf1a7736f1dcb90e5be15dac5111eac840f9b3b3bcb472fdce88c01034538`.
-The [HTTPS editor](https://imersich.com/superbench/figure_tool/) and actual
-installed selection match all 1,583 payload files; the Core pin, active selection
-and trust record agree. Beta.14 is retained for rollback. The desktop host is
-unchanged. Reopen the desktop app or refresh the website to load the new editor;
-an already running app retains its loaded version.
-
-This release delivers the reviewed explicit image-interpolation corrections:
-editable PDF Open and native-format Save/cold Open, actual artwork PDF export,
-and Figure-to-slide copy followed by actual slide PDF export. The copied slide
-retains the existing editable SVG/PNG snapshot semantics with fresh identities,
-without transferring original-PDF editing authority. Its qualification covers
-copy, entry into the slide editor, exports and Save/reopen; new post-copy content
-mutation was not qualified. The beta.14
-[selection interaction slice](architecture/SELECTION_BODY_INTERACTION_2026_10_21.md)
-remains included and passes the 33-check actual-package regression.
-
-Separate exact-package groups pass 50 Figure/image checks, 22 slide checks,
-186 native checks across six cases and 12 hosts, and 119 Core browser checks
-across six cases. Native and Core browser visual reviews each accept 24 originals.
-Actual HTTPS qualification passes 702 checks; independent live review accepts
-25 originals and replays 18 saved-content comparisons. The public source/tag,
-archive identities, exact-commit CI, qualification scopes and deployment are in
-the [beta.15 publication checkpoint](PUBLIC_PUBLICATION.md#beta15--explicit-pdf-image-settings-and-shared-delivery-21-october-2026).
-
-Beta.13 previously combined document setup, compact editing controls, curved-arrow
-editing, saved-file compatibility and narrow-window Presentation menus. Beta.14
-delivered the native Fabric selection movement and editing-continuity changes.
-The explicit image work now ships in beta.15. Full Selection/Direct Selection,
-genuine Figure 2 typography/geometry, general PDF fidelity and performance/memory
-acceptance remain open. Continue substantive selection behavior and the measured
-Figure 2 typography case next; the reuse-first roadmap and full v1 requirements
-remain unchanged. The earlier Fabric controls pilot and importer comparison retain
-their original experimental scope. See the
-[image source qualification](architecture/PDF_IMAGE_INTERPOLATION_EXPORT_2026_10_21.md).
-
-A beta.16 candidate is being qualified from the committed anchor/curve work at
-`c9c92b5ed325bd3fd1da27d61c8ec0b949d59170`. It corrects off-center grabs,
-attached tangent movement, nested Direct Selection painting and cooperative PDF
-point-history recovery. Its source matrices and actual Affinity comparison are
-recorded in [point and curve continuity](architecture/POINT_AND_CURVE_CONTINUITY_2026_10_21.md).
-The coordinator will qualify the exact committed LF payload before native/public
-delivery. Beta.15 remains selected and deployed until that process passes. Tiny
-ordinary Undo translations and sparse edge-pixel differences retain their precise
-bounded disposition; full selection and scientific-PDF v1 are not accepted.
+Its reviewed editable-PDF and Figure-to-slide fixes remain included. Copied
+slides retain the existing fresh-ID SVG/PNG snapshot semantics without original
+PDF editing authority; a new post-copy content mutation was not qualified.
+Earlier beta.13/14 and reuse-pilot results retain their original scopes.
 
 Host-owned appearance and file controls can differ without forking the editor.
 The website has a persistent Light/Dark control; Superbench uses global App
@@ -166,7 +188,7 @@ For future releases, publishing the public repository/release, updating the
 website, and changing the actual local selected package remain explicit promotion
 steps after the matched candidate is reviewed. Public source/release publication,
 website deployment, actual desktop selection and final interactive HTTPS
-acceptance are complete for beta.14. All beta.6 repaint/backport
+acceptance are complete for beta.16. All beta.6 repaint/backport
 candidates remain unpublished historical diagnostics. The separate Windows
 installer qualification remains on the same roadmap.
 
@@ -177,9 +199,9 @@ and release documentation without repackaging the installed or deployed editor.
 Later beta.14 documentation commits do not replace runtime source
 `4598703fd1dfd80642983705365f3d07c84f3d1b` or package
 `d44ffb7f767f68fec6db512f51c5955e8be9ee844a5c35816bc8df58d6b245aa`.
-Keep both current consumer pins, the public `v1.0.0-beta.14` tag and its archives
-bound to that qualified runtime. Current evidence is in `qa_artifacts/v14/`
-and Core `qa_artifacts/g14/`, linked from the
+At that historical checkpoint, both consumer pins, the public `v1.0.0-beta.14`
+tag and its archives remained bound to that qualified runtime. Its evidence is
+in `qa_artifacts/v14/` and Core `qa_artifacts/g14/`, linked from the
 [publication checkpoint](PUBLIC_PUBLICATION.md#beta14--selection-movement-and-editing-continuity-21-october-2026).
 Historical beta.13 source, tag and archives remain immutable at their original
 identities; retaining them does not keep today's consumer pins on beta.13.

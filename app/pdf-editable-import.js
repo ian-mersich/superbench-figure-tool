@@ -444,12 +444,14 @@
     return numbers.createGraphicsClass(EditableSvgGraphics, pdfjs);
   }
 
-  async function registerFonts(fonts, targetDocument = typeof document !== "undefined" ? document : null) {
+  async function registerFonts(fonts, targetDocument = typeof document !== "undefined" ? document : null, options = {}) {
     if (!targetDocument?.fonts || typeof FontFace !== "function") return [];
     let cache = registeredFonts.get(targetDocument);
     if (!cache) { cache = new Map(); registeredFonts.set(targetDocument, cache); }
     const results = [];
-    for (const program of fonts || []) {
+    for (const input of fonts || []) {
+      options.current?.();
+      const program = { family: input?.family, dataUrl: input?.dataUrl, weight: input?.weight, style: input?.style };
       if (!program?.family || !/^data:/.test(program.dataUrl || "")) continue;
       const key = `${program.family}:${program.dataUrl}`;
       if (!cache.has(key)) {
@@ -462,7 +464,13 @@
         cache.set(key, promise);
         promise.catch(() => cache.delete(key));
       }
-      results.push(await cache.get(key));
+      const family = await cache.get(key);
+      options.current?.();
+      // FontFace caching and derived native-resource lifetime are independent.
+      // This also prepares a genuinely fresh process and an evicted same-tab font.
+      await globalThis.FigureStudioPdfiumTextRasterizer?.registerFont(program, options);
+      options.current?.();
+      results.push(family);
     }
     return results;
   }
@@ -567,7 +575,7 @@
         const sourceId = Array.from(digest, (byte) => byte.toString(16).padStart(2, "0")).join("");
         namespaceFontPrograms(svg, fonts, `${sourceId}_p${pageNumber}`);
       }
-      await registerFonts(fonts);
+      await registerFonts(fonts, undefined, { current: () => signal?.throwIfAborted() });
       const svgText = new XMLSerializer().serializeToString(svg);
       if (logicalTextSource) await logicalRuntime.finishDecodedSvg(logicalTextSource, svgText, svg);
       const currentPlaneObjects = currentPlanePage

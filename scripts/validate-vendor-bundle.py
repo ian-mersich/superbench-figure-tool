@@ -104,8 +104,11 @@ def _require_list(payload: dict, key: str) -> list:
 
 def _manifest_entries(payload: dict) -> list[dict]:
     entries: list[dict] = []
-    for key in ("runtime_files", "license_files", "notice_files"):
-        for entry in _require_list(payload, key):
+    for key in ("runtime_files", "license_files", "notice_files", "native_artifact_files"):
+        values = payload.get(key, []) if key == "native_artifact_files" else _require_list(payload, key)
+        if not isinstance(values, list):
+            raise SystemExit("native_artifact_files must be a list")
+        for entry in values:
             if not isinstance(entry, dict):
                 raise SystemExit(f"{key} entries must be objects")
             entries.append(entry)
@@ -247,6 +250,56 @@ def _validate_source_receipts(payload: dict, entries: dict[str, dict], root: Pat
     _validate_polygon_clipping_receipt(by_package["polygon-clipping"], entries)
 
 
+EXPECTED_PDFIUM_NOTICE_COMPONENTS = set(['abseil.txt', 'agg23.txt', 'dragonbox-Apache2-LLVM.txt', 'dragonbox-Boost.txt', 'emscripten-compiler-rt-license.txt', 'emscripten-dlmalloc-source.txt', 'emscripten-libcxx-license.txt', 'emscripten-libcxxabi-license.txt', 'emscripten-license.txt', 'emscripten-musl-copyright.txt', 'fast_float.txt', 'freetype.txt', 'harfbuzz.txt', 'highway.txt', 'icu.txt', 'lcms.txt', 'libjpeg_turbo.ijg', 'libjpeg_turbo.md', 'libopenjpeg.txt', 'libpng.txt', 'libyuv-LICENSE.txt', 'pdfium.txt', 'simdutf.txt', 'supplier-mit', 'zlib.txt'])
+
+
+def _validate_binary_artifacts(payload: dict, lock: dict, entries: dict, root: Path) -> None:
+    rows = lock.get("binary_artifacts", [])
+    if not isinstance(rows, list) or len(rows) > 1:
+        raise SystemExit("Only the reviewed PDFium binary-artifact record is supported")
+    if not rows:
+        if payload.get("native_artifact_files"):
+            raise SystemExit("Native inventory requires its source-lock binary artifact")
+        return
+    row = rows[0]
+    if row.get("id") != "pdfium-wasm-158.0.8111.0" or row.get("kind") != "supplier-binary-release" or row.get("publisher") != "bblanchon/pdfium-binaries":
+        raise SystemExit("Unreviewed native binary artifact")
+    if row.get("notice_admission") != "supplier-release-and-explicit-supplements" or row.get("legal_clearance") is not False:
+        raise SystemExit("Native artifact notice authority must remain explicit")
+    if payload["packages"].get(row["package"]) != row["version"]:
+        raise SystemExit("Native artifact package identity differs")
+    archive = row.get("archive", {})
+    if not str(archive.get("url", "")).startswith("https://github.com/bblanchon/pdfium-binaries/releases/download/") or not SHA256.fullmatch(str(archive.get("sha256", ""))) or not isinstance(archive.get("bytes"), int):
+        raise SystemExit("Native artifact origin/digest is missing")
+    if {x.get("path") for x in row.get("runtime_files", [])} != {"vendor/pdfium/pdfium.esm.js", "vendor/pdfium/pdfium.js", "vendor/pdfium/pdfium.wasm"}:
+        raise SystemExit("Native artifact must bind supplier module, WASM and isolated factory")
+    expected_components = EXPECTED_PDFIUM_NOTICE_COMPONENTS
+    notices = row.get("notices", [])
+    if {x.get("component") for x in notices} != expected_components or len(notices) != len(expected_components):
+        raise SystemExit("Native artifact supplier/runtime notice set is incomplete")
+    native_paths = {x["path"] for x in payload.get("native_artifact_files", [])}
+    expected_native = {x["path"] for x in notices + row.get("historical_inputs", [])} - {"vendor/pdfium/notices/supplier/LICENSE"}
+    if native_paths != expected_native:
+        raise SystemExit("Native metadata/notice inventory differs from its binary artifact")
+    for item in row["runtime_files"] + notices + row.get("historical_inputs", []):
+        entry = entries.get(item["path"])
+        if not entry or any(entry.get(k) != item[k] for k in ("bytes", "sha256")):
+            raise SystemExit("Native artifact file identity differs: " + item["path"])
+    vendor_notice = (root / "vendor/NOTICE").read_text(encoding="utf-8")
+    for item in notices:
+        if item.get("text_encoding") not in ("utf-8", "latin-1"):
+            raise SystemExit("Native notice text encoding is undeclared")
+        text = (root / item["path"]).read_bytes().decode(item["text_encoding"]).replace("\r\n", "\n").replace("\r", "\n").rstrip()
+        if not text or text not in vendor_notice:
+            raise SystemExit("Generated vendor notice omits native terms: " + item["path"])
+    app_notice = (root / "app/legal/NOTICE").read_text(encoding="utf-8")
+    if app_notice != (root / "NOTICE").read_text(encoding="utf-8"):
+        raise SystemExit("Root/app first-party notices must match")
+    for credit in ("based in part on the work of the FreeType Team", "based in part on the work of the Independent JPEG Group"):
+        if credit not in vendor_notice or credit not in app_notice:
+            raise SystemExit("Native FreeType/IJG distribution acknowledgement missing")
+
+
 def validate(root: Path = ROOT) -> None:
     root = root.resolve()
     vendor_root = root / "vendor"
@@ -357,6 +410,7 @@ def validate(root: Path = ROOT) -> None:
         raise SystemExit("vendor inventory does not exactly match manifest: " + "; ".join(details))
 
     _validate_source_receipts(payload, by_path, root)
+    _validate_binary_artifacts(payload, source_lock, by_path, root)
     source_materials = vendor_root / "source-materials"
     if source_materials.exists():
         verifier = root / "scripts" / "prepare-vendor-source.py"

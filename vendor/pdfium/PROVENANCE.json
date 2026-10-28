@@ -1,0 +1,32 @@
+{
+  "schema": "figureStudio.pdfiumCandidateProvenance.v1",
+  "status": "LOCAL_FUNCTIONAL_CANDIDATE_REDISTRIBUTION_HOLD",
+  "wrapperCommit": "c60c75d08051454f0deadf093ffdb948aa179888",
+  "wrapperRepository": "https://github.com/hyzyla/pdfium",
+  "builderCommit": "f2bed3c8bd49569a6b5c2a0df3a1ae0def3d8871",
+  "builderRelease": "8046d",
+  "resolvedPdfiumCommit": null,
+  "completeBinaryDependencyNotices": false,
+  "files": [
+    {
+      "path": "vendor/pdfium/pdfium.esm.js",
+      "bytes": 325734,
+      "sha256": "aaf6c6b6ae150992228bb21e6bdfe6c900d4af19acc524849e08d1576173ae73"
+    },
+    {
+      "path": "vendor/pdfium/pdfium.wasm",
+      "bytes": 5298237,
+      "sha256": "beeaf5bbff216d555fecec7cd486072838c4632a2272d31b52ef1fd05008fe7c"
+    },
+    {
+      "path": "vendor/pdfium/WRAPPER-LICENSE.md",
+      "bytes": 1072,
+      "sha256": "b60c044f81876f350bf5e309071bfc2057c444efd07d2b82790b786049d9d83f"
+    }
+  ],
+  "limitations": [
+    "The wrapper MIT notice does not cover all binary dependencies.",
+    "Do not publish this candidate until the exact applicable PDFium and dependency notices/provenance are resolved.",
+    "The raw native API adapter is separate from the binary distribution so the pinned distribution can be replaced."
+  ]
+}

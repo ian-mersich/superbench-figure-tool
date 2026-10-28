@@ -33,6 +33,8 @@ SUPPORT_FILES = (
     "scripts/figure_studio_core_bundle.py", "scripts/windows_suite_json.py",
     "scripts/validate-scientific-assets.py", "scripts/validate-vendor-bundle.py",
     "scripts/prepare-vendor-source.py", "scripts/rebuild-svg2pdf-vendor.py",
+    "scripts/build-pdfium-factory.py", "scripts/pdfium-factory/factory-prefix.js.txt",
+    "scripts/pdfium-factory/factory-suffix.js.txt",
     "scripts/build-vendor-notice.py", "scripts/generate-scientific-asset-license-audit.py",
     "scripts/seed-cell-structure-stress-assets.py", "scripts/cell_structure_stress_renderers.py",
     "scripts/cell_structure_stress_science.json", "scripts/seed-tumor-analysis-assets.py",
@@ -63,13 +65,17 @@ def sha(path: Path) -> str:
 
 
 def prepare_vendor_materials(source: Path, destination: Path, cache: Path) -> dict:
+    subprocess.run([sys.executable, str(source / "scripts/build-pdfium-factory.py"), "--check"],
+                   cwd=source, check=True, capture_output=True)
     subprocess.run([sys.executable, str(source / "scripts/prepare-vendor-source.py"), "--repository-root", str(source),
                     "--output", str(destination), "--cache-dir", str(cache)], cwd=source, check=True, capture_output=True)
     subprocess.run([sys.executable, str(source / "scripts/prepare-vendor-source.py"), "--repository-root", str(source),
                     "--verify", str(destination)], cwd=source, check=True, capture_output=True)
-    renderer = runpy.run_path(str(source / "scripts/build-vendor-notice.py"))["render_notice"]
+    notice_tools = runpy.run_path(str(source / "scripts/build-vendor-notice.py"))
+    renderer = notice_tools["render_notice"]
     expected = renderer((filesystem(destination) / "THIRD_PARTY_NOTICES.md").read_text(encoding="utf-8"),
-                        (source / "vendor/licenses/dejavu-sans-LICENSE.txt").read_text(encoding="utf-8"))
+                        (source / "vendor/licenses/dejavu-sans-LICENSE.txt").read_text(encoding="utf-8"),
+                        notice_tools["native_notice_section"](source))
     if (source / "vendor/NOTICE").read_bytes() != expected.encode("utf-8"):
         raise ValueError("Verified preferred-source terms differ from the shipped vendor notice")
     subprocess.run([sys.executable, str(source / "scripts/rebuild-svg2pdf-vendor.py"), "--repository-root", str(source),
