@@ -4742,6 +4742,26 @@ html .figure-studio-root button.canvas-guide.locked::before {
   display: none;
 }
 
+.isolation-object-marquee {
+  position: absolute;
+  border: 1px solid var(--accent);
+  background: color-mix(in srgb, var(--accent) 9%, transparent);
+}
+
+.is-pdf-object-selection .isolation-selection-box {
+  border: 0;
+  background: transparent;
+  box-shadow: 0 0 0 calc(0.5px * var(--canvas-handle-inverse-zoom, 1)) var(--accent);
+}
+
+.isolation-selection-count.is-screen-fixed {
+  z-index: 28;
+  pointer-events: none;
+  font-size: 12px;
+  white-space: nowrap;
+  box-shadow: 0 2px 6px rgba(13, 20, 30, 0.15);
+}
+
 .isolation-selection-box {
   position: absolute;
   border: 1px solid var(--accent);
@@ -4752,6 +4772,11 @@ html .figure-studio-root button.canvas-guide.locked::before {
 .isolation-selection-box.is-primary-selection {
   border-width: 2px;
   background: color-mix(in srgb, var(--accent) 13%, transparent);
+}
+
+.is-pdf-object-selection .isolation-selection-box.is-primary-selection {
+  border: 0;
+  background: transparent;
 }
 
 .isolation-selection-group-box {

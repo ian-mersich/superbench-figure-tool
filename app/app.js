@@ -678,6 +678,7 @@
     guideSnapCue: document.getElementById("guideSnapCue"),
     objectStatusOverlay: document.getElementById("objectStatusOverlay"),
     isolationSelectionOverlay: document.getElementById("isolationSelectionOverlay"),
+    isolationSelectionCount: document.getElementById("isolationSelectionCount"),
     viewport: document.getElementById("viewport"),
     toolGrid: document.getElementById("toolGrid"),
     sidebarTabs: document.querySelector(".sidebar-tabs"),
@@ -1390,12 +1391,39 @@
     catch (error) { didFail = true;throw error; }
     finally { if (scope) { try { dense.finishSceneReplacement(scope); } catch (error) { if (!didFail) throw error; } } }
   }
-  function requestCanvasArtworkRender() {
+  function requestCanvasArtworkRender(options = {}) {
     // Selection changes can share a task with removing artwork. Their overlay
     // optimization must not suppress the paint of the changed document.
     selectionOverlayRenderOnly = false;
     suppressNextFullCanvasRender = false;
     canvas.requestRenderAll();
+    if (options.cooperativePdfPoint && !transientCanvasTransform && !incrementalCanvasPaint) {
+      const owner = canvas, publication = pdfPointScreenPublication, abort = new AbortController();
+      let resolve;
+      const done = new Promise(finish => { resolve = finish; });
+      const record = { owner, publication, abort, phase: "queued", controller: null, complete: null,
+        audit: { queuedAt: performance.now() } };
+      const listener = event => {
+        if (event?.ctx === owner.contextContainer && ["publishing", "ordinary"].includes(record.phase)) record.complete(true);
+      };
+      globalThis.FigureStudioNativePathSceneTransform.registerPassivePaintObserver(listener);
+      const dispose = owner.on("after:render", listener);
+      record.complete = (passed, error = null) => {
+        if (record.phase === "closed") return;
+        lastPdfPointScreenPaintAudit = { ...record.audit, phase: record.phase, passed,
+          completedAt: performance.now(), error: error?.message || null };
+        record.phase = "closed"; dispose(); abort.abort(); record.controller?.close();
+        const records = pendingPdfPointScreenPaintRecords.get(owner);
+        records?.delete(record);
+        if (!records?.size) pendingPdfPointScreenPaintRecords.delete(owner);
+        if (pendingPdfPointScreenPaint === record) pendingPdfPointScreenPaint = null;
+        resolve({ passed, error });
+      };
+      if (!pendingPdfPointScreenPaintRecords.has(owner)) pendingPdfPointScreenPaintRecords.set(owner, new Set());
+      pendingPdfPointScreenPaintRecords.get(owner).add(record);
+      pendingPdfPointScreenPaint = record;
+      return done;
+    }
   }
   function retireUnusedPdfTextFonts(excludingTabId = "") {
     const raster = globalThis.FigureStudioPdfiumTextRasterizer, editable = globalThis.FigureStudioPdfEditableImport;
@@ -1655,6 +1683,17 @@
     marquee: null
   };
   let nativePathBodyDrag = null;
+  let pdfPointScreenPreview = null;
+  let pdfPointScreenPreparation = null;
+  let pdfPointScreenEpoch = 0;
+  let pdfPointScreenRequest = false;
+  let pdfPointScreenAudit = null;
+  let pdfPointScreenPublication = 0;
+  let pdfPointScheduledRender = false;
+  let pendingPdfPointScreenPaint = null;
+  const pendingPdfPointScreenPaintRecords = new WeakMap();
+  let lastPdfPointScreenPaintAudit = null;
+  const recentPdfPointScreenGestures = [];
   let drawInteraction = null;
   let knifeInteraction = null;
   let knifeTargetId = "";
@@ -1787,6 +1826,7 @@
     guardingSelection: false
   };
   let isolationTransform = null;
+  let isolatedObjectGesture = null;
   let layerTreeDrag = {
     active: false,
     documentId: "",
@@ -3571,8 +3611,11 @@
           kind: event.ctx === target.contextContainer ? "artwork" : event.ctx === target.contextTop ? "selection" : "derived",
           viewportTransform: [...target.viewportTransform],
           backingWidth: event.ctx?.canvas?.width, backingHeight: event.ctx?.canvas?.height });
-        const before = target.on("before:render", notify("before"));
-        const after = target.on("after:render", notify("after"));
+        const beforeCallback = notify("before"), afterCallback = notify("after");
+        globalThis.FigureStudioNativePathSceneTransform.registerPassivePaintObserver(beforeCallback);
+        globalThis.FigureStudioNativePathSceneTransform.registerPassivePaintObserver(afterCallback);
+        const before = target.on("before:render", beforeCallback);
+        const after = target.on("after:render", afterCallback);
         return () => { before();after(); };
       },
       getCanvasInteractionPerformanceForQa: (since = 0) => ({
@@ -4364,6 +4407,10 @@
         return target ? { segmentEndCommandIndex: target.segment.endCommandIndex, t: target.t, point: target.point } : null;
       },
       getPathTopologyActionStateForQa: (action) => pathTopologyActionState(action),
+      getPdfPointScreenPreviewForQa: () => ({ preparing: Boolean(pdfPointScreenPreparation),
+        active: Boolean(pdfPointScreenPreview?.active), ...pdfPointScreenAudit,
+        ...(pdfPointScreenPreview?.controller.diagnostics() || {}), gestures: recentPdfPointScreenGestures.slice(),
+        settledPaint: lastPdfPointScreenPaintAudit }),
       getWorkbenchChromeStateForQa,
       selectBezierNodeForQa: (objectId, nodeIndex, options = {}) => {
         const object = findNestedObjectByFigureId(objectId);
@@ -6146,6 +6193,7 @@
   }
 
   async function activateDocumentTab(tabId, options = {}) {
+    closePdfPointScreenPreview();
     const handoff = options.denseFigureHandoff ? denseFigureHandoffContext(options) : null;handoff?.current();
     if (pdfHistoryMovePending) await pdfHistoryMoveCompletion;
     handoff?.current();
@@ -8260,6 +8308,10 @@
 
   function initCanvas() {
     const art = artboardPx();
+    // This surface is primarily a display target. An explicit false keeps
+    // Chromium's pixel-readback heuristic from silently switching its painter
+    // to the CPU during hit testing or visible-pixel checks.
+    els.figureCanvas.getContext("2d", { willReadFrequently: false });
     canvas = new fabricRef.Canvas(els.figureCanvas, {
       width: art.width,
       height: art.height,
@@ -8272,7 +8324,7 @@
     const requestFullCanvasRender = canvas.requestRenderAll.bind(canvas);
     const renderFullCanvas = canvas.renderAll.bind(canvas);
     const drawFullCanvasControls = canvas.drawControls?.bind(canvas);
-    forceFullCanvasRender = renderFullCanvas;
+    forceFullCanvasRender = () => { publishPdfPointCanvasChange(); return renderFullCanvas(); };
     globalThis.FigureStudioNativePathSceneTransform.install({ fabric: fabricRef, canvas,
       isIsolated: () => isGroupIsolationActive(),
       isNativePath: isNativeUniformPathPaint,
@@ -8293,12 +8345,38 @@
       };
     }
     canvas.renderAll = () => {
+      if (!pdfPointScheduledRender) publishPdfPointCanvasChange();
+      else flushDeferredPdfPointNodeOverlay(screenOwnerCanvas);
+      const pending = pendingPdfPointScreenPaint;
+      if (pdfPointScheduledRender && pending?.owner === canvas && pending.phase === "queued"
+          && pending.publication === pdfPointScreenPublication) {
+        pending.phase = "preparing";
+        let fontsCurrent, nativeFontsCurrent;
+        try {
+          fontsCurrent = globalThis.FigureStudioNativePathSceneTransform.createFontFaceGuard(document);
+          nativeFontsCurrent = globalThis.FigureStudioPdfiumTextRasterizer.createScreenResourceGuard();
+        } catch (_) { fallbackPdfPointScreenPaint(pending); return canvas; }
+        const current = () => canvas === pending.owner && pending.publication === pdfPointScreenPublication
+          && !pending.owner.disposed && !pending.owner.destroyed && fontsCurrent() && nativeFontsCurrent();
+        void globalThis.FigureStudioNativePathSceneTransform.prepareCompleteScreenFrame({
+          fabric: fabricRef, canvas: pending.owner, current, signal: pending.abort.signal, yieldToUi: () => yieldPdfHistoryToUi(true),
+          admit: (object, clipping) => globalThis.FigureStudioPdfSvgMaterializer.isScreenLayerPaintObject(object, fabricRef, clipping)
+        }).then(controller => {
+          if (pending.phase !== "preparing" || !current()) { controller.close(); fallbackPdfPointScreenPaint(pending); return; }
+          pending.controller = controller; pending.audit.prepared = controller.diagnostics();
+          try { controller.install(); pending.phase = "publishing"; requestFullCanvasRender(); }
+          catch (_) { fallbackPdfPointScreenPaint(pending); }
+        }).catch(error => { pending.audit.fallbackReason = error.message; fallbackPdfPointScreenPaint(pending); });
+        return canvas;
+      }
       if (transientCanvasTransform || incrementalCanvasPaint) {
         requestTransientCanvasTransformRender();
         return canvas;
       }
       const startedAt = performance.now();
-      const result = renderFullCanvas();
+      let result;
+      try { result = renderFullCanvas(); }
+      catch (error) { failPdfPointScreenPaint(screenOwnerCanvas, error); throw error; }
       lastFullCanvasRenderPerformanceAudit = retainCanvasPerformanceAudit(recentFullCanvasRenderPerformanceAudits, {
         startedAt,
         durationMs: performance.now() - startedAt,
@@ -8308,6 +8386,7 @@
     };
     canvas.requestRenderAll = () => {
       if (transientCanvasTransform || incrementalCanvasPaint) {
+        publishPdfPointCanvasChange();
         requestTransientCanvasTransformRender();
         return canvas;
       }
@@ -8320,8 +8399,35 @@
         requestSelectionOverlayRender();
         return canvas;
       }
+      if (!pdfPointScreenRequest) publishPdfPointCanvasChange();
       return requestFullCanvasRender();
     };
+    const renderAndReset = canvas.renderAndReset.bind(canvas), renderCanvas = canvas.renderCanvas.bind(canvas);
+    canvas.renderAndReset = () => {
+      const previous = pdfPointScheduledRender; pdfPointScheduledRender = true;
+      try { return renderAndReset(); } finally { pdfPointScheduledRender = previous; }
+    };
+    canvas.renderCanvas = (context, objects) => {
+      if (context === canvas.contextContainer && !pdfPointScheduledRender) publishPdfPointCanvasChange();
+      return renderCanvas(context, objects);
+    };
+    const screenOwnerCanvas = canvas;
+    canvas.upperCanvasEl.addEventListener("pointerdown", beginIsolatedObjectGesture, true);
+    document.addEventListener("pointermove", updateIsolatedObjectGesture, true);
+    document.addEventListener("pointerup", finishIsolatedObjectGesture, true);
+    window.addEventListener("pointercancel", cancelIsolatedObjectGesture, true);
+    window.addEventListener("keydown", onIsolatedObjectGestureKey, true);
+    window.addEventListener("blur", cancelIsolatedObjectGesture);
+    window.addEventListener("pagehide", cancelIsolatedObjectGesture, true);
+    bindPdfPointScreenRetirement(screenOwnerCanvas);
+    canvas._figureStudioRequestOrdinaryScreenPaint = requestFullCanvasRender;
+    const prepareAfterPaint = () => {
+      if (canvas === screenOwnerCanvas) queueMicrotask(schedulePdfPointScreenPreview);
+    };
+    globalThis.FigureStudioNativePathSceneTransform.registerPassivePaintObserver(prepareAfterPaint);
+    canvas.on("after:render", prepareAfterPaint);
+    for (const event of ["canvas:cleared", "object:added", "object:removed", "object:modified"])
+      canvas.on(event, () => { if (canvas === screenOwnerCanvas) closePdfPointScreenPreview(); });
     canvas.upperCanvasEl?.addEventListener("pointerdown", (event) => {
       canvas._figureStudioPointerType = event.pointerType === "touch" ? "touch" : "mouse";
       canvas._figureStudioPointerId = event.pointerId;
@@ -29043,6 +29149,8 @@
   const FIGURE_CROSSHAIR_CURSOR = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='25' height='25' viewBox='0 0 25 25'%3E%3Ccircle cx='12.5' cy='12.5' r='4.5' fill='white' stroke='black' stroke-width='1.5'/%3E%3Cpath d='M12.5 1v7m0 9v7M1 12.5h7m9 0h7' stroke='white' stroke-width='3'/%3E%3Cpath d='M12.5 1v7m0 9v7M1 12.5h7m9 0h7' stroke='black' stroke-width='1'/%3E%3C/svg%3E") 12 12, crosshair`;
 
   function syncToolMode() {
+    if (isolatedObjectGesture) cancelIsolatedObjectGesture();
+    closePdfPointScreenPreview();
     const panning = state.tool === "pan";
     const drawing = state.tool === "freehand";
     const gradientEditing = state.tool === "pdfGradient";
@@ -37214,6 +37322,7 @@
   }
 
   function executeMenuCommand(command) {
+    closePdfPointScreenPreview();
     if (!command || !isMenuCommandEnabled(command)) return;
     const commandTrigger = document.activeElement;
     closeMenus();
@@ -40427,6 +40536,7 @@
   }
 
   function startPathNodeEdit(object, options = {}) {
+    closePdfPointScreenPreview();
     if (!isDirectSelectionEditableObject(object)) {
       if (options.toast !== false) showToast("Release or unlock this artwork before editing its nodes");
       return false;
@@ -40469,6 +40579,7 @@
   }
 
   function stopPathNodeEdit(options = {}) {
+    closePdfPointScreenPreview();
     if (nativePathBodyDrag) cancelNativePathBodyDrag();
     const sync = options.sync !== false;
     const object = pathNodeEdit.object;
@@ -40492,6 +40603,7 @@
   }
 
   function clearPathNodeOverlay() {
+    renderPathNodeOverlay.pendingPointRender = null;
     if (!els.pathNodeOverlay) return;
     els.pathNodeOverlay.innerHTML = "";
     els.pathNodeOverlay.hidden = true;
@@ -42385,6 +42497,10 @@
   }
 
   function renderPathNodeOverlay() {
+    renderPathNodeOverlay.pendingPointRender = null;
+    const previousNodeReadCache = normalizedBezierNodeMeta.overlayReadCache;
+    normalizedBezierNodeMeta.overlayReadCache = new WeakMap();
+    try {
     const object = pathNodeEdit.object;
     if (!els.pathNodeOverlay || !object || !isEditablePathObject(object)) {
       clearPathNodeOverlay();
@@ -42395,8 +42511,9 @@
       return;
     }
     const editableObjects = pathNodeEditObjects();
-    const allDescriptors = editableObjects.flatMap((item) => pathHandleDescriptors(item).map((descriptor) => qualifyPathHandle(item, descriptor)));
-    const primaryDescriptors = pathHandleDescriptors(object);
+    const handlesByObject = new Map(editableObjects.map((item) => [item, pathHandleDescriptors(item)]));
+    const nodeMetaByObject = new Map(editableObjects.map((item) => [item, normalizedBezierNodeMeta(item)]));
+    const allDescriptors = editableObjects.flatMap((item) => handlesByObject.get(item).map((descriptor) => qualifyPathHandle(item, descriptor, nodeMetaByObject.get(item))));
     if (pathNodeEdit.selected && !allDescriptors.some((descriptor) => samePathHandle(descriptor, pathNodeEdit.selected))) {
       pathNodeEdit.selected = null;
     }
@@ -42408,20 +42525,21 @@
     els.pathNodeOverlay.innerHTML = "";
     editableObjects.forEach((item) => {
       renderPathSegmentTargets(item);
-      const visibleControls = pathHandleDescriptors(item)
-        .filter((descriptor) => descriptor.handleType !== "endpoint" && isPathControlVisible(item, descriptor));
+      const nodeMeta = nodeMetaByObject.get(item);
+      const visibleControls = handlesByObject.get(item)
+        .filter((descriptor) => descriptor.handleType !== "endpoint" && isPathControlVisible(item, descriptor, nodeMeta));
       visibleControls
         .forEach((descriptor) => {
           const anchor = controlNodeDescriptor(item, descriptor);
           if (!anchor) return;
           appendPathControlLine(pathHandleCanvasPoint(item, anchor), pathHandleCanvasPoint(item, descriptor));
         });
-      pathHandleDescriptors(item)
+      handlesByObject.get(item)
         .filter((descriptor) => descriptor.handleType === "endpoint" || visibleControls.some((control) => samePathHandle(control, descriptor)))
         .slice()
         .sort((a, b) => (a.handleType === "endpoint" ? 1 : 0) - (b.handleType === "endpoint" ? 1 : 0))
         .forEach((descriptor) => {
-      const qualified = qualifyPathHandle(item, descriptor);
+      const qualified = qualifyPathHandle(item, descriptor, nodeMeta);
       const point = pathHandleCanvasPoint(item, descriptor);
       const handle = document.createElement("button");
       handle.type = "button";
@@ -42433,7 +42551,7 @@
       handle.dataset.commandIndex = String(descriptor.commandIndex);
       handle.dataset.handleType = descriptor.handleType;
       if (descriptor.handleType === "endpoint") {
-        const nodeType = bezierNodeType(item, descriptor);
+        const nodeType = nodeMeta.nodes[descriptor.nodeIndex]?.type || inferredBezierNodeType(item, descriptor);
         handle.dataset.nodeType = nodeType;
         handle.classList.add(`path-node-${nodeType}`);
       }
@@ -42476,14 +42594,185 @@
     els.pathNodeOverlay.hidden = false;
     syncPathActionButtons(object);
     renderLineGeometryOverlay(object);
+    schedulePdfPointScreenPreview();
+    } finally { normalizedBezierNodeMeta.overlayReadCache = previousNodeReadCache; }
   }
 
-  function isPathControlVisible(object, descriptor) {
+  function deferPdfPointNodeOverlay() {
+    const preview = pdfPointScreenPreview;
+    const gesture = pathNodeEdit.dragging, object = pathNodeEdit.object, overlay = els.pathNodeOverlay;
+    if (!canvas || canvas.disposed || canvas.destroyed || !gesture || !overlay || overlay.hidden
+        || state.tool !== "directSelect" || !preview?.active || preview.object !== object) return false;
+    try { if (!preview.controller.diagnostics().ready || !preview.controller.valid()) return false; }
+    catch (_) { return false; }
+    // Source operands still change on every input. Only disposable UI work
+    // waits for the existing native paint cycle and reads the latest model.
+    renderPathNodeOverlay.pendingPointRender = { owner: canvas, overlay, gesture, object };
+    return true;
+  }
+
+  function flushDeferredPdfPointNodeOverlay(owner) {
+    const pending = renderPathNodeOverlay.pendingPointRender;
+    if (!pending || pending.owner !== owner) return false;
+    renderPathNodeOverlay.pendingPointRender = null;
+    if (canvas !== owner || owner.disposed || owner.destroyed
+        || pending.overlay !== els.pathNodeOverlay || pending.overlay.hidden
+        || pending.gesture !== pathNodeEdit.dragging || pending.object !== pathNodeEdit.object
+        || state.tool !== "directSelect") return false;
+    // Cache invalidation can change the native paint route, but an owned UI
+    // update must still run. Consume before calling so errors cannot replay it.
+    renderPathNodeOverlay();
+    return true;
+  }
+
+  function closePdfPointScreenPreview(options = {}) {
+    renderPathNodeOverlay.pendingPointRender = null;
+    if (!options.preserveSettledPaint && pendingPdfPointScreenPaint) fallbackPdfPointScreenPaint(pendingPdfPointScreenPaint);
+    pdfPointScreenEpoch++;
+    pdfPointScreenPreparation?.abort.abort();
+    if (pdfPointScreenPreview) {
+      pdfPointScreenPreview.controller.close();
+      pdfPointScreenAudit = pdfPointScreenPreview.controller.diagnostics();
+      if (pdfPointScreenPreview.active) {
+        recentPdfPointScreenGestures.push(pdfPointScreenAudit);
+        if (recentPdfPointScreenGestures.length > 8) recentPdfPointScreenGestures.shift();
+      }
+      pdfPointScreenPreview = null;
+    }
+    pdfPointScreenPreparation = null;
+  }
+
+  function publishPdfPointCanvasChange() {
+    if (isolatedObjectGesture && !isolatedObjectGesture.ownPublication) cancelIsolatedObjectGesture(null, { external: true });
+    try { flushDeferredPdfPointNodeOverlay(canvas); }
+    finally {
+      if (pendingPdfPointScreenPaint) fallbackPdfPointScreenPaint(pendingPdfPointScreenPaint);
+      pdfPointScreenPublication++;
+      if (pdfPointScreenPreview) closePdfPointScreenPreview();
+    }
+  }
+
+  function fallbackPdfPointScreenPaint(record) {
+    if (!record || ["closed", "ordinary"].includes(record.phase)) return;
+    record.phase = "ordinary";
+    if (pendingPdfPointScreenPaint === record) pendingPdfPointScreenPaint = null;
+    record.abort.abort(); record.controller?.close();
+    if (record.owner.disposed || record.owner.destroyed) record.complete(false, new Error("The screen canvas was retired before its point edit completed."));
+    else {
+      try { record.owner._figureStudioRequestOrdinaryScreenPaint(); }
+      catch (error) { record.complete(false, error); }
+    }
+  }
+
+  function failPdfPointScreenPaint(owner, error) {
+    const records = pendingPdfPointScreenPaintRecords.get(owner);
+    if (records) for (const record of [...records]) record.complete(false, error);
+  }
+
+  function bindPdfPointScreenRetirement(owner) {
+    for (const method of ["dispose", "destroy"]) {
+      if (typeof owner[method] !== "function") continue;
+      const retire = owner[method].bind(owner);
+      owner[method] = (...args) => {
+        if (isolatedObjectGesture?.owner === owner) cancelIsolatedObjectGesture();
+        failPdfPointScreenPaint(owner, new Error("The screen canvas was retired before its point edit completed."));
+        if (canvas === owner) closePdfPointScreenPreview();
+        return retire(...args);
+      };
+    }
+  }
+
+  function requestPdfPointArtworkRender() {
+    const previousRequest = pdfPointScreenRequest;
+    pdfPointScreenRequest = true;
+    selectionOverlayRenderOnly = false; suppressNextFullCanvasRender = false;
+    try { canvas.requestRenderAll(); }
+    finally { pdfPointScreenRequest = previousRequest; }
+  }
+
+  function flushPdfPointArtworkRender() {
+    flushDeferredPdfPointNodeOverlay(canvas);
+    const preview = pdfPointScreenPreview;
+    if (!canvas?.nextRenderHandle || !preview?.active) return false;
+    let valid = false;
+    try { valid = preview.controller.diagnostics().ready && preview.controller.valid(); }
+    catch (_) { /* Unknown state retains ordinary deferred painting. */ }
+    if (!valid) return false;
+    const previousScheduled = pdfPointScheduledRender; pdfPointScheduledRender = true;
+    try { canvas.renderAll(); return true; }
+    finally { pdfPointScheduledRender = previousScheduled; }
+  }
+
+  function startPdfPointScreenGesture(gesture, object) {
+    const preview = pdfPointScreenPreview;
+    if (!preview || preview.active) return;
+    if (preview.object === object && gesture.pathSnapshots.length === 1 && !gesture.lineSnapshots.length
+        && preview.controller.start(() => pathNodeEdit.dragging === gesture)) preview.active = true;
+    else closePdfPointScreenPreview();
+  }
+
+  function schedulePdfPointScreenPreview() {
+    if (!canvas || pathNodeEdit.dragging || pathNodeEdit.segmentDrag || nativePathBodyDrag
+        || pathNodeEdit.marquee || state.tool !== "directSelect" || isApplyingHistory || isRestoring || pdfHistoryMutationLockDepth) return;
+    const object = pathNodeEdit.object;
+    if (!object || !pdfSourceIdForObject(object) || pathNodeEditObjects().length !== 1 || !object.group) return;
+    if (pdfPointScreenPreview?.object === object && !pdfPointScreenPreview.controller.valid()) closePdfPointScreenPreview();
+    if (pdfPointScreenPreview?.object === object || pdfPointScreenPreparation?.object === object) return;
+    closePdfPointScreenPreview();
+    const epoch = pdfPointScreenEpoch, owner = canvas, sources = state.pdfSources;
+    let fontsCurrent, nativeFontsCurrent;
+    try {
+      fontsCurrent = globalThis.FigureStudioNativePathSceneTransform.createFontFaceGuard(document);
+      nativeFontsCurrent = globalThis.FigureStudioPdfiumTextRasterizer.createScreenResourceGuard();
+    } catch (error) { pdfPointScreenAudit = { ready: false, reason: error.message }; return; }
+    let currentReason = "", publication = null;
+    const current = () => {
+      if (publication === null) publication = pdfPointScreenPublication;
+      currentReason = owner.disposed || owner.destroyed ? "disposed canvas" : epoch !== pdfPointScreenEpoch ? "cancelled"
+        : publication !== pdfPointScreenPublication ? "artwork publication"
+        : canvas !== owner || state.pdfSources !== sources ? "document"
+        : pathNodeEdit.object !== object || pathNodeEditObjects().length !== 1 || state.tool !== "directSelect" ? "selection"
+        : isApplyingHistory || isRestoring || pdfHistoryMutationLockDepth ? "history" : !fontsCurrent() || !nativeFontsCurrent() ? "fonts" : "";
+      return !currentReason;
+    };
+    current.reason = () => currentReason;
+    const abort = new AbortController();
+    pdfPointScreenPreparation = { object, epoch, abort };
+    // Give the normal selection paint its own frame before deriving disposable
+    // layers. Preparation never replaces a source object or triggers a paint.
+    const yieldFrame = () => new Promise((resolve, reject) => {
+      let frame, timer;
+      const cancel = () => {
+        cancelAnimationFrame(frame); clearTimeout(timer);
+        abort.signal.removeEventListener("abort", cancel);
+        reject(new DOMException("Screen preparation cancelled", "AbortError"));
+      };
+      abort.signal.addEventListener("abort", cancel, { once: true });
+      if (abort.signal.aborted) { cancel(); return; }
+      frame = requestAnimationFrame(() => {
+        timer = setTimeout(() => { abort.signal.removeEventListener("abort", cancel); resolve(); }, 0);
+      });
+    });
+    void globalThis.FigureStudioNativePathSceneTransform.preparePointScreenPreview({
+      fabric: fabricRef, canvas: owner, object, current, yieldFrame, inputs: [sources], signal: abort.signal,
+      admit: (item, clipping) => globalThis.FigureStudioPdfSvgMaterializer.isScreenLayerPaintObject(item, fabricRef, clipping)
+    }).then(controller => {
+      if (!current() || pathNodeEdit.dragging?.dirty) { controller.close(); return; }
+      pdfPointScreenPreview = { object, controller, active: false };
+      pdfPointScreenAudit = controller.diagnostics();
+    }).catch(error => {
+      if (epoch === pdfPointScreenEpoch) pdfPointScreenAudit = { ready: false, reason: error.message };
+    }).finally(() => {
+      if (pdfPointScreenPreparation?.epoch === epoch) pdfPointScreenPreparation = null;
+    });
+  }
+
+  function isPathControlVisible(object, descriptor, nodeMeta = null) {
     if (!object || !descriptor || descriptor.handleType === "endpoint") return false;
-    const qualified = qualifyPathHandle(object, descriptor);
+    const qualified = qualifyPathHandle(object, descriptor, nodeMeta);
     if (isPathHandleSelected(qualified)) return true;
     const endpoint = controlNodeDescriptor(object, descriptor);
-    if (endpoint && isPathHandleSelected(qualifyPathHandle(object, endpoint))) return true;
+    if (endpoint && isPathHandleSelected(qualifyPathHandle(object, endpoint, nodeMeta))) return true;
     // Keep both sides of a paired tangent visible while either control is
     // selected. The opposite handle is part of the constraint the user is
     // actively editing, even though it is not another selected node.
@@ -42517,9 +42806,9 @@
     return pathNodeEditObjects().find((object) => pathEditObjectId(object) === id) || null;
   }
 
-  function qualifyPathHandle(object, descriptor) {
+  function qualifyPathHandle(object, descriptor, nodeMeta = null) {
     const endpoint = descriptor?.handleType === "endpoint" ? descriptor : controlNodeDescriptor(object, descriptor);
-    const meta = normalizedBezierNodeMeta(object);
+    const meta = nodeMeta || normalizedBezierNodeMeta(object);
     return {
       ...descriptor,
       object,
@@ -43289,6 +43578,8 @@
       currentHandleSelected,
       selectionModifier
     };
+    const gesture = pathNodeEdit.dragging;
+    startPdfPointScreenGesture(gesture, object);
     handleElement.classList.add("dragging");
     handleElement.classList.add("selected");
   }
@@ -43302,6 +43593,7 @@
   }
 
   function restorePathHandleDrag(dragging, event) {
+    closePdfPointScreenPreview();
     event?.preventDefault?.();
     const snapshots = Array.isArray(dragging.lineSnapshots) ? dragging.lineSnapshots : [];
     snapshots.forEach((snapshot) => {
@@ -43360,6 +43652,8 @@
     const dragging = pathNodeEdit.dragging;
     const object = objectForPathHandleRef(dragging) || pathNodeEdit.object;
     if (!dragging || !object) return;
+    if (pdfPointScreenPreparation) closePdfPointScreenPreview();
+    startPdfPointScreenGesture(dragging, object);
     event.preventDefault();
     let descriptor = pathHandleDescriptors(object).find((item) => samePathHandle(item, dragging));
     if (!descriptor) return;
@@ -43470,8 +43764,8 @@
     }
     dragging.lastPoint = point;
     dragging.dirty = true;
-    renderPathNodeOverlay();
-    canvas.requestRenderAll();
+    if (!deferPdfPointNodeOverlay()) renderPathNodeOverlay();
+    requestPdfPointArtworkRender();
     if (previewMetricStartedAt != null) {
       recordVectorEnginePathPointerMoveSample(vectorEngineMetricNow() - previewMetricStartedAt);
     }
@@ -43501,6 +43795,9 @@
     const dragging = pathNodeEdit.dragging;
     if (!dragging) return;
     event.preventDefault();
+    let releasePaintFailure = null;
+    try { flushPdfPointArtworkRender(); }
+    catch (error) { releasePaintFailure = { error }; }
     pathNodeEdit.dragging = null;
     resetPaintedVectorDirectSelectionCycle();
     try {
@@ -43510,10 +43807,31 @@
     }
     hideGuideSnapCue();
     hideSmartGuideCues();
-    finishPathHandleDrag(dragging);
+    finishPathHandleDrag(dragging, releasePaintFailure ? { releasePaintFailure } : {});
   }
 
-  function finishPathHandleDrag(dragging) {
+  function finishPathHandleDrag(dragging, options = {}) {
+    const hadRetainedPaint = Boolean(options.retainedPaint || pdfPointScreenPreview?.active && pdfPointScreenPreview.controller.diagnostics().frames);
+    if (!options.prepareHistory && (hadRetainedPaint || options.releasePaintFailure)) {
+      // Keep the already-painted final point visible while the pinned recovery
+      // transaction gives timers a turn before native frame settlement.
+      return commitPdfPointHistory("Path edit", {}, null,
+        () => {
+          if (options.releasePaintFailure) throw options.releasePaintFailure.error;
+          return finishPathHandleDrag(dragging, { prepareHistory: true, retainedPaint: true });
+        }).catch((error) => {
+        console.error("Figure Tool could not record a PDF point edit", error);
+        showLongToast("Could not complete the point edit. The previous editing state has been retained.");
+      });
+    }
+    let preparedHistory = null;
+    if (dragging.dirty) closePdfPointScreenPreview();
+    else if (pdfPointScreenPreview?.active) {
+      const audit = pdfPointScreenPreview.controller.end();
+      recentPdfPointScreenGestures.push(audit);
+      if (recentPdfPointScreenGestures.length > 8) recentPdfPointScreenGestures.shift();
+      pdfPointScreenPreview.active = false;
+    }
     const changed = (dragging.pathSnapshots || []).some((snapshot) => {
       const object = objectForPathHandleRef(snapshot);
       return object && JSON.stringify(object.path) !== JSON.stringify(snapshot.path);
@@ -43561,13 +43879,14 @@
         syncInspector();
         // Fit-content layout can rebase siblings while settling the path frame.
         // Queue the resulting artwork before cooperative history capture yields.
-        requestCanvasArtworkRender();
+        const screenPaint = requestCanvasArtworkRender({ cooperativePdfPoint: hadRetainedPaint });
         const historyOptions = pdfIncrementalHistoryOptions([...touchedObjects.keys()]);
-        if (historyOptions.incrementalObjects?.length) {
+        if (options.prepareHistory) preparedHistory = { label: historyLabel, options: historyOptions, screenPaint };
+        else if (historyOptions.incrementalObjects?.length) {
           // Reconstructed scientific PDFs use the same cooperative history
           // capture as PDF Open. A synchronous snapshot can block subsequent
           // paint and input after the edited point is already visible.
-          void commitPdfPointHistory(historyLabel, historyOptions).catch((error) => {
+          void commitPdfPointHistory(historyLabel, historyOptions, screenPaint).catch((error) => {
             console.error("Figure Tool could not record a PDF point edit", error);
             showLongToast("Could not complete the point edit. The previous editing state has been retained.");
           });
@@ -43597,6 +43916,7 @@
     }
     renderPathNodeOverlay();
     updatePathNodeStatus(pathNodeEdit.object);
+    return preparedHistory;
   }
 
   function cancelPathNodePointer(event) {
@@ -43719,6 +44039,11 @@
   }
 
   function normalizedBezierNodeMeta(object) {
+    const cache = normalizedBezierNodeMeta.overlayReadCache, cached = object && cache?.get(object);
+    if (cached && cached.path === object.path && cached.source === object.figureStudioBezierNodeMeta) {
+      return { schema: cached.value.schema, contours: cached.value.contours.map(row => ({ ...row })),
+        nodes: cached.value.nodes.map(row => ({ ...row })) };
+    }
     const descriptors = pathNodeDescriptors(object);
     const source = object?.figureStudioBezierNodeMeta;
     const sourceNodes = Array.isArray(source?.nodes) ? source.nodes : [];
@@ -43735,7 +44060,7 @@
         || `${pathEditObjectId(object) || "path"}-contour-${contour.contourIndex + 1}`
       ));
     });
-    return {
+    const result = {
       schema: "figureStudio.bezierNodes.v2",
       contours: contours.map((contour) => ({
         id: contourIds.get(contour.contourIndex),
@@ -43751,6 +44076,11 @@
         };
       })
     };
+    // UI eligibility queries share this synchronous read scope. Each caller
+    // still receives independent mutable records, including the first caller.
+    if (object && typeof object === "object" && cache) cache.set(object, { path: object.path, source,
+      value: { schema: result.schema, contours: result.contours.map(row => ({ ...row })), nodes: result.nodes.map(row => ({ ...row })) } });
+    return result;
   }
 
   function bezierNodeType(object, descriptor) {
@@ -46211,8 +46541,21 @@
     object.dirty = true;
     object.setCoords?.();
     const sceneAfter = pathLocalPointToCanvas(object, reference);
-    moveObjectBySceneDelta(object, sceneBefore.x - sceneAfter.x, sceneBefore.y - sceneAfter.y);
-    refreshObjectHierarchy(object);
+    const layoutApi = globalThis.FigureStudioPdfSvgMaterializer;
+    let nativePdfCoords = Boolean(object.group && pdfSourceIdForObject(object)
+      && layoutApi?.canControlAuthoringLayoutBubbles && layoutApi.canRefreshPdfLocalCoordinates?.(fabricRef, object));
+    for (let parent = object.group; nativePdfCoords && parent; parent = parent.group) {
+      nativePdfCoords = parent.parent === parent.group && layoutApi.canControlAuthoringLayoutBubbles(fabricRef, parent);
+    }
+    moveObjectBySceneDelta(object, sceneBefore.x - sceneAfter.x, sceneBefore.y - sceneAfter.y, 1e-9,
+      nativePdfCoords ? { pdfLocalCoords: true } : {});
+    // Preserve the accepted native layout sequence, including the intermediate
+    // move refresh above. Omitting it changes serialized Float64 parent frames.
+    let nativePdfChain = Boolean(pdfSourceIdForObject(object) && layoutApi?.canControlAuthoringLayoutBubbles);
+    for (let parent = object.group; nativePdfChain && parent; parent = parent.group) {
+      nativePdfChain = parent.parent === parent.group && layoutApi.canControlAuthoringLayoutBubbles(fabricRef, parent);
+    }
+    refreshObjectHierarchy(object, { ...(nativePdfChain ? { layoutBubbles: false } : {}), ...(nativePdfCoords ? { pdfLocalCoords: true } : {}) });
     if (clipSceneMatrix) {
       const clipLocalMatrix = fabricRef.util.multiplyTransformMatrices(fabricRef.util.invertTransform(object.calcTransformMatrix()), clipSceneMatrix);
       fabricRef.util.applyTransformToObject(clip, clipLocalMatrix);
@@ -54838,8 +55181,185 @@
     overlay.dataset.qaZoomPercent = String(Math.round(zoom * 100));
   }
 
+  function beginIsolatedObjectGesture(event) {
+    if (event.button !== 0 || state.tool !== "select" || isolatedObjectGesture || !canvas
+        || event.currentTarget !== canvas.upperCanvasEl || isApplyingHistory || isRestoring
+        || pdfHistoryMutationLockDepth || pdfHistoryMovePending || activeDocumentFileOperation || exportStateDepth) return;
+    const api = globalThis.FigureStudioGroupObjectSelection;
+    if (!api) return;
+    const point = canvas.getScenePoint(event);
+    if (!isGroupIsolationActive() && !canvas.getActiveObject()) {
+      const source = canvas.getObjects().slice().reverse().find(object => canEnterGroupIsolation(object)
+        && object.importMeta?.releasedForContentEditing && object.importMeta?.mimeType === "application/pdf"
+        && object.containsPoint(point) && pdfGroupedDirectSelectionScope({ target: object }) === object);
+      if (source) {
+        const before = canvas.upperCanvasEl.getBoundingClientRect();
+        enterGroupIsolation(source, { tool: "select", empty: true, toast: false });
+        const after = canvas.upperCanvasEl.getBoundingClientRect();
+        state.view.panX += before.left - after.left;
+        state.view.panY += before.top - after.top;
+        refreshViewportLayoutMetrics(); syncTransientViewport();
+      }
+    }
+    if (!isGroupIsolationActive()) return;
+    const group = activeIsolationGroup(), original = isolatedSelectedObjects().slice();
+    if (!group.importMeta?.releasedForContentEditing || group.importMeta?.mimeType !== "application/pdf"
+        || pdfGroupedDirectSelectionScope({ target: group }) !== group) return;
+    const active = canvas.getActiveObject();
+    if (active?.findControl?.(canvas.getViewportPoint(event), event.pointerType === "touch")) return;
+    const child = isolationChildAtScenePoint(group, point);
+    const additive = Boolean(event.shiftKey || event.ctrlKey || event.metaKey);
+    const selected = child && !original.includes(child) ? additive ? [...original, child] : [child] : original;
+    if (child && selected.some(object => object.group !== group || transientTransformHasLiveDependents(object))) return;
+    const owner = canvas, capture = owner.upperCanvasEl;
+    const drag = { kind: child ? "body" : "marquee", owner, group, capture,
+      pointerId: event.pointerId, original, additive, child, start: point, point, hits: [], dirty: false,
+      publication: pdfPointScreenPublication, documentId: currentTransformDocumentId(), tab: activeDocumentTab(), history: undoStack.at(-1),
+      parentMatrix: group.calcTransformMatrix().slice(), selected,
+      records: child ? [] : selectableIsolationChildren(group).map(object => ({ object, bounds: api.bounds(object, fabricRef) })),
+      snapshots: child ? selected.map(object => ({ object, parent: object.group, left: object.left, top: object.top,
+        inverse: fabricRef.util.invertTransform(object.group.calcTransformMatrix()) })) : [] };
+    if (drag.snapshots.some(entry => !entry.inverse.every(Number.isFinite) || !Number.isFinite(entry.left) || !Number.isFinite(entry.top))) return;
+    drag.expected = drag.snapshots.map(entry => ({ left: entry.left, top: entry.top }));
+    if (child && !original.includes(child)) selectIsolatedObjects(selected, { revealInLayers: false });
+    if (!child && !additive) selectIsolatedObjects([], { revealInLayers: false });
+    // Selection publication belongs to admission, before the frozen gesture.
+    drag.publication = pdfPointScreenPublication;
+    isolatedObjectGesture = drag;
+    try {
+      if (child) drag.unlock = lockPdfHistoryMutations();
+      event.preventDefault(); event.stopImmediatePropagation();
+      capture.focus?.({ preventScroll: true });
+      try { capture.setPointerCapture(event.pointerId); } catch (_) { /* Window release still closes the gesture. */ }
+      renderIsolationSelectionOverlay();
+    } catch (error) { recoverIsolatedObjectGesture(drag, error); }
+  }
+
+  function isolatedObjectGestureIsCurrent(drag) {
+    return canvas === drag.owner && !drag.owner.disposed && !drag.owner.destroyed
+      && activeIsolationGroup() === drag.group
+      && currentTransformDocumentId() === drag.documentId && activeDocumentTab() === drag.tab
+      && undoStack.at(-1) === drag.history && drag.publication === pdfPointScreenPublication
+      && drag.parentMatrix.every((value, index) => Object.is(value, drag.group.calcTransformMatrix()[index]))
+      && drag.snapshots.every((entry, index) => entry.object.group === entry.parent
+        && Object.is(entry.object.left, drag.expected[index].left) && Object.is(entry.object.top, drag.expected[index].top))
+      && (drag.kind !== "body" || isolatedSelectedObjects().length === drag.selected.length
+        && isolatedSelectedObjects().every((object, index) => object === drag.selected[index]));
+  }
+
+  function updateIsolatedObjectGesture(event) {
+    const drag = isolatedObjectGesture;
+    if (!drag || event.pointerId !== drag.pointerId) return;
+    event.preventDefault(); event.stopPropagation();
+    if (state.tool !== "select" || !isolatedObjectGestureIsCurrent(drag)) { cancelIsolatedObjectGesture(null, { external: true }); return; }
+    try {
+    const api = globalThis.FigureStudioGroupObjectSelection;
+    drag.point = canvas.getScenePoint(event);
+    if (drag.kind === "marquee") {
+      if (drag.publication !== pdfPointScreenPublication) { cancelIsolatedObjectGesture(); return; }
+      drag.hits = api.collect(drag.records, api.rectangle(drag.start, drag.point));
+    } else {
+      const delta = { x: drag.point.x - drag.start.x, y: drag.point.y - drag.start.y };
+      const positions = api.positions(drag.snapshots, delta, event.shiftKey);
+      for (const entry of positions) { entry.object.set({ left: entry.left, top: entry.top, dirty: true }); entry.object.setCoords(); }
+      drag.expected = positions.map(entry => ({ left: entry.left, top: entry.top }));
+      for (let parent = drag.group; parent; parent = parent.group) parent.dirty = true;
+      drag.dirty = positions.some((entry, index) => entry.left !== drag.snapshots[index].left || entry.top !== drag.snapshots[index].top);
+      drag.ownPublication = true;
+      try { canvas.requestRenderAll(); }
+      finally { drag.ownPublication = false; drag.publication = pdfPointScreenPublication; }
+    }
+    renderIsolationSelectionOverlay();
+    } catch (error) { recoverIsolatedObjectGesture(drag, error); }
+  }
+
+  function recoverIsolatedObjectGesture(drag, error) {
+    isolatedObjectGesture = null; releaseIsolatedObjectCapture(drag);
+    try {
+      void commitPdfPointHistory("Move selected objects", {}, null, () => { throw error; })
+        .catch(failure => { console.error("Figure Tool recovered a selected-object gesture", failure); showLongToast("Could not complete the move. The previous editing state has been retained."); });
+    } finally { drag.unlock?.(); }
+  }
+
+  function releaseIsolatedObjectCapture(drag) {
+    try { if (drag.capture.hasPointerCapture?.(drag.pointerId)) drag.capture.releasePointerCapture(drag.pointerId); }
+    catch (_) { /* Capture may already have ended. */ }
+  }
+
+  function finishIsolatedObjectGesture(event) {
+    const drag = isolatedObjectGesture;
+    if (!drag || event.pointerId !== drag.pointerId) return;
+    event.preventDefault(); event.stopPropagation();
+    if (!isolatedObjectGestureIsCurrent(drag)) { cancelIsolatedObjectGesture(); return; }
+    isolatedObjectGesture = null;
+    releaseIsolatedObjectCapture(drag);
+    if (drag.kind === "marquee") {
+      const valid = drag.publication === pdfPointScreenPublication;
+      selectIsolatedObjects(valid ? globalThis.FigureStudioGroupObjectSelection.mergedSelection(drag.original, drag.hits, drag.additive) : drag.original, { revealInLayers: false });
+      renderIsolationSelectionOverlay();
+      return;
+    }
+    if (!drag.dirty) {
+      drag.unlock?.();
+      if (drag.additive && drag.original.includes(drag.child)) selectIsolatedObjects(drag.original.filter(object => object !== drag.child), { revealInLayers: false });
+      renderIsolationSelectionOverlay();
+      return;
+    }
+    try { void commitPdfPointHistory("Move selected objects", {}, null, () => {
+      if (!isolatedObjectGestureIsCurrent(drag)) throw new Error("The selected objects changed before their move completed.");
+      refreshObjectHierarchy(drag.snapshots[0].object, { pdfLocalCoords: true });
+      const screenPaint = requestCanvasArtworkRender({ cooperativePdfPoint: true });
+      syncUi();
+      return { label: "Move selected objects", options: {}, screenPaint };
+    }).catch(error => { console.error("Figure Tool could not complete the selected-object move", error); showLongToast("Could not complete the move. The previous editing state has been retained."); }); }
+    finally { drag.unlock?.(); }
+  }
+
+  function cancelIsolatedObjectGesture(event = null, options = {}) {
+    const drag = isolatedObjectGesture;
+    if (!drag || event?.pointerId != null && event.pointerId !== drag.pointerId) return false;
+    isolatedObjectGesture = null;
+    releaseIsolatedObjectCapture(drag);
+    const owned = canvas === drag.owner && activeIsolationGroup() === drag.group
+      && currentTransformDocumentId() === drag.documentId && activeDocumentTab() === drag.tab
+      && drag.parentMatrix.every((value, index) => Object.is(value, drag.group.calcTransformMatrix()[index]))
+      && drag.snapshots.every((entry, index) => entry.object.group === entry.parent
+        && Object.is(entry.object.left, drag.expected[index].left) && Object.is(entry.object.top, drag.expected[index].top));
+    try { if (owned) {
+      drag.snapshots.forEach(entry => { entry.object.set({ left: entry.left, top: entry.top, dirty: true }); entry.object.setCoords(); });
+      for (let parent = drag.group; parent; parent = parent.group) parent.dirty = true;
+      if (!options.external) selectIsolatedObjects(drag.original, { revealInLayers: false });
+      canvas.requestRenderAll(); renderIsolationSelectionOverlay();
+    } } catch (error) { recoverIsolatedObjectGesture(drag, error); }
+    finally { drag.unlock?.(); }
+    return true;
+  }
+
+  function onIsolatedObjectGestureKey(event) {
+    if (!isolatedObjectGesture) return;
+    if (event.key === "Escape") {
+      event.preventDefault(); event.stopImmediatePropagation(); cancelIsolatedObjectGesture();
+    } else if ((event.ctrlKey || event.metaKey) && ["z", "y"].includes(event.key.toLowerCase())) cancelIsolatedObjectGesture();
+  }
+
   function renderIsolationSelectionOverlay() {
     if (!els.isolationSelectionOverlay || !canvas) return;
+    if (els.isolationSelectionCount) {
+      els.isolationSelectionCount.hidden = true;
+      els.isolationSelectionCount.removeAttribute("data-selection-marquee-count");
+    }
+    const pdfFeedback = activeIsolationGroup()?.importMeta?.releasedForContentEditing && activeIsolationGroup()?.importMeta?.mimeType === "application/pdf";
+    els.isolationSelectionOverlay.classList.toggle("is-pdf-object-selection", Boolean(pdfFeedback));
+    if (isolatedObjectGesture?.kind === "marquee") {
+      const drag = isolatedObjectGesture, box = globalThis.FigureStudioGroupObjectSelection.rectangle(drag.start, drag.point);
+      renderIsolatedObjectCountBadge(`${drag.hits.length} objects`, drag.point, true);
+      const boxes = globalThis.FigureStudioGroupObjectSelection.outlines(drag.records.filter(record => drag.hits.includes(record.object))).map(({ bounds }) => {
+        return `<span class="isolation-selection-box" style="left:${bounds.left}px;top:${bounds.top}px;width:${bounds.width}px;height:${bounds.height}px"></span>`;
+      }).join("");
+      els.isolationSelectionOverlay.hidden = false;
+      els.isolationSelectionOverlay.innerHTML = `${boxes}<span class="isolation-object-marquee" style="left:${box.left}px;top:${box.top}px;width:${box.width}px;height:${box.height}px"></span>`;
+      return;
+    }
     const selected = isGroupIsolationActive() ? isolatedSelectedObjects() : [];
     if (selected.length < 2) {
       els.isolationSelectionOverlay.hidden = true;
@@ -54847,27 +55367,44 @@
       return;
     }
     const primary = groupIsolation.selected || selected.at(-1);
-    const boxes = selected.map((object) => {
-      const box = object?.getBoundingRect?.();
+    const records = selected.map(object => ({ object, bounds: object?.getBoundingRect?.() })).filter(record => record.bounds);
+    const outlines = pdfFeedback
+      ? globalThis.FigureStudioGroupObjectSelection.outlines(records) : records.map(record => ({ bounds: record.bounds, objects: [record.object] }));
+    const boxes = outlines.map(({ bounds: box, objects }) => {
       if (!box || !Number.isFinite(box.left) || !Number.isFinite(box.top)) return "";
       const left = Math.max(0, Number(box.left || 0) - 2);
       const top = Math.max(0, Number(box.top || 0) - 2);
       const width = Math.max(6, Number(box.width || 0) + 4);
       const height = Math.max(6, Number(box.height || 0) + 4);
-      return `<span class="isolation-selection-box${object === primary ? " is-primary-selection" : ""}" style="left:${left}px;top:${top}px;width:${width}px;height:${height}px"></span>`;
+      return `<span class="isolation-selection-box${objects.includes(primary) ? " is-primary-selection" : ""}" style="left:${left}px;top:${top}px;width:${width}px;height:${height}px"></span>`;
     }).join("");
     const union = unionBBox(selected);
     const labelLeft = Math.max(4, Number(union.left || 0));
     const labelTop = Math.max(4, Number(union.top || 0) - 24);
+    if (pdfFeedback) renderIsolatedObjectCountBadge(`${selected.length} selected`, { x: labelLeft, y: labelTop });
     const groupLeft = Math.max(0, Number(union.left || 0) - 4);
     const groupTop = Math.max(0, Number(union.top || 0) - 4);
     const groupWidth = Math.max(10, Number(union.width || 0) + 8);
     const groupHeight = Math.max(10, Number(union.height || 0) + 8);
     els.isolationSelectionOverlay.hidden = false;
-    els.isolationSelectionOverlay.innerHTML = `${boxes}<span class="isolation-selection-group-box" style="left:${groupLeft}px;top:${groupTop}px;width:${groupWidth}px;height:${groupHeight}px">${isolationTransformHandleHtml()}</span><span class="isolation-selection-count" style="left:${labelLeft}px;top:${labelTop}px">${selected.length} selected</span>`;
+    els.isolationSelectionOverlay.innerHTML = `${boxes}<span class="isolation-selection-group-box" style="left:${groupLeft}px;top:${groupTop}px;width:${groupWidth}px;height:${groupHeight}px">${isolationTransformHandleHtml()}</span>${pdfFeedback ? "" : `<span class="isolation-selection-count" style="left:${labelLeft}px;top:${labelTop}px">${selected.length} selected</span>`}`;
     els.isolationSelectionOverlay.querySelectorAll("[data-isolation-transform-handle]").forEach((handle) => {
       handle.addEventListener("pointerdown", (event) => beginIsolationTransformDrag(event, handle.dataset.isolationTransformHandle));
     });
+  }
+
+  function renderIsolatedObjectCountBadge(text, point, marquee = false) {
+    const badge = els.isolationSelectionCount;
+    if (!badge) return;
+    const stage = canvas.upperCanvasEl.getBoundingClientRect(), viewport = els.viewport.getBoundingClientRect();
+    const zoom = stage.width / canvas.width;
+    const left = els.verticalRuler && !els.verticalRuler.hidden ? els.verticalRuler.getBoundingClientRect().right : viewport.left;
+    const top = els.horizontalRuler && !els.horizontalRuler.hidden ? els.horizontalRuler.getBoundingClientRect().bottom : viewport.top;
+    badge.textContent = text; badge.hidden = false;
+    if (marquee) badge.setAttribute("data-selection-marquee-count", "");
+    else badge.removeAttribute("data-selection-marquee-count");
+    badge.style.left = `${Math.max(left - viewport.left + 6, Math.min(stage.left + point.x * zoom - viewport.left + 8, viewport.width - badge.offsetWidth - 16))}px`;
+    badge.style.top = `${Math.max(top - viewport.top + 6, Math.min(stage.top + point.y * zoom - viewport.top + 8, viewport.height - badge.offsetHeight - 16))}px`;
   }
 
   function isolationTransformHandleHtml() {
@@ -66652,7 +67189,8 @@
     if (!isGroupIsolationActive()) return null;
     return {
       pathIds: groupIsolation.path.map((group) => String(group?.figureId || "")).filter(Boolean),
-      selectedIds: isolatedSelectedObjects().map((object) => String(object?.figureId || "")).filter(Boolean)
+      selectedIds: isolatedSelectedObjects().map((object) => String(object?.figureId || "")).filter(Boolean),
+      ...(state.tool === "select" ? { tool: "select" } : {})
     };
   }
 
@@ -66672,7 +67210,7 @@
     }
     if (!path.length) return false;
     groupIsolation = { path, selected: null, selectedObjects: [], guardingSelection: false };
-    state.tool = "directSelect";
+    state.tool = saved.tool === "select" ? "select" : "directSelect";
     syncToolMode();
     const activeGroup = path.at(-1);
     const selected = (Array.isArray(saved?.selectedIds) ? saved.selectedIds : [])
@@ -66762,10 +67300,10 @@
     else groupIsolation.path.push(group);
     ensureLayerState();
     state.layers.collapsedGroups[group.figureId] = false;
-    state.tool = "directSelect";
+    state.tool = options.tool === "select" ? "select" : "directSelect";
     syncToolMode();
     const children = selectableIsolationChildren(group);
-    const preferred = children.includes(options.child) ? options.child : children[0] || null;
+    const preferred = options.empty ? null : children.includes(options.child) ? options.child : children[0] || null;
     if (preferred) selectIsolatedObject(preferred, { sync: false });
     else canvas.discardActiveObject();
     renderGroupIsolationBar();
@@ -67020,13 +67558,13 @@
     return { x: local.x, y: local.y };
   }
 
-  function moveObjectBySceneDelta(object, dx, dy, epsilon = 1e-9) {
+  function moveObjectBySceneDelta(object, dx, dy, epsilon = 1e-9, options = {}) {
     const sceneDx = Number(dx) || 0;
     const sceneDy = Number(dy) || 0;
     if (Math.abs(sceneDx) <= epsilon && Math.abs(sceneDy) <= epsilon) return false;
     const local = sceneDeltaToObjectParent(object, sceneDx, sceneDy);
     object.set({ left: object.left + local.dx, top: object.top + local.dy });
-    refreshObjectHierarchy(object);
+    refreshObjectHierarchy(object, options);
     return true;
   }
 
@@ -67189,7 +67727,10 @@
       // Fabric groups own a fit-content layout. When node editing grows a
       // child, setCoords alone keeps the old group union and makes the new
       // painted geometry unreachable to Selection/Free Transform.
-      if (options.layout !== false) parent.triggerLayout?.();
+      if (options.layout !== false) {
+        if (options.layoutBubbles === false) parent.triggerLayout?.({ bubbles: false });
+        else parent.triggerLayout?.();
+      }
       parent.setCoords?.();
       root = parent;
       parent = parent.group || null;
@@ -67198,9 +67739,17 @@
       // Fit-content layout can recenter every sibling's local coordinates.
       // Refresh their cached hit bounds after the final ancestor layout,
       // including descendants of nested groups, without changing geometry.
+      const active = new Set(options.pdfLocalCoords ? object.canvas?.getActiveObjects?.() || [] : []);
       const refreshDescendants = (group) => {
         groupChildren(group).forEach((child) => {
-          child.setCoords?.();
+          if (options.pdfLocalCoords && child !== object && !active.has(child)
+              && globalThis.FigureStudioPdfSvgMaterializer?.canRefreshPdfLocalCoordinates(fabricRef, child)) {
+            // Grouped hit bounds are parent-local. Native activation computes
+            // full interactive controls when this currently inactive object is
+            // selected; refreshing its controls now adds no visible behavior.
+            child.aCoords = child.calcACoords();
+            child.oCoords ||= {};
+          } else child.setCoords?.();
           refreshDescendants(child);
         });
       };
@@ -76598,6 +77147,7 @@
   }
 
   function executeVectorEngineCommand(transactionOrFactory, options = {}) {
+    closePdfPointScreenPreview();
     if (pdfHistoryMutationLockDepth || documentRuntimeRestoreFailed) return { status: "busy", reason: "history-restoring" };
     const startedAt = vectorEngineMetricNow();
     const historyState = captureVectorEngineHistoryState();
@@ -77106,7 +77656,8 @@
       incrementalState && !Number(stats.replaced_count || 0) ? incrementalState : null);
   }
 
-  function lockPdfHistoryMutations() {
+  function lockPdfHistoryMutations(options = {}) {
+    closePdfPointScreenPreview({ preserveSettledPaint: options.preserveSettledPaint === true });
     if (!pdfHistoryMutationLockDepth) {
       const shell = els.studioShell;
       const wasInert = Boolean(shell?.inert);
@@ -77137,11 +77688,11 @@
     };
   }
 
-  function yieldPdfHistoryToUi() {
+  function yieldPdfHistoryToUi(forceTimer = false) {
     // Prioritized scheduler continuations can outrank ordinary timer tasks.
     // Return to the timer queue regularly while keeping the short yields fast.
     const now = performance.now();
-    if (!Number.isFinite(yieldPdfHistoryToUi.lastTimerYield)
+    if (forceTimer === true || !Number.isFinite(yieldPdfHistoryToUi.lastTimerYield)
         || now - yieldPdfHistoryToUi.lastTimerYield >= 48) {
       yieldPdfHistoryToUi.lastTimerYield = now;
       return new Promise((resolve) => setTimeout(resolve, 0));
@@ -77343,17 +77894,27 @@
     return commitSerializedHistory(label, options, serializeEditorStateForHistory(options));
   }
 
-  async function commitPdfHistory(label, options = {}) {
-    if (!pdfHistoryNodeStore || !Object.keys(state.pdfSources?.entries || {}).length) return commitHistory(label, options);
+  async function commitPdfHistory(label, options = {}, screenPaint = null) {
+    if (!pdfHistoryNodeStore || !Object.keys(state.pdfSources?.entries || {}).length) {
+      if (screenPaint) {
+        const result = await screenPaint;
+        if (!result.passed) throw result.error || new Error("The settled point artwork could not be displayed.");
+      }
+      return commitHistory(label, options);
+    }
     if (!canvas || suspendedState.active || isRestoring || isApplyingHistory || masterLayoutEditor.active || liveBooleanEdit.active) return;
     clearSmartGuideCandidateCache();
     const recipients = recordSourceBackedEditForHistory(label);
     if (options.incrementalObjects?.length) options = { ...options, incrementalObjects: [...options.incrementalObjects, ...recipients] };
     const ownerCanvas = canvas, documentId = currentTransformDocumentId();
-    const unlock = lockPdfHistoryMutations();
+    const unlock = lockPdfHistoryMutations({ preserveSettledPaint: Boolean(screenPaint) });
     isApplyingHistory = true;
     try {
       const serialized = await serializePdfEditorStateForHistory(options);
+      if (screenPaint) {
+        const result = await screenPaint;
+        if (!result.passed) throw result.error || new Error("The settled point artwork could not be displayed.");
+      }
       if (canvas !== ownerCanvas || currentTransformDocumentId() !== documentId) throw new Error("The document changed while its PDF history was being captured.");
       isApplyingHistory = false;
       return commitSerializedHistory(label, options, serialized);
@@ -77363,7 +77924,7 @@
     }
   }
 
-  async function commitPdfPointHistory(label, options = {}) {
+  async function commitPdfPointHistory(label, options = {}, screenPaint = null, preparePoint = null) {
     const ownerCanvas = canvas, ownerTab = activeDocumentTab(), documentId = currentTransformDocumentId();
     const snapshot = undoStack.at(-1), historyBefore = captureVectorEngineHistoryState();
     const preferredActiveId = selectedTopLevelObjects()[0]?.figureId || null;
@@ -77371,9 +77932,28 @@
     const recoveryOptions = { preferredActiveId, directSelectionState,
       dirtyBefore: documentDirty, saveLabelBefore: documentSaveStateLabel,
       viewBefore: cloneDocumentTabValue(state.view, {}), uiBefore: cloneDocumentTabValue(state.ui, {}) };
-    const release = pinPdfHistorySnapshots([...historyBefore.undoStack, ...historyBefore.redoStack]), unlock = lockPdfHistoryMutations();
+    const release = pinPdfHistorySnapshots([...historyBefore.undoStack, ...historyBefore.redoStack]), unlock = lockPdfHistoryMutations({ preserveSettledPaint: Boolean(screenPaint) });
     try {
-      await commitPdfHistory(label, options);
+      // The settled native artwork is already queued. Let existing paint/input
+      // timers run before the synchronous prefix of history capture begins;
+      // the same mutation lock and pinned recovery snapshot span this yield.
+      // An ordinary timer is required here: scheduler continuations can run
+      // ahead of overdue timers and join release and capture into one pause.
+      await yieldPdfHistoryToUi(true);
+      if (canvas !== ownerCanvas || activeDocumentTab() !== ownerTab || currentTransformDocumentId() !== documentId)
+        throw new Error("The document changed before its PDF point history could be captured.");
+      if (preparePoint) {
+        if (ownerCanvas.disposed || ownerCanvas.destroyed) throw new Error("The point canvas was retired before settlement.");
+        const prepared = await preparePoint();
+        if (!prepared) return;
+        ({ label, options, screenPaint } = prepared);
+        // Native settlement and history capture each have a synchronous prefix.
+        // Preserve their original arithmetic, with a timer turn between them.
+        await yieldPdfHistoryToUi(true);
+        if (canvas !== ownerCanvas || activeDocumentTab() !== ownerTab || currentTransformDocumentId() !== documentId
+            || ownerCanvas.disposed || ownerCanvas.destroyed) throw new Error("The document changed while its PDF point frame was settling.");
+      }
+      await commitPdfHistory(label, options, screenPaint);
     } catch (error) {
       isApplyingHistory = false;
       if (snapshot && canvas === ownerCanvas && activeDocumentTab() === ownerTab && currentTransformDocumentId() === documentId) {
@@ -77735,6 +78315,7 @@
   }
 
   async function undo() {
+    closePdfPointScreenPreview();
     if (pdfHistoryMovePending || pdfHistoryMutationLockDepth) return;
     flushTextHistory();
     if (undoStack.length <= 1) return;
@@ -77759,6 +78340,7 @@
   }
 
   async function redo() {
+    closePdfPointScreenPreview();
     if (pdfHistoryMovePending || pdfHistoryMutationLockDepth) return;
     flushTextHistory();
     if (!redoStack.length) return;
@@ -82227,6 +82809,7 @@
       return;
     }
     if (isTextLike(object)) {
+      const nativePaint = object._pdfCurrentNativePaintMatrix?.();
       const scaling = typeof object.getObjectScaling === "function"
         ? object.getObjectScaling()
         : { scaleX: object.scaleX || 1, scaleY: object.scaleY || 1 };
@@ -82235,7 +82818,7 @@
         topLevel,
         text: object.text || "",
         fontFamily: object.fontFamily || readStyle(topLevel).fontFamily || DEFAULT_FONT_FAMILY,
-        effectiveFontPx: Math.abs(Number(object.fontSize || 0) * Number(scaling.scaleY || scaling.y || 1))
+        effectiveFontPx: Math.abs(Number(object.fontSize || 0) * (nativePaint ? Math.hypot(nativePaint[2], nativePaint[3]) : Number(scaling.scaleY || scaling.y || 1)))
       });
     }
     groupChildren(object).forEach((child) => collectTextEntries(child, topLevel, entries, nativeInventories));
@@ -95597,6 +96180,7 @@
   }
 
   async function withExportState(context, fn) {
+    closePdfPointScreenPreview();
     const exportCanvas = canvas, documentId = currentTransformDocumentId();
     const ownsCanvas = () => canvas === exportCanvas && currentTransformDocumentId() === documentId;
     const assertOwner = () => { if (!ownsCanvas()) throw new Error("The document changed during export. No file was created."); };
@@ -99152,7 +99736,9 @@
   }
 
   function wireEvents() {
+    window.addEventListener("pagehide", closePdfPointScreenPreview);
     window.addEventListener("blur", () => {
+      closePdfPointScreenPreview();
       finishTransientCanvasTransform(null, { cancel: true });
       cancelObjectInteractionRefresh();
       if (slideSortDrag.active) clearSlideSortDrag({ focus: true, suppressClick: slideSortDrag.started });

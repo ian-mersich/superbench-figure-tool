@@ -31,6 +31,20 @@
   }
   function ownMatrix(object) { return object.calcOwnMatrix(); }
   function multiply(a, b, fabric) { return fabric.util.multiplyTransformMatrices(a, b); }
+  function textPlaneHit(object, point, matrix, fabric, tolerance) {
+    const plane = object._pdfCurrentNativePlane?.();
+    if (!plane) return null;
+    return object._pdfCurrentPlaneEntries(plane).some(entry => {
+      const glyphMatrix = entry.matrices.reduce((m, local) => multiply(m, local, fabric), matrix);
+      const local = localPoint(point, glyphMatrix, fabric), line = entry.lineIndex || 0, column = entry.columnIndex ?? entry.charIndex;
+      const declaration = object.getCompleteStyleDeclaration(line, column), char = object._textLines[line]?.[column];
+      const unicode = object._textLines[line]?.slice(column, column + entry.charCount).join('');
+      if (char === undefined || !unicode || /^\s+$/u.test(unicode) || !visiblePaint(declaration.fill, fabric) && !(Number(declaration.strokeWidth) > 0 && visiblePaint(declaration.stroke, fabric))) return false;
+      const width = object._measureChar(unicode, declaration).width, em = declaration.fontSize;
+      const scale = Math.max(1e-9, Math.min(Math.hypot(glyphMatrix[0], glyphMatrix[1]), Math.hypot(glyphMatrix[2], glyphMatrix[3]))), margin = tolerance / scale;
+      return local.x >= entry.x - margin && local.x <= entry.x + width + margin && local.y >= entry.y - em - margin && local.y <= entry.y + em * .25 + margin;
+    });
+  }
   function geometry(object, point, matrix, fabric, clipping, tolerance) {
     const children = object.getObjects?.();
     if (children?.length) return children.some((child) => {
@@ -39,6 +53,8 @@
       return (!child.clipPath || clipContains(child.clipPath, childMatrix, point, fabric))
         && geometry(child, point, childMatrix, fabric, clipping, tolerance);
     });
+    const textHit = !clipping ? textPlaneHit(object, point, matrix, fabric, tolerance) : null;
+    if (textHit !== null) return textHit;
     const local = localPoint(point, matrix, fabric);
     if (Array.isArray(object.path)) {
       local.x += object.pathOffset?.x || 0;
@@ -101,6 +117,8 @@
     const children = object.getObjects?.();
     if (children?.length) return children.some((child) => hitObject(child, point, { fabric, tolerance }));
     const matrix = object.calcTransformMatrix();
+    const textHit = textPlaneHit(object, point, matrix, fabric, tolerance);
+    if (textHit !== null) return textHit;
     const local = localPoint(point, matrix, fabric);
     const scale = Math.max(1e-9, Math.min(Math.hypot(matrix[0], matrix[1]), Math.hypot(matrix[2], matrix[3])));
     const margin = tolerance / scale + (Number(object.strokeWidth) || 0) / 2;

@@ -255,6 +255,7 @@
   }
 
   function rendererClass(pdfjs, logicalOptions = {}) {
+    const sourceItems = typeof module === "object" && module.exports ? require("./pdf-source-text-items.js") : globalThis.FigureStudioPdfSourceTextItems;
     const EditableSvgGraphics = class EditableSvgGraphics extends pdfjs.SVGGraphics {
       constructor(commonObjs, objs) {
         super(commonObjs, objs, true);
@@ -386,6 +387,7 @@
         const metadata = new Set(["beginMarkedContent", "beginMarkedContentProps", "endMarkedContent", "markPoint", "markPointProps"]);
         for (const item of items) {
           if (metadata.has(item.fn)) continue;
+          sourceItems?.operation(this, item);
           if (item.fn === "beginGroup") { this.beginTransparencyGroup(item.args[0]); continue; }
           if (item.fn === "endGroup") { this.endTransparencyGroup(); continue; }
           super.executeOpTree([item]);
@@ -441,7 +443,15 @@
     const numbers = typeof module === "object" && module.exports
       ? require("./pdf-decoded-svg-number-precision.js") : globalThis.FigureStudioPdfSvgNumberPrecision;
     if (!numbers?.createGraphicsClass) throw new Error("Decoded PDF SVG number preservation is unavailable.");
-    return numbers.createGraphicsClass(EditableSvgGraphics, pdfjs);
+    const Precise = numbers.createGraphicsClass(EditableSvgGraphics, pdfjs);
+    return class SourceRecordedSvgGraphics extends Precise {
+      showText(glyphs) {
+        const sourceItemShow = sourceItems?.beforeShow(this);
+        const result = super.showText(glyphs);
+        sourceItems?.afterShow(this, sourceItemShow);
+        return result;
+      }
+    };
   }
 
   async function registerFonts(fonts, targetDocument = typeof document !== "undefined" ? document : null, options = {}) {
@@ -561,6 +571,8 @@
         ? await logicalRuntime.currentNativeRenderer(logicalTextSource, { Base: Renderer, page, operators, pdfjs, viewport: currentPlaneViewport }) : Renderer;
       const graphics = new CurrentRenderer(page.commonObjs, page.objs);
       graphics.recoveredTextItems = (await page.getTextContent({ disableNormalization: true })).items;
+      const sourceItems = typeof module === "object" && module.exports ? require("./pdf-source-text-items.js") : globalThis.FigureStudioPdfSourceTextItems;
+      if (!logicalTextSource && !prepared.binding) sourceItems?.begin(graphics, operators, graphics.recoveredTextItems, pdfjs);
       const svg = await graphics.getSVG(operators, currentPlaneViewport);
       if (currentPlanePage) {
         svg.setAttribute("width", String(currentPlanePage.widthPx));
@@ -576,6 +588,8 @@
         namespaceFontPrograms(svg, fonts, `${sourceId}_p${pageNumber}`);
       }
       await registerFonts(fonts, undefined, { current: () => signal?.throwIfAborted() });
+      const sourceItemDigest = new Uint8Array(await globalThis.crypto.subtle.digest("SHA-256", data));
+      const sourceTextItems = sourceItems?.finish(graphics, svg, fonts, { sourceSha256: Array.from(sourceItemDigest, b => b.toString(16).padStart(2, "0")).join(""), pageNumber });
       const svgText = new XMLSerializer().serializeToString(svg);
       if (logicalTextSource) await logicalRuntime.finishDecodedSvg(logicalTextSource, svgText, svg);
       const currentPlaneObjects = currentPlanePage
@@ -590,6 +604,7 @@
         fonts,
         warnings: [...graphics.recoveryWarnings],
         wordSpacingRecovery: graphics.wordSpacingRecovery,
+        sourceTextItems,
         ...(prepared.binding ? { knockout: { groupCount: knockoutSources.length, canonicalMemberCount: knockoutSources.length * 2, sourceSha256: prepared.sourceId, scopeIndexes: knockoutSources.map(entry => [entry.scopeStart, entry.scopeEnd]), operatorBinding: prepared.binding.operatorBinding } } : {}),
         nativeEquivalent: false,
         elapsedMs

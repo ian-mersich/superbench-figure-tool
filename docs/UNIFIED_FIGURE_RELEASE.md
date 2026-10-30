@@ -6,28 +6,43 @@ The browser site and Superbench consume one committed editor and asset collectio
 scientific scenes. Fixes belong here. Do not maintain a second editor in the
 public source checkout or backport individual fixes into the old beta.6 site.
 
-## Beta.17 integration candidate — 23 October 2026
+## Beta.17 matched delivery — 28 October 2026
 
-The accepted `00c6ccfe` checkpoint is being prepared as a paired beta.17
-candidate. Its product logic is exact to `58e17ccb`; the package version change
-adds no editing behavior. Against the delivered beta.16, the candidate includes
-the accepted selection, handle, Layers/Isolation, native PDF glyph painting and
-cooperative Open changes. Private candidates 4/5/6, Figure 4 knockout experiments
-and untracked experiments are excluded by building the committed revision.
+Beta.17 is the active shared release; beta.16 remains the rollback package. The
+matched source/package identities are `ee9d93b3bb4046baa7b813fb4de101c502580987`
+and `0785441149099c46d90daed76ff1a7bf85170e7d1e22ffd7d7372dd725e025b0`, with
+1,615 runtime files, 486 Library drawings, four styles and 12 scenes. Public
+source commit `cbf7320946703043cb818de5383015fd5ae3d59a` passed CI
+`40770691467`; prerelease ID `427295543`. Website consumer commit
+`7551d9fea22de2ee6a45fa2aa8ceb1dffd22de4d` passed Pages run `40786699303` and
+deployment `7399774207`. All 1,615 raw HTTPS files match the active package.
+Core's selected build is `20261028T231724Z-21b8f958d92d`, source `21b8f958`;
+four startup checks and launcher `-VerifyOnly` pass. Native QA passes 252 checks
+across six cases/12 hosts with 30 originals reviewed; browser QA passes 131 checks
+across six cases with 30 originals reviewed. Live HTTPS passes 702 checks across
+six cases and 25 originals. Independent review accepts all 25 original captures,
+18 paired Figure/Presentation asset checks and 30 saved-output hashes; evidence is
+`qa_artifacts/rc28/live-independent-review.json` (digest
+`3cae36428c318763d3e622a8e3b6c7518d4d4ff1d78445dca52432cce4fd00dd`). See the
+[publication record](PUBLIC_PUBLICATION.md#beta17--matched-shared-delivery) and
+[final Core release closure](../../mersich_lab_superbench/core/qa_artifacts/coordinator-release-20261028/release-closure.json),
+digest `355484cc5af6cbb49176d6146118a4411d461cd1229434ef26d504b784384681`.
 
-This is candidate preparation, not publication or installed selection. Qualify
-the exact paired artifacts and six desktop width/theme cases before promotion.
-The single passing Figure 2 journey does not establish repeated v1 performance;
-the later repeated Open check still fails its original limits. General reference
-parity, dense editing and memory, arbitrary editable PDF fidelity, and Figure 4
-typography/export remain unfinished. Preserve the current fallback/export warnings
-and the original failed results. Beta.16 remains installed and public until a
-qualified successor is promoted. Figure implementation is paused during this
-integration window; the reuse-first roadmap remains unchanged.
+Repeated package/browser PDF Open observations take 6–9 seconds and remain a
+performance HOLD against the original 5-second Open, 100 ms task and 250 ms
+foreground targets; these are not native PDF Open measurements. Native full-workflow
+60-second callback diagnostics overrun by 1.1–17.3 seconds, including snapshots
+and two Saves; this is not an isolated PDF Open timing result or a timing pass.
+Full Illustrator/Affinity selection and
+Direct Selection parity, sustained dense editing, and Figure 4 typography/export
+remain open; scientific PDF v1 is not complete. The ship decision is to deliver
+the verified beta while performance work continues. Resume with reuse-first
+dragging/selection; the roadmap is unchanged. See the [publication record](PUBLIC_PUBLICATION.md#beta17--matched-shared-delivery)
+and Core [acceptance boundary](../../mersich_lab_superbench/core/docs/architecture/FIGURE_PDF_V1_ACCEPTANCE.md#beta17-shared-delivery).
 
-## Current delivered release
+## Previous delivered release — beta.16
 
-The delivered beta.16 point/curve package uses immutable source
+The beta.16 point/curve package uses immutable source
 `d170100675e2ed96dffccc2fd6ae3cd207a8c484`, semantic package
 `ceec84e7e18bd0945a99874817b9ff59f444ffa001eb87fa49b6a8c6587ce54d`, with 1,584 shared payload files.
 Its public source commit is `5a0627773b4cb93196300dd2bca6a654b956fc27` and website
@@ -64,10 +79,10 @@ Tiny ordinary Undo translations and sparse edge-pixel differences retain their
 documented limits. General Selection/Direct Selection, sustained dense dragging,
 Figure 2 typography, corpus fidelity and scientific PDF v1 remain open.
 
-The user requested a joint project summary before another Figure task.
-Next implementation is on hold. The reuse-first roadmap and full scientific PDF
-v1 requirements are unchanged; the remaining work is a backlog for that review,
-not an instruction to start another slice.
+At the beta.16 checkpoint, the user requested a joint project summary before
+another Figure task. That historical pause was superseded by the beta.17 delivery
+decision above. The reuse-first roadmap and full scientific PDF v1 requirements
+remain unchanged.
 
 Beta.15 is the previous delivered image-interpolation checkpoint, from source
 `1a20663eacd6e2ab9059bad1b2d57094dfeda2e0` and package

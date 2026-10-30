@@ -166,6 +166,8 @@
       const graphics = new CurrentRenderer(page.commonObjs, page.objs);
       const textContent = await page.getTextContent({ disableNormalization: true });
       graphics.recoveredTextItems = textContent.items;
+      const sourceItems = typeof module === "object" && module.exports ? require("./pdf-source-text-items.js") : globalThis.FigureStudioPdfSourceTextItems;
+      if (!logicalTextSource && !prepared.binding) sourceItems?.begin(graphics, operators, textContent.items, pdfjs);
       const svg = await graphics.getSVG(operators, currentPlaneViewport);
       if (currentPlanePage) {
         svg.setAttribute("width", String(currentPlanePage.widthPx));
@@ -177,12 +179,13 @@
       const fonts = [...graphics.programs.values()];
       if (fonts.length) base.namespaceFontPrograms(svg, fonts, `${sourceId}_p${pageNumber}`);
       await base.registerFonts(fonts);
+      const sourceTextItems = sourceItems?.finish(graphics, svg, fonts, { sourceSha256: sourceId, pageNumber });
       const svgText = new XMLSerializer().serializeToString(svg);
       if (logicalTextSource) await logicalRuntime.finishDecodedSvg(logicalTextSource, svgText, svg);
       const currentPlaneObjects = currentPlanePage
         ? await logicalRuntime.constructCurrentPlaneObjects({ token: logicalTextSource, svgText, svg, fabric,
             materializer: globalThis.FigureStudioPdfSvgMaterializer || (typeof module === "object" && module.exports ? require("./pdf-svg-materializer.js") : null) }) : null;
-      const report = { schema: base.SCHEMA, status: "reconstructed", ...inventory, objectCount, fonts, warnings: [...graphics.recoveryWarnings], wordSpacingRecovery: graphics.wordSpacingRecovery, nativeEquivalent: false, elapsedMs: performance.now() - started, operatorBatching: graphics.batchReport, ...(prepared.binding ? { knockout: { groupCount: knockoutSources.length, canonicalMemberCount: knockoutSources.length * 2, sourceSha256: sourceId, scopeIndexes: knockoutSources.map(entry => [entry.scopeStart, entry.scopeEnd]), operatorBinding: prepared.binding.operatorBinding } } : {}) };
+      const report = { schema: base.SCHEMA, status: "reconstructed", ...inventory, objectCount, fonts, warnings: [...graphics.recoveryWarnings], wordSpacingRecovery: graphics.wordSpacingRecovery, sourceTextItems, nativeEquivalent: false, elapsedMs: performance.now() - started, operatorBatching: graphics.batchReport, ...(prepared.binding ? { knockout: { groupCount: knockoutSources.length, canonicalMemberCount: knockoutSources.length * 2, sourceSha256: sourceId, scopeIndexes: knockoutSources.map(entry => [entry.scopeStart, entry.scopeEnd]), operatorBinding: prepared.binding.operatorBinding } } : {}) };
       return { svgText, svgElement: svg, logicalTextSource, currentPlaneObjects, currentPlanePage, knockoutSources, width: viewport.width, height: viewport.height, sourceWidth: viewport.width, sourceHeight: viewport.height, pageNumber, pageCount: handle.numPages, operatorCount: inventory.operatorCount, editableImport: report };
     } finally { await handle?.destroy?.(); }
   }

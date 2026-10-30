@@ -12,6 +12,8 @@
   const primitiveContextStateKeys=['font','fillStyle','globalAlpha','globalCompositeOperation','filter','shadowBlur','shadowOffsetX','shadowOffsetY','shadowColor',
     'textBaseline','textAlign','direction','fontVariantCaps','letterSpacing'];
   const preparationPainters=new WeakMap();
+  const ownedFontMetrics=new WeakMap();
+  const liveRecipeRequestKeys=['family','weight','style','method','text','fill','fontSize','x','y','unsupported','preparation'];
   function supportedPaintContext(context) {
     return context.globalAlpha===1 && context.globalCompositeOperation==='source-over' && (!context.filter || context.filter==='none')
       && !context.shadowBlur && !context.shadowOffsetX && !context.shadowOffsetY
@@ -94,6 +96,17 @@
     } catch (_) { return null; }
   }
 
+  // Only an immutable parser over private font bytes can seed a recipe during
+  // live painting. Caller-supplied metrics retain their ordinary callback path.
+  function displayFontMetrics(bytes) {
+    try {
+      if(!ArrayBuffer.isView(bytes) || bytes.BYTES_PER_ELEMENT!==1)return null;
+      const snapshot=new Uint8Array(bytes),metrics=trueType(snapshot);
+      if(metrics){Object.freeze(metrics.box);Object.freeze(metrics);ownedFontMetrics.set(metrics,snapshot);}
+      return metrics;
+    }catch(_){return null;}
+  }
+
   function tileGeometry(transform, fontSize, x, y, bounds) {
     if (!finite([...transform,fontSize,x,y,...bounds]) || !(fontSize>0)) return null;
     const device=product(transform,[fontSize,0,0,-fontSize,x,y]);
@@ -116,7 +129,9 @@
     const resetRecipes=()=>{recipes=new WeakMap();recipeVariants=0;stats.recipeResets++;};
     const tokenObject=token=>token!==null && typeof token==='object';
     function seedRecipe(token,request,transform,geometry,key,fontMapKey,record,tile) {
-      if(!tokenObject(token) || !request.preparation || tiles.get(key)!==tile)return;
+      if(!tokenObject(token) || tiles.get(key)!==tile || !Object.hasOwn(request,'preparation'))return;
+      if(!request.preparation && (!ownedFontMetrics.has(record.metrics)
+          || !liveRecipeRequestKeys.every(key=>Object.hasOwn(request,key))))return;
       const visible={...request,preparation:false};
       if(Reflect.ownKeys(visible).some(key=>typeof key!=='string' || visible[key]!==null && !['undefined','string','number','boolean'].includes(typeof visible[key])))return;
       let variants=recipes.get(token) || [];
@@ -195,7 +210,10 @@
         if(handle)try{native[close](handle);}catch(error){errors.push(String(error));}
       errors.forEach(errorRecord);
     }
-    function registerFont(font,bytes,metrics=trueType(bytes)) {
+    function registerFont(font,bytes,metrics=displayFontMetrics(bytes)) {
+      // Parse and upload one private byte snapshot, even if a font descriptor
+      // getter mutates the caller's original input during registration.
+      bytes=ownedFontMetrics.get(metrics) || bytes;
       const key=fontKey(font), prior=fonts.get(key);
       if(stats.closed)return false;
       if(prior?.dataUrl===font.dataUrl)return true;
@@ -324,7 +342,7 @@
           painted=drawTile(context,request,record,tile,descriptor.geometry);
         } else {
           if(tokenObject(token))stats.recipeMisses++;
-          painted=paintCurrent(context,request,true);
+          painted=paintCurrent(context,request,true,token);
         }
       }catch(error){errorRecord(error);stats.fallbacks++;painted=false;}
       if(painted)stats.primitivePainted++;
@@ -347,7 +365,7 @@
     return api;
   }
 
-  let pending=null,renderer=null,runtimeEpoch=0,customPaintDepth=0;
+  let pending=null,renderer=null,runtimeEpoch=0,customPaintDepth=0,screenResourceEpoch=0;
   const defaultPainter=(context,request)=>renderer?.paint(context,request)===true;
   const startupErrors=[],facades=new WeakMap(),preparationContexts=new WeakSet(),preparationRequests=new WeakMap();
   function withPreparation(context,operation) {
@@ -457,7 +475,7 @@
         let bytes;
         try{const binary=root.atob(descriptor.dataUrl.slice(descriptor.dataUrl.indexOf(',')+1));bytes=Uint8Array.from(binary,c=>c.charCodeAt(0));}
         catch(_){return false;}
-        const metrics=trueType(bytes);
+        const metrics=displayFontMetrics(bytes);
         if(!metrics)return false;
         let loaded;
         try{loaded=await loadRenderer();}
@@ -477,9 +495,12 @@
     return {registerFont,retainFamilies,cancelAll};
   }
   const registry=createFontRegistry(engine,()=>renderer);
-  function close(){registry.cancelAll();runtimeEpoch++;try{renderer?.close();}finally{renderer=null;pending=null;}}
+  async function registerFont(...args){screenResourceEpoch++;try{return await registry.registerFont(...args);}finally{screenResourceEpoch++;}}
+  function retainFamilies(...args){screenResourceEpoch++;return registry.retainFamilies(...args);}
+  function createScreenResourceGuard(){const owner=renderer,epoch=screenResourceEpoch,runtime=runtimeEpoch;return()=>renderer===owner&&screenResourceEpoch===epoch&&runtimeEpoch===runtime;}
+  function close(){registry.cancelAll();runtimeEpoch++;screenResourceEpoch++;try{renderer?.close();}finally{renderer=null;pending=null;}}
   if(root.addEventListener)root.addEventListener('pagehide',event=>{if(!event.persisted)close();});
-  return {trueType,tileGeometry,createRenderer,createFontRegistry,registerFont:registry.registerFont,withFillPainter,withPreparation,collectPreparation,prepareCollectedAsync,paint:(context,request)=>renderer?.paint(context,request)===true,
+  return {trueType,tileGeometry,createRenderer,createFontRegistry,registerFont,createScreenResourceGuard,withFillPainter,withPreparation,collectPreparation,prepareCollectedAsync,paint:(context,request)=>renderer?.paint(context,request)===true,
     paintPrimitiveFill:(context,request,token)=>renderer?.paintPrimitiveFill(context,request,token) ?? null,
-    retainFamilies:registry.retainFamilies,close,diagnostics:()=>({...renderer?.diagnostics(),ready:Boolean(renderer),startupErrors:[...startupErrors]})};
+    retainFamilies,close,diagnostics:()=>({...renderer?.diagnostics(),ready:Boolean(renderer),startupErrors:[...startupErrors]})};
 });
