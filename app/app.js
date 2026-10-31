@@ -1295,6 +1295,7 @@
   let fabricRef = null;
   let pdfSourceSerializationPrecision = null;
   let canvas = null;
+  const clearingEditorCanvases = new WeakSet();
   let idCounter = 0;
   let panelLabelCounter = 0;
   let toastTimer = null;
@@ -1308,6 +1309,9 @@
   let denseClipboardCopy = null;
   let clipboardPreparation = Promise.resolve();
   let clipboardCopyEpoch = 0;
+  const canvasClipboardSession = globalThis.crypto.randomUUID();
+  let canvasClipboardMarker = "";
+  let canvasClipboardBusy = false;
   let pendingDenseClipboardCapture = null;
   let isRestoring = false;
   let masterLayoutEditor = { active: false, mode: "", masterId: "", layoutId: "", returnPageId: "", draftName: "", returnSelectionIds: [] };
@@ -1385,11 +1389,16 @@
   const densePdfParsedHydrations = new WeakMap();
   function densePdfApi() { return globalThis.FigureStudioPdfDensePage; }
   function clearEditorCanvas() {
-    const dense = densePdfApi(), scope = dense?.beginSceneReplacement(canvas);
+    const owner = canvas, nested = clearingEditorCanvases.has(owner);
+    const dense = densePdfApi(), scope = dense?.beginSceneReplacement(owner);
     let didFail = false;
-    try { return canvas.clear(); }
+    clearingEditorCanvases.add(owner);
+    try { return owner.clear(); }
     catch (error) { didFail = true;throw error; }
-    finally { if (scope) { try { dense.finishSceneReplacement(scope); } catch (error) { if (!didFail) throw error; } } }
+    finally {
+      if (!nested) clearingEditorCanvases.delete(owner);
+      if (scope) { try { dense.finishSceneReplacement(scope); } catch (error) { if (!didFail) throw error; } }
+    }
   }
   function requestCanvasArtworkRender(options = {}) {
     // Selection changes can share a task with removing artwork. Their overlay
@@ -1587,7 +1596,6 @@
   let projectSlidesOpen = false;
   let projectSlidesBusy = false;
   let denseSlideCopyPending = false;
-  let projectSlidesDeckId = "";
   let projectSlidesListMarkup = "";
   const slideSortDrag = { active: false, started: false, pageId: "", beforeId: "", pointerId: null, startX: 0, startY: 0, suppressClick: false };
   const collapsedDeckSectionIds = new Set();
@@ -2169,7 +2177,7 @@
   }
 
   function documentKindLabel(options = {}) {
-    const label = isPresentationDocument() ? "Presentation" : "Figure";
+    const label = isPresentationDocument() ? "Slidedeck" : "Figure";
     return options.lower ? label.toLowerCase() : label;
   }
 
@@ -2214,7 +2222,7 @@
       els.documentNavigationTab.textContent = presentation ? "Slides" : "Pages";
     }
     if (els.documentNavigationTitle) els.documentNavigationTitle.textContent = presentation ? "Slides" : "Legacy pages";
-    if (els.slideDeckList) els.slideDeckList.setAttribute("aria-label", presentation ? "Presentation slides" : "Legacy figure pages");
+    if (els.slideDeckList) els.slideDeckList.setAttribute("aria-label", presentation ? "Slidedeck slides" : "Legacy figure pages");
     [els.addSlideBtn, els.addSectionBtn, els.duplicateSlideBtn, els.deleteSlideBtn].filter(Boolean).forEach((button) => {
       button.hidden = !presentation;
     });
@@ -2325,8 +2333,7 @@
   function projectSlidesTarget() {
     const bucket = documentWorkspaceBucket('presentation');
     const tab = isPresentationDocument() ? activeDocumentTab()
-      : bucket.tabs.find((item) => item.id === projectSlidesDeckId)
-        || bucket.tabs.find((item) => item.id === bucket.activeId) || bucket.tabs[0];
+      : bucket.tabs.find((item) => item.id === bucket.activeId) || bucket.tabs[0];
     const project = tab?.payload?.project || tab?.payload;
     return { tab, deck: tab?.id === activeDocumentTab()?.id ? state.deck : project?.deck };
   }
@@ -2452,7 +2459,6 @@
         await activateDocumentTab(tab.id);
       }
       if (activeDocumentTab()?.id !== tab.id) throw new Error('The slides could not be opened. Your Figure stays open.');
-      projectSlidesDeckId = tab.id;
       if (pageId && pageId !== state.deck.activePageId) await restoreDeckPage(pageId, { captureCurrent: true });
       if ((action === 'new' || action === 'copy-new') && !created) createDeckSlide({ layoutId: 'blank' });
       if (action === 'earlier' || action === 'later') await moveDeckSlide(state.deck.activePageId, action === 'earlier' ? -1 : 1);
@@ -2488,7 +2494,7 @@
     panel.className = 'project-slides-panel';
     panel.setAttribute('aria-label', 'Project slides');
     panel.innerHTML = `<div class="project-slides-controls">
-      <label>Presentation<select data-project-slide-deck aria-label="Presentation in this project"></select></label>
+      <label>Slidedeck<select data-project-slide-deck aria-label="Slidedeck in this project"></select></label>
       <div class="project-slide-actions"><button type="button" data-project-slide-action="new">New slide</button><button type="button" data-project-slide-action="play">Play</button></div>
       <div class="project-slide-copy-actions" data-project-slide-copy-actions><button type="button" data-project-slide-action="copy-new">Create slide from canvas</button><button type="button" data-project-slide-action="copy-current">Add canvas copy to slide</button></div>
       <p data-project-slide-copy-note>Placed copies stay separate from the source Figure.</p>
@@ -2502,7 +2508,13 @@
       else setProjectSlidesOpen(true);
     });
     panel.addEventListener('change', (event) => {
-      if (event.target.matches('[data-project-slide-deck]')) { projectSlidesDeckId = event.target.value; renderProjectSlidesPane(); }
+      if (event.target.matches('[data-project-slide-deck]')) {
+        const bucket = documentWorkspaceBucket('presentation');
+        if (!projectSlidesBusy && !isPresentationDocument() && bucket.tabs.some((tab) => tab.id === event.target.value)) {
+          bucket.activeId = event.target.value;
+          renderProjectSlidesPane();
+        }
+      }
     });
     panel.addEventListener('click', (event) => {
       const button = event.target.closest('button');
@@ -2670,7 +2682,7 @@
         || isGroupIsolationActive() || transientCanvasTransform || isolationTransform || nativePathEdit.active
         || pathNodeEdit.dragging || pathNodeEdit.segmentDrag || pathNodeEdit.marquee || smartConnectorMissingTargetTimer) throw new Error("Finish the current action before copying this Figure to Slides.");
     const api = densePdfApi(), sourceCanvas = canvas, sourceTab = activeDocumentTab(), sourcePage = canvasLoadDeckPage();
-    const requestedDeckPreference = projectSlidesDeckId;
+    const requestedDeckPreference = documentWorkspaceBucket('presentation').activeId;
     const requested = projectSlidesTarget(), targetTab = requested.tab;
     if (!targetTab || targetTab.kind !== "presentation") throw new Error("Create or open a presentation, then choose it in Slides before copying this PDF artwork.");
     const targetProject = normalizedProjectFromPayload(targetTab.payload), targetPageId = pageId || requested.deck?.activePageId;
@@ -2705,7 +2717,7 @@
     const outer = () => {
       if (canvas !== sourceCanvas || workspaceProjectGeneration !== generation || nativeCanvasLoadState(canvas).intent !== expectedIntent
           || densePdfApi() !== api || activeDocumentTab() !== expectedTab || allDocumentTabs().length !== tabs.length
-          || projectSlidesDeckId !== requestedDeckPreference
+          || documentWorkspaceBucket('presentation').activeId !== requestedDeckPreference
           || tabs.some((tab, index) => allDocumentTabs()[index] !== tab)) throw new Error("The requested slide copy was superseded.");
       for (const tab of tabs) if (!denseFigureHandoffEqual(tab, pins.get(tab))) throw new Error("A saved document changed while the slide copy was being prepared.");
       if (sourceStates) api.validateAssetStates(sourceStates);
@@ -2911,7 +2923,7 @@
       if (sourceRestored !== sourceTab || projectRevision !== sourceRevision || state.tool !== sourceTool || selectedGuideId !== sourceGuide
           || !denseFigureHandoffEqual(state.view, sourceView) || !denseFigureHandoffEqual(selectedTopLevelObjects().map(object => object.figureId), sourceSelection)
           || !denseFigureHandoffEqual(undoStack, sourceUndo) || !denseFigureHandoffEqual(redoStack, sourceRedo)) throw new Error("The slide was copied, but the Figure's editing state could not be restored exactly.");
-      returned = true;projectSlidesDeckId = targetTab.id;
+      returned = true;
       showLongToast("Editable canvas copy added to the slide. Your source Figure stays unchanged.");
       return { status: "ok", copied: true, sourceDocumentId: sourceTab.id, documentId: targetTab.id, pageId: copy.id };
     } catch (error) {
@@ -3803,12 +3815,12 @@
         await appReady;
         const normalized = String(mode || "").trim().toLowerCase();
         if (normalized !== "figure" && normalized !== "present" && normalized !== "presentation") {
-          throw new Error("Figure Tool mode must be Figure or Present.");
+          throw new Error("Figure Tool mode must be Figure or Slidedeck.");
         }
         const targetKind = normalized === "figure" ? "figure" : "presentation";
         const tab = await switchDocumentWorkspace(targetKind);
         if (!tab || documentWorkspaceState.activeKind !== targetKind) {
-          const error = new Error(`Figure Tool could not switch to ${targetKind === "figure" ? "Figure" : "Present"}.`);
+          const error = new Error(`Figure Tool could not switch to ${targetKind === "figure" ? "Figure" : "Slidedeck"}.`);
           error.code = "figure_studio_mode_switch_failed";
           throw error;
         }
@@ -5401,12 +5413,12 @@
   function nextUntitledDocumentName(kind) {
     const normalized = normalizeDocumentKind(kind);
     untitledDocumentCounters[normalized] += 1;
-    return `Untitled ${normalized === "presentation" ? "Presentation" : "Figure"} ${untitledDocumentCounters[normalized]}`;
+    return `Untitled ${normalized === "presentation" ? "Slidedeck" : "Figure"} ${untitledDocumentCounters[normalized]}`;
   }
 
   function peekUntitledDocumentName(kind) {
     const normalized = normalizeDocumentKind(kind);
-    return `Untitled ${normalized === "presentation" ? "Presentation" : "Figure"} ${untitledDocumentCounters[normalized] + 1}`;
+    return `Untitled ${normalized === "presentation" ? "Slidedeck" : "Figure"} ${untitledDocumentCounters[normalized] + 1}`;
   }
 
   function cloneDocumentTabValue(value, fallback = null) {
@@ -5640,7 +5652,7 @@
     const pending = Boolean(recentDocumentsState.openingId);
     els.recentDocumentsList.innerHTML = entries.map((entry) => `<div class="recent-document-row" data-recent-document-id="${escapeHtml(entry.id)}">
       <button type="button" class="recent-document-open" data-recent-document-open="${escapeHtml(entry.id)}" title="${escapeHtml(entry.path)}" ${pending ? "disabled" : ""}>
-        <span class="recent-document-kind">${entry.kind === "presentation" ? "Presentation" : "Figure"}</span>
+        <span class="recent-document-kind">${entry.kind === "presentation" ? "Slidedeck" : "Figure"}</span>
         <strong>${escapeHtml(entry.filename)}</strong>
         <small>${escapeHtml(entry.path)}</small>
       </button>
@@ -6123,7 +6135,7 @@
       if (documentWorkspaceBucket(kind).tabs.length) continue;
       const created = await createNewDocumentTab({ kind, discardUnsaved: true });
       if (created?.status !== "ok" || !created.tab) {
-        throw new Error(`Figure Tool could not initialize its ${kind === "figure" ? "Figure" : "Present"} workspace.`);
+        throw new Error(`Figure Tool could not initialize its ${kind === "figure" ? "Figure" : "Slidedeck"} workspace.`);
       }
     }
     if (initialId && activeDocumentTab()?.id !== initialId) {
@@ -6133,7 +6145,7 @@
       }
     }
     if (DOCUMENT_KINDS.some((kind) => !documentWorkspaceBucket(kind).tabs.length)) {
-      throw new Error("Figure Tool did not initialize both Figure and Present workspaces.");
+      throw new Error("Figure Tool did not initialize both Figure and Slidedeck workspaces.");
     }
   }
 
@@ -6391,10 +6403,10 @@
     const expected = expectedKind ? normalizeDocumentKind(expectedKind) : "";
     if (!expected) return;
     if (parsed.format !== "document") {
-      throw new Error(`Choose a ${expected === "presentation" ? "Presentation" : "Figure"} document, not a project file.`);
+      throw new Error(`Choose a ${expected === "presentation" ? "Slidedeck" : "Figure"} document, not a project file.`);
     }
     if (parsed.kind !== expected) {
-      throw new Error(`That file is a ${parsed.kind === "presentation" ? "Presentation" : "Figure"} document, not a ${expected === "presentation" ? "Presentation" : "Figure"} document.`);
+      throw new Error(`That file is a ${parsed.kind === "presentation" ? "Slidedeck" : "Figure"} document, not a ${expected === "presentation" ? "Slidedeck" : "Figure"} document.`);
     }
   }
 
@@ -6444,7 +6456,7 @@
     if (
       hasUnsavedWorkspaceChanges()
       && options.discardUnsaved !== true
-      && !window.confirm("Opening this project will close every open Figure and Presentation document. Discard all unsaved changes and continue?")
+      && !window.confirm("Opening this project will close every open Figure and Slidedeck document. Discard all unsaved changes and continue?")
     ) {
       return null;
     }
@@ -6737,13 +6749,13 @@
     if (reportedKind === "pdf-source") return openNativeLaunchPdf(result, documentId);
     if (!DOCUMENT_KINDS.includes(reportedKind)) {
       await releaseNativeOpenBinding(result.documentId || documentId);
-      showLongToast("Only current Figure or Presentation documents can open when Figure Tool starts.");
+      showLongToast("Only current Figure or Slidedeck documents can open when Figure Tool starts.");
       return false;
     }
     const launchEntry = recentDocumentsApi()?.createEntry({ path: result.path, kind: reportedKind }) || null;
     if (!launchEntry) {
       await releaseNativeOpenBinding(result.documentId || documentId);
-      showLongToast("The startup document must be an absolute current Figure or Presentation file.");
+      showLongToast("The startup document must be an absolute current Figure or Slidedeck file.");
       return false;
     }
     const filename = launchEntry.filename;
@@ -6752,7 +6764,7 @@
       parsed = result.fileBlob ? await parseFigureStudioFileBlob(new File([result.fileBlob], filename, { type: "application/json" }))
         : parseFigureStudioFileContents(result.payload || result.project || result.contents, filename);
       assertExpectedOpenKind(parsed, reportedKind);
-      if (parsed.legacy) throw new Error("Only current Figure or Presentation documents can open when Figure Tool starts.");
+      if (parsed.legacy) throw new Error("Only current Figure or Slidedeck documents can open when Figure Tool starts.");
     } catch (error) {
       try { discardDecodedFigureStudioFile(parsed); } catch {}
       await releaseNativeOpenBinding(result.documentId || documentId);
@@ -8607,7 +8619,9 @@
         const label = smartConnectorLabelObject(event.target);
         if (label) canvas.remove(label);
       }
-      if (isFigureObject(event.target)) scheduleMissingSmartConnectorTargetCleanup();
+      // A full clear leaves no connector endpoints to repair. Queuing a job
+      // here would bind it to the departing page during New/document switching.
+      if (isFigureObject(event.target) && !clearingEditorCanvases.has(selectionEventCanvas)) scheduleMissingSmartConnectorTargetCleanup();
       if (isFigureObject(event.target)) markDocumentDirty("Object removed");
     });
     canvas.on("before:transform", (event) => {
@@ -15154,7 +15168,7 @@
 
   function createDeckSlide(options = {}) {
     if (!isPresentationDocument()) {
-      showToast("Choose New Presentation to create slides");
+      showToast("Choose New Slidedeck to create slides");
       return null;
     }
     ensureDeckState();
@@ -19137,7 +19151,7 @@
 
   function imageFrameGuard(object) {
     // Image framing belongs to the shared vector/image engine. Keep it available
-    // for eligible embedded images in both Figure and Presentation documents.
+    // for eligible embedded images in both Figure and Slidedeck documents.
     if (!object) return { eligible: false, reason: "no-selection", message: "Select an embedded raster image to use Image Frame." };
     const image = imageFrameContent(object);
     if (!image) return { eligible: false, reason: "not-image", message: "Image Frame is available for embedded raster images." };
@@ -25008,7 +25022,7 @@
       return;
     }
     if (state.tool === "directSelect") {
-      const directPoint = canvasPoint(event.e);
+      const directPoint = canvas.getScenePoint(event.e);
       const densePage = densePdfPageForObject(event.target) || canvas.getObjects().find((object) => densePdfApi()?.isPage(object) && object.containsPoint(directPoint));
       if (densePage && !Array.isArray(event.target?.path)) { void focusDensePdfPath(densePage, directPoint); return; }
       // Library SVGs arrive as one grouped object. Resolve the painted path
@@ -25038,6 +25052,20 @@
       const pdfGroup = pdfGroupedDirectSelectionScope(event);
       if (pdfGroup) {
         resetPaintedVectorDirectSelectionCycle();
+        const text = pdfGroupedDirectTextAtPoint(pdfGroup, directPoint);
+        if (text) {
+          event.e?.preventDefault?.();
+          const additive = Boolean(event.e?.shiftKey || event.e?.metaKey || event.e?.ctrlKey);
+          if (additive && directSelectionObjects().some(object => !objectIsWithinGroup(object, pdfGroup))) return;
+          if (!enterPdfDirectSelectionScope(pdfGroup)) return;
+          const selectedTexts = additive ? globalThis.FigureStudioGroupObjectSelection.mergedSelection(directSelectionTextObjects(), [text], true) : [text];
+          const paths = additive ? pathNodeEditObjects() : [];
+          if (!additive) stopPathNodeEdit({ sync: false });
+          pathNodeEdit.objects = [...paths, ...selectedTexts];
+          ensureDirectSelectionCanvasCollection();
+          syncUi();
+          return;
+        }
         const path = pdfGroupedDirectPathAtPoint(pdfGroup, directPoint);
         if (path && selectScientificAssetPathAtPoint(pdfGroup, path, directPoint, event)) return;
         // A clipped-out or unpainted PDF region must not select an unrelated
@@ -25271,6 +25299,41 @@
     return visit(group);
   }
 
+  function pdfGroupedDirectTextAtPoint(group, point) {
+    const helper = globalThis.FigureStudioPdfPaintHitTest;
+    if (!helper || !group || !point) return null;
+    const visit = parent => {
+      const children = groupChildren(parent);
+      for (let index = children.length - 1; index >= 0; index--) {
+        const child = children[index];
+        if (!child || child.visible === false || child.locked || isReferenceObject(child) || Number(child.opacity) === 0) continue;
+        if (isCanvasTextObject(child)) {
+          const bounds = child.getBoundingRect(), world = child.calcTransformMatrix();
+          const pad = 2 * (Number(child.fontSize) || 0) * Math.max(Math.hypot(world[0], world[1]), Math.hypot(world[2], world[3]));
+          if (point.x < bounds.left - pad || point.x > bounds.left + bounds.width + pad
+              || point.y < bounds.top - pad || point.y > bounds.top + bounds.height + pad) continue;
+        }
+        if (groupChildren(child).length) { const hit = visit(child); if (hit) return hit; }
+        else if ((isCanvasTextObject(child) || isDirectSelectionEditableObject(child))
+            && helper.hitObject(child, point, { fabric: fabricRef, tolerance: 0 })) return child;
+      }
+      return null;
+    };
+    const hit = visit(group);
+    return isCanvasTextObject(hit) ? hit : null;
+  }
+
+  function enterPdfDirectSelectionScope(group) {
+    if (isGroupIsolationActive()) return activeIsolationGroup() === group;
+    const before = canvas.upperCanvasEl.getBoundingClientRect();
+    if (!enterGroupIsolation(group, { tool: "directSelect", empty: true, toast: false })) return false;
+    const after = canvas.upperCanvasEl.getBoundingClientRect();
+    state.view.panX += before.left - after.left;
+    state.view.panY += before.top - after.top;
+    refreshViewportLayoutMetrics(); syncTransientViewport();
+    return true;
+  }
+
   function scientificAssetEditablePathAtPoint(group, point, pointerType = "mouse") {
     const primitiveContainsPoint = (object) => {
       if (object.containsPoint?.(point)) return true;
@@ -25306,7 +25369,11 @@
     const ancestors = [];
     for (let parent = path.group; parent && parent !== group; parent = parent.group) ancestors.unshift(parent);
     if (!isGroupIsolationActive() && !enterGroupIsolation(group, { child: ancestors[0] || path, toast: false })) return false;
-    for (const ancestor of ancestors) {
+    // Direct Selection reaches native PDF descendants without narrowing the
+    // marquee to the last path's innermost wrapper. Explicit group isolation
+    // and ordinary Library hierarchies retain their existing boundaries.
+    const pdfScope = pdfGroupedDirectSelectionScope({ target: group }) === group;
+    for (const ancestor of pdfScope ? [] : ancestors) {
       if (activeIsolationGroup() === ancestor) continue;
       if (!enterGroupIsolation(ancestor, { child: path, toast: false })) return false;
     }
@@ -29284,7 +29351,8 @@
     if (pdfGradientEdit.active && nextTool !== "pdfGradient") stopPdfGradientEdit({ sync: false, toast: false });
     if (appearancePatternEdit.active && nextTool !== "pattern") commitAppearancePatternEdit({ sync: false, toast: false });
     if (strokeWidthEdit.active && nextTool !== "width") commitStrokeWidthEdit({ sync: false, toast: false, switchTool: false });
-    const leavingPathNodeEdit = !["directSelect", "addAnchor", "deleteAnchor", "anchorConvert"].includes(nextTool) && Boolean(pathNodeEdit.object);
+    const leavingPathNodeEdit = !["directSelect", "addAnchor", "deleteAnchor", "anchorConvert"].includes(nextTool)
+      && Boolean(pathNodeEdit.object || pathNodeEdit.objects?.length);
     if (leavingPathNodeEdit) {
       stopPathNodeEdit({ sync: false });
     }
@@ -32363,13 +32431,24 @@
 
   function reconcileCanvasSelectionState() {
     if (!canvas) return false;
+    let changed = false;
+    const trackedTexts = (pathNodeEdit.objects || []).filter(isCanvasTextObject);
+    if (trackedTexts.length) {
+      // Nested removal and in-place replacement can bypass Canvas events and
+      // leave old group/canvas pointers. Current tree identity owns selection.
+      const live = new Set(allCanvasObjectsDeep());
+      if (trackedTexts.some(object => !live.has(object))) {
+        stopPathNodeEdit({ sync: false });
+        changed = true;
+      }
+    }
     const active = canvas.getActiveObject();
     if (isActiveSelectionObject(active) && !active.getObjects().length) {
       canvas.discardActiveObject();
       canvas.requestRenderAll();
       return true;
     }
-    return false;
+    return changed;
   }
 
   function setActiveObjects(objects) {
@@ -32430,6 +32509,7 @@
     const object = pathNodeEdit.object;
     const activeSelection = canvas?.getActiveObject?.() || null;
     const editObjects = pathNodeEditObjects();
+    const textObjects = directSelectionTextObjects();
     const selectedRefs = selectedPathHandleRefs();
     const selectedHandles = selectedRefs.map((ref) => {
       const handleObject = objectForPathHandleRef(ref);
@@ -32458,9 +32538,11 @@
     return {
       schema: "figureStudio.directSelection.qa.v1",
       tool: state.tool,
-      active: Boolean(object),
+      active: Boolean(object || textObjects.length),
       objectCount: editObjects.length,
       objectIds: editObjects.map((item) => pathEditObjectId(item)),
+      selectedTextCount: textObjects.length,
+      selectedTextIds: textObjects.map(pathEditObjectId),
       objectId: object?.figureId || "",
       objectName: object?.name || "",
       objectType: object?.figureType || object?.type || "",
@@ -32679,10 +32761,17 @@
       return guarded;
     }
     const epoch = ++clipboardCopyEpoch;
+    canvasClipboardMarker = `${canvasClipboardSession}:${epoch}`;
     if (selectionHasDensePdfPages(guarded.objects)) {
       const capture = { objects: guarded.objects.slice(), canvas, documentId: currentTransformDocumentId(), promise: null };
       pendingDenseClipboardCapture = capture;
-      const preparation = captureDenseClipboard(guarded, epoch, options).finally(() => {
+      const preparation = captureDenseClipboard(guarded, epoch, options).then((result) => {
+        if (result.status !== "ok" && epoch === clipboardCopyEpoch) canvasClipboardMarker = "";
+        return result;
+      }, (error) => {
+        if (epoch === clipboardCopyEpoch) canvasClipboardMarker = "";
+        throw error;
+      }).finally(() => {
         if (pendingDenseClipboardCapture === capture) pendingDenseClipboardCapture = null;
       });
       capture.promise = preparation;
@@ -32702,6 +32791,171 @@
 
   function selectionHasDensePdfPages(objects) {
     return objects.some((object) => clipboardObjectTree(object).some((child) => densePdfApi()?.isPage(child)));
+  }
+
+  function canvasClipboardCommandEnabled() {
+    return Boolean(canvas && !canvasClipboardBusy && !suspendedState.active
+      && !documentWorkspaceState.switching && !activeDocumentFileOperation
+      && !isRestoring && !isApplyingHistory && !presentationState.active
+      && !exportAsDialogState.exporting && !pdfHistoryMovePending && !pdfHistoryMutationLockDepth);
+  }
+
+  function canvasClipboardIsAvailable(target = document.activeElement) {
+    return Boolean(canvasClipboardCommandEnabled()
+      && !target?.closest?.('input, textarea, select, [contenteditable]:not([contenteditable="false"])')
+      && !canvas.getActiveObject?.()?.isEditing
+      && !Array.from(document.querySelectorAll('[role="dialog"][aria-modal="true"]:not([hidden])')).some((dialog) => dialog.getClientRects().length));
+  }
+
+  function canvasClipboardRepresentations(objects) {
+    const text = objects.flatMap((object) => clipboardObjectTree(object))
+      .filter(isCanvasTextObject).map((object) => object.text || "").filter(Boolean).join("\n");
+    return {
+      text: text || "Artwork copied from Superbench",
+      html: `<span data-superbench-figure-clipboard="${canvasClipboardMarker}">${escapeHtml(text || "Artwork copied from Superbench")}</span>`
+    };
+  }
+
+  function copyCanvasClipboard(operation = "copy", event = null) {
+    const guarded = clipboardSelectionGuard(operation);
+    if (guarded.status !== "ok") { clipboardGuardToast(guarded, operation); return guarded; }
+    const result = operation === "cut" ? cutSelectionToClipboard() : copySelectionToClipboard();
+    const representations = canvasClipboardRepresentations(guarded.objects);
+    if (event?.clipboardData) {
+      event.clipboardData.setData("text/plain", representations.text);
+      event.clipboardData.setData("text/html", representations.html);
+      event.preventDefault();
+    } else if (navigator.clipboard?.write && globalThis.ClipboardItem) {
+      void navigator.clipboard.write([new ClipboardItem({
+        "text/plain": new Blob([representations.text], { type: "text/plain" }),
+        "text/html": new Blob([representations.html], { type: "text/html" })
+      })]).catch(() => showLongToast("Copied within Figure. Browser clipboard access is unavailable; use Edit > Paste in Place for this selection."));
+    } else showLongToast("Copied within Figure. Browser clipboard access is unavailable; use Edit > Paste in Place for this selection.");
+    return result;
+  }
+
+  function canvasClipboardContent(data) {
+    const html = data.html || "", plain = data.text || "";
+    const template = html ? document.createElement("template") : null;
+    if (template) template.innerHTML = html;
+    const fragment = template?.content || null;
+    const marker = fragment?.querySelector('[data-superbench-figure-clipboard]')?.getAttribute('data-superbench-figure-clipboard');
+    if (marker && marker === canvasClipboardMarker) return { kind: "internal" };
+    if (marker) return { kind: "unsupported" };
+    const svgFile = data.files?.find((file) => file.type === "image/svg+xml" || /\.svg$/i.test(file.name || ""));
+    if (svgFile) return { kind: "svg-file", file: svgFile };
+    const xml = plain.trim().startsWith("<") ? new DOMParser().parseFromString(plain, "image/svg+xml") : null;
+    const svgText = data.svg || (xml?.documentElement?.localName === "svg"
+      || /^(?:<\?xml[^>]*>\s*)?(?:<!--[\s\S]*?-->\s*)*<svg(?:\s|>)/i.test(plain.trim()) ? plain : "");
+    const embeddedSvg = fragment?.querySelector("svg");
+    if (svgText || embeddedSvg) return { kind: "svg", text: svgText || embeddedSvg.outerHTML };
+    const image = data.files?.find((file) => /^image\/(png|jpeg|webp|gif|bmp)$/i.test(file.type));
+    if (image) return { kind: "image", file: image };
+    fragment?.querySelectorAll("script, style, noscript").forEach((node) => node.remove());
+    const text = (plain || fragment?.textContent || "").replace(/\r\n?/g, "\n");
+    return text.trim() ? { kind: "text", text } : { kind: "unsupported" };
+  }
+
+  function canvasClipboardEventData(transfer) {
+    return {
+      text: transfer.getData("text/plain"), html: transfer.getData("text/html"), svg: transfer.getData("image/svg+xml"),
+      files: Array.from(transfer.files || [])
+    };
+  }
+
+  async function readCanvasSystemClipboard() {
+    if (navigator.clipboard?.read) {
+      const items = await navigator.clipboard.read();
+      const data = { text: "", html: "", svg: "", files: [] };
+      for (const item of items) {
+        for (const [type, key] of [["text/plain", "text"], ["text/html", "html"], ["image/svg+xml", "svg"]]) {
+          if (!data[key] && item.types.includes(type)) data[key] = await (await item.getType(type)).text();
+        }
+        const type = item.types.find((value) => /^image\/(png|jpeg|webp|gif|bmp)$/i.test(value));
+        if (type) data.files.push(new File([await item.getType(type)], `Clipboard.${type.split('/')[1]}`, { type }));
+      }
+      return data;
+    }
+    if (navigator.clipboard?.readText) return { text: await navigator.clipboard.readText() };
+    throw new Error("System clipboard access is unavailable.");
+  }
+
+  async function pasteCanvasClipboard(event = null, options = {}) {
+    if (!canvasClipboardIsAvailable(event?.target)) return { status: "blocked", count: 0 };
+    // Capture event data synchronously: its DataTransfer is protected after the
+    // trusted paste dispatch. The menu uses the browser's permission-based API.
+    const data = event?.clipboardData ? canvasClipboardEventData(event.clipboardData) : null;
+    event?.preventDefault();
+    const owner = captureImportPlacementReviewContext(), destination = activeIsolationGroup();
+    const current = () => importPlacementReviewContextIsCurrent(owner) && activeIsolationGroup() === destination;
+    let content;
+    try { content = canvasClipboardContent(data || await readCanvasSystemClipboard()); }
+    catch (_error) {
+      if (!current()) return { status: "cancelled", count: 0 };
+      showLongToast(`Browser clipboard access is unavailable. Focus the canvas and press Ctrl+V, or use Import SVG/Image/PDF.${clipboard.length || pendingDenseClipboardCapture ? " For the last Figure selection, use Edit > Paste in Place." : ""}`);
+      return { status: "unavailable", count: 0 };
+    }
+    if (!current() || !canvasClipboardIsAvailable()) return { status: "cancelled", count: 0 };
+    if (content.kind === "internal") return pasteClipboardSelection(options);
+    if (options.ownershipContext) {
+      const ownership = revalidateObjectContextCommandAfterAwait(options.ownershipContext);
+      if (ownership.status !== "ok") {
+        showToast(ownership.message);
+        return { status: "cancelled", count: 0, reason: ownership.reason };
+      }
+    }
+    if (destination) {
+      showLongToast("Exit group editing before pasting artwork from another app. Copied Figure objects can still be pasted into the group.");
+      return { status: "blocked", count: 0 };
+    }
+    if (content.kind === "unsupported") {
+      showLongToast("No supported artwork or text is available on the clipboard. For editable vectors, copy as SVG or import an SVG file.");
+      return { status: "unsupported", count: 0 };
+    }
+    if (content.text?.length > 4 * 1024 * 1024 || content.file?.size > 64 * 1024 * 1024) {
+      showLongToast("This clipboard item is too large. Save it as a file and use Import SVG/Image/PDF.");
+      return { status: "blocked", count: 0 };
+    }
+    // Reuse the existing document-operation guard and importer. Input remains
+    // blocked during asynchronous parsing so the result belongs to this tab.
+    const operation = beginDocumentFileOperation("paste", { message: "Pasting into canvas…" });
+    if (!operation) return { status: "blocked", count: 0 };
+    const previousInert = els.studioShell?.inert;
+    canvasClipboardBusy = true;
+    if (els.studioShell) els.studioShell.inert = true;
+    try {
+      stopPathNodeEdit({ sync: false });
+      stopNativePathEdit({ sync: false });
+      const point = defaultImportPointForIndex();
+      let object;
+      if (content.kind === "text") {
+        const art = artboardPx();
+        const width = Math.min(360, Math.max(80, art.width * 0.6));
+        object = makeTextbox(content.text, point.x - width / 2, point.y - 16, width, 32, {}, "Pasted text", sourceMeta({ kind: "clipboard-text" }));
+        object.initDimensions();
+        addObject(object, true, "Text pasted");
+      } else {
+        const file = content.kind === "svg" ? new File([content.text], "Clipboard.svg", { type: "image/svg+xml" }) : content.file;
+        object = await importAsset(file, point, { requireEditableSvg: content.kind !== "image", canCommit: current, disableProxy: true });
+        if (!object) {
+          finishDocumentFileOperation(operation, "idle", "Paste cancelled because the canvas changed.");
+          return { status: "cancelled", count: 0 };
+        }
+        recordImportPlacementSelection(object);
+      }
+      const message = content.kind === "text" ? "Editable text pasted" : content.kind === "image" ? "Image pasted (bitmap)" : "SVG pasted. Review imported text and effects in Properties.";
+      finishDocumentFileOperation(operation, "success", message);
+      showToast(message);
+      return { status: "ok", count: object ? 1 : 0, kind: content.kind };
+    } catch (error) {
+      const message = error?.message || "Could not paste this clipboard item.";
+      finishDocumentFileOperation(operation, "error", message);
+      showLongToast(message);
+      return { status: "error", count: 0 };
+    } finally {
+      canvasClipboardBusy = false;
+      if (els.studioShell) els.studioShell.inert = previousInert || false;
+    }
   }
 
   function replaceEditorClipboard(objects, captured = null) {
@@ -32928,7 +33182,8 @@
 
   async function pasteClipboardSelection(options = {}) {
     const intendedCanvas = canvas, intendedDocumentId = currentTransformDocumentId();
-    await clipboardPreparation;
+    const preparation = await clipboardPreparation;
+    if (preparation?.status && preparation.status !== "ok") return preparation;
     if (denseClipboardCopy || hasPendingDensePageEdits()) {
       if (pdfHistoryMovePending) await pdfHistoryMoveCompletion;
       if (pdfHistoryMutationLockDepth) await pdfHistoryMutationCompletion;
@@ -33021,6 +33276,7 @@
     }
     if (selectionHasDensePdfPages(guarded.objects)) return cutDenseSelectionToClipboard(guarded, options);
     ++clipboardCopyEpoch;
+    canvasClipboardMarker = `${canvasClipboardSession}:${clipboardCopyEpoch}`;
     replaceEditorClipboard(guarded.objects.slice());
     clipboardPreparation = Promise.resolve();
     return removeCutSelection(guarded, options);
@@ -33459,7 +33715,7 @@
   function defaultFigureLayoutProfile(layout) {
     const rails = createDefaultRailLayout();
     rails.workspace = "custom";
-    rails.left = { ...rails.left, visible: true, width: 224 };
+    rails.left = { ...rails.left, visible: false, width: 224 };
     rails.right = { ...rails.right, visible: true, width: 240 };
     return { rails, palette: { position: "left", visible: true }, sidebarTab: "tools", inspectorTab: "properties" };
   }
@@ -37283,7 +37539,8 @@
     if (["select-all", "find-objects", "document-edit", "publication-typography"].includes(command)) return true;
     if (["select-same-type", "select-same-fill", "select-same-stroke", "select-same-text-style", "select-same-component", "select-same-tag", "select-same-swatch"].includes(command)) return ctx.selectedCount > 0;
     if (command === "copy" || command === "cut") return clipboardSelectionGuard(command).status === "ok";
-    if (["paste", "paste-in-place", "paste-in-front", "paste-in-back"].includes(command)) return clipboard.length > 0;
+    if (command === "paste") return canvasClipboardCommandEnabled();
+    if (["paste-in-place", "paste-in-front", "paste-in-back"].includes(command)) return clipboard.length > 0;
     if (command === "transform-again") return repeatTransformSelectionGuard(ctx.selected).status === "ok" && Boolean(lastRepeatTransform && lastRepeatTransform.documentId === currentTransformDocumentId());
     if (command === "duplicate-repeat") return repeatTransformSelectionGuard(ctx.selected).status === "ok";
     if (["duplicate", "bring-forward", "send-backward", "lock"].includes(command)) return ctx.usableCount > 0;
@@ -37354,9 +37611,9 @@
     if (command === "duplicate-repeat") return duplicateAndRepeatSelection();
     if (command === "duplicate") return duplicateSelection();
     if (command === "delete") return deleteSelection();
-    if (command === "copy") return copySelectionToClipboard();
-    if (command === "cut") return cutSelectionToClipboard();
-    if (command === "paste") return pasteClipboardSelection();
+    if (command === "copy") return copyCanvasClipboard("copy");
+    if (command === "cut") return copyCanvasClipboard("cut");
+    if (command === "paste") return pasteCanvasClipboard();
     if (command === "paste-in-place") return pasteClipboardSelection({ placement: "in-place" });
     if (command === "paste-in-front") return pasteClipboardSelection({ placement: "in-front" });
     if (command === "paste-in-back") return pasteClipboardSelection({ placement: "in-back" });
@@ -38002,7 +38259,7 @@
     const enabled = {
       cut: clipboardSelectionGuard("cut", selected).status === "ok",
       copy: clipboardSelectionGuard("copy", selected).status === "ok",
-      paste: clipboard.length > 0,
+      paste: canvasClipboardCommandEnabled(),
       duplicate: selected.length > 0,
       delete: selected.length > 0,
       "free-transform": selected.some((object) => !object.locked && !isReferenceObject(object)),
@@ -38397,7 +38654,7 @@
     const actions = {
       copy: clipboardSelectionGuard("copy", selected).status === "ok",
       cut: clipboardSelectionGuard("cut", selected).status === "ok",
-      paste: clipboard.length > 0,
+      paste: canvasClipboardCommandEnabled(),
       duplicate: selected.length > 0,
       delete: selected.length > 0,
       group: selected.length >= 2 && (!isGroupIsolationActive() || selected.every((object) => object.group === selected[0]?.group)),
@@ -38703,9 +38960,9 @@
 
   function executeResolvedContextCommand(command, ownershipContext = null) {
     if (command === 'edit-in-figure') return editPresentationArtworkInFigure();
-    if (command === "copy") return copySelectionToClipboard();
-    if (command === "cut") return cutSelectionToClipboard();
-    if (command === "paste") return pasteClipboardSelection({ ownershipContext });
+    if (command === "copy") return copyCanvasClipboard("copy");
+    if (command === "cut") return copyCanvasClipboard("cut");
+    if (command === "paste") return pasteCanvasClipboard(null, { ownershipContext });
     if (NATIVE_PDF_UI_COMMANDS.has(command)) return executeNativePdfCommand(command, { ownershipContext });
     if ([
       "make-compound-path", "release-compound-path", "make-clipping-mask", "edit-clipping-path",
@@ -39660,7 +39917,7 @@
 
   async function exportPptxDocument(options = {}) {
     if (!isPresentationDocument()) {
-      showToast("PPTX export is available in Presentation mode");
+      showToast("PPTX export is available in Slidedeck mode");
       return { status: "unavailable", reason: "presentation-mode-required", warnings: [] };
     }
     const api = pptxV1Api();
@@ -39700,7 +39957,7 @@
     try {
       const result = await api.importPptx(input, { sourceFilename: filename });
       if (result?.project?.schema !== PROJECT_SCHEMA || result?.project?.document?.kind !== "presentation") {
-        throw new Error("The PPTX converter did not return a Figure Tool Presentation document.");
+        throw new Error("The PPTX converter did not return a Figure Tool Slidedeck document.");
       }
       const title = filename.replace(/\.pptx$/i, "").trim() || "Imported presentation";
       const project = { ...result.project, title };
@@ -40426,6 +40683,15 @@
         return;
       }
     }
+    const trackedTexts = !pathNodeEdit.object ? (pathNodeEdit.objects || []).filter(isCanvasTextObject) : [];
+    if (trackedTexts.length) {
+      const selected = selectedTopLevelObjects();
+      // A completed Layers/parent selection replaces text-only point state.
+      // Empty Canvas selection can be a transient discard before recollection.
+      if (selected.length && (selected.length !== trackedTexts.length || trackedTexts.some(text => !selected.includes(text)))) {
+        stopPathNodeEdit({ sync: false });
+      }
+    }
     if (nativePathEdit.active) {
       renderNativePathOverlay();
       updatePathNodeStatus(object);
@@ -40451,8 +40717,14 @@
 
   function updatePathNodeStatus(object) {
     if (!els.pathNodeStatus) return;
+    const labels = directSelectionTextObjects().length;
+    if (labels && pathNodeEditObjects().length) {
+      const points = selectedPathHandleRefs().length;
+      els.pathNodeStatus.textContent = `${points} point${points === 1 ? "" : "s"} and ${labels} editable label${labels === 1 ? "" : "s"} selected.`;
+      return;
+    }
     if (!object || !isEditablePathObject(object)) {
-      els.pathNodeStatus.textContent = "Node editing off";
+      els.pathNodeStatus.textContent = labels ? `${labels} editable label${labels === 1 ? "" : "s"} selected.` : "Node editing off";
       return;
     }
     const editObjects = pathNodeEditObjects();
@@ -40469,7 +40741,7 @@
         ? ` ${selectedCount} handles selected.`
         : selected ? ` Selected ${pathHandleLabel(selected)}.` : ` Select a ${itemName} or curve handle.`;
       const pathPrefix = editObjects.length > 1 ? ` across ${editObjects.length} paths` : "";
-      els.pathNodeStatus.textContent = `Editing ${count} ${itemName}${count === 1 ? "" : "s"}${pathPrefix}.${suffix}`;
+      els.pathNodeStatus.textContent = `Editing ${count} ${itemName}${count === 1 ? "" : "s"}${pathPrefix}.${suffix}${labels ? ` ${labels} label${labels === 1 ? "" : "s"} also selected.` : ""}`;
     } else {
       els.pathNodeStatus.textContent = `${count} editable ${itemName}${count === 1 ? "" : "s"} available.`;
     }
@@ -42704,6 +42976,7 @@
   }
 
   function startPdfPointScreenGesture(gesture, object) {
+    if (directSelectionTextObjects().length) { closePdfPointScreenPreview(); return; }
     const preview = pdfPointScreenPreview;
     if (!preview || preview.active) return;
     if (preview.object === object && gesture.pathSnapshots.length === 1 && !gesture.lineSnapshots.length
@@ -42712,6 +42985,7 @@
   }
 
   function schedulePdfPointScreenPreview() {
+    if (directSelectionTextObjects().length) { closePdfPointScreenPreview(); return; }
     if (!canvas || pathNodeEdit.dragging || pathNodeEdit.segmentDrag || nativePathBodyDrag
         || pathNodeEdit.marquee || state.tool !== "directSelect" || isApplyingHistory || isRestoring || pdfHistoryMutationLockDepth) return;
     const object = pathNodeEdit.object;
@@ -42796,6 +43070,15 @@
     return objects;
   }
 
+  function directSelectionTextObjects() {
+    return uniqueObjects(Array.isArray(pathNodeEdit.objects) ? pathNodeEdit.objects : [])
+      .filter(object => isCanvasTextObject(object) && object.visible !== false && !object.locked && !isReferenceObject(object));
+  }
+
+  function directSelectionObjects() {
+    return uniqueObjects([...pathNodeEditObjects(), ...directSelectionTextObjects()]);
+  }
+
   function pathEditObjectId(object) {
     return String(object?.figureId || object?.id || object?.name || "");
   }
@@ -42852,8 +43135,14 @@
     if (state.tool !== "directSelect" || !canvas) return false;
     resetPaintedVectorDirectSelectionCycle();
     event.e?.preventDefault?.();
+    if (!isGroupIsolationActive()) {
+      const point = canvas.getScenePoint(event.e);
+      const group = pdfGroupedDirectSelectionScope(event) || canvas.getObjects().find(object =>
+        object.containsPoint?.(point) && pdfGroupedDirectSelectionScope({ target: object }) === object);
+      if (group) enterPdfDirectSelectionScope(group);
+    }
     ensureDirectSelectionCanvasCollection();
-    const point = canvasPoint(event.e);
+    const point = canvas.getScenePoint(event.e);
     pathNodeEdit.marquee = {
       start: point,
       current: point,
@@ -42871,8 +43160,13 @@
   }
 
   function ensureDirectSelectionCanvasCollection() {
-    const objects = pathNodeEditObjects();
-    if (!canvas || !objects.length) return null;
+    const objects = directSelectionObjects();
+    if (!canvas) return null;
+    if (!objects.length) {
+      if (isGroupIsolationActive()) selectIsolatedObjects([], { sync: false, revealInLayers: false });
+      else canvas.discardActiveObject();
+      return null;
+    }
     const isolationGroup = isGroupIsolationActive() ? activeIsolationGroup() : null;
     if (isolationGroup && objects.every((object) => objectIsWithinGroup(object, isolationGroup))) {
       // Isolation tracks a selection without Fabric reparenting the children
@@ -42907,7 +43201,7 @@
       && event.pointerId !== pathNodeEdit.marquee.pointerId
     ) return false;
     event.preventDefault?.();
-    const point = canvasPointFromClient(event);
+    const point = canvas.getScenePoint(event);
     pathNodeEdit.marquee.current = point;
     renderPathNodeOverlay();
     return true;
@@ -42923,9 +43217,27 @@
     ) return false;
     event?.preventDefault?.();
     const box = normalizedPointRect(marquee.start, marquee.current);
-    const previousObjects = pathNodeEditObjects();
+    const previousObjects = directSelectionObjects();
     const existing = marquee.additive ? selectedPathHandleRefs().slice() : [];
-    const hits = directSelectionMarqueeHits(box);
+    const candidates = directSelectionMarqueeObjects();
+    const hits = directSelectionMarqueeHits(box, candidates);
+    const texts = directSelectionMarqueeTexts(box, candidates);
+    const proposed = uniqueObjects([...(marquee.additive ? previousObjects : []), ...hits.map(hit => hit.object), ...texts]);
+    let invalidScope = false;
+    if (!isGroupIsolationActive()) {
+      const roots = uniqueObjects(proposed.map(object => { while (object.group) object = object.group; return object; }));
+      if (roots.length === 1 && pdfGroupedDirectSelectionScope({ target: roots[0] }) === roots[0]) invalidScope = !enterPdfDirectSelectionScope(roots[0]);
+      else invalidScope = proposed.some(object => object.group);
+    }
+    if (isGroupIsolationActive() && proposed.some(object => !objectIsWithinGroup(object, activeIsolationGroup()))) invalidScope = true;
+    if (invalidScope) {
+      // Never reparent native PDF children into a temporary ActiveSelection.
+      pathNodeEdit.marquee = null;
+      try { canvas.upperCanvasEl.releasePointerCapture?.(marquee.pointerId); } catch (_) { /* Already released. */ }
+      renderPathNodeOverlay();
+      showToast("Select within one PDF page to edit its points and labels");
+      return true;
+    }
     // Discover first, then convert only primitives whose handles were enclosed.
     // In particular this never releases or materializes a dense source page.
     const convertsPrimitive = hits.some((hit) => isPrimitiveShapeDirectSelectable(hit.object));
@@ -42938,11 +43250,15 @@
         )))
         .map((descriptor) => qualifyPathHandle(hitObjects[index], descriptor))
     ));
-    if (handles.length) {
+    if (handles.length || texts.length) {
       const editObjects = uniqueObjects([...(marquee.additive ? previousObjects : []), ...hitObjects]);
-      startPathNodeEdit(editObjects[0], { toast: false });
-      pathNodeEdit.objects = editObjects;
-      editObjects.forEach((item) => item.set({ hasControls: false, hasBorders: false }));
+      const primary = editObjects.find(canUsePathPointEditing);
+      if (primary) startPathNodeEdit(primary, { toast: false, deferInitialVisuals: true });
+      else stopPathNodeEdit({ sync: false });
+      const existingTexts = marquee.additive ? previousObjects.filter(isCanvasTextObject) : [];
+      const selectedTexts = globalThis.FigureStudioGroupObjectSelection.mergedSelection(existingTexts, texts, marquee.additive);
+      pathNodeEdit.objects = uniqueObjects([...editObjects.filter(canUsePathPointEditing), ...selectedTexts]);
+      pathNodeEditObjects().forEach((item) => item.set({ hasControls: false, hasBorders: false }));
       const merged = [...existing];
       handles.forEach((handle) => {
         const index = merged.findIndex((item) => samePathHandle(item, handle));
@@ -42953,10 +43269,12 @@
       pathNodeEdit.selected = merged.at(-1) || null;
       pathNodeEdit.selectedSegment = null;
       ensureDirectSelectionCanvasCollection();
-      showToast(`${merged.length} handle${merged.length === 1 ? "" : "s"} selected`);
+      showToast([merged.length ? `${merged.length} point${merged.length === 1 ? "" : "s"}` : "",
+        selectedTexts.length ? `${selectedTexts.length} label${selectedTexts.length === 1 ? "" : "s"}` : ""].filter(Boolean).join(" and ") + " selected");
     } else if (!marquee.additive) {
-      pathNodeEdit.selectedHandles = [];
-      pathNodeEdit.selected = null;
+      stopPathNodeEdit({ sync: false });
+      if (isGroupIsolationActive()) selectIsolatedObjects([], { sync: false, revealInLayers: false });
+      else canvas.discardActiveObject();
     }
     try {
       canvas.upperCanvasEl?.releasePointerCapture?.(marquee.pointerId);
@@ -42967,13 +43285,14 @@
     resetPaintedVectorDirectSelectionCycle();
     renderPathNodeOverlay();
     updatePathNodeStatus(pathNodeEdit.object);
+    cancelSelectionUiSync();
+    cancelSelectionEssentialsSync();
     syncInspector();
     if (convertsPrimitive) commitHistory("Shapes converted to editable paths");
     return true;
   }
 
-  function directSelectionMarqueeHits(box) {
-    const roots = isGroupIsolationActive() ? groupChildren(activeIsolationGroup()) : canvas.getObjects();
+  function directSelectionMarqueeHits(box, roots = directSelectionMarqueeObjects()) {
     // Keep group boundaries and existing source-protection rules. The current
     // path collection also includes deliberately exposed clipping paths.
     return uniqueObjects([...roots, ...pathNodeEditObjects()])
@@ -42981,6 +43300,8 @@
       .map((object) => {
         const primitive = isPrimitiveShapeDirectSelectable(object);
         const preview = primitive ? new fabricRef.Path(primitiveShapePathData(object)) : object;
+        const source = pdfDirectLeafSourceIdentity(object);
+        const visible = source ? globalThis.FigureStudioGroupObjectSelection.bounds(object, fabricRef) : null;
         const handles = pathHandleDescriptors(preview).filter((descriptor) => {
           const point = primitive
             ? fabricRef.util.transformPoint(fabricPoint(
@@ -42988,10 +43309,36 @@
               Number(descriptor.command[descriptor.yIndex]) - preview.pathOffset.y
             ), pathObjectSceneMatrix(object))
             : pathHandleCanvasPoint(object, descriptor);
-          return point.x >= box.left && point.x <= box.right && point.y >= box.top && point.y <= box.bottom;
+          return (!source || visible && point.x >= visible.left && point.x <= visible.left + visible.width
+            && point.y >= visible.top && point.y <= visible.top + visible.height)
+            && point.x >= box.left && point.x <= box.right && point.y >= box.top && point.y <= box.bottom;
         });
         return { object, handles };
       }).filter((hit) => hit.handles.length);
+  }
+
+  function directSelectionMarqueeObjects() {
+    const roots = isGroupIsolationActive() ? groupChildren(activeIsolationGroup()) : canvas.getObjects();
+    const objects = [], seen = new Set();
+    const visit = (object, descendants = false) => {
+      if (!object || seen.has(object) || object.visible === false || object.locked || isReferenceObject(object)
+          || Number(object.opacity) === 0 || object.pdfPageFrame) return;
+      seen.add(object);
+      const children = groupChildren(object);
+      const releasedPdf = !descendants && children.length && pdfGroupedDirectSelectionScope({ target: object }) === object;
+      if (children.length && (descendants || releasedPdf)) children.forEach(child => visit(child, true));
+      else objects.push(object);
+    };
+    const pdfIsolation = isGroupIsolationActive() && pdfGroupedDirectSelectionScope({ target: activeIsolationGroup() }) === activeIsolationGroup();
+    roots.forEach(object => visit(object, pdfIsolation));
+    return objects;
+  }
+
+  function directSelectionMarqueeTexts(box, objects = directSelectionMarqueeObjects()) {
+    const api = globalThis.FigureStudioGroupObjectSelection;
+    return api.collect(objects.filter(object => isCanvasTextObject(object))
+      .map(object => ({ object, bounds: api.bounds(object, fabricRef) })),
+      { left: box.left, top: box.top, width: box.right - box.left, height: box.bottom - box.top });
   }
 
   function normalizedPointRect(a, b) {
@@ -43119,12 +43466,14 @@
     const selectionBefore = selectedPathHandleRefs().map((handle) => ({ ...handle }));
     const selectedSegmentBefore = pathNodeEdit.selectedSegment && { ...pathNodeEdit.selectedSegment };
     const objectBefore = pathNodeEdit.object;
-    const objectsBefore = pathNodeEditObjects().slice();
+    const objectsBefore = directSelectionObjects().slice();
     pathNodeEdit.object = object;
     pathNodeEdit.objects = pathNodeEditObjects().includes(object) ? pathNodeEditObjects() : [object, ...pathNodeEditObjects()];
     pathNodeEdit.selectedSegment = qualifyPathSegment(object, segment);
     pathNodeEdit.selected = null;
     pathNodeEdit.selectedHandles = [];
+    ensureDirectSelectionCanvasCollection();
+    renderIsolationSelectionOverlay();
     pathNodeEdit.segmentDrag = {
       objectId: pathEditObjectId(object),
       segment: {
@@ -43281,6 +43630,8 @@
     pathNodeEdit.selectedSegment = drag.selectedSegmentBefore || null;
     pathNodeEdit.object = drag.objectBefore || null;
     pathNodeEdit.objects = drag.objectsBefore || [];
+    ensureDirectSelectionCanvasCollection();
+    renderIsolationSelectionOverlay();
     renderPathNodeOverlay();
     canvas?.requestRenderAll?.();
     syncInspector();
@@ -43311,11 +43662,26 @@
     let selected = selectedPathHandleRefs();
     const point = canvas.getScenePoint(event);
     const found = canvas.findTarget?.(event);
-    const front = isGroupIsolationActive()
+    let front = isGroupIsolationActive()
       ? isolationRootGroup()?.scientificAssetMeta
         ? scientificAssetEditablePathAtPoint(activeIsolationGroup(), point, event.pointerType === "touch" ? "touch" : "mouse")
         : isolationChildAtScenePoint(activeIsolationGroup(), point)
       : found?.target || found;
+    const pdfScope = pdfGroupedDirectSelectionScope({ target: front });
+    const text = pdfScope && pdfGroupedDirectTextAtPoint(pdfScope, point);
+    if (pdfScope && !text) front = pdfGroupedDirectPathAtPoint(pdfScope, point) || front;
+    if (text) {
+      front = text;
+      if (!directSelectionTextObjects().includes(text)) {
+        if (event.shiftKey || event.metaKey || event.ctrlKey) return false;
+        if (!enterPdfDirectSelectionScope(pdfScope)) return false;
+        stopPathNodeEdit({ sync: false });
+        pathNodeEdit.objects = [text];
+        selectIsolatedObjects([text], { sync: false, revealInLayers: false });
+        selected = [];
+        syncInspector();
+      }
+    }
     if (isEditablePathObject(front) && isDirectSelectionEditableObject(front) && hasVisiblePathFill(front)
         && (!selected.length || (!event.shiftKey && !event.metaKey && !event.ctrlKey
           && !selected.some((handle) => handle.objectId === pathEditObjectId(front))))
@@ -43334,8 +43700,9 @@
       updatePathNodeStatus(front);
       syncInspector();
     }
-    if (!selected.length) return false;
-    const object = pathNodeEditObjects().slice().reverse().find((item) => (
+    const texts = directSelectionTextObjects();
+    if (!selected.length && !texts.length) return false;
+    const object = texts.includes(front) ? front : pathNodeEditObjects().slice().reverse().find((item) => (
       isDirectSelectionEditableObject(item)
       && (front === item || objectIsWithinGroup(item, front))
       && selected.some((handle) => handle.objectId === pathEditObjectId(item))
@@ -43344,7 +43711,7 @@
     if (!object) return false;
     const primary = selected.find((handle) => handle.objectId === pathEditObjectId(object) && handle.handleType === "endpoint")
       || selected.find((handle) => handle.objectId === pathEditObjectId(object));
-    if (!primary) return false;
+    if (!primary && !texts.includes(object)) return false;
     // Fabric owns pointer routing, the transform lifecycle and rendering. This
     // transaction supplies selected operands, not a second drag event loop.
     cancelSelectionUiSync();
@@ -43365,6 +43732,8 @@
       startPoint: point,
       handles: selected.map((ref) => ({ ...ref })),
       translations: pathBodyDragTranslations(selected),
+      textSnapshots: captureDirectSelectionTextPositions(),
+      toggleTextOnClick: texts.includes(front) && Boolean(event.shiftKey || event.ctrlKey || event.metaKey) ? front : null,
       pathSnapshots: objects.filter((item) => !isLineVectorObject(item)).map((item) => ({
         objectId: pathEditObjectId(item), path: copyPathCommands(item.path),
         bezierNodeMeta: cloneManifestValue(item.figureStudioBezierNodeMeta, null)
@@ -43385,6 +43754,14 @@
 
   function translatePathGestureOperands(entries, dx, dy) {
     entries.forEach((entry) => {
+      if (entry.textObject) {
+        const object = entry.textObject, inverse = entry.inverseParentMatrix;
+        object.set({ left: dx === 0 && dy === 0 ? entry.left : entry.left + inverse[0] * dx + inverse[2] * dy,
+          top: dx === 0 && dy === 0 ? entry.top : entry.top + inverse[1] * dx + inverse[3] * dy, dirty: true });
+        object.setCoords();
+        for (let parent = object.group; parent; parent = parent.group) parent.dirty = true;
+        return;
+      }
       const object = objectForPathHandleRef(entry);
       if (!object) return;
       const inverse = entry.inverseSceneMatrix;
@@ -43405,12 +43782,13 @@
       // A cached parent must paint the changed child on the same native frame.
       for (let parent = object.group; parent; parent = parent.group) parent.dirty = true;
     });
+    if (entries.some(entry => entry.textObject)) renderIsolationSelectionOverlay();
   }
 
   function updateNativePathBodyDrag(event) {
     const gesture = nativePathBodyDrag;
     if (!gesture || gesture.canvas !== canvas) return false;
-    const point = snapWorkspacePoint(canvas.getScenePoint(event), { grid: false, excludeObjects: pathNodeEditObjects(), bypass: snappingBypassed(event) });
+    const point = snapWorkspacePoint(canvas.getScenePoint(event), { grid: false, excludeObjects: directSelectionObjects(), bypass: snappingBypassed(event) });
     const dx = point.x - gesture.startPoint.x, dy = point.y - gesture.startPoint.y;
     if (!gesture.dirty && Math.hypot(dx, dy) * Math.max(0.08, state.view.zoom) < 3) return false;
     translatePathGestureOperands(gesture.translations, dx, dy);
@@ -43429,6 +43807,13 @@
     if (!gesture) return false;
     nativePathBodyDrag = null;
     gesture.target.set({ evented: gesture.targetEvented });
+    if (!gesture.dirty && gesture.toggleTextOnClick) {
+      pathNodeEdit.objects = (pathNodeEdit.objects || []).filter(object => object !== gesture.toggleTextOnClick);
+      ensureDirectSelectionCanvasCollection();
+      renderPathNodeOverlay(); renderIsolationSelectionOverlay();
+      updatePathNodeStatus(pathNodeEdit.object); syncInspector();
+      return true;
+    }
     hideGuideSnapCue();
     hideSmartGuideCues();
     finishPathHandleDrag(gesture);
@@ -43450,7 +43835,7 @@
   }
 
   function pathBodyDragTranslations(selected) {
-    return pathNodeEditObjects().filter((object) => !isLineVectorObject(object)).flatMap((object) => {
+    const paths = pathNodeEditObjects().filter((object) => !isLineVectorObject(object)).flatMap((object) => {
       const selectedForObject = selected.filter((handle) => handle.objectId === pathEditObjectId(object));
       if (!selectedForObject.length) return [];
       const endpoints = pathNodeDescriptors(object);
@@ -43496,6 +43881,13 @@
         inverseSceneMatrix: fabricRef.util.invertTransform(pathObjectSceneMatrix(object))
       }];
     });
+    return paths.concat(captureDirectSelectionTextPositions().map(entry => ({ ...entry, textObject: entry.object })));
+  }
+
+  function captureDirectSelectionTextPositions() {
+    return directSelectionTextObjects().map(object => ({ object, objectId: pathEditObjectId(object),
+      left: object.left, top: object.top, parent: object.group || null,
+      inverseParentMatrix: fabricRef.util.invertTransform(object.group?.calcTransformMatrix() || [1, 0, 0, 1, 0, 0]) }));
   }
 
   function beginPathNodeDrag(event, commandIndex, handleType, object = pathNodeEdit.object, handleElement = event.currentTarget) {
@@ -43522,6 +43914,10 @@
     const currentHandleSelected = existingHandles.some((handle) => samePathHandle(handle, nextHandle));
     const crossObjectSelection = existingHandles.some((handle) => handle.objectId && handle.objectId !== nextHandle.objectId);
     const selectionModifier = Boolean(event.shiftKey || event.metaKey || event.ctrlKey);
+    if (!selectionModifier && !currentHandleSelected && directSelectionTextObjects().length) {
+      pathNodeEdit.objects = pathNodeEditObjects();
+      ensureDirectSelectionCanvasCollection();
+    }
     const modifierAddsHandle = selectionModifier
       && handleType === "endpoint"
       && !currentHandleSelected
@@ -43570,6 +43966,7 @@
       handles: selectedHandleStarts,
       pointerStartPoint: canvas.getScenePoint(event),
       translations: pathBodyDragTranslations(selectedHandleStarts),
+      textSnapshots: captureDirectSelectionTextPositions(),
       pointerId: event.pointerId,
       lineSnapshots,
       pathSnapshots,
@@ -43594,6 +43991,10 @@
 
   function restorePathHandleDrag(dragging, event) {
     closePdfPointScreenPreview();
+    (dragging.textSnapshots || []).forEach(entry => {
+      entry.object.set({ left: entry.left, top: entry.top, dirty: true }); entry.object.setCoords();
+      for (let parent = entry.object.group; parent; parent = parent.group) parent.dirty = true;
+    });
     event?.preventDefault?.();
     const snapshots = Array.isArray(dragging.lineSnapshots) ? dragging.lineSnapshots : [];
     snapshots.forEach((snapshot) => {
@@ -43630,6 +44031,7 @@
     }
     hideGuideSnapCue();
     hideSmartGuideCues();
+    if (dragging.textSnapshots?.length) renderIsolationSelectionOverlay();
     renderPathNodeOverlay();
     updatePathNodeStatus(pathNodeEdit.object);
     canvas?.requestRenderAll?.();
@@ -43661,7 +44063,7 @@
     const startPoint = dragging.startPoint || pathHandleCanvasPoint(object, descriptor);
     const pointerStart = dragging.pointerStartPoint || startPoint;
     // Keep the handle's grab offset before applying snapping or angle constraints.
-    let point = snapWorkspacePoint({ x: startPoint.x + (pointer.x - pointerStart.x), y: startPoint.y + (pointer.y - pointerStart.y) }, { grid: false, excludeObjects: pathNodeEditObjects(), bypass: snappingBypassed(event) });
+    let point = snapWorkspacePoint({ x: startPoint.x + (pointer.x - pointerStart.x), y: startPoint.y + (pointer.y - pointerStart.y) }, { grid: false, excludeObjects: directSelectionObjects(), bypass: snappingBypassed(event) });
     if (event.shiftKey && isLineVectorObject(object) && descriptor.lineEndpointRole) {
       const oppositeRole = descriptor.lineEndpointRole === "start" ? "end" : "start";
       const oppositeDescriptor = lineVectorEndpointDescriptors(object)
@@ -43838,7 +44240,7 @@
     }) || (dragging.lineSnapshots || []).some((snapshot) => {
       const object = objectForPathHandleRef(snapshot);
       return object && JSON.stringify(lineVectorEndpoints(object)) !== JSON.stringify(snapshot.endpoints);
-    });
+    }) || (dragging.textSnapshots || []).some(entry => entry.object.left !== entry.left || entry.object.top !== entry.top);
     if (dragging.dirty && !changed && !dragging.nodeTypeEdit) {
       restorePathHandleDrag(dragging);
       return;
@@ -43855,7 +44257,7 @@
       const historyLabel = dragging.body ? "Selected points moved" : (dragging.handles?.length || 1) > 1
         ? "Path handles edited"
         : dragging.handleType === "endpoint" ? "Path node edited" : "Path control edited";
-      const routed = tryRouteOrdinaryPathOperandEdit(dragging.pathSnapshots, touchedObjects, { historyLabel });
+      const routed = !dragging.textSnapshots?.length && tryRouteOrdinaryPathOperandEdit(dragging.pathSnapshots, touchedObjects, { historyLabel });
       if (!routed) {
         touchedObjects.forEach((handles, touchedObject) => {
           // Fabric reconstructs a path's dimensions and offset on history
@@ -43880,7 +44282,7 @@
         // Fit-content layout can rebase siblings while settling the path frame.
         // Queue the resulting artwork before cooperative history capture yields.
         const screenPaint = requestCanvasArtworkRender({ cooperativePdfPoint: hadRetainedPaint });
-        const historyOptions = pdfIncrementalHistoryOptions([...touchedObjects.keys()]);
+        const historyOptions = pdfIncrementalHistoryOptions([...touchedObjects.keys(), ...(dragging.textSnapshots || []).map(entry => entry.object)]);
         if (options.prepareHistory) preparedHistory = { label: historyLabel, options: historyOptions, screenPaint };
         else if (historyOptions.incrementalObjects?.length) {
           // Reconstructed scientific PDFs use the same cooperative history
@@ -43916,6 +44318,7 @@
     }
     renderPathNodeOverlay();
     updatePathNodeStatus(pathNodeEdit.object);
+    if (dragging.textSnapshots?.length) renderIsolationSelectionOverlay();
     return preparedHistory;
   }
 
@@ -46804,6 +47207,8 @@
     const items = selectedPathHandleLayoutItems();
     if (!items.length || (!dx && !dy)) return false;
     const pathSnapshots = captureVectorEnginePathSnapshots(items);
+    const texts = captureDirectSelectionTextPositions();
+    if (texts.length) translatePathGestureOperands(texts.map(entry => ({ ...entry, textObject: entry.object })), dx, dy);
     items.forEach((item) => {
       setPathHandleCanvasPoint(item.object, item.descriptor, {
         x: item.point.x + dx,
@@ -46814,7 +47219,8 @@
       descriptorType: "path_handle_nudge",
       action: "nudge_path_handle",
       historyLabel: items.length > 1 ? "Path handles nudged" : items[0].descriptor.handleType === "endpoint" ? "Path node nudged" : "Path control nudged",
-      pathSnapshots
+      pathSnapshots,
+      textObjects: texts.map(entry => entry.object)
     });
   }
 
@@ -67392,7 +67798,7 @@
       return true;
     }
     const root = isolationRootGroup();
-    if (pathNodeEdit.object && objectIsWithinGroup(pathNodeEdit.object, root)) stopPathNodeEdit({ sync: false });
+    if ([pathNodeEdit.object, ...(pathNodeEdit.objects || [])].some(object => object && objectIsWithinGroup(object, root))) stopPathNodeEdit({ sync: false });
     [...groupIsolation.path].reverse().forEach(restoreIsolationGroupSettings);
     groupIsolation = { path: [], selected: null, selectedObjects: [], guardingSelection: false };
     syncToolMode();
@@ -69044,7 +69450,7 @@
       entries.push(item.descriptor);
       touched.set(item.object, entries);
     });
-    if (tryRouteOrdinaryPathOperandEdit(options.pathSnapshots, touched, options)) return true;
+    if (!options.textObjects?.length && tryRouteOrdinaryPathOperandEdit(options.pathSnapshots, touched, options)) return true;
     touched.forEach((descriptors, object) => {
       setPathCommandsWithSceneStableFrame(object, object.path || []);
       const endpointsOnly = descriptors.every((descriptor) => descriptor.handleType === "endpoint");
@@ -69059,9 +69465,15 @@
     });
     canvas.requestRenderAll();
     renderPathNodeOverlay();
+    if (options.textObjects?.length) renderIsolationSelectionOverlay();
     syncInspector();
     updatePathNodeStatus(pathNodeEdit.object);
-    commitHistory(options.historyLabel || "Path handles edited");
+    if (options.textObjects?.length) {
+      const screenPaint = requestCanvasArtworkRender();
+      void commitPdfPointHistory(options.historyLabel || "Points and labels moved",
+        pdfIncrementalHistoryOptions([...touched.keys(), ...options.textObjects]), screenPaint)
+        .catch(error => { console.error("Figure Tool recovered a mixed selection nudge", error); showLongToast("Could not complete the move. The previous editing state has been retained."); });
+    } else commitHistory(options.historyLabel || "Path handles edited");
     return true;
   }
 
@@ -78046,7 +78458,8 @@
   }
 
   function captureDirectSelectionHistoryState() {
-    if (state.tool !== "directSelect" || !pathNodeEdit.object) return null;
+    const texts = directSelectionTextObjects();
+    if (state.tool !== "directSelect" || !pathNodeEdit.object && !texts.length) return null;
     const stripHandle = (ref) => ({
       objectId: String(ref?.objectId || pathEditObjectId(pathNodeEdit.object)),
       nodeId: String(ref?.nodeId || ""),
@@ -78054,8 +78467,9 @@
       handleType: String(ref?.handleType || "endpoint")
     });
     const saved = {
-      primaryObjectId: pathEditObjectId(pathNodeEdit.object),
+      primaryObjectId: pathEditObjectId(pathNodeEdit.object || texts[0]),
       objectIds: pathNodeEditObjects().map(pathEditObjectId),
+      ...(texts.length ? { textObjectIds: texts.map(pathEditObjectId) } : {}),
       selectedHandles: selectedPathHandleRefs().map(stripHandle),
       selectedSegment: pathNodeEdit.selectedSegment ? {
         objectId: String(pathNodeEdit.selectedSegment.objectId || ""),
@@ -78065,8 +78479,8 @@
         endCommandIndex: Number(pathNodeEdit.selectedSegment.endCommandIndex)
       } : null
     };
-    const page = densePdfPageForObject(pathNodeEdit.object);
-    if (page && saved.objectIds.length === 1 && !saved.selectedSegment
+    const page = pathNodeEdit.object && densePdfPageForObject(pathNodeEdit.object);
+    if (page && !texts.length && saved.objectIds.length === 1 && !saved.selectedSegment
         && densePdfApi().objectById(page, saved.primaryObjectId) === pathNodeEdit.object
         && canUsePathPointEditing(pathNodeEdit.object)) {
       const descriptor = densePdfApi().descriptor(page);
@@ -78215,12 +78629,15 @@
     const resolve = (id) => getByFigureId(id) || findNestedObjectByFigureId(id);
     const objects = uniqueObjects((saved.objectIds || []).map(resolve))
       .filter((object) => canUseBezierNodeEditing(object));
+    const texts = uniqueObjects((Array.isArray(saved.textObjectIds) ? saved.textObjectIds : []).map(resolve))
+      .filter(object => isCanvasTextObject(object) && !object.locked && object.visible !== false && !isReferenceObject(object));
     const primary = resolve(saved.primaryObjectId);
-    if (!primary || !objects.includes(primary)) return false;
+    if (!primary || !objects.includes(primary) && !texts.includes(primary)) return false;
     state.tool = "directSelect";
     syncToolMode();
-    startPathNodeEdit(primary, { toast: false });
-    pathNodeEdit.objects = objects;
+    if (objects.length) startPathNodeEdit(objects.includes(primary) ? primary : objects[0], { toast: false });
+    else stopPathNodeEdit({ sync: false });
+    pathNodeEdit.objects = uniqueObjects([...objects, ...texts]);
     objects.forEach((object) => object.set?.({ hasControls: false, hasBorders: false }));
     const available = objects.flatMap((object) => pathHandleDescriptors(object).map((descriptor) => qualifyPathHandle(object, descriptor)));
     const selected = (saved.selectedHandles || []).map((ref) => available.find((item) => samePathHandle(item, ref))).filter(Boolean);
@@ -83677,7 +84094,7 @@
   async function loadProjectPayload(payload, options = {}) {
     const handoff = denseFigureHandoffContext(options);handoff?.current();
     if (fileFormatApi().classifyPayload(payload, { allowHistorical: true }).format !== "document") {
-      throw new Error("Choose a Figure or Presentation document to open in this tab.");
+      throw new Error("Choose a Figure or Slidedeck document to open in this tab.");
     }
     const sourceProject = ["figureStudio.projectPayload.v1", "figureStudio.projectPayload.v2"].includes(payload?.schema) && payload.project
       ? payload.project
@@ -86073,7 +86490,7 @@
       || !tab
       || tab.kind !== "figure"
     ) {
-      const error = new Error("Open the Figure you want to add before sending it to Present.");
+      const error = new Error("Open the Figure you want to add before sending it to Slidedeck.");
       error.code = "figure_studio_figure_handoff_unavailable";
       throw error;
     }
@@ -86196,7 +86613,7 @@
     canvas.requestRenderAll();
     syncUi();
     if (graphHandoff) commitHistory(`Graph imported: ${normalized.title}`);
-    else if (figureHandoff) commitHistory(`Figure added to Present: ${normalized.title}`);
+    else if (figureHandoff) commitHistory(`Figure added to Slidedeck: ${normalized.title}`);
     else commitHistory(`Result imported: ${normalized.title}`);
     notifyHost(figureHandoff
       ? `Added ${normalized.title} to the current presentation.`
@@ -86846,6 +87263,8 @@
         importedAt: timestamp
       }), "image", {
         dropPoint,
+        canCommit: options?.canCommit,
+        disableProxy: options?.disableProxy,
         artifactRefOptions: {
           source_kind: options?.handoffPayload ? handoffArtifactSourceKind(options.handoffPayload) : "local_import",
           original_filename: file.name,
@@ -86908,7 +87327,9 @@
           : "Imported as grouped Fabric SVG objects; ungrouping for deep editing is prototype-level."
       });
       const denseAnalysis = analyzeDenseSvgFragment(svgText, conversionMeta);
+      if (options?.canCommit && !options.canCommit()) return null;
       if (denseAnalysis.dense) {
+        if (options?.requireEditableSvg) throw new Error("This SVG needs the file import controls. Save it as SVG and use Import SVG/Image/PDF; it has not been pasted as a bitmap.");
         return addDenseSvgProxyObject(svgText, file, timestamp, dropPoint, {
           ...options,
           conversionMeta,
@@ -86921,6 +87342,10 @@
           if (guardrailReason) throw new Error(guardrailReason);
         }
         const loaded = await loadSvgWithEditableText(svgText, { openAsDocument: options?.openAsDocument === true });
+        if (options?.canCommit && !options.canCommit()) {
+          loaded.objects?.forEach((object) => object.dispose?.());
+          return null;
+        }
         if (!loaded.objects || !loaded.objects.length) throw new Error("Could not parse SVG");
         if (convertedPdf) {
           const sourceName = convertedPdfSourceFilename(conversionMeta, file);
@@ -87002,6 +87427,7 @@
         }
         return group;
       } catch (error) {
+        if (options?.requireEditableSvg) throw new Error(`This SVG could not be pasted as editable artwork. Use Import SVG/Image/PDF to review it. ${error.message || ""}`);
         if (options?.openAsDocument && (error?.svgSourceOpenUnsupported || importInfo.svgSourceNumericPolicy === "figureStudio.svgSourcePageNumbers.v1")) throw error;
         console.warn("SVG vector import failed, using raster fallback", error);
         const fallbackDataUrl = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svgText)}`;
@@ -91347,6 +91773,7 @@
     return new Promise((resolve, reject) => {
       loadFabricImage(displayDataUrl).then((object) => {
         if (typeof importOptions.canCommit === "function" && !importOptions.canCommit()) {
+          object.dispose?.();
           resolve(null);
           return;
         }
@@ -97800,7 +98227,7 @@
           : "This PDF is composed from the reviewed Figure Tool pages. Supported paths and text remain vector.",
         sourceAwareFigurePdf
           ? "Review imported-source and font findings; exact printer color, font installation, and source identity are not certified."
-          : "Multi-page and Presentation PDF output does not certify retained-source re-embedding, native identity, printer color, or font equivalence."
+          : "Multi-page and Slidedeck PDF output does not certify retained-source re-embedding, native identity, printer color, or font equivalence."
       ));
     } else if (
       plan?.format === "svg"
@@ -98152,7 +98579,7 @@
       reviewTimer: 0,
       requestedFormat: String(options.format || "")
     };
-    backdrop.querySelector("#exportAsDocumentName").textContent = `${descriptor.displayName} · ${descriptor.kind === "presentation" ? "Presentation" : "Figure"}`;
+    backdrop.querySelector("#exportAsDocumentName").textContent = `${descriptor.displayName} · ${descriptor.kind === "presentation" ? "Slidedeck" : "Figure"}`;
     const formatSelect = backdrop.querySelector("[data-export-as-format]");
     formatSelect.replaceChildren(...surface.formats.map((format) => {
       const option = document.createElement("option");
@@ -99836,6 +100263,15 @@
     window.addEventListener("pointercancel", cancelPdfGradientPointer);
     window.addEventListener("pointercancel", (event) => finishGuideDrag(event));
     window.addEventListener("keydown", onKeyDown);
+    document.addEventListener("copy", (event) => {
+      if (!event.defaultPrevented && canvasClipboardIsAvailable(event.target)) copyCanvasClipboard("copy", event);
+    });
+    document.addEventListener("cut", (event) => {
+      if (!event.defaultPrevented && canvasClipboardIsAvailable(event.target)) copyCanvasClipboard("cut", event);
+    });
+    document.addEventListener("paste", (event) => {
+      if (!event.defaultPrevented) void pasteCanvasClipboard(event).catch((error) => showLongToast(error?.message || "Could not paste this clipboard item."));
+    });
     window.addEventListener("keyup", onKeyUp);
     window.addEventListener("pointerdown", (event) => {
       if (!els.appMenuBar?.contains(event.target)) closeMenus();
@@ -102214,6 +102650,7 @@
   }
 
   function onKeyDown(event) {
+    if (canvasClipboardBusy) { event.preventDefault(); return; }
     if (scientificAssetPreviewUi?.getState().open) return;
     if (exportAsDialogState.backdrop && !exportAsDialogState.backdrop.hidden) {
       handleExportAsDialogKeyDown(event);
@@ -102577,13 +103014,10 @@
       return;
     }
     if (command && event.key.toLowerCase() === "c") {
-      event.preventDefault();
-      copySelectionToClipboard();
+      // Let the trusted copy event supply both the text and local-object marker.
       return;
     }
     if (command && event.key.toLowerCase() === "x") {
-      event.preventDefault();
-      cutSelectionToClipboard();
       return;
     }
     if (command && event.shiftKey && event.key.toLowerCase() === "v") {
@@ -102592,8 +103026,7 @@
       return;
     }
     if (command && event.key.toLowerCase() === "v") {
-      event.preventDefault();
-      void pasteClipboardSelection();
+      // Native paste supplies clipboard data even when the menu read API is denied.
       return;
     }
     if (command && event.key.toLowerCase() === "d") {
@@ -102748,7 +103181,7 @@
         stopNativePathEdit();
         return;
       }
-      if (pathNodeEdit.object) {
+      if (pathNodeEdit.object || pathNodeEdit.objects?.length) {
         event.preventDefault();
         if (cancelPathNodeDrag(event)) return;
         stopPathNodeEdit();

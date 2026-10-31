@@ -25,8 +25,8 @@
               <div id="fileMenuDropdown" class="menu-dropdown" role="menu" aria-label="File">
                 <button type="button" role="menuitem" data-command="new-project" data-shared-icon="new"><span>New&hellip;</span><kbd>Ctrl+N</kbd></button>
                 <button type="button" role="menuitem" data-command="new-slide" data-shared-icon="new" data-presentation-only><span>New Slide</span></button>
-                <button type="button" role="menuitem" data-command="open-project" data-shared-icon="open" aria-keyshortcuts="Control+O Meta+O"><span>Open Figure, Presentation, or Project&hellip;</span><kbd>Ctrl+O</kbd></button>
-                <button type="button" id="recentDocumentsMenuBtn" role="menuitem" data-command="recent-documents"><span>Recent Figures and Presentations&hellip;</span></button>
+                <button type="button" role="menuitem" data-command="open-project" data-shared-icon="open" aria-keyshortcuts="Control+O Meta+O"><span>Open Figure, Slidedeck, or Project&hellip;</span><kbd>Ctrl+O</kbd></button>
+                <button type="button" id="recentDocumentsMenuBtn" role="menuitem" data-command="recent-documents"><span>Recent Figures and Slidedecks&hellip;</span></button>
                 <button type="button" role="menuitem" data-command="open-pptx" data-shared-icon="open" data-presentation-only><span>Open PPTX&hellip;</span></button>
                 <button type="button" role="menuitem" data-command="open-pdf" data-shared-icon="open"><span>Open PDF...</span></button>
                 <button type="button" role="menuitem" data-command="save-project" data-shared-icon="save" aria-keyshortcuts="Control+S Meta+S"><span id="saveProjectMenuLabel">Save Figure</span><kbd>Ctrl+S</kbd></button>
@@ -349,10 +349,10 @@
               <button type="button" data-figure-layout-command="save-project" data-shared-icon="save" title="Save Figure (Ctrl/Cmd+S)">Save</button>
               <button type="button" data-figure-layout-command="export-as" data-shared-icon="export">Export</button>
             </div>
-            <button type="button" id="projectSlidesToggle" class="project-slides-toggle" aria-expanded="false" aria-controls="projectSlidesPanel" title="Show slides beside your canvas">Slides</button>
+            <button type="button" id="projectSlidesToggle" class="project-slides-toggle" aria-expanded="false" aria-controls="projectSlidesPanel" title="Show this project's slides beside your canvas">Slides</button>
             <div id="documentWorkspaceSwitcher" class="document-workspace-switcher" role="tablist" aria-label="Project views">
               <button type="button" id="figureWorkspaceTab" role="tab" data-document-workspace="figure" aria-selected="true">Figure</button>
-              <button type="button" id="presentationWorkspaceTab" role="tab" data-document-workspace="presentation" aria-selected="false" title="Edit this project's slides; your Figure stays open">Edit slides</button>
+              <button type="button" id="presentationWorkspaceTab" role="tab" data-document-workspace="presentation" aria-selected="false" title="Edit this project's slides; your Figure stays open">Slidedeck</button>
             </div>
             <button type="button" id="contextLearnBtn" class="help-top-button" data-shared-icon="help" title="Read Help for the current workspace">Workspace help</button>
             <button type="button" id="helpCenterBtn" class="help-top-button" data-command="help-center" data-shared-icon="help" title="Search Figure Tool help">Help</button>
@@ -413,11 +413,11 @@
                 <button type="button" id="exportSvgBtn">SVG</button>
                 <button type="button" id="exportPngBtn">PNG</button>
                 <button type="button" id="exportPdfBtn">PDF</button>
-                <button type="button" id="exportDeckPdfBtn" data-presentation-only>Presentation PDF</button>
+                <button type="button" id="exportDeckPdfBtn" data-presentation-only>Slidedeck PDF</button>
                 <button type="button" id="exportPptxBtn" data-presentation-only>PPTX</button>
                 <button type="button" id="cancelDeckPdfExportBtn" data-presentation-only hidden>Cancel presentation PDF</button>
                 <p id="deckPdfExportStatus" class="deck-export-status" aria-live="polite"></p>
-                <button type="button" id="exportDeckPackageBtn" data-presentation-only hidden aria-hidden="true" tabindex="-1">Presentation package</button>
+                <button type="button" id="exportDeckPackageBtn" data-presentation-only hidden aria-hidden="true" tabindex="-1">Slidedeck package</button>
                 <button type="button" id="cancelDeckExportBtn" data-presentation-only hidden>Cancel presentation export</button>
                 <p id="deckExportStatus" class="deck-export-status" aria-live="polite"></p>
                 <button type="button" id="exportManifestBtn" hidden aria-hidden="true" tabindex="-1">Advanced export details</button>
@@ -895,7 +895,7 @@
             <div id="documentTabs" class="document-tabs" role="tablist"></div>
             <button type="button" id="newDocumentTabBtn" class="new-document-tab-button" title="New document" aria-label="New document">+</button>
             <div class="figure-document-panel-actions" data-figure-only>
-              <button type="button" id="figureLibraryToggle" aria-pressed="true" aria-controls="figureLibraryPanel">Library</button>
+              <button type="button" id="figureLibraryToggle" aria-pressed="false" aria-controls="figureLibraryPanel">Library</button>
               <button type="button" id="figureStyleToggle" aria-pressed="false" aria-controls="figureInspectorPanel">Style</button>
               <button type="button" id="figureDocumentSetupBtn" aria-pressed="false" aria-controls="documentSetupDisclosure">Document setup</button>
             </div>
@@ -2260,13 +2260,13 @@
     <div id="recentDocumentsBackdrop" class="recent-documents-backdrop" hidden>
       <section id="recentDocumentsDialog" class="recent-documents-dialog" role="dialog" aria-modal="true" aria-labelledby="recentDocumentsTitle" aria-describedby="recentDocumentsLead" data-qa-recent-documents>
         <header class="recent-documents-header">
-          <div><strong id="recentDocumentsTitle">Recent Figures and Presentations</strong><span>Open a document from its saved Windows location.</span></div>
+          <div><strong id="recentDocumentsTitle">Recent Figures and Slidedecks</strong><span>Open a document from its saved Windows location.</span></div>
           <button type="button" id="closeRecentDocumentsBtn" aria-label="Close recent documents">Close</button>
         </header>
         <div class="recent-documents-body">
           <p id="recentDocumentsLead">Only successful native opens and saves appear here. These paths stay in Figure Tool preferences and are not added to documents or exports.</p>
           <div id="recentDocumentsList" class="recent-documents-list" aria-label="Recent Figure Tool documents"></div>
-          <div id="recentDocumentsEmpty" class="recent-documents-empty">No recent documents yet. Save or open a Figure or Presentation in the Windows desktop app.</div>
+          <div id="recentDocumentsEmpty" class="recent-documents-empty">No recent documents yet. Save or open a Figure or Slidedeck in the Windows desktop app.</div>
         </div>
         <footer class="recent-documents-actions">
           <p id="recentDocumentsStatus" role="status" aria-live="polite">No recent documents.</p>
@@ -2449,7 +2449,7 @@
         </header>
         <div class="new-document-kinds" role="radiogroup" aria-label="Document type">
           <button type="button" id="newFigureKindBtn" role="radio" aria-checked="true" data-new-document-kind="figure">Figure</button>
-          <button type="button" id="newPresentationKindBtn" role="radio" aria-checked="false" tabindex="-1" data-new-document-kind="presentation">Presentation</button>
+          <button type="button" id="newPresentationKindBtn" role="radio" aria-checked="false" tabindex="-1" data-new-document-kind="presentation">Slidedeck</button>
         </div>
         <div class="new-document-body">
           <div class="new-document-settings">
@@ -2482,7 +2482,7 @@
         <div class="new-document-open-actions" aria-label="Open an existing document">
           <span>Open existing</span>
           <button type="button" data-new-document-open="figure">Figure…</button>
-          <button type="button" data-new-document-open="presentation">Presentation…</button>
+          <button type="button" data-new-document-open="presentation">Slidedeck…</button>
           <button type="button" id="openArtworkDocumentBtn">PDF or SVG…</button>
           <input id="openArtworkDocumentInput" type="file" accept="application/pdf,.pdf,image/svg+xml,.svg" hidden>
         </div>
@@ -2504,7 +2504,7 @@
         </footer>
       </section>
     </div>
-    <section id="presentationOverlay" class="presentation-overlay" role="dialog" aria-modal="true" aria-label="Presentation" hidden>
+    <section id="presentationOverlay" class="presentation-overlay" role="dialog" aria-modal="true" aria-label="Slidedeck" hidden>
       <div class="presentation-canvas-wrap">
         <canvas id="presentationCanvas" aria-label="Current presentation slide"></canvas>
       </div>
