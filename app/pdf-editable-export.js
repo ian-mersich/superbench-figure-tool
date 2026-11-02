@@ -441,6 +441,90 @@
     return true;
   }
 
+  function preserveCurrentPathNumberPlanes(root) {
+    const numbers = typeof module === "object" && module.exports && typeof require === "function"
+      ? require("./pdf-generated-number-tokens.js") : globalThis.FigureStudioPdfGeneratedNumbers;
+    if (!numbers?.number) return;
+    const identity = [1,0,0,1,0,0], cache = new Map();
+    const multiply = (a,b) => [a[0]*b[0]+a[2]*b[1],a[1]*b[0]+a[3]*b[1],a[0]*b[2]+a[2]*b[3],a[1]*b[2]+a[3]*b[3],a[0]*b[4]+a[2]*b[5]+a[4],a[1]*b[4]+a[3]*b[5]+a[5]];
+    const point = (m,x,y) => [m[0]*x+m[2]*y+m[4],m[1]*x+m[3]*y+m[5]];
+    const writerExact = value => Object.is(Number(value.toFixed(20)),value);
+    const encodable = value => {
+      const key = Object.is(value,-0) ? "-0" : String(value);
+      if (!cache.has(key)) {
+        let result = false;
+        try { numbers.number(value); result = true; }
+        catch (error) { if (error?.code !== "PDF_GENERATED_NUMBER_UNSUPPORTED") throw error; }
+        if (cache.size >= numbers.limits.uniqueNumbers) cache.delete(cache.keys().next().value);
+        cache.set(key,result);
+      }
+      return cache.get(key);
+    };
+    const transform = text => {
+      const rows = [...text.matchAll(/(matrix|translate|scale)\s*\(([^)]*)\)/g)];
+      if (rows.map(row=>row[0]).join("").replace(/\s/g,"") !== text.replace(/\s/g,"")) return null;
+      let matrix = identity;
+      for (const row of rows) {
+        const v=row[2].trim().split(/[ ,]+/).map(Number);
+        if (!v.every(Number.isFinite)) return null;
+        const next=row[1]==="matrix"&&v.length===6?v:row[1]==="translate"&&[1,2].includes(v.length)?[1,0,0,1,v[0],v[1]??0]:row[1]==="scale"&&[1,2].includes(v.length)?[v[0],0,0,v[1]??v[0],0,0]:null;
+        if (!next) return null;
+        matrix=multiply(matrix,next);
+      }
+      return matrix;
+    };
+    // Unrelated image leaves may retain their native route, but stylesheet
+    // geometry and ambiguous references cannot enter this literal-plane proof.
+    if ([...root.querySelectorAll("style")].some(style=>style.textContent.replace(/@font-face\s*\{[^}]+\}/gi,"").trim())) return;
+    const ids=new Set();
+    for(const node of root.querySelectorAll("[id]")){const id=node.getAttribute("id");if(ids.has(id))return;ids.add(id);}
+    const unsupported = node => ["class","mask","filter","vector-effect","marker-start","marker-mid","marker-end"].some(key=>node.hasAttribute(key))
+      || /(?:url\s*\(|filter\s*:|mask\s*:|vector-effect\s*:|transform\s*:|marker|mix-blend-mode)/i.test(node.getAttribute("style")||"")
+      || ["fill","stroke"].some(key=>/url\s*\(/i.test(node.getAttribute(key)||""));
+    const viewBox=(root.getAttribute("viewBox")||"").trim().split(/[ ,]+/).map(Number);
+    if (unsupported(root) || (root.getAttribute("transform")||"").trim()
+        || Number(root.getAttribute("x")||0)!==0 || Number(root.getAttribute("y")||0)!==0
+        || viewBox.length!==4 || !viewBox.every(Number.isFinite) || viewBox[0]!==0 || viewBox[1]!==0) return;
+    for (const leaf of root.querySelectorAll("path")) {
+      const ancestry=[];
+      for (let node=leaf;node&&node!==root;node=node.parentNode) ancestry.unshift(node);
+      if (!ancestry.length || ancestry.some(node=>!["g","path"].includes(node.localName)||unsupported(node)) || leaf.hasAttribute("clip-path")) continue;
+      let parent=transform(root.getAttribute("transform")||"");
+      for (const node of ancestry.slice(0,-1)) { const local=transform(node.getAttribute("transform")||""); parent=parent&&local?multiply(parent,local):null; }
+      const local=transform(leaf.getAttribute("transform")||""),world=parent&&local?multiply(parent,local):null;
+      if (!world?.every(Number.isFinite)) continue;
+      const d=leaf.getAttribute("d")||"",tokens=d.match(/[MLCZ]|[+-]?(?:\d*\.\d+|\d+\.?\d*)(?:e[+-]?\d+)?/gi)||[];
+      if (!tokens.length || d.replace(/[MLCZ]|[+-]?(?:\d*\.\d+|\d+\.?\d*)(?:e[+-]?\d+)?|[\s,]/gi,"")) continue;
+      const commands=[],points=[];let valid=true;
+      for (let index=0;index<tokens.length;) {
+        const op=tokens[index++],size={M:2,L:2,C:6,Z:0}[op];
+        if (size===undefined || index+size>tokens.length) { valid=false; break; }
+        const values=tokens.slice(index,index+size).map(Number);index+=size;
+        if (!values.every(Number.isFinite)) { valid=false; break; }
+        commands.push([op,...values]);for(let at=0;at<size;at+=2)points.push(values.slice(at,at+2));
+      }
+      if (!valid || commands[0]?.[0]!=="M" || points.every(p=>p.every(encodable))) continue;
+      // Rebase one complete painted path, never clips or individual vertices.
+      // Translation keeps stroke/dash metrics; every original local and world
+      // point must reconstruct exactly before this detached copy may change.
+      const origins = axis => [...new Set([0,...points.slice(0,1).map(p=>Math.trunc(p[axis])),...points.filter(p=>!encodable(p[axis])).slice(0,1).map(p=>Math.trunc(p[axis]))])];
+      let chosen=null;
+      for (const x of origins(0)) { for (const y of origins(1)) {
+        const matrix=multiply(parent,multiply(local,[1,0,0,1,x,y]));
+        if (!matrix.every(v=>encodable(v)&&writerExact(v)) || !matrix.slice(0,4).every((v,index)=>Object.is(v,world[index]))) continue;
+        const shifted=points.map(p=>[p[0]-x,p[1]-y]);
+        if (!shifted.every((p,index)=>p.every((v,axis)=>encodable(v)&&writerExact(v)&&Object.is(v+[x,y][axis],points[index][axis]))
+            && point(matrix,...p).every((v,axis)=>Object.is(v,point(world,...points[index])[axis])))) continue;
+        let cursor=0;
+        chosen={x,y,d:commands.map(([op,...values])=>[op,...values.flatMap((_,index)=>index%2?[]:shifted[cursor++])].join(" ")).join(" ")};break;
+      } if(chosen)break; }
+      if (chosen) {
+        leaf.setAttribute("d",chosen.d);
+        leaf.setAttribute("transform",`${leaf.getAttribute("transform")||""} translate(${chosen.x} ${chosen.y})`.trim());
+      }
+    }
+  }
+
   function prepareSvgForJsPdf(svgRoot, { qualifiedSourceScene = false } = {}) {
     const document = svgRoot?.ownerDocument;
     if (!document?.createElementNS || !document?.createDocumentFragment) fail("PDF_EXPORT_SVG_UNAVAILABLE", "PDF export requires a parsed SVG document.");
@@ -454,7 +538,7 @@
     // scalar tspan x/y; separate spans retain the imported PDF's glyph positions.
     const root = normalize(svgRoot);
     useOwnedPageCropForJsPdf(root);
-    if (qualifiedSourceScene) preserveCurrentPathArguments(root);
+    if (qualifiedSourceScene) { preserveCurrentPathArguments(root); preserveCurrentPathNumberPlanes(root); }
     for (const span of root.querySelectorAll("tspan")) {
       const glyphs = span.hasAttribute("data-pdf-glyph-map") ? JSON.parse(span.getAttribute("data-pdf-glyph-map")) : null;
       const positions = positionedGlyphs(span.textContent, span.getAttribute("x"), span.getAttribute("y"), glyphs);

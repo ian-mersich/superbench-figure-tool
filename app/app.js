@@ -43485,7 +43485,7 @@
       inverseSceneMatrix: fabricRef.util.invertTransform(pathObjectSceneMatrix(object)),
       t,
       pathSnapshot: copyPathCommands(object.path),
-      bezierNodeMeta: cloneManifestValue(object.figureStudioBezierNodeMeta, null),
+      bezierNodeMeta: cloneManifestValue(object.figureStudioBezierNodeMeta, object.figureStudioBezierNodeMeta === undefined ? undefined : null),
       selectedBefore,
       selectionBefore,
       selectedSegmentBefore,
@@ -43613,13 +43613,13 @@
     if (object && Array.isArray(drag.pathSnapshot)) {
       object.path = copyPathCommands(drag.pathSnapshot);
       object.set?.({ path: object.path });
-      if (drag.bezierNodeMeta) {
+      if (drag.bezierNodeMeta !== undefined) {
         const metadata = cloneManifestValue(drag.bezierNodeMeta, null);
         object.figureStudioBezierNodeMeta = metadata;
         object.set?.({ figureStudioBezierNodeMeta: metadata });
       } else {
-        delete object.figureStudioBezierNodeMeta;
         object.set?.({ figureStudioBezierNodeMeta: undefined });
+        delete object.figureStudioBezierNodeMeta;
       }
       object.dirty = true;
       object.setCoords?.();
@@ -43633,7 +43633,7 @@
     ensureDirectSelectionCanvasCollection();
     renderIsolationSelectionOverlay();
     renderPathNodeOverlay();
-    canvas?.requestRenderAll?.();
+    requestCanvasArtworkRender();
     syncInspector();
     return true;
   }
@@ -55735,7 +55735,7 @@
       drag.snapshots.forEach(entry => { entry.object.set({ left: entry.left, top: entry.top, dirty: true }); entry.object.setCoords(); });
       for (let parent = drag.group; parent; parent = parent.group) parent.dirty = true;
       if (!options.external) selectIsolatedObjects(drag.original, { revealInLayers: false });
-      canvas.requestRenderAll(); renderIsolationSelectionOverlay();
+      requestCanvasArtworkRender(); renderIsolationSelectionOverlay();
     } } catch (error) { recoverIsolatedObjectGesture(drag, error); }
     finally { drag.unlock?.(); }
     return true;
@@ -69231,10 +69231,21 @@
 
   function selectedPathHandleLayoutItems() {
     const seen = new Set();
+    // These lookups share one synchronous read. Reuse native descriptors and
+    // metadata without retaining them across later path or selection changes.
+    const layouts = new Map();
     return selectedPathHandleRefs().map((ref) => {
       const object = objectForPathHandleRef(ref);
-      const descriptor = object
-        ? pathHandleDescriptors(object).find((item) => samePathHandle(qualifyPathHandle(object, item), ref))
+      let layout = object && layouts.get(object);
+      if (object && !layout) {
+        layout = { descriptors: pathHandleDescriptors(object), nodeMeta: null };
+        layouts.set(object, layout);
+      }
+      const descriptor = layout
+        ? layout.descriptors.find((item) => {
+          if (!layout.nodeMeta) layout.nodeMeta = normalizedBezierNodeMeta(object);
+          return samePathHandle(qualifyPathHandle(object, item, layout.nodeMeta), ref);
+        })
         : null;
       if (!object || !descriptor || object.locked || isReferenceObject(object)) return null;
       const key = `${pathEditObjectId(object)}:${descriptor.commandIndex}:${descriptor.handleType}`;

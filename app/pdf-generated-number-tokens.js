@@ -233,7 +233,21 @@
       if (originals.length >= 8192 || batchBytes+token.text.length>4000000 || token.kind === 'number' && !cache.has(key) && cache.size >= LIMITS.uniqueNumbers) await finishBatch();
       let replacement = token.text;
       if (token.kind === 'number') {
-        if (!cache.has(key)) cache.set(key,number(value));
+        if (!cache.has(key)) {
+          try { cache.set(key,number(value)); }
+          catch (error) {
+            if (error?.code === 'PDF_GENERATED_NUMBER_UNSUPPORTED') {
+              let operator = 'unknown';
+              try {
+                for (const next of scanTokens(text.slice(token.offset + token.text.length), false)) {
+                  if (next.kind !== 'number' && /^[A-Za-z*'"]+$/.test(next.text)) { operator = next.text; break; }
+                }
+              } catch (_) { /* A malformed suffix must not replace the original refusal. */ }
+              error.message += ` Content offset ${token.offset}, operator ${operator}.`;
+            }
+            throw error;
+          }
+        }
         replacement=cache.get(key);
       }
       originals.push(token.text);replacements.push(replacement);batchBytes+=Math.max(token.text.length,replacement.length);
