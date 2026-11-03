@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  const APP_VERSION = "1.0.0-beta.11";
+  const APP_VERSION = "1.0.0-beta.22";
   const PROJECT_SCHEMA = "figureStudio.project.v2";
   const DOCUMENT_KINDS = Object.freeze(["figure", "presentation"]);
   const FIRST_RUN_STORAGE_KEY = "figureStudio.firstRun.v2";
@@ -5902,6 +5902,7 @@
       selectionIds: options.selectionIds || selectedTopLevelObjects().map((object) => object.figureId || "").filter(Boolean),
       directSelection: options.directSelection === undefined ? cloneDocumentTabValue(captureDirectSelectionHistoryState(), null) : options.directSelection,
       view: cloneDocumentTabValue(options.view || state.view, { zoom: 1, panX: 80, panY: 80 }),
+      viewFollowsViewport: options.viewFollowsViewport === undefined ? viewFollowsViewport : options.viewFollowsViewport === true,
       uiContext: cloneDocumentTabValue(options.uiContext || state.ui, {}),
       notesOpen: options.notesOpen === undefined ? Boolean(presentationState.notesOpen) : Boolean(options.notesOpen),
       selectedGuideId: String(options.selectedGuideId ?? selectedGuideId ?? ""),
@@ -5961,6 +5962,7 @@
     const selectionMatchesDirect = !tab.selectionIds.length || tab.selectionIds.some((id) => directSelection?.objectIds?.includes(id));
     tab.directSelection = selectionMatchesDirect ? cloneDocumentTabValue(directSelection, null) : null;
     tab.view = cloneDocumentTabValue(state.view, { zoom: 1, panX: 80, panY: 80 });
+    tab.viewFollowsViewport = viewFollowsViewport;
     tab.uiContext = cloneDocumentTabValue(state.ui, {});
     tab.notesOpen = Boolean(presentationState.notesOpen);
     tab.selectedGuideId = String(selectedGuideId || "");
@@ -6164,7 +6166,7 @@
     redoStack = [...(target.redoStack || [])];
     restoreDocumentTabMaps(target);
     projectRevision = Number(target.projectRevision) || 0;
-    state.view = cloneDocumentTabValue(target.view, state.view);
+    restoreDocumentViewport(target.view, target.viewFollowsViewport);
     state.ui = { ...state.ui, ...cloneDocumentTabValue(target.uiContext, {}) };
     presentationState.notesOpen = Boolean(target.notesOpen);
     selectedGuideId = String(target.selectedGuideId || "");
@@ -6240,7 +6242,10 @@
       restored = true;return result;
     } finally {
       documentMutationTrackingSuppressed = Math.max(0, documentMutationTrackingSuppressed - 1);
-      if (!handoff || handoff.recoverable()) { documentWorkspaceState.switching = false;if (restored) handoff?.settled(); }
+      if (!handoff || handoff.recoverable()) {
+        documentWorkspaceState.switching = false;
+        if (restored) { handoff?.settled();scheduleViewportRefit(); }
+      }
     }
   }
 
@@ -6338,7 +6343,7 @@
       });
       handoff?.current();
       if (options.view) {
-        state.view = cloneDocumentTabValue(options.view, state.view);
+        restoreDocumentViewport(options.view);
         updateStage();
       }
       Object.assign(alignmentState, { target: "selection", keyObjectId: "", horizontalGap: 24, verticalGap: 24 });
@@ -6496,7 +6501,7 @@
           toast: false,
           historyLabel: `Opened ${document.title || (document.kind === "presentation" ? "presentation" : "figure")} from project`
         });
-        state.view = cloneDocumentTabValue(document.view, state.view);
+        restoreDocumentViewport(document.view);
         updateStage();
         documentDirty = false;
         documentSaveStateLabel = options.filename ? `Saved in ${options.filename}` : "Saved in project";
@@ -6532,7 +6537,7 @@
       if (lastTab?.id !== target.id) {
         await restoreDocumentTabRuntime(target, { historyLabel: `Opened ${documentTabDisplayName(target)} from project` });
       } else {
-        state.view = cloneDocumentTabValue(target.view, state.view);
+        restoreDocumentViewport(target.view, target.viewFollowsViewport);
         documentDirty = false;
         documentSaveStateLabel = target.saveLabel;
         updateStage();
@@ -6589,6 +6594,7 @@
       documentWorkspaceState.switching = false;
       historyReleases.forEach((release) => release());
       collectPdfHistoryNodes({ syncActiveTab: trustedHistoryRuntime });
+      scheduleViewportRefit();
     }
     await Promise.allSettled(replacedTabs.map((tab) => hostAdapter?.releaseDocument?.(tab.nativeDocumentId || tab.id)));
     if (
@@ -7135,6 +7141,21 @@
   function viewportRefitIsBlocked() {
     return isRestoring || documentWorkspaceState.switching || isApplyingHistory || pdfHistoryMovePending
       || pdfHistoryMutationLockDepth || documentRuntimeRestoreFailed || denseSlideCopyPending || projectSlidesBusy;
+  }
+
+  function restoreDocumentViewport(view, followsViewport = false) {
+    if (viewportRefitFrame) window.cancelAnimationFrame(viewportRefitFrame);
+    viewportRefitFrame = 0;
+    const complete = view && typeof view === "object" && !Array.isArray(view)
+      && ["zoom", "panX", "panY"].every((key) => Object.hasOwn(view, key) && Number.isFinite(Number(view[key])))
+      && Number(view.zoom) > 0 && Number(view.zoom) <= 64;
+    // The loader has already fitted the current layout. Keep that fallback for
+    // legacy views and live tabs that explicitly followed Fit. Portable files
+    // store coordinates only, so a complete saved view resumes as a manual view.
+    viewFollowsViewport = followsViewport === true || !complete;
+    if (complete && !viewFollowsViewport) {
+      state.view = { zoom: Number(view.zoom), panX: Number(view.panX), panY: Number(view.panY) };
+    }
   }
 
   function scheduleViewportRefit() {
@@ -31776,7 +31797,7 @@
   function onViewportPointerUp(event) {
     if (finishGuideDrag(event)) return;
     if (isolationTransform) {
-      finishIsolationTransformDrag();
+      finishIsolationTransformDrag(event);
       return;
     }
     panInteraction = null;
@@ -55828,7 +55849,7 @@
 
   function beginIsolationTransformDrag(event, handle) {
     const selected = isolatedSelectedObjects();
-    if (selected.length < 2 || !handle) return;
+    if (selected.length < 2 || !handle || isolationTransform) return;
     event.preventDefault();
     event.stopPropagation();
     const union = unionBBox(selected);
@@ -55840,69 +55861,137 @@
       handle,
       anchor,
       union,
+      start: canvas.getScenePoint(event),
+      owner: canvas,
+      group: activeIsolationGroup(),
+      documentId: currentTransformDocumentId(),
+      tab: activeDocumentTab(),
+      history: undoStack.at(-1),
+      pointerId: event.pointerId,
+      capture: event.currentTarget,
       objects: selected.map((object) => ({
         object,
-        center: sceneBoxCenter(object.getBoundingRect()),
-        scaleX: Number(object.scaleX || 1),
-        scaleY: Number(object.scaleY || 1)
+        parent: object.group,
+        parentScene: object.group?.calcTransformMatrix().slice() || null,
+        scene: object.calcTransformMatrix().slice(),
+        parentInverse: object.group ? fabricRef.util.invertTransform(object.group.calcTransformMatrix()) : null,
+        pose: Object.fromEntries(["left", "top", "scaleX", "scaleY", "angle", "skewX", "skewY", "flipX", "flipY", "originX", "originY"]
+          .map((key) => [key, object[key]]))
       })),
       dirty: false
     };
+    isolationTransform.expected = isolationTransform.objects.map((entry) => ({ ...entry.pose }));
+    if (![isolationTransform.start.x, isolationTransform.start.y, union.left, union.top, union.width, union.height].every(Number.isFinite)
+      || union.width < 0 || union.height < 0
+      || isolationTransform.objects.some((entry) => !entry.scene.every(Number.isFinite) || entry.parentInverse?.some((value) => !Number.isFinite(value)))) {
+      isolationTransform = null;
+      return;
+    }
     event.currentTarget?.setPointerCapture?.(event.pointerId);
+  }
+
+  function isolationTransformContextIsCurrent(drag) {
+    const selected = isolatedSelectedObjects();
+    return canvas === drag.owner && activeIsolationGroup() === drag.group
+      && currentTransformDocumentId() === drag.documentId && activeDocumentTab() === drag.tab
+      && undoStack.at(-1) === drag.history && selected.length === drag.objects.length
+      && drag.objects.every((entry, index) => selected[index] === entry.object
+        && entry.object.group === entry.parent && !entry.object.locked
+        && (!entry.parentScene || entry.parentScene.every((value, i) => Object.is(value, entry.parent.calcTransformMatrix()[i]))));
+  }
+
+  function isolationTransformIsCurrent(drag) {
+    return isolationTransformContextIsCurrent(drag) && drag.objects.every((entry, index) =>
+      Object.keys(entry.pose).every((key) => Object.is(entry.object[key], drag.expected[index][key])));
   }
 
   function isolationScaleFromPointer(point, drag) {
     const union = drag.union;
     const minSize = 8;
-    const fixed = drag.anchor;
-    const nextLeft = drag.handle.includes("w") ? Math.min(point.x, fixed.x - minSize) : fixed.x;
-    const nextRight = drag.handle.includes("e") ? Math.max(point.x, fixed.x + minSize) : fixed.x;
-    const nextTop = drag.handle.includes("n") ? Math.min(point.y, fixed.y - minSize) : fixed.y;
-    const nextBottom = drag.handle.includes("s") ? Math.max(point.y, fixed.y + minSize) : fixed.y;
-    const width = Math.max(minSize, Math.abs(nextRight - nextLeft));
-    const height = Math.max(minSize, Math.abs(nextBottom - nextTop));
+    // The frame is padded and its hit target is wider than the painted corner.
+    // Preserve the actual grab offset instead of snapping that point to a corner.
+    const dx = (point.x - drag.start.x) * (drag.handle.includes("w") ? -1 : 1);
+    const dy = (point.y - drag.start.y) * (drag.handle.includes("n") ? -1 : 1);
     return {
-      x: width / Math.max(minSize, union.width),
-      y: height / Math.max(minSize, union.height)
+      x: dx === 0 || union.width <= 0 ? 1 : Math.max(Math.min(minSize, union.width), union.width + dx) / union.width,
+      y: dy === 0 || union.height <= 0 ? 1 : Math.max(Math.min(minSize, union.height), union.height + dy) / union.height
     };
   }
 
   function applyIsolationTransformDrag(event) {
     const drag = isolationTransform;
     if (!drag) return false;
-    const point = canvasPointFromClient(event);
+    if (event.pointerId != null && event.pointerId !== drag.pointerId) return false;
+    if (!isolationTransformIsCurrent(drag)) {
+      isolationTransform = null;
+      releaseIsolatedObjectCapture(drag);
+      return false;
+    }
+    const point = canvas.getScenePoint(event);
+    if (![point.x, point.y].every(Number.isFinite)) return false;
     const scale = isolationScaleFromPointer(point, drag);
-    drag.objects.forEach((entry) => {
-      const object = entry.object;
-      if (!object || object.locked) return;
-      const desiredCenter = {
-        x: drag.anchor.x + (entry.center.x - drag.anchor.x) * scale.x,
-        y: drag.anchor.y + (entry.center.y - drag.anchor.y) * scale.y
-      };
-      object.set({
-        scaleX: entry.scaleX * scale.x,
-        scaleY: entry.scaleY * scale.y
+    const dirty = scale.x !== 1 || scale.y !== 1;
+    const affine = dirty ? sceneAffineAroundPoint([scale.x, 0, 0, scale.y, 0, 0], drag.anchor) : null;
+    try {
+      const matrices = dirty ? drag.objects.map((entry) => {
+        const scene = fabricRef.util.multiplyTransformMatrices(affine, entry.scene);
+        return entry.parentInverse ? fabricRef.util.multiplyTransformMatrices(entry.parentInverse, scene) : scene;
+      }) : [];
+      if (matrices.some((matrix) => !matrix.every(Number.isFinite))) throw new Error("The resize transform is not finite.");
+      drag.objects.forEach((entry, index) => {
+        if (dirty) {
+          if (!applySceneMatrixSnapshot(entry.object, matrices[index])) throw new Error("The resize transform could not be applied.");
+        } else entry.object.set(entry.pose); // Exact return must not round-trip through QR decomposition.
+        entry.object.setCoords?.();
       });
-      object.setCoords?.();
-      const afterCenter = sceneBoxCenter(object.getBoundingRect());
-      moveObjectBySceneDelta(object, desiredCenter.x - afterCenter.x, desiredCenter.y - afterCenter.y);
-    });
-    drag.dirty = true;
+    } catch (error) {
+      isolationTransform = null;
+      releaseIsolatedObjectCapture(drag);
+      if (isolationTransformContextIsCurrent(drag)) {
+        drag.objects.forEach((entry) => { entry.object.set(entry.pose); entry.object.setCoords?.(); });
+        canvas.requestRenderAll();
+        renderIsolationSelectionOverlay();
+      }
+      showLongToast("Could not complete the resize.");
+      return false;
+    }
+    drag.expected = drag.objects.map((entry) => Object.fromEntries(Object.keys(entry.pose).map((key) => [key, entry.object[key]])));
+    drag.dirty = dirty;
     canvas.requestRenderAll();
     renderIsolationSelectionOverlay();
     renderObjectStatusOverlay();
     return true;
   }
 
-  function finishIsolationTransformDrag() {
+  function finishIsolationTransformDrag(event = null) {
     if (!isolationTransform) return false;
-    const dirty = isolationTransform.dirty;
-    isolationTransform.objects.forEach((entry) => refreshObjectHierarchy(entry.object));
+    const drag = isolationTransform;
+    if (event?.pointerId != null && event.pointerId !== drag.pointerId) return false;
+    const current = isolationTransformIsCurrent(drag);
     isolationTransform = null;
+    releaseIsolatedObjectCapture(drag);
+    if (!current) return false;
+    if (drag.dirty) {
+      finishNumericSelectionTransform(drag.objects.map((entry) => entry.object), "Nested selection scaled");
+      return true;
+    }
     canvas.requestRenderAll();
     syncUi();
-    if (dirty) commitHistory("Nested selection scaled");
-    return dirty;
+    return false;
+  }
+
+  function cancelIsolationTransformDrag(event = null) {
+    const drag = isolationTransform;
+    if (!drag || event?.pointerId != null && event.pointerId !== drag.pointerId) return false;
+    const current = isolationTransformIsCurrent(drag);
+    isolationTransform = null;
+    releaseIsolatedObjectCapture(drag);
+    if (current) {
+      drag.objects.forEach((entry) => { entry.object.set(entry.pose); entry.object.setCoords?.(); });
+      canvas.requestRenderAll();
+      syncUi();
+    }
+    return true;
   }
 
   let linePickerPresetId = "";
@@ -100234,6 +100323,9 @@
       showObjectContextMenu(event);
     });
     window.addEventListener("pointerup", onViewportPointerUp);
+    window.addEventListener("pointercancel", cancelIsolationTransformDrag, true);
+    window.addEventListener("blur", cancelIsolationTransformDrag);
+    window.addEventListener("pagehide", cancelIsolationTransformDrag, true);
     window.addEventListener("pointermove", updateCanvasScrollbarInteraction);
     window.addEventListener("pointerup", finishCanvasScrollbarInteraction);
     window.addEventListener("pointercancel", finishCanvasScrollbarInteraction);

@@ -15,6 +15,47 @@ from scripts import figure_tool_package_producer as producer
 ROOT = Path(__file__).resolve().parents[1]
 
 
+def _version_source(root: Path, runtime: str, version: str = "1.0.0-beta.22") -> Path:
+    (root / "app").mkdir()
+    (root / "package.json").write_text(json.dumps({"version": version}), encoding="utf-8")
+    (root / "app/app.js").write_text('(function () {\n  "use strict";\n\n' + runtime + '})();\n', encoding="utf-8")
+    return root
+
+
+def test_product_version_accepts_the_same_real_package_and_runtime_version(tmp_path: Path) -> None:
+    source = _version_source(tmp_path, '  const APP_VERSION = "1.0.0-beta.22";\n')
+    assert producer.validate_product_version(source) == {
+        "package_version": "1.0.0-beta.22", "runtime_version": "1.0.0-beta.22"}
+
+
+@pytest.mark.parametrize("runtime", [
+    '  const APP_VERSION = "1.0.0-beta.11";\n',
+    '// APP_VERSION is absent\n',
+    '/*\n  const APP_VERSION = "1.0.0-beta.22";\n*/\n',
+    '  const other = `\n  const APP_VERSION = "1.0.0-beta.22";\n`;\n',
+    '  const APP_VERSION = "1.0.0-beta.22";\n  const APP_VERSION = "1.0.0-beta.22";\n',
+])
+def test_release_version_mismatch_is_rejected_before_asset_or_vendor_validation(tmp_path: Path, monkeypatch, runtime: str) -> None:
+    source = _version_source(tmp_path, runtime)
+    monkeypatch.setattr(producer.subprocess, "run", lambda *_args, **_kwargs: pytest.fail("version rejection must precede validators"))
+    with pytest.raises(producer.ReleaseBuildError, match="must match exactly"):
+        producer.validate_release_source(source, distribution_scope="public-release")
+
+
+def test_product_version_rejects_a_missing_runtime(tmp_path: Path) -> None:
+    source = _version_source(tmp_path, '')
+    (source / "app/app.js").unlink()
+    with pytest.raises(producer.ReleaseBuildError, match="APP_VERSION is unavailable"):
+        producer.validate_product_version(source)
+
+
+@pytest.mark.parametrize("version", [None, True, "not-a-version"])
+def test_product_version_rejects_invalid_package_metadata(tmp_path: Path, version) -> None:
+    source = _version_source(tmp_path, 'const APP_VERSION = "1.0.0-beta.22";\n', version)
+    with pytest.raises(producer.ReleaseBuildError, match="product version is invalid"):
+        producer.validate_product_version(source)
+
+
 def _tiny_figure_source(root: Path) -> Path:
     root.mkdir(parents=True)
     (root / "package.json").write_text(json.dumps({"name": producer.CANONICAL_PACKAGE_NAME, "version": "1.0.0"}), encoding="utf-8")

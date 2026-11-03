@@ -499,9 +499,29 @@ def validate_scene_release(scene_root: Path, *, distribution_scope: str) -> dict
     }
 
 
+def validate_product_version(source_root: Path) -> dict[str, str]:
+    """Reject a release whose runtime/export version differs from its package."""
+    metadata = _read_json(source_root / "package.json", "Figure package metadata")
+    version = metadata.get("version")
+    if not isinstance(version, str) or not SEMVER.fullmatch(version):
+        raise ReleaseBuildError("Figure package product version is invalid")
+    try:
+        runtime = (source_root / "app/app.js").read_text(encoding="utf-8")
+    except OSError as error:
+        raise ReleaseBuildError("Figure runtime APP_VERSION is unavailable") from error
+    # Bind the actual canonical IIFE/strict-mode header, not a declaration-shaped
+    # line inside a comment or string. This is a finite source profile, not a JS parser.
+    header = re.match(r'\A\(function \(\) \{\n  "use strict";\n\n  const APP_VERSION = ([\"\'])([^\"\']+)\1;', runtime)
+    matches = re.findall(r'^\s*const APP_VERSION = ([\"\'])([^\"\']+)\1;', runtime, re.MULTILINE)
+    if not header or len(matches) != 1 or header[2] != version:
+        raise ReleaseBuildError("Figure package version and runtime APP_VERSION must match exactly")
+    return {"package_version": version, "runtime_version": header[2]}
+
+
 def validate_release_source(source_root: Path, *, distribution_scope: str) -> dict[str, object]:
     if distribution_scope not in {"private-review", "public-release"}:
         raise ReleaseBuildError("Unsupported distribution scope")
+    product_version = validate_product_version(source_root)
     asset_command = [
         os.environ.get("PYTHON", "python"), str(source_root / "scripts/validate-scientific-assets.py"),
         "--library",
@@ -549,6 +569,7 @@ def validate_release_source(source_root: Path, *, distribution_scope: str) -> di
         raise ReleaseBuildError("Public release is pending pack rights approval: " + ", ".join(sorted(pending_packs)))
     return {
         "scope": distribution_scope,
+        "product_version": product_version,
         "asset_validator": assets,
         "vendor_validator": vendor,
         "packs": pack_receipts,

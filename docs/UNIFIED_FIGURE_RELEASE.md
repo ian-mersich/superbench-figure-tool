@@ -6,6 +6,74 @@ The browser site and Superbench consume one committed editor and asset collectio
 scientific scenes. Fixes belong here. Do not maintain a second editor in the
 public source checkout or backport individual fixes into the old beta.6 site.
 
+## Beta.22 component candidate — 2 November 2026
+
+The next local component candidate, `rc37`, includes the accepted saved-view
+restoration from `aff09169` alongside the common-corner resize and interruption
+corrections from `3761cb66` and `9aa2bc1e`. Saved manual zoom/pan survives later
+layout changes, while live Fit intent survives document switching. The app bytes
+remain those accepted at `aff09169`; this release-note update is a separate
+documentation-only source binding. Package metadata and the runtime's
+displayed/exported version remain beta.22, with no document-schema change.
+The release validator rejects
+package/runtime version mismatches before asset or vendor qualification.
+Build only this committed
+lineage with the maintained producer and qualify the actual native/static archive
+bytes at all three desktop widths in both themes. Preserve whole editable labels,
+native source/identity/clipping, exact resize return/cancellation, Undo/Redo and
+browser Save/fresh-process Open/second Save. Cancellation controls use explicitly
+synthetic boundary events after trusted mouse input.
+
+All new candidate artifacts, browser output, independent reviews and bounded
+cleanup records stay under `qa_artifacts/rc37`. The previous `rc36` archives,
+handoff and evidence remain immutable. This is preparation and functional browser
+qualification only. Beta.21 stays installed and published; Core's protected
+bindings, global package selection, website and public Git/releases remain fixed.
+The coordinator owns native qualification and any synchronized promotion. The
+original timing HOLD and Windows event-delivery/native-Save limits remain open;
+the reuse-first roadmap remains the same.
+
+When an older file is opened, its saved bytes remain the unchanged input. A new
+Save intentionally reports the current producer version in the project root
+`version` and newly generated manifest `version`; package/payload/reference or
+review-report envelopes likewise report the current producer when generated.
+PDF creator/producer strings use that version on a new export. This is producer
+metadata, not authored figure content or a document-schema migration. Native
+objects and IDs, editable text and source descriptors, original PDF/font/image
+bytes, clipping, scientific settings and unknown fields remain strict. The
+ordinary resize checks still require exact raw return/cancellation and compare
+both new Saves without excluding any version field. Original-to-new manifest
+differences are retained explicitly; only the existing two export clocks are
+omitted between the consecutive new manifest comparisons.
+
+## Beta.21 shared delivery — 2 November 2026
+
+The current shared Figure editor is beta.21, sealed product source
+`24440c08cb224843b60e0663be9cb2b66bbe1183`, package
+`9c2277b1a768eff1def03a46b73220c350bfa02587b92243ab5aafefddfd2c51`.
+Public source `9012693b` and website `969997a1` have successful exact-head CI and
+Pages deployment. All 1,617 raw HTTPS files match the fixed package, Core pin and
+actual trusted active Figure selection. Beta.19 is retained for rollback. The
+reviewed native installed/portable main-app checks do not establish a new
+combined host or MSI; those remain coordinator-owned.
+
+The actual HTTPS matrix passes 489 journey/collection checks. The separate
+actual-file audit passes 203 checks over 18 native downloads and 12 JSON
+reconstruction observations; visual acceptance covers 25 fresh originals.
+The raw collector stays network-pending. A separate exact-URL HTTPS audit and
+independent content/network review retain 42 unavailable bodies and 10 optional
+image cancellations without inventing captured matches. The maintained QA
+adapter is `scripts/check-public-style4-browser.py`; its finite companions and
+limits are documented under `scripts/qa/beta21-publication`.
+
+See the [current publication record](PUBLIC_PUBLICATION.md#beta21--shared-source-and-web-delivery--2-november-2026)
+and `qa_artifacts/rc35/publication/delivery-closure.json` for exact evidence and
+the unchanged failures. Later QA-only commits do not replace the sealed source
+or rebuild existing archives. The reuse-first roadmap remains the same, with
+the approved common-corner resize reproduction next after release closure.
+Scientific PDF v1 and its original performance/typography/export limits remain
+open.
+
 ## Beta.17 matched delivery — 28 October 2026
 
 Beta.17 is the active shared release; beta.16 remains the rollback package. The
