@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  const APP_VERSION = "1.0.0-beta.23";
+  const APP_VERSION = "1.0.0-beta.24";
   const PROJECT_SCHEMA = "figureStudio.project.v2";
   const DOCUMENT_KINDS = Object.freeze(["figure", "presentation"]);
   const FIRST_RUN_STORAGE_KEY = "figureStudio.firstRun.v2";
@@ -43928,6 +43928,11 @@
 
   function beginPathNodeDrag(event, commandIndex, handleType, object = pathNodeEdit.object, handleElement = event.currentTarget) {
     if (!object) return;
+    // Drag setup only reads node metadata. Reuse the existing synchronous read
+    // scope so a dense selection does not rebuild each path for every handle.
+    const previousNodeReadCache = normalizedBezierNodeMeta.overlayReadCache;
+    normalizedBezierNodeMeta.overlayReadCache = new WeakMap();
+    try {
     resetPaintedVectorDirectSelectionCycle();
     event.preventDefault();
     event.stopPropagation();
@@ -44015,6 +44020,7 @@
     startPdfPointScreenGesture(gesture, object);
     handleElement.classList.add("dragging");
     handleElement.classList.add("selected");
+    } finally { normalizedBezierNodeMeta.overlayReadCache = previousNodeReadCache; }
   }
 
   function cancelPathNodeDrag(event = null) {
@@ -50709,10 +50715,12 @@
       const selectedRange = object.isEditing && object.selectionEnd > object.selectionStart;
       const start = selectedRange ? object.selectionStart : 0;
       const end = selectedRange ? object.selectionEnd : graphemes.length;
+      // Character sizes vary; the native paint scale belongs to the object.
+      let fontSceneScale;
       return graphemes.slice(start, end).flatMap((grapheme, offset) => {
         if (grapheme === "\n") return [];
         const value = scientificTypographyValueAt(object, start + offset, property);
-        return [property === "fontSize" ? displayedTextFontSize(object, value) : value];
+        return [property === "fontSize" ? Number(value) * (fontSceneScale ??= pdfTextFontSceneScale(object)) : value];
       });
     });
     const distinct = new Set(values.map((value) => comparableSelectionValue(value, property)));

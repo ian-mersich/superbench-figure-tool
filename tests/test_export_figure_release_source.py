@@ -41,7 +41,14 @@ def test_source_exports_preserve_every_payload_byte_and_keep_preferred_sources_o
         existing_materials.mkdir()
         (existing_materials / "source-index.json").write_text('{"verified": true}', encoding="utf-8")
     calls = []
+    stages = []
+    def check_export(repository):
+        assert not (output / "figure-tool-source.zip").exists()
+        exporter.verify_payload(repository, manifest)
+        assert (repository / ".github/workflows/source-ci.yml").is_file()
+        stages.append("source-check")
     def preferred(_source, destination, _cache, *, reuse_existing=False):
+        stages.append("preferred-materials")
         calls.append((destination, reuse_existing))
         if not reuse_existing:
             destination.mkdir()
@@ -50,7 +57,9 @@ def test_source_exports_preserve_every_payload_byte_and_keep_preferred_sources_o
     monkeypatch.setattr(exporter, "prepare_vendor_materials", preferred)
     export_options = {"preferred_materials": existing_materials} if existing_materials else {}
     expected_materials = existing_materials or output / "preferred-source-materials"
-    receipt = exporter.export_source(source, package, output, cache=tmp_path / "cache", support_revision="b" * 40, **export_options)
+    receipt = exporter.export_source(source, package, output, cache=tmp_path / "cache", support_revision="b" * 40,
+                                     pre_archive_check=check_export, **export_options)
+    assert stages == ["source-check", "preferred-materials"]
     assert calls == [(expected_materials, reuse_existing)]
     assert receipt["shared_payload_parity"] == "passed"
     exporter.verify_payload(output / "source-repository", manifest)
@@ -75,6 +84,24 @@ def test_source_exports_preserve_every_payload_byte_and_keep_preferred_sources_o
     if reuse_existing:
         assert (existing_materials / "source-index.json").read_text(encoding="utf-8") == '{"verified": true}'
         assert str(existing_materials) not in json.dumps(source_metadata)
+
+
+def test_rejected_slim_export_is_not_sealed_or_sent_to_vendor_preparation(tmp_path, monkeypatch):
+    source = tiny_source(tmp_path / "source")
+    package = tmp_path / "package"
+    producer.build_tool_package(source, package, source_revision="a" * 40,
+                                distribution_scope="public-release", public_release_eligible=True)
+    monkeypatch.setattr(exporter, "SUPPORT_FILES", ("package.json",))
+    monkeypatch.setattr(exporter, "prepare_vendor_materials", lambda *a, **k: pytest.fail("validation must run first"))
+    output = tmp_path / "output"
+    output.mkdir()
+    def reject(repository):
+        assert repository.is_dir()
+        raise ValueError("Required startup fixture is missing")
+    with pytest.raises(ValueError, match="startup fixture"):
+        exporter.export_source(source, package, output, cache=tmp_path / "cache", pre_archive_check=reject)
+    assert not (output / "figure-tool-source.zip").exists()
+    assert not (output / "preferred-source-materials").exists()
 
 
 @pytest.mark.parametrize("kind", ["changed", "added", "missing"])

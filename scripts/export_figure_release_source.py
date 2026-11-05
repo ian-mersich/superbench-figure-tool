@@ -14,6 +14,7 @@ import shutil
 import subprocess
 import sys
 import zipfile
+from collections.abc import Callable
 
 SUPPORT_FILES = (
     "LICENSE", "NOTICE", "LICENSE_POLICY.md", "package.json", "requirements-release.txt", ".gitattributes",
@@ -48,12 +49,17 @@ SUPPORT_FILES = (
     "tests/test_figure_tool_package_producer.py", "tests/test_scientific_product_release.py",
     "tests/test_scientific_product_release_expansion_20261103.py",
     "tests/test_export_figure_release_source.py",
+    "tests/pathNodeDragReadScope.test.cjs", "tests/fixtures/path-node-drag-app632.js",
+    "tests/selectionFontScaleRead.test.cjs", "tests/fixtures/shared-selection-font-app716.js",
     "tests/test_cell_structure_stress_assets.py", "tests/test_tumor_analysis_assets.py",
     "tests/test_scientific_contribution_policy.py",
     "tests/test_vendor_fabric_portability.py", "tests/test_vendor_source_tools.py",
     "docs/UNIFIED_FIGURE_RELEASE.md",
     "docs/architecture/FIGURE_HOST_SETTINGS.md",
     "docs/architecture/FIGURE_DRAWING_CHANGES.md",
+    "docs/architecture/FIGURE_PDF_V1_STATUS.md",
+    "docs/architecture/PDF_POINT_DRAG_STARTUP_2026_11_04.md",
+    "docs/runtime/BROWSER_QA_PLAYBOOK.md",
 )
 
 
@@ -110,7 +116,8 @@ def verify_payload(tree: Path, manifest: dict) -> None:
 
 
 def export_source(source: Path, package: Path, output: Path, *, cache: Path, support_revision: str | None = None,
-                  preferred_materials: Path | None = None) -> dict:
+                  preferred_materials: Path | None = None,
+                  pre_archive_check: Callable[[Path], None] | None = None) -> dict:
     manifest = json.loads((package / "tool-package.json").read_text(encoding="utf-8"))
     if (manifest.get("source_provenance", {}).get("distribution_scope") != "public-release"
             or manifest["source_provenance"].get("public_release_eligible") is not True):
@@ -180,12 +187,18 @@ jobs:
       - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
         with:
           python-version: '3.12'
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24'
       - run: python -m pip install -r requirements-release.txt
       - run: python scripts/validate-scientific-assets.py --library --require-public-release
       - run: python scripts/validate-vendor-bundle.py
+      - run: node --test tests/pathNodeDragReadScope.test.cjs tests/selectionFontScaleRead.test.cjs
       - run: python -m pytest -q tests/test_figure_tool_package_producer.py tests/test_scientific_product_release.py tests/test_scientific_product_release_expansion_20261103.py tests/test_export_figure_release_source.py tests/test_vendor_source_tools.py tests/test_vendor_fabric_portability.py
 """, encoding="utf-8", newline="\n")
     verify_payload(repository, manifest)
+    if pre_archive_check is not None:
+        pre_archive_check(repository)
     reuse_preferred = preferred_materials is not None
     materials = Path(preferred_materials) if reuse_preferred else output / "preferred-source-materials"
     preferred = prepare_vendor_materials(source, materials, cache, reuse_existing=reuse_preferred)

@@ -2,9 +2,33 @@
 
 The canonical Figure repository is `C:\Users\ianme\Desktop\Projects\superbench_figure_tool`.
 The browser site and Superbench consume one committed editor and asset collection.
-The delivered beta.22 contains 486 drawings for 386 concepts in 11 packs, four
-drawing styles and 12 editable scientific diagrams. Fixes belong here. Do not maintain a second editor in the
+The delivered beta.23 contains 526 drawings for 398 concepts in 13 packs, four
+drawing styles, 20 scientific templates and three Figure layouts. Fixes belong here. Do not maintain a second editor in the
 public source checkout or backport individual fixes into the old beta.6 site.
+
+## Beta.24 component preparation — 4 November 2026
+
+The next component candidate contains only the two accepted
+[drag-start corrections](architecture/PDF_POINT_DRAG_STARTUP_2026_11_04.md):
+gesture-local node metadata reuse and one text scale read per Inspector query.
+Its functional App bytes match the qualified Inspector candidate, apart from
+the required beta.24 producer-version literal. Whole editable labels, native
+source data and the document schema remain unchanged. Rejected repaint
+prototypes and unrelated private PDF work are excluded.
+
+Qualify the exact native/web packages before promotion. Existing asset, layout
+and theme evidence may be reused only after complete unchanged-file parity is
+proved; native source editing, font state, Undo/Redo, actual Saves and fresh
+Open still need the scoped package checks. The existing Host API v1 supports
+this component update without a host or MSI rebuild. Beta.23 stays selected
+until the coordinator reviews the qualified artifact and applies a fresh,
+package-bound trust and activation decision.
+
+The source export includes both new actual-source tests and their literal
+previous-function fixtures. Run them from the actual slim export before sealing
+the full source ZIP, reuse verified preferred sources read-only, and retain the
+same tests in exported CI. Scientific PDF V1 and sustained dragging remain open;
+the responsive-editing roadmap is unchanged.
 
 ## Beta.23 candidate — 4 November 2026
 

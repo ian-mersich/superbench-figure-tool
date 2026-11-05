@@ -2,7 +2,7 @@
 
 Create editable scientific figures and presentations. [Open the browser editor](https://imersich.com/superbench/figure_tool/).
 
-This is 1.0.0-beta.23. The browser and Superbench packages use the same app, styles, vendors, 526 Library drawings and 20 scientific templates. SOURCE_RELEASE.json binds this export to their committed source and shared payload. Installed native-host qualification is separate.
+This is 1.0.0-beta.24. The browser and Superbench packages use the same app, styles, vendors, 526 Library drawings and 20 scientific templates. SOURCE_RELEASE.json binds this export to their committed source and shared payload. Installed native-host qualification is separate.
 
 SOURCE_RELEASE.json keeps its existing schema and separates the shipped editor revision from the source-support revision. The latter identifies the validation tools, tests, and docs; shared payload parity is checked against the package. Serve this directory over HTTP and open `web/`. Work stays in the current browser profile; download portable files for backups. First-party code is Apache-2.0 and original artwork is CC0-1.0. See LICENSE, NOTICE, LICENSE_POLICY.md, assets/LICENSE-ORIGINAL-ASSETS-CC0-1.0.md, assets/LICENSE-CELL-STRESS-TME-ANALYSIS-CC0-1.0.md and vendor/NOTICE.
 
