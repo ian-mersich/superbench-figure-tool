@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
+import shutil
 import zipfile
 
 import pytest
@@ -119,3 +120,52 @@ def test_source_parity_fails_closed_for_any_payload_change(tmp_path, kind):
         path.unlink()
     with pytest.raises(ValueError, match="shared payload"):
         exporter.verify_payload(payload, manifest)
+
+
+def test_export_retains_approved_selection_suite_dependencies_and_ci_before_archive(tmp_path, monkeypatch):
+    tests = (
+        "singleObjectShiftClick", "objectShiftMarquee", "ordinaryCanvasDragCancel",
+        "historyActiveSelectionPose", "directSelectionTextMarquee", "groupObjectSelection",
+        "pathPointGesture", "pathNodeDragReadScope", "pdfDenseInspectorDisplay",
+        "isolationTransformTarget", "isolationAvailability",
+    )
+    expected_tests = tuple(f"tests/{name}.test.cjs" for name in tests)
+    dependencies = (
+        "tests/helpers/pdfDenseCanvasRestoreSource.cjs",
+        "tests/helpers/pdfDenseCanvasRestoreDom.cjs",
+        "tests/fixtures/pdf-dense-canvas-restore-app959.json",
+        "tests/fixtures/path-node-drag-app632.js",
+    )
+    required = (*expected_tests, *dependencies)
+    assert set(required) <= set(exporter.SUPPORT_FILES)
+    assert len(exporter.SUPPORT_FILES) == len(set(exporter.SUPPORT_FILES))
+    repository_root = Path(exporter.__file__).resolve().parents[1]
+    source = tiny_source(tmp_path / "source")
+    for relative in required:
+        target = source / relative
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(repository_root / relative, target)
+    package = tmp_path / "package"
+    producer.build_tool_package(source, package, source_revision="a" * 40,
+                                distribution_scope="public-release", public_release_eligible=True)
+    monkeypatch.setattr(exporter, "SUPPORT_FILES", ("package.json", *required))
+    output = tmp_path / "output"
+    output.mkdir()
+    stages = []
+    def before_archive(repository):
+        assert not (output / "figure-tool-source.zip").exists()
+        for relative in required:
+            assert (repository / relative).read_bytes() == (repository_root / relative).read_bytes()
+        workflow = (repository / ".github/workflows/source-ci.yml").read_text(encoding="utf-8")
+        command = "node --test " + " ".join(expected_tests)
+        assert workflow.count(command) == 1
+        assert workflow.index(command) < workflow.index("python -m pytest")
+        stages.append("approved-suite-present-before-archive")
+        raise RuntimeError("Stop after source-support verification")
+    monkeypatch.setattr(exporter, "prepare_vendor_materials",
+                        lambda *args, **kwargs: pytest.fail("No vendor preparation before source checks"))
+    with pytest.raises(RuntimeError, match="Stop after source-support"):
+        exporter.export_source(source, package, output, cache=tmp_path / "cache",
+                               pre_archive_check=before_archive)
+    assert stages == ["approved-suite-present-before-archive"]
+    assert not (output / "figure-tool-source.zip").exists()

@@ -16,6 +16,15 @@ import sys
 import zipfile
 from collections.abc import Callable
 
+SELECTION_REGRESSION_TESTS = (
+    "tests/singleObjectShiftClick.test.cjs", "tests/objectShiftMarquee.test.cjs",
+    "tests/ordinaryCanvasDragCancel.test.cjs", "tests/historyActiveSelectionPose.test.cjs",
+    "tests/directSelectionTextMarquee.test.cjs", "tests/groupObjectSelection.test.cjs",
+    "tests/pathPointGesture.test.cjs", "tests/pathNodeDragReadScope.test.cjs",
+    "tests/pdfDenseInspectorDisplay.test.cjs", "tests/isolationTransformTarget.test.cjs",
+    "tests/isolationAvailability.test.cjs",
+)
+
 SUPPORT_FILES = (
     "LICENSE", "NOTICE", "LICENSE_POLICY.md", "package.json", "requirements-release.txt", ".gitattributes",
     "assets/LICENSE-ORIGINAL-ASSETS-CC0-1.0.md", "assets/CC0-1.0.txt",
@@ -49,7 +58,10 @@ SUPPORT_FILES = (
     "tests/test_figure_tool_package_producer.py", "tests/test_scientific_product_release.py",
     "tests/test_scientific_product_release_expansion_20261103.py",
     "tests/test_export_figure_release_source.py",
-    "tests/pathNodeDragReadScope.test.cjs", "tests/fixtures/path-node-drag-app632.js",
+    *SELECTION_REGRESSION_TESTS,
+    "tests/helpers/pdfDenseCanvasRestoreSource.cjs", "tests/helpers/pdfDenseCanvasRestoreDom.cjs",
+    "tests/fixtures/pdf-dense-canvas-restore-app959.json",
+    "tests/fixtures/path-node-drag-app632.js",
     "tests/selectionFontScaleRead.test.cjs", "tests/fixtures/shared-selection-font-app716.js",
     "tests/test_cell_structure_stress_assets.py", "tests/test_tumor_analysis_assets.py",
     "tests/test_scientific_contribution_policy.py",
@@ -58,6 +70,7 @@ SUPPORT_FILES = (
     "docs/architecture/FIGURE_HOST_SETTINGS.md",
     "docs/architecture/FIGURE_DRAWING_CHANGES.md",
     "docs/architecture/FIGURE_PDF_V1_STATUS.md",
+    "docs/architecture/SELECTION_PDF_RESUMPTION_2026_10_22.md",
     "docs/architecture/PDF_POINT_DRAG_STARTUP_2026_11_04.md",
     "docs/runtime/BROWSER_QA_PLAYBOOK.md",
 )
@@ -193,9 +206,10 @@ jobs:
       - run: python -m pip install -r requirements-release.txt
       - run: python scripts/validate-scientific-assets.py --library --require-public-release
       - run: python scripts/validate-vendor-bundle.py
-      - run: node --test tests/pathNodeDragReadScope.test.cjs tests/selectionFontScaleRead.test.cjs
+      - run: node --test tests/selectionFontScaleRead.test.cjs
+      - run: __SELECTION_REGRESSION_COMMAND__
       - run: python -m pytest -q tests/test_figure_tool_package_producer.py tests/test_scientific_product_release.py tests/test_scientific_product_release_expansion_20261103.py tests/test_export_figure_release_source.py tests/test_vendor_source_tools.py tests/test_vendor_fabric_portability.py
-""", encoding="utf-8", newline="\n")
+""".replace("__SELECTION_REGRESSION_COMMAND__", "node --test " + " ".join(SELECTION_REGRESSION_TESTS)), encoding="utf-8", newline="\n")
     verify_payload(repository, manifest)
     if pre_archive_check is not None:
         pre_archive_check(repository)

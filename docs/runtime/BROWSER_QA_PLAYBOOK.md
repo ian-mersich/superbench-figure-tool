@@ -430,6 +430,80 @@ review, and retain failed controls. See
 `docs/architecture/PDF_DIRECT_SELECTION_LABELS_2026_10_30.md` for scope. These
 functional checks do not qualify mixed dragging performance.
 
+The interaction controller also provides three finite selection modes:
+
+- `--subset-marquee` checks ordinary mixed artwork and the retained genuine
+  Figure 2 file: Shift removes/re-adds a precise anchor/whole-label subset,
+  blank clicks clear it, and completed edits survive actual Save, new-process
+  Open and continued editing. Labels stay editable text. The ordinary fixture's
+  initial view uses public zoom controls and asserts complete artwork visibility
+  before selection; do not rescue the view after a gesture.
+- `--ordinary-subset` repeats only that ordinary case, for focused recapture or
+  diagnosis without rerunning the PDF journey.
+- `--real-assets` inserts eight actual Library assets spanning Styles 1 and 4,
+  filled/stroked, open/closed and compound paths. It checks whole-owner targeting,
+  overlap, scale/rotation/reflection, Shift click/marquee, constrained body drag,
+  Escape, Undo/Redo, nested group entry/exit, child anchors, Layers agreement,
+  native text/shape companions, two actual Saves and new-process continuation.
+  Supply `--asset-root <read-only-catalog-runtime>` only when an App overlay is
+  served with the existing `--url`; otherwise the catalog comes from `--root`.
+
+Retain delivered pointer events and selection/artwork/history operands. Choose
+asset targets from actual paint and painter order; a Library owner can contain
+only layered strokes, and an overlapping higher owner may win a public click.
+Both corners of a blank Shift marquee must also avoid the active selection's
+body. Keep production snapping enabled and compare all selected leaves against
+the observed common owner movement. Raw pointer displacement is not an exact
+movement oracle when snapping applies. Require at least one scene unit of
+actual owner translation: a positive direction dot product alone can accept
+floating-point residue when a small drag snaps back to its origin. The finite
+Groups/Layers case uses a 20×10 CSS-pixel body drag with production snapping;
+point-gesture helpers express their input in scene coordinates instead.
+
+For native Fabric marquee handling, `mouse:up:before` still exposes the selector;
+`handleSelection` consumes it before ordinary `mouse:up`. Use native resolved
+hits and the existing toggle policy. A temporary ActiveSelection is not a
+document group, and its children need canonical Canvas serialization for saved
+world poses. Escape qualification here covers ordinary translation without
+linked dependents; it does not qualify linked connectors or scaling cancellation.
+
+The asset mode alone uses the established six-decimal authored comparison and
+ignores generated ID/name only on explicitly marked derived area-text frame
+clips. Clip geometry/paint and authored identities remain compared. The binding
+is restored on exit; the ordinary/PDF comparison stays strict. Preserve raw
+differences and negative controls rather than extending this exception to
+authored objects. Require independent actual-file and original-image reviews.
+
+Use the same maintained interaction controller with `--group-layers` for the
+combined Groups/Layers journey. Its default `--group-part both` opens the exact
+retained eight-asset Save and genuine PDF Save; `assets` or `pdf` runs only that
+portion for a bounded diagnosis. `--asset-fixture` and `--group-pdf-fixture`
+accept relocated copies with the retained hashes. The controller validates
+those bytes and the eight asset/style owners before interaction. It does not
+recreate the Library cohort. Its asset-only comparator is restored before the
+strict PDF portion and on exit.
+
+This mode compares canvas/Inspector/Layers targeting, nested entry/exit,
+whole-plot versus child selection, final-child Shift toggles, ancestor lock/hide,
+blocked ArrowRight, Undo/unlock/show, eligible siblings, movement cancellation,
+actual Undo/Redo, four actual Saves and fresh-process continued editing. Warm and
+cold evidence names are distinct; complete model observations are addressed by
+content hash to avoid duplicate copies. Require independent actual-file and all
+original-image reviews before freezing a candidate. An intentionally hidden
+sole PDF owner produces an empty canvas; its hidden Layers state, disabled child
+targets and absence of editing feedback are the subject of that capture.
+
+Use public View > Fit to Screen in both Simple and Advanced layouts. The shared
+`focus_plot(keep_scope=True)` retains existing PDF isolation while framing its
+panel; the default clears the prior editing scope. Released PDFs can enter
+contents on their first unselected canvas click. Use their existing Layers
+Select on canvas command for whole-plot selection, followed by supported public
+Inspector/canvas entry. A deselected PDF child can leave Layers' finite row
+window; find its actual native name with the public object finder. Scope row
+action locators to that row's own actions, since a root row contains nested
+branches. Read native JSON explicitly as UTF-8 on Windows. Retain the raw
+controller/setup failures separately from product failures.
+
 `scripts/check-direct-selection-label-lifecycle-browser.py` adds tool/group exit,
 Delete/Undo, orphan prevention and Escape on a plain authored label. It records
 native pre-marquee bounds for independent membership checks; raw text JSON

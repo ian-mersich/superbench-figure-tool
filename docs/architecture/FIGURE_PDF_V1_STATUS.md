@@ -1,27 +1,53 @@
 # Scientific PDF and Slides V1 acceptance status
 
-## Current status — 4 November 2026
+## Current status — 5 November 2026
 
-Figure beta.23 is the synchronized desktop/web delivery. See the
-[beta.23 release](https://github.com/ian-mersich/superbench-figure-tool/releases/tag/v1.0.0-beta.23)
+Figure beta.24 is the synchronized desktop/web delivery. See the
+[beta.24 release](https://github.com/ian-mersich/superbench-figure-tool/releases/tag/v1.0.0-beta.24)
 and the [current Core Figure pin](https://github.com/ian-mersich/superbench/blob/main/config/figure-release.json).
-Scientific PDF V1 and sustained dense dragging remain unaccepted. Whole labels
-remain editable text; bounded delivered selection fixes do not establish full
-Illustrator/Affinity parity. A new, private
-[drag-startup correction](PDF_POINT_DRAG_STARTUP_2026_11_04.md) reduces one
-observed 49-object pointer-down-to-next-move interval from 2.99 seconds to
-0.24 seconds while preserving the first-held artwork. It is not part of beta.23.
-The following Inspector correction reduces a separate matched interval from
-277 ms to 135 ms against that first fix, with identical Inspector values and
-artwork. Neither observation qualifies sustained dragging or repeated latency.
-A subsequent diagnostic locates most remaining first-move work in ordinary
-native text rendering. Subsequent isolated transform-reuse and empty-stroke
-trials produced no repeatable, useful repaint improvement and were not adopted.
-The two startup corrections remain the only accepted runtime changes from this slice.
-The 100 ms blocking limit, sustained dragging and dense selection-outline
-crowding remain open. The earlier ordinary-painter candidate showed no speed
-gain and was not adopted. The roadmap remains responsive native editing before
-broader V1 acceptance.
+The two accepted [drag-startup corrections](PDF_POINT_DRAG_STARTUP_2026_11_04.md)
+are delivered in beta.24. The first reduces one observed 49-object
+pointer-down-to-next-move interval from 2.99 seconds to 0.24 seconds while
+preserving the first-held artwork. The Inspector correction reduces a separate
+matched interval from 277 ms to 135 ms against that first fix, with identical
+Inspector values and artwork. These bounded observations establish neither
+sustained-drag acceptance nor repeatable latency across documents.
+
+Qualification passes 79 package checks and 72 fresh live HTTPS checks, including
+whole editable Unicode text, font changes, Undo/Redo, two actual Saves,
+fresh-process Open and continued dragging. Independent saved-content and
+original-resolution visual reviews pass. All 1,723 deployed files match the
+qualified package; the Core pin, installed selection and persistent trust agree.
+The existing beta.5 host is unchanged. Installed startup passes the 45-second
+bound and portable startup passes the 60-second bound; the earlier portable
+45-second miss remains recorded. Beta.23 is retained for rollback.
+
+Scientific PDF V1 and sustained dense dragging remain unaccepted. The 100 ms
+blocking limit, dense selection-outline crowding and the retained Figure 2
+Canvas appearance failure (3.358% versus the fixed 2.5% limit) remain open.
+The [Selection and editable-PDF parity contract](SELECTION_AND_PDF_PARITY_2026_10_21.md)
+still requires broader object, group and node behavior, scientific-corpus
+editing/fidelity, and export/reimport qualification. Whole labels remain text;
+the delivered checks do not establish full Illustrator/Affinity parity.
+
+Remaining first-move work is concentrated in ordinary native text rendering.
+The transform-reuse and empty-stroke trials produced no repeatable, useful
+repaint improvement and were not adopted. Earlier ordered static/live reuse
+also failed exact pixel admission and activated no retained frames. Those
+findings close the existing reuse assessment; the next rendering change needs
+a separate bounded proposal. Ian's current priority is Selection/Direct
+Selection reliability and readable feedback, then Groups/Layers consistency,
+then precise geometry editing. Smoother sustained dragging is deferred; see
+the [active implementation plan](SELECTION_PDF_RESUMPTION_2026_10_22.md).
+
+Root has accepted the six-fix selection checkpoint as bounded source work.
+The following Groups/Layers candidate adds ancestor-aware selection, consistent
+final-child toggles and restored native-control readiness. Its 171 targeted tests
+and 146 retained-asset/PDF browser checks pass, with a focused 68-check asset
+rerun after strengthening the movement assertion; the active plan records the
+actual-file and original-image review scope. The combined candidate is being
+frozen for delivery review. It has not changed beta.24 or completed Scientific
+PDF V1 acceptance.
 
 The checkpoints below preserve their original dates and acceptance scope.
 Their delivery versions describe those historical checkpoints, not the current

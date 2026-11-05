@@ -1,0 +1,165 @@
+{
+  "appSha256": "959c5c8171936fa04c843e20d661e2758e3a73c221fc656d44acf91e3ccc17c2",
+  "functions": [
+    {
+      "name": "defaultObjectLayerRecord",
+      "source": "  function defaultObjectLayerRecord(index = 0, options = {}) {\n    return {\n      id: String(options.id || (index === 0 ? \"layer-artwork\" : makeId(\"layer\"))),\n      name: String(options.name || (index === 0 ? \"Artwork\" : `Layer ${index + 1}`)).trim().slice(0, 80) || `Layer ${index + 1}`,\n      visible: options.visible !== false,\n      locked: options.locked === true,\n      collapsed: options.collapsed === true,\n      color: String(options.color || OBJECT_LAYER_COLORS[index % OBJECT_LAYER_COLORS.length])\n    };\n  }\n",
+      "sha256": "6b576031b7f868efc7a74da66567a190950e84834a856cae3f2449cf496ce1e9"
+    },
+    {
+      "name": "normalizeObjectLayerState",
+      "source": "  function normalizeObjectLayerState(value = {}) {\n    const seen = new Set();\n    const rawLayers = Array.isArray(value?.layers) ? value.layers : [];\n    const layers = rawLayers.map((raw, index) => defaultObjectLayerRecord(index, raw)).filter((layer) => {\n      if (!layer.id || seen.has(layer.id)) return false;\n      seen.add(layer.id);\n      return true;\n    });\n    if (!layers.length) layers.push(defaultObjectLayerRecord(0));\n    const requested = String(value?.activeLayerId || value?.active_layer_id || \"\");\n    return {\n      schema: OBJECT_LAYER_SCHEMA,\n      activeLayerId: layers.some((layer) => layer.id === requested) ? requested : layers.at(-1).id,\n      layers\n    };\n  }\n",
+      "sha256": "1a637186922f32f9fa41e8124cf154786feb01865bd9f69e5a3d305a48c48774"
+    },
+    {
+      "name": "activeObjectLayerState",
+      "source": "  function activeObjectLayerState() {\n    const page = activeDeckPage();\n    if (!page) return normalizeObjectLayerState();\n    page.objectLayers = normalizeObjectLayerState(page.objectLayers);\n    return page.objectLayers;\n  }\n",
+      "sha256": "f4e259167e7a6f2707b273f489d2ac66a39e19782b880903377a94d595415aa8"
+    },
+    {
+      "name": "objectLayerById",
+      "source": "  function objectLayerById(layerId, layerState = activeObjectLayerState()) {\n    return layerState.layers.find((layer) => layer.id === String(layerId || \"\")) || null;\n  }\n",
+      "sha256": "b25da00c2de99523222478a4679bb46c9522ca529de506b89185810f2da4a53c"
+    },
+    {
+      "name": "activeObjectLayer",
+      "source": "  function activeObjectLayer(layerState = activeObjectLayerState()) {\n    return objectLayerById(layerState.activeLayerId, layerState) || layerState.layers.at(-1) || null;\n  }\n",
+      "sha256": "6f749681267fd97ab432c599857c90b52b9a0e91f49f5dc0b7cf98711391c0a4"
+    },
+    {
+      "name": "topLevelLayerObject",
+      "source": "  function topLevelLayerObject(object) {\n    let current = object || null;\n    while (current?.group && !isActiveSelectionObject(current.group)) current = current.group;\n    return current;\n  }\n",
+      "sha256": "8ec03267d7956171cbf4ce042f2e6c88f716bd70f239102e71015ba6fd170c0f"
+    },
+    {
+      "name": "objectLayerId",
+      "source": "  function objectLayerId(object, layerState = activeObjectLayerState()) {\n    const root = topLevelLayerObject(object);\n    const requested = String(root?.figureStudioLayerId || \"\");\n    return objectLayerById(requested, layerState)?.id || layerState.layers[0]?.id || \"layer-artwork\";\n  }\n",
+      "sha256": "7d8e5450ec72b568f5c6248ccc62af32b1c18cb59d1e4ddeb33f61e05b33b7b2"
+    },
+    {
+      "name": "assignObjectToActiveLayer",
+      "source": "  function assignObjectToActiveLayer(object, options = {}) {\n    if (!object || !isFigureObject(object)) return object;\n    const layerState = activeObjectLayerState();\n    const requested = String(options.layerId || object.figureStudioLayerId || \"\");\n    const layer = objectLayerById(requested, layerState)\n      || (options.legacy ? layerState.layers[0] : activeObjectLayer(layerState));\n    if (layer) object.set?.({ figureStudioLayerId: layer.id });\n    return object;\n  }\n",
+      "sha256": "0e441052cccd97eda6f421b801521a745755a248d354b950781f3c2ec7e9761a"
+    },
+    {
+      "name": "setActiveObjects",
+      "source": "  function setActiveObjects(objects) {\n    const focused = (objects || []).at(-1) || null;\n    const focusedLayerId = focused ? objectLayerId(focused) : \"\";\n    if (isGroupIsolationActive()) {\n      const isolated = (objects || []).filter((object) => objectIsWithinGroup(object, activeIsolationGroup()));\n      if (isolated.length) {\n        selectIsolatedObjects(isolated, { sync: true });\n        return;\n      }\n    }\n    canvas.discardActiveObject();\n    if (!objects.length) {\n      canvas.requestRenderAll();\n      syncUi();\n      return;\n    }\n    if (objects.length === 1) {\n      canvas.setActiveObject(objects[0]);\n    } else {\n      const selection = new fabricRef.ActiveSelection(objects, { canvas });\n      configureActiveSelection(selection);\n      canvas.setActiveObject(selection);\n    }\n    if (focusedLayerId && objectLayerById(focusedLayerId)) activeObjectLayerState().activeLayerId = focusedLayerId;\n    canvas.requestRenderAll();\n    syncUi();\n  }\n",
+      "sha256": "f5bc0488421e67816dcc0cb61d5b49ec3181f5b961f17a584fc2f497d3fc413f"
+    },
+    {
+      "name": "configureActiveSelection",
+      "source": "  function configureActiveSelection(selection) {\n    if (!isActiveSelectionObject(selection)) return selection;\n    const transformGuard = numericTransformSelectionGuard(selection.getObjects());\n    const transformable = transformGuard.status === \"ok\";\n    selection.set({\n      selectable: true,\n      evented: true,\n      hasControls: transformable,\n      hasBorders: true,\n      lockMovementX: !transformable,\n      lockMovementY: !transformable,\n      lockScalingX: !transformable,\n      lockScalingY: !transformable,\n      lockRotation: !transformable\n    });\n    return selection;\n  }\n",
+      "sha256": "8ea69ba52e1c92b733b40e51ba27f357c759a44ef196f15f243a5a9c058a1ebd"
+    },
+    {
+      "name": "selectedTopLevelObjects",
+      "source": "  function selectedTopLevelObjects() {\n    if (isGroupIsolationActive()) {\n      const isolated = isolatedSelectedObjects();\n      if (isolated.length) return isolated;\n    }\n    const active = canvas.getActiveObject();\n    if (!active) return [];\n    if (isActiveSelectionObject(active)) return active.getObjects();\n    return [active];\n  }\n",
+      "sha256": "95108ce21499a0aaf5fdeeeeddc545360d758d124ef9c8da0c50a61ba727764b"
+    },
+    {
+      "name": "configureIsolationGroup",
+      "source": "  function configureIsolationGroup(group) {\n    if (!isGroupObject(group)) return false;\n    if (!group.figureStudioIsolationMeta) {\n      group.figureStudioIsolationMeta = {\n        interactive: group.interactive === true,\n        subTargetCheck: group.subTargetCheck === true,\n        objectCaching: group.objectCaching !== false\n      };\n    }\n    // Figure Tool owns child targeting, multi-selection, and transform\n    // overlays in Isolation Mode. Fabric's interactive-group selection mutates\n    // nested group membership when a second child is clicked, so keep vendor\n    // sub-target activation off and resolve the child from the scene point.\n    group.set({ interactive: false, subTargetCheck: false, objectCaching: false });\n    groupChildren(group).forEach(ensureIsolationObjectIdentity);\n    group.dirty = true;\n    group.setCoords?.();\n    return true;\n  }\n",
+      "sha256": "6c09e266a3f37bf23895d59b46b4bca8117f7e90032a67c38f8005dc23e1033c"
+    },
+    {
+      "name": "restoreIsolationGroupSettings",
+      "source": "  function restoreIsolationGroupSettings(group) {\n    const original = group?.figureStudioIsolationMeta;\n    if (!group || !original) return false;\n    group.set({\n      interactive: original.interactive === true,\n      subTargetCheck: original.subTargetCheck === true,\n      objectCaching: original.objectCaching !== false\n    });\n    delete group.figureStudioIsolationMeta;\n    group.dirty = true;\n    group.setCoords?.();\n    return true;\n  }\n",
+      "sha256": "8027fc7933e5b8abaf738cb6810f2115fee96a36a2c850443772fecf1c09e067"
+    },
+    {
+      "name": "isolatedSelectedObjects",
+      "source": "  function isolatedSelectedObjects() {\n    if (!isGroupIsolationActive()) return [];\n    const activeGroup = activeIsolationGroup();\n    const stored = Array.isArray(groupIsolation.selectedObjects) && groupIsolation.selectedObjects.length\n      ? groupIsolation.selectedObjects\n      : groupIsolation.selected ? [groupIsolation.selected] : [];\n    const valid = uniqueObjects(stored).filter((object) => (\n      object\n      && objectIsWithinGroup(object, activeGroup)\n      && object.visible !== false\n      && !object.locked\n    ));\n    if (valid.length !== stored.length) {\n      groupIsolation.selectedObjects = valid;\n      groupIsolation.selected = valid.at(-1) || null;\n    }\n    return valid;\n  }\n",
+      "sha256": "f65bf12d6096c8244951fbfb125d089f44214e11b9363269c94aa84d21714503"
+    },
+    {
+      "name": "selectableIsolationChildren",
+      "source": "  function selectableIsolationChildren(group = activeIsolationGroup()) {\n    return groupChildren(group).filter((child) => child && child.visible !== false && !child.locked && !child.pdfPageFrame);\n  }\n",
+      "sha256": "cd21229444b320412132899eef44ce4fa42f60e711c03ef38bd5f79c22b2ba00"
+    },
+    {
+      "name": "captureGroupIsolationHistoryState",
+      "source": "  function captureGroupIsolationHistoryState() {\n    if (!isGroupIsolationActive()) return null;\n    return {\n      pathIds: groupIsolation.path.map((group) => String(group?.figureId || \"\")).filter(Boolean),\n      selectedIds: isolatedSelectedObjects().map((object) => String(object?.figureId || \"\")).filter(Boolean)\n    };\n  }\n",
+      "sha256": "8dcc95fde02a94df6a972ebca7ceadf89a878b39184611aa0c92dc5029961f8e"
+    },
+    {
+      "name": "restoreGroupIsolationHistoryState",
+      "source": "  function restoreGroupIsolationHistoryState(saved) {\n    const pathIds = Array.isArray(saved?.pathIds) ? saved.pathIds.map((id) => String(id || \"\")).filter(Boolean) : [];\n    if (!pathIds.length) return false;\n    const path = [];\n    for (const id of pathIds) {\n      const group = findNestedObjectByFigureId(id);\n      const expectedParent = path.at(-1) || null;\n      if (\n        !isGroupObject(group)\n        || (expectedParent ? group.group !== expectedParent : !(canvas?.getObjects?.() || []).includes(group))\n      ) break;\n      configureIsolationGroup(group);\n      path.push(group);\n    }\n    if (!path.length) return false;\n    groupIsolation = { path, selected: null, selectedObjects: [], guardingSelection: false };\n    state.tool = \"directSelect\";\n    syncToolMode();\n    const activeGroup = path.at(-1);\n    const selected = (Array.isArray(saved?.selectedIds) ? saved.selectedIds : [])\n      .map((id) => findNestedObjectByFigureId(id))\n      .filter((object) => object && objectIsWithinGroup(object, activeGroup) && object.visible !== false && !object.locked);\n    selectIsolatedObjects(selected.length ? selected : selectableIsolationChildren(activeGroup).slice(0, 1), {\n      sync: false,\n      toast: false,\n      revealInLayers: false\n    });\n    renderGroupIsolationBar();\n    requestSelectionOverlayRender();\n    return true;\n  }\n",
+      "sha256": "0bc6ea13f74b46df98e2aa0ceb62cd5866f7d7af529c695c83fded335a2e40db"
+    },
+    {
+      "name": "selectIsolatedObjects",
+      "source": "  function selectIsolatedObjects(objects, options = {}) {\n    const activeGroup = activeIsolationGroup();\n    if (!activeGroup) return false;\n    const selected = uniqueObjects(objects)\n      .filter((object) => object && objectIsWithinGroup(object, activeGroup) && object.visible !== false && !object.locked);\n    selected.forEach((object, index) => ensureIsolationObjectIdentity(object, index));\n    groupIsolation.selectedObjects = selected;\n    groupIsolation.selected = selected.at(-1) || null;\n    selectionOverlayRenderOnly = true;\n    window.queueMicrotask(() => { selectionOverlayRenderOnly = false; });\n    canvas.discardActiveObject();\n    if (groupIsolation.selected) canvas.setActiveObject(groupIsolation.selected);\n    requestSelectionOverlayRender();\n    if (options.sync !== false) {\n      syncSelectionStatusOnly();\n      scheduleSelectionUiSync();\n    }\n    if (options.toast && selected.length > 1) showToast(`${selected.length} group objects selected`);\n    else if (options.toast && selected[0]) showToast(`Selected ${selected[0].name || humanizeType(selected[0].figureType || selected[0].type)}`);\n    else hideToast();\n    if (options.revealInLayers !== false) revealEditableSvgSelectionInLayers(selected.at(-1));\n    return selected.length > 0;\n  }\n",
+      "sha256": "0b6586597c3e4cbc2331455764b1b0e0a335a72306baca30ade986d7bed0fbe8"
+    },
+    {
+      "name": "pathNodeEditObjects",
+      "source": "  function pathNodeEditObjects() {\n    const seen = new Set();\n    const objects = [];\n    [pathNodeEdit.object, ...(Array.isArray(pathNodeEdit.objects) ? pathNodeEdit.objects : [])].forEach((object) => {\n      if (!object || !canUsePathPointEditing(object)) return;\n      const id = pathEditObjectId(object);\n      if (seen.has(id)) return;\n      seen.add(id);\n      objects.push(object);\n    });\n    return objects;\n  }\n",
+      "sha256": "84bb4870c8c7352e72dfe331769cb9e04873b17f590a3bf5a92da5429de3a505"
+    },
+    {
+      "name": "selectedPathHandleRefs",
+      "source": "  function selectedPathHandleRefs() {\n    const selectedRefs = Array.isArray(pathNodeEdit.selectedHandles) && pathNodeEdit.selectedHandles.length\n      ? pathNodeEdit.selectedHandles\n      : pathNodeEdit.selected ? [pathNodeEdit.selected] : [];\n    return selectedRefs.map((ref) => ({ ...ref, objectId: ref.objectId || pathEditObjectId(pathNodeEdit.object) }));\n  }\n",
+      "sha256": "c402fbd6ec5999db0f4508cc91d80372245e3c4cb57298ed55eccfd35b8bb5b5"
+    },
+    {
+      "name": "captureDirectSelectionHistoryState",
+      "source": "  function captureDirectSelectionHistoryState() {\n    if (state.tool !== \"directSelect\" || !pathNodeEdit.object) return null;\n    const stripHandle = (ref) => ({\n      objectId: String(ref?.objectId || pathEditObjectId(pathNodeEdit.object)),\n      nodeId: String(ref?.nodeId || \"\"),\n      commandIndex: Number(ref?.commandIndex),\n      handleType: String(ref?.handleType || \"endpoint\")\n    });\n    const saved = {\n      primaryObjectId: pathEditObjectId(pathNodeEdit.object),\n      objectIds: pathNodeEditObjects().map(pathEditObjectId),\n      selectedHandles: selectedPathHandleRefs().map(stripHandle),\n      selectedSegment: pathNodeEdit.selectedSegment ? {\n        objectId: String(pathNodeEdit.selectedSegment.objectId || \"\"),\n        contourIndex: Number(pathNodeEdit.selectedSegment.contourIndex),\n        startNodeId: String(pathNodeEdit.selectedSegment.startNodeId || \"\"),\n        endNodeId: String(pathNodeEdit.selectedSegment.endNodeId || \"\"),\n        endCommandIndex: Number(pathNodeEdit.selectedSegment.endCommandIndex)\n      } : null\n    };\n    const page = densePdfPageForObject(pathNodeEdit.object);\n    if (page && saved.objectIds.length === 1 && !saved.selectedSegment\n        && densePdfApi().objectById(page, saved.primaryObjectId) === pathNodeEdit.object\n        && canUsePathPointEditing(pathNodeEdit.object)) {\n      const descriptor = densePdfApi().descriptor(page);\n      saved.densePage = { figureId: page.figureId, assetId: descriptor.assetId,\n        source: structuredClone(descriptor.source), topology: pathNodeEdit.object.path.map((command) => [command[0], command.length]) };\n    }\n    return saved;\n  }\n",
+      "sha256": "dd65836f352ee36819503285fcc05e9a60ce44ecaaf81a8b40e5c51310fd567d"
+    },
+    {
+      "name": "syncLineVectorSelectionChrome",
+      "source": "  function syncLineVectorSelectionChrome() {\n    if (!canvas) return;\n    const freeTransform = state.tool === \"freeTransform\";\n    const directSelection = state.tool === \"directSelect\";\n    const active = canvas.getActiveObject?.();\n    if (isActiveSelectionObject(active)) {\n      const showGroupBounds = !directSelection;\n      active.set({\n        selectable: !directSelection,\n        evented: !directSelection,\n        hasControls: showGroupBounds,\n        hasBorders: showGroupBounds,\n        padding: directSelection ? 0 : Number(active.padding || 0),\n        cornerSize: directSelection ? 0 : Number(active.cornerSize || 5),\n        borderColor: directSelection ? \"rgba(0,0,0,0)\" : \"rgba(15, 139, 141, 0.75)\",\n        lockMovementX: directSelection,\n        lockMovementY: directSelection,\n        lockScalingX: directSelection,\n        lockScalingY: directSelection,\n        lockRotation: directSelection\n      });\n      active.setCoords?.();\n    }\n    selectedTopLevelObjects().filter(isLineVectorObject).forEach((object) => {\n      object.set({ hasControls: freeTransform && !object.locked, hasBorders: freeTransform && !object.locked });\n    });\n    selectedTopLevelObjects().filter(isSmartConnectorObject).forEach((object) => {\n      const meta = normalizeSmartConnectorMeta(object.smartConnectorMeta);\n      const movable = !meta.start.objectId && !meta.end.objectId && !directSelection && !object.locked;\n      object.set({\n        hasControls: false,\n        hasBorders: !directSelection,\n        lockMovementX: !movable,\n        lockMovementY: !movable,\n        lockScalingX: true,\n        lockScalingY: true,\n        lockRotation: true\n      });\n    });\n    canvas.requestRenderAll?.();\n  }\n",
+      "sha256": "7875b8c9b4ade4a0db9793cdc467eb9e42dfbbdf8d50837c84fb812f8f800986"
+    },
+    {
+      "name": "runCanvasLoadCompletion",
+      "source": "  function runCanvasLoadCompletion(resolve, reject, restore) {\n    try {\n      restore();\n      resolve();\n    } catch (error) {\n      reject(error);\n    }\n  }\n",
+      "sha256": "5a4c32c54c2c444020ecaac95aa76d7ec129a626432abed8a65baa7ad09fd0c7"
+    },
+    {
+      "name": "loadCanvasJson",
+      "source": "  async function loadCanvasJson(json, options = {}) {\n    const editablePdf = globalThis.FigureStudioPdfEditableImport;\n    if (editablePdf) await editablePdf.registerFonts(editablePdf.fontsInWorkspace(state.pdfSources));\n    nativePdfLifecycleEpoch += 1;\n    const denseReplacement = densePdfApi()?.beginSceneReplacement(canvas);\n    let loadFailed = false;\n    return new Promise((resolve, reject) => {\n      try {\n        const missing = Array.isArray(options.missing) ? options.missing : [];\n        const compacted = json && typeof json === \"object\"\n          ? fileFormatApi().compactSharedGroupImportMetadata(json)\n          : json;\n        const hydrated = compacted && typeof compacted === \"object\"\n          ? hydrateArtifactRefPlaceholders(JSON.parse(JSON.stringify(compacted)), missing)\n          : compacted;\n        const finishLoad = () => runCanvasLoadCompletion(resolve, reject, completeLoadedCanvasScene);\n        const result = canvas.loadFromJSON(hydrated, undefined, denseReplacement ? { signal: denseReplacement.signal } : undefined);\n        if (result && typeof result.then === \"function\") {\n          result.then(finishLoad).catch(reject);\n        } else {\n          canvas.loadFromJSON(hydrated, finishLoad);\n        }\n      } catch (error) {\n        reject(error);\n      }\n    }).catch((error) => { loadFailed = true;throw error; }).finally(() => {\n      if (denseReplacement) { try { densePdfApi().finishSceneReplacement(denseReplacement); } catch (error) { if (!loadFailed) throw error; } }\n    });\n  }\n",
+      "sha256": "ada822b1e4d63e49af1ccad1cff89d040c4f6a0d34968c3d756f697264fa2213"
+    },
+    {
+      "name": "loadStaticCanvasJson",
+      "source": "  async function loadStaticCanvasJson(staticCanvas, json) {\n    // Fabric 6+ returns a Promise and reserves the second argument for an\n    // object reviver. Passing a completion callback there resolves on the\n    // first object, which can leave an offscreen export canvas empty.\n    const majorVersion = Number.parseInt(String(fabricRef?.version || \"0\").split(\".\")[0], 10);\n    if (majorVersion >= 6) {\n      await staticCanvas.loadFromJSON(json);\n      return staticCanvas;\n    }\n    await new Promise((resolve, reject) => {\n      try { staticCanvas.loadFromJSON(json, resolve); }\n      catch (error) { reject(error); }\n    });\n    return staticCanvas;\n  }\n",
+      "sha256": "26257c91cf48f1ef536ab8c9d499cd72048dcc5641d949e6120efdc34a1d18b7"
+    },
+    {
+      "name": "renderPresentationSlide",
+      "source": "  async function renderPresentationSlide() {\n    const pages = state.deck?.pages || [];\n    const page = pages[presentationState.pageIndex];\n    const staticCanvas = presentationCanvasForQa();\n    if (!page || !staticCanvas) return false;\n    const epoch = ++presentationRenderEpoch;\n    const artboard = page.artboard || resolvedDeckAppearance(page).artboard || state.artboard;\n    const width = Math.max(1, Math.round((Number(artboard.widthIn) || 7.1) * INCH));\n    const height = Math.max(1, Math.round((Number(artboard.heightIn) || 5) * INCH));\n    presentationCanvasLayout = { width, height };\n    staticCanvas.setDimensions({ width, height }, { cssOnly: false });\n    staticCanvas.backgroundColor = resolvedDeckAppearance(page).background || \"#ffffff\";\n    const localSnapshot = page.fabric || (page.id === state.deck.activePageId ? stripMasterInheritanceFromSnapshot(canonicalizeLiveBooleanFabricSnapshot(canvas?.toJSON(CUSTOM_PROPS))) : null) || { objects: [] };\n    const fabricSnapshot = composeDeckPageSnapshot(page, localSnapshot);\n    const result = staticCanvas.loadFromJSON(JSON.parse(JSON.stringify(fabricSnapshot)));\n    if (result && typeof result.then === \"function\") await result;\n    if (!presentationState.active || epoch !== presentationRenderEpoch) return false;\n    staticCanvas.renderAll();\n    if (els.presentationSlideCounter) els.presentationSlideCounter.textContent = `${presentationState.pageIndex + 1} / ${pages.length}`;\n    if (els.presentationNotesText) els.presentationNotesText.textContent = speakerNotesForPage(page) || \"No speaker notes for this slide.\";\n    requestAnimationFrame(() => requestAnimationFrame(fitPresentationCanvasToOverlay));\n    return true;\n  }\n",
+      "sha256": "07bf1c7b433649973d2d1b65871544eeb887e6f7ea577d3026155b1b094e8e0a"
+    },
+    {
+      "name": "exitPresentation",
+      "source": "  function exitPresentation(options = {}) {\n    if (!presentationState.active) return false;\n    presentationRenderEpoch += 1;\n    presentationState.active = false;\n    presentationState.notesOpen = false;\n    presentationCanvasLayout = null;\n    if (els.presentationOverlay) els.presentationOverlay.hidden = true;\n    els.presentationOverlay?.classList.remove(\"has-presenter-notes\");\n    if (els.presentationNotesDrawer) els.presentationNotesDrawer.hidden = true;\n    const returnState = presentationState.returnState;\n    presentationState.returnState = null;\n    if (els.studioShell) {\n      els.studioShell.inert = false;\n      els.studioShell.removeAttribute(\"aria-hidden\");\n    }\n    if (returnState) {\n      state.view = { ...returnState.view };\n      setSidebarTab(returnState.sidebarTab);\n      setInspectorTab(returnState.inspectorTab);\n      const byId = new Map(canvas?.getObjects?.().map((object) => [object.figureId, object]) || []);\n      const selected = returnState.selectedIds.map((id) => byId.get(id)).filter(Boolean);\n      if (selected.length) setActiveObjects(selected);\n      else canvas?.discardActiveObject();\n      updateStage();\n      syncUi();\n    }\n    if (options.restoreFocus !== false) restorePresentationFocus();\n    return true;\n  }\n",
+      "sha256": "352c6e3f431966e8fcebad123b213a559234e6ab38dd103af071c8b230631e79"
+    },
+    {
+      "name": "updateLayoutIdentityInSnapshot",
+      "source": "  function updateLayoutIdentityInSnapshot(snapshot, masterId, layoutId) {\n    const visit = (items) => (items || []).forEach((item) => {\n      if (item.figureStudioLayoutPlaceholder) item.figureStudioLayoutPlaceholder = { ...item.figureStudioLayoutPlaceholder, masterId, layoutId };\n      if (item.figureStudioLayoutBinding) item.figureStudioLayoutBinding = { ...item.figureStudioLayoutBinding, masterId, layoutId };\n      visit(item.objects);\n    });\n    visit(snapshot?.objects);\n    return snapshot;\n  }\n",
+      "sha256": "ed6b20e0cd914f401a2b6063d77397fdc3a7ae4ceab3ae0933de763b01b88e04"
+    },
+    {
+      "name": "ensureDeckState",
+      "source": "  function ensureDeckState() {\n    if (!state.deck || !Array.isArray(state.deck.pages)) state.deck = { activePageId: \"\", themeId: \"scientific\", layouts: Object.keys(DECK_LAYOUTS), masters: [], pages: [], sections: [], guidePresets: [] };\n    if (!DECK_THEMES[state.deck.themeId]) state.deck.themeId = \"scientific\";\n    state.deck.masters = normalizeDeckMasters(state.deck.masters);\n    const masterIds = new Set(state.deck.masters.map((master) => master.id));\n    state.deck.layouts = Array.from(new Set(state.deck.masters.flatMap((master) => master.layouts.map((layout) => layout.id))));\n    (state.deck.pages || []).forEach((page) => {\n      const master = masterIds.has(page.masterId)\n        ? state.deck.masters.find((item) => item.id === page.masterId)\n        : state.deck.masters[0];\n      const layout = master.layouts.find((item) => item.id === page.layoutId)\n        || master.layouts.find((item) => item.id === \"title-content\")\n        || master.layouts[0];\n      page.masterId = master.id;\n      page.layoutId = layout?.id || \"title-content\";\n      if (page.fabric) updateLayoutIdentityInSnapshot(page.fabric, page.masterId, page.layoutId);\n    });\n    if (!state.deck.pages.length && canvas) {\n      const page = defaultDeckPage(isPresentationDocument() ? \"Slide 1\" : \"Figure 1\");\n      state.deck.pages.push(page);\n      state.deck.activePageId = page.id;\n    }\n    if (!state.deck.activePageId && state.deck.pages[0]) state.deck.activePageId = state.deck.pages[0].id;\n    state.deck.sections = normalizeDeckSections(state.deck.sections, state.deck.pages);\n    state.deck.guidePresets = normalizeDeckGuidePresets(state.deck.guidePresets);\n    enforcePresentationDeckGeometry(state.deck);\n    return state.deck;\n  }\n",
+      "sha256": "377d3ac736521cb0f424294f41109104853fc56e9f024b8776ffb11fe4e2b7c7"
+    },
+    {
+      "name": "activeDeckPage",
+      "source": "  function activeDeckPage() {\n    ensureDeckState();\n    return state.deck.pages.find((page) => page.id === state.deck.activePageId) || state.deck.pages[0] || null;\n  }\n",
+      "sha256": "3e673cedf922106561e5ea309867590577a897477c26a9903d6086ff4a248fa3"
+    },
+    {
+      "name": "syncSmartConnectorLabel",
+      "source": "  function syncSmartConnectorLabel(connector) {\n    if (!isSmartConnectorObject(connector)) return;\n    const meta = normalizeSmartConnectorMeta(connector.smartConnectorMeta);\n    const label = String(meta.label || \"\").trim();\n    let text = smartConnectorLabelObject(connector);\n    if (!label) {\n      if (text) canvas.remove(text);\n      return;\n    }\n    if (!text) {\n      text = baseMeta(new fabricRef.Text(label, {\n        fontSize: 12,\n        fill: readStyle(connector).stroke || \"#0f766e\",\n        selectable: true,\n        ...(meta.labelPlacement === \"midpoint\" ? { fontFamily: DEFAULT_FONT_FAMILY } : {})\n      }), \"connectorLabel\", \"Connector label\", sourceMeta({ kind: \"connector-label\" }), {});\n      text.smartConnectorMeta = { connectorId: connector.figureId };\n      canvas.add(text);\n    }\n    text.set({\n      text: label,\n      fill: readStyle(connector).stroke || \"#0f766e\"\n    });\n    const base = smartConnectorLabelBasePosition(connector, meta, text);\n    const offsetOwner = isActiveSelectionObject(connector.group) ? { group: null } : connector;\n    const offset = meta.labelPlacement === \"midpoint\"\n      ? smartConnectorLabelOffsetInParent(offsetOwner, text, meta.labelOffset)\n      : meta.labelOffset;\n    text.set({ left: base.left + offset.x, top: base.top + offset.y });\n    text.setCoords?.();\n  }\n",
+      "sha256": "6c0055b0185987796fdadf310f80b248c4f6f38f2fdefedcdf058fc79d1b9187"
+    },
+    {
+      "name": "refreshSmartConnectors",
+      "source": "  function refreshSmartConnectors() {\n    if (!canvas) return [];\n    const objects = allCanvasObjectsDeep();\n    const connectors = objects.filter(isSmartConnectorObject).sort((left, right) => String(left.figureId || \"\").localeCompare(String(right.figureId || \"\")));\n    const connectorIds = new Set(connectors.map((connector) => connector.figureId).filter(Boolean));\n    objects.filter((object) => object.figureType === \"connectorLabel\" && !connectorIds.has(object.smartConnectorMeta?.connectorId)).forEach((label) => {\n      if (label.group?.remove) label.group.remove(label);\n      else canvas.remove(label);\n    });\n    // A bounded settle lets freshly projected peer labels participate in deterministic lane scoring.\n    const refreshed = [];\n    [0, 1, 2, 3].forEach(() => connectors.forEach((connector) => {\n      if (updateSmartConnectorGeometry(connector)) {\n        refreshed.push(connector);\n        syncSmartConnectorLabel(connector);\n      }\n    }));\n    recordDependencyRefreshForQa(\"connector\", \"global\", refreshed);\n    renderSmartConnectorOverlay();\n    return [...new Set(refreshed)];\n  }\n",
+      "sha256": "10d5208dc055b54372830b9a30e1d0a07d13b8d4725160dbc201bb4453b46528"
+    }
+  ]
+}

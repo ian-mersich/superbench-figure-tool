@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  const APP_VERSION = "1.0.0-beta.24";
+  const APP_VERSION = "1.0.0-beta.25";
   const PROJECT_SCHEMA = "figureStudio.project.v2";
   const DOCUMENT_KINDS = Object.freeze(["figure", "presentation"]);
   const FIRST_RUN_STORAGE_KEY = "figureStudio.firstRun.v2";
@@ -1360,6 +1360,8 @@
   let selectionOverlayRenderFrame = 0;
   let suppressNextFullCanvasRender = false;
   let transientCanvasTransform = null;
+  let pendingSingleObjectShiftClick = null;
+  let pendingObjectShiftMarquee = null;
   let transientCanvasRenderFrame = 0;
   let forceFullCanvasRender = null;
   const issuedUniformPathRenderers = new WeakMap();
@@ -8585,7 +8587,10 @@
           // the stock target walk while the inspector still names the child.
           if (active && objectIsWithinGroup(active, activeIsolationGroup())
               && active.findControl?.(canvas.getViewportPoint(event), pointerType === "touch")) return finish(targetInfo(active));
-          return finish(targetInfo(isolationChildAtScenePoint(activeIsolationGroup(), canvasPoint(event))));
+          const child = isolationChildAtScenePoint(activeIsolationGroup(), canvasPoint(event));
+          // Restored nested children can be hovered before first activation.
+          if (child && !child.oCoords) child.setCoords?.();
+          return finish(targetInfo(child));
         }
         const found = fabricFindTarget(event, skipGroup);
         const target = found?.target || found;
@@ -8797,6 +8802,8 @@
       }
       syncUi();
     });
+    canvas.on("mouse:down:before", captureObjectShiftMarquee);
+    canvas.on("mouse:up:before", prepareObjectShiftMarquee);
     canvas.on("mouse:down", onCanvasMouseDown);
     canvas.on("mouse:up", () => {
       if (nativePathBodyDrag?.canvas === canvas) finishNativePathBodyDrag();
@@ -25015,6 +25022,7 @@
   }
 
   function onCanvasMouseDown(event) {
+    captureSingleObjectShiftClick(event);
     if (nativePathBodyDrag?.canvas === canvas) return;
     // A new pointer interaction owns the main thread. Cancel any delayed,
     // selection-wide inspector reconciliation so it cannot interrupt dragging,
@@ -25778,9 +25786,93 @@
     if (transientCanvasTransform) {
       finishTransientCanvasTransform(event?.target || transientCanvasTransform.target);
     }
+    finishSingleObjectShiftClick(event);
+    finishObjectShiftMarquee(event);
     // Pointer-down cancels the deferred selection refresh to keep dragging
     // responsive. A click or marquee still needs its controls after release.
     if (els.inspector?.dataset.selectionUiState === "essentials") scheduleSelectionUiSync();
+  }
+
+  function cancelOrdinaryCanvasDrag(event) {
+    const transform = canvas?._currentTransform, target = transform?.target;
+    if (!target || transform.action !== "drag" || !["select", "freeTransform"].includes(state.tool)
+        || nativePathBodyDrag || isGroupIsolationActive() || target.canvas !== canvas
+        || target !== canvas.getActiveObject() || !Number.isFinite(transform.original?.left)
+        || !Number.isFinite(transform.original?.top)) return false;
+    const objects = transformTargetObjects(target);
+    if (objects.some(object => isSmartConnectorObject(object) || object.figureType === "connectorLabel")
+        || transientTransformHasLiveDependents(target) || pptxLabelTransformState?.labels?.length) return false;
+    cancelObjectInteractionRefresh();
+    // A drag changes position only. Fabric's saved origins can describe a
+    // control anchor, so leave the object's own origins and geometry intact.
+    target.set({ left: transform.original.left, top: transform.original.top });
+    transform.actionPerformed = false;
+    canvas.endCurrentTransform(event);
+    pendingRepeatTransform = null;
+    pendingSingleObjectShiftClick = null;
+    pendingObjectShiftMarquee = null;
+    scaleSnapLock = null;
+    finishTransientCanvasTransform(target, { cancel: true });
+    hideGuideSnapCue();
+    hideSmartGuideCues();
+    canvas.requestRenderAll();
+    syncSelectionEssentials();
+    scheduleSelectionUiSync();
+    return true;
+  }
+
+  function captureSingleObjectShiftClick(event) {
+    pendingSingleObjectShiftClick = null;
+    const source = event?.e, target = event?.target;
+    if (!canvas || !["select", "freeTransform"].includes(state.tool) || isGroupIsolationActive()
+        || !event.alreadySelected || !source?.shiftKey || source.ctrlKey || source.metaKey || source.altKey
+        || source.button !== 0 || !target || target.isEditing || isActiveSelectionObject(target)
+        || target !== canvas.getActiveObject() || event.transform?.corner) return;
+    // Fabric toggles members of a multi-selection but keeps its last object.
+    // Defer that final removal until a click, preserving Shift-constrained drags.
+    pendingSingleObjectShiftClick = { canvas, target };
+  }
+
+  function finishSingleObjectShiftClick(event) {
+    const click = pendingSingleObjectShiftClick;
+    pendingSingleObjectShiftClick = null;
+    if (!click || click.canvas !== canvas || event?.isClick !== true
+        || !["select", "freeTransform"].includes(state.tool) || isGroupIsolationActive()
+        || event.target !== click.target || canvas.getActiveObject() !== click.target
+        || click.target.isEditing) return false;
+    canvas.discardActiveObject(event.e);
+    canvas.requestRenderAll();
+    return true;
+  }
+
+  function captureObjectShiftMarquee(event) {
+    pendingObjectShiftMarquee = null;
+    const source = event?.e;
+    if (!canvas || !["select", "freeTransform"].includes(state.tool) || isGroupIsolationActive()
+        || event.target || !source?.shiftKey || source.ctrlKey || source.metaKey || source.altKey
+        || source.button !== 0) return;
+    const original = canvas.getActiveObjects().slice();
+    if (original.length && original.every(object => !object.isEditing)) pendingObjectShiftMarquee = { canvas, original };
+  }
+
+  function prepareObjectShiftMarquee() {
+    const marquee = pendingObjectShiftMarquee;
+    if (marquee?.canvas === canvas) marquee.nativeMarquee = Boolean(canvas._groupSelector);
+  }
+
+  function finishObjectShiftMarquee(event) {
+    const marquee = pendingObjectShiftMarquee;
+    pendingObjectShiftMarquee = null;
+    if (!marquee || marquee.canvas !== canvas || !marquee.nativeMarquee
+        || !["select", "freeTransform"].includes(state.tool) || isGroupIsolationActive()
+        || !marquee.original.every(object => object.canvas === canvas && object.selectable !== false
+          && object.visible !== false && canvas.getObjects().includes(object))) return false;
+    // Fabric has already resolved the marquee using its native crossing or
+    // containment rules. Apply the same toggle policy as points and isolation.
+    const hits = canvas.getActiveObjects().slice();
+    setActiveObjects(globalThis.FigureStudioGroupObjectSelection.mergedSelection(marquee.original, hits, true));
+    canvas.requestRenderAll();
+    return true;
   }
 
   function canvasPoint(event) {
@@ -32390,10 +32482,7 @@
   }
 
   function selectedTopLevelObjects() {
-    if (isGroupIsolationActive()) {
-      const isolated = isolatedSelectedObjects();
-      if (isolated.length) return isolated;
-    }
+    if (isGroupIsolationActive()) return isolatedSelectedObjects();
     const active = canvas.getActiveObject();
     if (!active) return [];
     if (isActiveSelectionObject(active)) return active.getObjects();
@@ -32467,7 +32556,7 @@
 
   function reconcileCanvasSelectionState() {
     if (!canvas) return false;
-    let changed = false;
+    let changed = isGroupIsolationActive() && reconcileGroupIsolationSelection();
     const trackedTexts = (pathNodeEdit.objects || []).filter(isCanvasTextObject);
     if (trackedTexts.length) {
       // Nested removal and in-place replacement can bypass Canvas events and
@@ -43261,9 +43350,10 @@
     const proposed = uniqueObjects([...(marquee.additive ? previousObjects : []), ...hits.map(hit => hit.object), ...texts]);
     let invalidScope = false;
     if (!isGroupIsolationActive()) {
-      const roots = uniqueObjects(proposed.map(object => { while (object.group) object = object.group; return object; }));
+      // Fabric's temporary multi-selection is not a document group boundary.
+      const roots = uniqueObjects(proposed.map(object => { while (object.group && !isActiveSelectionObject(object.group)) object = object.group; return object; }));
       if (roots.length === 1 && pdfGroupedDirectSelectionScope({ target: roots[0] }) === roots[0]) invalidScope = !enterPdfDirectSelectionScope(roots[0]);
-      else invalidScope = proposed.some(object => object.group);
+      else invalidScope = proposed.some(object => object.group && !isActiveSelectionObject(object.group));
     }
     if (isGroupIsolationActive() && proposed.some(object => !objectIsWithinGroup(object, activeIsolationGroup()))) invalidScope = true;
     if (invalidScope) {
@@ -44348,7 +44438,7 @@
         handleType: dragging.handleType
       };
       const prior = Array.isArray(dragging.selectionBefore) ? dragging.selectionBefore : [];
-      if (!dragging.body && dragging.selectionModifier && dragging.currentHandleSelected && prior.length > 1) {
+      if (!dragging.body && dragging.selectionModifier && dragging.currentHandleSelected) {
         pathNodeEdit.selectedHandles = prior.filter((handle) => !samePathHandle(handle, activeHandle));
         pathNodeEdit.selected = pathNodeEdit.selectedHandles.at(-1) || null;
       } else if (!dragging.body && !dragging.selectionModifier && dragging.currentHandleSelected && prior.length > 1) {
@@ -67682,7 +67772,7 @@
   }
 
   function selectableIsolationChildren(group = activeIsolationGroup()) {
-    return groupChildren(group).filter((child) => child && child.visible !== false && !child.locked && !child.pdfPageFrame);
+    return groupChildren(group).filter((child) => child && !child.pdfPageFrame && !layerTreeSelectionUnavailableReason(child));
   }
 
   function isolatedSelectedObjects() {
@@ -67694,8 +67784,7 @@
     const valid = uniqueObjects(stored).filter((object) => (
       object
       && objectIsWithinGroup(object, activeGroup)
-      && object.visible !== false
-      && !object.locked
+      && !layerTreeSelectionUnavailableReason(object)
     ));
     if (valid.length !== stored.length) {
       groupIsolation.selectedObjects = valid;
@@ -67734,7 +67823,7 @@
     const activeGroup = path.at(-1);
     const selected = (Array.isArray(saved?.selectedIds) ? saved.selectedIds : [])
       .map((id) => findNestedObjectByFigureId(id))
-      .filter((object) => object && objectIsWithinGroup(object, activeGroup) && object.visible !== false && !object.locked);
+      .filter((object) => object && objectIsWithinGroup(object, activeGroup) && !layerTreeSelectionUnavailableReason(object));
     selectIsolatedObjects(selected.length ? selected : selectableIsolationChildren(activeGroup).slice(0, 1), {
       sync: false,
       toast: false,
@@ -67771,7 +67860,7 @@
     const activeGroup = activeIsolationGroup();
     if (!activeGroup) return false;
     const selected = uniqueObjects(objects)
-      .filter((object) => object && objectIsWithinGroup(object, activeGroup) && object.visible !== false && !object.locked);
+      .filter((object) => object && objectIsWithinGroup(object, activeGroup) && !layerTreeSelectionUnavailableReason(object));
     selected.forEach((object, index) => ensureIsolationObjectIdentity(object, index));
     groupIsolation.selectedObjects = selected;
     groupIsolation.selected = selected.at(-1) || null;
@@ -67782,6 +67871,7 @@
       canvas.discardActiveObject();
       if (groupIsolation.selected) canvas.setActiveObject(groupIsolation.selected);
     }
+    selected.forEach(object => object.setCoords?.());
     requestSelectionOverlayRender();
     if (options.sync !== false) {
       syncSelectionStatusOnly();
@@ -67801,10 +67891,10 @@
 
   function toggleIsolatedObjectSelection(object, options = {}) {
     const activeGroup = activeIsolationGroup();
-    if (!activeGroup || !object || !objectIsWithinGroup(object, activeGroup) || object.visible === false || object.locked) return false;
+    if (!activeGroup || !object || !objectIsWithinGroup(object, activeGroup) || layerTreeSelectionUnavailableReason(object)) return false;
     const selected = isolatedSelectedObjects();
     const next = selected.includes(object)
-      ? (selected.length > 1 ? selected.filter((item) => item !== object) : selected)
+      ? selected.filter((item) => item !== object)
       : [...selected, object];
     return selectIsolatedObjects(next, options);
   }
@@ -68008,6 +68098,24 @@
   function reconcileGroupIsolationSelection() {
     if (!isGroupIsolationActive() || groupIsolation.guardingSelection) return false;
     const selected = isolatedSelectedObjects();
+    const unavailableActive = canvas.getActiveObjects().some(object => layerTreeSelectionUnavailableReason(object));
+    const unavailableEdit = [pathNodeEdit.object, ...(pathNodeEdit.objects || [])].some(object => (
+      object && objectIsWithinGroup(object, isolationRootGroup()) && layerTreeSelectionUnavailableReason(object)
+    ));
+    if (unavailableActive || unavailableEdit) {
+      // Layers visibility/lock commands already run full UI reconciliation.
+      // Retire unavailable native/point targets using the same ancestor policy
+      // as Layers, retaining eligible siblings and the current isolation path.
+      groupIsolation.guardingSelection = true;
+      try {
+        if (unavailableEdit) stopPathNodeEdit({ sync: false });
+        selectIsolatedObjects(selected, { sync: false, toast: false, revealInLayers: false });
+      } finally {
+        groupIsolation.guardingSelection = false;
+      }
+      requestSelectionOverlayRender();
+      return true;
+    }
     if (!selected.length) {
       groupIsolation.selected = null;
       groupIsolation.selectedObjects = [];
@@ -78034,6 +78142,9 @@
     const roots = incrementalHistoryRoots(options.incrementalObjects);
     const previous = undoStack.at(-1);
     if (!previous || !roots.length) return null;
+    // Canvas serialization realizes temporary selection transforms; a child's
+    // own toObject() would store selection-local positions as document poses.
+    if (roots.some(root => isActiveSelectionObject(root.group))) return null;
     const documentId = currentTransformDocumentId();
     let base = null;
     if (
@@ -103267,6 +103378,10 @@
       return;
     }
     if (event.key === "Escape") {
+      if (cancelOrdinaryCanvasDrag(event)) {
+        event.preventDefault();
+        return;
+      }
       if (drawInteraction) {
         event.preventDefault();
         cancelDrawToolInteraction();
