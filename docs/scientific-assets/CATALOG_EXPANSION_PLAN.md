@@ -2,7 +2,23 @@
 
 This plan defines the next-stage expansion path for the Superbench Figure Tool Scientific Assets Library. It keeps the work intentionally controlled: original vector drafts, an explicit soft-line primary family with manuscript-line companions where they add real value, recoloring-safe SVG structure, validator-first metadata, and no use of BioRender or other proprietary illustration-library artwork.
 
-## Current library — 13 October 2026
+## Source expansion — 3 November 2026
+
+The current source candidate has 526 original drawings across 398 distinct
+concepts in 13 packs, with 20 scientific templates and three retained layout
+starters. The November batch adds 40 drawings: 24 drawings cover 12 additional
+concepts, while 16 provide alternative forms for eight existing concepts.
+Those forms share the existing search concept and do not inflate coverage.
+
+New drawings support Styles 1–4. Forty original Style 4 companions extend the
+existing 486 supplied mappings; the supplied artwork and records remain
+unchanged. The new art and templates are
+under scientific, visual and native editing review; source inclusion does not
+change the delivered beta.22 or select a new desktop/web release. See the
+[active lane note](../architecture/ASSETS_TEMPLATES_LANE_2026_11_03.md) for the
+finite batch, review evidence and remaining checks. The roadmap remains the same.
+
+## Historical library snapshot — 13 October 2026
 
 The shared Figure and Present source library contains 346 concepts and 406 authored
 SVG drawings across eight packs. The four latest families contain 84 editable drawings:

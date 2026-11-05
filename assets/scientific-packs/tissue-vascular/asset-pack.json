@@ -1,0 +1,1795 @@
+{
+  "schema_version": "0.3.0",
+  "id": "tissue-vascular",
+  "name": "Tissue & Vascular Organization",
+  "description": "Editable epithelial, vascular, lymphatic, matrix, muscle and adipose arrangements with useful views and compositions.",
+  "style_family": "figure-studio-soft-line-v1",
+  "style_families": [
+    "figure-studio-soft-line-v1"
+  ],
+  "contribution_license_policy": "original-vectors.cc0.repository-policy.2026-11-03",
+  "qa_status": "scientific_visual_native_review_pending_2026_11_03",
+  "available_art_styles": [
+    "soft-color",
+    "cut-paper",
+    "technical-ink",
+    "style-4"
+  ],
+  "style_4_supplement": "original-style4-companions.2026-11-03",
+  "asset_count": 20,
+  "concept_count": 10,
+  "category_counts": {
+    "model-system": {
+      "concept_count": 9,
+      "style_count": 18
+    },
+    "cell": {
+      "concept_count": 1,
+      "style_count": 2
+    }
+  },
+  "release_audit": {
+    "file": "rights-release-record.json",
+    "audit_id": "tissue-vascular.repository-policy-cc0-quality-pending.2026-11-03",
+    "audit_date": "2026-11-03",
+    "status": "rights_cleared_quality_pending",
+    "release_effective_date": null,
+    "rights_grant_effective_date": "2026-11-03",
+    "product_release_status": "pending_quality_and_product_review",
+    "concept_count": 10,
+    "asset_count": 20,
+    "public_distribution_authorized": true,
+    "selected_public_license": "CC0-1.0",
+    "license_notice": "LICENSE-ASSETS-CC0-1.0.md"
+  },
+  "source_records": [
+    {
+      "id": "source.tissue-vascular.original.2026-11-03",
+      "kind": "clean_room_generation_record",
+      "pack_id": "tissue-vascular",
+      "scope": "all_assets_in_pack",
+      "created_on": "2026-11-03",
+      "generated_by": "Figure Tool original SVG authoring",
+      "third_party_material": "none_declared",
+      "statement": "Original editable vector coordinates authored afresh for Figure Tool. Primary literature informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "scientific_references": [
+        {
+          "id": "akhtar2013",
+          "citation": "Akhtar N, Streuli CH. An integrin–ILK–microtubule network orients cell polarity and lumen formation in glandular epithelium. Nat Cell Biol. 2013;15:17–27.",
+          "doi": "10.1038/ncb2646",
+          "url": "https://doi.org/10.1038/ncb2646",
+          "figure": "Figs. 1, 8",
+          "design_decision": "Informed generic apical/basal polarity and hollow epithelial lumen; no organ identity or pathway is encoded."
+        },
+        {
+          "id": "karkkainen2004",
+          "citation": "Karkkainen MJ et al. Vascular endothelial growth factor C is required for sprouting of the first lymphatic vessels from embryonic veins. Nat Immunol. 2004;5:74–80.",
+          "doi": "10.1038/ni1013",
+          "url": "https://doi.org/10.1038/ni1013",
+          "figure": "Fig. 1",
+          "design_decision": "Informed endothelial sprout and lymphatic channel motifs, without molecular cues or developmental-origin claims."
+        },
+        {
+          "id": "divoux2019",
+          "citation": "Divoux A et al. Lobular architecture of human adipose tissue defines the niche and fate of progenitor cells. Nat Commun. 2019;10:2546.",
+          "doi": "10.1038/s41467-019-09992-3",
+          "url": "https://doi.org/10.1038/s41467-019-09992-3",
+          "figure": "Figs. 1–2",
+          "design_decision": "Informed grouped adipocyte motif and fibrous boundary; not quantitative histology."
+        },
+        {
+          "id": "fang2012",
+          "citation": "Fang M, Banaszak Holl MM. Type I Collagen D-Spacing in Fibril Bundles of Dermis, Tendon, and Bone: Bridging Between Nano- and Micro-Level Tissue Hierarchy. ACS Nano. 2012;6:9503–9514.",
+          "doi": "10.1021/nn302483x",
+          "url": "https://doi.org/10.1021/nn302483x",
+          "figure": "Fig. 1",
+          "design_decision": "Informed aligned-bundle versus multidirectional-mesh distinction without tissue-specific material claims."
+        },
+        {
+          "id": "keller2021",
+          "citation": "Bindellini D, Voortman LM, Olie CS, van Putten M, van den Akker E, Raz V. Discovering fiber type architecture over the entire muscle using data-driven analysis. Cytometry A. 2021;99:1240–1249.",
+          "doi": "10.1002/cyto.a.24465",
+          "url": "https://doi.org/10.1002/cyto.a.24465",
+          "figure": "Fig. 1",
+          "design_decision": "Informed longitudinal and transverse muscle-fiber views; no fiber-type coding."
+        }
+      ]
+    }
+  ],
+  "rights_records": [
+    {
+      "id": "rights.tissue-vascular.repository-policy-cc0.2026-11-03",
+      "kind": "repository_policy_license",
+      "pack_id": "tissue-vascular",
+      "scope": "all_assets_in_pack",
+      "status": "rights_cleared",
+      "public_distribution_authorized": true,
+      "selected_public_license": "CC0-1.0",
+      "rights_basis": "repository_policy_original_output",
+      "third_party_material": "none_declared",
+      "effective_date": "2026-11-03",
+      "license_policy": "original-vectors.cc0.repository-policy.2026-11-03",
+      "statement": "Original editable vector coordinates authored afresh for Figure Tool. Primary literature informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "qualification": "This finite original contribution uses the adopted repository CC0 artwork policy. No new personal owner attestation or historical grant is asserted. Scientific, visual and native editor qualification and product inclusion remain separate. CC0 carries its own limitations and warranty disclaimer."
+    }
+  ],
+  "style_tokens": {
+    "viewBox": "0 0 128 128",
+    "primary_outline": "#26323D",
+    "primary_outline_width": 3.5,
+    "detail_outline_width": 2.75,
+    "line_cap": "round",
+    "line_join": "round"
+  },
+  "source_policy": {
+    "allowed_sources": [
+      "Original vector geometry; scientific concepts from primary research"
+    ],
+    "disallowed_sources": [
+      "Tracing or reuse of published or proprietary artwork"
+    ]
+  },
+  "license_definitions": {
+    "CC0-1.0": {
+      "label": "CC0 1.0 Universal",
+      "public_distribution_authorized": true,
+      "selected_public_license": "CC0-1.0",
+      "release_status": "rights_cleared_quality_pending",
+      "reuse": "Original artwork under the repository policy. Product qualification is separate."
+    }
+  },
+  "assets": [
+    {
+      "id": "tissue.epithelial_sheet.lateral",
+      "concept_id": "exp.model_system.epithelial_monolayer",
+      "name": "Epithelial Sheet",
+      "scientific_name": "Epithelial Sheet",
+      "category": "model-system",
+      "subcategory": "epithelium",
+      "synonyms": [
+        "epithelial layer",
+        "monolayer",
+        "apical-basal polarity"
+      ],
+      "tags": [
+        "epithelial sheet",
+        "epithelial layer",
+        "monolayer",
+        "apical-basal polarity",
+        "Lateral",
+        "Tissue & Vascular Organization",
+        "schematic"
+      ],
+      "description": "Side view of polarized epithelium over basal support.",
+      "file": "svg/epithelial_sheet_lateral.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector coordinates authored afresh for Figure Tool. Primary literature informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "source_record_id": "source.tissue-vascular.original.2026-11-03",
+      "rights_record_id": "rights.tissue-vascular.repository-policy-cc0.2026-11-03",
+      "style_family": "figure-studio-soft-line-v1",
+      "variant_axis": "form",
+      "style_variant": "standard",
+      "form_id": "lateral",
+      "form_label": "Lateral",
+      "available_art_styles": [
+        "soft-color",
+        "cut-paper",
+        "technical-ink",
+        "style-4"
+      ],
+      "style_4_supplement": "original-style4-companions.2026-11-03",
+      "review_status": "scientific_visual_native_review_pending_2026_11_03",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 3,
+      "editable_color_regions": [
+        {
+          "id": "primary_population",
+          "label": "Epithelial cells",
+          "default": "#B8E2DA"
+        },
+        {
+          "id": "model_structure",
+          "label": "Cell junctions",
+          "default": "#D98C68"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#26323D"
+        }
+      ],
+      "reviewer_notes": "Original forms await independent full-resolution and 64 px review and native editing qualification. All four Library styles cover the same biological forms and semantic parts. Style 4 companions are original drawings with separately recorded source and review status.",
+      "scientific_references": [
+        {
+          "id": "akhtar2013",
+          "citation": "Akhtar N, Streuli CH. An integrin–ILK–microtubule network orients cell polarity and lumen formation in glandular epithelium. Nat Cell Biol. 2013;15:17–27.",
+          "doi": "10.1038/ncb2646",
+          "url": "https://doi.org/10.1038/ncb2646",
+          "figure": "Figs. 1, 8",
+          "design_decision": "Informed generic apical/basal polarity and hollow epithelial lumen; no organ identity or pathway is encoded."
+        }
+      ],
+      "scientific_limitations": "Generic organization; cell subtype and tissue identity are unspecified.",
+      "concept_extension": {
+        "source_pack_id": "core-experimental-biology",
+        "source_concept_id": "exp.model_system.epithelial_monolayer"
+      }
+    },
+    {
+      "id": "tissue.epithelial_sheet.apical",
+      "concept_id": "exp.model_system.epithelial_monolayer",
+      "name": "Epithelial Sheet",
+      "scientific_name": "Epithelial Sheet",
+      "category": "model-system",
+      "subcategory": "epithelium",
+      "synonyms": [
+        "epithelial layer",
+        "monolayer",
+        "apical-basal polarity"
+      ],
+      "tags": [
+        "epithelial sheet",
+        "epithelial layer",
+        "monolayer",
+        "apical-basal polarity",
+        "Apical",
+        "Tissue & Vascular Organization",
+        "schematic"
+      ],
+      "description": "Apical view of a packed epithelial cell tiling.",
+      "file": "svg/epithelial_sheet_apical.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector coordinates authored afresh for Figure Tool. Primary literature informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "source_record_id": "source.tissue-vascular.original.2026-11-03",
+      "rights_record_id": "rights.tissue-vascular.repository-policy-cc0.2026-11-03",
+      "style_family": "figure-studio-soft-line-v1",
+      "variant_axis": "form",
+      "style_variant": "standard",
+      "form_id": "apical",
+      "form_label": "Apical",
+      "available_art_styles": [
+        "soft-color",
+        "cut-paper",
+        "technical-ink",
+        "style-4"
+      ],
+      "style_4_supplement": "original-style4-companions.2026-11-03",
+      "review_status": "scientific_visual_native_review_pending_2026_11_03",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 3,
+      "editable_color_regions": [
+        {
+          "id": "primary_population",
+          "label": "Epithelial cells",
+          "default": "#B8E2DA"
+        },
+        {
+          "id": "model_structure",
+          "label": "Cell junctions",
+          "default": "#D98C68"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#26323D"
+        }
+      ],
+      "reviewer_notes": "Original forms await independent full-resolution and 64 px review and native editing qualification. All four Library styles cover the same biological forms and semantic parts. Style 4 companions are original drawings with separately recorded source and review status.",
+      "scientific_references": [
+        {
+          "id": "akhtar2013",
+          "citation": "Akhtar N, Streuli CH. An integrin–ILK–microtubule network orients cell polarity and lumen formation in glandular epithelium. Nat Cell Biol. 2013;15:17–27.",
+          "doi": "10.1038/ncb2646",
+          "url": "https://doi.org/10.1038/ncb2646",
+          "figure": "Figs. 1, 8",
+          "design_decision": "Informed generic apical/basal polarity and hollow epithelial lumen; no organ identity or pathway is encoded."
+        }
+      ],
+      "scientific_limitations": "Generic organization; cell subtype and tissue identity are unspecified.",
+      "concept_extension": {
+        "source_pack_id": "core-experimental-biology",
+        "source_concept_id": "exp.model_system.epithelial_monolayer"
+      }
+    },
+    {
+      "id": "tissue.epithelial_acinus.closed_lumen",
+      "concept_id": "tissue.epithelial_acinus",
+      "name": "Epithelial Acinus",
+      "scientific_name": "Epithelial Acinus",
+      "category": "model-system",
+      "subcategory": "epithelium",
+      "synonyms": [
+        "acinus",
+        "acinar lumen",
+        "glandular epithelium"
+      ],
+      "tags": [
+        "epithelial acinus",
+        "acinus",
+        "acinar lumen",
+        "glandular epithelium",
+        "External view",
+        "Tissue & Vascular Organization",
+        "schematic"
+      ],
+      "description": "External acinar rosette with a small apical opening; the internal lumen is not fully exposed.",
+      "file": "svg/epithelial_acinus_closed_lumen.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector coordinates authored afresh for Figure Tool. Primary literature informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "source_record_id": "source.tissue-vascular.original.2026-11-03",
+      "rights_record_id": "rights.tissue-vascular.repository-policy-cc0.2026-11-03",
+      "style_family": "figure-studio-soft-line-v1",
+      "variant_axis": "form",
+      "style_variant": "standard",
+      "form_id": "closed_lumen",
+      "form_label": "External view",
+      "available_art_styles": [
+        "soft-color",
+        "cut-paper",
+        "technical-ink",
+        "style-4"
+      ],
+      "style_4_supplement": "original-style4-companions.2026-11-03",
+      "review_status": "scientific_visual_native_review_pending_2026_11_03",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 4,
+      "editable_color_regions": [
+        {
+          "id": "epithelium",
+          "label": "Epithelial cells",
+          "default": "#B8E2DA"
+        },
+        {
+          "id": "lumen",
+          "label": "Lumen",
+          "default": "#FFF7E8"
+        },
+        {
+          "id": "matrix",
+          "label": "Basal boundary",
+          "default": "#E8C98A"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#26323D"
+        }
+      ],
+      "reviewer_notes": "Original forms await independent full-resolution and 64 px review and native editing qualification. All four Library styles cover the same biological forms and semantic parts. Style 4 companions are original drawings with separately recorded source and review status.",
+      "scientific_references": [
+        {
+          "id": "akhtar2013",
+          "citation": "Akhtar N, Streuli CH. An integrin–ILK–microtubule network orients cell polarity and lumen formation in glandular epithelium. Nat Cell Biol. 2013;15:17–27.",
+          "doi": "10.1038/ncb2646",
+          "url": "https://doi.org/10.1038/ncb2646",
+          "figure": "Figs. 1, 8",
+          "design_decision": "Informed generic apical/basal polarity and hollow epithelial lumen; no organ identity or pathway is encoded."
+        }
+      ],
+      "scientific_limitations": "No organ, gland, developmental state, or lumen function is specified."
+    },
+    {
+      "id": "tissue.epithelial_acinus.section",
+      "concept_id": "tissue.epithelial_acinus",
+      "name": "Epithelial Acinus",
+      "scientific_name": "Epithelial Acinus",
+      "category": "model-system",
+      "subcategory": "epithelium",
+      "synonyms": [
+        "acinus",
+        "acinar lumen",
+        "glandular epithelium"
+      ],
+      "tags": [
+        "epithelial acinus",
+        "acinus",
+        "acinar lumen",
+        "glandular epithelium",
+        "Section",
+        "Tissue & Vascular Organization",
+        "schematic"
+      ],
+      "description": "Section through a generic acinus with visible lumen and basal boundary.",
+      "file": "svg/epithelial_acinus_section.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector coordinates authored afresh for Figure Tool. Primary literature informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "source_record_id": "source.tissue-vascular.original.2026-11-03",
+      "rights_record_id": "rights.tissue-vascular.repository-policy-cc0.2026-11-03",
+      "style_family": "figure-studio-soft-line-v1",
+      "variant_axis": "form",
+      "style_variant": "standard",
+      "form_id": "section",
+      "form_label": "Section",
+      "available_art_styles": [
+        "soft-color",
+        "cut-paper",
+        "technical-ink",
+        "style-4"
+      ],
+      "style_4_supplement": "original-style4-companions.2026-11-03",
+      "review_status": "scientific_visual_native_review_pending_2026_11_03",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 4,
+      "editable_color_regions": [
+        {
+          "id": "epithelium",
+          "label": "Epithelial cells",
+          "default": "#B8E2DA"
+        },
+        {
+          "id": "lumen",
+          "label": "Lumen",
+          "default": "#FFF7E8"
+        },
+        {
+          "id": "matrix",
+          "label": "Basal boundary",
+          "default": "#E8C98A"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#26323D"
+        }
+      ],
+      "reviewer_notes": "Original forms await independent full-resolution and 64 px review and native editing qualification. All four Library styles cover the same biological forms and semantic parts. Style 4 companions are original drawings with separately recorded source and review status.",
+      "scientific_references": [
+        {
+          "id": "akhtar2013",
+          "citation": "Akhtar N, Streuli CH. An integrin–ILK–microtubule network orients cell polarity and lumen formation in glandular epithelium. Nat Cell Biol. 2013;15:17–27.",
+          "doi": "10.1038/ncb2646",
+          "url": "https://doi.org/10.1038/ncb2646",
+          "figure": "Figs. 1, 8",
+          "design_decision": "Informed generic apical/basal polarity and hollow epithelial lumen; no organ identity or pathway is encoded."
+        }
+      ],
+      "scientific_limitations": "No organ, gland, developmental state, or lumen function is specified."
+    },
+    {
+      "id": "tissue.capillary.longitudinal",
+      "concept_id": "tissue.capillary",
+      "name": "Capillary",
+      "scientific_name": "Capillary",
+      "category": "model-system",
+      "subcategory": "microvessel",
+      "synonyms": [
+        "microvessel",
+        "capillary lumen",
+        "endothelium"
+      ],
+      "tags": [
+        "capillary",
+        "microvessel",
+        "capillary lumen",
+        "endothelium",
+        "Longitudinal",
+        "Tissue & Vascular Organization",
+        "schematic"
+      ],
+      "description": "Narrow endothelial tube along its axis.",
+      "file": "svg/capillary_longitudinal.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector coordinates authored afresh for Figure Tool. Primary literature informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "source_record_id": "source.tissue-vascular.original.2026-11-03",
+      "rights_record_id": "rights.tissue-vascular.repository-policy-cc0.2026-11-03",
+      "style_family": "figure-studio-soft-line-v1",
+      "variant_axis": "form",
+      "style_variant": "standard",
+      "form_id": "longitudinal",
+      "form_label": "Longitudinal",
+      "available_art_styles": [
+        "soft-color",
+        "cut-paper",
+        "technical-ink",
+        "style-4"
+      ],
+      "style_4_supplement": "original-style4-companions.2026-11-03",
+      "review_status": "scientific_visual_native_review_pending_2026_11_03",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 4,
+      "editable_color_regions": [
+        {
+          "id": "endothelium",
+          "label": "Endothelial wall",
+          "default": "#B8E2DA"
+        },
+        {
+          "id": "lumen",
+          "label": "Lumen",
+          "default": "#FFF7E8"
+        },
+        {
+          "id": "matrix",
+          "label": "Outer support",
+          "default": "#E8C98A"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#26323D"
+        }
+      ],
+      "reviewer_notes": "Original forms await independent full-resolution and 64 px review and native editing qualification. All four Library styles cover the same biological forms and semantic parts. Style 4 companions are original drawings with separately recorded source and review status.",
+      "scientific_references": [
+        {
+          "id": "karkkainen2004",
+          "citation": "Karkkainen MJ et al. Vascular endothelial growth factor C is required for sprouting of the first lymphatic vessels from embryonic veins. Nat Immunol. 2004;5:74–80.",
+          "doi": "10.1038/ni1013",
+          "url": "https://doi.org/10.1038/ni1013",
+          "figure": "Fig. 1",
+          "design_decision": "Informed endothelial sprout and lymphatic channel motifs, without molecular cues or developmental-origin claims."
+        }
+      ],
+      "scientific_limitations": "No fenestration, flow, permeability, or tissue bed is specified."
+    },
+    {
+      "id": "tissue.capillary.transverse",
+      "concept_id": "tissue.capillary",
+      "name": "Capillary",
+      "scientific_name": "Capillary",
+      "category": "model-system",
+      "subcategory": "microvessel",
+      "synonyms": [
+        "microvessel",
+        "capillary lumen",
+        "endothelium"
+      ],
+      "tags": [
+        "capillary",
+        "microvessel",
+        "capillary lumen",
+        "endothelium",
+        "Transverse",
+        "Tissue & Vascular Organization",
+        "schematic"
+      ],
+      "description": "Transverse endothelial ring around a central lumen.",
+      "file": "svg/capillary_transverse.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector coordinates authored afresh for Figure Tool. Primary literature informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "source_record_id": "source.tissue-vascular.original.2026-11-03",
+      "rights_record_id": "rights.tissue-vascular.repository-policy-cc0.2026-11-03",
+      "style_family": "figure-studio-soft-line-v1",
+      "variant_axis": "form",
+      "style_variant": "standard",
+      "form_id": "transverse",
+      "form_label": "Transverse",
+      "available_art_styles": [
+        "soft-color",
+        "cut-paper",
+        "technical-ink",
+        "style-4"
+      ],
+      "style_4_supplement": "original-style4-companions.2026-11-03",
+      "review_status": "scientific_visual_native_review_pending_2026_11_03",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 4,
+      "editable_color_regions": [
+        {
+          "id": "endothelium",
+          "label": "Endothelial wall",
+          "default": "#B8E2DA"
+        },
+        {
+          "id": "lumen",
+          "label": "Lumen",
+          "default": "#FFF7E8"
+        },
+        {
+          "id": "matrix",
+          "label": "Outer support",
+          "default": "#E8C98A"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#26323D"
+        }
+      ],
+      "reviewer_notes": "Original forms await independent full-resolution and 64 px review and native editing qualification. All four Library styles cover the same biological forms and semantic parts. Style 4 companions are original drawings with separately recorded source and review status.",
+      "scientific_references": [
+        {
+          "id": "karkkainen2004",
+          "citation": "Karkkainen MJ et al. Vascular endothelial growth factor C is required for sprouting of the first lymphatic vessels from embryonic veins. Nat Immunol. 2004;5:74–80.",
+          "doi": "10.1038/ni1013",
+          "url": "https://doi.org/10.1038/ni1013",
+          "figure": "Fig. 1",
+          "design_decision": "Informed endothelial sprout and lymphatic channel motifs, without molecular cues or developmental-origin claims."
+        }
+      ],
+      "scientific_limitations": "No fenestration, flow, permeability, or tissue bed is specified."
+    },
+    {
+      "id": "tissue.vessel_wall.thicker_wall",
+      "concept_id": "tissue.vessel_wall",
+      "name": "Blood Vessel Wall",
+      "scientific_name": "Blood Vessel Wall",
+      "category": "model-system",
+      "subcategory": "vessel",
+      "synonyms": [
+        "artery wall",
+        "vein wall",
+        "tunica",
+        "vascular layers"
+      ],
+      "tags": [
+        "vessel wall",
+        "artery wall",
+        "vein wall",
+        "tunica",
+        "vascular layers",
+        "Thicker Wall",
+        "Tissue & Vascular Organization",
+        "schematic"
+      ],
+      "description": "Concentric layers with relatively prominent smooth muscle.",
+      "file": "svg/vessel_wall_thicker_wall.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector coordinates authored afresh for Figure Tool. Primary literature informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "source_record_id": "source.tissue-vascular.original.2026-11-03",
+      "rights_record_id": "rights.tissue-vascular.repository-policy-cc0.2026-11-03",
+      "style_family": "figure-studio-soft-line-v1",
+      "variant_axis": "form",
+      "style_variant": "standard",
+      "form_id": "thicker_wall",
+      "form_label": "Thicker Wall",
+      "available_art_styles": [
+        "soft-color",
+        "cut-paper",
+        "technical-ink",
+        "style-4"
+      ],
+      "style_4_supplement": "original-style4-companions.2026-11-03",
+      "review_status": "scientific_visual_native_review_pending_2026_11_03",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 5,
+      "editable_color_regions": [
+        {
+          "id": "endothelium",
+          "label": "Endothelial layer",
+          "default": "#B8E2DA"
+        },
+        {
+          "id": "smooth_muscle",
+          "label": "Smooth-muscle layer",
+          "default": "#E7A98B"
+        },
+        {
+          "id": "matrix",
+          "label": "Outer connective layer",
+          "default": "#E8C98A"
+        },
+        {
+          "id": "lumen",
+          "label": "Lumen",
+          "default": "#FFF7E8"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#26323D"
+        }
+      ],
+      "reviewer_notes": "Original forms await independent full-resolution and 64 px review and native editing qualification. All four Library styles cover the same biological forms and semantic parts. Style 4 companions are original drawings with separately recorded source and review status.",
+      "scientific_references": [
+        {
+          "id": "karkkainen2004",
+          "citation": "Karkkainen MJ et al. Vascular endothelial growth factor C is required for sprouting of the first lymphatic vessels from embryonic veins. Nat Immunol. 2004;5:74–80.",
+          "doi": "10.1038/ni1013",
+          "url": "https://doi.org/10.1038/ni1013",
+          "figure": "Fig. 1",
+          "design_decision": "Informed endothelial sprout and lymphatic channel motifs, without molecular cues or developmental-origin claims."
+        }
+      ],
+      "scientific_limitations": "Generic relative wall thickness; does not identify artery or vein."
+    },
+    {
+      "id": "tissue.vessel_wall.thinner_wall",
+      "concept_id": "tissue.vessel_wall",
+      "name": "Blood Vessel Wall",
+      "scientific_name": "Blood Vessel Wall",
+      "category": "model-system",
+      "subcategory": "vessel",
+      "synonyms": [
+        "artery wall",
+        "vein wall",
+        "tunica",
+        "vascular layers"
+      ],
+      "tags": [
+        "vessel wall",
+        "artery wall",
+        "vein wall",
+        "tunica",
+        "vascular layers",
+        "Thinner Wall",
+        "Tissue & Vascular Organization",
+        "schematic"
+      ],
+      "description": "Concentric layers with relatively thinner smooth muscle.",
+      "file": "svg/vessel_wall_thinner_wall.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector coordinates authored afresh for Figure Tool. Primary literature informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "source_record_id": "source.tissue-vascular.original.2026-11-03",
+      "rights_record_id": "rights.tissue-vascular.repository-policy-cc0.2026-11-03",
+      "style_family": "figure-studio-soft-line-v1",
+      "variant_axis": "form",
+      "style_variant": "standard",
+      "form_id": "thinner_wall",
+      "form_label": "Thinner Wall",
+      "available_art_styles": [
+        "soft-color",
+        "cut-paper",
+        "technical-ink",
+        "style-4"
+      ],
+      "style_4_supplement": "original-style4-companions.2026-11-03",
+      "review_status": "scientific_visual_native_review_pending_2026_11_03",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 5,
+      "editable_color_regions": [
+        {
+          "id": "endothelium",
+          "label": "Endothelial layer",
+          "default": "#B8E2DA"
+        },
+        {
+          "id": "smooth_muscle",
+          "label": "Smooth-muscle layer",
+          "default": "#E7A98B"
+        },
+        {
+          "id": "matrix",
+          "label": "Outer connective layer",
+          "default": "#E8C98A"
+        },
+        {
+          "id": "lumen",
+          "label": "Lumen",
+          "default": "#FFF7E8"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#26323D"
+        }
+      ],
+      "reviewer_notes": "Original forms await independent full-resolution and 64 px review and native editing qualification. All four Library styles cover the same biological forms and semantic parts. Style 4 companions are original drawings with separately recorded source and review status.",
+      "scientific_references": [
+        {
+          "id": "karkkainen2004",
+          "citation": "Karkkainen MJ et al. Vascular endothelial growth factor C is required for sprouting of the first lymphatic vessels from embryonic veins. Nat Immunol. 2004;5:74–80.",
+          "doi": "10.1038/ni1013",
+          "url": "https://doi.org/10.1038/ni1013",
+          "figure": "Fig. 1",
+          "design_decision": "Informed endothelial sprout and lymphatic channel motifs, without molecular cues or developmental-origin claims."
+        }
+      ],
+      "scientific_limitations": "Generic relative wall thickness; does not identify artery or vein."
+    },
+    {
+      "id": "tissue.lymphatic_capillary.blind_end",
+      "concept_id": "immuno.model.lymphatic_vessel_segment",
+      "name": "Lymphatic Capillary",
+      "scientific_name": "Lymphatic Capillary",
+      "category": "model-system",
+      "subcategory": "lymphatic",
+      "synonyms": [
+        "initial lymphatic",
+        "lymphatic vessel",
+        "lymph uptake"
+      ],
+      "tags": [
+        "lymphatic capillary",
+        "initial lymphatic",
+        "lymphatic vessel",
+        "lymph uptake",
+        "Blind End",
+        "Tissue & Vascular Organization",
+        "schematic"
+      ],
+      "description": "Blind-ended channel with flap-like boundary cues.",
+      "file": "svg/lymphatic_capillary_blind_end.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector coordinates authored afresh for Figure Tool. Primary literature informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "source_record_id": "source.tissue-vascular.original.2026-11-03",
+      "rights_record_id": "rights.tissue-vascular.repository-policy-cc0.2026-11-03",
+      "style_family": "figure-studio-soft-line-v1",
+      "variant_axis": "form",
+      "style_variant": "standard",
+      "form_id": "blind_end",
+      "form_label": "Blind End",
+      "available_art_styles": [
+        "soft-color",
+        "cut-paper",
+        "technical-ink",
+        "style-4"
+      ],
+      "style_4_supplement": "original-style4-companions.2026-11-03",
+      "review_status": "scientific_visual_native_review_pending_2026_11_03",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 5,
+      "editable_color_regions": [
+        {
+          "id": "lymphatic_wall",
+          "label": "Lymphatic wall",
+          "default": "#B8E2DA"
+        },
+        {
+          "id": "lymph_cargo",
+          "label": "Tissue-fluid cue",
+          "default": "#8FC8E8"
+        },
+        {
+          "id": "matrix",
+          "label": "Surrounding tissue",
+          "default": "#E8C98A"
+        },
+        {
+          "id": "lymphatic_lumen",
+          "label": "Lumen",
+          "default": "#FFF7E8"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#26323D"
+        }
+      ],
+      "reviewer_notes": "Original forms await independent full-resolution and 64 px review and native editing qualification. All four Library styles cover the same biological forms and semantic parts. Style 4 companions are original drawings with separately recorded source and review status.",
+      "scientific_references": [
+        {
+          "id": "karkkainen2004",
+          "citation": "Karkkainen MJ et al. Vascular endothelial growth factor C is required for sprouting of the first lymphatic vessels from embryonic veins. Nat Immunol. 2004;5:74–80.",
+          "doi": "10.1038/ni1013",
+          "url": "https://doi.org/10.1038/ni1013",
+          "figure": "Fig. 1",
+          "design_decision": "Informed endothelial sprout and lymphatic channel motifs, without molecular cues or developmental-origin claims."
+        }
+      ],
+      "scientific_limitations": "No quantitative flux or specific junction state is implied.",
+      "concept_extension": {
+        "source_pack_id": "immunology-oncology",
+        "source_concept_id": "immuno.model.lymphatic_vessel_segment"
+      }
+    },
+    {
+      "id": "tissue.lymphatic_capillary.tissue_interface",
+      "concept_id": "immuno.model.lymphatic_vessel_segment",
+      "name": "Lymphatic Capillary",
+      "scientific_name": "Lymphatic Capillary",
+      "category": "model-system",
+      "subcategory": "lymphatic",
+      "synonyms": [
+        "initial lymphatic",
+        "lymphatic vessel",
+        "lymph uptake"
+      ],
+      "tags": [
+        "lymphatic capillary",
+        "initial lymphatic",
+        "lymphatic vessel",
+        "lymph uptake",
+        "Tissue Interface",
+        "Tissue & Vascular Organization",
+        "schematic"
+      ],
+      "description": "Lymphatic channel at a tissue interface with fluid cues.",
+      "file": "svg/lymphatic_capillary_tissue_interface.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector coordinates authored afresh for Figure Tool. Primary literature informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "source_record_id": "source.tissue-vascular.original.2026-11-03",
+      "rights_record_id": "rights.tissue-vascular.repository-policy-cc0.2026-11-03",
+      "style_family": "figure-studio-soft-line-v1",
+      "variant_axis": "form",
+      "style_variant": "standard",
+      "form_id": "tissue_interface",
+      "form_label": "Tissue Interface",
+      "available_art_styles": [
+        "soft-color",
+        "cut-paper",
+        "technical-ink",
+        "style-4"
+      ],
+      "style_4_supplement": "original-style4-companions.2026-11-03",
+      "review_status": "scientific_visual_native_review_pending_2026_11_03",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 5,
+      "editable_color_regions": [
+        {
+          "id": "lymphatic_wall",
+          "label": "Lymphatic wall",
+          "default": "#B8E2DA"
+        },
+        {
+          "id": "lymph_cargo",
+          "label": "Tissue-fluid cue",
+          "default": "#8FC8E8"
+        },
+        {
+          "id": "matrix",
+          "label": "Surrounding tissue",
+          "default": "#E8C98A"
+        },
+        {
+          "id": "lymphatic_lumen",
+          "label": "Lumen",
+          "default": "#FFF7E8"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#26323D"
+        }
+      ],
+      "reviewer_notes": "Original forms await independent full-resolution and 64 px review and native editing qualification. All four Library styles cover the same biological forms and semantic parts. Style 4 companions are original drawings with separately recorded source and review status.",
+      "scientific_references": [
+        {
+          "id": "karkkainen2004",
+          "citation": "Karkkainen MJ et al. Vascular endothelial growth factor C is required for sprouting of the first lymphatic vessels from embryonic veins. Nat Immunol. 2004;5:74–80.",
+          "doi": "10.1038/ni1013",
+          "url": "https://doi.org/10.1038/ni1013",
+          "figure": "Fig. 1",
+          "design_decision": "Informed endothelial sprout and lymphatic channel motifs, without molecular cues or developmental-origin claims."
+        }
+      ],
+      "scientific_limitations": "No quantitative flux or specific junction state is implied.",
+      "concept_extension": {
+        "source_pack_id": "immunology-oncology",
+        "source_concept_id": "immuno.model.lymphatic_vessel_segment"
+      }
+    },
+    {
+      "id": "tissue.angiogenic_sprout.single_tip",
+      "concept_id": "immuno.model.angiogenic_vessel_sprout",
+      "name": "Angiogenic Sprout",
+      "scientific_name": "Angiogenic Sprout",
+      "category": "model-system",
+      "subcategory": "angiogenesis",
+      "synonyms": [
+        "endothelial sprout",
+        "neovascular sprout",
+        "branching vessel"
+      ],
+      "tags": [
+        "angiogenic sprout",
+        "endothelial sprout",
+        "neovascular sprout",
+        "branching vessel",
+        "Single Tip",
+        "Tissue & Vascular Organization",
+        "schematic"
+      ],
+      "description": "Endothelial sprout with rounded leading tip.",
+      "file": "svg/angiogenic_sprout_single_tip.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector coordinates authored afresh for Figure Tool. Primary literature informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "source_record_id": "source.tissue-vascular.original.2026-11-03",
+      "rights_record_id": "rights.tissue-vascular.repository-policy-cc0.2026-11-03",
+      "style_family": "figure-studio-soft-line-v1",
+      "variant_axis": "form",
+      "style_variant": "standard",
+      "form_id": "single_tip",
+      "form_label": "Single Tip",
+      "available_art_styles": [
+        "soft-color",
+        "cut-paper",
+        "technical-ink",
+        "style-4"
+      ],
+      "style_4_supplement": "original-style4-companions.2026-11-03",
+      "review_status": "scientific_visual_native_review_pending_2026_11_03",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 4,
+      "editable_color_regions": [
+        {
+          "id": "vessel_wall",
+          "label": "Endothelial sprout",
+          "default": "#B8E2DA"
+        },
+        {
+          "id": "matrix",
+          "label": "Surrounding matrix",
+          "default": "#E8C98A"
+        },
+        {
+          "id": "lumen",
+          "label": "Vessel lumen",
+          "default": "#FFF7E8"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#26323D"
+        }
+      ],
+      "reviewer_notes": "Original forms await independent full-resolution and 64 px review and native editing qualification. All four Library styles cover the same biological forms and semantic parts. Style 4 companions are original drawings with separately recorded source and review status.",
+      "scientific_references": [
+        {
+          "id": "karkkainen2004",
+          "citation": "Karkkainen MJ et al. Vascular endothelial growth factor C is required for sprouting of the first lymphatic vessels from embryonic veins. Nat Immunol. 2004;5:74–80.",
+          "doi": "10.1038/ni1013",
+          "url": "https://doi.org/10.1038/ni1013",
+          "figure": "Fig. 1",
+          "design_decision": "Informed endothelial sprout and lymphatic channel motifs, without molecular cues or developmental-origin claims."
+        }
+      ],
+      "scientific_limitations": "No tip/stalk marker, growth-factor gradient, or outcome is asserted.",
+      "concept_extension": {
+        "source_pack_id": "immunology-oncology",
+        "source_concept_id": "immuno.model.angiogenic_vessel_sprout"
+      }
+    },
+    {
+      "id": "tissue.angiogenic_sprout.branching",
+      "concept_id": "immuno.model.angiogenic_vessel_sprout",
+      "name": "Angiogenic Sprout",
+      "scientific_name": "Angiogenic Sprout",
+      "category": "model-system",
+      "subcategory": "angiogenesis",
+      "synonyms": [
+        "endothelial sprout",
+        "neovascular sprout",
+        "branching vessel"
+      ],
+      "tags": [
+        "angiogenic sprout",
+        "endothelial sprout",
+        "neovascular sprout",
+        "branching vessel",
+        "Branching",
+        "Tissue & Vascular Organization",
+        "schematic"
+      ],
+      "description": "Bifurcating endothelial sprout from vessel wall.",
+      "file": "svg/angiogenic_sprout_branching.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector coordinates authored afresh for Figure Tool. Primary literature informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "source_record_id": "source.tissue-vascular.original.2026-11-03",
+      "rights_record_id": "rights.tissue-vascular.repository-policy-cc0.2026-11-03",
+      "style_family": "figure-studio-soft-line-v1",
+      "variant_axis": "form",
+      "style_variant": "standard",
+      "form_id": "branching",
+      "form_label": "Branching",
+      "available_art_styles": [
+        "soft-color",
+        "cut-paper",
+        "technical-ink",
+        "style-4"
+      ],
+      "style_4_supplement": "original-style4-companions.2026-11-03",
+      "review_status": "scientific_visual_native_review_pending_2026_11_03",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 4,
+      "editable_color_regions": [
+        {
+          "id": "vessel_wall",
+          "label": "Endothelial sprout",
+          "default": "#B8E2DA"
+        },
+        {
+          "id": "matrix",
+          "label": "Surrounding matrix",
+          "default": "#E8C98A"
+        },
+        {
+          "id": "lumen",
+          "label": "Vessel lumen",
+          "default": "#FFF7E8"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#26323D"
+        }
+      ],
+      "reviewer_notes": "Original forms await independent full-resolution and 64 px review and native editing qualification. All four Library styles cover the same biological forms and semantic parts. Style 4 companions are original drawings with separately recorded source and review status.",
+      "scientific_references": [
+        {
+          "id": "karkkainen2004",
+          "citation": "Karkkainen MJ et al. Vascular endothelial growth factor C is required for sprouting of the first lymphatic vessels from embryonic veins. Nat Immunol. 2004;5:74–80.",
+          "doi": "10.1038/ni1013",
+          "url": "https://doi.org/10.1038/ni1013",
+          "figure": "Fig. 1",
+          "design_decision": "Informed endothelial sprout and lymphatic channel motifs, without molecular cues or developmental-origin claims."
+        }
+      ],
+      "scientific_limitations": "No tip/stalk marker, growth-factor gradient, or outcome is asserted.",
+      "concept_extension": {
+        "source_pack_id": "immunology-oncology",
+        "source_concept_id": "immuno.model.angiogenic_vessel_sprout"
+      }
+    },
+    {
+      "id": "tissue.collagen.bundle",
+      "concept_id": "immuno.model.collagen_rich_ecm",
+      "name": "Collagen Matrix",
+      "scientific_name": "Collagen Matrix",
+      "category": "model-system",
+      "subcategory": "extracellular-matrix",
+      "synonyms": [
+        "collagen fibers",
+        "collagen bundle",
+        "matrix mesh"
+      ],
+      "tags": [
+        "collagen",
+        "collagen fibers",
+        "collagen bundle",
+        "matrix mesh",
+        "Bundle",
+        "Tissue & Vascular Organization",
+        "schematic"
+      ],
+      "description": "Aligned grouped collagen fibers form a bundle.",
+      "file": "svg/collagen_bundle.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector coordinates authored afresh for Figure Tool. Primary literature informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "source_record_id": "source.tissue-vascular.original.2026-11-03",
+      "rights_record_id": "rights.tissue-vascular.repository-policy-cc0.2026-11-03",
+      "style_family": "figure-studio-soft-line-v1",
+      "variant_axis": "form",
+      "style_variant": "standard",
+      "form_id": "bundle",
+      "form_label": "Bundle",
+      "available_art_styles": [
+        "soft-color",
+        "cut-paper",
+        "technical-ink",
+        "style-4"
+      ],
+      "style_4_supplement": "original-style4-companions.2026-11-03",
+      "review_status": "scientific_visual_native_review_pending_2026_11_03",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 3,
+      "editable_color_regions": [
+        {
+          "id": "matrix_fibers",
+          "label": "Collagen fibers",
+          "default": "#E8C98A"
+        },
+        {
+          "id": "fiber_crosslinks",
+          "label": "Crossing fibers",
+          "default": "#D89A72"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#26323D"
+        }
+      ],
+      "reviewer_notes": "Original forms await independent full-resolution and 64 px review and native editing qualification. All four Library styles cover the same biological forms and semantic parts. Style 4 companions are original drawings with separately recorded source and review status.",
+      "scientific_references": [
+        {
+          "id": "fang2012",
+          "citation": "Fang M, Banaszak Holl MM. Type I Collagen D-Spacing in Fibril Bundles of Dermis, Tendon, and Bone: Bridging Between Nano- and Micro-Level Tissue Hierarchy. ACS Nano. 2012;6:9503–9514.",
+          "doi": "10.1021/nn302483x",
+          "url": "https://doi.org/10.1021/nn302483x",
+          "figure": "Fig. 1",
+          "design_decision": "Informed aligned-bundle versus multidirectional-mesh distinction without tissue-specific material claims."
+        }
+      ],
+      "scientific_limitations": "Generic organization; no scale or collagen type is claimed.",
+      "concept_extension": {
+        "source_pack_id": "immunology-oncology",
+        "source_concept_id": "immuno.model.collagen_rich_ecm"
+      }
+    },
+    {
+      "id": "tissue.collagen.mesh",
+      "concept_id": "immuno.model.collagen_rich_ecm",
+      "name": "Collagen Matrix",
+      "scientific_name": "Collagen Matrix",
+      "category": "model-system",
+      "subcategory": "extracellular-matrix",
+      "synonyms": [
+        "collagen fibers",
+        "collagen bundle",
+        "matrix mesh"
+      ],
+      "tags": [
+        "collagen",
+        "collagen fibers",
+        "collagen bundle",
+        "matrix mesh",
+        "Mesh",
+        "Tissue & Vascular Organization",
+        "schematic"
+      ],
+      "description": "Open interwoven collagen fibers form a mesh.",
+      "file": "svg/collagen_mesh.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector coordinates authored afresh for Figure Tool. Primary literature informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "source_record_id": "source.tissue-vascular.original.2026-11-03",
+      "rights_record_id": "rights.tissue-vascular.repository-policy-cc0.2026-11-03",
+      "style_family": "figure-studio-soft-line-v1",
+      "variant_axis": "form",
+      "style_variant": "standard",
+      "form_id": "mesh",
+      "form_label": "Mesh",
+      "available_art_styles": [
+        "soft-color",
+        "cut-paper",
+        "technical-ink",
+        "style-4"
+      ],
+      "style_4_supplement": "original-style4-companions.2026-11-03",
+      "review_status": "scientific_visual_native_review_pending_2026_11_03",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 3,
+      "editable_color_regions": [
+        {
+          "id": "matrix_fibers",
+          "label": "Collagen fibers",
+          "default": "#E8C98A"
+        },
+        {
+          "id": "fiber_crosslinks",
+          "label": "Crossing fibers",
+          "default": "#D89A72"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#26323D"
+        }
+      ],
+      "reviewer_notes": "Original forms await independent full-resolution and 64 px review and native editing qualification. All four Library styles cover the same biological forms and semantic parts. Style 4 companions are original drawings with separately recorded source and review status.",
+      "scientific_references": [
+        {
+          "id": "fang2012",
+          "citation": "Fang M, Banaszak Holl MM. Type I Collagen D-Spacing in Fibril Bundles of Dermis, Tendon, and Bone: Bridging Between Nano- and Micro-Level Tissue Hierarchy. ACS Nano. 2012;6:9503–9514.",
+          "doi": "10.1021/nn302483x",
+          "url": "https://doi.org/10.1021/nn302483x",
+          "figure": "Fig. 1",
+          "design_decision": "Informed aligned-bundle versus multidirectional-mesh distinction without tissue-specific material claims."
+        }
+      ],
+      "scientific_limitations": "Generic organization; no scale or collagen type is claimed.",
+      "concept_extension": {
+        "source_pack_id": "immunology-oncology",
+        "source_concept_id": "immuno.model.collagen_rich_ecm"
+      }
+    },
+    {
+      "id": "tissue.basement_membrane.isolated_sheet",
+      "concept_id": "immuno.model.basement_membrane_segment",
+      "name": "Basement Membrane",
+      "scientific_name": "Basement Membrane",
+      "category": "model-system",
+      "subcategory": "extracellular-matrix",
+      "synonyms": [
+        "basal lamina",
+        "basement membrane sheet",
+        "epithelial support"
+      ],
+      "tags": [
+        "basement membrane",
+        "basal lamina",
+        "basement membrane sheet",
+        "epithelial support",
+        "Isolated Sheet",
+        "Tissue & Vascular Organization",
+        "schematic"
+      ],
+      "description": "Thin continuous basement-membrane sheet.",
+      "file": "svg/basement_membrane_isolated_sheet.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector coordinates authored afresh for Figure Tool. Primary literature informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "source_record_id": "source.tissue-vascular.original.2026-11-03",
+      "rights_record_id": "rights.tissue-vascular.repository-policy-cc0.2026-11-03",
+      "style_family": "figure-studio-soft-line-v1",
+      "variant_axis": "form",
+      "style_variant": "standard",
+      "form_id": "isolated_sheet",
+      "form_label": "Isolated Sheet",
+      "available_art_styles": [
+        "soft-color",
+        "cut-paper",
+        "technical-ink",
+        "style-4"
+      ],
+      "style_4_supplement": "original-style4-companions.2026-11-03",
+      "review_status": "scientific_visual_native_review_pending_2026_11_03",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 4,
+      "editable_color_regions": [
+        {
+          "id": "basement_sheets",
+          "label": "Basement-membrane layers",
+          "default": "#E8C98A"
+        },
+        {
+          "id": "attachment_arms",
+          "label": "Cell–matrix attachment structures",
+          "default": "#B8E2DA"
+        },
+        {
+          "id": "submembrane_mesh",
+          "label": "Submembrane matrix mesh",
+          "default": "#D89A72"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#26323D"
+        }
+      ],
+      "reviewer_notes": "Original forms await independent full-resolution and 64 px review and native editing qualification. All four Library styles cover the same biological forms and semantic parts. Style 4 companions are original drawings with separately recorded source and review status.",
+      "scientific_references": [
+        {
+          "id": "akhtar2013",
+          "citation": "Akhtar N, Streuli CH. An integrin–ILK–microtubule network orients cell polarity and lumen formation in glandular epithelium. Nat Cell Biol. 2013;15:17–27.",
+          "doi": "10.1038/ncb2646",
+          "url": "https://doi.org/10.1038/ncb2646",
+          "figure": "Figs. 1, 8",
+          "design_decision": "Informed generic apical/basal polarity and hollow epithelial lumen; no organ identity or pathway is encoded."
+        }
+      ],
+      "scientific_limitations": "Diagrammatic and not to scale; composition and permeability unspecified.",
+      "concept_extension": {
+        "source_pack_id": "immunology-oncology",
+        "source_concept_id": "immuno.model.basement_membrane_segment"
+      }
+    },
+    {
+      "id": "tissue.basement_membrane.epithelial_interface",
+      "concept_id": "immuno.model.basement_membrane_segment",
+      "name": "Basement Membrane",
+      "scientific_name": "Basement Membrane",
+      "category": "model-system",
+      "subcategory": "extracellular-matrix",
+      "synonyms": [
+        "basal lamina",
+        "basement membrane sheet",
+        "epithelial support"
+      ],
+      "tags": [
+        "basement membrane",
+        "basal lamina",
+        "basement membrane sheet",
+        "epithelial support",
+        "Epithelial Interface",
+        "Tissue & Vascular Organization",
+        "schematic"
+      ],
+      "description": "Basement-membrane band beneath an epithelial layer.",
+      "file": "svg/basement_membrane_epithelial_interface.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector coordinates authored afresh for Figure Tool. Primary literature informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "source_record_id": "source.tissue-vascular.original.2026-11-03",
+      "rights_record_id": "rights.tissue-vascular.repository-policy-cc0.2026-11-03",
+      "style_family": "figure-studio-soft-line-v1",
+      "variant_axis": "form",
+      "style_variant": "standard",
+      "form_id": "epithelial_interface",
+      "form_label": "Epithelial Interface",
+      "available_art_styles": [
+        "soft-color",
+        "cut-paper",
+        "technical-ink",
+        "style-4"
+      ],
+      "style_4_supplement": "original-style4-companions.2026-11-03",
+      "review_status": "scientific_visual_native_review_pending_2026_11_03",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 4,
+      "editable_color_regions": [
+        {
+          "id": "basement_sheets",
+          "label": "Basement-membrane layers",
+          "default": "#E8C98A"
+        },
+        {
+          "id": "attachment_arms",
+          "label": "Cell–matrix attachment structures",
+          "default": "#B8E2DA"
+        },
+        {
+          "id": "submembrane_mesh",
+          "label": "Submembrane matrix mesh",
+          "default": "#D89A72"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#26323D"
+        }
+      ],
+      "reviewer_notes": "Original forms await independent full-resolution and 64 px review and native editing qualification. All four Library styles cover the same biological forms and semantic parts. Style 4 companions are original drawings with separately recorded source and review status.",
+      "scientific_references": [
+        {
+          "id": "akhtar2013",
+          "citation": "Akhtar N, Streuli CH. An integrin–ILK–microtubule network orients cell polarity and lumen formation in glandular epithelium. Nat Cell Biol. 2013;15:17–27.",
+          "doi": "10.1038/ncb2646",
+          "url": "https://doi.org/10.1038/ncb2646",
+          "figure": "Figs. 1, 8",
+          "design_decision": "Informed generic apical/basal polarity and hollow epithelial lumen; no organ identity or pathway is encoded."
+        }
+      ],
+      "scientific_limitations": "Diagrammatic and not to scale; composition and permeability unspecified.",
+      "concept_extension": {
+        "source_pack_id": "immunology-oncology",
+        "source_concept_id": "immuno.model.basement_membrane_segment"
+      }
+    },
+    {
+      "id": "tissue.skeletal_muscle.longitudinal_fibers",
+      "concept_id": "tissue.skeletal_muscle",
+      "name": "Skeletal Muscle",
+      "scientific_name": "Skeletal Muscle",
+      "category": "model-system",
+      "subcategory": "muscle",
+      "synonyms": [
+        "myofiber",
+        "muscle fiber",
+        "muscle fascicle"
+      ],
+      "tags": [
+        "skeletal muscle",
+        "myofiber",
+        "muscle fiber",
+        "muscle fascicle",
+        "Longitudinal Fibers",
+        "Tissue & Vascular Organization",
+        "schematic"
+      ],
+      "description": "Parallel elongated fibers with restrained transverse marks.",
+      "file": "svg/skeletal_muscle_longitudinal_fibers.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector coordinates authored afresh for Figure Tool. Primary literature informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "source_record_id": "source.tissue-vascular.original.2026-11-03",
+      "rights_record_id": "rights.tissue-vascular.repository-policy-cc0.2026-11-03",
+      "style_family": "figure-studio-soft-line-v1",
+      "variant_axis": "form",
+      "style_variant": "standard",
+      "form_id": "longitudinal_fibers",
+      "form_label": "Longitudinal Fibers",
+      "available_art_styles": [
+        "soft-color",
+        "cut-paper",
+        "technical-ink",
+        "style-4"
+      ],
+      "style_4_supplement": "original-style4-companions.2026-11-03",
+      "review_status": "scientific_visual_native_review_pending_2026_11_03",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 4,
+      "editable_color_regions": [
+        {
+          "id": "muscle_fiber",
+          "label": "Muscle fibers",
+          "default": "#E7A98B"
+        },
+        {
+          "id": "matrix",
+          "label": "Connective tissue",
+          "default": "#E8C98A"
+        },
+        {
+          "id": "nucleus",
+          "label": "Peripheral nuclei",
+          "default": "#8D7FA8"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#26323D"
+        }
+      ],
+      "reviewer_notes": "Original forms await independent full-resolution and 64 px review and native editing qualification. All four Library styles cover the same biological forms and semantic parts. Style 4 companions are original drawings with separately recorded source and review status.",
+      "scientific_references": [
+        {
+          "id": "keller2021",
+          "citation": "Bindellini D, Voortman LM, Olie CS, van Putten M, van den Akker E, Raz V. Discovering fiber type architecture over the entire muscle using data-driven analysis. Cytometry A. 2021;99:1240–1249.",
+          "doi": "10.1002/cyto.a.24465",
+          "url": "https://doi.org/10.1002/cyto.a.24465",
+          "figure": "Fig. 1",
+          "design_decision": "Informed longitudinal and transverse muscle-fiber views; no fiber-type coding."
+        }
+      ],
+      "scientific_limitations": "No species, fiber type, contraction, pathology, or quantitative architecture."
+    },
+    {
+      "id": "tissue.skeletal_muscle.bundle_cross_section",
+      "concept_id": "tissue.skeletal_muscle",
+      "name": "Skeletal Muscle",
+      "scientific_name": "Skeletal Muscle",
+      "category": "model-system",
+      "subcategory": "muscle",
+      "synonyms": [
+        "myofiber",
+        "muscle fiber",
+        "muscle fascicle"
+      ],
+      "tags": [
+        "skeletal muscle",
+        "myofiber",
+        "muscle fiber",
+        "muscle fascicle",
+        "Bundle Cross Section",
+        "Tissue & Vascular Organization",
+        "schematic"
+      ],
+      "description": "Grouped cross-sectional muscle-fiber profiles with connective boundaries.",
+      "file": "svg/skeletal_muscle_bundle_cross_section.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector coordinates authored afresh for Figure Tool. Primary literature informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "source_record_id": "source.tissue-vascular.original.2026-11-03",
+      "rights_record_id": "rights.tissue-vascular.repository-policy-cc0.2026-11-03",
+      "style_family": "figure-studio-soft-line-v1",
+      "variant_axis": "form",
+      "style_variant": "standard",
+      "form_id": "bundle_cross_section",
+      "form_label": "Bundle Cross Section",
+      "available_art_styles": [
+        "soft-color",
+        "cut-paper",
+        "technical-ink",
+        "style-4"
+      ],
+      "style_4_supplement": "original-style4-companions.2026-11-03",
+      "review_status": "scientific_visual_native_review_pending_2026_11_03",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 4,
+      "editable_color_regions": [
+        {
+          "id": "muscle_fiber",
+          "label": "Muscle fibers",
+          "default": "#E7A98B"
+        },
+        {
+          "id": "matrix",
+          "label": "Connective tissue",
+          "default": "#E8C98A"
+        },
+        {
+          "id": "nucleus",
+          "label": "Peripheral nuclei",
+          "default": "#8D7FA8"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#26323D"
+        }
+      ],
+      "reviewer_notes": "Original forms await independent full-resolution and 64 px review and native editing qualification. All four Library styles cover the same biological forms and semantic parts. Style 4 companions are original drawings with separately recorded source and review status.",
+      "scientific_references": [
+        {
+          "id": "keller2021",
+          "citation": "Bindellini D, Voortman LM, Olie CS, van Putten M, van den Akker E, Raz V. Discovering fiber type architecture over the entire muscle using data-driven analysis. Cytometry A. 2021;99:1240–1249.",
+          "doi": "10.1002/cyto.a.24465",
+          "url": "https://doi.org/10.1002/cyto.a.24465",
+          "figure": "Fig. 1",
+          "design_decision": "Informed longitudinal and transverse muscle-fiber views; no fiber-type coding."
+        }
+      ],
+      "scientific_limitations": "No species, fiber type, contraction, pathology, or quantitative architecture."
+    },
+    {
+      "id": "tissue.adipose.single_adipocyte",
+      "concept_id": "exp.cell.adipocyte",
+      "name": "Adipose Tissue",
+      "scientific_name": "Adipose Tissue",
+      "category": "cell",
+      "subcategory": "adipose",
+      "synonyms": [
+        "adipocyte",
+        "fat cell",
+        "adipose lobule"
+      ],
+      "tags": [
+        "adipose",
+        "adipocyte",
+        "fat cell",
+        "adipose lobule",
+        "Single Adipocyte",
+        "Tissue & Vascular Organization",
+        "schematic"
+      ],
+      "description": "Generic unilocular adipocyte with peripheral cytoplasm and displaced nucleus.",
+      "file": "svg/adipose_single_adipocyte.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector coordinates authored afresh for Figure Tool. Primary literature informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "source_record_id": "source.tissue-vascular.original.2026-11-03",
+      "rights_record_id": "rights.tissue-vascular.repository-policy-cc0.2026-11-03",
+      "style_family": "figure-studio-soft-line-v1",
+      "variant_axis": "form",
+      "style_variant": "standard",
+      "form_id": "single_adipocyte",
+      "form_label": "Single Adipocyte",
+      "available_art_styles": [
+        "soft-color",
+        "cut-paper",
+        "technical-ink",
+        "style-4"
+      ],
+      "style_4_supplement": "original-style4-companions.2026-11-03",
+      "review_status": "scientific_visual_native_review_pending_2026_11_03",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 4,
+      "editable_color_regions": [
+        {
+          "id": "cell_feature",
+          "label": "Lipid store",
+          "default": "#F2D58B"
+        },
+        {
+          "id": "cell_body",
+          "label": "Cytoplasm",
+          "default": "#B8E2DA"
+        },
+        {
+          "id": "nuclear_region",
+          "label": "Nucleus",
+          "default": "#8D7FA8"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#26323D"
+        }
+      ],
+      "reviewer_notes": "Original forms await independent full-resolution and 64 px review and native editing qualification. All four Library styles cover the same biological forms and semantic parts. Style 4 companions are original drawings with separately recorded source and review status.",
+      "scientific_references": [
+        {
+          "id": "divoux2019",
+          "citation": "Divoux A et al. Lobular architecture of human adipose tissue defines the niche and fate of progenitor cells. Nat Commun. 2019;10:2546.",
+          "doi": "10.1038/s41467-019-09992-3",
+          "url": "https://doi.org/10.1038/s41467-019-09992-3",
+          "figure": "Figs. 1–2",
+          "design_decision": "Informed grouped adipocyte motif and fibrous boundary; not quantitative histology."
+        }
+      ],
+      "scientific_limitations": "No depot, species, metabolic state, or cell subtype is specified.",
+      "concept_extension": {
+        "source_pack_id": "core-experimental-biology",
+        "source_concept_id": "exp.cell.adipocyte"
+      }
+    },
+    {
+      "id": "tissue.adipose.lobule",
+      "concept_id": "exp.cell.adipocyte",
+      "name": "Adipose Tissue",
+      "scientific_name": "Adipose Tissue",
+      "category": "cell",
+      "subcategory": "adipose",
+      "synonyms": [
+        "adipocyte",
+        "fat cell",
+        "adipose lobule"
+      ],
+      "tags": [
+        "adipose",
+        "adipocyte",
+        "fat cell",
+        "adipose lobule",
+        "Lobule",
+        "Tissue & Vascular Organization",
+        "schematic"
+      ],
+      "description": "Adipose lobule motif with grouped adipocyte profiles and fibrous boundary.",
+      "file": "svg/adipose_lobule.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector coordinates authored afresh for Figure Tool. Primary literature informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "source_record_id": "source.tissue-vascular.original.2026-11-03",
+      "rights_record_id": "rights.tissue-vascular.repository-policy-cc0.2026-11-03",
+      "style_family": "figure-studio-soft-line-v1",
+      "variant_axis": "form",
+      "style_variant": "standard",
+      "form_id": "lobule",
+      "form_label": "Lobule",
+      "available_art_styles": [
+        "soft-color",
+        "cut-paper",
+        "technical-ink",
+        "style-4"
+      ],
+      "style_4_supplement": "original-style4-companions.2026-11-03",
+      "review_status": "scientific_visual_native_review_pending_2026_11_03",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 4,
+      "editable_color_regions": [
+        {
+          "id": "cell_feature",
+          "label": "Lipid store",
+          "default": "#F2D58B"
+        },
+        {
+          "id": "cell_body",
+          "label": "Cytoplasm",
+          "default": "#B8E2DA"
+        },
+        {
+          "id": "nuclear_region",
+          "label": "Nucleus",
+          "default": "#8D7FA8"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#26323D"
+        }
+      ],
+      "reviewer_notes": "Original forms await independent full-resolution and 64 px review and native editing qualification. All four Library styles cover the same biological forms and semantic parts. Style 4 companions are original drawings with separately recorded source and review status.",
+      "scientific_references": [
+        {
+          "id": "divoux2019",
+          "citation": "Divoux A et al. Lobular architecture of human adipose tissue defines the niche and fate of progenitor cells. Nat Commun. 2019;10:2546.",
+          "doi": "10.1038/s41467-019-09992-3",
+          "url": "https://doi.org/10.1038/s41467-019-09992-3",
+          "figure": "Figs. 1–2",
+          "design_decision": "Informed grouped adipocyte motif and fibrous boundary; not quantitative histology."
+        }
+      ],
+      "scientific_limitations": "No depot, species, metabolic state, or cell subtype is specified.",
+      "concept_extension": {
+        "source_pack_id": "core-experimental-biology",
+        "source_concept_id": "exp.cell.adipocyte"
+      }
+    }
+  ]
+}

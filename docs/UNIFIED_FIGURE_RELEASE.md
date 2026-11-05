@@ -1,10 +1,25 @@
 # One Figure release for the browser and Superbench
 
 The canonical Figure repository is `C:\Users\ianme\Desktop\Projects\superbench_figure_tool`.
-The browser site and Superbench consume one committed editor and asset collection:
-486 Library drawings representing 386 concepts in 11 packs, four drawing styles, and 12 editable
-scientific scenes. Fixes belong here. Do not maintain a second editor in the
+The browser site and Superbench consume one committed editor and asset collection.
+The delivered beta.22 contains 486 drawings for 386 concepts in 11 packs, four
+drawing styles and 12 editable scientific diagrams. Fixes belong here. Do not maintain a second editor in the
 public source checkout or backport individual fixes into the old beta.6 site.
+
+## Beta.23 candidate — 4 November 2026
+
+The next candidate adds the accepted Library batch: 526 drawings for 398 concepts
+in 13 packs, all with Styles 1–4, plus a unified Templates view containing 20
+scientific diagrams and three Figure layouts. Attached connectors retain their
+geometry through Save/Open; managed scientific drawings retain numerical precision;
+replacement parts receive saved identities. Help describes the unified catalog.
+The [source inclusion record](scientific-assets/LIBRARY_EXPANSION_2026_11_03.md)
+records the accepted journeys and the precise five-cache-flag history limitation.
+Private PDF experiments remain excluded. Build only the sealed committed source
+through the maintained producer, then qualify the exact native/static bytes and
+the clean desktop candidate. Beta.22 remains installed and published until that
+qualification and synchronized promotion pass. Original PDF performance limits,
+selection/parity requirements and the reuse-first roadmap remain unchanged.
 
 ## Beta.22 component candidate — 2 November 2026
 
@@ -217,13 +232,24 @@ It emits:
   source materials under `preferred-source-materials/`, outside every runtime root. Those materials never enter
   the browser/native payload. Full source ZIP readback checks every runtime file.
 
-`SOURCE_RELEASE.json` describes the canonical commit, product version, package
-digest, payload tree, immutable tag and vendor-source location. It is source
-metadata outside the shared payload. The full archive and slim Git tree differ
-only in source-material inclusion and that explicit location metadata. The code
+`SOURCE_RELEASE.json` retains its existing schema and identifies the canonical
+editor commit and product version. The additive `source_support_revision` field
+identifies a later committed snapshot used for validation tools, tests and release
+notes. A support-only correction can accompany an unchanged package only when
+`verify_payload` confirms every shared payload path and byte against the package
+manifest. Existing release-sync metadata keys and their schema are unchanged.
+The package digest, payload tree, immutable tag and vendor-source location remain
+bound to the canonical editor revision. This metadata is outside the shared
+payload. The full archive and slim Git tree differ only in source-material
+inclusion and that explicit location metadata. The code
 license, CC0 artwork terms, complete third-party notices and source lock travel
 with both. Fresh upstream compiler rebuilds are not qualified as byte-identical;
 the local svg2pdf patch is checked against its pinned published input.
+
+The source exporter can reuse a caller-supplied preferred-materials directory.
+That explicit input is verified in place before its files are streamed into the
+full source ZIP; omitting it keeps the default materialization behavior. The
+public metadata records only the verified source index, never the local path.
 
 `--artifacts-only` issues no update catalog and reads no signing key. It retains
 all public rights/product validators and rejects catalog/signing options. This

@@ -59,6 +59,14 @@
       "creation_method": "Original recipes composed from existing vectors and new original RNA-method drafts; method references supply scientific concepts only.",
       "clean_room_scope": "No publication or proprietary artwork, screenshots, layouts, templates or prose were copied or traced.",
       "third_party_material": "none_declared"
+    },
+    {
+      "id": "source.figure-studio-scene-expansion.2026-11-03",
+      "source_type": "clean_room_original_editable_vector_scene",
+      "creator": "Figure Tool",
+      "creation_method": "Original editable biological and experimental recipes plus a concise immunoblot revision. Existing original vectors and new neurobiology/tissue vectors are composed with live text.",
+      "clean_room_scope": "Scientific sources inform relationships only. No publication or proprietary artwork, composition, prose or measured observations incorporated.",
+      "third_party_material": "none_declared"
     }
   ],
   "rights_records": [
@@ -111,21 +119,21 @@
       "qualification": "The workspace owner grants CC0 1.0 permission for the two original RNA scene recipes, scene-specific labels, and preview artwork effective 2026-10-10. Product-level scene release remains pending. This is not a non-infringement, patent, trademark, privacy, publicity, or endorsement warranty.",
       "product_release_status": "pending_quality_and_product_review",
       "effective_date": "2026-10-10"
+    },
+    {
+      "id": "rights.figure-studio-scene-expansion.repository-cc0.2026-11-03",
+      "license": "CC0-1.0",
+      "kind": "repository_policy_license",
+      "rights_basis": "repository_policy_original_output",
+      "status": "rights_cleared",
+      "public_distribution_authorized": true,
+      "license_policy": "original-vectors.cc0.repository-policy.2026-11-03",
+      "effective_date": "2026-11-03",
+      "product_release_status": "pending_quality_and_product_review",
+      "qualification": "Finite original recipes and preview artwork use the adopted repository CC0 policy. This record neither extends historical owner attestations nor qualifies product inclusion."
     }
   ],
   "scenes": [
-    {
-      "scene_id": "immunoblot-assay-workflow",
-      "name": "Immunoblot assay workflow",
-      "scene_file": "scenes/immunoblot-assay-workflow.scene.json",
-      "preview_file": "previews/immunoblot-assay-workflow.svg",
-      "scene_sha256": "33fa98ea63a72c7eb2af7ff5aad7dd81a6314864f5aa9270b7920527216d1894",
-      "preview_sha256": "9396b7495103285f52aadf1dc2be9a509ea881575f41df6f0762703c08922c4e",
-      "source_record_id": "source.figure-studio-immunoblot-assay-workflow.2026-09-13",
-      "rights_record_id": "rights.figure-studio-immunoblot-assay-workflow.cc0.2026-09-13",
-      "third_party_material": "none_declared",
-      "release_disposition": "released_under_cc0_1_0"
-    },
     {
       "scene_id": "autophagosome-lysosome-process",
       "name": "Autophagosome–lysosome process",
@@ -259,10 +267,127 @@
       "scene_sha256": "da88e530c3ba5b38e96f2c9ef23eb40186d26bdda5e48b734c215cfc5a37217d",
       "preview_sha256": "20019511d3685597ec1685867342b70fae5a79fca02649b7aa96bab5cc562709",
       "product_release_status": "pending_quality_and_product_review"
+    },
+    {
+      "scene_id": "immunoblot-assay-workflow",
+      "name": "Immunoblot assay workflow",
+      "scene_file": "scenes/immunoblot-assay-workflow.scene.json",
+      "preview_file": "previews/immunoblot-assay-workflow.svg",
+      "source_record_id": "source.figure-studio-scene-expansion.2026-11-03",
+      "rights_record_id": "rights.figure-studio-scene-expansion.repository-cc0.2026-11-03",
+      "third_party_material": "none_declared",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "scene_sha256": "81c36df777297509c6a035e185897524632832ed1e30e8cdf61e195e30182c65",
+      "preview_sha256": "7079132770eb365cf8f896d400e37912a7b20bc4bbb1ab148b4698b36d7d96ff"
+    },
+    {
+      "scene_id": "rt-qpcr-expression-workflow",
+      "name": "RT-qPCR expression workflow",
+      "scene_file": "scenes/rt-qpcr-expression-workflow.scene.json",
+      "preview_file": "previews/rt-qpcr-expression-workflow.svg",
+      "source_record_id": "source.figure-studio-scene-expansion.2026-11-03",
+      "rights_record_id": "rights.figure-studio-scene-expansion.repository-cc0.2026-11-03",
+      "third_party_material": "none_declared",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "scene_sha256": "a4ff2442d3b32955b51a057ebafed59145c00e9f185e8564410aa579db205056",
+      "preview_sha256": "54e77edc1d5bb050277f6fb0a8f21462886ce5a7f834033f4c70f395657267e2"
+    },
+    {
+      "scene_id": "immunoprecipitation-workflow",
+      "name": "Immunoprecipitation workflow",
+      "scene_file": "scenes/immunoprecipitation-workflow.scene.json",
+      "preview_file": "previews/immunoprecipitation-workflow.svg",
+      "source_record_id": "source.figure-studio-scene-expansion.2026-11-03",
+      "rights_record_id": "rights.figure-studio-scene-expansion.repository-cc0.2026-11-03",
+      "third_party_material": "none_declared",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "scene_sha256": "f8cef3b947b1800c298c637f4052fee8c84babac97ce9b090bd6d123d23036ea",
+      "preview_sha256": "86a494b1dae0b805d2d8113b9b459a30772b6dd021ce8f0497f9a0632a180554"
+    },
+    {
+      "scene_id": "indirect-immunofluorescence-workflow",
+      "name": "Indirect immunofluorescence workflow",
+      "scene_file": "scenes/indirect-immunofluorescence-workflow.scene.json",
+      "preview_file": "previews/indirect-immunofluorescence-workflow.svg",
+      "source_record_id": "source.figure-studio-scene-expansion.2026-11-03",
+      "rights_record_id": "rights.figure-studio-scene-expansion.repository-cc0.2026-11-03",
+      "third_party_material": "none_declared",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "scene_sha256": "ea0bc7d5f3cd826922e8db52dd5654b4b1960e64321fd44ea9e1136cebf8e01c",
+      "preview_sha256": "56a5ca47d2e9c682a6fcc8dcbf498b5ee8119e4529267dfcb8ab702997616831"
+    },
+    {
+      "scene_id": "sandwich-elisa-workflow",
+      "name": "Sandwich ELISA workflow",
+      "scene_file": "scenes/sandwich-elisa-workflow.scene.json",
+      "preview_file": "previews/sandwich-elisa-workflow.svg",
+      "source_record_id": "source.figure-studio-scene-expansion.2026-11-03",
+      "rights_record_id": "rights.figure-studio-scene-expansion.repository-cc0.2026-11-03",
+      "third_party_material": "none_declared",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "scene_sha256": "ac95c6c0fd7835bfb4ed9135c883985df28b75f7bac212b6e71d25c08c50e8e3",
+      "preview_sha256": "3c9b2265099b91d53ed11e029833de9f8e0c97f2c4a9ecfb6f8761f9e251e9c9"
+    },
+    {
+      "scene_id": "wound-closure-assay-workflow",
+      "name": "Wound-closure assay workflow",
+      "scene_file": "scenes/wound-closure-assay-workflow.scene.json",
+      "preview_file": "previews/wound-closure-assay-workflow.svg",
+      "source_record_id": "source.figure-studio-scene-expansion.2026-11-03",
+      "rights_record_id": "rights.figure-studio-scene-expansion.repository-cc0.2026-11-03",
+      "third_party_material": "none_declared",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "scene_sha256": "be6c08a2a58d9df25acb854c3bb3945cb54c63ff629b07bb0787294fbf20ab49",
+      "preview_sha256": "090ed9ee17076071abe6fbc799d9b4d803a5a0f868b71c2f95518da43afa29ea"
+    },
+    {
+      "scene_id": "epithelial-barrier-transwell-workflow",
+      "name": "Epithelial barrier Transwell assay",
+      "scene_file": "scenes/epithelial-barrier-transwell-workflow.scene.json",
+      "preview_file": "previews/epithelial-barrier-transwell-workflow.svg",
+      "source_record_id": "source.figure-studio-scene-expansion.2026-11-03",
+      "rights_record_id": "rights.figure-studio-scene-expansion.repository-cc0.2026-11-03",
+      "third_party_material": "none_declared",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "scene_sha256": "27a9bbcddbe203d9187525310fdfc64bfbbbec0e2b7db36a4abff11fd5809f8e",
+      "preview_sha256": "e34f46f8a7364bcaa86f91294bf57876cbda7d5443ce1289169b9c1bf810472a"
+    },
+    {
+      "scene_id": "chemical-synaptic-transmission",
+      "name": "Chemical synaptic transmission",
+      "scene_file": "scenes/chemical-synaptic-transmission.scene.json",
+      "preview_file": "previews/chemical-synaptic-transmission.svg",
+      "source_record_id": "source.figure-studio-scene-expansion.2026-11-03",
+      "rights_record_id": "rights.figure-studio-scene-expansion.repository-cc0.2026-11-03",
+      "third_party_material": "none_declared",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "scene_sha256": "3065dafe1399f2664dda1f0a8e7ab0967354bbbfc78640d05ab509e454540807",
+      "preview_sha256": "b891fe41f04d6b765c4da43cb9cea50c61e2eac009dd26b506ffca02bfcfee6c"
+    },
+    {
+      "scene_id": "angiogenic-sprouting",
+      "name": "Angiogenic sprouting",
+      "scene_file": "scenes/angiogenic-sprouting.scene.json",
+      "preview_file": "previews/angiogenic-sprouting.svg",
+      "source_record_id": "source.figure-studio-scene-expansion.2026-11-03",
+      "rights_record_id": "rights.figure-studio-scene-expansion.repository-cc0.2026-11-03",
+      "third_party_material": "none_declared",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "scene_sha256": "2132a5e16ec329bba010a4cecb7ba6cc97e5ecad3811e33149845fc92f355904",
+      "preview_sha256": "3cba1e4e9b5c0686ff167e7687cd89c3c96031b3c9da7eeaaec95e610475eca4"
     }
   ],
   "product_release_pending_scene_ids": [
+    "angiogenic-sprouting",
+    "chemical-synaptic-transmission",
+    "epithelial-barrier-transwell-workflow",
+    "immunoblot-assay-workflow",
+    "immunoprecipitation-workflow",
+    "indirect-immunofluorescence-workflow",
+    "rt-qpcr-expression-workflow",
+    "sandwich-elisa-workflow",
     "single-cell-rna-workflow",
-    "spatial-rna-methods"
+    "spatial-rna-methods",
+    "wound-closure-assay-workflow"
   ]
 }

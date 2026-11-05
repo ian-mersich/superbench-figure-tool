@@ -1,0 +1,300 @@
+{
+  "schema": "figureStudio.scientificProductRelease.v5",
+  "release_id": "library-expansion.2026-11-03",
+  "release_date": "2026-11-03",
+  "decision": "approved_for_matching_public_web_and_superbench_packages",
+  "predecessor": {
+    "record": "config/scientific-product-release-2026-10-17-style4-correction.json",
+    "sha256": "15543ecc8f4babdf0d160186239c1f3ff3f7c4b7d87eb0c8c1445b4734f1a128",
+    "registry_sha256": "838d657476bca212b808fe7e980d61efcb94de293bab6e7f28e40b9b3ed77d12",
+    "asset_inventory_sha256": "c62aeaeadec1394941f0e6aa5b0a18b14d37c3f8587b2242bfc69ff20624489b",
+    "historical_approvals_sha256": "c17307c1a54d1a028ee9d415e1585e969193f340fdbe11ec1fad515555d68ff2"
+  },
+  "predecessor_registry_projection": {
+    "remove_pack_ids": [
+      "neurobiology",
+      "tissue-vascular"
+    ],
+    "restore_fields": {
+      "art_styles": [
+        {
+          "id": "style-4",
+          "name": "Style 4",
+          "path": "style-4/manifest-corrected-20261017.json",
+          "asset_count": 486
+        }
+      ],
+      "art_style_notes": "Style 4 includes 243 corrected supplied drawings. The other 243 current variants are retained, including eight earlier recovered drawings. Existing saved artwork keeps its embedded original source."
+    }
+  },
+  "current": {
+    "library": {
+      "drawing_count": 526,
+      "concept_count": 398,
+      "pack_count": 13,
+      "scientific_template_count": 20,
+      "layout_starter_count": 3,
+      "historical_style_4_variant_count": 486,
+      "new_style_4_companion_count": 40
+    },
+    "asset_inventory_sha256": "9c7b07e7d5734ec1f4e868d4e68ed26ff5d6ac03a98c234e96d2fd5994b59de3",
+    "asset_file_count": 1513,
+    "registry_sha256": "54b57f82c981f045abf3391e99e969f3c7fe422451962c108b566a9fc35ea849",
+    "historical_style_4_manifest_sha256": "a1a05aa118b103b54550d792d95d126790b79fedd762696822ca1cae24a00a17",
+    "style_4_supplement_manifest_sha256": "37cfbd5fe31eba9df56d697dbda9c55d54ecda82c57c1fc4f0132dfdd835cb3b",
+    "new_pack_rights_bindings": [
+      {
+        "id": "neurobiology",
+        "rights_record_sha256": "d4bf0063170f3b4ef9995a202f05cd9878c3125906d8453a850aa562865e1019",
+        "notice_sha256": "8e83ddb6914fe9ff2b4190117deaa01a2b35cb2dbb3fa3446706a2442df0cfb2",
+        "existing_license": "CC0-1.0",
+        "existing_rights_basis": "repository_policy_original_output",
+        "existing_quality_status": "rights_cleared_quality_pending",
+        "catalog_sha256": "91c902639d773803de852be6b2151938f11bb564d0a509c4982a36e972dd843d",
+        "audit_file": "rights-release-record.json",
+        "audit_sha256": "d4bf0063170f3b4ef9995a202f05cd9878c3125906d8453a850aa562865e1019",
+        "rights_records_sha256": "0fd1a38c1dd729d2727751399ded88b87522d9aec0a18e638e62d0b4b935f051"
+      },
+      {
+        "id": "tissue-vascular",
+        "rights_record_sha256": "f1178a9bf0912566047be1ad275abe31264e463695a49b6cdf248f2633c5f659",
+        "notice_sha256": "6f104ebf7a8fbb7c2d5589297b4d32a65a1209dfb1e097354defa59a150a6521",
+        "existing_license": "CC0-1.0",
+        "existing_rights_basis": "repository_policy_original_output",
+        "existing_quality_status": "rights_cleared_quality_pending",
+        "catalog_sha256": "a7965875afb56980baed1d119339ba9afb69857e35832897b5c89fcf96412eb8",
+        "audit_file": "rights-release-record.json",
+        "audit_sha256": "f1178a9bf0912566047be1ad275abe31264e463695a49b6cdf248f2633c5f659",
+        "rights_records_sha256": "30dc445d166f4c74e32ed1c9ceb52169919eea2c0bb6f7993a1cb4f624ed65ce"
+      }
+    ],
+    "new_template_ids": [
+      "angiogenic-sprouting",
+      "chemical-synaptic-transmission",
+      "epithelial-barrier-transwell-workflow",
+      "immunoprecipitation-workflow",
+      "indirect-immunofluorescence-workflow",
+      "rt-qpcr-expression-workflow",
+      "sandwich-elisa-workflow",
+      "wound-closure-assay-workflow"
+    ],
+    "updated_template_ids": [
+      "immunoblot-assay-workflow"
+    ],
+    "all_template_ids": [
+      "angiogenic-sprouting",
+      "apc-t-cell-immune-synapse",
+      "autophagosome-lysosome-process",
+      "chemical-synaptic-transmission",
+      "crispr-perturbation-validation",
+      "culture-treatment-readout",
+      "epithelial-barrier-transwell-workflow",
+      "gene-regulation-expression",
+      "immunoblot-assay-workflow",
+      "immunoprecipitation-workflow",
+      "indirect-immunofluorescence-workflow",
+      "microscopy-flow-readout",
+      "receptor-signaling",
+      "rt-qpcr-expression-workflow",
+      "sandwich-elisa-workflow",
+      "single-cell-rna-workflow",
+      "spatial-rna-methods",
+      "t-cell-activation-checkpoint",
+      "tumor-microenvironment",
+      "wound-closure-assay-workflow"
+    ],
+    "layout_starter_ids": [
+      "multi-panel-2x2",
+      "graphical-abstract",
+      "clean-canvas"
+    ],
+    "updated_template_binding": {
+      "id": "immunoblot-assay-workflow",
+      "source_record_id": "source.figure-studio-scene-expansion.2026-11-03",
+      "rights_record_id": "rights.figure-studio-scene-expansion.repository-cc0.2026-11-03",
+      "predecessor": {
+        "scene_sha256": "33fa98ea63a72c7eb2af7ff5aad7dd81a6314864f5aa9270b7920527216d1894",
+        "preview_sha256": "9396b7495103285f52aadf1dc2be9a509ea881575f41df6f0762703c08922c4e"
+      },
+      "current": {
+        "scene_sha256": "f794b7d54a0225bfc56be7e3c9158f74c524e11dd76635a051803a5f2baae437",
+        "preview_sha256": "7079132770eb365cf8f896d400e37912a7b20bc4bbb1ab148b4698b36d7d96ff"
+      },
+      "reason": "The accepted template update shortens the schematic while preserving its stable identity and attribution; current scene/preview bytes are bound above."
+    }
+  },
+  "user_authorization": {
+    "instruction": "Integrate the accepted original Library expansion and synchronize desktop and web after unattended QA.",
+    "new_personal_attestation": false,
+    "license_grants_added": false
+  },
+  "acceptance_reference": {
+    "file": "docs/scientific-assets/LIBRARY_EXPANSION_2026_11_03.md",
+    "sha256": "fd40d46df0a38fd91d5729cff24a72670670286abb357b25d30042203d375efe",
+    "scope": "Reviewed original artwork, editable insertion/replacement/parts, actual Save and distinct-process cold Open, with the explicit five derived cache-flag history limit."
+  },
+  "review": {
+    "native_editor_acceptance": "pass",
+    "independent_release_review": "pass",
+    "native_editor_scope": "Browser editor objects, public editing/Undo/Redo, actual Save and distinct-process cold Open; not Windows-host acceptance.",
+    "strict_raw_history_status": "FAIL_PRESERVED",
+    "history_limit": "Exactly five derived objectCaching true-to-false leaves; all other complete authored history fields and all four references match. No comparator relaxation.",
+    "evidence": [
+      {
+        "file": "qa_artifacts/assets-templates-2026-11-03/ui-replacement-13/actual-content-history-review.json",
+        "sha256": "c9cd3119932c7c5401c9249e07eb1f3443acc5fa98a28d894d4af39b5caabadd"
+      },
+      {
+        "file": "qa_artifacts/assets-templates-2026-11-03/ui-replacement-13/original-images-visual-review.json",
+        "sha256": "9144b437e8e59cf25c342424d8cec8e1384ea9b20e46c3ac85884ae3420b9903"
+      },
+      {
+        "file": "qa_artifacts/replacement-identity-2026-11-04/assets13-cache-policy-source-judgment.json",
+        "sha256": "a26c9e417b7b4ad1e73a90b1a98a3b8f02a4102d89b3719e90137e88b543cd14"
+      },
+      {
+        "file": "qa_artifacts/assets-templates-2026-11-03/ui-replacement-13-full-source-closure.json",
+        "sha256": "73ca1508b048e48d379b3d5f29983a0716632186015db4b2f474b140b9cddf9e"
+      }
+    ]
+  },
+  "packs": {
+    "cell-architecture-transport": {
+      "catalog_sha256": "ec0b221148b6b25b287437f605f532d59b84d784ed260f861fb0fb84f4f435f2",
+      "audit_file": "rights-release-record-2026-10-13.json",
+      "audit_sha256": "9bd7a54ed501ddfb24769995f1d3d56b173ec0454a04e87512446e87710816e9",
+      "original_rights_records_sha256": "6f54de2759367391a4d0c6754b098b46bbbc6e93488b9a7832eeec74d6fc2211",
+      "original_rights_grant_date": "2026-10-10",
+      "revision_receipt": "family-expansion-2026-10-13.json",
+      "revision_receipt_sha256": "5b74bb139b1d164566aa9300b9d6961ff89e9f6db06310bc00d2916623fa6849",
+      "drawing_count": 28
+    },
+    "culture-models-assays": {
+      "catalog_sha256": "f9e64bebee918b360cc97b9b4ec89b2e11d52195cf2abca5ac39ca723c7fa60d",
+      "audit_file": "rights-release-record-2026-10-13.json",
+      "audit_sha256": "fcceb4028f164f2da85de5a58ac6d78f5152f2b00924895f619c071c4a829b0e",
+      "original_rights_records_sha256": "800b0017aa314136d39dcc7464ed23f08267b3ab6a28d27603be8a6b2c2391da",
+      "original_rights_grant_date": "2026-10-10",
+      "revision_receipt": "family-expansion-2026-10-13.json",
+      "revision_receipt_sha256": "00ccdf41ddcb9a8849a41f4ed862a18b68bddcbb25a60153554eb4c25286c930",
+      "drawing_count": 24
+    },
+    "microbial-biology": {
+      "catalog_sha256": "9e17fa7d43ba1d7209c6cf8c895384bf8d34fc02c04f897d55417568dd1c6744",
+      "audit_file": "rights-release-record-2026-10-13.json",
+      "audit_sha256": "dc1ec2475e6ff44b1c42b275ae9f3c4e35dc3c3535db37fd7a69ae4334f7c980",
+      "original_rights_records_sha256": "1d99466fe5f54f3f251591eb57f06973d8b06dadb0debec9c17fcc1013129495",
+      "original_rights_grant_date": "2026-10-10",
+      "revision_receipt": "family-expansion-2026-10-13.json",
+      "revision_receipt_sha256": "8eaad1101e95d31b076d515f735a02f94c64bcbf8128839c87a66e451e16497a",
+      "drawing_count": 24
+    },
+    "rna-methods": {
+      "catalog_sha256": "6e77577795470401190cd0f1bed83578ec277cc39f32de79a4f09ba6e0ac908f",
+      "audit_file": "rights-release-record.json",
+      "audit_sha256": "9db4e5bae0f9c1a99fe619e41f342efd01ee723b36300d8fdb8fc701cafc4a84",
+      "original_rights_records_sha256": "b1581a2d4a57cc89a373e233e88cdf18eaa20bd825877dfce31f2e76bf8a26c8",
+      "original_rights_grant_date": "2026-10-10",
+      "revision_receipt": "artwork-revision-2026-10-13.json",
+      "revision_receipt_sha256": "406d859d9678010169cefb0006131c438276ab65f26972bda228822e2a5b1029",
+      "drawing_count": 4
+    },
+    "cell-structure-stress": {
+      "catalog_sha256": "7cfd7b97632a64b88b2468086fecc9792f33d4eb50281007cacbd5617240f8fb",
+      "audit_file": "rights-release-record.json",
+      "audit_sha256": "7c6181e99f05a48aaac5ba28a084eb8a57108ac12047eda210d52d22a575f7ff",
+      "rights_records_sha256": "1b46eaa982923d11a248c65982f90532fe505ffcdee28cfa9c7972f13ce01053",
+      "rights_basis": "repository_policy_original_output",
+      "contribution_effective_date": "2026-10-15",
+      "drawing_count": 40,
+      "concept_count": 20
+    },
+    "tumor-microenvironment": {
+      "catalog_sha256": "f7b549925e7f563656b3457c6a34466796610f0dd1f390984d3f95c9928bd482",
+      "audit_file": "rights-release-record.json",
+      "audit_sha256": "7f57e2d6093a55a4ab5bab50d8d3b190c22e631116afd2783fb244783cef3421",
+      "rights_records_sha256": "55c2387f885a4b61ba2844f57817b2a63bc4150d0aeff0bd507fdb9f9e346cf3",
+      "rights_basis": "repository_policy_original_output",
+      "contribution_effective_date": "2026-10-15",
+      "drawing_count": 20,
+      "concept_count": 10
+    },
+    "analysis-graphics": {
+      "catalog_sha256": "b5d10852475e49541349059e0517d674f4af4da70141b8c479081abd063307b2",
+      "audit_file": "rights-release-record.json",
+      "audit_sha256": "8c9ed1f12ade8f94f74135b5ab31e0b1b345c3ab4f99790c490540566f646433",
+      "rights_records_sha256": "b1693db679e6855c86c7e5be6e1a15abc546cd47bfca54f2dec0ac03549cc3bb",
+      "rights_basis": "repository_policy_original_output",
+      "contribution_effective_date": "2026-10-15",
+      "drawing_count": 20,
+      "concept_count": 10
+    },
+    "neurobiology": {
+      "catalog_sha256": "91c902639d773803de852be6b2151938f11bb564d0a509c4982a36e972dd843d",
+      "audit_file": "rights-release-record.json",
+      "audit_sha256": "d4bf0063170f3b4ef9995a202f05cd9878c3125906d8453a850aa562865e1019",
+      "rights_records_sha256": "0fd1a38c1dd729d2727751399ded88b87522d9aec0a18e638e62d0b4b935f051",
+      "rights_basis": "repository_policy_original_output",
+      "contribution_effective_date": "2026-11-03",
+      "drawing_count": 20,
+      "concept_count": 10
+    },
+    "tissue-vascular": {
+      "catalog_sha256": "a7965875afb56980baed1d119339ba9afb69857e35832897b5c89fcf96412eb8",
+      "audit_file": "rights-release-record.json",
+      "audit_sha256": "f1178a9bf0912566047be1ad275abe31264e463695a49b6cdf248f2633c5f659",
+      "rights_records_sha256": "30dc445d166f4c74e32ed1c9ceb52169919eea2c0bb6f7993a1cb4f624ed65ce",
+      "rights_basis": "repository_policy_original_output",
+      "contribution_effective_date": "2026-11-03",
+      "drawing_count": 20,
+      "concept_count": 10
+    }
+  },
+  "scenes": {
+    "single-cell-rna-workflow": {
+      "scene_sha256": "a7d22e7fa4d7d27a89477bfe0f41ec90e5b1ff7b84c4217d0af61b15f18bf3dd",
+      "preview_sha256": "5420139979016ba5f54e7b99ea5822da2b10646240d3740809340095d7189263"
+    },
+    "spatial-rna-methods": {
+      "scene_sha256": "42887da40bb40cd9a3b8fca1d18ec7a1e6d361c3590e4d46447d43d4ea98bdb7",
+      "preview_sha256": "20019511d3685597ec1685867342b70fae5a79fca02649b7aa96bab5cc562709"
+    },
+    "angiogenic-sprouting": {
+      "scene_sha256": "d3e48ce001615056095671e5aa1efe2cedea5a990d4f3a1e7ce5916c283d591f",
+      "preview_sha256": "3cba1e4e9b5c0686ff167e7687cd89c3c96031b3c9da7eeaaec95e610475eca4"
+    },
+    "chemical-synaptic-transmission": {
+      "scene_sha256": "1582a542e828a74f1af1f8a1f72425ff230fcdd850fa9762ba566229d2f25896",
+      "preview_sha256": "b891fe41f04d6b765c4da43cb9cea50c61e2eac009dd26b506ffca02bfcfee6c"
+    },
+    "epithelial-barrier-transwell-workflow": {
+      "scene_sha256": "26662db2ff575a7d64b219189fbbe04ebf64d8627054a1f0bddb72d20b7c3302",
+      "preview_sha256": "e34f46f8a7364bcaa86f91294bf57876cbda7d5443ce1289169b9c1bf810472a"
+    },
+    "immunoblot-assay-workflow": {
+      "scene_sha256": "f794b7d54a0225bfc56be7e3c9158f74c524e11dd76635a051803a5f2baae437",
+      "preview_sha256": "7079132770eb365cf8f896d400e37912a7b20bc4bbb1ab148b4698b36d7d96ff"
+    },
+    "immunoprecipitation-workflow": {
+      "scene_sha256": "f401042691738bf4aa9d71924ba4472192f561ddf5440b58fb16f2a7d0b5f580",
+      "preview_sha256": "86a494b1dae0b805d2d8113b9b459a30772b6dd021ce8f0497f9a0632a180554"
+    },
+    "indirect-immunofluorescence-workflow": {
+      "scene_sha256": "1d9df8471d930d456ad04488731b1ff0632879276afefbfaeacee752f28fd5f1",
+      "preview_sha256": "56a5ca47d2e9c682a6fcc8dcbf498b5ee8119e4529267dfcb8ab702997616831"
+    },
+    "rt-qpcr-expression-workflow": {
+      "scene_sha256": "8a24471f7cc86352c4b43942332acb2910ba8314777c0f3a0f4e16cd8dfea205",
+      "preview_sha256": "54e77edc1d5bb050277f6fb0a8f21462886ce5a7f834033f4c70f395657267e2"
+    },
+    "sandwich-elisa-workflow": {
+      "scene_sha256": "b4ddb99b05ffb326cfd9e37ae63c15ca1e49c2c77df46dccfd0cd6e7e46c9fc6",
+      "preview_sha256": "3c9b2265099b91d53ed11e029833de9f8e0c97f2c4a9ecfb6f8761f9e251e9c9"
+    },
+    "wound-closure-assay-workflow": {
+      "scene_sha256": "13ea70f34c59622dfaf59144d623ea24d8110bbd756f234bb382e7886b0049ea",
+      "preview_sha256": "090ed9ee17076071abe6fbc799d9b4d803a5a0f868b71c2f95518da43afa29ea"
+    }
+  },
+  "scope": "Finite source-level inclusion after original-artwork, browser-editor and independent actual-file review; clean package, native Windows host, installation and deployment remain separate release gates."
+}

@@ -1,0 +1,160 @@
+{
+  "schema_version": "1.0.0",
+  "id": "figure-studio-scientific-library",
+  "name": "Superbench Figure Tool Scientific Library",
+  "packs": [
+    {
+      "id": "core-biology",
+      "name": "Core Biology",
+      "description": "Foundational cells, structures, pathway notation, labware, and model organisms.",
+      "path": "core-biology/asset-pack.json",
+      "asset_count": 132,
+      "concept_count": 100,
+      "enabled": true,
+      "modes": [
+        "figure",
+        "presentation"
+      ]
+    },
+    {
+      "id": "core-experimental-biology",
+      "name": "Core Experimental Biology",
+      "description": "Common experimental cells, molecular processes, assays, instruments, and model systems.",
+      "path": "core-experimental-biology/asset-pack.json",
+      "asset_count": 111,
+      "concept_count": 103,
+      "enabled": true,
+      "modes": [
+        "figure",
+        "presentation"
+      ]
+    },
+    {
+      "id": "immunology-oncology",
+      "version": "1.0.0",
+      "name": "Immunology & Oncology",
+      "description": "Immune-cell states, antigen recognition, checkpoint mechanisms, tumor ecology, immunotherapies, and oncology readouts.",
+      "path": "immunology-oncology/asset-pack.json",
+      "asset_count": 75,
+      "concept_count": 74,
+      "enabled": true,
+      "modes": [
+        "figure",
+        "presentation"
+      ]
+    },
+    {
+      "id": "rna-methods",
+      "name": "RNA Methods",
+      "description": "Original editable schematics for droplet RNA capture, spatial capture and RNA imaging.",
+      "path": "rna-methods/asset-pack.json",
+      "asset_count": 4,
+      "concept_count": 4,
+      "enabled": true,
+      "modes": [
+        "figure",
+        "presentation"
+      ]
+    },
+    {
+      "id": "protein-homeostasis",
+      "name": "Protein Homeostasis",
+      "description": "Editable protein states and interactions for chaperone handling, ubiquitination, deubiquitination, proteasomal processing and amorphous aggregation.",
+      "path": "protein-homeostasis/asset-pack.json",
+      "asset_count": 8,
+      "concept_count": 8,
+      "enabled": true,
+      "modes": [
+        "figure",
+        "presentation"
+      ]
+    },
+    {
+      "id": "cell-architecture-transport",
+      "name": "Cell Architecture & Transport",
+      "description": "Editable cell junctions, matrix attachments, cargo motors, vesicle coats and membrane interactions for cell architecture and intracellular transport.",
+      "path": "cell-architecture-transport/asset-pack.json",
+      "asset_count": 28,
+      "concept_count": 20,
+      "enabled": true,
+      "modes": [
+        "figure",
+        "presentation"
+      ]
+    },
+    {
+      "id": "culture-models-assays",
+      "name": "Culture Models & Functional Assays",
+      "description": "Editable experimental arrangements for tissue culture, organoid manipulation, spheroid formation and functional cell assays.",
+      "path": "culture-models-assays/asset-pack.json",
+      "asset_count": 24,
+      "concept_count": 18,
+      "enabled": true,
+      "modes": [
+        "figure",
+        "presentation"
+      ]
+    },
+    {
+      "id": "microbial-biology",
+      "name": "Microbial Structures & Interactions",
+      "description": "Editable microbial envelopes, capsules, spores, biofilms, hyphae and selected phage or enveloped-virus interactions.",
+      "path": "microbial-biology/asset-pack.json",
+      "asset_count": 24,
+      "concept_count": 19,
+      "enabled": true,
+      "modes": [
+        "figure",
+        "presentation"
+      ]
+    },
+    {
+      "id": "cell-structure-stress",
+      "name": "Cell Structures & Stress",
+      "description": "Editable nuclear bodies, cell-surface structures, vesicles, protrusions, death mechanisms and stress responses, with two biological forms for each concept.",
+      "path": "cell-structure-stress/asset-pack.json",
+      "asset_count": 40,
+      "concept_count": 20,
+      "enabled": true,
+      "modes": [
+        "figure",
+        "presentation"
+      ]
+    },
+    {
+      "id": "tumor-microenvironment",
+      "name": "Tumor Microenvironment",
+      "description": "Original editable tumor-associated cells, immune contacts, organized lymphoid tissue and qualitative spatial gradients.",
+      "path": "tumor-microenvironment/asset-pack.json",
+      "asset_count": 20,
+      "concept_count": 10,
+      "enabled": true,
+      "modes": [
+        "figure",
+        "presentation"
+      ]
+    },
+    {
+      "id": "analysis-graphics",
+      "name": "Analysis Graphics",
+      "description": "Editable schematic plot templates. Example geometry only; no measured data, computed statistics or analysis functions.",
+      "path": "analysis-graphics/asset-pack.json",
+      "asset_count": 20,
+      "concept_count": 10,
+      "enabled": true,
+      "modes": [
+        "figure",
+        "presentation"
+      ]
+    }
+  ],
+  "art_styles": [
+    {
+      "id": "style-4",
+      "name": "Style 4",
+      "path": "style-4/manifest-corrected-20261017.json",
+      "asset_count": 486
+    }
+  ],
+  "art_style_notes": "Style 4 includes 243 corrected supplied drawings. The other 243 current variants are retained, including eight earlier recovered drawings. Existing saved artwork keeps its embedded original source."
+}

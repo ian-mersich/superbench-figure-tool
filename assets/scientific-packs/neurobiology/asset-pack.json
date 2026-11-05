@@ -1,0 +1,1831 @@
+{
+  "schema_version": "0.3.0",
+  "id": "neurobiology",
+  "name": "Neurobiology",
+  "description": "Editable synapses, myelinated axons, glial contacts and generic neural circuit topologies with distinct biological forms.",
+  "style_family": "figure-studio-soft-line-v1",
+  "style_families": [
+    "figure-studio-soft-line-v1"
+  ],
+  "contribution_license_policy": "original-vectors.cc0.repository-policy.2026-11-03",
+  "qa_status": "scientific_visual_native_review_pending_2026_11_03",
+  "available_art_styles": [
+    "soft-color",
+    "cut-paper",
+    "technical-ink",
+    "style-4"
+  ],
+  "style_4_supplement": "original-style4-companions.2026-11-03",
+  "asset_count": 20,
+  "concept_count": 10,
+  "category_counts": {
+    "cell": {
+      "concept_count": 10,
+      "style_count": 20
+    }
+  },
+  "release_audit": {
+    "file": "rights-release-record.json",
+    "audit_id": "neurobiology.repository-policy-cc0-quality-pending.2026-11-03",
+    "audit_date": "2026-11-03",
+    "status": "rights_cleared_quality_pending",
+    "release_effective_date": null,
+    "rights_grant_effective_date": "2026-11-03",
+    "product_release_status": "pending_quality_and_product_review",
+    "concept_count": 10,
+    "asset_count": 20,
+    "public_distribution_authorized": true,
+    "selected_public_license": "CC0-1.0",
+    "license_notice": "LICENSE-ASSETS-CC0-1.0.md"
+  },
+  "source_records": [
+    {
+      "id": "source.neurobiology.original.2026-11-03",
+      "kind": "clean_room_generation_record",
+      "pack_id": "neurobiology",
+      "scope": "all_assets_in_pack",
+      "created_on": "2026-11-03",
+      "generated_by": "Figure Tool original SVG authoring",
+      "third_party_material": "none_declared",
+      "statement": "Original editable vector coordinates authored afresh for Figure Tool. Primary literature informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "scientific_references": [
+        {
+          "id": "synapse_ultrastructure",
+          "citation": "Harris KM, Jensen FE, Tsao B. Three-dimensional structure of dendritic spines and synapses in rat hippocampus (CA1) at postnatal day 15 and adult ages. J Neurosci. 1992;12:2685–2705.",
+          "doi": "10.1523/JNEUROSCI.12-07-02685.1992",
+          "url": "https://doi.org/10.1523/JNEUROSCI.12-07-02685.1992",
+          "figure": "Figures 3–4 (spine classes; thin, mushroom, and shaft synapses)",
+          "design_decision": "Supports the distinction between presynaptic terminal, synaptic cleft, dendritic spine, and dendritic shaft; used only to set the biological topology, not to copy the illustrated geometry."
+        },
+        {
+          "id": "astrocyte_meshwork",
+          "citation": "Arizono M, et al. Structural basis of astrocytic Ca2+ signals at tripartite synapses. Nat Commun. 2020;11:1906.",
+          "doi": "10.1038/s41467-020-15648-4",
+          "url": "https://doi.org/10.1038/s41467-020-15648-4",
+          "figure": "Figures 1, 3, and 8i (reticular meshwork; direct synapse contacts; tripartite-synapse schematic)",
+          "design_decision": "Informed the distinction between a process contacting a bouton–spine synapse and a broader astrocytic process network; no activity or signaling effect is encoded."
+        },
+        {
+          "id": "oligo_multiaxon",
+          "citation": "Almeida RG, Czopka T, Ffrench-Constant C, Lyons DA. Individual axons regulate the myelinating potential of single oligodendrocytes in vivo. Development. 2011;138:4443–4450.",
+          "doi": "10.1242/dev.071001",
+          "url": "https://doi.org/10.1242/dev.071001",
+          "figure": "Figure 2 (single oligodendrocytes and multiple sheaths)",
+          "design_decision": "Supports one oligodendrocyte soma extending several separate myelinating processes to axons; the drawn branches and axon positions are newly composed."
+        },
+        {
+          "id": "schwann_remak",
+          "citation": "Orita S, et al. Schwann cell LRP1 regulates Remak bundle ultrastructure and axonal interactions to prevent neuropathic pain. J Neurosci. 2013;33:5590–5602.",
+          "doi": "10.1523/JNEUROSCI.3342-12.2013",
+          "url": "https://doi.org/10.1523/JNEUROSCI.3342-12.2013",
+          "figure": "Figures 2B and 3A (myelinated fiber; Remak bundle ultrastructure)",
+          "design_decision": "Informed the separate one-axon myelinating internode and multiple small-axon nonmyelinating Remak bundle topologies; no pathology is depicted."
+        },
+        {
+          "id": "microglia_synapse_contact",
+          "citation": "Wake H, et al. Resting microglia directly monitor the functional state of synapses in vivo and determine the fate of ischemic terminals. J Neurosci. 2009;29:3974–3980.",
+          "doi": "10.1523/JNEUROSCI.4363-08.2009",
+          "url": "https://doi.org/10.1523/JNEUROSCI.4363-08.2009",
+          "figure": "Figure 1",
+          "design_decision": "Supports ramified surveying processes and direct, transient synaptic contacts. The asset uses a neutral contact mark and deliberately does not depict engulfment, elimination, or pruning."
+        },
+        {
+          "id": "feedforward_convergence",
+          "citation": "Sailamul P, Jang J, Paik SB. Synaptic convergence regulates synchronization-dependent spike transfer in feedforward neural networks. J Comput Neurosci. 2017;43:189–202.",
+          "doi": "10.1007/s10827-017-0657-5",
+          "url": "https://doi.org/10.1007/s10827-017-0657-5",
+          "figure": "Figures 1 and 5 (feedforward network and convergence topology)",
+          "design_decision": "Supports the topology of feedforward chains and convergent projections; arrows in this generic drawing show only direction and do not imply excitation or inhibition."
+        }
+      ]
+    }
+  ],
+  "rights_records": [
+    {
+      "id": "rights.neurobiology.repository-policy-cc0.2026-11-03",
+      "kind": "repository_policy_license",
+      "pack_id": "neurobiology",
+      "scope": "all_assets_in_pack",
+      "status": "rights_cleared",
+      "public_distribution_authorized": true,
+      "selected_public_license": "CC0-1.0",
+      "rights_basis": "repository_policy_original_output",
+      "third_party_material": "none_declared",
+      "effective_date": "2026-11-03",
+      "license_policy": "original-vectors.cc0.repository-policy.2026-11-03",
+      "statement": "Original editable vector coordinates authored afresh for Figure Tool. Primary literature informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "qualification": "This finite original contribution uses the adopted repository CC0 artwork policy. No new personal owner attestation or historical grant is asserted. Scientific, visual and native editor qualification and product inclusion remain separate. CC0 carries its own limitations and warranty disclaimer."
+    }
+  ],
+  "style_tokens": {
+    "viewBox": "0 0 128 128",
+    "primary_outline": "#26323D",
+    "primary_outline_width": 3.5,
+    "detail_outline_width": 2.75,
+    "line_cap": "round",
+    "line_join": "round"
+  },
+  "source_policy": {
+    "allowed_sources": [
+      "Original vector geometry; scientific concepts from primary research"
+    ],
+    "disallowed_sources": [
+      "Tracing or reuse of published or proprietary artwork"
+    ]
+  },
+  "license_definitions": {
+    "CC0-1.0": {
+      "label": "CC0 1.0 Universal",
+      "public_distribution_authorized": true,
+      "selected_public_license": "CC0-1.0",
+      "release_status": "rights_cleared_quality_pending",
+      "reuse": "Original artwork under the repository policy. Product qualification is separate."
+    }
+  },
+  "assets": [
+    {
+      "id": "neuro.chemical_synapse.bouton_spine",
+      "concept_id": "neuro.chemical_synapse",
+      "name": "Chemical synapse",
+      "scientific_name": "Chemical synapse",
+      "category": "cell",
+      "subcategory": "synapse",
+      "synonyms": [
+        "neuronal synapse",
+        "synaptic contact",
+        "axon-dendrite synapse"
+      ],
+      "tags": [
+        "chemical synapse",
+        "neuronal synapse",
+        "synaptic contact",
+        "axon-dendrite synapse",
+        "Bouton to spine",
+        "Neurobiology",
+        "schematic"
+      ],
+      "description": "A presynaptic bouton apposed to a dendritic spine across a narrow cleft.",
+      "file": "svg/chemical_synapse_bouton_spine.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector coordinates authored afresh for Figure Tool. Primary literature informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "source_record_id": "source.neurobiology.original.2026-11-03",
+      "rights_record_id": "rights.neurobiology.repository-policy-cc0.2026-11-03",
+      "style_family": "figure-studio-soft-line-v1",
+      "variant_axis": "form",
+      "style_variant": "standard",
+      "form_id": "bouton_spine",
+      "form_label": "Bouton to spine",
+      "available_art_styles": [
+        "soft-color",
+        "cut-paper",
+        "technical-ink",
+        "style-4"
+      ],
+      "style_4_supplement": "original-style4-companions.2026-11-03",
+      "review_status": "scientific_visual_native_review_pending_2026_11_03",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 5,
+      "editable_color_regions": [
+        {
+          "id": "presynaptic",
+          "label": "Presynaptic bouton",
+          "default": "#F4A261"
+        },
+        {
+          "id": "postsynaptic",
+          "label": "Postsynaptic structure",
+          "default": "#C7F2EC"
+        },
+        {
+          "id": "cleft",
+          "label": "Synaptic cleft",
+          "default": "#D9F4E5"
+        },
+        {
+          "id": "vesicles",
+          "label": "Synaptic vesicles",
+          "default": "#FFFFFF"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outline",
+          "default": "#26323D"
+        }
+      ],
+      "reviewer_notes": "Original forms await independent full-resolution and 64 px review and native editing qualification. All four Library styles cover the same biological forms and semantic parts. Style 4 companions are original drawings with separately recorded source and review status.",
+      "scientific_references": [
+        {
+          "id": "synapse_ultrastructure",
+          "citation": "Harris KM, Jensen FE, Tsao B. Three-dimensional structure of dendritic spines and synapses in rat hippocampus (CA1) at postnatal day 15 and adult ages. J Neurosci. 1992;12:2685–2705.",
+          "doi": "10.1523/JNEUROSCI.12-07-02685.1992",
+          "url": "https://doi.org/10.1523/JNEUROSCI.12-07-02685.1992",
+          "figure": "Figures 3–4 (spine classes; thin, mushroom, and shaft synapses)",
+          "design_decision": "Supports the distinction between presynaptic terminal, synaptic cleft, dendritic spine, and dendritic shaft; used only to set the biological topology, not to copy the illustrated geometry."
+        }
+      ],
+      "scientific_limitations": "Generic chemical-synapse topology; does not specify transmitter, synapse class, direction of net circuit effect, or molecular composition."
+    },
+    {
+      "id": "neuro.chemical_synapse.shaft_contact",
+      "concept_id": "neuro.chemical_synapse",
+      "name": "Chemical synapse",
+      "scientific_name": "Chemical synapse",
+      "category": "cell",
+      "subcategory": "synapse",
+      "synonyms": [
+        "neuronal synapse",
+        "synaptic contact",
+        "axon-dendrite synapse"
+      ],
+      "tags": [
+        "chemical synapse",
+        "neuronal synapse",
+        "synaptic contact",
+        "axon-dendrite synapse",
+        "Bouton to shaft",
+        "Neurobiology",
+        "schematic"
+      ],
+      "description": "A presynaptic bouton apposed directly to a dendritic shaft.",
+      "file": "svg/chemical_synapse_shaft_contact.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector coordinates authored afresh for Figure Tool. Primary literature informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "source_record_id": "source.neurobiology.original.2026-11-03",
+      "rights_record_id": "rights.neurobiology.repository-policy-cc0.2026-11-03",
+      "style_family": "figure-studio-soft-line-v1",
+      "variant_axis": "form",
+      "style_variant": "standard",
+      "form_id": "shaft_contact",
+      "form_label": "Bouton to shaft",
+      "available_art_styles": [
+        "soft-color",
+        "cut-paper",
+        "technical-ink",
+        "style-4"
+      ],
+      "style_4_supplement": "original-style4-companions.2026-11-03",
+      "review_status": "scientific_visual_native_review_pending_2026_11_03",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 5,
+      "editable_color_regions": [
+        {
+          "id": "presynaptic",
+          "label": "Presynaptic bouton",
+          "default": "#F4A261"
+        },
+        {
+          "id": "postsynaptic",
+          "label": "Postsynaptic structure",
+          "default": "#C7F2EC"
+        },
+        {
+          "id": "cleft",
+          "label": "Synaptic cleft",
+          "default": "#D9F4E5"
+        },
+        {
+          "id": "vesicles",
+          "label": "Synaptic vesicles",
+          "default": "#FFFFFF"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outline",
+          "default": "#26323D"
+        }
+      ],
+      "reviewer_notes": "Original forms await independent full-resolution and 64 px review and native editing qualification. All four Library styles cover the same biological forms and semantic parts. Style 4 companions are original drawings with separately recorded source and review status.",
+      "scientific_references": [
+        {
+          "id": "synapse_ultrastructure",
+          "citation": "Harris KM, Jensen FE, Tsao B. Three-dimensional structure of dendritic spines and synapses in rat hippocampus (CA1) at postnatal day 15 and adult ages. J Neurosci. 1992;12:2685–2705.",
+          "doi": "10.1523/JNEUROSCI.12-07-02685.1992",
+          "url": "https://doi.org/10.1523/JNEUROSCI.12-07-02685.1992",
+          "figure": "Figures 3–4 (spine classes; thin, mushroom, and shaft synapses)",
+          "design_decision": "Supports the distinction between presynaptic terminal, synaptic cleft, dendritic spine, and dendritic shaft; used only to set the biological topology, not to copy the illustrated geometry."
+        }
+      ],
+      "scientific_limitations": "Generic chemical-synapse topology; does not specify transmitter, synapse class, direction of net circuit effect, or molecular composition."
+    },
+    {
+      "id": "neuro.axon_myelin.longitudinal",
+      "concept_id": "neuro.axon_myelin",
+      "name": "Myelinated axon",
+      "scientific_name": "Myelinated axon",
+      "category": "cell",
+      "subcategory": "axon and myelin",
+      "synonyms": [
+        "myelin sheath",
+        "internode",
+        "myelinated nerve fiber"
+      ],
+      "tags": [
+        "axon myelin",
+        "myelin sheath",
+        "internode",
+        "myelinated nerve fiber",
+        "Longitudinal internodes",
+        "Neurobiology",
+        "schematic"
+      ],
+      "description": "An axon with two myelin internodes separated by a node.",
+      "file": "svg/axon_myelin_longitudinal.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector coordinates authored afresh for Figure Tool. Primary literature informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "source_record_id": "source.neurobiology.original.2026-11-03",
+      "rights_record_id": "rights.neurobiology.repository-policy-cc0.2026-11-03",
+      "style_family": "figure-studio-soft-line-v1",
+      "variant_axis": "form",
+      "style_variant": "standard",
+      "form_id": "longitudinal",
+      "form_label": "Longitudinal internodes",
+      "available_art_styles": [
+        "soft-color",
+        "cut-paper",
+        "technical-ink",
+        "style-4"
+      ],
+      "style_4_supplement": "original-style4-companions.2026-11-03",
+      "review_status": "scientific_visual_native_review_pending_2026_11_03",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 4,
+      "editable_color_regions": [
+        {
+          "id": "axon",
+          "label": "Axon",
+          "default": "#F4A261"
+        },
+        {
+          "id": "myelin",
+          "label": "Myelin",
+          "default": "#8EC8FF"
+        },
+        {
+          "id": "periaxonal_space",
+          "label": "Periaxonal space",
+          "default": "#D9F4E5"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outline",
+          "default": "#26323D"
+        }
+      ],
+      "reviewer_notes": "Original forms await independent full-resolution and 64 px review and native editing qualification. All four Library styles cover the same biological forms and semantic parts. Style 4 companions are original drawings with separately recorded source and review status.",
+      "scientific_references": [
+        {
+          "id": "oligo_multiaxon",
+          "citation": "Almeida RG, Czopka T, Ffrench-Constant C, Lyons DA. Individual axons regulate the myelinating potential of single oligodendrocytes in vivo. Development. 2011;138:4443–4450.",
+          "doi": "10.1242/dev.071001",
+          "url": "https://doi.org/10.1242/dev.071001",
+          "figure": "Figure 2 (single oligodendrocytes and multiple sheaths)",
+          "design_decision": "Supports one oligodendrocyte soma extending several separate myelinating processes to axons; the drawn branches and axon positions are newly composed."
+        },
+        {
+          "id": "schwann_remak",
+          "citation": "Orita S, et al. Schwann cell LRP1 regulates Remak bundle ultrastructure and axonal interactions to prevent neuropathic pain. J Neurosci. 2013;33:5590–5602.",
+          "doi": "10.1523/JNEUROSCI.3342-12.2013",
+          "url": "https://doi.org/10.1523/JNEUROSCI.3342-12.2013",
+          "figure": "Figures 2B and 3A (myelinated fiber; Remak bundle ultrastructure)",
+          "design_decision": "Informed the separate one-axon myelinating internode and multiple small-axon nonmyelinating Remak bundle topologies; no pathology is depicted."
+        }
+      ],
+      "scientific_limitations": "Schematic topology only; sheath thickness and spacing are not to scale and do not identify CNS or PNS origin."
+    },
+    {
+      "id": "neuro.axon_myelin.transverse",
+      "concept_id": "neuro.axon_myelin",
+      "name": "Myelinated axon",
+      "scientific_name": "Myelinated axon",
+      "category": "cell",
+      "subcategory": "axon and myelin",
+      "synonyms": [
+        "myelin sheath",
+        "internode",
+        "myelinated nerve fiber"
+      ],
+      "tags": [
+        "axon myelin",
+        "myelin sheath",
+        "internode",
+        "myelinated nerve fiber",
+        "Transverse myelin ring",
+        "Neurobiology",
+        "schematic"
+      ],
+      "description": "A cross-section through an axon surrounded by concentric myelin lamellae.",
+      "file": "svg/axon_myelin_transverse.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector coordinates authored afresh for Figure Tool. Primary literature informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "source_record_id": "source.neurobiology.original.2026-11-03",
+      "rights_record_id": "rights.neurobiology.repository-policy-cc0.2026-11-03",
+      "style_family": "figure-studio-soft-line-v1",
+      "variant_axis": "form",
+      "style_variant": "standard",
+      "form_id": "transverse",
+      "form_label": "Transverse myelin ring",
+      "available_art_styles": [
+        "soft-color",
+        "cut-paper",
+        "technical-ink",
+        "style-4"
+      ],
+      "style_4_supplement": "original-style4-companions.2026-11-03",
+      "review_status": "scientific_visual_native_review_pending_2026_11_03",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 4,
+      "editable_color_regions": [
+        {
+          "id": "axon",
+          "label": "Axon",
+          "default": "#F4A261"
+        },
+        {
+          "id": "myelin",
+          "label": "Myelin",
+          "default": "#8EC8FF"
+        },
+        {
+          "id": "periaxonal_space",
+          "label": "Periaxonal space",
+          "default": "#D9F4E5"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outline",
+          "default": "#26323D"
+        }
+      ],
+      "reviewer_notes": "Original forms await independent full-resolution and 64 px review and native editing qualification. All four Library styles cover the same biological forms and semantic parts. Style 4 companions are original drawings with separately recorded source and review status.",
+      "scientific_references": [
+        {
+          "id": "oligo_multiaxon",
+          "citation": "Almeida RG, Czopka T, Ffrench-Constant C, Lyons DA. Individual axons regulate the myelinating potential of single oligodendrocytes in vivo. Development. 2011;138:4443–4450.",
+          "doi": "10.1242/dev.071001",
+          "url": "https://doi.org/10.1242/dev.071001",
+          "figure": "Figure 2 (single oligodendrocytes and multiple sheaths)",
+          "design_decision": "Supports one oligodendrocyte soma extending several separate myelinating processes to axons; the drawn branches and axon positions are newly composed."
+        },
+        {
+          "id": "schwann_remak",
+          "citation": "Orita S, et al. Schwann cell LRP1 regulates Remak bundle ultrastructure and axonal interactions to prevent neuropathic pain. J Neurosci. 2013;33:5590–5602.",
+          "doi": "10.1523/JNEUROSCI.3342-12.2013",
+          "url": "https://doi.org/10.1523/JNEUROSCI.3342-12.2013",
+          "figure": "Figures 2B and 3A (myelinated fiber; Remak bundle ultrastructure)",
+          "design_decision": "Informed the separate one-axon myelinating internode and multiple small-axon nonmyelinating Remak bundle topologies; no pathology is depicted."
+        }
+      ],
+      "scientific_limitations": "Schematic topology only; sheath thickness and spacing are not to scale and do not identify CNS or PNS origin."
+    },
+    {
+      "id": "neuro.oligodendrocyte.multiple_sheaths",
+      "concept_id": "exp.cell.oligodendrocyte_like",
+      "name": "Oligodendrocyte",
+      "scientific_name": "Oligodendrocyte",
+      "category": "cell",
+      "subcategory": "glia",
+      "synonyms": [
+        "oligodendroglia",
+        "CNS myelinating glia"
+      ],
+      "tags": [
+        "oligodendrocyte",
+        "oligodendroglia",
+        "CNS myelinating glia",
+        "Multiple sheaths",
+        "Neurobiology",
+        "schematic"
+      ],
+      "description": "One oligodendrocyte soma connects through distinct processes to sheaths on several axons.",
+      "file": "svg/oligodendrocyte_multiple_sheaths.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector coordinates authored afresh for Figure Tool. Primary literature informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "source_record_id": "source.neurobiology.original.2026-11-03",
+      "rights_record_id": "rights.neurobiology.repository-policy-cc0.2026-11-03",
+      "style_family": "figure-studio-soft-line-v1",
+      "variant_axis": "form",
+      "style_variant": "standard",
+      "form_id": "multiple_sheaths",
+      "form_label": "Multiple sheaths",
+      "available_art_styles": [
+        "soft-color",
+        "cut-paper",
+        "technical-ink",
+        "style-4"
+      ],
+      "style_4_supplement": "original-style4-companions.2026-11-03",
+      "review_status": "scientific_visual_native_review_pending_2026_11_03",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 5,
+      "editable_color_regions": [
+        {
+          "id": "cell_body",
+          "label": "Oligodendrocyte soma",
+          "default": "#B8B5FF"
+        },
+        {
+          "id": "cell_feature",
+          "label": "Cell processes",
+          "default": "#D9D7FF"
+        },
+        {
+          "id": "myelin",
+          "label": "Myelin sheaths",
+          "default": "#8EC8FF"
+        },
+        {
+          "id": "axon",
+          "label": "Axons",
+          "default": "#F4A261"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outline",
+          "default": "#26323D"
+        }
+      ],
+      "reviewer_notes": "Original forms await independent full-resolution and 64 px review and native editing qualification. All four Library styles cover the same biological forms and semantic parts. Style 4 companions are original drawings with separately recorded source and review status.",
+      "scientific_references": [
+        {
+          "id": "oligo_multiaxon",
+          "citation": "Almeida RG, Czopka T, Ffrench-Constant C, Lyons DA. Individual axons regulate the myelinating potential of single oligodendrocytes in vivo. Development. 2011;138:4443–4450.",
+          "doi": "10.1242/dev.071001",
+          "url": "https://doi.org/10.1242/dev.071001",
+          "figure": "Figure 2 (single oligodendrocytes and multiple sheaths)",
+          "design_decision": "Supports one oligodendrocyte soma extending several separate myelinating processes to axons; the drawn branches and axon positions are newly composed."
+        }
+      ],
+      "scientific_limitations": "Generic CNS oligodendrocyte topology; sheath count and process lengths are illustrative, not quantitative.",
+      "concept_extension": {
+        "source_pack_id": "core-experimental-biology",
+        "source_concept_id": "exp.cell.oligodendrocyte_like"
+      }
+    },
+    {
+      "id": "neuro.oligodendrocyte.branching",
+      "concept_id": "exp.cell.oligodendrocyte_like",
+      "name": "Oligodendrocyte",
+      "scientific_name": "Oligodendrocyte",
+      "category": "cell",
+      "subcategory": "glia",
+      "synonyms": [
+        "oligodendroglia",
+        "CNS myelinating glia"
+      ],
+      "tags": [
+        "oligodendrocyte",
+        "oligodendroglia",
+        "CNS myelinating glia",
+        "Compact branching view",
+        "Neurobiology",
+        "schematic"
+      ],
+      "description": "A compact radial composition showing a single soma and branched processes ending in separate sheaths.",
+      "file": "svg/oligodendrocyte_branching.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector coordinates authored afresh for Figure Tool. Primary literature informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "source_record_id": "source.neurobiology.original.2026-11-03",
+      "rights_record_id": "rights.neurobiology.repository-policy-cc0.2026-11-03",
+      "style_family": "figure-studio-soft-line-v1",
+      "variant_axis": "form",
+      "style_variant": "standard",
+      "form_id": "branching",
+      "form_label": "Compact branching view",
+      "available_art_styles": [
+        "soft-color",
+        "cut-paper",
+        "technical-ink",
+        "style-4"
+      ],
+      "style_4_supplement": "original-style4-companions.2026-11-03",
+      "review_status": "scientific_visual_native_review_pending_2026_11_03",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 5,
+      "editable_color_regions": [
+        {
+          "id": "cell_body",
+          "label": "Oligodendrocyte soma",
+          "default": "#B8B5FF"
+        },
+        {
+          "id": "cell_feature",
+          "label": "Cell processes",
+          "default": "#D9D7FF"
+        },
+        {
+          "id": "myelin",
+          "label": "Myelin sheaths",
+          "default": "#8EC8FF"
+        },
+        {
+          "id": "axon",
+          "label": "Axons",
+          "default": "#F4A261"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outline",
+          "default": "#26323D"
+        }
+      ],
+      "reviewer_notes": "Original forms await independent full-resolution and 64 px review and native editing qualification. All four Library styles cover the same biological forms and semantic parts. Style 4 companions are original drawings with separately recorded source and review status.",
+      "scientific_references": [
+        {
+          "id": "oligo_multiaxon",
+          "citation": "Almeida RG, Czopka T, Ffrench-Constant C, Lyons DA. Individual axons regulate the myelinating potential of single oligodendrocytes in vivo. Development. 2011;138:4443–4450.",
+          "doi": "10.1242/dev.071001",
+          "url": "https://doi.org/10.1242/dev.071001",
+          "figure": "Figure 2 (single oligodendrocytes and multiple sheaths)",
+          "design_decision": "Supports one oligodendrocyte soma extending several separate myelinating processes to axons; the drawn branches and axon positions are newly composed."
+        }
+      ],
+      "scientific_limitations": "Generic CNS oligodendrocyte topology; sheath count and process lengths are illustrative, not quantitative.",
+      "concept_extension": {
+        "source_pack_id": "core-experimental-biology",
+        "source_concept_id": "exp.cell.oligodendrocyte_like"
+      }
+    },
+    {
+      "id": "neuro.schwann_cell.myelinating_internode",
+      "concept_id": "exp.cell.schwann_myelin",
+      "name": "Schwann cell",
+      "scientific_name": "Schwann cell",
+      "category": "cell",
+      "subcategory": "glia",
+      "synonyms": [
+        "peripheral glia",
+        "myelinating Schwann cell",
+        "Remak Schwann cell"
+      ],
+      "tags": [
+        "schwann cell",
+        "peripheral glia",
+        "myelinating Schwann cell",
+        "Remak Schwann cell",
+        "Myelinating internode",
+        "Neurobiology",
+        "schematic"
+      ],
+      "description": "One Schwann cell wraps one axon segment between exposed paranodal ends.",
+      "file": "svg/schwann_cell_myelinating_internode.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector coordinates authored afresh for Figure Tool. Primary literature informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "source_record_id": "source.neurobiology.original.2026-11-03",
+      "rights_record_id": "rights.neurobiology.repository-policy-cc0.2026-11-03",
+      "style_family": "figure-studio-soft-line-v1",
+      "variant_axis": "form",
+      "style_variant": "standard",
+      "form_id": "myelinating_internode",
+      "form_label": "Myelinating internode",
+      "available_art_styles": [
+        "soft-color",
+        "cut-paper",
+        "technical-ink",
+        "style-4"
+      ],
+      "style_4_supplement": "original-style4-companions.2026-11-03",
+      "review_status": "scientific_visual_native_review_pending_2026_11_03",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 5,
+      "editable_color_regions": [
+        {
+          "id": "cell_body",
+          "label": "Schwann cell cytoplasm",
+          "default": "#D9F4E5"
+        },
+        {
+          "id": "axon",
+          "label": "Axons",
+          "default": "#F4A261"
+        },
+        {
+          "id": "myelin_wraps",
+          "label": "Schwann cell ensheathment",
+          "default": "#8EC8FF"
+        },
+        {
+          "id": "periaxonal_space",
+          "label": "Periaxonal spaces",
+          "default": "#FFFFFF"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outline",
+          "default": "#26323D"
+        }
+      ],
+      "reviewer_notes": "Original forms await independent full-resolution and 64 px review and native editing qualification. All four Library styles cover the same biological forms and semantic parts. Style 4 companions are original drawings with separately recorded source and review status.",
+      "scientific_references": [
+        {
+          "id": "schwann_remak",
+          "citation": "Orita S, et al. Schwann cell LRP1 regulates Remak bundle ultrastructure and axonal interactions to prevent neuropathic pain. J Neurosci. 2013;33:5590–5602.",
+          "doi": "10.1523/JNEUROSCI.3342-12.2013",
+          "url": "https://doi.org/10.1523/JNEUROSCI.3342-12.2013",
+          "figure": "Figures 2B and 3A (myelinated fiber; Remak bundle ultrastructure)",
+          "design_decision": "Informed the separate one-axon myelinating internode and multiple small-axon nonmyelinating Remak bundle topologies; no pathology is depicted."
+        }
+      ],
+      "scientific_limitations": "Generic peripheral glial topology; the second form is nonmyelinating and does not imply disease or axon loss.",
+      "concept_extension": {
+        "source_pack_id": "core-experimental-biology",
+        "source_concept_id": "exp.cell.schwann_myelin"
+      }
+    },
+    {
+      "id": "neuro.schwann_cell.nonmyelinating_bundle",
+      "concept_id": "exp.cell.schwann_myelin",
+      "name": "Schwann cell",
+      "scientific_name": "Schwann cell",
+      "category": "cell",
+      "subcategory": "glia",
+      "synonyms": [
+        "peripheral glia",
+        "myelinating Schwann cell",
+        "Remak Schwann cell"
+      ],
+      "tags": [
+        "schwann cell",
+        "peripheral glia",
+        "myelinating Schwann cell",
+        "Remak Schwann cell",
+        "Nonmyelinating bundle",
+        "Neurobiology",
+        "schematic"
+      ],
+      "description": "A nonmyelinating Schwann cell cytoplasm surrounds several small axons in a Remak-like bundle.",
+      "file": "svg/schwann_cell_nonmyelinating_bundle.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector coordinates authored afresh for Figure Tool. Primary literature informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "source_record_id": "source.neurobiology.original.2026-11-03",
+      "rights_record_id": "rights.neurobiology.repository-policy-cc0.2026-11-03",
+      "style_family": "figure-studio-soft-line-v1",
+      "variant_axis": "form",
+      "style_variant": "standard",
+      "form_id": "nonmyelinating_bundle",
+      "form_label": "Nonmyelinating bundle",
+      "available_art_styles": [
+        "soft-color",
+        "cut-paper",
+        "technical-ink",
+        "style-4"
+      ],
+      "style_4_supplement": "original-style4-companions.2026-11-03",
+      "review_status": "scientific_visual_native_review_pending_2026_11_03",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 5,
+      "editable_color_regions": [
+        {
+          "id": "cell_body",
+          "label": "Schwann cell cytoplasm",
+          "default": "#D9F4E5"
+        },
+        {
+          "id": "axon",
+          "label": "Axons",
+          "default": "#F4A261"
+        },
+        {
+          "id": "myelin_wraps",
+          "label": "Schwann cell ensheathment",
+          "default": "#8EC8FF"
+        },
+        {
+          "id": "periaxonal_space",
+          "label": "Periaxonal spaces",
+          "default": "#FFFFFF"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outline",
+          "default": "#26323D"
+        }
+      ],
+      "reviewer_notes": "Original forms await independent full-resolution and 64 px review and native editing qualification. All four Library styles cover the same biological forms and semantic parts. Style 4 companions are original drawings with separately recorded source and review status.",
+      "scientific_references": [
+        {
+          "id": "schwann_remak",
+          "citation": "Orita S, et al. Schwann cell LRP1 regulates Remak bundle ultrastructure and axonal interactions to prevent neuropathic pain. J Neurosci. 2013;33:5590–5602.",
+          "doi": "10.1523/JNEUROSCI.3342-12.2013",
+          "url": "https://doi.org/10.1523/JNEUROSCI.3342-12.2013",
+          "figure": "Figures 2B and 3A (myelinated fiber; Remak bundle ultrastructure)",
+          "design_decision": "Informed the separate one-axon myelinating internode and multiple small-axon nonmyelinating Remak bundle topologies; no pathology is depicted."
+        }
+      ],
+      "scientific_limitations": "Generic peripheral glial topology; the second form is nonmyelinating and does not imply disease or axon loss.",
+      "concept_extension": {
+        "source_pack_id": "core-experimental-biology",
+        "source_concept_id": "exp.cell.schwann_myelin"
+      }
+    },
+    {
+      "id": "neuro.dendritic_spine.mushroom",
+      "concept_id": "neuro.dendritic_spine",
+      "name": "Dendritic spine",
+      "scientific_name": "Dendritic spine",
+      "category": "cell",
+      "subcategory": "dendrite",
+      "synonyms": [
+        "spine head",
+        "spine neck",
+        "postsynaptic protrusion"
+      ],
+      "tags": [
+        "dendritic spine",
+        "spine head",
+        "spine neck",
+        "postsynaptic protrusion",
+        "Mushroom",
+        "Neurobiology",
+        "schematic"
+      ],
+      "description": "A relatively broad head on a short, wider neck rising from a dendritic shaft.",
+      "file": "svg/dendritic_spine_mushroom.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector coordinates authored afresh for Figure Tool. Primary literature informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "source_record_id": "source.neurobiology.original.2026-11-03",
+      "rights_record_id": "rights.neurobiology.repository-policy-cc0.2026-11-03",
+      "style_family": "figure-studio-soft-line-v1",
+      "variant_axis": "form",
+      "style_variant": "standard",
+      "form_id": "mushroom",
+      "form_label": "Mushroom",
+      "available_art_styles": [
+        "soft-color",
+        "cut-paper",
+        "technical-ink",
+        "style-4"
+      ],
+      "style_4_supplement": "original-style4-companions.2026-11-03",
+      "review_status": "scientific_visual_native_review_pending_2026_11_03",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 4,
+      "editable_color_regions": [
+        {
+          "id": "dendrite",
+          "label": "Dendrite",
+          "default": "#C7F2EC"
+        },
+        {
+          "id": "spine",
+          "label": "Spine",
+          "default": "#8EC8FF"
+        },
+        {
+          "id": "postsynaptic_density",
+          "label": "Postsynaptic density",
+          "default": "#F4A261"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outline",
+          "default": "#26323D"
+        }
+      ],
+      "reviewer_notes": "Original forms await independent full-resolution and 64 px review and native editing qualification. All four Library styles cover the same biological forms and semantic parts. Style 4 companions are original drawings with separately recorded source and review status.",
+      "scientific_references": [
+        {
+          "id": "synapse_ultrastructure",
+          "citation": "Harris KM, Jensen FE, Tsao B. Three-dimensional structure of dendritic spines and synapses in rat hippocampus (CA1) at postnatal day 15 and adult ages. J Neurosci. 1992;12:2685–2705.",
+          "doi": "10.1523/JNEUROSCI.12-07-02685.1992",
+          "url": "https://doi.org/10.1523/JNEUROSCI.12-07-02685.1992",
+          "figure": "Figures 3–4 (spine classes; thin, mushroom, and shaft synapses)",
+          "design_decision": "Supports the distinction between presynaptic terminal, synaptic cleft, dendritic spine, and dendritic shaft; used only to set the biological topology, not to copy the illustrated geometry."
+        }
+      ],
+      "scientific_limitations": "Morphology classes are simplified schematic forms; real spine shapes vary continuously and are context dependent."
+    },
+    {
+      "id": "neuro.dendritic_spine.thin",
+      "concept_id": "neuro.dendritic_spine",
+      "name": "Dendritic spine",
+      "scientific_name": "Dendritic spine",
+      "category": "cell",
+      "subcategory": "dendrite",
+      "synonyms": [
+        "spine head",
+        "spine neck",
+        "postsynaptic protrusion"
+      ],
+      "tags": [
+        "dendritic spine",
+        "spine head",
+        "spine neck",
+        "postsynaptic protrusion",
+        "Thin",
+        "Neurobiology",
+        "schematic"
+      ],
+      "description": "A small head on a slender neck rising from a dendritic shaft.",
+      "file": "svg/dendritic_spine_thin.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector coordinates authored afresh for Figure Tool. Primary literature informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "source_record_id": "source.neurobiology.original.2026-11-03",
+      "rights_record_id": "rights.neurobiology.repository-policy-cc0.2026-11-03",
+      "style_family": "figure-studio-soft-line-v1",
+      "variant_axis": "form",
+      "style_variant": "standard",
+      "form_id": "thin",
+      "form_label": "Thin",
+      "available_art_styles": [
+        "soft-color",
+        "cut-paper",
+        "technical-ink",
+        "style-4"
+      ],
+      "style_4_supplement": "original-style4-companions.2026-11-03",
+      "review_status": "scientific_visual_native_review_pending_2026_11_03",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 4,
+      "editable_color_regions": [
+        {
+          "id": "dendrite",
+          "label": "Dendrite",
+          "default": "#C7F2EC"
+        },
+        {
+          "id": "spine",
+          "label": "Spine",
+          "default": "#8EC8FF"
+        },
+        {
+          "id": "postsynaptic_density",
+          "label": "Postsynaptic density",
+          "default": "#F4A261"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outline",
+          "default": "#26323D"
+        }
+      ],
+      "reviewer_notes": "Original forms await independent full-resolution and 64 px review and native editing qualification. All four Library styles cover the same biological forms and semantic parts. Style 4 companions are original drawings with separately recorded source and review status.",
+      "scientific_references": [
+        {
+          "id": "synapse_ultrastructure",
+          "citation": "Harris KM, Jensen FE, Tsao B. Three-dimensional structure of dendritic spines and synapses in rat hippocampus (CA1) at postnatal day 15 and adult ages. J Neurosci. 1992;12:2685–2705.",
+          "doi": "10.1523/JNEUROSCI.12-07-02685.1992",
+          "url": "https://doi.org/10.1523/JNEUROSCI.12-07-02685.1992",
+          "figure": "Figures 3–4 (spine classes; thin, mushroom, and shaft synapses)",
+          "design_decision": "Supports the distinction between presynaptic terminal, synaptic cleft, dendritic spine, and dendritic shaft; used only to set the biological topology, not to copy the illustrated geometry."
+        }
+      ],
+      "scientific_limitations": "Morphology classes are simplified schematic forms; real spine shapes vary continuously and are context dependent."
+    },
+    {
+      "id": "neuro.axon_terminal.single_bouton",
+      "concept_id": "neuro.axon_terminal",
+      "name": "Axon terminal",
+      "scientific_name": "Axon terminal",
+      "category": "cell",
+      "subcategory": "axon",
+      "synonyms": [
+        "nerve ending",
+        "presynaptic terminal",
+        "terminal bouton"
+      ],
+      "tags": [
+        "axon terminal",
+        "nerve ending",
+        "presynaptic terminal",
+        "terminal bouton",
+        "Single bouton",
+        "Neurobiology",
+        "schematic"
+      ],
+      "description": "One terminal bouton at the end of a short axon segment.",
+      "file": "svg/axon_terminal_single_bouton.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector coordinates authored afresh for Figure Tool. Primary literature informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "source_record_id": "source.neurobiology.original.2026-11-03",
+      "rights_record_id": "rights.neurobiology.repository-policy-cc0.2026-11-03",
+      "style_family": "figure-studio-soft-line-v1",
+      "variant_axis": "form",
+      "style_variant": "standard",
+      "form_id": "single_bouton",
+      "form_label": "Single bouton",
+      "available_art_styles": [
+        "soft-color",
+        "cut-paper",
+        "technical-ink",
+        "style-4"
+      ],
+      "style_4_supplement": "original-style4-companions.2026-11-03",
+      "review_status": "scientific_visual_native_review_pending_2026_11_03",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 4,
+      "editable_color_regions": [
+        {
+          "id": "axon",
+          "label": "Axon",
+          "default": "#F4A261"
+        },
+        {
+          "id": "terminal",
+          "label": "Terminal boutons",
+          "default": "#F4A261"
+        },
+        {
+          "id": "vesicles",
+          "label": "Vesicle marks",
+          "default": "#FFFFFF"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outline",
+          "default": "#26323D"
+        }
+      ],
+      "reviewer_notes": "Original forms await independent full-resolution and 64 px review and native editing qualification. All four Library styles cover the same biological forms and semantic parts. Style 4 companions are original drawings with separately recorded source and review status.",
+      "scientific_references": [
+        {
+          "id": "synapse_ultrastructure",
+          "citation": "Harris KM, Jensen FE, Tsao B. Three-dimensional structure of dendritic spines and synapses in rat hippocampus (CA1) at postnatal day 15 and adult ages. J Neurosci. 1992;12:2685–2705.",
+          "doi": "10.1523/JNEUROSCI.12-07-02685.1992",
+          "url": "https://doi.org/10.1523/JNEUROSCI.12-07-02685.1992",
+          "figure": "Figures 3–4 (spine classes; thin, mushroom, and shaft synapses)",
+          "design_decision": "Supports the distinction between presynaptic terminal, synaptic cleft, dendritic spine, and dendritic shaft; used only to set the biological topology, not to copy the illustrated geometry."
+        }
+      ],
+      "scientific_limitations": "Terminal morphology only; does not assert target cell, transmitter, release probability, or synaptic effect."
+    },
+    {
+      "id": "neuro.axon_terminal.branched_terminals",
+      "concept_id": "neuro.axon_terminal",
+      "name": "Axon terminal",
+      "scientific_name": "Axon terminal",
+      "category": "cell",
+      "subcategory": "axon",
+      "synonyms": [
+        "nerve ending",
+        "presynaptic terminal",
+        "terminal bouton"
+      ],
+      "tags": [
+        "axon terminal",
+        "nerve ending",
+        "presynaptic terminal",
+        "terminal bouton",
+        "Branched terminals",
+        "Neurobiology",
+        "schematic"
+      ],
+      "description": "A terminal axon branch ending in several separate boutons.",
+      "file": "svg/axon_terminal_branched_terminals.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector coordinates authored afresh for Figure Tool. Primary literature informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "source_record_id": "source.neurobiology.original.2026-11-03",
+      "rights_record_id": "rights.neurobiology.repository-policy-cc0.2026-11-03",
+      "style_family": "figure-studio-soft-line-v1",
+      "variant_axis": "form",
+      "style_variant": "standard",
+      "form_id": "branched_terminals",
+      "form_label": "Branched terminals",
+      "available_art_styles": [
+        "soft-color",
+        "cut-paper",
+        "technical-ink",
+        "style-4"
+      ],
+      "style_4_supplement": "original-style4-companions.2026-11-03",
+      "review_status": "scientific_visual_native_review_pending_2026_11_03",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 4,
+      "editable_color_regions": [
+        {
+          "id": "axon",
+          "label": "Axon",
+          "default": "#F4A261"
+        },
+        {
+          "id": "terminal",
+          "label": "Terminal boutons",
+          "default": "#F4A261"
+        },
+        {
+          "id": "vesicles",
+          "label": "Vesicle marks",
+          "default": "#FFFFFF"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outline",
+          "default": "#26323D"
+        }
+      ],
+      "reviewer_notes": "Original forms await independent full-resolution and 64 px review and native editing qualification. All four Library styles cover the same biological forms and semantic parts. Style 4 companions are original drawings with separately recorded source and review status.",
+      "scientific_references": [
+        {
+          "id": "synapse_ultrastructure",
+          "citation": "Harris KM, Jensen FE, Tsao B. Three-dimensional structure of dendritic spines and synapses in rat hippocampus (CA1) at postnatal day 15 and adult ages. J Neurosci. 1992;12:2685–2705.",
+          "doi": "10.1523/JNEUROSCI.12-07-02685.1992",
+          "url": "https://doi.org/10.1523/JNEUROSCI.12-07-02685.1992",
+          "figure": "Figures 3–4 (spine classes; thin, mushroom, and shaft synapses)",
+          "design_decision": "Supports the distinction between presynaptic terminal, synaptic cleft, dendritic spine, and dendritic shaft; used only to set the biological topology, not to copy the illustrated geometry."
+        }
+      ],
+      "scientific_limitations": "Terminal morphology only; does not assert target cell, transmitter, release probability, or synaptic effect."
+    },
+    {
+      "id": "neuro.neuron_astrocyte_contact.single_synapse",
+      "concept_id": "neuro.neuron_astrocyte_contact",
+      "name": "Neuron–astrocyte contact",
+      "scientific_name": "Neuron–astrocyte contact",
+      "category": "cell",
+      "subcategory": "neuron-glia contact",
+      "synonyms": [
+        "tripartite synapse",
+        "perisynaptic astrocyte process",
+        "astrocyte-neuron interface"
+      ],
+      "tags": [
+        "neuron astrocyte contact",
+        "tripartite synapse",
+        "perisynaptic astrocyte process",
+        "astrocyte-neuron interface",
+        "Single synapse contact",
+        "Neurobiology",
+        "schematic"
+      ],
+      "description": "An astrocyte process approaches one synaptic site formed by a bouton and spine.",
+      "file": "svg/neuron_astrocyte_contact_single_synapse.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector coordinates authored afresh for Figure Tool. Primary literature informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "source_record_id": "source.neurobiology.original.2026-11-03",
+      "rights_record_id": "rights.neurobiology.repository-policy-cc0.2026-11-03",
+      "style_family": "figure-studio-soft-line-v1",
+      "variant_axis": "form",
+      "style_variant": "standard",
+      "form_id": "single_synapse",
+      "form_label": "Single synapse contact",
+      "available_art_styles": [
+        "soft-color",
+        "cut-paper",
+        "technical-ink",
+        "style-4"
+      ],
+      "style_4_supplement": "original-style4-companions.2026-11-03",
+      "review_status": "scientific_visual_native_review_pending_2026_11_03",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 5,
+      "editable_color_regions": [
+        {
+          "id": "neuron",
+          "label": "Postsynaptic neuron",
+          "default": "#8EC8FF"
+        },
+        {
+          "id": "presynaptic",
+          "label": "Presynaptic terminal",
+          "default": "#F4A261"
+        },
+        {
+          "id": "astrocyte",
+          "label": "Astrocyte processes",
+          "default": "#B8B5FF"
+        },
+        {
+          "id": "cleft",
+          "label": "Synaptic cleft",
+          "default": "#FFFFFF"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outline",
+          "default": "#26323D"
+        }
+      ],
+      "reviewer_notes": "Original forms await independent full-resolution and 64 px review and native editing qualification. All four Library styles cover the same biological forms and semantic parts. Style 4 companions are original drawings with separately recorded source and review status.",
+      "scientific_references": [
+        {
+          "id": "astrocyte_meshwork",
+          "citation": "Arizono M, et al. Structural basis of astrocytic Ca2+ signals at tripartite synapses. Nat Commun. 2020;11:1906.",
+          "doi": "10.1038/s41467-020-15648-4",
+          "url": "https://doi.org/10.1038/s41467-020-15648-4",
+          "figure": "Figures 1, 3, and 8i (reticular meshwork; direct synapse contacts; tripartite-synapse schematic)",
+          "design_decision": "Informed the distinction between a process contacting a bouton–spine synapse and a broader astrocytic process network; no activity or signaling effect is encoded."
+        }
+      ],
+      "scientific_limitations": "Anatomical contact schematic; does not imply universal coverage, signaling direction, or functional regulation."
+    },
+    {
+      "id": "neuro.neuron_astrocyte_contact.process_network",
+      "concept_id": "neuro.neuron_astrocyte_contact",
+      "name": "Neuron–astrocyte contact",
+      "scientific_name": "Neuron–astrocyte contact",
+      "category": "cell",
+      "subcategory": "neuron-glia contact",
+      "synonyms": [
+        "tripartite synapse",
+        "perisynaptic astrocyte process",
+        "astrocyte-neuron interface"
+      ],
+      "tags": [
+        "neuron astrocyte contact",
+        "tripartite synapse",
+        "perisynaptic astrocyte process",
+        "astrocyte-neuron interface",
+        "Process network",
+        "Neurobiology",
+        "schematic"
+      ],
+      "description": "A branching astrocyte process mesh approaches multiple neuronal elements.",
+      "file": "svg/neuron_astrocyte_contact_process_network.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector coordinates authored afresh for Figure Tool. Primary literature informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "source_record_id": "source.neurobiology.original.2026-11-03",
+      "rights_record_id": "rights.neurobiology.repository-policy-cc0.2026-11-03",
+      "style_family": "figure-studio-soft-line-v1",
+      "variant_axis": "form",
+      "style_variant": "standard",
+      "form_id": "process_network",
+      "form_label": "Process network",
+      "available_art_styles": [
+        "soft-color",
+        "cut-paper",
+        "technical-ink",
+        "style-4"
+      ],
+      "style_4_supplement": "original-style4-companions.2026-11-03",
+      "review_status": "scientific_visual_native_review_pending_2026_11_03",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 5,
+      "editable_color_regions": [
+        {
+          "id": "neuron",
+          "label": "Postsynaptic neuron",
+          "default": "#8EC8FF"
+        },
+        {
+          "id": "presynaptic",
+          "label": "Presynaptic terminal",
+          "default": "#F4A261"
+        },
+        {
+          "id": "astrocyte",
+          "label": "Astrocyte processes",
+          "default": "#B8B5FF"
+        },
+        {
+          "id": "cleft",
+          "label": "Synaptic cleft",
+          "default": "#FFFFFF"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outline",
+          "default": "#26323D"
+        }
+      ],
+      "reviewer_notes": "Original forms await independent full-resolution and 64 px review and native editing qualification. All four Library styles cover the same biological forms and semantic parts. Style 4 companions are original drawings with separately recorded source and review status.",
+      "scientific_references": [
+        {
+          "id": "astrocyte_meshwork",
+          "citation": "Arizono M, et al. Structural basis of astrocytic Ca2+ signals at tripartite synapses. Nat Commun. 2020;11:1906.",
+          "doi": "10.1038/s41467-020-15648-4",
+          "url": "https://doi.org/10.1038/s41467-020-15648-4",
+          "figure": "Figures 1, 3, and 8i (reticular meshwork; direct synapse contacts; tripartite-synapse schematic)",
+          "design_decision": "Informed the distinction between a process contacting a bouton–spine synapse and a broader astrocytic process network; no activity or signaling effect is encoded."
+        }
+      ],
+      "scientific_limitations": "Anatomical contact schematic; does not imply universal coverage, signaling direction, or functional regulation."
+    },
+    {
+      "id": "neuro.microglia_contact.surveying",
+      "concept_id": "neuro.microglia_contact",
+      "name": "Microglial process contact",
+      "scientific_name": "Microglial process contact",
+      "category": "cell",
+      "subcategory": "neuron-glia contact",
+      "synonyms": [
+        "microglia-synapse contact",
+        "microglial surveillance",
+        "microglial process"
+      ],
+      "tags": [
+        "microglia contact",
+        "microglia-synapse contact",
+        "microglial surveillance",
+        "microglial process",
+        "Surveying processes",
+        "Neurobiology",
+        "schematic"
+      ],
+      "description": "A ramified microglial cell with thin processes extending through nearby tissue.",
+      "file": "svg/microglia_contact_surveying.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector coordinates authored afresh for Figure Tool. Primary literature informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "source_record_id": "source.neurobiology.original.2026-11-03",
+      "rights_record_id": "rights.neurobiology.repository-policy-cc0.2026-11-03",
+      "style_family": "figure-studio-soft-line-v1",
+      "variant_axis": "form",
+      "style_variant": "standard",
+      "form_id": "surveying",
+      "form_label": "Surveying processes",
+      "available_art_styles": [
+        "soft-color",
+        "cut-paper",
+        "technical-ink",
+        "style-4"
+      ],
+      "style_4_supplement": "original-style4-companions.2026-11-03",
+      "review_status": "scientific_visual_native_review_pending_2026_11_03",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 4,
+      "editable_color_regions": [
+        {
+          "id": "microglia",
+          "label": "Microglial soma",
+          "default": "#B8B5FF"
+        },
+        {
+          "id": "process",
+          "label": "Microglial processes",
+          "default": "#D9D7FF"
+        },
+        {
+          "id": "neural_target",
+          "label": "Neuronal elements",
+          "default": "#C7F2EC"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outline",
+          "default": "#26323D"
+        }
+      ],
+      "reviewer_notes": "Original forms await independent full-resolution and 64 px review and native editing qualification. All four Library styles cover the same biological forms and semantic parts. Style 4 companions are original drawings with separately recorded source and review status.",
+      "scientific_references": [
+        {
+          "id": "microglia_synapse_contact",
+          "citation": "Wake H, et al. Resting microglia directly monitor the functional state of synapses in vivo and determine the fate of ischemic terminals. J Neurosci. 2009;29:3974–3980.",
+          "doi": "10.1523/JNEUROSCI.4363-08.2009",
+          "url": "https://doi.org/10.1523/JNEUROSCI.4363-08.2009",
+          "figure": "Figure 1",
+          "design_decision": "Supports ramified surveying processes and direct, transient synaptic contacts. The asset uses a neutral contact mark and deliberately does not depict engulfment, elimination, or pruning."
+        }
+      ],
+      "scientific_limitations": "Neutral morphology/contact schematic; no implication of synaptic pruning, phagocytosis, activation state, or injury."
+    },
+    {
+      "id": "neuro.microglia_contact.synaptic_contact",
+      "concept_id": "neuro.microglia_contact",
+      "name": "Microglial process contact",
+      "scientific_name": "Microglial process contact",
+      "category": "cell",
+      "subcategory": "neuron-glia contact",
+      "synonyms": [
+        "microglia-synapse contact",
+        "microglial surveillance",
+        "microglial process"
+      ],
+      "tags": [
+        "microglia contact",
+        "microglia-synapse contact",
+        "microglial surveillance",
+        "microglial process",
+        "Synaptic contact",
+        "Neurobiology",
+        "schematic"
+      ],
+      "description": "One microglial process touches a synaptic region without engulfment or removal.",
+      "file": "svg/microglia_contact_synaptic_contact.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector coordinates authored afresh for Figure Tool. Primary literature informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "source_record_id": "source.neurobiology.original.2026-11-03",
+      "rights_record_id": "rights.neurobiology.repository-policy-cc0.2026-11-03",
+      "style_family": "figure-studio-soft-line-v1",
+      "variant_axis": "form",
+      "style_variant": "standard",
+      "form_id": "synaptic_contact",
+      "form_label": "Synaptic contact",
+      "available_art_styles": [
+        "soft-color",
+        "cut-paper",
+        "technical-ink",
+        "style-4"
+      ],
+      "style_4_supplement": "original-style4-companions.2026-11-03",
+      "review_status": "scientific_visual_native_review_pending_2026_11_03",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 4,
+      "editable_color_regions": [
+        {
+          "id": "microglia",
+          "label": "Microglial soma",
+          "default": "#B8B5FF"
+        },
+        {
+          "id": "process",
+          "label": "Microglial processes",
+          "default": "#D9D7FF"
+        },
+        {
+          "id": "neural_target",
+          "label": "Neuronal elements",
+          "default": "#C7F2EC"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outline",
+          "default": "#26323D"
+        }
+      ],
+      "reviewer_notes": "Original forms await independent full-resolution and 64 px review and native editing qualification. All four Library styles cover the same biological forms and semantic parts. Style 4 companions are original drawings with separately recorded source and review status.",
+      "scientific_references": [
+        {
+          "id": "microglia_synapse_contact",
+          "citation": "Wake H, et al. Resting microglia directly monitor the functional state of synapses in vivo and determine the fate of ischemic terminals. J Neurosci. 2009;29:3974–3980.",
+          "doi": "10.1523/JNEUROSCI.4363-08.2009",
+          "url": "https://doi.org/10.1523/JNEUROSCI.4363-08.2009",
+          "figure": "Figure 1",
+          "design_decision": "Supports ramified surveying processes and direct, transient synaptic contacts. The asset uses a neutral contact mark and deliberately does not depict engulfment, elimination, or pruning."
+        }
+      ],
+      "scientific_limitations": "Neutral morphology/contact schematic; no implication of synaptic pruning, phagocytosis, activation state, or injury."
+    },
+    {
+      "id": "neuro.node_of_ranvier.paired_internodes",
+      "concept_id": "neuro.node_of_ranvier",
+      "name": "Node of Ranvier",
+      "scientific_name": "Node of Ranvier",
+      "category": "cell",
+      "subcategory": "axon and myelin",
+      "synonyms": [
+        "node",
+        "paranode",
+        "myelin gap"
+      ],
+      "tags": [
+        "node of ranvier",
+        "node",
+        "paranode",
+        "myelin gap",
+        "Paired internodes",
+        "Neurobiology",
+        "schematic"
+      ],
+      "description": "An exposed axon gap between two adjacent myelin internodes.",
+      "file": "svg/node_of_ranvier_paired_internodes.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector coordinates authored afresh for Figure Tool. Primary literature informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "source_record_id": "source.neurobiology.original.2026-11-03",
+      "rights_record_id": "rights.neurobiology.repository-policy-cc0.2026-11-03",
+      "style_family": "figure-studio-soft-line-v1",
+      "variant_axis": "form",
+      "style_variant": "standard",
+      "form_id": "paired_internodes",
+      "form_label": "Paired internodes",
+      "available_art_styles": [
+        "soft-color",
+        "cut-paper",
+        "technical-ink",
+        "style-4"
+      ],
+      "style_4_supplement": "original-style4-companions.2026-11-03",
+      "review_status": "scientific_visual_native_review_pending_2026_11_03",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 4,
+      "editable_color_regions": [
+        {
+          "id": "axon",
+          "label": "Axon",
+          "default": "#F4A261"
+        },
+        {
+          "id": "myelin",
+          "label": "Myelin internodes",
+          "default": "#8EC8FF"
+        },
+        {
+          "id": "nodal_region",
+          "label": "Nodal region",
+          "default": "#D9F4E5"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outline",
+          "default": "#26323D"
+        }
+      ],
+      "reviewer_notes": "Original forms await independent full-resolution and 64 px review and native editing qualification. All four Library styles cover the same biological forms and semantic parts. Style 4 companions are original drawings with separately recorded source and review status.",
+      "scientific_references": [
+        {
+          "id": "oligo_multiaxon",
+          "citation": "Almeida RG, Czopka T, Ffrench-Constant C, Lyons DA. Individual axons regulate the myelinating potential of single oligodendrocytes in vivo. Development. 2011;138:4443–4450.",
+          "doi": "10.1242/dev.071001",
+          "url": "https://doi.org/10.1242/dev.071001",
+          "figure": "Figure 2 (single oligodendrocytes and multiple sheaths)",
+          "design_decision": "Supports one oligodendrocyte soma extending several separate myelinating processes to axons; the drawn branches and axon positions are newly composed."
+        },
+        {
+          "id": "schwann_remak",
+          "citation": "Orita S, et al. Schwann cell LRP1 regulates Remak bundle ultrastructure and axonal interactions to prevent neuropathic pain. J Neurosci. 2013;33:5590–5602.",
+          "doi": "10.1523/JNEUROSCI.3342-12.2013",
+          "url": "https://doi.org/10.1523/JNEUROSCI.3342-12.2013",
+          "figure": "Figures 2B and 3A (myelinated fiber; Remak bundle ultrastructure)",
+          "design_decision": "Informed the separate one-axon myelinating internode and multiple small-axon nonmyelinating Remak bundle topologies; no pathology is depicted."
+        }
+      ],
+      "scientific_limitations": "Simplified nodal domain; molecular identities and conduction dynamics are not represented."
+    },
+    {
+      "id": "neuro.node_of_ranvier.channel_region",
+      "concept_id": "neuro.node_of_ranvier",
+      "name": "Node of Ranvier",
+      "scientific_name": "Node of Ranvier",
+      "category": "cell",
+      "subcategory": "axon and myelin",
+      "synonyms": [
+        "node",
+        "paranode",
+        "myelin gap"
+      ],
+      "tags": [
+        "node of ranvier",
+        "node",
+        "paranode",
+        "myelin gap",
+        "Nodal channel region",
+        "Neurobiology",
+        "schematic"
+      ],
+      "description": "A magnified axon segment with a compact channel-rich nodal region flanked by myelin ends.",
+      "file": "svg/node_of_ranvier_channel_region.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector coordinates authored afresh for Figure Tool. Primary literature informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "source_record_id": "source.neurobiology.original.2026-11-03",
+      "rights_record_id": "rights.neurobiology.repository-policy-cc0.2026-11-03",
+      "style_family": "figure-studio-soft-line-v1",
+      "variant_axis": "form",
+      "style_variant": "standard",
+      "form_id": "channel_region",
+      "form_label": "Nodal channel region",
+      "available_art_styles": [
+        "soft-color",
+        "cut-paper",
+        "technical-ink",
+        "style-4"
+      ],
+      "style_4_supplement": "original-style4-companions.2026-11-03",
+      "review_status": "scientific_visual_native_review_pending_2026_11_03",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 4,
+      "editable_color_regions": [
+        {
+          "id": "axon",
+          "label": "Axon",
+          "default": "#F4A261"
+        },
+        {
+          "id": "myelin",
+          "label": "Myelin internodes",
+          "default": "#8EC8FF"
+        },
+        {
+          "id": "nodal_region",
+          "label": "Nodal region",
+          "default": "#D9F4E5"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outline",
+          "default": "#26323D"
+        }
+      ],
+      "reviewer_notes": "Original forms await independent full-resolution and 64 px review and native editing qualification. All four Library styles cover the same biological forms and semantic parts. Style 4 companions are original drawings with separately recorded source and review status.",
+      "scientific_references": [
+        {
+          "id": "oligo_multiaxon",
+          "citation": "Almeida RG, Czopka T, Ffrench-Constant C, Lyons DA. Individual axons regulate the myelinating potential of single oligodendrocytes in vivo. Development. 2011;138:4443–4450.",
+          "doi": "10.1242/dev.071001",
+          "url": "https://doi.org/10.1242/dev.071001",
+          "figure": "Figure 2 (single oligodendrocytes and multiple sheaths)",
+          "design_decision": "Supports one oligodendrocyte soma extending several separate myelinating processes to axons; the drawn branches and axon positions are newly composed."
+        },
+        {
+          "id": "schwann_remak",
+          "citation": "Orita S, et al. Schwann cell LRP1 regulates Remak bundle ultrastructure and axonal interactions to prevent neuropathic pain. J Neurosci. 2013;33:5590–5602.",
+          "doi": "10.1523/JNEUROSCI.3342-12.2013",
+          "url": "https://doi.org/10.1523/JNEUROSCI.3342-12.2013",
+          "figure": "Figures 2B and 3A (myelinated fiber; Remak bundle ultrastructure)",
+          "design_decision": "Informed the separate one-axon myelinating internode and multiple small-axon nonmyelinating Remak bundle topologies; no pathology is depicted."
+        }
+      ],
+      "scientific_limitations": "Simplified nodal domain; molecular identities and conduction dynamics are not represented."
+    },
+    {
+      "id": "neuro.neural_circuit.feedforward_chain",
+      "concept_id": "neuro.neural_circuit",
+      "name": "Neural circuit",
+      "scientific_name": "Neural circuit",
+      "category": "cell",
+      "subcategory": "circuit",
+      "synonyms": [
+        "neuronal circuit",
+        "feedforward pathway",
+        "convergent input"
+      ],
+      "tags": [
+        "neural circuit",
+        "neuronal circuit",
+        "feedforward pathway",
+        "convergent input",
+        "Feedforward chain",
+        "Neurobiology",
+        "schematic"
+      ],
+      "description": "A generic series of neuronal nodes connected by directional arrows.",
+      "file": "svg/neural_circuit_feedforward_chain.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector coordinates authored afresh for Figure Tool. Primary literature informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "source_record_id": "source.neurobiology.original.2026-11-03",
+      "rights_record_id": "rights.neurobiology.repository-policy-cc0.2026-11-03",
+      "style_family": "figure-studio-soft-line-v1",
+      "variant_axis": "form",
+      "style_variant": "standard",
+      "form_id": "feedforward_chain",
+      "form_label": "Feedforward chain",
+      "available_art_styles": [
+        "soft-color",
+        "cut-paper",
+        "technical-ink",
+        "style-4"
+      ],
+      "style_4_supplement": "original-style4-companions.2026-11-03",
+      "review_status": "scientific_visual_native_review_pending_2026_11_03",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 4,
+      "editable_color_regions": [
+        {
+          "id": "neuron",
+          "label": "Neuronal nodes",
+          "default": "#C7F2EC"
+        },
+        {
+          "id": "connection",
+          "label": "Directional connections",
+          "default": "#8EC8FF"
+        },
+        {
+          "id": "arrow",
+          "label": "Arrowheads",
+          "default": "#F4A261"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outline",
+          "default": "#26323D"
+        }
+      ],
+      "reviewer_notes": "Original forms await independent full-resolution and 64 px review and native editing qualification. All four Library styles cover the same biological forms and semantic parts. Style 4 companions are original drawings with separately recorded source and review status.",
+      "scientific_references": [
+        {
+          "id": "feedforward_convergence",
+          "citation": "Sailamul P, Jang J, Paik SB. Synaptic convergence regulates synchronization-dependent spike transfer in feedforward neural networks. J Comput Neurosci. 2017;43:189–202.",
+          "doi": "10.1007/s10827-017-0657-5",
+          "url": "https://doi.org/10.1007/s10827-017-0657-5",
+          "figure": "Figures 1 and 5 (feedforward network and convergence topology)",
+          "design_decision": "Supports the topology of feedforward chains and convergent projections; arrows in this generic drawing show only direction and do not imply excitation or inhibition."
+        }
+      ],
+      "scientific_limitations": "Generic directional connectivity only; arrows show schematic information flow and make no claim about excitation, inhibition, cell identity, or measured activity."
+    },
+    {
+      "id": "neuro.neural_circuit.convergent_inputs",
+      "concept_id": "neuro.neural_circuit",
+      "name": "Neural circuit",
+      "scientific_name": "Neural circuit",
+      "category": "cell",
+      "subcategory": "circuit",
+      "synonyms": [
+        "neuronal circuit",
+        "feedforward pathway",
+        "convergent input"
+      ],
+      "tags": [
+        "neural circuit",
+        "neuronal circuit",
+        "feedforward pathway",
+        "convergent input",
+        "Convergent inputs",
+        "Neurobiology",
+        "schematic"
+      ],
+      "description": "Several upstream nodes project toward one downstream node.",
+      "file": "svg/neural_circuit_convergent_inputs.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector coordinates authored afresh for Figure Tool. Primary literature informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "source_record_id": "source.neurobiology.original.2026-11-03",
+      "rights_record_id": "rights.neurobiology.repository-policy-cc0.2026-11-03",
+      "style_family": "figure-studio-soft-line-v1",
+      "variant_axis": "form",
+      "style_variant": "standard",
+      "form_id": "convergent_inputs",
+      "form_label": "Convergent inputs",
+      "available_art_styles": [
+        "soft-color",
+        "cut-paper",
+        "technical-ink",
+        "style-4"
+      ],
+      "style_4_supplement": "original-style4-companions.2026-11-03",
+      "review_status": "scientific_visual_native_review_pending_2026_11_03",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 4,
+      "editable_color_regions": [
+        {
+          "id": "neuron",
+          "label": "Neuronal nodes",
+          "default": "#C7F2EC"
+        },
+        {
+          "id": "connection",
+          "label": "Directional connections",
+          "default": "#8EC8FF"
+        },
+        {
+          "id": "arrow",
+          "label": "Arrowheads",
+          "default": "#F4A261"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outline",
+          "default": "#26323D"
+        }
+      ],
+      "reviewer_notes": "Original forms await independent full-resolution and 64 px review and native editing qualification. All four Library styles cover the same biological forms and semantic parts. Style 4 companions are original drawings with separately recorded source and review status.",
+      "scientific_references": [
+        {
+          "id": "feedforward_convergence",
+          "citation": "Sailamul P, Jang J, Paik SB. Synaptic convergence regulates synchronization-dependent spike transfer in feedforward neural networks. J Comput Neurosci. 2017;43:189–202.",
+          "doi": "10.1007/s10827-017-0657-5",
+          "url": "https://doi.org/10.1007/s10827-017-0657-5",
+          "figure": "Figures 1 and 5 (feedforward network and convergence topology)",
+          "design_decision": "Supports the topology of feedforward chains and convergent projections; arrows in this generic drawing show only direction and do not imply excitation or inhibition."
+        }
+      ],
+      "scientific_limitations": "Generic directional connectivity only; arrows show schematic information flow and make no claim about excitation, inhibition, cell identity, or measured activity."
+    }
+  ]
+}

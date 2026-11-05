@@ -1,0 +1,218 @@
+{
+  "schema_id": "figureStudio.scientificStyleSupplementRights.v1",
+  "supplement_id": "original-style4-companions.2026-11-03",
+  "asset_count": 40,
+  "source_record_id": "source.style4-original-companions.2026-11-03",
+  "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-03",
+  "license_policy": "original-vectors.cc0.repository-policy.2026-11-03",
+  "selected_public_license": "CC0-1.0",
+  "public_distribution_authorized": true,
+  "rights_basis": "repository_policy_original_output",
+  "product_release_status": "pending_quality_and_product_review",
+  "effective_date": "2026-11-03",
+  "manifest_sha256": "9149ed783517fd139a04a0eceb143a7576ed033918405a13beb4c83fa4d46244",
+  "license_notice_sha256": "e7857f9e0537a6925a78f52d055401c4e9f45a9ebf97cda106f70cb291d808af",
+  "original_construction": "Original editable Style 4 companion coordinates, contour redraws and bounded light/shade facets authored for the finite forty-drawing neurobiology and tissue contribution. Biological topology and semantic parts match the canonical original drawings. No supplied artwork geometry, proprietary illustration, traced image or measured observation was incorporated.",
+  "assets": [
+    {
+      "asset_id": "neuro.chemical_synapse.bouton_spine",
+      "sha256": "eecacdf3f12e234ff4c658051839a9a8ae8150d10e090ba0ef698cb62889e6ed",
+      "geometry_sha256": "6a2176b0a9c727d5eb661b79929e298f4354b6734e8722d5a9c133d375cee00c"
+    },
+    {
+      "asset_id": "neuro.chemical_synapse.shaft_contact",
+      "sha256": "fe5e5d1b744c24eb87c08ecf971d2d59054455feba316208b8fee13445be81ff",
+      "geometry_sha256": "abcc133e0d26edae42c7125bfd2cee3e3ceb2c981a08c101d742511fb8e88aac"
+    },
+    {
+      "asset_id": "neuro.axon_myelin.longitudinal",
+      "sha256": "66c45a7c461d76c1c6e7fe632c376638da6ec98a217097818f97d1427563a566",
+      "geometry_sha256": "1c7174ac2f20555e6e1aeb3b6358bb67397a1a023bf48c0ccc11faa93ba0353d"
+    },
+    {
+      "asset_id": "neuro.axon_myelin.transverse",
+      "sha256": "23e0c9c7cb7cee9638d36d2acf0b73ac501f7ba58a32331357ed115471c6b6b3",
+      "geometry_sha256": "a7a400d0f139dd54be7f081ae095879f357d36aa421bf2215602f15a5b9c93bc"
+    },
+    {
+      "asset_id": "neuro.oligodendrocyte.multiple_sheaths",
+      "sha256": "52c634c1c2ccdd91476bcf4a3dd10266a0a36225c3c5c58e9dfb0276fa0a6455",
+      "geometry_sha256": "9b926a7c3f2d545fee6e94f9a2ad6b9a831d40cfb047b16086a5add92ec08ecb"
+    },
+    {
+      "asset_id": "neuro.oligodendrocyte.branching",
+      "sha256": "90475925ffa5d976a8f076ce9ab07e77a065bc153941b82e22aa04828fdf87ad",
+      "geometry_sha256": "e1974f131aea3282bea2c27d10e74ed14e42d4c1dfe0de654974bace88c4265e"
+    },
+    {
+      "asset_id": "neuro.schwann_cell.myelinating_internode",
+      "sha256": "415e3829f8b07650734d4d5d99d6e1f27072b106e77c64cc9312d966692f8701",
+      "geometry_sha256": "cd93883fd7be29a82fa09584fad2f5d3b37a3f65143b1ab91c905a9e12819933"
+    },
+    {
+      "asset_id": "neuro.schwann_cell.nonmyelinating_bundle",
+      "sha256": "060c3bfec4742dcbd8d0bdbc16855f6d9122e65b68a3fa3b3630eae29ca974a2",
+      "geometry_sha256": "930a8a114467282d0a29242df235ec2ec573af6982ba81daedff81c9bf195de0"
+    },
+    {
+      "asset_id": "neuro.dendritic_spine.mushroom",
+      "sha256": "415a4b9c07ace07aa31edeb1b69a85b45dfcfcb2e02db32ec519f17b34b17fdf",
+      "geometry_sha256": "850f8afda8eeaff96c8aa735e37d6b3cc0ad82b5ea081028b8de5642dd2498c9"
+    },
+    {
+      "asset_id": "neuro.dendritic_spine.thin",
+      "sha256": "f9d3c8a52134d55375aaad73d862eb595cdcae7510c872a6c0f33f09abb5f535",
+      "geometry_sha256": "7396313b28fec4f9d2b3965f130e66810c425bc597090fe930ac6a952c872b0b"
+    },
+    {
+      "asset_id": "neuro.axon_terminal.single_bouton",
+      "sha256": "15b7951187ce32ea6ec19a701e025605fe7d742ef1262421f3443ef8faaa03d1",
+      "geometry_sha256": "b624efb6573a3fbfb6cc1e31074c8c0686e2e3b74133e1ddf403076b438fb311"
+    },
+    {
+      "asset_id": "neuro.axon_terminal.branched_terminals",
+      "sha256": "d56c99c65d19b458fa6696c6c4ded2a287ce46b00dc3ba09d69af74b415b13e9",
+      "geometry_sha256": "afb81481adda87ea279205a02e94277a503f42dffdebe59d76cd1c69e28662c3"
+    },
+    {
+      "asset_id": "neuro.neuron_astrocyte_contact.single_synapse",
+      "sha256": "a39120e7cb3165810f82ab8ecd9954abd23671ef46b899450afb16d83b93e586",
+      "geometry_sha256": "52b7fdefe0679da508ba9aeae1cbc432eceb31900deb6b82e5129dfdf055ff12"
+    },
+    {
+      "asset_id": "neuro.neuron_astrocyte_contact.process_network",
+      "sha256": "8291dc6b59669b5d9e09efaf3084c85ffb293f48a98d964c5b27b5a509a12685",
+      "geometry_sha256": "f66598f41a696ede1eda589fd12ab86617cb8eea4747e5b9b87d093c3a0c7285"
+    },
+    {
+      "asset_id": "neuro.microglia_contact.surveying",
+      "sha256": "05e1a5ebba417e7027a494962c7d2418821a30a6818e99631ed2a839a12db6c4",
+      "geometry_sha256": "a613991f327e6b0b70bfdb1aeb894e8e9c51ed40741ee8975b95ad6c0ba2d5d7"
+    },
+    {
+      "asset_id": "neuro.microglia_contact.synaptic_contact",
+      "sha256": "546c9392aa80879bd512562f845a20687e88a2eca549bc866237c69797d2effd",
+      "geometry_sha256": "1a6819e4a2b33e201942588e3f32505ce38e55a326eca2233fadfa1948c7ad2f"
+    },
+    {
+      "asset_id": "neuro.node_of_ranvier.paired_internodes",
+      "sha256": "791e9ea663461efcd6b532a7cfad0f598d1be2e59791266354f0f423aee8af5a",
+      "geometry_sha256": "cb23005ab286a7c79cb3258ad6dd5d1bdc2801561815afd67633a1ad7550e3fc"
+    },
+    {
+      "asset_id": "neuro.node_of_ranvier.channel_region",
+      "sha256": "266b29cf20cbc626985e099e3b9f88750b0347a3eec0b630238dc9dd3bc6351c",
+      "geometry_sha256": "71ce3a4e443ed3b3015bdf7dab52356a0afc097ff34a894660c04471411cf0c1"
+    },
+    {
+      "asset_id": "neuro.neural_circuit.feedforward_chain",
+      "sha256": "c1e7ec4ab84dd94fa3ee6e5a530add7097aaaac50c1e5715fff6d61004abee77",
+      "geometry_sha256": "0fc451fb87804a896a4d503e9b0bf0341554cf4c7791949a4103423fa80bfa4e"
+    },
+    {
+      "asset_id": "neuro.neural_circuit.convergent_inputs",
+      "sha256": "4324188ccaa15b14c4528ba9e1819646bbd270d693d6b3cb2040f379ab914f60",
+      "geometry_sha256": "020412e33b1ed16193a5fa2790622ffef88a8da4ce0a0c7995ad644487544f62"
+    },
+    {
+      "asset_id": "tissue.epithelial_sheet.lateral",
+      "sha256": "a27e13c93ade985f6adf1077a33310d810b691438578a44765613e6ab76df246",
+      "geometry_sha256": "0b0caa3249e56adabf634a56102308a27cc5429140f0ee13a6628e35f2590235"
+    },
+    {
+      "asset_id": "tissue.epithelial_sheet.apical",
+      "sha256": "3eec36b51bfae6ca4a275f850184c804d62350630615f446706c0aacbfd2ee97",
+      "geometry_sha256": "9f709cc779049a540dcce2ba05d6a60df1f97cb72362295c9b3e3a4bc4d4a1fc"
+    },
+    {
+      "asset_id": "tissue.epithelial_acinus.closed_lumen",
+      "sha256": "a20b091afd68a2b044310067a70037c25068311c6f1bca386235a2b70b438e67",
+      "geometry_sha256": "57f4d06a907f22be29b83fd80cdadb5eef06840261a3bb7c4eaec2462e2919f5"
+    },
+    {
+      "asset_id": "tissue.epithelial_acinus.section",
+      "sha256": "c966572025897d4e250f43dfd2fe4b1fe3d12b77102f7489626ae3eb3809e9b3",
+      "geometry_sha256": "9ce76de763a396ec919cd4c34faec370b61536dca778eb740ebca3fdcb2d9bfe"
+    },
+    {
+      "asset_id": "tissue.capillary.longitudinal",
+      "sha256": "282c3c5499eb38614bff84dfeceef7042747d0a6269834b5d4ababafb769c906",
+      "geometry_sha256": "870da1484b0fab7adff5ccde1c07c8baf5613e79d49b2efbc63c3a31cd4b4ae2"
+    },
+    {
+      "asset_id": "tissue.capillary.transverse",
+      "sha256": "2f56eb6d145ef7196bfbdbf72e62aa69ba496ff030f4d71b52536ad3ade5fd35",
+      "geometry_sha256": "b803f6028d920de0e31bee7067c5833a362cf1cff7492890af9f82c3b5e25064"
+    },
+    {
+      "asset_id": "tissue.vessel_wall.thicker_wall",
+      "sha256": "9a31bb0706c48bec64a465619dbf2834b0557fc00f029e737006edf3de484efe",
+      "geometry_sha256": "d657f5f6ad0b8f321138eeb960471fe3cc47eff2d076b0504141f28e1e8e0fde"
+    },
+    {
+      "asset_id": "tissue.vessel_wall.thinner_wall",
+      "sha256": "e4dd652bf8922d5790cb4c0b4f57cce5b0a2d79c63243efe7f1f1af07a71af35",
+      "geometry_sha256": "4057f4b19107c7ba5cda79e5f64b85d9baaff6b2dbd1e5a6e15672dc211e4f64"
+    },
+    {
+      "asset_id": "tissue.lymphatic_capillary.blind_end",
+      "sha256": "866305a69d97ec34ed9ef979195ea57ec4f5636f257d893ff980e71d1afcc823",
+      "geometry_sha256": "656ee0a23196b76eab3f9c448bb197b13be171392480239a0cfc029e0f7ec083"
+    },
+    {
+      "asset_id": "tissue.lymphatic_capillary.tissue_interface",
+      "sha256": "9189892f6070b71a3d98214496b081ba1368f9a72d271001e307d615b1b6268b",
+      "geometry_sha256": "4becaadb495d52a1a05a05dacc29c6fede8185c2d96fd77499f29123f0e00a97"
+    },
+    {
+      "asset_id": "tissue.angiogenic_sprout.single_tip",
+      "sha256": "4e63057475cd4a2d09a51aa0a453aca2814ed320b125100db3a3e823e29a0e4d",
+      "geometry_sha256": "a2623f185bf473ed57a471b7ddffe7eb79a87077727382c45a7b2fefd6a1f46b"
+    },
+    {
+      "asset_id": "tissue.angiogenic_sprout.branching",
+      "sha256": "a677043ecee7ab6023130dd10a2ea7dfb3da5206d34bd30d7c7d05de3d7c2a17",
+      "geometry_sha256": "afe92322ca9c6c4950227156d89001cd22fdade4a29352ff7569f26d814d44ec"
+    },
+    {
+      "asset_id": "tissue.collagen.bundle",
+      "sha256": "57a8c8afa7667ae88a2d309870ac6268ab088f72c2b94a502221e70c8f2f760a",
+      "geometry_sha256": "91aba8c088961f70666ae85325b56f37b14b520c1d0bde9bd1cb3f7e07037066"
+    },
+    {
+      "asset_id": "tissue.collagen.mesh",
+      "sha256": "51f5fade014811d914d3175599787a68d37e3c950351bba5edae3c63f6480435",
+      "geometry_sha256": "d5c6b7ddb4a846eb8b3a2bce6e82fa42615b66d0de9e961b872ea0ba458905e1"
+    },
+    {
+      "asset_id": "tissue.basement_membrane.isolated_sheet",
+      "sha256": "5b83d2680ed488d3f752cef5d38e89af0bd6bbd57031b3a58fa14c94cb4e0a07",
+      "geometry_sha256": "d21967339e100651d4c41b745d4078e53c814c5f0b6330cbcb2538c96d166f54"
+    },
+    {
+      "asset_id": "tissue.basement_membrane.epithelial_interface",
+      "sha256": "b8aec972106d56d87907a6648d72aa17778909e00b3f317730edee3c8ccf2c8c",
+      "geometry_sha256": "4ddd572c1ee9fab869e2e5e7bd0ea115a194487fec407d7f15b82c5165198ba8"
+    },
+    {
+      "asset_id": "tissue.skeletal_muscle.longitudinal_fibers",
+      "sha256": "2ea5d66bd8ee14c1e642405e5a90d924edf786b1be898ce96a5ebe85c7e024d8",
+      "geometry_sha256": "2ab2303bf1b7a504d362f79998e633d426e523dbe7697d16a248e72afca6fd6c"
+    },
+    {
+      "asset_id": "tissue.skeletal_muscle.bundle_cross_section",
+      "sha256": "3f6fba9df18a7a0d310eebb5db08d37d9b5e42ae8ff1f951e7c25c79d019fa9f",
+      "geometry_sha256": "adc69bc174ae34670f6bd37c3e902e4650cf8c79bcfbb25585aa6a89a351355d"
+    },
+    {
+      "asset_id": "tissue.adipose.single_adipocyte",
+      "sha256": "6db2d1dadd2cf11c49b6dc25c6f26fd285bdaa26b2114c306ef2e79d45012c0a",
+      "geometry_sha256": "fe18726459c0112a39ec9acaba589274ac6627d5d7e5023f4c94178d0d847d92"
+    },
+    {
+      "asset_id": "tissue.adipose.lobule",
+      "sha256": "ae516460584a6e325e544440c15c090048a76ad5a3229c77c8d8b75bf7731dea",
+      "geometry_sha256": "809deb4e2df3998840e563afdfa9ff4d6a19b56ce775ec5aaf14980882ea20c7"
+    }
+  ]
+}

@@ -1,0 +1,662 @@
+{
+  "schema": "figureStudio.scientificScene.v1",
+  "id": "wound-closure-assay-workflow",
+  "name": "Wound-closure assay workflow",
+  "summary": "Create a cell-free gap, image matched fields over time, and quantify gap closure.",
+  "source_record_id": "source.figure-studio-scene-expansion.2026-11-03",
+  "rights_record_id": "rights.figure-studio-scene-expansion.repository-cc0.2026-11-03",
+  "scientific_record": {
+    "id": "science.figure-studio.wound-closure-assay-workflow.2026-11-03",
+    "verified_on": "2026-11-03",
+    "scope": "Create a cell-free gap, image matched fields over time, and quantify gap closure.",
+    "relationships": [
+      {
+        "claim": "A gap in a confluent cell layer can be followed by microscopy to assess collective movement into the cleared area.",
+        "source_ids": [
+          "balko-2023",
+          "jonkman-2014"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "balko-2023",
+        "citation": "Balko S et al. A Robust and Standardized Approach to Quantify Wound Closure Using the Scratch Assay. Methods and Protocols. 2023;6:87.",
+        "doi": "10.3390/mps6050087",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10514857/",
+        "support_location": "Methods describing scratch creation, matched image acquisition and wound-closure quantification.",
+        "decision": "Keep the initial gap, repeated imaging of the same field, and gap measurement explicit. The schematic does not show closure trajectories or attribute closure exclusively to migration."
+      },
+      {
+        "id": "jonkman-2014",
+        "citation": "Jonkman JEN, Cathcart JA, Xu F, Bartolini ME, Amon JE, Stevens KM, Colarusso P. An introduction to the wound healing assay using live-cell microscopy. Cell Adhes Migr. 2014;8(5):440–451.",
+        "doi": "10.4161/cam.36224",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5154238/",
+        "support_location": "Section IV, Microscope Configuration and Image Acquisition for the Wound Healing Assay; Figures 3–4 and 6 (microscope comparison, background correction, and time-series closure).",
+        "decision": "Keep the initial gap, repeated imaging of the same field, and gap measurement explicit. The schematic does not show closure trajectories or attribute closure exclusively to migration."
+      }
+    ],
+    "limitations": [
+      "In vitro gap closure does not by itself isolate migration from proliferation, survival, or changes in cell spreading. Standardize gap geometry, image positions, and timing; interpret in the context of model and controls."
+    ],
+    "authorship": "Original editable scene composed from released Figure Studio assets and original vector/text objects; published figures informed scientific relationships only. No publication artwork was copied, traced, or embedded."
+  },
+  "insertion_art_style": "soft-color",
+  "canvas": {
+    "width": 1120,
+    "height": 430,
+    "width_in": 11.666666666666666,
+    "height_in": 4.479166666666667,
+    "background_role": "background"
+  },
+  "palette": {
+    "background": "#F7F9FC",
+    "surface": "#FFFFFF",
+    "ink": "#24313B",
+    "muted": "#637381",
+    "border": "#C9D5DE",
+    "sample": "#2A8C82",
+    "process": "#527DA8",
+    "signal": "#D79A31",
+    "caution": "#9A5F33",
+    "accent": "#7667A8",
+    "soft": "#E7EEF4"
+  },
+  "layers": [
+    {
+      "id": "workflow_stages",
+      "name": "Experimental stages"
+    },
+    {
+      "id": "biological_objects",
+      "name": "Biological objects and assay equipment"
+    },
+    {
+      "id": "workflow_relationships",
+      "name": "Experimental sequence"
+    },
+    {
+      "id": "editable_labels",
+      "name": "Editable labels"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "title",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 36,
+      "y": 24,
+      "width": 1048,
+      "height": 32,
+      "text": "Wound-closure assay workflow",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 27,
+      "fill_role": "ink",
+      "align": "left",
+      "include_scientific_record": true
+    },
+    {
+      "id": "stage_1_object",
+      "name": "Stage 1 Object",
+      "type": "asset",
+      "layer_id": "biological_objects",
+      "asset_id": "core.cell.epithelial_apical",
+      "top_level": true,
+      "x": 48,
+      "y": 127,
+      "width": 74,
+      "height": 74,
+      "palette_overrides": {
+        "outline": "ink"
+      }
+    },
+    {
+      "id": "stage_1_number",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 86,
+      "y": 85,
+      "width": 40,
+      "height": 22,
+      "text": "1",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 16,
+      "fill_role": "muted",
+      "align": "center"
+    },
+    {
+      "id": "stage_1_label",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 24,
+      "y": 238,
+      "width": 174,
+      "height": 43,
+      "text": "Cell monolayer",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 17,
+      "fill_role": "process",
+      "align": "center"
+    },
+    {
+      "id": "stage_1_caption",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 24,
+      "y": 281,
+      "width": 174,
+      "height": 54,
+      "text": "Matched cell model",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 16,
+      "fill_role": "muted",
+      "align": "center"
+    },
+    {
+      "id": "stage_2_object",
+      "name": "Stage 2 Object",
+      "type": "asset",
+      "layer_id": "biological_objects",
+      "asset_id": "culture.assay_workflow.epithelial_scratch_wound",
+      "top_level": true,
+      "x": 230,
+      "y": 127,
+      "width": 74,
+      "height": 74,
+      "palette_overrides": {
+        "outline": "ink"
+      }
+    },
+    {
+      "id": "stage_2_number",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 268,
+      "y": 85,
+      "width": 40,
+      "height": 22,
+      "text": "2",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 16,
+      "fill_role": "muted",
+      "align": "center"
+    },
+    {
+      "id": "stage_2_label",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 206,
+      "y": 238,
+      "width": 174,
+      "height": 43,
+      "text": "Create gap",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 17,
+      "fill_role": "process",
+      "align": "center"
+    },
+    {
+      "id": "stage_2_caption",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 206,
+      "y": 281,
+      "width": 174,
+      "height": 54,
+      "text": "Record starting geometry",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 16,
+      "fill_role": "muted",
+      "align": "center"
+    },
+    {
+      "id": "stage_3_object",
+      "name": "Stage 3 Object",
+      "type": "asset",
+      "layer_id": "biological_objects",
+      "asset_id": "core.lab.pipette",
+      "top_level": true,
+      "x": 412,
+      "y": 127,
+      "width": 74,
+      "height": 74,
+      "palette_overrides": {
+        "outline": "ink"
+      }
+    },
+    {
+      "id": "stage_3_number",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 450,
+      "y": 85,
+      "width": 40,
+      "height": 22,
+      "text": "3",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 16,
+      "fill_role": "muted",
+      "align": "center"
+    },
+    {
+      "id": "stage_3_label",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 388,
+      "y": 238,
+      "width": 174,
+      "height": 43,
+      "text": "Apply condition",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 17,
+      "fill_role": "process",
+      "align": "center"
+    },
+    {
+      "id": "stage_3_caption",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 388,
+      "y": 281,
+      "width": 174,
+      "height": 54,
+      "text": "Include vehicle control",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 16,
+      "fill_role": "muted",
+      "align": "center"
+    },
+    {
+      "id": "stage_4_object",
+      "name": "Stage 4 Object",
+      "type": "asset",
+      "layer_id": "biological_objects",
+      "asset_id": "core.lab.microscope",
+      "top_level": true,
+      "x": 594,
+      "y": 127,
+      "width": 74,
+      "height": 74,
+      "palette_overrides": {
+        "outline": "ink"
+      }
+    },
+    {
+      "id": "stage_4_number",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 632,
+      "y": 85,
+      "width": 40,
+      "height": 22,
+      "text": "4",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 16,
+      "fill_role": "muted",
+      "align": "center"
+    },
+    {
+      "id": "stage_4_label",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 570,
+      "y": 238,
+      "width": 174,
+      "height": 43,
+      "text": "Image same field",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 17,
+      "fill_role": "process",
+      "align": "center"
+    },
+    {
+      "id": "stage_4_caption",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 570,
+      "y": 281,
+      "width": 174,
+      "height": 54,
+      "text": "Start + later times",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 16,
+      "fill_role": "muted",
+      "align": "center"
+    },
+    {
+      "id": "stage_5_object",
+      "name": "Stage 5 Object",
+      "type": "asset",
+      "layer_id": "biological_objects",
+      "asset_id": "culture.assay_workflow.epithelial_scratch_wound",
+      "top_level": true,
+      "x": 776,
+      "y": 127,
+      "width": 74,
+      "height": 74,
+      "palette_overrides": {
+        "outline": "ink"
+      }
+    },
+    {
+      "id": "stage_5_number",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 814,
+      "y": 85,
+      "width": 40,
+      "height": 22,
+      "text": "5",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 16,
+      "fill_role": "muted",
+      "align": "center"
+    },
+    {
+      "id": "stage_5_label",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 752,
+      "y": 238,
+      "width": 174,
+      "height": 43,
+      "text": "Measure gap",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 17,
+      "fill_role": "process",
+      "align": "center"
+    },
+    {
+      "id": "stage_5_caption",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 752,
+      "y": 281,
+      "width": 174,
+      "height": 54,
+      "text": "Area or width",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 16,
+      "fill_role": "muted",
+      "align": "center"
+    },
+    {
+      "id": "gap_measure",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 796,
+      "y": 151,
+      "width": 50,
+      "height": 35,
+      "text": "↔",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 30,
+      "fill_role": "signal",
+      "align": "center"
+    },
+    {
+      "id": "stage_6_object",
+      "name": "Stage 6 Object",
+      "type": "asset",
+      "layer_id": "biological_objects",
+      "asset_id": "culture.assay_workflow.epithelial_scratch_wound",
+      "top_level": true,
+      "x": 958,
+      "y": 127,
+      "width": 74,
+      "height": 74,
+      "palette_overrides": {
+        "outline": "ink"
+      }
+    },
+    {
+      "id": "stage_6_number",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 996,
+      "y": 85,
+      "width": 40,
+      "height": 22,
+      "text": "6",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 16,
+      "fill_role": "muted",
+      "align": "center"
+    },
+    {
+      "id": "stage_6_label",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 934,
+      "y": 238,
+      "width": 174,
+      "height": 43,
+      "text": "Compare",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 17,
+      "fill_role": "process",
+      "align": "center"
+    },
+    {
+      "id": "stage_6_caption",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 934,
+      "y": 281,
+      "width": 174,
+      "height": 54,
+      "text": "Replicates + controls",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 16,
+      "fill_role": "muted",
+      "align": "center"
+    },
+    {
+      "id": "illustrative_note",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 36,
+      "y": 378,
+      "width": 1048,
+      "height": 22,
+      "text": "Schematic · adapt labels and controls to your experiment",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 16,
+      "fill_role": "muted",
+      "align": "left"
+    }
+  ],
+  "groups": [
+    {
+      "id": "stage_1",
+      "name": "Cell monolayer",
+      "layer_id": "workflow_stages",
+      "members": [
+        "stage_1_object",
+        "stage_1_number",
+        "stage_1_label",
+        "stage_1_caption"
+      ]
+    },
+    {
+      "id": "stage_2",
+      "name": "Create gap",
+      "layer_id": "workflow_stages",
+      "members": [
+        "stage_2_object",
+        "stage_2_number",
+        "stage_2_label",
+        "stage_2_caption"
+      ]
+    },
+    {
+      "id": "stage_3",
+      "name": "Apply condition",
+      "layer_id": "workflow_stages",
+      "members": [
+        "stage_3_object",
+        "stage_3_number",
+        "stage_3_label",
+        "stage_3_caption"
+      ]
+    },
+    {
+      "id": "stage_4",
+      "name": "Image same field",
+      "layer_id": "workflow_stages",
+      "members": [
+        "stage_4_object",
+        "stage_4_number",
+        "stage_4_label",
+        "stage_4_caption"
+      ]
+    },
+    {
+      "id": "stage_5",
+      "name": "Measure gap",
+      "layer_id": "workflow_stages",
+      "members": [
+        "stage_5_object",
+        "stage_5_number",
+        "stage_5_label",
+        "stage_5_caption",
+        "gap_measure"
+      ]
+    },
+    {
+      "id": "stage_6",
+      "name": "Compare",
+      "layer_id": "workflow_stages",
+      "members": [
+        "stage_6_object",
+        "stage_6_number",
+        "stage_6_label",
+        "stage_6_caption"
+      ]
+    }
+  ],
+  "connectors": [
+    {
+      "id": "stage_1_to_2",
+      "layer_id": "workflow_relationships",
+      "from": {
+        "node_id": "stage_1_object",
+        "anchor": "right"
+      },
+      "to": {
+        "node_id": "stage_2_object",
+        "anchor": "left"
+      },
+      "relation": "sampling",
+      "label": "",
+      "style": {
+        "stroke_role": "process",
+        "stroke_width": 2.2,
+        "line": "solid",
+        "terminator": "arrow"
+      }
+    },
+    {
+      "id": "stage_2_to_3",
+      "layer_id": "workflow_relationships",
+      "from": {
+        "node_id": "stage_2_object",
+        "anchor": "right"
+      },
+      "to": {
+        "node_id": "stage_3_object",
+        "anchor": "left"
+      },
+      "relation": "conversion",
+      "label": "",
+      "style": {
+        "stroke_role": "process",
+        "stroke_width": 2.2,
+        "line": "solid",
+        "terminator": "arrow"
+      }
+    },
+    {
+      "id": "stage_3_to_4",
+      "layer_id": "workflow_relationships",
+      "from": {
+        "node_id": "stage_3_object",
+        "anchor": "right"
+      },
+      "to": {
+        "node_id": "stage_4_object",
+        "anchor": "left"
+      },
+      "relation": "treatment",
+      "label": "",
+      "style": {
+        "stroke_role": "process",
+        "stroke_width": 2.2,
+        "line": "solid",
+        "terminator": "arrow"
+      }
+    },
+    {
+      "id": "stage_4_to_5",
+      "layer_id": "workflow_relationships",
+      "from": {
+        "node_id": "stage_4_object",
+        "anchor": "right"
+      },
+      "to": {
+        "node_id": "stage_5_object",
+        "anchor": "left"
+      },
+      "relation": "measurement",
+      "label": "",
+      "style": {
+        "stroke_role": "process",
+        "stroke_width": 2.2,
+        "line": "solid",
+        "terminator": "arrow"
+      }
+    },
+    {
+      "id": "stage_5_to_6",
+      "layer_id": "workflow_relationships",
+      "from": {
+        "node_id": "stage_5_object",
+        "anchor": "right"
+      },
+      "to": {
+        "node_id": "stage_6_object",
+        "anchor": "left"
+      },
+      "relation": "measurement",
+      "label": "",
+      "style": {
+        "stroke_role": "process",
+        "stroke_width": 2.2,
+        "line": "solid",
+        "terminator": "arrow"
+      }
+    }
+  ]
+}

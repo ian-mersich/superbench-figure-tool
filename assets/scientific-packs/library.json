@@ -146,6 +146,32 @@
         "figure",
         "presentation"
       ]
+    },
+    {
+      "id": "neurobiology",
+      "name": "Neurobiology",
+      "description": "Editable synapses, myelinated axons, glial contacts and generic neural circuit topologies with distinct biological forms.",
+      "path": "neurobiology/asset-pack.json",
+      "asset_count": 20,
+      "concept_count": 10,
+      "enabled": true,
+      "modes": [
+        "figure",
+        "presentation"
+      ]
+    },
+    {
+      "id": "tissue-vascular",
+      "name": "Tissue & Vascular Organization",
+      "description": "Editable epithelial, vascular, lymphatic, matrix, muscle and adipose arrangements with useful views and compositions.",
+      "path": "tissue-vascular/asset-pack.json",
+      "asset_count": 20,
+      "concept_count": 10,
+      "enabled": true,
+      "modes": [
+        "figure",
+        "presentation"
+      ]
     }
   ],
   "art_styles": [
@@ -153,8 +179,12 @@
       "id": "style-4",
       "name": "Style 4",
       "path": "style-4/manifest-corrected-20261017.json",
-      "asset_count": 486
+      "asset_count": 526,
+      "supplement": {
+        "path": "style-4/expansion-20261103/manifest.json",
+        "asset_count": 40
+      }
     }
   ],
-  "art_style_notes": "Style 4 includes 243 corrected supplied drawings. The other 243 current variants are retained, including eight earlier recovered drawings. Existing saved artwork keeps its embedded original source."
+  "art_style_notes": "Style 4 covers every Library drawing: the existing 486 supplied selections plus 40 original companions for the November neurobiology and tissue expansion. Original source and semantic parts remain available across Styles 1–4."
 }

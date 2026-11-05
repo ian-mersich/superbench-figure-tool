@@ -19,35 +19,62 @@ def tiny_source(root: Path) -> Path:
     (root / "assets/scientific-packs/library.json").write_text(json.dumps({
         "packs": [{"id": "fixture", "asset_count": 3, "concept_count": 2}]
     }), encoding="utf-8")
+    (root / "assets/scientific-scenes/library.v1.json").write_text(json.dumps({
+        "scenes": [{"id": f"template-{index}"} for index in range(3)]
+    }), encoding="utf-8")
     (root / "docs/scientific-assets").mkdir(parents=True)
     (root / "docs/scientific-assets/review.md").write_text("Accepted original artwork", encoding="utf-8")
     return root
 
 
-def test_source_exports_preserve_every_payload_byte_and_keep_preferred_sources_outside_runtime(tmp_path, monkeypatch):
+@pytest.mark.parametrize("reuse_existing", [False, True])
+def test_source_exports_preserve_every_payload_byte_and_keep_preferred_sources_outside_runtime(tmp_path, monkeypatch, reuse_existing):
     source = tiny_source(tmp_path / "source")
     package = tmp_path / "package"
     manifest = producer.build_tool_package(source, package, source_revision="a" * 40, distribution_scope="public-release", public_release_eligible=True)
     monkeypatch.setattr(exporter, "SUPPORT_FILES", ("package.json",))
-    def preferred(_source, destination, _cache):
-        destination.mkdir()
-        (destination / "source-index.json").write_text('{"verified": true}', encoding="utf-8")
-        return {"status": "included-and-verified", "index_sha256": exporter.sha(destination / "source-index.json")}
-    monkeypatch.setattr(exporter, "prepare_vendor_materials", preferred)
     output = tmp_path / "output"
     output.mkdir()
-    receipt = exporter.export_source(source, package, output, cache=tmp_path / "cache")
+    existing_materials = None
+    if reuse_existing:
+        existing_materials = tmp_path / "reused-materials"
+        existing_materials.mkdir()
+        (existing_materials / "source-index.json").write_text('{"verified": true}', encoding="utf-8")
+    calls = []
+    def preferred(_source, destination, _cache, *, reuse_existing=False):
+        calls.append((destination, reuse_existing))
+        if not reuse_existing:
+            destination.mkdir()
+            (destination / "source-index.json").write_text('{"verified": true}', encoding="utf-8")
+        return {"status": "included-and-verified", "index_sha256": exporter.sha(destination / "source-index.json")}
+    monkeypatch.setattr(exporter, "prepare_vendor_materials", preferred)
+    export_options = {"preferred_materials": existing_materials} if existing_materials else {}
+    expected_materials = existing_materials or output / "preferred-source-materials"
+    receipt = exporter.export_source(source, package, output, cache=tmp_path / "cache", support_revision="b" * 40, **export_options)
+    assert calls == [(expected_materials, reuse_existing)]
     assert receipt["shared_payload_parity"] == "passed"
     exporter.verify_payload(output / "source-repository", manifest)
-    assert "3 Library drawings (2 concepts)" in (output / "source-repository/README.md").read_text(encoding="utf-8")
+    readme = (output / "source-repository/README.md").read_text(encoding="utf-8")
+    assert "3 Library drawings and 3 scientific templates" in readme
+    assert "concepts" not in readme
     assert not (output / "source-repository/vendor/source-materials").exists()
     with zipfile.ZipFile(output / receipt["archive"]) as archive:
         for row in manifest["payload_files"]:
             assert archive.read(row["path"]) == (package / "payload" / row["path"]).read_bytes()
-        assert json.loads(archive.read("SOURCE_RELEASE.json"))["vendor_source_materials"]["status"] == "included-and-verified"
+        archive_metadata = json.loads(archive.read("SOURCE_RELEASE.json"))
+        assert archive_metadata["vendor_source_materials"]["status"] == "included-and-verified"
+        if reuse_existing:
+            assert str(existing_materials) not in json.dumps(archive_metadata)
         assert "preferred-source-materials/source-index.json" in archive.namelist()
         assert archive.read("docs/scientific-assets/review.md") == b"Accepted original artwork"
-    assert json.loads((output / "source-repository/SOURCE_RELEASE.json").read_text())["vendor_source_materials"]["status"] == "fetch-and-verify-from-lock"
+    source_metadata = json.loads((output / "source-repository/SOURCE_RELEASE.json").read_text())
+    assert source_metadata["schema"] == "figureStudio.publicSourceRelease.v2"
+    assert source_metadata["canonical_source_revision"] == "a" * 40
+    assert source_metadata["source_support_revision"] == "b" * 40
+    assert source_metadata["vendor_source_materials"]["status"] == "fetch-and-verify-from-lock"
+    if reuse_existing:
+        assert (existing_materials / "source-index.json").read_text(encoding="utf-8") == '{"verified": true}'
+        assert str(existing_materials) not in json.dumps(source_metadata)
 
 
 @pytest.mark.parametrize("kind", ["changed", "added", "missing"])

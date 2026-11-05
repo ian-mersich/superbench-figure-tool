@@ -1,8 +1,8 @@
 {
   "schema": "figureStudio.scientificSceneLibrary.v1",
   "id": "figure-studio-scientific-scenes",
-  "version": "1.5.0",
-  "name": "Scientific Scenes",
+  "version": "1.6.0",
+  "name": "Scientific Templates",
   "description": "Editable starting points for common experimental-biology figures and presentations.",
   "source_record_id": "source.figure-studio-scientific-scenes.2026-08-30",
   "rights_record_id": "rights.figure-studio-scientific-scenes.cc0.2026-08-30",
@@ -14,14 +14,40 @@
       "biology_note": "Shows sample collection and lysis, clarified lysate, total-protein assessment and planned loading, SDS-PAGE, membrane transfer, blocking with primary/secondary antibody probing, signal detection, and one illustrative target/loading-control result.",
       "limitations": "Bands are placeholders, not data. The loading control must be validated for the sample and treatment context. This starter does not establish detector linearity, transfer efficiency, antibody specificity, normalization validity, fold change, statistical significance, biological mechanism, or reproducibility; one blot alone is not a complete quantitative analysis.",
       "category": "Experimental workflows",
-      "synonyms": ["western blot workflow", "protein immunoblot", "SDS-PAGE western blot", "membrane transfer and antibody probing", "target and loading control blot"],
-      "tags": ["immunoblot", "western blot", "sample lysis", "clarified lysate", "total protein", "SDS-PAGE", "membrane transfer", "primary antibody", "secondary antibody", "signal detection", "loading control", "placeholder bands"],
-      "modes": ["figure", "presentation"],
-      "actions": ["use_as_new_figure", "insert_current_document"],
+      "synonyms": [
+        "western blot workflow",
+        "protein immunoblot",
+        "SDS-PAGE western blot",
+        "membrane transfer and antibody probing",
+        "target and loading control blot"
+      ],
+      "tags": [
+        "immunoblot",
+        "western blot",
+        "sample lysis",
+        "clarified lysate",
+        "total protein",
+        "SDS-PAGE",
+        "membrane transfer",
+        "primary antibody",
+        "secondary antibody",
+        "signal detection",
+        "loading control",
+        "placeholder bands"
+      ],
+      "modes": [
+        "figure",
+        "presentation"
+      ],
+      "actions": [
+        "use_as_new_figure",
+        "insert_current_document"
+      ],
       "scene": "scenes/immunoblot-assay-workflow.scene.json",
       "preview": "previews/immunoblot-assay-workflow.svg",
-      "source_record_id": "source.figure-studio-immunoblot-assay-workflow.2026-09-13",
-      "rights_record_id": "rights.figure-studio-immunoblot-assay-workflow.cc0.2026-09-13"
+      "source_record_id": "source.figure-studio-scene-expansion.2026-11-03",
+      "rights_record_id": "rights.figure-studio-scene-expansion.repository-cc0.2026-11-03",
+      "card_summary": "Sample preparation, protein separation, antibody probing and signal detection."
     },
     {
       "id": "autophagosome-lysosome-process",
@@ -30,14 +56,39 @@
       "biology_note": "Shows one selected macroautophagy sequence: an LC3-associated phagophore surrounds a SQSTM1/p62-linked cargo example, closes as a double-membrane autophagosome, fuses with a lysosome, and forms an autolysosome where cargo is degraded.",
       "limitations": "Static schematic only; LC3 or SQSTM1/p62 placement does not measure autophagic flux. It does not represent quantitative kinetics, abundance, complete machinery, disease-specific causality, or clinical or therapeutic effects.",
       "category": "Cell biology",
-      "synonyms": ["macroautophagy", "phagophore to autolysosome", "autophagic degradation", "LC3 p62 cargo", "autophagosome lysosome fusion"],
-      "tags": ["autophagy", "phagophore", "cargo sequestration", "autophagosome", "lysosome", "autolysosome", "LC3", "SQSTM1", "p62", "cargo degradation", "autophagic flux"],
-      "modes": ["figure", "presentation"],
-      "actions": ["use_as_new_figure", "insert_current_document"],
+      "synonyms": [
+        "macroautophagy",
+        "phagophore to autolysosome",
+        "autophagic degradation",
+        "LC3 p62 cargo",
+        "autophagosome lysosome fusion"
+      ],
+      "tags": [
+        "autophagy",
+        "phagophore",
+        "cargo sequestration",
+        "autophagosome",
+        "lysosome",
+        "autolysosome",
+        "LC3",
+        "SQSTM1",
+        "p62",
+        "cargo degradation",
+        "autophagic flux"
+      ],
+      "modes": [
+        "figure",
+        "presentation"
+      ],
+      "actions": [
+        "use_as_new_figure",
+        "insert_current_document"
+      ],
       "scene": "scenes/autophagosome-lysosome-process.scene.json",
       "preview": "previews/autophagosome-lysosome-process.svg",
       "source_record_id": "source.figure-studio-autophagosome-lysosome-process.2026-09-13",
-      "rights_record_id": "rights.figure-studio-autophagosome-lysosome-process.cc0.2026-09-13"
+      "rights_record_id": "rights.figure-studio-autophagosome-lysosome-process.cc0.2026-09-13",
+      "card_summary": "Cargo capture, autophagosome closure and lysosomal degradation."
     },
     {
       "id": "apc-t-cell-immune-synapse",
@@ -46,14 +97,45 @@
       "biology_note": "Orients peptide–MHC/TCR recognition, CD28–B7 costimulation, and PD-1/PD-L1 checkpoint context across an APC–T-cell interface, with only LCK–ZAP-70–LAT shown as a proximal signaling handoff.",
       "limitations": "A qualitative orientation schematic, not a complete receptor catalog, quantitative or kinetic pathway, causal analysis, clinical claim, or canonical synapse organization.",
       "category": "Immunology",
-      "synonyms": ["APC T-cell interaction", "antigen-presenting cell T cell", "T-cell priming", "peptide-MHC TCR", "CD28 B7 costimulation", "PD-1 PD-L1 checkpoint"],
-      "tags": ["immune synapse", "APC", "antigen-presenting cell", "T cell", "TCR", "pMHC", "CD28", "CD80", "CD86", "B7", "PD-1", "PD-L1", "LCK", "ZAP-70", "LAT", "cell-cell interaction"],
-      "modes": ["figure", "presentation"],
-      "actions": ["use_as_new_figure", "insert_current_document"],
+      "synonyms": [
+        "APC T-cell interaction",
+        "antigen-presenting cell T cell",
+        "T-cell priming",
+        "peptide-MHC TCR",
+        "CD28 B7 costimulation",
+        "PD-1 PD-L1 checkpoint"
+      ],
+      "tags": [
+        "immune synapse",
+        "APC",
+        "antigen-presenting cell",
+        "T cell",
+        "TCR",
+        "pMHC",
+        "CD28",
+        "CD80",
+        "CD86",
+        "B7",
+        "PD-1",
+        "PD-L1",
+        "LCK",
+        "ZAP-70",
+        "LAT",
+        "cell-cell interaction"
+      ],
+      "modes": [
+        "figure",
+        "presentation"
+      ],
+      "actions": [
+        "use_as_new_figure",
+        "insert_current_document"
+      ],
       "scene": "scenes/apc-t-cell-immune-synapse.scene.json",
       "preview": "previews/apc-t-cell-immune-synapse.svg",
       "source_record_id": "source.figure-studio-apc-tcell-immune-synapse.2026-09-12",
-      "rights_record_id": "rights.figure-studio-apc-tcell-immune-synapse.cc0.2026-09-12"
+      "rights_record_id": "rights.figure-studio-apc-tcell-immune-synapse.cc0.2026-09-12",
+      "card_summary": "Antigen recognition, costimulation and checkpoint signaling across a cell contact."
     },
     {
       "id": "t-cell-activation-checkpoint",
@@ -62,98 +144,232 @@
       "biology_note": "Pairs peptide–MHC recognition with CD28–B7 co-stimulation, then shows a deliberately small LCK–ZAP-70–LAT signaling core and PD-1–SHP2 inhibition.",
       "limitations": "A simplified authoring starter, not a complete, quantitative, stoichiometric, temporal, causal, or state-equivalent pathway model.",
       "category": "Immunology",
-      "synonyms": ["T cell activation", "TCR signaling", "peptide-MHC", "CD28 B7", "PD-1 PD-L1", "immune checkpoint", "immune synapse"],
-      "tags": ["T cell", "TCR", "pMHC", "antigen presentation", "CD28", "CD80", "CD86", "B7", "PD-1", "PD-L1", "SHP2", "checkpoint", "co-stimulation"],
-      "modes": ["figure", "presentation"],
-      "actions": ["use_as_new_figure", "insert_current_document"],
+      "synonyms": [
+        "T cell activation",
+        "TCR signaling",
+        "peptide-MHC",
+        "CD28 B7",
+        "PD-1 PD-L1",
+        "immune checkpoint",
+        "immune synapse"
+      ],
+      "tags": [
+        "T cell",
+        "TCR",
+        "pMHC",
+        "antigen presentation",
+        "CD28",
+        "CD80",
+        "CD86",
+        "B7",
+        "PD-1",
+        "PD-L1",
+        "SHP2",
+        "checkpoint",
+        "co-stimulation"
+      ],
+      "modes": [
+        "figure",
+        "presentation"
+      ],
+      "actions": [
+        "use_as_new_figure",
+        "insert_current_document"
+      ],
       "scene": "scenes/t-cell-activation-checkpoint.scene.json",
       "preview": "previews/t-cell-activation-checkpoint.svg",
       "source_record_id": "source.figure-studio-tcell-scientific-starter.2026-09-12",
-      "rights_record_id": "rights.figure-studio-tcell-scientific-starter.cc0.2026-09-12"
+      "rights_record_id": "rights.figure-studio-tcell-scientific-starter.cc0.2026-09-12",
+      "card_summary": "T-cell activation with a PD-1 checkpoint branch."
     },
     {
       "id": "receptor-signaling",
       "name": "Receptor signaling",
       "summary": "Membrane receptor activation with a branched response and an inhibitory regulator.",
       "category": "Cell signaling",
-      "synonyms": ["signal transduction", "receptor pathway", "kinase cascade"],
-      "tags": ["receptor", "ligand", "activation", "inhibition", "branching"],
-      "modes": ["figure", "presentation"],
-      "actions": ["use_as_new_figure", "insert_current_document"],
+      "synonyms": [
+        "signal transduction",
+        "receptor pathway",
+        "kinase cascade"
+      ],
+      "tags": [
+        "receptor",
+        "ligand",
+        "activation",
+        "inhibition",
+        "branching"
+      ],
+      "modes": [
+        "figure",
+        "presentation"
+      ],
+      "actions": [
+        "use_as_new_figure",
+        "insert_current_document"
+      ],
       "scene": "scenes/receptor-signaling.scene.json",
       "preview": "previews/receptor-signaling.svg",
       "source_record_id": "source.figure-studio-scientific-scenes.2026-08-30",
-      "rights_record_id": "rights.figure-studio-scientific-scenes.cc0.2026-08-30"
+      "rights_record_id": "rights.figure-studio-scientific-scenes.cc0.2026-08-30",
+      "card_summary": "Ligand binding connects a membrane receptor to downstream signaling."
     },
     {
       "id": "tumor-microenvironment",
       "name": "Tumor microenvironment",
       "summary": "Tumor, immune, stromal, and vascular cells arranged around editable intercellular signals.",
       "category": "Cell interactions",
-      "synonyms": ["TME", "tumor immune interaction", "stromal niche"],
-      "tags": ["tumor", "T cell", "macrophage", "fibroblast", "endothelium", "chemokine"],
-      "modes": ["figure", "presentation"],
-      "actions": ["use_as_new_figure", "insert_current_document"],
+      "synonyms": [
+        "TME",
+        "tumor immune interaction",
+        "stromal niche"
+      ],
+      "tags": [
+        "tumor",
+        "T cell",
+        "macrophage",
+        "fibroblast",
+        "endothelium",
+        "chemokine"
+      ],
+      "modes": [
+        "figure",
+        "presentation"
+      ],
+      "actions": [
+        "use_as_new_figure",
+        "insert_current_document"
+      ],
       "scene": "scenes/tumor-microenvironment.scene.json",
       "preview": "previews/tumor-microenvironment.svg",
       "source_record_id": "source.figure-studio-scientific-scenes.2026-08-30",
-      "rights_record_id": "rights.figure-studio-scientific-scenes.cc0.2026-08-30"
+      "rights_record_id": "rights.figure-studio-scientific-scenes.cc0.2026-08-30",
+      "card_summary": "Tumor, immune, stromal and vascular relationships in one editable schematic."
     },
     {
       "id": "gene-regulation-expression",
       "name": "Gene regulation and expression",
       "summary": "Chromatin regulation through transcription, RNA processing, nuclear export, and translation.",
       "category": "Gene expression",
-      "synonyms": ["central dogma", "DNA to RNA to protein", "transcription translation"],
-      "tags": ["chromatin", "enhancer", "transcription", "splicing", "mRNA", "translation"],
-      "modes": ["figure", "presentation"],
-      "actions": ["use_as_new_figure", "insert_current_document"],
+      "synonyms": [
+        "central dogma",
+        "DNA to RNA to protein",
+        "transcription translation"
+      ],
+      "tags": [
+        "chromatin",
+        "enhancer",
+        "transcription",
+        "splicing",
+        "mRNA",
+        "translation"
+      ],
+      "modes": [
+        "figure",
+        "presentation"
+      ],
+      "actions": [
+        "use_as_new_figure",
+        "insert_current_document"
+      ],
       "scene": "scenes/gene-regulation-expression.scene.json",
       "preview": "previews/gene-regulation-expression.svg",
       "source_record_id": "source.figure-studio-scientific-scenes.2026-08-30",
-      "rights_record_id": "rights.figure-studio-scientific-scenes.cc0.2026-08-30"
+      "rights_record_id": "rights.figure-studio-scientific-scenes.cc0.2026-08-30",
+      "card_summary": "From chromatin and transcription to RNA and protein."
     },
     {
       "id": "culture-treatment-readout",
       "name": "Culture to quantitative readout",
       "summary": "Cell culture, treatment, plate-based assay, and quantitative dose-response readout.",
       "category": "Experimental workflows",
-      "synonyms": ["culture treatment assay", "drug response workflow", "cell viability assay"],
-      "tags": ["cell culture", "treatment", "multiwell plate", "plate reader", "dose response"],
-      "modes": ["figure", "presentation"],
-      "actions": ["use_as_new_figure", "insert_current_document"],
+      "synonyms": [
+        "culture treatment assay",
+        "drug response workflow",
+        "cell viability assay"
+      ],
+      "tags": [
+        "cell culture",
+        "treatment",
+        "multiwell plate",
+        "plate reader",
+        "dose response"
+      ],
+      "modes": [
+        "figure",
+        "presentation"
+      ],
+      "actions": [
+        "use_as_new_figure",
+        "insert_current_document"
+      ],
       "scene": "scenes/culture-treatment-readout.scene.json",
       "preview": "previews/culture-treatment-readout.svg",
       "source_record_id": "source.figure-studio-scientific-scenes.2026-08-30",
-      "rights_record_id": "rights.figure-studio-scientific-scenes.cc0.2026-08-30"
+      "rights_record_id": "rights.figure-studio-scientific-scenes.cc0.2026-08-30",
+      "card_summary": "Culture cells, apply a perturbation and choose complementary readouts."
     },
     {
       "id": "crispr-perturbation-validation",
       "name": "CRISPR perturbation and validation",
       "summary": "Guide delivery and genome editing followed by PCR, gel, and protein-level validation.",
       "category": "Molecular workflows",
-      "synonyms": ["CRISPR validation", "gene editing workflow", "Cas9 perturbation"],
-      "tags": ["CRISPR", "Cas9", "plasmid", "PCR", "gel electrophoresis", "western blot"],
-      "modes": ["figure", "presentation"],
-      "actions": ["use_as_new_figure", "insert_current_document"],
+      "synonyms": [
+        "CRISPR validation",
+        "gene editing workflow",
+        "Cas9 perturbation"
+      ],
+      "tags": [
+        "CRISPR",
+        "Cas9",
+        "plasmid",
+        "PCR",
+        "gel electrophoresis",
+        "western blot"
+      ],
+      "modes": [
+        "figure",
+        "presentation"
+      ],
+      "actions": [
+        "use_as_new_figure",
+        "insert_current_document"
+      ],
       "scene": "scenes/crispr-perturbation-validation.scene.json",
       "preview": "previews/crispr-perturbation-validation.svg",
       "source_record_id": "source.figure-studio-scientific-scenes.2026-08-30",
-      "rights_record_id": "rights.figure-studio-scientific-scenes.cc0.2026-08-30"
+      "rights_record_id": "rights.figure-studio-scientific-scenes.cc0.2026-08-30",
+      "card_summary": "Design a CRISPR perturbation and connect validation to biological readouts."
     },
     {
       "id": "microscopy-flow-readout",
       "name": "Microscopy and flow cytometry readout",
       "summary": "One prepared sample branching into fluorescence microscopy and flow-cytometry readouts.",
       "category": "Imaging and cytometry",
-      "synonyms": ["imaging and flow", "fluorescence microscopy", "FACS readout"],
-      "tags": ["microscopy", "flow cytometry", "fluorescence", "dot plot", "histogram"],
-      "modes": ["figure", "presentation"],
-      "actions": ["use_as_new_figure", "insert_current_document"],
+      "synonyms": [
+        "imaging and flow",
+        "fluorescence microscopy",
+        "FACS readout"
+      ],
+      "tags": [
+        "microscopy",
+        "flow cytometry",
+        "fluorescence",
+        "dot plot",
+        "histogram"
+      ],
+      "modes": [
+        "figure",
+        "presentation"
+      ],
+      "actions": [
+        "use_as_new_figure",
+        "insert_current_document"
+      ],
       "scene": "scenes/microscopy-flow-readout.scene.json",
       "preview": "previews/microscopy-flow-readout.svg",
       "source_record_id": "source.figure-studio-scientific-scenes.2026-08-30",
-      "rights_record_id": "rights.figure-studio-scientific-scenes.cc0.2026-08-30"
+      "rights_record_id": "rights.figure-studio-scientific-scenes.cc0.2026-08-30",
+      "card_summary": "Pair imaging and flow cytometry to characterize a cell population."
     },
     {
       "id": "single-cell-rna-workflow",
@@ -162,14 +378,32 @@
       "biology_note": "Cell suspension, droplet partitioning and barcoded RNA capture followed by library preparation and sequencing.",
       "limitations": "Schematic only; not measured data. Partition occupancy, RNA recovery and cell quality require review.",
       "category": "RNA methods",
-      "synonyms": ["scRNA-seq", "Drop-seq", "droplet RNA capture"],
-      "tags": ["RNA", "single cell", "droplet", "barcode", "UMI", "sequencing"],
-      "modes": ["figure", "presentation"],
-      "actions": ["use_as_new_figure", "insert_current_document"],
+      "synonyms": [
+        "scRNA-seq",
+        "Drop-seq",
+        "droplet RNA capture"
+      ],
+      "tags": [
+        "RNA",
+        "single cell",
+        "droplet",
+        "barcode",
+        "UMI",
+        "sequencing"
+      ],
+      "modes": [
+        "figure",
+        "presentation"
+      ],
+      "actions": [
+        "use_as_new_figure",
+        "insert_current_document"
+      ],
       "scene": "scenes/single-cell-rna-workflow.scene.json",
       "preview": "previews/single-cell-rna-workflow.svg",
       "source_record_id": "source.figure-studio-rna-methods.2026-10-07",
-      "rights_record_id": "rights.figure-studio-rna-methods.owner-cc0.2026-10-10"
+      "rights_record_id": "rights.figure-studio-rna-methods.owner-cc0.2026-10-10",
+      "card_summary": "Droplet capture, molecular barcodes, library preparation and sequencing."
     },
     {
       "id": "spatial-rna-methods",
@@ -178,14 +412,314 @@
       "biology_note": "Two distinct routes: location-barcoded RNA capture with sequencing, and RNA imaging in fixed tissue.",
       "limitations": "Schematic only; not measured data. Capture spots can contain multiple cells; illustrative puncta are not transcript counts.",
       "category": "RNA methods",
-      "synonyms": ["spatial transcriptomics", "RNA FISH", "RNA localization"],
-      "tags": ["RNA", "spatial", "capture array", "tissue", "RNA-FISH", "puncta", "imaging"],
-      "modes": ["figure", "presentation"],
-      "actions": ["use_as_new_figure", "insert_current_document"],
+      "synonyms": [
+        "spatial transcriptomics",
+        "RNA FISH",
+        "RNA localization"
+      ],
+      "tags": [
+        "RNA",
+        "spatial",
+        "capture array",
+        "tissue",
+        "RNA-FISH",
+        "puncta",
+        "imaging"
+      ],
+      "modes": [
+        "figure",
+        "presentation"
+      ],
+      "actions": [
+        "use_as_new_figure",
+        "insert_current_document"
+      ],
       "scene": "scenes/spatial-rna-methods.scene.json",
       "preview": "previews/spatial-rna-methods.svg",
       "source_record_id": "source.figure-studio-rna-methods.2026-10-07",
-      "rights_record_id": "rights.figure-studio-rna-methods.owner-cc0.2026-10-10"
+      "rights_record_id": "rights.figure-studio-rna-methods.owner-cc0.2026-10-10",
+      "card_summary": "Compare tissue-associated capture with RNA imaging in place."
+    },
+    {
+      "id": "rt-qpcr-expression-workflow",
+      "name": "RT-qPCR expression workflow",
+      "summary": "RNA quality, reverse transcription, amplification, and control-aware expression analysis.",
+      "category": "Gene expression",
+      "synonyms": [
+        "RT-qPCR",
+        "qPCR",
+        "quantitative PCR",
+        "real-time PCR"
+      ],
+      "tags": [
+        "RNA",
+        "cDNA",
+        "amplification",
+        "Cq",
+        "no-template control",
+        "reference gene"
+      ],
+      "biology_note": "RT-qPCR measures target amplification after RNA is converted to cDNA; interpretation depends on assay performance and validated normalization.",
+      "limitations": "Schematic only. No amplification curves, expression values, fold changes, or significance are shown. Validate RNA, primer specificity, efficiency, controls, and reference genes for the experiment.",
+      "card_summary": "RNA quality, reverse transcription, amplification, and control-aware expression analysis.",
+      "modes": [
+        "figure",
+        "presentation"
+      ],
+      "actions": [
+        "use_as_new_figure",
+        "insert_current_document"
+      ],
+      "scene": "scenes/rt-qpcr-expression-workflow.scene.json",
+      "preview": "previews/rt-qpcr-expression-workflow.svg",
+      "source_record_id": "source.figure-studio-scene-expansion.2026-11-03",
+      "rights_record_id": "rights.figure-studio-scene-expansion.repository-cc0.2026-11-03"
+    },
+    {
+      "id": "immunoprecipitation-workflow",
+      "name": "Immunoprecipitation workflow",
+      "summary": "Antibody capture of a target from lysate, bead recovery, washing, and downstream analysis.",
+      "category": "Protein methods",
+      "synonyms": [
+        "IP",
+        "co-IP",
+        "immunoprecipitation",
+        "protein complex capture"
+      ],
+      "tags": [
+        "protein",
+        "antibody",
+        "beads",
+        "lysate",
+        "wash",
+        "immunoblot"
+      ],
+      "biology_note": "An antibody enriches its target from a prepared sample; co-immunoprecipitation can recover associated proteins when the complex survives extraction and washing.",
+      "limitations": "Schematic only. Recovery is not proof of direct binding. Antibody specificity, lysis conditions, bead background, interaction stability, input, and immunoglobulin-chain interference require experiment-specific controls.",
+      "card_summary": "Antibody capture of a target from lysate, bead recovery, washing, and downstream analysis.",
+      "modes": [
+        "figure",
+        "presentation"
+      ],
+      "actions": [
+        "use_as_new_figure",
+        "insert_current_document"
+      ],
+      "scene": "scenes/immunoprecipitation-workflow.scene.json",
+      "preview": "previews/immunoprecipitation-workflow.svg",
+      "source_record_id": "source.figure-studio-scene-expansion.2026-11-03",
+      "rights_record_id": "rights.figure-studio-scene-expansion.repository-cc0.2026-11-03"
+    },
+    {
+      "id": "indirect-immunofluorescence-workflow",
+      "name": "Indirect immunofluorescence workflow",
+      "summary": "Fixed-cell labeling with a target-specific primary antibody and fluorophore-linked secondary antibody.",
+      "category": "Imaging methods",
+      "synonyms": [
+        "indirect IF",
+        "immunofluorescence staining",
+        "fluorescent antibody staining",
+        "IF microscopy"
+      ],
+      "tags": [
+        "cells",
+        "fixation",
+        "permeabilization",
+        "primary antibody",
+        "secondary antibody",
+        "fluorescence"
+      ],
+      "biology_note": "The primary antibody recognizes the selected target; a fluorophore-conjugated secondary antibody binds the primary antibody for imaging.",
+      "limitations": "Schematic only. Localization and signal are not data. Fixation, permeabilization, antibody specificity, fluorophore cross-reactivity, spectral bleed-through, and imaging settings require validation; include appropriate negative controls.",
+      "card_summary": "Fixed-cell labeling with a target-specific primary antibody and fluorophore-linked secondary antibody.",
+      "modes": [
+        "figure",
+        "presentation"
+      ],
+      "actions": [
+        "use_as_new_figure",
+        "insert_current_document"
+      ],
+      "scene": "scenes/indirect-immunofluorescence-workflow.scene.json",
+      "preview": "previews/indirect-immunofluorescence-workflow.svg",
+      "source_record_id": "source.figure-studio-scene-expansion.2026-11-03",
+      "rights_record_id": "rights.figure-studio-scene-expansion.repository-cc0.2026-11-03"
+    },
+    {
+      "id": "sandwich-elisa-workflow",
+      "name": "Sandwich ELISA workflow",
+      "summary": "Capture antibody, sample antigen, detection antibody, enzyme signal, and calibrated readout.",
+      "category": "Protein assays",
+      "synonyms": [
+        "sandwich ELISA",
+        "capture ELISA",
+        "enzyme immunoassay",
+        "two-site immunoassay"
+      ],
+      "tags": [
+        "antigen",
+        "capture antibody",
+        "detection antibody",
+        "microplate",
+        "standard curve",
+        "absorbance"
+      ],
+      "biology_note": "Two antibodies recognize distinct epitopes of an analyte; an enzyme-linked detection system produces a measurable signal for comparison with standards.",
+      "limitations": "Schematic only. No standard curve or concentrations are supplied. Antibody pairing, matrix effects, cross-reactivity, sample dilution, calibration range, and signal saturation must be assessed for the analyte and sample type.",
+      "card_summary": "Capture antibody, sample antigen, detection antibody, enzyme signal, and calibrated readout.",
+      "modes": [
+        "figure",
+        "presentation"
+      ],
+      "actions": [
+        "use_as_new_figure",
+        "insert_current_document"
+      ],
+      "scene": "scenes/sandwich-elisa-workflow.scene.json",
+      "preview": "previews/sandwich-elisa-workflow.svg",
+      "source_record_id": "source.figure-studio-scene-expansion.2026-11-03",
+      "rights_record_id": "rights.figure-studio-scene-expansion.repository-cc0.2026-11-03"
+    },
+    {
+      "id": "wound-closure-assay-workflow",
+      "name": "Wound-closure assay workflow",
+      "summary": "Create a cell-free gap, image matched fields over time, and quantify gap closure.",
+      "category": "Cell migration",
+      "synonyms": [
+        "scratch assay",
+        "wound healing assay",
+        "gap closure",
+        "collective migration"
+      ],
+      "tags": [
+        "cell monolayer",
+        "scratch",
+        "gap",
+        "time course",
+        "image analysis",
+        "migration"
+      ],
+      "biology_note": "A gap in a confluent cell layer can be followed by microscopy to assess collective movement into the cleared area.",
+      "limitations": "In vitro gap closure does not by itself isolate migration from proliferation, survival, or changes in cell spreading. Standardize gap geometry, image positions, and timing; interpret in the context of model and controls.",
+      "card_summary": "Create a cell-free gap, image matched fields over time, and quantify gap closure.",
+      "modes": [
+        "figure",
+        "presentation"
+      ],
+      "actions": [
+        "use_as_new_figure",
+        "insert_current_document"
+      ],
+      "scene": "scenes/wound-closure-assay-workflow.scene.json",
+      "preview": "previews/wound-closure-assay-workflow.svg",
+      "source_record_id": "source.figure-studio-scene-expansion.2026-11-03",
+      "rights_record_id": "rights.figure-studio-scene-expansion.repository-cc0.2026-11-03"
+    },
+    {
+      "id": "epithelial-barrier-transwell-workflow",
+      "name": "Epithelial barrier Transwell assay",
+      "summary": "Grow a polarized epithelial layer on a porous insert and pair electrical and tracer-flux readouts.",
+      "category": "Barrier assays",
+      "synonyms": [
+        "Transwell barrier",
+        "TEER assay",
+        "FITC-dextran permeability",
+        "epithelial permeability"
+      ],
+      "tags": [
+        "epithelial monolayer",
+        "porous insert",
+        "apical",
+        "basolateral",
+        "TEER",
+        "paracellular flux"
+      ],
+      "biology_note": "An epithelial monolayer separates apical and basolateral compartments; TEER reports ionic conductance while tracer passage measures permeability to the chosen tracer.",
+      "limitations": "The two readouts are complementary and not interchangeable. TEER does not measure macromolecule flux; tracer results depend on tracer size, sampling, membrane, model, and assay conditions. A Transwell is an in-vitro model, not an intact organ barrier.",
+      "card_summary": "Grow a polarized epithelial layer on a porous insert and pair electrical and tracer-flux readouts.",
+      "modes": [
+        "figure",
+        "presentation"
+      ],
+      "actions": [
+        "use_as_new_figure",
+        "insert_current_document"
+      ],
+      "scene": "scenes/epithelial-barrier-transwell-workflow.scene.json",
+      "preview": "previews/epithelial-barrier-transwell-workflow.svg",
+      "source_record_id": "source.figure-studio-scene-expansion.2026-11-03",
+      "rights_record_id": "rights.figure-studio-scene-expansion.repository-cc0.2026-11-03"
+    },
+    {
+      "id": "chemical-synaptic-transmission",
+      "name": "Chemical synaptic transmission",
+      "summary": "Calcium-dependent vesicle release across a chemical synapse, with generic postsynaptic receptors.",
+      "category": "Neuroscience",
+      "synonyms": [
+        "chemical synapse",
+        "synaptic transmission",
+        "neurotransmitter release",
+        "synaptic vesicle cycle"
+      ],
+      "tags": [
+        "presynaptic bouton",
+        "calcium",
+        "synaptic vesicle",
+        "exocytosis",
+        "synaptic cleft",
+        "postsynaptic receptor"
+      ],
+      "biology_note": "At a canonical chemical synapse, presynaptic depolarization promotes calcium-dependent vesicle fusion; released transmitter crosses the cleft and activates postsynaptic receptors.",
+      "limitations": "A generalized schematic, not a specific neuron, transmitter, receptor subtype, or measured synaptic response. Release probability, receptor kinetics, short-term plasticity, cotransmission, and clearance mechanisms vary by synapse.",
+      "card_summary": "Calcium-dependent vesicle release across a chemical synapse, with generic postsynaptic receptors.",
+      "modes": [
+        "figure",
+        "presentation"
+      ],
+      "actions": [
+        "use_as_new_figure",
+        "insert_current_document"
+      ],
+      "scene": "scenes/chemical-synaptic-transmission.scene.json",
+      "preview": "previews/chemical-synaptic-transmission.svg",
+      "source_record_id": "source.figure-studio-scene-expansion.2026-11-03",
+      "rights_record_id": "rights.figure-studio-scene-expansion.repository-cc0.2026-11-03"
+    },
+    {
+      "id": "angiogenic-sprouting",
+      "name": "Angiogenic sprouting",
+      "summary": "An endothelial sprout near local VEGF cues, with parent vessel, leading tips and neighboring cells.",
+      "category": "Vascular biology",
+      "synonyms": [
+        "sprouting angiogenesis",
+        "endothelial sprout",
+        "tip cell",
+        "vessel branching"
+      ],
+      "tags": [
+        "endothelial cell",
+        "VEGF",
+        "tip cell",
+        "stalk cell",
+        "DLL4",
+        "Notch",
+        "lumen"
+      ],
+      "biology_note": "Endothelial tip cells extend toward proangiogenic cues while neighboring stalk cells support sprout extension; VEGF and DLL4–Notch signaling contribute to tip–stalk patterning.",
+      "limitations": "A qualitative spatial schematic, not a universal sequence or measured outcome. Lumen formation and blood flow are not shown. Tip–stalk states are dynamic; matrix, flow, tissue context, VEGF presentation, and signaling can alter sprout behavior and branching.",
+      "card_summary": "An endothelial sprout near local VEGF cues, with parent vessel, leading tips and neighboring cells.",
+      "modes": [
+        "figure",
+        "presentation"
+      ],
+      "actions": [
+        "use_as_new_figure",
+        "insert_current_document"
+      ],
+      "scene": "scenes/angiogenic-sprouting.scene.json",
+      "preview": "previews/angiogenic-sprouting.svg",
+      "source_record_id": "source.figure-studio-scene-expansion.2026-11-03",
+      "rights_record_id": "rights.figure-studio-scene-expansion.repository-cc0.2026-11-03"
     }
   ]
 }

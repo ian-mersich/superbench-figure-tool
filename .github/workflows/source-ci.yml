@@ -13,4 +13,4 @@ jobs:
       - run: python -m pip install -r requirements-release.txt
       - run: python scripts/validate-scientific-assets.py --library --require-public-release
       - run: python scripts/validate-vendor-bundle.py
-      - run: python -m pytest -q tests/test_figure_tool_package_producer.py tests/test_scientific_product_release.py tests/test_export_figure_release_source.py tests/test_vendor_source_tools.py tests/test_vendor_fabric_portability.py
+      - run: python -m pytest -q tests/test_figure_tool_package_producer.py tests/test_scientific_product_release.py tests/test_scientific_product_release_expansion_20261103.py tests/test_export_figure_release_source.py tests/test_vendor_source_tools.py tests/test_vendor_fabric_portability.py

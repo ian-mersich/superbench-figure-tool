@@ -118,6 +118,10 @@
     return path;
   }
 
+  function supportsStyle(asset, style) {
+    return !Array.isArray(asset?.available_art_styles) || asset.available_art_styles.includes(normalizeStyle(style));
+  }
+
   function attachVariantManifest(assets, manifest, options = {}) {
     if (manifest?.id !== STYLE_FOUR || manifest.schema_version !== "1.0.0") {
       throw new Error("Unsupported scientific drawing style manifest");
@@ -143,7 +147,7 @@
       return [asset, { ...variant, _svgUrl: svgUrl.toString(),
         _resourcePath: `${options.basePath || ""}${file}` }];
     });
-    if (seen.size !== byId.size) throw new Error("Scientific drawing style coverage is incomplete");
+    if ([...byId.values()].some((asset) => supportsStyle(asset, STYLE_FOUR) && !seen.has(asset.id))) throw new Error("Scientific drawing style coverage is incomplete");
     prepared.forEach(([asset, variant]) => {
       asset.art_styles = { ...(asset.art_styles || {}), [STYLE_FOUR]: variant };
     });
@@ -152,6 +156,7 @@
 
   function assetForStyle(asset, style) {
     const selected = normalizeStyle(style);
+    if (!supportsStyle(asset, selected)) throw new Error("The selected style is unavailable for this drawing");
     if (selected === SOFT_COLOR) return asset;
     if (selected === STYLE_FOUR) {
       const variant = asset?.art_styles?.[STYLE_FOUR];
@@ -167,5 +172,5 @@
   }
 
   return { SOFT_COLOR, TECHNICAL_INK, CUT_PAPER, STYLE_FOUR, normalizeStyle, technicalInkColor, cutPaperColor,
-    transformSvg, transformRegions, attachVariantManifest, assetForStyle };
+    transformSvg, transformRegions, supportsStyle, attachVariantManifest, assetForStyle };
 });

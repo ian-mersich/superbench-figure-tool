@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  const APP_VERSION = "1.0.0-beta.22";
+  const APP_VERSION = "1.0.0-beta.23";
   const PROJECT_SCHEMA = "figureStudio.project.v2";
   const DOCUMENT_KINDS = Object.freeze(["figure", "presentation"]);
   const FIRST_RUN_STORAGE_KEY = "figureStudio.firstRun.v2";
@@ -10566,6 +10566,14 @@
     return Boolean(densePdfApi()?.isPage(object) || pdfSourceIdForObject(object) || (typeof object?.getObjects !== "function" && svgNumericSourceIdentityForObject(object)));
   }
 
+  function jsonNumericPrecisionForObject(object) {
+    // Managed SVG drawings keep their current native geometry through Save and
+    // history. This grants JSON number preservation, not PDF/SVG writer scope.
+    return sourceNumericPrecisionForObject(object) || Boolean(isGroupObject(object)
+      && object.importMeta?.importMode === SCIENTIFIC_ASSET_VECTOR_IMPORT
+      && bundledScientificAssetObject(object));
+  }
+
   function currentSvgSourceGraph(roots, strict = false, exportedPaintOnly = false) {
     const rows = [], seen = new Set(), pending = Array.from(roots || []);
     while (pending.length) {
@@ -10640,7 +10648,7 @@
 
   function installPdfSourceSerializationPrecision(roots) {
     if (!pdfSourceSerializationPrecision) return;
-    pdfSourceSerializationPrecision.installScene(roots, { isPdfObject: sourceNumericPrecisionForObject });
+    pdfSourceSerializationPrecision.installScene(roots, { isPdfObject: jsonNumericPrecisionForObject });
   }
 
   function pdfSourceIdForObject(object) {
@@ -22911,11 +22919,15 @@
     return { x: result.x + (!toScene && !vector ? offset.x : 0), y: result.y + (!toScene && !vector ? offset.y : 0) };
   }
 
-  function smartConnectorEndpointGeometryPoint(connector, endpoint) {
-    if (connector.smartConnectorMeta?.geometrySpace !== "object") return connectorEndpointPointInParent(connector, endpoint);
-    const target = getByFigureId(endpoint?.objectId || "");
+  function smartConnectorEndpointGeometryPoint(connector, endpoint, geometryViews = null) {
+    if (connector.smartConnectorMeta?.geometrySpace !== "object") return connectorEndpointPointInParent(connector, endpoint, geometryViews);
+    const liveTarget = getByFigureId(endpoint?.objectId || "");
+    const target = geometryViews ? smartConnectorSerializedGeometryFacade(liveTarget, geometryViews) : liveTarget;
     const anchor = connectorAnchorPoints(target).find((item) => item.role === normalizeConnectorPortRole(endpoint?.anchor, "right"));
-    if (anchor) return smartConnectorObjectPoint(connector, anchor);
+    if (anchor) {
+      const plane = geometryViews ? smartConnectorSerializedGeometryFacade(connector, geometryViews) : connector;
+      return smartConnectorObjectPoint(plane, anchor);
+    }
     const point = endpoint?.point;
     return point && Number.isFinite(Number(point.x)) && Number.isFinite(Number(point.y)) ? { x: Number(point.x), y: Number(point.y) } : null;
   }
@@ -23420,7 +23432,10 @@
     if (connector.originX !== "center" || connector.originY !== "center") throw new Error("This arrow has unsupported coordinate origins.");
     smartConnectorObjectInverse(connector);
     meta.labelPlacement = "midpoint";
-    const start = smartConnectorEndpointGeometryPoint(connector, meta.start), end = smartConnectorEndpointGeometryPoint(connector, meta.end);
+    // Attached endpoints use the same saved numeric plane on warm edits and
+    // cold refresh. Detached/free points retain their literal authored values.
+    const geometryViews = new Map();
+    const start = smartConnectorEndpointGeometryPoint(connector, meta.start, geometryViews), end = smartConnectorEndpointGeometryPoint(connector, meta.end, geometryViews);
     if (!start || !end) return false;
     const oldOffset = connector.pathOffset || { x: 0, y: 0 }, center = connector.getRelativeCenterPoint(), own = connector.calcOwnMatrix();
     if (meta.route === "curved") meta.curveSide ??= smartConnectorInitialCurveSide(start, end);
@@ -47461,9 +47476,9 @@
 
   function selectFigureLibraryView(view, options = {}) {
     if (window.FigureStudioLibrary?.getState?.().activeView) return window.FigureStudioLibrary.select(view, options);
-    const element = view === "scenes" ? els.assetSceneGrid : view === "templates" ? els.templateGallery : els.assetGrid;
+    const element = ["scenes", "templates"].includes(view) ? els.assetSceneGrid : els.assetGrid;
     setPanelCollapsed(element?.closest?.(".panel-section[data-collapsible='true']"), false);
-    if (options.focusSearch) (view === "scenes" ? els.sceneSearchInput : els.assetSearchInput)?.focus({ preventScroll: true });
+    if (options.focusSearch) (["scenes", "templates"].includes(view) ? els.sceneSearchInput : els.assetSearchInput)?.focus({ preventScroll: true });
     return Boolean(element);
   }
 
@@ -47606,6 +47621,19 @@
         if (!styleResponse.ok) throw new Error(`${styleEntry.name} HTTP ${styleResponse.status}`);
         const styleManifest = await styleResponse.json();
         if (styleManifest.id !== styleEntry.id) throw new Error("Scientific drawing style identity mismatch");
+        if (styleEntry.supplement) {
+          const supplementUrl = new URL(String(styleEntry.supplement.path || ""), libraryBaseUrl);
+          const supplementResponse = await fetch(supplementUrl, { cache: "no-store" });
+          if (!supplementResponse.ok) throw new Error(`${styleEntry.name} supplement HTTP ${supplementResponse.status}`);
+          const supplement = await supplementResponse.json();
+          if (supplement.id !== styleEntry.id || supplement.assets?.length !== styleEntry.supplement.asset_count) throw new Error("Scientific drawing style supplement identity mismatch");
+          const primaryDirectory = new URL(".", manifestUrl).pathname;
+          const supplementDirectory = new URL(".", supplementUrl).pathname;
+          if (!supplementDirectory.startsWith(primaryDirectory)) throw new Error("Scientific drawing style supplement escapes its collection");
+          const prefix = supplementDirectory.slice(primaryDirectory.length);
+          styleManifest.assets = [...styleManifest.assets, ...supplement.assets.map((entry) => ({ ...entry, file: `${prefix}${entry.file}` }))];
+          if (styleManifest.assets.length !== styleEntry.asset_count) throw new Error("Scientific drawing style coverage is incomplete");
+        }
         window.FigureStudioScientificAssetArtStyles.attachVariantManifest(assets, styleManifest, {
           baseUrl: manifestUrl,
           basePath: `${libraryBasePath}${relativeFile.slice(0, relativeFile.lastIndexOf("/") + 1)}`
@@ -48170,7 +48198,7 @@
     const noResults = query && source && !(scope === 'scenes' ? filteredScientificScenes() : filteredScientificAssets()).length;
     surface.hidden = !suggestions.length && !noResults;
     surface.innerHTML = suggestions.length
-      ? `<span>Related searches</span>${suggestions.map((item) => `<button type="button" data-asset-related-query="${escapeHtml(item.query)}" data-library-scope="${scope}" title="Search ${escapeHtml(item.label)} in ${scope === 'scenes' ? 'Scenes' : 'Assets'}; ${item.count} matching concept${item.count === 1 ? '' : 's'}">${escapeHtml(item.label)}</button>`).join('')}`
+      ? `<span>Related searches</span>${suggestions.map((item) => `<button type="button" data-asset-related-query="${escapeHtml(item.query)}" data-library-scope="${scope}" title="Search ${escapeHtml(item.label)} in ${scope === 'scenes' ? 'Templates' : 'Assets'}; ${item.count} matching concept${item.count === 1 ? '' : 's'}">${escapeHtml(item.label)}</button>`).join('')}`
       : noResults ? `<span>Try another term or keep your filters and</span><button type="button" data-asset-clear-search data-library-scope="${scope}">Clear search</button>` : '';
     surface._figureStudioRelatedSearchView = { source, pack, inputKey, html: surface.innerHTML, hidden: surface.hidden };
   }
@@ -49449,7 +49477,7 @@
   async function loadScientificSceneLibrary() {
     if (!els.assetSceneGrid) return null;
     scientificSceneLoadError = "";
-    if (els.sceneLibraryStatus) els.sceneLibraryStatus.textContent = "Loading scientific scenes…";
+    if (els.sceneLibraryStatus) els.sceneLibraryStatus.textContent = "Loading scientific templates…";
     try {
       const libraryUrl = resourceUrl(SCIENTIFIC_SCENE_LIBRARY_URL);
       const response = await fetch(libraryUrl, { cache: "no-store" });
@@ -49465,7 +49493,7 @@
     } catch (error) {
       console.error("Scientific scene library load failed", error);
       scientificSceneLibrary = null;
-      scientificSceneLoadError = "Scientific scenes are unavailable.";
+      scientificSceneLoadError = "Scientific templates are unavailable.";
       renderScientificScenePanel();
       return null;
     }
@@ -49504,50 +49532,35 @@
   function renderScientificScenePanel(options = {}) {
     if (!els.assetSceneGrid) return;
     if (!scientificSceneLibrary) {
-      const message = scientificSceneLoadError || "Scientific scenes are loading.";
+      const message = scientificSceneLoadError || "Scientific templates are loading.";
       els.assetSceneGrid.innerHTML = `<div class="scene-library-empty">${escapeHtml(message)}</div>`;
       if (els.sceneLibraryStatus) els.sceneLibraryStatus.textContent = message;
       return;
     }
     if (!options.force && !librarySectionExpanded(els.assetSceneGrid)) {
       els.assetSceneGrid.replaceChildren();
-      if (els.sceneLibraryStatus) els.sceneLibraryStatus.textContent = `${scientificSceneLibrary.scenes.length} editable scenes · Expand to browse`;
+      if (els.sceneLibraryStatus) els.sceneLibraryStatus.textContent = `${scientificSceneLibrary.scenes.length} editable templates · Expand to browse`;
       return;
     }
     const scenes = filteredScientificScenes();
+    window.FigureStudioLibrary?.refreshTemplates?.();
     renderScientificAssetRelatedSearches("scenes");
     const kind = normalizeDocumentKind(state.document?.kind);
     const total = scientificSceneLibrary.scenes.length;
     if (els.sceneLibraryStatus) {
       els.sceneLibraryStatus.textContent = scientificSceneBusy
-        ? "Preparing editable scene…"
-        : `${scenes.length} of ${total} editable scenes`;
+        ? "Preparing editable template…"
+        : `${scenes.length} of ${total} scientific templates`;
     }
     if (!scenes.length) {
-      els.assetSceneGrid.innerHTML = '<div class="scene-library-empty">No scenes match this search.</div>';
+      els.assetSceneGrid.innerHTML = '<div class="scene-library-empty">No scientific templates match this search.</div>';
       return;
     }
-    els.assetSceneGrid.innerHTML = scenes.map((scene) => {
-      const actions = Array.isArray(scene.actions) ? scene.actions : [];
-      const actionButtons = actions.map((action) => {
-        const label = scientificSceneActionLabel(action, kind);
-        if (!label) return "";
-        return `<button type="button" data-scene-id="${escapeHtml(scene.id)}" data-scene-action="${escapeHtml(action)}"${scientificSceneBusy ? " disabled" : ""}>${escapeHtml(label)}</button>`;
-      }).join("");
-      return `<article class="scientific-scene-entry" data-scene-id="${escapeHtml(scene.id)}">
-        <img class="scientific-scene-preview" src="${escapeHtml(scene._previewUrl || scene.preview)}" alt="Preview of ${escapeHtml(scene.name)}" loading="lazy" decoding="async">
-        <div class="scientific-scene-copy">
-          <div class="scientific-scene-heading"><strong>${escapeHtml(scene.name)}</strong><small>${escapeHtml(scene.category)}</small></div>
-          <p>${escapeHtml(scene.summary)}</p>
-          ${scene.biology_note || scene.limitations ? `<details class="scientific-scene-notes">
-            <summary>Biology and limits</summary>
-            ${scene.biology_note ? `<p><strong>Biology:</strong> ${escapeHtml(scene.biology_note)}</p>` : ""}
-            ${scene.limitations ? `<p><strong>Limits:</strong> ${escapeHtml(scene.limitations)}</p>` : ""}
-          </details>` : ""}
-        </div>
-        <div class="scientific-scene-actions">${actionButtons}</div>
-      </article>`;
-    }).join("");
+    els.assetSceneGrid.innerHTML = scenes.map((scene) =>
+      window.FigureStudioScientificTemplateCards.render(scene, {
+        documentKind: kind, busy: scientificSceneBusy
+      })
+    ).join("");
   }
 
   async function loadScientificSceneDefinition(scene) {
@@ -50333,6 +50346,9 @@
           excludeFromExport: snapshot.excludeFromExport
         });
         applyLock(group, snapshot.locked);
+        // Assign new parts their saved identities before replacement history,
+        // using the same pass as insertion and restoration.
+        reconcileAuthoredStructureMetadata([group]);
         group.setCoords();
         prepared.push({ canvasIndex, group, snapshot });
       }
@@ -77961,7 +77977,7 @@
     const digits = fabricRef.config?.NUM_FRACTION_DIGITS ?? 4;
     const rounded = (value) => fabricRef.util.toFixed(value, digits);
     const precisionObjects = pdfSourceSerializationPrecision.precisionObjectsForScene([root], {
-      isPdfObject: sourceNumericPrecisionForObject
+      isPdfObject: jsonNumericPrecisionForObject
     });
     const capture = (object, cached, includeDefaultValues) => {
       // Reuse the same current source/descendant/ancestor scope as canonical

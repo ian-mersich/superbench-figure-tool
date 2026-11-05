@@ -429,6 +429,14 @@ def validate_record_table(pack: dict, field_name: str, *, required: bool) -> set
 
 POLICY_CONTRIBUTION_ID = "original-vectors.cc0.repository-policy.2026-10-15"
 POLICY_CONTRIBUTION_COUNTS = {"cell-structure-stress":40,"tumor-microenvironment":20,"analysis-graphics":20}
+POLICY_CONTRIBUTIONS = {
+    POLICY_CONTRIBUTION_ID: ("2026-10-15", POLICY_CONTRIBUTION_COUNTS),
+    "original-vectors.cc0.repository-policy.2026-11-03": ("2026-11-03", {"neurobiology": 20, "tissue-vascular": 20}),
+}
+
+
+def contribution_policy_date(pack: dict) -> str:
+    return POLICY_CONTRIBUTIONS[pack["contribution_license_policy"]][0]
 
 
 def policy_contribution(pack: dict) -> bool:
@@ -439,12 +447,12 @@ def policy_contribution(pack: dict) -> bool:
     """
     marker = pack.get("contribution_license_policy")
     if marker is None:
-        if (pack.get("id") in POLICY_CONTRIBUTION_COUNTS
+        if (any(pack.get("id") in counts for _, counts in POLICY_CONTRIBUTIONS.values())
                 and pack.get("release_audit", {}).get("status") != "draft_review_pending"):
             fail("Prospective contribution requires its repository license policy; no inherited owner grant")
         return False
-    if (marker != POLICY_CONTRIBUTION_ID or pack.get("id") not in POLICY_CONTRIBUTION_COUNTS
-            or len(pack.get("assets", [])) != POLICY_CONTRIBUTION_COUNTS[pack["id"]]):
+    if (marker not in POLICY_CONTRIBUTIONS or pack.get("id") not in POLICY_CONTRIBUTIONS[marker][1]
+            or len(pack.get("assets", [])) != POLICY_CONTRIBUTIONS[marker][1][pack["id"]]):
         fail("Unknown or out-of-scope repository-policy contribution")
     if pack.get("release_audit", {}).get("status") != "rights_cleared_quality_pending":
         fail("Prospective contribution license clearance must preserve separate pending product approval")
@@ -503,9 +511,9 @@ def validate_modern_release_records(pack: dict) -> None:
         })
     if policy_contribution(pack) and release_reference.get("status") == "rights_cleared_quality_pending":
         expected_rights.update(kind="repository_policy_license", status="rights_cleared",
-            rights_basis="repository_policy_original_output", effective_date="2026-10-15")
-        if (rights.get("license_policy") != POLICY_CONTRIBUTION_ID
-                or release_reference.get("rights_grant_effective_date") != "2026-10-15"):
+            rights_basis="repository_policy_original_output", effective_date=contribution_policy_date(pack))
+        if (rights.get("license_policy") != pack["contribution_license_policy"]
+                or release_reference.get("rights_grant_effective_date") != contribution_policy_date(pack)):
             fail("Prospective contribution must bind its current repository license policy; no inherited owner grant")
     for label, record, expected in (
         ("source record", source, expected_source),
@@ -798,6 +806,16 @@ def validate_asset(
     if asset_id in seen_ids:
         fail(f"{asset_id}: duplicate asset id")
     seen_ids.add(asset_id)
+
+    availability = asset.get("available_art_styles")
+    finite_styles = ["soft-color", "cut-paper", "technical-ink", "style-4"]
+    if pack.get("id") in {"neurobiology", "tissue-vascular"}:
+        if (availability != finite_styles or pack.get("available_art_styles") != finite_styles
+                or asset.get('style_4_supplement') != 'original-style4-companions.2026-11-03'
+                or pack.get('style_4_supplement') != asset.get('style_4_supplement')):
+            fail(f"{asset_id}: this finite contribution must explicitly support Styles 1–4")
+    elif availability is not None:
+        fail(f"{asset_id}: unknown style availability exclusion; existing Style 4 coverage remains complete")
 
     for field in ("name", "category", "source_type", "license", "review_status", "style_status", "reviewer_notes", "mvp_quality"):
         if not isinstance(asset[field], str) or not asset[field].strip():
@@ -2023,11 +2041,11 @@ def validate_release_audit(pack: dict, pack_dir: Path, assets: list[dict]) -> st
             or audit.get("product_release_status") != "pending_quality_and_product_review"
             or reference.get("product_release_status") != "pending_quality_and_product_review"):
         fail("Prospective contribution license clearance must preserve separate pending product approval")
-    if contribution and (audit.get("rights_grant_effective_date") != "2026-10-15"
-            or reference.get("rights_grant_effective_date") != "2026-10-15"
-            or audit.get("audit_date") != "2026-10-15"
-            or reference.get("audit_date") != "2026-10-15"):
-        fail("Prospective contribution audit and license must use their current 2026-10-15 date")
+    if contribution and (audit.get("rights_grant_effective_date") != contribution_policy_date(pack)
+            or reference.get("rights_grant_effective_date") != contribution_policy_date(pack)
+            or audit.get("audit_date") != contribution_policy_date(pack)
+            or reference.get("audit_date") != contribution_policy_date(pack)):
+        fail("Prospective contribution audit and license must use their declared finite contribution date")
     if contribution and (not isinstance(audit.get("product_release_blocker"), str)
             or len(audit["product_release_blocker"].strip()) < 40
             or "product_release" in audit):
@@ -2539,10 +2557,38 @@ class LibraryIdentityState:
     ] = field(default_factory=dict)
 
 
+# Only this finite contribution extends existing concepts across pack boundaries.
+# Original catalogs, IDs and rights records remain owned by their original pack.
+CONCEPT_FORM_EXTENSIONS = {
+    'neuro.oligodendrocyte': ('neurobiology','core-experimental-biology','exp.cell.oligodendrocyte_like'),
+    'neuro.schwann_cell': ('neurobiology','core-experimental-biology','exp.cell.schwann_myelin'),
+    'tissue.epithelial_sheet': ('tissue-vascular','core-experimental-biology','exp.model_system.epithelial_monolayer'),
+    'tissue.adipose': ('tissue-vascular','core-experimental-biology','exp.cell.adipocyte'),
+    'tissue.angiogenic_sprout': ('tissue-vascular','immunology-oncology','immuno.model.angiogenic_vessel_sprout'),
+    'tissue.collagen': ('tissue-vascular','immunology-oncology','immuno.model.collagen_rich_ecm'),
+    'tissue.basement_membrane': ('tissue-vascular','immunology-oncology','immuno.model.basement_membrane_segment'),
+    'tissue.lymphatic_capillary': ('tissue-vascular','immunology-oncology','immuno.model.lymphatic_vessel_segment'),
+}
+
+
+def concept_extension_owner(pack_id: str, asset: dict) -> str | None:
+    descriptor = asset.get('concept_extension')
+    key = str(asset.get('id','')).rsplit('.',1)[0]
+    expected = CONCEPT_FORM_EXTENSIONS.get(key)
+    if expected is None:
+        if descriptor is not None: fail('Unknown cross-pack concept extension')
+        return None
+    target_pack, owner, concept = expected
+    if (pack_id != target_pack or asset.get('concept_id') != concept
+            or descriptor != {'source_pack_id':owner,'source_concept_id':concept}):
+        fail('Finite concept extension identity mismatch: '+str(asset.get('id')))
+    return owner
+
+
 def _concept_identity(pack_id: str, asset: dict) -> str:
     concept_id = asset.get("concept_id")
     if isinstance(concept_id, str) and concept_id:
-        return f"{pack_id}:{concept_id}"
+        return f"{concept_extension_owner(pack_id, asset) or pack_id}:{concept_id}"
     return f"{pack_id}:{asset.get('id')}"
 
 
@@ -2563,12 +2609,15 @@ def _register_library_asset(
 
     raw_concept_id = str(asset.get("concept_id") or asset_id)
     concept_owner = state.concept_ids.get(raw_concept_id)
-    if concept_owner is not None and concept_owner != pack_id:
+    extension_owner = concept_extension_owner(pack_id, asset)
+    if concept_owner is not None and concept_owner != pack_id and concept_owner != extension_owner:
         fail(
             f"library concept_id {raw_concept_id!r} is duplicated across packs "
             f"{concept_owner!r} and {pack_id!r}"
         )
-    state.concept_ids[raw_concept_id] = pack_id
+    if extension_owner and concept_owner != extension_owner:
+        fail("Concept extension requires its already registered source concept")
+    state.concept_ids.setdefault(raw_concept_id, pack_id)
 
     relative_svg = canonical_relative_file(
         asset["file"], label=f"{asset_id}: file", suffix=".svg"
@@ -2622,8 +2671,13 @@ def validate_registered_art_styles(library_path: Path, library: dict) -> list[di
         return []
     allowed = [[{"id":"style-4","name":"Style 4","path":path,"asset_count":486}]
                for path in ("style-4/manifest.json", "style-4/manifest-corrected-20261017.json")]
-    if styles not in allowed:
-        fail("Scientific drawing styles must exactly match the registered Style 4 manifest")
+    expanded = [{"id":"style-4","name":"Style 4","path":"style-4/manifest-corrected-20261017.json","asset_count":526,
+                 "supplement":{"path":"style-4/expansion-20261103/manifest.json","asset_count":40}}]
+    if styles not in allowed and styles != expanded:
+        fail("Scientific drawing styles must match the exact supplied manifest and finite original supplement")
+    new_packs = {row.get('id') for row in library.get('packs',[])} & {'neurobiology','tissue-vascular'}
+    if new_packs and styles != expanded:
+        fail('Every new drawing requires complete Styles 1–4 coverage')
     if not isinstance(library.get("art_style_notes"), str) or not library["art_style_notes"].strip():
         fail("Registered Style 4 requires a visible supplied-artwork limitation")
     relative = canonical_relative_file(styles[0]["path"], label="Style 4 manifest", suffix=".json")
@@ -2633,8 +2687,8 @@ def validate_registered_art_styles(library_path: Path, library: dict) -> list[di
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     result = module.validate(manifest.parent, library_path)
-    return [{"id":"style-4","directory":"style-4","asset_count":result["asset_count"],
-             "file_count":result["file_count"]}]
+    return [{"id":"style-4","directory":"style-4","asset_count":result["asset_count"] + result.get('original_supplement',{}).get('asset_count',0),
+             "file_count":result["file_count"] + result.get('original_supplement',{}).get('file_count',0)}]
 
 
 def validate_library(library_path: Path = DEFAULT_LIBRARY) -> dict[str, object]:
@@ -2806,7 +2860,7 @@ def validate_library(library_path: Path = DEFAULT_LIBRARY) -> dict[str, object]:
         "library_id": library["id"],
         "pack_count": len(pack_summaries),
         "asset_count": total_assets,
-        "concept_count": total_concepts,
+        "concept_count": len(state.concept_ids),
         "packs": pack_summaries,
         "art_styles": art_styles,
     }

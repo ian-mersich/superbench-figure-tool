@@ -36,7 +36,7 @@ def validate(style_dir: Path, library: Path = IMPORT.LIBRARY, *, expected_count:
         if manifest.get("recovery_archive") != expected_recovery:
             raise ValueError("Style 4 recovery archive or finite selection binding differs")
         selected = {entry["asset_id"]: entry for entry in recovery["assets"]}
-    catalog = IMPORT.load_catalog(library)
+    catalog = IMPORT.load_catalog(library, style4_only=True)
     assets = manifest["assets"]
     identifiers = [asset["asset_id"] for asset in assets]
     if len(assets) != expected_count or manifest.get("asset_count") != expected_count or len(set(identifiers)) != expected_count or set(identifiers) != set(catalog):
@@ -127,6 +127,13 @@ def validate(style_dir: Path, library: Path = IMPORT.LIBRARY, *, expected_count:
         # validated. Historical manifests, source records and SVGs still pass
         # every original check above without exemptions.
         actual_files -= set(correction.pop("owned_files"))
+    original_supplement = None
+    supplement_path = style_dir / 'expansion-20261103/manifest.json'
+    if supplement_path.exists() or descriptor.get('art_styles', [{}])[0].get('supplement'):
+        supplemental_spec = importlib.util.spec_from_file_location('original_style4_supplement', ROOT/'scripts/style4_original_supplement.py')
+        supplemental = importlib.util.module_from_spec(supplemental_spec);supplemental_spec.loader.exec_module(supplemental)
+        original_supplement = supplemental.validate(style_dir, library)
+        actual_files -= set(original_supplement.pop('owned_files'))
     if actual_files != expected_files:
         raise ValueError(f"Unexpected or missing Style 4 files: {sorted(actual_files ^ expected_files)}")
     if source_archive is not None:
@@ -137,6 +144,8 @@ def validate(style_dir: Path, library: Path = IMPORT.LIBRARY, *, expected_count:
     result = {"status": "PASS", "asset_count": len(assets), "file_count": len(actual_files), "duplicate_id_repairs": id_repairs, "regions_with_multiple_paints": multicolor_regions, "recovered_asset_count": len(selected), "corrected_asset_count": sum(bool(entry.get("corrections")) for entry in selected.values()), "source_archive_verified": source_archive is not None}
     if correction:
         result["correction_overlay"] = correction
+    if original_supplement:
+        result["original_supplement"] = original_supplement
     return result
 
 

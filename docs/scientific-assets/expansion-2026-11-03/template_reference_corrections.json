@@ -1,0 +1,196 @@
+{
+  "record_id": "template-reference-corrections-2026-11-03",
+  "verified_on": "2026-11-03",
+  "scope": "Verified bibliography and claim-to-source corrections for the 2026-11-03 Figure Studio template expansion. This record does not edit template recipes or assert public release.",
+  "findings": [
+    {
+      "id": "li-2015",
+      "severity": "critical_metadata_mismatch",
+      "correction": "The linked PMC article is Jonkman et al. (2014), not Li et al. (2015). Replace the citation and DOI, or replace the URL with a verified Li et al. source.",
+      "verified_source": {
+        "citation": "Jonkman JEN, Cathcart JA, Xu F, Bartolini ME, Amon JE, Stevens KM, Colarusso P. An introduction to the wound healing assay using live-cell microscopy. Cell Adhes Migr. 2014;8(5):440–451.",
+        "doi": "10.4161/cam.36224",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5154238/",
+        "support_location": "Section IV, Microscope Configuration and Image Acquisition for the Wound Healing Assay; Figures 3–4 and 6 (microscope comparison, background correction, and time-series closure)."
+      }
+    },
+    {
+      "id": "schoch-2001",
+      "severity": "critical_metadata_mismatch",
+      "correction": "Correct the year and DOI suffix to the linked review's 2006 metadata. This is a review, not primary research.",
+      "verified_source": {
+        "citation": "Schoch S, Gundelfinger ED. Molecular organization of the presynaptic active zone. Cell Tissue Res. 2006;326(2):379–391.",
+        "doi": "10.1007/s00441-006-0244-y",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/16865347/",
+        "support_location": "Review abstract and article text on presynaptic active-zone organization; no figure number assigned here because a specific figure was not independently verified."
+      }
+    },
+    {
+      "id": "pell-2021",
+      "severity": "bibliographic_correction",
+      "correction": "Replace the page range 884–894 with 909–921.",
+      "verified_source": {
+        "citation": "Pell TJ et al. Epithelial Barrier Integrity Profiling: Combined Approach Using Cellular Junctional Complex Imaging and Transepithelial Electrical Resistance. SLAS Discov. 2021;26(7):909–921.",
+        "doi": "10.1177/24725552211013077",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/34085560/",
+        "support_location": "Methods section, TEER and Data Analysis."
+      }
+    },
+    {
+      "id": "gonzalez-2011",
+      "severity": "incomplete_title",
+      "correction": "Restore the full title and keep the method scoped to the fibrinogen-specific microarray assay described in the paper.",
+      "verified_source": {
+        "citation": "Gonzalez RM et al. Development of a fibrinogen-specific sandwich enzyme-linked immunosorbent assay microarray assay for distinguishing between blood plasma and serum samples. Anal Biochem. 2011;414(1):99–102.",
+        "doi": "10.1016/j.ab.2011.02.039",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3097095/",
+        "support_location": "Methods: Antibody Source and Preparation, Slide Production, Samples, and ELISA Microarray Processing. The assay uses capture antibodies and a 1D6 detection antibody; do not treat it as proof of every plate-ELISA detection format."
+      }
+    },
+    {
+      "id": "stanifer-2026",
+      "severity": "incomplete_authorship",
+      "correction": "Cite Keser et al.; consider changing the reference key to keser-2026 because Stanifer is the third author.",
+      "verified_source": {
+        "citation": "Keser Y, Boulant S, Stanifer ML. Assessment of Epithelial Barrier Integrity by TEER and FITC-Dextran Permeability Assays. Bio-protocol. 2026;16(8):e5673.",
+        "doi": "10.21769/BioProtoc.5673",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13180708/",
+        "support_location": "Methods sections D, TEER measurement procedure, and E, FITC-dextran permeability assay; Figure 3 graphical workflow overview. The method adds tracer apically and quantifies fluorescence in the basolateral receiver after incubation."
+      }
+    },
+    {
+      "id": "immunoprecipitation-2020",
+      "severity": "incomplete_citation",
+      "correction": "Add authors and full publication details. This topic introduction supports the general antibody/solid-phase capture principle, not a specific experimental result.",
+      "verified_source": {
+        "citation": "DeCaprio J, Kohl TO. Immunoprecipitation. Cold Spring Harb Protoc. 2020;2020(11):pdb.top098509.",
+        "doi": "10.1101/pdb.top098509",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/33139503/",
+        "support_location": "Abstract/introduction defining soluble antigen binding by an antigen-specific antibody and recovery of the immune complex on a solid-phase matrix. No figure is cited."
+      }
+    },
+    {
+      "id": "coip-kinase-2020",
+      "severity": "verified_with_scope_note",
+      "correction": "Metadata are valid. Keep this as protocol/method support; it is not a primary interaction-discovery study.",
+      "verified_source": {
+        "citation": "Brian BF IV, Guerrero CR, Freedman TS. Immunopharmacology and Quantitative Analysis of Tyrosine Kinase Signaling. Curr Protoc Immunol. 2020;130(1):e104.",
+        "doi": "10.1002/cpim.104",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7583487/",
+        "support_location": "Basic Protocol 2, Enriching target proteins and isolation of protein complexes by immunoprecipitation; Support Protocol, Covalent conjugation of antibodies to functionalized beads."
+      }
+    },
+    {
+      "id": "chemical-synapse-source-type",
+      "severity": "primary_source_gap",
+      "correction": "Südhof (2004) and Schoch & Gundelfinger (2006) are reviews. Retain them for context, and add primary studies for calcium-dependent release and the vesicle-release sequence. Do not use either review as the sole evidence for causal release claims.",
+      "verified_sources": [
+        {
+          "citation": "Dodge FA Jr, Rahamimoff R. Co-operative action of calcium ions in transmitter release at the neuromuscular junction. J Physiol. 1967;193(2):419–432.",
+          "doi": "10.1113/jphysiol.1967.sp008367",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/6065887/",
+          "support_location": "Abstract and Results: intracellular recordings at frog neuromuscular junction; end-plate potential amplitude used as an index of quantal release across extracellular calcium conditions."
+        },
+        {
+          "citation": "Geppert M et al. Synaptotagmin I: a major Ca2+ sensor for transmitter release at a central synapse. Cell. 1994;79(4):717–727.",
+          "doi": "10.1016/0092-8674(94)90556-8",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/7954835/",
+          "support_location": "Abstract: synaptotagmin-I mutant mouse and cultured hippocampal-neuron results; synchronous fast calcium-dependent release was reduced."
+        }
+      ]
+    },
+    {
+      "id": "figure-field",
+      "severity": "placeholder_metadata",
+      "correction": "Remove the generic figure value assigned to every source. Populate a source-specific figure only after verifying it; otherwise cite the named method section, abstract, or result location. Do not present a generic methods phrase as an actual figure citation.",
+      "verified_source": null
+    },
+    {
+      "id": "angiogenic-lumen-claim",
+      "severity": "claim_source_gap",
+      "correction": "The existing Gerhardt, Hellström, and Suchting studies support VEGF guidance and tip–stalk/branch regulation, not the displayed sprout-lumen-extension stage. A primary lumenogenesis study can support general vascular lumen formation, but the cited aortic context should be made explicit and must not be described as direct evidence for capillary-sprout lumen extension.",
+      "verified_sources": [
+        {
+          "citation": "Gerhardt H et al. VEGF guides angiogenic sprouting utilizing endothelial tip cell filopodia. J Cell Biol. 2003;161(6):1163–1177.",
+          "doi": "10.1083/jcb.200302047",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2172999/",
+          "support_location": "Figures 7–8 and associated results on VEGF guidance and endothelial tip-cell filopodia."
+        },
+        {
+          "citation": "Hellström M et al. Dll4 signalling through Notch1 regulates formation of tip cells during angiogenesis. Nature. 2007;445:776–780.",
+          "doi": "10.1038/nature05571",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/17259973/",
+          "support_location": "Abstract and results on Dll4/Notch1 regulation of tip-cell formation and vascular branching."
+        },
+        {
+          "citation": "Suchting S et al. The Notch ligand Delta-like 4 negatively regulates endothelial tip cell formation and vessel branching. Proc Natl Acad Sci USA. 2007;104(9):3225–3230.",
+          "doi": "10.1073/pnas.0611177104",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/17296941/",
+          "support_location": "Abstract and results on Dll4/Notch regulation of tip-cell number and branching."
+        },
+        {
+          "citation": "Strilić B et al. The molecular basis of vascular lumen formation in the developing mouse aorta. Dev Cell. 2009;17(4):505–515.",
+          "doi": "10.1016/j.devcel.2009.08.011",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/19853564/",
+          "support_location": "Abstract and results on extracellular lumen formation between adjacent endothelial cells in the developing mouse aorta; this is aorta-specific evidence, not a capillary-sprout extension study."
+        }
+      ]
+    },
+    {
+      "id": "indirect-if-workflow",
+      "severity": "missing_step",
+      "correction": "Show blocking after fixation/permeabilization and before primary-antibody incubation. The example protocol has additional optional avidin/biotin blocking steps, so keep the template's simple blocking label general.",
+      "verified_sources": [
+        {
+          "citation": "Donaldson JG. UNIT 4.3 Immunofluorescence Staining. Curr Protoc Cell Biol. 2001;0(4):Unit 4.3.",
+          "doi": "10.1002/0471143030.cb0403s00",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4709840/",
+          "support_location": "Protocol sequence for blocking and antibody incubation."
+        },
+        {
+          "citation": "Im K, Mareninov S, Diaz MF, Yong WH. An Introduction to Performing Immunofluorescence Staining. Methods Mol Biol. 2019;1897:299–311.",
+          "doi": "10.1007/978-1-4939-8935-5_26",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6918834/",
+          "support_location": "Sections 3.4.1 Blocking and 3.4.2 Antibody and Biotin-Streptavidin Incubation; Figure 2 shows indirect immunofluorescence."
+        }
+      ]
+    },
+    {
+      "id": "sandwich-elisa-workflow",
+      "severity": "displayed_step_ambiguity",
+      "correction": "Clarify that the detection antibody is enzyme-conjugated, or add a separate enzyme-linked secondary/reagent stage before substrate. The cited fibrinogen microarray uses a particular detection/amplification configuration; do not imply it establishes every common plate-ELISA format.",
+      "verified_sources": [
+        {
+          "citation": "Gonzalez RM et al. Development of a fibrinogen-specific sandwich enzyme-linked immunosorbent assay microarray assay for distinguishing between blood plasma and serum samples. Anal Biochem. 2011;414(1):99–102.",
+          "doi": "10.1016/j.ab.2011.02.039",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3097095/",
+          "support_location": "Methods: Antibody Source and Preparation and ELISA Microarray Processing; describes the capture and detection antibody configuration used in this assay."
+        },
+        {
+          "citation": "Kragstrup TW et al. A simple set of validation steps identifies and removes false results in a sandwich enzyme-linked immunosorbent assay caused by anti-animal IgG antibodies in plasma from arthritis patients. SpringerPlus. 2013;2:263.",
+          "doi": "10.1186/2193-1801-2-263",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/23875127/",
+          "support_location": "Methods and Table 1; the assay describes capture and biotin-conjugated detection antibody, supporting explicit treatment of the downstream detection reagent."
+        }
+      ]
+    }
+  ],
+  "primary_release_evidence": {
+    "claim_scope": "A generic chemical-synapse workflow can state that presynaptic calcium entry is coupled to vesicular transmitter release, while avoiding claims about a particular transmitter, receptor subtype, or universal clearance route.",
+    "sources": [
+      {
+        "citation": "Dodge FA Jr, Rahamimoff R. Co-operative action of calcium ions in transmitter release at the neuromuscular junction. J Physiol. 1967;193(2):419–432.",
+        "doi": "10.1113/jphysiol.1967.sp008367",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/6065887/",
+        "support_location": "Intracellular electrophysiology at frog neuromuscular junction; end-plate potentials used as a measure of released quanta under varied calcium conditions."
+      },
+      {
+        "citation": "Geppert M et al. Synaptotagmin I: a major Ca2+ sensor for transmitter release at a central synapse. Cell. 1994;79(4):717–727.",
+        "doi": "10.1016/0092-8674(94)90556-8",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/7954835/",
+        "support_location": "Mutant-mouse and cultured hippocampal-neuron results support calcium-triggered synchronous transmitter release."
+      }
+    ],
+    "limitation": "These sources support calcium-dependent release, not every stage or receptor/clearance mechanism in the generic template. A single sequence diagram should keep those downstream details generic or cite additional primary studies for the specific claim."
+  }
+}

@@ -1,0 +1,646 @@
+{
+  "schema": "figureStudio.scientificScene.v1",
+  "id": "epithelial-barrier-transwell-workflow",
+  "name": "Epithelial barrier Transwell assay",
+  "summary": "Grow a polarized epithelial layer on a porous insert and pair electrical and tracer-flux readouts.",
+  "source_record_id": "source.figure-studio-scene-expansion.2026-11-03",
+  "rights_record_id": "rights.figure-studio-scene-expansion.repository-cc0.2026-11-03",
+  "scientific_record": {
+    "id": "science.figure-studio.epithelial-barrier-transwell-workflow.2026-11-03",
+    "verified_on": "2026-11-03",
+    "scope": "Grow a polarized epithelial layer on a porous insert and pair electrical and tracer-flux readouts.",
+    "relationships": [
+      {
+        "claim": "An epithelial monolayer separates apical and basolateral compartments; TEER reports ionic conductance while tracer passage measures permeability to the chosen tracer.",
+        "source_ids": [
+          "pell-2021",
+          "keser-2026"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "pell-2021",
+        "citation": "Pell TJ et al. Epithelial Barrier Integrity Profiling: Combined Approach Using Cellular Junctional Complex Imaging and Transepithelial Electrical Resistance. SLAS Discov. 2021;26(7):909–921.",
+        "doi": "10.1177/24725552211013077",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/34085560/",
+        "support_location": "Methods section, TEER and Data Analysis.",
+        "decision": "Pair the nondestructive electrical readout with a separate directional tracer-flux step, showing apical and basolateral compartments without equating resistance with macromolecule permeability."
+      },
+      {
+        "id": "keser-2026",
+        "citation": "Keser Y, Boulant S, Stanifer ML. Assessment of Epithelial Barrier Integrity by TEER and FITC-Dextran Permeability Assays. Bio-protocol. 2026;16(8):e5673.",
+        "doi": "10.21769/BioProtoc.5673",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13180708/",
+        "support_location": "Methods sections D, TEER measurement procedure, and E, FITC-dextran permeability assay; Figure 3 graphical workflow overview. The method adds tracer apically and quantifies fluorescence in the basolateral receiver after incubation.",
+        "decision": "Pair the nondestructive electrical readout with a separate directional tracer-flux step, showing apical and basolateral compartments without equating resistance with macromolecule permeability."
+      }
+    ],
+    "limitations": [
+      "The two readouts are complementary and not interchangeable. TEER does not measure macromolecule flux; tracer results depend on tracer size, sampling, membrane, model, and assay conditions. A Transwell is an in-vitro model, not an intact organ barrier."
+    ],
+    "authorship": "Original editable scene composed from released Figure Studio assets and original vector/text objects; published figures informed scientific relationships only. No publication artwork was copied, traced, or embedded."
+  },
+  "insertion_art_style": "soft-color",
+  "canvas": {
+    "width": 1120,
+    "height": 430,
+    "width_in": 11.666666666666666,
+    "height_in": 4.479166666666667,
+    "background_role": "background"
+  },
+  "palette": {
+    "background": "#F7F9FC",
+    "surface": "#FFFFFF",
+    "ink": "#24313B",
+    "muted": "#637381",
+    "border": "#C9D5DE",
+    "sample": "#2A8C82",
+    "process": "#527DA8",
+    "signal": "#D79A31",
+    "caution": "#9A5F33",
+    "accent": "#7667A8",
+    "soft": "#E7EEF4"
+  },
+  "layers": [
+    {
+      "id": "workflow_stages",
+      "name": "Experimental stages"
+    },
+    {
+      "id": "biological_objects",
+      "name": "Biological objects and assay equipment"
+    },
+    {
+      "id": "workflow_relationships",
+      "name": "Experimental sequence"
+    },
+    {
+      "id": "editable_labels",
+      "name": "Editable labels"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "title",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 36,
+      "y": 24,
+      "width": 1048,
+      "height": 32,
+      "text": "Epithelial barrier Transwell assay",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 27,
+      "fill_role": "ink",
+      "align": "left",
+      "include_scientific_record": true
+    },
+    {
+      "id": "stage_1_object",
+      "name": "Stage 1 Object",
+      "type": "asset",
+      "layer_id": "biological_objects",
+      "asset_id": "core.cell.epithelial",
+      "top_level": true,
+      "x": 48,
+      "y": 127,
+      "width": 74,
+      "height": 74,
+      "palette_overrides": {
+        "outline": "ink"
+      }
+    },
+    {
+      "id": "stage_1_number",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 86,
+      "y": 85,
+      "width": 40,
+      "height": 22,
+      "text": "1",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 16,
+      "fill_role": "muted",
+      "align": "center"
+    },
+    {
+      "id": "stage_1_label",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 24,
+      "y": 238,
+      "width": 174,
+      "height": 43,
+      "text": "Seed insert",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 17,
+      "fill_role": "process",
+      "align": "center"
+    },
+    {
+      "id": "stage_1_caption",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 24,
+      "y": 281,
+      "width": 174,
+      "height": 54,
+      "text": "Apical cell suspension",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 16,
+      "fill_role": "muted",
+      "align": "center"
+    },
+    {
+      "id": "stage_2_object",
+      "name": "Stage 2 Object",
+      "type": "asset",
+      "layer_id": "biological_objects",
+      "asset_id": "exp.model_system.transwell_culture.monoculture",
+      "top_level": true,
+      "x": 230,
+      "y": 127,
+      "width": 74,
+      "height": 74,
+      "palette_overrides": {
+        "outline": "ink"
+      }
+    },
+    {
+      "id": "stage_2_number",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 268,
+      "y": 85,
+      "width": 40,
+      "height": 22,
+      "text": "2",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 16,
+      "fill_role": "muted",
+      "align": "center"
+    },
+    {
+      "id": "stage_2_label",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 206,
+      "y": 238,
+      "width": 174,
+      "height": 43,
+      "text": "Establish layer",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 17,
+      "fill_role": "process",
+      "align": "center"
+    },
+    {
+      "id": "stage_2_caption",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 206,
+      "y": 281,
+      "width": 174,
+      "height": 54,
+      "text": "Monitor coverage",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 16,
+      "fill_role": "muted",
+      "align": "center"
+    },
+    {
+      "id": "stage_3_object",
+      "name": "Stage 3 Object",
+      "type": "asset",
+      "layer_id": "biological_objects",
+      "asset_id": "exp.model_system.transwell_culture.monoculture",
+      "top_level": true,
+      "x": 412,
+      "y": 127,
+      "width": 74,
+      "height": 74,
+      "palette_overrides": {
+        "outline": "ink"
+      }
+    },
+    {
+      "id": "stage_3_number",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 450,
+      "y": 85,
+      "width": 40,
+      "height": 22,
+      "text": "3",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 16,
+      "fill_role": "muted",
+      "align": "center"
+    },
+    {
+      "id": "stage_3_label",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 388,
+      "y": 238,
+      "width": 174,
+      "height": 43,
+      "text": "Measure TEER",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 17,
+      "fill_role": "process",
+      "align": "center"
+    },
+    {
+      "id": "stage_3_caption",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 388,
+      "y": 281,
+      "width": 174,
+      "height": 54,
+      "text": "Ionic conductance",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 16,
+      "fill_role": "muted",
+      "align": "center"
+    },
+    {
+      "id": "stage_4_object",
+      "name": "Stage 4 Object",
+      "type": "asset",
+      "layer_id": "biological_objects",
+      "asset_id": "core.lab.microcentrifuge_tube",
+      "top_level": true,
+      "x": 594,
+      "y": 127,
+      "width": 74,
+      "height": 74,
+      "palette_overrides": {
+        "outline": "ink"
+      }
+    },
+    {
+      "id": "stage_4_number",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 632,
+      "y": 85,
+      "width": 40,
+      "height": 22,
+      "text": "4",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 16,
+      "fill_role": "muted",
+      "align": "center"
+    },
+    {
+      "id": "stage_4_label",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 570,
+      "y": 238,
+      "width": 174,
+      "height": 43,
+      "text": "Add tracer",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 17,
+      "fill_role": "process",
+      "align": "center"
+    },
+    {
+      "id": "stage_4_caption",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 570,
+      "y": 281,
+      "width": 174,
+      "height": 54,
+      "text": "Apical donor side",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 16,
+      "fill_role": "muted",
+      "align": "center"
+    },
+    {
+      "id": "stage_5_object",
+      "name": "Stage 5 Object",
+      "type": "asset",
+      "layer_id": "biological_objects",
+      "asset_id": "exp.model_system.transwell_culture.monoculture",
+      "top_level": true,
+      "x": 776,
+      "y": 127,
+      "width": 74,
+      "height": 74,
+      "palette_overrides": {
+        "outline": "ink"
+      }
+    },
+    {
+      "id": "stage_5_number",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 814,
+      "y": 85,
+      "width": 40,
+      "height": 22,
+      "text": "5",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 16,
+      "fill_role": "muted",
+      "align": "center"
+    },
+    {
+      "id": "stage_5_label",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 752,
+      "y": 238,
+      "width": 174,
+      "height": 43,
+      "text": "Collect receiver",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 17,
+      "fill_role": "process",
+      "align": "center"
+    },
+    {
+      "id": "stage_5_caption",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 752,
+      "y": 281,
+      "width": 174,
+      "height": 54,
+      "text": "Basolateral compartment",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 16,
+      "fill_role": "muted",
+      "align": "center"
+    },
+    {
+      "id": "stage_6_object",
+      "name": "Stage 6 Object",
+      "type": "asset",
+      "layer_id": "biological_objects",
+      "asset_id": "core.lab.plate_reader",
+      "top_level": true,
+      "x": 958,
+      "y": 127,
+      "width": 74,
+      "height": 74,
+      "palette_overrides": {
+        "outline": "ink"
+      }
+    },
+    {
+      "id": "stage_6_number",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 996,
+      "y": 85,
+      "width": 40,
+      "height": 22,
+      "text": "6",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 16,
+      "fill_role": "muted",
+      "align": "center"
+    },
+    {
+      "id": "stage_6_label",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 934,
+      "y": 238,
+      "width": 174,
+      "height": 43,
+      "text": "Quantify flux",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 17,
+      "fill_role": "process",
+      "align": "center"
+    },
+    {
+      "id": "stage_6_caption",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 934,
+      "y": 281,
+      "width": 174,
+      "height": 54,
+      "text": "Tracer-specific readout",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 16,
+      "fill_role": "muted",
+      "align": "center"
+    },
+    {
+      "id": "illustrative_note",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 36,
+      "y": 378,
+      "width": 1048,
+      "height": 22,
+      "text": "Schematic · adapt labels and controls to your experiment",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 16,
+      "fill_role": "muted",
+      "align": "left"
+    }
+  ],
+  "groups": [
+    {
+      "id": "stage_1",
+      "name": "Seed insert",
+      "layer_id": "workflow_stages",
+      "members": [
+        "stage_1_object",
+        "stage_1_number",
+        "stage_1_label",
+        "stage_1_caption"
+      ]
+    },
+    {
+      "id": "stage_2",
+      "name": "Establish layer",
+      "layer_id": "workflow_stages",
+      "members": [
+        "stage_2_object",
+        "stage_2_number",
+        "stage_2_label",
+        "stage_2_caption"
+      ]
+    },
+    {
+      "id": "stage_3",
+      "name": "Measure TEER",
+      "layer_id": "workflow_stages",
+      "members": [
+        "stage_3_object",
+        "stage_3_number",
+        "stage_3_label",
+        "stage_3_caption"
+      ]
+    },
+    {
+      "id": "stage_4",
+      "name": "Add tracer",
+      "layer_id": "workflow_stages",
+      "members": [
+        "stage_4_object",
+        "stage_4_number",
+        "stage_4_label",
+        "stage_4_caption"
+      ]
+    },
+    {
+      "id": "stage_5",
+      "name": "Collect receiver",
+      "layer_id": "workflow_stages",
+      "members": [
+        "stage_5_object",
+        "stage_5_number",
+        "stage_5_label",
+        "stage_5_caption"
+      ]
+    },
+    {
+      "id": "stage_6",
+      "name": "Quantify flux",
+      "layer_id": "workflow_stages",
+      "members": [
+        "stage_6_object",
+        "stage_6_number",
+        "stage_6_label",
+        "stage_6_caption"
+      ]
+    }
+  ],
+  "connectors": [
+    {
+      "id": "stage_1_to_2",
+      "layer_id": "workflow_relationships",
+      "from": {
+        "node_id": "stage_1_object",
+        "anchor": "right"
+      },
+      "to": {
+        "node_id": "stage_2_object",
+        "anchor": "left"
+      },
+      "relation": "sampling",
+      "label": "",
+      "style": {
+        "stroke_role": "process",
+        "stroke_width": 2.2,
+        "line": "solid",
+        "terminator": "arrow"
+      }
+    },
+    {
+      "id": "stage_2_to_3",
+      "layer_id": "workflow_relationships",
+      "from": {
+        "node_id": "stage_2_object",
+        "anchor": "right"
+      },
+      "to": {
+        "node_id": "stage_3_object",
+        "anchor": "left"
+      },
+      "relation": "conversion",
+      "label": "",
+      "style": {
+        "stroke_role": "process",
+        "stroke_width": 2.2,
+        "line": "solid",
+        "terminator": "arrow"
+      }
+    },
+    {
+      "id": "stage_3_to_4",
+      "layer_id": "workflow_relationships",
+      "from": {
+        "node_id": "stage_3_object",
+        "anchor": "right"
+      },
+      "to": {
+        "node_id": "stage_4_object",
+        "anchor": "left"
+      },
+      "relation": "measurement",
+      "label": "",
+      "style": {
+        "stroke_role": "process",
+        "stroke_width": 2.2,
+        "line": "solid",
+        "terminator": "arrow"
+      }
+    },
+    {
+      "id": "stage_4_to_5",
+      "layer_id": "workflow_relationships",
+      "from": {
+        "node_id": "stage_4_object",
+        "anchor": "right"
+      },
+      "to": {
+        "node_id": "stage_5_object",
+        "anchor": "left"
+      },
+      "relation": "transport",
+      "label": "",
+      "style": {
+        "stroke_role": "process",
+        "stroke_width": 2.2,
+        "line": "solid",
+        "terminator": "arrow"
+      }
+    },
+    {
+      "id": "stage_5_to_6",
+      "layer_id": "workflow_relationships",
+      "from": {
+        "node_id": "stage_5_object",
+        "anchor": "right"
+      },
+      "to": {
+        "node_id": "stage_6_object",
+        "anchor": "left"
+      },
+      "relation": "measurement",
+      "label": "",
+      "style": {
+        "stroke_role": "process",
+        "stroke_width": 2.2,
+        "line": "solid",
+        "terminator": "arrow"
+      }
+    }
+  ]
+}

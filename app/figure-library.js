@@ -1,9 +1,11 @@
 (function (global) {
   "use strict";
 
-  const VIEW_ORDER = ["assets", "scenes", "templates"];
-  const SEARCH_IDS = { assets: "assetSearchInput", scenes: "sceneSearchInput", templates: "templateSearchInput" };
-  const GALLERY_IDS = { assets: "assetGrid", scenes: "assetSceneGrid", templates: "templateGallery" };
+  const VIEW_ORDER = ["assets", "templates"];
+  const PREFERENCE_KEY = "figureStudio.libraryView.v1";
+  const canonicalView = (view) => view === "scenes" ? "templates" : view;
+  const SEARCH_IDS = { assets: "assetSearchInput", templates: "sceneSearchInput" };
+  const GALLERY_IDS = { assets: "assetGrid", templates: "templateCollectionGrid" };
   const scrollPositions = new Map();
   let panel = null;
   let activeView = "";
@@ -58,23 +60,30 @@
   function filterTemplates() {
     const query = String(searchInput("templates")?.value || "").trim().toLocaleLowerCase();
     const terms = query.split(/\s+/).filter(Boolean);
-    const cards = Array.from(gallery("templates")?.querySelectorAll("[data-template-id]") || []);
+    const cards = Array.from(panel?.querySelectorAll("#templateGallery [data-template-id]") || []);
+    const allAreas = !panel?.querySelector("#sceneCategorySelect")?.value || panel.querySelector("#sceneCategorySelect").value === "all";
     let matches = 0;
     cards.forEach((card) => {
       const content = String(card.textContent || "").toLocaleLowerCase();
-      card.hidden = !terms.every((term) => content.includes(term));
+      card.hidden = !allAreas || !terms.every((term) => content.includes(term));
       if (!card.hidden) matches += 1;
     });
     const status = panel?.querySelector("#templateLibraryStatus");
     if (status) status.textContent = query
-      ? `${matches} of ${cards.length} templates`
-      : `${cards.length} templates`;
+      ? `${matches} of ${cards.length} layout starters`
+      : `${cards.length} layout starters`;
     const empty = panel?.querySelector("#templateLibraryEmpty");
     if (empty) empty.hidden = matches > 0;
+    const layouts = panel?.querySelector("#figureLayoutPresets");
+    if (layouts) {
+      layouts.hidden = matches === 0;
+      if (query && matches) layouts.open = true;
+    }
     return matches;
   }
 
   function select(view, options = {}) {
+    view = canonicalView(view);
     if (!panel || !availableViews().includes(view) || !viewPanel(view)) return false;
     const previousView = activeView;
     const focused = global.document.activeElement;
@@ -84,6 +93,7 @@
     if (previousView) scrollPositions.set(previousView, currentScroll(previousView));
     activeView = view;
     panel.dataset.libraryView = view;
+    try { global.localStorage?.setItem(PREFERENCE_KEY, view); } catch (_error) { /* Preferences are optional. */ }
 
     VIEW_ORDER.forEach((candidate) => {
       const selected = candidate === view;
@@ -151,8 +161,11 @@
       const list = gallery("templates");
       if (list) list.scrollTop = 0;
     });
+    panel.querySelector("#sceneCategorySelect")?.addEventListener("change", filterTemplates);
     filterTemplates();
-    return select("assets");
+    let preferred = options.initialView || panel.dataset.libraryView;
+    try { preferred ||= global.localStorage?.getItem(PREFERENCE_KEY); } catch (_error) { /* Preferences are optional. */ }
+    return select(canonicalView(preferred) === "templates" ? "templates" : "assets");
   }
 
   function getState() {
@@ -169,5 +182,5 @@
     if (panel && !availableViews().includes(activeView)) select("assets");
   }
 
-  global.FigureStudioLibrary = { initialize, select, getState, syncVisibility };
+  global.FigureStudioLibrary = { initialize, select, getState, syncVisibility, refreshTemplates: filterTemplates };
 })(globalThis);

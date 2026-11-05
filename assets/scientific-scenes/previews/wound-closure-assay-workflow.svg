@@ -1,0 +1,137 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 430" role="img" aria-labelledby="title desc">
+<title id="title">Wound-closure assay workflow</title><desc id="desc">Create a cell-free gap, image matched fields over time, and quantify gap closure.</desc>
+<rect width="1120" height="430" fill="#F7F9FC"/>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="stage_1_object_title stage_1_object_desc" x="48" y="127" width="74" height="74">
+  <ns0:title id="stage_1_object_title">Epithelial Cell — Apical View</ns0:title>
+  <ns0:desc id="stage_1_object_desc">Original polygonal apical surface of a generic epithelial cell, with selected junction cues at its perimeter. Internal nuclei and side-view organelles are omitted; no cilia or brush border is asserted.</ns0:desc>
+  <ns0:path data-region="cytoplasm" fill="#D9F4E5" d="M37 20L85 18L111 56L94 100L45 111L17 70Z" />
+
+  <ns0:g data-region="junction" fill="#F4A261"><ns0:path d="M38 20L62 19L62 24L41 25ZM108 58L100 80L96 77L104 56ZM43 107L28 87L32 83L47 104Z" /></ns0:g>
+  <ns0:g data-region="outline" fill="none" stroke="#24313B" stroke-linecap="round" stroke-linejoin="round">
+    <ns0:path d="M37 20L85 18L111 56L94 100L45 111L17 70Z" stroke-width="3.2" />
+
+
+  </ns0:g>
+</ns0:svg>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="stage_2_object_title stage_2_object_desc" x="230" y="127" width="74" height="74">
+  <ns0:title id="stage_2_object_title">Epithelial Scratch Assay — Irregular scratch lane</ns0:title>
+  <ns0:desc id="stage_2_object_desc">A cell-free scratch gap between epithelial sheets for illustrating a wound-closure experiment.</ns0:desc>
+<ns0:g data-region="substrate" fill="#C7F2EC" stroke="none">
+<ns0:rect x="17" y="17" width="94" height="94" rx="8" />
+</ns0:g>
+<ns0:g data-region="epithelialcells" fill="#7DD3C7" stroke="none">
+<ns0:path d="M25 25H44C50 30 45 37 48 44C51 50 44 57 47 64C52 70 46 78 47 84C45 91 51 98 45 103H25Z" /><ns0:path d="M83 25H103V103H81C77 97 83 90 79 83C77 76 83 71 80 64C77 58 83 51 79 45C77 38 83 32 83 25Z" />
+</ns0:g>
+<ns0:g data-region="nuclei" fill="#7B78C9" stroke="none">
+<ns0:ellipse cx="41" cy="34" rx="3.1" ry="4.2" /><ns0:ellipse cx="32" cy="55" rx="3.1" ry="4.2" /><ns0:ellipse cx="39" cy="70" rx="3.1" ry="4.2" /><ns0:ellipse cx="31" cy="94" rx="3.1" ry="4.2" /><ns0:ellipse cx="94" cy="34" rx="3.1" ry="4.2" /><ns0:ellipse cx="98" cy="54" rx="3.1" ry="4.2" /><ns0:ellipse cx="88" cy="70" rx="3.1" ry="4.2" /><ns0:ellipse cx="98" cy="94" rx="3.1" ry="4.2" />
+</ns0:g>
+<ns0:g data-region="outline" fill="none" stroke="#24313B" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+<ns0:rect x="17" y="17" width="94" height="94" rx="8" /><ns0:path d="M25 25H44C50 30 45 37 48 44C51 50 44 57 47 64C52 70 46 78 47 84C45 91 51 98 45 103H25Z" /><ns0:path d="M83 25H103V103H81C77 97 83 90 79 83C77 76 83 71 80 64C77 58 83 51 79 45C77 38 83 32 83 25Z" /><ns0:path d="M25 45C35 48 40 45 48 44M35 47L39 61L25 65M39 61L47 64M25 82L35 78L47 76M35 78L38 92L47 94M35 47L32 25M38 92L34 103M81 44L94 45L103 41M94 45L91 60L80 56M91 60L103 64M80 83L94 81L103 85M94 81L96 67M94 81L90 103" stroke-width="1.8" /><ns0:g stroke-width="1.1"><ns0:ellipse cx="41" cy="34" rx="3.1" ry="4.2" /><ns0:ellipse cx="32" cy="55" rx="3.1" ry="4.2" /><ns0:ellipse cx="39" cy="70" rx="3.1" ry="4.2" /><ns0:ellipse cx="31" cy="94" rx="3.1" ry="4.2" /><ns0:ellipse cx="94" cy="34" rx="3.1" ry="4.2" /><ns0:ellipse cx="98" cy="54" rx="3.1" ry="4.2" /><ns0:ellipse cx="88" cy="70" rx="3.1" ry="4.2" /><ns0:ellipse cx="98" cy="94" rx="3.1" ry="4.2" /></ns0:g>
+</ns0:g>
+</ns0:svg>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="stage_3_object_title stage_3_object_desc" x="412" y="127" width="74" height="74">
+  <ns0:title id="stage_3_object_title">Pipette</ns0:title>
+  <ns0:desc id="stage_3_object_desc">Original vector single-channel micropipette with thumb plunger, volume window, tip cone, disposable tip, droplet, and editable semantic regions.</ns0:desc>
+  <ns0:g transform="rotate(-32 64 64)">
+    <ns0:path data-region="barrel" fill="#E8EEF7" d="M49 22h30v48l-7 13H56l-7-13z" />
+    <ns0:path data-region="plunger" fill="#8EC8FF" d="M55 10h18l4 7-4 8H55l-4-8z" />
+    <ns0:path data-region="tip" fill="#F7F9FC" d="M56 82h16l-5 33c-1 4-5 4-6 0z" />
+    <ns0:path data-region="fluid" fill="#5EA9DD" d="M64 111c5 6 5 10 0 12-5-2-5-6 0-12z" />
+    <ns0:g data-region="outline" fill="none" stroke="#24313B" stroke-linecap="round" stroke-linejoin="round">
+      <ns0:path d="M49 22h30v48l-7 13H56l-7-13z" stroke-width="3.5" />
+      <ns0:path d="M55 10h18l4 7-4 8H55l-4-8z" stroke-width="3" />
+      <ns0:path d="M56 82h16l-5 33c-1 4-5 4-6 0z" stroke-width="3" />
+      <ns0:rect x="55" y="35" width="18" height="13" rx="3" stroke-width="2.5" />
+      <ns0:path d="M58 57h12M58 65h12" stroke-width="2" />
+      <ns0:path d="M64 111c5 6 5 10 0 12-5-2-5-6 0-12z" stroke-width="2.25" />
+    </ns0:g>
+  </ns0:g>
+</ns0:svg>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="stage_4_object_title stage_4_object_desc" x="594" y="127" width="74" height="74">
+  <ns0:title id="stage_4_object_title">Microscope</ns0:title>
+  <ns0:desc id="stage_4_object_desc">Original vector compound microscope with eyepiece, objective turret, curved arm, stage, focus control, base, and editable semantic regions.</ns0:desc>
+  <ns0:g data-region="frame" fill="#E8EEF7">
+    <ns0:path d="M70 31c18 8 29 26 27 44-2 15-11 27-24 34H34c-5 0-5-10 0-12h32c10-5 16-14 17-25 1-13-5-24-18-30z" />
+    <ns0:path d="M49 31h18l-5 28-13-3z" />
+    <ns0:path d="M29 97h68l10 13H22z" />
+  </ns0:g>
+  <ns0:g data-region="lens" fill="#8EC8FF">
+    <ns0:rect x="42" y="18" width="31" height="12" rx="4" transform="rotate(-8 57.5 24)" />
+    <ns0:path d="M48 52h24l5 9-8 7H53l-8-7z" />
+    <ns0:path d="M55 67h7v12h-7zM66 66h7v13h-7z" />
+  </ns0:g>
+  <ns0:path data-region="stage" fill="#D9F4E5" d="M33 77h54v10H33z" />
+  <ns0:circle data-region="accent" cx="91" cy="62" r="8" fill="#F4A261" />
+  <ns0:g data-region="outline" fill="none" stroke="#24313B" stroke-linecap="round" stroke-linejoin="round">
+    <ns0:path d="M70 31c18 8 29 26 27 44-2 15-11 27-24 34H34c-5 0-5-10 0-12h32c10-5 16-14 17-25 1-13-5-24-18-30z" stroke-width="3.5" />
+    <ns0:path d="M49 31h18l-5 28-13-3zM29 97h68l10 13H22z" stroke-width="3.5" />
+    <ns0:rect x="42" y="18" width="31" height="12" rx="4" transform="rotate(-8 57.5 24)" stroke-width="3" />
+    <ns0:path d="M48 52h24l5 9-8 7H53l-8-7zM55 67h7v12h-7zM66 66h7v13h-7z" stroke-width="2.75" />
+    <ns0:path d="M33 77h54v10H33z" stroke-width="3" />
+    <ns0:circle cx="91" cy="62" r="8" stroke-width="3" />
+  </ns0:g>
+</ns0:svg>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="stage_5_object_title stage_5_object_desc" x="776" y="127" width="74" height="74">
+  <ns0:title id="stage_5_object_title">Epithelial Scratch Assay — Irregular scratch lane</ns0:title>
+  <ns0:desc id="stage_5_object_desc">A cell-free scratch gap between epithelial sheets for illustrating a wound-closure experiment.</ns0:desc>
+<ns0:g data-region="substrate" fill="#C7F2EC" stroke="none">
+<ns0:rect x="17" y="17" width="94" height="94" rx="8" />
+</ns0:g>
+<ns0:g data-region="epithelialcells" fill="#7DD3C7" stroke="none">
+<ns0:path d="M25 25H44C50 30 45 37 48 44C51 50 44 57 47 64C52 70 46 78 47 84C45 91 51 98 45 103H25Z" /><ns0:path d="M83 25H103V103H81C77 97 83 90 79 83C77 76 83 71 80 64C77 58 83 51 79 45C77 38 83 32 83 25Z" />
+</ns0:g>
+<ns0:g data-region="nuclei" fill="#7B78C9" stroke="none">
+<ns0:ellipse cx="41" cy="34" rx="3.1" ry="4.2" /><ns0:ellipse cx="32" cy="55" rx="3.1" ry="4.2" /><ns0:ellipse cx="39" cy="70" rx="3.1" ry="4.2" /><ns0:ellipse cx="31" cy="94" rx="3.1" ry="4.2" /><ns0:ellipse cx="94" cy="34" rx="3.1" ry="4.2" /><ns0:ellipse cx="98" cy="54" rx="3.1" ry="4.2" /><ns0:ellipse cx="88" cy="70" rx="3.1" ry="4.2" /><ns0:ellipse cx="98" cy="94" rx="3.1" ry="4.2" />
+</ns0:g>
+<ns0:g data-region="outline" fill="none" stroke="#24313B" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+<ns0:rect x="17" y="17" width="94" height="94" rx="8" /><ns0:path d="M25 25H44C50 30 45 37 48 44C51 50 44 57 47 64C52 70 46 78 47 84C45 91 51 98 45 103H25Z" /><ns0:path d="M83 25H103V103H81C77 97 83 90 79 83C77 76 83 71 80 64C77 58 83 51 79 45C77 38 83 32 83 25Z" /><ns0:path d="M25 45C35 48 40 45 48 44M35 47L39 61L25 65M39 61L47 64M25 82L35 78L47 76M35 78L38 92L47 94M35 47L32 25M38 92L34 103M81 44L94 45L103 41M94 45L91 60L80 56M91 60L103 64M80 83L94 81L103 85M94 81L96 67M94 81L90 103" stroke-width="1.8" /><ns0:g stroke-width="1.1"><ns0:ellipse cx="41" cy="34" rx="3.1" ry="4.2" /><ns0:ellipse cx="32" cy="55" rx="3.1" ry="4.2" /><ns0:ellipse cx="39" cy="70" rx="3.1" ry="4.2" /><ns0:ellipse cx="31" cy="94" rx="3.1" ry="4.2" /><ns0:ellipse cx="94" cy="34" rx="3.1" ry="4.2" /><ns0:ellipse cx="98" cy="54" rx="3.1" ry="4.2" /><ns0:ellipse cx="88" cy="70" rx="3.1" ry="4.2" /><ns0:ellipse cx="98" cy="94" rx="3.1" ry="4.2" /></ns0:g>
+</ns0:g>
+</ns0:svg>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="stage_6_object_title stage_6_object_desc" x="958" y="127" width="74" height="74">
+  <ns0:title id="stage_6_object_title">Epithelial Scratch Assay — Irregular scratch lane</ns0:title>
+  <ns0:desc id="stage_6_object_desc">A cell-free scratch gap between epithelial sheets for illustrating a wound-closure experiment.</ns0:desc>
+<ns0:g data-region="substrate" fill="#C7F2EC" stroke="none">
+<ns0:rect x="17" y="17" width="94" height="94" rx="8" />
+</ns0:g>
+<ns0:g data-region="epithelialcells" fill="#7DD3C7" stroke="none">
+<ns0:path d="M25 25H44C50 30 45 37 48 44C51 50 44 57 47 64C52 70 46 78 47 84C45 91 51 98 45 103H25Z" /><ns0:path d="M83 25H103V103H81C77 97 83 90 79 83C77 76 83 71 80 64C77 58 83 51 79 45C77 38 83 32 83 25Z" />
+</ns0:g>
+<ns0:g data-region="nuclei" fill="#7B78C9" stroke="none">
+<ns0:ellipse cx="41" cy="34" rx="3.1" ry="4.2" /><ns0:ellipse cx="32" cy="55" rx="3.1" ry="4.2" /><ns0:ellipse cx="39" cy="70" rx="3.1" ry="4.2" /><ns0:ellipse cx="31" cy="94" rx="3.1" ry="4.2" /><ns0:ellipse cx="94" cy="34" rx="3.1" ry="4.2" /><ns0:ellipse cx="98" cy="54" rx="3.1" ry="4.2" /><ns0:ellipse cx="88" cy="70" rx="3.1" ry="4.2" /><ns0:ellipse cx="98" cy="94" rx="3.1" ry="4.2" />
+</ns0:g>
+<ns0:g data-region="outline" fill="none" stroke="#24313B" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+<ns0:rect x="17" y="17" width="94" height="94" rx="8" /><ns0:path d="M25 25H44C50 30 45 37 48 44C51 50 44 57 47 64C52 70 46 78 47 84C45 91 51 98 45 103H25Z" /><ns0:path d="M83 25H103V103H81C77 97 83 90 79 83C77 76 83 71 80 64C77 58 83 51 79 45C77 38 83 32 83 25Z" /><ns0:path d="M25 45C35 48 40 45 48 44M35 47L39 61L25 65M39 61L47 64M25 82L35 78L47 76M35 78L38 92L47 94M35 47L32 25M38 92L34 103M81 44L94 45L103 41M94 45L91 60L80 56M91 60L103 64M80 83L94 81L103 85M94 81L96 67M94 81L90 103" stroke-width="1.8" /><ns0:g stroke-width="1.1"><ns0:ellipse cx="41" cy="34" rx="3.1" ry="4.2" /><ns0:ellipse cx="32" cy="55" rx="3.1" ry="4.2" /><ns0:ellipse cx="39" cy="70" rx="3.1" ry="4.2" /><ns0:ellipse cx="31" cy="94" rx="3.1" ry="4.2" /><ns0:ellipse cx="94" cy="34" rx="3.1" ry="4.2" /><ns0:ellipse cx="98" cy="54" rx="3.1" ry="4.2" /><ns0:ellipse cx="88" cy="70" rx="3.1" ry="4.2" /><ns0:ellipse cx="98" cy="94" rx="3.1" ry="4.2" /></ns0:g>
+</ns0:g>
+</ns0:svg>
+<path d="M122 164.0L230 164.0" fill="none" stroke="#527DA8" stroke-width="2.2"/>
+<path d="M222.0 160.0L230 164.0L222.0 168.0" fill="none" stroke="#527DA8" stroke-width="2.2"/>
+<path d="M304 164.0L412 164.0" fill="none" stroke="#527DA8" stroke-width="2.2"/>
+<path d="M404.0 160.0L412 164.0L404.0 168.0" fill="none" stroke="#527DA8" stroke-width="2.2"/>
+<path d="M486 164.0L594 164.0" fill="none" stroke="#527DA8" stroke-width="2.2"/>
+<path d="M586.0 160.0L594 164.0L586.0 168.0" fill="none" stroke="#527DA8" stroke-width="2.2"/>
+<path d="M668 164.0L776 164.0" fill="none" stroke="#527DA8" stroke-width="2.2"/>
+<path d="M768.0 160.0L776 164.0L768.0 168.0" fill="none" stroke="#527DA8" stroke-width="2.2"/>
+<path d="M850 164.0L958 164.0" fill="none" stroke="#527DA8" stroke-width="2.2"/>
+<path d="M950.0 160.0L958 164.0L950.0 168.0" fill="none" stroke="#527DA8" stroke-width="2.2"/>
+<text x="36" y="51" text-anchor="start" font-family="Arial,sans-serif" font-size="27" font-weight="700" fill="#24313B"><tspan x="36" dy="0">Wound-closure assay workflow</tspan></text>
+<text x="106.0" y="101" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="600" fill="#637381"><tspan x="106.0" dy="0">1</tspan></text>
+<text x="111.0" y="255" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="600" fill="#527DA8"><tspan x="111.0" dy="0">Cell monolayer</tspan></text>
+<text x="111.0" y="297" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="600" fill="#637381"><tspan x="111.0" dy="0">Matched cell model</tspan></text>
+<text x="288.0" y="101" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="600" fill="#637381"><tspan x="288.0" dy="0">2</tspan></text>
+<text x="293.0" y="255" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="600" fill="#527DA8"><tspan x="293.0" dy="0">Create gap</tspan></text>
+<text x="293.0" y="297" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="600" fill="#637381"><tspan x="293.0" dy="0">Record starting</tspan><tspan x="293.0" dy="18.4">geometry</tspan></text>
+<text x="470.0" y="101" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="600" fill="#637381"><tspan x="470.0" dy="0">3</tspan></text>
+<text x="475.0" y="255" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="600" fill="#527DA8"><tspan x="475.0" dy="0">Apply condition</tspan></text>
+<text x="475.0" y="297" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="600" fill="#637381"><tspan x="475.0" dy="0">Include vehicle</tspan><tspan x="475.0" dy="18.4">control</tspan></text>
+<text x="652.0" y="101" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="600" fill="#637381"><tspan x="652.0" dy="0">4</tspan></text>
+<text x="657.0" y="255" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="600" fill="#527DA8"><tspan x="657.0" dy="0">Image same field</tspan></text>
+<text x="657.0" y="297" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="600" fill="#637381"><tspan x="657.0" dy="0">Start + later times</tspan></text>
+<text x="834.0" y="101" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="600" fill="#637381"><tspan x="834.0" dy="0">5</tspan></text>
+<text x="839.0" y="255" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="600" fill="#527DA8"><tspan x="839.0" dy="0">Measure gap</tspan></text>
+<text x="839.0" y="297" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="600" fill="#637381"><tspan x="839.0" dy="0">Area or width</tspan></text>
+<text x="821.0" y="181" text-anchor="middle" font-family="Arial,sans-serif" font-size="30" font-weight="600" fill="#D79A31"><tspan x="821.0" dy="0">↔</tspan></text>
+<text x="1016.0" y="101" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="600" fill="#637381"><tspan x="1016.0" dy="0">6</tspan></text>
+<text x="1021.0" y="255" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="600" fill="#527DA8"><tspan x="1021.0" dy="0">Compare</tspan></text>
+<text x="1021.0" y="297" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="600" fill="#637381"><tspan x="1021.0" dy="0">Replicates + controls</tspan></text>
+<text x="36" y="394" text-anchor="start" font-family="Arial,sans-serif" font-size="16" font-weight="600" fill="#637381"><tspan x="36" dy="0">Schematic · adapt labels and controls to your experiment</tspan></text>
+</svg>

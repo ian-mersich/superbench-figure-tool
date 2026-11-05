@@ -12,6 +12,31 @@ import pytest
 from scripts import scientific_product_release as release
 
 ROOT = Path(__file__).resolve().parents[1]
+PRE_EXPANSION = ROOT / "tests/fixtures/scientific-product-release/pre-expansion"
+
+def historical_registry():
+    return json.loads((PRE_EXPANSION / "assets/scientific-packs/library.json").read_text(encoding="utf-8"))
+
+def copy_pre_expansion_scenes(destination: Path) -> None:
+    source_root = ROOT / "assets/scientific-scenes"
+    fixture_root = PRE_EXPANSION / "assets/scientific-scenes"
+    catalog = json.loads((fixture_root / "library.v1.json").read_text(encoding="utf-8"))
+    scene_root = destination / "assets/scientific-scenes"
+    for relative in ("library.v1.json", "release-rights.v1.json", "LICENSE-SCENES-CC0-1.0.md"):
+        source = fixture_root / relative
+        if not source.is_file():
+            source = source_root / relative
+        target = scene_root / relative
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(source, target)
+    for row in catalog["scenes"]:
+        for relative in (row["scene"], row["preview"]):
+            source = fixture_root / relative
+            if not source.is_file():
+                source = source_root / relative
+            target = scene_root / relative
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(source, target)
 
 
 @pytest.fixture
@@ -24,12 +49,12 @@ def candidate(tmp_path_factory):
     packs.mkdir(parents=True)
     for name in release.BASELINE_PACK_IDS:
         shutil.copytree(ROOT / "assets/scientific-packs" / name, packs / name)
-    registry = json.loads((ROOT / "assets/scientific-packs/library.json").read_text(encoding="utf-8"))
+    registry = historical_registry()
     registry["packs"] = [row for row in registry["packs"] if row["id"] in release.BASELINE_PACK_IDS]
     registry.pop("art_styles", None)
     registry.pop("art_style_notes", None)
     (packs / "library.json").write_text(json.dumps(registry), encoding="utf-8")
-    shutil.copytree(ROOT / "assets/scientific-scenes", tmp_path / "assets/scientific-scenes")
+    copy_pre_expansion_scenes(tmp_path)
     (tmp_path / "config").mkdir()
     shutil.copy2(ROOT / release.RECORD, tmp_path / release.RECORD)
     record = json.loads((tmp_path / release.RECORD).read_text(encoding="utf-8"))
@@ -40,8 +65,8 @@ def candidate(tmp_path_factory):
     return tmp_path
 
 
-def test_exact_current_product_decision_and_original_pending_audits_are_compatible():
-    record = release._validate_baseline(ROOT, required=True, inventory_override=release.baseline_inventory(ROOT))
+def test_exact_historical_product_decision_and_original_pending_audits_are_compatible(candidate):
+    record = release._validate_baseline(candidate, required=True)
     assert set(record["packs"]) == release.PACK_IDS
     for pack_id in release.PACK_IDS:
         catalog = json.loads((ROOT / "assets/scientific-packs" / pack_id / "asset-pack.json").read_text(encoding="utf-8"))
@@ -109,14 +134,15 @@ def expanded(tmp_path_factory):
     tmp_path = tmp_path_factory.mktemp("e")
     if not (ROOT / release.EXPANSION_RECORD).exists():
         pytest.skip("The exact successor is intentionally pending independent qualification")
-    for name in ("scientific-packs", "scientific-scenes"):
-        shutil.copytree(ROOT / "assets" / name, tmp_path / "assets" / name,
-                        ignore=shutil.ignore_patterns("style-4"))
-    registry_path = tmp_path / "assets/scientific-packs/library.json"
-    registry = json.loads(registry_path.read_text(encoding="utf-8"))
+    registry = historical_registry()
+    packs = tmp_path / "assets/scientific-packs"
+    packs.mkdir(parents=True)
+    for row in registry["packs"]:
+        shutil.copytree(ROOT / "assets/scientific-packs" / row["id"], packs / row["id"])
     registry.pop("art_styles", None)
     registry.pop("art_style_notes", None)
-    registry_path.write_text(json.dumps(registry), encoding="utf-8")
+    (packs / "library.json").write_text(json.dumps(registry), encoding="utf-8")
+    copy_pre_expansion_scenes(tmp_path)
     for relative in (release.RECORD, release.EXPANSION_RECORD, "LICENSE_POLICY.md",
                      "assets/LICENSE-CELL-STRESS-TME-ANALYSIS-CC0-1.0.md"):
         target = tmp_path / relative; target.parent.mkdir(parents=True, exist_ok=True)
@@ -170,8 +196,8 @@ def test_successor_rejects_each_unreviewed_change(expanded, mutation):
 def style_four(expanded):
     """Use the real finite addition while keeping old-decision fixtures exact."""
     shutil.copytree(ROOT / "assets/scientific-packs/style-4", expanded / "assets/scientific-packs/style-4",
-                    ignore=shutil.ignore_patterns("corrected-20261017", "manifest-corrected-20261017.json"))
-    registry = json.loads((ROOT / "assets/scientific-packs/library.json").read_text(encoding="utf-8"))
+                    ignore=shutil.ignore_patterns("corrected-20261017", "manifest-corrected-20261017.json", "expansion-20261103"))
+    registry = historical_registry()
     correction = ROOT / release.STYLE_FOUR_CORRECTION_RECORD
     if correction.exists():
         registry.update(json.loads(correction.read_text(encoding="utf-8"))["predecessor_registry_fields"])
@@ -296,7 +322,7 @@ def asset_validator():
 def test_registered_style_four_runs_the_full_separate_artwork_validator(asset_validator):
     path = ROOT / "assets/scientific-packs/library.json"
     styles = asset_validator.validate_registered_art_styles(path,json.loads(path.read_text(encoding="utf-8")))
-    assert styles == [{"id":"style-4","directory":"style-4","asset_count":486,"file_count":498}]
+    assert styles == [{"id":"style-4","directory":"style-4","asset_count":526,"file_count":541}]
 
 
 @pytest.mark.parametrize("mutation", ["unknown_style", "traversal", "duplicate", "coverage", "missing_note"])

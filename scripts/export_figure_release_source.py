@@ -23,7 +23,14 @@ SUPPORT_FILES = (
     "config/scientific-product-release-2026-10-15-expansion.json",
     "config/scientific-product-release-2026-10-17-style4.json",
     "config/scientific-product-release-2026-10-17-style4-correction.json",
+    "config/scientific-product-release-2026-11-03-expansion.json",
+    "tests/fixtures/scientific-product-release/pre-expansion/assets/scientific-packs/library.json",
+    "tests/fixtures/scientific-product-release/pre-expansion/assets/scientific-scenes/library.v1.json",
+    "tests/fixtures/scientific-product-release/pre-expansion/assets/scientific-scenes/release-rights.v1.json",
+    "tests/fixtures/scientific-product-release/pre-expansion/assets/scientific-scenes/scenes/immunoblot-assay-workflow.scene.json",
+    "tests/fixtures/scientific-product-release/pre-expansion/assets/scientific-scenes/previews/immunoblot-assay-workflow.svg",
     "scripts/import-style4-correction.py", "scripts/test-style4-correction.py",
+    "scripts/style4_original_supplement.py",
     "tests/test_scientific_product_correction.py",
     "scripts/import-style4-library.py", "scripts/validate-style4-library.py",
     "scripts/test-style4-library-import.py", "tests/scientificAssetStyleFour.test.mjs", "tests/scientificAssetPrewarmStyle.test.cjs",
@@ -39,6 +46,7 @@ SUPPORT_FILES = (
     "scripts/seed-cell-structure-stress-assets.py", "scripts/cell_structure_stress_renderers.py",
     "scripts/cell_structure_stress_science.json", "scripts/seed-tumor-analysis-assets.py",
     "tests/test_figure_tool_package_producer.py", "tests/test_scientific_product_release.py",
+    "tests/test_scientific_product_release_expansion_20261103.py",
     "tests/test_export_figure_release_source.py",
     "tests/test_cell_structure_stress_assets.py", "tests/test_tumor_analysis_assets.py",
     "tests/test_scientific_contribution_policy.py",
@@ -64,11 +72,16 @@ def sha(path: Path) -> str:
     return digest.hexdigest()
 
 
-def prepare_vendor_materials(source: Path, destination: Path, cache: Path) -> dict:
+def prepare_vendor_materials(source: Path, destination: Path, cache: Path, *, reuse_existing: bool = False) -> dict:
     subprocess.run([sys.executable, str(source / "scripts/build-pdfium-factory.py"), "--check"],
                    cwd=source, check=True, capture_output=True)
-    subprocess.run([sys.executable, str(source / "scripts/prepare-vendor-source.py"), "--repository-root", str(source),
-                    "--output", str(destination), "--cache-dir", str(cache)], cwd=source, check=True, capture_output=True)
+    if reuse_existing:
+        destination_fs = filesystem(destination)
+        if destination_fs.is_symlink() or not destination_fs.is_dir():
+            raise ValueError("Reusable preferred-source materials must be an existing ordinary directory")
+    else:
+        subprocess.run([sys.executable, str(source / "scripts/prepare-vendor-source.py"), "--repository-root", str(source),
+                        "--output", str(destination), "--cache-dir", str(cache)], cwd=source, check=True, capture_output=True)
     subprocess.run([sys.executable, str(source / "scripts/prepare-vendor-source.py"), "--repository-root", str(source),
                     "--verify", str(destination)], cwd=source, check=True, capture_output=True)
     notice_tools = runpy.run_path(str(source / "scripts/build-vendor-notice.py"))
@@ -96,12 +109,16 @@ def verify_payload(tree: Path, manifest: dict) -> None:
             raise ValueError("Public source export changed shared payload bytes: " + relative)
 
 
-def export_source(source: Path, package: Path, output: Path, *, cache: Path) -> dict:
+def export_source(source: Path, package: Path, output: Path, *, cache: Path, support_revision: str | None = None,
+                  preferred_materials: Path | None = None) -> dict:
     manifest = json.loads((package / "tool-package.json").read_text(encoding="utf-8"))
     if (manifest.get("source_provenance", {}).get("distribution_scope") != "public-release"
             or manifest["source_provenance"].get("public_release_eligible") is not True):
         raise ValueError("Public source export requires qualified public-release provenance")
     version, revision, digest = manifest["version"], manifest["source_provenance"]["source_revision"], manifest["package_sha256"]
+    support_revision = support_revision or revision
+    if len(support_revision) != 40 or any(character not in "0123456789abcdef" for character in support_revision.lower()):
+        raise ValueError("Source support revision must be a full Git commit ID")
     repository = output / "source-repository"
     if repository.exists():
         raise ValueError("Source export already exists")
@@ -116,6 +133,7 @@ def export_source(source: Path, package: Path, output: Path, *, cache: Path) -> 
     metadata = {
         "schema": "figureStudio.publicSourceRelease.v2", "product_version": version,
         "tag": "v" + version, "canonical_source_revision": revision, "package_sha256": digest,
+        "source_support_revision": support_revision,
         "shared_payload_tree_sha256": manifest["tree_sha256"], "published": False,
         "source_archive": "figure-tool-source.zip", "web_archive": "figure-tool-web.zip",
         "vendor_source_materials": {"status": "fetch-and-verify-from-lock", "lock": "vendor/source-lock.json",
@@ -124,14 +142,16 @@ def export_source(source: Path, package: Path, output: Path, *, cache: Path) -> 
     (repository / "SOURCE_RELEASE.json").write_text(json.dumps(metadata, indent=2) + "\n", encoding="utf-8", newline="\n")
     exported_library = json.loads((source / "assets/scientific-packs/library.json").read_text(encoding="utf-8"))
     drawing_count = sum(row["asset_count"] for row in exported_library["packs"])
-    concept_count = sum(row["concept_count"] for row in exported_library["packs"])
+    template_library = json.loads((source / "assets/scientific-scenes/library.v1.json").read_text(encoding="utf-8"))
+    template_count = len(template_library["scenes"])
     (repository / "README.md").write_text(
         "# Superbench Figure Tool\n\nCreate editable scientific figures and presentations. "
         "[Open the browser editor](https://imersich.com/superbench/figure_tool/).\n\n"
         f"This is {version}. The browser and Superbench packages use the same app, styles, vendors, "
-        f"{drawing_count} Library drawings "
-        f"({concept_count} concepts), and 12 scientific scenes. SOURCE_RELEASE.json binds this export "
+        f"{drawing_count} Library drawings and {template_count} scientific templates. SOURCE_RELEASE.json binds this export "
         "to their committed source and shared payload. Installed native-host qualification is separate.\n\n"
+        "SOURCE_RELEASE.json keeps its existing schema and separates the shipped editor revision from the source-support revision. "
+        "The latter identifies the validation tools, tests, and docs; shared payload parity is checked against the package. "
         "Serve this directory over HTTP and open `web/`. Work stays in the current browser profile; download "
         "portable files for backups. First-party code is Apache-2.0 and original artwork is CC0-1.0. "
         "See LICENSE, NOTICE, LICENSE_POLICY.md, assets/LICENSE-ORIGINAL-ASSETS-CC0-1.0.md, "
@@ -142,6 +162,7 @@ def export_source(source: Path, package: Path, output: Path, *, cache: Path) -> 
         "Run `python scripts/validate-scientific-assets.py --library --require-public-release`, "
         "`python scripts/validate-vendor-bundle.py`, and "
         "`python -m pytest tests/test_figure_tool_package_producer.py tests/test_scientific_product_release.py "
+        "tests/test_scientific_product_release_expansion_20261103.py "
         "tests/test_export_figure_release_source.py tests/test_vendor_source_tools.py tests/test_vendor_fabric_portability.py`. "
         "See docs/UNIFIED_FIGURE_RELEASE.md for packaging and deployment.\n", encoding="utf-8", newline="\n")
     (repository / ".gitignore").write_text("qa_artifacts/\nnode_modules/\n__pycache__/\n.pytest_cache/\n*.py[cod]\n", encoding="utf-8", newline="\n")
@@ -162,11 +183,12 @@ jobs:
       - run: python -m pip install -r requirements-release.txt
       - run: python scripts/validate-scientific-assets.py --library --require-public-release
       - run: python scripts/validate-vendor-bundle.py
-      - run: python -m pytest -q tests/test_figure_tool_package_producer.py tests/test_scientific_product_release.py tests/test_export_figure_release_source.py tests/test_vendor_source_tools.py tests/test_vendor_fabric_portability.py
+      - run: python -m pytest -q tests/test_figure_tool_package_producer.py tests/test_scientific_product_release.py tests/test_scientific_product_release_expansion_20261103.py tests/test_export_figure_release_source.py tests/test_vendor_source_tools.py tests/test_vendor_fabric_portability.py
 """, encoding="utf-8", newline="\n")
     verify_payload(repository, manifest)
-    materials = output / "preferred-source-materials"
-    preferred = prepare_vendor_materials(source, materials, cache)
+    reuse_preferred = preferred_materials is not None
+    materials = Path(preferred_materials) if reuse_preferred else output / "preferred-source-materials"
+    preferred = prepare_vendor_materials(source, materials, cache, reuse_existing=reuse_preferred)
     archive_path = output / "figure-tool-source.zip"
     full_metadata = {**metadata, "vendor_source_materials": preferred}
     members = {path.relative_to(repository).as_posix(): path for path in repository.rglob("*") if path.is_file()}
@@ -187,6 +209,7 @@ jobs:
             if hashlib.sha256(archive.read(row["path"])).hexdigest() != row["sha256"]:
                 raise ValueError("Full source ZIP changed shared runtime: " + row["path"])
     return {"repository": "source-repository", "archive": archive_path.name, "archive_sha256": sha(archive_path),
-            "archive_size": archive_path.stat().st_size, "shared_payload_files": len(manifest["payload_files"]),
+            "archive_size": archive_path.stat().st_size, "canonical_source_revision": revision,
+            "source_support_revision": support_revision, "shared_payload_files": len(manifest["payload_files"]),
             "shared_payload_parity": "passed", "vendor_source_materials": preferred,
             "support_files": list(SUPPORT_FILES), "scientific_review_notes": "docs/scientific-assets/"}

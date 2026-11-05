@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600" role="img" aria-labelledby="title desc">
+<title id="title">Chemical synaptic transmission</title><desc id="desc">Calcium-dependent vesicle release across a chemical synapse, with generic postsynaptic receptors.</desc>
+<rect width="1000" height="600" fill="#F7F9FC"/>
+<path transform="translate(190 60)" d="M 0 80 Q 0 45 35 45 L 270 45 L 270 0 L 330 0 L 330 45 L 585 45 Q 620 45 620 80 L 620 205 Q 620 240 585 240 L 35 240 Q 0 240 0 205 Z" fill="#E7EEF4" stroke="#527DA8" stroke-width="1.8"/>
+<path transform="translate(190 390)" d="M 0 0 L 620 0 L 620 90 Q 310 120 0 90 Z" fill="#2A8C82" stroke="#527DA8" stroke-width="1.8"/>
+<ellipse cx="342.0" cy="232.0" rx="17.0" ry="17.0" fill="#FFFFFF" stroke="#24313B" stroke-width="1.8"/>
+<ellipse cx="412.0" cy="237.0" rx="17.0" ry="17.0" fill="#FFFFFF" stroke="#24313B" stroke-width="1.8"/>
+<ellipse cx="477.0" cy="227.0" rx="17.0" ry="17.0" fill="#FFFFFF" stroke="#24313B" stroke-width="1.8"/>
+<path transform="translate(608 256)" d="M 0 45 L 12 45 L 12 32 C 0 25 1 6 17 3 C 34 0 43 23 29 32 L 29 45 L 42 45" fill="#FFFFFF" stroke="#24313B" stroke-width="1.8"/>
+<rect x="280" y="281" width="24" height="38" rx="5" fill="#527DA8" stroke="#24313B" stroke-width="1.8"/>
+<rect x="495" y="372" width="18" height="46" rx="5" fill="#7667A8" stroke="#24313B" stroke-width="1.8"/>
+<rect x="558" y="372" width="18" height="46" rx="5" fill="#7667A8" stroke="#24313B" stroke-width="1.8"/>
+<ellipse cx="629.0" cy="320.0" rx="5.0" ry="5.0" fill="#D79A31" stroke="#24313B" stroke-width="1.8"/>
+<ellipse cx="620.0" cy="346.0" rx="5.0" ry="5.0" fill="#D79A31" stroke="#24313B" stroke-width="1.8"/>
+<ellipse cx="595.0" cy="360.0" rx="5.0" ry="5.0" fill="#D79A31" stroke="#24313B" stroke-width="1.8"/>
+<path d="M271.0 338L292.0 319" fill="none" stroke="#527DA8" stroke-width="2.2"/>
+<path d="M283.3840604711333 321.40116347525793L292.0 319L288.75136706288635 327.33344970824805" fill="none" stroke="#527DA8" stroke-width="2.2"/>
+<path d="M629.0 301L629.0 315" fill="none" stroke="#527DA8" stroke-width="2.2"/>
+<path d="M633.0 307.0L629.0 315L625.0 307.0" fill="none" stroke="#527DA8" stroke-width="2.2"/>
+<path d="M595.0 365L567.0 372" fill="none" stroke="#527DA8" stroke-width="2.2"/>
+<path d="M575.731282501308 373.94028500029066L567.0 372L573.7909975010173 366.179144999128" fill="none" stroke="#527DA8" stroke-width="2.2"/>
+<text x="34" y="47" text-anchor="start" font-family="Arial,sans-serif" font-size="27" font-weight="700" fill="#24313B"><tspan x="34" dy="0">Chemical synaptic transmission</tspan></text>
+<text x="225" y="150" text-anchor="start" font-family="Arial,sans-serif" font-size="20" font-weight="600" fill="#24313B"><tspan x="225" dy="0">Presynaptic terminal</tspan></text>
+<text x="225" y="470" text-anchor="start" font-family="Arial,sans-serif" font-size="20" font-weight="600" fill="#FFFFFF"><tspan x="225" dy="0">Postsynaptic membrane</tspan></text>
+<text x="900.0" y="346" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="600" fill="#637381"><tspan x="900.0" dy="0">Synaptic cleft</tspan></text>
+<text x="97.5" y="338" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="600" fill="#527DA8"><tspan x="97.5" dy="0">Ca²⁺ entry</tspan></text>
+<text x="660.0" y="199" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="600" fill="#527DA8"><tspan x="660.0" dy="0">Vesicle fusion</tspan></text>
+<text x="475.0" y="354" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="600" fill="#D79A31"><tspan x="475.0" dy="0">Transmitter</tspan></text>
+<text x="640.0" y="448" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="600" fill="#FFFFFF"><tspan x="640.0" dy="0">Receptor binding</tspan></text>
+<text x="35" y="566" text-anchor="start" font-family="Arial,sans-serif" font-size="16" font-weight="600" fill="#637381"><tspan x="35" dy="0">Generic synapse · transmitter and receptor identities are unspecified</tspan></text>
+<text x="271.0" y="354" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="600" fill="#527DA8"><tspan x="271.0" dy="0">Ca²⁺</tspan></text>
+</svg>

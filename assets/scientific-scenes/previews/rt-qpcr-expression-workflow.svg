@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 430" role="img" aria-labelledby="title desc">
+<title id="title">RT-qPCR expression workflow</title><desc id="desc">RNA quality, reverse transcription, amplification, and control-aware expression analysis.</desc>
+<rect width="1120" height="430" fill="#F7F9FC"/>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="stage_1_object_title stage_1_object_desc" x="48" y="127" width="74" height="74">
+  <ns0:title id="stage_1_object_title">Cell Pellet Tube</ns0:title>
+  <ns0:desc id="stage_1_object_desc">Original vector cell-pellet tube with a closed cap, clear supernatant, compact pellet at the conical base, and editable semantic regions.</ns0:desc>
+
+  <ns0:path data-region="tube" fill="#E8EEF7" d="M42 32h44v55l-16 29H58L42 87z" />
+  <ns0:rect data-region="cap" x="37" y="15" width="54" height="19" rx="5" fill="#AEB9C4" />
+  <ns0:path data-region="supernatant" fill="#D7EFF3" d="M46 54h36v31l-14 26h-8L46 85z" />
+  <ns0:path data-region="pellet" fill="#E8A98F" d="M56 104c5-5 12-5 17 0l-5 9h-7z" />
+
+  <ns0:g data-region="outline" fill="none" stroke="#24313B" stroke-linecap="round" stroke-linejoin="round">
+    <ns0:path stroke-width="3.4" d="M42 32h44v55l-16 29H58L42 87z" />
+    <ns0:rect x="37" y="15" width="54" height="19" rx="5" stroke-width="3.1" />
+    <ns0:path stroke-width="2.2" d="M42 31h44M46 54h36" />
+    <ns0:path stroke-width="2" d="M56 104c5-5 12-5 17 0" />
+    <ns0:path stroke-width="1.7" d="M43 21h42M43 27h42" />
+  </ns0:g>
+</ns0:svg>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="stage_2_object_title stage_2_object_desc" x="230" y="127" width="74" height="74">
+  <ns0:title id="stage_2_object_title">RNA Strand — Linear Form</ns0:title>
+  <ns0:desc id="stage_2_object_desc">Generic open single-stranded RNA with one continuous unpaired backbone and connected base marks. This extended form specifies no sequence, folding state or terminal chemistry.</ns0:desc>
+  <ns0:g data-region="outline" fill="none" stroke="#24313B" stroke-linecap="round" stroke-linejoin="round">
+    <ns0:path d="M23.57 71.166L15.16 67.961M29.5 55.5L21.266 51.867M38.032 44.088L33.545 36.286M57.953 52.281L65.776 47.831M64.125 67.75L72.653 64.874M70.484 82.094L77.806 76.86M90.576 84.384L84.622 77.635M99 70.875L90.676 67.454M105.264 53.856L96.871 50.606" stroke-width="3.6" />
+    <ns0:path d="M18 83C28 67 29 39 47 43C67 48 61 89 82 88C99 87 101 58 110 44" stroke-width="6" />
+  </ns0:g>
+  <ns0:path data-region="base" d="M23.57 71.166L15.16 67.961M29.5 55.5L21.266 51.867M38.032 44.088L33.545 36.286M57.953 52.281L65.776 47.831M64.125 67.75L72.653 64.874M70.484 82.094L77.806 76.86M90.576 84.384L84.622 77.635M99 70.875L90.676 67.454M105.264 53.856L96.871 50.606" fill="none" stroke="#F4A261" stroke-width="2.4" stroke-linecap="round" />
+  <ns0:path data-region="backbone" d="M18 83C28 67 29 39 47 43C67 48 61 89 82 88C99 87 101 58 110 44" fill="none" stroke="#5EA9DD" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round" />
+  <ns0:g data-region="outline" fill="none" stroke="#24313B" stroke-width="1.2"><ns0:circle cx="18" cy="83" r="2.3" /><ns0:circle cx="110" cy="44" r="2.3" /></ns0:g>
+  <ns0:g data-region="accent" fill="#B8B5FF"><ns0:circle cx="18" cy="83" r="2.3" /><ns0:circle cx="110" cy="44" r="2.3" /></ns0:g>
+</ns0:svg>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="stage_3_object_title stage_3_object_desc" x="412" y="127" width="74" height="74">
+  <ns0:title id="stage_3_object_title">cDNA Library</ns0:title>
+  <ns0:desc id="stage_3_object_desc">Editable complementary-dna library schematic with collection of indexed double-stranded cDNA fragments.</ns0:desc>
+  <ns0:g data-region="nucleic_acid" fill="none" stroke="#5EA9DD" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><ns0:path d="M18 30l45 18M35 19l45 18M15 65l45 18M44 61l45 18M34 96l45 18M70 89l42 17" /></ns0:g>
+  <ns0:g data-region="regulatory_feature" fill="none" stroke="#7B78C9" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><ns0:path d="M18 30l4-9M63 48l4-9M35 19l4-9M80 37l4-9M15 65l4-9M60 83l4-9M44 61l4-9M89 79l4-9M34 96l4-9M79 114l4-9M70 89l4-9M112 106l4-9" /></ns0:g>
+  <ns0:g data-region="process_feature" fill="none" stroke="#F4A261" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><ns0:rect x="10" y="17" width="12" height="12" rx="2" /><ns0:rect x="76" y="24" width="12" height="12" rx="2" /><ns0:rect x="11" y="52" width="12" height="12" rx="2" /><ns0:rect x="85" y="66" width="12" height="12" rx="2" /></ns0:g>
+  <ns0:g data-region="outline" fill="none" stroke="#24313B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ns0:path d="M18 30l45 18M35 19l45 18M15 65l45 18M44 61l45 18M34 96l45 18M70 89l42 17" /></ns0:g>
+</ns0:svg>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="stage_4_object_title stage_4_object_desc" x="594" y="127" width="74" height="74">
+  <ns0:title id="stage_4_object_title">Microcentrifuge Tube</ns0:title>
+  <ns0:desc id="stage_4_object_desc">Original vector microcentrifuge tube with hinged flip cap, tapered body, sample, pellet cue, and editable semantic regions.</ns0:desc>
+  <ns0:path data-region="body" fill="#E8EEF7" d="M48 43h34l-5 47-11 24h-4L52 90z" />
+  <ns0:path data-region="cap" fill="#8EC8FF" d="M47 36c-8 0-16-5-18-12-2-6 3-11 10-10l31 5c5 1 8 5 7 10-1 5-5 8-10 8z" />
+  <ns0:path data-region="fluid" fill="#5EA9DD" d="M55 76h22l-2 14-10 21h-2L54 90z" />
+  <ns0:g data-region="outline" fill="none" stroke="#24313B" stroke-linecap="round" stroke-linejoin="round">
+    <ns0:path d="M48 43h34l-5 47-11 24h-4L52 90z" stroke-width="3.5" />
+    <ns0:path d="M47 36c-8 0-16-5-18-12-2-6 3-11 10-10l31 5c5 1 8 5 7 10-1 5-5 8-10 8z" stroke-width="3.25" />
+    <ns0:path d="M48 36v8M55 76h22" stroke-width="2.5" />
+    <ns0:path d="M56 54h12M55 62h9" stroke-width="2" />
+    <ns0:path d="M60 104h8" stroke-width="2.75" />
+  </ns0:g>
+</ns0:svg>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="stage_5_object_title stage_5_object_desc" x="776" y="127" width="74" height="74">
+  <ns0:title id="stage_5_object_title">qPCR Instrument</ns0:title>
+  <ns0:desc id="stage_5_object_desc">Editable real-time pcr instrument schematic with thermal block instrument with fluorescence readout display.</ns0:desc>
+  <ns0:g data-region="instrument_body" fill="#DCE4EC" stroke="none"><ns0:path d="M17 53h94v54c0 6-5 11-11 11H28c-6 0-11-5-11-11z" /><ns0:path d="M24 20h80l7 33H17z" /></ns0:g>
+  <ns0:g data-region="instrument_detail" fill="#8EC8FF" stroke="none"><ns0:rect x="31" y="64" width="66" height="34" rx="4" /><ns0:path d="M38 88c7-1 9-3 13-13 4-11 8-9 11 4 3 12 7 10 10-3 3-13 9-17 18-5" /></ns0:g>
+  <ns0:g data-region="operational_cue" fill="none" stroke="#7B78C9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><ns0:path d="M37 91h54M37 91V69M35 42h58M44 32v10M56 32v10M68 32v10M80 32v10" /></ns0:g>
+  <ns0:g data-region="outline" fill="none" stroke="#24313B" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><ns0:path d="M17 53h94v54c0 6-5 11-11 11H28c-6 0-11-5-11-11zM24 20h80l7 33H17zM31 64h66v34H31z" /></ns0:g>
+</ns0:svg>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="stage_6_object_title stage_6_object_desc" x="958" y="127" width="74" height="74">
+  <ns0:title id="stage_6_object_title">PCR Amplicon</ns0:title>
+  <ns0:desc id="stage_6_object_desc">Editable polymerase chain reaction amplicon schematic with defined double-stranded DNA segment bounded by primers.</ns0:desc>
+  <ns0:g data-region="nucleic_acid" fill="none" stroke="#5EA9DD" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><ns0:path d="M15 55h98M15 75h98" /></ns0:g>
+  <ns0:g data-region="regulatory_feature" fill="none" stroke="#7B78C9" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><ns0:path d="M27 55v20M42 55v20M57 55v20M72 55v20M87 55v20M102 55v20" /></ns0:g>
+  <ns0:g data-region="process_feature" fill="none" stroke="#F4A261" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><ns0:path d="M15 46h27l-7-6m7 6-7 6M113 84H86l7-6m-7 6 7 6" /></ns0:g>
+  <ns0:g data-region="outline" fill="none" stroke="#24313B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ns0:path d="M15 55h98M15 75h98M15 46h27M113 84H86" /></ns0:g>
+</ns0:svg>
+<path d="M122 164.0L230 164.0" fill="none" stroke="#527DA8" stroke-width="2.2"/>
+<path d="M222.0 160.0L230 164.0L222.0 168.0" fill="none" stroke="#527DA8" stroke-width="2.2"/>
+<path d="M304 164.0L412 164.0" fill="none" stroke="#527DA8" stroke-width="2.2"/>
+<path d="M404.0 160.0L412 164.0L404.0 168.0" fill="none" stroke="#527DA8" stroke-width="2.2"/>
+<path d="M486 164.0L594 164.0" fill="none" stroke="#527DA8" stroke-width="2.2"/>
+<path d="M586.0 160.0L594 164.0L586.0 168.0" fill="none" stroke="#527DA8" stroke-width="2.2"/>
+<path d="M668 164.0L776 164.0" fill="none" stroke="#527DA8" stroke-width="2.2"/>
+<path d="M768.0 160.0L776 164.0L768.0 168.0" fill="none" stroke="#527DA8" stroke-width="2.2"/>
+<path d="M850 164.0L958 164.0" fill="none" stroke="#527DA8" stroke-width="2.2"/>
+<path d="M950.0 160.0L958 164.0L950.0 168.0" fill="none" stroke="#527DA8" stroke-width="2.2"/>
+<text x="36" y="51" text-anchor="start" font-family="Arial,sans-serif" font-size="27" font-weight="700" fill="#24313B"><tspan x="36" dy="0">RT-qPCR expression workflow</tspan></text>
+<text x="106.0" y="101" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="600" fill="#637381"><tspan x="106.0" dy="0">1</tspan></text>
+<text x="111.0" y="255" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="600" fill="#527DA8"><tspan x="111.0" dy="0">RNA sample</tspan></text>
+<text x="111.0" y="297" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="600" fill="#637381"><tspan x="111.0" dy="0">Cells or tissue</tspan></text>
+<text x="288.0" y="101" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="600" fill="#637381"><tspan x="288.0" dy="0">2</tspan></text>
+<text x="293.0" y="255" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="600" fill="#527DA8"><tspan x="293.0" dy="0">RNA QC</tspan></text>
+<text x="293.0" y="297" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="600" fill="#637381"><tspan x="293.0" dy="0">Integrity + amount</tspan></text>
+<text x="470.0" y="101" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="600" fill="#637381"><tspan x="470.0" dy="0">3</tspan></text>
+<text x="475.0" y="255" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="600" fill="#527DA8"><tspan x="475.0" dy="0">Reverse</tspan><tspan x="475.0" dy="19.549999999999997">transcription</tspan></text>
+<text x="475.0" y="297" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="600" fill="#637381"><tspan x="475.0" dy="0">RNA → cDNA</tspan></text>
+<text x="652.0" y="101" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="600" fill="#637381"><tspan x="652.0" dy="0">4</tspan></text>
+<text x="657.0" y="255" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="600" fill="#527DA8"><tspan x="657.0" dy="0">Set reactions</tspan></text>
+<text x="657.0" y="297" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="600" fill="#637381"><tspan x="657.0" dy="0">Target, reference +</tspan><tspan x="657.0" dy="18.4">controls</tspan></text>
+<text x="834.0" y="101" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="600" fill="#637381"><tspan x="834.0" dy="0">5</tspan></text>
+<text x="839.0" y="255" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="600" fill="#527DA8"><tspan x="839.0" dy="0">qPCR</tspan></text>
+<text x="839.0" y="297" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="600" fill="#637381"><tspan x="839.0" dy="0">Record amplification</tspan></text>
+<text x="1016.0" y="101" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="600" fill="#637381"><tspan x="1016.0" dy="0">6</tspan></text>
+<text x="1021.0" y="255" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="600" fill="#527DA8"><tspan x="1021.0" dy="0">Compare expression</tspan></text>
+<text x="1021.0" y="297" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="600" fill="#637381"><tspan x="1021.0" dy="0">Validated</tspan><tspan x="1021.0" dy="18.4">normalization</tspan></text>
+<text x="36" y="394" text-anchor="start" font-family="Arial,sans-serif" font-size="16" font-weight="600" fill="#637381"><tspan x="36" dy="0">Schematic · adapt labels and controls to your experiment</tspan></text>
+</svg>

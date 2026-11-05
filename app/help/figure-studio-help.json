@@ -1,8 +1,8 @@
 {
   "schema": "figureStudio.helpContent.v2",
-  "version": "1.0.0-beta.11",
+  "version": "1.0.0-beta.23",
   "title": "Figure Tool Help",
-  "updated": "2026-10-15",
+  "updated": "2026-11-04",
   "shared_help": {
     "schema_id": "bsd.help.appCapability.v2",
     "surface_id": "figure_studio",
@@ -296,12 +296,12 @@
       "summary": "Create a Figure or Presentation, add artwork, and keep an editable copy.",
       "body": [
         "Choose Figure for manuscript panels, graphical abstracts, diagrams, and illustrations. Choose Presentation for a slide deck with layouts, themes, notes, and playback. Use the Figure / Presentation buttons to switch between them.",
-        "Use File > New to choose a document type and size. Library contains Assets, Scenes, and Templates. The canvas is where you draw and arrange artwork; Style or Inspector shows controls for the current selection. Simple keeps common controls close at hand; Advanced exposes detailed vector and text controls.",
+        "Use File > New to choose a document type and size. Library contains Assets for individual drawings and Templates for editable scientific diagrams and Figure layouts. The canvas is where you draw and arrange artwork; Style or Inspector shows controls for the current selection. Simple keeps common controls close at hand; Advanced exposes detailed vector and text controls.",
         "Use Document setup to change page dimensions, units, grids, and snapping without clearing your selection. Fit brings the artboard back into view. Changing canvas zoom does not change the size of exported artwork.",
         "In the web app, use Appearance · Light / Dark in the header. In Superbench, use App Settings. This changes the interface without recoloring artwork. Browser files contains Saved work, Open file, Download file, and About. Browser saves stay on this device; download an editable file for backup or use on another computer.",
         "Start with the topics on selecting artwork, Lines and arrows, and saving work. Help provides reference instructions and short visual demonstrations for the current tools."
       ],
-      "updated": "2026-10-11",
+      "updated": "2026-11-04",
       "blocks": [
         {
           "type": "paragraph",
@@ -309,7 +309,7 @@
         },
         {
           "type": "paragraph",
-          "text": "Use File > New to choose a document type and size. Library contains Assets, Scenes, and Templates. The canvas is where you draw and arrange artwork; Style or Inspector shows controls for the current selection. Simple keeps common controls close at hand; Advanced exposes detailed vector and text controls."
+          "text": "Use File > New to choose a document type and size. Library contains Assets for individual drawings and Templates for editable scientific diagrams and Figure layouts. The canvas is where you draw and arrange artwork; Style or Inspector shows controls for the current selection. Simple keeps common controls close at hand; Advanced exposes detailed vector and text controls."
         },
         {
           "type": "image",
@@ -393,11 +393,11 @@
       "summary": "Start with a blank artboard, layout, or editable scientific scene.",
       "body": [
         "Choose File > New, select Figure, and choose a preset or custom dimensions. The white artboard defines the exported page.",
-        "Open Library > Templates for a clean canvas, graphical abstract, or multi-panel Figure. A template creates a new document; earlier Figures remain open in their tabs.",
-        "Add individual symbols from Assets, or use a complete diagram from Scenes. Add labels with Text and relationships with Lines. Frames and panel labels are editable artwork rather than fixed image placeholders.",
+        "Open Library > Templates for editable scientific workflows and schematics. Use as new figure creates a document; Insert in this figure adds the diagram to the current canvas. Expand Figure layouts for a clean canvas, graphical abstract, or multi-panel layout.",
+        "Add individual symbols from Assets, or start with a complete diagram from Templates. Add labels with Text and relationships with Lines. Frames and panel labels are editable artwork rather than fixed image placeholders.",
         "Document setup controls units, artboard dimensions, grids, guides, and multi-panel layout. Review the Figure at its intended final size, then save an .fsfigure copy and use Export for a delivery file."
       ],
-      "updated": "2026-10-11"
+      "updated": "2026-11-04"
     },
     {
       "id": "artboards-decks",
@@ -944,7 +944,7 @@
     },
     {
       "id": "biological-assets",
-      "title": "Using assets, scenes, and templates",
+      "title": "Using assets and templates",
       "keywords": [
         "asset",
         "biology",
@@ -958,17 +958,17 @@
       ],
       "summary": "Find scientific symbols or insert an editable diagram.",
       "body": [
-        "Open Library and choose Assets, Scenes, or Templates. Search and filters apply to the selected view. Assets contains individual symbols; Scenes contains editable diagrams; Templates provides new Figure layouts.",
+        "Open Library and choose Assets or Templates. Assets contains individual scientific drawings. Templates combines editable scientific workflows and schematics with Figure layout starters. Search and filters apply to the selected view.",
         "Use Favorites and Recent to find frequently used drawings. Related searches offers names from the matching catalog and keeps your current filters. Clear search removes only the query, keeping those filters.",
         "Choose Preview on a drawing to inspect a larger image, alternate forms or views, scientific limitations, and editable parts. Close or Escape returns to the Library without inserting or changing artwork.",
         "Style and Palette choices in the Library affect the next insertion. The preview states those choices; it does not recolor artwork already on the canvas. Library cards always insert a new drawing.",
         "Select one inserted Library drawing and choose Change drawing in Style or the detailed Inspector; in Presentation, use Format. The chooser changes only the selected drawing by default. A counted checkbox can include other unlocked, unmodified copies on this figure or slide. If you edited the selected drawing, review and acknowledge that changing it discards those edits. Custom drawings remain editable with the canvas tools. Changing a drawing keeps its size, position and stacking order; one Undo restores its previous artwork. Closing the chooser leaves the canvas unchanged.",
         "Part colors names the biological regions available in the selected drawing. Change a region color or reset it without changing the other parts. These controls affect the selected drawing; the Library Palette affects the next insertion.",
-        "For a scene, Use as new figure creates a new document. Insert in this figure or Insert on this slide adds it to the current canvas. Its labels, symbols, and relationships remain separately editable on named layers.",
+        "For a scientific template, Use as new figure creates a new document. Insert in this figure or Insert on this slide adds it to the current canvas. Its labels, symbols, and relationships remain separately editable on named layers.",
         "Edit placeholder labels to match your experiment or biological system. Check each arrow’s meaning and remove irrelevant branches. A reusable diagram is a starting point, not evidence for a particular biological claim.",
         "Release editable paths only when you need detailed geometry changes; released paths stop behaving as one library asset. Original bundled artwork is offered for unrestricted reuse under CC0; imported third-party artwork retains its own permissions. Document setup > Sources & reuse records available source and rights information."
       ],
-      "updated": "2026-10-15"
+      "updated": "2026-11-04"
     },
     {
       "id": "results-to-deck",

@@ -1,0 +1,455 @@
+{
+  "schema": "figureStudio.scientificScene.v1",
+  "id": "angiogenic-sprouting",
+  "name": "Angiogenic sprouting",
+  "summary": "An endothelial sprout near local VEGF cues, with parent vessel, leading tips and neighboring cells.",
+  "source_record_id": "source.figure-studio-scene-expansion.2026-11-03",
+  "rights_record_id": "rights.figure-studio-scene-expansion.repository-cc0.2026-11-03",
+  "scientific_record": {
+    "id": "science.figure-studio.angiogenic-sprouting.2026-11-03",
+    "verified_on": "2026-11-03",
+    "scope": "An endothelial sprout near local VEGF cues, with leading tips and neighboring cells.",
+    "relationships": [
+      {
+        "claim": "Endothelial tip cells extend toward proangiogenic cues while neighboring stalk cells support sprout extension; VEGF and DLL4–Notch signaling contribute to tip–stalk patterning.",
+        "source_ids": [
+          "gerhardt-2003",
+          "hellstrom-2007",
+          "suchting-2007"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "gerhardt-2003",
+        "citation": "Gerhardt H et al. VEGF guides angiogenic sprouting utilizing endothelial tip cell filopodia. J Cell Biol. 2003;161(6):1163–1177.",
+        "doi": "10.1083/jcb.200302047",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2172999/",
+        "support_location": "Figures 7–8 and associated results on VEGF guidance and endothelial tip-cell filopodia.",
+        "decision": "Use the single-tip sprout asset as the spatial anchor; depict VEGF guidance and DLL4–Notch-mediated lateral regulation as contextual relationships, with tip/stalk states and branch pattern kept qualitative and dynamic."
+      },
+      {
+        "id": "hellstrom-2007",
+        "citation": "Hellström M et al. Dll4 signalling through Notch1 regulates formation of tip cells during angiogenesis. Nature. 2007;445:776–780.",
+        "doi": "10.1038/nature05571",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/17259973/",
+        "support_location": "Abstract and results on Dll4/Notch1 regulation of tip-cell formation and vascular branching.",
+        "decision": "Use the single-tip sprout asset as the spatial anchor; depict VEGF guidance and DLL4–Notch-mediated lateral regulation as contextual relationships, with tip/stalk states and branch pattern kept qualitative and dynamic."
+      },
+      {
+        "id": "suchting-2007",
+        "citation": "Suchting S et al. The Notch ligand Delta-like 4 negatively regulates endothelial tip cell formation and vessel branching. Proc Natl Acad Sci USA. 2007;104(9):3225–3230.",
+        "doi": "10.1073/pnas.0611177104",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/17296941/",
+        "support_location": "Abstract and results on Dll4/Notch regulation of tip-cell number and branching.",
+        "decision": "Use the single-tip sprout asset as the spatial anchor; depict VEGF guidance and DLL4–Notch-mediated lateral regulation as contextual relationships, with tip/stalk states and branch pattern kept qualitative and dynamic."
+      }
+    ],
+    "limitations": [
+      "A qualitative spatial schematic, not a universal sequence or measured outcome. Lumen formation and blood flow are not shown. Tip–stalk states are dynamic; matrix, flow, tissue context, VEGF presentation, and signaling can alter sprout behavior and branching."
+    ],
+    "authorship": "Original editable scene composed from released Figure Studio assets and original vector/text objects; published figures informed scientific relationships only. No publication artwork was copied, traced, or embedded."
+  },
+  "insertion_art_style": "soft-color",
+  "layout_kind": "mechanism",
+  "canvas": {
+    "width": 1000,
+    "height": 600,
+    "width_in": 10.416666666666666,
+    "height_in": 6.25,
+    "background_role": "background"
+  },
+  "palette": {
+    "background": "#F7F9FC",
+    "surface": "#FFFFFF",
+    "ink": "#24313B",
+    "muted": "#637381",
+    "border": "#C9D5DE",
+    "sample": "#2A8C82",
+    "process": "#527DA8",
+    "signal": "#D79A31",
+    "caution": "#9A5F33",
+    "accent": "#7667A8",
+    "soft": "#E7EEF4"
+  },
+  "layers": [
+    {
+      "id": "workflow_stages",
+      "name": "Biological compartments"
+    },
+    {
+      "id": "biological_objects",
+      "name": "Biological structures"
+    },
+    {
+      "id": "workflow_relationships",
+      "name": "Biological relationships"
+    },
+    {
+      "id": "editable_labels",
+      "name": "Editable labels"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "title",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 34,
+      "y": 20,
+      "width": 932,
+      "height": 32,
+      "text": "Angiogenic sprouting",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 27,
+      "fill_role": "ink",
+      "align": "left",
+      "include_scientific_record": true
+    },
+    {
+      "id": "endothelial_sprout",
+      "name": "Endothelial Sprout",
+      "type": "asset",
+      "layer_id": "biological_objects",
+      "asset_id": "tissue.angiogenic_sprout.branching",
+      "top_level": true,
+      "x": 200,
+      "y": 70,
+      "width": 480,
+      "height": 480,
+      "palette_overrides": {
+        "outline": "ink",
+        "vessel_wall": "sample",
+        "lumen": "sample",
+        "matrix": "border"
+      }
+    },
+    {
+      "id": "parent_label",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 36,
+      "y": 401,
+      "width": 210,
+      "height": 25,
+      "text": "Parent vessel",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 20,
+      "fill_role": "process",
+      "align": "center"
+    },
+    {
+      "id": "tip_label",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 690,
+      "y": 170,
+      "width": 220,
+      "height": 25,
+      "text": "Leading tips",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 20,
+      "fill_role": "process",
+      "align": "center"
+    },
+    {
+      "id": "stalk_label",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 550,
+      "y": 410,
+      "width": 365,
+      "height": 25,
+      "text": "Neighboring stalk cells",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 20,
+      "fill_role": "process",
+      "align": "center"
+    },
+    {
+      "id": "vegf_label",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 710,
+      "y": 86,
+      "width": 230,
+      "height": 25,
+      "text": "Local VEGF cues",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 20,
+      "fill_role": "signal",
+      "align": "center"
+    },
+    {
+      "id": "matrix_label",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 35,
+      "y": 505,
+      "width": 270,
+      "height": 23,
+      "text": "Surrounding matrix",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 18,
+      "fill_role": "muted",
+      "align": "center"
+    },
+    {
+      "id": "dynamic_note",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 35,
+      "y": 556,
+      "width": 930,
+      "height": 22,
+      "text": "Tip–stalk states change with local signaling and tissue context",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 16,
+      "fill_role": "muted",
+      "align": "left"
+    },
+    {
+      "id": "guidance_label",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 716,
+      "y": 320,
+      "width": 180,
+      "height": 22,
+      "text": "Guidance",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 17,
+      "fill_role": "process",
+      "align": "center"
+    },
+    {
+      "id": "vegf_one",
+      "type": "shape",
+      "shape": "ellipse",
+      "layer_id": "workflow_stages",
+      "x": 815,
+      "y": 135,
+      "width": 17,
+      "height": 17,
+      "radius": 12,
+      "fill_role": "signal",
+      "stroke_role": "ink",
+      "stroke_width": 1.8
+    },
+    {
+      "id": "vegf_two",
+      "type": "shape",
+      "shape": "ellipse",
+      "layer_id": "workflow_stages",
+      "x": 865,
+      "y": 200,
+      "width": 17,
+      "height": 17,
+      "radius": 12,
+      "fill_role": "signal",
+      "stroke_role": "ink",
+      "stroke_width": 1.8
+    },
+    {
+      "id": "vegf_three",
+      "type": "shape",
+      "shape": "ellipse",
+      "layer_id": "workflow_stages",
+      "x": 805,
+      "y": 264,
+      "width": 17,
+      "height": 17,
+      "radius": 12,
+      "fill_role": "signal",
+      "stroke_role": "ink",
+      "stroke_width": 1.8
+    },
+    {
+      "id": "vegf_four",
+      "type": "shape",
+      "shape": "ellipse",
+      "layer_id": "workflow_stages",
+      "x": 910,
+      "y": 285,
+      "width": 17,
+      "height": 17,
+      "radius": 12,
+      "fill_role": "signal",
+      "stroke_role": "ink",
+      "stroke_width": 1.8
+    },
+    {
+      "id": "matrix_segment_one",
+      "type": "shape",
+      "shape": "rounded_rect",
+      "layer_id": "workflow_stages",
+      "x": 82,
+      "y": 474,
+      "width": 160,
+      "height": 5,
+      "radius": 2,
+      "fill_role": "border",
+      "stroke_role": "border",
+      "stroke_width": 1.8
+    },
+    {
+      "id": "matrix_segment_two",
+      "type": "shape",
+      "shape": "rounded_rect",
+      "layer_id": "workflow_stages",
+      "x": 300,
+      "y": 500,
+      "width": 170,
+      "height": 5,
+      "radius": 2,
+      "fill_role": "border",
+      "stroke_role": "border",
+      "stroke_width": 1.8
+    },
+    {
+      "id": "matrix_segment_three",
+      "type": "shape",
+      "shape": "rounded_rect",
+      "layer_id": "workflow_stages",
+      "x": 510,
+      "y": 508,
+      "width": 150,
+      "height": 5,
+      "radius": 2,
+      "fill_role": "border",
+      "stroke_role": "border",
+      "stroke_width": 1.8
+    },
+    {
+      "id": "guidance_tip",
+      "type": "shape",
+      "shape": "ellipse",
+      "layer_id": "workflow_stages",
+      "x": 552,
+      "y": 171,
+      "width": 4,
+      "height": 4,
+      "radius": 12,
+      "fill_role": "sample",
+      "stroke_role": "ink",
+      "stroke_width": 1.8,
+      "opacity": 0
+    },
+    {
+      "id": "parent_leader",
+      "type": "shape",
+      "shape": "path",
+      "layer_id": "workflow_stages",
+      "x": 220,
+      "y": 312,
+      "width": 62,
+      "height": 84,
+      "radius": 12,
+      "fill_role": "background",
+      "stroke_role": "muted",
+      "stroke_width": 1.8,
+      "path": "M 0 84 L 62 0"
+    },
+    {
+      "id": "tip_leader",
+      "type": "shape",
+      "shape": "path",
+      "layer_id": "workflow_stages",
+      "x": 555,
+      "y": 175,
+      "width": 150,
+      "height": 30,
+      "radius": 12,
+      "fill_role": "background",
+      "stroke_role": "muted",
+      "stroke_width": 1.8,
+      "path": "M 150 30 L 0 0"
+    },
+    {
+      "id": "stalk_leader",
+      "type": "shape",
+      "shape": "path",
+      "layer_id": "workflow_stages",
+      "x": 480,
+      "y": 385,
+      "width": 130,
+      "height": 25,
+      "radius": 12,
+      "fill_role": "background",
+      "stroke_role": "muted",
+      "stroke_width": 1.8,
+      "path": "M 130 25 L 0 0"
+    }
+  ],
+  "groups": [
+    {
+      "id": "vessel_group",
+      "name": "Endothelial sprout and parent vessel",
+      "layer_id": "biological_objects",
+      "members": [
+        "endothelial_sprout",
+        "parent_label",
+        "tip_label",
+        "stalk_label",
+        "parent_leader",
+        "tip_leader",
+        "stalk_leader",
+        "guidance_tip"
+      ]
+    },
+    {
+      "id": "guidance_group",
+      "name": "Local VEGF cues",
+      "layer_id": "workflow_stages",
+      "members": [
+        "vegf_label",
+        "vegf_one",
+        "vegf_two",
+        "vegf_three",
+        "vegf_four",
+        "guidance_label"
+      ]
+    },
+    {
+      "id": "matrix_group",
+      "name": "Surrounding matrix context",
+      "layer_id": "workflow_stages",
+      "members": [
+        "matrix_label",
+        "matrix_segment_one",
+        "matrix_segment_two",
+        "matrix_segment_three"
+      ]
+    }
+  ],
+  "connectors": [
+    {
+      "id": "vegf_guidance",
+      "layer_id": "workflow_relationships",
+      "from": {
+        "node_id": "vegf_three",
+        "anchor": "left"
+      },
+      "to": {
+        "node_id": "guidance_tip",
+        "anchor": "center"
+      },
+      "relation": "activation",
+      "label": "",
+      "style": {
+        "stroke_role": "signal",
+        "stroke_width": 2.2,
+        "line": "dashed",
+        "terminator": "arrow"
+      }
+    }
+  ]
+}

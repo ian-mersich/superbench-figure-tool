@@ -85,7 +85,7 @@ def read_archive(path: Path) -> dict[str, bytes]:
     return files
 
 
-def load_catalog(library: Path) -> dict[str, dict]:
+def load_catalog(library: Path, *, style4_only: bool = False) -> dict[str, dict]:
     catalog = {}
     descriptor = json.loads(library.read_text(encoding="utf-8"))
     for pack_ref in descriptor["packs"]:
@@ -93,6 +93,14 @@ def load_catalog(library: Path) -> dict[str, dict]:
         pack_path = library.parent / relative
         pack = json.loads(pack_path.read_text(encoding="utf-8"))
         for asset in pack["assets"]:
+            # The historical supplied collection remains exactly its original486.
+            # New original companions have an independent finite supplement.
+            if style4_only and pack_ref['id'] in {'neurobiology','tissue-vascular'}:
+                if (pack.get('style_4_supplement') != 'original-style4-companions.2026-11-03'
+                        or len(pack['assets']) != 20
+                        or asset.get('style_4_supplement') != pack['style_4_supplement']):
+                    raise ValueError('Unknown historical Style 4 exclusion')
+                continue
             if asset["id"] in catalog:
                 raise ValueError(f"Duplicate source asset ID: {asset['id']}")
             original = (pack_path.parent / safe_relative_path(asset["file"])).read_bytes()
@@ -310,7 +318,7 @@ def build_import(archive_path: Path, library: Path = LIBRARY, *, expected_count:
         if record["asset_id"] in source_manifest:
             raise ValueError(f"Duplicate source manifest ID: {record['asset_id']}")
         source_manifest[record["asset_id"]] = record
-    catalog = load_catalog(library)
+    catalog = load_catalog(library, style4_only=expected_count==486)
     if len(catalog) != expected_count or set(mapping) != set(catalog) or set(source_manifest) != set(catalog):
         raise ValueError(f"Expected exact {expected_count}-asset mapping/catalog/source-manifest coverage")
     expected_svg = set()

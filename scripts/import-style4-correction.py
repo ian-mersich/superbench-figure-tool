@@ -132,7 +132,7 @@ def prior_assets(style_dir: Path) -> tuple[dict, dict]:
 
 def build_import(archive_path: Path, style_dir: Path, library: Path = IMPORT.LIBRARY) -> dict[str, bytes]:
     files = read_archive(archive_path)
-    catalog = IMPORT.load_catalog(library)
+    catalog = IMPORT.load_catalog(library, style4_only=True)
     previous, prior = prior_assets(style_dir)
     mapping, supplied = validate_source(files, catalog, prior)
     output, assets = {}, []
@@ -203,7 +203,7 @@ def validate_overlay(style_dir: Path, library: Path = IMPORT.LIBRARY) -> dict:
     manifest = json.loads((style_dir / MANIFEST).read_bytes())
     if manifest.get("prior_manifest") != {"file": "manifest.json", "sha256": PRIOR_SHA256} or manifest.get("correction_archive") != {"filename": "style4_corrected_486.zip", "sha256": SOURCE_SHA256}:
         raise ValueError("Corrected overlay source identity differs")
-    catalog = IMPORT.load_catalog(library)
+    catalog = IMPORT.load_catalog(library, style4_only=True)
     supplied = json.loads((style_dir / OVERLAY / "source/asset_manifest.json").read_bytes())
     mapping = json.loads((style_dir / OVERLAY / "source/asset_id_to_filename.json").read_bytes())
     source_records = {item["asset_id"]: item for item in supplied}

@@ -101,6 +101,8 @@ BASELINE_PACK_IDS = frozenset({"core-biology", "core-experimental-biology", "imm
 def active_record_path(record: dict | None) -> str | None:
     if record is None:
         return None
+    if record.get("schema") == "figureStudio.scientificProductRelease.v5":
+        return LIBRARY_EXPANSION_RECORD
     if record.get("schema") == "figureStudio.scientificProductRelease.v4":
         return STYLE_FOUR_CORRECTION_RECORD
     if record.get("schema") == "figureStudio.scientificProductRelease.v3":
@@ -488,8 +490,137 @@ def _validate_style_four_correction(root: Path, *, required: bool = False) -> di
     return record
 
 
+
+LIBRARY_EXPANSION_RECORD = "config/scientific-product-release-2026-11-03-expansion.json"
+LIBRARY_EXPANSION_RECORD_SHA256 = "f48ecd861065b47296f0cc0c50ed280766b187bd940471a9d76caf298e2c775a"
+LIBRARY_EXPANSION_PREDECESSOR_SHA256 = "15543ecc8f4babdf0d160186239c1f3ff3f7c4b7d87eb0c8c1445b4734f1a128"
+
+
+def project_library_predecessor_registry(registry: dict, record: dict, predecessor: dict) -> dict:
+    """Project only the two named pack additions and Style 4 fields out of v5."""
+    projection = record["predecessor_registry_projection"]
+    remove_ids = projection.get("remove_pack_ids")
+    if remove_ids != ["neurobiology", "tissue-vascular"]:
+        raise ValueError("Successor predecessor pack projection differs")
+    projected = json.loads(json.dumps(registry))
+    projected["packs"] = [row for row in projected["packs"] if row.get("id") not in remove_ids]
+    if len(projected["packs"]) != len(registry["packs"]) - 2:
+        raise ValueError("Successor predecessor pack projection is incomplete")
+    projected.update(projection["restore_fields"])
+    if canonical(projected) != predecessor.get("registry_sha256"):
+        raise ValueError("Successor predecessor registry does not reconstruct the approved record")
+    return projected
+
+
+def _validate_library_expansion(root: Path, *, required: bool = False) -> dict | None:
+    path = root / LIBRARY_EXPANSION_RECORD
+    if not path.is_file() or path.is_symlink():
+        raise ValueError("Scientific product release Library expansion: decision is missing")
+    record = json.loads(path.read_text(encoding="utf-8"))
+    need = lambda ok, message: _library_expansion_need(ok, message)
+    need(canonical(record) == LIBRARY_EXPANSION_RECORD_SHA256, "exact decision identity mismatch")
+    need(record.get("schema") == "figureStudio.scientificProductRelease.v5"
+         and record.get("release_id") == "library-expansion.2026-11-03", "decision schema/date mismatch")
+    predecessor = _style_four_correction_record(root)
+    need(record.get("predecessor", {}).get("sha256") == LIBRARY_EXPANSION_PREDECESSOR_SHA256
+         and record["predecessor"].get("historical_approvals_sha256") ==
+             canonical({"packs": predecessor["packs"], "scenes": predecessor["scenes"]}),
+         "historical product approvals differ from the exact v4 predecessor")
+    registry_path = root / "assets/scientific-packs/library.json"
+    registry = json.loads(registry_path.read_text(encoding="utf-8"))
+    project_library_predecessor_registry(registry, record, predecessor)
+    current = record["current"]
+    need(canonical(registry) == current.get("registry_sha256"), "current exact Library registry differs")
+    inventory = asset_inventory(root)
+    need(canonical(inventory) == current.get("asset_inventory_sha256")
+         and len(inventory) == current.get("asset_file_count"), "current exact scientific asset inventory differs")
+    need(current.get("library") == {"drawing_count": 526, "concept_count": 398, "pack_count": 13,
+        "scientific_template_count": 20, "layout_starter_count": 3,
+        "historical_style_4_variant_count": 486, "new_style_4_companion_count": 40},
+        "finite successor counts differ")
+    style = registry.get("art_styles")
+    need(style == [{"id": "style-4", "name": "Style 4",
+        "path": "style-4/manifest-corrected-20261017.json", "asset_count": 526,
+        "supplement": {"path": "style-4/expansion-20261103/manifest.json", "asset_count": 40}}],
+        "finite Style 4 registration differs")
+    need(file_identity(root / "assets/scientific-packs/style-4/manifest-corrected-20261017.json") ==
+         current.get("historical_style_4_manifest_sha256") and
+         file_identity(root / "assets/scientific-packs/style-4/expansion-20261103/manifest.json") ==
+         current.get("style_4_supplement_manifest_sha256"), "Style 4 source bindings differ")
+    scene_library = json.loads((root / "assets/scientific-scenes/library.v1.json").read_text(encoding="utf-8"))
+    need(sorted(row["id"] for row in scene_library["scenes"]) == current.get("all_template_ids")
+         and len(current.get("new_template_ids", [])) == 8
+         and current.get("updated_template_ids") == ["immunoblot-assay-workflow"],
+         "finite template cohort differs")
+    need(len(current.get("layout_starter_ids", [])) == 3, "three layout starters are required")
+    expected_pack_ids = set(predecessor["packs"]) | {"neurobiology", "tissue-vascular"}
+    need(set(record.get("packs", {})) == expected_pack_ids
+         and all(record["packs"].get(key) == value for key, value in predecessor["packs"].items()),
+         "successor pack approvals must preserve the exact predecessor bindings")
+    for pack_id in ("neurobiology", "tissue-vascular"):
+        pack_root = root / "assets/scientific-packs" / pack_id
+        catalog = json.loads((pack_root / "asset-pack.json").read_text(encoding="utf-8"))
+        audit_file = str(catalog["release_audit"]["file"])
+        binding = {
+            "catalog_sha256": file_identity(pack_root / "asset-pack.json"),
+            "audit_file": audit_file,
+            "audit_sha256": file_identity(pack_root / audit_file),
+            "rights_records_sha256": canonical(catalog["rights_records"]),
+            "rights_basis": catalog["rights_records"][0]["rights_basis"],
+            "contribution_effective_date": catalog["release_audit"]["rights_grant_effective_date"],
+            "drawing_count": len(catalog["assets"]),
+            "concept_count": catalog["concept_count"],
+        }
+        need(record["packs"].get(pack_id) == binding, f"successor approval binding differs: {pack_id}")
+    updated_ids = set(current.get("new_template_ids", [])) | set(current.get("updated_template_ids", []))
+    expected_scene_ids = set(predecessor.get("scenes", {})) | updated_ids
+    need(set(record.get("scenes", {})) == expected_scene_ids
+         and all(record["scenes"].get(key) == value for key, value in predecessor["scenes"].items()),
+         "successor scene approvals must preserve prior bindings and enumerate pending additions")
+    scene_rows = {row["id"]: row for row in scene_library["scenes"]}
+    for scene_id in sorted(updated_ids):
+        scene = scene_rows[scene_id]
+        actual = {
+            "scene_sha256": file_identity(root / "assets/scientific-scenes" / scene["scene"]),
+            "preview_sha256": file_identity(root / "assets/scientific-scenes" / scene["preview"]),
+        }
+        need(record["scenes"].get(scene_id) == actual, f"successor scene binding differs: {scene_id}")
+    immunoblot = current.get("updated_template_binding", {})
+    need(immunoblot.get("id") == "immunoblot-assay-workflow"
+         and immunoblot.get("current") == record["scenes"].get("immunoblot-assay-workflow")
+         and bool(immunoblot.get("reason")), "updated immunoblot predecessor reason/current binding is missing")
+    authorization = record.get("user_authorization", {})
+    need(authorization.get("new_personal_attestation") is False
+         and authorization.get("license_grants_added") is False and bool(authorization.get("instruction")),
+         "authorization or rights boundary differs")
+    decision = record.get("decision")
+    need(decision in {"pending_native_editor_acceptance",
+                      "approved_for_matching_public_web_and_superbench_packages"},
+         "unsupported Library expansion decision")
+    if decision != "approved_for_matching_public_web_and_superbench_packages":
+        if required:
+            need(False, "native editor and independent release acceptance remain pending")
+        return None
+    review = record.get("review", {})
+    need(all(review.get(key) == "pass" for key in ("native_editor_acceptance", "independent_release_review"))
+         and len(review.get("evidence", [])) >= 2, "scoped release acceptance evidence is incomplete")
+    acceptance = record.get("acceptance_reference", {})
+    need(acceptance.get("file") == "docs/scientific-assets/LIBRARY_EXPANSION_2026_11_03.md"
+         and file_identity(root / acceptance["file"]) == acceptance.get("sha256"),
+         "tracked Library acceptance document differs")
+    return record
+
+
+def _library_expansion_need(condition: bool, message: str) -> None:
+    if not condition:
+        raise ValueError("Scientific product release Library expansion: " + message)
+
+
+
 def validate(root: Path, *, required: bool = False) -> dict | None:
     root = Path(root)
+    if (root / LIBRARY_EXPANSION_RECORD).exists():
+        return _validate_library_expansion(root, required=required)
     if (root / STYLE_FOUR_CORRECTION_RECORD).exists():
         return _validate_style_four_correction(root, required=required)
     if (root / STYLE_FOUR_CORRECTION_MANIFEST).exists() or (root / STYLE_FOUR_CORRECTION_PREFIX).exists():

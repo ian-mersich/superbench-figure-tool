@@ -690,13 +690,11 @@
           <div class="sidebar-panel" data-sidebar-panel="tools">
             <nav id="figureLibraryTabs" role="tablist" aria-label="Library collections">
               <button type="button" id="figureLibraryTab-assets" role="tab" data-library-tab="assets" aria-selected="true" aria-controls="figureLibraryView-assets" tabindex="0">Assets</button>
-              <button type="button" id="figureLibraryTab-scenes" role="tab" data-library-tab="scenes" aria-selected="false" aria-controls="figureLibraryView-scenes" tabindex="-1">Scenes</button>
               <button type="button" id="figureLibraryTab-templates" role="tab" data-library-tab="templates" aria-selected="false" aria-controls="figureLibraryView-templates" tabindex="-1">Templates</button>
             </nav>
             <div id="figureLibrarySearch" role="search" aria-label="Search Library">
               <input id="assetSearchInput" data-library-search="assets" type="search" aria-label="Search scientific assets" placeholder="Search cells, assays, molecules" autocomplete="off">
-              <input id="sceneSearchInput" data-library-search="scenes" type="search" aria-label="Search scientific scenes" placeholder="Search signaling, CRISPR, assays" autocomplete="off" spellcheck="false" hidden>
-              <input id="templateSearchInput" data-library-search="templates" type="search" aria-label="Search figure templates" placeholder="Search figure templates" autocomplete="off" hidden>
+              <input id="sceneSearchInput" data-library-search="templates" type="search" aria-label="Search scientific templates" placeholder="Search signaling, CRISPR, assays" autocomplete="off" spellcheck="false" hidden>
             </div>
             <section id="figureLibraryView-assets" class="panel-section grow asset-browser-panel" data-library-view="assets" role="tabpanel" aria-labelledby="figureLibraryTab-assets" data-collapsible="true" data-collapsed="false">
               <div class="panel-title">Scientific assets</div>
@@ -739,23 +737,23 @@
               <div id="assetPanelStatus" class="asset-status">Loading scientific assets...</div>
               <div id="assetGrid" class="asset-grid" aria-live="polite"></div>
             </section>
-            <section id="figureLibraryView-scenes" class="panel-section asset-scenes-panel" data-library-view="scenes" role="tabpanel" aria-labelledby="figureLibraryTab-scenes" data-collapsible="true" data-collapsed="false" hidden>
-              <div class="panel-title">Scientific scenes</div>
-              <div id="sceneRelatedSearches" class="asset-related-searches" aria-label="Related scene searches" hidden></div>
+            <section id="figureLibraryView-templates" class="panel-section asset-scenes-panel" data-library-view="templates" role="tabpanel" aria-labelledby="figureLibraryTab-templates" data-collapsible="true" data-collapsed="false" hidden>
+              <div class="panel-title">Templates</div>
+              <div id="sceneRelatedSearches" class="asset-related-searches" aria-label="Related template searches" hidden></div>
               <div class="scene-discovery-controls">
                 <label class="scene-category-label" for="sceneCategorySelect">Area</label>
-                <select id="sceneCategorySelect" aria-label="Scientific scene area">
+                <select id="sceneCategorySelect" aria-label="Scientific template area">
                   <option value="all">All areas</option>
                 </select>
               </div>
-              <p id="sceneLibraryStatus" class="scene-library-status" role="status">Loading scientific scenes…</p>
+              <p id="sceneLibraryStatus" class="scene-library-status" role="status">Loading scientific templates…</p>
+              <div id="templateCollectionGrid" class="template-collection-grid">
               <div id="assetSceneGrid" class="asset-scene-grid" aria-label="Scientific scene templates">
-                <div class="scene-library-empty">Scientific scenes are loading.</div>
+                <div class="scene-library-empty">Scientific templates are loading.</div>
               </div>
-            </section>
-            <section id="figureLibraryView-templates" class="panel-section template-panel" data-library-view="templates" role="tabpanel" aria-labelledby="figureLibraryTab-templates" data-collapsible="true" data-collapsed="false" hidden>
-              <div class="panel-title">Templates</div>
-              <p id="templateLibraryStatus" class="asset-status" role="status">3 templates</p>
+              <details id="figureLayoutPresets" class="figure-layout-presets">
+                <summary>Figure layouts</summary>
+              <p id="templateLibraryStatus" class="asset-status" role="status">3 layout starters</p>
               <div id="templateGallery" class="template-gallery" aria-label="Figure templates">
                 <button type="button" class="template-card" data-template-id="multi-panel-2x2" title="Create a new figure from this template">
                   <span class="template-name">Multi-panel figure</span>
@@ -770,7 +768,9 @@
                   <span class="template-detail">Blank artboard for imported panels</span>
                 </button>
               </div>
-              <p id="templateLibraryEmpty" class="template-library-empty asset-empty" role="status" hidden>No templates match this search.</p>
+              <p id="templateLibraryEmpty" class="template-library-empty asset-empty" role="status" hidden>No layouts match this search.</p>
+              </details>
+              </div>
             </section>
             <section id="figureLibraryLayoutFooter" class="panel-section" data-collapsible="true" data-collapsed="true">
               <div class="panel-title">Layout</div>
@@ -2576,6 +2576,7 @@
     <script src="scientific-asset-palettes.js?v=20261017-style4" defer></script>
     <script src="scientific-asset-color-controls.js?v=20261008" defer></script>
     <script src="scientific-scene-catalog.js?v=20260830-scenes1" defer></script>
+    <script src="scientific-template-cards.js?v=20261103-templates1" defer></script>
     <script src="scientific-asset-discovery.js?v=20261015-change1" defer></script>
     <script src="scientific-asset-preview.js?v=20261015-change1" defer></script>
     <script src="scientific-motif-catalog.js?v=20260914-fig28" defer></script>

@@ -284,7 +284,14 @@ def test_public_scope_requires_exact_supplement_and_preserves_historical_pending
                for row in result['packs'] if row['pack_id'] in approved)
     assert result["pending_pack_ids"] == []
     assert result["scenes"]["pending_scene_ids"] == []
-    assert result["scenes"]["historical_pending_scene_ids"] == ["single-cell-rna-workflow", "spatial-rna-methods"]
+    assert result["scenes"]["historical_pending_scene_ids"] == sorted([
+        "single-cell-rna-workflow", "spatial-rna-methods",
+        "angiogenic-sprouting", "chemical-synaptic-transmission",
+        "epithelial-barrier-transwell-workflow", "immunoprecipitation-workflow",
+        "indirect-immunofluorescence-workflow", "rt-qpcr-expression-workflow",
+        "sandwich-elisa-workflow", "wound-closure-assay-workflow",
+        "immunoblot-assay-workflow",
+    ])
     assert producer.validate_release_source(ROOT, distribution_scope="public-release")["public_release_eligible"] is True
 
 

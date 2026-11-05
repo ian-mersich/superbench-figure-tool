@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 430" role="img" aria-labelledby="title desc">
+<title id="title">Immunoprecipitation workflow</title><desc id="desc">Antibody capture of a target from lysate, bead recovery, washing, and downstream analysis.</desc>
+<rect width="1120" height="430" fill="#F7F9FC"/>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="stage_1_object_title stage_1_object_desc" x="48" y="127" width="74" height="74">
+  <ns0:title id="stage_1_object_title">Microcentrifuge Tube</ns0:title>
+  <ns0:desc id="stage_1_object_desc">Original vector microcentrifuge tube with hinged flip cap, tapered body, sample, pellet cue, and editable semantic regions.</ns0:desc>
+  <ns0:path data-region="body" fill="#E8EEF7" d="M48 43h34l-5 47-11 24h-4L52 90z" />
+  <ns0:path data-region="cap" fill="#8EC8FF" d="M47 36c-8 0-16-5-18-12-2-6 3-11 10-10l31 5c5 1 8 5 7 10-1 5-5 8-10 8z" />
+  <ns0:path data-region="fluid" fill="#5EA9DD" d="M55 76h22l-2 14-10 21h-2L54 90z" />
+  <ns0:g data-region="outline" fill="none" stroke="#24313B" stroke-linecap="round" stroke-linejoin="round">
+    <ns0:path d="M48 43h34l-5 47-11 24h-4L52 90z" stroke-width="3.5" />
+    <ns0:path d="M47 36c-8 0-16-5-18-12-2-6 3-11 10-10l31 5c5 1 8 5 7 10-1 5-5 8-10 8z" stroke-width="3.25" />
+    <ns0:path d="M48 36v8M55 76h22" stroke-width="2.5" />
+    <ns0:path d="M56 54h12M55 62h9" stroke-width="2" />
+    <ns0:path d="M60 104h8" stroke-width="2.75" />
+  </ns0:g>
+</ns0:svg>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="stage_2_object_title stage_2_object_desc" x="230" y="127" width="74" height="74">
+  <ns0:title id="stage_2_object_title">IgG Antibody</ns0:title>
+  <ns0:desc id="stage_2_object_desc">Original IgG schematic with two continuous heavy chains, one shorter light chain per arm, a hinge and two antigen-binding tips. Symbolic configuration; no fixed conformation, subclass, affinity or activity is implied.</ns0:desc>
+  <ns0:g data-region="outline" fill="none" stroke="#24313B" stroke-linecap="round" stroke-linejoin="round" stroke-width="10">
+    <ns0:path d="M58 104V82c0-12-3-19-11-28L30 31" /><ns0:path d="M70 104V82c0-12 3-19 11-28l17-23" /><ns0:path d="M42 65 19 42" /><ns0:path d="M86 65l23-23" /><ns0:path d="M57 73h14M57 80h14" /><ns0:path d="M19 42 30 31" /><ns0:path d="M98 31l11 11" />
+  </ns0:g>
+  <ns0:g data-region="heavy_chain" fill="none" stroke="#8EC8FF" stroke-linecap="round" stroke-linejoin="round" stroke-width="6">
+    <ns0:path d="M58 104V82c0-12-3-19-11-28L30 31" /><ns0:path d="M70 104V82c0-12 3-19 11-28l17-23" />
+  </ns0:g>
+  <ns0:g data-region="light_chain" fill="none" stroke="#B8B5FF" stroke-linecap="round" stroke-linejoin="round" stroke-width="6">
+    <ns0:path d="M42 65 19 42" /><ns0:path d="M86 65l23-23" />
+  </ns0:g>
+  <ns0:g data-region="hinge" fill="none" stroke="#B8B5FF" stroke-linecap="round" stroke-linejoin="round" stroke-width="5">
+    <ns0:path d="M57 73h14M57 80h14" />
+  </ns0:g>
+  <ns0:g data-region="binding_tip" fill="none" stroke="#F4A261" stroke-linecap="round" stroke-linejoin="round" stroke-width="7">
+    <ns0:path d="M19 42 30 31" /><ns0:path d="M98 31l11 11" />
+  </ns0:g>
+</ns0:svg>
+<rect x="415" y="139" width="76" height="76" rx="38" fill="#E7EEF4" stroke="#527DA8" stroke-width="1.8"/>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="stage_4_object_title stage_4_object_desc" x="594" y="127" width="74" height="74">
+  <ns0:title id="stage_4_object_title">Microcentrifuge Tube</ns0:title>
+  <ns0:desc id="stage_4_object_desc">Original vector microcentrifuge tube with hinged flip cap, tapered body, sample, pellet cue, and editable semantic regions.</ns0:desc>
+  <ns0:path data-region="body" fill="#E8EEF7" d="M48 43h34l-5 47-11 24h-4L52 90z" />
+  <ns0:path data-region="cap" fill="#8EC8FF" d="M47 36c-8 0-16-5-18-12-2-6 3-11 10-10l31 5c5 1 8 5 7 10-1 5-5 8-10 8z" />
+  <ns0:path data-region="fluid" fill="#5EA9DD" d="M55 76h22l-2 14-10 21h-2L54 90z" />
+  <ns0:g data-region="outline" fill="none" stroke="#24313B" stroke-linecap="round" stroke-linejoin="round">
+    <ns0:path d="M48 43h34l-5 47-11 24h-4L52 90z" stroke-width="3.5" />
+    <ns0:path d="M47 36c-8 0-16-5-18-12-2-6 3-11 10-10l31 5c5 1 8 5 7 10-1 5-5 8-10 8z" stroke-width="3.25" />
+    <ns0:path d="M48 36v8M55 76h22" stroke-width="2.5" />
+    <ns0:path d="M56 54h12M55 62h9" stroke-width="2" />
+    <ns0:path d="M60 104h8" stroke-width="2.75" />
+  </ns0:g>
+</ns0:svg>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="wash_pipette_title wash_pipette_desc" x="647" y="112" width="50" height="50">
+  <ns0:title id="wash_pipette_title">Pipette</ns0:title>
+  <ns0:desc id="wash_pipette_desc">Original vector single-channel micropipette with thumb plunger, volume window, tip cone, disposable tip, droplet, and editable semantic regions.</ns0:desc>
+  <ns0:g transform="rotate(-32 64 64)">
+    <ns0:path data-region="barrel" fill="#E8EEF7" d="M49 22h30v48l-7 13H56l-7-13z" />
+    <ns0:path data-region="plunger" fill="#8EC8FF" d="M55 10h18l4 7-4 8H55l-4-8z" />
+    <ns0:path data-region="tip" fill="#F7F9FC" d="M56 82h16l-5 33c-1 4-5 4-6 0z" />
+    <ns0:path data-region="fluid" fill="#5EA9DD" d="M64 111c5 6 5 10 0 12-5-2-5-6 0-12z" />
+    <ns0:g data-region="outline" fill="none" stroke="#24313B" stroke-linecap="round" stroke-linejoin="round">
+      <ns0:path d="M49 22h30v48l-7 13H56l-7-13z" stroke-width="3.5" />
+      <ns0:path d="M55 10h18l4 7-4 8H55l-4-8z" stroke-width="3" />
+      <ns0:path d="M56 82h16l-5 33c-1 4-5 4-6 0z" stroke-width="3" />
+      <ns0:rect x="55" y="35" width="18" height="13" rx="3" stroke-width="2.5" />
+      <ns0:path d="M58 57h12M58 65h12" stroke-width="2" />
+      <ns0:path d="M64 111c5 6 5 10 0 12-5-2-5-6 0-12z" stroke-width="2.25" />
+    </ns0:g>
+  </ns0:g>
+</ns0:svg>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="stage_5_object_title stage_5_object_desc" x="776" y="127" width="74" height="74">
+  <ns0:title id="stage_5_object_title">Microcentrifuge Tube</ns0:title>
+  <ns0:desc id="stage_5_object_desc">Original vector microcentrifuge tube with hinged flip cap, tapered body, sample, pellet cue, and editable semantic regions.</ns0:desc>
+  <ns0:path data-region="body" fill="#E8EEF7" d="M48 43h34l-5 47-11 24h-4L52 90z" />
+  <ns0:path data-region="cap" fill="#8EC8FF" d="M47 36c-8 0-16-5-18-12-2-6 3-11 10-10l31 5c5 1 8 5 7 10-1 5-5 8-10 8z" />
+  <ns0:path data-region="fluid" fill="#5EA9DD" d="M55 76h22l-2 14-10 21h-2L54 90z" />
+  <ns0:g data-region="outline" fill="none" stroke="#24313B" stroke-linecap="round" stroke-linejoin="round">
+    <ns0:path d="M48 43h34l-5 47-11 24h-4L52 90z" stroke-width="3.5" />
+    <ns0:path d="M47 36c-8 0-16-5-18-12-2-6 3-11 10-10l31 5c5 1 8 5 7 10-1 5-5 8-10 8z" stroke-width="3.25" />
+    <ns0:path d="M48 36v8M55 76h22" stroke-width="2.5" />
+    <ns0:path d="M56 54h12M55 62h9" stroke-width="2" />
+    <ns0:path d="M60 104h8" stroke-width="2.75" />
+  </ns0:g>
+</ns0:svg>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="stage_6_object_title stage_6_object_desc" x="958" y="127" width="74" height="74">
+  <ns0:title id="stage_6_object_title">Blot Imager</ns0:title>
+  <ns0:desc id="stage_6_object_desc">Editable chemiluminescence blot imager schematic with enclosed imaging chamber with illuminated membrane tray.</ns0:desc>
+  <ns0:g data-region="instrument_body" fill="#DCE4EC" stroke="none"><ns0:rect x="17" y="14" width="94" height="101" rx="8" /><ns0:rect x="27" y="25" width="74" height="48" rx="4" /></ns0:g>
+  <ns0:g data-region="instrument_detail" fill="#8EC8FF" stroke="none"><ns0:rect x="34" y="32" width="60" height="34" rx="3" /><ns0:path d="M42 42h18M69 42h17M39 52h27M75 52h13M46 61h19M73 61h12" /></ns0:g>
+  <ns0:g data-region="operational_cue" fill="none" stroke="#7B78C9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><ns0:path d="M35 88h58M35 98h36M89 91l8 5-8 5" /></ns0:g>
+  <ns0:g data-region="outline" fill="none" stroke="#24313B" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><ns0:path d="M17 14h94v101H17zM27 25h74v48H27zM34 32h60v34H34z" /></ns0:g>
+</ns0:svg>
+<path d="M122 164.0L230 164.0" fill="none" stroke="#527DA8" stroke-width="2.2"/>
+<path d="M222.0 160.0L230 164.0L222.0 168.0" fill="none" stroke="#527DA8" stroke-width="2.2"/>
+<path d="M304 164.0L415 177.0" fill="none" stroke="#527DA8" stroke-width="2.2"/>
+<path d="M407.5195959229381 172.09657723178236L415 177.0L406.5890193391887 180.04226960071895" fill="none" stroke="#527DA8" stroke-width="2.2"/>
+<path d="M491 177.0L594 164.0" fill="none" stroke="#527DA8" stroke-width="2.2"/>
+<path d="M585.5620875185874 161.03324538324765L594 164.0L586.5638488177505 168.97027721507865" fill="none" stroke="#527DA8" stroke-width="2.2"/>
+<path d="M668 164.0L776 164.0" fill="none" stroke="#527DA8" stroke-width="2.2"/>
+<path d="M768.0 160.0L776 164.0L768.0 168.0" fill="none" stroke="#527DA8" stroke-width="2.2"/>
+<path d="M850 164.0L958 164.0" fill="none" stroke="#527DA8" stroke-width="2.2"/>
+<path d="M950.0 160.0L958 164.0L950.0 168.0" fill="none" stroke="#527DA8" stroke-width="2.2"/>
+<text x="36" y="51" text-anchor="start" font-family="Arial,sans-serif" font-size="27" font-weight="700" fill="#24313B"><tspan x="36" dy="0">Immunoprecipitation workflow</tspan></text>
+<text x="106.0" y="101" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="600" fill="#637381"><tspan x="106.0" dy="0">1</tspan></text>
+<text x="111.0" y="255" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="600" fill="#527DA8"><tspan x="111.0" dy="0">Cell lysate</tspan></text>
+<text x="111.0" y="297" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="600" fill="#637381"><tspan x="111.0" dy="0">Preserve target</tspan><tspan x="111.0" dy="18.4">context</tspan></text>
+<text x="288.0" y="101" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="600" fill="#637381"><tspan x="288.0" dy="0">2</tspan></text>
+<text x="293.0" y="255" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="600" fill="#527DA8"><tspan x="293.0" dy="0">Antibody capture</tspan></text>
+<text x="293.0" y="297" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="600" fill="#637381"><tspan x="293.0" dy="0">Target-specific</tspan><tspan x="293.0" dy="18.4">antibody</tspan></text>
+<text x="470.0" y="101" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="600" fill="#637381"><tspan x="470.0" dy="0">3</tspan></text>
+<text x="475.0" y="255" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="600" fill="#527DA8"><tspan x="475.0" dy="0">Bead binding</tspan></text>
+<text x="475.0" y="297" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="600" fill="#637381"><tspan x="475.0" dy="0">Immobilize complex</tspan></text>
+<text x="440.0" y="170" text-anchor="middle" font-family="Arial,sans-serif" font-size="25" font-weight="600" fill="#527DA8"><tspan x="440.0" dy="0">Y</tspan></text>
+<text x="470.0" y="185" text-anchor="middle" font-family="Arial,sans-serif" font-size="25" font-weight="600" fill="#527DA8"><tspan x="470.0" dy="0">Y</tspan></text>
+<text x="445.0" y="209" text-anchor="middle" font-family="Arial,sans-serif" font-size="25" font-weight="600" fill="#527DA8"><tspan x="445.0" dy="0">Y</tspan></text>
+<text x="652.0" y="101" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="600" fill="#637381"><tspan x="652.0" dy="0">4</tspan></text>
+<text x="657.0" y="255" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="600" fill="#527DA8"><tspan x="657.0" dy="0">Wash</tspan></text>
+<text x="657.0" y="297" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="600" fill="#637381"><tspan x="657.0" dy="0">Remove unbound</tspan><tspan x="657.0" dy="18.4">material</tspan></text>
+<text x="834.0" y="101" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="600" fill="#637381"><tspan x="834.0" dy="0">5</tspan></text>
+<text x="839.0" y="255" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="600" fill="#527DA8"><tspan x="839.0" dy="0">Elute</tspan></text>
+<text x="839.0" y="297" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="600" fill="#637381"><tspan x="839.0" dy="0">Recover enriched</tspan><tspan x="839.0" dy="18.4">proteins</tspan></text>
+<text x="1016.0" y="101" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="600" fill="#637381"><tspan x="1016.0" dy="0">6</tspan></text>
+<text x="1021.0" y="255" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="600" fill="#527DA8"><tspan x="1021.0" dy="0">Readout</tspan></text>
+<text x="1021.0" y="297" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="600" fill="#637381"><tspan x="1021.0" dy="0">Immunoblot or MS</tspan></text>
+<text x="36" y="394" text-anchor="start" font-family="Arial,sans-serif" font-size="16" font-weight="600" fill="#637381"><tspan x="36" dy="0">Schematic · adapt labels and controls to your experiment</tspan></text>
+</svg>

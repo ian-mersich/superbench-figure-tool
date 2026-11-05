@@ -1,0 +1,708 @@
+{
+  "schema": "figureStudio.scientificScene.v1",
+  "id": "sandwich-elisa-workflow",
+  "name": "Sandwich ELISA workflow",
+  "summary": "Capture antibody, sample antigen, detection antibody, enzyme signal, and calibrated readout.",
+  "source_record_id": "source.figure-studio-scene-expansion.2026-11-03",
+  "rights_record_id": "rights.figure-studio-scene-expansion.repository-cc0.2026-11-03",
+  "scientific_record": {
+    "id": "science.figure-studio.sandwich-elisa-workflow.2026-11-03",
+    "verified_on": "2026-11-03",
+    "scope": "Capture antibody, sample antigen, detection antibody, enzyme signal, and calibrated readout.",
+    "relationships": [
+      {
+        "claim": "Two antibodies recognize distinct epitopes of an analyte; an enzyme-linked detection system produces a measurable signal for comparison with standards.",
+        "source_ids": [
+          "gonzalez-2011",
+          "kragstrup-2013"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "gonzalez-2011",
+        "citation": "Gonzalez RM et al. Development of a fibrinogen-specific sandwich enzyme-linked immunosorbent assay microarray assay for distinguishing between blood plasma and serum samples. Anal Biochem. 2011;414(1):99–102.",
+        "doi": "10.1016/j.ab.2011.02.039",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3097095/",
+        "support_location": "Methods: Antibody Source and Preparation and ELISA Microarray Processing; describes the capture and detection antibody configuration used in this assay.",
+        "decision": "Show capture and detection as separate antibody-binding events, with standards carried into the readout. Do not invent a calibration curve or imply that antibody pairing is validated."
+      },
+      {
+        "id": "kragstrup-2013",
+        "citation": "Kragstrup TW et al. A simple set of validation steps identifies and removes false results in a sandwich enzyme-linked immunosorbent assay caused by anti-animal IgG antibodies in plasma from arthritis patients. SpringerPlus. 2013;2:263.",
+        "doi": "10.1186/2193-1801-2-263",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/23875127/",
+        "support_location": "Methods and Table 1; the assay describes capture and biotin-conjugated detection antibody, supporting explicit treatment of the downstream detection reagent.",
+        "decision": "Show capture and detection as separate antibody-binding events, with standards carried into the readout. Do not invent a calibration curve or imply that antibody pairing is validated."
+      }
+    ],
+    "limitations": [
+      "Schematic only. No standard curve or concentrations are supplied. Antibody pairing, matrix effects, cross-reactivity, sample dilution, calibration range, and signal saturation must be assessed for the analyte and sample type."
+    ],
+    "authorship": "Original editable scene composed from released Figure Studio assets and original vector/text objects; published figures informed scientific relationships only. No publication artwork was copied, traced, or embedded."
+  },
+  "insertion_art_style": "soft-color",
+  "canvas": {
+    "width": 1120,
+    "height": 430,
+    "width_in": 11.666666666666666,
+    "height_in": 4.479166666666667,
+    "background_role": "background"
+  },
+  "palette": {
+    "background": "#F7F9FC",
+    "surface": "#FFFFFF",
+    "ink": "#24313B",
+    "muted": "#637381",
+    "border": "#C9D5DE",
+    "sample": "#2A8C82",
+    "process": "#527DA8",
+    "signal": "#D79A31",
+    "caution": "#9A5F33",
+    "accent": "#7667A8",
+    "soft": "#E7EEF4"
+  },
+  "layers": [
+    {
+      "id": "workflow_stages",
+      "name": "Experimental stages"
+    },
+    {
+      "id": "biological_objects",
+      "name": "Biological objects and assay equipment"
+    },
+    {
+      "id": "workflow_relationships",
+      "name": "Experimental sequence"
+    },
+    {
+      "id": "editable_labels",
+      "name": "Editable labels"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "title",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 36,
+      "y": 24,
+      "width": 1048,
+      "height": 32,
+      "text": "Sandwich ELISA workflow",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 27,
+      "fill_role": "ink",
+      "align": "left",
+      "include_scientific_record": true
+    },
+    {
+      "id": "stage_1_object",
+      "name": "Stage 1 Object",
+      "type": "asset",
+      "layer_id": "biological_objects",
+      "asset_id": "core.antibody.igg",
+      "top_level": true,
+      "x": 48,
+      "y": 127,
+      "width": 74,
+      "height": 74,
+      "palette_overrides": {
+        "outline": "ink"
+      }
+    },
+    {
+      "id": "stage_1_number",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 86,
+      "y": 85,
+      "width": 40,
+      "height": 22,
+      "text": "1",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 16,
+      "fill_role": "muted",
+      "align": "center"
+    },
+    {
+      "id": "stage_1_label",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 24,
+      "y": 238,
+      "width": 174,
+      "height": 43,
+      "text": "Coat",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 17,
+      "fill_role": "process",
+      "align": "center"
+    },
+    {
+      "id": "stage_1_caption",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 24,
+      "y": 281,
+      "width": 174,
+      "height": 54,
+      "text": "Immobilize capture antibody",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 16,
+      "fill_role": "muted",
+      "align": "center"
+    },
+    {
+      "id": "stage_2_object",
+      "name": "Stage 2 Object",
+      "type": "asset",
+      "layer_id": "biological_objects",
+      "asset_id": "core.lab.plate_96_well",
+      "top_level": true,
+      "x": 230,
+      "y": 127,
+      "width": 74,
+      "height": 74,
+      "palette_overrides": {
+        "outline": "ink"
+      }
+    },
+    {
+      "id": "stage_2_number",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 268,
+      "y": 85,
+      "width": 40,
+      "height": 22,
+      "text": "2",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 16,
+      "fill_role": "muted",
+      "align": "center"
+    },
+    {
+      "id": "stage_2_label",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 206,
+      "y": 238,
+      "width": 174,
+      "height": 43,
+      "text": "Block",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 17,
+      "fill_role": "process",
+      "align": "center"
+    },
+    {
+      "id": "stage_2_caption",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 206,
+      "y": 281,
+      "width": 174,
+      "height": 54,
+      "text": "Limit nonspecific binding",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 16,
+      "fill_role": "muted",
+      "align": "center"
+    },
+    {
+      "id": "stage_3_object",
+      "type": "shape",
+      "shape": "rounded_rect",
+      "layer_id": "workflow_stages",
+      "x": 433,
+      "y": 151,
+      "width": 45,
+      "height": 45,
+      "radius": 22,
+      "fill_role": "sample",
+      "stroke_role": "ink",
+      "stroke_width": 1.8
+    },
+    {
+      "id": "stage_3_number",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 450,
+      "y": 85,
+      "width": 40,
+      "height": 22,
+      "text": "3",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 16,
+      "fill_role": "muted",
+      "align": "center"
+    },
+    {
+      "id": "stage_3_label",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 388,
+      "y": 238,
+      "width": 174,
+      "height": 43,
+      "text": "Add sample",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 17,
+      "fill_role": "process",
+      "align": "center"
+    },
+    {
+      "id": "stage_3_caption",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 388,
+      "y": 281,
+      "width": 174,
+      "height": 54,
+      "text": "Analyte binds capture",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 16,
+      "fill_role": "muted",
+      "align": "center"
+    },
+    {
+      "id": "captured_antibody",
+      "name": "Captured Antibody",
+      "type": "asset",
+      "layer_id": "biological_objects",
+      "asset_id": "core.antibody.igg",
+      "top_level": true,
+      "x": 424,
+      "y": 178,
+      "width": 60,
+      "height": 60,
+      "palette_overrides": {
+        "outline": "ink"
+      }
+    },
+    {
+      "id": "analyte_label",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 476,
+      "y": 151,
+      "width": 75,
+      "height": 22,
+      "text": "Antigen",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 14,
+      "fill_role": "sample",
+      "align": "center"
+    },
+    {
+      "id": "stage_4_object",
+      "name": "Stage 4 Object",
+      "type": "asset",
+      "layer_id": "biological_objects",
+      "asset_id": "core.antibody.igg",
+      "top_level": true,
+      "x": 594,
+      "y": 127,
+      "width": 74,
+      "height": 74,
+      "palette_overrides": {
+        "outline": "ink"
+      }
+    },
+    {
+      "id": "stage_4_number",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 632,
+      "y": 85,
+      "width": 40,
+      "height": 22,
+      "text": "4",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 16,
+      "fill_role": "muted",
+      "align": "center"
+    },
+    {
+      "id": "stage_4_label",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 570,
+      "y": 238,
+      "width": 174,
+      "height": 43,
+      "text": "Detect",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 17,
+      "fill_role": "process",
+      "align": "center"
+    },
+    {
+      "id": "stage_4_caption",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 570,
+      "y": 281,
+      "width": 174,
+      "height": 54,
+      "text": "Enzyme-linked antibody",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 16,
+      "fill_role": "muted",
+      "align": "center"
+    },
+    {
+      "id": "detection_enzyme",
+      "type": "shape",
+      "shape": "rounded_rect",
+      "layer_id": "workflow_stages",
+      "x": 633,
+      "y": 177,
+      "width": 18,
+      "height": 18,
+      "radius": 9,
+      "fill_role": "signal",
+      "stroke_role": "ink",
+      "stroke_width": 1.8
+    },
+    {
+      "id": "enzyme_label",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 653,
+      "y": 174,
+      "width": 80,
+      "height": 22,
+      "text": "Enzyme",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 14,
+      "fill_role": "signal",
+      "align": "center"
+    },
+    {
+      "id": "stage_5_object",
+      "name": "Stage 5 Object",
+      "type": "asset",
+      "layer_id": "biological_objects",
+      "asset_id": "core.lab.plate_96_well",
+      "top_level": true,
+      "x": 776,
+      "y": 127,
+      "width": 74,
+      "height": 74,
+      "palette_overrides": {
+        "outline": "ink"
+      }
+    },
+    {
+      "id": "stage_5_number",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 814,
+      "y": 85,
+      "width": 40,
+      "height": 22,
+      "text": "5",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 16,
+      "fill_role": "muted",
+      "align": "center"
+    },
+    {
+      "id": "stage_5_label",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 752,
+      "y": 238,
+      "width": 174,
+      "height": 43,
+      "text": "Develop",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 17,
+      "fill_role": "process",
+      "align": "center"
+    },
+    {
+      "id": "stage_5_caption",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 752,
+      "y": 281,
+      "width": 174,
+      "height": 54,
+      "text": "Enzyme + substrate",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 16,
+      "fill_role": "muted",
+      "align": "center"
+    },
+    {
+      "id": "stage_6_object",
+      "name": "Stage 6 Object",
+      "type": "asset",
+      "layer_id": "biological_objects",
+      "asset_id": "core.lab.plate_reader",
+      "top_level": true,
+      "x": 958,
+      "y": 127,
+      "width": 74,
+      "height": 74,
+      "palette_overrides": {
+        "outline": "ink"
+      }
+    },
+    {
+      "id": "stage_6_number",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 996,
+      "y": 85,
+      "width": 40,
+      "height": 22,
+      "text": "6",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 16,
+      "fill_role": "muted",
+      "align": "center"
+    },
+    {
+      "id": "stage_6_label",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 934,
+      "y": 238,
+      "width": 174,
+      "height": 43,
+      "text": "Read",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 17,
+      "fill_role": "process",
+      "align": "center"
+    },
+    {
+      "id": "stage_6_caption",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 934,
+      "y": 281,
+      "width": 174,
+      "height": 54,
+      "text": "Compare with standards",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 16,
+      "fill_role": "muted",
+      "align": "center"
+    },
+    {
+      "id": "illustrative_note",
+      "type": "text",
+      "layer_id": "editable_labels",
+      "x": 36,
+      "y": 378,
+      "width": 1048,
+      "height": 22,
+      "text": "Schematic · adapt labels and controls to your experiment",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 16,
+      "fill_role": "muted",
+      "align": "left"
+    }
+  ],
+  "groups": [
+    {
+      "id": "stage_1",
+      "name": "Coat",
+      "layer_id": "workflow_stages",
+      "members": [
+        "stage_1_object",
+        "stage_1_number",
+        "stage_1_label",
+        "stage_1_caption"
+      ]
+    },
+    {
+      "id": "stage_2",
+      "name": "Block",
+      "layer_id": "workflow_stages",
+      "members": [
+        "stage_2_object",
+        "stage_2_number",
+        "stage_2_label",
+        "stage_2_caption"
+      ]
+    },
+    {
+      "id": "stage_3",
+      "name": "Add sample",
+      "layer_id": "workflow_stages",
+      "members": [
+        "stage_3_object",
+        "stage_3_number",
+        "stage_3_label",
+        "stage_3_caption",
+        "captured_antibody",
+        "analyte_label"
+      ]
+    },
+    {
+      "id": "stage_4",
+      "name": "Detect",
+      "layer_id": "workflow_stages",
+      "members": [
+        "stage_4_object",
+        "stage_4_number",
+        "stage_4_label",
+        "stage_4_caption",
+        "detection_enzyme",
+        "enzyme_label"
+      ]
+    },
+    {
+      "id": "stage_5",
+      "name": "Develop",
+      "layer_id": "workflow_stages",
+      "members": [
+        "stage_5_object",
+        "stage_5_number",
+        "stage_5_label",
+        "stage_5_caption"
+      ]
+    },
+    {
+      "id": "stage_6",
+      "name": "Read",
+      "layer_id": "workflow_stages",
+      "members": [
+        "stage_6_object",
+        "stage_6_number",
+        "stage_6_label",
+        "stage_6_caption"
+      ]
+    }
+  ],
+  "connectors": [
+    {
+      "id": "stage_1_to_2",
+      "layer_id": "workflow_relationships",
+      "from": {
+        "node_id": "stage_1_object",
+        "anchor": "right"
+      },
+      "to": {
+        "node_id": "stage_2_object",
+        "anchor": "left"
+      },
+      "relation": "binding",
+      "label": "",
+      "style": {
+        "stroke_role": "process",
+        "stroke_width": 2.2,
+        "line": "solid",
+        "terminator": "arrow"
+      }
+    },
+    {
+      "id": "stage_2_to_3",
+      "layer_id": "workflow_relationships",
+      "from": {
+        "node_id": "stage_2_object",
+        "anchor": "right"
+      },
+      "to": {
+        "node_id": "stage_3_object",
+        "anchor": "left"
+      },
+      "relation": "conversion",
+      "label": "",
+      "style": {
+        "stroke_role": "process",
+        "stroke_width": 2.2,
+        "line": "solid",
+        "terminator": "arrow"
+      }
+    },
+    {
+      "id": "stage_3_to_4",
+      "layer_id": "workflow_relationships",
+      "from": {
+        "node_id": "stage_3_object",
+        "anchor": "right"
+      },
+      "to": {
+        "node_id": "stage_4_object",
+        "anchor": "left"
+      },
+      "relation": "binding",
+      "label": "",
+      "style": {
+        "stroke_role": "process",
+        "stroke_width": 2.2,
+        "line": "solid",
+        "terminator": "arrow"
+      }
+    },
+    {
+      "id": "stage_4_to_5",
+      "layer_id": "workflow_relationships",
+      "from": {
+        "node_id": "stage_4_object",
+        "anchor": "right"
+      },
+      "to": {
+        "node_id": "stage_5_object",
+        "anchor": "left"
+      },
+      "relation": "binding",
+      "label": "",
+      "style": {
+        "stroke_role": "process",
+        "stroke_width": 2.2,
+        "line": "solid",
+        "terminator": "arrow"
+      }
+    },
+    {
+      "id": "stage_5_to_6",
+      "layer_id": "workflow_relationships",
+      "from": {
+        "node_id": "stage_5_object",
+        "anchor": "right"
+      },
+      "to": {
+        "node_id": "stage_6_object",
+        "anchor": "left"
+      },
+      "relation": "measurement",
+      "label": "",
+      "style": {
+        "stroke_role": "process",
+        "stroke_width": 2.2,
+        "line": "solid",
+        "terminator": "arrow"
+      }
+    }
+  ]
+}
