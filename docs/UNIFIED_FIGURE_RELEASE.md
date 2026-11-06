@@ -2,40 +2,43 @@
 
 The canonical Figure repository is `C:\Users\ianme\Desktop\Projects\superbench_figure_tool`.
 The browser site and Superbench consume one committed editor and asset collection.
-The delivered beta.24 contains 526 drawings for 398 concepts in 13 packs, four
+The delivered beta.25 contains 526 drawings for 398 concepts in 13 packs, four
 drawing styles, 20 scientific templates and three Figure layouts. Fixes belong here. Do not maintain a second editor in the
 public source checkout or backport individual fixes into the old beta.6 site.
 
-## Beta.25 component preparation — 5 November 2026
+## Beta.25 delivery — 5 November 2026
 
-The candidate contains the accepted combined Selection and Groups/Layers
+The delivered editor contains the accepted combined Selection and Groups/Layers
 checkpoint `3fd62120`: consistent object/point toggles, mixed marquees, ordinary
 drag cancellation, multi-object Redo poses, ancestor-aware child availability
 and restored native control coordinates. Whole labels remain editable text.
-The required version change is metadata only; normalizing the App header to
+The version change is metadata only; normalizing the App header to
 beta.24 must reproduce the accepted combined runtime exactly. Private working
 experiments remain excluded.
 
-Build the actual native/static artifacts from the committed seal and qualify
-them at all three desktop sizes in both themes. Reuse the accepted saved asset
-composition and scientific PDF, preserve meaningful movement with production
-snapping, and require new-version Saves/fresh-process continued editing plus a
+The exact native/static artifacts from committed source `f718d3dc` passed all
+three desktop sizes in both themes. Qualification includes the retained asset
+composition and scientific PDF, meaningful movement with production snapping,
+new-version Saves and fresh-browser continued editing, Library insertion and a
 read-only beta.24 compatibility Open. Whole imported-owner selection through
-Layers is qualified; every Illustrator group-click behavior and semantic plot
-grouping remain outside that claim.
+Layers is qualified; complete Illustrator group-click behavior and semantic
+plot grouping remain open.
 
 The source export retains all five new selection/group regression tests and
-their actual helpers/fixtures. Its generated CI runs the eleven-file targeted
-suite. Run that command and the required Python checks in the actual slim
-export before the first full source ZIP; reuse verified preferred sources
-read-only. Defer that large archive until the versioned package is a winning
-candidate. The native/API boundary is unchanged, so Root owns qualification of
-the existing beta.5 host without a host/MSI rebuild.
+their actual helpers/fixtures. The actual slim export and exact public commit
+passed the eleven-file targeted suite and required Python checks. Both public
+archive streams match the sealed artifacts, including verified preferred
+sources. The existing beta.5 desktop host passed separate component checks;
+this delivery includes no host or MSI rebuild.
 
-Stop at the exact qualified artifact/source handoff. Beta.24 remains selected;
-catalog signing, public publication, trust and activation require fresh Root
-authority. Geometry follows this delivery checkpoint; sustained dragging
-remains deferred.
+Following package-bound coordinator approval, beta.25 is published and selected
+locally, with trusted beta.24 retained for rollback. All 1,723 deployed HTTPS
+payload files match the package. One fresh public Groups/Layers case adds 150
+checks, four actual Saves and 20 independently reviewed originals; it reuses
+the qualified package matrix rather than repeating the full live matrix.
+The [publication record](PUBLIC_PUBLICATION.md) links the final evidence and
+limits. Geometry follows this delivery checkpoint; sustained dragging remains
+open. The roadmap remains the same.
 
 ## Beta.24 component preparation — 4 November 2026
 

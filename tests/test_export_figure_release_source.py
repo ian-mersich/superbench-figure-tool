@@ -126,7 +126,8 @@ def test_export_retains_approved_selection_suite_dependencies_and_ci_before_arch
     tests = (
         "singleObjectShiftClick", "objectShiftMarquee", "ordinaryCanvasDragCancel",
         "historyActiveSelectionPose", "directSelectionTextMarquee", "groupObjectSelection",
-        "pathPointGesture", "pathNodeDragReadScope", "pdfDenseInspectorDisplay",
+        "pathPointGesture", "pathNodeDragReadScope", "pathSegmentTargets",
+        "pathClosestSegment", "pathHandleModifiers", "pdfDenseInspectorDisplay",
         "isolationTransformTarget", "isolationAvailability",
     )
     expected_tests = tuple(f"tests/{name}.test.cjs" for name in tests)
@@ -136,7 +137,21 @@ def test_export_retains_approved_selection_suite_dependencies_and_ci_before_arch
         "tests/fixtures/pdf-dense-canvas-restore-app959.json",
         "tests/fixtures/path-node-drag-app632.js",
     )
-    required = (*expected_tests, *dependencies)
+    browser_support = (
+        "requirements-browser-qa.txt",
+        "scripts/geometry_qa/probe.py", "scripts/geometry_qa/qualify.py",
+        "scripts/geometry_qa/source-cases.py", "tests/vectorEngine.test.mjs",
+        "scripts/check-direct-selection-label-interactions-browser.py",
+        "scripts/check-direct-selection-labels-browser.py", "scripts/check-figure2-whole-label-browser.py",
+        "scripts/check-figure2-object-selection-browser.py", "scripts/check-figure2-point-continuation-browser.py",
+        "scripts/check-path-point-gesture-browser.py", "scripts/check-point-selection-body-drag-browser.py",
+        "scripts/check-direct-selection-draw-browser.py", "scripts/check-figure-pdf-editing-browser.py",
+        "scripts/check-library-drawings-browser.py", "scripts/check-rna-artwork-browser.py",
+        "scripts/check-scientific-catalog-schema.py", "scripts/figure-studio-server.py",
+        "scripts/figure_package_qa.py", "scripts/figure_studio_entry_qa.py",
+        "scripts/path_point_paint_qa.py", "scripts/action-paint-observer.js",
+    )
+    required = (*expected_tests, *dependencies, *browser_support)
     assert set(required) <= set(exporter.SUPPORT_FILES)
     assert len(exporter.SUPPORT_FILES) == len(set(exporter.SUPPORT_FILES))
     repository_root = Path(exporter.__file__).resolve().parents[1]
@@ -160,6 +175,9 @@ def test_export_retains_approved_selection_suite_dependencies_and_ci_before_arch
         command = "node --test " + " ".join(expected_tests)
         assert workflow.count(command) == 1
         assert workflow.index(command) < workflow.index("python -m pytest")
+        assert "-r requirements-browser-qa.txt" in workflow
+        for controller in ("qualify.py", "source-cases.py"):
+            assert f"python scripts/geometry_qa/{controller} --help" in workflow
         stages.append("approved-suite-present-before-archive")
         raise RuntimeError("Stop after source-support verification")
     monkeypatch.setattr(exporter, "prepare_vendor_materials",

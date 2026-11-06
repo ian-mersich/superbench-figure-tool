@@ -179,7 +179,7 @@ test('segment Escape restores raw legacy metadata, prior selection and dirty anc
   const drag={pathSnapshot:[['M',-0,10],['Q',20,-15,40,10]],bezierNodeMeta:metadata,selectedBefore:selected,selectionBefore:[selected],selectedSegmentBefore:{endCommandIndex:1}};
   const context=vm.createContext({pathNodeEdit:{segmentDrag:drag},objectForPathHandleRef:()=>object,
     cloneManifestValue:v=>JSON.parse(JSON.stringify(v)),resetPaintedVectorDirectSelectionCycle(){},els:{pathNodeOverlay:{}},
-    renderPathNodeOverlay(){},renderIsolationSelectionOverlay(){},ensureDirectSelectionCanvasCollection(){},canvas:{requestRenderAll(){}},syncInspector(){}});
+    renderPathNodeOverlay(){},renderIsolationSelectionOverlay(){},ensureDirectSelectionCanvasCollection(){},canvas:{requestRenderAll(){}},syncInspector(){},updatePathNodeStatus(){}});
   actual('copyPathCommands',context);actual('requestCanvasArtworkRender',context);actual('cancelPathSegmentDrag',context)({preventDefault(){}});
   assert.equal(context.pathNodeEdit.segmentDrag,null);assert.deepEqual(object.figureStudioBezierNodeMeta,metadata);
   assert.deepEqual(Array.from(object.path,c=>Array.from(c)),drag.pathSnapshot);assert.equal(Object.is(object.path[0][1],-0),true);
@@ -271,10 +271,10 @@ for(const alreadyEdited of [false,true])for(const hasLabels of [false,true])for(
     const context=vm.createContext({fabricRef:fabric,pathNodeEdit:{object:a,objects:priorObjects,selected,selectedHandles:[selected],selectedSegment:null},
       densePdfApi:()=>null,resetPaintedVectorDirectSelectionCycle(){},els:{viewport:{focus(){focused++;}},pathNodeOverlay:{}},
       selectionOverlayRenderOnly:false,suppressNextFullCanvasRender:false,
-      canvas:{getScenePoint:()=>({x:21,y:4}),requestRenderAll(){if(context.selectionOverlayRenderOnly||context.suppressNextFullCanvasRender)return;paints++;paintedPath=structuredClone(b.path);}},closestSegmentT:()=>.5,
+      canvas:{getScenePoint:()=>({x:21,y:4}),discardActiveObject(){},requestRenderAll(){if(context.selectionOverlayRenderOnly||context.suppressNextFullCanvasRender)return;paints++;paintedPath=structuredClone(b.path);}},closestSegmentT:()=>.5,
       pathLocalPointToCanvas:(_o,p)=>p,segmentPointAt:()=>({x:20,y:-5}),pathObjectSceneMatrix:o=>o.calcTransformMatrix(),
       qualifyPathSegment:(_o,s)=>s,pathEditObjectId:o=>o.figureId,cloneManifestValue:v=>v==null?null:JSON.parse(JSON.stringify(v)),
-      objectForPathHandleRef:()=>b,syncInspector(){},renderPathNodeOverlay(){context.selectionOverlayRenderOnly=true;context.suppressNextFullCanvasRender=true;},renderIsolationSelectionOverlay(){}});
+      objectForPathHandleRef:()=>b,syncInspector(){},updatePathNodeStatus(){},renderPathNodeOverlay(){context.selectionOverlayRenderOnly=true;context.suppressNextFullCanvasRender=true;},renderIsolationSelectionOverlay(){}});
     context.pathNodeEditObjects=()=>context.pathNodeEdit.objects.filter(object=>object!==label);
     context.directSelectionObjects=()=>context.pathNodeEdit.objects;
     context.ensureDirectSelectionCanvasCollection=()=>{canvasSelection=Array.from(context.pathNodeEdit.objects);};

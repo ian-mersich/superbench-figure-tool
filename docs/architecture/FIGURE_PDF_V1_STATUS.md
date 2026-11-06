@@ -2,6 +2,46 @@
 
 ## Current status — 5 November 2026
 
+Figure beta.25 is the synchronized desktop/web delivery. The runtime and support
+source are `f718d3dc`; the documentation-only source revision is `b744782b`.
+The local package `355d0f0a` contains 1,723 files. Public source commit
+`dcd16ee9` and website commit `87df773e` passed exact-head source CI and Pages
+deployment. The Core pin, active package, installed beta.25 and persistent trust
+agree; beta.24 remains available for rollback. The existing beta.5 host is
+unchanged.
+
+Scoped qualification passes 900 checks across six Groups/Layers cases, 155
+Library checks and seven read-only beta.24 reader checks: 1,062 total, with 26
+actual Saves and 133 reviewed originals. A fresh public case adds 150 checks,
+four actual Saves and 20 independently reviewed originals. The earlier public
+failure and initial visual-review HOLD remain failures; the corrected whole
+retry and visual review pass. Two worker bodies remain unavailable and are not
+counted as body matches. Installed and portable 60-second whole-workflow checks
+pass as functional qualification; the latest beta.25 installed 45-second
+startup miss remains a failure.
+
+Scientific PDF V1, complete Illustrator/Affinity selection parity, fidelity,
+performance and whole-project coverage remain open. The 100 ms blocking limit,
+dense selection-outline crowding and retained Figure 2 Canvas appearance
+failure (3.358% against the fixed 2.5% limit) remain open. Smoother sustained
+dragging is deferred. A local precise-geometry correction now addresses
+reproduced short-edge admission, overlapping segment targets and PDF control
+obstruction. It preserves native path editing and editable text. Functional
+qualification passes 2,132 browser checks across six desktop/theme compound
+cases, an actual Library compound and the retained Figure 2 PDF, with 16 actual
+Saves and fresh-process continued editing. Independent review accepts all 144
+original screenshots and 16 actual saved files; source and private-preservation
+reviews also pass. This is a local source checkpoint and beta.25 remains
+delivered. See the [geometry checkpoint](PATH_SEGMENT_SCREEN_TARGETS_2026_11_05.md)
+and [active implementation plan](SELECTION_PDF_RESUMPTION_2026_10_22.md).
+
+The beta.25 delivery advances the existing roadmap without changing its scope
+or milestones. The full V1 acceptance contract still requires broader editing,
+scientific-corpus fidelity and export/reimport qualification.
+
+## Historical beta.24 status before beta.25 delivery — 5 November 2026
+
+This section preserves beta.24 qualification and startup/latency observations as they stood before beta.25 delivery. Its claims and verdicts are historical and do not describe the current release.
 Figure beta.24 is the synchronized desktop/web delivery. See the
 [beta.24 release](https://github.com/ian-mersich/superbench-figure-tool/releases/tag/v1.0.0-beta.24)
 and the [current Core Figure pin](https://github.com/ian-mersich/superbench/blob/main/config/figure-release.json).

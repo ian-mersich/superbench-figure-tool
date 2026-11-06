@@ -2,40 +2,45 @@
 
 ## Active plan — 5 November 2026
 
-Ian has changed the immediate priority. Beta.24 is the delivered baseline;
-its two drag-start corrections and the qualified editable-text/Save/Open
-behavior must be preserved. See the [current acceptance status](FIGURE_PDF_V1_STATUS.md).
-Smoother sustained dragging and compositing/coverage/replay investigations are
-deferred. The existing reuse and rounding assessments are closed checkpoints.
+Beta.25 is now the delivered baseline, with beta.24 retained for rollback and
+the existing beta.5 host unchanged. Preserve its verified selection,
+Groups/Layers, editable-text, Save/Open and trust behavior. The installed
+45-second startup miss remains a failure; installed and portable 60-second
+workflow checks establish functional qualification only. See the
+[current acceptance status](FIGURE_PDF_V1_STATUS.md). Scientific PDF V1,
+complete Illustrator/Affinity parity, fidelity and performance remain open;
+sustained dragging and compositing/coverage/replay investigations are deferred.
+The existing reuse and rounding assessments are closed checkpoints.
 
-Work in this order:
+Selection and Direct Selection reliability and Groups/Layers consistency are
+delivered in beta.25. The active slice is **precise geometry editing**. The
+local correction now makes zoomed short and curved edges reachable, resolves
+overlapping segment bands by native-curve distance, restores segment Escape
+selection state and keeps redundant PDF source badges off point controls.
+The [geometry checkpoint](PATH_SEGMENT_SCREEN_TARGETS_2026_11_05.md) records
+2,132 passing functional browser checks, 16 actual Saves and cold continued
+editing. Independent source, original-image and complete saved-content reviews
+pass. This local source checkpoint has not changed the delivered desktop/web
+selection.
 
-1. **Selection and Direct Selection reliability, with readable feedback.**
-   Close one demonstrated failure or missing public-gesture case on ordinary
-   artwork and an existing genuine scientific PDF. Cover click, marquee and
-   Shift add/remove; the intended body, stroke or anchor target; retention of
-   the selected set; and compact feedback that does not obscure the artwork.
-2. **Groups and Layers consistency.** Make canvas selection, Layers targeting,
-   whole-group movement, child editing and isolation entry/exit agree, without
-   unintended movement or ownership changes.
-3. **Precise geometry editing.** Cover anchors, tangents, segments, deletion and
-   topology, followed by mixed text/path transforms on nested, rotated and
-   reflected artwork.
+After coordinated integration of this checkpoint, the next geometry slice is
+node deletion and contour topology under nested transforms, followed by mixed
+text/path transforms. Sustained dragging remains deferred. The roadmap,
+priorities and V1 acceptance contract remain unchanged.
 
 Existing functions and completed pilots are the starting point. Diagnose actual
-behavior before changing code; missing evidence alone is not a product bug.
-Choose the fastest credible reuse-first route without duplicate tools or
-competing scene/history systems. Preserve native text/source content,
-cancellation, Undo/Redo, actual Save and fresh-process continued editing.
+behavior before changing code. Choose the fastest credible reuse-first route
+without duplicate tools or competing scene/history systems. Preserve native
+text/source content, cancellation, Undo/Redo, actual Save and fresh-process
+continued editing. Use the maintained unattended browser workflow, public
+gestures and natural painting for each coherent slice, with targeted regression
+checks and independent original-image review. Reuse fixtures and compact
+output. Run the broad desktop and theme matrix on a winning candidate. Root
+coordinates desktop/web promotion; this plan does not qualify or activate
+unfinished changes. The Selection and editable-PDF requirements remain those
+in the [parity contract](SELECTION_AND_PDF_PARITY_2026_10_21.md).
 
-Use the maintained unattended browser workflow, public gestures and natural
-painting for each coherent slice, with targeted regression checks and independent
-original-image review. Reuse fixtures and compact output. Run the broad desktop
-and theme matrix on a winning candidate. Root coordinates desktop/web promotion;
-this plan does not qualify or activate unfinished changes. The Selection and
-editable-PDF requirements remain those in the [parity contract](SELECTION_AND_PDF_PARITY_2026_10_21.md).
-
-### Local selection candidate — 5 November 2026
+### Historical local selection candidate — 5 November 2026
 
 Six corrections now address failures reproduced through public gestures:
 mixed Direct Selection marquees accept Fabric's temporary multi-selection;
@@ -70,7 +75,7 @@ Root accepted selection checkpoint `9483a817` as bounded source work. It is
 not a desktop/web delivery. The next Groups/Layers slice below uses the actual
 saved composition rather than repeating Library insertion.
 
-### Combined Selection and Groups/Layers candidate — 5 November 2026
+### Historical combined Selection and Groups/Layers candidate — 5 November 2026
 
 The Groups/Layers slice fixes three reproduced problems: Shift-click retained
 the final nested child; hiding or locking an ancestor left its child editable

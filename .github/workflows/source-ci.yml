@@ -13,9 +13,11 @@ jobs:
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version: '24'
-      - run: python -m pip install -r requirements-release.txt
+      - run: python -m pip install -r requirements-release.txt -r requirements-browser-qa.txt
       - run: python scripts/validate-scientific-assets.py --library --require-public-release
       - run: python scripts/validate-vendor-bundle.py
       - run: node --test tests/selectionFontScaleRead.test.cjs
-      - run: node --test tests/singleObjectShiftClick.test.cjs tests/objectShiftMarquee.test.cjs tests/ordinaryCanvasDragCancel.test.cjs tests/historyActiveSelectionPose.test.cjs tests/directSelectionTextMarquee.test.cjs tests/groupObjectSelection.test.cjs tests/pathPointGesture.test.cjs tests/pathNodeDragReadScope.test.cjs tests/pdfDenseInspectorDisplay.test.cjs tests/isolationTransformTarget.test.cjs tests/isolationAvailability.test.cjs
+      - run: node --test tests/singleObjectShiftClick.test.cjs tests/objectShiftMarquee.test.cjs tests/ordinaryCanvasDragCancel.test.cjs tests/historyActiveSelectionPose.test.cjs tests/directSelectionTextMarquee.test.cjs tests/groupObjectSelection.test.cjs tests/pathPointGesture.test.cjs tests/pathNodeDragReadScope.test.cjs tests/pathSegmentTargets.test.cjs tests/pathClosestSegment.test.cjs tests/pathHandleModifiers.test.cjs tests/pdfDenseInspectorDisplay.test.cjs tests/isolationTransformTarget.test.cjs tests/isolationAvailability.test.cjs
+      - run: python scripts/geometry_qa/qualify.py --help
+      - run: python scripts/geometry_qa/source-cases.py --help
       - run: python -m pytest -q tests/test_figure_tool_package_producer.py tests/test_scientific_product_release.py tests/test_scientific_product_release_expansion_20261103.py tests/test_export_figure_release_source.py tests/test_vendor_source_tools.py tests/test_vendor_fabric_portability.py

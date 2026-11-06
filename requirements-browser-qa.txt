@@ -1,0 +1,7 @@
+# Optional source-only browser qualification dependencies; absent from payloads.
+# Help/import checks need these packages but do not download or launch Chromium.
+playwright==1.60.0
+Pillow==12.2.0
+numpy==2.4.4
+pikepdf==10.9.1
+pypdfium2==5.13.0

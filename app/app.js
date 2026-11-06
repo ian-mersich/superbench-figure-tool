@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  const APP_VERSION = "1.0.0-beta.25";
+  const APP_VERSION = "1.0.0-beta.26";
   const PROJECT_SCHEMA = "figureStudio.project.v2";
   const DOCUMENT_KINDS = Object.freeze(["figure", "presentation"]);
   const FIRST_RUN_STORAGE_KEY = "figureStudio.firstRun.v2";
@@ -31683,7 +31683,15 @@
     if (els.canvasStage.style.width !== width) els.canvasStage.style.width = width;
     if (els.canvasStage.style.height !== height) els.canvasStage.style.height = height;
     els.canvasStage.style.transform = `translate(${state.view.panX}px, ${state.view.panY}px) scale(${state.view.zoom})`;
-    els.pathNodeOverlay?.style.setProperty("--path-node-inverse-zoom", String(1 / Math.max(0.08, state.view.zoom)));
+    const pathNodeInverseZoom = String(1 / Math.max(0.08, state.view.zoom));
+    const pathNodeZoomChanged = els.pathNodeOverlay?.style.getPropertyValue("--path-node-inverse-zoom") !== pathNodeInverseZoom;
+    els.pathNodeOverlay?.style.setProperty("--path-node-inverse-zoom", pathNodeInverseZoom);
+    if (pathNodeZoomChanged && pathNodeEdit.object && els.pathNodeOverlay && !els.pathNodeOverlay.hidden) {
+      // Wheel zoom updates the stage without rebuilding the point overlay.
+      // Refresh only its disposable segment targets; anchors and their focus stay put.
+      els.pathNodeOverlay.querySelectorAll(".path-segment-hit").forEach((hit) => hit.remove());
+      pathNodeEditObjects().forEach(renderPathSegmentTargets);
+    }
     els.canvasStage.style.setProperty("--canvas-handle-inverse-zoom", String(1 / Math.max(0.08, state.view.zoom)));
     els.canvasStage.classList.toggle("grid", state.settings.showGrid);
     els.canvasStage.style.backgroundSize = `${GRID}px ${GRID}px`;
@@ -42907,6 +42915,12 @@
       }
       return;
     }
+    if (els.objectStatusOverlay?.querySelector(".object-status-badge.source")
+        && state.tool === "directSelect" && pdfDirectLeafSourceIdentity(object)) {
+      // Point editing may start after ordinary selection painted its badge.
+      // Reconcile that stale detail once; later node renders skip this work.
+      renderObjectStatusOverlay();
+    }
     const editableObjects = pathNodeEditObjects();
     const handlesByObject = new Map(editableObjects.map((item) => [item, pathHandleDescriptors(item)]));
     const nodeMetaByObject = new Map(editableObjects.map((item) => [item, normalizedBezierNodeMeta(item)]));
@@ -43503,15 +43517,36 @@
 
   function renderPathSegmentTargets(object) {
     if (densePdfApi()?.pageForObject(object)) return;
+    const zoom = Math.max(0.08, state.view.zoom);
     pathSegmentDescriptors(object).forEach((segment) => {
-      const samples = samplePathSegment(segment, 12).map((point) => pathLocalPointToCanvas(object, point));
+      // Native path/ancestor transforms are already included in these points.
+      // Admit targets in CSS pixels, including short edges made usable by zoom.
+      const initialSamples = samplePathSegment(segment, 12).map((point) => pathLocalPointToCanvas(object, point));
+      const screenDistances = [0];
+      initialSamples.slice(1).forEach((point, index) => {
+        screenDistances.push(screenDistances[index]
+          + Math.hypot(point.x - initialSamples[index].x, point.y - initialSamples[index].y) * zoom);
+      });
+      const screenLength = screenDistances.at(-1);
+      const sampleCount = Math.max(3, Math.min(12, Math.floor(screenLength / 10)));
+      // Bézier parameter speed can be uneven. Space the smaller target set along
+      // projected arc length so it cannot skip a short curve's visible middle.
+      const samples = sampleCount === 12 ? initialSamples : Array.from({ length: sampleCount + 1 }, (_, index) => {
+        if (!index) return initialSamples[0];
+        if (index === sampleCount) return initialSamples.at(-1);
+        const distance = screenLength * index / sampleCount;
+        const upper = Math.max(1, screenDistances.findIndex((length) => length >= distance));
+        const interval = screenDistances[upper] - screenDistances[upper - 1];
+        const fraction = interval ? (distance - screenDistances[upper - 1]) / interval : 0;
+        return pathLocalPointToCanvas(object, segmentPointAt(segment, (upper - 1 + fraction) / 12));
+      });
       for (let index = 0; index < samples.length - 1; index += 1) {
         const midpoint = {
           x: (samples[index].x + samples[index + 1].x) / 2,
           y: (samples[index].y + samples[index + 1].y) / 2
         };
         const nearEndpoint = [samples[0], samples.at(-1)].some((endpoint) => (
-          Math.hypot(midpoint.x - endpoint.x, midpoint.y - endpoint.y) < 14
+          Math.hypot(midpoint.x - endpoint.x, midpoint.y - endpoint.y) * zoom < 14
         ));
         if (nearEndpoint) continue;
         appendPathSegmentHit(object, segment, samples[index], samples[index + 1], index, samples.length - 1);
@@ -43519,11 +43554,38 @@
     });
   }
 
+  function pathSegmentEventTarget(event, element, object, segment) {
+    const fallback = { element, object, segment };
+    if (!Number.isFinite(event.clientX) || !Number.isFinite(event.clientY) || !document.elementsFromPoint) return fallback;
+    const point = canvas.getScenePoint(event);
+    const seen = new Set();
+    const candidates = document.elementsFromPoint(event.clientX, event.clientY).flatMap((hit, rank) => {
+      if (!hit.matches?.(".path-segment-hit") || !els.pathNodeOverlay?.contains(hit) || hit.disabled) return [];
+      const objectId = String(hit.dataset.objectId || "");
+      const endCommandIndex = Number(hit.dataset.segmentEndCommand);
+      const identity = `${objectId}/${endCommandIndex}`;
+      if (seen.has(identity)) return [];
+      seen.add(identity);
+      const owner = objectForPathHandleRef({ objectId });
+      if (!owner || !pathNodeEditObjects().includes(owner)) return [];
+      const current = pathSegmentDescriptors(owner).find((item) => item.endCommandIndex === endCommandIndex);
+      if (!current) return [];
+      const t = closestSegmentRawT(owner, current, point);
+      const nearest = pathLocalPointToCanvas(owner, segmentPointAt(current, t));
+      const distance = (nearest.x - point.x) ** 2 + (nearest.y - point.y) ** 2;
+      return Number.isFinite(distance) ? [{ element: hit, object: owner, segment: current, distance, rank }] : [];
+    });
+    // Narrow bars and nearby contours can share a screen-sized hit band.
+    // Native curve distance resolves those bands; equal curves retain DOM order.
+    candidates.sort((a, b) => a.distance - b.distance || a.rank - b.rank);
+    return candidates[0] || fallback;
+  }
   function appendPathSegmentHit(object, segment, from, to, sampleIndex, sampleCount) {
     const dx = to.x - from.x;
     const dy = to.y - from.y;
     const length = Math.hypot(dx, dy);
-    if (!Number.isFinite(length) || length < 4) return;
+    const zoom = Math.max(0.08, state.view.zoom);
+    if (!Number.isFinite(length) || length * zoom < 4) return;
     const hit = document.createElement("button");
     hit.type = "button";
     hit.className = "path-segment-hit";
@@ -43538,20 +43600,21 @@
       hit.setAttribute("aria-pressed", "true");
     }
     hit.style.left = `${from.x}px`;
-    hit.style.top = `${from.y - 7}px`;
+    hit.style.top = `calc(${from.y}px - 7px * var(--path-node-inverse-zoom, 1))`;
     hit.style.width = `${length}px`;
     hit.style.transform = `rotate(${Math.atan2(dy, dx)}rad)`;
     hit.title = "Select or drag this segment; double-click to add a point";
     hit.setAttribute("aria-label", "Select or reshape path segment");
     hit.addEventListener("pointerdown", (event) => {
+      const target = pathSegmentEventTarget(event, hit, object, segment);
       if (state.tool === "addAnchor") {
         event.preventDefault();
         event.stopPropagation();
-        insertPathPointOnSegment(object, segment, canvasPointFromClient(event));
+        insertPathPointOnSegment(target.object, target.segment, canvasPointFromClient(event));
         renderPathNodeOverlay();
         return;
       }
-      beginPathSegmentDrag(event, object, segment);
+      beginPathSegmentDrag(event, target.object, target.segment);
     });
     hit.addEventListener("click", (event) => {
       event.preventDefault();
@@ -43561,13 +43624,16 @@
       event.preventDefault();
       event.stopPropagation();
       const clickPoint = canvasPointFromClient(event);
-      insertPathPointOnSegment(object, segment, clickPoint);
+      const target = pathSegmentEventTarget(event, hit, object, segment);
+      insertPathPointOnSegment(target.object, target.segment, clickPoint);
     });
     hit.addEventListener("keydown", (event) => {
       if (event.key !== "Enter" && event.key !== " ") return;
       event.preventDefault();
       event.stopPropagation();
-      insertPathPointOnSegment(object, segment, pathLocalPointToCanvas(object, segmentPointAt(segment, (sampleIndex + 0.5) / sampleCount)));
+      const midpoint = { x: (from.x + to.x) / 2, y: (from.y + to.y) / 2 };
+      const t = closestSegmentRawT(object, segment, midpoint);
+      insertPathPointOnSegment(object, segment, pathLocalPointToCanvas(object, segmentPointAt(segment, t)));
     });
     els.pathNodeOverlay.appendChild(hit);
   }
@@ -43593,6 +43659,12 @@
     const selectedSegmentBefore = pathNodeEdit.selectedSegment && { ...pathNodeEdit.selectedSegment };
     const objectBefore = pathNodeEdit.object;
     const objectsBefore = directSelectionObjects().slice();
+    const canvasActiveBefore = canvas.getActiveObject?.() || null;
+    const canvasActiveStateBefore = canvasActiveBefore ? {
+      selectable: canvasActiveBefore.selectable, evented: canvasActiveBefore.evented,
+      hasControls: canvasActiveBefore.hasControls, hasBorders: canvasActiveBefore.hasBorders,
+      lockMovementX: canvasActiveBefore.lockMovementX, lockMovementY: canvasActiveBefore.lockMovementY
+    } : null;
     pathNodeEdit.object = object;
     pathNodeEdit.objects = pathNodeEditObjects().includes(object) ? pathNodeEditObjects() : [object, ...pathNodeEditObjects()];
     pathNodeEdit.selectedSegment = qualifyPathSegment(object, segment);
@@ -43617,6 +43689,8 @@
       selectedSegmentBefore,
       objectBefore,
       objectsBefore,
+      canvasActiveBefore,
+      canvasActiveStateBefore,
       pointerId: event.pointerId,
       dirty: false
     };
@@ -43757,10 +43831,22 @@
     pathNodeEdit.object = drag.objectBefore || null;
     pathNodeEdit.objects = drag.objectsBefore || [];
     ensureDirectSelectionCanvasCollection();
+    if (Object.prototype.hasOwnProperty.call(drag, "canvasActiveBefore") && !drag.canvasActiveBefore) {
+      canvas.discardActiveObject();
+    } else if (drag.canvasActiveBefore?.canvas === canvas && canvas.getActiveObject?.() !== drag.canvasActiveBefore) {
+      // Isolation can keep its native active owner separate from the edited leaf.
+      // Escape restores that same routing owner as well as the point selection.
+      canvas.discardActiveObject();
+      canvas.setActiveObject(drag.canvasActiveBefore);
+    }
     renderIsolationSelectionOverlay();
     renderPathNodeOverlay();
     requestCanvasArtworkRender();
     syncInspector();
+    updatePathNodeStatus(pathNodeEdit.object);
+    if (drag.canvasActiveStateBefore && canvas.getActiveObject?.() === drag.canvasActiveBefore) {
+      drag.canvasActiveBefore.set(drag.canvasActiveStateBefore);
+    }
     return true;
   }
 
@@ -55640,9 +55726,11 @@
     if (!objectMayHaveStatusBadges(object)) return items;
     const status = appearanceInspectorStatus(object, [object]);
     const feature = appearanceInspectorFeatureSummary(object, status);
-    // The context bar and inspector already identify an isolated PDF child as
-    // source-backed. An extra canvas badge can hide an adjacent plotted mark.
-    if (status.sourceBacked && !(isGroupIsolationActive() && pdfDirectLeafSourceIdentity(object))) items.push({ label: "Source", kind: "source", title: "Source-backed object; unsupported native features remain preserved." });
+    // The context bar and Inspector identify the PDF leaf during isolation or
+    // point editing. A duplicate canvas badge can cover plotted marks/handles.
+    const editingPdfLeaf = (isGroupIsolationActive() || state.tool === "directSelect" && isPathNodeEditing(object))
+      && pdfDirectLeafSourceIdentity(object);
+    if (status.sourceBacked && !editingPdfLeaf) items.push({ label: "Source", kind: "source", title: "Source-backed object; unsupported native features remain preserved." });
     if (status.proxyBacked) items.push({ label: "Proxy", kind: "proxy", title: "Canvas uses a lightweight/source-backed proxy." });
     if (status.nativePdf) items.push({ label: "PDF", kind: "pdf", title: "Native PDF metadata is available for bounded writer actions." });
     if (feature.featureTypes.includes("clip_path")) items.push({ label: "Clip", kind: "clip", title: "Clip path structure detected." });

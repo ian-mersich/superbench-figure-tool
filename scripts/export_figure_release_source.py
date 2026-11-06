@@ -21,8 +21,25 @@ SELECTION_REGRESSION_TESTS = (
     "tests/ordinaryCanvasDragCancel.test.cjs", "tests/historyActiveSelectionPose.test.cjs",
     "tests/directSelectionTextMarquee.test.cjs", "tests/groupObjectSelection.test.cjs",
     "tests/pathPointGesture.test.cjs", "tests/pathNodeDragReadScope.test.cjs",
+    "tests/pathSegmentTargets.test.cjs", "tests/pathClosestSegment.test.cjs",
+    "tests/pathHandleModifiers.test.cjs",
     "tests/pdfDenseInspectorDisplay.test.cjs", "tests/isolationTransformTarget.test.cjs",
     "tests/isolationAvailability.test.cjs",
+)
+
+GEOMETRY_BROWSER_SUPPORT = (
+    "requirements-browser-qa.txt",
+    "scripts/geometry_qa/probe.py", "scripts/geometry_qa/qualify.py",
+    "scripts/geometry_qa/source-cases.py", "tests/vectorEngine.test.mjs",
+    "scripts/check-direct-selection-label-interactions-browser.py",
+    "scripts/check-direct-selection-labels-browser.py", "scripts/check-figure2-whole-label-browser.py",
+    "scripts/check-figure2-object-selection-browser.py", "scripts/check-figure2-point-continuation-browser.py",
+    "scripts/check-path-point-gesture-browser.py", "scripts/check-point-selection-body-drag-browser.py",
+    "scripts/check-direct-selection-draw-browser.py", "scripts/check-figure-pdf-editing-browser.py",
+    "scripts/check-library-drawings-browser.py", "scripts/check-rna-artwork-browser.py",
+    "scripts/check-scientific-catalog-schema.py", "scripts/figure-studio-server.py",
+    "scripts/figure_package_qa.py", "scripts/figure_studio_entry_qa.py",
+    "scripts/path_point_paint_qa.py", "scripts/action-paint-observer.js",
 )
 
 SUPPORT_FILES = (
@@ -59,6 +76,7 @@ SUPPORT_FILES = (
     "tests/test_scientific_product_release_expansion_20261103.py",
     "tests/test_export_figure_release_source.py",
     *SELECTION_REGRESSION_TESTS,
+    *GEOMETRY_BROWSER_SUPPORT,
     "tests/helpers/pdfDenseCanvasRestoreSource.cjs", "tests/helpers/pdfDenseCanvasRestoreDom.cjs",
     "tests/fixtures/pdf-dense-canvas-restore-app959.json",
     "tests/fixtures/path-node-drag-app632.js",
@@ -72,6 +90,7 @@ SUPPORT_FILES = (
     "docs/architecture/FIGURE_PDF_V1_STATUS.md",
     "docs/architecture/SELECTION_PDF_RESUMPTION_2026_10_22.md",
     "docs/architecture/PDF_POINT_DRAG_STARTUP_2026_11_04.md",
+    "docs/architecture/PATH_SEGMENT_SCREEN_TARGETS_2026_11_05.md",
     "docs/runtime/BROWSER_QA_PLAYBOOK.md",
 )
 
@@ -203,11 +222,13 @@ jobs:
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version: '24'
-      - run: python -m pip install -r requirements-release.txt
+      - run: python -m pip install -r requirements-release.txt -r requirements-browser-qa.txt
       - run: python scripts/validate-scientific-assets.py --library --require-public-release
       - run: python scripts/validate-vendor-bundle.py
       - run: node --test tests/selectionFontScaleRead.test.cjs
       - run: __SELECTION_REGRESSION_COMMAND__
+      - run: python scripts/geometry_qa/qualify.py --help
+      - run: python scripts/geometry_qa/source-cases.py --help
       - run: python -m pytest -q tests/test_figure_tool_package_producer.py tests/test_scientific_product_release.py tests/test_scientific_product_release_expansion_20261103.py tests/test_export_figure_release_source.py tests/test_vendor_source_tools.py tests/test_vendor_fabric_portability.py
 """.replace("__SELECTION_REGRESSION_COMMAND__", "node --test " + " ".join(SELECTION_REGRESSION_TESTS)), encoding="utf-8", newline="\n")
     verify_payload(repository, manifest)

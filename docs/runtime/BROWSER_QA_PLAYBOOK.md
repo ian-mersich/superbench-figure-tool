@@ -6,6 +6,16 @@ job at a time through `scripts/run-owned-browser-qa.py`, with a fresh output
 directory, a bounded deadline and source hashes before and after execution.
 Require a closed supervisor with zero remaining owned processes.
 
+For hosted cancellation checks that compare the document's unsaved flag, wait
+passively for the real Browser files status to report saved, the inner document
+to report clean and the browser session to be ready and idle before recording
+the gesture baseline. Record the session key and status. Public autosave can
+otherwise clear that flag during an exact cancellation. Keep the maintained
+artwork, selection, history and dirty-state assertions unchanged; never disable
+autosave, set dirty state or acknowledge a save directly. Preserve failed runs
+and use fresh paths for the complete retry, including stdout/stderr logs. The
+beta.25 public retry and diagnosis are retained under `qa_artifacts/rc40/publication`.
+
 For saved editable PDF text, verify the selected child before waiting for text
 controls. An ordinary click can select the PDF container; public double-click
 enters its contents. Preserve the first cold capture before any later entry or
@@ -609,3 +619,51 @@ and actual-file comparisons remain required. These checks do not qualify native
 Affinity/Illustrator OS clipboard transfer, installed Windows, or dragging speed.
 See `docs/architecture/CANVAS_CLIPBOARD_AND_SLIDEDECK_2026_10_31.md` for support
 and ownership boundaries.
+
+
+## Precise path geometry
+
+The public slim source carries the geometry controllers and their local helper
+dependencies. Install `requirements-browser-qa.txt` for their Python imports;
+use `python -m playwright install chromium` when running the actual journeys.
+Source CI checks both controller help entry points without launching a browser.
+Scientific fixture files remain separate explicit local inputs.
+
+Use `scripts/geometry_qa/qualify.py` for the controlled nested evenodd compound
+and `scripts/geometry_qa/source-cases.py --part library|pdf` for existing actual
+native sources. Both accept `--root`, `--expected-app-sha256`, `--output-dir`,
+`--viewport`, `--theme` and `--asset-fixture`. The source controller also accepts
+`--pdf-fixture`. `--base-runtime` serves an unchanged frozen runtime with only
+candidate App/styles overlaid. Keep the actual fixture files outside the public
+source archive; pin their complete bytes in each local job plan.
+
+Run through the shared, frozen and owned wrappers described above, one browser
+job at a time, with fresh output and all imported controller/helper/fixture
+files pinned. Retain the source interval, overlay-server closure and zero-owned-
+process supervisor result. A finite controller deadline is an ownership bound;
+a timeout is an incomplete whole case and requires a fresh run. It is not a
+product latency measurement.
+
+Choose coordinates from current native geometry and use trusted input. Read
+`getViewportStateForQa().zoom` when computing a public wheel input; a computed
+CSS matrix is rounded and can accumulate error. Continue measuring the actual
+DOM band and chord independently. Preserve the 4/14 CSS-pixel admission rules,
+endpoint/tangent priority, minimum/100%/maximum zoom and short straight/curved
+edge controls. Public middle-button panning may frame the complete target
+before observation; do not move artwork or use Fit to rescue cancellation.
+
+For a deformed PDF leaf, choose a current painted interior point rather than
+its former center or a numerically ambiguous boundary. A product paint helper
+may choose setup coordinates, but the trusted click must still select the
+original native ID. Do not call that setup an independent paint-hit oracle.
+Keep independent native-coordinate/transform checks for grabbed material,
+allowed operands, exact command types/arity, unedited contours and neighbors.
+
+Require actual Save downloads, complete file/model comparisons, both distinct
+native browser process IDs, first cold capture before navigation, continued
+editing, completed Undo/Redo and a second Save. Retain the established strict
+PDF and explicit Library comparison policies; do not add broad metadata or
+clip exclusions. Independent full-resolution image and actual-content reviews
+remain separate from structural checks. See the
+[screen-scale geometry checkpoint](../architecture/PATH_SEGMENT_SCREEN_TARGETS_2026_11_05.md)
+for the retained cases and qualification boundaries.
