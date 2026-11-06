@@ -176,6 +176,10 @@ test('PDF point editing keeps redundant Source detail off handles while retainin
   context.state.tool='select';
   assert.deepEqual(Array.from(badges(object),b=>b.kind),['source','clip']);
   assert.deepEqual(object,{pdfSourceId:'original-pdf'});
+  object.pdfTextRepresentation='editable-positioned-text';
+  assert.deepEqual(Array.from(badges(object),b=>b.kind),['clip'],'editable PDF label retains warnings without the duplicate Source badge');
+  assert.deepEqual(Array.from(badges(other),b=>b.kind),['source','clip'],'ordinary source objects keep their badge');
+  assert.deepEqual(object,{pdfSourceId:'original-pdf',pdfTextRepresentation:'editable-positioned-text'});
 });
 
 test('opening PDF point controls retires an already-rendered Source badge once',()=>{

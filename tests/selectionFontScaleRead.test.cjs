@@ -1,7 +1,7 @@
 'use strict';
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
 const fabric=require('../vendor/fabric/index.min.js');
-const source=fs.readFileSync(require.resolve('../app/app.js'),'utf8');
+const source=fs.readFileSync(process.env.FIGURE_APP_SOURCE || require.resolve('../app/app.js'),'utf8');
 const legacy=fs.readFileSync(require.resolve('./fixtures/shared-selection-font-app716.js'),'utf8');
 function actual(text,name,context){
   const a=text.indexOf('  function '+name+'('),b=text.indexOf('\n  function ',a+5);

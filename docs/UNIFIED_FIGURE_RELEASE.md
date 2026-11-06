@@ -2,9 +2,36 @@
 
 The canonical Figure repository is `C:\Users\ianme\Desktop\Projects\superbench_figure_tool`.
 The browser site and Superbench consume one committed editor and asset collection.
-The delivered beta.25 contains 526 drawings for 398 concepts in 13 packs, four
+The delivered beta.26 contains 526 drawings for 398 concepts in 13 packs, four
 drawing styles, 20 scientific templates and three Figure layouts. Fixes belong here. Do not maintain a second editor in the
 public source checkout or backport individual fixes into the old beta.6 site.
+
+## Beta.26 delivery — 5 November 2026
+
+Beta.26 delivers the accepted [path-editing correction](architecture/PATH_SEGMENT_SCREEN_TARGETS_2026_11_05.md).
+Short straight and curved edges remain reachable at the current zoom, narrow
+PDF bars select the intended edge, and point controls stay clear of the Source
+badge. Escape restores the preceding native point state. Whole labels remain
+editable text. The producer revision is `439efecb`; its functional App matches
+the accepted geometry checkpoint after normalizing the version literal.
+
+The exact package passed 577 checks, four actual Saves and independent review
+of 38 original screenshots. The separate earlier geometry evidence covers
+2,132 checks, 16 Saves and 144 originals; it is reused after complete functional
+parity proof. The actual slim source passed 252 Node checks, 112 Python checks,
+two real imports and two validators before its sole source archive was sealed.
+
+The source prerelease and browser site are published. All 1,723 deployed HTTPS
+payload files match the package. One additional live scientific-PDF journey
+passed 285 checks, two new Saves, complete saved-content review and independent
+review of all 18 originals. The existing desktop host passed separate component
+and normal installed/portable workflow checks. Beta.26 is selected locally with
+trusted beta.25 retained for rollback; no host or MSI rebuild was needed.
+
+The [publication record](PUBLIC_PUBLICATION.md) binds delivery and its limits.
+This closes the bounded geometry delivery. Node deletion and contour topology
+are next; sustained dense dragging, complete PDF fidelity and typography/export
+remain open. The roadmap remains the same.
 
 ## Beta.25 delivery — 5 November 2026
 

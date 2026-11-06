@@ -17786,19 +17786,7 @@ html .figure-studio-root :is(#figure-layout-mode, .figure-document-panel-actions
   outline: 2px solid var(--focus);
   outline-offset: -2px;
 }
-html .figure-studio-root[data-figure-layout="advanced"]:not([data-document-kind="presentation"]) #figure-simple-toolbar,
-html .figure-studio-root[data-figure-layout="advanced"]:not([data-document-kind="presentation"]) #figureSimpleStylePanel {
-  display: none;
-}
-html .figure-studio-root[data-figure-layout="simple"][data-simple-properties="compact"]:not([data-document-kind="presentation"]) .inspector > :not(.rail-window-bar):not(#figureSimpleStylePanel):not(#propertiesNoSelectionState):not(#projectSlidesPanel) {
-  display: none !important;
-}
-html .figure-studio-root[data-figure-layout="simple"][data-simple-properties="expanded"]:not([data-document-kind="presentation"]) #figureSimpleStyleControls {
-  display: none;
-}
-html .figure-studio-root[data-figure-layout="simple"][data-simple-properties="expanded"]:not([data-document-kind="presentation"]) .simple-style-heading {
-  display: none;
-}
+html .figure-studio-root[data-figure-layout="advanced"]:not([data-document-kind="presentation"]) #figure-simple-toolbar { display: none; }
 html .figure-studio-root:not([data-document-kind="presentation"]) #figureSimpleStylePanel {
   min-width: 0;
   display: grid;
@@ -18009,12 +17997,6 @@ html .figure-studio-root[data-figure-layout]:not([data-document-kind="presentati
 }
 html .figure-studio-root[data-figure-layout]:not([data-document-kind="presentation"]) .properties-empty-state :is(button, input, select, summary) {
   font-size: 11px;
-}
-html .figure-studio-root[data-figure-layout][data-simple-document-setup="true"]:not([data-document-kind="presentation"]) #propertiesNoSelectionState {
-  display: grid;
-}
-html .figure-studio-root[data-figure-layout][data-simple-document-setup="true"]:not([data-document-kind="presentation"]) .inspector > :not(.rail-window-bar):not(#propertiesNoSelectionState):not(#projectSlidesPanel) {
-  display: none !important;
 }
 /* Figure-only controls must remain absent in Present even when an ID selector
    supplies their normal display type. Existing Present chrome keeps its styles. */
@@ -18503,3 +18485,11 @@ html .figure-studio-root #figureLibraryView-templates .scientific-scene-notes:no
 html .figure-studio-root .figure-layout-presets { margin-top: 12px; padding-top: 8px; border-top: 1px solid var(--line); }
 html .figure-studio-root .figure-layout-presets > summary { padding: 5px 0; color: var(--text); font-size: 12px; font-weight: 600; cursor: pointer; }
 html .figure-studio-root .figure-layout-presets .template-gallery { margin-top: 7px; }
+
+/* One Style/Properties/Layers rail in either Figure layout. */
+html .figure-studio-root:not([data-document-kind="presentation"]) #figureSimpleStylePanel:not(.active) { display: none; }
+html .figure-studio-root:not([data-document-kind="presentation"]) #figureSimpleStylePanel.active { display: flex; flex-direction: column; flex: 1 1 auto; min-height: 0; overflow: hidden; }
+html .figure-studio-root[data-figure-layout]:not([data-document-kind="presentation"]) .inspector[data-inspector-view="style"] { display: flex; flex-direction: column; overflow: hidden; }
+html .figure-studio-root[data-figure-layout]:not([data-document-kind="presentation"]) .inspector-tabs { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); flex: 0 0 auto; }
+html .figure-studio-root[data-figure-layout]:not([data-document-kind="presentation"]) #figureSimpleStyleControls { min-height: 0; flex: 1 1 auto; align-content: start; grid-auto-rows: max-content; overflow-y: auto; overscroll-behavior: contain; padding-right: 3px; scrollbar-gutter: stable; scrollbar-width: thin; scrollbar-color: var(--text-muted) transparent; }
+html .figure-studio-root[data-figure-layout]:not([data-document-kind="presentation"]) .inspector[data-inspector-view="style"] > .inspector-tabs { position: static; }

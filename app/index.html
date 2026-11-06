@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="data:,">
     <title>Superbench Figure Tool</title>
-  <link rel="stylesheet" href="styles.css?v=20261015-change1">
+  <link rel="stylesheet" href="styles.css?v=20261106-style-heading1">
     <link rel="stylesheet" href="line-picker.css?v=20261011-picker1">
     <link rel="stylesheet" href="help/figure-studio-help-center.css?v=20260902-family-polish1">
   </head>
@@ -1391,16 +1391,16 @@
               <button type="button" data-rail-action="hide" data-rail="right" title="Hide Inspector panel" aria-label="Hide Inspector panel">×</button>
             </div>
           </div>
-          <section id="figureSimpleStylePanel" class="simple-style-summary" aria-label="Selection style">
-            <div class="simple-style-heading"><strong id="figureSimpleSelectionName">Style</strong></div>
-            <div id="figureSimpleStyleControls" class="simple-style-fields"></div>
-            <button type="button" id="figure-more-properties" aria-expanded="false">More properties</button>
-          </section>
-          <nav class="inspector-tabs" aria-label="Inspector panels">
-            <button type="button" id="propertiesInspectorTab" class="active" data-inspector-tab="properties" aria-current="page">Properties</button>
-            <button type="button" data-inspector-tab="swatches" title="Reusable document colors and advanced swatches">Saved colors</button>
+          <nav class="inspector-tabs" aria-label="Style and properties">
+            <button type="button" id="styleInspectorTab" class="active" data-inspector-tab="style" aria-current="page" data-figure-only>Style</button>
+            <button type="button" id="propertiesInspectorTab" data-inspector-tab="properties">Properties</button>
+            <button type="button" data-inspector-tab="swatches" title="Saved document colors">Colors</button>
             <button type="button" id="layersInspectorTab" data-inspector-tab="layers">Layers</button>
           </nav>
+          <section id="figureSimpleStylePanel" class="simple-style-summary" data-inspector-panel="style" aria-label="Selection style">
+            <div class="simple-style-heading"><strong id="figureSimpleSelectionName">Style</strong></div>
+            <div id="figureSimpleStyleControls" class="simple-style-fields"></div>
+          </section>
           <section id="propertiesNoSelectionState" class="panel-section properties-empty-state" data-inspector-panel="properties">
             <div class="panel-title">Properties</div>
             <div id="selectionSummary" class="document-properties-summary">Nothing selected</div>
@@ -2156,9 +2156,8 @@
         <div class="asset-preview-details" tabindex="0" role="region" aria-label="Drawing details">
           <label id="assetPreviewSearchField" class="asset-preview-form" hidden>Find another drawing<input id="assetPreviewSearchInput" type="search" placeholder="Name or biological term…" autocomplete="off"></label>
           <label class="asset-preview-form" for="assetPreviewVariantSelect">Drawing / view<select id="assetPreviewVariantSelect"></select></label>
-          <p id="assetPreviewDescription"></p>
-          <section><h3>Scientific limitations</h3><ul id="assetPreviewLimitations"></ul></section>
-          <section><h3 id="assetPreviewPartsHeading">Editable part colors</h3><p id="assetPreviewEditHint" class="asset-preview-hint">After insertion, select the drawing to change these parts in Style.</p><ul id="assetPreviewParts" class="asset-preview-parts"></ul></section>
+          <section><h3 id="assetPreviewPartsHeading">Part colors</h3><p id="assetPreviewEditHint" class="asset-preview-hint">Try colors on this copy.</p><div id="assetPreviewParts" class="asset-preview-parts"></div></section>
+          <details class="asset-preview-scientific-details"><summary>Scientific details</summary><p id="assetPreviewDescription"></p><h3>Scientific limitations</h3><ul id="assetPreviewLimitations"></ul></details>
         </div>
       </div>
       <footer class="asset-preview-footer">
@@ -2574,11 +2573,11 @@
     <script src="scientific-asset-catalog.js?v=20260830-beta1" defer></script>
     <script src="scientific-asset-art-styles.js?v=20261017-style4" defer></script>
     <script src="scientific-asset-palettes.js?v=20261017-style4" defer></script>
-    <script src="scientific-asset-color-controls.js?v=20261008" defer></script>
+    <script src="scientific-asset-color-controls.js?v=20261106-style-preview" defer></script>
     <script src="scientific-scene-catalog.js?v=20260830-scenes1" defer></script>
     <script src="scientific-template-cards.js?v=20261103-templates1" defer></script>
     <script src="scientific-asset-discovery.js?v=20261015-change1" defer></script>
-    <script src="scientific-asset-preview.js?v=20261015-change1" defer></script>
+    <script src="scientific-asset-preview.js?v=20261106-style-preview" defer></script>
     <script src="scientific-motif-catalog.js?v=20260914-fig28" defer></script>
     <script src="scientific-protocol-components.js?v=20260923-fig-par-04" defer></script>
     <script src="vector-engine.js?v=20260903-scene1" defer></script>
@@ -2587,6 +2586,6 @@
     <script src="line-picker.js?v=20261011-picker1" defer></script>
     <script src="native-path-scene-transform.js?v=20261021-point1" defer></script>
     <script src="group-object-selection.js?v=20261029-selection1" defer></script>
-  <script src="app.js?v=20261017-style4" defer></script>
+  <script src="app.js?v=20261106-style-preview" defer></script>
   </body>
 </html>

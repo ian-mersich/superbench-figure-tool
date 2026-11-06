@@ -127,7 +127,7 @@ def test_export_retains_approved_selection_suite_dependencies_and_ci_before_arch
         "singleObjectShiftClick", "objectShiftMarquee", "ordinaryCanvasDragCancel",
         "historyActiveSelectionPose", "directSelectionTextMarquee", "groupObjectSelection",
         "pathPointGesture", "pathNodeDragReadScope", "pathSegmentTargets",
-        "pathClosestSegment", "pathHandleModifiers", "pdfDenseInspectorDisplay",
+        "pathClosestSegment", "pathHandleModifiers", "pathHandleHit", "pathTopologyRendererPolicy", "pdfDenseInspectorDisplay",
         "isolationTransformTarget", "isolationAvailability",
     )
     expected_tests = tuple(f"tests/{name}.test.cjs" for name in tests)
@@ -140,7 +140,8 @@ def test_export_retains_approved_selection_suite_dependencies_and_ci_before_arch
     browser_support = (
         "requirements-browser-qa.txt",
         "scripts/geometry_qa/probe.py", "scripts/geometry_qa/qualify.py",
-        "scripts/geometry_qa/source-cases.py", "tests/vectorEngine.test.mjs",
+        "scripts/geometry_qa/source-cases.py", "scripts/geometry_qa/topology.py", "tests/vectorEngine.test.mjs",
+        "scripts/geometry_qa/crowded-anchors.py", "scripts/geometry_qa/final-counts.py", "scripts/geometry_qa/pdf-topology.py",
         "scripts/check-direct-selection-label-interactions-browser.py",
         "scripts/check-direct-selection-labels-browser.py", "scripts/check-figure2-whole-label-browser.py",
         "scripts/check-figure2-object-selection-browser.py", "scripts/check-figure2-point-continuation-browser.py",
@@ -151,7 +152,13 @@ def test_export_retains_approved_selection_suite_dependencies_and_ci_before_arch
         "scripts/figure_package_qa.py", "scripts/figure_studio_entry_qa.py",
         "scripts/path_point_paint_qa.py", "scripts/action-paint-observer.js",
     )
-    required = (*expected_tests, *dependencies, *browser_support)
+    style_tests = ("tests/scientificAssetPreviewDraft.test.cjs", "tests/scientificAssetColorControls.test.cjs")
+    style_support = (
+        "scripts/check-style-preview-browser.py", "scripts/check-library-discovery-browser.py",
+        "scripts/check-assets-templates-browser.py", "scripts/check-figure-public-repaint-browser.py",
+        "scripts/figure_action_paint_qa.py", "docs/architecture/STYLE_PREVIEW_EDITING_2026_11_06.md",
+    )
+    required = (*expected_tests, *dependencies, *browser_support, *style_tests, *style_support)
     assert set(required) <= set(exporter.SUPPORT_FILES)
     assert len(exporter.SUPPORT_FILES) == len(set(exporter.SUPPORT_FILES))
     repository_root = Path(exporter.__file__).resolve().parents[1]
@@ -174,9 +181,11 @@ def test_export_retains_approved_selection_suite_dependencies_and_ci_before_arch
         workflow = (repository / ".github/workflows/source-ci.yml").read_text(encoding="utf-8")
         command = "node --test " + " ".join(expected_tests)
         assert workflow.count(command) == 1
+        assert workflow.count("node --test " + " ".join(style_tests)) == 1
+        assert "python scripts/check-style-preview-browser.py --help" in workflow
         assert workflow.index(command) < workflow.index("python -m pytest")
         assert "-r requirements-browser-qa.txt" in workflow
-        for controller in ("qualify.py", "source-cases.py"):
+        for controller in ("qualify.py", "source-cases.py", "topology.py", "crowded-anchors.py", "final-counts.py", "pdf-topology.py"):
             assert f"python scripts/geometry_qa/{controller} --help" in workflow
         stages.append("approved-suite-present-before-archive")
         raise RuntimeError("Stop after source-support verification")

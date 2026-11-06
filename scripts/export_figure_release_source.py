@@ -23,6 +23,7 @@ SELECTION_REGRESSION_TESTS = (
     "tests/pathPointGesture.test.cjs", "tests/pathNodeDragReadScope.test.cjs",
     "tests/pathSegmentTargets.test.cjs", "tests/pathClosestSegment.test.cjs",
     "tests/pathHandleModifiers.test.cjs",
+    "tests/pathHandleHit.test.cjs", "tests/pathTopologyRendererPolicy.test.cjs",
     "tests/pdfDenseInspectorDisplay.test.cjs", "tests/isolationTransformTarget.test.cjs",
     "tests/isolationAvailability.test.cjs",
 )
@@ -30,7 +31,8 @@ SELECTION_REGRESSION_TESTS = (
 GEOMETRY_BROWSER_SUPPORT = (
     "requirements-browser-qa.txt",
     "scripts/geometry_qa/probe.py", "scripts/geometry_qa/qualify.py",
-    "scripts/geometry_qa/source-cases.py", "tests/vectorEngine.test.mjs",
+    "scripts/geometry_qa/source-cases.py", "scripts/geometry_qa/topology.py", "tests/vectorEngine.test.mjs",
+    "scripts/geometry_qa/crowded-anchors.py", "scripts/geometry_qa/final-counts.py", "scripts/geometry_qa/pdf-topology.py",
     "scripts/check-direct-selection-label-interactions-browser.py",
     "scripts/check-direct-selection-labels-browser.py", "scripts/check-figure2-whole-label-browser.py",
     "scripts/check-figure2-object-selection-browser.py", "scripts/check-figure2-point-continuation-browser.py",
@@ -40,6 +42,16 @@ GEOMETRY_BROWSER_SUPPORT = (
     "scripts/check-scientific-catalog-schema.py", "scripts/figure-studio-server.py",
     "scripts/figure_package_qa.py", "scripts/figure_studio_entry_qa.py",
     "scripts/path_point_paint_qa.py", "scripts/action-paint-observer.js",
+)
+
+STYLE_PREVIEW_TESTS = (
+    "tests/scientificAssetPreviewDraft.test.cjs", "tests/scientificAssetColorControls.test.cjs",
+)
+
+STYLE_PREVIEW_BROWSER_SUPPORT = (
+    "scripts/check-style-preview-browser.py", "scripts/check-library-discovery-browser.py",
+    "scripts/check-assets-templates-browser.py", "scripts/check-figure-public-repaint-browser.py",
+    "scripts/figure_action_paint_qa.py",
 )
 
 SUPPORT_FILES = (
@@ -77,6 +89,8 @@ SUPPORT_FILES = (
     "tests/test_export_figure_release_source.py",
     *SELECTION_REGRESSION_TESTS,
     *GEOMETRY_BROWSER_SUPPORT,
+    *STYLE_PREVIEW_TESTS,
+    *STYLE_PREVIEW_BROWSER_SUPPORT,
     "tests/helpers/pdfDenseCanvasRestoreSource.cjs", "tests/helpers/pdfDenseCanvasRestoreDom.cjs",
     "tests/fixtures/pdf-dense-canvas-restore-app959.json",
     "tests/fixtures/path-node-drag-app632.js",
@@ -87,6 +101,7 @@ SUPPORT_FILES = (
     "docs/UNIFIED_FIGURE_RELEASE.md",
     "docs/architecture/FIGURE_HOST_SETTINGS.md",
     "docs/architecture/FIGURE_DRAWING_CHANGES.md",
+    "docs/architecture/STYLE_PREVIEW_EDITING_2026_11_06.md",
     "docs/architecture/FIGURE_PDF_V1_STATUS.md",
     "docs/architecture/SELECTION_PDF_RESUMPTION_2026_10_22.md",
     "docs/architecture/PDF_POINT_DRAG_STARTUP_2026_11_04.md",
@@ -227,10 +242,16 @@ jobs:
       - run: python scripts/validate-vendor-bundle.py
       - run: node --test tests/selectionFontScaleRead.test.cjs
       - run: __SELECTION_REGRESSION_COMMAND__
+      - run: __STYLE_PREVIEW_COMMAND__
+      - run: python scripts/check-style-preview-browser.py --help
       - run: python scripts/geometry_qa/qualify.py --help
       - run: python scripts/geometry_qa/source-cases.py --help
+      - run: python scripts/geometry_qa/topology.py --help
+      - run: python scripts/geometry_qa/crowded-anchors.py --help
+      - run: python scripts/geometry_qa/final-counts.py --help
+      - run: python scripts/geometry_qa/pdf-topology.py --help
       - run: python -m pytest -q tests/test_figure_tool_package_producer.py tests/test_scientific_product_release.py tests/test_scientific_product_release_expansion_20261103.py tests/test_export_figure_release_source.py tests/test_vendor_source_tools.py tests/test_vendor_fabric_portability.py
-""".replace("__SELECTION_REGRESSION_COMMAND__", "node --test " + " ".join(SELECTION_REGRESSION_TESTS)), encoding="utf-8", newline="\n")
+""".replace("__SELECTION_REGRESSION_COMMAND__", "node --test " + " ".join(SELECTION_REGRESSION_TESTS)).replace("__STYLE_PREVIEW_COMMAND__", "node --test " + " ".join(STYLE_PREVIEW_TESTS)), encoding="utf-8", newline="\n")
     verify_payload(repository, manifest)
     if pre_archive_check is not None:
         pre_archive_check(repository)

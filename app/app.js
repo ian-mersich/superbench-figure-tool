@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  const APP_VERSION = "1.0.0-beta.26";
+  const APP_VERSION = "1.0.0-beta.29";
   const PROJECT_SCHEMA = "figureStudio.project.v2";
   const DOCUMENT_KINDS = Object.freeze(["figure", "presentation"]);
   const FIRST_RUN_STORAGE_KEY = "figureStudio.firstRun.v2";
@@ -5138,6 +5138,7 @@
       selectScientificSceneNodeForQa,
       searchScientificAssetsForQa,
       getScientificAssetConceptStateForQa,
+      getScientificAssetCatalogRecordsForQa: () => JSON.parse(JSON.stringify(scientificAssetPack?.assets || [])),
       getScientificAssetReplacementStateForQa,
       getScientificAssetPreviewStateForQa: () => scientificAssetPreviewUi?.getState() || { open: false },
       beginScientificAssetReplacementForQa: beginScientificAssetReplacement,
@@ -9051,9 +9052,10 @@
     const heading = document.getElementById("figureSimpleSelectionName");
     if (!surface) return;
     const focus = captureSelectionControlFocus();
-    if (!simpleFigureLayout() || !context.selectedCount) {
+    if (isPresentationDocument() || !context.selectedCount) {
       surface.replaceChildren();
-      if (heading) heading.textContent = "Document setup";
+      if (heading) heading.textContent = "Style";
+      if (!isPresentationDocument()) surface.innerHTML = `<p class="simple-style-note">Select text, a line, or a drawing to see its style controls.</p>`;
       syncFigureLayoutChrome();
       syncSelectionStatusOnly();
       return;
@@ -9077,29 +9079,31 @@
       const currentFont = String(p.fontFamily?.value || "");
       if (currentFont && !fontOptions.some(([value]) => value === currentFont)) fontOptions.unshift([currentFont, currentFont.replace(/['"]/g, "").split(",")[0]]);
       fields += selectionContextSelectField("fontFamily", "Font", p.fontFamily, fontOptions);
-      fields += selectionContextNumberField("fontSize", "Size (pt)", { ...p.fontSize, value: p.fontSize?.value == null ? null : Number(p.fontSize.value) / TEXT_POINTS_TO_CANVAS }, { min: 4, max: 256, step: "1", decimals: 1 });
+      fields += selectionContextNumberField("fontSize", "Text size (pt)", { ...p.fontSize, value: p.fontSize?.value == null ? null : Number(p.fontSize.value) / TEXT_POINTS_TO_CANVAS }, { min: 4, max: 256, step: "1", decimals: 1 });
       fields += `<div class="simple-style-section simple-style-type-actions">${action("toggle-bold", "Bold", { pressed: ["700", "bold"].includes(String(p.fontWeight?.value)), disabled: !p.fontWeight?.supportedCount })}${action("toggle-italic", "Italic", { pressed: p.fontStyle?.value === "italic", disabled: !p.fontStyle?.supportedCount })}</div>`;
       fields += `<div class="simple-style-section simple-style-text-align" role="group" aria-label="Text alignment">${["left", "center", "right"].map((align) => action(`text-align-${align}`, align[0].toUpperCase() + align.slice(1), { pressed: p.textAlign?.value === align, disabled: !p.textAlign?.supportedCount })).join("")}</div>`;
     }
     if (context.single && bundledScientificAssetObject(first)) {
       const replacement = scientificAssetReplacementInfo();
-      fields += `<section id="assetSelectionControls" aria-label="Selected scientific drawing"><span id="assetSelectionName">Selected drawing</span><div class="asset-selection-actions"><button type="button" data-asset-selection-action="change-drawing"${replacement.selectedDisabled ? " disabled" : ""}>Change drawing…</button></div><p class="asset-selection-note">${escapeHtml(replacement.note)}</p></section>`;
+      const editParts = assetColors && context.kind === "group"
+        ? action("isolate-group", "Edit parts", { disabled: !context.isolation?.canEnterSelectedGroup, title: "Select individual parts to edit their lines and geometry" }) : "";
+      fields += `<section id="assetSelectionControls" aria-label="Selected scientific drawing"><div class="asset-selection-actions"><button type="button" data-asset-selection-action="change-drawing"${replacement.selectedDisabled ? " disabled" : ""}>Change drawing…</button>${editParts}</div>${replacement.selectedDisabled ? `<p class="asset-selection-note">${escapeHtml(replacement.note)}</p>` : ""}</section>`;
     }
     if (assetColors) {
       const expanded = document.getElementById("assetSelectionColors")?.open !== false;
-      fields += `<details id="assetSelectionColors"${expanded ? " open" : ""}><summary>Part colors (${scientificAssetRegions(first.scientificAssetMeta).length})</summary><p class="asset-selection-note">Changes this selected drawing.</p>${scientificAssetColorControlsMarkup(first, "simple", { mode: "advanced", heading: false, resetAll: true })}</details>`;
+      fields += `<details id="assetSelectionColors"${expanded ? " open" : ""}><summary>Part colors (${scientificAssetRegions(first.scientificAssetMeta).length})</summary>${scientificAssetColorControlsMarkup(first, "simple", { mode: "advanced", heading: false, resetAll: true })}</details>`;
     }
     else {
       fields += color("fill", context.kind === "callout" ? "Background" : text ? "Text color" : "Fill");
       if (context.kind === "callout") fields += color("textFill", "Text color");
-      if (!text || context.kind === "callout") fields += color("stroke", "Stroke") + number("strokeWidth", "Width", { min: 0, step: "0.25" });
+      if (!text || context.kind === "callout") fields += color("stroke", "Line color") + number("strokeWidth", "Line width", { min: 0, step: "0.25" });
     }
     fields += number("opacity", "Opacity", { min: 0, max: 1, step: "0.05", decimals: 2 });
     if (line) {
       if (p.arrowEnd?.supportedCount) fields += selectionContextSelectField("arrowEnd", "Arrow end", p.arrowEnd, [["none", "None"], ["triangle", "Triangle"], ["bar", "Bar"], ["dot", "Dot"], ["diamond", "Diamond"]]);
     }
-    if (!fields) fields = `<p class="simple-style-section context-selection-note">${escapeHtml(context.sourceBacked ? "Original source artwork is retained. Open More properties to review supported edits." : "Open More properties to review this selection.")}</p>`;
-    if (context.kind === "group") fields += `<div class="simple-style-section simple-style-arrange">${action("isolate-group", assetColors ? "Edit parts" : "Edit group", { disabled: !context.isolation?.canEnterSelectedGroup })}</div>`;
+    if (!fields) fields = `<p class="simple-style-section context-selection-note">${escapeHtml(context.sourceBacked ? "Original artwork is retained. Open Properties to review supported edits." : "Open Properties to review this selection.")}</p>`;
+    if (context.kind === "group" && !assetColors) fields += `<div class="simple-style-section simple-style-arrange">${action("isolate-group", assetColors ? "Edit parts" : "Edit group", { disabled: !context.isolation?.canEnterSelectedGroup })}</div>`;
     if (context.selectedCount > 1) fields += `<div class="simple-style-section simple-style-arrange" role="group" aria-label="Align objects">${action("align-left", "Left")}${action("align-center-x", "Center")}${action("align-top", "Top")}${action("group", "Group")}</div>`;
     if (text && context.single && first && !first.locked) fields += `<div class="simple-style-section">${action("edit-text", "Edit text on canvas")}${pdfPositionedTextFontNote(first)}</div>`;
     fields += `<div class="simple-style-section simple-style-order" role="group" aria-label="Object order"><button type="button" data-simple-order="forward" ${first?.locked ? "disabled" : ""}>Forward</button><button type="button" data-simple-order="backward" ${first?.locked ? "disabled" : ""}>Backward</button></div>`;
@@ -33850,7 +33854,7 @@
     rails.workspace = "custom";
     rails.left = { ...rails.left, visible: false, width: 224 };
     rails.right = { ...rails.right, visible: true, width: 240 };
-    return { rails, palette: { position: "left", visible: true }, sidebarTab: "tools", inspectorTab: "properties" };
+    return { rails, palette: { position: "left", visible: true }, sidebarTab: "tools", inspectorTab: "style" };
   }
 
   function normalizeFigureLayoutProfile(value, layout) {
@@ -33872,7 +33876,7 @@
     return {
       rails, palette,
       sidebarTab: ["slides", "tools"].includes(value.sidebarTab) ? value.sidebarTab : fallback.sidebarTab,
-      inspectorTab: ["properties", "layers", "swatches"].includes(value.inspectorTab) ? value.inspectorTab : "properties",
+      inspectorTab: ["style", "properties", "layers", "swatches"].includes(value.inspectorTab) ? value.inspectorTab : fallback.inspectorTab,
       ...(layout === "presentation" ? { presentationPane: normalizePresentationPane(value.presentationPane, value.sidebarTab) } : {})
     };
   }
@@ -33970,6 +33974,7 @@
     window.clearTimeout(railLayoutSaveTimer);
     railLayoutSaveTimer = 0;
     saveFigureLayoutPreferences();
+    const currentProfile = captureFigureLayoutProfile();
     closeToolFlyouts();
     closeConnectorActionPopover();
     document.querySelectorAll(".figure-simple-shapes[open]").forEach((details) => { details.open = false; });
@@ -33977,7 +33982,16 @@
       figureLayoutPreferences.active = next;
       figureSimplePropertiesExpanded = false;
       figureSimpleDocumentSetupOpen = false;
-      applyFigureLayoutProfile(figureLayoutPreferences[next]);
+      const nextProfile = cloneFigureLayoutValue(figureLayoutPreferences[next]);
+      nextProfile.rails.left.visible = currentProfile.rails.left.visible;
+      nextProfile.rails.right.visible = currentProfile.rails.right.visible;
+      nextProfile.inspectorTab = currentProfile.inspectorTab;
+      if (currentProfile.rails.right.mode === "floating") {
+        nextProfile.rails.right.mode = "floating";
+        nextProfile.rails.right.floating = cloneFigureLayoutValue(currentProfile.rails.right.floating);
+        nextProfile.rails.right.collapsed = currentProfile.rails.right.collapsed;
+      }
+      applyFigureLayoutProfile(nextProfile);
       syncInspector();
       syncMenuState();
       syncHistoryButtons();
@@ -34029,13 +34043,13 @@
       button.setAttribute("aria-pressed", String(button.dataset.figureLayoutChoice === activeFigureLayout()));
     });
     const title = els.inspector?.querySelector(".rail-window-bar strong");
-    if (title) title.textContent = isPresentationDocument() ? "Inspector" : simpleFigureLayout() && !figureSimplePropertiesExpanded ? "Style" : "Inspector";
+    if (title) title.textContent = isPresentationDocument() ? "Inspector" : ({ style: "Style", properties: "Properties", layers: "Layers", swatches: "Saved colors" }[state.ui.inspectorTab] || "Style");
     const library = document.getElementById("figureLibraryToggle");
     if (library) library.setAttribute("aria-pressed", String(state.ui.leftSidebarVisible !== false));
     const style = document.getElementById("figureStyleToggle");
     if (style) {
-      style.textContent = activeFigureLayout() === "simple" ? "Style" : "Inspector";
-      style.setAttribute("aria-pressed", String(!projectSlidesOpen && simpleStyleIsVisible()));
+      style.textContent = "Style";
+      style.setAttribute("aria-pressed", String(!projectSlidesOpen && state.ui.inspectorTab === "style" && simpleStyleIsVisible()));
     }
     root.querySelectorAll('[data-command="toggle-left-sidebar"] span').forEach((label) => {
       label.textContent = isPresentationDocument() ? "Slides" : "Library";
@@ -34045,12 +34059,6 @@
     });
     const setup = document.getElementById("figureDocumentSetupBtn");
     if (setup) setup.setAttribute("aria-pressed", String(figureSimpleDocumentSetupOpen));
-    const more = document.getElementById("figure-more-properties");
-    if (more) {
-      more.textContent = figureSimplePropertiesExpanded ? "Back to Style" : "More properties";
-      more.setAttribute("aria-expanded", String(figureSimplePropertiesExpanded));
-      more.hidden = !selectedTopLevelObjects().length && !figureSimplePropertiesExpanded;
-    }
     root.querySelectorAll("[data-figure-tool]").forEach((button) => {
       button.setAttribute("aria-pressed", String(button.dataset.figureTool === state.tool));
     });
@@ -34087,6 +34095,9 @@
       presentation: stored?.presentation ? normalizeFigureLayoutProfile(stored.presentation, "presentation")
         : legacy ? cloneFigureLayoutValue(advanced) : normalizeFigureLayoutProfile(null, "presentation")
     };
+    // Close Library once at startup; keep saved geometry and in-session choices.
+    figureLayoutPreferences.simple.rails.left.visible = false;
+    figureLayoutPreferences.advanced.rails.left.visible = false;
     figureLayoutContext = isPresentationDocument() ? "presentation" : "figure";
     applyFigureLayoutProfile(figureLayoutPreferences[figureLayoutContext === "presentation" ? "presentation" : activeFigureLayout()]);
     setupProjectSlidesPane();
@@ -34114,38 +34125,13 @@
       setRailVisibility("left", state.ui.leftSidebarVisible === false, { fit: false });
     });
     document.getElementById("figureStyleToggle")?.addEventListener("click", () => {
-      if (projectSlidesOpen) {
-        setProjectSlidesOpen(false);
-        if (!simpleStyleIsVisible()) showFigureDocumentSetup();
-        return;
-      }
-      if (figureSimpleDocumentSetupOpen && !simpleFigureLayout()) {
-        figureSimpleDocumentSetupOpen = false;
-        syncFigureLayoutChrome();
-        syncChromePanels({ persist: false, updateStage: true });
-        return;
-      }
-      const next = !simpleStyleIsVisible();
+      if (projectSlidesOpen) setProjectSlidesOpen(false);
+      const next = !simpleStyleIsVisible() || state.ui.inspectorTab !== "style";
       figureSimpleDocumentSetupOpen = simpleFigureLayout() && !selectedTopLevelObjects().length && next;
-      if (els.documentSetupDisclosure && figureSimpleDocumentSetupOpen) els.documentSetupDisclosure.open = true;
+      setInspectorTab("style");
       setRailVisibility("right", next, { fit: false });
     });
     document.getElementById("figureDocumentSetupBtn")?.addEventListener("click", showFigureDocumentSetup);
-    document.getElementById("figure-more-properties")?.addEventListener("click", () => {
-      figureSimplePropertiesExpanded = !figureSimplePropertiesExpanded;
-      figureSimpleDocumentSetupOpen = false;
-      setInspectorTab("properties");
-      syncFigureLayoutChrome();
-      syncInspector();
-      syncChromePanels({ persist: false, updateStage: true });
-      requestAnimationFrame(() => {
-        const target = figureSimplePropertiesExpanded
-          ? firstVisibleFocusable(els.appearanceStructureInspector || document.getElementById("appearanceStructureInspector"), "[data-context-property]:not([disabled])")
-            || document.getElementById("propertiesInspectorTab")
-          : document.getElementById("figure-more-properties");
-        target?.focus({ preventScroll: true });
-      });
-    });
     document.addEventListener("pointerdown", (event) => {
       if (!event.target.closest?.(".figure-simple-shapes")) {
         root?.querySelectorAll(".figure-simple-shapes[open]").forEach((details) => { details.open = false; });
@@ -47216,6 +47202,7 @@
       contours: normalized.map((record) => ({ id: record.id, closed: record.closed })),
       nodes: normalized.flatMap((record) => record.nodes)
     });
+    reconcileVariableStrokeRenderers([object]);
     refreshObjectHierarchy(object);
     return true;
   }
@@ -47666,8 +47653,11 @@
 
   function setInspectorTab(tabName) {
     const requested = tabName === "selection" ? "properties" : tabName;
-    const target = ["properties", "swatches", "layers"].includes(requested) ? requested : "properties";
+    const tabs = isPresentationDocument() ? ["properties", "swatches", "layers"] : ["style", "properties", "swatches", "layers"];
+    const target = tabs.includes(requested) ? requested : "properties";
     state.ui.inspectorTab = target;
+    if (els.inspector) els.inspector.dataset.inspectorView = target;
+    if (!isPresentationDocument()) figureSimplePropertiesExpanded = target === "properties";
     document.querySelectorAll("[data-inspector-tab]").forEach((button) => {
       const active = button.dataset.inspectorTab === target;
       button.classList.toggle("active", active);
@@ -47678,6 +47668,7 @@
       panel.classList.toggle("active", panel.dataset.inspectorPanel === target);
     });
     saveFigureLayoutPreferences();
+    syncFigureLayoutChrome();
     if (target === "swatches") renderSwatchesPanel();
     if (target === "layers") renderLayers();
     if (target === "properties" && els.inspector?.dataset.selectionUiState === "essentials") {
@@ -48330,26 +48321,32 @@
     `;
   }
 
-  function scientificAssetReplacementInfo(asset = null) {
+  function scientificAssetReplacementInfo(asset = null, draft = null) {
     const source = selectedScientificAssetObject();
     const bundled = bundledScientificAssetObject(source);
     const session = source?.figureId === scientificAssetReplacement?.sourceFigureId ? scientificAssetReplacement : null;
     const same = bundled ? scientificAssetSameObjects(source.scientificAssetMeta.assetId) : [];
     const lockedCount = same.filter((object) => object.locked).length;
-    const otherCount = session?.cleanOtherIds?.length || 0;
+    let otherCount = session?.cleanOtherIds?.length || 0;
     const allCount = bundled ? otherCount + 1 : 0;
     const nested = Boolean(source && !scientificAssetIsCanvasRoot(source));
     const unchanged = Boolean(asset && asset.id === source?.scientificAssetMeta?.assetId);
-    const selectedDisabled = !bundled || Boolean(source.locked) || nested || unchanged;
+    const previousColors = scientificAssetColorLayers(source?.scientificAssetMeta);
+    const appearance = draft && asset ? scientificAssetPreviewAppearance(asset, draft) : null;
+    const colorChange = unchanged && appearance && !source?.scientificAssetMeta?.rasterFallback
+      && (appearance.paletteId !== previousColors.paletteId || [...new Set([...Object.keys(appearance.customColorOverrides), ...Object.keys(previousColors.customColorOverrides)])].some((id) => appearance.customColorOverrides[id] !== previousColors.customColorOverrides[id]));
+    if (colorChange) otherCount = 0;
+    const selectedDisabled = !bundled || Boolean(source.locked) || nested || (unchanged && !colorChange);
     const skipped = session?.editedOtherCount || 0;
     const skipNote = [lockedCount ? `${lockedCount} locked` : "", skipped ? `${skipped} edited` : ""].filter(Boolean).join(" and ");
     return {
       sourceName: source?.scientificAssetMeta?.assetName || source?.name || '',
       selectedCount: bundled ? 1 : 0, allCount, otherCount, lockedCount, selectedDisabled,
-      checking: Boolean(session?.checking), edited: Boolean(session?.edited),
+      checking: Boolean(session?.checking), edited: Boolean(session?.edited) && !colorChange,
+      actionLabel: colorChange ? "Apply colors" : undefined,
       documentKind: isPresentationDocument() ? "slide" : "figure",
       allDisabled: selectedDisabled || allCount < 2,
-      note: !bundled ? 'Custom artwork stays editable with the canvas tools.'
+      note: colorChange ? 'Updates this drawing’s colors; edited parts are kept.' : unchanged && draft ? 'Edit part colors or choose another drawing.' : !bundled ? 'Custom artwork stays editable with the canvas tools.'
         : source.locked ? 'Unlock this drawing to change it or its colors.'
         : nested ? 'Exit group editing and ungroup the containing group to change this drawing or its part colors.'
         : session?.checking ? 'Checking the drawing’s edited parts…'
@@ -48389,6 +48386,18 @@
     return `${activeDocumentTab()?.id || currentTransformDocumentId() || ""}:${state.deck?.activePageId || ""}`;
   }
 
+  function scientificAssetPreviewAppearance(asset, draft = {}) {
+    const artStyle = window.FigureStudioScientificAssetArtStyles.normalizeStyle(draft.artStyle || scientificAssetArtStyle());
+    const styledAsset = styledScientificAssetMetadata(asset, artStyle);
+    const regions = styledAsset.editable_color_regions || [];
+    const regionIds = new Set(regions.map((region) => region.id));
+    const paletteId = window.FigureStudioScientificAssetPalettes.normalizePalette(draft.paletteId || scientificAssetPalette());
+    const paletteColorOverrides = window.FigureStudioScientificAssetPalettes.paletteRegionOverrides(paletteId, asset.editable_color_regions || []);
+    const customColorOverrides = Object.fromEntries(Object.entries(sanitizeScientificAssetColorOverrides(draft.customColorOverrides || {})).filter(([id]) => regionIds.has(id)));
+    return { artStyle, styledAsset, regions, paletteId, paletteColorOverrides, customColorOverrides,
+      colorOverrides: { ...paletteColorOverrides, ...customColorOverrides } };
+  }
+
   function setupScientificAssetDiscoveryControls() {
     scientificAssetPreviewUi = window.FigureStudioScientificAssetPreview?.create({
       getAsset: findScientificAsset,
@@ -48397,9 +48406,42 @@
       changeChoiceLabel: (asset) => `${asset.name} · ${scientificAssetChoiceLabel(asset, scientificAssetConceptVariants(scientificAssetConceptId(asset)))}`,
       choiceLabel: scientificAssetChoiceLabel,
       contextId: scientificAssetPreviewContextId,
-      partColorHint: () => isPresentationDocument()
-        ? "Select the drawing and open Format to change these parts."
-        : "Select the drawing to change these parts in Style.",
+      partColorHint: () => "Try colors on this copy. Insert or Apply keeps them; Close cancels.",
+      createDraft: (asset, { mode, previousDraft }) => {
+        const source = mode === "change" ? getByFigureId(scientificAssetReplacement?.sourceFigureId) : null;
+        const previousAsset = previousDraft && findScientificAsset(previousDraft.assetId);
+        const carry = previousAsset && scientificAssetConceptId(previousAsset) === scientificAssetConceptId(asset)
+          ? previousDraft : source?.scientificAssetMeta?.assetId === asset.id
+            ? { ...scientificAssetColorLayers(source.scientificAssetMeta), artStyle: source.scientificAssetMeta.artStyle || scientificAssetArtStyle() }
+            : { artStyle: previousDraft?.artStyle || scientificAssetArtStyle(), paletteId: previousDraft?.paletteId || scientificAssetPalette(), customColorOverrides: {} };
+        const appearance = scientificAssetPreviewAppearance(asset, carry);
+        return { assetId: asset.id, artStyle: appearance.artStyle, paletteId: appearance.paletteId, customColorOverrides: appearance.customColorOverrides };
+      },
+      getPreview: async (asset, draft) => {
+        const appearance = scientificAssetPreviewAppearance(asset, draft);
+        const source = getByFigureId(scientificAssetReplacement?.sourceFigureId);
+        let svgText;
+        if (source?.scientificAssetMeta?.assetId === asset.id) {
+          const previous = scientificAssetColorLayers(source.scientificAssetMeta);
+          const object = await applyScientificAssetColorOverrides(source, appearance.colorOverrides, {
+            previewOnly: true, paletteOperation: true, preserveComponentPaints: true,
+            customRegionIds: Object.keys(appearance.customColorOverrides).filter((id) => appearance.customColorOverrides[id] !== previous.customColorOverrides[id]),
+            expectedFingerprint: scientificAssetReplacement?.checkedFingerprints?.get(source),
+            metadataPatch: { paletteId: appearance.paletteId, paletteColorOverrides: appearance.paletteColorOverrides, customColorOverrides: appearance.customColorOverrides }
+          });
+          if (!object) throw new Error("This drawing's colors cannot be previewed safely.");
+          const bounds = object.getBoundingRect();
+          svgText = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${bounds.left - 2} ${bounds.top - 2} ${bounds.width + 4} ${bounds.height + 4}">${object.toSVG()}</svg>`;
+        } else {
+          const original = await loadScientificAssetSvgSource(asset, appearance.artStyle);
+          const palette = recolorScientificAssetPaletteSvg(original, appearance.regions, appearance.paletteColorOverrides).svgText;
+          svgText = recolorScientificAssetPaletteSvg(palette, appearance.regions, appearance.customColorOverrides, { allowWhite: true }).svgText;
+        }
+        const styleName = Array.from(els.assetArtStyleSelect?.options || []).find((option) => option.value === appearance.artStyle)?.text || appearance.artStyle;
+        const paletteName = window.FigureStudioScientificAssetPalettes.getPalettes().find((palette) => palette.id === appearance.paletteId)?.name || appearance.paletteId;
+        return { svgText, regions: appearance.regions, paletteOverrides: appearance.paletteColorOverrides, colorOverrides: appearance.colorOverrides,
+          appearanceLabel: `${styleName} · ${paletteName}` };
+      },
       loadPreview: async (asset) => {
         const style = scientificAssetArtStyle();
         const regions = styledScientificAssetMetadata(asset, style).editable_color_regions || [];
@@ -48415,14 +48457,30 @@
         if (!asset) return false;
         let result;
         if (action === 'insert') {
-          result = await insertScientificAsset(assetId);
+          result = await insertScientificAsset(assetId, options.appearanceDraft);
           if (result && scientificAssetReplacement) cancelScientificAssetReplacement({ toast: false });
         } else {
-          const info = scientificAssetReplacementInfo(asset);
+          const info = scientificAssetReplacementInfo(asset, options.appearanceDraft);
           if (info.checking || info.selectedDisabled || (info.edited && !options.allowEdited) || !scientificAssetReplacement) return false;
+          if (asset.id === scientificAssetReplacement.sourceAssetId && options.appearanceDraft) {
+            const source = getByFigureId(scientificAssetReplacement.sourceFigureId);
+            const expectedFingerprint = scientificAssetReplacement.checkedFingerprints?.get(source);
+            if (!source || !expectedFingerprint || JSON.stringify(source.toObject(CUSTOM_PROPS)) !== expectedFingerprint) return false;
+            const appearance = scientificAssetPreviewAppearance(asset, options.appearanceDraft);
+            const previous = scientificAssetColorLayers(source.scientificAssetMeta);
+            const changed = await applyScientificAssetColorOverrides(source, appearance.colorOverrides, {
+              expectedFingerprint, paletteOperation: true, preserveComponentPaints: true,
+              customRegionIds: Object.keys(appearance.customColorOverrides).filter((id) => appearance.customColorOverrides[id] !== previous.customColorOverrides[id]),
+              metadataPatch: { paletteId: appearance.paletteId, paletteColorOverrides: appearance.paletteColorOverrides, customColorOverrides: appearance.customColorOverrides },
+              historyLabel: "Drawing colors updated"
+            });
+            if (!changed) return false;
+            cancelScientificAssetReplacement({ toast: false });
+            return true;
+          }
           scientificAssetReplacement.scope = options.includeCopies ? 'all-same' : 'selected';
           scientificAssetReplacement.allowEdited = Boolean(options.allowEdited);
-          result = await replaceScientificAssetsWithAsset(assetId);
+          result = await replaceScientificAssetsWithAsset(assetId, options.appearanceDraft);
           if (result?.status !== 'ok') return false;
         }
         if (!result) return false;
@@ -49453,7 +49511,7 @@
     return null;
   }
 
-  async function insertScientificAsset(assetId) {
+  async function insertScientificAsset(assetId, appearanceDraft = null) {
     const asset = findScientificAsset(assetId);
     if (!asset || !scientificAssetPack) {
       showToast("Scientific asset not found");
@@ -49467,21 +49525,23 @@
       assetId: operation.assetId
     };
     const timestamp = new Date().toISOString();
-    const artStyle = scientificAssetArtStyle();
+    const appearance = scientificAssetPreviewAppearance(asset, appearanceDraft || {});
+    const artStyle = appearance.artStyle;
     const styledSource = styledScientificAssetMetadata(asset, artStyle);
     const svgPath = styledSource.file;
     const svgUrl = styledSource._svgUrl;
-    const paletteId = scientificAssetPalette();
-    const paletteColorOverrides = window.FigureStudioScientificAssetPalettes?.paletteRegionOverrides(paletteId, asset.editable_color_regions || []) || {};
+    const paletteId = appearance.paletteId;
+    const { paletteColorOverrides, customColorOverrides, colorOverrides } = appearance;
     try {
       showToast(`Inserting ${asset.name}...`);
       const sourceCacheHit = scientificAssetSvgSourceIsCached(asset, artStyle);
       const sourceSvg = await loadScientificAssetSvgSource(asset, artStyle);
       const styledAsset = styledScientificAssetMetadata(asset, artStyle);
-      const svgText = recolorScientificAssetPaletteSvg(sourceSvg, styledAsset.editable_color_regions, paletteColorOverrides).svgText;
+      const paletteSvg = recolorScientificAssetPaletteSvg(sourceSvg, styledAsset.editable_color_regions, paletteColorOverrides).svgText;
+      const svgText = recolorScientificAssetPaletteSvg(paletteSvg, styledAsset.editable_color_regions, customColorOverrides, { allowWhite: true }).svgText;
       await scientificAssetInsertionQaDelay();
       const { group, original, cacheState } = await createScientificAssetVectorObject(styledAsset, svgText, timestamp, {
-        metaOverrides: { paletteId, paletteColorOverrides, customColorOverrides: {}, colorOverrides: paletteColorOverrides,
+        metaOverrides: { paletteId, paletteColorOverrides, customColorOverrides, colorOverrides,
           ...(artStyle === "style-4" ? { originalSvgMarkup: sourceSvg, originalSvgMarkupStored: true } : {}) }
       });
       if (!scientificAssetInsertionOwnershipIsCurrent(operation)) return cancelScientificAssetInsertion(operation);
@@ -49508,6 +49568,7 @@
       return placedGroup;
     } catch (error) {
       if (!scientificAssetInsertionOwnershipIsCurrent(operation)) return cancelScientificAssetInsertion(operation);
+      if (appearanceDraft) { showToast("Could not insert the edited drawing. Your figure was not changed."); return null; }
       console.warn("Scientific asset vector import failed, using raster fallback", error);
       return insertScientificAssetFallback(asset, svgUrl, svgPath, timestamp, operation, artStyle, paletteId);
     }
@@ -50433,7 +50494,7 @@
     return replaceScientificAssetsWithAsset(target.id);
   }
 
-  async function replaceScientificAssetsWithAsset(assetId) {
+  async function replaceScientificAssetsWithAsset(assetId, appearanceDraft = null) {
     const replacement = getScientificAssetReplacementStateForQa();
     const asset = findScientificAsset(assetId);
     if (!replacement.active || !asset) {
@@ -50468,7 +50529,8 @@
     const timestamp = new Date().toISOString();
     try {
       showToast(`Replacing with ${asset.name}...`);
-      const artStyle = scientificAssetArtStyle();
+      const artStyle = appearanceDraft?.artStyle || scientificAssetArtStyle();
+      const sourceColors = scientificAssetColorLayers(currentScientificAssetReplacementSource()?.scientificAssetMeta);
       const svgText = await loadScientificAssetSvgSource(asset, artStyle);
       const prepared = [];
       for (const object of replaceableTargets) {
@@ -50478,11 +50540,20 @@
         const styledAsset = styledScientificAssetMetadata(asset, artStyle);
         const targetRegionIds = new Set((styledAsset.editable_color_regions || []).map((region) => region.id));
         const previousColors = scientificAssetColorLayers(object.scientificAssetMeta);
-        const paletteId = previousColors.paletteId;
+        const selected = snapshot.figureId === replacement.sourceFigureId;
+        const paletteId = appearanceDraft && (selected || appearanceDraft.paletteId !== sourceColors.paletteId) ? appearanceDraft.paletteId : previousColors.paletteId;
         const paletteColorOverrides = window.FigureStudioScientificAssetPalettes?.paletteRegionOverrides(paletteId, asset.editable_color_regions || []) || {};
-        const customColorOverrides = sameConcept
+        let customColorOverrides = sameConcept
           ? Object.fromEntries(Object.entries(previousColors.customColorOverrides).filter(([regionId]) => targetRegionIds.has(regionId)))
           : {};
+        if (appearanceDraft) {
+          const wanted = sanitizeScientificAssetColorOverrides(appearanceDraft.customColorOverrides || {});
+          if (selected || !sameConcept) customColorOverrides = Object.fromEntries(Object.entries(wanted).filter(([id]) => targetRegionIds.has(id)));
+          else for (const id of new Set([...Object.keys(sourceColors.customColorOverrides), ...Object.keys(wanted)])) {
+            if (wanted[id] === sourceColors.customColorOverrides[id] || !targetRegionIds.has(id)) continue;
+            if (wanted[id]) customColorOverrides[id] = wanted[id]; else delete customColorOverrides[id];
+          }
+        }
         const carriedColorOverrides = { ...paletteColorOverrides, ...customColorOverrides };
         const paletteSvg = recolorScientificAssetPaletteSvg(svgText, styledAsset.editable_color_regions || [], paletteColorOverrides).svgText;
         const customRegions = (styledAsset.editable_color_regions || []).filter((region) => Object.hasOwn(customColorOverrides, region.id));
@@ -50585,8 +50656,9 @@
     if (object.scientificAssetMeta.rasterFallback) { showToast("Insert an editable vector copy to change its part colors"); return null; }
     const meta = object.scientificAssetMeta;
     const operation = captureScientificAssetInsertionContext({ id: meta.assetId, name: meta.assetName });
-    const ownsTarget = () => scientificAssetInsertionOwnershipIsCurrent(operation) && operation.sourceCanvas.getObjects().includes(object);
-    const cancelRecolor = () => { showToast("Asset colors were not changed because the document or asset changed"); return null; };
+    const ownsTarget = () => scientificAssetInsertionOwnershipIsCurrent(operation) && operation.sourceCanvas.getObjects().includes(object)
+      && (!options.expectedFingerprint || JSON.stringify(object.toObject(CUSTOM_PROPS)) === options.expectedFingerprint);
+    const cancelRecolor = () => { if (!options.previewOnly) showToast("Asset colors were not changed because the document or asset changed"); return null; };
     const regions = scientificAssetRegions(meta);
     if (!regions.length) return null;
     const colorOverrides = sanitizeScientificAssetColorOverrides(overrides);
@@ -50612,8 +50684,8 @@
         bindings = scientificAssetPrimitiveBindings(object, sourceGroup);
         sourceByKey = new Map(scientificAssetPrimitiveObjects(sourceGroup).map((n) => [n.importMeta?.scientificSvgSource?.key, n]));
         if (!bindings || changedRegions.some((r) => !bindings.some((b) => b.regionPaints[r.id]?.length))) {
-          showLongToast("Region colors could not be matched safely to this edited asset. Use component fill/stroke controls, or insert a fresh copy.");
-          syncUi(); return null;
+          if (!options.previewOnly) { showLongToast("Region colors could not be matched safely to this edited asset. Use component fill/stroke controls, or insert a fresh copy."); syncUi(); }
+          return null;
         }
       }
       const canvasIndex = Math.max(0, canvas.getObjects().indexOf(object));
@@ -50630,7 +50702,7 @@
             const sourcePaint = sourceNode?.[channel];
             const nearestOwner = Object.keys(binding.regionPaints).find((id) => binding.regionPaints[id]?.includes(channel));
             if (nearestOwner !== region.id) return;
-            if (options.paletteOperation) {
+            if (options.paletteOperation && !options.customRegionIds?.includes(region.id)) {
               const previousCustom = scientificAssetColorLayers(meta).customColorOverrides[region.id];
               const previous = previousCustom || (scientificPaletteWhitePaint(sourcePaint) ? sourcePaint : previousOverrides[region.id] || sourcePaint);
               if (options.preserveComponentPaints && String(node[channel]).toUpperCase() !== String(previous).toUpperCase()) return;
@@ -50651,6 +50723,8 @@
       reconcileAuthoredStructureMetadata([recoloredGroup]);
       reconcileVariableStrokeRenderers([recoloredGroup]);
       recoloredGroup.setCoords();
+      if (!ownsTarget()) return cancelRecolor();
+      if (options.previewOnly) return recoloredGroup;
       canvas.discardActiveObject(); canvas.remove(object); insertCanvasObjectAtIndex(recoloredGroup, canvasIndex); canvas.setActiveObject(recoloredGroup);
       // A selected-object change must paint even during selection-only updates.
       canvas.renderAll(); setImportPlacementStatus(""); syncUi();
@@ -50658,6 +50732,7 @@
       showToast("Asset colors updated"); return recoloredGroup;
     } catch (error) {
       if (!scientificAssetInsertionOwnershipIsCurrent(operation)) return cancelRecolor();
+      if (options.previewOnly) throw error;
       console.error("Scientific asset recolor failed", error); showToast("Could not change asset colors"); return null;
     }
   }
@@ -51336,8 +51411,8 @@
           ${selectionContextNumberField("charSpacing", "Tracking", p.charSpacing, { min: -500, max: 2000, step: "10", decimals: 0 })}
         </div>
         <div class="context-type-style" aria-label="Character style">
-          <button type="button" data-context-action="toggle-bold" aria-pressed="${String(!p.fontWeight?.mixed && ["700", "bold"].includes(String(p.fontWeight?.value)))}" ${!p.fontWeight?.mixed && ["700", "bold"].includes(String(p.fontWeight?.value)) ? "class=\"active\"" : ""}><strong>B</strong></button>
-          <button type="button" data-context-action="toggle-italic" aria-pressed="${String(!p.fontStyle?.mixed && p.fontStyle?.value === "italic")}" ${!p.fontStyle?.mixed && p.fontStyle?.value === "italic" ? "class=\"active\"" : ""}><em>I</em></button>
+          <button type="button" data-context-action="toggle-bold" title="Bold (text weight)" aria-label="Bold" ${p.fontWeight?.supportedCount ? "" : "disabled"} aria-pressed="${String(!p.fontWeight?.mixed && ["700", "bold"].includes(String(p.fontWeight?.value)))}" ${!p.fontWeight?.mixed && ["700", "bold"].includes(String(p.fontWeight?.value)) ? "class=\"active\"" : ""}><strong>B</strong></button>
+          <button type="button" data-context-action="toggle-italic" title="Italic" aria-label="Italic" ${p.fontStyle?.supportedCount ? "" : "disabled"} aria-pressed="${String(!p.fontStyle?.mixed && p.fontStyle?.value === "italic")}" ${!p.fontStyle?.mixed && p.fontStyle?.value === "italic" ? "class=\"active\"" : ""}><em>I</em></button>
           <button type="button" data-context-action="toggle-underline" title="Underline" aria-label="Underline" aria-pressed="${String(!p.underline?.mixed && Boolean(p.underline?.value))}" ${!p.underline?.mixed && p.underline?.value ? "class=\"active\"" : ""}><u>U</u></button>
           <button type="button" data-context-action="toggle-linethrough" title="Strikethrough" aria-label="Strikethrough" aria-pressed="${String(!p.linethrough?.mixed && Boolean(p.linethrough?.value))}" ${!p.linethrough?.mixed && p.linethrough?.value ? "class=\"active\"" : ""}><s>S</s></button>
         </div>
@@ -51957,7 +52032,7 @@
         ${group("type", "Type", `<span class="context-strip-font-family">${selectionContextSelectField("fontFamily", "Font", p.fontFamily, [
           ["Arial, Helvetica, sans-serif", "Arial"], ["'Helvetica Neue', Arial, sans-serif", "Helvetica Neue"], ["'Times New Roman', Times, serif", "Times New Roman"], ["Georgia, serif", "Georgia"], ["'Courier New', monospace", "Courier New"]
         ])}</span>
-        ${selectionContextNumberField("fontSize", "Size (pt)", { ...p.fontSize, value: p.fontSize?.value == null ? null : Number(p.fontSize.value) / TEXT_POINTS_TO_CANVAS }, { min: 4, max: 256, step: "1", decimals: 1 })}
+        ${selectionContextNumberField("fontSize", "Text size (pt)", { ...p.fontSize, value: p.fontSize?.value == null ? null : Number(p.fontSize.value) / TEXT_POINTS_TO_CANVAS }, { min: 4, max: 256, step: "1", decimals: 1 })}
         ${action("toggle-bold", "B", { title: "Bold", pressed: !p.fontWeight?.mixed && ["700", "bold"].includes(fontWeight), className: "context-strip-style-button" })}
         ${action("toggle-italic", "I", { title: "Italic", pressed: !p.fontStyle?.mixed && p.fontStyle?.value === "italic", className: "context-strip-style-button context-strip-italic" })}`)}
         ${group("paragraph", "Paragraph alignment", `
@@ -55726,9 +55801,10 @@
     if (!objectMayHaveStatusBadges(object)) return items;
     const status = appearanceInspectorStatus(object, [object]);
     const feature = appearanceInspectorFeatureSummary(object, status);
-    // The context bar and Inspector identify the PDF leaf during isolation or
-    // point editing. A duplicate canvas badge can cover plotted marks/handles.
-    const editingPdfLeaf = (isGroupIsolationActive() || state.tool === "directSelect" && isPathNodeEditing(object))
+    // Text controls, isolation and point editing already identify the PDF leaf.
+    // A duplicate canvas Source badge can cover nearby labels or plotted marks.
+    const editingPdfLeaf = (object.pdfTextRepresentation === "editable-positioned-text"
+      || isGroupIsolationActive() || state.tool === "directSelect" && isPathNodeEditing(object))
       && pdfDirectLeafSourceIdentity(object);
     if (status.sourceBacked && !editingPdfLeaf) items.push({ label: "Source", kind: "source", title: "Source-backed object; unsupported native features remain preserved." });
     if (status.proxyBacked) items.push({ label: "Proxy", kind: "proxy", title: "Canvas uses a lightweight/source-backed proxy." });
@@ -71116,9 +71192,9 @@
       removed_contour_count: plans.find((plan) => plan.object === object).removedContourIndices.size,
       historyLabel: label
     }));
-    canvas.requestRenderAll();
     renderPathNodeOverlay();
     syncUi();
+    requestCanvasArtworkRender();
     commitHistory(label, { undoDirectSelectionState: selectionBeforeDelete });
     const removedPathCount = plans.filter((plan) => plan.removeObject && !plan.isLine).length;
     const removedSubpathCount = plans.filter((plan) => !plan.removeObject).reduce((count, plan) => count + plan.removedContourIndices.size, 0);

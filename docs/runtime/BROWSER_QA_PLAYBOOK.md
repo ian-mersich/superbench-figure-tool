@@ -6,6 +6,37 @@ job at a time through `scripts/run-owned-browser-qa.py`, with a fresh output
 directory, a bounded deadline and source hashes before and after execution.
 Require a closed supervisor with zero remaining owned processes.
 
+## Figure Style and editable drawing previews
+
+Use `scripts/check-style-preview-browser.py` with an immutable `--root`,
+`--expected-app-sha256`, fresh `--output-dir`, and one explicit `--journey`:
+
+- `preview`: live local colors, Cancel, exact native Insert/Apply, the maintained
+  250 ms paint observer, Undo/Redo and an actual Save/new-process Open.
+- `mixed`: a genuine mixed native fixture, Line width, Text size and Bold, one
+  Figure–Slidedeck–Figure return, and an actual Save/new-process Open.
+- `pdf`: a genuine saved Figure2 fixture and supported label-size editing, strict
+  native history/persistence comparisons and exact original source retention.
+- `layout`: a populated mixed figure at 1280×800, 1440×1000 and 1920×1080 in both
+  themes, each with fresh and genuinely saved preferences. It captures both
+  layouts and verifies one inner scroll owner, visible first color input,
+  reachable final controls and exact floating geometry across mode changes.
+
+All journeys except `preview` require `--fixture`. Source-owner work may add
+`--overlay` for the explicit five-file App/CSS/index/preview/color-controls
+candidate over the immutable runtime. Freeze that directory and all imported
+controllers through the shared/frozen/owned wrappers below. No browser job may
+overlap a source mutation. A source overlay establishes source behavior only;
+the coordinator separately composes and qualifies a Core-hosted candidate.
+
+Retain each failed epoch, complete comparison operands and original-resolution
+images. Screenshot intents are recorded before capture. Require independent
+visual review after structural checks; a panel whose fields merely have nonzero
+bounds does not prove they are visible inside its scroll area. The layout
+journey checks containment and real wheel reachability without enlarging the
+preserved 260×320 floating panel or changing browser zoom. See
+[the ownership note](../architecture/STYLE_PREVIEW_EDITING_2026_11_06.md).
+
 For hosted cancellation checks that compare the document's unsaved flag, wait
 passively for the real Browser files status to report saved, the inner document
 to report clean and the browser session to be ready and idle before recording
@@ -667,3 +698,79 @@ clip exclusions. Independent full-resolution image and actual-content reviews
 remain separate from structural checks. See the
 [screen-scale geometry checkpoint](../architecture/PATH_SEGMENT_SCREEN_TARGETS_2026_11_05.md)
 for the retained cases and qualification boundaries.
+
+## Transformed Library contour deletion
+
+`scripts/geometry_qa/topology.py` reuses the maintained Library insertion,
+geometry, authored-content and persistence controllers. Serve the accepted
+runtime with `--root`, bind `--expected-app-sha256`, and select a fresh
+`--output-dir`; `--viewport` and `--theme` declare the desktop case. Use the
+same shared/frozen/owned supervision above. `--base-runtime` retains the
+existing App/styles overlay path for a separately approved candidate.
+
+The finite composition contains the Style 4 budding hydrogel organoid and
+tight-junction network, plus antibody and mitochondrion neighbors. Insert all
+four through the Library. Unlink width/height and apply nonuniform dimensions
+and rotation through ordinary Select controls; source SVG coordinates alone
+do not establish a transformed placed object.
+
+Pin the selected native path by its exact imported source key and region paint
+role. The corrected Style 4 junction drawing contains separate fill, outline,
+shade and highlight objects. This case deletes one contour of the selected
+junction-strand **fill path** and preserves all other native objects; it does
+not claim to erase every visual component representing that strand.
+
+First delete the organoid fill's initial closed-ring anchor; separately select
+every endpoint of one junction fill contour and remove that contour. Compare
+keyboard and toolbar actions, one history step, completed Undo/Redo, unchanged
+lumen fill, sibling commands, surviving node/contour IDs and world coordinates.
+The two separate actions may have different `last_edited_at` values on the
+edited path only; record both. Keep that exception out of file, Undo/Redo and
+cold comparisons. Retain the established Library numeric/derived-clip policy.
+
+When endpoint boxes overlap, choose an exposed point of the intended button by
+a read-only DOM query, then use a trusted ordinary pointer and assert the exact
+selected command set. Do not force clicks, enlarge controls or set selection.
+This is input setup, not an independent hit-testing correctness oracle.
+
+Require two actual downloads around a distinct-process cold Open and continued
+deletion on both drawings. The first cold image precedes Fit, navigation and
+model inspection. Full saved-content and original-resolution visual reviews
+remain independent. See the [topology qualification](../architecture/LIBRARY_CONTOUR_DELETION_2026_11_05.md)
+for the retained evidence and scope.
+
+## Crowded anchors and minimum topology counts
+
+The maintained `scripts/geometry_qa/crowded-anchors.py` opens the exact retained
+transformed Library file and records real CSS rectangles, centers, hit order,
+event receivers and native selection. It issues one ordinary `mouse.click`
+per declared trial. Preserve the raw pointerdown/up and any DOM click events;
+an overlay rebuild can leave no DOM click. Do not force a locator click or
+infer native misselection from the browser's receiver alone. Compare a center
+trial in warm/fresh browsers with a genuinely exposed point on the same handle.
+Keep coincident points separate from measured distinct centers.
+
+`scripts/geometry_qa/final-counts.py` uses that same actual file for the closed
+contour's 4→3→2→1→0 anchor boundary and final fill-path removal. Require one
+history step per Delete, complete Undo/Redo, surviving node/contour membership,
+native parent ownership and unchanged world placement of all other artwork.
+Save the one-anchor state, open it in a new process and continue deletion; save
+the removed-path state and open it in another process. Independent outline and
+tone parts remain separate objects.
+
+`scripts/geometry_qa/pdf-topology.py` exercises the same contour mutation on an
+existing genuine Figure 2 native legend path. Choose a current filled interior
+point with zero paint tolerance and a boundary exclusion before the trusted
+selection click; a tolerant helper can choose a shared edge. Keep the strict
+PDF authored-data policy, actual Saves and fresh-process continuation. Inspect
+the immediate forward-deleted capture as well as Undo/Redo: correct serialized
+geometry does not prove that the canvas painted it.
+
+All three accept `--root`, `--expected-app-sha256`, `--output-dir`, `--fixture`,
+`--viewport`, `--theme` and the existing `--base-runtime` overlay option. Pin the
+exact fixture/controller/helper/runtime inputs and use the shared/frozen/owned
+wrappers. First cold captures precede Fit, navigation and model inspection.
+For an isolated App candidate, use `FIGURE_APP_SOURCE` with the focused Node
+tests; the mutable private working App is not release evidence. Do not omit
+renderer/cache flags or timestamps to make persistence comparisons pass. See
+[the source and evidence note](../architecture/CROWDED_ANCHOR_AND_FINAL_TOPOLOGY_2026_11_06.md).

@@ -142,14 +142,21 @@
         callbacks.onResetPart?.(resetPart.dataset.assetColorReset, event);
       }
     };
+    const onInput = (event) => {
+      const part = controlFor(event, 'input[type="color"][data-asset-color-region]');
+      const color = part && hex(part.value);
+      if (part && part.dataset.assetColorRegion && color) callbacks.onPartColorInput?.(part.dataset.assetColorRegion, color, event);
+    };
     surface.addEventListener("change", onChange);
     surface.addEventListener("click", onClick);
+    if (typeof callbacks.onPartColorInput === "function") surface.addEventListener("input", onInput);
     let cleaned = false;
     const cleanup = () => {
       if (cleaned) return;
       cleaned = true;
       surface.removeEventListener("change", onChange);
       surface.removeEventListener("click", onClick);
+      surface.removeEventListener("input", onInput);
       if (bindings.get(surface) === cleanup) bindings.delete(surface);
     };
     bindings.set(surface, cleanup);

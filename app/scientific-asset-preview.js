@@ -25,6 +25,13 @@
     let focusOrigin = null;
     let variants = [];
     let previewReady = false;
+    const drafting = typeof callbacks.createDraft === "function";
+    const clone = (value) => value == null ? null : JSON.parse(JSON.stringify(value));
+    let draft = null;
+    let displayedDraft = null;
+    let draftRegions = [];
+    let draftPaletteOverrides = {};
+    let unbindParts = null;
     const contextId = () => String(callbacks.contextId?.() ?? "");
     const count = (value) => Number.isFinite(Number(value)) ? Math.max(0, Math.floor(Number(value))) : 0;
     const asset = () => callbacks.getAsset?.(state.assetId);
@@ -48,6 +55,12 @@
       const changing = state.mode === "change";
       Object.assign(state, { open: false, assetId: "", contextId: "", loading: false, busy: false, mode: "preview" });
       previewReady = false;
+      draft = displayedDraft = null;
+      draftRegions = [];
+      draftPaletteOverrides = {};
+      unbindParts?.();
+      unbindParts = null;
+      if (drafting) els.Parts.replaceChildren();
       focusOrigin = null;
       if (dialog.open) dialog.close();
       dialog.hidden = true;
@@ -66,10 +79,14 @@
     }
 
     function replacementInfo() {
-      return callbacks.replacementInfo?.(asset()) || {};
+      return (drafting ? callbacks.replacementInfo?.(asset(), clone(draft)) : callbacks.replacementInfo?.(asset())) || {};
     }
 
     function updateControls() {
+      if (state.open && state.contextId !== contextId()) {
+        close({ restoreFocus: false, force: true });
+        return;
+      }
       const info = replacementInfo();
       const unavailable = state.loading || state.busy || !state.open || !previewReady;
       const changing = state.mode === "change";
@@ -90,8 +107,9 @@
       els.ScopeLabel.textContent = `Also change ${others} matching ${others === 1 ? "copy" : "copies"} on this ${info.documentKind || "figure"}`;
       els.EditedField.hidden = !changing || !info.edited;
       els.AllowEdited.disabled = unavailable || info.checking;
-      els.ReplaceSelectedBtn.textContent = els.IncludeCopies.checked ? `Change ${others + 1} drawings` : "Change drawing";
+      els.ReplaceSelectedBtn.textContent = String(info.actionLabel || (els.IncludeCopies.checked ? `Change ${others + 1} drawings` : "Change drawing"));
       els.ReplacementNote.textContent = changing ? String(info.note || "") : "Library cards and previews insert a new drawing. Existing artwork stays as it is.";
+      if (drafting) els.Parts.inert = state.busy;
     }
 
     function renderDetails(source) {
@@ -144,7 +162,7 @@
       for (const region of Array.isArray(regions) ? regions : []) {
         if (!region?.id || seen.has(region.id)) continue;
         seen.add(region.id);
-        const row = document.createElement("li");
+        const row = document.createElement(["UL", "OL"].includes(els.Parts.tagName) ? "li" : "div");
         const swatch = document.createElement("span");
         swatch.className = "asset-preview-swatch";
         swatch.setAttribute("aria-hidden", "true");
@@ -161,29 +179,125 @@
       els.PartsHeading.textContent = `Editable part colors (${seen.size})`;
     }
 
-    async function showAsset(assetId) {
+    function changeDraft(update) {
+      if (!drafting || !draft || !current(serial) || state.busy) return;
+      const next = clone(draft);
+      update(next);
+      if (JSON.stringify(next) === JSON.stringify(draft) && (previewReady || state.loading)) return;
+      draft = next;
+      void showAsset(state.assetId, { draftRefresh: true });
+    }
+
+    function changePart(id, color) {
+      const region = draftRegions.find((entry) => entry.id === id);
+      if (!region || !HEX.test(String(color || ""))) return;
+      changeDraft((next) => {
+        const baseline = draftPaletteOverrides[id] || region.default;
+        if (String(baseline).toUpperCase() === color.toUpperCase()) delete next.customColorOverrides[id];
+        else next.customColorOverrides[id] = color.toUpperCase();
+      });
+    }
+
+    function renderDraftParts(loaded, preserveControls) {
+      const controls = root.FigureStudioScientificAssetColorControls;
+      if (!controls?.render || !controls?.bind) throw new Error("Preview color controls are unavailable.");
+      const regions = Array.isArray(loaded.regions) ? loaded.regions : [];
+      const identity = (entries) => JSON.stringify(entries.map((entry) => [entry.id, entry.label]));
+      const rebuild = !preserveControls || identity(regions) !== identity(draftRegions);
+      draftRegions = clone(regions);
+      draftPaletteOverrides = clone(loaded.paletteOverrides || loaded.paletteColorOverrides
+        || root.FigureStudioScientificAssetPalettes?.paletteRegionOverrides(draft.paletteId, asset()?.editable_color_regions || regions) || {});
+      const overrides = { ...draftPaletteOverrides, ...(loaded.colorOverrides || {}), ...draft.customColorOverrides };
+      if (rebuild) {
+        unbindParts?.();
+        els.Parts.innerHTML = controls.render({}, {
+          mode: "advanced", prefix: "asset-preview-colors", heading: false, resetAll: true,
+          regions, palettes: root.FigureStudioScientificAssetPalettes?.getPalettes?.(),
+          paletteId: draft.paletteId, overrides, customOverrides: draft.customColorOverrides,
+          hasCustomColors: Object.keys(draft.customColorOverrides).length > 0
+        });
+        unbindParts = controls.bind(els.Parts, {
+          onPalette: (id) => changeDraft((next) => { next.paletteId = id; }),
+          onPartColor: changePart, onPartColorInput: changePart,
+          onResetPart: (id) => {
+            if (draftRegions.some((entry) => entry.id === id)) changeDraft((next) => { delete next.customColorOverrides[id]; });
+          },
+          onResetAll: () => changeDraft((next) => { next.paletteId = "original"; next.customColorOverrides = {}; })
+        });
+      }
+      const palette = els.Parts.querySelector("select[data-asset-palette]");
+      if (palette) palette.value = draft.paletteId;
+      for (const input of els.Parts.querySelectorAll('input[type="color"][data-asset-color-region]')) {
+        const region = regions.find((entry) => entry.id === input.dataset.assetColorRegion);
+        const color = overrides[region?.id] || region?.default;
+        if (HEX.test(String(color || "")) && input.value.toUpperCase() !== color.toUpperCase()) input.value = color;
+      }
+      for (const button of els.Parts.querySelectorAll("button[data-asset-color-reset]")) {
+        button.disabled = !Object.hasOwn(draft.customColorOverrides, button.dataset.assetColorReset);
+      }
+      const reset = els.Parts.querySelector("button[data-asset-colors-reset]");
+      if (reset) reset.disabled = draft.paletteId === "original" && !Object.keys(draft.customColorOverrides).length;
+      let hint = els.Parts.querySelector(".asset-colors-custom-hint");
+      if (!hint && Object.keys(draft.customColorOverrides).length) {
+        hint = document.createElement("p");
+        hint.className = "asset-colors-custom-hint";
+        hint.id = "asset-preview-colors-custom-hint";
+        hint.textContent = "Your edited part colors are kept.";
+        els.Parts.append(hint);
+      }
+      if (hint) {
+        hint.hidden = !Object.keys(draft.customColorOverrides).length;
+        if (palette && !hint.hidden) palette.setAttribute("aria-describedby", hint.id);
+        else palette?.removeAttribute("aria-describedby");
+      }
+      els.PartsHeading.textContent = `Editable part colors (${new Set(regions.map((entry) => entry.id)).size})`;
+    }
+
+    async function showAsset(assetId, options = {}) {
       const source = callbacks.getAsset?.(String(assetId || ""));
       if (!source || state.busy) return false;
+      const refreshing = drafting && options.draftRefresh === true && state.assetId === source.id;
       const token = ++serial;
       state.assetId = source.id;
       state.loading = true;
       previewReady = false;
-      els.Image.removeAttribute("src");
-      els.Appearance.textContent = "";
-      els.Parts.replaceChildren();
-      els.PartsHeading.textContent = "Editable part colors";
+      if (!refreshing) {
+        els.Image.removeAttribute("src");
+        els.Appearance.textContent = "";
+        els.Parts.replaceChildren();
+        els.PartsHeading.textContent = "Editable part colors";
+        displayedDraft = null;
+        draftRegions = [];
+        unbindParts?.();
+        unbindParts = null;
+      }
       els.Status.textContent = "Loading preview…";
       try {
-        renderDetails(source);
+        if (!refreshing) {
+          if (drafting) {
+            draft = clone(callbacks.createDraft(source, { mode: state.mode, previousDraft: clone(draft) }));
+            if (!draft || draft.assetId !== source.id) throw new Error("Invalid preview appearance draft.");
+            draft.customColorOverrides = Object.fromEntries(Object.entries(draft.customColorOverrides || {})
+              .filter(([, color]) => typeof color === "string" && HEX.test(color)).map(([id, color]) => [id, color.toUpperCase()]));
+          }
+          renderDetails(source);
+        }
+        const snapshot = clone(draft);
         updateControls();
-        const loaded = await callbacks.loadPreview(source);
+        if (!current(token)) return false;
+        const loaded = drafting
+          ? await callbacks.getPreview(source, clone(snapshot))
+          : await callbacks.loadPreview(source);
         if (!current(token)) return false;
         if (typeof loaded?.svgText !== "string" || !loaded.svgText.trim()) throw new Error("Preview unavailable.");
         els.Image.src = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(loaded.svgText)}`;
         await els.Image.decode();
         if (!current(token)) return false;
         els.Appearance.textContent = String(loaded.appearanceLabel || "");
-        renderParts(loaded.regions, loaded.paletteOverrides);
+        if (drafting) {
+          renderDraftParts(loaded, refreshing);
+          displayedDraft = snapshot;
+        } else renderParts(loaded.regions, loaded.paletteOverrides);
         state.loading = false;
         previewReady = true;
         els.Status.textContent = state.mode === "change" ? "Choose a drawing, then confirm below." : "Ready to insert.";
@@ -192,6 +306,7 @@
       } catch (_error) {
         if (!current(token)) return false;
         state.loading = false;
+        displayedDraft = null;
         els.Image.removeAttribute("src");
         els.Status.textContent = "This preview could not be loaded. Choose another drawing or try again.";
         updateControls();
@@ -203,8 +318,10 @@
       if (state.busy || !callbacks.getAsset?.(String(assetId || ""))) return false;
       if (!state.open) focusOrigin = returnFocus || document.activeElement;
       else if (returnFocus) focusOrigin = returnFocus;
+      const mode = options.mode === "change" ? "change" : "preview";
+      if (!state.open || state.mode !== mode || state.contextId !== contextId()) draft = null;
       state.open = true;
-      state.mode = options.mode === "change" ? "change" : "preview";
+      state.mode = mode;
       els.SearchInput.value = "";
       els.IncludeCopies.checked = false;
       els.AllowEdited.checked = false;
@@ -222,9 +339,12 @@
       const id = state.assetId;
       state.busy = true;
       updateControls();
-      els.Status.textContent = action === "insert" ? "Inserting drawing…" : "Replacing drawings…";
+      els.Status.textContent = action === "insert" ? "Inserting drawing…"
+        : replacementInfo().actionLabel === "Apply colors" ? "Applying colors…" : "Replacing drawings…";
       try {
-        const success = await callbacks.onAction?.(action, id, { includeCopies: els.IncludeCopies.checked, allowEdited: els.AllowEdited.checked });
+        const actionOptions = { includeCopies: els.IncludeCopies.checked, allowEdited: els.AllowEdited.checked };
+        if (drafting) actionOptions.appearanceDraft = clone(displayedDraft);
+        const success = await callbacks.onAction?.(action, id, actionOptions);
         if (!current(token)) return;
         state.busy = false;
         if (success) close({ restoreFocus: false });
@@ -273,7 +393,8 @@
     for (const [action, button] of [
       ["insert", els.InsertBtn], ["change", els.ReplaceSelectedBtn]
     ]) button.addEventListener("click", () => { void act(action, button); });
-    const controller = Object.freeze({ open, close, refresh: updateControls, getState: () => ({ ...state }) });
+    const controller = Object.freeze({ open, close, refresh: updateControls,
+      getState: () => drafting ? { ...state, draft: clone(draft), displayedDraft: clone(displayedDraft) } : { ...state } });
     controllers.set(dialog, controller);
     return controller;
   }
