@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="data:,">
     <title>Superbench Figure Tool</title>
-  <link rel="stylesheet" href="styles.css?v=20261106-style-heading1">
+  <link rel="stylesheet" href="styles.css?v=inspector-20261107-1">
     <link rel="stylesheet" href="line-picker.css?v=20261011-picker1">
     <link rel="stylesheet" href="help/figure-studio-help-center.css?v=20260902-family-polish1">
   </head>
@@ -186,6 +186,8 @@
                 <div class="menu-separator" role="separator"></div>
                 <button type="button" role="menuitemcheckbox" data-command="toggle-left-sidebar"><span>Show Left Sidebar</span></button>
                 <button type="button" role="menuitemcheckbox" data-command="toggle-right-inspector"><span>Show Right Inspector</span></button>
+                <button type="button" role="menuitem" data-command="float-right-inspector"><span>Detach Inspector</span></button>
+                <button type="button" role="menuitem" data-command="dock-all-panels"><span>Dock panels</span></button>
                 <div class="menu-separator" role="separator" data-figure-only></div>
                 <button type="button" role="menuitemcheckbox" data-command="toggle-drawing-tools" data-figure-only><span>Drawing tools</span></button>
                 <button type="button" role="menuitem" data-command="customize-drawing-tools" data-figure-only><span>Customize drawing tools&hellip;</span></button>
@@ -348,11 +350,6 @@
             <div class="figure-layout-file-actions" data-figure-only>
               <button type="button" data-figure-layout-command="save-project" data-shared-icon="save" title="Save Figure (Ctrl/Cmd+S)">Save</button>
               <button type="button" data-figure-layout-command="export-as" data-shared-icon="export">Export</button>
-            </div>
-            <button type="button" id="projectSlidesToggle" class="project-slides-toggle" aria-expanded="false" aria-controls="projectSlidesPanel" title="Show this project's slides beside your canvas">Slides</button>
-            <div id="documentWorkspaceSwitcher" class="document-workspace-switcher" role="tablist" aria-label="Project views">
-              <button type="button" id="figureWorkspaceTab" role="tab" data-document-workspace="figure" aria-selected="true">Figure</button>
-              <button type="button" id="presentationWorkspaceTab" role="tab" data-document-workspace="presentation" aria-selected="false" title="Edit this project's slides; your Figure stays open">Slidedeck</button>
             </div>
             <button type="button" id="contextLearnBtn" class="help-top-button" data-shared-icon="help" title="Read Help for the current workspace">Workspace help</button>
             <button type="button" id="helpCenterBtn" class="help-top-button" data-command="help-center" data-shared-icon="help" title="Search Figure Tool help">Help</button>
@@ -892,11 +889,16 @@
 
         <section class="canvas-panel">
           <div class="document-tabs-bar" aria-label="Open documents">
+            <div id="documentWorkspaceSwitcher" class="document-workspace-switcher" role="tablist" aria-label="Figure and Slidedeck views">
+              <button type="button" id="figureWorkspaceTab" role="tab" data-document-workspace="figure" aria-selected="true">Figure</button>
+              <button type="button" id="presentationWorkspaceTab" role="tab" data-document-workspace="presentation" aria-selected="false" title="Edit this project's slides; your Figure stays open">Slidedeck</button>
+            </div>
             <div id="documentTabs" class="document-tabs" role="tablist"></div>
             <button type="button" id="newDocumentTabBtn" class="new-document-tab-button" title="New document" aria-label="New document">+</button>
+            <button type="button" id="projectSlidesToggle" class="project-slides-toggle" aria-expanded="false" aria-controls="projectSlidesPanel" title="Show this project's slides beside your canvas">Project slides</button>
             <div class="figure-document-panel-actions" data-figure-only>
               <button type="button" id="figureLibraryToggle" aria-pressed="false" aria-controls="figureLibraryPanel">Library</button>
-              <button type="button" id="figureStyleToggle" aria-pressed="false" aria-controls="figureInspectorPanel">Style</button>
+              <button type="button" id="figureStyleToggle" aria-pressed="false" aria-controls="figureInspectorPanel">Inspector</button>
               <button type="button" id="figureDocumentSetupBtn" aria-pressed="false" aria-controls="documentSetupDisclosure">Document setup</button>
             </div>
           </div>
@@ -1391,14 +1393,14 @@
               <button type="button" data-rail-action="hide" data-rail="right" title="Hide Inspector panel" aria-label="Hide Inspector panel">×</button>
             </div>
           </div>
-          <nav class="inspector-tabs" aria-label="Style and properties">
-            <button type="button" id="styleInspectorTab" class="active" data-inspector-tab="style" aria-current="page" data-figure-only>Style</button>
+          <nav class="inspector-tabs" aria-label="Inspector views">
+            <button type="button" id="styleInspectorTab" class="active" data-inspector-tab="appearance" aria-current="page">Appearance</button>
             <button type="button" id="propertiesInspectorTab" data-inspector-tab="properties">Properties</button>
-            <button type="button" data-inspector-tab="swatches" title="Saved document colors">Colors</button>
             <button type="button" id="layersInspectorTab" data-inspector-tab="layers">Layers</button>
           </nav>
-          <section id="figureSimpleStylePanel" class="simple-style-summary" data-inspector-panel="style" aria-label="Selection style">
-            <div class="simple-style-heading"><strong id="figureSimpleSelectionName">Style</strong></div>
+          <div id="inspectorContent" class="inspector-content">
+          <section id="figureSimpleStylePanel" class="simple-style-summary" data-inspector-panel="appearance" aria-label="Selection appearance">
+            <div class="simple-style-heading"><strong id="figureSimpleSelectionName">Appearance</strong></div>
             <div id="figureSimpleStyleControls" class="simple-style-fields"></div>
           </section>
           <section id="propertiesNoSelectionState" class="panel-section properties-empty-state" data-inspector-panel="properties">
@@ -1477,12 +1479,14 @@
             <button type="button" id="unlockBtn">Unlock</button>
           </div>
 
-          <section id="scientificAssetEditPanel" class="panel-section selection-context-section scientific-asset-edit-panel" data-inspector-panel="properties" hidden>
-            <div class="scientific-asset-edit-heading">
-              <span>Scientific asset</span>
+          <section id="appearanceStructureInspector" class="panel-section selection-context-section appearance-structure-inspector" data-inspector-panel="selection" hidden></section>
+
+          <details id="scientificAssetEditPanel" class="panel-section selection-context-section scientific-asset-edit-panel" data-inspector-panel="properties" hidden>
+            <summary class="scientific-asset-edit-heading">
+              <span>Drawing options</span>
               <strong id="scientificAssetEditName"></strong>
               <small id="scientificAssetEditMeta"></small>
-            </div>
+            </summary>
             <div id="scientificAssetStyleControls" class="scientific-asset-style-controls" hidden>
               <span id="scientificAssetVariantHeading">Style</span>
               <div id="scientificAssetStyleList" class="scientific-asset-style-list" role="group" aria-label="Scientific asset style"></div>
@@ -1498,9 +1502,7 @@
               </div>
               <div id="scientificAssetColorList" class="asset-color-list"></div>
             </div>
-          </section>
-
-          <section id="appearanceStructureInspector" class="panel-section selection-context-section appearance-structure-inspector" data-inspector-panel="properties" hidden></section>
+          </details>
 
           <section id="productionInspector" class="panel-section selection-context-section asset-inspector-summary" data-inspector-panel="properties" hidden></section>
 
@@ -1989,7 +1991,9 @@
             </div>
             <div id="layersList" class="layers-list"></div>
           </section>
-          <section id="swatchesInspectorPanel" class="panel-section grow swatches-inspector-panel" data-inspector-panel="swatches">
+          <details id="savedColorsDisclosure" class="panel-section saved-colors-disclosure" data-inspector-panel="appearance">
+            <summary>Saved colors and patterns</summary>
+          <section id="swatchesInspectorPanel" class="swatches-inspector-panel">
             <div class="swatches-panel-heading">
               <div><strong>Saved colors</strong><span id="swatchLibrarySummary">Document colors</span></div>
               <button type="button" id="collectSelectionColorsBtn" title="Add unique editable colors from the current selection">Collect</button>
@@ -2036,6 +2040,8 @@
             <div id="swatchLibraryStatus" class="swatch-library-status" role="status" aria-live="polite"></div>
             <p class="swatches-source-note">Global links update ordinary editable artwork. Protected imported artwork remains unchanged.</p>
           </section>
+          </details>
+          </div>
         </aside>
         <div class="rail-resize-handle" data-rail-resize="right" role="separator" aria-label="Resize Inspector panel" aria-orientation="vertical" tabindex="0" title="Drag or use arrow keys to resize; Home or double-click resets"></div>
         <button type="button" class="rail-restore rail-restore-right" data-rail-action="show" data-rail="right" title="Show Inspector panel" aria-label="Show Inspector panel" hidden>Inspector</button>
@@ -2573,11 +2579,11 @@
     <script src="scientific-asset-catalog.js?v=20260830-beta1" defer></script>
     <script src="scientific-asset-art-styles.js?v=20261017-style4" defer></script>
     <script src="scientific-asset-palettes.js?v=20261017-style4" defer></script>
-    <script src="scientific-asset-color-controls.js?v=20261106-style-preview" defer></script>
+    <script src="scientific-asset-color-controls.js?v=inspector-20261107-1" defer></script>
     <script src="scientific-scene-catalog.js?v=20260830-scenes1" defer></script>
     <script src="scientific-template-cards.js?v=20261103-templates1" defer></script>
     <script src="scientific-asset-discovery.js?v=20261015-change1" defer></script>
-    <script src="scientific-asset-preview.js?v=20261106-style-preview" defer></script>
+    <script src="scientific-asset-preview.js?v=inspector-20261107-1" defer></script>
     <script src="scientific-motif-catalog.js?v=20260914-fig28" defer></script>
     <script src="scientific-protocol-components.js?v=20260923-fig-par-04" defer></script>
     <script src="vector-engine.js?v=20260903-scene1" defer></script>
@@ -2586,6 +2592,6 @@
     <script src="line-picker.js?v=20261011-picker1" defer></script>
     <script src="native-path-scene-transform.js?v=20261021-point1" defer></script>
     <script src="group-object-selection.js?v=20261029-selection1" defer></script>
-  <script src="app.js?v=20261106-style-preview" defer></script>
+  <script src="app.js?v=inspector-20261107-1" defer></script>
   </body>
 </html>

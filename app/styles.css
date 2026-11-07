@@ -9449,29 +9449,29 @@ input.layer-child-name:focus {
   min-width: 0;
 }
 
-.inspector > [data-inspector-panel] {
+.inspector-content > [data-inspector-panel] {
   display: none;
   min-width: 0;
   max-width: 100%;
 }
 
-.inspector > [data-inspector-panel].active {
+.inspector-content > [data-inspector-panel].active {
   display: grid;
 }
 
-.inspector:not(.has-selection) > .selection-context-section.active {
+.inspector:not(.has-selection) > .inspector-content > .selection-context-section.active {
   display: none;
 }
 
-.inspector.has-selection > .properties-empty-state.active {
+.inspector.has-selection > .inspector-content > .properties-empty-state.active {
   display: none;
 }
 
-.inspector:not(.has-selection) > .properties-empty-state.active {
+.inspector:not(.has-selection) > .inspector-content > .properties-empty-state.active {
   display: grid;
 }
 
-.inspector > [data-inspector-panel].grow.active {
+.inspector-content > [data-inspector-panel].grow.active {
   min-height: 0;
   flex: 1;
 }
@@ -11556,7 +11556,7 @@ html:is(
   font-weight: 700;
 }
 
-.inspector > [data-inspector-panel].active {
+.inspector-content > [data-inspector-panel].active {
   flex: 0 0 auto;
   align-content: start;
 }
@@ -18493,3 +18493,38 @@ html .figure-studio-root[data-figure-layout]:not([data-document-kind="presentati
 html .figure-studio-root[data-figure-layout]:not([data-document-kind="presentation"]) .inspector-tabs { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); flex: 0 0 auto; }
 html .figure-studio-root[data-figure-layout]:not([data-document-kind="presentation"]) #figureSimpleStyleControls { min-height: 0; flex: 1 1 auto; align-content: start; grid-auto-rows: max-content; overflow-y: auto; overscroll-behavior: contain; padding-right: 3px; scrollbar-gutter: stable; scrollbar-width: thin; scrollbar-color: var(--text-muted) transparent; }
 html .figure-studio-root[data-figure-layout]:not([data-document-kind="presentation"]) .inspector[data-inspector-view="style"] > .inspector-tabs { position: static; }
+
+/* Inspector is one surface in either layout; content owns the only scrollbar. */
+html .figure-studio-root #figureInspectorPanel { display:flex; flex-direction:column; overflow:hidden; }
+html .figure-studio-root #figureInspectorPanel > .rail-window-bar,
+html .figure-studio-root #figureInspectorPanel > .inspector-tabs { flex:0 0 auto; position:static; }
+html .figure-studio-root #figureInspectorPanel > .inspector-tabs { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); }
+html .figure-studio-root #figureInspectorPanel .inspector-tabs button { font-size:11px; padding-inline:3px; }
+html .figure-studio-root #inspectorContent { flex:1 1 auto; min-height:0; min-width:0; overflow-y:auto; overflow-x:hidden; overscroll-behavior:contain; scrollbar-gutter:stable; scrollbar-width:thin; }
+html .figure-studio-root #inspectorContent > [data-inspector-panel]:not(.active) { display:none !important; }
+html .figure-studio-root #inspectorContent > [data-inspector-panel].active { flex:none; min-height:auto; overflow:visible; }
+html .figure-studio-root #figureInspectorPanel #figureSimpleStylePanel.active { display:block !important; overflow:visible; padding:8px 6px; }
+html .figure-studio-root #figureInspectorPanel #figureSimpleStyleControls { display:grid; flex:none; max-height:none; overflow:visible; overscroll-behavior:auto; scrollbar-gutter:auto; padding:0; gap:7px; }
+html .figure-studio-root #assetSelectionControls .asset-selection-actions { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); }
+html .figure-studio-root #figureSimpleSelectionName { font-size:12px; line-height:1.3; }
+html .figure-studio-root .simple-style-heading { margin-bottom:6px; }
+html .figure-studio-root #figureInspectorPanel[data-inspector-view="appearance"] [data-inspector-scope="properties"],
+html .figure-studio-root #figureInspectorPanel[data-inspector-view="properties"] [data-inspector-scope="appearance"] { display:none !important; }
+html .figure-studio-root #figureInspectorPanel[data-inspector-view="appearance"] .context-properties-card { margin:0; padding:0; border:0; background:none; }
+html .figure-studio-root #appearanceStructureInspector .inspector-appearance-precision { margin:0 0 6px; }
+html .figure-studio-root #appearanceStructureInspector .inspector-appearance-precision > summary,
+html .figure-studio-root #savedColorsDisclosure > summary { cursor:pointer; font-weight:600; font-size:11px; padding:7px 2px; }
+html .figure-studio-root #savedColorsDisclosure { margin:0; padding:0 6px 8px; border:0; border-radius:0; }
+html .figure-studio-root #savedColorsDisclosure:not([open]) > :not(summary) { display:none; }
+html .figure-studio-root #swatchesInspectorPanel { display:grid; min-height:auto; overflow:visible; gap:8px; }
+html .figure-studio-root #swatchesInspectorPanel :is(.swatch-library-grid,.pattern-library-grid) { max-height:none; overflow:visible; }
+html .figure-studio-root #scientificAssetEditPanel > summary { cursor:pointer; }
+html .figure-studio-root .asset-palette-row { display:flex; align-items:end; gap:5px; }
+html .figure-studio-root .asset-palette-row .asset-palette-control { flex:1; min-width:0; }
+html .figure-studio-root #figureSimpleStylePanel .asset-palette-row .asset-colors-reset { width:auto; flex:0 0 auto; font-size:10px; padding-inline:5px; }
+html .figure-studio-root #figureSimpleStylePanel .asset-colors-custom-hint { margin:3px 0; line-height:1.2; font-size:10px; }
+html .figure-studio-root .document-tabs-bar > .document-workspace-switcher { flex:0 0 auto; margin-right:5px; border-right:1px solid var(--line); border-radius:0; padding-right:6px; }
+html .figure-studio-root .document-tabs-bar > #projectSlidesToggle { flex:0 0 auto; min-height:26px; height:26px; padding:0 7px; font-size:11px; }
+html .figure-studio-root .document-tabs-bar > .document-tabs { min-width:80px; flex:1 1 auto; }
+
+html .figure-studio-root #appearanceStructureInspector :is(.asi-selection-details,.inspector-transform-options) > summary { cursor:pointer; padding:7px 2px; font-size:11px; font-weight:600; }

@@ -33,7 +33,9 @@ def canonical(value):
 def validate(style_dir: Path, library: Path) -> dict:
     importer=load_importer();base=style_dir/PREFIX
     registry=json.loads(library.read_text(encoding='utf-8'))
-    if registry.get('art_styles') != [REGISTRY_ENTRY]: raise ValueError('Original Style 4 supplement registry must bind exact526coverage')
+    endocrine_entry={'id':'style-4','name':'Style 4','path':'style-4/manifest-corrected-20261017.json',
+        'asset_count':550,'supplement':{'path':'style-4/original-companions.json','asset_count':64}}
+    if registry.get('art_styles') not in ([REGISTRY_ENTRY], [endocrine_entry]): raise ValueError('Original Style 4 supplement registry must bind exact reviewed coverage')
     manifest=json.loads((base/'manifest.json').read_text(encoding='utf-8'))
     if (manifest.get('schema_version'),manifest.get('id'),manifest.get('asset_count'),manifest.get('supplement_id')) != ('1.0.0','style-4',40,MARKER):
         raise ValueError('Original Style 4 supplement identity mismatch')

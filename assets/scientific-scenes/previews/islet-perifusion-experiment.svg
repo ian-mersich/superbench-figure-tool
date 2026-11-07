@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 650" role="img" aria-labelledby="title desc">
+<title id="title">Islet perifusion experiment</title>
+<desc id="desc">Perfuse isolated islets through sequential media, collect timed effluent fractions, and measure secreted hormone.</desc>
+<rect width="1100" height="650" fill="#F7F9FC"/>
+<rect x="56" y="169" width="150" height="126" rx="18" fill="#FFFFFF" stroke="#C9D5DE" stroke-width="2.2" data-scene-node="media_bottle"/>
+<rect x="265" y="190" width="150" height="82" rx="18" fill="#E7EEF4" stroke="#527DA8" stroke-width="2.2" data-scene-node="selector"/>
+<rect x="485" y="148" width="223" height="166" rx="24" fill="#FFFFFF" stroke="#2A8C82" stroke-width="2.2" data-scene-node="chamber"/>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="pancreatic_islet_title pancreatic_islet_desc" data-asset="endocrine.pancreatic_islet.mixed_islet" x="528" y="176" width="138" height="108" data-scene-node="pancreatic_islet"><ns0:title id="pancreatic_islet_title">Pancreatic islet — Mixed cell clusters</ns0:title><ns0:desc id="pancreatic_islet_desc">Mixed endocrine-cell groups are interspersed with capillary channels. Cell colors distinguish broad endocrine populations only; arrangement is illustrative and not a universal species-specific blueprint.</ns0:desc><ns0:g data-region="stroma"><ns0:path d="M20 63 C20 37 40 20 65 20 C92 20 108 39 108 63 C108 89 88 108 63 108 C38 108 20 88 20 63Z" fill="#E7EEF4" stroke="none" /></ns0:g><ns0:g data-region="capillary"><ns0:path d="M25 73 C42 56 47 54 63 60 S83 71 101 50 M42 29 Q51 47 63 60" fill="none" stroke="#B94E49" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" /></ns0:g><ns0:g data-region="beta_cells"><ns0:ellipse cx="43" cy="43" rx="7" ry="8" fill="#D79A31" stroke="none" /><ns0:ellipse cx="62" cy="37" rx="7" ry="8" fill="#D79A31" stroke="none" /><ns0:ellipse cx="81" cy="48" rx="7" ry="8" fill="#D79A31" stroke="none" /><ns0:ellipse cx="39" cy="67" rx="7" ry="8" fill="#D79A31" stroke="none" /><ns0:ellipse cx="59" cy="60" rx="7" ry="8" fill="#D79A31" stroke="none" /><ns0:ellipse cx="82" cy="70" rx="7" ry="8" fill="#D79A31" stroke="none" /><ns0:ellipse cx="49" cy="88" rx="7" ry="8" fill="#D79A31" stroke="none" /><ns0:ellipse cx="70" cy="91" rx="7" ry="8" fill="#D79A31" stroke="none" /></ns0:g><ns0:g data-region="other_endocrine"><ns0:ellipse cx="61" cy="25" rx="6" ry="7" fill="#7667A8" stroke="none" /><ns0:ellipse cx="94" cy="54" rx="6" ry="7" fill="#7667A8" stroke="none" /><ns0:ellipse cx="28" cy="54" rx="6" ry="7" fill="#7667A8" stroke="none" /><ns0:ellipse cx="94" cy="80" rx="6" ry="7" fill="#7667A8" stroke="none" /><ns0:ellipse cx="31" cy="78" rx="6" ry="7" fill="#7667A8" stroke="none" /><ns0:ellipse cx="64" cy="103" rx="6" ry="7" fill="#7667A8" stroke="none" /></ns0:g><ns0:g data-region="outline"><ns0:path d="M18 63 C18 37 39 18 65 18 C92 18 110 38 110 63 C110 90 89 110 63 110 C38 110 18 89 18 63Z" fill="none" stroke="#24313B" stroke-width="1.3" stroke-linejoin="round" /></ns0:g></ns0:svg>
+<rect x="831" y="150" width="216" height="180" rx="18" fill="#E7EEF4" stroke="#C9D5DE" stroke-width="2.2" data-scene-node="collector"/>
+<rect x="868" y="225" width="25" height="38" rx="7" fill="#FFFFFF" stroke="#527DA8" stroke-width="2.2" data-scene-node="tube1"/>
+<rect x="904" y="225" width="25" height="38" rx="7" fill="#FFFFFF" stroke="#527DA8" stroke-width="2.2" data-scene-node="tube2"/>
+<rect x="940" y="225" width="25" height="38" rx="7" fill="#FFFFFF" stroke="#527DA8" stroke-width="2.2" data-scene-node="tube3"/>
+<rect x="976" y="225" width="25" height="38" rx="7" fill="#FFFFFF" stroke="#527DA8" stroke-width="2.2" data-scene-node="tube4"/>
+<rect x="54" y="392" width="992" height="90" rx="16" fill="#FFFFFF" stroke="#C9D5DE" stroke-width="2.2" data-scene-node="timeline"/>
+<rect x="78" y="423" width="260" height="32" rx="12" fill="#E7EEF4" stroke="#527DA8" stroke-width="2.2" data-scene-node="basal_bar"/>
+<rect x="338" y="423" width="408" height="32" rx="12" fill="#E7EEF4" stroke="#D79A31" stroke-width="2.2" data-scene-node="stimulus_bar"/>
+<rect x="746" y="423" width="276" height="32" rx="12" fill="#E7EEF4" stroke="#2A8C82" stroke-width="2.2" data-scene-node="washout_bar"/>
+<rect x="250" y="518" width="600" height="54" rx="14" fill="#FFFFFF" stroke="#C9D5DE" stroke-width="2.2" data-scene-node="readout_frame"/>
+<g data-scene-connector="medium_to_selector"><path d="M206 232 L265 231" fill="none" stroke="#527DA8" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M255.917 226.153 L265 231 L256.086 236.152" fill="none" stroke="#527DA8" stroke-width="2.6"/>
+</g>
+<g data-scene-connector="selector_to_chamber"><path d="M415 231 L485 231" fill="none" stroke="#527DA8" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M476 226 L485 231 L476 236" fill="none" stroke="#527DA8" stroke-width="2.6"/>
+</g>
+<g data-scene-connector="chamber_to_collector"><path d="M708 231 L831 240" fill="none" stroke="#527DA8" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M822.389 234.357 L831 240 L821.659 244.33" fill="none" stroke="#527DA8" stroke-width="2.6"/>
+</g>
+<text data-scene-node="title" x="36" y="49" text-anchor="start" font-family="Arial,sans-serif" font-size="27" font-weight="700" fill="#24313B"><tspan x="36" dy="0">Islet perifusion experiment</tspan></text>
+<text data-scene-node="subtitle" x="38" y="79" text-anchor="start" font-family="Arial,sans-serif" font-size="19" font-weight="500" fill="#637381"><tspan x="38" dy="0">Controlled inflow, chamber residence, timed effluent fractions, hormone assay</tspan></text>
+<text data-scene-node="media_label" x="131" y="208" text-anchor="middle" font-family="Arial,sans-serif" font-size="20" font-weight="500" fill="#24313B"><tspan x="131" dy="0">Inlet medium</tspan></text>
+<text data-scene-node="media_note" x="131" y="243" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="500" fill="#637381"><tspan x="131" dy="0">basal /</tspan><tspan x="131" dy="19.55">stimulus /</tspan><tspan x="131" dy="19.55">washout</tspan></text>
+<text data-scene-node="selector_label" x="340" y="234" text-anchor="middle" font-family="Arial,sans-serif" font-size="20" font-weight="500" fill="#527DA8"><tspan x="340" dy="0">Media</tspan><tspan x="340" dy="23">selector</tspan></text>
+<text data-scene-node="chamber_label" x="596.5" y="338" text-anchor="middle" font-family="Arial,sans-serif" font-size="19" font-weight="500" fill="#2A8C82"><tspan x="596.5" dy="0">Islets in chamber</tspan></text>
+<text data-scene-node="collector_label" x="939" y="184" text-anchor="middle" font-family="Arial,sans-serif" font-size="20" font-weight="500" fill="#24313B"><tspan x="939" dy="0">Timed fraction</tspan><tspan x="939" dy="23">collector</tspan></text>
+<text data-scene-node="fraction_label" x="939" y="298" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="500" fill="#637381"><tspan x="939" dy="0">Sequential fractions</tspan></text>
+<text data-scene-node="basal" x="208" y="413" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="500" fill="#527DA8"><tspan x="208" dy="0">Basal</tspan></text>
+<text data-scene-node="stimulus" x="542" y="413" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="500" fill="#D79A31"><tspan x="542" dy="0">Stimulus</tspan></text>
+<text data-scene-node="washout" x="884" y="413" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="500" fill="#2A8C82"><tspan x="884" dy="0">Washout</tspan></text>
+<text data-scene-node="time_axis" x="550" y="475" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="500" fill="#637381"><tspan x="550" dy="0">Time / fractions</tspan></text>
+<text data-scene-node="readout_label" x="550" y="551" text-anchor="middle" font-family="Arial,sans-serif" font-size="20" font-weight="500" fill="#637381"><tspan x="550" dy="0">Insulin per fraction: add measurements</tspan></text>
+</svg>

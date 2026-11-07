@@ -25,6 +25,8 @@ def tiny_source(root: Path) -> Path:
     }), encoding="utf-8")
     (root / "docs/scientific-assets").mkdir(parents=True)
     (root / "docs/scientific-assets/review.md").write_text("Accepted original artwork", encoding="utf-8")
+    (root / "docs/scientific-assets/ENDOCRINE_PRODUCT_RELEASE_2026_11_07.md").write_text(
+        "Finite endocrine release record", encoding="utf-8")
     return root
 
 
@@ -33,7 +35,8 @@ def test_source_exports_preserve_every_payload_byte_and_keep_preferred_sources_o
     source = tiny_source(tmp_path / "source")
     package = tmp_path / "package"
     manifest = producer.build_tool_package(source, package, source_revision="a" * 40, distribution_scope="public-release", public_release_eligible=True)
-    monkeypatch.setattr(exporter, "SUPPORT_FILES", ("package.json",))
+    overlapping_note = "docs/scientific-assets/ENDOCRINE_PRODUCT_RELEASE_2026_11_07.md"
+    monkeypatch.setattr(exporter, "SUPPORT_FILES", ("package.json", overlapping_note))
     output = tmp_path / "output"
     output.mkdir()
     existing_materials = None
@@ -77,6 +80,7 @@ def test_source_exports_preserve_every_payload_byte_and_keep_preferred_sources_o
             assert str(existing_materials) not in json.dumps(archive_metadata)
         assert "preferred-source-materials/source-index.json" in archive.namelist()
         assert archive.read("docs/scientific-assets/review.md") == b"Accepted original artwork"
+        assert archive.read(overlapping_note) == b"Finite endocrine release record"
     source_metadata = json.loads((output / "source-repository/SOURCE_RELEASE.json").read_text())
     assert source_metadata["schema"] == "figureStudio.publicSourceRelease.v2"
     assert source_metadata["canonical_source_revision"] == "a" * 40
@@ -103,6 +107,43 @@ def test_rejected_slim_export_is_not_sealed_or_sent_to_vendor_preparation(tmp_pa
         exporter.export_source(source, package, output, cache=tmp_path / "cache", pre_archive_check=reject)
     assert not (output / "figure-tool-source.zip").exists()
     assert not (output / "preferred-source-materials").exists()
+
+
+def test_source_export_carries_dynamic_endocrine_validator_and_direct_sibling_dependencies(tmp_path, monkeypatch):
+    source = tiny_source(tmp_path / "source")
+    repository_root = Path(exporter.__file__).resolve().parents[1]
+    support = (
+        "package.json",
+        "scripts/style4_endocrine_supplement.py",
+        "scripts/style4_original_supplement.py",
+        "scripts/import-style4-library.py",
+    )
+    for relative in support[1:]:
+        target = source / relative
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(repository_root / relative, target)
+    package = tmp_path / "package"
+    producer.build_tool_package(source, package, source_revision="a" * 40,
+                                distribution_scope="public-release", public_release_eligible=True)
+    monkeypatch.setattr(exporter, "SUPPORT_FILES", support)
+    monkeypatch.setattr(exporter, "prepare_vendor_materials",
+                        lambda *args, **kwargs: pytest.fail("Exporter must stop at source validation"))
+    output = tmp_path / "output"
+    output.mkdir()
+
+    def stop_after_staging(repository):
+        for relative in support[1:]:
+            assert (repository / relative).read_bytes() == (source / relative).read_bytes()
+        endocrine = (repository / support[1]).read_text(encoding="utf-8")
+        original = (repository / support[2]).read_text(encoding="utf-8")
+        assert "with_name('style4_original_supplement.py')" in endocrine
+        assert "import-style4-library.py" in original
+        raise RuntimeError("stop after standalone validator dependency check")
+
+    with pytest.raises(RuntimeError, match="standalone validator dependency"):
+        exporter.export_source(source, package, output, cache=tmp_path / "cache",
+                               pre_archive_check=stop_after_staging)
+    assert not (output / "figure-tool-source.zip").exists()
 
 
 @pytest.mark.parametrize("kind", ["changed", "added", "missing"])
@@ -158,7 +199,12 @@ def test_export_retains_approved_selection_suite_dependencies_and_ci_before_arch
         "scripts/check-assets-templates-browser.py", "scripts/check-figure-public-repaint-browser.py",
         "scripts/figure_action_paint_qa.py", "docs/architecture/STYLE_PREVIEW_EDITING_2026_11_06.md",
     )
-    required = (*expected_tests, *dependencies, *browser_support, *style_tests, *style_support)
+    endocrine_validator_support = (
+        "scripts/style4_endocrine_supplement.py", "scripts/style4_original_supplement.py",
+        "scripts/import-style4-library.py",
+    )
+    required = (*expected_tests, *dependencies, *browser_support, *style_tests, *style_support,
+                *endocrine_validator_support)
     assert set(required) <= set(exporter.SUPPORT_FILES)
     assert len(exporter.SUPPORT_FILES) == len(set(exporter.SUPPORT_FILES))
     repository_root = Path(exporter.__file__).resolve().parents[1]

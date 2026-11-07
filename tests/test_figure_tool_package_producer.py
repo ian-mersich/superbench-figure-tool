@@ -290,6 +290,8 @@ def test_public_scope_requires_exact_supplement_and_preserves_historical_pending
         "epithelial-barrier-transwell-workflow", "immunoprecipitation-workflow",
         "indirect-immunofluorescence-workflow", "rt-qpcr-expression-workflow",
         "sandwich-elisa-workflow", "wound-closure-assay-workflow",
+        "glucose-islet-feedback", "hypothalamic-pituitary-adrenal-axis",
+        "hypothalamic-pituitary-thyroid-axis", "islet-perifusion-experiment",
         "immunoblot-assay-workflow",
     ])
     assert producer.validate_release_source(ROOT, distribution_scope="public-release")["public_release_eligible"] is True

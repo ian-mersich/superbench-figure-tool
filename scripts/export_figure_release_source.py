@@ -46,6 +46,7 @@ GEOMETRY_BROWSER_SUPPORT = (
 
 STYLE_PREVIEW_TESTS = (
     "tests/scientificAssetPreviewDraft.test.cjs", "tests/scientificAssetColorControls.test.cjs",
+    "tests/inspectorPreferences.test.cjs",
 )
 
 STYLE_PREVIEW_BROWSER_SUPPORT = (
@@ -63,6 +64,7 @@ SUPPORT_FILES = (
     "config/scientific-product-release-2026-10-17-style4.json",
     "config/scientific-product-release-2026-10-17-style4-correction.json",
     "config/scientific-product-release-2026-11-03-expansion.json",
+    "config/scientific-product-release-2026-11-07-endocrine.json",
     "tests/fixtures/scientific-product-release/pre-expansion/assets/scientific-packs/library.json",
     "tests/fixtures/scientific-product-release/pre-expansion/assets/scientific-scenes/library.v1.json",
     "tests/fixtures/scientific-product-release/pre-expansion/assets/scientific-scenes/release-rights.v1.json",
@@ -72,7 +74,8 @@ SUPPORT_FILES = (
     "scripts/style4_original_supplement.py",
     "tests/test_scientific_product_correction.py",
     "scripts/import-style4-library.py", "scripts/validate-style4-library.py",
-    "scripts/test-style4-library-import.py", "tests/scientificAssetStyleFour.test.mjs", "tests/scientificAssetPrewarmStyle.test.cjs",
+    "scripts/test-style4-library-import.py", "scripts/style4_endocrine_supplement.py",
+    "tests/scientificAssetStyleFour.test.mjs", "tests/scientificAssetPrewarmStyle.test.cjs",
     "scripts/figure_tool_package_producer.py", "scripts/scientific_product_release.py",
     "scripts/scientific_family_revision.py", "scripts/export_figure_release_source.py",
     "scripts/check_figure_release_sync.py", "tests/test_figure_release_sync.py",
@@ -86,6 +89,7 @@ SUPPORT_FILES = (
     "scripts/cell_structure_stress_science.json", "scripts/seed-tumor-analysis-assets.py",
     "tests/test_figure_tool_package_producer.py", "tests/test_scientific_product_release.py",
     "tests/test_scientific_product_release_expansion_20261103.py",
+    "tests/test_scientific_product_release_endocrine_20261107.py", "tests/helpLearningCenter.test.mjs",
     "tests/test_export_figure_release_source.py",
     *SELECTION_REGRESSION_TESTS,
     *GEOMETRY_BROWSER_SUPPORT,
@@ -102,6 +106,8 @@ SUPPORT_FILES = (
     "docs/architecture/FIGURE_HOST_SETTINGS.md",
     "docs/architecture/FIGURE_DRAWING_CHANGES.md",
     "docs/architecture/STYLE_PREVIEW_EDITING_2026_11_06.md",
+    "docs/architecture/INSPECTOR_2026_11_07.md",
+    "docs/scientific-assets/ENDOCRINE_PRODUCT_RELEASE_2026_11_07.md",
     "docs/architecture/FIGURE_PDF_V1_STATUS.md",
     "docs/architecture/SELECTION_PDF_RESUMPTION_2026_10_22.md",
     "docs/architecture/PDF_POINT_DRAG_STARTUP_2026_11_04.md",
@@ -183,7 +189,7 @@ def export_source(source: Path, package: Path, output: Path, *, cache: Path, sup
         shutil.copy2(source / relative, target)
     # Accepted provenance notes stay available with their asset records. No QA,
     # private history, manuscripts, browser profiles or user projects are copied.
-    shutil.copytree(source / "docs/scientific-assets", repository / "docs/scientific-assets")
+    shutil.copytree(source / "docs/scientific-assets", repository / "docs/scientific-assets", dirs_exist_ok=True)
     metadata = {
         "schema": "figureStudio.publicSourceRelease.v2", "product_version": version,
         "tag": "v" + version, "canonical_source_revision": revision, "package_sha256": digest,
@@ -217,6 +223,7 @@ def export_source(source: Path, package: Path, output: Path, *, cache: Path, sup
         "`python scripts/validate-vendor-bundle.py`, and "
         "`python -m pytest tests/test_figure_tool_package_producer.py tests/test_scientific_product_release.py "
         "tests/test_scientific_product_release_expansion_20261103.py "
+        "tests/test_scientific_product_release_endocrine_20261107.py "
         "tests/test_export_figure_release_source.py tests/test_vendor_source_tools.py tests/test_vendor_fabric_portability.py`. "
         "See docs/UNIFIED_FIGURE_RELEASE.md for packaging and deployment.\n", encoding="utf-8", newline="\n")
     (repository / ".gitignore").write_text("qa_artifacts/\nnode_modules/\n__pycache__/\n.pytest_cache/\n*.py[cod]\n", encoding="utf-8", newline="\n")
@@ -243,6 +250,7 @@ jobs:
       - run: node --test tests/selectionFontScaleRead.test.cjs
       - run: __SELECTION_REGRESSION_COMMAND__
       - run: __STYLE_PREVIEW_COMMAND__
+      - run: node --test tests/helpLearningCenter.test.mjs
       - run: python scripts/check-style-preview-browser.py --help
       - run: python scripts/geometry_qa/qualify.py --help
       - run: python scripts/geometry_qa/source-cases.py --help
@@ -250,7 +258,7 @@ jobs:
       - run: python scripts/geometry_qa/crowded-anchors.py --help
       - run: python scripts/geometry_qa/final-counts.py --help
       - run: python scripts/geometry_qa/pdf-topology.py --help
-      - run: python -m pytest -q tests/test_figure_tool_package_producer.py tests/test_scientific_product_release.py tests/test_scientific_product_release_expansion_20261103.py tests/test_export_figure_release_source.py tests/test_vendor_source_tools.py tests/test_vendor_fabric_portability.py
+      - run: python -m pytest -q tests/test_figure_tool_package_producer.py tests/test_scientific_product_release.py tests/test_scientific_product_release_expansion_20261103.py tests/test_scientific_product_release_endocrine_20261107.py tests/test_export_figure_release_source.py tests/test_vendor_source_tools.py tests/test_vendor_fabric_portability.py
 """.replace("__SELECTION_REGRESSION_COMMAND__", "node --test " + " ".join(SELECTION_REGRESSION_TESTS)).replace("__STYLE_PREVIEW_COMMAND__", "node --test " + " ".join(STYLE_PREVIEW_TESTS)), encoding="utf-8", newline="\n")
     verify_payload(repository, manifest)
     if pre_archive_check is not None:

@@ -1,5 +1,9 @@
 # Figure Style and drawing previews
 
+This record describes the delivered beta.29 interface. The subsequent source
+redesign uses Appearance, Properties and Layers under one Inspector; see
+[the current Inspector note](INSPECTOR_2026_11_07.md) for its scope and qualification.
+
 Figure uses one right-hand rail with Style, Properties, Colors and Layers views.
 The compact Style controls work in Simple and Advanced. Switching layouts keeps
 the visible rail, selected view and useful floating geometry. Library starts
@@ -32,6 +36,14 @@ Full geometry editing stays in the main editor's Edit parts workflow.
 The user-sized Style panel has one inner scroll owner. Controls align at the top;
 Change drawing and Edit parts share a row so a complete first part-color input
 fits in the compact floating panel. Scientific details in Preview are optional.
+
+Delivered beta.29 has one narrower edited-state limit: Reset colors and the
+edited-drawing status add height, partly clipping that first color row at
+scroll position zero in the minimum 260×320 panel. A normal inner wheel scroll
+reveals the complete row in Simple and Advanced at unchanged geometry and zoom.
+The strict initial-visibility failure is retained in the publication evidence;
+the approved scroll demonstration does not claim that the edited row fits
+before scrolling. Reducing those extra rows remains a bounded UI follow-up.
 
 ## Verification and scope
 

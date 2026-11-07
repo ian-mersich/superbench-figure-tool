@@ -2,7 +2,21 @@
 
 This plan defines the next-stage expansion path for the Superbench Figure Tool Scientific Assets Library. It keeps the work intentionally controlled: original vector drafts, an explicit soft-line primary family with manuscript-line companions where they add real value, recoloring-safe SVG structure, validator-first metadata, and no use of BioRender or other proprietary illustration-library artwork.
 
-## Source expansion — 3 November 2026
+## Source expansion — 7 November 2026
+
+The current contribution adds a previously absent endocrine tissue family:
+24 original drawings across 12 new concepts, each with two structural forms
+and equal Styles 1–4. Four additional templates cover HPA and HPT feedback,
+glucose–islet feedback and an islet perifusion experiment. The source totals
+are 550 drawings / 410 concepts / 14 packs and 24 scientific templates, plus
+three layout starters. Historical art and records remain preserved.
+
+Scientific, appearance and native editing acceptance are tracked in
+[the endocrine contribution note](ENDOCRINE_TISSUE_EXPANSION_2026_11_07.md).
+Delivered beta.29 remains the test editor; the coordinator owns the next
+matching package decision. The roadmap remains unchanged.
+
+## Previous source expansion — 3 November 2026
 
 The current source candidate has 526 original drawings across 398 distinct
 concepts in 13 packs, with 20 scientific templates and three retained layout

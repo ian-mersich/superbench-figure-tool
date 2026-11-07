@@ -1,0 +1,618 @@
+{
+  "schema": "figureStudio.scientificScene.v1",
+  "id": "islet-perifusion-experiment",
+  "name": "Islet perifusion experiment",
+  "summary": "Perfuse isolated islets through sequential media, collect timed effluent fractions, and measure secreted hormone.",
+  "source_record_id": "source.figure-studio-scene-expansion.2026-11-07",
+  "rights_record_id": "rights.figure-studio-scene-expansion.repository-cc0.2026-11-07",
+  "scientific_record": {
+    "id": "science.figure-studio.islet-perifusion-experiment.2026-11-07",
+    "verified_on": "2026-11-07",
+    "scope": "A controlled medium stream passes through a chamber containing isolated islets. Outflow is collected in timed fractions for hormone measurement while the incoming medium changes across basal, stimulus, and washout periods.",
+    "relationships": [
+      {
+        "claim": "A controlled medium stream passes through a chamber containing isolated islets. Outflow is collected in timed fractions for hormone measurement while the incoming medium changes across basal, stimulus, and washout periods.",
+        "source_ids": [
+          "perifusion-human",
+          "perifusion-protocol"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "perifusion-human",
+        "citation": "Buchwald P, Chuang ST, Watts B, Alcazar O. Assessing the rate dependence of the first phase of glucose-stimulated insulin secretion: dynamic perifusion studies with isolated human pancreatic islets. Am J Physiol Endocrinol Metab. 2025;329(6):E937–E950. doi:10.1152/ajpendo.00307.2025.",
+        "doi": "10.1152/ajpendo.00307.2025",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41247797/",
+        "support_location": "Methods describe controlled inflow through isolated islets, sequential glucose conditions, outflow fraction collection, and insulin measurement; Figure 1 shows the apparatus concept.",
+        "decision": "Make the apparatus the main visual: inlet and medium selector feed a chamber with islets, then an outlet feeds sequential fraction tubes."
+      },
+      {
+        "id": "perifusion-protocol",
+        "citation": "Wang X, Misawa R, et al. Detailed protocol for evaluation of dynamic perifusion of human islets to assess β-cell function. J Vis Exp. 2012;(62):e3702. doi:10.3791/3702.",
+        "doi": "10.3791/3702",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3219161/",
+        "support_location": "Protocol describes islet loading, continuous perfusion, sequential media changes, timed fraction collection, and downstream insulin measurement.",
+        "decision": "Show a generic basal → stimulus → washout schedule and an empty readout frame to be populated with measured values; no response curve or protocol-specific concentrations are supplied."
+      }
+    ],
+    "design_precedents": [
+      {
+        "source_id": "perifusion-human",
+        "figure": "Methods / conceptual figure",
+        "decision": "Make the apparatus the main visual: inlet and medium selector feed a chamber with islets, then an outlet feeds sequential fraction tubes."
+      },
+      {
+        "source_id": "perifusion-protocol",
+        "figure": "Methods / conceptual figure",
+        "decision": "Show a generic basal → stimulus → washout schedule and an empty readout frame to be populated with measured values; no response curve or protocol-specific concentrations are supplied."
+      }
+    ],
+    "limitations": [
+      "Experimental-layout schematic only. It contains no measured secretion trace, concentration, sample number, flow rate, stimulus concentration, or expected response shape. Chamber geometry, equilibration, fraction interval, assay, and stimulus sequence must match the actual experiment."
+    ],
+    "authorship": "Original editable scene composed from native vector/text objects and original endocrine asset placeholders. Published research informed biological claims and design decisions only; no publication artwork was copied, traced, or embedded."
+  },
+  "insertion_art_style": "soft-color",
+  "canvas": {
+    "width": 1100,
+    "height": 650,
+    "width_in": 11.458333333333334,
+    "height_in": 6.770833333333333,
+    "background_role": "background"
+  },
+  "layout_kind": "experiment",
+  "palette": {
+    "background": "#F7F9FC",
+    "surface": "#FFFFFF",
+    "ink": "#24313B",
+    "muted": "#637381",
+    "border": "#C9D5DE",
+    "sample": "#2A8C82",
+    "process": "#527DA8",
+    "signal": "#D79A31",
+    "inhibition": "#B94E49",
+    "soft": "#E7EEF4",
+    "accent": "#7667A8"
+  },
+  "layers": [
+    {
+      "id": "context",
+      "name": "Anatomical and assay context"
+    },
+    {
+      "id": "objects",
+      "name": "Endocrine structures and apparatus"
+    },
+    {
+      "id": "relationships",
+      "name": "Hormone and experimental relationships"
+    },
+    {
+      "id": "labels",
+      "name": "Editable labels"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "title",
+      "type": "text",
+      "layer_id": "labels",
+      "x": 36,
+      "y": 22,
+      "width": 1028,
+      "height": 34,
+      "text": "Islet perifusion experiment",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 27,
+      "fill_role": "ink",
+      "align": "left"
+    },
+    {
+      "id": "subtitle",
+      "type": "text",
+      "layer_id": "labels",
+      "x": 38,
+      "y": 60,
+      "width": 1024,
+      "height": 27,
+      "text": "Controlled inflow, chamber residence, timed effluent fractions, hormone assay",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 19,
+      "fill_role": "muted",
+      "align": "left"
+    },
+    {
+      "id": "media_bottle",
+      "type": "shape",
+      "shape": "rounded_rect",
+      "layer_id": "objects",
+      "x": 56,
+      "y": 169,
+      "width": 150,
+      "height": 126,
+      "radius": 18,
+      "fill_role": "surface",
+      "stroke_role": "border",
+      "stroke_width": 2.2
+    },
+    {
+      "id": "media_label",
+      "type": "text",
+      "layer_id": "labels",
+      "x": 68,
+      "y": 188,
+      "width": 126,
+      "height": 30,
+      "text": "Inlet medium",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 20,
+      "fill_role": "ink",
+      "align": "center"
+    },
+    {
+      "id": "media_note",
+      "type": "text",
+      "layer_id": "labels",
+      "x": 66,
+      "y": 226,
+      "width": 130,
+      "height": 66,
+      "text": "basal / stimulus / washout",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 17,
+      "fill_role": "muted",
+      "align": "center"
+    },
+    {
+      "id": "selector",
+      "type": "shape",
+      "shape": "rounded_rect",
+      "layer_id": "objects",
+      "x": 265,
+      "y": 190,
+      "width": 150,
+      "height": 82,
+      "radius": 18,
+      "fill_role": "soft",
+      "stroke_role": "process",
+      "stroke_width": 2.2
+    },
+    {
+      "id": "selector_label",
+      "type": "text",
+      "layer_id": "labels",
+      "x": 276,
+      "y": 214,
+      "width": 128,
+      "height": 50,
+      "text": "Media selector",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 20,
+      "fill_role": "process",
+      "align": "center"
+    },
+    {
+      "id": "chamber",
+      "type": "shape",
+      "shape": "rounded_rect",
+      "layer_id": "objects",
+      "x": 485,
+      "y": 148,
+      "width": 223,
+      "height": 166,
+      "radius": 24,
+      "fill_role": "surface",
+      "stroke_role": "sample",
+      "stroke_width": 2.2
+    },
+    {
+      "id": "pancreatic_islet",
+      "name": "Pancreatic Islet",
+      "type": "asset",
+      "layer_id": "objects",
+      "asset_id": "endocrine.pancreatic_islet.mixed_islet",
+      "top_level": true,
+      "x": 528,
+      "y": 176,
+      "width": 138,
+      "height": 108,
+      "palette_overrides": {
+        "beta_cells": "signal",
+        "other_endocrine": "accent",
+        "capillary": "inhibition",
+        "stroma": "soft",
+        "outline": "ink"
+      }
+    },
+    {
+      "id": "chamber_label",
+      "type": "text",
+      "layer_id": "labels",
+      "x": 494,
+      "y": 319,
+      "width": 205,
+      "height": 28,
+      "text": "Islets in chamber",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 19,
+      "fill_role": "sample",
+      "align": "center"
+    },
+    {
+      "id": "collector",
+      "type": "shape",
+      "shape": "rounded_rect",
+      "layer_id": "objects",
+      "x": 831,
+      "y": 150,
+      "width": 216,
+      "height": 180,
+      "radius": 18,
+      "fill_role": "soft",
+      "stroke_role": "border",
+      "stroke_width": 2.2
+    },
+    {
+      "id": "collector_label",
+      "type": "text",
+      "layer_id": "labels",
+      "x": 845,
+      "y": 164,
+      "width": 188,
+      "height": 48,
+      "text": "Timed fraction collector",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 20,
+      "fill_role": "ink",
+      "align": "center"
+    },
+    {
+      "id": "fraction_label",
+      "type": "text",
+      "layer_id": "labels",
+      "x": 842,
+      "y": 280,
+      "width": 194,
+      "height": 30,
+      "text": "Sequential fractions",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 18,
+      "fill_role": "muted",
+      "align": "center"
+    },
+    {
+      "id": "tube1",
+      "type": "shape",
+      "shape": "rounded_rect",
+      "layer_id": "objects",
+      "x": 868,
+      "y": 225,
+      "width": 25,
+      "height": 38,
+      "radius": 7,
+      "fill_role": "surface",
+      "stroke_role": "process",
+      "stroke_width": 2.2
+    },
+    {
+      "id": "tube2",
+      "type": "shape",
+      "shape": "rounded_rect",
+      "layer_id": "objects",
+      "x": 904,
+      "y": 225,
+      "width": 25,
+      "height": 38,
+      "radius": 7,
+      "fill_role": "surface",
+      "stroke_role": "process",
+      "stroke_width": 2.2
+    },
+    {
+      "id": "tube3",
+      "type": "shape",
+      "shape": "rounded_rect",
+      "layer_id": "objects",
+      "x": 940,
+      "y": 225,
+      "width": 25,
+      "height": 38,
+      "radius": 7,
+      "fill_role": "surface",
+      "stroke_role": "process",
+      "stroke_width": 2.2
+    },
+    {
+      "id": "tube4",
+      "type": "shape",
+      "shape": "rounded_rect",
+      "layer_id": "objects",
+      "x": 976,
+      "y": 225,
+      "width": 25,
+      "height": 38,
+      "radius": 7,
+      "fill_role": "surface",
+      "stroke_role": "process",
+      "stroke_width": 2.2
+    },
+    {
+      "id": "timeline",
+      "type": "shape",
+      "shape": "rounded_rect",
+      "layer_id": "context",
+      "x": 54,
+      "y": 392,
+      "width": 992,
+      "height": 90,
+      "radius": 16,
+      "fill_role": "surface",
+      "stroke_role": "border",
+      "stroke_width": 2.2
+    },
+    {
+      "id": "basal_bar",
+      "type": "shape",
+      "shape": "rounded_rect",
+      "layer_id": "context",
+      "x": 78,
+      "y": 423,
+      "width": 260,
+      "height": 32,
+      "radius": 12,
+      "fill_role": "soft",
+      "stroke_role": "process",
+      "stroke_width": 2.2
+    },
+    {
+      "id": "stimulus_bar",
+      "type": "shape",
+      "shape": "rounded_rect",
+      "layer_id": "context",
+      "x": 338,
+      "y": 423,
+      "width": 408,
+      "height": 32,
+      "radius": 12,
+      "fill_role": "soft",
+      "stroke_role": "signal",
+      "stroke_width": 2.2
+    },
+    {
+      "id": "washout_bar",
+      "type": "shape",
+      "shape": "rounded_rect",
+      "layer_id": "context",
+      "x": 746,
+      "y": 423,
+      "width": 276,
+      "height": 32,
+      "radius": 12,
+      "fill_role": "soft",
+      "stroke_role": "sample",
+      "stroke_width": 2.2
+    },
+    {
+      "id": "basal",
+      "type": "text",
+      "layer_id": "labels",
+      "x": 78,
+      "y": 395,
+      "width": 260,
+      "height": 24,
+      "text": "Basal",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 18,
+      "fill_role": "process",
+      "align": "center"
+    },
+    {
+      "id": "stimulus",
+      "type": "text",
+      "layer_id": "labels",
+      "x": 338,
+      "y": 395,
+      "width": 408,
+      "height": 24,
+      "text": "Stimulus",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 18,
+      "fill_role": "signal",
+      "align": "center"
+    },
+    {
+      "id": "washout",
+      "type": "text",
+      "layer_id": "labels",
+      "x": 746,
+      "y": 395,
+      "width": 276,
+      "height": 24,
+      "text": "Washout",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 18,
+      "fill_role": "sample",
+      "align": "center"
+    },
+    {
+      "id": "time_axis",
+      "type": "text",
+      "layer_id": "labels",
+      "x": 74,
+      "y": 458,
+      "width": 952,
+      "height": 25,
+      "text": "Time / fractions",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 17,
+      "fill_role": "muted",
+      "align": "center"
+    },
+    {
+      "id": "readout_frame",
+      "type": "shape",
+      "shape": "rounded_rect",
+      "layer_id": "context",
+      "x": 250,
+      "y": 518,
+      "width": 600,
+      "height": 54,
+      "radius": 14,
+      "fill_role": "surface",
+      "stroke_role": "border",
+      "stroke_width": 2.2
+    },
+    {
+      "id": "readout_label",
+      "type": "text",
+      "layer_id": "labels",
+      "x": 270,
+      "y": 531,
+      "width": 560,
+      "height": 30,
+      "text": "Insulin per fraction: add measurements",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 20,
+      "fill_role": "muted",
+      "align": "center"
+    }
+  ],
+  "groups": [
+    {
+      "id": "inflow_conditioning",
+      "name": "Medium supply and switching",
+      "layer_id": "context",
+      "members": [
+        "media_bottle",
+        "media_label",
+        "media_note",
+        "selector",
+        "selector_label"
+      ]
+    },
+    {
+      "id": "islet_chamber",
+      "name": "Perifusion chamber",
+      "layer_id": "objects",
+      "members": [
+        "chamber",
+        "pancreatic_islet",
+        "chamber_label"
+      ]
+    },
+    {
+      "id": "fraction_collection",
+      "name": "Timed effluent fractions",
+      "layer_id": "objects",
+      "members": [
+        "collector",
+        "collector_label",
+        "fraction_label",
+        "tube1",
+        "tube2",
+        "tube3",
+        "tube4"
+      ]
+    },
+    {
+      "id": "protocol_phases",
+      "name": "Basal, stimulus, and washout periods",
+      "layer_id": "context",
+      "members": [
+        "timeline",
+        "basal_bar",
+        "stimulus_bar",
+        "washout_bar",
+        "basal",
+        "stimulus",
+        "washout",
+        "time_axis"
+      ]
+    },
+    {
+      "id": "readout_placeholder",
+      "name": "Editable hormone readout space",
+      "layer_id": "context",
+      "members": [
+        "readout_frame",
+        "readout_label"
+      ]
+    }
+  ],
+  "connectors": [
+    {
+      "id": "medium_to_selector",
+      "layer_id": "relationships",
+      "from": {
+        "node_id": "media_bottle",
+        "anchor": "right"
+      },
+      "to": {
+        "node_id": "selector",
+        "anchor": "left"
+      },
+      "relation": "transport",
+      "label": "",
+      "style": {
+        "stroke_role": "process",
+        "stroke_width": 2.6,
+        "line": "solid",
+        "terminator": "arrow"
+      }
+    },
+    {
+      "id": "selector_to_chamber",
+      "layer_id": "relationships",
+      "from": {
+        "node_id": "selector",
+        "anchor": "right"
+      },
+      "to": {
+        "node_id": "chamber",
+        "anchor": "left"
+      },
+      "relation": "transport",
+      "label": "",
+      "style": {
+        "stroke_role": "process",
+        "stroke_width": 2.6,
+        "line": "solid",
+        "terminator": "arrow"
+      }
+    },
+    {
+      "id": "chamber_to_collector",
+      "layer_id": "relationships",
+      "from": {
+        "node_id": "chamber",
+        "anchor": "right"
+      },
+      "to": {
+        "node_id": "collector",
+        "anchor": "left"
+      },
+      "relation": "transport",
+      "label": "",
+      "style": {
+        "stroke_role": "process",
+        "stroke_width": 2.6,
+        "line": "solid",
+        "terminator": "arrow"
+      }
+    }
+  ]
+}

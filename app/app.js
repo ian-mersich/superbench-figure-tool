@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  const APP_VERSION = "1.0.0-beta.29";
+  const APP_VERSION = "1.0.0-beta.30";
   const PROJECT_SCHEMA = "figureStudio.project.v2";
   const DOCUMENT_KINDS = Object.freeze(["figure", "presentation"]);
   const FIRST_RUN_STORAGE_KEY = "figureStudio.firstRun.v2";
@@ -2267,7 +2267,7 @@
           <button type="button" data-deck-command="import-panel">Image, SVG or PDF…</button>
           <button type="button" data-deck-command="assets">Asset library</button>
         </div></details>
-        <button type="button" data-deck-command="format" aria-pressed="false">Format</button>
+        <button type="button" data-deck-command="format" aria-pressed="false">Inspector</button>
         <button type="button" data-deck-command="toggle-speaker-notes">Notes</button>
         <span class="deck-toolbar-spacer"></span>
         <button type="button" data-deck-command="export-pptx">Export PPTX</button>
@@ -2285,7 +2285,7 @@
           if (projectSlidesOpen) { setProjectSlidesOpen(false); root.dataset.deckFormat = 'closed'; }
           root.dataset.deckFormat = root.dataset.deckFormat === 'open' ? 'closed' : 'open';
           button.setAttribute('aria-pressed', String(root.dataset.deckFormat === 'open'));
-          setInspectorTab('properties');
+          setInspectorTab('appearance');
         } else if (command === 'design' || command === 'assets') {
           const pane = command === 'design' ? 'design' : 'assets';
           const nextPane = root.dataset.deckPane === pane ? (projectSlidesOpen ? 'assets' : 'slides') : pane;
@@ -9052,10 +9052,10 @@
     const heading = document.getElementById("figureSimpleSelectionName");
     if (!surface) return;
     const focus = captureSelectionControlFocus();
-    if (isPresentationDocument() || !context.selectedCount) {
+    if (!context.selectedCount) {
       surface.replaceChildren();
-      if (heading) heading.textContent = "Style";
-      if (!isPresentationDocument()) surface.innerHTML = `<p class="simple-style-note">Select text, a line, or a drawing to see its style controls.</p>`;
+      if (heading) heading.textContent = "Appearance";
+      surface.innerHTML = `<p class="simple-style-note">Select text, a line, or a drawing to change its appearance.</p>`;
       syncFigureLayoutChrome();
       syncSelectionStatusOnly();
       return;
@@ -9091,7 +9091,7 @@
     }
     if (assetColors) {
       const expanded = document.getElementById("assetSelectionColors")?.open !== false;
-      fields += `<details id="assetSelectionColors"${expanded ? " open" : ""}><summary>Part colors (${scientificAssetRegions(first.scientificAssetMeta).length})</summary>${scientificAssetColorControlsMarkup(first, "simple", { mode: "advanced", heading: false, resetAll: true })}</details>`;
+      fields += `<details id="assetSelectionColors"${expanded ? " open" : ""}><summary>Part colors (${scientificAssetRegions(first.scientificAssetMeta).length})</summary>${scientificAssetColorControlsMarkup(first, "simple", { mode: "advanced", heading: false, resetAll: true, inlineReset: true })}</details>`;
     }
     else {
       fields += color("fill", context.kind === "callout" ? "Background" : text ? "Text color" : "Fill");
@@ -9106,7 +9106,6 @@
     if (context.kind === "group" && !assetColors) fields += `<div class="simple-style-section simple-style-arrange">${action("isolate-group", assetColors ? "Edit parts" : "Edit group", { disabled: !context.isolation?.canEnterSelectedGroup })}</div>`;
     if (context.selectedCount > 1) fields += `<div class="simple-style-section simple-style-arrange" role="group" aria-label="Align objects">${action("align-left", "Left")}${action("align-center-x", "Center")}${action("align-top", "Top")}${action("group", "Group")}</div>`;
     if (text && context.single && first && !first.locked) fields += `<div class="simple-style-section">${action("edit-text", "Edit text on canvas")}${pdfPositionedTextFontNote(first)}</div>`;
-    fields += `<div class="simple-style-section simple-style-order" role="group" aria-label="Object order"><button type="button" data-simple-order="forward" ${first?.locked ? "disabled" : ""}>Forward</button><button type="button" data-simple-order="backward" ${first?.locked ? "disabled" : ""}>Backward</button></div>`;
     surface.innerHTML = fields;
     bindSelectionContextSurface(surface);
     bindScientificAssetColorControls(surface);
@@ -33522,7 +33521,7 @@
     syncDeckTemplateControls();
     syncSpeakerNotesSurface();
     syncInspector();
-    if (state.ui.inspectorTab === "swatches") renderSwatchesPanel();
+    if (state.ui.inspectorTab === "appearance") renderSwatchesPanel();
     renderGroupIsolationBar();
     renderIsolationSelectionOverlay();
     renderObjectStatusOverlay();
@@ -33854,12 +33853,12 @@
     rails.workspace = "custom";
     rails.left = { ...rails.left, visible: false, width: 224 };
     rails.right = { ...rails.right, visible: true, width: 240 };
-    return { rails, palette: { position: "left", visible: true }, sidebarTab: "tools", inspectorTab: "style" };
+    return { rails, palette: { position: "left", visible: true }, sidebarTab: "tools", inspectorTab: "appearance", savedColorsOpen: false };
   }
 
   function normalizeFigureLayoutProfile(value, layout) {
     const fallback = layout === "presentation"
-      ? { rails: createDefaultRailLayout(), palette: { position: "left", visible: true }, sidebarTab: "slides", inspectorTab: "properties", presentationPane: "slides" }
+      ? { rails: createDefaultRailLayout(), palette: { position: "left", visible: true }, sidebarTab: "slides", inspectorTab: "properties", savedColorsOpen: false, presentationPane: "slides" }
       : defaultFigureLayoutProfile(layout);
     if (!value || typeof value !== "object") return fallback;
     const raw = value.rails || fallback.rails;
@@ -33876,7 +33875,8 @@
     return {
       rails, palette,
       sidebarTab: ["slides", "tools"].includes(value.sidebarTab) ? value.sidebarTab : fallback.sidebarTab,
-      inspectorTab: ["style", "properties", "layers", "swatches"].includes(value.inspectorTab) ? value.inspectorTab : fallback.inspectorTab,
+      inspectorTab: normalizeInspectorTab(value.inspectorTab, fallback.inspectorTab),
+      savedColorsOpen: value.inspectorTab === "swatches" || value.savedColorsOpen === true,
       ...(layout === "presentation" ? { presentationPane: normalizePresentationPane(value.presentationPane, value.sidebarTab) } : {})
     };
   }
@@ -33890,6 +33890,7 @@
       palette: toolPaletteCustomization?.getProfileState?.() || { position: "left", visible: true },
       sidebarTab: document.querySelector('[data-sidebar-tab].active')?.dataset.sidebarTab || "tools",
       inspectorTab: state.ui.inspectorTab || "properties",
+      savedColorsOpen: document.getElementById("savedColorsDisclosure")?.open === true,
       ...(figureLayoutContext === "presentation" ? { presentationPane: normalizePresentationPane(figureStudioRoot()?.dataset.deckPane) } : {})
     };
   }
@@ -33912,6 +33913,8 @@
     syncChromePanels({ persist: false, updateStage: false });
     // Do not use the Assets action: it focuses search and refits the document.
     setSidebarTab(profile.sidebarTab, { presentationPane: profile.presentationPane });
+    const savedColors = document.getElementById("savedColorsDisclosure");
+    if (savedColors) savedColors.open = profile.savedColorsOpen === true;
     setInspectorTab(profile.inspectorTab);
     if (simpleFigureLayout()) {
       const section = els.assetGrid?.closest?.(".panel-section[data-collapsible='true']");
@@ -33986,6 +33989,7 @@
       nextProfile.rails.left.visible = currentProfile.rails.left.visible;
       nextProfile.rails.right.visible = currentProfile.rails.right.visible;
       nextProfile.inspectorTab = currentProfile.inspectorTab;
+      nextProfile.savedColorsOpen = currentProfile.savedColorsOpen;
       if (currentProfile.rails.right.mode === "floating") {
         nextProfile.rails.right.mode = "floating";
         nextProfile.rails.right.floating = cloneFigureLayoutValue(currentProfile.rails.right.floating);
@@ -34028,8 +34032,7 @@
   }
 
   function simpleStyleIsVisible() {
-    return state.ui.rightInspectorVisible !== false && (projectSlidesOpen || !simpleFigureLayout()
-      || selectedTopLevelObjects().length > 0 || figureSimpleDocumentSetupOpen || figureSimplePropertiesExpanded);
+    return state.ui.rightInspectorVisible !== false;
   }
 
   function syncFigureLayoutChrome() {
@@ -34043,19 +34046,19 @@
       button.setAttribute("aria-pressed", String(button.dataset.figureLayoutChoice === activeFigureLayout()));
     });
     const title = els.inspector?.querySelector(".rail-window-bar strong");
-    if (title) title.textContent = isPresentationDocument() ? "Inspector" : ({ style: "Style", properties: "Properties", layers: "Layers", swatches: "Saved colors" }[state.ui.inspectorTab] || "Style");
+    if (title) title.textContent = "Inspector";
     const library = document.getElementById("figureLibraryToggle");
     if (library) library.setAttribute("aria-pressed", String(state.ui.leftSidebarVisible !== false));
     const style = document.getElementById("figureStyleToggle");
     if (style) {
-      style.textContent = "Style";
-      style.setAttribute("aria-pressed", String(!projectSlidesOpen && state.ui.inspectorTab === "style" && simpleStyleIsVisible()));
+      style.textContent = "Inspector";
+      style.setAttribute("aria-pressed", String(!projectSlidesOpen && simpleStyleIsVisible()));
     }
     root.querySelectorAll('[data-command="toggle-left-sidebar"] span').forEach((label) => {
       label.textContent = isPresentationDocument() ? "Slides" : "Library";
     });
     root.querySelectorAll('[data-command="toggle-right-inspector"] span').forEach((label) => {
-      label.textContent = isPresentationDocument() ? "Slide formatting" : simpleFigureLayout() && !figureSimplePropertiesExpanded ? "Style" : "Inspector";
+      label.textContent = "Inspector";
     });
     const setup = document.getElementById("figureDocumentSetupBtn");
     if (setup) setup.setAttribute("aria-pressed", String(figureSimpleDocumentSetupOpen));
@@ -34125,10 +34128,10 @@
       setRailVisibility("left", state.ui.leftSidebarVisible === false, { fit: false });
     });
     document.getElementById("figureStyleToggle")?.addEventListener("click", () => {
+      const browsingSlides = projectSlidesOpen;
       if (projectSlidesOpen) setProjectSlidesOpen(false);
-      const next = !simpleStyleIsVisible() || state.ui.inspectorTab !== "style";
-      figureSimpleDocumentSetupOpen = simpleFigureLayout() && !selectedTopLevelObjects().length && next;
-      setInspectorTab("style");
+      const next = browsingSlides || !simpleStyleIsVisible();
+      if (next) setInspectorTab("appearance");
       setRailVisibility("right", next, { fit: false });
     });
     document.getElementById("figureDocumentSetupBtn")?.addEventListener("click", showFigureDocumentSetup);
@@ -34349,8 +34352,8 @@
     const leftVisible = state.ui.leftSidebarVisible !== false;
     const rightVisible = simpleStyleIsVisible();
     railLayout.left.visible = leftVisible;
-    // Visibility intent is a user preference; a compact empty Style panel is
-    // temporarily absent without overwriting that preference.
+    // Inspector visibility is the same saved preference in either layout,
+    // including an empty selection and the Appearance saved-color library.
     railLayout.right.visible = state.ui.rightInspectorVisible !== false;
     els.workspace.classList.toggle("hide-left", !leftVisible);
     els.workspace.classList.toggle("hide-right", !rightVisible);
@@ -34393,14 +34396,14 @@
       if (restore) restore.hidden = visible;
       const panelName = side === "left"
         ? leftRailPanelName()
-        : (projectSlidesOpen ? "Slides panel" : isPresentationDocument() ? "Slide formatting" : simpleFigureLayout() && !figureSimplePropertiesExpanded ? "Style panel" : "Inspector panel");
+        : (projectSlidesOpen ? "Project slides" : "Inspector panel");
       if (resizeHandle) resizeHandle.setAttribute("aria-label", `Resize ${panelName.toLowerCase()}${isPresentationDocument() && railDockEdge(side) === "bottom" ? " height" : ""}`);
       els.workspace.querySelectorAll(`[data-rail-dock-position="${side}"]`).forEach((select) => {
         select.value = railDockEdge(side);
         select.setAttribute("aria-label", `${panelName} position`);
       });
       if (restore) {
-        const restoreLabel = side === "right" && projectSlidesOpen ? "Slides" : side === "left" && isPresentationDocument() ? presentationPaneTitle() : (side === "left" ? "Library" : simpleFigureLayout() && !figureSimplePropertiesExpanded ? "Style" : "Inspector");
+        const restoreLabel = side === "right" && projectSlidesOpen ? "Project slides" : side === "left" && isPresentationDocument() ? presentationPaneTitle() : (side === "left" ? "Library" : "Inspector");
         restore.textContent = restoreLabel;
         restore.title = `Show ${panelName}`;
         restore.setAttribute("aria-label", `Show ${panelName}`);
@@ -34556,10 +34559,6 @@
       state.ui.rightInspectorVisible = visible !== false;
       if (simpleFigureLayout()) {
         if (!visible) figureSimpleDocumentSetupOpen = false;
-        else if (!selectedTopLevelObjects().length && !figureSimplePropertiesExpanded) {
-          figureSimpleDocumentSetupOpen = true;
-          if (els.documentSetupDisclosure) els.documentSetupDisclosure.open = true;
-        }
       }
     }
     syncChromePanels({ persist: true, updateStage: true });
@@ -47651,10 +47650,13 @@
     return Boolean(element);
   }
 
+  function normalizeInspectorTab(tabName, fallback = "properties") {
+    const requested = ({ selection: "properties", style: "appearance", swatches: "appearance" })[tabName] || tabName;
+    return ["appearance", "properties", "layers"].includes(requested) ? requested : fallback;
+  }
+
   function setInspectorTab(tabName) {
-    const requested = tabName === "selection" ? "properties" : tabName;
-    const tabs = isPresentationDocument() ? ["properties", "swatches", "layers"] : ["style", "properties", "swatches", "layers"];
-    const target = tabs.includes(requested) ? requested : "properties";
+    const target = normalizeInspectorTab(tabName);
     state.ui.inspectorTab = target;
     if (els.inspector) els.inspector.dataset.inspectorView = target;
     if (!isPresentationDocument()) figureSimplePropertiesExpanded = target === "properties";
@@ -47665,13 +47667,20 @@
       else button.removeAttribute("aria-current");
     });
     document.querySelectorAll("[data-inspector-panel]").forEach((panel) => {
-      panel.classList.toggle("active", panel.dataset.inspectorPanel === target);
+      panel.classList.toggle("active", panel.dataset.inspectorPanel === target
+        || panel.dataset.inspectorPanel === "selection" && target !== "layers");
     });
+    if (tabName === "swatches") {
+      const colors = document.getElementById("savedColorsDisclosure");
+      if (colors) colors.open = true;
+    }
+    const content = document.getElementById("inspectorContent");
+    if (content) content.scrollTop = 0;
     saveFigureLayoutPreferences();
     syncFigureLayoutChrome();
-    if (target === "swatches") renderSwatchesPanel();
+    if (target === "appearance") renderSwatchesPanel();
     if (target === "layers") renderLayers();
-    if (target === "properties" && els.inspector?.dataset.selectionUiState === "essentials") {
+    if (target !== "layers" && els.inspector?.dataset.selectionUiState === "essentials") {
       cancelSelectionUiSync();
       syncSelectionUi(selectionUiRevision);
     }
@@ -51268,14 +51277,6 @@
     const modeLabel = context.selectedCount > 1 && !numericTransformState.individual ? "Selection bounds" : numericTransformState.individual ? "Each object" : "Object bounds";
     return `<div class="context-property-section" data-context-property-section="transform">
       <div class="context-property-title context-transform-title"><span>Transform</span><small>${escapeHtml(modeLabel)}</small></div>
-      <div class="context-transform-head">
-        <div class="transform-reference-grid" role="group" aria-label="Reference point">${referenceGrid}</div>
-        <div class="context-transform-modes" role="group" aria-label="Transform options">
-          <button type="button" data-context-action="toggle-transform-relative" aria-pressed="${String(relative)}" ${enabled ? "" : "disabled"} title="Use relative values">Relative</button>
-          <button type="button" data-context-action="toggle-transform-proportional" aria-pressed="${String(numericTransformState.proportional)}" ${enabled ? "" : "disabled"} title="Constrain width and height proportions">Constrain</button>
-          <button type="button" data-context-action="toggle-transform-each" aria-pressed="${String(numericTransformState.individual)}" ${enabled && context.selectedCount > 1 ? "" : "disabled"} title="Transform each selected object around its own reference point">Each</button>
-        </div>
-      </div>
       <div class="context-property-grid transform-property-grid">
         ${selectionContextNumberField("x", relative ? "ΔX (in)" : "X (in)", { value: valueFor("x"), supportedCount }, { decimals: 3, step: "0.01", transform: true })}
         ${selectionContextNumberField("y", relative ? "ΔY (in)" : "Y (in)", { value: valueFor("y"), supportedCount }, { decimals: 3, step: "0.01", transform: true })}
@@ -51284,11 +51285,22 @@
         ${selectionContextNumberField("rotation", relative || context.selectedCount > 1 ? "Δ Rotation" : "Rotation", { value: relative ? 0 : geometry.rotation, supportedCount }, { decimals: 1, step: "1", transform: true })}
         ${selectionContextNumberField("shear", relative || context.selectedCount > 1 ? "Δ Shear" : "Shear", { value: relative ? 0 : geometry.shear, supportedCount }, { decimals: 1, min: relative ? null : -80, max: relative ? null : 80, step: "1", transform: true })}
       </div>
+      <details class="inspector-transform-options">
+        <summary>Transform options</summary>
+      <div class="context-transform-head">
+        <div class="transform-reference-grid" role="group" aria-label="Reference point">${referenceGrid}</div>
+        <div class="context-transform-modes" role="group" aria-label="Transform options">
+          <button type="button" data-context-action="toggle-transform-relative" aria-pressed="${String(relative)}" ${enabled ? "" : "disabled"} title="Use relative values">Relative</button>
+          <button type="button" data-context-action="toggle-transform-proportional" aria-pressed="${String(numericTransformState.proportional)}" ${enabled ? "" : "disabled"} title="Constrain width and height proportions">Constrain</button>
+          <button type="button" data-context-action="toggle-transform-each" aria-pressed="${String(numericTransformState.individual)}" ${enabled && context.selectedCount > 1 ? "" : "disabled"} title="Transform each selected object around its own reference point">Each</button>
+        </div>
+      </div>
       <div class="context-transform-actions">
         <button type="button" data-context-action="transform-reflect-horizontal" ${enabled ? "" : "disabled"}>Reflect H</button>
         <button type="button" data-context-action="transform-reflect-vertical" ${enabled ? "" : "disabled"}>Reflect V</button>
         <button type="button" data-context-action="toggle-scale-strokes-effects" aria-pressed="${String(numericTransformState.scaleStrokesEffects)}" ${enabled ? "" : "disabled"}>Scale strokes &amp; effects</button>
       </div>
+      </details>
       ${enabled ? "" : `<p class="context-selection-note">${escapeHtml(numericTransformGuardMessage(context.capabilitySummary?.transformBlockedReason))}.</p>`}
     </div>`;
   }
@@ -51531,15 +51543,18 @@
       ? `<p class="context-selection-note">Transform uses the selection bounds by default. Appearance changes apply to compatible objects; geometry changes require the complete selection to be editable.</p>`
       : "";
     return `<div class="asi-card context-properties-card" data-appearance-section="context-properties" data-selection-context-kind="${escapeHtml(context.kind)}">
-      <div class="asi-card-title">${escapeHtml(context.label)}</div>
+      <div class="asi-card-title" data-inspector-scope="properties">${escapeHtml(context.label)}</div>
       ${mixedNote}
+      ${selectionContextTransformHtml(context)}
       ${selectionContextTextEntryHtml(context)}
       ${selectionContextIsolationHtml(context)}
-      ${["text", "callout"].includes(context.kind) ? selectionContextTypeHtml(context) : ""}
-      ${selectionContextTransformHtml(context)}
       ${selectionContextArrangeHtml(context)}
-      ${selectionContextAppearanceHtml(context)}
-      ${["text", "callout"].includes(context.kind) ? "" : selectionContextTypeHtml(context)}
+      <details class="inspector-appearance-precision" data-inspector-scope="appearance">
+        <summary>More appearance controls</summary>
+        ${selectionContextAppearanceHtml(context)}
+        ${selectionContextTypeHtml(context)}
+      </details>
+      <div data-inspector-scope="properties" class="inspector-object-settings"></div>
     </div>`;
   }
 
@@ -51978,6 +51993,12 @@
     els.selectionContextBar.setAttribute("aria-hidden", String(!hasSelection));
     if (!hasSelection) {
       els.selectionContextBar.replaceChildren();
+      return;
+    }
+    // Keep the ordinary strip concise; full formatting and arrangement live
+    // in Inspector. Point/segment and connector gestures retain their tools.
+    if (!pathNodeEdit.object && !context.isSmartConnector && !["anchor", "segment"].includes(context.kind)) {
+      renderSelectionContextEssentials();
       return;
     }
     const p = context.properties;
@@ -54776,6 +54797,30 @@
     panel.querySelector("[data-appearance-stack-clear]")?.addEventListener("click", () => clearAppearanceStack(object));
   }
 
+  function organizeInspectorSections() {
+    const panel = els.appearanceStructureInspector;
+    if (!panel) return;
+    const appearanceSections = new Set(["base-appearance", "pdf-text", "clip-mask-blend-filter"]);
+    const appearanceFields = new Set(["appearance", "character", "paragraph", "stroke-line"]);
+    for (const child of panel.children) {
+      if (child.classList.contains("context-properties-card")) {
+        const precision = child.querySelector(".inspector-appearance-precision");
+        const settings = child.querySelector(".inspector-object-settings");
+        if (precision && settings) {
+          for (const field of [...precision.children]) {
+            const kind = field.dataset.contextPropertySection;
+            if (kind && !appearanceFields.has(kind)) settings.appendChild(field);
+          }
+        }
+        for (const field of child.children) {
+          if (!field.dataset.inspectorScope) field.dataset.inspectorScope = "properties";
+        }
+      } else {
+        child.dataset.inspectorScope = appearanceSections.has(child.dataset.appearanceSection) ? "appearance" : "properties";
+      }
+    }
+  }
+
   function renderAppearanceStructureInspector(object, selected = selectedTopLevelObjects(), resolvedContext = null) {
     if (!els.appearanceStructureInspector) return;
     const selection = selected || [];
@@ -54797,6 +54842,7 @@
       }
       els.appearanceStructureInspector.innerHTML = `${selectionContextPropertiesHtml(context)}
         <button type="button" data-deck-edit-figure>${presentationFigureSource() ? 'Open source Figure' : 'Edit a copy in Figure'}</button>`;
+      organizeInspectorSections();
       bindSelectionContextSurface(els.appearanceStructureInspector);
       els.appearanceStructureInspector.querySelector('[data-deck-edit-figure]').addEventListener('click', () => {
         void editPresentationArtworkInFigure().catch((error) => showLongToast(error.message));
@@ -55175,6 +55221,9 @@
     els.appearanceStructureInspector.classList.toggle("is-simple", simpleInspector);
     els.appearanceStructureInspector.classList.toggle("is-source-backed", status.sourceBacked || status.proxyBacked || status.nativePdf);
     els.appearanceStructureInspector.innerHTML = `
+      ${selectionContextPropertiesHtml(selectionContext)}
+      <details class="asi-selection-details">
+        <summary>Selection details</summary>
       <div class="asi-header" data-appearance-section="selection-summary">
         <div>
           <div class="panel-title">Properties</div>
@@ -55193,7 +55242,7 @@
           ${appearanceActionButtonHtml("source-details", "Source details", sourceDetailEnabled)}
         </div>
       </div>
-      ${selectionContextPropertiesHtml(selectionContext)}
+      </details>
       <details class="asi-card asi-collapsible" data-appearance-section="object-layer-state">
         <summary class="asi-card-title">Object and layer state</summary>
         <div class="asi-card-body"><dl>
@@ -55212,7 +55261,7 @@
         </div>
       </details>
       <details class="asi-card asi-collapsible" data-appearance-section="base-appearance" ${appearanceStack?.authored || selectedUseColor || preserveOnlyColor || selectedGradient || selectedUseStroke || selectedUseAppearance ? "open" : ""}>
-        <summary class="asi-card-title">Appearance</summary>
+        <summary class="asi-card-title">Effects and advanced appearance</summary>
         <div class="asi-card-body"><div class="asi-appearance-grid">
           ${baseAppearanceHtml}
         </div>
@@ -55394,6 +55443,7 @@
         </div>
       </details>
     `;
+    organizeInspectorSections();
     els.appearanceStructureInspector.querySelectorAll("[data-appearance-inspector-action]").forEach((button) => {
       button.addEventListener("click", () => executeAppearanceStructureInspectorAction(button.dataset.appearanceInspectorAction, {
         objectId: first?.figureId || "",
@@ -65236,6 +65286,7 @@
     setRailVisibility("right", true, { toast: false, focus: false });
     setInspectorTab("swatches");
     renderSwatchesPanel();
+    document.getElementById("savedColorsDisclosure")?.scrollIntoView({ block: "nearest" });
     if (options.recolor) beginRecolorSelection(options);
     requestAnimationFrame(() => (options.recolor ? els.recolorMappingList?.querySelector("input, select") : els.swatchGrid?.querySelector("[data-swatch-apply]"))?.focus());
     return getSwatchLibraryStateForQa();

@@ -1,7 +1,7 @@
 {
   "schema": "figureStudio.scientificSceneLibrary.v1",
   "id": "figure-studio-scientific-scenes",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "name": "Scientific Templates",
   "description": "Editable starting points for common experimental-biology figures and presentations.",
   "source_record_id": "source.figure-studio-scientific-scenes.2026-08-30",
@@ -720,6 +720,142 @@
       "preview": "previews/angiogenic-sprouting.svg",
       "source_record_id": "source.figure-studio-scene-expansion.2026-11-03",
       "rights_record_id": "rights.figure-studio-scene-expansion.repository-cc0.2026-11-03"
+    },
+    {
+      "id": "hypothalamic-pituitary-adrenal-axis",
+      "name": "Hypothalamic–pituitary–adrenal axis",
+      "summary": "Stress-related hypothalamic drive, pituitary ACTH, adrenal glucocorticoid output, and negative feedback.",
+      "category": "Endocrinology",
+      "synonyms": [
+        "HPA axis",
+        "hypothalamic–pituitary–adrenal axis",
+        "corticotropin axis"
+      ],
+      "tags": [
+        "CRH",
+        "ACTH",
+        "cortisol",
+        "glucocorticoid",
+        "negative feedback",
+        "stress response"
+      ],
+      "biology_note": "Parvocellular hypothalamic neurons release CRH into the median eminence portal circulation. CRH stimulates anterior-pituitary corticotrophs to release ACTH, which stimulates glucocorticoid synthesis and release from the adrenal cortex. Glucocorticoids feed back to reduce hypothalamic and pituitary drive.",
+      "limitations": "Qualitative overview. Vasopressin co-drive, circadian and ultradian dynamics, species-specific glucocorticoids, and distributed neural inputs are not resolved; the diagram does not predict hormone concentrations or response timing.",
+      "card_summary": "Stress-related hypothalamic drive, pituitary ACTH, adrenal glucocorticoid output, and negative feedback.",
+      "modes": [
+        "figure",
+        "presentation"
+      ],
+      "actions": [
+        "use_as_new_figure",
+        "insert_current_document"
+      ],
+      "scene": "scenes/hypothalamic-pituitary-adrenal-axis.scene.json",
+      "preview": "previews/hypothalamic-pituitary-adrenal-axis.svg",
+      "source_record_id": "source.figure-studio-scene-expansion.2026-11-07",
+      "rights_record_id": "rights.figure-studio-scene-expansion.repository-cc0.2026-11-07"
+    },
+    {
+      "id": "hypothalamic-pituitary-thyroid-axis",
+      "name": "Hypothalamic–pituitary–thyroid axis",
+      "summary": "Hypothalamic TRH drives pituitary TSH and thyroid follicular T4/T3 output under feedback control.",
+      "category": "Endocrinology",
+      "synonyms": [
+        "HPT axis",
+        "thyroid axis",
+        "hypothalamic–pituitary–thyroid axis"
+      ],
+      "tags": [
+        "TRH",
+        "TSH",
+        "thyroid follicle",
+        "T4",
+        "T3",
+        "negative feedback"
+      ],
+      "biology_note": "Hypothalamic TRH stimulates pituitary thyrotrophs to release TSH. TSH stimulates thyroid follicular synthesis and secretion of T4 and T3. Thyroid hormones reduce upstream TRH and TSH synthesis or secretion through feedback at hypothalamic and pituitary levels.",
+      "limitations": "Qualitative overview. It omits local deiodinase activity, transport and binding proteins, iodine availability, illness-related regulation, and the distinct kinetics of TSH and thyroid hormones. No diagnostic reference ranges or concentrations are implied.",
+      "card_summary": "Hypothalamic TRH drives pituitary TSH and thyroid follicular T4/T3 output under feedback control.",
+      "modes": [
+        "figure",
+        "presentation"
+      ],
+      "actions": [
+        "use_as_new_figure",
+        "insert_current_document"
+      ],
+      "scene": "scenes/hypothalamic-pituitary-thyroid-axis.scene.json",
+      "preview": "previews/hypothalamic-pituitary-thyroid-axis.svg",
+      "source_record_id": "source.figure-studio-scene-expansion.2026-11-07",
+      "rights_record_id": "rights.figure-studio-scene-expansion.repository-cc0.2026-11-07"
+    },
+    {
+      "id": "glucose-islet-feedback",
+      "name": "Glucose–islet insulin feedback",
+      "summary": "Rising extracellular glucose stimulates islet insulin release, promoting peripheral uptake and restraining hepatic glucose output.",
+      "category": "Endocrinology",
+      "synonyms": [
+        "glucose–insulin feedback",
+        "islet glucose sensing",
+        "insulin-mediated glucose control"
+      ],
+      "tags": [
+        "extracellular glucose",
+        "pancreatic islet",
+        "beta cell",
+        "insulin",
+        "glucose uptake",
+        "hepatic output"
+      ],
+      "biology_note": "Elevated glucose stimulates insulin secretion from pancreatic islet β cells. Insulin promotes glucose uptake in insulin-responsive peripheral tissues and suppresses endogenous hepatic glucose production, tending to lower circulating glucose.",
+      "limitations": "Qualitative conceptual loop. Insulin action varies by tissue, nutritional state, species, and disease context; glucose uptake is not uniform across all tissues. Glucagon and other hormones are omitted, and no universal set point or response rate is shown.",
+      "card_summary": "Rising extracellular glucose stimulates islet insulin release, promoting peripheral uptake and restraining hepatic glucose output.",
+      "modes": [
+        "figure",
+        "presentation"
+      ],
+      "actions": [
+        "use_as_new_figure",
+        "insert_current_document"
+      ],
+      "scene": "scenes/glucose-islet-feedback.scene.json",
+      "preview": "previews/glucose-islet-feedback.svg",
+      "source_record_id": "source.figure-studio-scene-expansion.2026-11-07",
+      "rights_record_id": "rights.figure-studio-scene-expansion.repository-cc0.2026-11-07"
+    },
+    {
+      "id": "islet-perifusion-experiment",
+      "name": "Islet perifusion experiment",
+      "summary": "Perfuse isolated islets through sequential media, collect timed effluent fractions, and measure secreted hormone.",
+      "category": "Endocrine methods",
+      "synonyms": [
+        "islet perifusion",
+        "islet perifusion assay",
+        "dynamic glucose-stimulated insulin secretion"
+      ],
+      "tags": [
+        "isolated islets",
+        "perifusion chamber",
+        "inflow",
+        "outflow",
+        "fraction collection",
+        "stimulus washout"
+      ],
+      "biology_note": "A controlled medium stream passes through a chamber containing isolated islets. Outflow is collected in timed fractions for hormone measurement while the incoming medium changes across basal, stimulus, and washout periods.",
+      "limitations": "Experimental-layout schematic only. It contains no measured secretion trace, concentration, sample number, flow rate, stimulus concentration, or expected response shape. Chamber geometry, equilibration, fraction interval, assay, and stimulus sequence must match the actual experiment.",
+      "card_summary": "Perfuse isolated islets through sequential media, collect timed effluent fractions, and measure secreted hormone.",
+      "modes": [
+        "figure",
+        "presentation"
+      ],
+      "actions": [
+        "use_as_new_figure",
+        "insert_current_document"
+      ],
+      "scene": "scenes/islet-perifusion-experiment.scene.json",
+      "preview": "previews/islet-perifusion-experiment.svg",
+      "source_record_id": "source.figure-studio-scene-expansion.2026-11-07",
+      "rights_record_id": "rights.figure-studio-scene-expansion.repository-cc0.2026-11-07"
     }
   ]
 }

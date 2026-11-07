@@ -1,0 +1,496 @@
+{
+  "schema": "figureStudio.scientificScene.v1",
+  "id": "glucose-islet-feedback",
+  "name": "Glucose–islet insulin feedback",
+  "summary": "Rising extracellular glucose stimulates islet insulin release, promoting peripheral uptake and restraining hepatic glucose output.",
+  "source_record_id": "source.figure-studio-scene-expansion.2026-11-07",
+  "rights_record_id": "rights.figure-studio-scene-expansion.repository-cc0.2026-11-07",
+  "scientific_record": {
+    "id": "science.figure-studio.glucose-islet-feedback.2026-11-07",
+    "verified_on": "2026-11-07",
+    "scope": "Elevated glucose stimulates insulin secretion from pancreatic islet β cells. Insulin promotes glucose uptake in insulin-responsive peripheral tissues and suppresses endogenous hepatic glucose production, tending to lower circulating glucose.",
+    "relationships": [
+      {
+        "claim": "Elevated glucose stimulates insulin secretion from pancreatic islet β cells. Insulin promotes glucose uptake in insulin-responsive peripheral tissues and suppresses endogenous hepatic glucose production, tending to lower circulating glucose.",
+        "source_ids": [
+          "islet-human",
+          "insulin-human"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "islet-human",
+        "citation": "Rodriguez-Diaz R et al. Paracrine interactions within the pancreatic islet determine the glycemic set point. Cell Metab. 2018;27(3):549–558.e4. doi:10.1016/j.cmet.2018.01.015.",
+        "doi": "10.1016/j.cmet.2018.01.015",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5860066/",
+        "support_location": "Primary human-islet experiments on intra-islet paracrine signaling and glucose regulation; this schematic limits itself to glucose-responsive insulin and does not imply a universal set point.",
+        "decision": "Use primary human-islet evidence to orient elevated extracellular glucose upstream of islet insulin release."
+      },
+      {
+        "id": "insulin-human",
+        "citation": "Campbell PJ, Mandarino LJ, Gerich JE. Quantification of the relative impairment in actions of insulin on hepatic glucose production and peripheral glucose uptake in non-insulin-dependent diabetes mellitus. Metabolism. 1988;37(1):15–21. doi:10.1016/0026-0495(88)90023-6.",
+        "doi": "10.1016/0026-0495(88)90023-6",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/3275857/",
+        "support_location": "Human glucose-clamp and isotope-flux study measured insulin-mediated suppression of hepatic glucose production and stimulation of peripheral glucose uptake; effects vary with diabetes status and insulin concentration.",
+        "decision": "Represent insulin's actions as separate branches to peripheral glucose uptake and lower endogenous hepatic glucose production, as measured in human clamp studies; converge the branches on a qualitative lower-glucose outcome without implying universal rates."
+      }
+    ],
+    "design_precedents": [
+      {
+        "source_id": "islet-human",
+        "figure": "Methods / conceptual figure",
+        "decision": "Use primary human-islet evidence to orient elevated extracellular glucose upstream of islet insulin release."
+      },
+      {
+        "source_id": "insulin-human",
+        "figure": "Methods / conceptual figure",
+        "decision": "Represent insulin's actions as separate branches to peripheral glucose uptake and lower endogenous hepatic glucose production, as measured in human clamp studies; converge the branches on a qualitative lower-glucose outcome without implying universal rates."
+      }
+    ],
+    "limitations": [
+      "Qualitative conceptual loop. Insulin action varies by tissue, nutritional state, species, and disease context; glucose uptake is not uniform across all tissues. Glucagon and other hormones are omitted, and no universal set point or response rate is shown."
+    ],
+    "authorship": "Original editable scene composed from native vector/text objects and original endocrine asset placeholders. Published research informed biological claims and design decisions only; no publication artwork was copied, traced, or embedded."
+  },
+  "insertion_art_style": "soft-color",
+  "canvas": {
+    "width": 1100,
+    "height": 650,
+    "width_in": 11.458333333333334,
+    "height_in": 6.770833333333333,
+    "background_role": "background"
+  },
+  "layout_kind": "mechanism",
+  "palette": {
+    "background": "#F7F9FC",
+    "surface": "#FFFFFF",
+    "ink": "#24313B",
+    "muted": "#637381",
+    "border": "#C9D5DE",
+    "sample": "#2A8C82",
+    "process": "#527DA8",
+    "signal": "#D79A31",
+    "inhibition": "#B94E49",
+    "soft": "#E7EEF4",
+    "accent": "#7667A8"
+  },
+  "layers": [
+    {
+      "id": "context",
+      "name": "Anatomical and assay context"
+    },
+    {
+      "id": "objects",
+      "name": "Endocrine structures and apparatus"
+    },
+    {
+      "id": "relationships",
+      "name": "Hormone and experimental relationships"
+    },
+    {
+      "id": "labels",
+      "name": "Editable labels"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "title",
+      "type": "text",
+      "layer_id": "labels",
+      "x": 36,
+      "y": 22,
+      "width": 1028,
+      "height": 34,
+      "text": "Glucose–islet insulin feedback",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 27,
+      "fill_role": "ink",
+      "align": "left"
+    },
+    {
+      "id": "subtitle",
+      "type": "text",
+      "layer_id": "labels",
+      "x": 38,
+      "y": 60,
+      "width": 1024,
+      "height": 28,
+      "text": "Glucose-responsive insulin release and glucose-lowering actions",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 20,
+      "fill_role": "muted",
+      "align": "left"
+    },
+    {
+      "id": "glucose_pool",
+      "type": "shape",
+      "shape": "ellipse",
+      "layer_id": "objects",
+      "x": 60,
+      "y": 224,
+      "width": 190,
+      "height": 112,
+      "radius": 56,
+      "fill_role": "soft",
+      "stroke_role": "sample",
+      "stroke_width": 2.2
+    },
+    {
+      "id": "glucose_label",
+      "type": "text",
+      "layer_id": "labels",
+      "x": 76,
+      "y": 260,
+      "width": 158,
+      "height": 36,
+      "text": "Glucose rises",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 22,
+      "fill_role": "sample",
+      "align": "center"
+    },
+    {
+      "id": "islet_region",
+      "type": "shape",
+      "shape": "rounded_rect",
+      "layer_id": "objects",
+      "x": 344,
+      "y": 156,
+      "width": 250,
+      "height": 262,
+      "radius": 18,
+      "fill_role": "surface",
+      "stroke_role": "border",
+      "stroke_width": 2.2
+    },
+    {
+      "id": "pancreatic_islet",
+      "name": "Pancreatic Islet",
+      "type": "asset",
+      "layer_id": "objects",
+      "asset_id": "endocrine.pancreatic_islet.mixed_islet",
+      "top_level": true,
+      "x": 391,
+      "y": 211,
+      "width": 156,
+      "height": 128,
+      "palette_overrides": {
+        "beta_cells": "signal",
+        "other_endocrine": "accent",
+        "capillary": "inhibition",
+        "stroma": "soft",
+        "outline": "ink"
+      }
+    },
+    {
+      "id": "islet_label",
+      "type": "text",
+      "layer_id": "labels",
+      "x": 361,
+      "y": 169,
+      "width": 216,
+      "height": 30,
+      "text": "Pancreatic islet",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 21,
+      "fill_role": "ink",
+      "align": "center"
+    },
+    {
+      "id": "beta_label",
+      "type": "text",
+      "layer_id": "labels",
+      "x": 361,
+      "y": 359,
+      "width": 216,
+      "height": 50,
+      "text": "β-cell insulin release",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 20,
+      "fill_role": "signal",
+      "align": "center"
+    },
+    {
+      "id": "insulin_action",
+      "type": "shape",
+      "shape": "rounded_rect",
+      "layer_id": "objects",
+      "x": 760,
+      "y": 156,
+      "width": 290,
+      "height": 262,
+      "radius": 18,
+      "fill_role": "surface",
+      "stroke_role": "border",
+      "stroke_width": 2.2
+    },
+    {
+      "id": "action_title",
+      "type": "text",
+      "layer_id": "labels",
+      "x": 778,
+      "y": 174,
+      "width": 254,
+      "height": 34,
+      "text": "Insulin action",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 22,
+      "fill_role": "signal",
+      "align": "center"
+    },
+    {
+      "id": "peripheral_label",
+      "type": "text",
+      "layer_id": "labels",
+      "x": 778,
+      "y": 237,
+      "width": 254,
+      "height": 28,
+      "text": "Muscle + adipose tissue",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 20,
+      "fill_role": "ink",
+      "align": "center"
+    },
+    {
+      "id": "uptake_label",
+      "type": "text",
+      "layer_id": "labels",
+      "x": 778,
+      "y": 270,
+      "width": 254,
+      "height": 28,
+      "text": "Glucose uptake ↑",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 20,
+      "fill_role": "process",
+      "align": "center"
+    },
+    {
+      "id": "liver_label",
+      "type": "text",
+      "layer_id": "labels",
+      "x": 778,
+      "y": 321,
+      "width": 254,
+      "height": 28,
+      "text": "Liver",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 20,
+      "fill_role": "ink",
+      "align": "center"
+    },
+    {
+      "id": "hepatic_label",
+      "type": "text",
+      "layer_id": "labels",
+      "x": 778,
+      "y": 354,
+      "width": 254,
+      "height": 28,
+      "text": "Glucose production ↓",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 20,
+      "fill_role": "process",
+      "align": "center"
+    },
+    {
+      "id": "insulin_label",
+      "type": "text",
+      "layer_id": "labels",
+      "x": 597,
+      "y": 225,
+      "width": 160,
+      "height": 30,
+      "text": "Insulin",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 21,
+      "fill_role": "signal",
+      "align": "center"
+    },
+    {
+      "id": "net_glucose_response",
+      "type": "shape",
+      "shape": "rounded_rect",
+      "layer_id": "context",
+      "x": 364,
+      "y": 500,
+      "width": 536,
+      "height": 64,
+      "radius": 16,
+      "fill_role": "soft",
+      "stroke_role": "inhibition",
+      "stroke_width": 2.2
+    },
+    {
+      "id": "net_glucose_response_label",
+      "type": "text",
+      "layer_id": "labels",
+      "x": 380,
+      "y": 516,
+      "width": 504,
+      "height": 32,
+      "text": "Extracellular glucose falls",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 22,
+      "fill_role": "inhibition",
+      "align": "center"
+    },
+    {
+      "id": "feedback_label",
+      "type": "text",
+      "layer_id": "labels",
+      "x": 20,
+      "y": 430,
+      "width": 235,
+      "height": 30,
+      "text": "Negative feedback",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 20,
+      "fill_role": "inhibition",
+      "align": "center"
+    }
+  ],
+  "groups": [
+    {
+      "id": "glucose_input",
+      "name": "Extracellular glucose",
+      "layer_id": "context",
+      "members": [
+        "glucose_pool",
+        "glucose_label"
+      ]
+    },
+    {
+      "id": "islet_insulin_source",
+      "name": "Islet insulin release",
+      "layer_id": "objects",
+      "members": [
+        "islet_region",
+        "pancreatic_islet",
+        "islet_label",
+        "beta_label",
+        "insulin_label"
+      ]
+    },
+    {
+      "id": "insulin_action_group",
+      "name": "Distinct peripheral and hepatic insulin actions",
+      "layer_id": "objects",
+      "members": [
+        "insulin_action",
+        "action_title",
+        "peripheral_label",
+        "uptake_label",
+        "liver_label",
+        "hepatic_label"
+      ]
+    },
+    {
+      "id": "net_glucose_response_group",
+      "name": "Combined glucose response",
+      "layer_id": "context",
+      "members": [
+        "net_glucose_response",
+        "net_glucose_response_label",
+        "feedback_label"
+      ]
+    }
+  ],
+  "connectors": [
+    {
+      "id": "glucose_stimulates_islet",
+      "layer_id": "relationships",
+      "from": {
+        "node_id": "glucose_pool",
+        "anchor": "right"
+      },
+      "to": {
+        "node_id": "pancreatic_islet",
+        "anchor": "left"
+      },
+      "relation": "activation",
+      "label": "",
+      "style": {
+        "stroke_role": "sample",
+        "stroke_width": 2.6,
+        "line": "solid",
+        "terminator": "arrow"
+      }
+    },
+    {
+      "id": "islet_insulin",
+      "layer_id": "relationships",
+      "from": {
+        "node_id": "pancreatic_islet",
+        "anchor": "right"
+      },
+      "to": {
+        "node_id": "insulin_action",
+        "anchor": "left"
+      },
+      "relation": "secretion",
+      "label": "",
+      "style": {
+        "stroke_role": "signal",
+        "stroke_width": 2.6,
+        "line": "solid",
+        "terminator": "arrow"
+      }
+    },
+    {
+      "id": "insulin_actions_lower_glucose",
+      "layer_id": "relationships",
+      "from": {
+        "node_id": "insulin_action",
+        "anchor": "bottom"
+      },
+      "to": {
+        "node_id": "net_glucose_response",
+        "anchor": "top"
+      },
+      "relation": "conversion",
+      "label": "",
+      "style": {
+        "stroke_role": "process",
+        "stroke_width": 2.5,
+        "line": "solid",
+        "terminator": "arrow"
+      }
+    },
+    {
+      "id": "net_glucose_feedback",
+      "layer_id": "relationships",
+      "from": {
+        "node_id": "net_glucose_response",
+        "anchor": "left"
+      },
+      "to": {
+        "node_id": "glucose_pool",
+        "anchor": "bottom"
+      },
+      "relation": "inhibition",
+      "label": "",
+      "style": {
+        "stroke_role": "inhibition",
+        "stroke_width": 2.5,
+        "line": "dashed",
+        "terminator": "bar"
+      }
+    }
+  ]
+}

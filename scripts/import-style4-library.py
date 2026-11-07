@@ -95,9 +95,12 @@ def load_catalog(library: Path, *, style4_only: bool = False) -> dict[str, dict]
         for asset in pack["assets"]:
             # The historical supplied collection remains exactly its original486.
             # New original companions have an independent finite supplement.
-            if style4_only and pack_ref['id'] in {'neurobiology','tissue-vascular'}:
-                if (pack.get('style_4_supplement') != 'original-style4-companions.2026-11-03'
-                        or len(pack['assets']) != 20
+            supplement_cohorts = {'neurobiology': ('2026-11-03',20), 'tissue-vascular': ('2026-11-03',20),
+                                  'endocrine-tissue': ('2026-11-07',24)}
+            if style4_only and pack_ref['id'] in supplement_cohorts:
+                date, count = supplement_cohorts[pack_ref['id']]
+                if (pack.get('style_4_supplement') != 'original-style4-companions.' + date
+                        or len(pack['assets']) != count
                         or asset.get('style_4_supplement') != pack['style_4_supplement']):
                     raise ValueError('Unknown historical Style 4 exclusion')
                 continue

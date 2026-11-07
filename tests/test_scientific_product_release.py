@@ -196,7 +196,8 @@ def test_successor_rejects_each_unreviewed_change(expanded, mutation):
 def style_four(expanded):
     """Use the real finite addition while keeping old-decision fixtures exact."""
     shutil.copytree(ROOT / "assets/scientific-packs/style-4", expanded / "assets/scientific-packs/style-4",
-                    ignore=shutil.ignore_patterns("corrected-20261017", "manifest-corrected-20261017.json", "expansion-20261103"))
+                    ignore=shutil.ignore_patterns("corrected-20261017", "manifest-corrected-20261017.json",
+                                                 "expansion-20261103", "expansion-20261107", "original-companions.json"))
     registry = historical_registry()
     correction = ROOT / release.STYLE_FOUR_CORRECTION_RECORD
     if correction.exists():
@@ -322,7 +323,7 @@ def asset_validator():
 def test_registered_style_four_runs_the_full_separate_artwork_validator(asset_validator):
     path = ROOT / "assets/scientific-packs/library.json"
     styles = asset_validator.validate_registered_art_styles(path,json.loads(path.read_text(encoding="utf-8")))
-    assert styles == [{"id":"style-4","directory":"style-4","asset_count":526,"file_count":541}]
+    assert styles == [{"id":"style-4","directory":"style-4","asset_count":550,"file_count":569}]
 
 
 @pytest.mark.parametrize("mutation", ["unknown_style", "traversal", "duplicate", "coverage", "missing_note"])
@@ -332,7 +333,7 @@ def test_drawing_style_registration_is_finite_and_never_loosens_directory_checks
     if mutation == "unknown_style": registry["art_styles"][0]["id"] = "style-5"
     elif mutation == "traversal": registry["art_styles"][0]["path"] = "../style-4/manifest.json"
     elif mutation == "duplicate": registry["art_styles"].append(registry["art_styles"][0])
-    elif mutation == "coverage": registry["art_styles"][0]["asset_count"] = 485
+    elif mutation == "coverage": registry["art_styles"][0]["asset_count"] = 549
     else: registry.pop("art_style_notes")
     with pytest.raises(ValueError):
         asset_validator.validate_registered_art_styles(path, registry)

@@ -1,0 +1,1903 @@
+{
+  "schema": "figureStudio.scientificProductRelease.v6",
+  "release_id": "endocrine-expansion.2026-11-07",
+  "release_date": "2026-11-07",
+  "decision": "approved_for_matching_public_web_and_superbench_packages",
+  "predecessor": {
+    "record": "config/scientific-product-release-2026-11-03-expansion.json",
+    "sha256": "f48ecd861065b47296f0cc0c50ed280766b187bd940471a9d76caf298e2c775a",
+    "asset_inventory_sha256": "9c7b07e7d5734ec1f4e868d4e68ed26ff5d6ac03a98c234e96d2fd5994b59de3",
+    "historical_approvals_sha256": "fee83d647b5bd4af0effc015f945239a5367c999862f2c7f3707164d95118c38"
+  },
+  "current": {
+    "library": {
+      "drawing_count": 550,
+      "concept_count": 410,
+      "pack_count": 14,
+      "scientific_template_count": 24,
+      "layout_starter_count": 3,
+      "historical_style_4_variant_count": 486,
+      "original_style_4_companion_count": 64
+    },
+    "asset_inventory_sha256": "1cedadf26124588a321f8164ac38bbe2561b4cde55ca6e9f826452d227bdd81a",
+    "asset_file_count": 1576,
+    "registry_sha256": "5326070d2200bc27a88ded7cf21c92c25872e5d2ed44dbe004f0e5800fccd3f1",
+    "all_template_ids": [
+      "angiogenic-sprouting",
+      "apc-t-cell-immune-synapse",
+      "autophagosome-lysosome-process",
+      "chemical-synaptic-transmission",
+      "crispr-perturbation-validation",
+      "culture-treatment-readout",
+      "epithelial-barrier-transwell-workflow",
+      "gene-regulation-expression",
+      "glucose-islet-feedback",
+      "hypothalamic-pituitary-adrenal-axis",
+      "hypothalamic-pituitary-thyroid-axis",
+      "immunoblot-assay-workflow",
+      "immunoprecipitation-workflow",
+      "indirect-immunofluorescence-workflow",
+      "islet-perifusion-experiment",
+      "microscopy-flow-readout",
+      "receptor-signaling",
+      "rt-qpcr-expression-workflow",
+      "sandwich-elisa-workflow",
+      "single-cell-rna-workflow",
+      "spatial-rna-methods",
+      "t-cell-activation-checkpoint",
+      "tumor-microenvironment",
+      "wound-closure-assay-workflow"
+    ],
+    "new_template_ids": [
+      "glucose-islet-feedback",
+      "hypothalamic-pituitary-adrenal-axis",
+      "hypothalamic-pituitary-thyroid-axis",
+      "islet-perifusion-experiment"
+    ],
+    "layout_starter_ids": [
+      "multi-panel-2x2",
+      "graphical-abstract",
+      "clean-canvas"
+    ],
+    "style_4_bindings": {
+      "assets/scientific-packs/style-4/manifest-corrected-20261017.json": "a1a05aa118b103b54550d792d95d126790b79fedd762696822ca1cae24a00a17",
+      "assets/scientific-packs/style-4/expansion-20261103/manifest.json": "37cfbd5fe31eba9df56d697dbda9c55d54ecda82c57c1fc4f0132dfdd835cb3b",
+      "assets/scientific-packs/style-4/expansion-20261107/manifest.json": "474238beb26ed94fb6ba37de6b41e9ecc41e535e6820948568e3e869caeb1848",
+      "assets/scientific-packs/style-4/original-companions.json": "5fdc8b7277bc74ad36672679a94b4dfe87ced5eece8710a9ecf17f8058fd3af3"
+    }
+  },
+  "added_asset_files": [
+    {
+      "path": "assets/scientific-packs/endocrine-tissue/LICENSE-ASSETS-CC0-1.0.md",
+      "sha256": "18a4ab444465f9ca6b7b51bf571837aaa26548d3c24e3e4f6291e8ac95d51fc2"
+    },
+    {
+      "path": "assets/scientific-packs/endocrine-tissue/asset-pack.json",
+      "sha256": "2131ac8d08bc7bd6a1698931dd76c535856adf1cdb29ddbaa7034ecff07fe2b7"
+    },
+    {
+      "path": "assets/scientific-packs/endocrine-tissue/rights-release-record.json",
+      "sha256": "aaf8f274a8eba649c74f11e2062d4e893e0fe4f2b28223d4febd1066a3111ea5"
+    },
+    {
+      "path": "assets/scientific-packs/endocrine-tissue/svg/adrenal_cortex_concentric_zones.svg",
+      "sha256": "31b86ad34907136787156734130e555d48fa26663d7a3885f98039efc654cd0b"
+    },
+    {
+      "path": "assets/scientific-packs/endocrine-tissue/svg/adrenal_cortex_cortical_wedge.svg",
+      "sha256": "eb2addc8bbf00fc759277b6dda87ce8f2465802896e7fcc5d8cf5ac4230ecf3b"
+    },
+    {
+      "path": "assets/scientific-packs/endocrine-tissue/svg/adrenal_medulla_medullary_field.svg",
+      "sha256": "328d154f55a214966fefa06a272dd019e1b9f66a6b25b5ff1ee75e1f9b769cb6"
+    },
+    {
+      "path": "assets/scientific-packs/endocrine-tissue/svg/adrenal_medulla_vascular_nests.svg",
+      "sha256": "f3ddda22b5abc0b61cf6d9082d666f75e3ae2b727dd0204f18ec776455bab751"
+    },
+    {
+      "path": "assets/scientific-packs/endocrine-tissue/svg/anterior_pituitary_cords_longitudinal.svg",
+      "sha256": "831a3c88e8772ce4fae59de25fe698f2c9177e5c5e713a8ec9007f22e59e63f9"
+    },
+    {
+      "path": "assets/scientific-packs/endocrine-tissue/svg/anterior_pituitary_cords_radial.svg",
+      "sha256": "930f7727dd154f5f18b7c1b8fef97c92c511c0e69e45b8a6444dc0c6aeb6e8f7"
+    },
+    {
+      "path": "assets/scientific-packs/endocrine-tissue/svg/corpus_luteum_folded_luteal_tissue.svg",
+      "sha256": "3afdbb050ce90c1d348bcd15b779e16cb36018e053de2b9330984c09e579bee1"
+    },
+    {
+      "path": "assets/scientific-packs/endocrine-tissue/svg/corpus_luteum_radial_luteal_tissue.svg",
+      "sha256": "bec9c0c80d3f218957cc6d76c3042ceca789c886085d90d59c274548c908552e"
+    },
+    {
+      "path": "assets/scientific-packs/endocrine-tissue/svg/leydig_interstitium_paired_tubules.svg",
+      "sha256": "afb885bd968089685b6602eb7aa5a81d8ab8f94c282a90df2ee09def3ca6fd58"
+    },
+    {
+      "path": "assets/scientific-packs/endocrine-tissue/svg/leydig_interstitium_tubule_corner.svg",
+      "sha256": "715ce8ea49bd0d1cac74b7540c0b7fd144be48296e428459b44cb6ecca3dc35d"
+    },
+    {
+      "path": "assets/scientific-packs/endocrine-tissue/svg/median_eminence_external_zone_field.svg",
+      "sha256": "ac5cf649f09299cf5d16fda9cf660092bd66cdf4606f33cd3e23d1cb97b88871"
+    },
+    {
+      "path": "assets/scientific-packs/endocrine-tissue/svg/median_eminence_external_zone_sagittal.svg",
+      "sha256": "cba77ced1195c0d9abc297e0decbe2ce8fc3e0bf2a58fc494ebce4f9712cdd8a"
+    },
+    {
+      "path": "assets/scientific-packs/endocrine-tissue/svg/ovarian_follicle_eccentric_oocyte.svg",
+      "sha256": "8ecd1a62c9834cb705a0e29e350ffc2136f70898dc7bbb8849d6dfd3bff702e0"
+    },
+    {
+      "path": "assets/scientific-packs/endocrine-tissue/svg/ovarian_follicle_sector_section.svg",
+      "sha256": "471227f4c382b75526824ebe25c105eebb8c190c1a9e85b9288816b836d57bf0"
+    },
+    {
+      "path": "assets/scientific-packs/endocrine-tissue/svg/pancreatic_islet_folded_plates.svg",
+      "sha256": "f3a6685457668e958f9ac49a44a02135959a82699fa0ff2421f51d2d2b83a8fe"
+    },
+    {
+      "path": "assets/scientific-packs/endocrine-tissue/svg/pancreatic_islet_mixed_islet.svg",
+      "sha256": "5a1a6a19ef04fb04652999ef9aab6c8a02fc857ebf9fdda7680ea526dc090ed5"
+    },
+    {
+      "path": "assets/scientific-packs/endocrine-tissue/svg/parathyroid_cords_cords_longitudinal.svg",
+      "sha256": "348d3323fb18864b015e55e608d48b802bff5375f8eaf45902420b55769ab423"
+    },
+    {
+      "path": "assets/scientific-packs/endocrine-tissue/svg/parathyroid_cords_lobular_field.svg",
+      "sha256": "b1bfc128193309bcb9c81e835ef14d40ea721900a33f968da5f452fc2b904f42"
+    },
+    {
+      "path": "assets/scientific-packs/endocrine-tissue/svg/pineal_parenchyma_cell_groups.svg",
+      "sha256": "6f0f1bbd0fdab010086e5093795210fce8611e467aed6a62e94af8c89890a1c3"
+    },
+    {
+      "path": "assets/scientific-packs/endocrine-tissue/svg/pineal_parenchyma_lobular_field.svg",
+      "sha256": "f0c5a183697f5a853f9684e9ecdec6967ce739bc75a26182887fa36577afded1"
+    },
+    {
+      "path": "assets/scientific-packs/endocrine-tissue/svg/posterior_pituitary_longitudinal_neural_lobe.svg",
+      "sha256": "085694edd97dbae5cd4635c7e58af6616eeb1725cf14b282953c906c7d884b33"
+    },
+    {
+      "path": "assets/scientific-packs/endocrine-tissue/svg/posterior_pituitary_transverse_neural_lobe.svg",
+      "sha256": "44cac30bf7e8a0d141f46ba27bd95bca6fa79da78633b7d8b9f9d02061bae084"
+    },
+    {
+      "path": "assets/scientific-packs/endocrine-tissue/svg/thyroid_follicle_follicle_field.svg",
+      "sha256": "3935aef170fa6856239fbbd65b07928aab60040a6414093d9168245cef1a2503"
+    },
+    {
+      "path": "assets/scientific-packs/endocrine-tissue/svg/thyroid_follicle_single_follicle.svg",
+      "sha256": "4c8e18910373e51df525c3b72b956c1774b530d16c77c78770d8bf5f8d55c03b"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/expansion-20261107/LICENSE-ASSETS-CC0-1.0.md",
+      "sha256": "ec221ee98cb52be01602c6d48d839e1b94ae189eacee8906d881d611cebc779b"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/expansion-20261107/manifest.json",
+      "sha256": "474238beb26ed94fb6ba37de6b41e9ecc41e535e6820948568e3e869caeb1848"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/expansion-20261107/rights-release-record.json",
+      "sha256": "e4d5be528804da5bf7663a48b3b73f470a258d0423b92b93535622397df3294b"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/expansion-20261107/svg/adrenal_cortex_concentric_zones_style4.svg",
+      "sha256": "3f329e301bb1dbe85dd13b4938dd64fe3e605ec9cf7015fded88998ced305fbb"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/expansion-20261107/svg/adrenal_cortex_cortical_wedge_style4.svg",
+      "sha256": "76451ca9f98150319df4f97e75c67dc750fa19f19715b737d0c72f2de87d8ccf"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/expansion-20261107/svg/adrenal_medulla_medullary_field_style4.svg",
+      "sha256": "ff36035f9aac7dcf58a655ee15dae0b8628162d4fb5d5f99d260cbbfe3c7b2ae"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/expansion-20261107/svg/adrenal_medulla_vascular_nests_style4.svg",
+      "sha256": "0b82627cb203068f83fed623fe7b84061302477ade9da181dd9aa02a6cbc30c0"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/expansion-20261107/svg/anterior_pituitary_cords_longitudinal_style4.svg",
+      "sha256": "ece05fee074f169034472c9233523eb1a24385ae8b2e2fb3f7bccaf201a01abe"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/expansion-20261107/svg/anterior_pituitary_cords_radial_style4.svg",
+      "sha256": "9a8efc1b334b5aacc78bed54dcb032cd635f97d4209b2d2c040f6f14453d01bb"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/expansion-20261107/svg/corpus_luteum_folded_luteal_tissue_style4.svg",
+      "sha256": "97ec8e59ab47fc00c0e1ab66972c91aab5d5fffa60388a0fe7927d3e04495aeb"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/expansion-20261107/svg/corpus_luteum_radial_luteal_tissue_style4.svg",
+      "sha256": "bc83c173fc0aa4858e92ab010539fed531872aefded5fda42e7bd31e0e1527ea"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/expansion-20261107/svg/leydig_interstitium_paired_tubules_style4.svg",
+      "sha256": "e24f2ffd6f44a7f90b6dd291921febfa55600310f00912396bd815179da9c010"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/expansion-20261107/svg/leydig_interstitium_tubule_corner_style4.svg",
+      "sha256": "20568958be2e2f7188a2d4d17705df4d55478e20e0de4074d68ef5e06e43e4cd"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/expansion-20261107/svg/median_eminence_external_zone_field_style4.svg",
+      "sha256": "a8928ede7125a2d5290422403cd186b5fd9a80c4e9c6fb8d6692f222bb8c0f0a"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/expansion-20261107/svg/median_eminence_external_zone_sagittal_style4.svg",
+      "sha256": "d7fecd2afc76a054a8dd0bb509778d488ecdcfb285ee62212f4926e022e68569"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/expansion-20261107/svg/ovarian_follicle_eccentric_oocyte_style4.svg",
+      "sha256": "b5498ebed9a01dfd43432571a3a464f81d0ae3a10737bba4e7358464afb36609"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/expansion-20261107/svg/ovarian_follicle_sector_section_style4.svg",
+      "sha256": "d7875669ff6619d31cd049d5507a657ac8e12055c88c811fb380991411b538d0"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/expansion-20261107/svg/pancreatic_islet_folded_plates_style4.svg",
+      "sha256": "9a14e676099a0f4d4d71b93b1e93784c63fba8be52001e240c78289470fbacbc"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/expansion-20261107/svg/pancreatic_islet_mixed_islet_style4.svg",
+      "sha256": "69e0cb2a2f3adbb852753fefaf555fe5e0864b0d183958f7a765adb581b74ed6"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/expansion-20261107/svg/parathyroid_cords_cords_longitudinal_style4.svg",
+      "sha256": "09b7f6c10e34cc3b678c7663d2bf557bd2d93c46c7ee94ada7bb3e4d41213830"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/expansion-20261107/svg/parathyroid_cords_lobular_field_style4.svg",
+      "sha256": "842af8a614c6efa18ebdca2b2df5c8b3ffa4e5235d3d8489d0e0450509b1444f"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/expansion-20261107/svg/pineal_parenchyma_cell_groups_style4.svg",
+      "sha256": "b5724544c70dd4113da85391d211fcc7d2445d73ef18d9511ecb2c056ca6bd20"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/expansion-20261107/svg/pineal_parenchyma_lobular_field_style4.svg",
+      "sha256": "19296f033010c439d577438bb247d7aade07e785c22a5dbc5fb6ba57f3eea960"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/expansion-20261107/svg/posterior_pituitary_longitudinal_neural_lobe_style4.svg",
+      "sha256": "37bba3b241db1d0601ca5ee315b79f636154f9e3fc2eef0ba778d543df024315"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/expansion-20261107/svg/posterior_pituitary_transverse_neural_lobe_style4.svg",
+      "sha256": "097814290773931c4f4ae218e7f66bbf1b20b4a0536340592e9f5021ee241944"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/expansion-20261107/svg/thyroid_follicle_follicle_field_style4.svg",
+      "sha256": "9e4fbceef5b6ac75aeffc23aacf040cf48ac8e479535136f24ddd479d6bae935"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/expansion-20261107/svg/thyroid_follicle_single_follicle_style4.svg",
+      "sha256": "2aa7fc24c5c44478c44c07d3928334ea15125c49389e12057a74f4cbbeb6b01b"
+    },
+    {
+      "path": "assets/scientific-packs/style-4/original-companions.json",
+      "sha256": "5fdc8b7277bc74ad36672679a94b4dfe87ced5eece8710a9ecf17f8058fd3af3"
+    },
+    {
+      "path": "assets/scientific-scenes/previews/glucose-islet-feedback.svg",
+      "sha256": "4b1ed5c36f5a1f3de15167263f0cacbe662938319cf4efe1c0528da2098a2cbf"
+    },
+    {
+      "path": "assets/scientific-scenes/previews/hypothalamic-pituitary-adrenal-axis.svg",
+      "sha256": "866d7ef7c65f94f65db5e2abc0473f7fdc88f54a3679d8c8faf61c933e7e8911"
+    },
+    {
+      "path": "assets/scientific-scenes/previews/hypothalamic-pituitary-thyroid-axis.svg",
+      "sha256": "134d1e97274c5df38478b86aae51b8d8350f57c518da415ba14c6a62a68a8e61"
+    },
+    {
+      "path": "assets/scientific-scenes/previews/islet-perifusion-experiment.svg",
+      "sha256": "c5f3d7639ec28105b055fd7017bab216191fd015c49f3824bda41d4eb00c9651"
+    },
+    {
+      "path": "assets/scientific-scenes/scenes/glucose-islet-feedback.scene.json",
+      "sha256": "1d0adbb636c59a90d25486d338fa2895214bc594b069268b45eeccd82b7e4971"
+    },
+    {
+      "path": "assets/scientific-scenes/scenes/hypothalamic-pituitary-adrenal-axis.scene.json",
+      "sha256": "4778abb2734495b0fa46b529ebba05608bbf70f6ed6056d6a4c2196a78cc2fdb"
+    },
+    {
+      "path": "assets/scientific-scenes/scenes/hypothalamic-pituitary-thyroid-axis.scene.json",
+      "sha256": "eb592354e24f06256512fc26d1eda24c2907cad48dd75d307c332afc6fb53874"
+    },
+    {
+      "path": "assets/scientific-scenes/scenes/islet-perifusion-experiment.scene.json",
+      "sha256": "2d848fbfa84632ec45d1166a3941fd8ce5949492d7c9435752361e229deab9a0"
+    }
+  ],
+  "replaced_asset_files": {
+    "assets/scientific-packs/library.json": {
+      "predecessor_sha256": "54b57f82c981f045abf3391e99e969f3c7fe422451962c108b566a9fc35ea849",
+      "predecessor_json": {
+        "schema_version": "1.0.0",
+        "id": "figure-studio-scientific-library",
+        "name": "Superbench Figure Tool Scientific Library",
+        "packs": [
+          {
+            "id": "core-biology",
+            "name": "Core Biology",
+            "description": "Foundational cells, structures, pathway notation, labware, and model organisms.",
+            "path": "core-biology/asset-pack.json",
+            "asset_count": 132,
+            "concept_count": 100,
+            "enabled": true,
+            "modes": [
+              "figure",
+              "presentation"
+            ]
+          },
+          {
+            "id": "core-experimental-biology",
+            "name": "Core Experimental Biology",
+            "description": "Common experimental cells, molecular processes, assays, instruments, and model systems.",
+            "path": "core-experimental-biology/asset-pack.json",
+            "asset_count": 111,
+            "concept_count": 103,
+            "enabled": true,
+            "modes": [
+              "figure",
+              "presentation"
+            ]
+          },
+          {
+            "id": "immunology-oncology",
+            "version": "1.0.0",
+            "name": "Immunology & Oncology",
+            "description": "Immune-cell states, antigen recognition, checkpoint mechanisms, tumor ecology, immunotherapies, and oncology readouts.",
+            "path": "immunology-oncology/asset-pack.json",
+            "asset_count": 75,
+            "concept_count": 74,
+            "enabled": true,
+            "modes": [
+              "figure",
+              "presentation"
+            ]
+          },
+          {
+            "id": "rna-methods",
+            "name": "RNA Methods",
+            "description": "Original editable schematics for droplet RNA capture, spatial capture and RNA imaging.",
+            "path": "rna-methods/asset-pack.json",
+            "asset_count": 4,
+            "concept_count": 4,
+            "enabled": true,
+            "modes": [
+              "figure",
+              "presentation"
+            ]
+          },
+          {
+            "id": "protein-homeostasis",
+            "name": "Protein Homeostasis",
+            "description": "Editable protein states and interactions for chaperone handling, ubiquitination, deubiquitination, proteasomal processing and amorphous aggregation.",
+            "path": "protein-homeostasis/asset-pack.json",
+            "asset_count": 8,
+            "concept_count": 8,
+            "enabled": true,
+            "modes": [
+              "figure",
+              "presentation"
+            ]
+          },
+          {
+            "id": "cell-architecture-transport",
+            "name": "Cell Architecture & Transport",
+            "description": "Editable cell junctions, matrix attachments, cargo motors, vesicle coats and membrane interactions for cell architecture and intracellular transport.",
+            "path": "cell-architecture-transport/asset-pack.json",
+            "asset_count": 28,
+            "concept_count": 20,
+            "enabled": true,
+            "modes": [
+              "figure",
+              "presentation"
+            ]
+          },
+          {
+            "id": "culture-models-assays",
+            "name": "Culture Models & Functional Assays",
+            "description": "Editable experimental arrangements for tissue culture, organoid manipulation, spheroid formation and functional cell assays.",
+            "path": "culture-models-assays/asset-pack.json",
+            "asset_count": 24,
+            "concept_count": 18,
+            "enabled": true,
+            "modes": [
+              "figure",
+              "presentation"
+            ]
+          },
+          {
+            "id": "microbial-biology",
+            "name": "Microbial Structures & Interactions",
+            "description": "Editable microbial envelopes, capsules, spores, biofilms, hyphae and selected phage or enveloped-virus interactions.",
+            "path": "microbial-biology/asset-pack.json",
+            "asset_count": 24,
+            "concept_count": 19,
+            "enabled": true,
+            "modes": [
+              "figure",
+              "presentation"
+            ]
+          },
+          {
+            "id": "cell-structure-stress",
+            "name": "Cell Structures & Stress",
+            "description": "Editable nuclear bodies, cell-surface structures, vesicles, protrusions, death mechanisms and stress responses, with two biological forms for each concept.",
+            "path": "cell-structure-stress/asset-pack.json",
+            "asset_count": 40,
+            "concept_count": 20,
+            "enabled": true,
+            "modes": [
+              "figure",
+              "presentation"
+            ]
+          },
+          {
+            "id": "tumor-microenvironment",
+            "name": "Tumor Microenvironment",
+            "description": "Original editable tumor-associated cells, immune contacts, organized lymphoid tissue and qualitative spatial gradients.",
+            "path": "tumor-microenvironment/asset-pack.json",
+            "asset_count": 20,
+            "concept_count": 10,
+            "enabled": true,
+            "modes": [
+              "figure",
+              "presentation"
+            ]
+          },
+          {
+            "id": "analysis-graphics",
+            "name": "Analysis Graphics",
+            "description": "Editable schematic plot templates. Example geometry only; no measured data, computed statistics or analysis functions.",
+            "path": "analysis-graphics/asset-pack.json",
+            "asset_count": 20,
+            "concept_count": 10,
+            "enabled": true,
+            "modes": [
+              "figure",
+              "presentation"
+            ]
+          },
+          {
+            "id": "neurobiology",
+            "name": "Neurobiology",
+            "description": "Editable synapses, myelinated axons, glial contacts and generic neural circuit topologies with distinct biological forms.",
+            "path": "neurobiology/asset-pack.json",
+            "asset_count": 20,
+            "concept_count": 10,
+            "enabled": true,
+            "modes": [
+              "figure",
+              "presentation"
+            ]
+          },
+          {
+            "id": "tissue-vascular",
+            "name": "Tissue & Vascular Organization",
+            "description": "Editable epithelial, vascular, lymphatic, matrix, muscle and adipose arrangements with useful views and compositions.",
+            "path": "tissue-vascular/asset-pack.json",
+            "asset_count": 20,
+            "concept_count": 10,
+            "enabled": true,
+            "modes": [
+              "figure",
+              "presentation"
+            ]
+          }
+        ],
+        "art_styles": [
+          {
+            "id": "style-4",
+            "name": "Style 4",
+            "path": "style-4/manifest-corrected-20261017.json",
+            "asset_count": 526,
+            "supplement": {
+              "path": "style-4/expansion-20261103/manifest.json",
+              "asset_count": 40
+            }
+          }
+        ],
+        "art_style_notes": "Style 4 covers every Library drawing: the existing 486 supplied selections plus 40 original companions for the November neurobiology and tissue expansion. Original source and semantic parts remain available across Styles 1–4."
+      },
+      "current_sha256": "5326070d2200bc27a88ded7cf21c92c25872e5d2ed44dbe004f0e5800fccd3f1"
+    },
+    "assets/scientific-scenes/library.v1.json": {
+      "predecessor_sha256": "8ce0e71016697893938448d2d53af4ff217e13050645873ee0bfe3eaa4293ac8",
+      "predecessor_json": {
+        "schema": "figureStudio.scientificSceneLibrary.v1",
+        "id": "figure-studio-scientific-scenes",
+        "version": "1.6.0",
+        "name": "Scientific Templates",
+        "description": "Editable starting points for common experimental-biology figures and presentations.",
+        "source_record_id": "source.figure-studio-scientific-scenes.2026-08-30",
+        "rights_record_id": "rights.figure-studio-scientific-scenes.cc0.2026-08-30",
+        "scenes": [
+          {
+            "id": "immunoblot-assay-workflow",
+            "name": "Immunoblot assay workflow",
+            "summary": "An editable immunoblot workflow from sample collection and lysis through SDS-PAGE, membrane transfer, antibody probing, signal detection, and one illustrative target/loading-control result.",
+            "biology_note": "Shows sample collection and lysis, clarified lysate, total-protein assessment and planned loading, SDS-PAGE, membrane transfer, blocking with primary/secondary antibody probing, signal detection, and one illustrative target/loading-control result.",
+            "limitations": "Bands are placeholders, not data. The loading control must be validated for the sample and treatment context. This starter does not establish detector linearity, transfer efficiency, antibody specificity, normalization validity, fold change, statistical significance, biological mechanism, or reproducibility; one blot alone is not a complete quantitative analysis.",
+            "category": "Experimental workflows",
+            "synonyms": [
+              "western blot workflow",
+              "protein immunoblot",
+              "SDS-PAGE western blot",
+              "membrane transfer and antibody probing",
+              "target and loading control blot"
+            ],
+            "tags": [
+              "immunoblot",
+              "western blot",
+              "sample lysis",
+              "clarified lysate",
+              "total protein",
+              "SDS-PAGE",
+              "membrane transfer",
+              "primary antibody",
+              "secondary antibody",
+              "signal detection",
+              "loading control",
+              "placeholder bands"
+            ],
+            "modes": [
+              "figure",
+              "presentation"
+            ],
+            "actions": [
+              "use_as_new_figure",
+              "insert_current_document"
+            ],
+            "scene": "scenes/immunoblot-assay-workflow.scene.json",
+            "preview": "previews/immunoblot-assay-workflow.svg",
+            "source_record_id": "source.figure-studio-scene-expansion.2026-11-03",
+            "rights_record_id": "rights.figure-studio-scene-expansion.repository-cc0.2026-11-03",
+            "card_summary": "Sample preparation, protein separation, antibody probing and signal detection."
+          },
+          {
+            "id": "autophagosome-lysosome-process",
+            "name": "Autophagosome–lysosome process",
+            "summary": "A qualitative macroautophagy sequence from phagophore formation and selected cargo capture through autophagosome closure, lysosomal fusion, and cargo degradation.",
+            "biology_note": "Shows one selected macroautophagy sequence: an LC3-associated phagophore surrounds a SQSTM1/p62-linked cargo example, closes as a double-membrane autophagosome, fuses with a lysosome, and forms an autolysosome where cargo is degraded.",
+            "limitations": "Static schematic only; LC3 or SQSTM1/p62 placement does not measure autophagic flux. It does not represent quantitative kinetics, abundance, complete machinery, disease-specific causality, or clinical or therapeutic effects.",
+            "category": "Cell biology",
+            "synonyms": [
+              "macroautophagy",
+              "phagophore to autolysosome",
+              "autophagic degradation",
+              "LC3 p62 cargo",
+              "autophagosome lysosome fusion"
+            ],
+            "tags": [
+              "autophagy",
+              "phagophore",
+              "cargo sequestration",
+              "autophagosome",
+              "lysosome",
+              "autolysosome",
+              "LC3",
+              "SQSTM1",
+              "p62",
+              "cargo degradation",
+              "autophagic flux"
+            ],
+            "modes": [
+              "figure",
+              "presentation"
+            ],
+            "actions": [
+              "use_as_new_figure",
+              "insert_current_document"
+            ],
+            "scene": "scenes/autophagosome-lysosome-process.scene.json",
+            "preview": "previews/autophagosome-lysosome-process.svg",
+            "source_record_id": "source.figure-studio-autophagosome-lysosome-process.2026-09-13",
+            "rights_record_id": "rights.figure-studio-autophagosome-lysosome-process.cc0.2026-09-13",
+            "card_summary": "Cargo capture, autophagosome closure and lysosomal degradation."
+          },
+          {
+            "id": "apc-t-cell-immune-synapse",
+            "name": "APC–T-cell immune synapse",
+            "summary": "Opposing APC and T-cell membranes with antigen recognition, CD28 costimulation, PD-1 checkpoint context, and a bounded signaling handoff.",
+            "biology_note": "Orients peptide–MHC/TCR recognition, CD28–B7 costimulation, and PD-1/PD-L1 checkpoint context across an APC–T-cell interface, with only LCK–ZAP-70–LAT shown as a proximal signaling handoff.",
+            "limitations": "A qualitative orientation schematic, not a complete receptor catalog, quantitative or kinetic pathway, causal analysis, clinical claim, or canonical synapse organization.",
+            "category": "Immunology",
+            "synonyms": [
+              "APC T-cell interaction",
+              "antigen-presenting cell T cell",
+              "T-cell priming",
+              "peptide-MHC TCR",
+              "CD28 B7 costimulation",
+              "PD-1 PD-L1 checkpoint"
+            ],
+            "tags": [
+              "immune synapse",
+              "APC",
+              "antigen-presenting cell",
+              "T cell",
+              "TCR",
+              "pMHC",
+              "CD28",
+              "CD80",
+              "CD86",
+              "B7",
+              "PD-1",
+              "PD-L1",
+              "LCK",
+              "ZAP-70",
+              "LAT",
+              "cell-cell interaction"
+            ],
+            "modes": [
+              "figure",
+              "presentation"
+            ],
+            "actions": [
+              "use_as_new_figure",
+              "insert_current_document"
+            ],
+            "scene": "scenes/apc-t-cell-immune-synapse.scene.json",
+            "preview": "previews/apc-t-cell-immune-synapse.svg",
+            "source_record_id": "source.figure-studio-apc-tcell-immune-synapse.2026-09-12",
+            "rights_record_id": "rights.figure-studio-apc-tcell-immune-synapse.cc0.2026-09-12",
+            "card_summary": "Antigen recognition, costimulation and checkpoint signaling across a cell contact."
+          },
+          {
+            "id": "t-cell-activation-checkpoint",
+            "name": "T-cell activation and PD-1 checkpoint",
+            "summary": "Antigen recognition, CD28 co-stimulation, a compact TCR pathway, and one PD-1 inhibitory branch.",
+            "biology_note": "Pairs peptide–MHC recognition with CD28–B7 co-stimulation, then shows a deliberately small LCK–ZAP-70–LAT signaling core and PD-1–SHP2 inhibition.",
+            "limitations": "A simplified authoring starter, not a complete, quantitative, stoichiometric, temporal, causal, or state-equivalent pathway model.",
+            "category": "Immunology",
+            "synonyms": [
+              "T cell activation",
+              "TCR signaling",
+              "peptide-MHC",
+              "CD28 B7",
+              "PD-1 PD-L1",
+              "immune checkpoint",
+              "immune synapse"
+            ],
+            "tags": [
+              "T cell",
+              "TCR",
+              "pMHC",
+              "antigen presentation",
+              "CD28",
+              "CD80",
+              "CD86",
+              "B7",
+              "PD-1",
+              "PD-L1",
+              "SHP2",
+              "checkpoint",
+              "co-stimulation"
+            ],
+            "modes": [
+              "figure",
+              "presentation"
+            ],
+            "actions": [
+              "use_as_new_figure",
+              "insert_current_document"
+            ],
+            "scene": "scenes/t-cell-activation-checkpoint.scene.json",
+            "preview": "previews/t-cell-activation-checkpoint.svg",
+            "source_record_id": "source.figure-studio-tcell-scientific-starter.2026-09-12",
+            "rights_record_id": "rights.figure-studio-tcell-scientific-starter.cc0.2026-09-12",
+            "card_summary": "T-cell activation with a PD-1 checkpoint branch."
+          },
+          {
+            "id": "receptor-signaling",
+            "name": "Receptor signaling",
+            "summary": "Membrane receptor activation with a branched response and an inhibitory regulator.",
+            "category": "Cell signaling",
+            "synonyms": [
+              "signal transduction",
+              "receptor pathway",
+              "kinase cascade"
+            ],
+            "tags": [
+              "receptor",
+              "ligand",
+              "activation",
+              "inhibition",
+              "branching"
+            ],
+            "modes": [
+              "figure",
+              "presentation"
+            ],
+            "actions": [
+              "use_as_new_figure",
+              "insert_current_document"
+            ],
+            "scene": "scenes/receptor-signaling.scene.json",
+            "preview": "previews/receptor-signaling.svg",
+            "source_record_id": "source.figure-studio-scientific-scenes.2026-08-30",
+            "rights_record_id": "rights.figure-studio-scientific-scenes.cc0.2026-08-30",
+            "card_summary": "Ligand binding connects a membrane receptor to downstream signaling."
+          },
+          {
+            "id": "tumor-microenvironment",
+            "name": "Tumor microenvironment",
+            "summary": "Tumor, immune, stromal, and vascular cells arranged around editable intercellular signals.",
+            "category": "Cell interactions",
+            "synonyms": [
+              "TME",
+              "tumor immune interaction",
+              "stromal niche"
+            ],
+            "tags": [
+              "tumor",
+              "T cell",
+              "macrophage",
+              "fibroblast",
+              "endothelium",
+              "chemokine"
+            ],
+            "modes": [
+              "figure",
+              "presentation"
+            ],
+            "actions": [
+              "use_as_new_figure",
+              "insert_current_document"
+            ],
+            "scene": "scenes/tumor-microenvironment.scene.json",
+            "preview": "previews/tumor-microenvironment.svg",
+            "source_record_id": "source.figure-studio-scientific-scenes.2026-08-30",
+            "rights_record_id": "rights.figure-studio-scientific-scenes.cc0.2026-08-30",
+            "card_summary": "Tumor, immune, stromal and vascular relationships in one editable schematic."
+          },
+          {
+            "id": "gene-regulation-expression",
+            "name": "Gene regulation and expression",
+            "summary": "Chromatin regulation through transcription, RNA processing, nuclear export, and translation.",
+            "category": "Gene expression",
+            "synonyms": [
+              "central dogma",
+              "DNA to RNA to protein",
+              "transcription translation"
+            ],
+            "tags": [
+              "chromatin",
+              "enhancer",
+              "transcription",
+              "splicing",
+              "mRNA",
+              "translation"
+            ],
+            "modes": [
+              "figure",
+              "presentation"
+            ],
+            "actions": [
+              "use_as_new_figure",
+              "insert_current_document"
+            ],
+            "scene": "scenes/gene-regulation-expression.scene.json",
+            "preview": "previews/gene-regulation-expression.svg",
+            "source_record_id": "source.figure-studio-scientific-scenes.2026-08-30",
+            "rights_record_id": "rights.figure-studio-scientific-scenes.cc0.2026-08-30",
+            "card_summary": "From chromatin and transcription to RNA and protein."
+          },
+          {
+            "id": "culture-treatment-readout",
+            "name": "Culture to quantitative readout",
+            "summary": "Cell culture, treatment, plate-based assay, and quantitative dose-response readout.",
+            "category": "Experimental workflows",
+            "synonyms": [
+              "culture treatment assay",
+              "drug response workflow",
+              "cell viability assay"
+            ],
+            "tags": [
+              "cell culture",
+              "treatment",
+              "multiwell plate",
+              "plate reader",
+              "dose response"
+            ],
+            "modes": [
+              "figure",
+              "presentation"
+            ],
+            "actions": [
+              "use_as_new_figure",
+              "insert_current_document"
+            ],
+            "scene": "scenes/culture-treatment-readout.scene.json",
+            "preview": "previews/culture-treatment-readout.svg",
+            "source_record_id": "source.figure-studio-scientific-scenes.2026-08-30",
+            "rights_record_id": "rights.figure-studio-scientific-scenes.cc0.2026-08-30",
+            "card_summary": "Culture cells, apply a perturbation and choose complementary readouts."
+          },
+          {
+            "id": "crispr-perturbation-validation",
+            "name": "CRISPR perturbation and validation",
+            "summary": "Guide delivery and genome editing followed by PCR, gel, and protein-level validation.",
+            "category": "Molecular workflows",
+            "synonyms": [
+              "CRISPR validation",
+              "gene editing workflow",
+              "Cas9 perturbation"
+            ],
+            "tags": [
+              "CRISPR",
+              "Cas9",
+              "plasmid",
+              "PCR",
+              "gel electrophoresis",
+              "western blot"
+            ],
+            "modes": [
+              "figure",
+              "presentation"
+            ],
+            "actions": [
+              "use_as_new_figure",
+              "insert_current_document"
+            ],
+            "scene": "scenes/crispr-perturbation-validation.scene.json",
+            "preview": "previews/crispr-perturbation-validation.svg",
+            "source_record_id": "source.figure-studio-scientific-scenes.2026-08-30",
+            "rights_record_id": "rights.figure-studio-scientific-scenes.cc0.2026-08-30",
+            "card_summary": "Design a CRISPR perturbation and connect validation to biological readouts."
+          },
+          {
+            "id": "microscopy-flow-readout",
+            "name": "Microscopy and flow cytometry readout",
+            "summary": "One prepared sample branching into fluorescence microscopy and flow-cytometry readouts.",
+            "category": "Imaging and cytometry",
+            "synonyms": [
+              "imaging and flow",
+              "fluorescence microscopy",
+              "FACS readout"
+            ],
+            "tags": [
+              "microscopy",
+              "flow cytometry",
+              "fluorescence",
+              "dot plot",
+              "histogram"
+            ],
+            "modes": [
+              "figure",
+              "presentation"
+            ],
+            "actions": [
+              "use_as_new_figure",
+              "insert_current_document"
+            ],
+            "scene": "scenes/microscopy-flow-readout.scene.json",
+            "preview": "previews/microscopy-flow-readout.svg",
+            "source_record_id": "source.figure-studio-scientific-scenes.2026-08-30",
+            "rights_record_id": "rights.figure-studio-scientific-scenes.cc0.2026-08-30",
+            "card_summary": "Pair imaging and flow cytometry to characterize a cell population."
+          },
+          {
+            "id": "single-cell-rna-workflow",
+            "name": "Droplet single-cell RNA workflow",
+            "summary": "Cell suspension, droplet partitioning and barcoded RNA capture followed by library preparation and sequencing.",
+            "biology_note": "Cell suspension, droplet partitioning and barcoded RNA capture followed by library preparation and sequencing.",
+            "limitations": "Schematic only; not measured data. Partition occupancy, RNA recovery and cell quality require review.",
+            "category": "RNA methods",
+            "synonyms": [
+              "scRNA-seq",
+              "Drop-seq",
+              "droplet RNA capture"
+            ],
+            "tags": [
+              "RNA",
+              "single cell",
+              "droplet",
+              "barcode",
+              "UMI",
+              "sequencing"
+            ],
+            "modes": [
+              "figure",
+              "presentation"
+            ],
+            "actions": [
+              "use_as_new_figure",
+              "insert_current_document"
+            ],
+            "scene": "scenes/single-cell-rna-workflow.scene.json",
+            "preview": "previews/single-cell-rna-workflow.svg",
+            "source_record_id": "source.figure-studio-rna-methods.2026-10-07",
+            "rights_record_id": "rights.figure-studio-rna-methods.owner-cc0.2026-10-10",
+            "card_summary": "Droplet capture, molecular barcodes, library preparation and sequencing."
+          },
+          {
+            "id": "spatial-rna-methods",
+            "name": "Spatial RNA methods",
+            "summary": "Two distinct routes: location-barcoded RNA capture with sequencing, and RNA imaging in fixed tissue.",
+            "biology_note": "Two distinct routes: location-barcoded RNA capture with sequencing, and RNA imaging in fixed tissue.",
+            "limitations": "Schematic only; not measured data. Capture spots can contain multiple cells; illustrative puncta are not transcript counts.",
+            "category": "RNA methods",
+            "synonyms": [
+              "spatial transcriptomics",
+              "RNA FISH",
+              "RNA localization"
+            ],
+            "tags": [
+              "RNA",
+              "spatial",
+              "capture array",
+              "tissue",
+              "RNA-FISH",
+              "puncta",
+              "imaging"
+            ],
+            "modes": [
+              "figure",
+              "presentation"
+            ],
+            "actions": [
+              "use_as_new_figure",
+              "insert_current_document"
+            ],
+            "scene": "scenes/spatial-rna-methods.scene.json",
+            "preview": "previews/spatial-rna-methods.svg",
+            "source_record_id": "source.figure-studio-rna-methods.2026-10-07",
+            "rights_record_id": "rights.figure-studio-rna-methods.owner-cc0.2026-10-10",
+            "card_summary": "Compare tissue-associated capture with RNA imaging in place."
+          },
+          {
+            "id": "rt-qpcr-expression-workflow",
+            "name": "RT-qPCR expression workflow",
+            "summary": "RNA quality, reverse transcription, amplification, and control-aware expression analysis.",
+            "category": "Gene expression",
+            "synonyms": [
+              "RT-qPCR",
+              "qPCR",
+              "quantitative PCR",
+              "real-time PCR"
+            ],
+            "tags": [
+              "RNA",
+              "cDNA",
+              "amplification",
+              "Cq",
+              "no-template control",
+              "reference gene"
+            ],
+            "biology_note": "RT-qPCR measures target amplification after RNA is converted to cDNA; interpretation depends on assay performance and validated normalization.",
+            "limitations": "Schematic only. No amplification curves, expression values, fold changes, or significance are shown. Validate RNA, primer specificity, efficiency, controls, and reference genes for the experiment.",
+            "card_summary": "RNA quality, reverse transcription, amplification, and control-aware expression analysis.",
+            "modes": [
+              "figure",
+              "presentation"
+            ],
+            "actions": [
+              "use_as_new_figure",
+              "insert_current_document"
+            ],
+            "scene": "scenes/rt-qpcr-expression-workflow.scene.json",
+            "preview": "previews/rt-qpcr-expression-workflow.svg",
+            "source_record_id": "source.figure-studio-scene-expansion.2026-11-03",
+            "rights_record_id": "rights.figure-studio-scene-expansion.repository-cc0.2026-11-03"
+          },
+          {
+            "id": "immunoprecipitation-workflow",
+            "name": "Immunoprecipitation workflow",
+            "summary": "Antibody capture of a target from lysate, bead recovery, washing, and downstream analysis.",
+            "category": "Protein methods",
+            "synonyms": [
+              "IP",
+              "co-IP",
+              "immunoprecipitation",
+              "protein complex capture"
+            ],
+            "tags": [
+              "protein",
+              "antibody",
+              "beads",
+              "lysate",
+              "wash",
+              "immunoblot"
+            ],
+            "biology_note": "An antibody enriches its target from a prepared sample; co-immunoprecipitation can recover associated proteins when the complex survives extraction and washing.",
+            "limitations": "Schematic only. Recovery is not proof of direct binding. Antibody specificity, lysis conditions, bead background, interaction stability, input, and immunoglobulin-chain interference require experiment-specific controls.",
+            "card_summary": "Antibody capture of a target from lysate, bead recovery, washing, and downstream analysis.",
+            "modes": [
+              "figure",
+              "presentation"
+            ],
+            "actions": [
+              "use_as_new_figure",
+              "insert_current_document"
+            ],
+            "scene": "scenes/immunoprecipitation-workflow.scene.json",
+            "preview": "previews/immunoprecipitation-workflow.svg",
+            "source_record_id": "source.figure-studio-scene-expansion.2026-11-03",
+            "rights_record_id": "rights.figure-studio-scene-expansion.repository-cc0.2026-11-03"
+          },
+          {
+            "id": "indirect-immunofluorescence-workflow",
+            "name": "Indirect immunofluorescence workflow",
+            "summary": "Fixed-cell labeling with a target-specific primary antibody and fluorophore-linked secondary antibody.",
+            "category": "Imaging methods",
+            "synonyms": [
+              "indirect IF",
+              "immunofluorescence staining",
+              "fluorescent antibody staining",
+              "IF microscopy"
+            ],
+            "tags": [
+              "cells",
+              "fixation",
+              "permeabilization",
+              "primary antibody",
+              "secondary antibody",
+              "fluorescence"
+            ],
+            "biology_note": "The primary antibody recognizes the selected target; a fluorophore-conjugated secondary antibody binds the primary antibody for imaging.",
+            "limitations": "Schematic only. Localization and signal are not data. Fixation, permeabilization, antibody specificity, fluorophore cross-reactivity, spectral bleed-through, and imaging settings require validation; include appropriate negative controls.",
+            "card_summary": "Fixed-cell labeling with a target-specific primary antibody and fluorophore-linked secondary antibody.",
+            "modes": [
+              "figure",
+              "presentation"
+            ],
+            "actions": [
+              "use_as_new_figure",
+              "insert_current_document"
+            ],
+            "scene": "scenes/indirect-immunofluorescence-workflow.scene.json",
+            "preview": "previews/indirect-immunofluorescence-workflow.svg",
+            "source_record_id": "source.figure-studio-scene-expansion.2026-11-03",
+            "rights_record_id": "rights.figure-studio-scene-expansion.repository-cc0.2026-11-03"
+          },
+          {
+            "id": "sandwich-elisa-workflow",
+            "name": "Sandwich ELISA workflow",
+            "summary": "Capture antibody, sample antigen, detection antibody, enzyme signal, and calibrated readout.",
+            "category": "Protein assays",
+            "synonyms": [
+              "sandwich ELISA",
+              "capture ELISA",
+              "enzyme immunoassay",
+              "two-site immunoassay"
+            ],
+            "tags": [
+              "antigen",
+              "capture antibody",
+              "detection antibody",
+              "microplate",
+              "standard curve",
+              "absorbance"
+            ],
+            "biology_note": "Two antibodies recognize distinct epitopes of an analyte; an enzyme-linked detection system produces a measurable signal for comparison with standards.",
+            "limitations": "Schematic only. No standard curve or concentrations are supplied. Antibody pairing, matrix effects, cross-reactivity, sample dilution, calibration range, and signal saturation must be assessed for the analyte and sample type.",
+            "card_summary": "Capture antibody, sample antigen, detection antibody, enzyme signal, and calibrated readout.",
+            "modes": [
+              "figure",
+              "presentation"
+            ],
+            "actions": [
+              "use_as_new_figure",
+              "insert_current_document"
+            ],
+            "scene": "scenes/sandwich-elisa-workflow.scene.json",
+            "preview": "previews/sandwich-elisa-workflow.svg",
+            "source_record_id": "source.figure-studio-scene-expansion.2026-11-03",
+            "rights_record_id": "rights.figure-studio-scene-expansion.repository-cc0.2026-11-03"
+          },
+          {
+            "id": "wound-closure-assay-workflow",
+            "name": "Wound-closure assay workflow",
+            "summary": "Create a cell-free gap, image matched fields over time, and quantify gap closure.",
+            "category": "Cell migration",
+            "synonyms": [
+              "scratch assay",
+              "wound healing assay",
+              "gap closure",
+              "collective migration"
+            ],
+            "tags": [
+              "cell monolayer",
+              "scratch",
+              "gap",
+              "time course",
+              "image analysis",
+              "migration"
+            ],
+            "biology_note": "A gap in a confluent cell layer can be followed by microscopy to assess collective movement into the cleared area.",
+            "limitations": "In vitro gap closure does not by itself isolate migration from proliferation, survival, or changes in cell spreading. Standardize gap geometry, image positions, and timing; interpret in the context of model and controls.",
+            "card_summary": "Create a cell-free gap, image matched fields over time, and quantify gap closure.",
+            "modes": [
+              "figure",
+              "presentation"
+            ],
+            "actions": [
+              "use_as_new_figure",
+              "insert_current_document"
+            ],
+            "scene": "scenes/wound-closure-assay-workflow.scene.json",
+            "preview": "previews/wound-closure-assay-workflow.svg",
+            "source_record_id": "source.figure-studio-scene-expansion.2026-11-03",
+            "rights_record_id": "rights.figure-studio-scene-expansion.repository-cc0.2026-11-03"
+          },
+          {
+            "id": "epithelial-barrier-transwell-workflow",
+            "name": "Epithelial barrier Transwell assay",
+            "summary": "Grow a polarized epithelial layer on a porous insert and pair electrical and tracer-flux readouts.",
+            "category": "Barrier assays",
+            "synonyms": [
+              "Transwell barrier",
+              "TEER assay",
+              "FITC-dextran permeability",
+              "epithelial permeability"
+            ],
+            "tags": [
+              "epithelial monolayer",
+              "porous insert",
+              "apical",
+              "basolateral",
+              "TEER",
+              "paracellular flux"
+            ],
+            "biology_note": "An epithelial monolayer separates apical and basolateral compartments; TEER reports ionic conductance while tracer passage measures permeability to the chosen tracer.",
+            "limitations": "The two readouts are complementary and not interchangeable. TEER does not measure macromolecule flux; tracer results depend on tracer size, sampling, membrane, model, and assay conditions. A Transwell is an in-vitro model, not an intact organ barrier.",
+            "card_summary": "Grow a polarized epithelial layer on a porous insert and pair electrical and tracer-flux readouts.",
+            "modes": [
+              "figure",
+              "presentation"
+            ],
+            "actions": [
+              "use_as_new_figure",
+              "insert_current_document"
+            ],
+            "scene": "scenes/epithelial-barrier-transwell-workflow.scene.json",
+            "preview": "previews/epithelial-barrier-transwell-workflow.svg",
+            "source_record_id": "source.figure-studio-scene-expansion.2026-11-03",
+            "rights_record_id": "rights.figure-studio-scene-expansion.repository-cc0.2026-11-03"
+          },
+          {
+            "id": "chemical-synaptic-transmission",
+            "name": "Chemical synaptic transmission",
+            "summary": "Calcium-dependent vesicle release across a chemical synapse, with generic postsynaptic receptors.",
+            "category": "Neuroscience",
+            "synonyms": [
+              "chemical synapse",
+              "synaptic transmission",
+              "neurotransmitter release",
+              "synaptic vesicle cycle"
+            ],
+            "tags": [
+              "presynaptic bouton",
+              "calcium",
+              "synaptic vesicle",
+              "exocytosis",
+              "synaptic cleft",
+              "postsynaptic receptor"
+            ],
+            "biology_note": "At a canonical chemical synapse, presynaptic depolarization promotes calcium-dependent vesicle fusion; released transmitter crosses the cleft and activates postsynaptic receptors.",
+            "limitations": "A generalized schematic, not a specific neuron, transmitter, receptor subtype, or measured synaptic response. Release probability, receptor kinetics, short-term plasticity, cotransmission, and clearance mechanisms vary by synapse.",
+            "card_summary": "Calcium-dependent vesicle release across a chemical synapse, with generic postsynaptic receptors.",
+            "modes": [
+              "figure",
+              "presentation"
+            ],
+            "actions": [
+              "use_as_new_figure",
+              "insert_current_document"
+            ],
+            "scene": "scenes/chemical-synaptic-transmission.scene.json",
+            "preview": "previews/chemical-synaptic-transmission.svg",
+            "source_record_id": "source.figure-studio-scene-expansion.2026-11-03",
+            "rights_record_id": "rights.figure-studio-scene-expansion.repository-cc0.2026-11-03"
+          },
+          {
+            "id": "angiogenic-sprouting",
+            "name": "Angiogenic sprouting",
+            "summary": "An endothelial sprout near local VEGF cues, with parent vessel, leading tips and neighboring cells.",
+            "category": "Vascular biology",
+            "synonyms": [
+              "sprouting angiogenesis",
+              "endothelial sprout",
+              "tip cell",
+              "vessel branching"
+            ],
+            "tags": [
+              "endothelial cell",
+              "VEGF",
+              "tip cell",
+              "stalk cell",
+              "DLL4",
+              "Notch",
+              "lumen"
+            ],
+            "biology_note": "Endothelial tip cells extend toward proangiogenic cues while neighboring stalk cells support sprout extension; VEGF and DLL4–Notch signaling contribute to tip–stalk patterning.",
+            "limitations": "A qualitative spatial schematic, not a universal sequence or measured outcome. Lumen formation and blood flow are not shown. Tip–stalk states are dynamic; matrix, flow, tissue context, VEGF presentation, and signaling can alter sprout behavior and branching.",
+            "card_summary": "An endothelial sprout near local VEGF cues, with parent vessel, leading tips and neighboring cells.",
+            "modes": [
+              "figure",
+              "presentation"
+            ],
+            "actions": [
+              "use_as_new_figure",
+              "insert_current_document"
+            ],
+            "scene": "scenes/angiogenic-sprouting.scene.json",
+            "preview": "previews/angiogenic-sprouting.svg",
+            "source_record_id": "source.figure-studio-scene-expansion.2026-11-03",
+            "rights_record_id": "rights.figure-studio-scene-expansion.repository-cc0.2026-11-03"
+          }
+        ]
+      },
+      "current_sha256": "c227bc4b77e57c67ffdcbe49811a802902f9c8e4db98c2852de6e90676a913e2"
+    },
+    "assets/scientific-scenes/release-rights.v1.json": {
+      "predecessor_sha256": "86f492a54ca664c9f8b3e26a93feaf6e4ea0e4c62f886492f24452f5c52393b3",
+      "predecessor_json": {
+        "schema": "figureStudio.scientificSceneRights.v1",
+        "recorded_on": "2026-09-13",
+        "status": "released",
+        "selected_public_license": "CC0-1.0",
+        "license_notice": "LICENSE-SCENES-CC0-1.0.md",
+        "public_distribution_authorized": true,
+        "rights_basis": {
+          "status": "owner_attested_original_output",
+          "decision_reference": "Figure Studio original bundled-scene CC0 release record, updated 2026-09-13",
+          "source_evidence": "Each registered scene is an original data-defined editable vector recipe with a matching original SVG preview.",
+          "qualification": "This record does not provide a non-infringement, patent, trademark, privacy, publicity, or endorsement warranty."
+        },
+        "source_records": [
+          {
+            "id": "source.figure-studio-scientific-scenes.2026-08-30",
+            "source_type": "clean_room_original_editable_vector_scene",
+            "creator": "Figure Studio",
+            "creation_method": "Original data-defined scene recipe and SVG preview created from generic scientific knowledge.",
+            "clean_room_scope": "No proprietary artwork, screenshot, template, taxonomy, prose, or third-party component was copied, traced, or embedded.",
+            "third_party_material": "none_declared"
+          },
+          {
+            "id": "source.figure-studio-tcell-scientific-starter.2026-09-12",
+            "source_type": "clean_room_original_editable_vector_scene",
+            "creator": "Figure Studio",
+            "creation_method": "Original data-defined scene recipe and SVG preview composed from existing Figure Studio scientific assets and generic editable vector primitives; biological relationships were checked against the sources recorded in the recipe.",
+            "clean_room_scope": "No commercial or database artwork, screenshot, pathway layout, template, prose, or third-party component was copied, traced, scraped, or embedded.",
+            "third_party_material": "none_declared"
+          },
+          {
+            "id": "source.figure-studio-apc-tcell-immune-synapse.2026-09-12",
+            "source_type": "clean_room_original_editable_vector_scene",
+            "creator": "Figure Studio",
+            "creation_method": "Original data-defined scene recipe and SVG preview composed from released Figure Studio scientific assets and original vector primitives; biological relationships were checked against the sources recorded in the recipe.",
+            "clean_room_scope": "No commercial or database artwork, screenshot, pathway layout, template, prose, or third-party component was copied, traced, scraped, or embedded.",
+            "third_party_material": "none_declared"
+          },
+          {
+            "id": "source.figure-studio-autophagosome-lysosome-process.2026-09-13",
+            "source_type": "clean_room_original_editable_vector_scene",
+            "creator": "Figure Studio",
+            "creation_method": "Original data-defined scene recipe and SVG preview composed from released Figure Studio organelle assets and original editable vector primitives; biological relationships and interpretation limits were checked against the sources recorded in the recipe.",
+            "clean_room_scope": "No publication artwork, commercial or database illustration, screenshot, pathway layout, template, prose, or third-party component was copied, traced, scraped, or embedded.",
+            "third_party_material": "none_declared"
+          },
+          {
+            "id": "source.figure-studio-immunoblot-assay-workflow.2026-09-13",
+            "source_type": "clean_room_original_editable_vector_scene",
+            "creator": "Figure Studio",
+            "creation_method": "Original data-defined scene recipe and SVG preview composed from released Figure Studio laboratory, antibody, and assay-result assets plus original editable vector primitives; assay sequence and interpretation limits were checked against the sources recorded in the recipe.",
+            "clean_room_scope": "No publication artwork, commercial template, screenshot, vendor diagram, database illustration, prose, or third-party component was copied, traced, scraped, or embedded.",
+            "third_party_material": "none_declared"
+          },
+          {
+            "id": "source.figure-studio-rna-methods.2026-10-07",
+            "source_type": "clean_room_original_editable_vector_scene",
+            "creator": "Mersich Lab Superbench",
+            "creation_method": "Original recipes composed from existing vectors and new original RNA-method drafts; method references supply scientific concepts only.",
+            "clean_room_scope": "No publication or proprietary artwork, screenshots, layouts, templates or prose were copied or traced.",
+            "third_party_material": "none_declared"
+          },
+          {
+            "id": "source.figure-studio-scene-expansion.2026-11-03",
+            "source_type": "clean_room_original_editable_vector_scene",
+            "creator": "Figure Tool",
+            "creation_method": "Original editable biological and experimental recipes plus a concise immunoblot revision. Existing original vectors and new neurobiology/tissue vectors are composed with live text.",
+            "clean_room_scope": "Scientific sources inform relationships only. No publication or proprietary artwork, composition, prose or measured observations incorporated.",
+            "third_party_material": "none_declared"
+          }
+        ],
+        "rights_records": [
+          {
+            "id": "rights.figure-studio-scientific-scenes.cc0.2026-08-30",
+            "license": "CC0-1.0",
+            "rights_basis": "owner_attested_original_output",
+            "status": "released",
+            "public_distribution_authorized": true,
+            "qualification": "This record does not provide a non-infringement, patent, trademark, privacy, publicity, or endorsement warranty."
+          },
+          {
+            "id": "rights.figure-studio-tcell-scientific-starter.cc0.2026-09-12",
+            "license": "CC0-1.0",
+            "rights_basis": "owner_attested_original_output",
+            "status": "released",
+            "public_distribution_authorized": true,
+            "qualification": "This record covers the original T-cell scene recipe, scene-specific labels, and preview; cited publications inform scientific accuracy but their text and figures are not included."
+          },
+          {
+            "id": "rights.figure-studio-apc-tcell-immune-synapse.cc0.2026-09-12",
+            "license": "CC0-1.0",
+            "rights_basis": "owner_attested_original_output",
+            "status": "released",
+            "public_distribution_authorized": true,
+            "qualification": "This record covers the original APC–T-cell immune-synapse scene recipe, scene-specific labels, and preview; cited publications inform scientific accuracy but their text and figures are not included."
+          },
+          {
+            "id": "rights.figure-studio-autophagosome-lysosome-process.cc0.2026-09-13",
+            "license": "CC0-1.0",
+            "rights_basis": "owner_attested_original_output",
+            "status": "released",
+            "public_distribution_authorized": true,
+            "qualification": "This record covers the original autophagosome–lysosome process recipe, scene-specific labels, and preview; cited publications inform scientific accuracy but their text and figures are not included."
+          },
+          {
+            "id": "rights.figure-studio-immunoblot-assay-workflow.cc0.2026-09-13",
+            "license": "CC0-1.0",
+            "rights_basis": "owner_attested_original_output",
+            "status": "released",
+            "public_distribution_authorized": true,
+            "qualification": "This record covers the original immunoblot assay workflow recipe, scene-specific labels, and preview; cited publications inform scientific accuracy but their text and figures are not included."
+          },
+          {
+            "id": "rights.figure-studio-rna-methods.owner-cc0.2026-10-10",
+            "license": "CC0-1.0",
+            "rights_basis": "owner_attested_original_output",
+            "status": "rights_cleared",
+            "public_distribution_authorized": true,
+            "qualification": "The workspace owner grants CC0 1.0 permission for the two original RNA scene recipes, scene-specific labels, and preview artwork effective 2026-10-10. Product-level scene release remains pending. This is not a non-infringement, patent, trademark, privacy, publicity, or endorsement warranty.",
+            "product_release_status": "pending_quality_and_product_review",
+            "effective_date": "2026-10-10"
+          },
+          {
+            "id": "rights.figure-studio-scene-expansion.repository-cc0.2026-11-03",
+            "license": "CC0-1.0",
+            "kind": "repository_policy_license",
+            "rights_basis": "repository_policy_original_output",
+            "status": "rights_cleared",
+            "public_distribution_authorized": true,
+            "license_policy": "original-vectors.cc0.repository-policy.2026-11-03",
+            "effective_date": "2026-11-03",
+            "product_release_status": "pending_quality_and_product_review",
+            "qualification": "Finite original recipes and preview artwork use the adopted repository CC0 policy. This record neither extends historical owner attestations nor qualifies product inclusion."
+          }
+        ],
+        "scenes": [
+          {
+            "scene_id": "autophagosome-lysosome-process",
+            "name": "Autophagosome–lysosome process",
+            "scene_file": "scenes/autophagosome-lysosome-process.scene.json",
+            "preview_file": "previews/autophagosome-lysosome-process.svg",
+            "scene_sha256": "d59aa9c15016d938b9f979e9d5ec668db1b5223e7b01d55b5e690605b6d8fe32",
+            "preview_sha256": "344a3c94560c3680e23f76c671eab2bc774a278304b574fbb0b90dc99d7d8472",
+            "source_record_id": "source.figure-studio-autophagosome-lysosome-process.2026-09-13",
+            "rights_record_id": "rights.figure-studio-autophagosome-lysosome-process.cc0.2026-09-13",
+            "third_party_material": "none_declared",
+            "release_disposition": "released_under_cc0_1_0"
+          },
+          {
+            "scene_id": "apc-t-cell-immune-synapse",
+            "name": "APC–T-cell immune synapse",
+            "scene_file": "scenes/apc-t-cell-immune-synapse.scene.json",
+            "preview_file": "previews/apc-t-cell-immune-synapse.svg",
+            "scene_sha256": "c514b5a00adbb1a21054105e45be2c84e07ed76e3ec11c5ea20823afbdb5563c",
+            "preview_sha256": "677a77723077275ca9cb7e6fa5038e3bec2f677d4cf1d36de388ac3efbc3d3b6",
+            "source_record_id": "source.figure-studio-apc-tcell-immune-synapse.2026-09-12",
+            "rights_record_id": "rights.figure-studio-apc-tcell-immune-synapse.cc0.2026-09-12",
+            "third_party_material": "none_declared",
+            "release_disposition": "released_under_cc0_1_0"
+          },
+          {
+            "scene_id": "t-cell-activation-checkpoint",
+            "name": "T-cell activation and PD-1 checkpoint",
+            "scene_file": "scenes/t-cell-activation-checkpoint.scene.json",
+            "preview_file": "previews/t-cell-activation-checkpoint.svg",
+            "scene_sha256": "78b8041ae8f55703b671eee5e20dbeb6cbb25ab5201a7fec8b29722ae55e1b69",
+            "preview_sha256": "4e3688525521e1933795bcffa62a98a17dbc28347e3907ebc7ad15b22c661d11",
+            "source_record_id": "source.figure-studio-tcell-scientific-starter.2026-09-12",
+            "rights_record_id": "rights.figure-studio-tcell-scientific-starter.cc0.2026-09-12",
+            "third_party_material": "none_declared",
+            "release_disposition": "released_under_cc0_1_0"
+          },
+          {
+            "scene_id": "receptor-signaling",
+            "name": "Receptor signaling",
+            "scene_file": "scenes/receptor-signaling.scene.json",
+            "preview_file": "previews/receptor-signaling.svg",
+            "scene_sha256": "0cc6ba7d04082dc451167b924fb9ea97e10576a6b81594aafaab2530f6c802cd",
+            "preview_sha256": "8b1ad83be309595f6ecb2db8dbae820bd294b25762d5183cfacfc9e917e56cf8",
+            "source_record_id": "source.figure-studio-scientific-scenes.2026-08-30",
+            "rights_record_id": "rights.figure-studio-scientific-scenes.cc0.2026-08-30",
+            "third_party_material": "none_declared",
+            "release_disposition": "released_under_cc0_1_0"
+          },
+          {
+            "scene_id": "tumor-microenvironment",
+            "name": "Tumor microenvironment",
+            "scene_file": "scenes/tumor-microenvironment.scene.json",
+            "preview_file": "previews/tumor-microenvironment.svg",
+            "scene_sha256": "7bf13883fb24e73290306b7117ae2b568585f6b939addf6dbaa88bda23f2cf14",
+            "preview_sha256": "e81436c5285c5deea20ac847e2c458d35b795abc33081ec9f8eff4f4842e15a7",
+            "source_record_id": "source.figure-studio-scientific-scenes.2026-08-30",
+            "rights_record_id": "rights.figure-studio-scientific-scenes.cc0.2026-08-30",
+            "third_party_material": "none_declared",
+            "release_disposition": "released_under_cc0_1_0"
+          },
+          {
+            "scene_id": "gene-regulation-expression",
+            "name": "Gene regulation and expression",
+            "scene_file": "scenes/gene-regulation-expression.scene.json",
+            "preview_file": "previews/gene-regulation-expression.svg",
+            "scene_sha256": "6c100900d62e5669c557919df2349fe1b307295c474e2c92273995bcd0b1e790",
+            "preview_sha256": "d954762aa919e0a08ffb66e0b1bfa5a509bba5bb4f49d86fc2eb0729bba61bed",
+            "source_record_id": "source.figure-studio-scientific-scenes.2026-08-30",
+            "rights_record_id": "rights.figure-studio-scientific-scenes.cc0.2026-08-30",
+            "third_party_material": "none_declared",
+            "release_disposition": "released_under_cc0_1_0"
+          },
+          {
+            "scene_id": "culture-treatment-readout",
+            "name": "Culture to quantitative readout",
+            "scene_file": "scenes/culture-treatment-readout.scene.json",
+            "preview_file": "previews/culture-treatment-readout.svg",
+            "scene_sha256": "36e9c335b7d55ec4430e674cc2eb23cea8c048880c2dc0b8def83d4093b6b0b6",
+            "preview_sha256": "86a5c314a0a712ec386c3f91e0e3e33bf5ded7bd03357f48bb4c18afb0740154",
+            "source_record_id": "source.figure-studio-scientific-scenes.2026-08-30",
+            "rights_record_id": "rights.figure-studio-scientific-scenes.cc0.2026-08-30",
+            "third_party_material": "none_declared",
+            "release_disposition": "released_under_cc0_1_0"
+          },
+          {
+            "scene_id": "crispr-perturbation-validation",
+            "name": "CRISPR perturbation and validation",
+            "scene_file": "scenes/crispr-perturbation-validation.scene.json",
+            "preview_file": "previews/crispr-perturbation-validation.svg",
+            "scene_sha256": "96b0f4c4ef9ff8a59f64b6ea8ca38a2209797364d44acda10cfe76a064d449b4",
+            "preview_sha256": "f335d40c6b0e9f31a00add1e05dd0bb349a8eaf4fe92099bb2f08cb9eba26a85",
+            "source_record_id": "source.figure-studio-scientific-scenes.2026-08-30",
+            "rights_record_id": "rights.figure-studio-scientific-scenes.cc0.2026-08-30",
+            "third_party_material": "none_declared",
+            "release_disposition": "released_under_cc0_1_0"
+          },
+          {
+            "scene_id": "microscopy-flow-readout",
+            "name": "Microscopy and flow cytometry readout",
+            "scene_file": "scenes/microscopy-flow-readout.scene.json",
+            "preview_file": "previews/microscopy-flow-readout.svg",
+            "scene_sha256": "d84fef7659ecb396a23a4d0a07ade6f3bde55a4112fa31ceda403a5eb919e4c6",
+            "preview_sha256": "93a8ec770816499bdf307b5b83fc8f752e0e9e54a553954101d40d41a24dc715",
+            "source_record_id": "source.figure-studio-scientific-scenes.2026-08-30",
+            "rights_record_id": "rights.figure-studio-scientific-scenes.cc0.2026-08-30",
+            "third_party_material": "none_declared",
+            "release_disposition": "released_under_cc0_1_0"
+          },
+          {
+            "scene_id": "single-cell-rna-workflow",
+            "name": "Droplet single-cell RNA workflow",
+            "scene_file": "scenes/single-cell-rna-workflow.scene.json",
+            "preview_file": "previews/single-cell-rna-workflow.svg",
+            "source_record_id": "source.figure-studio-rna-methods.2026-10-07",
+            "rights_record_id": "rights.figure-studio-rna-methods.owner-cc0.2026-10-10",
+            "third_party_material": "none_declared",
+            "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+            "scene_sha256": "d96faf2bcb8e67939e94914b8fb083e4d5991762a7e7726ef877c67262a2bc75",
+            "preview_sha256": "5420139979016ba5f54e7b99ea5822da2b10646240d3740809340095d7189263",
+            "product_release_status": "pending_quality_and_product_review"
+          },
+          {
+            "scene_id": "spatial-rna-methods",
+            "name": "Spatial RNA methods",
+            "scene_file": "scenes/spatial-rna-methods.scene.json",
+            "preview_file": "previews/spatial-rna-methods.svg",
+            "source_record_id": "source.figure-studio-rna-methods.2026-10-07",
+            "rights_record_id": "rights.figure-studio-rna-methods.owner-cc0.2026-10-10",
+            "third_party_material": "none_declared",
+            "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+            "scene_sha256": "da88e530c3ba5b38e96f2c9ef23eb40186d26bdda5e48b734c215cfc5a37217d",
+            "preview_sha256": "20019511d3685597ec1685867342b70fae5a79fca02649b7aa96bab5cc562709",
+            "product_release_status": "pending_quality_and_product_review"
+          },
+          {
+            "scene_id": "immunoblot-assay-workflow",
+            "name": "Immunoblot assay workflow",
+            "scene_file": "scenes/immunoblot-assay-workflow.scene.json",
+            "preview_file": "previews/immunoblot-assay-workflow.svg",
+            "source_record_id": "source.figure-studio-scene-expansion.2026-11-03",
+            "rights_record_id": "rights.figure-studio-scene-expansion.repository-cc0.2026-11-03",
+            "third_party_material": "none_declared",
+            "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+            "scene_sha256": "81c36df777297509c6a035e185897524632832ed1e30e8cdf61e195e30182c65",
+            "preview_sha256": "7079132770eb365cf8f896d400e37912a7b20bc4bbb1ab148b4698b36d7d96ff"
+          },
+          {
+            "scene_id": "rt-qpcr-expression-workflow",
+            "name": "RT-qPCR expression workflow",
+            "scene_file": "scenes/rt-qpcr-expression-workflow.scene.json",
+            "preview_file": "previews/rt-qpcr-expression-workflow.svg",
+            "source_record_id": "source.figure-studio-scene-expansion.2026-11-03",
+            "rights_record_id": "rights.figure-studio-scene-expansion.repository-cc0.2026-11-03",
+            "third_party_material": "none_declared",
+            "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+            "scene_sha256": "a4ff2442d3b32955b51a057ebafed59145c00e9f185e8564410aa579db205056",
+            "preview_sha256": "54e77edc1d5bb050277f6fb0a8f21462886ce5a7f834033f4c70f395657267e2"
+          },
+          {
+            "scene_id": "immunoprecipitation-workflow",
+            "name": "Immunoprecipitation workflow",
+            "scene_file": "scenes/immunoprecipitation-workflow.scene.json",
+            "preview_file": "previews/immunoprecipitation-workflow.svg",
+            "source_record_id": "source.figure-studio-scene-expansion.2026-11-03",
+            "rights_record_id": "rights.figure-studio-scene-expansion.repository-cc0.2026-11-03",
+            "third_party_material": "none_declared",
+            "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+            "scene_sha256": "f8cef3b947b1800c298c637f4052fee8c84babac97ce9b090bd6d123d23036ea",
+            "preview_sha256": "86a494b1dae0b805d2d8113b9b459a30772b6dd021ce8f0497f9a0632a180554"
+          },
+          {
+            "scene_id": "indirect-immunofluorescence-workflow",
+            "name": "Indirect immunofluorescence workflow",
+            "scene_file": "scenes/indirect-immunofluorescence-workflow.scene.json",
+            "preview_file": "previews/indirect-immunofluorescence-workflow.svg",
+            "source_record_id": "source.figure-studio-scene-expansion.2026-11-03",
+            "rights_record_id": "rights.figure-studio-scene-expansion.repository-cc0.2026-11-03",
+            "third_party_material": "none_declared",
+            "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+            "scene_sha256": "ea0bc7d5f3cd826922e8db52dd5654b4b1960e64321fd44ea9e1136cebf8e01c",
+            "preview_sha256": "56a5ca47d2e9c682a6fcc8dcbf498b5ee8119e4529267dfcb8ab702997616831"
+          },
+          {
+            "scene_id": "sandwich-elisa-workflow",
+            "name": "Sandwich ELISA workflow",
+            "scene_file": "scenes/sandwich-elisa-workflow.scene.json",
+            "preview_file": "previews/sandwich-elisa-workflow.svg",
+            "source_record_id": "source.figure-studio-scene-expansion.2026-11-03",
+            "rights_record_id": "rights.figure-studio-scene-expansion.repository-cc0.2026-11-03",
+            "third_party_material": "none_declared",
+            "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+            "scene_sha256": "ac95c6c0fd7835bfb4ed9135c883985df28b75f7bac212b6e71d25c08c50e8e3",
+            "preview_sha256": "3c9b2265099b91d53ed11e029833de9f8e0c97f2c4a9ecfb6f8761f9e251e9c9"
+          },
+          {
+            "scene_id": "wound-closure-assay-workflow",
+            "name": "Wound-closure assay workflow",
+            "scene_file": "scenes/wound-closure-assay-workflow.scene.json",
+            "preview_file": "previews/wound-closure-assay-workflow.svg",
+            "source_record_id": "source.figure-studio-scene-expansion.2026-11-03",
+            "rights_record_id": "rights.figure-studio-scene-expansion.repository-cc0.2026-11-03",
+            "third_party_material": "none_declared",
+            "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+            "scene_sha256": "be6c08a2a58d9df25acb854c3bb3945cb54c63ff629b07bb0787294fbf20ab49",
+            "preview_sha256": "090ed9ee17076071abe6fbc799d9b4d803a5a0f868b71c2f95518da43afa29ea"
+          },
+          {
+            "scene_id": "epithelial-barrier-transwell-workflow",
+            "name": "Epithelial barrier Transwell assay",
+            "scene_file": "scenes/epithelial-barrier-transwell-workflow.scene.json",
+            "preview_file": "previews/epithelial-barrier-transwell-workflow.svg",
+            "source_record_id": "source.figure-studio-scene-expansion.2026-11-03",
+            "rights_record_id": "rights.figure-studio-scene-expansion.repository-cc0.2026-11-03",
+            "third_party_material": "none_declared",
+            "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+            "scene_sha256": "27a9bbcddbe203d9187525310fdfc64bfbbbec0e2b7db36a4abff11fd5809f8e",
+            "preview_sha256": "e34f46f8a7364bcaa86f91294bf57876cbda7d5443ce1289169b9c1bf810472a"
+          },
+          {
+            "scene_id": "chemical-synaptic-transmission",
+            "name": "Chemical synaptic transmission",
+            "scene_file": "scenes/chemical-synaptic-transmission.scene.json",
+            "preview_file": "previews/chemical-synaptic-transmission.svg",
+            "source_record_id": "source.figure-studio-scene-expansion.2026-11-03",
+            "rights_record_id": "rights.figure-studio-scene-expansion.repository-cc0.2026-11-03",
+            "third_party_material": "none_declared",
+            "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+            "scene_sha256": "3065dafe1399f2664dda1f0a8e7ab0967354bbbfc78640d05ab509e454540807",
+            "preview_sha256": "b891fe41f04d6b765c4da43cb9cea50c61e2eac009dd26b506ffca02bfcfee6c"
+          },
+          {
+            "scene_id": "angiogenic-sprouting",
+            "name": "Angiogenic sprouting",
+            "scene_file": "scenes/angiogenic-sprouting.scene.json",
+            "preview_file": "previews/angiogenic-sprouting.svg",
+            "source_record_id": "source.figure-studio-scene-expansion.2026-11-03",
+            "rights_record_id": "rights.figure-studio-scene-expansion.repository-cc0.2026-11-03",
+            "third_party_material": "none_declared",
+            "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+            "scene_sha256": "2132a5e16ec329bba010a4cecb7ba6cc97e5ecad3811e33149845fc92f355904",
+            "preview_sha256": "3cba1e4e9b5c0686ff167e7687cd89c3c96031b3c9da7eeaaec95e610475eca4"
+          }
+        ],
+        "product_release_pending_scene_ids": [
+          "angiogenic-sprouting",
+          "chemical-synaptic-transmission",
+          "epithelial-barrier-transwell-workflow",
+          "immunoblot-assay-workflow",
+          "immunoprecipitation-workflow",
+          "indirect-immunofluorescence-workflow",
+          "rt-qpcr-expression-workflow",
+          "sandwich-elisa-workflow",
+          "single-cell-rna-workflow",
+          "spatial-rna-methods",
+          "wound-closure-assay-workflow"
+        ]
+      },
+      "current_sha256": "ec33cf632280593ba0e7cdf253df6f6df660b05f766e28ee5439287b8aa45531"
+    }
+  },
+  "packs": {
+    "cell-architecture-transport": {
+      "catalog_sha256": "ec0b221148b6b25b287437f605f532d59b84d784ed260f861fb0fb84f4f435f2",
+      "audit_file": "rights-release-record-2026-10-13.json",
+      "audit_sha256": "9bd7a54ed501ddfb24769995f1d3d56b173ec0454a04e87512446e87710816e9",
+      "original_rights_records_sha256": "6f54de2759367391a4d0c6754b098b46bbbc6e93488b9a7832eeec74d6fc2211",
+      "original_rights_grant_date": "2026-10-10",
+      "revision_receipt": "family-expansion-2026-10-13.json",
+      "revision_receipt_sha256": "5b74bb139b1d164566aa9300b9d6961ff89e9f6db06310bc00d2916623fa6849",
+      "drawing_count": 28
+    },
+    "culture-models-assays": {
+      "catalog_sha256": "f9e64bebee918b360cc97b9b4ec89b2e11d52195cf2abca5ac39ca723c7fa60d",
+      "audit_file": "rights-release-record-2026-10-13.json",
+      "audit_sha256": "fcceb4028f164f2da85de5a58ac6d78f5152f2b00924895f619c071c4a829b0e",
+      "original_rights_records_sha256": "800b0017aa314136d39dcc7464ed23f08267b3ab6a28d27603be8a6b2c2391da",
+      "original_rights_grant_date": "2026-10-10",
+      "revision_receipt": "family-expansion-2026-10-13.json",
+      "revision_receipt_sha256": "00ccdf41ddcb9a8849a41f4ed862a18b68bddcbb25a60153554eb4c25286c930",
+      "drawing_count": 24
+    },
+    "microbial-biology": {
+      "catalog_sha256": "9e17fa7d43ba1d7209c6cf8c895384bf8d34fc02c04f897d55417568dd1c6744",
+      "audit_file": "rights-release-record-2026-10-13.json",
+      "audit_sha256": "dc1ec2475e6ff44b1c42b275ae9f3c4e35dc3c3535db37fd7a69ae4334f7c980",
+      "original_rights_records_sha256": "1d99466fe5f54f3f251591eb57f06973d8b06dadb0debec9c17fcc1013129495",
+      "original_rights_grant_date": "2026-10-10",
+      "revision_receipt": "family-expansion-2026-10-13.json",
+      "revision_receipt_sha256": "8eaad1101e95d31b076d515f735a02f94c64bcbf8128839c87a66e451e16497a",
+      "drawing_count": 24
+    },
+    "rna-methods": {
+      "catalog_sha256": "6e77577795470401190cd0f1bed83578ec277cc39f32de79a4f09ba6e0ac908f",
+      "audit_file": "rights-release-record.json",
+      "audit_sha256": "9db4e5bae0f9c1a99fe619e41f342efd01ee723b36300d8fdb8fc701cafc4a84",
+      "original_rights_records_sha256": "b1581a2d4a57cc89a373e233e88cdf18eaa20bd825877dfce31f2e76bf8a26c8",
+      "original_rights_grant_date": "2026-10-10",
+      "revision_receipt": "artwork-revision-2026-10-13.json",
+      "revision_receipt_sha256": "406d859d9678010169cefb0006131c438276ab65f26972bda228822e2a5b1029",
+      "drawing_count": 4
+    },
+    "cell-structure-stress": {
+      "catalog_sha256": "7cfd7b97632a64b88b2468086fecc9792f33d4eb50281007cacbd5617240f8fb",
+      "audit_file": "rights-release-record.json",
+      "audit_sha256": "7c6181e99f05a48aaac5ba28a084eb8a57108ac12047eda210d52d22a575f7ff",
+      "rights_records_sha256": "1b46eaa982923d11a248c65982f90532fe505ffcdee28cfa9c7972f13ce01053",
+      "rights_basis": "repository_policy_original_output",
+      "contribution_effective_date": "2026-10-15",
+      "drawing_count": 40,
+      "concept_count": 20
+    },
+    "tumor-microenvironment": {
+      "catalog_sha256": "f7b549925e7f563656b3457c6a34466796610f0dd1f390984d3f95c9928bd482",
+      "audit_file": "rights-release-record.json",
+      "audit_sha256": "7f57e2d6093a55a4ab5bab50d8d3b190c22e631116afd2783fb244783cef3421",
+      "rights_records_sha256": "55c2387f885a4b61ba2844f57817b2a63bc4150d0aeff0bd507fdb9f9e346cf3",
+      "rights_basis": "repository_policy_original_output",
+      "contribution_effective_date": "2026-10-15",
+      "drawing_count": 20,
+      "concept_count": 10
+    },
+    "analysis-graphics": {
+      "catalog_sha256": "b5d10852475e49541349059e0517d674f4af4da70141b8c479081abd063307b2",
+      "audit_file": "rights-release-record.json",
+      "audit_sha256": "8c9ed1f12ade8f94f74135b5ab31e0b1b345c3ab4f99790c490540566f646433",
+      "rights_records_sha256": "b1693db679e6855c86c7e5be6e1a15abc546cd47bfca54f2dec0ac03549cc3bb",
+      "rights_basis": "repository_policy_original_output",
+      "contribution_effective_date": "2026-10-15",
+      "drawing_count": 20,
+      "concept_count": 10
+    },
+    "neurobiology": {
+      "catalog_sha256": "91c902639d773803de852be6b2151938f11bb564d0a509c4982a36e972dd843d",
+      "audit_file": "rights-release-record.json",
+      "audit_sha256": "d4bf0063170f3b4ef9995a202f05cd9878c3125906d8453a850aa562865e1019",
+      "rights_records_sha256": "0fd1a38c1dd729d2727751399ded88b87522d9aec0a18e638e62d0b4b935f051",
+      "rights_basis": "repository_policy_original_output",
+      "contribution_effective_date": "2026-11-03",
+      "drawing_count": 20,
+      "concept_count": 10
+    },
+    "tissue-vascular": {
+      "catalog_sha256": "a7965875afb56980baed1d119339ba9afb69857e35832897b5c89fcf96412eb8",
+      "audit_file": "rights-release-record.json",
+      "audit_sha256": "f1178a9bf0912566047be1ad275abe31264e463695a49b6cdf248f2633c5f659",
+      "rights_records_sha256": "30dc445d166f4c74e32ed1c9ceb52169919eea2c0bb6f7993a1cb4f624ed65ce",
+      "rights_basis": "repository_policy_original_output",
+      "contribution_effective_date": "2026-11-03",
+      "drawing_count": 20,
+      "concept_count": 10
+    },
+    "endocrine-tissue": {
+      "catalog_sha256": "2131ac8d08bc7bd6a1698931dd76c535856adf1cdb29ddbaa7034ecff07fe2b7",
+      "audit_file": "rights-release-record.json",
+      "audit_sha256": "aaf8f274a8eba649c74f11e2062d4e893e0fe4f2b28223d4febd1066a3111ea5",
+      "rights_records_sha256": "9a86b8b6313e174d2aa2b8d193704422560655dff635e75c86bb9bab8fb9c849",
+      "rights_basis": "repository_policy_original_output",
+      "contribution_effective_date": "2026-11-07",
+      "notice_sha256": "18a4ab444465f9ca6b7b51bf571837aaa26548d3c24e3e4f6291e8ac95d51fc2",
+      "drawing_count": 24,
+      "concept_count": 12
+    }
+  },
+  "scenes": {
+    "single-cell-rna-workflow": {
+      "scene_sha256": "a7d22e7fa4d7d27a89477bfe0f41ec90e5b1ff7b84c4217d0af61b15f18bf3dd",
+      "preview_sha256": "5420139979016ba5f54e7b99ea5822da2b10646240d3740809340095d7189263"
+    },
+    "spatial-rna-methods": {
+      "scene_sha256": "42887da40bb40cd9a3b8fca1d18ec7a1e6d361c3590e4d46447d43d4ea98bdb7",
+      "preview_sha256": "20019511d3685597ec1685867342b70fae5a79fca02649b7aa96bab5cc562709"
+    },
+    "angiogenic-sprouting": {
+      "scene_sha256": "d3e48ce001615056095671e5aa1efe2cedea5a990d4f3a1e7ce5916c283d591f",
+      "preview_sha256": "3cba1e4e9b5c0686ff167e7687cd89c3c96031b3c9da7eeaaec95e610475eca4"
+    },
+    "chemical-synaptic-transmission": {
+      "scene_sha256": "1582a542e828a74f1af1f8a1f72425ff230fcdd850fa9762ba566229d2f25896",
+      "preview_sha256": "b891fe41f04d6b765c4da43cb9cea50c61e2eac009dd26b506ffca02bfcfee6c"
+    },
+    "epithelial-barrier-transwell-workflow": {
+      "scene_sha256": "26662db2ff575a7d64b219189fbbe04ebf64d8627054a1f0bddb72d20b7c3302",
+      "preview_sha256": "e34f46f8a7364bcaa86f91294bf57876cbda7d5443ce1289169b9c1bf810472a"
+    },
+    "immunoblot-assay-workflow": {
+      "scene_sha256": "f794b7d54a0225bfc56be7e3c9158f74c524e11dd76635a051803a5f2baae437",
+      "preview_sha256": "7079132770eb365cf8f896d400e37912a7b20bc4bbb1ab148b4698b36d7d96ff"
+    },
+    "immunoprecipitation-workflow": {
+      "scene_sha256": "f401042691738bf4aa9d71924ba4472192f561ddf5440b58fb16f2a7d0b5f580",
+      "preview_sha256": "86a494b1dae0b805d2d8113b9b459a30772b6dd021ce8f0497f9a0632a180554"
+    },
+    "indirect-immunofluorescence-workflow": {
+      "scene_sha256": "1d9df8471d930d456ad04488731b1ff0632879276afefbfaeacee752f28fd5f1",
+      "preview_sha256": "56a5ca47d2e9c682a6fcc8dcbf498b5ee8119e4529267dfcb8ab702997616831"
+    },
+    "rt-qpcr-expression-workflow": {
+      "scene_sha256": "8a24471f7cc86352c4b43942332acb2910ba8314777c0f3a0f4e16cd8dfea205",
+      "preview_sha256": "54e77edc1d5bb050277f6fb0a8f21462886ce5a7f834033f4c70f395657267e2"
+    },
+    "sandwich-elisa-workflow": {
+      "scene_sha256": "b4ddb99b05ffb326cfd9e37ae63c15ca1e49c2c77df46dccfd0cd6e7e46c9fc6",
+      "preview_sha256": "3c9b2265099b91d53ed11e029833de9f8e0c97f2c4a9ecfb6f8761f9e251e9c9"
+    },
+    "wound-closure-assay-workflow": {
+      "scene_sha256": "13ea70f34c59622dfaf59144d623ea24d8110bbd756f234bb382e7886b0049ea",
+      "preview_sha256": "090ed9ee17076071abe6fbc799d9b4d803a5a0f868b71c2f95518da43afa29ea"
+    },
+    "glucose-islet-feedback": {
+      "scene_sha256": "1d0adbb636c59a90d25486d338fa2895214bc594b069268b45eeccd82b7e4971",
+      "preview_sha256": "4b1ed5c36f5a1f3de15167263f0cacbe662938319cf4efe1c0528da2098a2cbf"
+    },
+    "hypothalamic-pituitary-adrenal-axis": {
+      "scene_sha256": "4778abb2734495b0fa46b529ebba05608bbf70f6ed6056d6a4c2196a78cc2fdb",
+      "preview_sha256": "866d7ef7c65f94f65db5e2abc0473f7fdc88f54a3679d8c8faf61c933e7e8911"
+    },
+    "hypothalamic-pituitary-thyroid-axis": {
+      "scene_sha256": "eb592354e24f06256512fc26d1eda24c2907cad48dd75d307c332afc6fb53874",
+      "preview_sha256": "134d1e97274c5df38478b86aae51b8d8350f57c518da415ba14c6a62a68a8e61"
+    },
+    "islet-perifusion-experiment": {
+      "scene_sha256": "2d848fbfa84632ec45d1166a3941fd8ce5949492d7c9435752361e229deab9a0",
+      "preview_sha256": "c5f3d7639ec28105b055fd7017bab216191fd015c49f3824bda41d4eb00c9651"
+    }
+  },
+  "user_authorization": {
+    "instruction": "Expand the Library and synchronize the verified desktop and web changes after QA; this finite source inclusion follows Root acceptance of the committed endocrine drawings and templates.",
+    "basis": "Ian standing Library-expansion and synchronization instructions; scoped Root source acceptance in the pinned evidence.",
+    "new_personal_attestation": false,
+    "license_grants_added": false
+  },
+  "acceptance_reference": {
+    "file": "docs/scientific-assets/ENDOCRINE_PRODUCT_RELEASE_2026_11_07.md",
+    "sha256": "4238782aea78fe8663cd999f1c0ced77d628f708226e093280c8baf7ef95c4bb"
+  },
+  "review": {
+    "scientific_review": "pass",
+    "independent_visual_review": "pass",
+    "native_editor_acceptance": "pass",
+    "independent_release_review": "pass",
+    "evidence": [
+      {
+        "file": "qa_artifacts/assets-templates-2026-11-07/accepted-source-handoff.json",
+        "sha256": "1dcc6ede3878803982fb6a95513841eec2131b6733e4dabf7dbb265882fe2dcc"
+      },
+      {
+        "file": "qa_artifacts/assets-templates-2026-11-07/root-source-acceptance.json",
+        "sha256": "c4f71a0c298ec0215cbb11ad558bfa436d566cb722d0df97c64d3359acb170a0"
+      },
+      {
+        "file": "qa_artifacts/assets-templates-2026-11-07/art-acceptance-final.json",
+        "sha256": "ce8b5978ae73790a65d6f88b25d7479d15317ae479bb78f9d24a697f97d80f47"
+      },
+      {
+        "file": "qa_artifacts/assets-templates-2026-11-07/native-acceptance.json",
+        "sha256": "01ec1497054cd664a980e71e92d00c97c02e180da0a0e41c5af73025c7a35c23"
+      },
+      {
+        "file": "qa_artifacts/assets-templates-2026-11-07/root-representative-disposition.json",
+        "sha256": "3efedcf5963e4f63bb0ab76e2fcd995e9a64ed22386205fd8e1aacf2eea6c15c"
+      },
+      {
+        "file": "qa_artifacts/assets-templates-2026-11-07/hpt-layout-correction.json",
+        "sha256": "4d96ba822978a6f8032e6b155cb361f998588fc1eb0aeb28689887c0860fa3d4"
+      },
+      {
+        "file": "qa_artifacts/assets-templates-2026-11-07/scientific-review-a-v5.json",
+        "sha256": "055afb7e24915aec8ba21587dc06994b347f3dadbb552e01c1387d609bb2c3c9"
+      },
+      {
+        "file": "qa_artifacts/assets-templates-2026-11-07/scientific-review-b-templates-v3.json",
+        "sha256": "57e63b073ace307d1f712906ece2d83a8e5bdfd78e851f9c18246682af9103ba"
+      },
+      {
+        "file": "qa_artifacts/assets-templates-2026-11-07/qa-source-review-05.json",
+        "sha256": "5e6e562f3c8ec835d9313a8dc9fedbd4f11d11eb7f4375966b1ab737f32071f1"
+      },
+      {
+        "file": "qa_artifacts/assets-templates-2026-11-07/native-template-02-02/actual-content-review.json",
+        "sha256": "cc241949afb98eaa91a904847dd589b4ce4ec1df45d88dffc78c800c79cee66c"
+      },
+      {
+        "file": "qa_artifacts/assets-templates-2026-11-07/native-template-02-02/original-images-visual-review.json",
+        "sha256": "a45f9a1278769d54154c72f8787da66e3d9c87e4fe10347f4f3580ec1da7609c"
+      }
+    ],
+    "drawing_style_views": 96,
+    "template_previews": 4,
+    "editor_original_images": 37,
+    "actual_save_new_process_open_pairs": 6,
+    "raw_history_status": "FAIL_PRESERVED",
+    "history_scope": "Root accepts exact authored properties;19 Undo/26 Redo renderer objectCaching differences remain raw FAIL. No comparator was relaxed.",
+    "hpt_correction": {
+      "template_id": "hypothalamic-pituitary-thyroid-axis",
+      "changed_fields": [
+        "trh_label.y",
+        "tsh_label.y"
+      ],
+      "before": 232,
+      "after": 203,
+      "source_recipe": {
+        "file": "docs/scientific-assets/expansion-2026-11-07/template_recipes.py",
+        "sha256": "9d892cc41da57c567c85e0ae82a3b3c99b76e4f1ce8825ba469eb228b3e2a9ed"
+      },
+      "current_scene": {
+        "scene_sha256": "eb592354e24f06256512fc26d1eda24c2907cad48dd75d307c332afc6fb53874",
+        "preview_sha256": "134d1e97274c5df38478b86aae51b8d8350f57c518da415ba14c6a62a68a8e61"
+      },
+      "fresh_preview_count": 1,
+      "unchanged_image_bindings": 99
+    },
+    "limits": [
+      "Source inclusion only; combined candidate, Windows host, activation and publication remain Root responsibilities.",
+      "Selection continuity, natural paint timing, performance and general PDF/typography parity are not established.",
+      "Earlier failed/HOLD epochs and unchanged executed source epochs remain retained."
+    ]
+  },
+  "scope": "Finite source-level inclusion of exactly the accepted endocrine additions; no new license grant or inherited approval for future content."
+}

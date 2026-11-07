@@ -1,0 +1,571 @@
+{
+  "schema": "figureStudio.scientificScene.v1",
+  "id": "hypothalamic-pituitary-thyroid-axis",
+  "name": "Hypothalamic–pituitary–thyroid axis",
+  "summary": "Hypothalamic TRH drives pituitary TSH and thyroid follicular T4/T3 output under feedback control.",
+  "source_record_id": "source.figure-studio-scene-expansion.2026-11-07",
+  "rights_record_id": "rights.figure-studio-scene-expansion.repository-cc0.2026-11-07",
+  "scientific_record": {
+    "id": "science.figure-studio.hypothalamic-pituitary-thyroid-axis.2026-11-07",
+    "verified_on": "2026-11-07",
+    "scope": "Hypothalamic TRH stimulates pituitary thyrotrophs to release TSH. TSH stimulates thyroid follicular synthesis and secretion of T4 and T3. Thyroid hormones reduce upstream TRH and TSH synthesis or secretion through feedback at hypothalamic and pituitary levels.",
+    "relationships": [
+      {
+        "claim": "Hypothalamic TRH stimulates pituitary thyrotrophs to release TSH. TSH stimulates thyroid follicular synthesis and secretion of T4 and T3. Thyroid hormones reduce upstream TRH and TSH synthesis or secretion through feedback at hypothalamic and pituitary levels.",
+        "source_ids": [
+          "hpt-primary",
+          "hpt-pituitary"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "hpt-primary",
+        "citation": "Segerson TP et al. Thyroid hormone regulates TRH biosynthesis in the paraventricular nucleus of the rat hypothalamus. Science. 1987;238(4823):78–80. doi:10.1126/science.3116669.",
+        "doi": "10.1126/science.3116669",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/3116669/",
+        "support_location": "Rat thyroid-hormone manipulation experiments show reduced hypothalamic proTRH mRNA, supporting feedback from thyroid hormone to the TRH-producing hypothalamic population.",
+        "decision": "Distinguish TRH delivery through the median eminence from circulating TSH action on a thyroid follicle; label the glandular products as T4 and T3."
+      },
+      {
+        "id": "hpt-pituitary",
+        "citation": "Samuels MH, Wierman A, Wang C, Ridgway EC. The effect of altered thyroid status on pituitary hormone messenger ribonucleic acid concentrations in the rat. Endocrinology. 1989;124(5):2277–2282.",
+        "doi": "10.1210/endo-124-5-2277",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/2495926/",
+        "support_location": "Rat thyroid-status experiments measured pituitary TSH-subunit expression and support thyroid-hormone feedback at the pituitary level.",
+        "decision": "Route thyroid-hormone feedback separately to hypothalamic TRH neurons and pituitary thyrotrophs using dashed inhibition bars. The follicle is shown as an endocrine source, not a histological micrograph."
+      }
+    ],
+    "design_precedents": [
+      {
+        "source_id": "hpt-primary",
+        "figure": "Methods / conceptual figure",
+        "decision": "Distinguish TRH delivery through the median eminence from circulating TSH action on a thyroid follicle; label the glandular products as T4 and T3."
+      },
+      {
+        "source_id": "hpt-pituitary",
+        "figure": "Methods / conceptual figure",
+        "decision": "Route thyroid-hormone feedback separately to hypothalamic TRH neurons and pituitary thyrotrophs using dashed inhibition bars. The follicle is shown as an endocrine source, not a histological micrograph."
+      }
+    ],
+    "limitations": [
+      "Qualitative overview. It omits local deiodinase activity, transport and binding proteins, iodine availability, illness-related regulation, and the distinct kinetics of TSH and thyroid hormones. No diagnostic reference ranges or concentrations are implied."
+    ],
+    "authorship": "Original editable scene composed from native vector/text objects and original endocrine asset placeholders. Published research informed biological claims and design decisions only; no publication artwork was copied, traced, or embedded."
+  },
+  "insertion_art_style": "soft-color",
+  "canvas": {
+    "width": 1100,
+    "height": 650,
+    "width_in": 11.458333333333334,
+    "height_in": 6.770833333333333,
+    "background_role": "background"
+  },
+  "layout_kind": "mechanism",
+  "palette": {
+    "background": "#F7F9FC",
+    "surface": "#FFFFFF",
+    "ink": "#24313B",
+    "muted": "#637381",
+    "border": "#C9D5DE",
+    "sample": "#2A8C82",
+    "process": "#527DA8",
+    "signal": "#D79A31",
+    "inhibition": "#B94E49",
+    "soft": "#E7EEF4",
+    "accent": "#7667A8"
+  },
+  "layers": [
+    {
+      "id": "context",
+      "name": "Anatomical and assay context"
+    },
+    {
+      "id": "objects",
+      "name": "Endocrine structures and apparatus"
+    },
+    {
+      "id": "relationships",
+      "name": "Hormone and experimental relationships"
+    },
+    {
+      "id": "labels",
+      "name": "Editable labels"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "title",
+      "type": "text",
+      "layer_id": "labels",
+      "x": 36,
+      "y": 22,
+      "width": 1028,
+      "height": 34,
+      "text": "Hypothalamic–pituitary–thyroid axis",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 27,
+      "fill_role": "ink",
+      "align": "left"
+    },
+    {
+      "id": "subtitle",
+      "type": "text",
+      "layer_id": "labels",
+      "x": 38,
+      "y": 60,
+      "width": 1024,
+      "height": 27,
+      "text": "TRH and TSH drive thyroid-hormone synthesis; T3/T4 feed back at hypothalamus and pituitary",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 19,
+      "fill_role": "muted",
+      "align": "left"
+    },
+    {
+      "id": "brain_region",
+      "type": "shape",
+      "shape": "rounded_rect",
+      "layer_id": "objects",
+      "x": 55,
+      "y": 138,
+      "width": 232,
+      "height": 286,
+      "radius": 18,
+      "fill_role": "soft",
+      "stroke_role": "border",
+      "stroke_width": 2.2
+    },
+    {
+      "id": "pit_region",
+      "type": "shape",
+      "shape": "rounded_rect",
+      "layer_id": "objects",
+      "x": 363,
+      "y": 138,
+      "width": 232,
+      "height": 286,
+      "radius": 18,
+      "fill_role": "surface",
+      "stroke_role": "border",
+      "stroke_width": 2.2
+    },
+    {
+      "id": "follicle_region",
+      "type": "shape",
+      "shape": "rounded_rect",
+      "layer_id": "objects",
+      "x": 671,
+      "y": 125,
+      "width": 378,
+      "height": 312,
+      "radius": 18,
+      "fill_role": "soft",
+      "stroke_role": "border",
+      "stroke_width": 2.2
+    },
+    {
+      "id": "median_eminence",
+      "name": "Median Eminence",
+      "type": "asset",
+      "layer_id": "objects",
+      "asset_id": "endocrine.median_eminence.external_zone_sagittal",
+      "top_level": true,
+      "x": 104,
+      "y": 207,
+      "width": 132,
+      "height": 104,
+      "palette_overrides": {
+        "neural": "process",
+        "terminal": "signal",
+        "boundary": "border",
+        "sinusoid": "sample",
+        "outline": "ink"
+      }
+    },
+    {
+      "id": "anterior_pituitary",
+      "name": "Anterior Pituitary",
+      "type": "asset",
+      "layer_id": "objects",
+      "asset_id": "endocrine.anterior_pituitary.cords_longitudinal",
+      "top_level": true,
+      "x": 413,
+      "y": 207,
+      "width": 132,
+      "height": 104,
+      "palette_overrides": {
+        "gland": "process",
+        "sinusoid": "sample",
+        "outline": "ink"
+      }
+    },
+    {
+      "id": "thyroid_follicle",
+      "name": "Thyroid Follicle",
+      "type": "asset",
+      "layer_id": "objects",
+      "asset_id": "endocrine.thyroid_follicle.single_follicle",
+      "top_level": true,
+      "x": 758,
+      "y": 190,
+      "width": 204,
+      "height": 142,
+      "palette_overrides": {
+        "follicular_epithelium": "process",
+        "colloid": "signal",
+        "stroma": "soft",
+        "outline": "ink"
+      }
+    },
+    {
+      "id": "hypothalamus_label",
+      "type": "text",
+      "layer_id": "labels",
+      "x": 69,
+      "y": 153,
+      "width": 204,
+      "height": 28,
+      "text": "Hypothalamus",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 20,
+      "fill_role": "ink",
+      "align": "center"
+    },
+    {
+      "id": "trh_neurons",
+      "type": "text",
+      "layer_id": "labels",
+      "x": 69,
+      "y": 332,
+      "width": 204,
+      "height": 27,
+      "text": "TRH neurons",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 19,
+      "fill_role": "process",
+      "align": "center"
+    },
+    {
+      "id": "pituitary_label",
+      "type": "text",
+      "layer_id": "labels",
+      "x": 377,
+      "y": 153,
+      "width": 204,
+      "height": 28,
+      "text": "Anterior pituitary",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 20,
+      "fill_role": "ink",
+      "align": "center"
+    },
+    {
+      "id": "thyrotroph_label",
+      "type": "text",
+      "layer_id": "labels",
+      "x": 377,
+      "y": 332,
+      "width": 204,
+      "height": 27,
+      "text": "Thyrotroph",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 19,
+      "fill_role": "process",
+      "align": "center"
+    },
+    {
+      "id": "follicle_label",
+      "type": "text",
+      "layer_id": "labels",
+      "x": 694,
+      "y": 145,
+      "width": 330,
+      "height": 28,
+      "text": "Thyroid follicle",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 20,
+      "fill_role": "ink",
+      "align": "center"
+    },
+    {
+      "id": "products_label",
+      "type": "text",
+      "layer_id": "labels",
+      "x": 694,
+      "y": 351,
+      "width": 330,
+      "height": 27,
+      "text": "T4 + T3 secretion",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 20,
+      "fill_role": "signal",
+      "align": "center"
+    },
+    {
+      "id": "trh_label",
+      "type": "text",
+      "layer_id": "labels",
+      "x": 287,
+      "y": 203,
+      "width": 76,
+      "height": 32,
+      "text": "TRH",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 19,
+      "fill_role": "process",
+      "align": "center"
+    },
+    {
+      "id": "tsh_label",
+      "type": "text",
+      "layer_id": "labels",
+      "x": 595,
+      "y": 203,
+      "width": 76,
+      "height": 32,
+      "text": "TSH",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 19,
+      "fill_role": "process",
+      "align": "center"
+    },
+    {
+      "id": "thyroid_hormone_pool",
+      "type": "shape",
+      "shape": "ellipse",
+      "layer_id": "context",
+      "x": 810,
+      "y": 468,
+      "width": 156,
+      "height": 48,
+      "radius": 24,
+      "fill_role": "surface",
+      "stroke_role": "signal",
+      "stroke_width": 2.2
+    },
+    {
+      "id": "thyroid_hormone_pool_label",
+      "type": "text",
+      "layer_id": "labels",
+      "x": 820,
+      "y": 478,
+      "width": 136,
+      "height": 26,
+      "text": "T4 / T3",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 19,
+      "fill_role": "signal",
+      "align": "center"
+    },
+    {
+      "id": "trh_feedback_label",
+      "type": "text",
+      "layer_id": "labels",
+      "x": 184,
+      "y": 560,
+      "width": 260,
+      "height": 30,
+      "text": "Reduced TRH drive",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 20,
+      "fill_role": "inhibition",
+      "align": "center"
+    },
+    {
+      "id": "tsh_feedback_label",
+      "type": "text",
+      "layer_id": "labels",
+      "x": 550,
+      "y": 560,
+      "width": 260,
+      "height": 30,
+      "text": "Reduced TSH drive",
+      "placeholder": true,
+      "editable": true,
+      "font_size": 20,
+      "fill_role": "inhibition",
+      "align": "center"
+    }
+  ],
+  "groups": [
+    {
+      "id": "hypothalamic_trh_unit",
+      "name": "Hypothalamic TRH release",
+      "layer_id": "objects",
+      "members": [
+        "brain_region",
+        "median_eminence",
+        "hypothalamus_label",
+        "trh_neurons",
+        "trh_label"
+      ]
+    },
+    {
+      "id": "pituitary_tsh_unit",
+      "name": "Anterior-pituitary TSH release",
+      "layer_id": "objects",
+      "members": [
+        "pit_region",
+        "anterior_pituitary",
+        "pituitary_label",
+        "thyrotroph_label",
+        "tsh_label"
+      ]
+    },
+    {
+      "id": "thyroid_follicle_unit",
+      "name": "Thyroid follicular hormone output",
+      "layer_id": "objects",
+      "members": [
+        "follicle_region",
+        "thyroid_follicle",
+        "follicle_label",
+        "products_label"
+      ]
+    },
+    {
+      "id": "thyroid_feedback_hormones",
+      "name": "Circulating thyroid hormones",
+      "layer_id": "context",
+      "members": [
+        "thyroid_hormone_pool",
+        "thyroid_hormone_pool_label",
+        "trh_feedback_label",
+        "tsh_feedback_label"
+      ]
+    }
+  ],
+  "connectors": [
+    {
+      "id": "trh_to_tsh",
+      "layer_id": "relationships",
+      "from": {
+        "node_id": "median_eminence",
+        "anchor": "right"
+      },
+      "to": {
+        "node_id": "anterior_pituitary",
+        "anchor": "left"
+      },
+      "relation": "activation",
+      "label": "",
+      "style": {
+        "stroke_role": "process",
+        "stroke_width": 2.6,
+        "line": "solid",
+        "terminator": "arrow",
+        "label_offset": {
+          "x": 0,
+          "y": -25
+        }
+      }
+    },
+    {
+      "id": "tsh_to_follicle",
+      "layer_id": "relationships",
+      "from": {
+        "node_id": "anterior_pituitary",
+        "anchor": "right"
+      },
+      "to": {
+        "node_id": "thyroid_follicle",
+        "anchor": "left"
+      },
+      "relation": "activation",
+      "label": "",
+      "style": {
+        "stroke_role": "process",
+        "stroke_width": 2.6,
+        "line": "solid",
+        "terminator": "arrow",
+        "label_offset": {
+          "x": 0,
+          "y": -25
+        }
+      }
+    },
+    {
+      "id": "follicle_release_to_pool",
+      "layer_id": "relationships",
+      "from": {
+        "node_id": "follicle_region",
+        "anchor": "bottom"
+      },
+      "to": {
+        "node_id": "thyroid_hormone_pool",
+        "anchor": "top"
+      },
+      "relation": "secretion",
+      "label": "",
+      "style": {
+        "stroke_role": "signal",
+        "stroke_width": 2.4,
+        "line": "solid",
+        "terminator": "arrow"
+      }
+    },
+    {
+      "id": "thyroid_feedback_hypothalamus",
+      "layer_id": "relationships",
+      "from": {
+        "node_id": "thyroid_hormone_pool",
+        "anchor": "bottom"
+      },
+      "to": {
+        "node_id": "brain_region",
+        "anchor": "bottom"
+      },
+      "relation": "inhibition",
+      "label": "",
+      "style": {
+        "stroke_role": "inhibition",
+        "stroke_width": 2.5,
+        "line": "dashed",
+        "terminator": "bar",
+        "route": "elbow",
+        "label_offset": {
+          "x": -120,
+          "y": 8
+        }
+      }
+    },
+    {
+      "id": "thyroid_feedback_pituitary",
+      "layer_id": "relationships",
+      "from": {
+        "node_id": "thyroid_hormone_pool",
+        "anchor": "bottom"
+      },
+      "to": {
+        "node_id": "pit_region",
+        "anchor": "bottom"
+      },
+      "relation": "inhibition",
+      "label": "",
+      "style": {
+        "stroke_role": "inhibition",
+        "stroke_width": 2.5,
+        "line": "dashed",
+        "terminator": "bar",
+        "route": "elbow",
+        "label_offset": {
+          "x": 65,
+          "y": 8
+        }
+      }
+    }
+  ]
+}

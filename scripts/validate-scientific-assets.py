@@ -432,6 +432,7 @@ POLICY_CONTRIBUTION_COUNTS = {"cell-structure-stress":40,"tumor-microenvironment
 POLICY_CONTRIBUTIONS = {
     POLICY_CONTRIBUTION_ID: ("2026-10-15", POLICY_CONTRIBUTION_COUNTS),
     "original-vectors.cc0.repository-policy.2026-11-03": ("2026-11-03", {"neurobiology": 20, "tissue-vascular": 20}),
+    "original-vectors.cc0.repository-policy.2026-11-07": ("2026-11-07", {"endocrine-tissue": 24}),
 }
 
 
@@ -809,9 +810,10 @@ def validate_asset(
 
     availability = asset.get("available_art_styles")
     finite_styles = ["soft-color", "cut-paper", "technical-ink", "style-4"]
-    if pack.get("id") in {"neurobiology", "tissue-vascular"}:
+    if pack.get("id") in {"neurobiology", "tissue-vascular", "endocrine-tissue"}:
+        supplement_date = '2026-11-07' if pack.get('id') == 'endocrine-tissue' else '2026-11-03'
         if (availability != finite_styles or pack.get("available_art_styles") != finite_styles
-                or asset.get('style_4_supplement') != 'original-style4-companions.2026-11-03'
+                or asset.get('style_4_supplement') != 'original-style4-companions.' + supplement_date
                 or pack.get('style_4_supplement') != asset.get('style_4_supplement')):
             fail(f"{asset_id}: this finite contribution must explicitly support Styles 1–4")
     elif availability is not None:
@@ -2673,11 +2675,15 @@ def validate_registered_art_styles(library_path: Path, library: dict) -> list[di
                for path in ("style-4/manifest.json", "style-4/manifest-corrected-20261017.json")]
     expanded = [{"id":"style-4","name":"Style 4","path":"style-4/manifest-corrected-20261017.json","asset_count":526,
                  "supplement":{"path":"style-4/expansion-20261103/manifest.json","asset_count":40}}]
-    if styles not in allowed and styles != expanded:
+    endocrine = [{"id":"style-4","name":"Style 4","path":"style-4/manifest-corrected-20261017.json","asset_count":550,
+                 "supplement":{"path":"style-4/original-companions.json","asset_count":64}}]
+    if styles not in allowed and styles not in (expanded, endocrine):
         fail("Scientific drawing styles must match the exact supplied manifest and finite original supplement")
     new_packs = {row.get('id') for row in library.get('packs',[])} & {'neurobiology','tissue-vascular'}
-    if new_packs and styles != expanded:
+    if new_packs and styles not in (expanded, endocrine):
         fail('Every new drawing requires complete Styles 1–4 coverage')
+    if any(row.get('id') == 'endocrine-tissue' for row in library.get('packs', [])) and styles != endocrine:
+        fail('Endocrine drawings require the exact complete two-batch Style 4 aggregate')
     if not isinstance(library.get("art_style_notes"), str) or not library["art_style_notes"].strip():
         fail("Registered Style 4 requires a visible supplied-artwork limitation")
     relative = canonical_relative_file(styles[0]["path"], label="Style 4 manifest", suffix=".json")
@@ -2687,8 +2693,8 @@ def validate_registered_art_styles(library_path: Path, library: dict) -> list[di
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     result = module.validate(manifest.parent, library_path)
-    return [{"id":"style-4","directory":"style-4","asset_count":result["asset_count"] + result.get('original_supplement',{}).get('asset_count',0),
-             "file_count":result["file_count"] + result.get('original_supplement',{}).get('file_count',0)}]
+    return [{"id":"style-4","directory":"style-4","asset_count":result["asset_count"] + result.get('original_supplement',{}).get('asset_count',0) + result.get('endocrine_supplement',{}).get('asset_count',0),
+             "file_count":result["file_count"] + result.get('original_supplement',{}).get('file_count',0) + result.get('endocrine_supplement',{}).get('file_count',0)}]
 
 
 def validate_library(library_path: Path = DEFAULT_LIBRARY) -> dict[str, object]:

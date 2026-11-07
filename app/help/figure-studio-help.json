@@ -1,8 +1,8 @@
 {
   "schema": "figureStudio.helpContent.v2",
-  "version": "1.0.0-beta.23",
+  "version": "1.0.0-beta.30",
   "title": "Figure Tool Help",
-  "updated": "2026-11-04",
+  "updated": "2026-11-07",
   "shared_help": {
     "schema_id": "bsd.help.appCapability.v2",
     "surface_id": "figure_studio",
@@ -295,21 +295,21 @@
       ],
       "summary": "Create a Figure or Presentation, add artwork, and keep an editable copy.",
       "body": [
-        "Choose Figure for manuscript panels, graphical abstracts, diagrams, and illustrations. Choose Presentation for a slide deck with layouts, themes, notes, and playback. Use the Figure / Presentation buttons to switch between them.",
-        "Use File > New to choose a document type and size. Library contains Assets for individual drawings and Templates for editable scientific diagrams and Figure layouts. The canvas is where you draw and arrange artwork; Style or Inspector shows controls for the current selection. Simple keeps common controls close at hand; Advanced exposes detailed vector and text controls.",
+        "Choose Figure for manuscript panels, graphical abstracts, diagrams, and illustrations. Choose Presentation for a slide deck with layouts, themes, notes, and playback. Use the Figure / Presentation buttons to switch between them. Use View > Detach Inspector to float it, or View > Dock panels to return the panels to their saved docking sides.",
+        "Use File > New to choose a document type and size. Library contains Assets for individual drawings and Templates for editable scientific diagrams and Figure layouts. The canvas is where you draw and arrange artwork. The Inspector has Appearance, Properties, and Layers. Appearance controls fill, line, text, opacity, and supported effects; Saved colors is available within Appearance. Properties shows geometry and object-specific settings, and Layers organizes objects. Simple and Advanced use the same dockable or floating Library and Inspector panels. The Library starts closed and can be reopened from the toolbar.",
         "Use Document setup to change page dimensions, units, grids, and snapping without clearing your selection. Fit brings the artboard back into view. Changing canvas zoom does not change the size of exported artwork.",
         "In the web app, use Appearance · Light / Dark in the header. In Superbench, use App Settings. This changes the interface without recoloring artwork. Browser files contains Saved work, Open file, Download file, and About. Browser saves stay on this device; download an editable file for backup or use on another computer.",
         "Start with the topics on selecting artwork, Lines and arrows, and saving work. Help provides reference instructions and short visual demonstrations for the current tools."
       ],
-      "updated": "2026-11-04",
+      "updated": "2026-11-07",
       "blocks": [
         {
           "type": "paragraph",
-          "text": "Choose Figure for manuscript panels, graphical abstracts, diagrams, and illustrations. Choose Presentation for a slide deck with layouts, themes, notes, and playback. Use the Figure / Presentation buttons to switch between them."
+          "text": "Choose Figure for manuscript panels, graphical abstracts, diagrams, and illustrations. Choose Presentation for a slide deck with layouts, themes, notes, and playback. Use the Figure / Presentation buttons to switch between them. Use View > Detach Inspector to float it, or View > Dock panels to return the panels to their saved docking sides."
         },
         {
           "type": "paragraph",
-          "text": "Use File > New to choose a document type and size. Library contains Assets for individual drawings and Templates for editable scientific diagrams and Figure layouts. The canvas is where you draw and arrange artwork; Style or Inspector shows controls for the current selection. Simple keeps common controls close at hand; Advanced exposes detailed vector and text controls."
+          "text": "Use File > New to choose a document type and size. Library contains Assets for individual drawings and Templates for editable scientific diagrams and Figure layouts. The canvas is where you draw and arrange artwork. The Inspector has Appearance, Properties, and Layers. Appearance controls fill, line, text, opacity, and supported effects; Saved colors is available within Appearance. Properties shows geometry and object-specific settings, and Layers organizes objects. Simple and Advanced use the same dockable or floating Library and Inspector panels. The Library starts closed and can be reopened from the toolbar."
         },
         {
           "type": "image",
@@ -346,12 +346,12 @@
       ],
       "summary": "Switch workspaces while keeping documents in both open.",
       "body": [
-        "Use Figure or Presentation in the header. Figure provides an illustration canvas; Presentation adds a slide navigator, slide layouts, notes, and Present controls.",
-        "Each workspace has its own document tabs. Switching workspaces returns to the last active tab without closing the other documents.",
+        "Figure and Slidedeck are workspace views beside the document tabs. Figure provides an illustration canvas; Slidedeck provides slides, layouts, notes, and Present controls. Project slides opens the slide browser beside the canvas.",
+        "Each view has its own document tabs. Switching views returns to the last active tab without closing the other documents.",
         "New and Open activate the workspace appropriate to the document. Save and Export apply to the active document. Save Project preserves all open Figure and Presentation tabs together in an .fsproject file.",
         "Present starts playback of a Presentation; it does not change the document type or save the deck."
       ],
-      "updated": "2026-10-11"
+      "updated": "2026-11-07"
     },
     {
       "id": "document-tabs",
@@ -562,7 +562,7 @@
         "New artwork goes into the current named layer. Use Move here or the layer context menu to move a selection. Drag eligible object rows before, inside, or after a compatible destination; the destination highlight shows the intended change.",
         "Double-click a group to edit its children in Isolation Mode. Back or Escape returns to the containing artwork. Group and layer edits preserve placement and can be undone; protected imported groups may offer fewer actions."
       ],
-      "updated": "2026-10-11"
+      "updated": "2026-11-07"
     },
     {
       "id": "selection-transforms",
@@ -586,12 +586,12 @@
       "summary": "Use whole-object selection for arrangement and Direct Selection for individual points.",
       "body": [
         "Select or V moves, resizes, and rotates whole objects. Direct Selection or A edits supported path anchors, line endpoints, and connector bends. Drag a Direct Selection box from empty canvas to discover editable anchors, including those on unselected artwork. Shift extends the point selection.",
-        "Style or Inspector provides numeric position and size controls. Advanced exposes rotation, shear, exact gaps, and additional transforms where applicable. Line geometry includes start/end coordinates, length, and angle; selecting one endpoint keeps the opposite endpoint fixed during length or angle changes.",
+        "Inspector > Properties provides numeric position and size controls. Advanced exposes rotation, shear, exact gaps, and additional transforms where applicable. Line geometry includes start/end coordinates, length, and angle; selecting one endpoint keeps the opposite endpoint fixed during length or angle changes.",
         "Align and Distribute can use the selected artwork, artboard, or a chosen key object. A key object remains fixed while the other objects move. Use exact gaps when panel spacing needs a specific measurement.",
         "View contains separate Snap to Grid, Snap to Guides, and Snap to Objects choices. Smart Guides controls the temporary alignment cues. Hold Ctrl (Command on macOS) while moving, scaling, or drawing to bypass snapping for that gesture.",
         "In Figure mode, Duplicate and Repeat and Transform Again can reuse a supported previous transform. They are unavailable for artwork where repeating could break a source relationship or connector. Undo returns the artwork to its previous placement."
       ],
-      "updated": "2026-10-11"
+      "updated": "2026-11-07"
     },
     {
       "id": "paths-vectors",
@@ -675,10 +675,10 @@
         "Open Lines to see previews for plain lines, arrows, inhibition bars, dots, curved or circular routes, brackets, and custom drawing. Scroll the menu for the remaining groups.",
         "Choose Draw new, select a preset, and drag on the canvas. Straight and curved presets use their own drawing tools. Smart connectors attach to object ports; comparison brackets require the appropriate selected objects.",
         "To restyle an existing eligible line, select it, open Lines, choose Apply to selected, and click a preset. Presets for unavailable conversions are disabled; protected imported artwork must first become editable.",
-        "Style or the Advanced stroke controls provide color, width, dash, and start/end markers. Press A to adjust endpoints or supported bends. Geometry measurements appear while you draw or edit; numeric controls remain available in Inspector.",
+        "Appearance and the Advanced stroke controls provide color, width, dash, and start/end markers. Press A to adjust endpoints or supported bends. Geometry measurements appear while you draw or edit; numeric controls remain available in Inspector > Properties.",
         "Use arrow and inhibition styles consistently in a scientific diagram. A symbol does not establish a biological interaction by itself; label an ambiguous relationship and distinguish proposed relationships from measured results."
       ],
-      "updated": "2026-10-11",
+      "updated": "2026-11-07",
       "blocks": [
         {
           "type": "paragraph",
@@ -707,7 +707,7 @@
         },
         {
           "type": "paragraph",
-          "text": "Style or the Advanced stroke controls provide color, width, dash, and start/end markers. Press A to adjust endpoints or supported bends. Geometry measurements appear while you draw or edit; numeric controls remain available in Inspector."
+          "text": "Appearance and the Advanced stroke controls provide color, width, dash, and start/end markers. Press A to adjust endpoints or supported bends. Geometry measurements appear while you draw or edit; numeric controls remain available in Inspector > Properties."
         },
         {
           "type": "paragraph",
@@ -809,13 +809,13 @@
       ],
       "summary": "Apply several paints to one editable vector object.",
       "body": [
-        "Select an ordinary editable shape or path and open Appearance in Inspector, or use Object appearance commands in Advanced. The top appearance row is painted in front of lower rows.",
-        "Add fills or strokes using solid colors, gradients, or supported patterns. Each row has its own visibility, opacity, and blend mode; stroke rows also have a width. Offset Copy and Soft Shadow add supported effects.",
+        "Select an ordinary editable shape or path and open Inspector > Appearance, or use Object appearance commands in Advanced. The top appearance row is painted in front of lower rows. Open Saved colors within Appearance to reuse document colors.",
+        "Add fills or strokes using solid colors, gradients, or supported patterns. Each row has its own visibility, opacity, and blend mode; stroke rows also have a width. Offset Copy and Soft Shadow are the supported effects.",
         "Press G or choose Edit on canvas to edit a gradient. Drag its endpoints or center/radius and color stops. Double-click its axis to add a stop; select an interior stop and press Delete to remove it.",
         "Expand Appearance turns eligible paint stacks into ordinary grouped artwork. Patterns or shadows can prevent expansion. Reduce to Base Appearance removes additional paints. Both operations should be reviewed visually.",
         "Up to eight appearance items and eight authored gradient stops are supported. Text, groups, lines, protected imports, and native PDF objects use their own controls. Save and reopen retain supported appearance settings; export may differ for unsupported effects."
       ],
-      "updated": "2026-10-11"
+      "updated": "2026-11-07"
     },
     {
       "id": "graphic-styles",
@@ -856,13 +856,13 @@
       ],
       "summary": "Reuse document colors and preview coordinated changes.",
       "body": [
-        "Open Inspector > Saved colors, or Object > Saved colors in Advanced. Add a named color, then apply it to eligible fills, strokes, text, markers, or a selected gradient stop.",
+        "Open Saved colors within Inspector > Appearance, or choose Object > Saved colors in Advanced. Add a named color, then apply it to eligible fills, strokes, text, markers, or a selected gradient stop.",
         "A Global color keeps a link to the artwork that uses it: editing the color updates its linked uses. A Process color applies its current value without that continuing link.",
         "Select > Same Fill Color, Same Stroke Color, and Same Global Swatch find related artwork. Collect adds colors from an eligible selected group to the document color library.",
-        "Choose Recolor Selection to map existing colors to new values or saved colors. Review the live preview, then Apply colors; Cancel restores the starting appearance.",
+        "Choose Recolor Selection to map existing colors to new values or saved colors. Review the live preview, then choose Apply colors to commit; Cancel or Escape restores the starting appearance.",
         "Colors are saved in .fsfigure and .fsdeck files. Protected PDF artwork is not recolored by ordinary swatch controls. Add labels, patterns, or line styles when color alone would make a scientific comparison unclear."
       ],
-      "updated": "2026-10-11"
+      "updated": "2026-11-07"
     },
     {
       "id": "vector-patterns",
@@ -954,21 +954,28 @@
         "scene",
         "template",
         "CRISPR",
-        "flow cytometry"
+        "flow cytometry",
+        "endocrine",
+        "thyroid",
+        "adrenal",
+        "pituitary",
+        "islet",
+        "perifusion"
       ],
       "summary": "Find scientific symbols or insert an editable diagram.",
       "body": [
         "Open Library and choose Assets or Templates. Assets contains individual scientific drawings. Templates combines editable scientific workflows and schematics with Figure layout starters. Search and filters apply to the selected view.",
         "Use Favorites and Recent to find frequently used drawings. Related searches offers names from the matching catalog and keeps your current filters. Clear search removes only the query, keeping those filters.",
         "Choose Preview on a drawing to inspect a larger image, alternate forms or views, scientific limitations, and editable parts. Close or Escape returns to the Library without inserting or changing artwork.",
-        "Style and Palette choices in the Library affect the next insertion. The preview states those choices; it does not recolor artwork already on the canvas. Library cards always insert a new drawing.",
-        "Select one inserted Library drawing and choose Change drawing in Style or the detailed Inspector; in Presentation, use Format. The chooser changes only the selected drawing by default. A counted checkbox can include other unlocked, unmodified copies on this figure or slide. If you edited the selected drawing, review and acknowledge that changing it discards those edits. Custom drawings remain editable with the canvas tools. Changing a drawing keeps its size, position and stacking order; one Undo restores its previous artwork. Closing the chooser leaves the canvas unchanged.",
-        "Part colors names the biological regions available in the selected drawing. Change a region color or reset it without changing the other parts. These controls affect the selected drawing; the Library Palette affects the next insertion.",
-        "For a scientific template, Use as new figure creates a new document. Insert in this figure or Insert on this slide adds it to the current canvas. Its labels, symbols, and relationships remain separately editable on named layers.",
+        "Search Endocrine tissue for glandular and neurovascular drawings. Each concept has two structural forms in Styles 1–4 with matching named parts. Templates include adrenal and thyroid feedback axes, glucose–islet feedback and an islet perifusion experiment. Edit labels and conditions for your system; no measured hormone levels or secretion traces are supplied.",
+        "Drawing Styles 1–4 and Palette choices in the drawing preview are drafts for the next insertion. Choose Insert to add the drawing with those choices, or Apply colors to commit color edits to the selected drawing. Escape or Close cancels the preview and leaves the current figure unchanged. Library cards always insert a new drawing.",
+        "Select one inserted Library drawing and choose Change drawing in Appearance or Properties; in Slidedeck, open Inspector. The chooser changes only the selected drawing by default. A counted checkbox can include other unlocked, unmodified copies on this figure or slide. If you edited the selected drawing, review and acknowledge that changing it discards those edits. Custom drawings remain editable with the canvas tools. Changing a drawing keeps its size, position and stacking order; one Undo restores its previous artwork. Closing the chooser leaves the canvas unchanged.",
+        "Part colors name the biological regions available in the selected drawing. Change a region color or reset it without changing the other parts. Apply colors commits these edits; Escape or Close cancels them and preserves the figure. The Library Palette affects a new insertion.",
+        "For a scientific template, Use as new figure creates a new document. Insert in this figure or Insert on this slide adds it to the current canvas. Its labels, symbols, and relationships remain separately editable on named layers. Text labels remain editable text.",
         "Edit placeholder labels to match your experiment or biological system. Check each arrow’s meaning and remove irrelevant branches. A reusable diagram is a starting point, not evidence for a particular biological claim.",
         "Release editable paths only when you need detailed geometry changes; released paths stop behaving as one library asset. Original bundled artwork is offered for unrestricted reuse under CC0; imported third-party artwork retains its own permissions. Document setup > Sources & reuse records available source and rights information."
       ],
-      "updated": "2026-11-04"
+      "updated": "2026-11-07"
     },
     {
       "id": "results-to-deck",

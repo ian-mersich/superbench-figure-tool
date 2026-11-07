@@ -67,6 +67,14 @@
       "creation_method": "Original editable biological and experimental recipes plus a concise immunoblot revision. Existing original vectors and new neurobiology/tissue vectors are composed with live text.",
       "clean_room_scope": "Scientific sources inform relationships only. No publication or proprietary artwork, composition, prose or measured observations incorporated.",
       "third_party_material": "none_declared"
+    },
+    {
+      "id": "source.figure-studio-scene-expansion.2026-11-07",
+      "source_type": "clean_room_original_editable_vector_scene",
+      "creator": "Figure Tool",
+      "creation_method": "Original editable endocrine feedback and experimental schematics with live text and original native tissue vectors.",
+      "clean_room_scope": "Research informs biological relationships only. No publication artwork, composition or measured observation is incorporated.",
+      "third_party_material": "none_declared"
     }
   ],
   "rights_records": [
@@ -131,6 +139,18 @@
       "effective_date": "2026-11-03",
       "product_release_status": "pending_quality_and_product_review",
       "qualification": "Finite original recipes and preview artwork use the adopted repository CC0 policy. This record neither extends historical owner attestations nor qualifies product inclusion."
+    },
+    {
+      "id": "rights.figure-studio-scene-expansion.repository-cc0.2026-11-07",
+      "license": "CC0-1.0",
+      "kind": "repository_policy_license",
+      "rights_basis": "repository_policy_original_output",
+      "status": "rights_cleared",
+      "public_distribution_authorized": true,
+      "license_policy": "original-vectors.cc0.repository-policy.2026-11-07",
+      "effective_date": "2026-11-07",
+      "product_release_status": "pending_quality_and_product_review",
+      "qualification": "This finite original contribution uses the prospective repository CC0 policy. No historical personal owner grant or product qualification is extended."
     }
   ],
   "scenes": [
@@ -375,15 +395,67 @@
       "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
       "scene_sha256": "2132a5e16ec329bba010a4cecb7ba6cc97e5ecad3811e33149845fc92f355904",
       "preview_sha256": "3cba1e4e9b5c0686ff167e7687cd89c3c96031b3c9da7eeaaec95e610475eca4"
+    },
+    {
+      "scene_id": "hypothalamic-pituitary-adrenal-axis",
+      "name": "Hypothalamic–pituitary–adrenal axis",
+      "scene_file": "scenes/hypothalamic-pituitary-adrenal-axis.scene.json",
+      "preview_file": "previews/hypothalamic-pituitary-adrenal-axis.svg",
+      "source_record_id": "source.figure-studio-scene-expansion.2026-11-07",
+      "rights_record_id": "rights.figure-studio-scene-expansion.repository-cc0.2026-11-07",
+      "third_party_material": "none_declared",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "scene_sha256": "c070bc6d82522cba0841cbb49412c9c2701d764745f6087ba3bab2b3f999f01d",
+      "preview_sha256": "866d7ef7c65f94f65db5e2abc0473f7fdc88f54a3679d8c8faf61c933e7e8911"
+    },
+    {
+      "scene_id": "hypothalamic-pituitary-thyroid-axis",
+      "name": "Hypothalamic–pituitary–thyroid axis",
+      "scene_file": "scenes/hypothalamic-pituitary-thyroid-axis.scene.json",
+      "preview_file": "previews/hypothalamic-pituitary-thyroid-axis.svg",
+      "source_record_id": "source.figure-studio-scene-expansion.2026-11-07",
+      "rights_record_id": "rights.figure-studio-scene-expansion.repository-cc0.2026-11-07",
+      "third_party_material": "none_declared",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "scene_sha256": "aed988ee72525ffe8ea3804c65e7cfb299a06d188c9ce76346ec05fa60052b7c",
+      "preview_sha256": "134d1e97274c5df38478b86aae51b8d8350f57c518da415ba14c6a62a68a8e61"
+    },
+    {
+      "scene_id": "glucose-islet-feedback",
+      "name": "Glucose–islet insulin feedback",
+      "scene_file": "scenes/glucose-islet-feedback.scene.json",
+      "preview_file": "previews/glucose-islet-feedback.svg",
+      "source_record_id": "source.figure-studio-scene-expansion.2026-11-07",
+      "rights_record_id": "rights.figure-studio-scene-expansion.repository-cc0.2026-11-07",
+      "third_party_material": "none_declared",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "scene_sha256": "004f3f0c52d096e25fc8280a875847152efc364c7c130003e52c101d81b3b113",
+      "preview_sha256": "4b1ed5c36f5a1f3de15167263f0cacbe662938319cf4efe1c0528da2098a2cbf"
+    },
+    {
+      "scene_id": "islet-perifusion-experiment",
+      "name": "Islet perifusion experiment",
+      "scene_file": "scenes/islet-perifusion-experiment.scene.json",
+      "preview_file": "previews/islet-perifusion-experiment.svg",
+      "source_record_id": "source.figure-studio-scene-expansion.2026-11-07",
+      "rights_record_id": "rights.figure-studio-scene-expansion.repository-cc0.2026-11-07",
+      "third_party_material": "none_declared",
+      "release_disposition": "licensed_under_cc0_1_0_product_release_pending",
+      "scene_sha256": "e4c48b4ccb4f45c75bae7ee7e741b2d072cd0a148bef6acce208b18c66990862",
+      "preview_sha256": "c5f3d7639ec28105b055fd7017bab216191fd015c49f3824bda41d4eb00c9651"
     }
   ],
   "product_release_pending_scene_ids": [
     "angiogenic-sprouting",
     "chemical-synaptic-transmission",
     "epithelial-barrier-transwell-workflow",
+    "glucose-islet-feedback",
+    "hypothalamic-pituitary-adrenal-axis",
+    "hypothalamic-pituitary-thyroid-axis",
     "immunoblot-assay-workflow",
     "immunoprecipitation-workflow",
     "indirect-immunofluorescence-workflow",
+    "islet-perifusion-experiment",
     "rt-qpcr-expression-workflow",
     "sandwich-elisa-workflow",
     "single-cell-rna-workflow",

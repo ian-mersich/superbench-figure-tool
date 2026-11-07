@@ -88,7 +88,8 @@
     const resetAll = showResetAll
       ? `<button type="button" class="asset-colors-reset" data-asset-colors-reset aria-label="Reset this asset’s colors" title="Reset palette and part colors; keep individual component edits"${locked || !canResetAll ? " disabled" : ""}>Reset colors</button>`
       : "";
-    const header = heading || resetAll ? `<div class="asset-color-header">${heading}${resetAll}</div>` : "";
+    const headerReset = options.inlineReset ? "" : resetAll;
+    const header = heading || headerReset ? `<div class="asset-color-header">${heading}${headerReset}</div>` : "";
     const paletteOptions = palettes.map((palette) =>
       `<option value="${escape(palette.id)}"${palette.id === paletteId ? " selected" : ""}>${escape(palette.name)}</option>`
     ).join("");
@@ -105,9 +106,11 @@
     const disabledReason = typeof options.disabledReason === "string" && options.disabledReason.trim()
       ? ` title="${escape(options.disabledReason)}"` : "";
     return `<section class="scientific-asset-colors scientific-asset-colors-${mode}" data-scientific-asset-colors="${mode}"${showHeading ? ` aria-labelledby="${headingId}"` : ' aria-label="Colors"'}${disabledReason}>` + header +
+      (options.inlineReset ? `<div class="asset-palette-row">` : "") +
       `<label class="asset-palette-control" for="${prefix}-palette"><span id="${prefix}-palette-label">Palette</span>` +
       `<select id="${prefix}-palette" data-asset-palette aria-labelledby="${prefix}-palette-label"${custom ? ` aria-describedby="${hintId}"` : ""}${disabled}>${paletteOptions}</select></label>` +
-      (custom ? `<p class="asset-colors-custom-hint" id="${hintId}">Your edited part colors are kept.</p>` : "") +
+      (options.inlineReset ? `${resetAll}</div>` : "") +
+      (custom ? `<p class="asset-colors-custom-hint" id="${hintId}">${options.inlineReset ? "Edited colors kept" : "Your edited part colors are kept."}</p>` : "") +
       `<div class="asset-color-list">${rows}</div></section>`;
   }
 

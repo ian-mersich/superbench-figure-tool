@@ -1,0 +1,4911 @@
+{
+  "schema_version": "1.0.0",
+  "id": "style-4",
+  "name": "Style 4",
+  "asset_count": 64,
+  "aggregate_id": "original-style4-companions.aggregate.2026-11-07",
+  "source_supplements": [
+    {
+      "file": "expansion-20261103/manifest.json",
+      "sha256": "9149ed783517fd139a04a0eceb143a7576ed033918405a13beb4c83fa4d46244",
+      "asset_count": 40,
+      "supplement_id": "original-style4-companions.2026-11-03"
+    },
+    {
+      "file": "expansion-20261107/manifest.json",
+      "sha256": "b1114e928a90a170a23c59acadead0463beab757787aadf049d2f4855f39ab20",
+      "asset_count": 24,
+      "supplement_id": "original-style4-companions.2026-11-07"
+    }
+  ],
+  "assets": [
+    {
+      "asset_id": "neuro.chemical_synapse.bouton_spine",
+      "name": "Chemical synapse",
+      "file": "expansion-20261103/svg/chemical_synapse_bouton_spine_style4.svg",
+      "sha256": "eecacdf3f12e234ff4c658051839a9a8ae8150d10e090ba0ef698cb62889e6ed",
+      "source_pack_id": "neurobiology",
+      "source_asset_sha256": "c18782da6df9a40ee55f0a61876fc0d94c345a5f4a2e52824174117c01dbd663",
+      "geometry_sha256": "6a2176b0a9c727d5eb661b79929e298f4354b6734e8722d5a9c133d375cee00c",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-03",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-03",
+      "editable_color_regions": [
+        {
+          "id": "presynaptic",
+          "label": "Presynaptic bouton",
+          "default": "#E2A168",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#E2A168"
+            },
+            {
+              "paint": "fill",
+              "color": "#FFFFFF"
+            },
+            {
+              "paint": "fill",
+              "color": "#40566B"
+            }
+          ]
+        },
+        {
+          "id": "postsynaptic",
+          "label": "Postsynaptic structure",
+          "default": "#B7DBD3",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#B7DBD3"
+            },
+            {
+              "paint": "fill",
+              "color": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "id": "cleft",
+          "label": "Synaptic cleft",
+          "default": "#F0E2C0",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#F0E2C0"
+            },
+            {
+              "paint": "fill",
+              "color": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "id": "vesicles",
+          "label": "Synaptic vesicles",
+          "default": "#FFF7E8",
+          "paint": "both",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#FFF7E8"
+            },
+            {
+              "paint": "stroke",
+              "color": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outline",
+          "default": "#2B3642",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#2B3642"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original Style 4 companion geometry and bounded depth facets authored for Figure Tool from its original biological forms. No supplied Style 4 geometry or third-party visual material was copied."
+    },
+    {
+      "asset_id": "neuro.chemical_synapse.shaft_contact",
+      "name": "Chemical synapse",
+      "file": "expansion-20261103/svg/chemical_synapse_shaft_contact_style4.svg",
+      "sha256": "fe5e5d1b744c24eb87c08ecf971d2d59054455feba316208b8fee13445be81ff",
+      "source_pack_id": "neurobiology",
+      "source_asset_sha256": "ef6876088f583ec854d7c7e27153061f150d4036a6ad0b18084acef0a19ceb5d",
+      "geometry_sha256": "abcc133e0d26edae42c7125bfd2cee3e3ceb2c981a08c101d742511fb8e88aac",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-03",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-03",
+      "editable_color_regions": [
+        {
+          "id": "presynaptic",
+          "label": "Presynaptic bouton",
+          "default": "#E2A168",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#E2A168"
+            },
+            {
+              "paint": "fill",
+              "color": "#FFFFFF"
+            },
+            {
+              "paint": "fill",
+              "color": "#40566B"
+            }
+          ]
+        },
+        {
+          "id": "postsynaptic",
+          "label": "Postsynaptic structure",
+          "default": "#B7DBD3",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#B7DBD3"
+            },
+            {
+              "paint": "fill",
+              "color": "#FFFFFF"
+            },
+            {
+              "paint": "fill",
+              "color": "#40566B"
+            }
+          ]
+        },
+        {
+          "id": "cleft",
+          "label": "Synaptic cleft",
+          "default": "#F0E2C0",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#F0E2C0"
+            },
+            {
+              "paint": "fill",
+              "color": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "id": "vesicles",
+          "label": "Synaptic vesicles",
+          "default": "#FFF7E8",
+          "paint": "both",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#FFF7E8"
+            },
+            {
+              "paint": "stroke",
+              "color": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outline",
+          "default": "#2B3642",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#2B3642"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original Style 4 companion geometry and bounded depth facets authored for Figure Tool from its original biological forms. No supplied Style 4 geometry or third-party visual material was copied."
+    },
+    {
+      "asset_id": "neuro.axon_myelin.longitudinal",
+      "name": "Myelinated axon",
+      "file": "expansion-20261103/svg/axon_myelin_longitudinal_style4.svg",
+      "sha256": "66c45a7c461d76c1c6e7fe632c376638da6ec98a217097818f97d1427563a566",
+      "source_pack_id": "neurobiology",
+      "source_asset_sha256": "d1210160e0c719305514e8dd99ead1a48109bc4feb51ec335448efae19021097",
+      "geometry_sha256": "1c7174ac2f20555e6e1aeb3b6358bb67397a1a023bf48c0ccc11faa93ba0353d",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-03",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-03",
+      "editable_color_regions": [
+        {
+          "id": "axon",
+          "label": "Axon",
+          "default": "#E2A168",
+          "paint": "both",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#E2A168"
+            },
+            {
+              "paint": "stroke",
+              "color": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "id": "myelin",
+          "label": "Myelin",
+          "default": "#83B9D5",
+          "paint": "both",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#83B9D5"
+            },
+            {
+              "paint": "stroke",
+              "color": "#FFFFFF"
+            },
+            {
+              "paint": "stroke",
+              "color": "#40566B"
+            }
+          ]
+        },
+        {
+          "id": "periaxonal_space",
+          "label": "Periaxonal space",
+          "default": "#F5E9D5",
+          "paint": "both",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#F5E9D5"
+            },
+            {
+              "paint": "stroke",
+              "color": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outline",
+          "default": "#2B3642",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#2B3642"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original Style 4 companion geometry and bounded depth facets authored for Figure Tool from its original biological forms. No supplied Style 4 geometry or third-party visual material was copied."
+    },
+    {
+      "asset_id": "neuro.axon_myelin.transverse",
+      "name": "Myelinated axon",
+      "file": "expansion-20261103/svg/axon_myelin_transverse_style4.svg",
+      "sha256": "23e0c9c7cb7cee9638d36d2acf0b73ac501f7ba58a32331357ed115471c6b6b3",
+      "source_pack_id": "neurobiology",
+      "source_asset_sha256": "dec75168e1e8017da9ea16c01aaa50a9ef610331da00bafb53c3e458e4be4fcd",
+      "geometry_sha256": "a7a400d0f139dd54be7f081ae095879f357d36aa421bf2215602f15a5b9c93bc",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-03",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-03",
+      "editable_color_regions": [
+        {
+          "id": "axon",
+          "label": "Axon",
+          "default": "#E2A168",
+          "paint": "both",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#E2A168"
+            },
+            {
+              "paint": "stroke",
+              "color": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "id": "myelin",
+          "label": "Myelin",
+          "default": "#83B9D5",
+          "paint": "both",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#83B9D5"
+            },
+            {
+              "paint": "fill",
+              "color": "#FFFFFF"
+            },
+            {
+              "paint": "fill",
+              "color": "#8EC8FF"
+            },
+            {
+              "paint": "stroke",
+              "color": "#FFFFFF"
+            },
+            {
+              "paint": "stroke",
+              "color": "#40566B"
+            }
+          ]
+        },
+        {
+          "id": "periaxonal_space",
+          "label": "Periaxonal space",
+          "default": "#F5E9D5",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#F5E9D5"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outline",
+          "default": "#2B3642",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#2B3642"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original Style 4 companion geometry and bounded depth facets authored for Figure Tool from its original biological forms. No supplied Style 4 geometry or third-party visual material was copied."
+    },
+    {
+      "asset_id": "neuro.oligodendrocyte.multiple_sheaths",
+      "name": "Oligodendrocyte",
+      "file": "expansion-20261103/svg/oligodendrocyte_multiple_sheaths_style4.svg",
+      "sha256": "52c634c1c2ccdd91476bcf4a3dd10266a0a36225c3c5c58e9dfb0276fa0a6455",
+      "source_pack_id": "neurobiology",
+      "source_asset_sha256": "8ffb0e0dd6829de3aab41310a337c4a5f9249289ae346cd4beb05f8a5ac3eb03",
+      "geometry_sha256": "9b926a7c3f2d545fee6e94f9a2ad6b9a831d40cfb047b16086a5add92ec08ecb",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-03",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-03",
+      "editable_color_regions": [
+        {
+          "id": "cell_body",
+          "label": "Oligodendrocyte soma",
+          "default": "#B7AFE0",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#B7AFE0"
+            },
+            {
+              "paint": "fill",
+              "color": "#7B78C9"
+            },
+            {
+              "paint": "fill",
+              "color": "#FFFFFF"
+            },
+            {
+              "paint": "fill",
+              "color": "#40566B"
+            }
+          ]
+        },
+        {
+          "id": "cell_feature",
+          "label": "Cell processes",
+          "default": "#D3CDEE",
+          "paint": "both",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#D3CDEE"
+            },
+            {
+              "paint": "fill",
+              "color": "#D3CDEE"
+            },
+            {
+              "paint": "stroke",
+              "color": "#2B3642"
+            },
+            {
+              "paint": "stroke",
+              "color": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "id": "myelin",
+          "label": "Myelin sheaths",
+          "default": "#83B9D5",
+          "paint": "both",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#83B9D5"
+            },
+            {
+              "paint": "stroke",
+              "color": "#FFFFFF"
+            },
+            {
+              "paint": "stroke",
+              "color": "#40566B"
+            }
+          ]
+        },
+        {
+          "id": "axon",
+          "label": "Axons",
+          "default": "#E2A168",
+          "paint": "both",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#E2A168"
+            },
+            {
+              "paint": "stroke",
+              "color": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outline",
+          "default": "#2B3642",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#2B3642"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original Style 4 companion geometry and bounded depth facets authored for Figure Tool from its original biological forms. No supplied Style 4 geometry or third-party visual material was copied."
+    },
+    {
+      "asset_id": "neuro.oligodendrocyte.branching",
+      "name": "Oligodendrocyte",
+      "file": "expansion-20261103/svg/oligodendrocyte_branching_style4.svg",
+      "sha256": "90475925ffa5d976a8f076ce9ab07e77a065bc153941b82e22aa04828fdf87ad",
+      "source_pack_id": "neurobiology",
+      "source_asset_sha256": "4c0c669516f79e62bdff327038fd6c3144010dbcf48a34722255051fcc54f658",
+      "geometry_sha256": "e1974f131aea3282bea2c27d10e74ed14e42d4c1dfe0de654974bace88c4265e",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-03",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-03",
+      "editable_color_regions": [
+        {
+          "id": "cell_body",
+          "label": "Oligodendrocyte soma",
+          "default": "#B7AFE0",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#B7AFE0"
+            },
+            {
+              "paint": "fill",
+              "color": "#7B78C9"
+            },
+            {
+              "paint": "fill",
+              "color": "#FFFFFF"
+            },
+            {
+              "paint": "fill",
+              "color": "#40566B"
+            }
+          ]
+        },
+        {
+          "id": "cell_feature",
+          "label": "Cell processes",
+          "default": "#D3CDEE",
+          "paint": "both",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#D3CDEE"
+            },
+            {
+              "paint": "fill",
+              "color": "#D3CDEE"
+            },
+            {
+              "paint": "stroke",
+              "color": "#2B3642"
+            },
+            {
+              "paint": "stroke",
+              "color": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "id": "myelin",
+          "label": "Myelin sheaths",
+          "default": "#83B9D5",
+          "paint": "both",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#83B9D5"
+            },
+            {
+              "paint": "stroke",
+              "color": "#FFFFFF"
+            },
+            {
+              "paint": "stroke",
+              "color": "#40566B"
+            }
+          ]
+        },
+        {
+          "id": "axon",
+          "label": "Axons",
+          "default": "#E2A168",
+          "paint": "both",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#E2A168"
+            },
+            {
+              "paint": "stroke",
+              "color": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outline",
+          "default": "#2B3642",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#2B3642"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original Style 4 companion geometry and bounded depth facets authored for Figure Tool from its original biological forms. No supplied Style 4 geometry or third-party visual material was copied."
+    },
+    {
+      "asset_id": "neuro.schwann_cell.myelinating_internode",
+      "name": "Schwann cell",
+      "file": "expansion-20261103/svg/schwann_cell_myelinating_internode_style4.svg",
+      "sha256": "415e3829f8b07650734d4d5d99d6e1f27072b106e77c64cc9312d966692f8701",
+      "source_pack_id": "neurobiology",
+      "source_asset_sha256": "38bf1174ba0afaa1911fa1b49e720f2010574f4bc030a4dd802fb99dd757d38f",
+      "geometry_sha256": "cd93883fd7be29a82fa09584fad2f5d3b37a3f65143b1ab91c905a9e12819933",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-03",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-03",
+      "editable_color_regions": [
+        {
+          "id": "cell_body",
+          "label": "Schwann cell cytoplasm",
+          "default": "#C0DED6",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#C0DED6"
+            },
+            {
+              "paint": "fill",
+              "color": "#FFFFFF"
+            },
+            {
+              "paint": "fill",
+              "color": "#40566B"
+            }
+          ]
+        },
+        {
+          "id": "axon",
+          "label": "Axons",
+          "default": "#E2A168",
+          "paint": "both",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#E2A168"
+            },
+            {
+              "paint": "stroke",
+              "color": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "id": "myelin_wraps",
+          "label": "Schwann cell ensheathment",
+          "default": "#85B7D4",
+          "paint": "both",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#85B7D4"
+            },
+            {
+              "paint": "stroke",
+              "color": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "id": "periaxonal_space",
+          "label": "Periaxonal spaces",
+          "default": "#F5E9D5",
+          "paint": "both",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#F5E9D5"
+            },
+            {
+              "paint": "stroke",
+              "color": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outline",
+          "default": "#2B3642",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#2B3642"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original Style 4 companion geometry and bounded depth facets authored for Figure Tool from its original biological forms. No supplied Style 4 geometry or third-party visual material was copied."
+    },
+    {
+      "asset_id": "neuro.schwann_cell.nonmyelinating_bundle",
+      "name": "Schwann cell",
+      "file": "expansion-20261103/svg/schwann_cell_nonmyelinating_bundle_style4.svg",
+      "sha256": "060c3bfec4742dcbd8d0bdbc16855f6d9122e65b68a3fa3b3630eae29ca974a2",
+      "source_pack_id": "neurobiology",
+      "source_asset_sha256": "78fa3d6391d766679c0121255ab3a0480e709691f9be2555fa0b4d959aab91ae",
+      "geometry_sha256": "930a8a114467282d0a29242df235ec2ec573af6982ba81daedff81c9bf195de0",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-03",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-03",
+      "editable_color_regions": [
+        {
+          "id": "cell_body",
+          "label": "Schwann cell cytoplasm",
+          "default": "#C0DED6",
+          "paint": "both",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#C0DED6"
+            },
+            {
+              "paint": "stroke",
+              "color": "#D9F4E5"
+            },
+            {
+              "paint": "fill",
+              "color": "#FFFFFF"
+            },
+            {
+              "paint": "fill",
+              "color": "#40566B"
+            }
+          ]
+        },
+        {
+          "id": "axon",
+          "label": "Axons",
+          "default": "#E2A168",
+          "paint": "both",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#E2A168"
+            },
+            {
+              "paint": "stroke",
+              "color": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "id": "myelin_wraps",
+          "label": "Schwann cell ensheathment",
+          "default": "#85B7D4",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#85B7D4"
+            },
+            {
+              "paint": "stroke",
+              "color": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "id": "periaxonal_space",
+          "label": "Periaxonal spaces",
+          "default": "#F5E9D5",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#F5E9D5"
+            },
+            {
+              "paint": "stroke",
+              "color": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outline",
+          "default": "#2B3642",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#2B3642"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original Style 4 companion geometry and bounded depth facets authored for Figure Tool from its original biological forms. No supplied Style 4 geometry or third-party visual material was copied."
+    },
+    {
+      "asset_id": "neuro.dendritic_spine.mushroom",
+      "name": "Dendritic spine",
+      "file": "expansion-20261103/svg/dendritic_spine_mushroom_style4.svg",
+      "sha256": "415a4b9c07ace07aa31edeb1b69a85b45dfcfcb2e02db32ec519f17b34b17fdf",
+      "source_pack_id": "neurobiology",
+      "source_asset_sha256": "ddf059e49113536a30c8a01b84cd6a723a9853a9369c3788f564f7f77831a794",
+      "geometry_sha256": "850f8afda8eeaff96c8aa735e37d6b3cc0ad82b5ea081028b8de5642dd2498c9",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-03",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-03",
+      "editable_color_regions": [
+        {
+          "id": "dendrite",
+          "label": "Dendrite",
+          "default": "#B7DBD3",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#B7DBD3"
+            },
+            {
+              "paint": "fill",
+              "color": "#FFFFFF"
+            },
+            {
+              "paint": "fill",
+              "color": "#40566B"
+            }
+          ]
+        },
+        {
+          "id": "spine",
+          "label": "Spine",
+          "default": "#84B9D7",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#84B9D7"
+            },
+            {
+              "paint": "fill",
+              "color": "#FFFFFF"
+            },
+            {
+              "paint": "fill",
+              "color": "#40566B"
+            }
+          ]
+        },
+        {
+          "id": "postsynaptic_density",
+          "label": "Postsynaptic density",
+          "default": "#E2A168",
+          "paint": "both",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#E2A168"
+            },
+            {
+              "paint": "stroke",
+              "color": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outline",
+          "default": "#2B3642",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#2B3642"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original Style 4 companion geometry and bounded depth facets authored for Figure Tool from its original biological forms. No supplied Style 4 geometry or third-party visual material was copied."
+    },
+    {
+      "asset_id": "neuro.dendritic_spine.thin",
+      "name": "Dendritic spine",
+      "file": "expansion-20261103/svg/dendritic_spine_thin_style4.svg",
+      "sha256": "f9d3c8a52134d55375aaad73d862eb595cdcae7510c872a6c0f33f09abb5f535",
+      "source_pack_id": "neurobiology",
+      "source_asset_sha256": "31928f143b7a8fc02e651d28115b22b3a3895a3f64f416078dd64dcd1755f65d",
+      "geometry_sha256": "7396313b28fec4f9d2b3965f130e66810c425bc597090fe930ac6a952c872b0b",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-03",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-03",
+      "editable_color_regions": [
+        {
+          "id": "dendrite",
+          "label": "Dendrite",
+          "default": "#B7DBD3",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#B7DBD3"
+            },
+            {
+              "paint": "fill",
+              "color": "#FFFFFF"
+            },
+            {
+              "paint": "fill",
+              "color": "#40566B"
+            }
+          ]
+        },
+        {
+          "id": "spine",
+          "label": "Spine",
+          "default": "#84B9D7",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#84B9D7"
+            },
+            {
+              "paint": "fill",
+              "color": "#FFFFFF"
+            },
+            {
+              "paint": "fill",
+              "color": "#40566B"
+            }
+          ]
+        },
+        {
+          "id": "postsynaptic_density",
+          "label": "Postsynaptic density",
+          "default": "#E2A168",
+          "paint": "both",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#E2A168"
+            },
+            {
+              "paint": "stroke",
+              "color": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outline",
+          "default": "#2B3642",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#2B3642"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original Style 4 companion geometry and bounded depth facets authored for Figure Tool from its original biological forms. No supplied Style 4 geometry or third-party visual material was copied."
+    },
+    {
+      "asset_id": "neuro.axon_terminal.single_bouton",
+      "name": "Axon terminal",
+      "file": "expansion-20261103/svg/axon_terminal_single_bouton_style4.svg",
+      "sha256": "15b7951187ce32ea6ec19a701e025605fe7d742ef1262421f3443ef8faaa03d1",
+      "source_pack_id": "neurobiology",
+      "source_asset_sha256": "a8118395e181237972e35ce5c475f3506f9e4f6782d62b4e80f92dfb3e24ad44",
+      "geometry_sha256": "b624efb6573a3fbfb6cc1e31074c8c0686e2e3b74133e1ddf403076b438fb311",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-03",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-03",
+      "editable_color_regions": [
+        {
+          "id": "axon",
+          "label": "Axon",
+          "default": "#E2A168",
+          "paint": "both",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#E2A168"
+            },
+            {
+              "paint": "stroke",
+              "color": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "id": "terminal",
+          "label": "Terminal boutons",
+          "default": "#E2A168",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#E2A168"
+            },
+            {
+              "paint": "fill",
+              "color": "#FFFFFF"
+            },
+            {
+              "paint": "fill",
+              "color": "#40566B"
+            }
+          ]
+        },
+        {
+          "id": "vesicles",
+          "label": "Vesicle marks",
+          "default": "#FFF7E8",
+          "paint": "both",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#FFF7E8"
+            },
+            {
+              "paint": "stroke",
+              "color": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outline",
+          "default": "#2B3642",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#2B3642"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original Style 4 companion geometry and bounded depth facets authored for Figure Tool from its original biological forms. No supplied Style 4 geometry or third-party visual material was copied."
+    },
+    {
+      "asset_id": "neuro.axon_terminal.branched_terminals",
+      "name": "Axon terminal",
+      "file": "expansion-20261103/svg/axon_terminal_branched_terminals_style4.svg",
+      "sha256": "d56c99c65d19b458fa6696c6c4ded2a287ce46b00dc3ba09d69af74b415b13e9",
+      "source_pack_id": "neurobiology",
+      "source_asset_sha256": "5117aed48db2b6c4a364df127b6f5dd4dad7f7403f3547094bb65601f1e34e71",
+      "geometry_sha256": "afb81481adda87ea279205a02e94277a503f42dffdebe59d76cd1c69e28662c3",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-03",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-03",
+      "editable_color_regions": [
+        {
+          "id": "axon",
+          "label": "Axon",
+          "default": "#E2A168",
+          "paint": "both",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#E2A168"
+            },
+            {
+              "paint": "stroke",
+              "color": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "id": "terminal",
+          "label": "Terminal boutons",
+          "default": "#E2A168",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#E2A168"
+            },
+            {
+              "paint": "fill",
+              "color": "#FFFFFF"
+            },
+            {
+              "paint": "fill",
+              "color": "#40566B"
+            }
+          ]
+        },
+        {
+          "id": "vesicles",
+          "label": "Vesicle marks",
+          "default": "#FFF7E8",
+          "paint": "both",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#FFF7E8"
+            },
+            {
+              "paint": "stroke",
+              "color": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outline",
+          "default": "#2B3642",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#2B3642"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original Style 4 companion geometry and bounded depth facets authored for Figure Tool from its original biological forms. No supplied Style 4 geometry or third-party visual material was copied."
+    },
+    {
+      "asset_id": "neuro.neuron_astrocyte_contact.single_synapse",
+      "name": "Neuron–astrocyte contact",
+      "file": "expansion-20261103/svg/neuron_astrocyte_contact_single_synapse_style4.svg",
+      "sha256": "a39120e7cb3165810f82ab8ecd9954abd23671ef46b899450afb16d83b93e586",
+      "source_pack_id": "neurobiology",
+      "source_asset_sha256": "176c05dba4667baad72e665837ffb20f779ec9a0972b22af3a751d2064c745a1",
+      "geometry_sha256": "52b7fdefe0679da508ba9aeae1cbc432eceb31900deb6b82e5129dfdf055ff12",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-03",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-03",
+      "editable_color_regions": [
+        {
+          "id": "neuron",
+          "label": "Postsynaptic neuron",
+          "default": "#84B9D7",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#84B9D7"
+            },
+            {
+              "paint": "fill",
+              "color": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "id": "presynaptic",
+          "label": "Presynaptic terminal",
+          "default": "#E2A168",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#E2A168"
+            },
+            {
+              "paint": "fill",
+              "color": "#FFFFFF"
+            },
+            {
+              "paint": "fill",
+              "color": "#40566B"
+            }
+          ]
+        },
+        {
+          "id": "astrocyte",
+          "label": "Astrocyte processes",
+          "default": "#AEA5D6",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#AEA5D6"
+            },
+            {
+              "paint": "stroke",
+              "color": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "id": "cleft",
+          "label": "Synaptic cleft",
+          "default": "#F0E2C0",
+          "paint": "both",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#F0E2C0"
+            },
+            {
+              "paint": "stroke",
+              "color": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outline",
+          "default": "#2B3642",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#2B3642"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original Style 4 companion geometry and bounded depth facets authored for Figure Tool from its original biological forms. No supplied Style 4 geometry or third-party visual material was copied."
+    },
+    {
+      "asset_id": "neuro.neuron_astrocyte_contact.process_network",
+      "name": "Neuron–astrocyte contact",
+      "file": "expansion-20261103/svg/neuron_astrocyte_contact_process_network_style4.svg",
+      "sha256": "8291dc6b59669b5d9e09efaf3084c85ffb293f48a98d964c5b27b5a509a12685",
+      "source_pack_id": "neurobiology",
+      "source_asset_sha256": "75fca16a8f9e2b718e191cc71313a9b7fe6083df89a4d9bae9160e8365fa0139",
+      "geometry_sha256": "f66598f41a696ede1eda589fd12ab86617cb8eea4747e5b9b87d093c3a0c7285",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-03",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-03",
+      "editable_color_regions": [
+        {
+          "id": "neuron",
+          "label": "Postsynaptic neuron",
+          "default": "#84B9D7",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#84B9D7"
+            },
+            {
+              "paint": "fill",
+              "color": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "id": "presynaptic",
+          "label": "Presynaptic terminal",
+          "default": "#E2A168",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#E2A168"
+            },
+            {
+              "paint": "fill",
+              "color": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "id": "astrocyte",
+          "label": "Astrocyte processes",
+          "default": "#AEA5D6",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#AEA5D6"
+            },
+            {
+              "paint": "stroke",
+              "color": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "id": "cleft",
+          "label": "Synaptic cleft",
+          "default": "#F0E2C0",
+          "paint": "both",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#F0E2C0"
+            },
+            {
+              "paint": "stroke",
+              "color": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outline",
+          "default": "#2B3642",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#2B3642"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original Style 4 companion geometry and bounded depth facets authored for Figure Tool from its original biological forms. No supplied Style 4 geometry or third-party visual material was copied."
+    },
+    {
+      "asset_id": "neuro.microglia_contact.surveying",
+      "name": "Microglial process contact",
+      "file": "expansion-20261103/svg/microglia_contact_surveying_style4.svg",
+      "sha256": "05e1a5ebba417e7027a494962c7d2418821a30a6818e99631ed2a839a12db6c4",
+      "source_pack_id": "neurobiology",
+      "source_asset_sha256": "1b17adb3f2fadc3094386b9077e26c485950cca1f19804076de1d05fdf58caa9",
+      "geometry_sha256": "a613991f327e6b0b70bfdb1aeb894e8e9c51ed40741ee8975b95ad6c0ba2d5d7",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-03",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-03",
+      "editable_color_regions": [
+        {
+          "id": "microglia",
+          "label": "Microglial soma",
+          "default": "#B7AFE0",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#B7AFE0"
+            },
+            {
+              "paint": "fill",
+              "color": "#FFFFFF"
+            },
+            {
+              "paint": "fill",
+              "color": "#40566B"
+            }
+          ]
+        },
+        {
+          "id": "process",
+          "label": "Microglial processes",
+          "default": "#D3CDEE",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#D3CDEE"
+            },
+            {
+              "paint": "stroke",
+              "color": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "id": "neural_target",
+          "label": "Neuronal elements",
+          "default": "#B7DBD3",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#B7DBD3"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outline",
+          "default": "#2B3642",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#2B3642"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original Style 4 companion geometry and bounded depth facets authored for Figure Tool from its original biological forms. No supplied Style 4 geometry or third-party visual material was copied."
+    },
+    {
+      "asset_id": "neuro.microglia_contact.synaptic_contact",
+      "name": "Microglial process contact",
+      "file": "expansion-20261103/svg/microglia_contact_synaptic_contact_style4.svg",
+      "sha256": "546c9392aa80879bd512562f845a20687e88a2eca549bc866237c69797d2effd",
+      "source_pack_id": "neurobiology",
+      "source_asset_sha256": "763d7803be7934a69e47cd873a884f25cf2d4d218effc852b3fe9878bf58bf2d",
+      "geometry_sha256": "1a6819e4a2b33e201942588e3f32505ce38e55a326eca2233fadfa1948c7ad2f",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-03",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-03",
+      "editable_color_regions": [
+        {
+          "id": "microglia",
+          "label": "Microglial soma",
+          "default": "#B7AFE0",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#B7AFE0"
+            },
+            {
+              "paint": "fill",
+              "color": "#FFFFFF"
+            },
+            {
+              "paint": "fill",
+              "color": "#40566B"
+            }
+          ]
+        },
+        {
+          "id": "process",
+          "label": "Microglial processes",
+          "default": "#D3CDEE",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#D3CDEE"
+            },
+            {
+              "paint": "stroke",
+              "color": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "id": "neural_target",
+          "label": "Neuronal elements",
+          "default": "#B7DBD3",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#B7DBD3"
+            },
+            {
+              "paint": "fill",
+              "color": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outline",
+          "default": "#2B3642",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#2B3642"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original Style 4 companion geometry and bounded depth facets authored for Figure Tool from its original biological forms. No supplied Style 4 geometry or third-party visual material was copied."
+    },
+    {
+      "asset_id": "neuro.node_of_ranvier.paired_internodes",
+      "name": "Node of Ranvier",
+      "file": "expansion-20261103/svg/node_of_ranvier_paired_internodes_style4.svg",
+      "sha256": "791e9ea663461efcd6b532a7cfad0f598d1be2e59791266354f0f423aee8af5a",
+      "source_pack_id": "neurobiology",
+      "source_asset_sha256": "f8ddac5d4e0976a8d5994cf933bb7a23aa3be3ec83867ae8112bf6e1decf2b97",
+      "geometry_sha256": "cb23005ab286a7c79cb3258ad6dd5d1bdc2801561815afd67633a1ad7550e3fc",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-03",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-03",
+      "editable_color_regions": [
+        {
+          "id": "axon",
+          "label": "Axon",
+          "default": "#E2A168",
+          "paint": "both",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#E2A168"
+            },
+            {
+              "paint": "stroke",
+              "color": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "id": "myelin",
+          "label": "Myelin internodes",
+          "default": "#83B9D5",
+          "paint": "both",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#83B9D5"
+            },
+            {
+              "paint": "stroke",
+              "color": "#FFFFFF"
+            },
+            {
+              "paint": "stroke",
+              "color": "#40566B"
+            }
+          ]
+        },
+        {
+          "id": "nodal_region",
+          "label": "Nodal region",
+          "default": "#F0E2C0",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#F0E2C0"
+            },
+            {
+              "paint": "fill",
+              "color": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outline",
+          "default": "#2B3642",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#2B3642"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original Style 4 companion geometry and bounded depth facets authored for Figure Tool from its original biological forms. No supplied Style 4 geometry or third-party visual material was copied."
+    },
+    {
+      "asset_id": "neuro.node_of_ranvier.channel_region",
+      "name": "Node of Ranvier",
+      "file": "expansion-20261103/svg/node_of_ranvier_channel_region_style4.svg",
+      "sha256": "266b29cf20cbc626985e099e3b9f88750b0347a3eec0b630238dc9dd3bc6351c",
+      "source_pack_id": "neurobiology",
+      "source_asset_sha256": "3352d9fa7706841c3000f0821222ff6b9cfd9ec9302438ea27e6ab6e58a57a4e",
+      "geometry_sha256": "71ce3a4e443ed3b3015bdf7dab52356a0afc097ff34a894660c04471411cf0c1",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-03",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-03",
+      "editable_color_regions": [
+        {
+          "id": "axon",
+          "label": "Axon",
+          "default": "#E2A168",
+          "paint": "both",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#E2A168"
+            },
+            {
+              "paint": "stroke",
+              "color": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "id": "myelin",
+          "label": "Myelin internodes",
+          "default": "#83B9D5",
+          "paint": "both",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#83B9D5"
+            },
+            {
+              "paint": "stroke",
+              "color": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "id": "nodal_region",
+          "label": "Nodal region",
+          "default": "#F4A261",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#F0E2C0"
+            },
+            {
+              "paint": "fill",
+              "color": "#F4A261"
+            },
+            {
+              "paint": "fill",
+              "color": "#FFF7E8"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outline",
+          "default": "#2B3642",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#2B3642"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original Style 4 companion geometry and bounded depth facets authored for Figure Tool from its original biological forms. No supplied Style 4 geometry or third-party visual material was copied."
+    },
+    {
+      "asset_id": "neuro.neural_circuit.feedforward_chain",
+      "name": "Neural circuit",
+      "file": "expansion-20261103/svg/neural_circuit_feedforward_chain_style4.svg",
+      "sha256": "c1e7ec4ab84dd94fa3ee6e5a530add7097aaaac50c1e5715fff6d61004abee77",
+      "source_pack_id": "neurobiology",
+      "source_asset_sha256": "b08806b0235463cba91d21ca7425bf119213e6feb719609e9da0c5197ab30548",
+      "geometry_sha256": "0fc451fb87804a896a4d503e9b0bf0341554cf4c7791949a4103423fa80bfa4e",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-03",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-03",
+      "editable_color_regions": [
+        {
+          "id": "neuron",
+          "label": "Neuronal nodes",
+          "default": "#84B9D7",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#84B9D7"
+            },
+            {
+              "paint": "fill",
+              "color": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "id": "connection",
+          "label": "Directional connections",
+          "default": "#83B9D5",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#83B9D5"
+            },
+            {
+              "paint": "stroke",
+              "color": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "id": "arrow",
+          "label": "Arrowheads",
+          "default": "#E2A168",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#E2A168"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outline",
+          "default": "#2B3642",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#2B3642"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original Style 4 companion geometry and bounded depth facets authored for Figure Tool from its original biological forms. No supplied Style 4 geometry or third-party visual material was copied."
+    },
+    {
+      "asset_id": "neuro.neural_circuit.convergent_inputs",
+      "name": "Neural circuit",
+      "file": "expansion-20261103/svg/neural_circuit_convergent_inputs_style4.svg",
+      "sha256": "4324188ccaa15b14c4528ba9e1819646bbd270d693d6b3cb2040f379ab914f60",
+      "source_pack_id": "neurobiology",
+      "source_asset_sha256": "a2e5ded33958385d90cdf189fcc3932c75039e6ebe9aed0e3001263d18c686ca",
+      "geometry_sha256": "020412e33b1ed16193a5fa2790622ffef88a8da4ce0a0c7995ad644487544f62",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-03",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-03",
+      "editable_color_regions": [
+        {
+          "id": "neuron",
+          "label": "Neuronal nodes",
+          "default": "#84B9D7",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#84B9D7"
+            },
+            {
+              "paint": "fill",
+              "color": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "id": "connection",
+          "label": "Directional connections",
+          "default": "#83B9D5",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#83B9D5"
+            },
+            {
+              "paint": "stroke",
+              "color": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "id": "arrow",
+          "label": "Arrowheads",
+          "default": "#E2A168",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#E2A168"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outline",
+          "default": "#2B3642",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#2B3642"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original Style 4 companion geometry and bounded depth facets authored for Figure Tool from its original biological forms. No supplied Style 4 geometry or third-party visual material was copied."
+    },
+    {
+      "asset_id": "tissue.epithelial_sheet.lateral",
+      "name": "Epithelial Sheet",
+      "file": "expansion-20261103/svg/epithelial_sheet_lateral_style4.svg",
+      "sha256": "a27e13c93ade985f6adf1077a33310d810b691438578a44765613e6ab76df246",
+      "source_pack_id": "tissue-vascular",
+      "source_asset_sha256": "e8fb73342485a02f3111c5b280d881556ce8515070bfa330f071488e8cc2ea92",
+      "geometry_sha256": "0b0caa3249e56adabf634a56102308a27cc5429140f0ee13a6628e35f2590235",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-03",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-03",
+      "editable_color_regions": [
+        {
+          "id": "primary_population",
+          "label": "Epithelial cells",
+          "default": "#D8EDE5",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#D8EDE5"
+            },
+            {
+              "paint": "fill",
+              "color": "#294652"
+            },
+            {
+              "paint": "fill",
+              "color": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "id": "model_structure",
+          "label": "Cell junctions",
+          "default": "#C88770",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#C88770"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#314955",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#314955"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original Style 4 companion geometry and bounded depth facets authored for Figure Tool from its original biological forms. No supplied Style 4 geometry or third-party visual material was copied."
+    },
+    {
+      "asset_id": "tissue.epithelial_sheet.apical",
+      "name": "Epithelial Sheet",
+      "file": "expansion-20261103/svg/epithelial_sheet_apical_style4.svg",
+      "sha256": "3eec36b51bfae6ca4a275f850184c804d62350630615f446706c0aacbfd2ee97",
+      "source_pack_id": "tissue-vascular",
+      "source_asset_sha256": "fdfe1944eb3b0736fabd0ff8a3673213f4bfaf41b06740d33f5291a1b1890fbc",
+      "geometry_sha256": "9f709cc779049a540dcce2ba05d6a60df1f97cb72362295c9b3e3a4bc4d4a1fc",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-03",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-03",
+      "editable_color_regions": [
+        {
+          "id": "primary_population",
+          "label": "Epithelial cells",
+          "default": "#D8EDE5",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#D8EDE5"
+            },
+            {
+              "paint": "fill",
+              "color": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "id": "model_structure",
+          "label": "Cell junctions",
+          "default": "#C88770",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#C88770"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#314955",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#314955"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original Style 4 companion geometry and bounded depth facets authored for Figure Tool from its original biological forms. No supplied Style 4 geometry or third-party visual material was copied."
+    },
+    {
+      "asset_id": "tissue.epithelial_acinus.closed_lumen",
+      "name": "Epithelial Acinus",
+      "file": "expansion-20261103/svg/epithelial_acinus_closed_lumen_style4.svg",
+      "sha256": "a20b091afd68a2b044310067a70037c25068311c6f1bca386235a2b70b438e67",
+      "source_pack_id": "tissue-vascular",
+      "source_asset_sha256": "25de0ff18c9de0c68b7aa84f4382219dd057c66ca9b9936b4557a42e50048f26",
+      "geometry_sha256": "57f4d06a907f22be29b83fd80cdadb5eef06840261a3bb7c4eaec2462e2919f5",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-03",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-03",
+      "editable_color_regions": [
+        {
+          "id": "epithelium",
+          "label": "Epithelial cells",
+          "default": "#D8EDE5",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#D8EDE5"
+            },
+            {
+              "paint": "fill",
+              "color": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "id": "lumen",
+          "label": "Lumen",
+          "default": "#FFF9ED",
+          "paint": "both",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#FFF9ED"
+            },
+            {
+              "paint": "stroke",
+              "color": "#314955"
+            }
+          ]
+        },
+        {
+          "id": "matrix",
+          "label": "Basal boundary",
+          "default": "#A9D2AE",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#A9D2AE"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#314955",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#314955"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original Style 4 companion geometry and bounded depth facets authored for Figure Tool from its original biological forms. No supplied Style 4 geometry or third-party visual material was copied."
+    },
+    {
+      "asset_id": "tissue.epithelial_acinus.section",
+      "name": "Epithelial Acinus",
+      "file": "expansion-20261103/svg/epithelial_acinus_section_style4.svg",
+      "sha256": "c966572025897d4e250f43dfd2fe4b1fe3d12b77102f7489626ae3eb3809e9b3",
+      "source_pack_id": "tissue-vascular",
+      "source_asset_sha256": "8d220a186249207641b507092d868634e2b5a15193ff5f1d68aad83492dc7ce8",
+      "geometry_sha256": "9ce76de763a396ec919cd4c34faec370b61536dca778eb740ebca3fdcb2d9bfe",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-03",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-03",
+      "editable_color_regions": [
+        {
+          "id": "epithelium",
+          "label": "Epithelial cells",
+          "default": "#D8EDE5",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#D8EDE5"
+            },
+            {
+              "paint": "fill",
+              "color": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "id": "lumen",
+          "label": "Lumen",
+          "default": "#FFF9ED",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#FFF9ED"
+            }
+          ]
+        },
+        {
+          "id": "matrix",
+          "label": "Basal boundary",
+          "default": "#A9D2AE",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#A9D2AE"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#314955",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#314955"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original Style 4 companion geometry and bounded depth facets authored for Figure Tool from its original biological forms. No supplied Style 4 geometry or third-party visual material was copied."
+    },
+    {
+      "asset_id": "tissue.capillary.longitudinal",
+      "name": "Capillary",
+      "file": "expansion-20261103/svg/capillary_longitudinal_style4.svg",
+      "sha256": "282c3c5499eb38614bff84dfeceef7042747d0a6269834b5d4ababafb769c906",
+      "source_pack_id": "tissue-vascular",
+      "source_asset_sha256": "ffa22f115a13cc42c73c616b765ad2d2a88e25fc7917e93b7761ded3eb76c227",
+      "geometry_sha256": "870da1484b0fab7adff5ccde1c07c8baf5613e79d49b2efbc63c3a31cd4b4ae2",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-03",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-03",
+      "editable_color_regions": [
+        {
+          "id": "endothelium",
+          "label": "Endothelial wall",
+          "default": "#D8EDE5",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#D8EDE5"
+            },
+            {
+              "paint": "fill",
+              "color": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "id": "lumen",
+          "label": "Lumen",
+          "default": "#FFF9ED",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#FFF9ED"
+            }
+          ]
+        },
+        {
+          "id": "matrix",
+          "label": "Outer support",
+          "default": "#A9D2AE",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#A9D2AE"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#314955",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#314955"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original Style 4 companion geometry and bounded depth facets authored for Figure Tool from its original biological forms. No supplied Style 4 geometry or third-party visual material was copied."
+    },
+    {
+      "asset_id": "tissue.capillary.transverse",
+      "name": "Capillary",
+      "file": "expansion-20261103/svg/capillary_transverse_style4.svg",
+      "sha256": "2f56eb6d145ef7196bfbdbf72e62aa69ba496ff030f4d71b52536ad3ade5fd35",
+      "source_pack_id": "tissue-vascular",
+      "source_asset_sha256": "d4c741a32e4c1c6a5b2c2250b90103e78f273b43aa2dd27c448cb22ff9be3243",
+      "geometry_sha256": "b803f6028d920de0e31bee7067c5833a362cf1cff7492890af9f82c3b5e25064",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-03",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-03",
+      "editable_color_regions": [
+        {
+          "id": "endothelium",
+          "label": "Endothelial wall",
+          "default": "#D8EDE5",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#D8EDE5"
+            },
+            {
+              "paint": "fill",
+              "color": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "id": "lumen",
+          "label": "Lumen",
+          "default": "#FFF9ED",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#FFF9ED"
+            }
+          ]
+        },
+        {
+          "id": "matrix",
+          "label": "Outer support",
+          "default": "#A9D2AE",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#A9D2AE"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#314955",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#314955"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original Style 4 companion geometry and bounded depth facets authored for Figure Tool from its original biological forms. No supplied Style 4 geometry or third-party visual material was copied."
+    },
+    {
+      "asset_id": "tissue.vessel_wall.thicker_wall",
+      "name": "Blood Vessel Wall",
+      "file": "expansion-20261103/svg/vessel_wall_thicker_wall_style4.svg",
+      "sha256": "9a31bb0706c48bec64a465619dbf2834b0557fc00f029e737006edf3de484efe",
+      "source_pack_id": "tissue-vascular",
+      "source_asset_sha256": "ae0f784f868a0a16711fff7f36f7a9a7c96f050e9e299990e96f0aba0fe0e56f",
+      "geometry_sha256": "d657f5f6ad0b8f321138eeb960471fe3cc47eff2d076b0504141f28e1e8e0fde",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-03",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-03",
+      "editable_color_regions": [
+        {
+          "id": "endothelium",
+          "label": "Endothelial layer",
+          "default": "#D8EDE5",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#D8EDE5"
+            }
+          ]
+        },
+        {
+          "id": "smooth_muscle",
+          "label": "Smooth-muscle layer",
+          "default": "#D98772",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#D98772"
+            },
+            {
+              "paint": "fill",
+              "color": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "id": "matrix",
+          "label": "Outer connective layer",
+          "default": "#A9D2AE",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#A9D2AE"
+            }
+          ]
+        },
+        {
+          "id": "lumen",
+          "label": "Lumen",
+          "default": "#FFF9ED",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#FFF9ED"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#314955",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#314955"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original Style 4 companion geometry and bounded depth facets authored for Figure Tool from its original biological forms. No supplied Style 4 geometry or third-party visual material was copied."
+    },
+    {
+      "asset_id": "tissue.vessel_wall.thinner_wall",
+      "name": "Blood Vessel Wall",
+      "file": "expansion-20261103/svg/vessel_wall_thinner_wall_style4.svg",
+      "sha256": "e4dd652bf8922d5790cb4c0b4f57cce5b0a2d79c63243efe7f1f1af07a71af35",
+      "source_pack_id": "tissue-vascular",
+      "source_asset_sha256": "8ed12c0b55fe9157de1126ec265c803956312787f66d64db3bc32f00e7f95597",
+      "geometry_sha256": "4057f4b19107c7ba5cda79e5f64b85d9baaff6b2dbd1e5a6e15672dc211e4f64",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-03",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-03",
+      "editable_color_regions": [
+        {
+          "id": "endothelium",
+          "label": "Endothelial layer",
+          "default": "#D8EDE5",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#D8EDE5"
+            }
+          ]
+        },
+        {
+          "id": "smooth_muscle",
+          "label": "Smooth-muscle layer",
+          "default": "#D98772",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#D98772"
+            },
+            {
+              "paint": "fill",
+              "color": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "id": "matrix",
+          "label": "Outer connective layer",
+          "default": "#A9D2AE",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#A9D2AE"
+            }
+          ]
+        },
+        {
+          "id": "lumen",
+          "label": "Lumen",
+          "default": "#FFF9ED",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#FFF9ED"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#314955",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#314955"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original Style 4 companion geometry and bounded depth facets authored for Figure Tool from its original biological forms. No supplied Style 4 geometry or third-party visual material was copied."
+    },
+    {
+      "asset_id": "tissue.lymphatic_capillary.blind_end",
+      "name": "Lymphatic Capillary",
+      "file": "expansion-20261103/svg/lymphatic_capillary_blind_end_style4.svg",
+      "sha256": "866305a69d97ec34ed9ef979195ea57ec4f5636f257d893ff980e71d1afcc823",
+      "source_pack_id": "tissue-vascular",
+      "source_asset_sha256": "efc6213eae35f4462249211309695c4013530c04645eff37bad8d2cfd2537947",
+      "geometry_sha256": "656ee0a23196b76eab3f9c448bb197b13be171392480239a0cfc029e0f7ec083",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-03",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-03",
+      "editable_color_regions": [
+        {
+          "id": "lymphatic_wall",
+          "label": "Lymphatic wall",
+          "default": "#D8EDE5",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#D8EDE5"
+            },
+            {
+              "paint": "fill",
+              "color": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "id": "lymph_cargo",
+          "label": "Tissue-fluid cue",
+          "default": "#8EC4DB",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#8EC4DB"
+            }
+          ]
+        },
+        {
+          "id": "matrix",
+          "label": "Surrounding tissue",
+          "default": "#A9D2AE",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#A9D2AE"
+            }
+          ]
+        },
+        {
+          "id": "lymphatic_lumen",
+          "label": "Lumen",
+          "default": "#FFF9ED",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#FFF9ED"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#314955",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#314955"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original Style 4 companion geometry and bounded depth facets authored for Figure Tool from its original biological forms. No supplied Style 4 geometry or third-party visual material was copied."
+    },
+    {
+      "asset_id": "tissue.lymphatic_capillary.tissue_interface",
+      "name": "Lymphatic Capillary",
+      "file": "expansion-20261103/svg/lymphatic_capillary_tissue_interface_style4.svg",
+      "sha256": "9189892f6070b71a3d98214496b081ba1368f9a72d271001e307d615b1b6268b",
+      "source_pack_id": "tissue-vascular",
+      "source_asset_sha256": "12b3853e177673a8e003a73f3c16fcc65c8b573da8115eaf0d365fcd28840d54",
+      "geometry_sha256": "4becaadb495d52a1a05a05dacc29c6fede8185c2d96fd77499f29123f0e00a97",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-03",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-03",
+      "editable_color_regions": [
+        {
+          "id": "lymphatic_wall",
+          "label": "Lymphatic wall",
+          "default": "#D8EDE5",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#D8EDE5"
+            }
+          ]
+        },
+        {
+          "id": "lymph_cargo",
+          "label": "Tissue-fluid cue",
+          "default": "#8EC4DB",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#8EC4DB"
+            }
+          ]
+        },
+        {
+          "id": "matrix",
+          "label": "Surrounding tissue",
+          "default": "#A9D2AE",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#A9D2AE"
+            }
+          ]
+        },
+        {
+          "id": "lymphatic_lumen",
+          "label": "Lumen",
+          "default": "#FFF9ED",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#FFF9ED"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#314955",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#314955"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original Style 4 companion geometry and bounded depth facets authored for Figure Tool from its original biological forms. No supplied Style 4 geometry or third-party visual material was copied."
+    },
+    {
+      "asset_id": "tissue.angiogenic_sprout.single_tip",
+      "name": "Angiogenic Sprout",
+      "file": "expansion-20261103/svg/angiogenic_sprout_single_tip_style4.svg",
+      "sha256": "4e63057475cd4a2d09a51aa0a453aca2814ed320b125100db3a3e823e29a0e4d",
+      "source_pack_id": "tissue-vascular",
+      "source_asset_sha256": "5345dd236cb052d0464e062bb315ebc04ab048666f1073bd4c5e78b069bad413",
+      "geometry_sha256": "a2623f185bf473ed57a471b7ddffe7eb79a87077727382c45a7b2fefd6a1f46b",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-03",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-03",
+      "editable_color_regions": [
+        {
+          "id": "vessel_wall",
+          "label": "Endothelial sprout",
+          "default": "#D8EDE5",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#D8EDE5"
+            },
+            {
+              "paint": "fill",
+              "color": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "id": "matrix",
+          "label": "Surrounding matrix",
+          "default": "#A9D2AE",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#A9D2AE"
+            }
+          ]
+        },
+        {
+          "id": "lumen",
+          "label": "Vessel lumen",
+          "default": "#FFF9ED",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#FFF9ED"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#314955",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#314955"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original Style 4 companion geometry and bounded depth facets authored for Figure Tool from its original biological forms. No supplied Style 4 geometry or third-party visual material was copied."
+    },
+    {
+      "asset_id": "tissue.angiogenic_sprout.branching",
+      "name": "Angiogenic Sprout",
+      "file": "expansion-20261103/svg/angiogenic_sprout_branching_style4.svg",
+      "sha256": "a677043ecee7ab6023130dd10a2ea7dfb3da5206d34bd30d7c7d05de3d7c2a17",
+      "source_pack_id": "tissue-vascular",
+      "source_asset_sha256": "07aafa986b90a5deec80a0f844afe3e86d23aec31f777076d1d7e8fd325d9fea",
+      "geometry_sha256": "afe92322ca9c6c4950227156d89001cd22fdade4a29352ff7569f26d814d44ec",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-03",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-03",
+      "editable_color_regions": [
+        {
+          "id": "vessel_wall",
+          "label": "Endothelial sprout",
+          "default": "#D8EDE5",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#D8EDE5"
+            },
+            {
+              "paint": "fill",
+              "color": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "id": "matrix",
+          "label": "Surrounding matrix",
+          "default": "#A9D2AE",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#A9D2AE"
+            }
+          ]
+        },
+        {
+          "id": "lumen",
+          "label": "Vessel lumen",
+          "default": "#FFF9ED",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#FFF9ED"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#314955",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#314955"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original Style 4 companion geometry and bounded depth facets authored for Figure Tool from its original biological forms. No supplied Style 4 geometry or third-party visual material was copied."
+    },
+    {
+      "asset_id": "tissue.collagen.bundle",
+      "name": "Collagen Matrix",
+      "file": "expansion-20261103/svg/collagen_bundle_style4.svg",
+      "sha256": "57a8c8afa7667ae88a2d309870ac6268ab088f72c2b94a502221e70c8f2f760a",
+      "source_pack_id": "tissue-vascular",
+      "source_asset_sha256": "34da96c2f30bc909946f7fd60dc15c5b14204f6282cb48ebfcfb834ab1c50296",
+      "geometry_sha256": "91aba8c088961f70666ae85325b56f37b14b520c1d0bde9bd1cb3f7e07037066",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-03",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-03",
+      "editable_color_regions": [
+        {
+          "id": "matrix_fibers",
+          "label": "Collagen fibers",
+          "default": "#314955",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#314955"
+            },
+            {
+              "paint": "stroke",
+              "color": "#D8B987"
+            },
+            {
+              "paint": "stroke",
+              "color": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "id": "fiber_crosslinks",
+          "label": "Crossing fibers",
+          "default": "#314955",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#314955"
+            },
+            {
+              "paint": "stroke",
+              "color": "#C98768"
+            },
+            {
+              "paint": "stroke",
+              "color": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#314955",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#314955"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original Style 4 companion geometry and bounded depth facets authored for Figure Tool from its original biological forms. No supplied Style 4 geometry or third-party visual material was copied."
+    },
+    {
+      "asset_id": "tissue.collagen.mesh",
+      "name": "Collagen Matrix",
+      "file": "expansion-20261103/svg/collagen_mesh_style4.svg",
+      "sha256": "51f5fade014811d914d3175599787a68d37e3c950351bba5edae3c63f6480435",
+      "source_pack_id": "tissue-vascular",
+      "source_asset_sha256": "9079f63822c4a5c509d0749b2c14aeaabc8ec90d4e73ddfb63931c96de1c1769",
+      "geometry_sha256": "d5c6b7ddb4a846eb8b3a2bce6e82fa42615b66d0de9e961b872ea0ba458905e1",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-03",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-03",
+      "editable_color_regions": [
+        {
+          "id": "matrix_fibers",
+          "label": "Collagen fibers",
+          "default": "#314955",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#314955"
+            },
+            {
+              "paint": "stroke",
+              "color": "#D8B987"
+            },
+            {
+              "paint": "stroke",
+              "color": "#FFF5DA"
+            }
+          ]
+        },
+        {
+          "id": "fiber_crosslinks",
+          "label": "Crossing fibers",
+          "default": "#314955",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#314955"
+            },
+            {
+              "paint": "stroke",
+              "color": "#C98768"
+            },
+            {
+              "paint": "stroke",
+              "color": "#F6D2B6"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#314955",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#314955"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original Style 4 companion geometry and bounded depth facets authored for Figure Tool from its original biological forms. No supplied Style 4 geometry or third-party visual material was copied."
+    },
+    {
+      "asset_id": "tissue.basement_membrane.isolated_sheet",
+      "name": "Basement Membrane",
+      "file": "expansion-20261103/svg/basement_membrane_isolated_sheet_style4.svg",
+      "sha256": "5b83d2680ed488d3f752cef5d38e89af0bd6bbd57031b3a58fa14c94cb4e0a07",
+      "source_pack_id": "tissue-vascular",
+      "source_asset_sha256": "1974beec58f5d6b7d11e058515a0080db588393abe9b0b33344528e37766db25",
+      "geometry_sha256": "d21967339e100651d4c41b745d4078e53c814c5f0b6330cbcb2538c96d166f54",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-03",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-03",
+      "editable_color_regions": [
+        {
+          "id": "basement_sheets",
+          "label": "Basement-membrane layers",
+          "default": "#A9D2AE",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#A9D2AE"
+            },
+            {
+              "paint": "fill",
+              "color": "#B9DAB8"
+            },
+            {
+              "paint": "fill",
+              "color": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "id": "attachment_arms",
+          "label": "Cell–matrix attachment structures",
+          "default": "#D8EDE5",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#D8EDE5"
+            }
+          ]
+        },
+        {
+          "id": "submembrane_mesh",
+          "label": "Submembrane matrix mesh",
+          "default": "#314955",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#314955"
+            },
+            {
+              "paint": "stroke",
+              "color": "#C98768"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#314955",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#314955"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original Style 4 companion geometry and bounded depth facets authored for Figure Tool from its original biological forms. No supplied Style 4 geometry or third-party visual material was copied."
+    },
+    {
+      "asset_id": "tissue.basement_membrane.epithelial_interface",
+      "name": "Basement Membrane",
+      "file": "expansion-20261103/svg/basement_membrane_epithelial_interface_style4.svg",
+      "sha256": "b8aec972106d56d87907a6648d72aa17778909e00b3f317730edee3c8ccf2c8c",
+      "source_pack_id": "tissue-vascular",
+      "source_asset_sha256": "f9de2fc20cd54d9a8c572388f494cdfd30bf4cb58cbda1b0cd90e5dbd1694acb",
+      "geometry_sha256": "4ddd572c1ee9fab869e2e5e7bd0ea115a194487fec407d7f15b82c5165198ba8",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-03",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-03",
+      "editable_color_regions": [
+        {
+          "id": "basement_sheets",
+          "label": "Basement-membrane layers",
+          "default": "#A9D2AE",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#A9D2AE"
+            },
+            {
+              "paint": "fill",
+              "color": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "id": "attachment_arms",
+          "label": "Cell–matrix attachment structures",
+          "default": "#D8EDE5",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#D8EDE5"
+            }
+          ]
+        },
+        {
+          "id": "submembrane_mesh",
+          "label": "Submembrane matrix mesh",
+          "default": "#314955",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#314955"
+            },
+            {
+              "paint": "stroke",
+              "color": "#C98768"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#314955",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#314955"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original Style 4 companion geometry and bounded depth facets authored for Figure Tool from its original biological forms. No supplied Style 4 geometry or third-party visual material was copied."
+    },
+    {
+      "asset_id": "tissue.skeletal_muscle.longitudinal_fibers",
+      "name": "Skeletal Muscle",
+      "file": "expansion-20261103/svg/skeletal_muscle_longitudinal_fibers_style4.svg",
+      "sha256": "2ea5d66bd8ee14c1e642405e5a90d924edf786b1be898ce96a5ebe85c7e024d8",
+      "source_pack_id": "tissue-vascular",
+      "source_asset_sha256": "8073bf8f7661db46cb4f897f543298cf9450cc3672bcf41875db462f6fd3ecbf",
+      "geometry_sha256": "2ab2303bf1b7a504d362f79998e633d426e523dbe7697d16a248e72afca6fd6c",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-03",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-03",
+      "editable_color_regions": [
+        {
+          "id": "muscle_fiber",
+          "label": "Muscle fibers",
+          "default": "#D98772",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#D98772"
+            },
+            {
+              "paint": "fill",
+              "color": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "id": "matrix",
+          "label": "Connective tissue",
+          "default": "#A9D2AE",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#A9D2AE"
+            }
+          ]
+        },
+        {
+          "id": "nucleus",
+          "label": "Peripheral nuclei",
+          "default": "#877DAC",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#877DAC"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#314955",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#314955"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original Style 4 companion geometry and bounded depth facets authored for Figure Tool from its original biological forms. No supplied Style 4 geometry or third-party visual material was copied."
+    },
+    {
+      "asset_id": "tissue.skeletal_muscle.bundle_cross_section",
+      "name": "Skeletal Muscle",
+      "file": "expansion-20261103/svg/skeletal_muscle_bundle_cross_section_style4.svg",
+      "sha256": "3f6fba9df18a7a0d310eebb5db08d37d9b5e42ae8ff1f951e7c25c79d019fa9f",
+      "source_pack_id": "tissue-vascular",
+      "source_asset_sha256": "d090e96ee058181cc98eb62c7e8b669c1dc561508bfa4249d49af22327c2f508",
+      "geometry_sha256": "adc69bc174ae34670f6bd37c3e902e4650cf8c79bcfbb25585aa6a89a351355d",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-03",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-03",
+      "editable_color_regions": [
+        {
+          "id": "muscle_fiber",
+          "label": "Muscle fibers",
+          "default": "#D98772",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#D98772"
+            },
+            {
+              "paint": "fill",
+              "color": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "id": "matrix",
+          "label": "Connective tissue",
+          "default": "#A9D2AE",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#A9D2AE"
+            }
+          ]
+        },
+        {
+          "id": "nucleus",
+          "label": "Peripheral nuclei",
+          "default": "#877DAC",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#877DAC"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#314955",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#314955"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original Style 4 companion geometry and bounded depth facets authored for Figure Tool from its original biological forms. No supplied Style 4 geometry or third-party visual material was copied."
+    },
+    {
+      "asset_id": "tissue.adipose.single_adipocyte",
+      "name": "Adipose Tissue",
+      "file": "expansion-20261103/svg/adipose_single_adipocyte_style4.svg",
+      "sha256": "6db2d1dadd2cf11c49b6dc25c6f26fd285bdaa26b2114c306ef2e79d45012c0a",
+      "source_pack_id": "tissue-vascular",
+      "source_asset_sha256": "6a760a003fae558f118cb8fb0c6af6259e37f26adf01d38e1cfbd8a5a9bd136c",
+      "geometry_sha256": "fe18726459c0112a39ec9acaba589274ac6627d5d7e5023f4c94178d0d847d92",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-03",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-03",
+      "editable_color_regions": [
+        {
+          "id": "cell_feature",
+          "label": "Lipid store",
+          "default": "#F0D38A",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#F0D38A"
+            },
+            {
+              "paint": "fill",
+              "color": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "id": "cell_body",
+          "label": "Cytoplasm",
+          "default": "#D8EDE5",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#D8EDE5"
+            }
+          ]
+        },
+        {
+          "id": "nuclear_region",
+          "label": "Nucleus",
+          "default": "#877DAC",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#877DAC"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#314955",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#314955"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original Style 4 companion geometry and bounded depth facets authored for Figure Tool from its original biological forms. No supplied Style 4 geometry or third-party visual material was copied."
+    },
+    {
+      "asset_id": "tissue.adipose.lobule",
+      "name": "Adipose Tissue",
+      "file": "expansion-20261103/svg/adipose_lobule_style4.svg",
+      "sha256": "ae516460584a6e325e544440c15c090048a76ad5a3229c77c8d8b75bf7731dea",
+      "source_pack_id": "tissue-vascular",
+      "source_asset_sha256": "cfffd2cc69296227af9ad93122c30175951d3c16d43de58dfcb1e091433534bb",
+      "geometry_sha256": "809deb4e2df3998840e563afdfa9ff4d6a19b56ce775ec5aaf14980882ea20c7",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-03",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-03",
+      "editable_color_regions": [
+        {
+          "id": "cell_feature",
+          "label": "Lipid store",
+          "default": "#F0D38A",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#F0D38A"
+            },
+            {
+              "paint": "fill",
+              "color": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "id": "cell_body",
+          "label": "Cytoplasm",
+          "default": "#D8EDE5",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#D8EDE5"
+            }
+          ]
+        },
+        {
+          "id": "nuclear_region",
+          "label": "Nucleus",
+          "default": "#877DAC",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#877DAC"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#314955",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#314955"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original Style 4 companion geometry and bounded depth facets authored for Figure Tool from its original biological forms. No supplied Style 4 geometry or third-party visual material was copied."
+    },
+    {
+      "asset_id": "endocrine.thyroid_follicle.single_follicle",
+      "name": "Thyroid follicle",
+      "file": "expansion-20261107/svg/thyroid_follicle_single_follicle_style4.svg",
+      "sha256": "2aa7fc24c5c44478c44c07d3928334ea15125c49389e12057a74f4cbbeb6b01b",
+      "source_pack_id": "endocrine-tissue",
+      "source_asset_sha256": "4c8e18910373e51df525c3b72b956c1774b530d16c77c78770d8bf5f8d55c03b",
+      "geometry_sha256": "8c78c4335c3f06eb5fae360cde3ca1f6ca644decb1d581732a9f43073991ad68",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-07",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-07",
+      "editable_color_regions": [
+        {
+          "id": "follicular_epithelium",
+          "label": "Follicular epithelium",
+          "default": "#E9A997",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#E9A997"
+            },
+            {
+              "paint": "fill",
+              "color": "#F5C9B7"
+            }
+          ]
+        },
+        {
+          "id": "colloid",
+          "label": "Colloid",
+          "default": "#FFFFFF",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "id": "stroma",
+          "label": "Interfollicular stroma",
+          "default": "#B8D8C5",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#B8D8C5"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#344955",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#344955"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original contour and compartment geometry authored for this endocrine companion. Research informs topology only; no supplied artwork geometry is copied."
+    },
+    {
+      "asset_id": "endocrine.thyroid_follicle.follicle_field",
+      "name": "Thyroid follicle",
+      "file": "expansion-20261107/svg/thyroid_follicle_follicle_field_style4.svg",
+      "sha256": "9e4fbceef5b6ac75aeffc23aacf040cf48ac8e479535136f24ddd479d6bae935",
+      "source_pack_id": "endocrine-tissue",
+      "source_asset_sha256": "3935aef170fa6856239fbbd65b07928aab60040a6414093d9168245cef1a2503",
+      "geometry_sha256": "f88c1e95ff20d7cd4981c13cbb2bfd7cb473e6fa3605ad9c279fc7657a350364",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-07",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-07",
+      "editable_color_regions": [
+        {
+          "id": "follicular_epithelium",
+          "label": "Follicular epithelium",
+          "default": "#E9A997",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#E9A997"
+            }
+          ]
+        },
+        {
+          "id": "colloid",
+          "label": "Colloid",
+          "default": "#E9D09D",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#FFFFFF"
+            },
+            {
+              "paint": "fill",
+              "color": "#E9D09D"
+            }
+          ]
+        },
+        {
+          "id": "stroma",
+          "label": "Interfollicular stroma",
+          "default": "#B8D8C5",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#B8D8C5"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#344955",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#344955"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original contour and compartment geometry authored for this endocrine companion. Research informs topology only; no supplied artwork geometry is copied."
+    },
+    {
+      "asset_id": "endocrine.parathyroid_cords.cords_longitudinal",
+      "name": "Parathyroid parenchyma",
+      "file": "expansion-20261107/svg/parathyroid_cords_cords_longitudinal_style4.svg",
+      "sha256": "09b7f6c10e34cc3b678c7663d2bf557bd2d93c46c7ee94ada7bb3e4d41213830",
+      "source_pack_id": "endocrine-tissue",
+      "source_asset_sha256": "348d3323fb18864b015e55e608d48b802bff5375f8eaf45902420b55769ab423",
+      "geometry_sha256": "e571b4f206bd4bdbcfafbb4fed7df4eeca5e1bb018943daba603c819c5e722a0",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-07",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-07",
+      "editable_color_regions": [
+        {
+          "id": "parenchyma",
+          "label": "Parathyroid parenchyma",
+          "default": "#D59E86",
+          "paint": "both",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#E5B69E"
+            },
+            {
+              "paint": "fill",
+              "color": "#D59E86"
+            }
+          ]
+        },
+        {
+          "id": "capillary",
+          "label": "Capillary",
+          "default": "#D8867A",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#D8867A"
+            }
+          ]
+        },
+        {
+          "id": "stroma",
+          "label": "Connective stroma",
+          "default": "#B8D8C5",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#B8D8C5"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#344955",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#344955"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original contour and compartment geometry authored for this endocrine companion. Research informs topology only; no supplied artwork geometry is copied."
+    },
+    {
+      "asset_id": "endocrine.parathyroid_cords.lobular_field",
+      "name": "Parathyroid parenchyma",
+      "file": "expansion-20261107/svg/parathyroid_cords_lobular_field_style4.svg",
+      "sha256": "842af8a614c6efa18ebdca2b2df5c8b3ffa4e5235d3d8489d0e0450509b1444f",
+      "source_pack_id": "endocrine-tissue",
+      "source_asset_sha256": "b1bfc128193309bcb9c81e835ef14d40ea721900a33f968da5f452fc2b904f42",
+      "geometry_sha256": "d3a4f98166f4a5f22e6b694a833272b20009ed0d1e0b841b3c38e716ea07177f",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-07",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-07",
+      "editable_color_regions": [
+        {
+          "id": "parenchyma",
+          "label": "Parathyroid parenchyma",
+          "default": "#D59E86",
+          "paint": "both",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#E5B69E"
+            },
+            {
+              "paint": "fill",
+              "color": "#D59E86"
+            },
+            {
+              "paint": "fill",
+              "color": "#E2AA90"
+            }
+          ]
+        },
+        {
+          "id": "capillary",
+          "label": "Capillary",
+          "default": "#D8867A",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#D8867A"
+            }
+          ]
+        },
+        {
+          "id": "stroma",
+          "label": "Connective stroma",
+          "default": "#B8D8C5",
+          "paint": "both",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#B8D8C5"
+            },
+            {
+              "paint": "stroke",
+              "color": "#B8D8C5"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#344955",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#344955"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original contour and compartment geometry authored for this endocrine companion. Research informs topology only; no supplied artwork geometry is copied."
+    },
+    {
+      "asset_id": "endocrine.pancreatic_islet.mixed_islet",
+      "name": "Pancreatic islet",
+      "file": "expansion-20261107/svg/pancreatic_islet_mixed_islet_style4.svg",
+      "sha256": "69e0cb2a2f3adbb852753fefaf555fe5e0864b0d183958f7a765adb581b74ed6",
+      "source_pack_id": "endocrine-tissue",
+      "source_asset_sha256": "5a1a6a19ef04fb04652999ef9aab6c8a02fc857ebf9fdda7680ea526dc090ed5",
+      "geometry_sha256": "ff24e01e84e47585d3d9246ba4f83493f60b6c38bcb005759b8223bf3199f8a7",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-07",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-07",
+      "editable_color_regions": [
+        {
+          "id": "beta_cells",
+          "label": "β-cell population",
+          "default": "#E9B7A5",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#E9B7A5"
+            }
+          ]
+        },
+        {
+          "id": "other_endocrine",
+          "label": "Other endocrine cells",
+          "default": "#A9C5D9",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#A9C5D9"
+            }
+          ]
+        },
+        {
+          "id": "capillary",
+          "label": "Capillaries",
+          "default": "#D8867A",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#D8867A"
+            }
+          ]
+        },
+        {
+          "id": "stroma",
+          "label": "Supporting stroma",
+          "default": "#B8D8C5",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#B8D8C5"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#344955",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#344955"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original contour and compartment geometry authored for this endocrine companion. Research informs topology only; no supplied artwork geometry is copied."
+    },
+    {
+      "asset_id": "endocrine.pancreatic_islet.folded_plates",
+      "name": "Pancreatic islet",
+      "file": "expansion-20261107/svg/pancreatic_islet_folded_plates_style4.svg",
+      "sha256": "9a14e676099a0f4d4d71b93b1e93784c63fba8be52001e240c78289470fbacbc",
+      "source_pack_id": "endocrine-tissue",
+      "source_asset_sha256": "f3a6685457668e958f9ac49a44a02135959a82699fa0ff2421f51d2d2b83a8fe",
+      "geometry_sha256": "970b56af8b8b4fd2872b33bedb5e4cf83af3b720c11d2ed9493aa10193e9cc7c",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-07",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-07",
+      "editable_color_regions": [
+        {
+          "id": "beta_cells",
+          "label": "β-cell population",
+          "default": "#DFA28F",
+          "paint": "both",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#E9B7A5"
+            },
+            {
+              "paint": "fill",
+              "color": "#DFA28F"
+            }
+          ]
+        },
+        {
+          "id": "other_endocrine",
+          "label": "Other endocrine cells",
+          "default": "#A9C5D9",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#A9C5D9"
+            }
+          ]
+        },
+        {
+          "id": "capillary",
+          "label": "Capillaries",
+          "default": "#D8867A",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#D8867A"
+            }
+          ]
+        },
+        {
+          "id": "stroma",
+          "label": "Supporting stroma",
+          "default": "#B8D8C5",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#B8D8C5"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#344955",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#344955"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original contour and compartment geometry authored for this endocrine companion. Research informs topology only; no supplied artwork geometry is copied."
+    },
+    {
+      "asset_id": "endocrine.adrenal_cortex.concentric_zones",
+      "name": "Adrenal cortex",
+      "file": "expansion-20261107/svg/adrenal_cortex_concentric_zones_style4.svg",
+      "sha256": "3f329e301bb1dbe85dd13b4938dd64fe3e605ec9cf7015fded88998ced305fbb",
+      "source_pack_id": "endocrine-tissue",
+      "source_asset_sha256": "31b86ad34907136787156734130e555d48fa26663d7a3885f98039efc654cd0b",
+      "geometry_sha256": "8a0c0050402bb955fdc22a53d66a6af1b6c51896e9e2945a4504d29e42dd8333",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-07",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-07",
+      "editable_color_regions": [
+        {
+          "id": "capsule",
+          "label": "Capsule",
+          "default": "#B8D8C5",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#B8D8C5"
+            }
+          ]
+        },
+        {
+          "id": "zona_glomerulosa",
+          "label": "Zona glomerulosa",
+          "default": "#C4A256",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#D9B978"
+            },
+            {
+              "paint": "fill",
+              "color": "#C4A256"
+            }
+          ]
+        },
+        {
+          "id": "zona_fasciculata",
+          "label": "Zona fasciculata",
+          "default": "#E9B7A5",
+          "paint": "both",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#E9B7A5"
+            },
+            {
+              "paint": "stroke",
+              "color": "#D78F80"
+            }
+          ]
+        },
+        {
+          "id": "zona_reticularis",
+          "label": "Zona reticularis",
+          "default": "#A9C5D9",
+          "paint": "both",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#A9C5D9"
+            },
+            {
+              "paint": "stroke",
+              "color": "#A9C5D9"
+            }
+          ]
+        },
+        {
+          "id": "medulla",
+          "label": "Medulla",
+          "default": "#C58B9A",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#C58B9A"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#344955",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#344955"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original contour and compartment geometry authored for this endocrine companion. Research informs topology only; no supplied artwork geometry is copied."
+    },
+    {
+      "asset_id": "endocrine.adrenal_cortex.cortical_wedge",
+      "name": "Adrenal cortex",
+      "file": "expansion-20261107/svg/adrenal_cortex_cortical_wedge_style4.svg",
+      "sha256": "76451ca9f98150319df4f97e75c67dc750fa19f19715b737d0c72f2de87d8ccf",
+      "source_pack_id": "endocrine-tissue",
+      "source_asset_sha256": "eb2addc8bbf00fc759277b6dda87ce8f2465802896e7fcc5d8cf5ac4230ecf3b",
+      "geometry_sha256": "eb71f67e7b5a2ec2ea1a743013f87149305e0a5fcfb09fd2fb6708ba875367a2",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-07",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-07",
+      "editable_color_regions": [
+        {
+          "id": "capsule",
+          "label": "Capsule",
+          "default": "#B8D8C5",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#B8D8C5"
+            }
+          ]
+        },
+        {
+          "id": "zona_glomerulosa",
+          "label": "Zona glomerulosa",
+          "default": "#C4A256",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#D9B978"
+            },
+            {
+              "paint": "fill",
+              "color": "#C4A256"
+            }
+          ]
+        },
+        {
+          "id": "zona_fasciculata",
+          "label": "Zona fasciculata",
+          "default": "#E9B7A5",
+          "paint": "both",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#E9B7A5"
+            },
+            {
+              "paint": "stroke",
+              "color": "#D78F80"
+            }
+          ]
+        },
+        {
+          "id": "zona_reticularis",
+          "label": "Zona reticularis",
+          "default": "#A9C5D9",
+          "paint": "both",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#A9C5D9"
+            },
+            {
+              "paint": "stroke",
+              "color": "#7894A2"
+            }
+          ]
+        },
+        {
+          "id": "medulla",
+          "label": "Medulla",
+          "default": "#C58B9A",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#C58B9A"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#344955",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#344955"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original contour and compartment geometry authored for this endocrine companion. Research informs topology only; no supplied artwork geometry is copied."
+    },
+    {
+      "asset_id": "endocrine.adrenal_medulla.vascular_nests",
+      "name": "Adrenal medulla",
+      "file": "expansion-20261107/svg/adrenal_medulla_vascular_nests_style4.svg",
+      "sha256": "0b82627cb203068f83fed623fe7b84061302477ade9da181dd9aa02a6cbc30c0",
+      "source_pack_id": "endocrine-tissue",
+      "source_asset_sha256": "f3ddda22b5abc0b61cf6d9082d666f75e3ae2b727dd0204f18ec776455bab751",
+      "geometry_sha256": "c3790f5ada6c69b6f942589eec32fe27f694213c2f55886ec0cb5d4c455300b7",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-07",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-07",
+      "editable_color_regions": [
+        {
+          "id": "chromaffin_cells",
+          "label": "Chromaffin cells",
+          "default": "#BD7D91",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#BD7D91"
+            }
+          ]
+        },
+        {
+          "id": "supporting_cells",
+          "label": "Supporting cells",
+          "default": "#B8D8C5",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#B8D8C5"
+            }
+          ]
+        },
+        {
+          "id": "vascular_lumen",
+          "label": "Vascular lumen",
+          "default": "#F2D7CE",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#F2D7CE"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#344955",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#344955"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original contour and compartment geometry authored for this endocrine companion. Research informs topology only; no supplied artwork geometry is copied."
+    },
+    {
+      "asset_id": "endocrine.adrenal_medulla.medullary_field",
+      "name": "Adrenal medulla",
+      "file": "expansion-20261107/svg/adrenal_medulla_medullary_field_style4.svg",
+      "sha256": "ff36035f9aac7dcf58a655ee15dae0b8628162d4fb5d5f99d260cbbfe3c7b2ae",
+      "source_pack_id": "endocrine-tissue",
+      "source_asset_sha256": "328d154f55a214966fefa06a272dd019e1b9f66a6b25b5ff1ee75e1f9b769cb6",
+      "geometry_sha256": "7dcf8ada6ff18cb806ed80400a6510de13f16adf866d1ed11f9e5b01091143fa",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-07",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-07",
+      "editable_color_regions": [
+        {
+          "id": "chromaffin_cells",
+          "label": "Chromaffin cells",
+          "default": "#BD7D91",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#BD7D91"
+            }
+          ]
+        },
+        {
+          "id": "supporting_cells",
+          "label": "Supporting cells",
+          "default": "#B8D8C5",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#B8D8C5"
+            }
+          ]
+        },
+        {
+          "id": "vascular_lumen",
+          "label": "Vascular lumen",
+          "default": "#F2D7CE",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#F2D7CE"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#344955",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#344955"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original contour and compartment geometry authored for this endocrine companion. Research informs topology only; no supplied artwork geometry is copied."
+    },
+    {
+      "asset_id": "endocrine.pineal_parenchyma.cell_groups",
+      "name": "Pineal parenchyma",
+      "file": "expansion-20261107/svg/pineal_parenchyma_cell_groups_style4.svg",
+      "sha256": "b5724544c70dd4113da85391d211fcc7d2445d73ef18d9511ecb2c056ca6bd20",
+      "source_pack_id": "endocrine-tissue",
+      "source_asset_sha256": "6f0f1bbd0fdab010086e5093795210fce8611e467aed6a62e94af8c89890a1c3",
+      "geometry_sha256": "b1e8592a5e32cfb9e5f2bc2b454b22bfe4be1eec673ae6a56580efe8208a2389",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-07",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-07",
+      "editable_color_regions": [
+        {
+          "id": "pinealocytes",
+          "label": "Pinealocytes",
+          "default": "#E9B7A5",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#E9B7A5"
+            },
+            {
+              "paint": "fill",
+              "color": "#DFA28F"
+            }
+          ]
+        },
+        {
+          "id": "glial_stroma",
+          "label": "Glial stroma",
+          "default": "#A9C5D9",
+          "paint": "both",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#A9C5D9"
+            },
+            {
+              "paint": "stroke",
+              "color": "#A9C5D9"
+            }
+          ]
+        },
+        {
+          "id": "capillary",
+          "label": "Capillaries",
+          "default": "#D8867A",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#D8867A"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#344955",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#344955"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original contour and compartment geometry authored for this endocrine companion. Research informs topology only; no supplied artwork geometry is copied."
+    },
+    {
+      "asset_id": "endocrine.pineal_parenchyma.lobular_field",
+      "name": "Pineal parenchyma",
+      "file": "expansion-20261107/svg/pineal_parenchyma_lobular_field_style4.svg",
+      "sha256": "19296f033010c439d577438bb247d7aade07e785c22a5dbc5fb6ba57f3eea960",
+      "source_pack_id": "endocrine-tissue",
+      "source_asset_sha256": "f0c5a183697f5a853f9684e9ecdec6967ce739bc75a26182887fa36577afded1",
+      "geometry_sha256": "b844a450125b2bcb4c18d36d17526fa73fa10fb5a3b2c1c87ad9eacf9a1e1d28",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-07",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-07",
+      "editable_color_regions": [
+        {
+          "id": "pinealocytes",
+          "label": "Pinealocytes",
+          "default": "#E9B7A5",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#E9B7A5"
+            },
+            {
+              "paint": "fill",
+              "color": "#DFA28F"
+            }
+          ]
+        },
+        {
+          "id": "glial_stroma",
+          "label": "Glial stroma",
+          "default": "#A9C5D9",
+          "paint": "both",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#A9C5D9"
+            },
+            {
+              "paint": "stroke",
+              "color": "#A9C5D9"
+            }
+          ]
+        },
+        {
+          "id": "capillary",
+          "label": "Capillaries",
+          "default": "#D8867A",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#D8867A"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#344955",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#344955"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original contour and compartment geometry authored for this endocrine companion. Research informs topology only; no supplied artwork geometry is copied."
+    },
+    {
+      "asset_id": "endocrine.anterior_pituitary.cords_longitudinal",
+      "name": "Anterior pituitary",
+      "file": "expansion-20261107/svg/anterior_pituitary_cords_longitudinal_style4.svg",
+      "sha256": "ece05fee074f169034472c9233523eb1a24385ae8b2e2fb3f7bccaf201a01abe",
+      "source_pack_id": "endocrine-tissue",
+      "source_asset_sha256": "831a3c88e8772ce4fae59de25fe698f2c9177e5c5e713a8ec9007f22e59e63f9",
+      "geometry_sha256": "3139447db0f4cc543287f76cf60050590a2b6c8440161979776fc0b06d65cca3",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-07",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-07",
+      "editable_color_regions": [
+        {
+          "id": "gland",
+          "label": "Glandular cell cords",
+          "default": "#DDBA9B",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#DDBA9B"
+            }
+          ]
+        },
+        {
+          "id": "sinusoid",
+          "label": "Sinusoidal vascular spaces",
+          "default": "#D8EDF5",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#D8EDF5"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#3C505B",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#3C505B"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original contour and compartment geometry authored for this endocrine companion. Research informs topology only; no supplied artwork geometry is copied."
+    },
+    {
+      "asset_id": "endocrine.anterior_pituitary.cords_radial",
+      "name": "Anterior pituitary",
+      "file": "expansion-20261107/svg/anterior_pituitary_cords_radial_style4.svg",
+      "sha256": "9a8efc1b334b5aacc78bed54dcb032cd635f97d4209b2d2c040f6f14453d01bb",
+      "source_pack_id": "endocrine-tissue",
+      "source_asset_sha256": "930f7727dd154f5f18b7c1b8fef97c92c511c0e69e45b8a6444dc0c6aeb6e8f7",
+      "geometry_sha256": "a49303200674e939d9d2c4283c77bfe0c7ff3aa413247b2493cadd1109f065e2",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-07",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-07",
+      "editable_color_regions": [
+        {
+          "id": "gland",
+          "label": "Glandular cell cords",
+          "default": "#DDBA9B",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#DDBA9B"
+            }
+          ]
+        },
+        {
+          "id": "sinusoid",
+          "label": "Sinusoidal vascular spaces",
+          "default": "#D8EDF5",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#D8EDF5"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#3C505B",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#3C505B"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original contour and compartment geometry authored for this endocrine companion. Research informs topology only; no supplied artwork geometry is copied."
+    },
+    {
+      "asset_id": "endocrine.posterior_pituitary.longitudinal_neural_lobe",
+      "name": "Posterior pituitary",
+      "file": "expansion-20261107/svg/posterior_pituitary_longitudinal_neural_lobe_style4.svg",
+      "sha256": "37bba3b241db1d0601ca5ee315b79f636154f9e3fc2eef0ba778d543df024315",
+      "source_pack_id": "endocrine-tissue",
+      "source_asset_sha256": "085694edd97dbae5cd4635c7e58af6616eeb1725cf14b282953c906c7d884b33",
+      "geometry_sha256": "885c781e16564abda6e7f72a2237a38adc390c2a85887b31cf083cadb5229939",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-07",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-07",
+      "editable_color_regions": [
+        {
+          "id": "neural",
+          "label": "Neural tissue",
+          "default": "#B5A9D5",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#B5A9D5"
+            }
+          ]
+        },
+        {
+          "id": "terminal",
+          "label": "Axon terminals",
+          "default": "#E5B76C",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#E5B76C"
+            }
+          ]
+        },
+        {
+          "id": "pituicyte",
+          "label": "Pituicytes",
+          "default": "#83B7AE",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#83B7AE"
+            }
+          ]
+        },
+        {
+          "id": "sinusoid",
+          "label": "Capillary spaces",
+          "default": "#D8EDF5",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#D8EDF5"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#3C505B",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#3C505B"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original contour and compartment geometry authored for this endocrine companion. Research informs topology only; no supplied artwork geometry is copied."
+    },
+    {
+      "asset_id": "endocrine.posterior_pituitary.transverse_neural_lobe",
+      "name": "Posterior pituitary",
+      "file": "expansion-20261107/svg/posterior_pituitary_transverse_neural_lobe_style4.svg",
+      "sha256": "097814290773931c4f4ae218e7f66bbf1b20b4a0536340592e9f5021ee241944",
+      "source_pack_id": "endocrine-tissue",
+      "source_asset_sha256": "44cac30bf7e8a0d141f46ba27bd95bca6fa79da78633b7d8b9f9d02061bae084",
+      "geometry_sha256": "2011ce33e84af5ea5db12f7edc1a7065c51e28a7ecdec08c721b8ff7b7c8b461",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-07",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-07",
+      "editable_color_regions": [
+        {
+          "id": "neural",
+          "label": "Neural tissue",
+          "default": "#B5A9D5",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#B5A9D5"
+            }
+          ]
+        },
+        {
+          "id": "terminal",
+          "label": "Axon terminals",
+          "default": "#E5B76C",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#E5B76C"
+            }
+          ]
+        },
+        {
+          "id": "pituicyte",
+          "label": "Pituicytes",
+          "default": "#83B7AE",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#83B7AE"
+            }
+          ]
+        },
+        {
+          "id": "sinusoid",
+          "label": "Capillary spaces",
+          "default": "#D8EDF5",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#D8EDF5"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#3C505B",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#3C505B"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original contour and compartment geometry authored for this endocrine companion. Research informs topology only; no supplied artwork geometry is copied."
+    },
+    {
+      "asset_id": "endocrine.median_eminence.external_zone_sagittal",
+      "name": "Median eminence",
+      "file": "expansion-20261107/svg/median_eminence_external_zone_sagittal_style4.svg",
+      "sha256": "d7fecd2afc76a054a8dd0bb509778d488ecdcfb285ee62212f4926e022e68569",
+      "source_pack_id": "endocrine-tissue",
+      "source_asset_sha256": "cba77ced1195c0d9abc297e0decbe2ce8fc3e0bf2a58fc494ebce4f9712cdd8a",
+      "geometry_sha256": "f492f4df68d36a38811c5bad2916cc093878a3db8436fc77f2cd731f93164472",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-07",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-07",
+      "editable_color_regions": [
+        {
+          "id": "neural",
+          "label": "Neural tissue",
+          "default": "#B5A9D5",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#B5A9D5"
+            }
+          ]
+        },
+        {
+          "id": "terminal",
+          "label": "Neurosecretory terminal profiles",
+          "default": "#E5B76C",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#E5B76C"
+            }
+          ]
+        },
+        {
+          "id": "boundary",
+          "label": "Tanycyte-associated boundary",
+          "default": "#D3C1A0",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#D3C1A0"
+            }
+          ]
+        },
+        {
+          "id": "sinusoid",
+          "label": "Portal capillaries",
+          "default": "#D8EDF5",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#D8EDF5"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#3C505B",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#3C505B"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original contour and compartment geometry authored for this endocrine companion. Research informs topology only; no supplied artwork geometry is copied."
+    },
+    {
+      "asset_id": "endocrine.median_eminence.external_zone_field",
+      "name": "Median eminence",
+      "file": "expansion-20261107/svg/median_eminence_external_zone_field_style4.svg",
+      "sha256": "a8928ede7125a2d5290422403cd186b5fd9a80c4e9c6fb8d6692f222bb8c0f0a",
+      "source_pack_id": "endocrine-tissue",
+      "source_asset_sha256": "ac5cf649f09299cf5d16fda9cf660092bd66cdf4606f33cd3e23d1cb97b88871",
+      "geometry_sha256": "9caa6f584feccc3f783334d16c1da604c2af4f19e7062af421e2e49c809b0b2e",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-07",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-07",
+      "editable_color_regions": [
+        {
+          "id": "neural",
+          "label": "Neural tissue",
+          "default": "#B5A9D5",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#B5A9D5"
+            }
+          ]
+        },
+        {
+          "id": "terminal",
+          "label": "Neurosecretory terminal profiles",
+          "default": "#E5B76C",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#E5B76C"
+            }
+          ]
+        },
+        {
+          "id": "boundary",
+          "label": "Tanycyte-associated boundary",
+          "default": "#D3C1A0",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#D3C1A0"
+            }
+          ]
+        },
+        {
+          "id": "sinusoid",
+          "label": "Portal capillaries",
+          "default": "#D8EDF5",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#D8EDF5"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#3C505B",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#3C505B"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original contour and compartment geometry authored for this endocrine companion. Research informs topology only; no supplied artwork geometry is copied."
+    },
+    {
+      "asset_id": "endocrine.ovarian_follicle.eccentric_oocyte",
+      "name": "Antral ovarian follicle",
+      "file": "expansion-20261107/svg/ovarian_follicle_eccentric_oocyte_style4.svg",
+      "sha256": "b5498ebed9a01dfd43432571a3a464f81d0ae3a10737bba4e7358464afb36609",
+      "source_pack_id": "endocrine-tissue",
+      "source_asset_sha256": "8ecd1a62c9834cb705a0e29e350ffc2136f70898dc7bbb8849d6dfd3bff702e0",
+      "geometry_sha256": "3fbf32952038f99bcb69a072909c507ee712c0cc1d1a3c0e4a80d1d1f85c409b",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-07",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-07",
+      "editable_color_regions": [
+        {
+          "id": "theca",
+          "label": "Theca layer",
+          "default": "#9DC99F",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#9DC99F"
+            }
+          ]
+        },
+        {
+          "id": "vessel",
+          "label": "Thecal capillaries",
+          "default": "#C44D4D",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#C44D4D"
+            }
+          ]
+        },
+        {
+          "id": "granulosa",
+          "label": "Granulosa layer",
+          "default": "#D5B5D8",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#D5B5D8"
+            }
+          ]
+        },
+        {
+          "id": "antrum",
+          "label": "Antral space",
+          "default": "#E8F4F8",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#E8F4F8"
+            }
+          ]
+        },
+        {
+          "id": "oocyte",
+          "label": "Oocyte",
+          "default": "#E7B84D",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#E7B84D"
+            }
+          ]
+        },
+        {
+          "id": "zona_pellucida",
+          "label": "Zona pellucida",
+          "default": "#FFFDF7",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#FFFDF7"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#3C505B",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#3C505B"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original contour and compartment geometry authored for this endocrine companion. Research informs topology only; no supplied artwork geometry is copied."
+    },
+    {
+      "asset_id": "endocrine.ovarian_follicle.sector_section",
+      "name": "Antral ovarian follicle",
+      "file": "expansion-20261107/svg/ovarian_follicle_sector_section_style4.svg",
+      "sha256": "d7875669ff6619d31cd049d5507a657ac8e12055c88c811fb380991411b538d0",
+      "source_pack_id": "endocrine-tissue",
+      "source_asset_sha256": "471227f4c382b75526824ebe25c105eebb8c190c1a9e85b9288816b836d57bf0",
+      "geometry_sha256": "ab81102b4e5ddc4066c084b827855bad11fa2b4f5ce23804c74473a6f4730d92",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-07",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-07",
+      "editable_color_regions": [
+        {
+          "id": "theca",
+          "label": "Theca layer",
+          "default": "#9DC99F",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#9DC99F"
+            }
+          ]
+        },
+        {
+          "id": "vessel",
+          "label": "Thecal capillaries",
+          "default": "#C44D4D",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#C44D4D"
+            }
+          ]
+        },
+        {
+          "id": "granulosa",
+          "label": "Granulosa layer",
+          "default": "#D5B5D8",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#D5B5D8"
+            }
+          ]
+        },
+        {
+          "id": "antrum",
+          "label": "Antral space",
+          "default": "#E8F4F8",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#E8F4F8"
+            }
+          ]
+        },
+        {
+          "id": "oocyte",
+          "label": "Oocyte",
+          "default": "#E7B84D",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#E7B84D"
+            }
+          ]
+        },
+        {
+          "id": "zona_pellucida",
+          "label": "Zona pellucida",
+          "default": "#FFFDF7",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#FFFDF7"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#3C505B",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#3C505B"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original contour and compartment geometry authored for this endocrine companion. Research informs topology only; no supplied artwork geometry is copied."
+    },
+    {
+      "asset_id": "endocrine.corpus_luteum.folded_luteal_tissue",
+      "name": "Corpus luteum",
+      "file": "expansion-20261107/svg/corpus_luteum_folded_luteal_tissue_style4.svg",
+      "sha256": "97ec8e59ab47fc00c0e1ab66972c91aab5d5fffa60388a0fe7927d3e04495aeb",
+      "source_pack_id": "endocrine-tissue",
+      "source_asset_sha256": "3afdbb050ce90c1d348bcd15b779e16cb36018e053de2b9330984c09e579bee1",
+      "geometry_sha256": "25b11a617dcaf38227508208f62ee2aabdf4f5b6a631e845c9f1fad3b60fe75a",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-07",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-07",
+      "editable_color_regions": [
+        {
+          "id": "luteal",
+          "label": "Luteal cell cords",
+          "default": "#D9A27B",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#D9A27B"
+            }
+          ]
+        },
+        {
+          "id": "vessel",
+          "label": "Capillary network",
+          "default": "#C44D4D",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#C44D4D"
+            }
+          ]
+        },
+        {
+          "id": "antrum",
+          "label": "Central cavity",
+          "default": "#E8F4F8",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#E8F4F8"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#3C505B",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#3C505B"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original contour and compartment geometry authored for this endocrine companion. Research informs topology only; no supplied artwork geometry is copied."
+    },
+    {
+      "asset_id": "endocrine.corpus_luteum.radial_luteal_tissue",
+      "name": "Corpus luteum",
+      "file": "expansion-20261107/svg/corpus_luteum_radial_luteal_tissue_style4.svg",
+      "sha256": "bc83c173fc0aa4858e92ab010539fed531872aefded5fda42e7bd31e0e1527ea",
+      "source_pack_id": "endocrine-tissue",
+      "source_asset_sha256": "bec9c0c80d3f218957cc6d76c3042ceca789c886085d90d59c274548c908552e",
+      "geometry_sha256": "aeb7cabb126dcfcae979189ecb824d7d4ad9298d51a59c4fce88219897fe4bf9",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-07",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-07",
+      "editable_color_regions": [
+        {
+          "id": "luteal",
+          "label": "Luteal cell cords",
+          "default": "#D9A27B",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#D9A27B"
+            }
+          ]
+        },
+        {
+          "id": "vessel",
+          "label": "Capillary network",
+          "default": "#C44D4D",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#C44D4D"
+            }
+          ]
+        },
+        {
+          "id": "antrum",
+          "label": "Central cavity",
+          "default": "#E8F4F8",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#E8F4F8"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#3C505B",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#3C505B"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original contour and compartment geometry authored for this endocrine companion. Research informs topology only; no supplied artwork geometry is copied."
+    },
+    {
+      "asset_id": "endocrine.leydig_interstitium.paired_tubules",
+      "name": "Leydig-cell interstitium",
+      "file": "expansion-20261107/svg/leydig_interstitium_paired_tubules_style4.svg",
+      "sha256": "e24f2ffd6f44a7f90b6dd291921febfa55600310f00912396bd815179da9c010",
+      "source_pack_id": "endocrine-tissue",
+      "source_asset_sha256": "afb885bd968089685b6602eb7aa5a81d8ab8f94c282a90df2ee09def3ca6fd58",
+      "geometry_sha256": "174a07a8dc650060652fa4688bfbc2b8c61133bb3216f37a68e24bf669ef7f66",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-07",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-07",
+      "editable_color_regions": [
+        {
+          "id": "interstitium",
+          "label": "Interstitial cell clusters",
+          "default": "#D8C5A4",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#D8C5A4"
+            }
+          ]
+        },
+        {
+          "id": "vessel",
+          "label": "Interstitial vessel",
+          "default": "#C44D4D",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#C44D4D"
+            }
+          ]
+        },
+        {
+          "id": "tubule",
+          "label": "Seminiferous-tubule epithelium",
+          "default": "#D5B5D8",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#D5B5D8"
+            }
+          ]
+        },
+        {
+          "id": "tubule_lumen",
+          "label": "Seminiferous-tubule lumen",
+          "default": "#FFF8E8",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#FFF8E8"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#3C505B",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#3C505B"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original contour and compartment geometry authored for this endocrine companion. Research informs topology only; no supplied artwork geometry is copied."
+    },
+    {
+      "asset_id": "endocrine.leydig_interstitium.tubule_corner",
+      "name": "Leydig-cell interstitium",
+      "file": "expansion-20261107/svg/leydig_interstitium_tubule_corner_style4.svg",
+      "sha256": "20568958be2e2f7188a2d4d17705df4d55478e20e0de4074d68ef5e06e43e4cd",
+      "source_pack_id": "endocrine-tissue",
+      "source_asset_sha256": "715ce8ea49bd0d1cac74b7540c0b7fd144be48296e428459b44cb6ecca3dc35d",
+      "geometry_sha256": "f94c3d6d3ea6273b361de283d9a5af06144169386e2df832f343b3d09405fa1b",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-07",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-07",
+      "editable_color_regions": [
+        {
+          "id": "interstitium",
+          "label": "Interstitial cell clusters",
+          "default": "#D8C5A4",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#D8C5A4"
+            }
+          ]
+        },
+        {
+          "id": "vessel",
+          "label": "Interstitial vessel",
+          "default": "#C44D4D",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#C44D4D"
+            }
+          ]
+        },
+        {
+          "id": "tubule",
+          "label": "Seminiferous-tubule epithelium",
+          "default": "#D5B5D8",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#D5B5D8"
+            }
+          ]
+        },
+        {
+          "id": "tubule_lumen",
+          "label": "Seminiferous-tubule lumen",
+          "default": "#FFF8E8",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#FFF8E8"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#3C505B",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#3C505B"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original contour and compartment geometry authored for this endocrine companion. Research informs topology only; no supplied artwork geometry is copied."
+    }
+  ]
+}

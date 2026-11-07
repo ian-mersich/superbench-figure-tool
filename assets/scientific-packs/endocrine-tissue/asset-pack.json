@@ -1,0 +1,2136 @@
+{
+  "schema_version": "0.3.0",
+  "id": "endocrine-tissue",
+  "name": "Endocrine Tissue Organization",
+  "description": "Editable endocrine tissue architecture, neurovascular contacts and glandular compartments with two structural forms per concept.",
+  "style_family": "figure-studio-soft-line-v1",
+  "style_families": [
+    "figure-studio-soft-line-v1"
+  ],
+  "contribution_license_policy": "original-vectors.cc0.repository-policy.2026-11-07",
+  "qa_status": "scientific_visual_native_review_pending_2026_11_07",
+  "available_art_styles": [
+    "soft-color",
+    "cut-paper",
+    "technical-ink",
+    "style-4"
+  ],
+  "style_4_supplement": "original-style4-companions.2026-11-07",
+  "asset_count": 24,
+  "concept_count": 12,
+  "category_counts": {
+    "model-system": {
+      "concept_count": 12,
+      "style_count": 24
+    }
+  },
+  "release_audit": {
+    "file": "rights-release-record.json",
+    "audit_id": "endocrine-tissue.repository-policy-cc0-quality-pending.2026-11-07",
+    "audit_date": "2026-11-07",
+    "status": "rights_cleared_quality_pending",
+    "release_effective_date": null,
+    "rights_grant_effective_date": "2026-11-07",
+    "product_release_status": "pending_quality_and_product_review",
+    "concept_count": 12,
+    "asset_count": 24,
+    "public_distribution_authorized": true,
+    "selected_public_license": "CC0-1.0",
+    "license_notice": "LICENSE-ASSETS-CC0-1.0.md"
+  },
+  "source_records": [
+    {
+      "id": "source.endocrine-tissue.original.2026-11-07",
+      "kind": "clean_room_generation_record",
+      "pack_id": "endocrine-tissue",
+      "scope": "all_assets_in_pack",
+      "created_on": "2026-11-07",
+      "generated_by": "Figure Tool original SVG authoring",
+      "third_party_material": "none_declared",
+      "statement": "Original editable vector coordinates authored afresh for Figure Tool. Primary research informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "scientific_references": [
+        {
+          "id": "thyroid_follicle",
+          "citation": "Wissig SL. The anatomy of secretion in the follicular cells of the thyroid gland: II. The effect of acute thyrotrophic hormone stimulation on the secretory apparatus. J Cell Biol. 1963;16:93–117.",
+          "doi": "10.1083/jcb.16.1.93",
+          "url": "https://doi.org/10.1083/jcb.16.1.93",
+          "design_decision": "Ultrastructural observations support keeping follicular epithelial cells and luminal colloid as distinct compartments."
+        },
+        {
+          "id": "parathyroid_cords",
+          "citation": "Gilmour JR. The normal histology of the parathyroid glands. J Pathol Bacteriol. 1939;48:187–222.",
+          "doi": "10.1002/path.1700480119",
+          "url": "https://doi.org/10.1002/path.1700480119",
+          "design_decision": "Supports parenchymal chief-cell fields and connective tissue; a separately visible capillary is included as a generic structural relationship."
+        },
+        {
+          "id": "pancreatic_islet",
+          "citation": "Cabrera O, et al. The unique cytoarchitecture of human pancreatic islets has implications for islet cell function. Proc Natl Acad Sci USA. 2006;103:2334–2339.",
+          "doi": "10.1073/pnas.0510790103",
+          "url": "https://doi.org/10.1073/pnas.0510790103",
+          "design_decision": "Shows mixed human endocrine cell types associated with microvasculature; avoids imposing a universal rodent core–mantle pattern."
+        },
+        {
+          "id": "adrenal_zones",
+          "citation": "Fu R, et al. In Situ Spatial Reconstruction of Distinct Normal and Pathological Cell Populations Within the Human Adrenal Gland. J Endocr Soc. 2023;7:bvad131.",
+          "doi": "10.1210/jendso/bvad131",
+          "url": "https://doi.org/10.1210/jendso/bvad131",
+          "design_decision": "Human spatial reconstruction supports the outward-to-inward order of capsule, zona glomerulosa, zona fasciculata, zona reticularis, and medulla."
+        },
+        {
+          "id": "adrenal_medulla",
+          "citation": "Kikuta A, Murakami T. Relationship between chromaffin cells and blood vessels in the rat adrenal medulla: a transmission electron microscopic study combined with blood vessel reconstructions. Am J Anat. 1984;170:73–81.",
+          "doi": "10.1002/aja.1001700106",
+          "url": "https://doi.org/10.1002/aja.1001700106",
+          "design_decision": "Directly supports close relationships between chromaffin cells and sinusoidal vascular channels; rat-specific vascular anatomy is presented schematically."
+        },
+        {
+          "id": "pineal_vasculature",
+          "citation": "Murakami T, Kikuta A, Taguchi T, Ohtsuka A. The blood vascular architecture of the rat pineal gland: a scanning electron microscopic study of corrosion casts. Arch Histol Cytol. 1988;51:61–69.",
+          "doi": "10.1679/aohc.51.61",
+          "url": "https://doi.org/10.1679/aohc.51.61",
+          "design_decision": "Supports a richly interconnected capillary network. A separate human postmortem morphometry reference supports pinealocytes within glial tissue; no calcification is implied."
+        },
+        {
+          "id": "pineal_parenchyma",
+          "citation": "Gheban BA, et al. Age-Related Changes of the Pineal Gland in Humans: A Digital Anatomo-Histological Morphometric Study on Autopsy Cases with Comparison to Predigital-Era Studies. Medicina. 2021;57:383.",
+          "doi": "10.3390/medicina57040383",
+          "url": "https://doi.org/10.3390/medicina57040383",
+          "design_decision": "Human postmortem histology supports pinealocyte parenchyma in glial tissue and variable lobular or insular arrangements; no calcification is required in the schematic."
+        },
+        {
+          "id": "anterior_pituitary_topology",
+          "citation": "Yoshitomi M, et al. Three-dimensional ultrastructural analyses of anterior pituitary gland expose spatial relationships between endocrine cell secretory granule localization and capillary distribution. Sci Rep. 2016;6:36019.",
+          "doi": "10.1038/srep36019",
+          "url": "https://doi.org/10.1038/srep36019",
+          "design_decision": "Supports the spatial arrangement of anterior-lobe endocrine cells relative to capillary profiles; the drawing uses generic cords and vascular channels without assigning endocrine cell classes."
+        },
+        {
+          "id": "posterior_pituitary_topology",
+          "citation": "Zhu CG, Chen AQ, Liu QY, Wei Y, Peng XL. An immunoelectron microscopic study of peptide substances in the rat neurohypophysis. J Tongji Med Univ. 1989;9(1):29–35.",
+          "doi": "10.1007/BF02933741",
+          "url": "https://doi.org/10.1007/BF02933741",
+          "design_decision": "Supports neural terminals distributed near capillaries and pituicytes; no specific peptide identity or release event is assigned."
+        },
+        {
+          "id": "median_eminence_topology",
+          "citation": "Buma P, Nieuwenhuys R. Ultrastructural characterization of exocytotic release sites in different layers of the median eminence of the rat. Cell Tissue Res. 1988;252:107–114.",
+          "doi": "10.1007/BF00213831",
+          "url": "https://doi.org/10.1007/BF00213831",
+          "design_decision": "Supports external-zone neuronal terminals adjacent to the primary portal capillary plexus and distinction from deeper neural tissue; no peptide identity or pituitary target is depicted."
+        },
+        {
+          "id": "ovarian_follicle_topology",
+          "citation": "Abdelnaby EA, Yasin NA, Abouelela YS, Rashad E, Daghash SM, El-Sherbiny HR. Ovarian, uterine, and luteal vascular perfusions during follicular and luteal phases in the adult cyclic female rabbits with special orientation to their histological detection of hormone receptor. BMC Vet Res. 2022;18:301.",
+          "doi": "10.1186/s12917-022-03390-6",
+          "url": "https://doi.org/10.1186/s12917-022-03390-6",
+          "design_decision": "Informs the antral follicle arrangement of oocyte, granulosa, antral space and peripheral thecal support; vascular cue remains outside granulosa."
+        },
+        {
+          "id": "corpus_luteum_topology",
+          "citation": "Abdelnaby EA, Yasin NA, Abouelela YS, Rashad E, Daghash SM, El-Sherbiny HR. Ovarian, uterine, and luteal vascular perfusions during follicular and luteal phases in the adult cyclic female rabbits with special orientation to their histological detection of hormone receptor. BMC Vet Res. 2022;18:301.",
+          "doi": "10.1186/s12917-022-03390-6",
+          "url": "https://doi.org/10.1186/s12917-022-03390-6",
+          "design_decision": "Supports luteal cell populations separated by capillaries and vascular connective capsule; the schematic omits species-specific luteal cell distinctions."
+        },
+        {
+          "id": "leydig_interstitium_topology",
+          "citation": "Stanley E, Lin CY, Jin S, Liu J, Sottas CM, Ge R, Zirkin BR, Chen H. Identification, proliferation, and differentiation of adult Leydig stem cells. Endocrinology. 2012;153(10):5002–5010.",
+          "doi": "10.1210/en.2012-1417",
+          "url": "https://doi.org/10.1210/en.2012-1417",
+          "design_decision": "Supports Leydig/interstitial localization between seminiferous tubules; only tissue position and cluster arrangement are shown, without inferring hormone identity from shape."
+        }
+      ]
+    }
+  ],
+  "rights_records": [
+    {
+      "id": "rights.endocrine-tissue.repository-policy-cc0.2026-11-07",
+      "kind": "repository_policy_license",
+      "pack_id": "endocrine-tissue",
+      "scope": "all_assets_in_pack",
+      "status": "rights_cleared",
+      "public_distribution_authorized": true,
+      "selected_public_license": "CC0-1.0",
+      "rights_basis": "repository_policy_original_output",
+      "third_party_material": "none_declared",
+      "effective_date": "2026-11-07",
+      "license_policy": "original-vectors.cc0.repository-policy.2026-11-07",
+      "statement": "Original editable vector coordinates authored afresh for Figure Tool. Primary research informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "qualification": "This finite original contribution uses the adopted repository CC0 artwork policy. No personal owner attestation or historical grant is extended. Scientific, visual and native editing review and product inclusion are separate decisions."
+    }
+  ],
+  "style_tokens": {
+    "viewBox": "0 0 128 128",
+    "primary_outline": "#26323D",
+    "primary_outline_width": 3.5,
+    "detail_outline_width": 2.75,
+    "line_cap": "round",
+    "line_join": "round"
+  },
+  "source_policy": {
+    "allowed_sources": [
+      "Original vector geometry; biological topology from primary research"
+    ],
+    "disallowed_sources": [
+      "Tracing or reuse of published or proprietary artwork"
+    ]
+  },
+  "license_definitions": {
+    "CC0-1.0": {
+      "label": "CC0 1.0 Universal",
+      "public_distribution_authorized": true,
+      "selected_public_license": "CC0-1.0",
+      "release_status": "rights_cleared_quality_pending",
+      "reuse": "Original artwork under the repository policy. Product qualification is separate."
+    }
+  },
+  "assets": [
+    {
+      "id": "endocrine.thyroid_follicle.single_follicle",
+      "concept_id": "endocrine.thyroid_follicle",
+      "name": "Thyroid follicle",
+      "scientific_name": "Thyroid follicle",
+      "category": "model-system",
+      "subcategory": "thyroid",
+      "synonyms": [
+        "thyroid follicles",
+        "colloid follicle"
+      ],
+      "tags": [
+        "thyroid follicle",
+        "thyroid follicles",
+        "colloid follicle",
+        "Single follicle",
+        "endocrine tissue",
+        "schematic"
+      ],
+      "description": "A section through one colloid-filled follicle bounded by follicular epithelium.",
+      "file": "svg/thyroid_follicle_single_follicle.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector coordinates authored afresh for Figure Tool. Primary research informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "source_record_id": "source.endocrine-tissue.original.2026-11-07",
+      "rights_record_id": "rights.endocrine-tissue.repository-policy-cc0.2026-11-07",
+      "style_family": "figure-studio-soft-line-v1",
+      "variant_axis": "form",
+      "style_variant": "standard",
+      "form_id": "single_follicle",
+      "form_label": "Single follicle",
+      "available_art_styles": [
+        "soft-color",
+        "cut-paper",
+        "technical-ink",
+        "style-4"
+      ],
+      "style_4_supplement": "original-style4-companions.2026-11-07",
+      "review_status": "scientific_visual_native_review_pending_2026_11_07",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 4,
+      "editable_color_regions": [
+        {
+          "id": "follicular_epithelium",
+          "label": "Follicular epithelium",
+          "default": "#E9A997"
+        },
+        {
+          "id": "colloid",
+          "label": "Colloid",
+          "default": "#FFFFFF"
+        },
+        {
+          "id": "stroma",
+          "label": "Interfollicular stroma",
+          "default": "#B8D8C5"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#344955"
+        }
+      ],
+      "reviewer_notes": "Original tissue schematics await independent scientific, full-resolution and thumbnail review plus native editing qualification. All four styles have the same biological forms and named parts.",
+      "scientific_references": [
+        {
+          "id": "thyroid_follicle",
+          "citation": "Wissig SL. The anatomy of secretion in the follicular cells of the thyroid gland: II. The effect of acute thyrotrophic hormone stimulation on the secretory apparatus. J Cell Biol. 1963;16:93–117.",
+          "doi": "10.1083/jcb.16.1.93",
+          "url": "https://doi.org/10.1083/jcb.16.1.93",
+          "design_decision": "Ultrastructural observations support keeping follicular epithelial cells and luminal colloid as distinct compartments."
+        }
+      ],
+      "scientific_limitations": "State-neutral schematic; epithelial height, colloid texture, and follicle size are not quantitative."
+    },
+    {
+      "id": "endocrine.thyroid_follicle.follicle_field",
+      "concept_id": "endocrine.thyroid_follicle",
+      "name": "Thyroid follicle",
+      "scientific_name": "Thyroid follicle",
+      "category": "model-system",
+      "subcategory": "thyroid",
+      "synonyms": [
+        "thyroid follicles",
+        "colloid follicle"
+      ],
+      "tags": [
+        "thyroid follicle",
+        "thyroid follicles",
+        "colloid follicle",
+        "Follicle field",
+        "endocrine tissue",
+        "schematic"
+      ],
+      "description": "Several differently sized follicles separated by interfollicular stroma.",
+      "file": "svg/thyroid_follicle_follicle_field.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector coordinates authored afresh for Figure Tool. Primary research informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "source_record_id": "source.endocrine-tissue.original.2026-11-07",
+      "rights_record_id": "rights.endocrine-tissue.repository-policy-cc0.2026-11-07",
+      "style_family": "figure-studio-soft-line-v1",
+      "variant_axis": "form",
+      "style_variant": "standard",
+      "form_id": "follicle_field",
+      "form_label": "Follicle field",
+      "available_art_styles": [
+        "soft-color",
+        "cut-paper",
+        "technical-ink",
+        "style-4"
+      ],
+      "style_4_supplement": "original-style4-companions.2026-11-07",
+      "review_status": "scientific_visual_native_review_pending_2026_11_07",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 4,
+      "editable_color_regions": [
+        {
+          "id": "follicular_epithelium",
+          "label": "Follicular epithelium",
+          "default": "#E9A997"
+        },
+        {
+          "id": "colloid",
+          "label": "Colloid",
+          "default": "#FFFFFF"
+        },
+        {
+          "id": "stroma",
+          "label": "Interfollicular stroma",
+          "default": "#B8D8C5"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#344955"
+        }
+      ],
+      "reviewer_notes": "Original tissue schematics await independent scientific, full-resolution and thumbnail review plus native editing qualification. All four styles have the same biological forms and named parts.",
+      "scientific_references": [
+        {
+          "id": "thyroid_follicle",
+          "citation": "Wissig SL. The anatomy of secretion in the follicular cells of the thyroid gland: II. The effect of acute thyrotrophic hormone stimulation on the secretory apparatus. J Cell Biol. 1963;16:93–117.",
+          "doi": "10.1083/jcb.16.1.93",
+          "url": "https://doi.org/10.1083/jcb.16.1.93",
+          "design_decision": "Ultrastructural observations support keeping follicular epithelial cells and luminal colloid as distinct compartments."
+        }
+      ],
+      "scientific_limitations": "State-neutral schematic; epithelial height, colloid texture, and follicle size are not quantitative."
+    },
+    {
+      "id": "endocrine.parathyroid_cords.cords_longitudinal",
+      "concept_id": "endocrine.parathyroid_cords",
+      "name": "Parathyroid parenchyma",
+      "scientific_name": "Parathyroid parenchyma",
+      "category": "model-system",
+      "subcategory": "parathyroid",
+      "synonyms": [
+        "parathyroid chief cells",
+        "parathyroid tissue"
+      ],
+      "tags": [
+        "parathyroid cords",
+        "parathyroid chief cells",
+        "parathyroid tissue",
+        "Interwoven cords",
+        "endocrine tissue",
+        "schematic"
+      ],
+      "description": "Parenchymal cords course around a branching capillary in connective stroma.",
+      "file": "svg/parathyroid_cords_cords_longitudinal.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector coordinates authored afresh for Figure Tool. Primary research informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "source_record_id": "source.endocrine-tissue.original.2026-11-07",
+      "rights_record_id": "rights.endocrine-tissue.repository-policy-cc0.2026-11-07",
+      "style_family": "figure-studio-soft-line-v1",
+      "variant_axis": "form",
+      "style_variant": "standard",
+      "form_id": "cords_longitudinal",
+      "form_label": "Interwoven cords",
+      "available_art_styles": [
+        "soft-color",
+        "cut-paper",
+        "technical-ink",
+        "style-4"
+      ],
+      "style_4_supplement": "original-style4-companions.2026-11-07",
+      "review_status": "scientific_visual_native_review_pending_2026_11_07",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 4,
+      "editable_color_regions": [
+        {
+          "id": "parenchyma",
+          "label": "Parathyroid parenchyma",
+          "default": "#E5B69E"
+        },
+        {
+          "id": "capillary",
+          "label": "Capillary",
+          "default": "#D8867A"
+        },
+        {
+          "id": "stroma",
+          "label": "Connective stroma",
+          "default": "#B8D8C5"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#344955"
+        }
+      ],
+      "reviewer_notes": "Original tissue schematics await independent scientific, full-resolution and thumbnail review plus native editing qualification. All four styles have the same biological forms and named parts.",
+      "scientific_references": [
+        {
+          "id": "parathyroid_cords",
+          "citation": "Gilmour JR. The normal histology of the parathyroid glands. J Pathol Bacteriol. 1939;48:187–222.",
+          "doi": "10.1002/path.1700480119",
+          "url": "https://doi.org/10.1002/path.1700480119",
+          "design_decision": "Supports parenchymal chief-cell fields and connective tissue; a separately visible capillary is included as a generic structural relationship."
+        }
+      ],
+      "scientific_limitations": "Generic adult gland topology; cell proportions and adipose content vary with age and individual."
+    },
+    {
+      "id": "endocrine.parathyroid_cords.lobular_field",
+      "concept_id": "endocrine.parathyroid_cords",
+      "name": "Parathyroid parenchyma",
+      "scientific_name": "Parathyroid parenchyma",
+      "category": "model-system",
+      "subcategory": "parathyroid",
+      "synonyms": [
+        "parathyroid chief cells",
+        "parathyroid tissue"
+      ],
+      "tags": [
+        "parathyroid cords",
+        "parathyroid chief cells",
+        "parathyroid tissue",
+        "Lobular field",
+        "endocrine tissue",
+        "schematic"
+      ],
+      "description": "A compact lobular arrangement of cords with stromal septa and capillary profiles.",
+      "file": "svg/parathyroid_cords_lobular_field.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector coordinates authored afresh for Figure Tool. Primary research informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "source_record_id": "source.endocrine-tissue.original.2026-11-07",
+      "rights_record_id": "rights.endocrine-tissue.repository-policy-cc0.2026-11-07",
+      "style_family": "figure-studio-soft-line-v1",
+      "variant_axis": "form",
+      "style_variant": "standard",
+      "form_id": "lobular_field",
+      "form_label": "Lobular field",
+      "available_art_styles": [
+        "soft-color",
+        "cut-paper",
+        "technical-ink",
+        "style-4"
+      ],
+      "style_4_supplement": "original-style4-companions.2026-11-07",
+      "review_status": "scientific_visual_native_review_pending_2026_11_07",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 4,
+      "editable_color_regions": [
+        {
+          "id": "parenchyma",
+          "label": "Parathyroid parenchyma",
+          "default": "#E5B69E"
+        },
+        {
+          "id": "capillary",
+          "label": "Capillary",
+          "default": "#D8867A"
+        },
+        {
+          "id": "stroma",
+          "label": "Connective stroma",
+          "default": "#B8D8C5"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#344955"
+        }
+      ],
+      "reviewer_notes": "Original tissue schematics await independent scientific, full-resolution and thumbnail review plus native editing qualification. All four styles have the same biological forms and named parts.",
+      "scientific_references": [
+        {
+          "id": "parathyroid_cords",
+          "citation": "Gilmour JR. The normal histology of the parathyroid glands. J Pathol Bacteriol. 1939;48:187–222.",
+          "doi": "10.1002/path.1700480119",
+          "url": "https://doi.org/10.1002/path.1700480119",
+          "design_decision": "Supports parenchymal chief-cell fields and connective tissue; a separately visible capillary is included as a generic structural relationship."
+        }
+      ],
+      "scientific_limitations": "Generic adult gland topology; cell proportions and adipose content vary with age and individual."
+    },
+    {
+      "id": "endocrine.pancreatic_islet.mixed_islet",
+      "concept_id": "endocrine.pancreatic_islet",
+      "name": "Pancreatic islet",
+      "scientific_name": "Pancreatic islet",
+      "category": "model-system",
+      "subcategory": "pancreas",
+      "synonyms": [
+        "islet of Langerhans",
+        "endocrine pancreas"
+      ],
+      "tags": [
+        "pancreatic islet",
+        "islet of Langerhans",
+        "endocrine pancreas",
+        "Mixed cell clusters",
+        "endocrine tissue",
+        "schematic"
+      ],
+      "description": "Mixed endocrine-cell groups are interspersed with capillary channels.",
+      "file": "svg/pancreatic_islet_mixed_islet.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector coordinates authored afresh for Figure Tool. Primary research informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "source_record_id": "source.endocrine-tissue.original.2026-11-07",
+      "rights_record_id": "rights.endocrine-tissue.repository-policy-cc0.2026-11-07",
+      "style_family": "figure-studio-soft-line-v1",
+      "variant_axis": "form",
+      "style_variant": "standard",
+      "form_id": "mixed_islet",
+      "form_label": "Mixed cell clusters",
+      "available_art_styles": [
+        "soft-color",
+        "cut-paper",
+        "technical-ink",
+        "style-4"
+      ],
+      "style_4_supplement": "original-style4-companions.2026-11-07",
+      "review_status": "scientific_visual_native_review_pending_2026_11_07",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 5,
+      "editable_color_regions": [
+        {
+          "id": "beta_cells",
+          "label": "β-cell population",
+          "default": "#E9B7A5"
+        },
+        {
+          "id": "other_endocrine",
+          "label": "Other endocrine cells",
+          "default": "#A9C5D9"
+        },
+        {
+          "id": "capillary",
+          "label": "Capillaries",
+          "default": "#D8867A"
+        },
+        {
+          "id": "stroma",
+          "label": "Supporting stroma",
+          "default": "#B8D8C5"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#344955"
+        }
+      ],
+      "reviewer_notes": "Original tissue schematics await independent scientific, full-resolution and thumbnail review plus native editing qualification. All four styles have the same biological forms and named parts.",
+      "scientific_references": [
+        {
+          "id": "pancreatic_islet",
+          "citation": "Cabrera O, et al. The unique cytoarchitecture of human pancreatic islets has implications for islet cell function. Proc Natl Acad Sci USA. 2006;103:2334–2339.",
+          "doi": "10.1073/pnas.0510790103",
+          "url": "https://doi.org/10.1073/pnas.0510790103",
+          "design_decision": "Shows mixed human endocrine cell types associated with microvasculature; avoids imposing a universal rodent core–mantle pattern."
+        }
+      ],
+      "scientific_limitations": "Cell colors distinguish broad endocrine populations only; arrangement is illustrative and not a universal species-specific blueprint."
+    },
+    {
+      "id": "endocrine.pancreatic_islet.folded_plates",
+      "concept_id": "endocrine.pancreatic_islet",
+      "name": "Pancreatic islet",
+      "scientific_name": "Pancreatic islet",
+      "category": "model-system",
+      "subcategory": "pancreas",
+      "synonyms": [
+        "islet of Langerhans",
+        "endocrine pancreas"
+      ],
+      "tags": [
+        "pancreatic islet",
+        "islet of Langerhans",
+        "endocrine pancreas",
+        "Folded cell plates",
+        "endocrine tissue",
+        "schematic"
+      ],
+      "description": "Curved endocrine-cell plates lie alongside branching capillary channels.",
+      "file": "svg/pancreatic_islet_folded_plates.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector coordinates authored afresh for Figure Tool. Primary research informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "source_record_id": "source.endocrine-tissue.original.2026-11-07",
+      "rights_record_id": "rights.endocrine-tissue.repository-policy-cc0.2026-11-07",
+      "style_family": "figure-studio-soft-line-v1",
+      "variant_axis": "form",
+      "style_variant": "standard",
+      "form_id": "folded_plates",
+      "form_label": "Folded cell plates",
+      "available_art_styles": [
+        "soft-color",
+        "cut-paper",
+        "technical-ink",
+        "style-4"
+      ],
+      "style_4_supplement": "original-style4-companions.2026-11-07",
+      "review_status": "scientific_visual_native_review_pending_2026_11_07",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 5,
+      "editable_color_regions": [
+        {
+          "id": "beta_cells",
+          "label": "β-cell population",
+          "default": "#E9B7A5"
+        },
+        {
+          "id": "other_endocrine",
+          "label": "Other endocrine cells",
+          "default": "#A9C5D9"
+        },
+        {
+          "id": "capillary",
+          "label": "Capillaries",
+          "default": "#D8867A"
+        },
+        {
+          "id": "stroma",
+          "label": "Supporting stroma",
+          "default": "#B8D8C5"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#344955"
+        }
+      ],
+      "reviewer_notes": "Original tissue schematics await independent scientific, full-resolution and thumbnail review plus native editing qualification. All four styles have the same biological forms and named parts.",
+      "scientific_references": [
+        {
+          "id": "pancreatic_islet",
+          "citation": "Cabrera O, et al. The unique cytoarchitecture of human pancreatic islets has implications for islet cell function. Proc Natl Acad Sci USA. 2006;103:2334–2339.",
+          "doi": "10.1073/pnas.0510790103",
+          "url": "https://doi.org/10.1073/pnas.0510790103",
+          "design_decision": "Shows mixed human endocrine cell types associated with microvasculature; avoids imposing a universal rodent core–mantle pattern."
+        }
+      ],
+      "scientific_limitations": "Cell colors distinguish broad endocrine populations only; arrangement is illustrative and not a universal species-specific blueprint."
+    },
+    {
+      "id": "endocrine.adrenal_cortex.concentric_zones",
+      "concept_id": "endocrine.adrenal_cortex",
+      "name": "Adrenal cortex",
+      "scientific_name": "Adrenal cortex",
+      "category": "model-system",
+      "subcategory": "adrenal gland",
+      "synonyms": [
+        "zona glomerulosa",
+        "zona fasciculata",
+        "zona reticularis"
+      ],
+      "tags": [
+        "adrenal cortex",
+        "zona glomerulosa",
+        "zona fasciculata",
+        "zona reticularis",
+        "Concentric zones",
+        "endocrine tissue",
+        "schematic"
+      ],
+      "description": "Capsule and the three cortical zones surround the medullary side in anatomical order.",
+      "file": "svg/adrenal_cortex_concentric_zones.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector coordinates authored afresh for Figure Tool. Primary research informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "source_record_id": "source.endocrine-tissue.original.2026-11-07",
+      "rights_record_id": "rights.endocrine-tissue.repository-policy-cc0.2026-11-07",
+      "style_family": "figure-studio-soft-line-v1",
+      "variant_axis": "form",
+      "style_variant": "standard",
+      "form_id": "concentric_zones",
+      "form_label": "Concentric zones",
+      "available_art_styles": [
+        "soft-color",
+        "cut-paper",
+        "technical-ink",
+        "style-4"
+      ],
+      "style_4_supplement": "original-style4-companions.2026-11-07",
+      "review_status": "scientific_visual_native_review_pending_2026_11_07",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 6,
+      "editable_color_regions": [
+        {
+          "id": "capsule",
+          "label": "Capsule",
+          "default": "#B8D8C5"
+        },
+        {
+          "id": "zona_glomerulosa",
+          "label": "Zona glomerulosa",
+          "default": "#D9B978"
+        },
+        {
+          "id": "zona_fasciculata",
+          "label": "Zona fasciculata",
+          "default": "#E9B7A5"
+        },
+        {
+          "id": "zona_reticularis",
+          "label": "Zona reticularis",
+          "default": "#A9C5D9"
+        },
+        {
+          "id": "medulla",
+          "label": "Medulla",
+          "default": "#C58B9A"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#344955"
+        }
+      ],
+      "reviewer_notes": "Original tissue schematics await independent scientific, full-resolution and thumbnail review plus native editing qualification. All four styles have the same biological forms and named parts.",
+      "scientific_references": [
+        {
+          "id": "adrenal_zones",
+          "citation": "Fu R, et al. In Situ Spatial Reconstruction of Distinct Normal and Pathological Cell Populations Within the Human Adrenal Gland. J Endocr Soc. 2023;7:bvad131.",
+          "doi": "10.1210/jendso/bvad131",
+          "url": "https://doi.org/10.1210/jendso/bvad131",
+          "design_decision": "Human spatial reconstruction supports the outward-to-inward order of capsule, zona glomerulosa, zona fasciculata, zona reticularis, and medulla."
+        }
+      ],
+      "scientific_limitations": "Zones are simplified and not to scale; human and other mammalian adrenal organization can differ locally."
+    },
+    {
+      "id": "endocrine.adrenal_cortex.cortical_wedge",
+      "concept_id": "endocrine.adrenal_cortex",
+      "name": "Adrenal cortex",
+      "scientific_name": "Adrenal cortex",
+      "category": "model-system",
+      "subcategory": "adrenal gland",
+      "synonyms": [
+        "zona glomerulosa",
+        "zona fasciculata",
+        "zona reticularis"
+      ],
+      "tags": [
+        "adrenal cortex",
+        "zona glomerulosa",
+        "zona fasciculata",
+        "zona reticularis",
+        "Cortical wedge",
+        "endocrine tissue",
+        "schematic"
+      ],
+      "description": "An expanded radial wedge shows the capsule, cortical zones, and adjoining medulla.",
+      "file": "svg/adrenal_cortex_cortical_wedge.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector coordinates authored afresh for Figure Tool. Primary research informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "source_record_id": "source.endocrine-tissue.original.2026-11-07",
+      "rights_record_id": "rights.endocrine-tissue.repository-policy-cc0.2026-11-07",
+      "style_family": "figure-studio-soft-line-v1",
+      "variant_axis": "form",
+      "style_variant": "standard",
+      "form_id": "cortical_wedge",
+      "form_label": "Cortical wedge",
+      "available_art_styles": [
+        "soft-color",
+        "cut-paper",
+        "technical-ink",
+        "style-4"
+      ],
+      "style_4_supplement": "original-style4-companions.2026-11-07",
+      "review_status": "scientific_visual_native_review_pending_2026_11_07",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 6,
+      "editable_color_regions": [
+        {
+          "id": "capsule",
+          "label": "Capsule",
+          "default": "#B8D8C5"
+        },
+        {
+          "id": "zona_glomerulosa",
+          "label": "Zona glomerulosa",
+          "default": "#D9B978"
+        },
+        {
+          "id": "zona_fasciculata",
+          "label": "Zona fasciculata",
+          "default": "#E9B7A5"
+        },
+        {
+          "id": "zona_reticularis",
+          "label": "Zona reticularis",
+          "default": "#A9C5D9"
+        },
+        {
+          "id": "medulla",
+          "label": "Medulla",
+          "default": "#C58B9A"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#344955"
+        }
+      ],
+      "reviewer_notes": "Original tissue schematics await independent scientific, full-resolution and thumbnail review plus native editing qualification. All four styles have the same biological forms and named parts.",
+      "scientific_references": [
+        {
+          "id": "adrenal_zones",
+          "citation": "Fu R, et al. In Situ Spatial Reconstruction of Distinct Normal and Pathological Cell Populations Within the Human Adrenal Gland. J Endocr Soc. 2023;7:bvad131.",
+          "doi": "10.1210/jendso/bvad131",
+          "url": "https://doi.org/10.1210/jendso/bvad131",
+          "design_decision": "Human spatial reconstruction supports the outward-to-inward order of capsule, zona glomerulosa, zona fasciculata, zona reticularis, and medulla."
+        }
+      ],
+      "scientific_limitations": "Zones are simplified and not to scale; human and other mammalian adrenal organization can differ locally."
+    },
+    {
+      "id": "endocrine.adrenal_medulla.vascular_nests",
+      "concept_id": "endocrine.adrenal_medulla",
+      "name": "Adrenal medulla",
+      "scientific_name": "Adrenal medulla",
+      "category": "model-system",
+      "subcategory": "adrenal gland",
+      "synonyms": [
+        "chromaffin tissue",
+        "adrenal chromaffin cells"
+      ],
+      "tags": [
+        "adrenal medulla",
+        "chromaffin tissue",
+        "adrenal chromaffin cells",
+        "Nests around sinusoid",
+        "endocrine tissue",
+        "schematic"
+      ],
+      "description": "Chromaffin-cell nests are arranged beside a sinusoidal channel.",
+      "file": "svg/adrenal_medulla_vascular_nests.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector coordinates authored afresh for Figure Tool. Primary research informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "source_record_id": "source.endocrine-tissue.original.2026-11-07",
+      "rights_record_id": "rights.endocrine-tissue.repository-policy-cc0.2026-11-07",
+      "style_family": "figure-studio-soft-line-v1",
+      "variant_axis": "form",
+      "style_variant": "standard",
+      "form_id": "vascular_nests",
+      "form_label": "Nests around sinusoid",
+      "available_art_styles": [
+        "soft-color",
+        "cut-paper",
+        "technical-ink",
+        "style-4"
+      ],
+      "style_4_supplement": "original-style4-companions.2026-11-07",
+      "review_status": "scientific_visual_native_review_pending_2026_11_07",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 4,
+      "editable_color_regions": [
+        {
+          "id": "chromaffin_cells",
+          "label": "Chromaffin cells",
+          "default": "#C58B9A"
+        },
+        {
+          "id": "supporting_cells",
+          "label": "Supporting cells",
+          "default": "#B8D8C5"
+        },
+        {
+          "id": "vascular_lumen",
+          "label": "Vascular lumen",
+          "default": "#F2D7CE"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#344955"
+        }
+      ],
+      "reviewer_notes": "Original tissue schematics await independent scientific, full-resolution and thumbnail review plus native editing qualification. All four styles have the same biological forms and named parts.",
+      "scientific_references": [
+        {
+          "id": "adrenal_medulla",
+          "citation": "Kikuta A, Murakami T. Relationship between chromaffin cells and blood vessels in the rat adrenal medulla: a transmission electron microscopic study combined with blood vessel reconstructions. Am J Anat. 1984;170:73–81.",
+          "doi": "10.1002/aja.1001700106",
+          "url": "https://doi.org/10.1002/aja.1001700106",
+          "design_decision": "Directly supports close relationships between chromaffin cells and sinusoidal vascular channels; rat-specific vascular anatomy is presented schematically."
+        }
+      ],
+      "scientific_limitations": "Generic medullary topology; cell subtype proportions, innervation, and vessel dimensions are not shown."
+    },
+    {
+      "id": "endocrine.adrenal_medulla.medullary_field",
+      "concept_id": "endocrine.adrenal_medulla",
+      "name": "Adrenal medulla",
+      "scientific_name": "Adrenal medulla",
+      "category": "model-system",
+      "subcategory": "adrenal gland",
+      "synonyms": [
+        "chromaffin tissue",
+        "adrenal chromaffin cells"
+      ],
+      "tags": [
+        "adrenal medulla",
+        "chromaffin tissue",
+        "adrenal chromaffin cells",
+        "Medullary field",
+        "endocrine tissue",
+        "schematic"
+      ],
+      "description": "A broad field of chromaffin-cell groups with sinusoidal vascular space.",
+      "file": "svg/adrenal_medulla_medullary_field.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector coordinates authored afresh for Figure Tool. Primary research informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "source_record_id": "source.endocrine-tissue.original.2026-11-07",
+      "rights_record_id": "rights.endocrine-tissue.repository-policy-cc0.2026-11-07",
+      "style_family": "figure-studio-soft-line-v1",
+      "variant_axis": "form",
+      "style_variant": "standard",
+      "form_id": "medullary_field",
+      "form_label": "Medullary field",
+      "available_art_styles": [
+        "soft-color",
+        "cut-paper",
+        "technical-ink",
+        "style-4"
+      ],
+      "style_4_supplement": "original-style4-companions.2026-11-07",
+      "review_status": "scientific_visual_native_review_pending_2026_11_07",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 4,
+      "editable_color_regions": [
+        {
+          "id": "chromaffin_cells",
+          "label": "Chromaffin cells",
+          "default": "#C58B9A"
+        },
+        {
+          "id": "supporting_cells",
+          "label": "Supporting cells",
+          "default": "#B8D8C5"
+        },
+        {
+          "id": "vascular_lumen",
+          "label": "Vascular lumen",
+          "default": "#F2D7CE"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#344955"
+        }
+      ],
+      "reviewer_notes": "Original tissue schematics await independent scientific, full-resolution and thumbnail review plus native editing qualification. All four styles have the same biological forms and named parts.",
+      "scientific_references": [
+        {
+          "id": "adrenal_medulla",
+          "citation": "Kikuta A, Murakami T. Relationship between chromaffin cells and blood vessels in the rat adrenal medulla: a transmission electron microscopic study combined with blood vessel reconstructions. Am J Anat. 1984;170:73–81.",
+          "doi": "10.1002/aja.1001700106",
+          "url": "https://doi.org/10.1002/aja.1001700106",
+          "design_decision": "Directly supports close relationships between chromaffin cells and sinusoidal vascular channels; rat-specific vascular anatomy is presented schematically."
+        }
+      ],
+      "scientific_limitations": "Generic medullary topology; cell subtype proportions, innervation, and vessel dimensions are not shown."
+    },
+    {
+      "id": "endocrine.pineal_parenchyma.cell_groups",
+      "concept_id": "endocrine.pineal_parenchyma",
+      "name": "Pineal parenchyma",
+      "scientific_name": "Pineal parenchyma",
+      "category": "model-system",
+      "subcategory": "pineal gland",
+      "synonyms": [
+        "pinealocytes",
+        "pineal gland tissue"
+      ],
+      "tags": [
+        "pineal parenchyma",
+        "pinealocytes",
+        "pineal gland tissue",
+        "Pinealocyte groups",
+        "endocrine tissue",
+        "schematic"
+      ],
+      "description": "Groups of pinealocytes are separated by delicate glial stroma and capillaries.",
+      "file": "svg/pineal_parenchyma_cell_groups.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector coordinates authored afresh for Figure Tool. Primary research informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "source_record_id": "source.endocrine-tissue.original.2026-11-07",
+      "rights_record_id": "rights.endocrine-tissue.repository-policy-cc0.2026-11-07",
+      "style_family": "figure-studio-soft-line-v1",
+      "variant_axis": "form",
+      "style_variant": "standard",
+      "form_id": "cell_groups",
+      "form_label": "Pinealocyte groups",
+      "available_art_styles": [
+        "soft-color",
+        "cut-paper",
+        "technical-ink",
+        "style-4"
+      ],
+      "style_4_supplement": "original-style4-companions.2026-11-07",
+      "review_status": "scientific_visual_native_review_pending_2026_11_07",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 4,
+      "editable_color_regions": [
+        {
+          "id": "pinealocytes",
+          "label": "Pinealocytes",
+          "default": "#E9B7A5"
+        },
+        {
+          "id": "glial_stroma",
+          "label": "Glial stroma",
+          "default": "#A9C5D9"
+        },
+        {
+          "id": "capillary",
+          "label": "Capillaries",
+          "default": "#D8867A"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#344955"
+        }
+      ],
+      "reviewer_notes": "Original tissue schematics await independent scientific, full-resolution and thumbnail review plus native editing qualification. All four styles have the same biological forms and named parts.",
+      "scientific_references": [
+        {
+          "id": "pineal_vasculature",
+          "citation": "Murakami T, Kikuta A, Taguchi T, Ohtsuka A. The blood vascular architecture of the rat pineal gland: a scanning electron microscopic study of corrosion casts. Arch Histol Cytol. 1988;51:61–69.",
+          "doi": "10.1679/aohc.51.61",
+          "url": "https://doi.org/10.1679/aohc.51.61",
+          "design_decision": "Supports a richly interconnected capillary network. A separate human postmortem morphometry reference supports pinealocytes within glial tissue; no calcification is implied."
+        },
+        {
+          "id": "pineal_parenchyma",
+          "citation": "Gheban BA, et al. Age-Related Changes of the Pineal Gland in Humans: A Digital Anatomo-Histological Morphometric Study on Autopsy Cases with Comparison to Predigital-Era Studies. Medicina. 2021;57:383.",
+          "doi": "10.3390/medicina57040383",
+          "url": "https://doi.org/10.3390/medicina57040383",
+          "design_decision": "Human postmortem histology supports pinealocyte parenchyma in glial tissue and variable lobular or insular arrangements; no calcification is required in the schematic."
+        }
+      ],
+      "scientific_limitations": "Generic parenchymal schematic; species differences are not resolved and calcification is not required or depicted."
+    },
+    {
+      "id": "endocrine.pineal_parenchyma.lobular_field",
+      "concept_id": "endocrine.pineal_parenchyma",
+      "name": "Pineal parenchyma",
+      "scientific_name": "Pineal parenchyma",
+      "category": "model-system",
+      "subcategory": "pineal gland",
+      "synonyms": [
+        "pinealocytes",
+        "pineal gland tissue"
+      ],
+      "tags": [
+        "pineal parenchyma",
+        "pinealocytes",
+        "pineal gland tissue",
+        "Lobular field",
+        "endocrine tissue",
+        "schematic"
+      ],
+      "description": "Pinealocyte-rich lobules are traversed by an interconnected capillary network.",
+      "file": "svg/pineal_parenchyma_lobular_field.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector coordinates authored afresh for Figure Tool. Primary research informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "source_record_id": "source.endocrine-tissue.original.2026-11-07",
+      "rights_record_id": "rights.endocrine-tissue.repository-policy-cc0.2026-11-07",
+      "style_family": "figure-studio-soft-line-v1",
+      "variant_axis": "form",
+      "style_variant": "standard",
+      "form_id": "lobular_field",
+      "form_label": "Lobular field",
+      "available_art_styles": [
+        "soft-color",
+        "cut-paper",
+        "technical-ink",
+        "style-4"
+      ],
+      "style_4_supplement": "original-style4-companions.2026-11-07",
+      "review_status": "scientific_visual_native_review_pending_2026_11_07",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 4,
+      "editable_color_regions": [
+        {
+          "id": "pinealocytes",
+          "label": "Pinealocytes",
+          "default": "#E9B7A5"
+        },
+        {
+          "id": "glial_stroma",
+          "label": "Glial stroma",
+          "default": "#A9C5D9"
+        },
+        {
+          "id": "capillary",
+          "label": "Capillaries",
+          "default": "#D8867A"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#344955"
+        }
+      ],
+      "reviewer_notes": "Original tissue schematics await independent scientific, full-resolution and thumbnail review plus native editing qualification. All four styles have the same biological forms and named parts.",
+      "scientific_references": [
+        {
+          "id": "pineal_vasculature",
+          "citation": "Murakami T, Kikuta A, Taguchi T, Ohtsuka A. The blood vascular architecture of the rat pineal gland: a scanning electron microscopic study of corrosion casts. Arch Histol Cytol. 1988;51:61–69.",
+          "doi": "10.1679/aohc.51.61",
+          "url": "https://doi.org/10.1679/aohc.51.61",
+          "design_decision": "Supports a richly interconnected capillary network. A separate human postmortem morphometry reference supports pinealocytes within glial tissue; no calcification is implied."
+        },
+        {
+          "id": "pineal_parenchyma",
+          "citation": "Gheban BA, et al. Age-Related Changes of the Pineal Gland in Humans: A Digital Anatomo-Histological Morphometric Study on Autopsy Cases with Comparison to Predigital-Era Studies. Medicina. 2021;57:383.",
+          "doi": "10.3390/medicina57040383",
+          "url": "https://doi.org/10.3390/medicina57040383",
+          "design_decision": "Human postmortem histology supports pinealocyte parenchyma in glial tissue and variable lobular or insular arrangements; no calcification is required in the schematic."
+        }
+      ],
+      "scientific_limitations": "Generic parenchymal schematic; species differences are not resolved and calcification is not required or depicted."
+    },
+    {
+      "id": "endocrine.anterior_pituitary.cords_longitudinal",
+      "concept_id": "endocrine.anterior_pituitary",
+      "name": "Anterior pituitary",
+      "scientific_name": "Anterior pituitary",
+      "category": "model-system",
+      "subcategory": "pituitary gland",
+      "synonyms": [
+        "adenohypophysis",
+        "pars distalis"
+      ],
+      "tags": [
+        "anterior pituitary",
+        "adenohypophysis",
+        "pars distalis",
+        "Interlacing cords",
+        "endocrine tissue",
+        "schematic"
+      ],
+      "description": "Glandular cell cords run between branching sinusoidal channels in a longitudinal tissue field.",
+      "file": "svg/anterior_pituitary_cords_longitudinal.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector coordinates authored afresh for Figure Tool. Primary research informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "source_record_id": "source.endocrine-tissue.original.2026-11-07",
+      "rights_record_id": "rights.endocrine-tissue.repository-policy-cc0.2026-11-07",
+      "style_family": "figure-studio-soft-line-v1",
+      "variant_axis": "form",
+      "style_variant": "standard",
+      "form_id": "cords_longitudinal",
+      "form_label": "Interlacing cords",
+      "available_art_styles": [
+        "soft-color",
+        "cut-paper",
+        "technical-ink",
+        "style-4"
+      ],
+      "style_4_supplement": "original-style4-companions.2026-11-07",
+      "review_status": "scientific_visual_native_review_pending_2026_11_07",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 3,
+      "editable_color_regions": [
+        {
+          "id": "gland",
+          "label": "Glandular cell cords",
+          "default": "#DDBA9B"
+        },
+        {
+          "id": "sinusoid",
+          "label": "Sinusoidal vascular spaces",
+          "default": "#D8EDF5"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#3C505B"
+        }
+      ],
+      "reviewer_notes": "Original tissue schematics await independent scientific, full-resolution and thumbnail review plus native editing qualification. All four styles have the same biological forms and named parts.",
+      "scientific_references": [
+        {
+          "id": "anterior_pituitary_topology",
+          "citation": "Yoshitomi M, et al. Three-dimensional ultrastructural analyses of anterior pituitary gland expose spatial relationships between endocrine cell secretory granule localization and capillary distribution. Sci Rep. 2016;6:36019.",
+          "doi": "10.1038/srep36019",
+          "url": "https://doi.org/10.1038/srep36019",
+          "design_decision": "Supports the spatial arrangement of anterior-lobe endocrine cells relative to capillary profiles; the drawing uses generic cords and vascular channels without assigning endocrine cell classes."
+        }
+      ],
+      "scientific_limitations": "Generic anterior-lobe parenchyma. Cells are not assigned to hormone-producing classes; vascular geometry is illustrative."
+    },
+    {
+      "id": "endocrine.anterior_pituitary.cords_radial",
+      "concept_id": "endocrine.anterior_pituitary",
+      "name": "Anterior pituitary",
+      "scientific_name": "Anterior pituitary",
+      "category": "model-system",
+      "subcategory": "pituitary gland",
+      "synonyms": [
+        "adenohypophysis",
+        "pars distalis"
+      ],
+      "tags": [
+        "anterior pituitary",
+        "adenohypophysis",
+        "pars distalis",
+        "Radial tissue field",
+        "endocrine tissue",
+        "schematic"
+      ],
+      "description": "A second oblique field shows branching cords and vascular spaces in a compact arrangement.",
+      "file": "svg/anterior_pituitary_cords_radial.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector coordinates authored afresh for Figure Tool. Primary research informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "source_record_id": "source.endocrine-tissue.original.2026-11-07",
+      "rights_record_id": "rights.endocrine-tissue.repository-policy-cc0.2026-11-07",
+      "style_family": "figure-studio-soft-line-v1",
+      "variant_axis": "form",
+      "style_variant": "standard",
+      "form_id": "cords_radial",
+      "form_label": "Radial tissue field",
+      "available_art_styles": [
+        "soft-color",
+        "cut-paper",
+        "technical-ink",
+        "style-4"
+      ],
+      "style_4_supplement": "original-style4-companions.2026-11-07",
+      "review_status": "scientific_visual_native_review_pending_2026_11_07",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 3,
+      "editable_color_regions": [
+        {
+          "id": "gland",
+          "label": "Glandular cell cords",
+          "default": "#DDBA9B"
+        },
+        {
+          "id": "sinusoid",
+          "label": "Sinusoidal vascular spaces",
+          "default": "#D8EDF5"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#3C505B"
+        }
+      ],
+      "reviewer_notes": "Original tissue schematics await independent scientific, full-resolution and thumbnail review plus native editing qualification. All four styles have the same biological forms and named parts.",
+      "scientific_references": [
+        {
+          "id": "anterior_pituitary_topology",
+          "citation": "Yoshitomi M, et al. Three-dimensional ultrastructural analyses of anterior pituitary gland expose spatial relationships between endocrine cell secretory granule localization and capillary distribution. Sci Rep. 2016;6:36019.",
+          "doi": "10.1038/srep36019",
+          "url": "https://doi.org/10.1038/srep36019",
+          "design_decision": "Supports the spatial arrangement of anterior-lobe endocrine cells relative to capillary profiles; the drawing uses generic cords and vascular channels without assigning endocrine cell classes."
+        }
+      ],
+      "scientific_limitations": "Generic anterior-lobe parenchyma. Cells are not assigned to hormone-producing classes; vascular geometry is illustrative."
+    },
+    {
+      "id": "endocrine.posterior_pituitary.longitudinal_neural_lobe",
+      "concept_id": "endocrine.posterior_pituitary",
+      "name": "Posterior pituitary",
+      "scientific_name": "Posterior pituitary",
+      "category": "model-system",
+      "subcategory": "pituitary gland",
+      "synonyms": [
+        "neurohypophysis",
+        "neural lobe"
+      ],
+      "tags": [
+        "posterior pituitary",
+        "neurohypophysis",
+        "neural lobe",
+        "Longitudinal neural lobe",
+        "endocrine tissue",
+        "schematic"
+      ],
+      "description": "Axonal profiles and terminal swellings approach a sinusoidal capillary among pituicyte processes.",
+      "file": "svg/posterior_pituitary_longitudinal_neural_lobe.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector coordinates authored afresh for Figure Tool. Primary research informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "source_record_id": "source.endocrine-tissue.original.2026-11-07",
+      "rights_record_id": "rights.endocrine-tissue.repository-policy-cc0.2026-11-07",
+      "style_family": "figure-studio-soft-line-v1",
+      "variant_axis": "form",
+      "style_variant": "standard",
+      "form_id": "longitudinal_neural_lobe",
+      "form_label": "Longitudinal neural lobe",
+      "available_art_styles": [
+        "soft-color",
+        "cut-paper",
+        "technical-ink",
+        "style-4"
+      ],
+      "style_4_supplement": "original-style4-companions.2026-11-07",
+      "review_status": "scientific_visual_native_review_pending_2026_11_07",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 5,
+      "editable_color_regions": [
+        {
+          "id": "neural",
+          "label": "Neural tissue",
+          "default": "#B5A9D5"
+        },
+        {
+          "id": "terminal",
+          "label": "Axon terminals",
+          "default": "#E5B76C"
+        },
+        {
+          "id": "pituicyte",
+          "label": "Pituicytes",
+          "default": "#83B7AE"
+        },
+        {
+          "id": "sinusoid",
+          "label": "Capillary spaces",
+          "default": "#D8EDF5"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#3C505B"
+        }
+      ],
+      "reviewer_notes": "Original tissue schematics await independent scientific, full-resolution and thumbnail review plus native editing qualification. All four styles have the same biological forms and named parts.",
+      "scientific_references": [
+        {
+          "id": "posterior_pituitary_topology",
+          "citation": "Zhu CG, Chen AQ, Liu QY, Wei Y, Peng XL. An immunoelectron microscopic study of peptide substances in the rat neurohypophysis. J Tongji Med Univ. 1989;9(1):29–35.",
+          "doi": "10.1007/BF02933741",
+          "url": "https://doi.org/10.1007/BF02933741",
+          "design_decision": "Supports neural terminals distributed near capillaries and pituicytes; no specific peptide identity or release event is assigned."
+        }
+      ],
+      "scientific_limitations": "Neural-lobe topology only. Does not depict hormone synthesis, identify oxytocin or vasopressin, or imply the median eminence is part of the neural lobe."
+    },
+    {
+      "id": "endocrine.posterior_pituitary.transverse_neural_lobe",
+      "concept_id": "endocrine.posterior_pituitary",
+      "name": "Posterior pituitary",
+      "scientific_name": "Posterior pituitary",
+      "category": "model-system",
+      "subcategory": "pituitary gland",
+      "synonyms": [
+        "neurohypophysis",
+        "neural lobe"
+      ],
+      "tags": [
+        "posterior pituitary",
+        "neurohypophysis",
+        "neural lobe",
+        "Transverse neural lobe",
+        "endocrine tissue",
+        "schematic"
+      ],
+      "description": "A compact cross-field shows capillary profiles surrounded by axon terminals and pituicyte processes.",
+      "file": "svg/posterior_pituitary_transverse_neural_lobe.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector coordinates authored afresh for Figure Tool. Primary research informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "source_record_id": "source.endocrine-tissue.original.2026-11-07",
+      "rights_record_id": "rights.endocrine-tissue.repository-policy-cc0.2026-11-07",
+      "style_family": "figure-studio-soft-line-v1",
+      "variant_axis": "form",
+      "style_variant": "standard",
+      "form_id": "transverse_neural_lobe",
+      "form_label": "Transverse neural lobe",
+      "available_art_styles": [
+        "soft-color",
+        "cut-paper",
+        "technical-ink",
+        "style-4"
+      ],
+      "style_4_supplement": "original-style4-companions.2026-11-07",
+      "review_status": "scientific_visual_native_review_pending_2026_11_07",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 5,
+      "editable_color_regions": [
+        {
+          "id": "neural",
+          "label": "Neural tissue",
+          "default": "#B5A9D5"
+        },
+        {
+          "id": "terminal",
+          "label": "Axon terminals",
+          "default": "#E5B76C"
+        },
+        {
+          "id": "pituicyte",
+          "label": "Pituicytes",
+          "default": "#83B7AE"
+        },
+        {
+          "id": "sinusoid",
+          "label": "Capillary spaces",
+          "default": "#D8EDF5"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#3C505B"
+        }
+      ],
+      "reviewer_notes": "Original tissue schematics await independent scientific, full-resolution and thumbnail review plus native editing qualification. All four styles have the same biological forms and named parts.",
+      "scientific_references": [
+        {
+          "id": "posterior_pituitary_topology",
+          "citation": "Zhu CG, Chen AQ, Liu QY, Wei Y, Peng XL. An immunoelectron microscopic study of peptide substances in the rat neurohypophysis. J Tongji Med Univ. 1989;9(1):29–35.",
+          "doi": "10.1007/BF02933741",
+          "url": "https://doi.org/10.1007/BF02933741",
+          "design_decision": "Supports neural terminals distributed near capillaries and pituicytes; no specific peptide identity or release event is assigned."
+        }
+      ],
+      "scientific_limitations": "Neural-lobe topology only. Does not depict hormone synthesis, identify oxytocin or vasopressin, or imply the median eminence is part of the neural lobe."
+    },
+    {
+      "id": "endocrine.median_eminence.external_zone_sagittal",
+      "concept_id": "endocrine.median_eminence",
+      "name": "Median eminence",
+      "scientific_name": "Median eminence",
+      "category": "model-system",
+      "subcategory": "hypothalamic neurovascular interface",
+      "synonyms": [
+        "external zone of median eminence",
+        "hypophysial portal interface"
+      ],
+      "tags": [
+        "median eminence",
+        "external zone of median eminence",
+        "hypophysial portal interface",
+        "Sagittal neurovascular section",
+        "endocrine tissue",
+        "schematic"
+      ],
+      "description": "Hypothalamic terminal profiles approach a portal capillary across a tanycyte-associated boundary from deeper neural tissue.",
+      "file": "svg/median_eminence_external_zone_sagittal.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector coordinates authored afresh for Figure Tool. Primary research informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "source_record_id": "source.endocrine-tissue.original.2026-11-07",
+      "rights_record_id": "rights.endocrine-tissue.repository-policy-cc0.2026-11-07",
+      "style_family": "figure-studio-soft-line-v1",
+      "variant_axis": "form",
+      "style_variant": "standard",
+      "form_id": "external_zone_sagittal",
+      "form_label": "Sagittal neurovascular section",
+      "available_art_styles": [
+        "soft-color",
+        "cut-paper",
+        "technical-ink",
+        "style-4"
+      ],
+      "style_4_supplement": "original-style4-companions.2026-11-07",
+      "review_status": "scientific_visual_native_review_pending_2026_11_07",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 5,
+      "editable_color_regions": [
+        {
+          "id": "neural",
+          "label": "Neural tissue",
+          "default": "#B5A9D5"
+        },
+        {
+          "id": "terminal",
+          "label": "Neurosecretory terminal profiles",
+          "default": "#E5B76C"
+        },
+        {
+          "id": "boundary",
+          "label": "Tanycyte-associated boundary",
+          "default": "#D3C1A0"
+        },
+        {
+          "id": "sinusoid",
+          "label": "Portal capillaries",
+          "default": "#D8EDF5"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#3C505B"
+        }
+      ],
+      "reviewer_notes": "Original tissue schematics await independent scientific, full-resolution and thumbnail review plus native editing qualification. All four styles have the same biological forms and named parts.",
+      "scientific_references": [
+        {
+          "id": "median_eminence_topology",
+          "citation": "Buma P, Nieuwenhuys R. Ultrastructural characterization of exocytotic release sites in different layers of the median eminence of the rat. Cell Tissue Res. 1988;252:107–114.",
+          "doi": "10.1007/BF00213831",
+          "url": "https://doi.org/10.1007/BF00213831",
+          "design_decision": "Supports external-zone neuronal terminals adjacent to the primary portal capillary plexus and distinction from deeper neural tissue; no peptide identity or pituitary target is depicted."
+        }
+      ],
+      "scientific_limitations": "Shows a simplified external-zone interface. It is distinct from the posterior pituitary and does not assign a releasing hormone or downstream effect."
+    },
+    {
+      "id": "endocrine.median_eminence.external_zone_field",
+      "concept_id": "endocrine.median_eminence",
+      "name": "Median eminence",
+      "scientific_name": "Median eminence",
+      "category": "model-system",
+      "subcategory": "hypothalamic neurovascular interface",
+      "synonyms": [
+        "external zone of median eminence",
+        "hypophysial portal interface"
+      ],
+      "tags": [
+        "median eminence",
+        "external zone of median eminence",
+        "hypophysial portal interface",
+        "Portal interface field",
+        "endocrine tissue",
+        "schematic"
+      ],
+      "description": "Several terminal profiles border portal capillaries along an explicit boundary with the neural compartment.",
+      "file": "svg/median_eminence_external_zone_field.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector coordinates authored afresh for Figure Tool. Primary research informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "source_record_id": "source.endocrine-tissue.original.2026-11-07",
+      "rights_record_id": "rights.endocrine-tissue.repository-policy-cc0.2026-11-07",
+      "style_family": "figure-studio-soft-line-v1",
+      "variant_axis": "form",
+      "style_variant": "standard",
+      "form_id": "external_zone_field",
+      "form_label": "Portal interface field",
+      "available_art_styles": [
+        "soft-color",
+        "cut-paper",
+        "technical-ink",
+        "style-4"
+      ],
+      "style_4_supplement": "original-style4-companions.2026-11-07",
+      "review_status": "scientific_visual_native_review_pending_2026_11_07",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 5,
+      "editable_color_regions": [
+        {
+          "id": "neural",
+          "label": "Neural tissue",
+          "default": "#B5A9D5"
+        },
+        {
+          "id": "terminal",
+          "label": "Neurosecretory terminal profiles",
+          "default": "#E5B76C"
+        },
+        {
+          "id": "boundary",
+          "label": "Tanycyte-associated boundary",
+          "default": "#D3C1A0"
+        },
+        {
+          "id": "sinusoid",
+          "label": "Portal capillaries",
+          "default": "#D8EDF5"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#3C505B"
+        }
+      ],
+      "reviewer_notes": "Original tissue schematics await independent scientific, full-resolution and thumbnail review plus native editing qualification. All four styles have the same biological forms and named parts.",
+      "scientific_references": [
+        {
+          "id": "median_eminence_topology",
+          "citation": "Buma P, Nieuwenhuys R. Ultrastructural characterization of exocytotic release sites in different layers of the median eminence of the rat. Cell Tissue Res. 1988;252:107–114.",
+          "doi": "10.1007/BF00213831",
+          "url": "https://doi.org/10.1007/BF00213831",
+          "design_decision": "Supports external-zone neuronal terminals adjacent to the primary portal capillary plexus and distinction from deeper neural tissue; no peptide identity or pituitary target is depicted."
+        }
+      ],
+      "scientific_limitations": "Shows a simplified external-zone interface. It is distinct from the posterior pituitary and does not assign a releasing hormone or downstream effect."
+    },
+    {
+      "id": "endocrine.ovarian_follicle.eccentric_oocyte",
+      "concept_id": "endocrine.ovarian_follicle",
+      "name": "Antral ovarian follicle",
+      "scientific_name": "Antral ovarian follicle",
+      "category": "model-system",
+      "subcategory": "ovary",
+      "synonyms": [
+        "antral follicle",
+        "Graafian follicle"
+      ],
+      "tags": [
+        "ovarian follicle",
+        "antral follicle",
+        "Graafian follicle",
+        "Eccentric oocyte section",
+        "endocrine tissue",
+        "schematic"
+      ],
+      "description": "An eccentric oocyte with a distinct zona pellucida is surrounded by granulosa and borders the antral space; the outer theca forms a vascularized rim.",
+      "file": "svg/ovarian_follicle_eccentric_oocyte.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector coordinates authored afresh for Figure Tool. Primary research informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "source_record_id": "source.endocrine-tissue.original.2026-11-07",
+      "rights_record_id": "rights.endocrine-tissue.repository-policy-cc0.2026-11-07",
+      "style_family": "figure-studio-soft-line-v1",
+      "variant_axis": "form",
+      "style_variant": "standard",
+      "form_id": "eccentric_oocyte",
+      "form_label": "Eccentric oocyte section",
+      "available_art_styles": [
+        "soft-color",
+        "cut-paper",
+        "technical-ink",
+        "style-4"
+      ],
+      "style_4_supplement": "original-style4-companions.2026-11-07",
+      "review_status": "scientific_visual_native_review_pending_2026_11_07",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 7,
+      "editable_color_regions": [
+        {
+          "id": "theca",
+          "label": "Theca layer",
+          "default": "#9DC99F"
+        },
+        {
+          "id": "vessel",
+          "label": "Thecal capillaries",
+          "default": "#C44D4D"
+        },
+        {
+          "id": "granulosa",
+          "label": "Granulosa layer",
+          "default": "#D5B5D8"
+        },
+        {
+          "id": "antrum",
+          "label": "Antral space",
+          "default": "#E8F4F8"
+        },
+        {
+          "id": "oocyte",
+          "label": "Oocyte",
+          "default": "#E7B84D"
+        },
+        {
+          "id": "zona_pellucida",
+          "label": "Zona pellucida",
+          "default": "#FFFDF7"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#3C505B"
+        }
+      ],
+      "reviewer_notes": "Original tissue schematics await independent scientific, full-resolution and thumbnail review plus native editing qualification. All four styles have the same biological forms and named parts.",
+      "scientific_references": [
+        {
+          "id": "ovarian_follicle_topology",
+          "citation": "Abdelnaby EA, Yasin NA, Abouelela YS, Rashad E, Daghash SM, El-Sherbiny HR. Ovarian, uterine, and luteal vascular perfusions during follicular and luteal phases in the adult cyclic female rabbits with special orientation to their histological detection of hormone receptor. BMC Vet Res. 2022;18:301.",
+          "doi": "10.1186/s12917-022-03390-6",
+          "url": "https://doi.org/10.1186/s12917-022-03390-6",
+          "design_decision": "Informs the antral follicle arrangement of oocyte, granulosa, antral space and peripheral thecal support; vascular cue remains outside granulosa."
+        }
+      ],
+      "scientific_limitations": "Generic antral follicle section. Not to scale; does not specify species, cycle stage, or ovulatory readiness."
+    },
+    {
+      "id": "endocrine.ovarian_follicle.sector_section",
+      "concept_id": "endocrine.ovarian_follicle",
+      "name": "Antral ovarian follicle",
+      "scientific_name": "Antral ovarian follicle",
+      "category": "model-system",
+      "subcategory": "ovary",
+      "synonyms": [
+        "antral follicle",
+        "Graafian follicle"
+      ],
+      "tags": [
+        "ovarian follicle",
+        "antral follicle",
+        "Graafian follicle",
+        "Sector section",
+        "endocrine tissue",
+        "schematic"
+      ],
+      "description": "An oblique section retains a distinct zona pellucida around the oocyte, granulosa, antrum, theca and peripheral vascular relationship.",
+      "file": "svg/ovarian_follicle_sector_section.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector coordinates authored afresh for Figure Tool. Primary research informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "source_record_id": "source.endocrine-tissue.original.2026-11-07",
+      "rights_record_id": "rights.endocrine-tissue.repository-policy-cc0.2026-11-07",
+      "style_family": "figure-studio-soft-line-v1",
+      "variant_axis": "form",
+      "style_variant": "standard",
+      "form_id": "sector_section",
+      "form_label": "Sector section",
+      "available_art_styles": [
+        "soft-color",
+        "cut-paper",
+        "technical-ink",
+        "style-4"
+      ],
+      "style_4_supplement": "original-style4-companions.2026-11-07",
+      "review_status": "scientific_visual_native_review_pending_2026_11_07",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 7,
+      "editable_color_regions": [
+        {
+          "id": "theca",
+          "label": "Theca layer",
+          "default": "#9DC99F"
+        },
+        {
+          "id": "vessel",
+          "label": "Thecal capillaries",
+          "default": "#C44D4D"
+        },
+        {
+          "id": "granulosa",
+          "label": "Granulosa layer",
+          "default": "#D5B5D8"
+        },
+        {
+          "id": "antrum",
+          "label": "Antral space",
+          "default": "#E8F4F8"
+        },
+        {
+          "id": "oocyte",
+          "label": "Oocyte",
+          "default": "#E7B84D"
+        },
+        {
+          "id": "zona_pellucida",
+          "label": "Zona pellucida",
+          "default": "#FFFDF7"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#3C505B"
+        }
+      ],
+      "reviewer_notes": "Original tissue schematics await independent scientific, full-resolution and thumbnail review plus native editing qualification. All four styles have the same biological forms and named parts.",
+      "scientific_references": [
+        {
+          "id": "ovarian_follicle_topology",
+          "citation": "Abdelnaby EA, Yasin NA, Abouelela YS, Rashad E, Daghash SM, El-Sherbiny HR. Ovarian, uterine, and luteal vascular perfusions during follicular and luteal phases in the adult cyclic female rabbits with special orientation to their histological detection of hormone receptor. BMC Vet Res. 2022;18:301.",
+          "doi": "10.1186/s12917-022-03390-6",
+          "url": "https://doi.org/10.1186/s12917-022-03390-6",
+          "design_decision": "Informs the antral follicle arrangement of oocyte, granulosa, antral space and peripheral thecal support; vascular cue remains outside granulosa."
+        }
+      ],
+      "scientific_limitations": "Generic antral follicle section. Not to scale; does not specify species, cycle stage, or ovulatory readiness."
+    },
+    {
+      "id": "endocrine.corpus_luteum.folded_luteal_tissue",
+      "concept_id": "endocrine.corpus_luteum",
+      "name": "Corpus luteum",
+      "scientific_name": "Corpus luteum",
+      "category": "model-system",
+      "subcategory": "ovary",
+      "synonyms": [
+        "luteal tissue",
+        "luteinized follicle"
+      ],
+      "tags": [
+        "corpus luteum",
+        "luteal tissue",
+        "luteinized follicle",
+        "Folded luteal tissue",
+        "endocrine tissue",
+        "schematic"
+      ],
+      "description": "Luteal cell cords and intervening capillary branches form a folded tissue field within a connective boundary.",
+      "file": "svg/corpus_luteum_folded_luteal_tissue.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector coordinates authored afresh for Figure Tool. Primary research informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "source_record_id": "source.endocrine-tissue.original.2026-11-07",
+      "rights_record_id": "rights.endocrine-tissue.repository-policy-cc0.2026-11-07",
+      "style_family": "figure-studio-soft-line-v1",
+      "variant_axis": "form",
+      "style_variant": "standard",
+      "form_id": "folded_luteal_tissue",
+      "form_label": "Folded luteal tissue",
+      "available_art_styles": [
+        "soft-color",
+        "cut-paper",
+        "technical-ink",
+        "style-4"
+      ],
+      "style_4_supplement": "original-style4-companions.2026-11-07",
+      "review_status": "scientific_visual_native_review_pending_2026_11_07",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 4,
+      "editable_color_regions": [
+        {
+          "id": "luteal",
+          "label": "Luteal cell cords",
+          "default": "#D9A27B"
+        },
+        {
+          "id": "vessel",
+          "label": "Capillary network",
+          "default": "#C44D4D"
+        },
+        {
+          "id": "antrum",
+          "label": "Central cavity",
+          "default": "#E8F4F8"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#3C505B"
+        }
+      ],
+      "reviewer_notes": "Original tissue schematics await independent scientific, full-resolution and thumbnail review plus native editing qualification. All four styles have the same biological forms and named parts.",
+      "scientific_references": [
+        {
+          "id": "corpus_luteum_topology",
+          "citation": "Abdelnaby EA, Yasin NA, Abouelela YS, Rashad E, Daghash SM, El-Sherbiny HR. Ovarian, uterine, and luteal vascular perfusions during follicular and luteal phases in the adult cyclic female rabbits with special orientation to their histological detection of hormone receptor. BMC Vet Res. 2022;18:301.",
+          "doi": "10.1186/s12917-022-03390-6",
+          "url": "https://doi.org/10.1186/s12917-022-03390-6",
+          "design_decision": "Supports luteal cell populations separated by capillaries and vascular connective capsule; the schematic omits species-specific luteal cell distinctions."
+        }
+      ],
+      "scientific_limitations": "Generic luteal tissue. Does not distinguish granulosa- from theca-derived luteal cells, stage, species, or endocrine activity."
+    },
+    {
+      "id": "endocrine.corpus_luteum.radial_luteal_tissue",
+      "concept_id": "endocrine.corpus_luteum",
+      "name": "Corpus luteum",
+      "scientific_name": "Corpus luteum",
+      "category": "model-system",
+      "subcategory": "ovary",
+      "synonyms": [
+        "luteal tissue",
+        "luteinized follicle"
+      ],
+      "tags": [
+        "corpus luteum",
+        "luteal tissue",
+        "luteinized follicle",
+        "Radial luteal tissue",
+        "endocrine tissue",
+        "schematic"
+      ],
+      "description": "Luteal cell cords radiate around an optional central cavity and are interspersed with capillary branches.",
+      "file": "svg/corpus_luteum_radial_luteal_tissue.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector coordinates authored afresh for Figure Tool. Primary research informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "source_record_id": "source.endocrine-tissue.original.2026-11-07",
+      "rights_record_id": "rights.endocrine-tissue.repository-policy-cc0.2026-11-07",
+      "style_family": "figure-studio-soft-line-v1",
+      "variant_axis": "form",
+      "style_variant": "standard",
+      "form_id": "radial_luteal_tissue",
+      "form_label": "Radial luteal tissue",
+      "available_art_styles": [
+        "soft-color",
+        "cut-paper",
+        "technical-ink",
+        "style-4"
+      ],
+      "style_4_supplement": "original-style4-companions.2026-11-07",
+      "review_status": "scientific_visual_native_review_pending_2026_11_07",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 4,
+      "editable_color_regions": [
+        {
+          "id": "luteal",
+          "label": "Luteal cell cords",
+          "default": "#D9A27B"
+        },
+        {
+          "id": "vessel",
+          "label": "Capillary network",
+          "default": "#C44D4D"
+        },
+        {
+          "id": "antrum",
+          "label": "Central cavity",
+          "default": "#E8F4F8"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#3C505B"
+        }
+      ],
+      "reviewer_notes": "Original tissue schematics await independent scientific, full-resolution and thumbnail review plus native editing qualification. All four styles have the same biological forms and named parts.",
+      "scientific_references": [
+        {
+          "id": "corpus_luteum_topology",
+          "citation": "Abdelnaby EA, Yasin NA, Abouelela YS, Rashad E, Daghash SM, El-Sherbiny HR. Ovarian, uterine, and luteal vascular perfusions during follicular and luteal phases in the adult cyclic female rabbits with special orientation to their histological detection of hormone receptor. BMC Vet Res. 2022;18:301.",
+          "doi": "10.1186/s12917-022-03390-6",
+          "url": "https://doi.org/10.1186/s12917-022-03390-6",
+          "design_decision": "Supports luteal cell populations separated by capillaries and vascular connective capsule; the schematic omits species-specific luteal cell distinctions."
+        }
+      ],
+      "scientific_limitations": "Generic luteal tissue. Does not distinguish granulosa- from theca-derived luteal cells, stage, species, or endocrine activity."
+    },
+    {
+      "id": "endocrine.leydig_interstitium.paired_tubules",
+      "concept_id": "endocrine.leydig_interstitium",
+      "name": "Leydig-cell interstitium",
+      "scientific_name": "Leydig-cell interstitium",
+      "category": "model-system",
+      "subcategory": "testis",
+      "synonyms": [
+        "testicular interstitium",
+        "interstitial Leydig cells"
+      ],
+      "tags": [
+        "leydig interstitium",
+        "testicular interstitium",
+        "interstitial Leydig cells",
+        "Paired tubule profiles",
+        "endocrine tissue",
+        "schematic"
+      ],
+      "description": "Two seminiferous-tubule cross-sections show a central lumen and surrounding epithelium; interstitial cell clusters and a small vessel lie between them.",
+      "file": "svg/leydig_interstitium_paired_tubules.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector coordinates authored afresh for Figure Tool. Primary research informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "source_record_id": "source.endocrine-tissue.original.2026-11-07",
+      "rights_record_id": "rights.endocrine-tissue.repository-policy-cc0.2026-11-07",
+      "style_family": "figure-studio-soft-line-v1",
+      "variant_axis": "form",
+      "style_variant": "standard",
+      "form_id": "paired_tubules",
+      "form_label": "Paired tubule profiles",
+      "available_art_styles": [
+        "soft-color",
+        "cut-paper",
+        "technical-ink",
+        "style-4"
+      ],
+      "style_4_supplement": "original-style4-companions.2026-11-07",
+      "review_status": "scientific_visual_native_review_pending_2026_11_07",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 5,
+      "editable_color_regions": [
+        {
+          "id": "interstitium",
+          "label": "Interstitial cell clusters",
+          "default": "#D8C5A4"
+        },
+        {
+          "id": "vessel",
+          "label": "Interstitial vessel",
+          "default": "#C44D4D"
+        },
+        {
+          "id": "tubule",
+          "label": "Seminiferous-tubule epithelium",
+          "default": "#D5B5D8"
+        },
+        {
+          "id": "tubule_lumen",
+          "label": "Seminiferous-tubule lumen",
+          "default": "#FFF8E8"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#3C505B"
+        }
+      ],
+      "reviewer_notes": "Original tissue schematics await independent scientific, full-resolution and thumbnail review plus native editing qualification. All four styles have the same biological forms and named parts.",
+      "scientific_references": [
+        {
+          "id": "leydig_interstitium_topology",
+          "citation": "Stanley E, Lin CY, Jin S, Liu J, Sottas CM, Ge R, Zirkin BR, Chen H. Identification, proliferation, and differentiation of adult Leydig stem cells. Endocrinology. 2012;153(10):5002–5010.",
+          "doi": "10.1210/en.2012-1417",
+          "url": "https://doi.org/10.1210/en.2012-1417",
+          "design_decision": "Supports Leydig/interstitial localization between seminiferous tubules; only tissue position and cluster arrangement are shown, without inferring hormone identity from shape."
+        }
+      ],
+      "scientific_limitations": "Location schematic only. Cell shape does not encode hormone production, developmental state, or cell identity beyond the named interstitial concept."
+    },
+    {
+      "id": "endocrine.leydig_interstitium.tubule_corner",
+      "concept_id": "endocrine.leydig_interstitium",
+      "name": "Leydig-cell interstitium",
+      "scientific_name": "Leydig-cell interstitium",
+      "category": "model-system",
+      "subcategory": "testis",
+      "synonyms": [
+        "testicular interstitium",
+        "interstitial Leydig cells"
+      ],
+      "tags": [
+        "leydig interstitium",
+        "testicular interstitium",
+        "interstitial Leydig cells",
+        "Tubule junction field",
+        "endocrine tissue",
+        "schematic"
+      ],
+      "description": "Four seminiferous-tubule cross-sections frame an interstitial pocket containing cell clusters and a small vessel.",
+      "file": "svg/leydig_interstitium_tubule_corner.svg",
+      "source_type": "clean_room_original_vector",
+      "license": "CC0-1.0",
+      "provenance": "Original editable vector coordinates authored afresh for Figure Tool. Primary research informs generic biological topology and interpretation limits only. No publication artwork, proprietary library object, screenshot, traced geometry, measured observations or third-party visual component was incorporated.",
+      "source_record_id": "source.endocrine-tissue.original.2026-11-07",
+      "rights_record_id": "rights.endocrine-tissue.repository-policy-cc0.2026-11-07",
+      "style_family": "figure-studio-soft-line-v1",
+      "variant_axis": "form",
+      "style_variant": "standard",
+      "form_id": "tubule_corner",
+      "form_label": "Tubule junction field",
+      "available_art_styles": [
+        "soft-color",
+        "cut-paper",
+        "technical-ink",
+        "style-4"
+      ],
+      "style_4_supplement": "original-style4-companions.2026-11-07",
+      "review_status": "scientific_visual_native_review_pending_2026_11_07",
+      "style_status": "harmonized_soft_line_v1",
+      "mvp_quality": "original_draft",
+      "quality_tier": "draft",
+      "editable_region_count": 5,
+      "editable_color_regions": [
+        {
+          "id": "interstitium",
+          "label": "Interstitial cell clusters",
+          "default": "#D8C5A4"
+        },
+        {
+          "id": "vessel",
+          "label": "Interstitial vessel",
+          "default": "#C44D4D"
+        },
+        {
+          "id": "tubule",
+          "label": "Seminiferous-tubule epithelium",
+          "default": "#D5B5D8"
+        },
+        {
+          "id": "tubule_lumen",
+          "label": "Seminiferous-tubule lumen",
+          "default": "#FFF8E8"
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#3C505B"
+        }
+      ],
+      "reviewer_notes": "Original tissue schematics await independent scientific, full-resolution and thumbnail review plus native editing qualification. All four styles have the same biological forms and named parts.",
+      "scientific_references": [
+        {
+          "id": "leydig_interstitium_topology",
+          "citation": "Stanley E, Lin CY, Jin S, Liu J, Sottas CM, Ge R, Zirkin BR, Chen H. Identification, proliferation, and differentiation of adult Leydig stem cells. Endocrinology. 2012;153(10):5002–5010.",
+          "doi": "10.1210/en.2012-1417",
+          "url": "https://doi.org/10.1210/en.2012-1417",
+          "design_decision": "Supports Leydig/interstitial localization between seminiferous tubules; only tissue position and cluster arrangement are shown, without inferring hormone identity from shape."
+        }
+      ],
+      "scientific_limitations": "Location schematic only. Cell shape does not encode hormone production, developmental state, or cell identity beyond the named interstitial concept."
+    }
+  ]
+}

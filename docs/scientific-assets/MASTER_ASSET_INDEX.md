@@ -2,17 +2,17 @@
 
 This generated index records Superbench Figure Tool scientific assets, including released artwork, review candidates, and planned concepts from the catalog planning docs.
 
-Generated: `2026-10-13 18:05:58 UTC`
+Generated: `2026-11-07 11:19:41 UTC`
 
 Source policy reminder: all 326 bundled production asset styles passed their pack-scoped provenance and rights review and are released under their pack's `CC0-1.0` notice; review-only candidates and future drafts are not included automatically.
 
 ## Summary
 
-- Created asset records: 406
+- Created asset records: 550
 - Production assets: 326
-- Draft assets: 80
+- Draft assets: 224
 - Planned/deferred concept entries: 1
-- Indexed terms/keywords: 2229
+- Indexed terms/keywords: 2843
 
 The Markdown file keeps the index readable. The adjacent `master-asset-index.json` is the exhaustive machine-readable index with full per-keyword asset lists and paths.
 
@@ -24,20 +24,78 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | core-experimental-biology | production | 111 | `assets/scientific-packs/core-experimental-biology/asset-pack.json` | `assets/scientific-packs/core-experimental-biology/svg` |
 | immunology-oncology | production | 75 | `assets/scientific-packs/immunology-oncology/asset-pack.json` | `assets/scientific-packs/immunology-oncology/svg` |
 | protein-homeostasis | production | 8 | `assets/scientific-packs/protein-homeostasis/asset-pack.json` | `assets/scientific-packs/protein-homeostasis/svg` |
+| analysis-graphics | draft | 20 | `assets/scientific-packs/analysis-graphics/asset-pack.json` | `assets/scientific-packs/analysis-graphics/svg` |
 | cell-architecture-transport | draft | 28 | `assets/scientific-packs/cell-architecture-transport/asset-pack.json` | `assets/scientific-packs/cell-architecture-transport/svg` |
+| cell-structure-stress | draft | 40 | `assets/scientific-packs/cell-structure-stress/asset-pack.json` | `assets/scientific-packs/cell-structure-stress/svg` |
 | culture-models-assays | draft | 24 | `assets/scientific-packs/culture-models-assays/asset-pack.json` | `assets/scientific-packs/culture-models-assays/svg` |
+| endocrine-tissue | draft | 24 | `assets/scientific-packs/endocrine-tissue/asset-pack.json` | `assets/scientific-packs/endocrine-tissue/svg` |
 | microbial-biology | draft | 24 | `assets/scientific-packs/microbial-biology/asset-pack.json` | `assets/scientific-packs/microbial-biology/svg` |
+| neurobiology | draft | 20 | `assets/scientific-packs/neurobiology/asset-pack.json` | `assets/scientific-packs/neurobiology/svg` |
 | rna-methods | draft | 4 | `assets/scientific-packs/rna-methods/asset-pack.json` | `assets/scientific-packs/rna-methods/svg` |
+| tissue-vascular | draft | 20 | `assets/scientific-packs/tissue-vascular/asset-pack.json` | `assets/scientific-packs/tissue-vascular/svg` |
+| tumor-microenvironment | draft | 20 | `assets/scientific-packs/tumor-microenvironment/asset-pack.json` | `assets/scientific-packs/tumor-microenvironment/svg` |
 
 ## Duplicate Display Names
 
 | Display name | Count | Asset refs |
 | --- | ---: | --- |
+| Adipose Tissue | 2 | tissue.adipose.lobule (assets/scientific-packs/tissue-vascular/svg/adipose_lobule.svg)<br>tissue.adipose.single_adipocyte (assets/scientific-packs/tissue-vascular/svg/adipose_single_adipocyte.svg) |
+| Adrenal cortex | 2 | endocrine.adrenal_cortex.concentric_zones (assets/scientific-packs/endocrine-tissue/svg/adrenal_cortex_concentric_zones.svg)<br>endocrine.adrenal_cortex.cortical_wedge (assets/scientific-packs/endocrine-tissue/svg/adrenal_cortex_cortical_wedge.svg) |
+| Adrenal medulla | 2 | endocrine.adrenal_medulla.medullary_field (assets/scientific-packs/endocrine-tissue/svg/adrenal_medulla_medullary_field.svg)<br>endocrine.adrenal_medulla.vascular_nests (assets/scientific-packs/endocrine-tissue/svg/adrenal_medulla_vascular_nests.svg) |
+| Angiogenic Sprout | 2 | tissue.angiogenic_sprout.branching (assets/scientific-packs/tissue-vascular/svg/angiogenic_sprout_branching.svg)<br>tissue.angiogenic_sprout.single_tip (assets/scientific-packs/tissue-vascular/svg/angiogenic_sprout_single_tip.svg) |
+| Anoikis — Schematic | 2 | cellstress.cell.anoikis.blebbing_apoptotic (assets/scientific-packs/cell-structure-stress/svg/anoikis_blebbing_apoptotic.svg)<br>cellstress.cell.anoikis.detached_apoptotic (assets/scientific-packs/cell-structure-stress/svg/anoikis_detached_apoptotic.svg) |
+| Anterior pituitary | 2 | endocrine.anterior_pituitary.cords_longitudinal (assets/scientific-packs/endocrine-tissue/svg/anterior_pituitary_cords_longitudinal.svg)<br>endocrine.anterior_pituitary.cords_radial (assets/scientific-packs/endocrine-tissue/svg/anterior_pituitary_cords_radial.svg) |
+| Antral ovarian follicle | 2 | endocrine.ovarian_follicle.eccentric_oocyte (assets/scientific-packs/endocrine-tissue/svg/ovarian_follicle_eccentric_oocyte.svg)<br>endocrine.ovarian_follicle.sector_section (assets/scientific-packs/endocrine-tissue/svg/ovarian_follicle_sector_section.svg) |
+| Axon terminal | 2 | neuro.axon_terminal.branched_terminals (assets/scientific-packs/neurobiology/svg/axon_terminal_branched_terminals.svg)<br>neuro.axon_terminal.single_bouton (assets/scientific-packs/neurobiology/svg/axon_terminal_single_bouton.svg) |
+| Basement Membrane | 2 | tissue.basement_membrane.epithelial_interface (assets/scientific-packs/tissue-vascular/svg/basement_membrane_epithelial_interface.svg)<br>tissue.basement_membrane.isolated_sheet (assets/scientific-packs/tissue-vascular/svg/basement_membrane_isolated_sheet.svg) |
+| Blood Vessel Wall | 2 | tissue.vessel_wall.thicker_wall (assets/scientific-packs/tissue-vascular/svg/vessel_wall_thicker_wall.svg)<br>tissue.vessel_wall.thinner_wall (assets/scientific-packs/tissue-vascular/svg/vessel_wall_thinner_wall.svg) |
+| Capillary | 2 | tissue.capillary.longitudinal (assets/scientific-packs/tissue-vascular/svg/capillary_longitudinal.svg)<br>tissue.capillary.transverse (assets/scientific-packs/tissue-vascular/svg/capillary_transverse.svg) |
+| Caveola | 2 | cellstress.membrane_signaling.caveola.clustered_profiles (assets/scientific-packs/cell-structure-stress/svg/caveola_clustered_profiles.svg)<br>cellstress.membrane_signaling.caveola.single_invagination (assets/scientific-packs/cell-structure-stress/svg/caveola_single_invagination.svg) |
 | Cell-laden Collagen-gel Culture | 2 | culture.assay_workflow.collagen_gel_contraction (assets/scientific-packs/culture-models-assays/svg/collagen_gel_contraction.svg)<br>culture.assay_workflow.collagen_gel_contraction.anchored (assets/scientific-packs/culture-models-assays/svg/collagen_gel_contraction_anchored.svg) |
+| Chemical synapse | 2 | neuro.chemical_synapse.bouton_spine (assets/scientific-packs/neurobiology/svg/chemical_synapse_bouton_spine.svg)<br>neuro.chemical_synapse.shaft_contact (assets/scientific-packs/neurobiology/svg/chemical_synapse_shaft_contact.svg) |
+| Clathrin-coated Vesicle | 2 | cellstress.membrane_signaling.clathrin_coated_vesicle.cage_view (assets/scientific-packs/cell-structure-stress/svg/clathrin_coated_vesicle_cage_view.svg)<br>cellstress.membrane_signaling.clathrin_coated_vesicle.section (assets/scientific-packs/cell-structure-stress/svg/clathrin_coated_vesicle_section.svg) |
+| Collagen Matrix | 2 | tissue.collagen.bundle (assets/scientific-packs/tissue-vascular/svg/collagen_bundle.svg)<br>tissue.collagen.mesh (assets/scientific-packs/tissue-vascular/svg/collagen_mesh.svg) |
+| Condensed Chromosome | 2 | cellstress.nucleic_acid.condensed_chromosome.metacentric (assets/scientific-packs/cell-structure-stress/svg/condensed_chromosome_metacentric.svg)<br>cellstress.nucleic_acid.condensed_chromosome.submetacentric (assets/scientific-packs/cell-structure-stress/svg/condensed_chromosome_submetacentric.svg) |
+| Corpus luteum | 2 | endocrine.corpus_luteum.folded_luteal_tissue (assets/scientific-packs/endocrine-tissue/svg/corpus_luteum_folded_luteal_tissue.svg)<br>endocrine.corpus_luteum.radial_luteal_tissue (assets/scientific-packs/endocrine-tissue/svg/corpus_luteum_radial_luteal_tissue.svg) |
+| Dendritic spine | 2 | neuro.dendritic_spine.mushroom (assets/scientific-packs/neurobiology/svg/dendritic_spine_mushroom.svg)<br>neuro.dendritic_spine.thin (assets/scientific-packs/neurobiology/svg/dendritic_spine_thin.svg) |
+| DNA Damage Foci | 2 | cellstress.nucleic_acid.dna_damage_foci.clustered (assets/scientific-packs/cell-structure-stress/svg/dna_damage_foci_clustered.svg)<br>cellstress.nucleic_acid.dna_damage_foci.dispersed (assets/scientific-packs/cell-structure-stress/svg/dna_damage_foci_dispersed.svg) |
+| Epithelial Acinus | 2 | tissue.epithelial_acinus.closed_lumen (assets/scientific-packs/tissue-vascular/svg/epithelial_acinus_closed_lumen.svg)<br>tissue.epithelial_acinus.section (assets/scientific-packs/tissue-vascular/svg/epithelial_acinus_section.svg) |
+| Epithelial Sheet | 2 | tissue.epithelial_sheet.apical (assets/scientific-packs/tissue-vascular/svg/epithelial_sheet_apical.svg)<br>tissue.epithelial_sheet.lateral (assets/scientific-packs/tissue-vascular/svg/epithelial_sheet_lateral.svg) |
+| ER Stress / Unfolded Protein Response | 2 | cellstress.organelle.er_stress_upr.lumenal_load (assets/scientific-packs/cell-structure-stress/svg/er_stress_upr_lumenal_load.svg)<br>cellstress.organelle.er_stress_upr.sensor_assembly (assets/scientific-packs/cell-structure-stress/svg/er_stress_upr_sensor_assembly.svg) |
+| Extracellular Vesicle | 2 | cellstress.membrane_signaling.extracellular_vesicle.endosomal_release (assets/scientific-packs/cell-structure-stress/svg/extracellular_vesicle_endosomal_release.svg)<br>cellstress.membrane_signaling.extracellular_vesicle.isolated (assets/scientific-packs/cell-structure-stress/svg/extracellular_vesicle_isolated.svg) |
+| Ferroptotic Cell — Schematic | 2 | cellstress.cell.ferroptotic_cell.lipid_damage (assets/scientific-packs/cell-structure-stress/svg/ferroptotic_cell_lipid_damage.svg)<br>cellstress.cell.ferroptotic_cell.mitochondrial_detail (assets/scientific-packs/cell-structure-stress/svg/ferroptotic_cell_mitochondrial_detail.svg) |
+| Filopodium | 2 | cellstress.cell.filopodium.bundle_detail (assets/scientific-packs/cell-structure-stress/svg/filopodium_bundle_detail.svg)<br>cellstress.cell.filopodium.whole_cell (assets/scientific-packs/cell-structure-stress/svg/filopodium_whole_cell.svg) |
 | Hanging-drop Spheroid Culture | 2 | culture.model_system.hanging_drop_spheroid (assets/scientific-packs/culture-models-assays/svg/hanging_drop_spheroid.svg)<br>culture.model_system.hanging_drop_spheroid.array (assets/scientific-packs/culture-models-assays/svg/hanging_drop_spheroid_array.svg) |
 | Hydrogel-embedded Organoid | 2 | culture.model_system.hydrogel_embedded_organoid (assets/scientific-packs/culture-models-assays/svg/hydrogel_embedded_organoid.svg)<br>culture.model_system.hydrogel_embedded_organoid.budding (assets/scientific-packs/culture-models-assays/svg/hydrogel_embedded_organoid_budding.svg) |
+| Lamellipodium | 2 | cellstress.cell.lamellipodium.leading_edge_detail (assets/scientific-packs/cell-structure-stress/svg/lamellipodium_leading_edge_detail.svg)<br>cellstress.cell.lamellipodium.whole_cell (assets/scientific-packs/cell-structure-stress/svg/lamellipodium_whole_cell.svg) |
+| Leydig-cell interstitium | 2 | endocrine.leydig_interstitium.paired_tubules (assets/scientific-packs/endocrine-tissue/svg/leydig_interstitium_paired_tubules.svg)<br>endocrine.leydig_interstitium.tubule_corner (assets/scientific-packs/endocrine-tissue/svg/leydig_interstitium_tubule_corner.svg) |
+| Lymphatic Capillary | 2 | tissue.lymphatic_capillary.blind_end (assets/scientific-packs/tissue-vascular/svg/lymphatic_capillary_blind_end.svg)<br>tissue.lymphatic_capillary.tissue_interface (assets/scientific-packs/tissue-vascular/svg/lymphatic_capillary_tissue_interface.svg) |
+| Median eminence | 2 | endocrine.median_eminence.external_zone_field (assets/scientific-packs/endocrine-tissue/svg/median_eminence_external_zone_field.svg)<br>endocrine.median_eminence.external_zone_sagittal (assets/scientific-packs/endocrine-tissue/svg/median_eminence_external_zone_sagittal.svg) |
+| Microglial process contact | 2 | neuro.microglia_contact.surveying (assets/scientific-packs/neurobiology/svg/microglia_contact_surveying.svg)<br>neuro.microglia_contact.synaptic_contact (assets/scientific-packs/neurobiology/svg/microglia_contact_synaptic_contact.svg) |
 | Microwell Spheroid Aggregation | 2 | culture.model_system.microwell_spheroid_aggregation (assets/scientific-packs/culture-models-assays/svg/microwell_spheroid_aggregation.svg)<br>culture.model_system.microwell_spheroid_aggregation.array (assets/scientific-packs/culture-models-assays/svg/microwell_spheroid_aggregation_array.svg) |
+| Mitochondrial Fission | 2 | cellstress.organelle.mitochondrial_fission.constriction (assets/scientific-packs/cell-structure-stress/svg/mitochondrial_fission_constriction.svg)<br>cellstress.organelle.mitochondrial_fission.daughter_separation (assets/scientific-packs/cell-structure-stress/svg/mitochondrial_fission_daughter_separation.svg) |
+| Mitochondrial Fusion | 2 | cellstress.organelle.mitochondrial_fusion.approach_contact (assets/scientific-packs/cell-structure-stress/svg/mitochondrial_fusion_approach_contact.svg)<br>cellstress.organelle.mitochondrial_fusion.joined (assets/scientific-packs/cell-structure-stress/svg/mitochondrial_fusion_joined.svg) |
+| Myelinated axon | 2 | neuro.axon_myelin.longitudinal (assets/scientific-packs/neurobiology/svg/axon_myelin_longitudinal.svg)<br>neuro.axon_myelin.transverse (assets/scientific-packs/neurobiology/svg/axon_myelin_transverse.svg) |
+| Necroptotic Cell — Schematic | 2 | cellstress.cell.necroptotic_cell.lytic (assets/scientific-packs/cell-structure-stress/svg/necroptotic_cell_lytic.svg)<br>cellstress.cell.necroptotic_cell.membrane_mlkl (assets/scientific-packs/cell-structure-stress/svg/necroptotic_cell_membrane_mlkl.svg) |
+| Necrotic Cell | 2 | cellstress.cell.necrotic_cell.disintegrating (assets/scientific-packs/cell-structure-stress/svg/necrotic_cell_disintegrating.svg)<br>cellstress.cell.necrotic_cell.swollen_ruptured (assets/scientific-packs/cell-structure-stress/svg/necrotic_cell_swollen_ruptured.svg) |
+| Neural circuit | 2 | neuro.neural_circuit.convergent_inputs (assets/scientific-packs/neurobiology/svg/neural_circuit_convergent_inputs.svg)<br>neuro.neural_circuit.feedforward_chain (assets/scientific-packs/neurobiology/svg/neural_circuit_feedforward_chain.svg) |
+| Neuron–astrocyte contact | 2 | neuro.neuron_astrocyte_contact.process_network (assets/scientific-packs/neurobiology/svg/neuron_astrocyte_contact_process_network.svg)<br>neuro.neuron_astrocyte_contact.single_synapse (assets/scientific-packs/neurobiology/svg/neuron_astrocyte_contact_single_synapse.svg) |
+| Node of Ranvier | 2 | neuro.node_of_ranvier.channel_region (assets/scientific-packs/neurobiology/svg/node_of_ranvier_channel_region.svg)<br>neuro.node_of_ranvier.paired_internodes (assets/scientific-packs/neurobiology/svg/node_of_ranvier_paired_internodes.svg) |
+| Nuclear Speckle | 2 | cellstress.organelle.nuclear_speckle.condensate_detail (assets/scientific-packs/cell-structure-stress/svg/nuclear_speckle_condensate_detail.svg)<br>cellstress.organelle.nuclear_speckle.nuclear_distribution (assets/scientific-packs/cell-structure-stress/svg/nuclear_speckle_nuclear_distribution.svg) |
+| Nucleolus | 2 | cellstress.organelle.nucleolus.nuclear_context (assets/scientific-packs/cell-structure-stress/svg/nucleolus_nuclear_context.svg)<br>cellstress.organelle.nucleolus.subcompartments (assets/scientific-packs/cell-structure-stress/svg/nucleolus_subcompartments.svg) |
+| Oligodendrocyte | 2 | neuro.oligodendrocyte.branching (assets/scientific-packs/neurobiology/svg/oligodendrocyte_branching.svg)<br>neuro.oligodendrocyte.multiple_sheaths (assets/scientific-packs/neurobiology/svg/oligodendrocyte_multiple_sheaths.svg) |
+| Pancreatic islet | 2 | endocrine.pancreatic_islet.folded_plates (assets/scientific-packs/endocrine-tissue/svg/pancreatic_islet_folded_plates.svg)<br>endocrine.pancreatic_islet.mixed_islet (assets/scientific-packs/endocrine-tissue/svg/pancreatic_islet_mixed_islet.svg) |
+| Parathyroid parenchyma | 2 | endocrine.parathyroid_cords.cords_longitudinal (assets/scientific-packs/endocrine-tissue/svg/parathyroid_cords_cords_longitudinal.svg)<br>endocrine.parathyroid_cords.lobular_field (assets/scientific-packs/endocrine-tissue/svg/parathyroid_cords_lobular_field.svg) |
 | Perfused Cell–Matrix Culture Chip | 2 | culture.model_system.perfused_tissue_chip (assets/scientific-packs/culture-models-assays/svg/perfused_tissue_chip.svg)<br>culture.model_system.perfused_tissue_chip.dual_channel (assets/scientific-packs/culture-models-assays/svg/perfused_tissue_chip_dual_channel.svg) |
+| Phagolysosome | 2 | cellstress.organelle.phagolysosome.bacterial_cargo (assets/scientific-packs/cell-structure-stress/svg/phagolysosome_bacterial_cargo.svg)<br>cellstress.organelle.phagolysosome.degrading_cargo (assets/scientific-packs/cell-structure-stress/svg/phagolysosome_degrading_cargo.svg) |
+| Pineal parenchyma | 2 | endocrine.pineal_parenchyma.cell_groups (assets/scientific-packs/endocrine-tissue/svg/pineal_parenchyma_cell_groups.svg)<br>endocrine.pineal_parenchyma.lobular_field (assets/scientific-packs/endocrine-tissue/svg/pineal_parenchyma_lobular_field.svg) |
+| Posterior pituitary | 2 | endocrine.posterior_pituitary.longitudinal_neural_lobe (assets/scientific-packs/endocrine-tissue/svg/posterior_pituitary_longitudinal_neural_lobe.svg)<br>endocrine.posterior_pituitary.transverse_neural_lobe (assets/scientific-packs/endocrine-tissue/svg/posterior_pituitary_transverse_neural_lobe.svg) |
+| Primary Cilium | 2 | cellstress.organelle.primary_cilium.bent (assets/scientific-packs/cell-structure-stress/svg/primary_cilium_bent.svg)<br>cellstress.organelle.primary_cilium.straight (assets/scientific-packs/cell-structure-stress/svg/primary_cilium_straight.svg) |
+| Pyroptotic Cell — Schematic | 2 | cellstress.cell.pyroptotic_cell.lytic (assets/scientific-packs/cell-structure-stress/svg/pyroptotic_cell_lytic.svg)<br>cellstress.cell.pyroptotic_cell.pore_bearing (assets/scientific-packs/cell-structure-stress/svg/pyroptotic_cell_pore_bearing.svg) |
+| Replication Stress | 2 | cellstress.nucleic_acid.replication_stress.reversed_fork (assets/scientific-packs/cell-structure-stress/svg/replication_stress_reversed_fork.svg)<br>cellstress.nucleic_acid.replication_stress.stalled_fork (assets/scientific-packs/cell-structure-stress/svg/replication_stress_stalled_fork.svg) |
+| Schwann cell | 2 | neuro.schwann_cell.myelinating_internode (assets/scientific-packs/neurobiology/svg/schwann_cell_myelinating_internode.svg)<br>neuro.schwann_cell.nonmyelinating_bundle (assets/scientific-packs/neurobiology/svg/schwann_cell_nonmyelinating_bundle.svg) |
+| Skeletal Muscle | 2 | tissue.skeletal_muscle.bundle_cross_section (assets/scientific-packs/tissue-vascular/svg/skeletal_muscle_bundle_cross_section.svg)<br>tissue.skeletal_muscle.longitudinal_fibers (assets/scientific-packs/tissue-vascular/svg/skeletal_muscle_longitudinal_fibers.svg) |
+| Thyroid follicle | 2 | endocrine.thyroid_follicle.follicle_field (assets/scientific-packs/endocrine-tissue/svg/thyroid_follicle_follicle_field.svg)<br>endocrine.thyroid_follicle.single_follicle (assets/scientific-packs/endocrine-tissue/svg/thyroid_follicle_single_follicle.svg) |
 | Tissue-slice Culture | 2 | culture.model_system.precision_cut_tissue_slice_culture (assets/scientific-packs/culture-models-assays/svg/precision_cut_tissue_slice_culture.svg)<br>culture.model_system.precision_cut_tissue_slice_culture.interface (assets/scientific-packs/culture-models-assays/svg/precision_cut_tissue_slice_culture_interface.svg) |
 
 ## Keyword / Term Coverage
@@ -46,22 +104,34 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | --- | --- | ---: | ---: | ---: | ---: | --- | --- |
 | editable svg | created | 186 | 186 | 0 | 0 | exp.assay_workflow.cell_viability_readout (cell_viability_readout.svg)<br>exp.assay_workflow.dose_response_curve (dose_response_curve.svg)<br>exp.assay_workflow.elisa_assay (elisa_assay.svg)<br>exp.assay_workflow.flow_cytometry_readout.dot_plot (flow_cytometry_readout_dot_plot.svg)<br>exp.assay_workflow.flow_cytometry_readout.histogram (flow_cytometry_readout_histogram.svg)<br>exp.assay_workflow.luminescence_readout (luminescence_readout.svg)<br>exp.assay_workflow.microscopy_field.brightfield (microscopy_field_brightfield.svg)<br>exp.assay_workflow.microscopy_field.fluorescence (microscopy_field_fluorescence.svg)<br>+178 more in JSON |  |
 | soft line | created | 186 | 186 | 0 | 0 | exp.assay_workflow.cell_viability_readout (cell_viability_readout.svg)<br>exp.assay_workflow.dose_response_curve (dose_response_curve.svg)<br>exp.assay_workflow.elisa_assay (elisa_assay.svg)<br>exp.assay_workflow.flow_cytometry_readout.dot_plot (flow_cytometry_readout_dot_plot.svg)<br>exp.assay_workflow.flow_cytometry_readout.histogram (flow_cytometry_readout_histogram.svg)<br>exp.assay_workflow.luminescence_readout (luminescence_readout.svg)<br>exp.assay_workflow.microscopy_field.brightfield (microscopy_field_brightfield.svg)<br>exp.assay_workflow.microscopy_field.fluorescence (microscopy_field_fluorescence.svg)<br>+178 more in JSON |  |
+| schematic | created | 150 | 6 | 144 | 0 | analysis.box_plot.horizontal (box_plot_horizontal.svg)<br>analysis.box_plot.vertical (box_plot_vertical.svg)<br>analysis.cell_tracking_trajectory.single_track (cell_tracking_trajectory_single_track.svg)<br>analysis.cell_tracking_trajectory.two_tracks (cell_tracking_trajectory_two_tracks.svg)<br>analysis.heatmap.clustered (heatmap_clustered.svg)<br>analysis.heatmap.matrix (heatmap_matrix.svg)<br>analysis.kaplan_meier_curve.one_group (kaplan_meier_curve_one_group.svg)<br>analysis.kaplan_meier_curve.two_groups (kaplan_meier_curve_two_groups.svg)<br>+142 more in JSON |  |
+| cell | created | 117 | 65 | 52 | 0 | cellstress.cell.anoikis.blebbing_apoptotic (anoikis_blebbing_apoptotic.svg)<br>cellstress.cell.anoikis.detached_apoptotic (anoikis_detached_apoptotic.svg)<br>cellstress.cell.ferroptotic_cell.lipid_damage (ferroptotic_cell_lipid_damage.svg)<br>cellstress.cell.ferroptotic_cell.mitochondrial_detail (ferroptotic_cell_mitochondrial_detail.svg)<br>cellstress.cell.filopodium.bundle_detail (filopodium_bundle_detail.svg)<br>cellstress.cell.filopodium.whole_cell (filopodium_whole_cell.svg)<br>cellstress.cell.lamellipodium.leading_edge_detail (lamellipodium_leading_edge_detail.svg)<br>cellstress.cell.lamellipodium.whole_cell (lamellipodium_whole_cell.svg)<br>+109 more in JSON |  |
 | experimental biology | created | 111 | 111 | 0 | 0 | exp.assay_workflow.cell_viability_readout (cell_viability_readout.svg)<br>exp.assay_workflow.dose_response_curve (dose_response_curve.svg)<br>exp.assay_workflow.elisa_assay (elisa_assay.svg)<br>exp.assay_workflow.flow_cytometry_readout.dot_plot (flow_cytometry_readout_dot_plot.svg)<br>exp.assay_workflow.flow_cytometry_readout.histogram (flow_cytometry_readout_histogram.svg)<br>exp.assay_workflow.luminescence_readout (luminescence_readout.svg)<br>exp.assay_workflow.microscopy_field.brightfield (microscopy_field_brightfield.svg)<br>exp.assay_workflow.microscopy_field.fluorescence (microscopy_field_fluorescence.svg)<br>+103 more in JSON |  |
+| model-system | created | 102 | 30 | 72 | 0 | culture.model_system.air_liquid_interface_culture (air_liquid_interface_culture.svg)<br>culture.model_system.hanging_drop_spheroid (hanging_drop_spheroid.svg)<br>culture.model_system.hanging_drop_spheroid.array (hanging_drop_spheroid_array.svg)<br>culture.model_system.hydrogel_embedded_organoid (hydrogel_embedded_organoid.svg)<br>culture.model_system.hydrogel_embedded_organoid.budding (hydrogel_embedded_organoid_budding.svg)<br>culture.model_system.hydrogel_embedded_spheroid (hydrogel_embedded_spheroid.svg)<br>culture.model_system.microcarrier_cell_culture (microcarrier_cell_culture.svg)<br>culture.model_system.microwell_spheroid_aggregation (microwell_spheroid_aggregation.svg)<br>+94 more in JSON |  |
+| tumor microenvironment | created | 97 | 77 | 20 | 0 | tme.cancer_associated_fibroblast.matrix (cancer_associated_fibroblast_matrix.svg)<br>tme.cancer_associated_fibroblast.spindle (cancer_associated_fibroblast_spindle.svg)<br>tme.car_nk_cell.receptor_display (car_nk_cell_receptor_display.svg)<br>tme.car_nk_cell.target_contact (car_nk_cell_target_contact.svg)<br>tme.dendritic_antigen_uptake.particulate (dendritic_antigen_uptake_particulate.svg)<br>tme.dendritic_antigen_uptake.soluble (dendritic_antigen_uptake_soluble.svg)<br>tme.drug_penetration_gradient.perivascular (drug_penetration_gradient_perivascular.svg)<br>tme.drug_penetration_gradient.spheroid (drug_penetration_gradient_spheroid.svg)<br>+89 more in JSON |  |
+| editable vector | created | 80 | 0 | 80 | 0 | analysis.box_plot.horizontal (box_plot_horizontal.svg)<br>analysis.box_plot.vertical (box_plot_vertical.svg)<br>analysis.cell_tracking_trajectory.single_track (cell_tracking_trajectory_single_track.svg)<br>analysis.cell_tracking_trajectory.two_tracks (cell_tracking_trajectory_two_tracks.svg)<br>analysis.heatmap.clustered (heatmap_clustered.svg)<br>analysis.heatmap.matrix (heatmap_matrix.svg)<br>analysis.kaplan_meier_curve.one_group (kaplan_meier_curve_one_group.svg)<br>analysis.kaplan_meier_curve.two_groups (kaplan_meier_curve_two_groups.svg)<br>+72 more in JSON |  |
 | immunology | created | 77 | 77 | 0 | 0 | core.antibody.igg (antibody_igg.svg)<br>core.antibody.igg_manuscript (antibody_igg_manuscript.svg)<br>immuno.assay.immunohistochemistry_tissue_field (immunohistochemistry_tissue_field.svg)<br>immuno.assay.multiplex_immunofluorescence_tissue_field (multiplex_immunofluorescence_tissue_field.svg)<br>immuno.assay.tumor_volume_time_course (tumor_volume_time_course.svg)<br>immuno.cell.activated_t_cell (activated_t_cell.svg)<br>immuno.cell.car_t_cell (car_t_cell.svg)<br>immuno.cell.cd4_helper_t_cell (cd4_helper_t_cell.svg)<br>+69 more in JSON |  |
-| tumor microenvironment | created | 77 | 77 | 0 | 0 | core.cell.astrocyte_like (astrocyte_like_cell.svg)<br>core.model.tumor_glia_coculture (tumor_glia_coculture.svg)<br>immuno.assay.immunohistochemistry_tissue_field (immunohistochemistry_tissue_field.svg)<br>immuno.assay.multiplex_immunofluorescence_tissue_field (multiplex_immunofluorescence_tissue_field.svg)<br>immuno.assay.tumor_volume_time_course (tumor_volume_time_course.svg)<br>immuno.cell.activated_t_cell (activated_t_cell.svg)<br>immuno.cell.car_t_cell (car_t_cell.svg)<br>immuno.cell.cd4_helper_t_cell (cd4_helper_t_cell.svg)<br>+69 more in JSON |  |
 | oncology | created | 76 | 76 | 0 | 0 | core.cell.tumor_spheroid (tumor_spheroid.svg)<br>immuno.assay.immunohistochemistry_tissue_field (immunohistochemistry_tissue_field.svg)<br>immuno.assay.multiplex_immunofluorescence_tissue_field (multiplex_immunofluorescence_tissue_field.svg)<br>immuno.assay.tumor_volume_time_course (tumor_volume_time_course.svg)<br>immuno.cell.activated_t_cell (activated_t_cell.svg)<br>immuno.cell.car_t_cell (car_t_cell.svg)<br>immuno.cell.cd4_helper_t_cell (cd4_helper_t_cell.svg)<br>immuno.cell.cd8_cytotoxic_t_cell (cd8_cytotoxic_t_cell.svg)<br>+68 more in JSON |  |
-| cell | created | 75 | 65 | 10 | 0 | microbe.cell.bacterial_endospore (bacterial_endospore.svg)<br>microbe.cell.chained_cocci (chained_cocci.svg)<br>microbe.cell.encapsulated_bacterium (encapsulated_bacterium.svg)<br>microbe.cell.encapsulated_bacterium_rod (encapsulated_bacterium_rod.svg)<br>microbe.cell.endospore_in_mother_cell (endospore_in_mother_cell.svg)<br>microbe.cell.fungal_germ_tube (fungal_germ_tube.svg)<br>microbe.cell.fungal_pseudohyphal_chain (fungal_pseudohyphal_chain.svg)<br>microbe.cell.paired_cocci (paired_cocci.svg)<br>+67 more in JSON |  |
-| membrane-signaling | created | 64 | 43 | 21 | 0 | cellarch.membrane_signaling.adherens_junction (adherens_junction.svg)<br>cellarch.membrane_signaling.cis_snare_complex (cis_snare_complex.svg)<br>cellarch.membrane_signaling.desmosome (desmosome.svg)<br>cellarch.membrane_signaling.er_mitochondrion_contact_site (er_mitochondrion_contact_site.svg)<br>cellarch.membrane_signaling.er_mitochondrion_tubular_contact (er_mitochondrion_tubular_contact.svg)<br>cellarch.membrane_signaling.focal_adhesion (focal_adhesion.svg)<br>cellarch.membrane_signaling.focal_adhesion_enface (focal_adhesion_enface.svg)<br>cellarch.membrane_signaling.gap_junction (gap_junction.svg)<br>+56 more in JSON |  |
+| membrane-signaling | created | 74 | 43 | 31 | 0 | cellarch.membrane_signaling.adherens_junction (adherens_junction.svg)<br>cellarch.membrane_signaling.cis_snare_complex (cis_snare_complex.svg)<br>cellarch.membrane_signaling.desmosome (desmosome.svg)<br>cellarch.membrane_signaling.er_mitochondrion_contact_site (er_mitochondrion_contact_site.svg)<br>cellarch.membrane_signaling.er_mitochondrion_tubular_contact (er_mitochondrion_tubular_contact.svg)<br>cellarch.membrane_signaling.focal_adhesion (focal_adhesion.svg)<br>cellarch.membrane_signaling.focal_adhesion_enface (focal_adhesion_enface.svg)<br>cellarch.membrane_signaling.gap_junction (gap_junction.svg)<br>+66 more in JSON |  |
 | pathway-symbol | created | 55 | 43 | 12 | 0 | cellarch.pathway_symbol.autophagosome_lysosome_docking (autophagosome_lysosome_docking.svg)<br>cellarch.pathway_symbol.autophagosome_lysosome_fusion (autophagosome_lysosome_fusion.svg)<br>cellarch.pathway_symbol.copii_detached_carrier (copii_detached_carrier.svg)<br>cellarch.pathway_symbol.copii_vesicle_budding (copii_vesicle_budding.svg)<br>cellarch.pathway_symbol.cytoplasmic_dynein_cargo_transport (cytoplasmic_dynein_cargo_transport.svg)<br>cellarch.pathway_symbol.endosomal_recycling_tubule (endosomal_recycling_tubule.svg)<br>cellarch.pathway_symbol.escrt_inward_bud (escrt_inward_bud.svg)<br>cellarch.pathway_symbol.exportin_cargo_nuclear_export (exportin_cargo_nuclear_export.svg)<br>+47 more in JSON |  |
-| model-system | created | 52 | 30 | 22 | 0 | culture.model_system.air_liquid_interface_culture (air_liquid_interface_culture.svg)<br>culture.model_system.hanging_drop_spheroid (hanging_drop_spheroid.svg)<br>culture.model_system.hanging_drop_spheroid.array (hanging_drop_spheroid_array.svg)<br>culture.model_system.hydrogel_embedded_organoid (hydrogel_embedded_organoid.svg)<br>culture.model_system.hydrogel_embedded_organoid.budding (hydrogel_embedded_organoid_budding.svg)<br>culture.model_system.hydrogel_embedded_spheroid (hydrogel_embedded_spheroid.svg)<br>culture.model_system.microcarrier_cell_culture (microcarrier_cell_culture.svg)<br>culture.model_system.microwell_spheroid_aggregation (microwell_spheroid_aggregation.svg)<br>+44 more in JSON |  |
+| organelle | created | 49 | 32 | 17 | 0 | cellarch.organelle.copi_coated_vesicle (copi_coated_vesicle.svg)<br>cellarch.organelle.copi_golgi_bud (copi_golgi_bud.svg)<br>cellarch.organelle.multivesicular_endosome (multivesicular_endosome.svg)<br>cellstress.organelle.er_stress_upr.lumenal_load (er_stress_upr_lumenal_load.svg)<br>cellstress.organelle.er_stress_upr.sensor_assembly (er_stress_upr_sensor_assembly.svg)<br>cellstress.organelle.mitochondrial_fission.constriction (mitochondrial_fission_constriction.svg)<br>cellstress.organelle.mitochondrial_fission.daughter_separation (mitochondrial_fission_daughter_separation.svg)<br>cellstress.organelle.mitochondrial_fusion.approach_contact (mitochondrial_fusion_approach_contact.svg)<br>+41 more in JSON |  |
+| assay-workflow | created | 48 | 16 | 32 | 0 | analysis.box_plot.horizontal (box_plot_horizontal.svg)<br>analysis.box_plot.vertical (box_plot_vertical.svg)<br>analysis.cell_tracking_trajectory.single_track (cell_tracking_trajectory_single_track.svg)<br>analysis.cell_tracking_trajectory.two_tracks (cell_tracking_trajectory_two_tracks.svg)<br>analysis.heatmap.clustered (heatmap_clustered.svg)<br>analysis.heatmap.matrix (heatmap_matrix.svg)<br>analysis.kaplan_meier_curve.one_group (kaplan_meier_curve_one_group.svg)<br>analysis.kaplan_meier_curve.two_groups (kaplan_meier_curve_two_groups.svg)<br>+40 more in JSON |  |
+| cell biology | created | 45 | 5 | 40 | 0 | cellstress.cell.anoikis.blebbing_apoptotic (anoikis_blebbing_apoptotic.svg)<br>cellstress.cell.anoikis.detached_apoptotic (anoikis_detached_apoptotic.svg)<br>cellstress.cell.ferroptotic_cell.lipid_damage (ferroptotic_cell_lipid_damage.svg)<br>cellstress.cell.ferroptotic_cell.mitochondrial_detail (ferroptotic_cell_mitochondrial_detail.svg)<br>cellstress.cell.filopodium.bundle_detail (filopodium_bundle_detail.svg)<br>cellstress.cell.filopodium.whole_cell (filopodium_whole_cell.svg)<br>cellstress.cell.lamellipodium.leading_edge_detail (lamellipodium_leading_edge_detail.svg)<br>cellstress.cell.lamellipodium.whole_cell (lamellipodium_whole_cell.svg)<br>+37 more in JSON |  |
 | protein | created | 42 | 42 | 0 | 0 | core.antibody.drug_conjugate (antibody_drug_conjugate.svg)<br>core.antibody.drug_conjugate_manuscript (antibody_drug_conjugate_manuscript.svg)<br>core.antibody.fab_fragment (antibody_fab_fragment.svg)<br>core.antibody.fc_fragment (antibody_fc_fragment.svg)<br>core.antibody.igg (antibody_igg.svg)<br>core.antibody.igg_manuscript (antibody_igg_manuscript.svg)<br>core.channel.ion (ion_channel.svg)<br>core.ligand.generic (generic_ligand.svg)<br>+34 more in JSON |  |
-| organelle | created | 35 | 32 | 3 | 0 | cellarch.organelle.copi_coated_vesicle (copi_coated_vesicle.svg)<br>cellarch.organelle.copi_golgi_bud (copi_golgi_bud.svg)<br>cellarch.organelle.multivesicular_endosome (multivesicular_endosome.svg)<br>core.autolysosome (autolysosome.svg)<br>core.endosome.basic (endosome.svg)<br>core.er.rough (rough_endoplasmic_reticulum.svg)<br>core.er.rough_network (rough_er_network.svg)<br>core.er.smooth (smooth_er.svg)<br>+27 more in JSON |  |
+| cell structures and cell stress | created | 40 | 0 | 40 | 0 | cellstress.cell.anoikis.blebbing_apoptotic (anoikis_blebbing_apoptotic.svg)<br>cellstress.cell.anoikis.detached_apoptotic (anoikis_detached_apoptotic.svg)<br>cellstress.cell.ferroptotic_cell.lipid_damage (ferroptotic_cell_lipid_damage.svg)<br>cellstress.cell.ferroptotic_cell.mitochondrial_detail (ferroptotic_cell_mitochondrial_detail.svg)<br>cellstress.cell.filopodium.bundle_detail (filopodium_bundle_detail.svg)<br>cellstress.cell.filopodium.whole_cell (filopodium_whole_cell.svg)<br>cellstress.cell.lamellipodium.leading_edge_detail (lamellipodium_leading_edge_detail.svg)<br>cellstress.cell.lamellipodium.whole_cell (lamellipodium_whole_cell.svg)<br>+32 more in JSON |  |
+| nucleic-acid | created | 30 | 23 | 7 | 0 | cellstress.nucleic_acid.condensed_chromosome.metacentric (condensed_chromosome_metacentric.svg)<br>cellstress.nucleic_acid.condensed_chromosome.submetacentric (condensed_chromosome_submetacentric.svg)<br>cellstress.nucleic_acid.dna_damage_foci.clustered (dna_damage_foci_clustered.svg)<br>cellstress.nucleic_acid.dna_damage_foci.dispersed (dna_damage_foci_dispersed.svg)<br>cellstress.nucleic_acid.replication_stress.reversed_fork (replication_stress_reversed_fork.svg)<br>cellstress.nucleic_acid.replication_stress.stalled_fork (replication_stress_stalled_fork.svg)<br>rna.nucleic_acid.barcoded_capture_bead (barcoded_capture_bead.svg)<br>core.chromatin.loop (chromatin_loop.svg)<br>+22 more in JSON |  |
 | cell architecture and transport | created | 28 | 0 | 28 | 0 | cellarch.membrane_signaling.adherens_junction (adherens_junction.svg)<br>cellarch.membrane_signaling.cis_snare_complex (cis_snare_complex.svg)<br>cellarch.membrane_signaling.desmosome (desmosome.svg)<br>cellarch.membrane_signaling.er_mitochondrion_contact_site (er_mitochondrion_contact_site.svg)<br>cellarch.membrane_signaling.er_mitochondrion_tubular_contact (er_mitochondrion_tubular_contact.svg)<br>cellarch.membrane_signaling.focal_adhesion (focal_adhesion.svg)<br>cellarch.membrane_signaling.focal_adhesion_enface (focal_adhesion_enface.svg)<br>cellarch.membrane_signaling.gap_junction (gap_junction.svg)<br>+20 more in JSON |  |
 | lab-equipment | created | 28 | 27 | 1 | 0 | rna.lab_equipment.microfluidic_cell_partition (microfluidic_cell_partition.svg)<br>core.lab.conical_tube (conical_tube.svg)<br>core.lab.microcentrifuge_tube (microcentrifuge_tube.svg)<br>core.lab.microscope (microscope.svg)<br>core.lab.petri_dish (petri_dish.svg)<br>core.lab.pipette (pipette.svg)<br>core.lab.plate_96_well (plate_96_well.svg)<br>core.lab.plate_reader (plate_reader_readout.svg)<br>+20 more in JSON |  |
-| assay-workflow | created | 26 | 16 | 10 | 0 | culture.assay_workflow.cell_exclusion_gap (cell_exclusion_gap.svg)<br>culture.assay_workflow.clonogenic_colony_formation (clonogenic_colony_formation.svg)<br>culture.assay_workflow.collagen_gel_contraction (collagen_gel_contraction.svg)<br>culture.assay_workflow.collagen_gel_contraction.anchored (collagen_gel_contraction_anchored.svg)<br>culture.assay_workflow.epithelial_scratch_wound (epithelial_scratch_wound.svg)<br>culture.assay_workflow.organoid_luminal_microinjection (organoid_luminal_microinjection.svg)<br>culture.assay_workflow.soft_agar_colony (soft_agar_colony.svg)<br>culture.assay_workflow.spheroid_matrix_outgrowth (spheroid_matrix_outgrowth.svg)<br>+18 more in JSON |  |
 | culture models and functional assays | created | 24 | 0 | 24 | 0 | culture.assay_workflow.cell_exclusion_gap (cell_exclusion_gap.svg)<br>culture.assay_workflow.clonogenic_colony_formation (clonogenic_colony_formation.svg)<br>culture.assay_workflow.collagen_gel_contraction (collagen_gel_contraction.svg)<br>culture.assay_workflow.collagen_gel_contraction.anchored (collagen_gel_contraction_anchored.svg)<br>culture.assay_workflow.epithelial_scratch_wound (epithelial_scratch_wound.svg)<br>culture.assay_workflow.organoid_luminal_microinjection (organoid_luminal_microinjection.svg)<br>culture.assay_workflow.soft_agar_colony (soft_agar_colony.svg)<br>culture.assay_workflow.spheroid_matrix_outgrowth (spheroid_matrix_outgrowth.svg)<br>+16 more in JSON |  |
+| endocrine tissue | created | 24 | 0 | 24 | 0 | endocrine.adrenal_cortex.concentric_zones (adrenal_cortex_concentric_zones.svg)<br>endocrine.adrenal_cortex.cortical_wedge (adrenal_cortex_cortical_wedge.svg)<br>endocrine.adrenal_medulla.medullary_field (adrenal_medulla_medullary_field.svg)<br>endocrine.adrenal_medulla.vascular_nests (adrenal_medulla_vascular_nests.svg)<br>endocrine.anterior_pituitary.cords_longitudinal (anterior_pituitary_cords_longitudinal.svg)<br>endocrine.anterior_pituitary.cords_radial (anterior_pituitary_cords_radial.svg)<br>endocrine.corpus_luteum.folded_luteal_tissue (corpus_luteum_folded_luteal_tissue.svg)<br>endocrine.corpus_luteum.radial_luteal_tissue (corpus_luteum_radial_luteal_tissue.svg)<br>+16 more in JSON |  |
 | microbial structures and interactions | created | 24 | 0 | 24 | 0 | microbe.cell.bacterial_endospore (bacterial_endospore.svg)<br>microbe.cell.chained_cocci (chained_cocci.svg)<br>microbe.cell.encapsulated_bacterium (encapsulated_bacterium.svg)<br>microbe.cell.encapsulated_bacterium_rod (encapsulated_bacterium_rod.svg)<br>microbe.cell.endospore_in_mother_cell (endospore_in_mother_cell.svg)<br>microbe.cell.fungal_germ_tube (fungal_germ_tube.svg)<br>microbe.cell.fungal_pseudohyphal_chain (fungal_pseudohyphal_chain.svg)<br>microbe.cell.paired_cocci (paired_cocci.svg)<br>+16 more in JSON |  |
-| nucleic-acid | created | 24 | 23 | 1 | 0 | rna.nucleic_acid.barcoded_capture_bead (barcoded_capture_bead.svg)<br>core.chromatin.loop (chromatin_loop.svg)<br>core.dna.double_helix (dna_double_helix.svg)<br>core.dna.double_helix_manuscript (dna_double_helix_manuscript.svg)<br>core.dna.protein_binding (protein_dna_binding.svg)<br>core.gene.promoter (gene_promoter_segment.svg)<br>core.mrna.transcript (mrna_transcript.svg)<br>core.nucleic_acid.crispr_cas9 (crispr_cas9_complex.svg)<br>+16 more in JSON |  |
+| analytical graphics · schematic templates | created | 20 | 0 | 20 | 0 | analysis.box_plot.horizontal (box_plot_horizontal.svg)<br>analysis.box_plot.vertical (box_plot_vertical.svg)<br>analysis.cell_tracking_trajectory.single_track (cell_tracking_trajectory_single_track.svg)<br>analysis.cell_tracking_trajectory.two_tracks (cell_tracking_trajectory_two_tracks.svg)<br>analysis.heatmap.clustered (heatmap_clustered.svg)<br>analysis.heatmap.matrix (heatmap_matrix.svg)<br>analysis.kaplan_meier_curve.one_group (kaplan_meier_curve_one_group.svg)<br>analysis.kaplan_meier_curve.two_groups (kaplan_meier_curve_two_groups.svg)<br>+12 more in JSON |  |
+| example | created | 20 | 0 | 20 | 0 | analysis.box_plot.horizontal (box_plot_horizontal.svg)<br>analysis.box_plot.vertical (box_plot_vertical.svg)<br>analysis.cell_tracking_trajectory.single_track (cell_tracking_trajectory_single_track.svg)<br>analysis.cell_tracking_trajectory.two_tracks (cell_tracking_trajectory_two_tracks.svg)<br>analysis.heatmap.clustered (heatmap_clustered.svg)<br>analysis.heatmap.matrix (heatmap_matrix.svg)<br>analysis.kaplan_meier_curve.one_group (kaplan_meier_curve_one_group.svg)<br>analysis.kaplan_meier_curve.two_groups (kaplan_meier_curve_two_groups.svg)<br>+12 more in JSON |  |
+| neurobiology | created | 20 | 0 | 20 | 0 | neuro.axon_myelin.longitudinal (axon_myelin_longitudinal.svg)<br>neuro.axon_myelin.transverse (axon_myelin_transverse.svg)<br>neuro.axon_terminal.branched_terminals (axon_terminal_branched_terminals.svg)<br>neuro.axon_terminal.single_bouton (axon_terminal_single_bouton.svg)<br>neuro.chemical_synapse.bouton_spine (chemical_synapse_bouton_spine.svg)<br>neuro.chemical_synapse.shaft_contact (chemical_synapse_shaft_contact.svg)<br>neuro.dendritic_spine.mushroom (dendritic_spine_mushroom.svg)<br>neuro.dendritic_spine.thin (dendritic_spine_thin.svg)<br>+12 more in JSON |  |
+| not measured data | created | 20 | 0 | 20 | 0 | analysis.box_plot.horizontal (box_plot_horizontal.svg)<br>analysis.box_plot.vertical (box_plot_vertical.svg)<br>analysis.cell_tracking_trajectory.single_track (cell_tracking_trajectory_single_track.svg)<br>analysis.cell_tracking_trajectory.two_tracks (cell_tracking_trajectory_two_tracks.svg)<br>analysis.heatmap.clustered (heatmap_clustered.svg)<br>analysis.heatmap.matrix (heatmap_matrix.svg)<br>analysis.kaplan_meier_curve.one_group (kaplan_meier_curve_one_group.svg)<br>analysis.kaplan_meier_curve.two_groups (kaplan_meier_curve_two_groups.svg)<br>+12 more in JSON |  |
+| template | created | 20 | 0 | 20 | 0 | analysis.box_plot.horizontal (box_plot_horizontal.svg)<br>analysis.box_plot.vertical (box_plot_vertical.svg)<br>analysis.cell_tracking_trajectory.single_track (cell_tracking_trajectory_single_track.svg)<br>analysis.cell_tracking_trajectory.two_tracks (cell_tracking_trajectory_two_tracks.svg)<br>analysis.heatmap.clustered (heatmap_clustered.svg)<br>analysis.heatmap.matrix (heatmap_matrix.svg)<br>analysis.kaplan_meier_curve.one_group (kaplan_meier_curve_one_group.svg)<br>analysis.kaplan_meier_curve.two_groups (kaplan_meier_curve_two_groups.svg)<br>+12 more in JSON |  |
+| tissue & vascular organization | created | 20 | 0 | 20 | 0 | tissue.adipose.lobule (adipose_lobule.svg)<br>tissue.adipose.single_adipocyte (adipose_single_adipocyte.svg)<br>tissue.angiogenic_sprout.branching (angiogenic_sprout_branching.svg)<br>tissue.angiogenic_sprout.single_tip (angiogenic_sprout_single_tip.svg)<br>tissue.basement_membrane.epithelial_interface (basement_membrane_epithelial_interface.svg)<br>tissue.basement_membrane.isolated_sheet (basement_membrane_isolated_sheet.svg)<br>tissue.capillary.longitudinal (capillary_longitudinal.svg)<br>tissue.capillary.transverse (capillary_transverse.svg)<br>+12 more in JSON |  |
+| tumor cells, contacts and spatial gradients | created | 20 | 0 | 20 | 0 | tme.cancer_associated_fibroblast.matrix (cancer_associated_fibroblast_matrix.svg)<br>tme.cancer_associated_fibroblast.spindle (cancer_associated_fibroblast_spindle.svg)<br>tme.car_nk_cell.receptor_display (car_nk_cell_receptor_display.svg)<br>tme.car_nk_cell.target_contact (car_nk_cell_target_contact.svg)<br>tme.dendritic_antigen_uptake.particulate (dendritic_antigen_uptake_particulate.svg)<br>tme.dendritic_antigen_uptake.soluble (dendritic_antigen_uptake_soluble.svg)<br>tme.drug_penetration_gradient.perivascular (drug_penetration_gradient_perivascular.svg)<br>tme.drug_penetration_gradient.spheroid (drug_penetration_gradient_spheroid.svg)<br>+12 more in JSON |  |
 | manuscript | created | 17 | 17 | 0 | 0 | core.antibody.drug_conjugate_manuscript (antibody_drug_conjugate_manuscript.svg)<br>core.antibody.igg_manuscript (antibody_igg_manuscript.svg)<br>core.cell.b_cell_manuscript (immune_b_cell_manuscript.svg)<br>core.cell.dendritic_manuscript (immune_dendritic_cell_manuscript.svg)<br>core.cell.macrophage_manuscript (immune_macrophage_manuscript.svg)<br>core.cell.neutrophil_manuscript (immune_neutrophil_manuscript.svg)<br>core.cell.nk_cell_manuscript (immune_nk_cell_manuscript.svg)<br>core.cell.t_cell_manuscript (immune_t_cell_manuscript.svg)<br>+9 more in JSON |  |
 | thin line | created | 17 | 17 | 0 | 0 | core.antibody.drug_conjugate_manuscript (antibody_drug_conjugate_manuscript.svg)<br>core.antibody.igg_manuscript (antibody_igg_manuscript.svg)<br>core.cell.b_cell_manuscript (immune_b_cell_manuscript.svg)<br>core.cell.dendritic_manuscript (immune_dendritic_cell_manuscript.svg)<br>core.cell.macrophage_manuscript (immune_macrophage_manuscript.svg)<br>core.cell.neutrophil_manuscript (immune_neutrophil_manuscript.svg)<br>core.cell.nk_cell_manuscript (immune_nk_cell_manuscript.svg)<br>core.cell.t_cell_manuscript (immune_t_cell_manuscript.svg)<br>+9 more in JSON |  |
 | pathway | created | 14 | 14 | 0 | 0 | core.membrane_signaling.cytokine_receptor (cytokine_receptor.svg)<br>core.pathway.feedback_loop (feedback_loop.svg)<br>core.pathway.metabolic_cycle (metabolic_cycle.svg)<br>core.symbol.activation_arrow (arrow_activation.svg)<br>core.symbol.bidirectional_arrow (bidirectional_arrow.svg)<br>core.symbol.cleavage (cleavage_symbol.svg)<br>core.symbol.dashed_arrow (dashed_arrow.svg)<br>core.symbol.drug_inhibition_badge (drug_inhibition_badge.svg)<br>+6 more in JSON |  |
@@ -71,7 +141,7 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | immune mechanism | created | 11 | 11 | 0 | 0 | core.immune.cytotoxic_granule_release (immune_cytotoxic_granule_release.svg)<br>core.immune.fc_receptor_binding (immune_fc_receptor_binding.svg)<br>core.immune.fc_receptor_binding_manuscript (immune_fc_receptor_binding_manuscript.svg)<br>core.immune.mhc_i_peptide (immune_mhc_i_peptide.svg)<br>core.immune.mhc_i_peptide_manuscript (immune_mhc_i_peptide_manuscript.svg)<br>core.immune.mhc_ii_peptide (immune_mhc_ii_peptide.svg)<br>core.immune.mhc_ii_peptide_manuscript (immune_mhc_ii_peptide_manuscript.svg)<br>core.immune.pd1_pdl1_checkpoint (immune_pd1_pdl1_checkpoint.svg)<br>+3 more in JSON |  |
 | lab equipment | created | 10 | 10 | 0 | 0 | core.lab.conical_tube (conical_tube.svg)<br>core.lab.microcentrifuge_tube (microcentrifuge_tube.svg)<br>core.lab.microscope (microscope.svg)<br>core.lab.petri_dish (petri_dish.svg)<br>core.lab.pipette (pipette.svg)<br>core.lab.plate_96_well (plate_96_well.svg)<br>core.lab.plate_reader (plate_reader_readout.svg)<br>core.lab.syringe (syringe.svg)<br>+2 more in JSON |  |
 | signaling | created | 10 | 10 | 0 | 0 | core.channel.ion (ion_channel.svg)<br>core.ligand.generic (generic_ligand.svg)<br>core.membrane.plasma_segment (plasma_membrane_segment.svg)<br>core.membrane_signaling.cytokine_receptor (cytokine_receptor.svg)<br>core.pathway.feedback_loop (feedback_loop.svg)<br>core.protein.kinase (protein_kinase.svg)<br>core.receptor.gpcr_like (gpcr_like_receptor.svg)<br>core.receptor.membrane (membrane_receptor.svg)<br>+2 more in JSON |  |
-| single cell | created | 9 | 9 | 0 | 0 | core.cell.epithelial (cell_epithelial.svg)<br>core.cell.epithelial_apical (cell_epithelial_apical.svg)<br>core.cell.epithelial_cuboidal (cell_epithelial_cuboidal.svg)<br>core.cell.generic (cell_generic.svg)<br>core.cell.generic_cutaway (cell_generic_cutaway.svg)<br>core.cell.generic_spread (cell_generic_spread.svg)<br>core.cell.neuron_bipolar (cell_neuron_bipolar.svg)<br>core.cell.neuron_like (cell_neuron_like.svg)<br>+1 more in JSON |  |
+| single cell | created | 10 | 9 | 1 | 0 | analysis.cell_tracking_trajectory.single_track (cell_tracking_trajectory_single_track.svg)<br>core.cell.epithelial (cell_epithelial.svg)<br>core.cell.epithelial_apical (cell_epithelial_apical.svg)<br>core.cell.epithelial_cuboidal (cell_epithelial_cuboidal.svg)<br>core.cell.generic (cell_generic.svg)<br>core.cell.generic_cutaway (cell_generic_cutaway.svg)<br>core.cell.generic_spread (cell_generic_spread.svg)<br>core.cell.neuron_bipolar (cell_neuron_bipolar.svg)<br>+2 more in JSON |  |
 | assay | created | 8 | 8 | 0 | 0 | core.cell.tumor_spheroid (tumor_spheroid.svg)<br>core.lab.microscope (microscope.svg)<br>core.lab.petri_dish (petri_dish.svg)<br>core.lab.pipette (pipette.svg)<br>core.lab.plate_96_well (plate_96_well.svg)<br>core.lab.plate_reader (plate_reader_readout.svg)<br>core.lab.tissue_culture_flask (tissue_culture_flask.svg)<br>core.lab.well_plate (well_plate.svg) |  |
 | clinical-sample | created | 8 | 8 | 0 | 0 | core.sample.blood_drop (blood_drop.svg)<br>core.sample.blood_tube (blood_sample_tube.svg)<br>core.sample.cell_pellet_tube (cell_pellet_tube.svg)<br>core.sample.cryovial (cryovial.svg)<br>core.sample.tissue_biopsy_core (tissue_biopsy_core.svg)<br>core.sample.tissue_section_slide (tissue_section_slide.svg)<br>exp.clinical_sample.saliva_sample (saliva_sample.svg)<br>exp.clinical_sample.urine_sample (urine_sample.svg) |  |
 | dna | created | 8 | 8 | 0 | 0 | core.chromatin.loop (chromatin_loop.svg)<br>core.dna.double_helix (dna_double_helix.svg)<br>core.dna.double_helix_manuscript (dna_double_helix_manuscript.svg)<br>core.dna.protein_binding (protein_dna_binding.svg)<br>core.gene.promoter (gene_promoter_segment.svg)<br>core.nucleic_acid.crispr_cas9 (crispr_cas9_complex.svg)<br>core.nucleic_acid.plasmid_vector (plasmid_vector.svg)<br>core.nucleic_acid.plasmid_vector_manuscript (plasmid_vector_manuscript.svg) |  |
@@ -93,32 +163,41 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | nucleus | created | 6 | 6 | 0 | 0 | core.cell.apoptotic (cell_apoptotic.svg)<br>core.cell.generic (cell_generic.svg)<br>core.chromatin.loop (chromatin_loop.svg)<br>core.nucleus.oval_cutaway (nucleus_oval_cutaway.svg)<br>core.nucleus.round (nucleus_round.svg)<br>core.protein.transcription_factor (transcription_factor.svg) |  |
 | peptide-mhc | created | 6 | 6 | 0 | 0 | core.immune.mhc_i_peptide (immune_mhc_i_peptide.svg)<br>core.immune.mhc_i_peptide_manuscript (immune_mhc_i_peptide_manuscript.svg)<br>core.immune.mhc_ii_peptide (immune_mhc_ii_peptide.svg)<br>core.immune.mhc_ii_peptide_manuscript (immune_mhc_ii_peptide_manuscript.svg)<br>core.immune.tcr_engagement (immune_tcr_engagement.svg)<br>core.immune.tcr_engagement_manuscript (immune_tcr_engagement_manuscript.svg) |  |
 | receptor and ligand components | created | 6 | 6 | 0 | 0 | immuno.membrane_signaling.b7_costimulatory_ligand (b7_costimulatory_ligand.svg)<br>immuno.membrane_signaling.cd155 (cd155.svg)<br>immuno.membrane_signaling.cd28_receptor (cd28_receptor.svg)<br>immuno.membrane_signaling.ctla4_receptor (ctla4_receptor.svg)<br>immuno.membrane_signaling.lag3_receptor (lag3_receptor.svg)<br>immuno.membrane_signaling.tigit_receptor (tigit_receptor.svg) |  |
-| schematic | created | 6 | 6 | 0 | 0 | core.cell.epithelial (cell_epithelial.svg)<br>core.cell.generic (cell_generic.svg)<br>core.cell.immune_round (cell_immune_round.svg)<br>core.cell.neuron_like (cell_neuron_like.svg)<br>core.organelle.lipid_droplet (lipid_droplet.svg)<br>core.protein.multimer_complex (protein_multimer_complex.svg) |  |
 | tumor invasion and metastasis | created | 6 | 6 | 0 | 0 | immuno.pathway.collective_tumor_invasion (collective_tumor_invasion.svg)<br>immuno.pathway.ecm_remodeling (ecm_remodeling.svg)<br>immuno.pathway.epithelial_mesenchymal_transition (epithelial_mesenchymal_transition.svg)<br>immuno.pathway.metastatic_seeding (metastatic_seeding.svg)<br>immuno.pathway.tumor_cell_extravasation (tumor_cell_extravasation.svg)<br>immuno.pathway.tumor_cell_intravasation (tumor_cell_intravasation.svg) |  |
 | vesicle | created | 6 | 6 | 0 | 0 | core.endosome.basic (endosome.svg)<br>core.golgi.basic (golgi_apparatus.svg)<br>core.lysosome.basic (lysosome.svg)<br>core.organelle.autophagosome (autophagosome.svg)<br>core.symbol.secretion_arrow (secretion_arrow.svg)<br>core.vesicle (vesicle.svg) |  |
-| cell biology | created | 5 | 5 | 0 | 0 | core.golgi.basic (golgi_apparatus.svg)<br>core.mitochondrion.basic (mitochondrion_basic.svg)<br>core.mitochondrion.basic_manuscript (mitochondrion_basic_manuscript.svg)<br>core.nucleus.round (nucleus_round.svg)<br>core.peroxisome.basic (peroxisome.svg) |  |
 | checkpoint | created | 5 | 5 | 0 | 0 | immuno.membrane_signaling.cd47_sirpa_checkpoint_interaction (cd47_sirpa_checkpoint_interaction.svg)<br>immuno.membrane_signaling.ctla4_b7_checkpoint_interaction (ctla4_b7_checkpoint_interaction.svg)<br>immuno.membrane_signaling.lag3_mhc2_checkpoint_interaction (lag3_mhc2_checkpoint_interaction.svg)<br>immuno.membrane_signaling.tigit_cd155_checkpoint_interaction (tigit_cd155_checkpoint_interaction.svg)<br>immuno.protein.checkpoint_blocking_antibody (checkpoint_blocking_antibody.svg) |  |
+| glia | created | 5 | 1 | 4 | 0 | neuro.oligodendrocyte.branching (oligodendrocyte_branching.svg)<br>neuro.oligodendrocyte.multiple_sheaths (oligodendrocyte_multiple_sheaths.svg)<br>neuro.schwann_cell.myelinating_internode (schwann_cell_myelinating_internode.svg)<br>neuro.schwann_cell.nonmyelinating_bundle (schwann_cell_nonmyelinating_bundle.svg)<br>core.cell.astrocyte_like (astrocyte_like_cell.svg) |  |
 | nucleic acid | created | 5 | 5 | 0 | 0 | core.dna.double_helix (dna_double_helix.svg)<br>core.dna.double_helix_manuscript (dna_double_helix_manuscript.svg)<br>core.rna.sirna (sirna_duplex.svg)<br>core.rna.strand (rna_strand.svg)<br>core.rna.strand_linear (rna_strand_linear.svg) |  |
+| adrenal gland | created | 4 | 0 | 4 | 0 | endocrine.adrenal_cortex.concentric_zones (adrenal_cortex_concentric_zones.svg)<br>endocrine.adrenal_cortex.cortical_wedge (adrenal_cortex_cortical_wedge.svg)<br>endocrine.adrenal_medulla.medullary_field (adrenal_medulla_medullary_field.svg)<br>endocrine.adrenal_medulla.vascular_nests (adrenal_medulla_vascular_nests.svg) |  |
 | antigen presentation | created | 4 | 4 | 0 | 0 | core.immune.mhc_i_peptide (immune_mhc_i_peptide.svg)<br>core.immune.mhc_i_peptide_manuscript (immune_mhc_i_peptide_manuscript.svg)<br>core.immune.mhc_ii_peptide (immune_mhc_ii_peptide.svg)<br>core.immune.mhc_ii_peptide_manuscript (immune_mhc_ii_peptide_manuscript.svg) |  |
 | antigen processing and presentation | created | 4 | 4 | 0 | 0 | immuno.pathway.cross_presentation (cross_presentation.svg)<br>immuno.pathway.cytosolic_antigen_processing (cytosolic_antigen_processing.svg)<br>immuno.pathway.endosomal_antigen_processing (endosomal_antigen_processing.svg)<br>immuno.pathway.phagocytosis (phagocytosis.svg) |  |
 | arrow | created | 4 | 4 | 0 | 0 | core.symbol.activation_arrow (arrow_activation.svg)<br>core.symbol.secretion_arrow (secretion_arrow.svg)<br>core.symbol.transcription_flow (transcription_flow_arrow.svg)<br>core.symbol.translocation_arrow (translocation_arrow.svg) |  |
+| axon and myelin | created | 4 | 0 | 4 | 0 | neuro.axon_myelin.longitudinal (axon_myelin_longitudinal.svg)<br>neuro.axon_myelin.transverse (axon_myelin_transverse.svg)<br>neuro.node_of_ranvier.channel_region (node_of_ranvier_channel_region.svg)<br>neuro.node_of_ranvier.paired_internodes (node_of_ranvier_paired_internodes.svg) |  |
 | cargo | created | 4 | 4 | 0 | 0 | core.endosome.basic (endosome.svg)<br>core.organelle.autophagosome (autophagosome.svg)<br>core.transporter.basic (membrane_transporter.svg)<br>core.vesicle (vesicle.svg) |  |
 | cell aggregation | created | 4 | 0 | 4 | 0 | culture.model_system.hanging_drop_spheroid (hanging_drop_spheroid.svg)<br>culture.model_system.hanging_drop_spheroid.array (hanging_drop_spheroid_array.svg)<br>culture.model_system.microwell_spheroid_aggregation (microwell_spheroid_aggregation.svg)<br>culture.model_system.microwell_spheroid_aggregation.array (microwell_spheroid_aggregation_array.svg) |  |
 | cell culture | created | 4 | 4 | 0 | 0 | core.lab.tissue_culture_flask (tissue_culture_flask.svg)<br>core.lab.well_plate (well_plate.svg)<br>exp.lab_equipment.biosafety_cabinet (biosafety_cabinet.svg)<br>exp.lab_equipment.co2_incubator (co2_incubator.svg) |  |
 | chromatin | created | 4 | 4 | 0 | 0 | core.chromatin.loop (chromatin_loop.svg)<br>core.nucleus.round (nucleus_round.svg)<br>exp.nucleic_acid.chromatin_state.condensed (chromatin_state_condensed.svg)<br>exp.nucleic_acid.chromatin_state.open (chromatin_state_open.svg) |  |
+| collagen matrix | created | 4 | 2 | 2 | 0 | tissue.collagen.bundle (collagen_bundle.svg)<br>tissue.collagen.mesh (collagen_mesh.svg)<br>immuno.model.collagen_rich_ecm.aligned_fibers (collagen_rich_ecm_aligned_fibers.svg)<br>immuno.model.collagen_rich_ecm.mesh (collagen_rich_ecm_mesh.svg) |  |
 | connector | created | 4 | 4 | 0 | 0 | core.symbol.activation_arrow (arrow_activation.svg)<br>core.symbol.bidirectional_arrow (bidirectional_arrow.svg)<br>core.symbol.dashed_arrow (dashed_arrow.svg)<br>core.symbol.inhibition_bar (inhibition_bar.svg) |  |
 | enzyme | created | 4 | 4 | 0 | 0 | core.lysosome.basic (lysosome.svg)<br>core.peroxisome.basic (peroxisome.svg)<br>core.protein.enzyme (catalytic_enzyme.svg)<br>core.protein.kinase (protein_kinase.svg) |  |
+| epithelium | created | 4 | 0 | 4 | 0 | tissue.epithelial_acinus.closed_lumen (epithelial_acinus_closed_lumen.svg)<br>tissue.epithelial_acinus.section (epithelial_acinus_section.svg)<br>tissue.epithelial_sheet.apical (epithelial_sheet_apical.svg)<br>tissue.epithelial_sheet.lateral (epithelial_sheet_lateral.svg) |  |
 | extracellular matrix | created | 4 | 3 | 1 | 0 | cellarch.membrane_signaling.focal_adhesion (focal_adhesion.svg)<br>immuno.model.basement_membrane_segment (basement_membrane_segment.svg)<br>immuno.model.collagen_rich_ecm.aligned_fibers (collagen_rich_ecm_aligned_fibers.svg)<br>immuno.model.collagen_rich_ecm.mesh (collagen_rich_ecm_mesh.svg) |  |
+| extracellular-matrix | created | 4 | 0 | 4 | 0 | tissue.basement_membrane.epithelial_interface (basement_membrane_epithelial_interface.svg)<br>tissue.basement_membrane.isolated_sheet (basement_membrane_isolated_sheet.svg)<br>tissue.collagen.bundle (collagen_bundle.svg)<br>tissue.collagen.mesh (collagen_mesh.svg) |  |
 | gene regulation | created | 4 | 4 | 0 | 0 | core.dna.protein_binding (protein_dna_binding.svg)<br>core.protein.transcription_factor (transcription_factor.svg)<br>exp.nucleic_acid.enhancer_promoter (enhancer_promoter.svg)<br>exp.protein.transcription_complex (transcription_complex.svg) |  |
 | genomics | created | 4 | 4 | 0 | 0 | core.chromatin.loop (chromatin_loop.svg)<br>core.dna.double_helix (dna_double_helix.svg)<br>core.dna.double_helix_manuscript (dna_double_helix_manuscript.svg)<br>core.gene.promoter (gene_promoter_segment.svg) |  |
 | immune checkpoint interactions | created | 4 | 4 | 0 | 0 | immuno.membrane_signaling.cd47_sirpa_checkpoint_interaction (cd47_sirpa_checkpoint_interaction.svg)<br>immuno.membrane_signaling.ctla4_b7_checkpoint_interaction (ctla4_b7_checkpoint_interaction.svg)<br>immuno.membrane_signaling.lag3_mhc2_checkpoint_interaction (lag3_mhc2_checkpoint_interaction.svg)<br>immuno.membrane_signaling.tigit_cd155_checkpoint_interaction (tigit_cd155_checkpoint_interaction.svg) |  |
 | immune synapse | created | 4 | 4 | 0 | 0 | core.immune.tcr_engagement (immune_tcr_engagement.svg)<br>core.immune.tcr_engagement_manuscript (immune_tcr_engagement_manuscript.svg)<br>immuno.pathway.apc_t_cell_immune_synapse (apc_t_cell_immune_synapse.svg)<br>immuno.pathway.cytotoxic_immune_synapse (cytotoxic_immune_synapse.svg) |  |
 | immunoglobulin | created | 4 | 4 | 0 | 0 | core.antibody.fab_fragment (antibody_fab_fragment.svg)<br>core.antibody.fc_fragment (antibody_fc_fragment.svg)<br>core.immune.fc_receptor_binding (immune_fc_receptor_binding.svg)<br>core.immune.fc_receptor_binding_manuscript (immune_fc_receptor_binding_manuscript.svg) |  |
+| isolated cell | created | 4 | 3 | 1 | 0 | tme.tumor_associated_neutrophil.isolated (tumor_associated_neutrophil_isolated.svg)<br>core.cell.epithelial (cell_epithelial.svg)<br>core.cell.generic (cell_generic.svg)<br>core.cell.neuron_like (cell_neuron_like.svg) |  |
 | lymphocyte | created | 4 | 4 | 0 | 0 | core.cell.b_cell (immune_b_cell.svg)<br>core.cell.b_cell_manuscript (immune_b_cell_manuscript.svg)<br>core.cell.t_cell (immune_t_cell.svg)<br>core.cell.t_cell_manuscript (immune_t_cell_manuscript.svg) |  |
 | metabolism | created | 4 | 4 | 0 | 0 | core.mitochondrion.basic (mitochondrion_basic.svg)<br>core.mitochondrion.basic_manuscript (mitochondrion_basic_manuscript.svg)<br>core.organelle.lipid_droplet (lipid_droplet.svg)<br>core.pathway.metabolic_cycle (metabolic_cycle.svg) |  |
 | mitochondria | created | 4 | 4 | 0 | 0 | core.mitochondrion.basic (mitochondrion_basic.svg)<br>core.mitochondrion.basic_manuscript (mitochondrion_basic_manuscript.svg)<br>core.mitochondrion.network (mitochondrion_network.svg)<br>core.mitochondrion.tubular (mitochondrion_tubular.svg) |  |
 | mitochondrion | created | 4 | 4 | 0 | 0 | core.mitochondrion.basic (mitochondrion_basic.svg)<br>core.mitochondrion.basic_manuscript (mitochondrion_basic_manuscript.svg)<br>core.mitochondrion.network (mitochondrion_network.svg)<br>core.mitochondrion.tubular (mitochondrion_tubular.svg) |  |
 | molecule | created | 4 | 4 | 0 | 0 | core.dna.double_helix (dna_double_helix.svg)<br>core.dna.double_helix_manuscript (dna_double_helix_manuscript.svg)<br>core.rna.strand (rna_strand.svg)<br>core.rna.strand_linear (rna_strand_linear.svg) |  |
+| neuron-glia contact | created | 4 | 0 | 4 | 0 | neuro.microglia_contact.surveying (microglia_contact_surveying.svg)<br>neuro.microglia_contact.synaptic_contact (microglia_contact_synaptic_contact.svg)<br>neuro.neuron_astrocyte_contact.process_network (neuron_astrocyte_contact_process_network.svg)<br>neuro.neuron_astrocyte_contact.single_synapse (neuron_astrocyte_contact_single_synapse.svg) |  |
+| nucleolus | created | 4 | 2 | 2 | 0 | cellstress.organelle.nucleolus.nuclear_context (nucleolus_nuclear_context.svg)<br>cellstress.organelle.nucleolus.subcompartments (nucleolus_subcompartments.svg)<br>core.nucleus.oval_cutaway (nucleus_oval_cutaway.svg)<br>core.nucleus.round (nucleus_round.svg) |  |
+| ovary | created | 4 | 0 | 4 | 0 | endocrine.corpus_luteum.folded_luteal_tissue (corpus_luteum_folded_luteal_tissue.svg)<br>endocrine.corpus_luteum.radial_luteal_tissue (corpus_luteum_radial_luteal_tissue.svg)<br>endocrine.ovarian_follicle.eccentric_oocyte (ovarian_follicle_eccentric_oocyte.svg)<br>endocrine.ovarian_follicle.sector_section (ovarian_follicle_sector_section.svg) |  |
+| pituitary gland | created | 4 | 0 | 4 | 0 | endocrine.anterior_pituitary.cords_longitudinal (anterior_pituitary_cords_longitudinal.svg)<br>endocrine.anterior_pituitary.cords_radial (anterior_pituitary_cords_radial.svg)<br>endocrine.posterior_pituitary.longitudinal_neural_lobe (posterior_pituitary_longitudinal_neural_lobe.svg)<br>endocrine.posterior_pituitary.transverse_neural_lobe (posterior_pituitary_transverse_neural_lobe.svg) |  |
 | rna | created | 4 | 4 | 0 | 0 | core.mrna.transcript (mrna_transcript.svg)<br>core.rna.strand (rna_strand.svg)<br>core.rna.strand_linear (rna_strand_linear.svg)<br>core.symbol.transcription_flow (transcription_flow_arrow.svg) |  |
 | rna methods | created | 4 | 0 | 4 | 0 | rna.assay_workflow.in_situ_rna_puncta (in_situ_rna_puncta.svg)<br>rna.assay_workflow.spatial_capture_array (spatial_capture_array.svg)<br>rna.lab_equipment.microfluidic_cell_partition (microfluidic_cell_partition.svg)<br>rna.nucleic_acid.barcoded_capture_bead (barcoded_capture_bead.svg) |  |
 | sample processing | created | 4 | 4 | 0 | 0 | core.sample.cell_pellet_tube (cell_pellet_tube.svg)<br>exp.lab_equipment.centrifuge (centrifuge.svg)<br>exp.lab_equipment.liquid_handler (liquid_handler.svg)<br>exp.lab_equipment.orbital_shaker (orbital_shaker.svg) |  |
@@ -126,21 +205,32 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | tumor microenvironment and response | created | 4 | 4 | 0 | 0 | immuno.model.necrotic_tumor_region (necrotic_tumor_region.svg)<br>immuno.model.persistent_tumor (persistent_tumor.svg)<br>immuno.model.tumor_hypoxic_region (tumor_hypoxic_region.svg)<br>immuno.model.tumor_regression (tumor_regression.svg) |  |
 | 3d culture | created | 3 | 1 | 2 | 0 | culture.model_system.hanging_drop_spheroid (hanging_drop_spheroid.svg)<br>culture.model_system.hanging_drop_spheroid.array (hanging_drop_spheroid_array.svg)<br>core.model.cell_spheroid_cluster (cell_spheroid_cluster.svg) |  |
 | adaptive immunity | created | 3 | 3 | 0 | 0 | core.cell.b_cell (immune_b_cell.svg)<br>core.cell.t_cell (immune_t_cell.svg)<br>core.cell.t_cell_manuscript (immune_t_cell_manuscript.svg) |  |
+| adipocyte | created | 3 | 1 | 2 | 0 | tissue.adipose.lobule (adipose_lobule.svg)<br>tissue.adipose.single_adipocyte (adipose_single_adipocyte.svg)<br>exp.cell.adipocyte (adipocyte.svg) |  |
 | animal cell | created | 3 | 3 | 0 | 0 | core.cell.generic (cell_generic.svg)<br>core.cell.generic_cutaway (cell_generic_cutaway.svg)<br>core.cell.generic_spread (cell_generic_spread.svg) |  |
+| basal lamina | created | 3 | 1 | 2 | 0 | tissue.basement_membrane.epithelial_interface (basement_membrane_epithelial_interface.svg)<br>tissue.basement_membrane.isolated_sheet (basement_membrane_isolated_sheet.svg)<br>immuno.model.basement_membrane_segment (basement_membrane_segment.svg) |  |
+| basement membrane | created | 3 | 1 | 2 | 0 | tissue.basement_membrane.epithelial_interface (basement_membrane_epithelial_interface.svg)<br>tissue.basement_membrane.isolated_sheet (basement_membrane_isolated_sheet.svg)<br>immuno.model.basement_membrane_segment (basement_membrane_segment.svg) |  |
 | bcr | created | 3 | 3 | 0 | 0 | core.cell.b_cell (immune_b_cell.svg)<br>core.cell.b_cell_manuscript (immune_b_cell_manuscript.svg)<br>exp.membrane_signaling.bcr (bcr.svg) |  |
+| caf | created | 3 | 1 | 2 | 0 | tme.cancer_associated_fibroblast.matrix (cancer_associated_fibroblast_matrix.svg)<br>tme.cancer_associated_fibroblast.spindle (cancer_associated_fibroblast_spindle.svg)<br>exp.cell.fibroblast (fibroblast.svg) |  |
 | cell surface | created | 3 | 3 | 0 | 0 | core.membrane.plasma_segment (plasma_membrane_segment.svg)<br>core.receptor.membrane (membrane_receptor.svg)<br>core.receptor.single_pass_unliganded (receptor_single_pass_unliganded.svg) |  |
 | cristae | created | 3 | 3 | 0 | 0 | core.mitochondrion.basic (mitochondrion_basic.svg)<br>core.mitochondrion.basic_manuscript (mitochondrion_basic_manuscript.svg)<br>core.mitochondrion.tubular (mitochondrion_tubular.svg) |  |
 | cytotoxic lymphocyte | created | 3 | 3 | 0 | 0 | core.cell.nk_cell (immune_nk_cell.svg)<br>core.cell.nk_cell_manuscript (immune_nk_cell_manuscript.svg)<br>core.immune.cytotoxic_granule_release (immune_cytotoxic_granule_release.svg) |  |
+| endothelium | created | 3 | 1 | 2 | 0 | tissue.capillary.longitudinal (capillary_longitudinal.svg)<br>tissue.capillary.transverse (capillary_transverse.svg)<br>exp.cell.endothelial (endothelial.svg) |  |
 | epithelial cell | created | 3 | 3 | 0 | 0 | core.cell.epithelial (cell_epithelial.svg)<br>core.cell.epithelial_apical (cell_epithelial_apical.svg)<br>core.cell.epithelial_cuboidal (cell_epithelial_cuboidal.svg) |  |
+| epithelial sheet | created | 3 | 1 | 2 | 0 | tissue.epithelial_sheet.apical (epithelial_sheet_apical.svg)<br>tissue.epithelial_sheet.lateral (epithelial_sheet_lateral.svg)<br>exp.model_system.epithelial_monolayer (epithelial_monolayer.svg) |  |
+| fat cell | created | 3 | 1 | 2 | 0 | tissue.adipose.lobule (adipose_lobule.svg)<br>tissue.adipose.single_adipocyte (adipose_single_adipocyte.svg)<br>exp.cell.adipocyte (adipocyte.svg) |  |
 | golgi apparatus | created | 3 | 3 | 0 | 0 | core.golgi.basic (golgi_apparatus.svg)<br>core.golgi.oblique (golgi_oblique.svg)<br>core.golgi.ribbon (golgi_ribbon.svg) |  |
 | granulocyte | created | 3 | 3 | 0 | 0 | core.cell.neutrophil (immune_neutrophil.svg)<br>core.cell.neutrophil_manuscript (immune_neutrophil_manuscript.svg)<br>exp.cell.basophil (basophil.svg) |  |
 | inhibition | created | 3 | 3 | 0 | 0 | core.pathway.feedback_loop (feedback_loop.svg)<br>core.symbol.drug_inhibition_badge (drug_inhibition_badge.svg)<br>core.symbol.inhibition_bar (inhibition_bar.svg) |  |
-| isolated cell | created | 3 | 3 | 0 | 0 | core.cell.epithelial (cell_epithelial.svg)<br>core.cell.generic (cell_generic.svg)<br>core.cell.neuron_like (cell_neuron_like.svg) |  |
+| lymphatic capillary | created | 3 | 1 | 2 | 0 | tissue.lymphatic_capillary.blind_end (lymphatic_capillary_blind_end.svg)<br>tissue.lymphatic_capillary.tissue_interface (lymphatic_capillary_tissue_interface.svg)<br>immuno.model.lymphatic_vessel_segment (lymphatic_vessel_segment.svg) |  |
+| lymphatic vessel | created | 3 | 1 | 2 | 0 | tissue.lymphatic_capillary.blind_end (lymphatic_capillary_blind_end.svg)<br>tissue.lymphatic_capillary.tissue_interface (lymphatic_capillary_tissue_interface.svg)<br>immuno.model.lymphatic_vessel_segment (lymphatic_vessel_segment.svg) |  |
 | lysosome | created | 3 | 3 | 0 | 0 | core.autolysosome (autolysosome.svg)<br>core.lysosome.basic (lysosome.svg)<br>core.lysosome.cutaway (lysosome_cutaway.svg) |  |
 | microscopy | created | 3 | 3 | 0 | 0 | exp.assay_workflow.microscopy_field.brightfield (microscopy_field_brightfield.svg)<br>exp.assay_workflow.microscopy_field.fluorescence (microscopy_field_fluorescence.svg)<br>exp.lab_equipment.confocal_microscope (confocal_microscope.svg) |  |
+| myelinated axon | created | 3 | 1 | 2 | 0 | neuro.axon_myelin.longitudinal (axon_myelin_longitudinal.svg)<br>neuro.axon_myelin.transverse (axon_myelin_transverse.svg)<br>exp.cell.schwann_myelin (schwann_myelin.svg) |  |
+| myelinating schwann cell | created | 3 | 1 | 2 | 0 | neuro.schwann_cell.myelinating_internode (schwann_cell_myelinating_internode.svg)<br>neuro.schwann_cell.nonmyelinating_bundle (schwann_cell_nonmyelinating_bundle.svg)<br>exp.cell.schwann_myelin (schwann_myelin.svg) |  |
 | neural and glial cells | created | 3 | 3 | 0 | 0 | exp.cell.microglia_like (microglia_like.svg)<br>exp.cell.oligodendrocyte_like (oligodendrocyte_like.svg)<br>exp.cell.schwann_myelin (schwann_myelin.svg) |  |
 | neuron | created | 3 | 3 | 0 | 0 | core.cell.neuron_bipolar (cell_neuron_bipolar.svg)<br>core.cell.neuron_like (cell_neuron_like.svg)<br>core.cell.neuron_pseudounipolar (cell_neuron_pseudounipolar.svg) |  |
 | nucleic-acid analysis | created | 3 | 3 | 0 | 0 | exp.assay_workflow.pcr_gel_result (pcr_gel_result.svg)<br>exp.lab_equipment.qpcr_instrument (qpcr_instrument.svg)<br>exp.lab_equipment.thermal_cycler (thermal_cycler.svg) |  |
+| oligodendrocyte | created | 3 | 1 | 2 | 0 | neuro.oligodendrocyte.branching (oligodendrocyte_branching.svg)<br>neuro.oligodendrocyte.multiple_sheaths (oligodendrocyte_multiple_sheaths.svg)<br>exp.cell.oligodendrocyte_like (oligodendrocyte_like.svg) |  |
 | organoid | created | 3 | 3 | 0 | 0 | core.cell.tumor_spheroid (tumor_spheroid.svg)<br>core.model.tumor_glia_coculture (tumor_glia_coculture.svg)<br>exp.model_system.organoid_lumen (organoid_lumen.svg) |  |
 | organoid lumen | created | 3 | 1 | 2 | 0 | culture.model_system.hydrogel_embedded_organoid (hydrogel_embedded_organoid.svg)<br>culture.model_system.hydrogel_embedded_organoid.budding (hydrogel_embedded_organoid_budding.svg)<br>exp.model_system.organoid_lumen (organoid_lumen.svg) |  |
 | phosphorylation | created | 3 | 3 | 0 | 0 | core.protein.kinase (protein_kinase.svg)<br>core.receptor.rtk_like (rtk_like_receptor.svg)<br>core.symbol.phosphorylation (phosphorylation_symbol.svg) |  |
@@ -151,8 +241,10 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | reactions and interactions | created | 3 | 3 | 0 | 0 | exp.pathway_symbol.binding_pair (binding_pair.svg)<br>exp.pathway_symbol.conversion_arrow (conversion_arrow.svg)<br>exp.pathway_symbol.dissociation (dissociation.svg) |  |
 | ribosome | created | 3 | 3 | 0 | 0 | core.er.rough (rough_endoplasmic_reticulum.svg)<br>core.er.rough_network (rough_er_network.svg)<br>exp.organelle.ribosome (ribosome.svg) |  |
 | sample | created | 3 | 3 | 0 | 0 | core.lab.conical_tube (conical_tube.svg)<br>core.lab.microcentrifuge_tube (microcentrifuge_tube.svg)<br>core.lab.syringe (syringe.svg) |  |
+| schwann cell | created | 3 | 1 | 2 | 0 | neuro.schwann_cell.myelinating_internode (schwann_cell_myelinating_internode.svg)<br>neuro.schwann_cell.nonmyelinating_bundle (schwann_cell_nonmyelinating_bundle.svg)<br>exp.cell.schwann_myelin (schwann_myelin.svg) |  |
 | sequencing | created | 3 | 3 | 0 | 0 | exp.assay_workflow.sequencing_reads.paired_end (sequencing_reads_paired_end.svg)<br>exp.assay_workflow.sequencing_reads.single_end (sequencing_reads_single_end.svg)<br>exp.lab_equipment.sequencer (sequencer.svg) |  |
 | small molecule | created | 3 | 3 | 0 | 0 | core.ligand.small_molecule (ligand_small_molecule.svg)<br>core.symbol.drug_inhibition_badge (drug_inhibition_badge.svg)<br>core.symbol.interaction_cue (small_molecule_interaction_cue.svg) |  |
+| synaptic contact | created | 3 | 0 | 3 | 0 | neuro.chemical_synapse.bouton_spine (chemical_synapse_bouton_spine.svg)<br>neuro.chemical_synapse.shaft_contact (chemical_synapse_shaft_contact.svg)<br>neuro.microglia_contact.synaptic_contact (microglia_contact_synaptic_contact.svg) |  |
 | t-cell receptor | created | 3 | 3 | 0 | 0 | core.immune.tcr_engagement (immune_tcr_engagement.svg)<br>core.immune.tcr_engagement_manuscript (immune_tcr_engagement_manuscript.svg)<br>exp.membrane_signaling.tcr (tcr.svg) |  |
 | tcr | created | 3 | 3 | 0 | 0 | core.immune.tcr_engagement (immune_tcr_engagement.svg)<br>core.immune.tcr_engagement_manuscript (immune_tcr_engagement_manuscript.svg)<br>exp.membrane_signaling.tcr (tcr.svg) |  |
 | therapy | created | 3 | 3 | 0 | 0 | core.antibody.drug_conjugate (antibody_drug_conjugate.svg)<br>core.antibody.drug_conjugate_manuscript (antibody_drug_conjugate_manuscript.svg)<br>core.symbol.drug_inhibition_badge (drug_inhibition_badge.svg) |  |
@@ -162,126 +254,281 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | vesicle transport | created | 3 | 0 | 3 | 0 | cellarch.pathway_symbol.cytoplasmic_dynein_cargo_transport (cytoplasmic_dynein_cargo_transport.svg)<br>cellarch.pathway_symbol.kinesin_cargo_transport (kinesin_cargo_transport.svg)<br>cellarch.pathway_symbol.myosin_va_cargo_transport (myosin_va_cargo_transport.svg) |  |
 | workflow | created | 3 | 3 | 0 | 0 | core.lab.conical_tube (conical_tube.svg)<br>core.lab.microcentrifuge_tube (microcentrifuge_tube.svg)<br>core.lab.pipette (pipette.svg) |  |
 | 3d organoid culture | created | 2 | 0 | 2 | 0 | culture.model_system.hydrogel_embedded_organoid (hydrogel_embedded_organoid.svg)<br>culture.model_system.hydrogel_embedded_organoid.budding (hydrogel_embedded_organoid_budding.svg) |  |
+| 53bp1 foci | created | 2 | 0 | 2 | 0 | cellstress.nucleic_acid.dna_damage_foci.clustered (dna_damage_foci_clustered.svg)<br>cellstress.nucleic_acid.dna_damage_foci.dispersed (dna_damage_foci_dispersed.svg) |  |
+| acinar lumen | created | 2 | 0 | 2 | 0 | tissue.epithelial_acinus.closed_lumen (epithelial_acinus_closed_lumen.svg)<br>tissue.epithelial_acinus.section (epithelial_acinus_section.svg) |  |
+| acinus | created | 2 | 0 | 2 | 0 | tissue.epithelial_acinus.closed_lumen (epithelial_acinus_closed_lumen.svg)<br>tissue.epithelial_acinus.section (epithelial_acinus_section.svg) |  |
+| actin bundle projection | created | 2 | 0 | 2 | 0 | cellstress.cell.filopodium.bundle_detail (filopodium_bundle_detail.svg)<br>cellstress.cell.filopodium.whole_cell (filopodium_whole_cell.svg) |  |
 | actin cytoskeleton | created | 2 | 2 | 0 | 0 | exp.organelle.actin_cytoskeleton.branched (actin_cytoskeleton_branched.svg)<br>exp.organelle.actin_cytoskeleton.bundle (actin_cytoskeleton_bundle.svg) |  |
 | actin filaments | created | 2 | 2 | 0 | 0 | exp.organelle.actin_cytoskeleton.branched (actin_cytoskeleton_branched.svg)<br>exp.organelle.actin_cytoskeleton.bundle (actin_cytoskeleton_bundle.svg) |  |
 | actin network | created | 2 | 2 | 0 | 0 | exp.organelle.actin_cytoskeleton.branched (actin_cytoskeleton_branched.svg)<br>exp.organelle.actin_cytoskeleton.bundle (actin_cytoskeleton_bundle.svg) |  |
 | adc | created | 2 | 2 | 0 | 0 | core.antibody.drug_conjugate (antibody_drug_conjugate.svg)<br>core.antibody.drug_conjugate_manuscript (antibody_drug_conjugate_manuscript.svg) |  |
+| adenohypophysis | created | 2 | 0 | 2 | 0 | endocrine.anterior_pituitary.cords_longitudinal (anterior_pituitary_cords_longitudinal.svg)<br>endocrine.anterior_pituitary.cords_radial (anterior_pituitary_cords_radial.svg) |  |
+| adipose | created | 2 | 0 | 2 | 0 | tissue.adipose.lobule (adipose_lobule.svg)<br>tissue.adipose.single_adipocyte (adipose_single_adipocyte.svg) |  |
+| adipose lobule | created | 2 | 0 | 2 | 0 | tissue.adipose.lobule (adipose_lobule.svg)<br>tissue.adipose.single_adipocyte (adipose_single_adipocyte.svg) |  |
+| adipose tissue | created | 2 | 0 | 2 | 0 | tissue.adipose.lobule (adipose_lobule.svg)<br>tissue.adipose.single_adipocyte (adipose_single_adipocyte.svg) |  |
+| adrenal chromaffin cells | created | 2 | 0 | 2 | 0 | endocrine.adrenal_medulla.medullary_field (adrenal_medulla_medullary_field.svg)<br>endocrine.adrenal_medulla.vascular_nests (adrenal_medulla_vascular_nests.svg) |  |
+| adrenal cortex | created | 2 | 0 | 2 | 0 | endocrine.adrenal_cortex.concentric_zones (adrenal_cortex_concentric_zones.svg)<br>endocrine.adrenal_cortex.cortical_wedge (adrenal_cortex_cortical_wedge.svg) |  |
+| adrenal medulla | created | 2 | 0 | 2 | 0 | endocrine.adrenal_medulla.medullary_field (adrenal_medulla_medullary_field.svg)<br>endocrine.adrenal_medulla.vascular_nests (adrenal_medulla_vascular_nests.svg) |  |
 | aggregation microwell | created | 2 | 0 | 2 | 0 | culture.model_system.microwell_spheroid_aggregation (microwell_spheroid_aggregation.svg)<br>culture.model_system.microwell_spheroid_aggregation.array (microwell_spheroid_aggregation_array.svg) |  |
+| anchorage dependent cell death | created | 2 | 0 | 2 | 0 | cellstress.cell.anoikis.blebbing_apoptotic (anoikis_blebbing_apoptotic.svg)<br>cellstress.cell.anoikis.detached_apoptotic (anoikis_detached_apoptotic.svg) |  |
+| angiogenesis | created | 2 | 0 | 2 | 0 | tissue.angiogenic_sprout.branching (angiogenic_sprout_branching.svg)<br>tissue.angiogenic_sprout.single_tip (angiogenic_sprout_single_tip.svg) |  |
+| angiogenic sprout | created | 2 | 0 | 2 | 0 | tissue.angiogenic_sprout.branching (angiogenic_sprout_branching.svg)<br>tissue.angiogenic_sprout.single_tip (angiogenic_sprout_single_tip.svg) |  |
 | animal model | created | 2 | 2 | 0 | 0 | core.model.mouse_manuscript (mouse_model_manuscript.svg)<br>core.model.mouse_simple (mouse_model.svg) |  |
+| anoikis | created | 2 | 0 | 2 | 0 | cellstress.cell.anoikis.blebbing_apoptotic (anoikis_blebbing_apoptotic.svg)<br>cellstress.cell.anoikis.detached_apoptotic (anoikis_detached_apoptotic.svg) |  |
+| anoikis — schematic | created | 2 | 0 | 2 | 0 | cellstress.cell.anoikis.blebbing_apoptotic (anoikis_blebbing_apoptotic.svg)<br>cellstress.cell.anoikis.detached_apoptotic (anoikis_detached_apoptotic.svg) |  |
+| anterior pituitary | created | 2 | 0 | 2 | 0 | endocrine.anterior_pituitary.cords_longitudinal (anterior_pituitary_cords_longitudinal.svg)<br>endocrine.anterior_pituitary.cords_radial (anterior_pituitary_cords_radial.svg) |  |
 | antibody fragment | created | 2 | 2 | 0 | 0 | core.antibody.fab_fragment (antibody_fab_fragment.svg)<br>core.antibody.fc_fragment (antibody_fc_fragment.svg) |  |
+| antigen capture | created | 2 | 0 | 2 | 0 | tme.dendritic_antigen_uptake.particulate (dendritic_antigen_uptake_particulate.svg)<br>tme.dendritic_antigen_uptake.soluble (dendritic_antigen_uptake_soluble.svg) |  |
 | antigen recognition | created | 2 | 2 | 0 | 0 | core.immune.tcr_engagement (immune_tcr_engagement.svg)<br>core.immune.tcr_engagement_manuscript (immune_tcr_engagement_manuscript.svg) |  |
 | antigen-presenting cell | created | 2 | 2 | 0 | 0 | core.cell.dendritic (immune_dendritic_cell.svg)<br>core.cell.dendritic_manuscript (immune_dendritic_cell_manuscript.svg) |  |
+| antral follicle | created | 2 | 0 | 2 | 0 | endocrine.ovarian_follicle.eccentric_oocyte (ovarian_follicle_eccentric_oocyte.svg)<br>endocrine.ovarian_follicle.sector_section (ovarian_follicle_sector_section.svg) |  |
+| antral ovarian follicle | created | 2 | 0 | 2 | 0 | endocrine.ovarian_follicle.eccentric_oocyte (ovarian_follicle_eccentric_oocyte.svg)<br>endocrine.ovarian_follicle.sector_section (ovarian_follicle_sector_section.svg) |  |
 | apc | created | 2 | 2 | 0 | 0 | core.cell.dendritic (immune_dendritic_cell.svg)<br>core.cell.dendritic_manuscript (immune_dendritic_cell_manuscript.svg) |  |
+| apical-basal polarity | created | 2 | 0 | 2 | 0 | tissue.epithelial_sheet.apical (epithelial_sheet_apical.svg)<br>tissue.epithelial_sheet.lateral (epithelial_sheet_lateral.svg) |  |
+| artery wall | created | 2 | 0 | 2 | 0 | tissue.vessel_wall.thicker_wall (vessel_wall_thicker_wall.svg)<br>tissue.vessel_wall.thinner_wall (vessel_wall_thinner_wall.svg) |  |
+| association network | created | 2 | 0 | 2 | 0 | analysis.network_graph.hub (network_graph_hub.svg)<br>analysis.network_graph.modular (network_graph_modular.svg) |  |
+| astrocyte-neuron interface | created | 2 | 0 | 2 | 0 | neuro.neuron_astrocyte_contact.process_network (neuron_astrocyte_contact_process_network.svg)<br>neuro.neuron_astrocyte_contact.single_synapse (neuron_astrocyte_contact_single_synapse.svg) |  |
 | autolysosome | created | 2 | 1 | 1 | 0 | cellarch.pathway_symbol.autophagosome_lysosome_fusion (autophagosome_lysosome_fusion.svg)<br>core.autolysosome (autolysosome.svg) |  |
 | autophagy | created | 2 | 2 | 0 | 0 | core.autolysosome (autolysosome.svg)<br>core.organelle.autophagosome (autophagosome.svg) |  |
+| axon | created | 2 | 0 | 2 | 0 | neuro.axon_terminal.branched_terminals (axon_terminal_branched_terminals.svg)<br>neuro.axon_terminal.single_bouton (axon_terminal_single_bouton.svg) |  |
+| axon myelin | created | 2 | 0 | 2 | 0 | neuro.axon_myelin.longitudinal (axon_myelin_longitudinal.svg)<br>neuro.axon_myelin.transverse (axon_myelin_transverse.svg) |  |
+| axon terminal | created | 2 | 0 | 2 | 0 | neuro.axon_terminal.branched_terminals (axon_terminal_branched_terminals.svg)<br>neuro.axon_terminal.single_bouton (axon_terminal_single_bouton.svg) |  |
+| axon-dendrite synapse | created | 2 | 0 | 2 | 0 | neuro.chemical_synapse.bouton_spine (chemical_synapse_bouton_spine.svg)<br>neuro.chemical_synapse.shaft_contact (chemical_synapse_shaft_contact.svg) |  |
 | b cell | created | 2 | 2 | 0 | 0 | core.cell.b_cell (immune_b_cell.svg)<br>core.cell.b_cell_manuscript (immune_b_cell_manuscript.svg) |  |
 | b lymphocyte | created | 2 | 2 | 0 | 0 | core.cell.b_cell (immune_b_cell.svg)<br>core.cell.b_cell_manuscript (immune_b_cell_manuscript.svg) |  |
 | barrier assay | created | 2 | 2 | 0 | 0 | exp.model_system.transwell_culture.coculture (transwell_culture_coculture.svg)<br>exp.model_system.transwell_culture.monoculture (transwell_culture_monoculture.svg) |  |
 | barrier culture | created | 2 | 2 | 0 | 0 | exp.model_system.transwell_culture.coculture (transwell_culture_coculture.svg)<br>exp.model_system.transwell_culture.monoculture (transwell_culture_monoculture.svg) |  |
+| basement membrane sheet | created | 2 | 0 | 2 | 0 | tissue.basement_membrane.epithelial_interface (basement_membrane_epithelial_interface.svg)<br>tissue.basement_membrane.isolated_sheet (basement_membrane_isolated_sheet.svg) |  |
 | beta-2-microglobulin | created | 2 | 2 | 0 | 0 | core.immune.mhc_i_peptide (immune_mhc_i_peptide.svg)<br>core.immune.mhc_i_peptide_manuscript (immune_mhc_i_peptide_manuscript.svg) |  |
+| bivariate point plot | created | 2 | 0 | 2 | 0 | analysis.scatter_plot.single_series (scatter_plot_single_series.svg)<br>analysis.scatter_plot.two_series (scatter_plot_two_series.svg) |  |
+| blood vessel wall | created | 2 | 0 | 2 | 0 | tissue.vessel_wall.thicker_wall (vessel_wall_thicker_wall.svg)<br>tissue.vessel_wall.thinner_wall (vessel_wall_thinner_wall.svg) |  |
 | body fluids | created | 2 | 2 | 0 | 0 | exp.clinical_sample.saliva_sample (saliva_sample.svg)<br>exp.clinical_sample.urine_sample (urine_sample.svg) |  |
+| box and whisker plot | created | 2 | 0 | 2 | 0 | analysis.box_plot.horizontal (box_plot_horizontal.svg)<br>analysis.box_plot.vertical (box_plot_vertical.svg) |  |
+| box plot | created | 2 | 0 | 2 | 0 | analysis.box_plot.horizontal (box_plot_horizontal.svg)<br>analysis.box_plot.vertical (box_plot_vertical.svg) |  |
+| boxplot | created | 2 | 0 | 2 | 0 | analysis.box_plot.horizontal (box_plot_horizontal.svg)<br>analysis.box_plot.vertical (box_plot_vertical.svg) |  |
 | boyden chamber | created | 2 | 2 | 0 | 0 | exp.model_system.transwell_culture.coculture (transwell_culture_coculture.svg)<br>exp.model_system.transwell_culture.monoculture (transwell_culture_monoculture.svg) |  |
+| branched actin protrusion | created | 2 | 0 | 2 | 0 | cellstress.cell.lamellipodium.leading_edge_detail (lamellipodium_leading_edge_detail.svg)<br>cellstress.cell.lamellipodium.whole_cell (lamellipodium_whole_cell.svg) |  |
+| branching vessel | created | 2 | 0 | 2 | 0 | tissue.angiogenic_sprout.branching (angiogenic_sprout_branching.svg)<br>tissue.angiogenic_sprout.single_tip (angiogenic_sprout_single_tip.svg) |  |
 | brightfield | created | 2 | 2 | 0 | 0 | exp.assay_workflow.microscopy_field.brightfield (microscopy_field_brightfield.svg)<br>exp.assay_workflow.microscopy_field.fluorescence (microscopy_field_fluorescence.svg) |  |
+| broad leading edge | created | 2 | 0 | 2 | 0 | cellstress.cell.lamellipodium.leading_edge_detail (lamellipodium_leading_edge_detail.svg)<br>cellstress.cell.lamellipodium.whole_cell (lamellipodium_whole_cell.svg) |  |
+| bundle | created | 2 | 1 | 1 | 0 | tissue.collagen.bundle (collagen_bundle.svg)<br>exp.organelle.actin_cytoskeleton.bundle (actin_cytoskeleton_bundle.svg) |  |
 | cancer cell | created | 2 | 2 | 0 | 0 | exp.cell.cancer_cell.round (cancer_cell_round.svg)<br>exp.cell.cancer_cell.spindle (cancer_cell_spindle.svg) |  |
 | cancer immunotherapy concepts | created | 2 | 2 | 0 | 0 | immuno.pathway.neoantigen_vaccine (neoantigen_vaccine.svg)<br>immuno.pathway.oncolytic_virus (oncolytic_virus.svg) |  |
+| cancer stromal fibroblast | created | 2 | 0 | 2 | 0 | tme.cancer_associated_fibroblast.matrix (cancer_associated_fibroblast_matrix.svg)<br>tme.cancer_associated_fibroblast.spindle (cancer_associated_fibroblast_spindle.svg) |  |
+| cancer-associated fibroblast | created | 2 | 0 | 2 | 0 | tme.cancer_associated_fibroblast.matrix (cancer_associated_fibroblast_matrix.svg)<br>tme.cancer_associated_fibroblast.spindle (cancer_associated_fibroblast_spindle.svg) |  |
 | cancerous cell | created | 2 | 2 | 0 | 0 | exp.cell.cancer_cell.round (cancer_cell_round.svg)<br>exp.cell.cancer_cell.spindle (cancer_cell_spindle.svg) |  |
+| capillary | created | 2 | 0 | 2 | 0 | tissue.capillary.longitudinal (capillary_longitudinal.svg)<br>tissue.capillary.transverse (capillary_transverse.svg) |  |
+| capillary lumen | created | 2 | 0 | 2 | 0 | tissue.capillary.longitudinal (capillary_longitudinal.svg)<br>tissue.capillary.transverse (capillary_transverse.svg) |  |
+| car-nk cell | created | 2 | 0 | 2 | 0 | tme.car_nk_cell.receptor_display (car_nk_cell_receptor_display.svg)<br>tme.car_nk_cell.target_contact (car_nk_cell_target_contact.svg) |  |
+| caveola | created | 2 | 0 | 2 | 0 | cellstress.membrane_signaling.caveola.clustered_profiles (caveola_clustered_profiles.svg)<br>cellstress.membrane_signaling.caveola.single_invagination (caveola_single_invagination.svg) |  |
+| caveolae | created | 2 | 0 | 2 | 0 | cellstress.membrane_signaling.caveola.clustered_profiles (caveola_clustered_profiles.svg)<br>cellstress.membrane_signaling.caveola.single_invagination (caveola_single_invagination.svg) |  |
+| caveolar invagination | created | 2 | 0 | 2 | 0 | cellstress.membrane_signaling.caveola.clustered_profiles (caveola_clustered_profiles.svg)<br>cellstress.membrane_signaling.caveola.single_invagination (caveola_single_invagination.svg) |  |
+| caveolin membrane pit | created | 2 | 0 | 2 | 0 | cellstress.membrane_signaling.caveola.clustered_profiles (caveola_clustered_profiles.svg)<br>cellstress.membrane_signaling.caveola.single_invagination (caveola_single_invagination.svg) |  |
+| ccv | created | 2 | 0 | 2 | 0 | cellstress.membrane_signaling.clathrin_coated_vesicle.cage_view (clathrin_coated_vesicle_cage_view.svg)<br>cellstress.membrane_signaling.clathrin_coated_vesicle.section (clathrin_coated_vesicle_section.svg) |  |
 | cell analysis | created | 2 | 2 | 0 | 0 | exp.lab_equipment.cell_counter (cell_counter.svg)<br>exp.lab_equipment.flow_cytometer (flow_cytometer.svg) |  |
 | cell cell adhesion | created | 2 | 0 | 2 | 0 | cellarch.membrane_signaling.adherens_junction (adherens_junction.svg)<br>cellarch.membrane_signaling.desmosome (desmosome.svg) |  |
 | cell cluster | created | 2 | 2 | 0 | 0 | core.cell.tumor_spheroid (tumor_spheroid.svg)<br>core.model.cell_spheroid_cluster (cell_spheroid_cluster.svg) |  |
 | cell matrix culture | created | 2 | 0 | 2 | 0 | culture.model_system.perfused_tissue_chip (perfused_tissue_chip.svg)<br>culture.model_system.perfused_tissue_chip.dual_channel (perfused_tissue_chip_dual_channel.svg) |  |
+| cell migration track | created | 2 | 0 | 2 | 0 | analysis.cell_tracking_trajectory.single_track (cell_tracking_trajectory_single_track.svg)<br>analysis.cell_tracking_trajectory.two_tracks (cell_tracking_trajectory_two_tracks.svg) |  |
 | cell process | created | 2 | 2 | 0 | 0 | core.cell.dendritic (immune_dendritic_cell.svg)<br>core.cell.dendritic_manuscript (immune_dendritic_cell_manuscript.svg) |  |
+| cell state trajectory | created | 2 | 0 | 2 | 0 | analysis.pseudotime_trajectory.branching (pseudotime_trajectory_branching.svg)<br>analysis.pseudotime_trajectory.linear (pseudotime_trajectory_linear.svg) |  |
+| cell tracking trajectory | created | 2 | 0 | 2 | 0 | analysis.cell_tracking_trajectory.single_track (cell_tracking_trajectory_single_track.svg)<br>analysis.cell_tracking_trajectory.two_tracks (cell_tracking_trajectory_two_tracks.svg) |  |
 | cell-fate receptors | created | 2 | 2 | 0 | 0 | exp.membrane_signaling.death_receptor (death_receptor.svg)<br>exp.membrane_signaling.notch_like (notch_like.svg) |  |
 | cell-laden collagen-gel culture | created | 2 | 0 | 2 | 0 | culture.assay_workflow.collagen_gel_contraction (collagen_gel_contraction.svg)<br>culture.assay_workflow.collagen_gel_contraction.anchored (collagen_gel_contraction_anchored.svg) |  |
 | checkpoint engagement | created | 2 | 2 | 0 | 0 | core.immune.pd1_pdl1_checkpoint (immune_pd1_pdl1_checkpoint.svg)<br>core.immune.pd1_pdl1_checkpoint_manuscript (immune_pd1_pdl1_checkpoint_manuscript.svg) |  |
+| chemical synapse | created | 2 | 0 | 2 | 0 | neuro.chemical_synapse.bouton_spine (chemical_synapse_bouton_spine.svg)<br>neuro.chemical_synapse.shaft_contact (chemical_synapse_shaft_contact.svg) |  |
+| chimeric antigen receptor natural killer cell | created | 2 | 0 | 2 | 0 | tme.car_nk_cell.receptor_display (car_nk_cell_receptor_display.svg)<br>tme.car_nk_cell.target_contact (car_nk_cell_target_contact.svg) |  |
+| chromaffin tissue | created | 2 | 0 | 2 | 0 | endocrine.adrenal_medulla.medullary_field (adrenal_medulla_medullary_field.svg)<br>endocrine.adrenal_medulla.vascular_nests (adrenal_medulla_vascular_nests.svg) |  |
 | chromatin accessibility | created | 2 | 2 | 0 | 0 | exp.nucleic_acid.chromatin_state.condensed (chromatin_state_condensed.svg)<br>exp.nucleic_acid.chromatin_state.open (chromatin_state_open.svg) |  |
 | chromatin accessibility state | created | 2 | 2 | 0 | 0 | exp.nucleic_acid.chromatin_state.condensed (chromatin_state_condensed.svg)<br>exp.nucleic_acid.chromatin_state.open (chromatin_state_open.svg) |  |
 | chromatin state | created | 2 | 2 | 0 | 0 | exp.nucleic_acid.chromatin_state.condensed (chromatin_state_condensed.svg)<br>exp.nucleic_acid.chromatin_state.open (chromatin_state_open.svg) |  |
+| ciliary projection | created | 2 | 0 | 2 | 0 | cellstress.organelle.primary_cilium.bent (primary_cilium_bent.svg)<br>cellstress.organelle.primary_cilium.straight (primary_cilium_straight.svg) |  |
+| circuit | created | 2 | 0 | 2 | 0 | neuro.neural_circuit.convergent_inputs (neural_circuit_convergent_inputs.svg)<br>neuro.neural_circuit.feedforward_chain (neural_circuit_feedforward_chain.svg) |  |
 | cisternae | created | 2 | 2 | 0 | 0 | core.golgi.oblique (golgi_oblique.svg)<br>core.golgi.ribbon (golgi_ribbon.svg) |  |
+| clathrin cage vesicle | created | 2 | 0 | 2 | 0 | cellstress.membrane_signaling.clathrin_coated_vesicle.cage_view (clathrin_coated_vesicle_cage_view.svg)<br>cellstress.membrane_signaling.clathrin_coated_vesicle.section (clathrin_coated_vesicle_section.svg) |  |
+| clathrin coated vesicle | created | 2 | 0 | 2 | 0 | cellstress.membrane_signaling.clathrin_coated_vesicle.cage_view (clathrin_coated_vesicle_cage_view.svg)<br>cellstress.membrane_signaling.clathrin_coated_vesicle.section (clathrin_coated_vesicle_section.svg) |  |
+| clathrin-coated vesicle | created | 2 | 0 | 2 | 0 | cellstress.membrane_signaling.clathrin_coated_vesicle.cage_view (clathrin_coated_vesicle_cage_view.svg)<br>cellstress.membrane_signaling.clathrin_coated_vesicle.section (clathrin_coated_vesicle_section.svg) |  |
 | closed chromatin | created | 2 | 2 | 0 | 0 | exp.nucleic_acid.chromatin_state.condensed (chromatin_state_condensed.svg)<br>exp.nucleic_acid.chromatin_state.open (chromatin_state_open.svg) |  |
+| closed coated vesicle | created | 2 | 0 | 2 | 0 | cellstress.membrane_signaling.clathrin_coated_vesicle.cage_view (clathrin_coated_vesicle_cage_view.svg)<br>cellstress.membrane_signaling.clathrin_coated_vesicle.section (clathrin_coated_vesicle_section.svg) |  |
+| clustered matrix | created | 2 | 0 | 2 | 0 | analysis.heatmap.clustered (heatmap_clustered.svg)<br>analysis.heatmap.matrix (heatmap_matrix.svg) |  |
+| cns myelinating glia | created | 2 | 0 | 2 | 0 | neuro.oligodendrocyte.branching (oligodendrocyte_branching.svg)<br>neuro.oligodendrocyte.multiple_sheaths (oligodendrocyte_multiple_sheaths.svg) |  |
 | coculture | created | 2 | 2 | 0 | 0 | exp.model_system.coculture_dish (coculture_dish.svg)<br>exp.model_system.transwell_culture.coculture (transwell_culture_coculture.svg) |  |
+| collagen | created | 2 | 0 | 2 | 0 | tissue.collagen.bundle (collagen_bundle.svg)<br>tissue.collagen.mesh (collagen_mesh.svg) |  |
+| collagen bundle | created | 2 | 0 | 2 | 0 | tissue.collagen.bundle (collagen_bundle.svg)<br>tissue.collagen.mesh (collagen_mesh.svg) |  |
 | collagen contraction | created | 2 | 0 | 2 | 0 | culture.assay_workflow.collagen_gel_contraction (collagen_gel_contraction.svg)<br>culture.assay_workflow.collagen_gel_contraction.anchored (collagen_gel_contraction_anchored.svg) |  |
+| collagen fibers | created | 2 | 0 | 2 | 0 | tissue.collagen.bundle (collagen_bundle.svg)<br>tissue.collagen.mesh (collagen_mesh.svg) |  |
 | collagen gel contraction | created | 2 | 0 | 2 | 0 | culture.assay_workflow.collagen_gel_contraction (collagen_gel_contraction.svg)<br>culture.assay_workflow.collagen_gel_contraction.anchored (collagen_gel_contraction_anchored.svg) |  |
-| collagen matrix | created | 2 | 2 | 0 | 0 | immuno.model.collagen_rich_ecm.aligned_fibers (collagen_rich_ecm_aligned_fibers.svg)<br>immuno.model.collagen_rich_ecm.mesh (collagen_rich_ecm_mesh.svg) |  |
 | collagen rich ecm | created | 2 | 2 | 0 | 0 | immuno.model.collagen_rich_ecm.aligned_fibers (collagen_rich_ecm_aligned_fibers.svg)<br>immuno.model.collagen_rich_ecm.mesh (collagen_rich_ecm_mesh.svg) |  |
 | collagen-rich ecm | created | 2 | 2 | 0 | 0 | immuno.model.collagen_rich_ecm.aligned_fibers (collagen_rich_ecm_aligned_fibers.svg)<br>immuno.model.collagen_rich_ecm.mesh (collagen_rich_ecm_mesh.svg) |  |
 | collagen-rich extracellular matrix | created | 2 | 2 | 0 | 0 | immuno.model.collagen_rich_ecm.aligned_fibers (collagen_rich_ecm_aligned_fibers.svg)<br>immuno.model.collagen_rich_ecm.mesh (collagen_rich_ecm_mesh.svg) |  |
+| colloid follicle | created | 2 | 0 | 2 | 0 | endocrine.thyroid_follicle.follicle_field (thyroid_follicle_follicle_field.svg)<br>endocrine.thyroid_follicle.single_follicle (thyroid_follicle_single_follicle.svg) |  |
+| compound penetration | created | 2 | 0 | 2 | 0 | tme.drug_penetration_gradient.perivascular (drug_penetration_gradient_perivascular.svg)<br>tme.drug_penetration_gradient.spheroid (drug_penetration_gradient_spheroid.svg) |  |
 | condensed chromatin | created | 2 | 2 | 0 | 0 | exp.nucleic_acid.chromatin_state.condensed (chromatin_state_condensed.svg)<br>exp.nucleic_acid.chromatin_state.open (chromatin_state_open.svg) |  |
+| condensed chromosome | created | 2 | 0 | 2 | 0 | cellstress.nucleic_acid.condensed_chromosome.metacentric (condensed_chromosome_metacentric.svg)<br>cellstress.nucleic_acid.condensed_chromosome.submetacentric (condensed_chromosome_submetacentric.svg) |  |
 | containers and consumables | created | 2 | 2 | 0 | 0 | exp.lab_equipment.cuvette (cuvette.svg)<br>exp.lab_equipment.reagent_bottle (reagent_bottle.svg) |  |
+| convergent input | created | 2 | 0 | 2 | 0 | neuro.neural_circuit.convergent_inputs (neural_circuit_convergent_inputs.svg)<br>neuro.neural_circuit.feedforward_chain (neural_circuit_feedforward_chain.svg) |  |
+| corpus luteum | created | 2 | 0 | 2 | 0 | endocrine.corpus_luteum.folded_luteal_tissue (corpus_luteum_folded_luteal_tissue.svg)<br>endocrine.corpus_luteum.radial_luteal_tissue (corpus_luteum_radial_luteal_tissue.svg) |  |
 | cytokine and chemokine signaling | created | 2 | 2 | 0 | 0 | immuno.membrane_signaling.chemokine_receptor (chemokine_receptor.svg)<br>immuno.membrane_signaling.jak_associated_cytokine_receptor (jak_associated_cytokine_receptor.svg) |  |
 | cytoplasm | created | 2 | 2 | 0 | 0 | core.cell.epithelial (cell_epithelial.svg)<br>core.cell.generic (cell_generic.svg) |  |
 | cytotoxic effectors | created | 2 | 2 | 0 | 0 | immuno.protein.granzyme_b (granzyme_b.svg)<br>immuno.protein.perforin_1 (perforin_1.svg) |  |
+| dc antigen uptake | created | 2 | 0 | 2 | 0 | tme.dendritic_antigen_uptake.particulate (dendritic_antigen_uptake_particulate.svg)<br>tme.dendritic_antigen_uptake.soluble (dendritic_antigen_uptake_soluble.svg) |  |
 | degradation | created | 2 | 2 | 0 | 0 | core.lysosome.basic (lysosome.svg)<br>exp.pathway_symbol.degradation (degradation.svg) |  |
+| degrading cargo | created | 2 | 1 | 1 | 0 | cellstress.organelle.phagolysosome.degrading_cargo (phagolysosome_degrading_cargo.svg)<br>core.autolysosome (autolysosome.svg) |  |
+| dendrite | created | 2 | 0 | 2 | 0 | neuro.dendritic_spine.mushroom (dendritic_spine_mushroom.svg)<br>neuro.dendritic_spine.thin (dendritic_spine_thin.svg) |  |
 | dendritic cell | created | 2 | 2 | 0 | 0 | core.cell.dendritic (immune_dendritic_cell.svg)<br>core.cell.dendritic_manuscript (immune_dendritic_cell_manuscript.svg) |  |
+| dendritic cell antigen uptake | created | 2 | 0 | 2 | 0 | tme.dendritic_antigen_uptake.particulate (dendritic_antigen_uptake_particulate.svg)<br>tme.dendritic_antigen_uptake.soluble (dendritic_antigen_uptake_soluble.svg) |  |
+| dendritic endocytosis | created | 2 | 0 | 2 | 0 | tme.dendritic_antigen_uptake.particulate (dendritic_antigen_uptake_particulate.svg)<br>tme.dendritic_antigen_uptake.soluble (dendritic_antigen_uptake_soluble.svg) |  |
+| dendritic spine | created | 2 | 0 | 2 | 0 | neuro.dendritic_spine.mushroom (dendritic_spine_mushroom.svg)<br>neuro.dendritic_spine.thin (dendritic_spine_thin.svg) |  |
 | dendritic-cell states | created | 2 | 2 | 0 | 0 | immuno.cell.immature_dendritic_cell (immature_dendritic_cell.svg)<br>immuno.cell.mature_dendritic_cell (mature_dendritic_cell.svg) |  |
+| detachment induced apoptosis | created | 2 | 0 | 2 | 0 | cellstress.cell.anoikis.blebbing_apoptotic (anoikis_blebbing_apoptotic.svg)<br>cellstress.cell.anoikis.detached_apoptotic (anoikis_detached_apoptotic.svg) |  |
+| differential expression volcano | created | 2 | 0 | 2 | 0 | analysis.volcano_plot.feature_labels (volcano_plot_feature_labels.svg)<br>analysis.volcano_plot.overview (volcano_plot_overview.svg) |  |
 | dimer | created | 2 | 2 | 0 | 0 | exp.protein.dimer.heterodimer (dimer_heterodimer.svg)<br>exp.protein.dimer.homodimer (dimer_homodimer.svg) |  |
 | dimeric protein complex | created | 2 | 2 | 0 | 0 | exp.protein.dimer.heterodimer (dimer_heterodimer.svg)<br>exp.protein.dimer.homodimer (dimer_homodimer.svg) |  |
+| dna damage foci | created | 2 | 0 | 2 | 0 | cellstress.nucleic_acid.dna_damage_foci.clustered (dna_damage_foci_clustered.svg)<br>cellstress.nucleic_acid.dna_damage_foci.dispersed (dna_damage_foci_dispersed.svg) |  |
+| dna damage response foci | created | 2 | 0 | 2 | 0 | cellstress.nucleic_acid.dna_damage_foci.clustered (dna_damage_foci_clustered.svg)<br>cellstress.nucleic_acid.dna_damage_foci.dispersed (dna_damage_foci_dispersed.svg) |  |
+| dna synthesis stress | created | 2 | 0 | 2 | 0 | cellstress.nucleic_acid.replication_stress.reversed_fork (replication_stress_reversed_fork.svg)<br>cellstress.nucleic_acid.replication_stress.stalled_fork (replication_stress_stalled_fork.svg) |  |
 | dot plot | created | 2 | 2 | 0 | 0 | exp.assay_workflow.flow_cytometry_readout.dot_plot (flow_cytometry_readout_dot_plot.svg)<br>exp.assay_workflow.flow_cytometry_readout.histogram (flow_cytometry_readout_histogram.svg) |  |
 | double helix | created | 2 | 2 | 0 | 0 | core.dna.double_helix (dna_double_helix.svg)<br>core.dna.double_helix_manuscript (dna_double_helix_manuscript.svg) |  |
 | drug conjugate | created | 2 | 2 | 0 | 0 | core.antibody.drug_conjugate (antibody_drug_conjugate.svg)<br>core.antibody.drug_conjugate_manuscript (antibody_drug_conjugate_manuscript.svg) |  |
+| drug diffusion gradient | created | 2 | 0 | 2 | 0 | tme.drug_penetration_gradient.perivascular (drug_penetration_gradient_perivascular.svg)<br>tme.drug_penetration_gradient.spheroid (drug_penetration_gradient_spheroid.svg) |  |
+| drug distribution | created | 2 | 0 | 2 | 0 | tme.drug_penetration_gradient.perivascular (drug_penetration_gradient_perivascular.svg)<br>tme.drug_penetration_gradient.spheroid (drug_penetration_gradient_spheroid.svg) |  |
+| drug penetration gradient | created | 2 | 0 | 2 | 0 | tme.drug_penetration_gradient.perivascular (drug_penetration_gradient_perivascular.svg)<br>tme.drug_penetration_gradient.spheroid (drug_penetration_gradient_spheroid.svg) |  |
 | ecm | created | 2 | 2 | 0 | 0 | immuno.model.collagen_rich_ecm.aligned_fibers (collagen_rich_ecm_aligned_fibers.svg)<br>immuno.model.collagen_rich_ecm.mesh (collagen_rich_ecm_mesh.svg) |  |
+| ectopic lymphoid structure | created | 2 | 0 | 2 | 0 | tme.tertiary_lymphoid_structure.germinal_center (tertiary_lymphoid_structure_germinal_center.svg)<br>tme.tertiary_lymphoid_structure.primary_follicle (tertiary_lymphoid_structure_primary_follicle.svg) |  |
 | embedded organoid | created | 2 | 0 | 2 | 0 | culture.model_system.hydrogel_embedded_organoid (hydrogel_embedded_organoid.svg)<br>culture.model_system.hydrogel_embedded_organoid.budding (hydrogel_embedded_organoid_budding.svg) |  |
+| endocrine pancreas | created | 2 | 0 | 2 | 0 | endocrine.pancreatic_islet.folded_plates (pancreatic_islet_folded_plates.svg)<br>endocrine.pancreatic_islet.mixed_islet (pancreatic_islet_mixed_islet.svg) |  |
 | endoplasmic reticulum | created | 2 | 2 | 0 | 0 | core.er.rough (rough_endoplasmic_reticulum.svg)<br>core.er.rough_network (rough_er_network.svg) |  |
+| endoplasmic reticulum stress | created | 2 | 0 | 2 | 0 | cellstress.organelle.er_stress_upr.lumenal_load (er_stress_upr_lumenal_load.svg)<br>cellstress.organelle.er_stress_upr.sensor_assembly (er_stress_upr_sensor_assembly.svg) |  |
+| endosomal vesicle release | created | 2 | 0 | 2 | 0 | cellstress.membrane_signaling.extracellular_vesicle.endosomal_release (extracellular_vesicle_endosomal_release.svg)<br>cellstress.membrane_signaling.extracellular_vesicle.isolated (extracellular_vesicle_isolated.svg) |  |
 | endosome | created | 2 | 2 | 0 | 0 | core.endosome.basic (endosome.svg)<br>core.vesicle (vesicle.svg) |  |
+| endothelial sprout | created | 2 | 0 | 2 | 0 | tissue.angiogenic_sprout.branching (angiogenic_sprout_branching.svg)<br>tissue.angiogenic_sprout.single_tip (angiogenic_sprout_single_tip.svg) |  |
+| engineered nk cell | created | 2 | 0 | 2 | 0 | tme.car_nk_cell.receptor_display (car_nk_cell_receptor_display.svg)<br>tme.car_nk_cell.target_contact (car_nk_cell_target_contact.svg) |  |
 | enzymes | created | 2 | 2 | 0 | 0 | exp.protein.phosphatase (phosphatase.svg)<br>exp.protein.protease (protease.svg) |  |
+| epithelial acinus | created | 2 | 0 | 2 | 0 | tissue.epithelial_acinus.closed_lumen (epithelial_acinus_closed_lumen.svg)<br>tissue.epithelial_acinus.section (epithelial_acinus_section.svg) |  |
 | epithelial cells | created | 2 | 2 | 0 | 0 | exp.cell.ciliated_epithelial (ciliated_epithelial.svg)<br>exp.cell.goblet_secretory (goblet_secretory.svg) |  |
 | epithelial junction | created | 2 | 0 | 2 | 0 | cellarch.membrane_signaling.adherens_junction (adherens_junction.svg)<br>cellarch.membrane_signaling.tight_junction (tight_junction.svg) |  |
+| epithelial layer | created | 2 | 0 | 2 | 0 | tissue.epithelial_sheet.apical (epithelial_sheet_apical.svg)<br>tissue.epithelial_sheet.lateral (epithelial_sheet_lateral.svg) |  |
 | epithelial organoid | created | 2 | 1 | 1 | 0 | culture.assay_workflow.organoid_luminal_microinjection (organoid_luminal_microinjection.svg)<br>exp.model_system.organoid_lumen (organoid_lumen.svg) |  |
+| epithelial support | created | 2 | 0 | 2 | 0 | tissue.basement_membrane.epithelial_interface (basement_membrane_epithelial_interface.svg)<br>tissue.basement_membrane.isolated_sheet (basement_membrane_isolated_sheet.svg) |  |
+| er stress / unfolded protein response | created | 2 | 0 | 2 | 0 | cellstress.organelle.er_stress_upr.lumenal_load (er_stress_upr_lumenal_load.svg)<br>cellstress.organelle.er_stress_upr.sensor_assembly (er_stress_upr_sensor_assembly.svg) |  |
+| er stress upr | created | 2 | 0 | 2 | 0 | cellstress.organelle.er_stress_upr.lumenal_load (er_stress_upr_lumenal_load.svg)<br>cellstress.organelle.er_stress_upr.sensor_assembly (er_stress_upr_sensor_assembly.svg) |  |
 | eukaryotic cell | created | 2 | 2 | 0 | 0 | core.cell.generic (cell_generic.svg)<br>core.cell.generic_cutaway (cell_generic_cutaway.svg) |  |
+| ev | created | 2 | 0 | 2 | 0 | cellstress.membrane_signaling.extracellular_vesicle.endosomal_release (extracellular_vesicle_endosomal_release.svg)<br>cellstress.membrane_signaling.extracellular_vesicle.isolated (extracellular_vesicle_isolated.svg) |  |
 | ex vivo tissue culture | created | 2 | 0 | 2 | 0 | culture.model_system.precision_cut_tissue_slice_culture (precision_cut_tissue_slice_culture.svg)<br>culture.model_system.precision_cut_tissue_slice_culture.interface (precision_cut_tissue_slice_culture_interface.svg) |  |
 | exocytosis | created | 2 | 2 | 0 | 0 | core.immune.cytotoxic_granule_release (immune_cytotoxic_granule_release.svg)<br>exp.membrane_signaling.exocytosis_fusion (exocytosis_fusion.svg) |  |
+| exosome | created | 2 | 0 | 2 | 0 | cellstress.membrane_signaling.extracellular_vesicle.endosomal_release (extracellular_vesicle_endosomal_release.svg)<br>cellstress.membrane_signaling.extracellular_vesicle.isolated (extracellular_vesicle_isolated.svg) |  |
+| expression heatmap | created | 2 | 0 | 2 | 0 | analysis.heatmap.clustered (heatmap_clustered.svg)<br>analysis.heatmap.matrix (heatmap_matrix.svg) |  |
+| external zone of median eminence | created | 2 | 0 | 2 | 0 | endocrine.median_eminence.external_zone_field (median_eminence_external_zone_field.svg)<br>endocrine.median_eminence.external_zone_sagittal (median_eminence_external_zone_sagittal.svg) |  |
+| extracellular vesicle | created | 2 | 0 | 2 | 0 | cellstress.membrane_signaling.extracellular_vesicle.endosomal_release (extracellular_vesicle_endosomal_release.svg)<br>cellstress.membrane_signaling.extracellular_vesicle.isolated (extracellular_vesicle_isolated.svg) |  |
 | f-actin | created | 2 | 2 | 0 | 0 | exp.organelle.actin_cytoskeleton.branched (actin_cytoskeleton_branched.svg)<br>exp.organelle.actin_cytoskeleton.bundle (actin_cytoskeleton_bundle.svg) |  |
 | facs plot | created | 2 | 2 | 0 | 0 | exp.assay_workflow.flow_cytometry_readout.dot_plot (flow_cytometry_readout_dot_plot.svg)<br>exp.assay_workflow.flow_cytometry_readout.histogram (flow_cytometry_readout_histogram.svg) |  |
 | fc binding | created | 2 | 2 | 0 | 0 | core.immune.fc_receptor_binding (immune_fc_receptor_binding.svg)<br>core.immune.fc_receptor_binding_manuscript (immune_fc_receptor_binding_manuscript.svg) |  |
 | fc receptor | created | 2 | 2 | 0 | 0 | core.immune.fc_receptor_binding (immune_fc_receptor_binding.svg)<br>core.immune.fc_receptor_binding_manuscript (immune_fc_receptor_binding_manuscript.svg) |  |
+| feedforward pathway | created | 2 | 0 | 2 | 0 | neuro.neural_circuit.convergent_inputs (neural_circuit_convergent_inputs.svg)<br>neuro.neural_circuit.feedforward_chain (neural_circuit_feedforward_chain.svg) |  |
+| ferroptosis | created | 2 | 0 | 2 | 0 | cellstress.cell.ferroptotic_cell.lipid_damage (ferroptotic_cell_lipid_damage.svg)<br>cellstress.cell.ferroptotic_cell.mitochondrial_detail (ferroptotic_cell_mitochondrial_detail.svg) |  |
+| ferroptotic cell | created | 2 | 0 | 2 | 0 | cellstress.cell.ferroptotic_cell.lipid_damage (ferroptotic_cell_lipid_damage.svg)<br>cellstress.cell.ferroptotic_cell.mitochondrial_detail (ferroptotic_cell_mitochondrial_detail.svg) |  |
+| ferroptotic cell — schematic | created | 2 | 0 | 2 | 0 | cellstress.cell.ferroptotic_cell.lipid_damage (ferroptotic_cell_lipid_damage.svg)<br>cellstress.cell.ferroptotic_cell.mitochondrial_detail (ferroptotic_cell_mitochondrial_detail.svg) |  |
 | fibroblast contractility | created | 2 | 0 | 2 | 0 | culture.assay_workflow.collagen_gel_contraction (collagen_gel_contraction.svg)<br>culture.assay_workflow.collagen_gel_contraction.anchored (collagen_gel_contraction_anchored.svg) |  |
 | filamentous actin network | created | 2 | 2 | 0 | 0 | exp.organelle.actin_cytoskeleton.branched (actin_cytoskeleton_branched.svg)<br>exp.organelle.actin_cytoskeleton.bundle (actin_cytoskeleton_bundle.svg) |  |
+| filopodia | created | 2 | 0 | 2 | 0 | cellstress.cell.filopodium.bundle_detail (filopodium_bundle_detail.svg)<br>cellstress.cell.filopodium.whole_cell (filopodium_whole_cell.svg) |  |
+| filopodium | created | 2 | 0 | 2 | 0 | cellstress.cell.filopodium.bundle_detail (filopodium_bundle_detail.svg)<br>cellstress.cell.filopodium.whole_cell (filopodium_whole_cell.svg) |  |
 | flow cytometry plot | created | 2 | 2 | 0 | 0 | exp.assay_workflow.flow_cytometry_readout.dot_plot (flow_cytometry_readout_dot_plot.svg)<br>exp.assay_workflow.flow_cytometry_readout.histogram (flow_cytometry_readout_histogram.svg) |  |
 | flow cytometry readout | created | 2 | 2 | 0 | 0 | exp.assay_workflow.flow_cytometry_readout.dot_plot (flow_cytometry_readout_dot_plot.svg)<br>exp.assay_workflow.flow_cytometry_readout.histogram (flow_cytometry_readout_histogram.svg) |  |
 | flow cytometry result | created | 2 | 2 | 0 | 0 | exp.assay_workflow.flow_cytometry_readout.dot_plot (flow_cytometry_readout_dot_plot.svg)<br>exp.assay_workflow.flow_cytometry_readout.histogram (flow_cytometry_readout_histogram.svg) |  |
 | fluorescence microscopy | created | 2 | 2 | 0 | 0 | exp.assay_workflow.microscopy_field.brightfield (microscopy_field_brightfield.svg)<br>exp.assay_workflow.microscopy_field.fluorescence (microscopy_field_fluorescence.svg) |  |
+| gamma h2ax foci | created | 2 | 0 | 2 | 0 | cellstress.nucleic_acid.dna_damage_foci.clustered (dna_damage_foci_clustered.svg)<br>cellstress.nucleic_acid.dna_damage_foci.dispersed (dna_damage_foci_dispersed.svg) |  |
+| gasdermin mediated lysis | created | 2 | 0 | 2 | 0 | cellstress.cell.pyroptotic_cell.lytic (pyroptotic_cell_lytic.svg)<br>cellstress.cell.pyroptotic_cell.pore_bearing (pyroptotic_cell_pore_bearing.svg) |  |
+| gasdermin pore cell death | created | 2 | 0 | 2 | 0 | cellstress.cell.pyroptotic_cell.lytic (pyroptotic_cell_lytic.svg)<br>cellstress.cell.pyroptotic_cell.pore_bearing (pyroptotic_cell_pore_bearing.svg) |  |
 | gel contraction assay | created | 2 | 0 | 2 | 0 | culture.assay_workflow.collagen_gel_contraction (collagen_gel_contraction.svg)<br>culture.assay_workflow.collagen_gel_contraction.anchored (collagen_gel_contraction_anchored.svg) |  |
 | gene expression | created | 2 | 2 | 0 | 0 | core.mrna.transcript (mrna_transcript.svg)<br>core.symbol.transcription_flow (transcription_flow_arrow.svg) |  |
+| generic immunological synapse | created | 2 | 0 | 2 | 0 | tme.generic_immune_synapse.cell_pair (generic_immune_synapse_cell_pair.svg)<br>tme.generic_immune_synapse.interface (generic_immune_synapse_interface.svg) |  |
 | genetics | created | 2 | 2 | 0 | 0 | core.model.fruit_fly (fruit_fly_model.svg)<br>core.model.nematode (nematode_model.svg) |  |
+| glandular epithelium | created | 2 | 0 | 2 | 0 | tissue.epithelial_acinus.closed_lumen (epithelial_acinus_closed_lumen.svg)<br>tissue.epithelial_acinus.section (epithelial_acinus_section.svg) |  |
 | golgi stack | created | 2 | 2 | 0 | 0 | core.golgi.basic (golgi_apparatus.svg)<br>core.golgi.oblique (golgi_oblique.svg) |  |
+| graafian follicle | created | 2 | 0 | 2 | 0 | endocrine.ovarian_follicle.eccentric_oocyte (ovarian_follicle_eccentric_oocyte.svg)<br>endocrine.ovarian_follicle.sector_section (ovarian_follicle_sector_section.svg) |  |
 | granular lymphocyte | created | 2 | 2 | 0 | 0 | core.cell.nk_cell (immune_nk_cell.svg)<br>core.cell.nk_cell_manuscript (immune_nk_cell_manuscript.svg) |  |
 | graphical abstract | created | 2 | 2 | 0 | 0 | core.cell.generic (cell_generic.svg)<br>core.pathway.metabolic_cycle (metabolic_cycle.svg) |  |
 | hanging drop | created | 2 | 0 | 2 | 0 | culture.model_system.hanging_drop_spheroid (hanging_drop_spheroid.svg)<br>culture.model_system.hanging_drop_spheroid.array (hanging_drop_spheroid_array.svg) |  |
 | hanging-drop spheroid | created | 2 | 0 | 2 | 0 | culture.model_system.hanging_drop_spheroid (hanging_drop_spheroid.svg)<br>culture.model_system.hanging_drop_spheroid.array (hanging_drop_spheroid_array.svg) |  |
 | hanging-drop spheroid culture | created | 2 | 0 | 2 | 0 | culture.model_system.hanging_drop_spheroid (hanging_drop_spheroid.svg)<br>culture.model_system.hanging_drop_spheroid.array (hanging_drop_spheroid_array.svg) |  |
+| heatmap | created | 2 | 0 | 2 | 0 | analysis.heatmap.clustered (heatmap_clustered.svg)<br>analysis.heatmap.matrix (heatmap_matrix.svg) |  |
 | heterodimer | created | 2 | 2 | 0 | 0 | exp.protein.dimer.heterodimer (dimer_heterodimer.svg)<br>exp.protein.dimer.homodimer (dimer_homodimer.svg) |  |
 | histogram | created | 2 | 2 | 0 | 0 | exp.assay_workflow.flow_cytometry_readout.dot_plot (flow_cytometry_readout_dot_plot.svg)<br>exp.assay_workflow.flow_cytometry_readout.histogram (flow_cytometry_readout_histogram.svg) |  |
 | hollow organoid | created | 2 | 0 | 2 | 0 | culture.model_system.hydrogel_embedded_organoid (hydrogel_embedded_organoid.svg)<br>culture.model_system.hydrogel_embedded_organoid.budding (hydrogel_embedded_organoid_budding.svg) |  |
 | homodimer | created | 2 | 2 | 0 | 0 | exp.protein.dimer.heterodimer (dimer_heterodimer.svg)<br>exp.protein.dimer.homodimer (dimer_homodimer.svg) |  |
 | hydrogel embedded organoid | created | 2 | 0 | 2 | 0 | culture.model_system.hydrogel_embedded_organoid (hydrogel_embedded_organoid.svg)<br>culture.model_system.hydrogel_embedded_organoid.budding (hydrogel_embedded_organoid_budding.svg) |  |
 | hydrogel-embedded organoid | created | 2 | 0 | 2 | 0 | culture.model_system.hydrogel_embedded_organoid (hydrogel_embedded_organoid.svg)<br>culture.model_system.hydrogel_embedded_organoid.budding (hydrogel_embedded_organoid_budding.svg) |  |
+| hypophysial portal interface | created | 2 | 0 | 2 | 0 | endocrine.median_eminence.external_zone_field (median_eminence_external_zone_field.svg)<br>endocrine.median_eminence.external_zone_sagittal (median_eminence_external_zone_sagittal.svg) |  |
+| hypothalamic neurovascular interface | created | 2 | 0 | 2 | 0 | endocrine.median_eminence.external_zone_field (median_eminence_external_zone_field.svg)<br>endocrine.median_eminence.external_zone_sagittal (median_eminence_external_zone_sagittal.svg) |  |
+| hypoxia gradient | created | 2 | 0 | 2 | 0 | tme.hypoxia_gradient.perivascular (hypoxia_gradient_perivascular.svg)<br>tme.hypoxia_gradient.spheroid (hypoxia_gradient_spheroid.svg) |  |
 | igg | created | 2 | 2 | 0 | 0 | core.antibody.igg (antibody_igg.svg)<br>core.antibody.igg_manuscript (antibody_igg_manuscript.svg) |  |
 | igg antibody | created | 2 | 2 | 0 | 0 | core.antibody.igg (antibody_igg.svg)<br>core.antibody.igg_manuscript (antibody_igg_manuscript.svg) |  |
 | igg-like | created | 2 | 2 | 0 | 0 | core.immune.fc_receptor_binding (immune_fc_receptor_binding.svg)<br>core.immune.fc_receptor_binding_manuscript (immune_fc_receptor_binding_manuscript.svg) |  |
+| immune cell contact interface | created | 2 | 0 | 2 | 0 | tme.generic_immune_synapse.cell_pair (generic_immune_synapse_cell_pair.svg)<br>tme.generic_immune_synapse.interface (generic_immune_synapse_interface.svg) |  |
 | immune checkpoint | created | 2 | 2 | 0 | 0 | core.immune.pd1_pdl1_checkpoint (immune_pd1_pdl1_checkpoint.svg)<br>core.immune.pd1_pdl1_checkpoint_manuscript (immune_pd1_pdl1_checkpoint_manuscript.svg) |  |
 | immune effector mechanisms | created | 2 | 2 | 0 | 0 | immuno.pathway.antibody_dependent_cellular_cytotoxicity (antibody_dependent_cellular_cytotoxicity.svg)<br>immuno.pathway.antibody_dependent_cellular_phagocytosis (antibody_dependent_cellular_phagocytosis.svg) |  |
 | immune receptors | created | 2 | 2 | 0 | 0 | exp.membrane_signaling.bcr (bcr.svg)<br>exp.membrane_signaling.tcr (tcr.svg) |  |
+| immune synapse — generic | created | 2 | 0 | 2 | 0 | tme.generic_immune_synapse.cell_pair (generic_immune_synapse_cell_pair.svg)<br>tme.generic_immune_synapse.interface (generic_immune_synapse_interface.svg) |  |
 | immune synapses | created | 2 | 2 | 0 | 0 | immuno.pathway.apc_t_cell_immune_synapse (apc_t_cell_immune_synapse.svg)<br>immuno.pathway.cytotoxic_immune_synapse (cytotoxic_immune_synapse.svg) |  |
 | immunoglobulin g | created | 2 | 2 | 0 | 0 | core.antibody.igg (antibody_igg.svg)<br>core.antibody.igg_manuscript (antibody_igg_manuscript.svg) |  |
 | immunoglobulin g (igg | created | 2 | 2 | 0 | 0 | core.antibody.igg (antibody_igg.svg)<br>core.antibody.igg_manuscript (antibody_igg_manuscript.svg) |  |
+| in nucleus | created | 2 | 0 | 2 | 0 | cellstress.organelle.nuclear_speckle.nuclear_distribution (nuclear_speckle_nuclear_distribution.svg)<br>cellstress.organelle.nucleolus.nuclear_context (nucleolus_nuclear_context.svg) |  |
 | in vivo | created | 2 | 2 | 0 | 0 | core.model.mouse_manuscript (mouse_model_manuscript.svg)<br>core.model.mouse_simple (mouse_model.svg) |  |
+| inferred developmental ordering | created | 2 | 0 | 2 | 0 | analysis.pseudotime_trajectory.branching (pseudotime_trajectory_branching.svg)<br>analysis.pseudotime_trajectory.linear (pseudotime_trajectory_linear.svg) |  |
+| initial lymphatic | created | 2 | 0 | 2 | 0 | tissue.lymphatic_capillary.blind_end (lymphatic_capillary_blind_end.svg)<br>tissue.lymphatic_capillary.tissue_interface (lymphatic_capillary_tissue_interface.svg) |  |
 | insert | created | 2 | 2 | 0 | 0 | core.nucleic_acid.plasmid_vector (plasmid_vector.svg)<br>core.nucleic_acid.plasmid_vector_manuscript (plasmid_vector_manuscript.svg) |  |
 | insert culture | created | 2 | 2 | 0 | 0 | exp.model_system.transwell_culture.coculture (transwell_culture_coculture.svg)<br>exp.model_system.transwell_culture.monoculture (transwell_culture_monoculture.svg) |  |
+| interaction network schematic | created | 2 | 0 | 2 | 0 | analysis.network_graph.hub (network_graph_hub.svg)<br>analysis.network_graph.modular (network_graph_modular.svg) |  |
+| interchromatin granule cluster | created | 2 | 0 | 2 | 0 | cellstress.organelle.nuclear_speckle.condensate_detail (nuclear_speckle_condensate_detail.svg)<br>cellstress.organelle.nuclear_speckle.nuclear_distribution (nuclear_speckle_nuclear_distribution.svg) |  |
+| internode | created | 2 | 0 | 2 | 0 | neuro.axon_myelin.longitudinal (axon_myelin_longitudinal.svg)<br>neuro.axon_myelin.transverse (axon_myelin_transverse.svg) |  |
+| interstitial leydig cells | created | 2 | 0 | 2 | 0 | endocrine.leydig_interstitium.paired_tubules (leydig_interstitium_paired_tubules.svg)<br>endocrine.leydig_interstitium.tubule_corner (leydig_interstitium_tubule_corner.svg) |  |
 | invertebrate model | created | 2 | 2 | 0 | 0 | core.model.fruit_fly (fruit_fly_model.svg)<br>core.model.nematode (nematode_model.svg) |  |
+| ire1 stress sensor | created | 2 | 0 | 2 | 0 | cellstress.organelle.er_stress_upr.lumenal_load (er_stress_upr_lumenal_load.svg)<br>cellstress.organelle.er_stress_upr.sensor_assembly (er_stress_upr_sensor_assembly.svg) |  |
+| iron dependent cell death | created | 2 | 0 | 2 | 0 | cellstress.cell.ferroptotic_cell.lipid_damage (ferroptotic_cell_lipid_damage.svg)<br>cellstress.cell.ferroptotic_cell.mitochondrial_detail (ferroptotic_cell_mitochondrial_detail.svg) |  |
+| islet of langerhans | created | 2 | 0 | 2 | 0 | endocrine.pancreatic_islet.folded_plates (pancreatic_islet_folded_plates.svg)<br>endocrine.pancreatic_islet.mixed_islet (pancreatic_islet_mixed_islet.svg) |  |
 | junction | created | 2 | 2 | 0 | 0 | core.cell.epithelial (cell_epithelial.svg)<br>core.cell.epithelial_apical (cell_epithelial_apical.svg) |  |
+| kaplan–meier curve | created | 2 | 0 | 2 | 0 | analysis.kaplan_meier_curve.one_group (kaplan_meier_curve_one_group.svg)<br>analysis.kaplan_meier_curve.two_groups (kaplan_meier_curve_two_groups.svg) |  |
+| km survival curve | created | 2 | 0 | 2 | 0 | analysis.kaplan_meier_curve.one_group (kaplan_meier_curve_one_group.svg)<br>analysis.kaplan_meier_curve.two_groups (kaplan_meier_curve_two_groups.svg) |  |
 | laboratory mouse | created | 2 | 2 | 0 | 0 | core.model.mouse_manuscript (mouse_model_manuscript.svg)<br>core.model.mouse_simple (mouse_model.svg) |  |
+| lactate / metabolite gradient | created | 2 | 0 | 2 | 0 | tme.lactate_metabolite_gradient.radial_source (lactate_metabolite_gradient_radial_source.svg)<br>tme.lactate_metabolite_gradient.source_to_tissue (lactate_metabolite_gradient_source_to_tissue.svg) |  |
+| lactate gradient | created | 2 | 0 | 2 | 0 | tme.lactate_metabolite_gradient.radial_source (lactate_metabolite_gradient_radial_source.svg)<br>tme.lactate_metabolite_gradient.source_to_tissue (lactate_metabolite_gradient_source_to_tissue.svg) |  |
+| lamellipodia | created | 2 | 0 | 2 | 0 | cellstress.cell.lamellipodium.leading_edge_detail (lamellipodium_leading_edge_detail.svg)<br>cellstress.cell.lamellipodium.whole_cell (lamellipodium_whole_cell.svg) |  |
+| lamellipodium | created | 2 | 0 | 2 | 0 | cellstress.cell.lamellipodium.leading_edge_detail (lamellipodium_leading_edge_detail.svg)<br>cellstress.cell.lamellipodium.whole_cell (lamellipodium_whole_cell.svg) |  |
+| leydig interstitium | created | 2 | 0 | 2 | 0 | endocrine.leydig_interstitium.paired_tubules (leydig_interstitium_paired_tubules.svg)<br>endocrine.leydig_interstitium.tubule_corner (leydig_interstitium_tubule_corner.svg) |  |
+| leydig-cell interstitium | created | 2 | 0 | 2 | 0 | endocrine.leydig_interstitium.paired_tubules (leydig_interstitium_paired_tubules.svg)<br>endocrine.leydig_interstitium.tubule_corner (leydig_interstitium_tubule_corner.svg) |  |
+| lipid peroxidation cell death | created | 2 | 0 | 2 | 0 | cellstress.cell.ferroptotic_cell.lipid_damage (ferroptotic_cell_lipid_damage.svg)<br>cellstress.cell.ferroptotic_cell.mitochondrial_detail (ferroptotic_cell_mitochondrial_detail.svg) |  |
 | lobed nucleus | created | 2 | 2 | 0 | 0 | core.cell.neutrophil (immune_neutrophil.svg)<br>core.cell.neutrophil_manuscript (immune_neutrophil_manuscript.svg) |  |
+| lobular field | created | 2 | 0 | 2 | 0 | endocrine.parathyroid_cords.lobular_field (parathyroid_cords_lobular_field.svg)<br>endocrine.pineal_parenchyma.lobular_field (pineal_parenchyma_lobular_field.svg) |  |
 | localization and timing | created | 2 | 2 | 0 | 0 | exp.pathway_symbol.localization_target (localization_target.svg)<br>exp.pathway_symbol.time_course (time_course.svg) |  |
+| log fold change plot | created | 2 | 0 | 2 | 0 | analysis.volcano_plot.feature_labels (volcano_plot_feature_labels.svg)<br>analysis.volcano_plot.overview (volcano_plot_overview.svg) |  |
+| longitudinal | created | 2 | 1 | 1 | 0 | tissue.capillary.longitudinal (capillary_longitudinal.svg)<br>exp.pathway_symbol.time_course (time_course.svg) |  |
 | low adhesion culture | created | 2 | 0 | 2 | 0 | culture.model_system.microwell_spheroid_aggregation (microwell_spheroid_aggregation.svg)<br>culture.model_system.microwell_spheroid_aggregation.array (microwell_spheroid_aggregation_array.svg) |  |
+| luteal tissue | created | 2 | 0 | 2 | 0 | endocrine.corpus_luteum.folded_luteal_tissue (corpus_luteum_folded_luteal_tissue.svg)<br>endocrine.corpus_luteum.radial_luteal_tissue (corpus_luteum_radial_luteal_tissue.svg) |  |
+| luteinized follicle | created | 2 | 0 | 2 | 0 | endocrine.corpus_luteum.folded_luteal_tissue (corpus_luteum_folded_luteal_tissue.svg)<br>endocrine.corpus_luteum.radial_luteal_tissue (corpus_luteum_radial_luteal_tissue.svg) |  |
+| lymph uptake | created | 2 | 0 | 2 | 0 | tissue.lymphatic_capillary.blind_end (lymphatic_capillary_blind_end.svg)<br>tissue.lymphatic_capillary.tissue_interface (lymphatic_capillary_tissue_interface.svg) |  |
+| lymphatic | created | 2 | 0 | 2 | 0 | tissue.lymphatic_capillary.blind_end (lymphatic_capillary_blind_end.svg)<br>tissue.lymphatic_capillary.tissue_interface (lymphatic_capillary_tissue_interface.svg) |  |
+| lytic cell | created | 2 | 0 | 2 | 0 | cellstress.cell.necroptotic_cell.lytic (necroptotic_cell_lytic.svg)<br>cellstress.cell.pyroptotic_cell.lytic (pyroptotic_cell_lytic.svg) |  |
+| lytic cell death | created | 2 | 0 | 2 | 0 | cellstress.cell.necrotic_cell.disintegrating (necrotic_cell_disintegrating.svg)<br>cellstress.cell.necrotic_cell.swollen_ruptured (necrotic_cell_swollen_ruptured.svg) |  |
 | macrophage | created | 2 | 2 | 0 | 0 | core.cell.macrophage (immune_macrophage.svg)<br>core.cell.macrophage_manuscript (immune_macrophage_manuscript.svg) |  |
+| macrophage activation cue | created | 2 | 0 | 2 | 0 | tme.macrophage_polarization_cue.multiple_cues (macrophage_polarization_cue_multiple_cues.svg)<br>tme.macrophage_polarization_cue.single_cue (macrophage_polarization_cue_single_cue.svg) |  |
+| macrophage polarization cue | created | 2 | 0 | 2 | 0 | tme.macrophage_polarization_cue.multiple_cues (macrophage_polarization_cue_multiple_cues.svg)<br>tme.macrophage_polarization_cue.single_cue (macrophage_polarization_cue_single_cue.svg) |  |
+| macrophage state spectrum | created | 2 | 0 | 2 | 0 | tme.macrophage_polarization_cue.multiple_cues (macrophage_polarization_cue_multiple_cues.svg)<br>tme.macrophage_polarization_cue.single_cue (macrophage_polarization_cue_single_cue.svg) |  |
 | malignant cell | created | 2 | 2 | 0 | 0 | exp.cell.cancer_cell.round (cancer_cell_round.svg)<br>exp.cell.cancer_cell.spindle (cancer_cell_spindle.svg) |  |
 | marker | created | 2 | 2 | 0 | 0 | core.nucleic_acid.plasmid_vector (plasmid_vector.svg)<br>core.nucleic_acid.plasmid_vector_manuscript (plasmid_vector_manuscript.svg) |  |
 | matrix contraction | created | 2 | 0 | 2 | 0 | culture.assay_workflow.collagen_gel_contraction (collagen_gel_contraction.svg)<br>culture.assay_workflow.collagen_gel_contraction.anchored (collagen_gel_contraction_anchored.svg) |  |
+| matrix detachment apoptosis | created | 2 | 0 | 2 | 0 | cellstress.cell.anoikis.blebbing_apoptotic (anoikis_blebbing_apoptotic.svg)<br>cellstress.cell.anoikis.detached_apoptotic (anoikis_detached_apoptotic.svg) |  |
+| matrix mesh | created | 2 | 0 | 2 | 0 | tissue.collagen.bundle (collagen_bundle.svg)<br>tissue.collagen.mesh (collagen_mesh.svg) |  |
 | matrix remodeling | created | 2 | 2 | 0 | 0 | immuno.pathway.ecm_remodeling (ecm_remodeling.svg)<br>immuno.protein.matrix_metalloproteinase (matrix_metalloproteinase.svg) |  |
+| mature phagosome | created | 2 | 0 | 2 | 0 | cellstress.organelle.phagolysosome.bacterial_cargo (phagolysosome_bacterial_cargo.svg)<br>cellstress.organelle.phagolysosome.degrading_cargo (phagolysosome_degrading_cargo.svg) |  |
 | mdsc | created | 2 | 2 | 0 | 0 | immuno.cell.monocytic_mdsc (monocytic_mdsc.svg)<br>immuno.cell.polymorphonuclear_mdsc (polymorphonuclear_mdsc.svg) |  |
+| median eminence | created | 2 | 0 | 2 | 0 | endocrine.median_eminence.external_zone_field (median_eminence_external_zone_field.svg)<br>endocrine.median_eminence.external_zone_sagittal (median_eminence_external_zone_sagittal.svg) |  |
 | medium channels | created | 2 | 0 | 2 | 0 | culture.model_system.perfused_tissue_chip (perfused_tissue_chip.svg)<br>culture.model_system.perfused_tissue_chip.dual_channel (perfused_tissue_chip_dual_channel.svg) |  |
 | membrane protein | created | 2 | 2 | 0 | 0 | core.immune.mhc_i_peptide (immune_mhc_i_peptide.svg)<br>core.immune.mhc_ii_peptide (immune_mhc_ii_peptide.svg) |  |
 | membrane receptor | created | 2 | 2 | 0 | 0 | core.receptor.membrane (membrane_receptor.svg)<br>core.receptor.single_pass_unliganded (receptor_single_pass_unliganded.svg) |  |
 | membrane trafficking | created | 2 | 2 | 0 | 0 | exp.membrane_signaling.endocytosis_pit (endocytosis_pit.svg)<br>exp.membrane_signaling.exocytosis_fusion (exocytosis_fusion.svg) |  |
+| mesh | created | 2 | 1 | 1 | 0 | tissue.collagen.mesh (collagen_mesh.svg)<br>immuno.model.collagen_rich_ecm.mesh (collagen_rich_ecm_mesh.svg) |  |
+| metabolic spatial gradient | created | 2 | 0 | 2 | 0 | tme.lactate_metabolite_gradient.radial_source (lactate_metabolite_gradient_radial_source.svg)<br>tme.lactate_metabolite_gradient.source_to_tissue (lactate_metabolite_gradient_source_to_tissue.svg) |  |
+| metabolite gradient | created | 2 | 0 | 2 | 0 | tme.lactate_metabolite_gradient.radial_source (lactate_metabolite_gradient_radial_source.svg)<br>tme.lactate_metabolite_gradient.source_to_tissue (lactate_metabolite_gradient_source_to_tissue.svg) |  |
 | mhc class i | created | 2 | 2 | 0 | 0 | core.immune.mhc_i_peptide (immune_mhc_i_peptide.svg)<br>core.immune.mhc_i_peptide_manuscript (immune_mhc_i_peptide_manuscript.svg) |  |
 | mhc class ii | created | 2 | 2 | 0 | 0 | core.immune.mhc_ii_peptide (immune_mhc_ii_peptide.svg)<br>core.immune.mhc_ii_peptide_manuscript (immune_mhc_ii_peptide_manuscript.svg) |  |
 | mhc-i | created | 2 | 2 | 0 | 0 | core.immune.mhc_i_peptide (immune_mhc_i_peptide.svg)<br>core.immune.mhc_i_peptide_manuscript (immune_mhc_i_peptide_manuscript.svg) |  |
@@ -289,67 +536,153 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | microbial model | created | 2 | 2 | 0 | 0 | core.model.bacterium_rod (rod_bacterium_model.svg)<br>core.model.yeast_budding (budding_yeast_model.svg) |  |
 | microfilaments | created | 2 | 2 | 0 | 0 | exp.organelle.actin_cytoskeleton.branched (actin_cytoskeleton_branched.svg)<br>exp.organelle.actin_cytoskeleton.bundle (actin_cytoskeleton_bundle.svg) |  |
 | microfluidic culture | created | 2 | 0 | 2 | 0 | culture.model_system.perfused_tissue_chip (perfused_tissue_chip.svg)<br>culture.model_system.perfused_tissue_chip.dual_channel (perfused_tissue_chip_dual_channel.svg) |  |
+| microglia contact | created | 2 | 0 | 2 | 0 | neuro.microglia_contact.surveying (microglia_contact_surveying.svg)<br>neuro.microglia_contact.synaptic_contact (microglia_contact_synaptic_contact.svg) |  |
+| microglia-synapse contact | created | 2 | 0 | 2 | 0 | neuro.microglia_contact.surveying (microglia_contact_surveying.svg)<br>neuro.microglia_contact.synaptic_contact (microglia_contact_synaptic_contact.svg) |  |
+| microglial process | created | 2 | 0 | 2 | 0 | neuro.microglia_contact.surveying (microglia_contact_surveying.svg)<br>neuro.microglia_contact.synaptic_contact (microglia_contact_synaptic_contact.svg) |  |
+| microglial process contact | created | 2 | 0 | 2 | 0 | neuro.microglia_contact.surveying (microglia_contact_surveying.svg)<br>neuro.microglia_contact.synaptic_contact (microglia_contact_synaptic_contact.svg) |  |
+| microglial surveillance | created | 2 | 0 | 2 | 0 | neuro.microglia_contact.surveying (microglia_contact_surveying.svg)<br>neuro.microglia_contact.synaptic_contact (microglia_contact_synaptic_contact.svg) |  |
 | micrograph | created | 2 | 2 | 0 | 0 | exp.assay_workflow.microscopy_field.brightfield (microscopy_field_brightfield.svg)<br>exp.assay_workflow.microscopy_field.fluorescence (microscopy_field_fluorescence.svg) |  |
 | microscope image | created | 2 | 2 | 0 | 0 | exp.assay_workflow.microscopy_field.brightfield (microscopy_field_brightfield.svg)<br>exp.assay_workflow.microscopy_field.fluorescence (microscopy_field_fluorescence.svg) |  |
 | microscopy field | created | 2 | 2 | 0 | 0 | exp.assay_workflow.microscopy_field.brightfield (microscopy_field_brightfield.svg)<br>exp.assay_workflow.microscopy_field.fluorescence (microscopy_field_fluorescence.svg) |  |
 | microscopy image field | created | 2 | 2 | 0 | 0 | exp.assay_workflow.microscopy_field.brightfield (microscopy_field_brightfield.svg)<br>exp.assay_workflow.microscopy_field.fluorescence (microscopy_field_fluorescence.svg) |  |
 | microtubule motor | created | 2 | 0 | 2 | 0 | cellarch.pathway_symbol.cytoplasmic_dynein_cargo_transport (cytoplasmic_dynein_cargo_transport.svg)<br>cellarch.pathway_symbol.kinesin_cargo_transport (kinesin_cargo_transport.svg) |  |
+| microvessel | created | 2 | 0 | 2 | 0 | tissue.capillary.longitudinal (capillary_longitudinal.svg)<br>tissue.capillary.transverse (capillary_transverse.svg) |  |
 | microwell spheroid | created | 2 | 0 | 2 | 0 | culture.model_system.microwell_spheroid_aggregation (microwell_spheroid_aggregation.svg)<br>culture.model_system.microwell_spheroid_aggregation.array (microwell_spheroid_aggregation_array.svg) |  |
 | microwell spheroid aggregation | created | 2 | 0 | 2 | 0 | culture.model_system.microwell_spheroid_aggregation (microwell_spheroid_aggregation.svg)<br>culture.model_system.microwell_spheroid_aggregation.array (microwell_spheroid_aggregation_array.svg) |  |
+| mitochondrial content mixing | created | 2 | 0 | 2 | 0 | cellstress.organelle.mitochondrial_fusion.approach_contact (mitochondrial_fusion_approach_contact.svg)<br>cellstress.organelle.mitochondrial_fusion.joined (mitochondrial_fusion_joined.svg) |  |
+| mitochondrial daughter separation | created | 2 | 0 | 2 | 0 | cellstress.organelle.mitochondrial_fission.constriction (mitochondrial_fission_constriction.svg)<br>cellstress.organelle.mitochondrial_fission.daughter_separation (mitochondrial_fission_daughter_separation.svg) |  |
+| mitochondrial division | created | 2 | 0 | 2 | 0 | cellstress.organelle.mitochondrial_fission.constriction (mitochondrial_fission_constriction.svg)<br>cellstress.organelle.mitochondrial_fission.daughter_separation (mitochondrial_fission_daughter_separation.svg) |  |
+| mitochondrial fission | created | 2 | 0 | 2 | 0 | cellstress.organelle.mitochondrial_fission.constriction (mitochondrial_fission_constriction.svg)<br>cellstress.organelle.mitochondrial_fission.daughter_separation (mitochondrial_fission_daughter_separation.svg) |  |
+| mitochondrial fusion | created | 2 | 0 | 2 | 0 | cellstress.organelle.mitochondrial_fusion.approach_contact (mitochondrial_fusion_approach_contact.svg)<br>cellstress.organelle.mitochondrial_fusion.joined (mitochondrial_fusion_joined.svg) |  |
+| mitochondrial joining | created | 2 | 0 | 2 | 0 | cellstress.organelle.mitochondrial_fusion.approach_contact (mitochondrial_fusion_approach_contact.svg)<br>cellstress.organelle.mitochondrial_fusion.joined (mitochondrial_fusion_joined.svg) |  |
+| mitochondrion constriction | created | 2 | 0 | 2 | 0 | cellstress.organelle.mitochondrial_fission.constriction (mitochondrial_fission_constriction.svg)<br>cellstress.organelle.mitochondrial_fission.daughter_separation (mitochondrial_fission_daughter_separation.svg) |  |
+| mitofusin mitochondrial fusion | created | 2 | 0 | 2 | 0 | cellstress.organelle.mitochondrial_fusion.approach_contact (mitochondrial_fusion_approach_contact.svg)<br>cellstress.organelle.mitochondrial_fusion.joined (mitochondrial_fusion_joined.svg) |  |
+| mitotic chromosome | created | 2 | 0 | 2 | 0 | cellstress.nucleic_acid.condensed_chromosome.metacentric (condensed_chromosome_metacentric.svg)<br>cellstress.nucleic_acid.condensed_chromosome.submetacentric (condensed_chromosome_submetacentric.svg) |  |
+| mlkl mediated lysis | created | 2 | 0 | 2 | 0 | cellstress.cell.necroptotic_cell.lytic (necroptotic_cell_lytic.svg)<br>cellstress.cell.necroptotic_cell.membrane_mlkl (necroptotic_cell_membrane_mlkl.svg) |  |
 | molecular chaperone | created | 2 | 2 | 0 | 0 | proteostasis.protein.hsp70_client_complex (hsp70_client_complex.svg)<br>proteostasis.protein.hsp90_client_complex (hsp90_client_complex.svg) |  |
+| monolayer | created | 2 | 0 | 2 | 0 | tissue.epithelial_sheet.apical (epithelial_sheet_apical.svg)<br>tissue.epithelial_sheet.lateral (epithelial_sheet_lateral.svg) |  |
 | mouse | created | 2 | 2 | 0 | 0 | core.model.mouse_manuscript (mouse_model_manuscript.svg)<br>core.model.mouse_simple (mouse_model.svg) |  |
 | mouse model | created | 2 | 2 | 0 | 0 | core.model.mouse_manuscript (mouse_model_manuscript.svg)<br>core.model.mouse_simple (mouse_model.svg) |  |
+| muscle | created | 2 | 0 | 2 | 0 | tissue.skeletal_muscle.bundle_cross_section (skeletal_muscle_bundle_cross_section.svg)<br>tissue.skeletal_muscle.longitudinal_fibers (skeletal_muscle_longitudinal_fibers.svg) |  |
+| muscle fascicle | created | 2 | 0 | 2 | 0 | tissue.skeletal_muscle.bundle_cross_section (skeletal_muscle_bundle_cross_section.svg)<br>tissue.skeletal_muscle.longitudinal_fibers (skeletal_muscle_longitudinal_fibers.svg) |  |
+| muscle fiber | created | 2 | 0 | 2 | 0 | tissue.skeletal_muscle.bundle_cross_section (skeletal_muscle_bundle_cross_section.svg)<br>tissue.skeletal_muscle.longitudinal_fibers (skeletal_muscle_longitudinal_fibers.svg) |  |
+| myelin gap | created | 2 | 0 | 2 | 0 | neuro.node_of_ranvier.channel_region (node_of_ranvier_channel_region.svg)<br>neuro.node_of_ranvier.paired_internodes (node_of_ranvier_paired_internodes.svg) |  |
+| myelin sheath | created | 2 | 0 | 2 | 0 | neuro.axon_myelin.longitudinal (axon_myelin_longitudinal.svg)<br>neuro.axon_myelin.transverse (axon_myelin_transverse.svg) |  |
+| myelinated nerve fiber | created | 2 | 0 | 2 | 0 | neuro.axon_myelin.longitudinal (axon_myelin_longitudinal.svg)<br>neuro.axon_myelin.transverse (axon_myelin_transverse.svg) |  |
 | myeloid cell | created | 2 | 2 | 0 | 0 | core.cell.macrophage (immune_macrophage.svg)<br>core.cell.macrophage_manuscript (immune_macrophage_manuscript.svg) |  |
 | myeloid suppressor cells | created | 2 | 2 | 0 | 0 | immuno.cell.monocytic_mdsc (monocytic_mdsc.svg)<br>immuno.cell.polymorphonuclear_mdsc (polymorphonuclear_mdsc.svg) |  |
+| myofiber | created | 2 | 0 | 2 | 0 | tissue.skeletal_muscle.bundle_cross_section (skeletal_muscle_bundle_cross_section.svg)<br>tissue.skeletal_muscle.longitudinal_fibers (skeletal_muscle_longitudinal_fibers.svg) |  |
 | natural killer cell | created | 2 | 2 | 0 | 0 | core.cell.nk_cell (immune_nk_cell.svg)<br>core.cell.nk_cell_manuscript (immune_nk_cell_manuscript.svg) |  |
+| necroptosis | created | 2 | 0 | 2 | 0 | cellstress.cell.necroptotic_cell.lytic (necroptotic_cell_lytic.svg)<br>cellstress.cell.necroptotic_cell.membrane_mlkl (necroptotic_cell_membrane_mlkl.svg) |  |
+| necroptotic cell | created | 2 | 0 | 2 | 0 | cellstress.cell.necroptotic_cell.lytic (necroptotic_cell_lytic.svg)<br>cellstress.cell.necroptotic_cell.membrane_mlkl (necroptotic_cell_membrane_mlkl.svg) |  |
+| necroptotic cell — schematic | created | 2 | 0 | 2 | 0 | cellstress.cell.necroptotic_cell.lytic (necroptotic_cell_lytic.svg)<br>cellstress.cell.necroptotic_cell.membrane_mlkl (necroptotic_cell_membrane_mlkl.svg) |  |
+| necrosis | created | 2 | 0 | 2 | 0 | cellstress.cell.necrotic_cell.disintegrating (necrotic_cell_disintegrating.svg)<br>cellstress.cell.necrotic_cell.swollen_ruptured (necrotic_cell_swollen_ruptured.svg) |  |
+| necrotic cell | created | 2 | 0 | 2 | 0 | cellstress.cell.necrotic_cell.disintegrating (necrotic_cell_disintegrating.svg)<br>cellstress.cell.necrotic_cell.swollen_ruptured (necrotic_cell_swollen_ruptured.svg) |  |
 | neoplastic cell | created | 2 | 2 | 0 | 0 | exp.cell.cancer_cell.round (cancer_cell_round.svg)<br>exp.cell.cancer_cell.spindle (cancer_cell_spindle.svg) |  |
+| neovascular sprout | created | 2 | 0 | 2 | 0 | tissue.angiogenic_sprout.branching (angiogenic_sprout_branching.svg)<br>tissue.angiogenic_sprout.single_tip (angiogenic_sprout_single_tip.svg) |  |
+| nerve ending | created | 2 | 0 | 2 | 0 | neuro.axon_terminal.branched_terminals (axon_terminal_branched_terminals.svg)<br>neuro.axon_terminal.single_bouton (axon_terminal_single_bouton.svg) |  |
+| network graph | created | 2 | 0 | 2 | 0 | analysis.network_graph.hub (network_graph_hub.svg)<br>analysis.network_graph.modular (network_graph_modular.svg) |  |
+| neural circuit | created | 2 | 0 | 2 | 0 | neuro.neural_circuit.convergent_inputs (neural_circuit_convergent_inputs.svg)<br>neuro.neural_circuit.feedforward_chain (neural_circuit_feedforward_chain.svg) |  |
+| neural lobe | created | 2 | 0 | 2 | 0 | endocrine.posterior_pituitary.longitudinal_neural_lobe (posterior_pituitary_longitudinal_neural_lobe.svg)<br>endocrine.posterior_pituitary.transverse_neural_lobe (posterior_pituitary_transverse_neural_lobe.svg) |  |
 | neurite | created | 2 | 2 | 0 | 0 | core.cell.neuron_bipolar (cell_neuron_bipolar.svg)<br>core.cell.neuron_like (cell_neuron_like.svg) |  |
+| neurohypophysis | created | 2 | 0 | 2 | 0 | endocrine.posterior_pituitary.longitudinal_neural_lobe (posterior_pituitary_longitudinal_neural_lobe.svg)<br>endocrine.posterior_pituitary.transverse_neural_lobe (posterior_pituitary_transverse_neural_lobe.svg) |  |
+| neuron astrocyte contact | created | 2 | 0 | 2 | 0 | neuro.neuron_astrocyte_contact.process_network (neuron_astrocyte_contact_process_network.svg)<br>neuro.neuron_astrocyte_contact.single_synapse (neuron_astrocyte_contact_single_synapse.svg) |  |
+| neuronal circuit | created | 2 | 0 | 2 | 0 | neuro.neural_circuit.convergent_inputs (neural_circuit_convergent_inputs.svg)<br>neuro.neural_circuit.feedforward_chain (neural_circuit_feedforward_chain.svg) |  |
+| neuronal synapse | created | 2 | 0 | 2 | 0 | neuro.chemical_synapse.bouton_spine (chemical_synapse_bouton_spine.svg)<br>neuro.chemical_synapse.shaft_contact (chemical_synapse_shaft_contact.svg) |  |
+| neuron–astrocyte contact | created | 2 | 0 | 2 | 0 | neuro.neuron_astrocyte_contact.process_network (neuron_astrocyte_contact_process_network.svg)<br>neuro.neuron_astrocyte_contact.single_synapse (neuron_astrocyte_contact_single_synapse.svg) |  |
 | neutrophil | created | 2 | 2 | 0 | 0 | core.cell.neutrophil (immune_neutrophil.svg)<br>core.cell.neutrophil_manuscript (immune_neutrophil_manuscript.svg) |  |
+| neutrophil tumor context | created | 2 | 0 | 2 | 0 | tme.tumor_associated_neutrophil.isolated (tumor_associated_neutrophil_isolated.svg)<br>tme.tumor_associated_neutrophil.tumor_contact (tumor_associated_neutrophil_tumor_contact.svg) |  |
 | ngs reads | created | 2 | 2 | 0 | 0 | exp.assay_workflow.sequencing_reads.paired_end (sequencing_reads_paired_end.svg)<br>exp.assay_workflow.sequencing_reads.single_end (sequencing_reads_single_end.svg) |  |
 | nk cell | created | 2 | 2 | 0 | 0 | core.cell.nk_cell (immune_nk_cell.svg)<br>core.cell.nk_cell_manuscript (immune_nk_cell_manuscript.svg) |  |
+| node | created | 2 | 0 | 2 | 0 | neuro.node_of_ranvier.channel_region (node_of_ranvier_channel_region.svg)<br>neuro.node_of_ranvier.paired_internodes (node_of_ranvier_paired_internodes.svg) |  |
+| node edge graph | created | 2 | 0 | 2 | 0 | analysis.network_graph.hub (network_graph_hub.svg)<br>analysis.network_graph.modular (network_graph_modular.svg) |  |
+| node of ranvier | created | 2 | 0 | 2 | 0 | neuro.node_of_ranvier.channel_region (node_of_ranvier_channel_region.svg)<br>neuro.node_of_ranvier.paired_internodes (node_of_ranvier_paired_internodes.svg) |  |
 | nonadherent microwell | created | 2 | 0 | 2 | 0 | culture.model_system.microwell_spheroid_aggregation (microwell_spheroid_aggregation.svg)<br>culture.model_system.microwell_spheroid_aggregation.array (microwell_spheroid_aggregation_array.svg) |  |
+| nonmotile cilium | created | 2 | 0 | 2 | 0 | cellstress.organelle.primary_cilium.bent (primary_cilium_bent.svg)<br>cellstress.organelle.primary_cilium.straight (primary_cilium_straight.svg) |  |
 | npc | created | 2 | 2 | 0 | 0 | core.nucleus.envelope_detail (nucleus_envelope_detail.svg)<br>exp.organelle.nuclear_pore (nuclear_pore.svg) |  |
 | nuclear import | created | 2 | 1 | 1 | 0 | cellarch.pathway_symbol.importin_cargo_nuclear_import (importin_cargo_nuclear_import.svg)<br>core.symbol.translocation_arrow (translocation_arrow.svg) |  |
 | nuclear pore | created | 2 | 2 | 0 | 0 | core.nucleus.envelope_detail (nucleus_envelope_detail.svg)<br>exp.organelle.nuclear_pore (nuclear_pore.svg) |  |
 | nuclear pore complex | created | 2 | 2 | 0 | 0 | core.nucleus.envelope_detail (nucleus_envelope_detail.svg)<br>exp.organelle.nuclear_pore (nuclear_pore.svg) |  |
+| nuclear repair foci | created | 2 | 0 | 2 | 0 | cellstress.nucleic_acid.dna_damage_foci.clustered (dna_damage_foci_clustered.svg)<br>cellstress.nucleic_acid.dna_damage_foci.dispersed (dna_damage_foci_dispersed.svg) |  |
+| nuclear speckle | created | 2 | 0 | 2 | 0 | cellstress.organelle.nuclear_speckle.condensate_detail (nuclear_speckle_condensate_detail.svg)<br>cellstress.organelle.nuclear_speckle.nuclear_distribution (nuclear_speckle_nuclear_distribution.svg) |  |
 | nuclear structures | created | 2 | 2 | 0 | 0 | exp.organelle.nuclear_pore (nuclear_pore.svg)<br>exp.organelle.nucleosome (nucleosome.svg) |  |
 | nucleocytoplasmic transport | created | 2 | 0 | 2 | 0 | cellarch.pathway_symbol.exportin_cargo_nuclear_export (exportin_cargo_nuclear_export.svg)<br>cellarch.pathway_symbol.importin_cargo_nuclear_import (importin_cargo_nuclear_import.svg) |  |
-| nucleolus | created | 2 | 2 | 0 | 0 | core.nucleus.oval_cutaway (nucleus_oval_cutaway.svg)<br>core.nucleus.round (nucleus_round.svg) |  |
+| nucleolar condensate | created | 2 | 0 | 2 | 0 | cellstress.organelle.nucleolus.nuclear_context (nucleolus_nuclear_context.svg)<br>cellstress.organelle.nucleolus.subcompartments (nucleolus_subcompartments.svg) |  |
+| o2 gradient | created | 2 | 0 | 2 | 0 | tme.hypoxia_gradient.perivascular (hypoxia_gradient_perivascular.svg)<br>tme.hypoxia_gradient.spheroid (hypoxia_gradient_spheroid.svg) |  |
+| oligodendroglia | created | 2 | 0 | 2 | 0 | neuro.oligodendrocyte.branching (oligodendrocyte_branching.svg)<br>neuro.oligodendrocyte.multiple_sheaths (oligodendrocyte_multiple_sheaths.svg) |  |
 | open chromatin | created | 2 | 2 | 0 | 0 | exp.nucleic_acid.chromatin_state.condensed (chromatin_state_condensed.svg)<br>exp.nucleic_acid.chromatin_state.open (chromatin_state_open.svg) |  |
 | organ on chip | created | 2 | 0 | 2 | 0 | culture.model_system.perfused_tissue_chip (perfused_tissue_chip.svg)<br>culture.model_system.perfused_tissue_chip.dual_channel (perfused_tissue_chip_dual_channel.svg) |  |
 | organ-on-chip | created | 2 | 0 | 2 | 0 | culture.model_system.perfused_tissue_chip (perfused_tissue_chip.svg)<br>culture.model_system.perfused_tissue_chip.dual_channel (perfused_tissue_chip_dual_channel.svg) |  |
 | organelle contact | created | 2 | 0 | 2 | 0 | cellarch.membrane_signaling.er_mitochondrion_contact_site (er_mitochondrion_contact_site.svg)<br>cellarch.membrane_signaling.er_mitochondrion_tubular_contact (er_mitochondrion_tubular_contact.svg) |  |
 | organoid matrix | created | 2 | 0 | 2 | 0 | culture.model_system.hydrogel_embedded_organoid (hydrogel_embedded_organoid.svg)<br>culture.model_system.hydrogel_embedded_organoid.budding (hydrogel_embedded_organoid_budding.svg) |  |
 | organotypic slice culture | created | 2 | 0 | 2 | 0 | culture.model_system.precision_cut_tissue_slice_culture (precision_cut_tissue_slice_culture.svg)<br>culture.model_system.precision_cut_tissue_slice_culture.interface (precision_cut_tissue_slice_culture_interface.svg) |  |
+| ovarian follicle | created | 2 | 0 | 2 | 0 | endocrine.ovarian_follicle.eccentric_oocyte (ovarian_follicle_eccentric_oocyte.svg)<br>endocrine.ovarian_follicle.sector_section (ovarian_follicle_sector_section.svg) |  |
+| oxygen gradient | created | 2 | 0 | 2 | 0 | tme.hypoxia_gradient.perivascular (hypoxia_gradient_perivascular.svg)<br>tme.hypoxia_gradient.spheroid (hypoxia_gradient_spheroid.svg) |  |
 | paired end reads | created | 2 | 2 | 0 | 0 | exp.assay_workflow.sequencing_reads.paired_end (sequencing_reads_paired_end.svg)<br>exp.assay_workflow.sequencing_reads.single_end (sequencing_reads_single_end.svg) |  |
+| pancreas | created | 2 | 0 | 2 | 0 | endocrine.pancreatic_islet.folded_plates (pancreatic_islet_folded_plates.svg)<br>endocrine.pancreatic_islet.mixed_islet (pancreatic_islet_mixed_islet.svg) |  |
+| pancreatic islet | created | 2 | 0 | 2 | 0 | endocrine.pancreatic_islet.folded_plates (pancreatic_islet_folded_plates.svg)<br>endocrine.pancreatic_islet.mixed_islet (pancreatic_islet_mixed_islet.svg) |  |
+| paranode | created | 2 | 0 | 2 | 0 | neuro.node_of_ranvier.channel_region (node_of_ranvier_channel_region.svg)<br>neuro.node_of_ranvier.paired_internodes (node_of_ranvier_paired_internodes.svg) |  |
+| parathyroid | created | 2 | 0 | 2 | 0 | endocrine.parathyroid_cords.cords_longitudinal (parathyroid_cords_cords_longitudinal.svg)<br>endocrine.parathyroid_cords.lobular_field (parathyroid_cords_lobular_field.svg) |  |
+| parathyroid chief cells | created | 2 | 0 | 2 | 0 | endocrine.parathyroid_cords.cords_longitudinal (parathyroid_cords_cords_longitudinal.svg)<br>endocrine.parathyroid_cords.lobular_field (parathyroid_cords_lobular_field.svg) |  |
+| parathyroid cords | created | 2 | 0 | 2 | 0 | endocrine.parathyroid_cords.cords_longitudinal (parathyroid_cords_cords_longitudinal.svg)<br>endocrine.parathyroid_cords.lobular_field (parathyroid_cords_lobular_field.svg) |  |
+| parathyroid parenchyma | created | 2 | 0 | 2 | 0 | endocrine.parathyroid_cords.cords_longitudinal (parathyroid_cords_cords_longitudinal.svg)<br>endocrine.parathyroid_cords.lobular_field (parathyroid_cords_lobular_field.svg) |  |
+| parathyroid tissue | created | 2 | 0 | 2 | 0 | endocrine.parathyroid_cords.cords_longitudinal (parathyroid_cords_cords_longitudinal.svg)<br>endocrine.parathyroid_cords.lobular_field (parathyroid_cords_lobular_field.svg) |  |
+| pars distalis | created | 2 | 0 | 2 | 0 | endocrine.anterior_pituitary.cords_longitudinal (anterior_pituitary_cords_longitudinal.svg)<br>endocrine.anterior_pituitary.cords_radial (anterior_pituitary_cords_radial.svg) |  |
 | payload | created | 2 | 2 | 0 | 0 | core.antibody.drug_conjugate (antibody_drug_conjugate.svg)<br>core.antibody.drug_conjugate_manuscript (antibody_drug_conjugate_manuscript.svg) |  |
 | pd-1 | created | 2 | 2 | 0 | 0 | core.immune.pd1_pdl1_checkpoint (immune_pd1_pdl1_checkpoint.svg)<br>core.immune.pd1_pdl1_checkpoint_manuscript (immune_pd1_pdl1_checkpoint_manuscript.svg) |  |
 | pd-l1 | created | 2 | 2 | 0 | 0 | core.immune.pd1_pdl1_checkpoint (immune_pd1_pdl1_checkpoint.svg)<br>core.immune.pd1_pdl1_checkpoint_manuscript (immune_pd1_pdl1_checkpoint_manuscript.svg) |  |
 | pendant drop | created | 2 | 0 | 2 | 0 | culture.model_system.hanging_drop_spheroid (hanging_drop_spheroid.svg)<br>culture.model_system.hanging_drop_spheroid.array (hanging_drop_spheroid_array.svg) |  |
 | perfused cell–matrix culture chip | created | 2 | 0 | 2 | 0 | culture.model_system.perfused_tissue_chip (perfused_tissue_chip.svg)<br>culture.model_system.perfused_tissue_chip.dual_channel (perfused_tissue_chip_dual_channel.svg) |  |
 | perfusion culture | created | 2 | 0 | 2 | 0 | culture.model_system.perfused_tissue_chip (perfused_tissue_chip.svg)<br>culture.model_system.perfused_tissue_chip.dual_channel (perfused_tissue_chip_dual_channel.svg) |  |
+| peripheral glia | created | 2 | 0 | 2 | 0 | neuro.schwann_cell.myelinating_internode (schwann_cell_myelinating_internode.svg)<br>neuro.schwann_cell.nonmyelinating_bundle (schwann_cell_nonmyelinating_bundle.svg) |  |
+| perisynaptic astrocyte process | created | 2 | 0 | 2 | 0 | neuro.neuron_astrocyte_contact.process_network (neuron_astrocyte_contact_process_network.svg)<br>neuro.neuron_astrocyte_contact.single_synapse (neuron_astrocyte_contact_single_synapse.svg) |  |
 | permeable-support culture | created | 2 | 2 | 0 | 0 | exp.model_system.transwell_culture.coculture (transwell_culture_coculture.svg)<br>exp.model_system.transwell_culture.monoculture (transwell_culture_monoculture.svg) |  |
 | phagocyte | created | 2 | 2 | 0 | 0 | core.cell.macrophage (immune_macrophage.svg)<br>core.cell.macrophage_manuscript (immune_macrophage_manuscript.svg) |  |
+| phagocytic degradative compartment | created | 2 | 0 | 2 | 0 | cellstress.organelle.phagolysosome.bacterial_cargo (phagolysosome_bacterial_cargo.svg)<br>cellstress.organelle.phagolysosome.degrading_cargo (phagolysosome_degrading_cargo.svg) |  |
+| phagolysosome | created | 2 | 0 | 2 | 0 | cellstress.organelle.phagolysosome.bacterial_cargo (phagolysosome_bacterial_cargo.svg)<br>cellstress.organelle.phagolysosome.degrading_cargo (phagolysosome_degrading_cargo.svg) |  |
+| phagosome lysosome compartment | created | 2 | 0 | 2 | 0 | cellstress.organelle.phagolysosome.bacterial_cargo (phagolysosome_bacterial_cargo.svg)<br>cellstress.organelle.phagolysosome.degrading_cargo (phagolysosome_degrading_cargo.svg) |  |
+| pineal gland | created | 2 | 0 | 2 | 0 | endocrine.pineal_parenchyma.cell_groups (pineal_parenchyma_cell_groups.svg)<br>endocrine.pineal_parenchyma.lobular_field (pineal_parenchyma_lobular_field.svg) |  |
+| pineal gland tissue | created | 2 | 0 | 2 | 0 | endocrine.pineal_parenchyma.cell_groups (pineal_parenchyma_cell_groups.svg)<br>endocrine.pineal_parenchyma.lobular_field (pineal_parenchyma_lobular_field.svg) |  |
+| pineal parenchyma | created | 2 | 0 | 2 | 0 | endocrine.pineal_parenchyma.cell_groups (pineal_parenchyma_cell_groups.svg)<br>endocrine.pineal_parenchyma.lobular_field (pineal_parenchyma_lobular_field.svg) |  |
+| pinealocytes | created | 2 | 0 | 2 | 0 | endocrine.pineal_parenchyma.cell_groups (pineal_parenchyma_cell_groups.svg)<br>endocrine.pineal_parenchyma.lobular_field (pineal_parenchyma_lobular_field.svg) |  |
 | plasmid | created | 2 | 2 | 0 | 0 | core.nucleic_acid.plasmid_vector (plasmid_vector.svg)<br>core.nucleic_acid.plasmid_vector_manuscript (plasmid_vector_manuscript.svg) |  |
 | pmn | created | 2 | 2 | 0 | 0 | core.cell.neutrophil (immune_neutrophil.svg)<br>core.cell.neutrophil_manuscript (immune_neutrophil_manuscript.svg) |  |
+| polarizing signals | created | 2 | 0 | 2 | 0 | tme.macrophage_polarization_cue.multiple_cues (macrophage_polarization_cue_multiple_cues.svg)<br>tme.macrophage_polarization_cue.single_cue (macrophage_polarization_cue_single_cue.svg) |  |
 | polymorphonuclear cell | created | 2 | 2 | 0 | 0 | core.cell.neutrophil (immune_neutrophil.svg)<br>core.cell.neutrophil_manuscript (immune_neutrophil_manuscript.svg) |  |
 | polypeptide | created | 2 | 2 | 0 | 0 | core.ligand.peptide (ligand_peptide.svg)<br>proteostasis.protein.unfolded_polypeptide (unfolded_polypeptide.svg) |  |
+| posterior pituitary | created | 2 | 0 | 2 | 0 | endocrine.posterior_pituitary.longitudinal_neural_lobe (posterior_pituitary_longitudinal_neural_lobe.svg)<br>endocrine.posterior_pituitary.transverse_neural_lobe (posterior_pituitary_transverse_neural_lobe.svg) |  |
+| postsynaptic protrusion | created | 2 | 0 | 2 | 0 | neuro.dendritic_spine.mushroom (dendritic_spine_mushroom.svg)<br>neuro.dendritic_spine.thin (dendritic_spine_thin.svg) |  |
 | precision cut tissue slice | created | 2 | 0 | 2 | 0 | culture.model_system.precision_cut_tissue_slice_culture (precision_cut_tissue_slice_culture.svg)<br>culture.model_system.precision_cut_tissue_slice_culture.interface (precision_cut_tissue_slice_culture_interface.svg) |  |
 | preclinical | created | 2 | 2 | 0 | 0 | core.model.mouse_manuscript (mouse_model_manuscript.svg)<br>core.model.mouse_simple (mouse_model.svg) |  |
+| presynaptic terminal | created | 2 | 0 | 2 | 0 | neuro.axon_terminal.branched_terminals (axon_terminal_branched_terminals.svg)<br>neuro.axon_terminal.single_bouton (axon_terminal_single_bouton.svg) |  |
+| primary cilium | created | 2 | 0 | 2 | 0 | cellstress.organelle.primary_cilium.bent (primary_cilium_bent.svg)<br>cellstress.organelle.primary_cilium.straight (primary_cilium_straight.svg) |  |
 | protease | created | 2 | 2 | 0 | 0 | core.symbol.cleavage (cleavage_symbol.svg)<br>exp.protein.protease (protease.svg) |  |
 | protein degradation | created | 2 | 2 | 0 | 0 | exp.pathway_symbol.degradation (degradation.svg)<br>proteostasis.protein.proteasomal_substrate_processing (proteasomal_substrate_processing.svg) |  |
 | protein dimer | created | 2 | 2 | 0 | 0 | exp.protein.dimer.heterodimer (dimer_heterodimer.svg)<br>exp.protein.dimer.homodimer (dimer_homodimer.svg) |  |
 | protein folding | created | 2 | 2 | 0 | 0 | proteostasis.protein.hsp70_client_complex (hsp70_client_complex.svg)<br>proteostasis.protein.unfolded_polypeptide (unfolded_polypeptide.svg) |  |
 | protein synthesis and turnover | created | 2 | 2 | 0 | 0 | exp.organelle.proteasome (proteasome.svg)<br>exp.organelle.ribosome (ribosome.svg) |  |
 | protein turnover | created | 2 | 2 | 0 | 0 | exp.pathway_symbol.degradation (degradation.svg)<br>proteostasis.protein.proteasomal_substrate_processing (proteasomal_substrate_processing.svg) |  |
+| pseudotime trajectory | created | 2 | 0 | 2 | 0 | analysis.pseudotime_trajectory.branching (pseudotime_trajectory_branching.svg)<br>analysis.pseudotime_trajectory.linear (pseudotime_trajectory_linear.svg) |  |
+| pyroptosis | created | 2 | 0 | 2 | 0 | cellstress.cell.pyroptotic_cell.lytic (pyroptotic_cell_lytic.svg)<br>cellstress.cell.pyroptotic_cell.pore_bearing (pyroptotic_cell_pore_bearing.svg) |  |
+| pyroptotic cell | created | 2 | 0 | 2 | 0 | cellstress.cell.pyroptotic_cell.lytic (pyroptotic_cell_lytic.svg)<br>cellstress.cell.pyroptotic_cell.pore_bearing (pyroptotic_cell_pore_bearing.svg) |  |
+| pyroptotic cell — schematic | created | 2 | 0 | 2 | 0 | cellstress.cell.pyroptotic_cell.lytic (pyroptotic_cell_lytic.svg)<br>cellstress.cell.pyroptotic_cell.pore_bearing (pyroptotic_cell_pore_bearing.svg) |  |
 | receptor | created | 2 | 2 | 0 | 0 | core.receptor.gpcr_like (gpcr_like_receptor.svg)<br>core.receptor.membrane (membrane_receptor.svg) |  |
 | receptor binding | created | 2 | 2 | 0 | 0 | core.immune.fc_receptor_binding (immune_fc_receptor_binding.svg)<br>core.immune.tcr_engagement (immune_tcr_engagement.svg) |  |
 | recruitment and trafficking | created | 2 | 2 | 0 | 0 | immuno.pathway.leukocyte_recruitment (leukocyte_recruitment.svg)<br>immuno.pathway.soluble_factor_gradient (soluble_factor_gradient.svg) |  |
+| regulated necrotic cell death | created | 2 | 0 | 2 | 0 | cellstress.cell.necroptotic_cell.lytic (necroptotic_cell_lytic.svg)<br>cellstress.cell.necroptotic_cell.membrane_mlkl (necroptotic_cell_membrane_mlkl.svg) |  |
+| remak schwann cell | created | 2 | 0 | 2 | 0 | neuro.schwann_cell.myelinating_internode (schwann_cell_myelinating_internode.svg)<br>neuro.schwann_cell.nonmyelinating_bundle (schwann_cell_nonmyelinating_bundle.svg) |  |
+| replicated chromosome | created | 2 | 0 | 2 | 0 | cellstress.nucleic_acid.condensed_chromosome.metacentric (condensed_chromosome_metacentric.svg)<br>cellstress.nucleic_acid.condensed_chromosome.submetacentric (condensed_chromosome_submetacentric.svg) |  |
+| replication fork reversal | created | 2 | 0 | 2 | 0 | cellstress.nucleic_acid.replication_stress.reversed_fork (replication_stress_reversed_fork.svg)<br>cellstress.nucleic_acid.replication_stress.stalled_fork (replication_stress_stalled_fork.svg) |  |
+| replication stress | created | 2 | 0 | 2 | 0 | cellstress.nucleic_acid.replication_stress.reversed_fork (replication_stress_reversed_fork.svg)<br>cellstress.nucleic_acid.replication_stress.stalled_fork (replication_stress_stalled_fork.svg) |  |
+| ribosome biogenesis compartment | created | 2 | 0 | 2 | 0 | cellstress.organelle.nucleolus.nuclear_context (nucleolus_nuclear_context.svg)<br>cellstress.organelle.nucleolus.subcompartments (nucleolus_subcompartments.svg) |  |
 | rna processing | created | 2 | 2 | 0 | 0 | exp.nucleic_acid.pre_mrna (pre_mrna.svg)<br>exp.nucleic_acid.splicing (splicing.svg) |  |
 | rough er | created | 2 | 2 | 0 | 0 | core.er.rough (rough_endoplasmic_reticulum.svg)<br>core.er.rough_network (rough_er_network.svg) |  |
+| ruptured cell | created | 2 | 0 | 2 | 0 | cellstress.cell.necrotic_cell.disintegrating (necrotic_cell_disintegrating.svg)<br>cellstress.cell.necrotic_cell.swollen_ruptured (necrotic_cell_swollen_ruptured.svg) |  |
+| scatter plot | created | 2 | 0 | 2 | 0 | analysis.scatter_plot.single_series (scatter_plot_single_series.svg)<br>analysis.scatter_plot.two_series (scatter_plot_two_series.svg) |  |
 | screening | created | 2 | 2 | 0 | 0 | core.lab.plate_96_well (plate_96_well.svg)<br>core.lab.well_plate (well_plate.svg) |  |
 | sec13 sec31 | created | 2 | 0 | 2 | 0 | cellarch.pathway_symbol.copii_detached_carrier (copii_detached_carrier.svg)<br>cellarch.pathway_symbol.copii_vesicle_budding (copii_vesicle_budding.svg) |  |
 | sec23 sec24 | created | 2 | 0 | 2 | 0 | cellarch.pathway_symbol.copii_detached_carrier (copii_detached_carrier.svg)<br>cellarch.pathway_symbol.copii_vesicle_budding (copii_vesicle_budding.svg) |  |
+| secreted membrane vesicle | created | 2 | 0 | 2 | 0 | cellstress.membrane_signaling.extracellular_vesicle.endosomal_release (extracellular_vesicle_endosomal_release.svg)<br>cellstress.membrane_signaling.extracellular_vesicle.isolated (extracellular_vesicle_isolated.svg) |  |
 | secreted signals | created | 2 | 2 | 0 | 0 | exp.protein.chemokine (chemokine.svg)<br>exp.protein.growth_factor (growth_factor.svg) |  |
 | secretion | created | 2 | 2 | 0 | 0 | core.symbol.secretion_arrow (secretion_arrow.svg)<br>core.vesicle (vesicle.svg) |  |
 | secretory vesicle | created | 2 | 2 | 0 | 0 | core.immune.cytotoxic_granule_release (immune_cytotoxic_granule_release.svg)<br>exp.organelle.secretory_granule (secretory_granule.svg) |  |
@@ -357,23 +690,47 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | sequencing reads | created | 2 | 2 | 0 | 0 | exp.assay_workflow.sequencing_reads.paired_end (sequencing_reads_paired_end.svg)<br>exp.assay_workflow.sequencing_reads.single_end (sequencing_reads_single_end.svg) |  |
 | sequencing-read alignment | created | 2 | 2 | 0 | 0 | exp.assay_workflow.sequencing_reads.paired_end (sequencing_reads_paired_end.svg)<br>exp.assay_workflow.sequencing_reads.single_end (sequencing_reads_single_end.svg) |  |
 | signaling complexes | created | 2 | 2 | 0 | 0 | exp.protein.adaptor (adaptor.svg)<br>exp.protein.scaffold (scaffold.svg) |  |
+| single cell path | created | 2 | 0 | 2 | 0 | analysis.cell_tracking_trajectory.single_track (cell_tracking_trajectory_single_track.svg)<br>analysis.cell_tracking_trajectory.two_tracks (cell_tracking_trajectory_two_tracks.svg) |  |
 | single end reads | created | 2 | 2 | 0 | 0 | exp.assay_workflow.sequencing_reads.paired_end (sequencing_reads_paired_end.svg)<br>exp.assay_workflow.sequencing_reads.single_end (sequencing_reads_single_end.svg) |  |
+| single sensory cilium | created | 2 | 0 | 2 | 0 | cellstress.organelle.primary_cilium.bent (primary_cilium_bent.svg)<br>cellstress.organelle.primary_cilium.straight (primary_cilium_straight.svg) |  |
 | single stranded rna | created | 2 | 2 | 0 | 0 | core.rna.strand (rna_strand.svg)<br>core.rna.strand_linear (rna_strand_linear.svg) |  |
 | single-cell analysis | created | 2 | 2 | 0 | 0 | exp.assay_workflow.flow_cytometry_readout.dot_plot (flow_cytometry_readout_dot_plot.svg)<br>exp.assay_workflow.flow_cytometry_readout.histogram (flow_cytometry_readout_histogram.svg) |  |
+| sister chromatids | created | 2 | 0 | 2 | 0 | cellstress.nucleic_acid.condensed_chromosome.metacentric (condensed_chromosome_metacentric.svg)<br>cellstress.nucleic_acid.condensed_chromosome.submetacentric (condensed_chromosome_submetacentric.svg) |  |
+| skeletal muscle | created | 2 | 0 | 2 | 0 | tissue.skeletal_muscle.bundle_cross_section (skeletal_muscle_bundle_cross_section.svg)<br>tissue.skeletal_muscle.longitudinal_fibers (skeletal_muscle_longitudinal_fibers.svg) |  |
+| slender actin protrusion | created | 2 | 0 | 2 | 0 | cellstress.cell.filopodium.bundle_detail (filopodium_bundle_detail.svg)<br>cellstress.cell.filopodium.whole_cell (filopodium_whole_cell.svg) |  |
+| son srrm2 condensate | created | 2 | 0 | 2 | 0 | cellstress.organelle.nuclear_speckle.condensate_detail (nuclear_speckle_condensate_detail.svg)<br>cellstress.organelle.nuclear_speckle.nuclear_distribution (nuclear_speckle_nuclear_distribution.svg) |  |
 | spheroid aggregation | created | 2 | 0 | 2 | 0 | culture.model_system.microwell_spheroid_aggregation (microwell_spheroid_aggregation.svg)<br>culture.model_system.microwell_spheroid_aggregation.array (microwell_spheroid_aggregation_array.svg) |  |
 | spheroid culture | created | 2 | 0 | 2 | 0 | culture.model_system.hanging_drop_spheroid (hanging_drop_spheroid.svg)<br>culture.model_system.hanging_drop_spheroid.array (hanging_drop_spheroid_array.svg) |  |
 | spindle | created | 2 | 2 | 0 | 0 | core.cell.dividing (cell_dividing.svg)<br>exp.cell.cancer_cell.spindle (cancer_cell_spindle.svg) |  |
+| spine head | created | 2 | 0 | 2 | 0 | neuro.dendritic_spine.mushroom (dendritic_spine_mushroom.svg)<br>neuro.dendritic_spine.thin (dendritic_spine_thin.svg) |  |
+| spine neck | created | 2 | 0 | 2 | 0 | neuro.dendritic_spine.mushroom (dendritic_spine_mushroom.svg)<br>neuro.dendritic_spine.thin (dendritic_spine_thin.svg) |  |
+| splicing speckle | created | 2 | 0 | 2 | 0 | cellstress.organelle.nuclear_speckle.condensate_detail (nuclear_speckle_condensate_detail.svg)<br>cellstress.organelle.nuclear_speckle.nuclear_distribution (nuclear_speckle_nuclear_distribution.svg) |  |
+| split violin distribution | created | 2 | 0 | 2 | 0 | analysis.violin_plot.paired (violin_plot_paired.svg)<br>analysis.violin_plot.split (violin_plot_split.svg) |  |
 | ssrna | created | 2 | 2 | 0 | 0 | core.rna.strand (rna_strand.svg)<br>core.rna.strand_linear (rna_strand_linear.svg) |  |
+| stalled replication fork | created | 2 | 0 | 2 | 0 | cellstress.nucleic_acid.replication_stress.reversed_fork (replication_stress_reversed_fork.svg)<br>cellstress.nucleic_acid.replication_stress.stalled_fork (replication_stress_stalled_fork.svg) |  |
 | strand | created | 2 | 2 | 0 | 0 | core.rna.strand (rna_strand.svg)<br>core.rna.strand_linear (rna_strand_linear.svg) |  |
 | surface immunoglobulin | created | 2 | 2 | 0 | 0 | core.cell.b_cell (immune_b_cell.svg)<br>core.cell.b_cell_manuscript (immune_b_cell_manuscript.svg) |  |
 | surface receptor | created | 2 | 2 | 0 | 0 | core.cell.t_cell (immune_t_cell.svg)<br>core.cell.t_cell_manuscript (immune_t_cell_manuscript.svg) |  |
+| survival probability curve | created | 2 | 0 | 2 | 0 | analysis.kaplan_meier_curve.one_group (kaplan_meier_curve_one_group.svg)<br>analysis.kaplan_meier_curve.two_groups (kaplan_meier_curve_two_groups.svg) |  |
+| synapse | created | 2 | 0 | 2 | 0 | neuro.chemical_synapse.bouton_spine (chemical_synapse_bouton_spine.svg)<br>neuro.chemical_synapse.shaft_contact (chemical_synapse_shaft_contact.svg) |  |
 | t cell | created | 2 | 2 | 0 | 0 | core.cell.t_cell (immune_t_cell.svg)<br>core.cell.t_cell_manuscript (immune_t_cell_manuscript.svg) |  |
 | t lymphocyte | created | 2 | 2 | 0 | 0 | core.cell.t_cell (immune_t_cell.svg)<br>core.cell.t_cell_manuscript (immune_t_cell_manuscript.svg) |  |
+| tan | created | 2 | 0 | 2 | 0 | tme.tumor_associated_neutrophil.isolated (tumor_associated_neutrophil_isolated.svg)<br>tme.tumor_associated_neutrophil.tumor_contact (tumor_associated_neutrophil_tumor_contact.svg) |  |
+| terminal bouton | created | 2 | 0 | 2 | 0 | neuro.axon_terminal.branched_terminals (axon_terminal_branched_terminals.svg)<br>neuro.axon_terminal.single_bouton (axon_terminal_single_bouton.svg) |  |
+| tertiary lymphoid structure | created | 2 | 0 | 2 | 0 | tme.tertiary_lymphoid_structure.germinal_center (tertiary_lymphoid_structure_germinal_center.svg)<br>tme.tertiary_lymphoid_structure.primary_follicle (tertiary_lymphoid_structure_primary_follicle.svg) |  |
+| tertiary lymphoid tissue | created | 2 | 0 | 2 | 0 | tme.tertiary_lymphoid_structure.germinal_center (tertiary_lymphoid_structure_germinal_center.svg)<br>tme.tertiary_lymphoid_structure.primary_follicle (tertiary_lymphoid_structure_primary_follicle.svg) |  |
+| testicular interstitium | created | 2 | 0 | 2 | 0 | endocrine.leydig_interstitium.paired_tubules (leydig_interstitium_paired_tubules.svg)<br>endocrine.leydig_interstitium.tubule_corner (leydig_interstitium_tubule_corner.svg) |  |
+| testis | created | 2 | 0 | 2 | 0 | endocrine.leydig_interstitium.paired_tubules (leydig_interstitium_paired_tubules.svg)<br>endocrine.leydig_interstitium.tubule_corner (leydig_interstitium_tubule_corner.svg) |  |
 | therapeutic antibodies | created | 2 | 2 | 0 | 0 | immuno.protein.bispecific_t_cell_engager (bispecific_t_cell_engager.svg)<br>immuno.protein.checkpoint_blocking_antibody (checkpoint_blocking_antibody.svg) |  |
+| thyroid | created | 2 | 0 | 2 | 0 | endocrine.thyroid_follicle.follicle_field (thyroid_follicle_follicle_field.svg)<br>endocrine.thyroid_follicle.single_follicle (thyroid_follicle_single_follicle.svg) |  |
+| thyroid follicle | created | 2 | 0 | 2 | 0 | endocrine.thyroid_follicle.follicle_field (thyroid_follicle_follicle_field.svg)<br>endocrine.thyroid_follicle.single_follicle (thyroid_follicle_single_follicle.svg) |  |
+| thyroid follicles | created | 2 | 0 | 2 | 0 | endocrine.thyroid_follicle.follicle_field (thyroid_follicle_follicle_field.svg)<br>endocrine.thyroid_follicle.single_follicle (thyroid_follicle_single_follicle.svg) |  |
+| time lapse trajectory | created | 2 | 0 | 2 | 0 | analysis.cell_tracking_trajectory.single_track (cell_tracking_trajectory_single_track.svg)<br>analysis.cell_tracking_trajectory.two_tracks (cell_tracking_trajectory_two_tracks.svg) |  |
 | tissue chip | created | 2 | 0 | 2 | 0 | culture.model_system.perfused_tissue_chip (perfused_tissue_chip.svg)<br>culture.model_system.perfused_tissue_chip.dual_channel (perfused_tissue_chip_dual_channel.svg) |  |
 | tissue section | created | 2 | 1 | 1 | 0 | rna.assay_workflow.spatial_capture_array (spatial_capture_array.svg)<br>core.sample.tissue_section_slide (tissue_section_slide.svg) |  |
 | tissue slice | created | 2 | 0 | 2 | 0 | culture.model_system.precision_cut_tissue_slice_culture (precision_cut_tissue_slice_culture.svg)<br>culture.model_system.precision_cut_tissue_slice_culture.interface (precision_cut_tissue_slice_culture_interface.svg) |  |
 | tissue-slice culture | created | 2 | 0 | 2 | 0 | culture.model_system.precision_cut_tissue_slice_culture (precision_cut_tissue_slice_culture.svg)<br>culture.model_system.precision_cut_tissue_slice_culture.interface (precision_cut_tissue_slice_culture_interface.svg) |  |
+| tls | created | 2 | 0 | 2 | 0 | tme.tertiary_lymphoid_structure.germinal_center (tertiary_lymphoid_structure_germinal_center.svg)<br>tme.tertiary_lymphoid_structure.primary_follicle (tertiary_lymphoid_structure_primary_follicle.svg) |  |
 | transcript | created | 2 | 2 | 0 | 0 | core.mrna.transcript (mrna_transcript.svg)<br>core.rna.strand (rna_strand.svg) |  |
 | transcription | created | 2 | 2 | 0 | 0 | core.gene.promoter (gene_promoter_segment.svg)<br>core.symbol.transcription_flow (transcription_flow_arrow.svg) |  |
 | transcription factor | created | 2 | 2 | 0 | 0 | core.dna.protein_binding (protein_dna_binding.svg)<br>core.protein.transcription_factor (transcription_factor.svg) |  |
@@ -381,15 +738,39 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | transport | created | 2 | 2 | 0 | 0 | core.channel.ion (ion_channel.svg)<br>core.transporter.basic (membrane_transporter.svg) |  |
 | transwell | created | 2 | 2 | 0 | 0 | exp.model_system.transwell_culture.coculture (transwell_culture_coculture.svg)<br>exp.model_system.transwell_culture.monoculture (transwell_culture_monoculture.svg) |  |
 | transwell culture | created | 2 | 2 | 0 | 0 | exp.model_system.transwell_culture.coculture (transwell_culture_coculture.svg)<br>exp.model_system.transwell_culture.monoculture (transwell_culture_monoculture.svg) |  |
+| tripartite synapse | created | 2 | 0 | 2 | 0 | neuro.neuron_astrocyte_contact.process_network (neuron_astrocyte_contact_process_network.svg)<br>neuro.neuron_astrocyte_contact.single_synapse (neuron_astrocyte_contact_single_synapse.svg) |  |
 | tumor antigens | created | 2 | 2 | 0 | 0 | immuno.protein.neoantigen_peptide (neoantigen_peptide.svg)<br>immuno.protein.tumor_associated_antigen (tumor_associated_antigen.svg) |  |
 | tumor cell | created | 2 | 2 | 0 | 0 | exp.cell.cancer_cell.round (cancer_cell_round.svg)<br>exp.cell.cancer_cell.spindle (cancer_cell_spindle.svg) |  |
+| tumor fibroblast | created | 2 | 0 | 2 | 0 | tme.cancer_associated_fibroblast.matrix (cancer_associated_fibroblast_matrix.svg)<br>tme.cancer_associated_fibroblast.spindle (cancer_associated_fibroblast_spindle.svg) |  |
+| tumor hypoxia gradient | created | 2 | 0 | 2 | 0 | tme.hypoxia_gradient.perivascular (hypoxia_gradient_perivascular.svg)<br>tme.hypoxia_gradient.spheroid (hypoxia_gradient_spheroid.svg) |  |
+| tumor neutrophil | created | 2 | 0 | 2 | 0 | tme.tumor_associated_neutrophil.isolated (tumor_associated_neutrophil_isolated.svg)<br>tme.tumor_associated_neutrophil.tumor_contact (tumor_associated_neutrophil_tumor_contact.svg) |  |
+| tumor-associated neutrophil | created | 2 | 0 | 2 | 0 | tme.tumor_associated_neutrophil.isolated (tumor_associated_neutrophil_isolated.svg)<br>tme.tumor_associated_neutrophil.tumor_contact (tumor_associated_neutrophil_tumor_contact.svg) |  |
+| tunica | created | 2 | 0 | 2 | 0 | tissue.vessel_wall.thicker_wall (vessel_wall_thicker_wall.svg)<br>tissue.vessel_wall.thinner_wall (vessel_wall_thinner_wall.svg) |  |
 | two subunit complex | created | 2 | 2 | 0 | 0 | exp.protein.dimer.heterodimer (dimer_heterodimer.svg)<br>exp.protein.dimer.homodimer (dimer_homodimer.svg) |  |
 | ubiquitination | created | 2 | 2 | 0 | 0 | exp.pathway_symbol.ubiquitination (ubiquitination.svg)<br>proteostasis.protein.ring_e3_ubiquitination_complex (ring_e3_ubiquitination_complex.svg) |  |
 | ubiquitylation | created | 2 | 2 | 0 | 0 | exp.pathway_symbol.ubiquitination (ubiquitination.svg)<br>proteostasis.protein.ring_e3_ubiquitination_complex (ring_e3_ubiquitination_complex.svg) |  |
+| umap embedding | created | 2 | 0 | 2 | 0 | analysis.umap_scatter.clusters (umap_scatter_clusters.svg)<br>analysis.umap_scatter.continuum (umap_scatter_continuum.svg) |  |
+| umap scatter | created | 2 | 0 | 2 | 0 | analysis.umap_scatter.clusters (umap_scatter_clusters.svg)<br>analysis.umap_scatter.continuum (umap_scatter_continuum.svg) |  |
+| unfolded protein response | created | 2 | 0 | 2 | 0 | cellstress.organelle.er_stress_upr.lumenal_load (er_stress_upr_lumenal_load.svg)<br>cellstress.organelle.er_stress_upr.sensor_assembly (er_stress_upr_sensor_assembly.svg) |  |
+| uniform manifold approximation projection | created | 2 | 0 | 2 | 0 | analysis.umap_scatter.clusters (umap_scatter_clusters.svg)<br>analysis.umap_scatter.continuum (umap_scatter_continuum.svg) |  |
+| upr | created | 2 | 0 | 2 | 0 | cellstress.organelle.er_stress_upr.lumenal_load (er_stress_upr_lumenal_load.svg)<br>cellstress.organelle.er_stress_upr.sensor_assembly (er_stress_upr_sensor_assembly.svg) |  |
 | vacuole | created | 2 | 2 | 0 | 0 | core.cell.macrophage (immune_macrophage.svg)<br>core.cell.macrophage_manuscript (immune_macrophage_manuscript.svg) |  |
+| vascular layers | created | 2 | 0 | 2 | 0 | tissue.vessel_wall.thicker_wall (vessel_wall_thicker_wall.svg)<br>tissue.vessel_wall.thinner_wall (vessel_wall_thinner_wall.svg) |  |
 | vector | created | 2 | 2 | 0 | 0 | core.nucleic_acid.plasmid_vector (plasmid_vector.svg)<br>core.nucleic_acid.plasmid_vector_manuscript (plasmid_vector_manuscript.svg) |  |
+| vein wall | created | 2 | 0 | 2 | 0 | tissue.vessel_wall.thicker_wall (vessel_wall_thicker_wall.svg)<br>tissue.vessel_wall.thinner_wall (vessel_wall_thinner_wall.svg) |  |
+| vessel | created | 2 | 0 | 2 | 0 | tissue.vessel_wall.thicker_wall (vessel_wall_thicker_wall.svg)<br>tissue.vessel_wall.thinner_wall (vessel_wall_thinner_wall.svg) |  |
+| vessel wall | created | 2 | 0 | 2 | 0 | tissue.vessel_wall.thicker_wall (vessel_wall_thicker_wall.svg)<br>tissue.vessel_wall.thinner_wall (vessel_wall_thinner_wall.svg) |  |
+| vessel-to-tissue | created | 2 | 0 | 2 | 0 | tme.drug_penetration_gradient.perivascular (drug_penetration_gradient_perivascular.svg)<br>tme.hypoxia_gradient.perivascular (hypoxia_gradient_perivascular.svg) |  |
+| violin density | created | 2 | 0 | 2 | 0 | analysis.violin_plot.paired (violin_plot_paired.svg)<br>analysis.violin_plot.split (violin_plot_split.svg) |  |
+| violin plot | created | 2 | 0 | 2 | 0 | analysis.violin_plot.paired (violin_plot_paired.svg)<br>analysis.violin_plot.split (violin_plot_split.svg) |  |
+| volcano plot | created | 2 | 0 | 2 | 0 | analysis.volcano_plot.feature_labels (volcano_plot_feature_labels.svg)<br>analysis.volcano_plot.overview (volcano_plot_overview.svg) |  |
 | well plate | created | 2 | 2 | 0 | 0 | core.lab.plate_96_well (plate_96_well.svg)<br>core.lab.well_plate (well_plate.svg) |  |
 | whole blood | created | 2 | 2 | 0 | 0 | core.sample.blood_drop (blood_drop.svg)<br>core.sample.blood_tube (blood_sample_tube.svg) |  |
+| whole cell | created | 2 | 0 | 2 | 0 | cellstress.cell.filopodium.whole_cell (filopodium_whole_cell.svg)<br>cellstress.cell.lamellipodium.whole_cell (lamellipodium_whole_cell.svg) |  |
+| xy scatter | created | 2 | 0 | 2 | 0 | analysis.scatter_plot.single_series (scatter_plot_single_series.svg)<br>analysis.scatter_plot.two_series (scatter_plot_two_series.svg) |  |
+| zona fasciculata | created | 2 | 0 | 2 | 0 | endocrine.adrenal_cortex.concentric_zones (adrenal_cortex_concentric_zones.svg)<br>endocrine.adrenal_cortex.cortical_wedge (adrenal_cortex_cortical_wedge.svg) |  |
+| zona glomerulosa | created | 2 | 0 | 2 | 0 | endocrine.adrenal_cortex.concentric_zones (adrenal_cortex_concentric_zones.svg)<br>endocrine.adrenal_cortex.cortical_wedge (adrenal_cortex_cortical_wedge.svg) |  |
+| zona reticularis | created | 2 | 0 | 2 | 0 | endocrine.adrenal_cortex.concentric_zones (adrenal_cortex_concentric_zones.svg)<br>endocrine.adrenal_cortex.cortical_wedge (adrenal_cortex_cortical_wedge.svg) |  |
 | 26s proteasome | created | 1 | 1 | 0 | 0 | exp.organelle.proteasome (proteasome.svg) |  |
 | 3d model | created | 1 | 1 | 0 | 0 | core.model.tumor_glia_coculture (tumor_glia_coculture.svg) |  |
 | 3d organoid | created | 1 | 1 | 0 | 0 | exp.model_system.organoid_lumen (organoid_lumen.svg) |  |
@@ -434,11 +815,15 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | adherent clonogenic colonies | created | 1 | 0 | 1 | 0 | culture.assay_workflow.clonogenic_colony_formation (clonogenic_colony_formation.svg) |  |
 | adherent colonies | created | 1 | 0 | 1 | 0 | culture.assay_workflow.clonogenic_colony_formation (clonogenic_colony_formation.svg) |  |
 | adhesion receptors | created | 1 | 1 | 0 | 0 | exp.membrane_signaling.integrin (integrin.svg) |  |
-| adipocyte | created | 1 | 1 | 0 | 0 | exp.cell.adipocyte (adipocyte.svg) |  |
 | adipose cell | created | 1 | 1 | 0 | 0 | exp.cell.adipocyte (adipocyte.svg) |  |
+| adipose single adipocyte | created | 1 | 0 | 1 | 0 | tissue.adipose.single_adipocyte (adipose_single_adipocyte.svg) |  |
 | adoptive cell transfer | created | 1 | 1 | 0 | 0 | immuno.pathway.adoptive_cell_transfer (adoptive_cell_transfer.svg) |  |
 | adoptive cellular therapy | created | 1 | 1 | 0 | 0 | immuno.pathway.adoptive_cell_transfer (adoptive_cell_transfer.svg) |  |
 | adoptive transfer | created | 1 | 1 | 0 | 0 | immuno.pathway.adoptive_cell_transfer (adoptive_cell_transfer.svg) |  |
+| adrenal cortex concentric zones | created | 1 | 0 | 1 | 0 | endocrine.adrenal_cortex.concentric_zones (adrenal_cortex_concentric_zones.svg) |  |
+| adrenal cortex cortical wedge | created | 1 | 0 | 1 | 0 | endocrine.adrenal_cortex.cortical_wedge (adrenal_cortex_cortical_wedge.svg) |  |
+| adrenal medulla medullary field | created | 1 | 0 | 1 | 0 | endocrine.adrenal_medulla.medullary_field (adrenal_medulla_medullary_field.svg) |  |
+| adrenal medulla vascular nests | created | 1 | 0 | 1 | 0 | endocrine.adrenal_medulla.vascular_nests (adrenal_medulla_vascular_nests.svg) |  |
 | agar colony assay | created | 1 | 0 | 1 | 0 | culture.assay_workflow.soft_agar_colony (soft_agar_colony.svg) |  |
 | agarose gel result | created | 1 | 1 | 0 | 0 | exp.assay_workflow.pcr_gel_result (pcr_gel_result.svg) |  |
 | agarose gel tank | created | 1 | 1 | 0 | 0 | exp.lab_equipment.gel_electrophoresis (gel_electrophoresis.svg) |  |
@@ -461,9 +846,15 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | amplification plot | created | 1 | 1 | 0 | 0 | exp.assay_workflow.qpcr_curve (qpcr_curve.svg) |  |
 | amplified dna | created | 1 | 1 | 0 | 0 | exp.nucleic_acid.pcr_amplicon (pcr_amplicon.svg) |  |
 | anchorage independent growth | created | 1 | 0 | 1 | 0 | culture.assay_workflow.soft_agar_colony (soft_agar_colony.svg) |  |
+| angiogenic sprout branching | created | 1 | 0 | 1 | 0 | tissue.angiogenic_sprout.branching (angiogenic_sprout_branching.svg) |  |
+| angiogenic sprout single tip | created | 1 | 0 | 1 | 0 | tissue.angiogenic_sprout.single_tip (angiogenic_sprout_single_tip.svg) |  |
 | angiogenic vessel sprout | created | 1 | 1 | 0 | 0 | immuno.model.angiogenic_vessel_sprout (angiogenic_vessel_sprout.svg) |  |
 | animal cell cutaway | created | 1 | 1 | 0 | 0 | core.cell.generic_cutaway (cell_generic_cutaway.svg) |  |
 | animal models | created | 1 | 1 | 0 | 0 | exp.model_system.xenograft_mouse (xenograft_mouse.svg) |  |
+| anoikis blebbing apoptotic | created | 1 | 0 | 1 | 0 | cellstress.cell.anoikis.blebbing_apoptotic (anoikis_blebbing_apoptotic.svg) |  |
+| anoikis detached apoptotic | created | 1 | 0 | 1 | 0 | cellstress.cell.anoikis.detached_apoptotic (anoikis_detached_apoptotic.svg) |  |
+| anterior pituitary cords longitudinal | created | 1 | 0 | 1 | 0 | endocrine.anterior_pituitary.cords_longitudinal (anterior_pituitary_cords_longitudinal.svg) |  |
+| anterior pituitary cords radial | created | 1 | 0 | 1 | 0 | endocrine.anterior_pituitary.cords_radial (anterior_pituitary_cords_radial.svg) |  |
 | anterograde transport | created | 1 | 0 | 1 | 0 | cellarch.pathway_symbol.kinesin_cargo_transport (kinesin_cargo_transport.svg) |  |
 | anti-ctla-4 | created | 1 | 1 | 0 | 0 | immuno.protein.checkpoint_blocking_antibody (checkpoint_blocking_antibody.svg) |  |
 | anti-pd-1 | created | 1 | 1 | 0 | 0 | immuno.protein.checkpoint_blocking_antibody (checkpoint_blocking_antibody.svg) |  |
@@ -496,12 +887,14 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | apc t cell immune synapse | created | 1 | 1 | 0 | 0 | immuno.pathway.apc_t_cell_immune_synapse (apc_t_cell_immune_synapse.svg) |  |
 | apc t-cell interaction | created | 1 | 1 | 0 | 0 | immuno.pathway.apc_t_cell_immune_synapse (apc_t_cell_immune_synapse.svg) |  |
 | apc–t-cell immune synapse | created | 1 | 1 | 0 | 0 | immuno.pathway.apc_t_cell_immune_synapse (apc_t_cell_immune_synapse.svg) |  |
+| apical | created | 1 | 0 | 1 | 0 | tissue.epithelial_sheet.apical (epithelial_sheet_apical.svg) |  |
 | apical epithelial cell | created | 1 | 1 | 0 | 0 | core.cell.epithelial_apical (cell_epithelial_apical.svg) |  |
 | apical view | created | 1 | 1 | 0 | 0 | core.cell.epithelial_apical (cell_epithelial_apical.svg) |  |
 | apoptosis | created | 1 | 1 | 0 | 0 | core.cell.apoptotic (cell_apoptotic.svg) |  |
 | apoptosis receptor | created | 1 | 1 | 0 | 0 | exp.membrane_signaling.death_receptor (death_receptor.svg) |  |
 | apoptotic cell | created | 1 | 1 | 0 | 0 | core.cell.apoptotic (cell_apoptotic.svg) |  |
 | apposed autophagosome and lysosome | created | 1 | 0 | 1 | 0 | cellarch.pathway_symbol.autophagosome_lysosome_docking (autophagosome_lysosome_docking.svg) |  |
+| approach and contact | created | 1 | 0 | 1 | 0 | cellstress.organelle.mitochondrial_fusion.approach_contact (mitochondrial_fusion_approach_contact.svg) |  |
 | aquatic model | created | 1 | 1 | 0 | 0 | core.model.zebrafish (zebrafish_model.svg) |  |
 | aqueous cell partition | created | 1 | 0 | 1 | 0 | rna.lab_equipment.microfluidic_cell_partition (microfluidic_cell_partition.svg) |  |
 | arf1 | created | 1 | 0 | 1 | 0 | cellarch.organelle.copi_coated_vesicle (copi_coated_vesicle.svg) |  |
@@ -528,6 +921,11 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | autophagosome–lysosome — pre-fusion apposition | created | 1 | 0 | 1 | 0 | cellarch.pathway_symbol.autophagosome_lysosome_docking (autophagosome_lysosome_docking.svg) |  |
 | autophagy fusion | created | 1 | 0 | 1 | 0 | cellarch.pathway_symbol.autophagosome_lysosome_fusion (autophagosome_lysosome_fusion.svg) |  |
 | autophagy membrane apposition | created | 1 | 0 | 1 | 0 | cellarch.pathway_symbol.autophagosome_lysosome_docking (autophagosome_lysosome_docking.svg) |  |
+| axon myelin longitudinal | created | 1 | 0 | 1 | 0 | neuro.axon_myelin.longitudinal (axon_myelin_longitudinal.svg) |  |
+| axon myelin transverse | created | 1 | 0 | 1 | 0 | neuro.axon_myelin.transverse (axon_myelin_transverse.svg) |  |
+| axon terminal branched terminals | created | 1 | 0 | 1 | 0 | neuro.axon_terminal.branched_terminals (axon_terminal_branched_terminals.svg) |  |
+| axon terminal single bouton | created | 1 | 0 | 1 | 0 | neuro.axon_terminal.single_bouton (axon_terminal_single_bouton.svg) |  |
+| b / t organization | created | 1 | 0 | 1 | 0 | tme.tertiary_lymphoid_structure.primary_follicle (tertiary_lymphoid_structure_primary_follicle.svg) |  |
 | b cell — manuscript line | created | 1 | 1 | 0 | 0 | core.cell.b_cell_manuscript (immune_b_cell_manuscript.svg) |  |
 | b lymphocyte receptor | created | 1 | 1 | 0 | 0 | exp.membrane_signaling.bcr (bcr.svg) |  |
 | b-cell antigen receptor complex | created | 1 | 1 | 0 | 0 | exp.membrane_signaling.bcr (bcr.svg) |  |
@@ -540,6 +938,7 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | bacillus-type endospore | created | 1 | 0 | 1 | 0 | microbe.cell.bacterial_endospore (bacterial_endospore.svg) |  |
 | bacterial biofilm | created | 1 | 0 | 1 | 0 | microbe.model_system.surface_attached_biofilm (surface_attached_biofilm.svg) |  |
 | bacterial capsule | created | 1 | 0 | 1 | 0 | microbe.cell.encapsulated_bacterium (encapsulated_bacterium.svg) |  |
+| bacterial cargo | created | 1 | 0 | 1 | 0 | cellstress.organelle.phagolysosome.bacterial_cargo (phagolysosome_bacterial_cargo.svg) |  |
 | bacterial cell chain | created | 1 | 0 | 1 | 0 | microbe.cell.chained_cocci (chained_cocci.svg) |  |
 | bacterial cell pair | created | 1 | 0 | 1 | 0 | microbe.cell.paired_cocci (paired_cocci.svg) |  |
 | bacterial endospore | created | 1 | 0 | 1 | 0 | microbe.cell.bacterial_endospore (bacterial_endospore.svg) |  |
@@ -557,12 +956,12 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | basal body pair | created | 1 | 1 | 0 | 0 | exp.organelle.centriole_pair (centriole_pair.svg) |  |
 | basal epithelial adhesion | created | 1 | 0 | 1 | 0 | cellarch.membrane_signaling.hemidesmosome (hemidesmosome.svg) |  |
 | basal hemidesmosome | created | 1 | 0 | 1 | 0 | cellarch.membrane_signaling.hemidesmosome (hemidesmosome.svg) |  |
-| basal lamina | created | 1 | 1 | 0 | 0 | immuno.model.basement_membrane_segment (basement_membrane_segment.svg) |  |
 | basal medium | created | 1 | 0 | 1 | 0 | culture.model_system.air_liquid_interface_culture (air_liquid_interface_culture.svg) |  |
 | basal view | created | 1 | 0 | 1 | 0 | cellarch.membrane_signaling.focal_adhesion_enface (focal_adhesion_enface.svg) |  |
 | baseline | created | 1 | 1 | 0 | 0 | exp.pathway_symbol.time_course (time_course.svg) |  |
-| basement membrane | created | 1 | 1 | 0 | 0 | immuno.model.basement_membrane_segment (basement_membrane_segment.svg) |  |
 | basement membrane adhesion | created | 1 | 0 | 1 | 0 | cellarch.membrane_signaling.hemidesmosome (hemidesmosome.svg) |  |
+| basement membrane epithelial interface | created | 1 | 0 | 1 | 0 | tissue.basement_membrane.epithelial_interface (basement_membrane_epithelial_interface.svg) |  |
+| basement membrane isolated sheet | created | 1 | 0 | 1 | 0 | tissue.basement_membrane.isolated_sheet (basement_membrane_isolated_sheet.svg) |  |
 | basement membrane segment | created | 1 | 1 | 0 | 0 | immuno.model.basement_membrane_segment (basement_membrane_segment.svg) |  |
 | basophil | created | 1 | 1 | 0 | 0 | exp.cell.basophil (basophil.svg) |  |
 | basophil cell | created | 1 | 1 | 0 | 0 | exp.cell.basophil (basophil.svg) |  |
@@ -571,6 +970,7 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | bead barcode | created | 1 | 0 | 1 | 0 | rna.nucleic_acid.barcoded_capture_bead (barcoded_capture_bead.svg) |  |
 | bead barcode and umi | created | 1 | 0 | 1 | 0 | rna.nucleic_acid.barcoded_capture_bead (barcoded_capture_bead.svg) |  |
 | benchtop centrifuge | created | 1 | 1 | 0 | 0 | exp.lab_equipment.centrifuge (centrifuge.svg) |  |
+| bent projection | created | 1 | 0 | 1 | 0 | cellstress.organelle.primary_cilium.bent (primary_cilium_bent.svg) |  |
 | bidirectional arrow | created | 1 | 1 | 0 | 0 | core.symbol.bidirectional_arrow (bidirectional_arrow.svg) |  |
 | bilobed granulocyte | created | 1 | 1 | 0 | 0 | exp.cell.eosinophil (eosinophil.svg) |  |
 | binding assays | created | 1 | 1 | 0 | 0 | exp.assay_workflow.elisa_assay (elisa_assay.svg) |  |
@@ -592,6 +992,7 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | bispecific t-cell engager | created | 1 | 1 | 0 | 0 | immuno.protein.bispecific_t_cell_engager (bispecific_t_cell_engager.svg) |  |
 | bite | created | 1 | 1 | 0 | 0 | immuno.protein.bispecific_t_cell_engager (bispecific_t_cell_engager.svg) |  |
 | blebbing | created | 1 | 1 | 0 | 0 | core.cell.apoptotic (cell_apoptotic.svg) |  |
+| blind end | created | 1 | 0 | 1 | 0 | tissue.lymphatic_capillary.blind_end (lymphatic_capillary_blind_end.svg) |  |
 | block | created | 1 | 1 | 0 | 0 | core.symbol.drug_inhibition_badge (drug_inhibition_badge.svg) |  |
 | blood collection tube | created | 1 | 1 | 0 | 0 | core.sample.blood_tube (blood_sample_tube.svg) |  |
 | blood drop | created | 1 | 1 | 0 | 0 | core.sample.blood_drop (blood_drop.svg) |  |
@@ -604,6 +1005,12 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | blot result | created | 1 | 1 | 0 | 0 | exp.assay_workflow.western_blot_result (western_blot_result.svg) |  |
 | blot transfer | created | 1 | 1 | 0 | 0 | exp.lab_equipment.blot_transfer (blot_transfer.svg) |  |
 | blot transfer unit | created | 1 | 1 | 0 | 0 | exp.lab_equipment.blot_transfer (blot_transfer.svg) |  |
+| bouton to shaft | created | 1 | 0 | 1 | 0 | neuro.chemical_synapse.shaft_contact (chemical_synapse_shaft_contact.svg) |  |
+| bouton to spine | created | 1 | 0 | 1 | 0 | neuro.chemical_synapse.bouton_spine (chemical_synapse_bouton_spine.svg) |  |
+| box plot horizontal | created | 1 | 0 | 1 | 0 | analysis.box_plot.horizontal (box_plot_horizontal.svg) |  |
+| box plot vertical | created | 1 | 0 | 1 | 0 | analysis.box_plot.vertical (box_plot_vertical.svg) |  |
+| box plot — horizontal groups | created | 1 | 0 | 1 | 0 | analysis.box_plot.horizontal (box_plot_horizontal.svg) |  |
+| box plot — vertical groups | created | 1 | 0 | 1 | 0 | analysis.box_plot.vertical (box_plot_vertical.svg) |  |
 | brain | created | 1 | 1 | 0 | 0 | core.cell.astrocyte_like (astrocyte_like_cell.svg) |  |
 | brain macrophage | created | 1 | 1 | 0 | 0 | exp.cell.microglia_like (microglia_like.svg) |  |
 | brain tumor | created | 1 | 1 | 0 | 0 | core.model.tumor_glia_coculture (tumor_glia_coculture.svg) |  |
@@ -611,7 +1018,10 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | branched fungal hypha | created | 1 | 0 | 1 | 0 | microbe.cell.septate_fungal_hypha (septate_fungal_hypha.svg) |  |
 | branched mitochondrial network | created | 1 | 1 | 0 | 0 | core.mitochondrion.network (mitochondrion_network.svg) |  |
 | branched recycling endosome | created | 1 | 0 | 1 | 0 | cellarch.pathway_symbol.recycling_endosome_branched (recycling_endosome_branched.svg) |  |
+| branched terminals | created | 1 | 0 | 1 | 0 | neuro.axon_terminal.branched_terminals (axon_terminal_branched_terminals.svg) |  |
 | branched tubular recycling endosome | created | 1 | 0 | 1 | 0 | cellarch.pathway_symbol.recycling_endosome_branched (recycling_endosome_branched.svg) |  |
+| branching | created | 1 | 0 | 1 | 0 | tissue.angiogenic_sprout.branching (angiogenic_sprout_branching.svg) |  |
+| branching ordering | created | 1 | 0 | 1 | 0 | analysis.pseudotime_trajectory.branching (pseudotime_trajectory_branching.svg) |  |
 | breakdown | created | 1 | 1 | 0 | 0 | exp.pathway_symbol.degradation (degradation.svg) |  |
 | bsc | created | 1 | 1 | 0 | 0 | exp.lab_equipment.biosafety_cabinet (biosafety_cabinet.svg) |  |
 | budded hydrogel-embedded organoid | created | 1 | 0 | 1 | 0 | culture.model_system.hydrogel_embedded_organoid.budding (hydrogel_embedded_organoid_budding.svg) |  |
@@ -619,11 +1029,14 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | budding yeast | created | 1 | 1 | 0 | 0 | core.model.yeast_budding (budding_yeast_model.svg) |  |
 | budding yeast model | created | 1 | 1 | 0 | 0 | core.model.yeast_budding (budding_yeast_model.svg) |  |
 | buffer bottle | created | 1 | 1 | 0 | 0 | exp.lab_equipment.reagent_bottle (reagent_bottle.svg) |  |
-| bundle | created | 1 | 1 | 0 | 0 | exp.organelle.actin_cytoskeleton.bundle (actin_cytoskeleton_bundle.svg) |  |
+| bundle cross section | created | 1 | 0 | 1 | 0 | tissue.skeletal_muscle.bundle_cross_section (skeletal_muscle_bundle_cross_section.svg) |  |
+| bundle detail | created | 1 | 0 | 1 | 0 | cellstress.cell.filopodium.bundle_detail (filopodium_bundle_detail.svg) |  |
 | c elegans | created | 1 | 1 | 0 | 0 | core.model.nematode (nematode_model.svg) |  |
 | cadherin | created | 1 | 0 | 1 | 0 | cellarch.membrane_signaling.adherens_junction (adherens_junction.svg) |  |
-| caf | created | 1 | 1 | 0 | 0 | exp.cell.fibroblast (fibroblast.svg) |  |
+| cage view | created | 1 | 0 | 1 | 0 | cellstress.membrane_signaling.clathrin_coated_vesicle.cage_view (clathrin_coated_vesicle_cage_view.svg) |  |
 | cancer associated fibroblast | created | 1 | 1 | 0 | 0 | exp.cell.fibroblast (fibroblast.svg) |  |
+| cancer associated fibroblast matrix | created | 1 | 0 | 1 | 0 | tme.cancer_associated_fibroblast.matrix (cancer_associated_fibroblast_matrix.svg) |  |
+| cancer associated fibroblast spindle | created | 1 | 0 | 1 | 0 | tme.cancer_associated_fibroblast.spindle (cancer_associated_fibroblast_spindle.svg) |  |
 | cancer cell cluster | created | 1 | 1 | 0 | 0 | exp.cell.tumor_cell_cluster (tumor_cell_cluster.svg) |  |
 | cancer cell round | created | 1 | 1 | 0 | 0 | exp.cell.cancer_cell.round (cancer_cell_round.svg) |  |
 | cancer cell spindle | created | 1 | 1 | 0 | 0 | exp.cell.cancer_cell.spindle (cancer_cell_spindle.svg) |  |
@@ -632,7 +1045,11 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | cancer neoepitope | created | 1 | 1 | 0 | 0 | immuno.protein.neoantigen_peptide (neoantigen_peptide.svg) |  |
 | cancer vaccine | created | 1 | 1 | 0 | 0 | immuno.pathway.neoantigen_vaccine (neoantigen_vaccine.svg) |  |
 | cancer-associated antigen | created | 1 | 1 | 0 | 0 | immuno.protein.tumor_associated_antigen (tumor_associated_antigen.svg) |  |
+| cancer-associated fibroblast — matrix context | created | 1 | 0 | 1 | 0 | tme.cancer_associated_fibroblast.matrix (cancer_associated_fibroblast_matrix.svg) |  |
+| cancer-associated fibroblast — spindle cell | created | 1 | 0 | 1 | 0 | tme.cancer_associated_fibroblast.spindle (cancer_associated_fibroblast_spindle.svg) |  |
 | cap | created | 1 | 1 | 0 | 0 | core.mrna.transcript (mrna_transcript.svg) |  |
+| capillary longitudinal | created | 1 | 0 | 1 | 0 | tissue.capillary.longitudinal (capillary_longitudinal.svg) |  |
+| capillary transverse | created | 1 | 0 | 1 | 0 | tissue.capillary.transverse (capillary_transverse.svg) |  |
 | capsular coating | created | 1 | 0 | 1 | 0 | microbe.cell.encapsulated_bacterium (encapsulated_bacterium.svg) |  |
 | capsule-bearing bacterium | created | 1 | 0 | 1 | 0 | microbe.cell.encapsulated_bacterium (encapsulated_bacterium.svg) |  |
 | capsule-bearing rod bacterium | created | 1 | 0 | 1 | 0 | microbe.cell.encapsulated_bacterium_rod (encapsulated_bacterium_rod.svg) |  |
@@ -640,9 +1057,13 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | capture bead | created | 1 | 0 | 1 | 0 | rna.nucleic_acid.barcoded_capture_bead (barcoded_capture_bead.svg) |  |
 | capture position | created | 1 | 0 | 1 | 0 | rna.assay_workflow.spatial_capture_array (spatial_capture_array.svg) |  |
 | car | created | 1 | 1 | 0 | 0 | immuno.membrane_signaling.chimeric_antigen_receptor (chimeric_antigen_receptor.svg) |  |
+| car nk cell receptor display | created | 1 | 0 | 1 | 0 | tme.car_nk_cell.receptor_display (car_nk_cell_receptor_display.svg) |  |
+| car nk cell target contact | created | 1 | 0 | 1 | 0 | tme.car_nk_cell.target_contact (car_nk_cell_target_contact.svg) |  |
 | car receptor | created | 1 | 1 | 0 | 0 | immuno.membrane_signaling.chimeric_antigen_receptor (chimeric_antigen_receptor.svg) |  |
 | car t | created | 1 | 1 | 0 | 0 | immuno.cell.car_t_cell (car_t_cell.svg) |  |
 | car t cell | created | 1 | 1 | 0 | 0 | immuno.cell.car_t_cell (car_t_cell.svg) |  |
+| car-nk cell — receptor display | created | 1 | 0 | 1 | 0 | tme.car_nk_cell.receptor_display (car_nk_cell_receptor_display.svg) |  |
+| car-nk cell — target contact | created | 1 | 0 | 1 | 0 | tme.car_nk_cell.target_contact (car_nk_cell_target_contact.svg) |  |
 | carbon-dioxide cell-culture incubator | created | 1 | 1 | 0 | 0 | exp.lab_equipment.co2_incubator (co2_incubator.svg) |  |
 | cargo adaptor | created | 1 | 0 | 1 | 0 | cellarch.pathway_symbol.cytoplasmic_dynein_cargo_transport (cytoplasmic_dynein_cargo_transport.svg) |  |
 | carrier suspension culture | created | 1 | 0 | 1 | 0 | culture.model_system.microcarrier_cell_culture (microcarrier_cell_culture.svg) |  |
@@ -650,6 +1071,8 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | catalysis | created | 1 | 1 | 0 | 0 | core.protein.enzyme (catalytic_enzyme.svg) |  |
 | catalytic enzyme | created | 1 | 1 | 0 | 0 | core.protein.enzyme (catalytic_enzyme.svg) |  |
 | catenin | created | 1 | 0 | 1 | 0 | cellarch.membrane_signaling.adherens_junction (adherens_junction.svg) |  |
+| caveola clustered profiles | created | 1 | 0 | 1 | 0 | cellstress.membrane_signaling.caveola.clustered_profiles (caveola_clustered_profiles.svg) |  |
+| caveola single invagination | created | 1 | 0 | 1 | 0 | cellstress.membrane_signaling.caveola.single_invagination (caveola_single_invagination.svg) |  |
 | cd152 | created | 1 | 1 | 0 | 0 | immuno.membrane_signaling.ctla4_receptor (ctla4_receptor.svg) |  |
 | cd152 checkpoint | created | 1 | 1 | 0 | 0 | immuno.membrane_signaling.ctla4_b7_checkpoint_interaction (ctla4_b7_checkpoint_interaction.svg) |  |
 | cd155 | created | 1 | 1 | 0 | 0 | immuno.membrane_signaling.cd155 (cd155.svg) |  |
@@ -713,6 +1136,7 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | cell neuron like | created | 1 | 1 | 0 | 0 | core.cell.neuron_like (cell_neuron_like.svg) |  |
 | cell neuron pseudounipolar | created | 1 | 1 | 0 | 0 | core.cell.neuron_pseudounipolar (cell_neuron_pseudounipolar.svg) |  |
 | cell nucleus | created | 1 | 1 | 0 | 0 | core.nucleus.round (nucleus_round.svg) |  |
+| cell pair | created | 1 | 0 | 1 | 0 | tme.generic_immune_synapse.cell_pair (generic_immune_synapse_cell_pair.svg) |  |
 | cell pellet | created | 1 | 1 | 0 | 0 | core.sample.cell_pellet_tube (cell_pellet_tube.svg) |  |
 | cell pellet tube | created | 1 | 1 | 0 | 0 | core.sample.cell_pellet_tube (cell_pellet_tube.svg) |  |
 | cell sorter | created | 1 | 1 | 0 | 0 | exp.lab_equipment.flow_cytometer (flow_cytometer.svg) |  |
@@ -721,7 +1145,13 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | cell survival | created | 1 | 1 | 0 | 0 | exp.assay_workflow.cell_viability_readout (cell_viability_readout.svg) |  |
 | cell suspension | created | 1 | 0 | 1 | 0 | rna.lab_equipment.microfluidic_cell_partition (microfluidic_cell_partition.svg) |  |
 | cell therapies | created | 1 | 1 | 0 | 0 | immuno.pathway.adoptive_cell_transfer (adoptive_cell_transfer.svg) |  |
+| cell tracking trajectory single track | created | 1 | 0 | 1 | 0 | analysis.cell_tracking_trajectory.single_track (cell_tracking_trajectory_single_track.svg) |  |
+| cell tracking trajectory two tracks | created | 1 | 0 | 1 | 0 | analysis.cell_tracking_trajectory.two_tracks (cell_tracking_trajectory_two_tracks.svg) |  |
+| cell tracking trajectory — single cell | created | 1 | 0 | 1 | 0 | analysis.cell_tracking_trajectory.single_track (cell_tracking_trajectory_single_track.svg) |  |
+| cell tracking trajectory — two cells | created | 1 | 0 | 1 | 0 | analysis.cell_tracking_trajectory.two_tracks (cell_tracking_trajectory_two_tracks.svg) |  |
 | cell viability readout | created | 1 | 1 | 0 | 0 | exp.assay_workflow.cell_viability_readout (cell_viability_readout.svg) |  |
+| cell with lipid damage | created | 1 | 0 | 1 | 0 | cellstress.cell.ferroptotic_cell.lipid_damage (ferroptotic_cell_lipid_damage.svg) |  |
+| cell with mitochondrial detail | created | 1 | 0 | 1 | 0 | cellstress.cell.ferroptotic_cell.mitochondrial_detail (ferroptotic_cell_mitochondrial_detail.svg) |  |
 | cell-cell interaction | created | 1 | 1 | 0 | 0 | core.immune.pd1_pdl1_checkpoint (immune_pd1_pdl1_checkpoint.svg) |  |
 | cell-containing droplet formation | created | 1 | 0 | 1 | 0 | rna.lab_equipment.microfluidic_cell_partition (microfluidic_cell_partition.svg) |  |
 | cell-exclusion zone assay | created | 1 | 0 | 1 | 0 | culture.assay_workflow.cell_exclusion_gap (cell_exclusion_gap.svg) |  |
@@ -744,6 +1174,8 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | checkpoint blocking antibody | created | 1 | 1 | 0 | 0 | immuno.protein.checkpoint_blocking_antibody (checkpoint_blocking_antibody.svg) |  |
 | checkpoint inhibitor antibody | created | 1 | 1 | 0 | 0 | immuno.protein.checkpoint_blocking_antibody (checkpoint_blocking_antibody.svg) |  |
 | checkpoint-blocking antibody | created | 1 | 1 | 0 | 0 | immuno.protein.checkpoint_blocking_antibody (checkpoint_blocking_antibody.svg) |  |
+| chemical synapse bouton spine | created | 1 | 0 | 1 | 0 | neuro.chemical_synapse.bouton_spine (chemical_synapse_bouton_spine.svg) |  |
+| chemical synapse shaft contact | created | 1 | 0 | 1 | 0 | neuro.chemical_synapse.shaft_contact (chemical_synapse_shaft_contact.svg) |  |
 | chemiluminescence blot imager | created | 1 | 1 | 0 | 0 | exp.lab_equipment.blot_imager (blot_imager.svg) |  |
 | chemiluminescence imager | created | 1 | 1 | 0 | 0 | exp.lab_equipment.blot_imager (blot_imager.svg) |  |
 | chemoattractant | created | 1 | 1 | 0 | 0 | exp.protein.chemokine (chemokine.svg) |  |
@@ -779,6 +1211,8 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | cis-snare complex | created | 1 | 0 | 1 | 0 | cellarch.membrane_signaling.cis_snare_complex (cis_snare_complex.svg) |  |
 | class ii biological safety cabinet | created | 1 | 1 | 0 | 0 | exp.lab_equipment.biosafety_cabinet (biosafety_cabinet.svg) |  |
 | classical monocyte | created | 1 | 1 | 0 | 0 | exp.cell.monocyte (monocyte.svg) |  |
+| clathrin coated vesicle cage view | created | 1 | 0 | 1 | 0 | cellstress.membrane_signaling.clathrin_coated_vesicle.cage_view (clathrin_coated_vesicle_cage_view.svg) |  |
+| clathrin coated vesicle section | created | 1 | 0 | 1 | 0 | cellstress.membrane_signaling.clathrin_coated_vesicle.section (clathrin_coated_vesicle_section.svg) |  |
 | clathrin pit | created | 1 | 1 | 0 | 0 | exp.membrane_signaling.endocytosis_pit (endocytosis_pit.svg) |  |
 | clathrin-coated endocytic pit | created | 1 | 1 | 0 | 0 | exp.membrane_signaling.endocytosis_pit (endocytosis_pit.svg) |  |
 | claudin | created | 1 | 0 | 1 | 0 | cellarch.membrane_signaling.tight_junction (tight_junction.svg) |  |
@@ -794,6 +1228,8 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | clonogenic colony formation | created | 1 | 0 | 1 | 0 | culture.assay_workflow.clonogenic_colony_formation (clonogenic_colony_formation.svg) |  |
 | closed copii carrier | created | 1 | 0 | 1 | 0 | cellarch.pathway_symbol.copii_detached_carrier (copii_detached_carrier.svg) |  |
 | cluster of differentiation 155 | created | 1 | 1 | 0 | 0 | immuno.membrane_signaling.cd155 (cd155.svg) |  |
+| clustered foci | created | 1 | 0 | 1 | 0 | cellstress.nucleic_acid.dna_damage_foci.clustered (dna_damage_foci_clustered.svg) |  |
+| clustered profiles | created | 1 | 0 | 1 | 0 | cellstress.membrane_signaling.caveola.clustered_profiles (caveola_clustered_profiles.svg) |  |
 | cns glia | created | 1 | 1 | 0 | 0 | exp.cell.oligodendrocyte_like (oligodendrocyte_like.svg) |  |
 | co-culture | created | 1 | 1 | 0 | 0 | core.model.tumor_glia_coculture (tumor_glia_coculture.svg) |  |
 | co-culture dish | created | 1 | 1 | 0 | 0 | exp.model_system.coculture_dish (coculture_dish.svg) |  |
@@ -811,6 +1247,7 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | cold tumor | created | 1 | 1 | 0 | 0 | immuno.model.immune_desert_tumor (immune_desert_tumor.svg) |  |
 | collagen degradation | created | 1 | 1 | 0 | 0 | immuno.pathway.ecm_remodeling (ecm_remodeling.svg) |  |
 | collagen gel contraction anchored | created | 1 | 0 | 1 | 0 | culture.assay_workflow.collagen_gel_contraction.anchored (collagen_gel_contraction_anchored.svg) |  |
+| collagen mesh | created | 1 | 0 | 1 | 0 | tissue.collagen.mesh (collagen_mesh.svg) |  |
 | collagen rich ecm aligned fibers | created | 1 | 1 | 0 | 0 | immuno.model.collagen_rich_ecm.aligned_fibers (collagen_rich_ecm_aligned_fibers.svg) |  |
 | collagen rich ecm mesh | created | 1 | 1 | 0 | 0 | immuno.model.collagen_rich_ecm.mesh (collagen_rich_ecm_mesh.svg) |  |
 | collagen-rich extracellular matrix — aligned fibers | created | 1 | 1 | 0 | 0 | immuno.model.collagen_rich_ecm.aligned_fibers (collagen_rich_ecm_aligned_fibers.svg) |  |
@@ -821,14 +1258,20 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | colony | created | 1 | 1 | 0 | 0 | core.lab.petri_dish (petri_dish.svg) |  |
 | colony formation | created | 1 | 0 | 1 | 0 | culture.assay_workflow.clonogenic_colony_formation (clonogenic_colony_formation.svg) |  |
 | colorimetric assay | created | 1 | 1 | 0 | 0 | exp.assay_workflow.elisa_assay (elisa_assay.svg) |  |
+| column clustering cue | created | 1 | 0 | 1 | 0 | analysis.heatmap.clustered (heatmap_clustered.svg) |  |
 | columnar epithelial cell | created | 1 | 1 | 0 | 0 | core.cell.epithelial (cell_epithelial.svg) |  |
+| compact branching view | created | 1 | 0 | 1 | 0 | neuro.oligodendrocyte.branching (oligodendrocyte_branching.svg) |  |
 | complementary dna | created | 1 | 1 | 0 | 0 | exp.nucleic_acid.cdna_library (cdna_library.svg) |  |
 | complementary-dna library | created | 1 | 1 | 0 | 0 | exp.nucleic_acid.cdna_library (cdna_library.svg) |  |
 | complex dissociation | created | 1 | 1 | 0 | 0 | exp.pathway_symbol.dissociation (dissociation.svg) |  |
 | complex formation | created | 1 | 1 | 0 | 0 | exp.pathway_symbol.binding_pair (binding_pair.svg) |  |
 | concentration response | created | 1 | 1 | 0 | 0 | exp.assay_workflow.dose_response_curve (dose_response_curve.svg) |  |
 | concentration-response curve | created | 1 | 1 | 0 | 0 | exp.assay_workflow.dose_response_curve (dose_response_curve.svg) |  |
+| concentric zones | created | 1 | 0 | 1 | 0 | endocrine.adrenal_cortex.concentric_zones (adrenal_cortex_concentric_zones.svg) |  |
+| condensate detail | created | 1 | 0 | 1 | 0 | cellstress.organelle.nuclear_speckle.condensate_detail (nuclear_speckle_condensate_detail.svg) |  |
 | condensed | created | 1 | 1 | 0 | 0 | exp.nucleic_acid.chromatin_state.condensed (chromatin_state_condensed.svg) |  |
+| condensed chromosome metacentric | created | 1 | 0 | 1 | 0 | cellstress.nucleic_acid.condensed_chromosome.metacentric (condensed_chromosome_metacentric.svg) |  |
+| condensed chromosome submetacentric | created | 1 | 0 | 1 | 0 | cellstress.nucleic_acid.condensed_chromosome.submetacentric (condensed_chromosome_submetacentric.svg) |  |
 | confluent epithelial monolayer | created | 1 | 1 | 0 | 0 | exp.model_system.epithelial_monolayer (epithelial_monolayer.svg) |  |
 | confluent epithelium | created | 1 | 1 | 0 | 0 | exp.model_system.epithelial_monolayer (epithelial_monolayer.svg) |  |
 | confocal | created | 1 | 1 | 0 | 0 | exp.lab_equipment.confocal_microscope (confocal_microscope.svg) |  |
@@ -838,6 +1281,9 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | connexin | created | 1 | 0 | 1 | 0 | cellarch.membrane_signaling.gap_junction (gap_junction.svg) |  |
 | connexon | created | 1 | 0 | 1 | 0 | cellarch.membrane_signaling.gap_junction (gap_junction.svg) |  |
 | connexon plaque | created | 1 | 0 | 1 | 0 | cellarch.membrane_signaling.gap_junction_plaque (gap_junction_plaque.svg) |  |
+| constriction | created | 1 | 0 | 1 | 0 | cellstress.organelle.mitochondrial_fission.constriction (mitochondrial_fission_constriction.svg) |  |
+| continuous ordering | created | 1 | 0 | 1 | 0 | analysis.pseudotime_trajectory.linear (pseudotime_trajectory_linear.svg) |  |
+| continuous state example | created | 1 | 0 | 1 | 0 | analysis.umap_scatter.continuum (umap_scatter_continuum.svg) |  |
 | contracted contractile bacteriophage | created | 1 | 0 | 1 | 0 | microbe.model_system.contractile_tailed_phage_contracted (contractile_tailed_phage_contracted.svg) |  |
 | contracted phage tail | created | 1 | 0 | 1 | 0 | microbe.model_system.contractile_tailed_phage_contracted (contractile_tailed_phage_contracted.svg) |  |
 | contractile bacteriophage | created | 1 | 0 | 1 | 0 | microbe.model_system.contractile_tailed_bacteriophage (contractile_tailed_bacteriophage.svg) |  |
@@ -849,6 +1295,7 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | contractile-tailed bacteriophage | created | 1 | 0 | 1 | 0 | microbe.model_system.contractile_tailed_bacteriophage (contractile_tailed_bacteriophage.svg) |  |
 | contractile-tailed bacteriophage — contracted | created | 1 | 0 | 1 | 0 | microbe.model_system.contractile_tailed_phage_contracted (contractile_tailed_phage_contracted.svg) |  |
 | control time point | created | 1 | 1 | 0 | 0 | exp.pathway_symbol.time_course (time_course.svg) |  |
+| convergent inputs | created | 1 | 0 | 1 | 0 | neuro.neural_circuit.convergent_inputs (neural_circuit_convergent_inputs.svg) |  |
 | conversion | created | 1 | 1 | 0 | 0 | exp.pathway_symbol.conversion_arrow (conversion_arrow.svg) |  |
 | conversion arrow | created | 1 | 1 | 0 | 0 | exp.pathway_symbol.conversion_arrow (conversion_arrow.svg) |  |
 | copi | created | 1 | 0 | 1 | 0 | cellarch.organelle.copi_coated_vesicle (copi_coated_vesicle.svg) |  |
@@ -868,6 +1315,9 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | copii — detached carrier | created | 1 | 0 | 1 | 0 | cellarch.pathway_symbol.copii_detached_carrier (copii_detached_carrier.svg) |  |
 | copii-coated er bud | created | 1 | 0 | 1 | 0 | cellarch.pathway_symbol.copii_vesicle_budding (copii_vesicle_budding.svg) |  |
 | copii-coated transport carrier | created | 1 | 0 | 1 | 0 | cellarch.pathway_symbol.copii_detached_carrier (copii_detached_carrier.svg) |  |
+| corpus luteum folded luteal tissue | created | 1 | 0 | 1 | 0 | endocrine.corpus_luteum.folded_luteal_tissue (corpus_luteum_folded_luteal_tissue.svg) |  |
+| corpus luteum radial luteal tissue | created | 1 | 0 | 1 | 0 | endocrine.corpus_luteum.radial_luteal_tissue (corpus_luteum_radial_luteal_tissue.svg) |  |
+| cortical wedge | created | 1 | 0 | 1 | 0 | endocrine.adrenal_cortex.cortical_wedge (adrenal_cortex_cortical_wedge.svg) |  |
 | co₂ incubator | created | 1 | 1 | 0 | 0 | exp.lab_equipment.co2_incubator (co2_incubator.svg) |  |
 | cq curve | created | 1 | 1 | 0 | 0 | exp.assay_workflow.qpcr_curve (qpcr_curve.svg) |  |
 | crispr | created | 1 | 1 | 0 | 0 | core.nucleic_acid.crispr_cas9 (crispr_cas9_complex.svg) |  |
@@ -922,14 +1372,20 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | cytotoxic t-lymphocyte-associated protein 4 | created | 1 | 1 | 0 | 0 | immuno.membrane_signaling.ctla4_receptor (ctla4_receptor.svg) |  |
 | dab stain | created | 1 | 1 | 0 | 0 | immuno.assay.immunohistochemistry_tissue_field (immunohistochemistry_tissue_field.svg) |  |
 | dashed arrow | created | 1 | 1 | 0 | 0 | core.symbol.dashed_arrow (dashed_arrow.svg) |  |
+| daughter separation | created | 1 | 0 | 1 | 0 | cellstress.organelle.mitochondrial_fission.daughter_separation (mitochondrial_fission_daughter_separation.svg) |  |
 | death receptor | created | 1 | 1 | 0 | 0 | exp.membrane_signaling.death_receptor (death_receptor.svg) |  |
 | death-domain receptor | created | 1 | 1 | 0 | 0 | exp.membrane_signaling.death_receptor (death_receptor.svg) |  |
 | decay | created | 1 | 1 | 0 | 0 | exp.pathway_symbol.degradation (degradation.svg) |  |
 | degradative organelle | created | 1 | 1 | 0 | 0 | core.lysosome.cutaway (lysosome_cutaway.svg) |  |
-| degrading cargo | created | 1 | 1 | 0 | 0 | core.autolysosome (autolysosome.svg) |  |
 | degranulation | created | 1 | 1 | 0 | 0 | core.immune.cytotoxic_granule_release (immune_cytotoxic_granule_release.svg) |  |
 | denatured protein | created | 1 | 1 | 0 | 0 | proteostasis.protein.unfolded_polypeptide (unfolded_polypeptide.svg) |  |
+| dendritic antigen uptake particulate | created | 1 | 0 | 1 | 0 | tme.dendritic_antigen_uptake.particulate (dendritic_antigen_uptake_particulate.svg) |  |
+| dendritic antigen uptake soluble | created | 1 | 0 | 1 | 0 | tme.dendritic_antigen_uptake.soluble (dendritic_antigen_uptake_soluble.svg) |  |
+| dendritic cell antigen uptake — particulate antigen | created | 1 | 0 | 1 | 0 | tme.dendritic_antigen_uptake.particulate (dendritic_antigen_uptake_particulate.svg) |  |
+| dendritic cell antigen uptake — soluble antigen | created | 1 | 0 | 1 | 0 | tme.dendritic_antigen_uptake.soluble (dendritic_antigen_uptake_soluble.svg) |  |
 | dendritic cell — manuscript line | created | 1 | 1 | 0 | 0 | core.cell.dendritic_manuscript (immune_dendritic_cell_manuscript.svg) |  |
+| dendritic spine mushroom | created | 1 | 0 | 1 | 0 | neuro.dendritic_spine.mushroom (dendritic_spine_mushroom.svg) |  |
+| dendritic spine thin | created | 1 | 0 | 1 | 0 | neuro.dendritic_spine.thin (dendritic_spine_thin.svg) |  |
 | dense core granule | created | 1 | 1 | 0 | 0 | exp.organelle.secretory_granule (secretory_granule.svg) |  |
 | dense-core secretory granule | created | 1 | 1 | 0 | 0 | exp.organelle.secretory_granule (secretory_granule.svg) |  |
 | dephosphorylase | created | 1 | 1 | 0 | 0 | exp.protein.phosphatase (phosphatase.svg) |  |
@@ -941,6 +1397,8 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | desmosomal cross-section | created | 1 | 0 | 1 | 0 | cellarch.membrane_signaling.desmosome (desmosome.svg) |  |
 | desmosomal junction | created | 1 | 0 | 1 | 0 | cellarch.membrane_signaling.desmosome (desmosome.svg) |  |
 | desmosome | created | 1 | 0 | 1 | 0 | cellarch.membrane_signaling.desmosome (desmosome.svg) |  |
+| detached apoptotic cell | created | 1 | 0 | 1 | 0 | cellstress.cell.anoikis.detached_apoptotic (anoikis_detached_apoptotic.svg) |  |
+| detached blebbing cell | created | 1 | 0 | 1 | 0 | cellstress.cell.anoikis.blebbing_apoptotic (anoikis_blebbing_apoptotic.svg) |  |
 | detached copii | created | 1 | 0 | 1 | 0 | cellarch.pathway_symbol.copii_detached_carrier (copii_detached_carrier.svg) |  |
 | detached copii-coated vesicle | created | 1 | 0 | 1 | 0 | cellarch.pathway_symbol.copii_detached_carrier (copii_detached_carrier.svg) |  |
 | deubiquitinase | created | 1 | 1 | 0 | 0 | proteostasis.protein.deubiquitinase_substrate_complex (deubiquitinase_substrate_complex.svg) |  |
@@ -954,11 +1412,15 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | differentiation | created | 1 | 1 | 0 | 0 | core.cell.neuron_like (cell_neuron_like.svg) |  |
 | dimer heterodimer | created | 1 | 1 | 0 | 0 | exp.protein.dimer.heterodimer (dimer_heterodimer.svg) |  |
 | dimer homodimer | created | 1 | 1 | 0 | 0 | exp.protein.dimer.homodimer (dimer_homodimer.svg) |  |
+| disintegrating | created | 1 | 0 | 1 | 0 | cellstress.cell.necrotic_cell.disintegrating (necrotic_cell_disintegrating.svg) |  |
+| dispersed foci | created | 1 | 0 | 1 | 0 | cellstress.nucleic_acid.dna_damage_foci.dispersed (dna_damage_foci_dispersed.svg) |  |
 | dissemination | created | 1 | 1 | 0 | 0 | immuno.pathway.metastatic_seeding (metastatic_seeding.svg) |  |
 | dissociation | created | 1 | 1 | 0 | 0 | exp.pathway_symbol.dissociation (dissociation.svg) |  |
 | distal enhancer | created | 1 | 1 | 0 | 0 | exp.nucleic_acid.enhancer_promoter (enhancer_promoter.svg) |  |
 | dividing cell | created | 1 | 1 | 0 | 0 | core.cell.dividing (cell_dividing.svg) |  |
 | dna binding | created | 1 | 1 | 0 | 0 | core.protein.transcription_factor (transcription_factor.svg) |  |
+| dna damage foci clustered | created | 1 | 0 | 1 | 0 | cellstress.nucleic_acid.dna_damage_foci.clustered (dna_damage_foci_clustered.svg) |  |
+| dna damage foci dispersed | created | 1 | 0 | 1 | 0 | cellstress.nucleic_acid.dna_damage_foci.dispersed (dna_damage_foci_dispersed.svg) |  |
 | dna double helix | created | 1 | 1 | 0 | 0 | core.dna.double_helix (dna_double_helix.svg) |  |
 | dna double helix manuscript | created | 1 | 1 | 0 | 0 | core.dna.double_helix_manuscript (dna_double_helix_manuscript.svg) |  |
 | dna double helix — thin line | created | 1 | 1 | 0 | 0 | core.dna.double_helix_manuscript (dna_double_helix_manuscript.svg) |  |
@@ -984,6 +1446,10 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | drug | created | 1 | 1 | 0 | 0 | core.symbol.drug_inhibition_badge (drug_inhibition_badge.svg) |  |
 | drug inhibition badge | created | 1 | 1 | 0 | 0 | core.symbol.drug_inhibition_badge (drug_inhibition_badge.svg) |  |
 | drug inhibition cue | created | 1 | 1 | 0 | 0 | core.symbol.drug_inhibition_badge (drug_inhibition_badge.svg) |  |
+| drug penetration gradient perivascular | created | 1 | 0 | 1 | 0 | tme.drug_penetration_gradient.perivascular (drug_penetration_gradient_perivascular.svg) |  |
+| drug penetration gradient spheroid | created | 1 | 0 | 1 | 0 | tme.drug_penetration_gradient.spheroid (drug_penetration_gradient_spheroid.svg) |  |
+| drug penetration gradient — spheroid penetration | created | 1 | 0 | 1 | 0 | tme.drug_penetration_gradient.spheroid (drug_penetration_gradient_spheroid.svg) |  |
+| drug penetration gradient — vessel-to-tissue | created | 1 | 0 | 1 | 0 | tme.drug_penetration_gradient.perivascular (drug_penetration_gradient_perivascular.svg) |  |
 | drug symbol | created | 1 | 1 | 0 | 0 | core.ligand.small_molecule (ligand_small_molecule.svg) |  |
 | drug-conjugated antibody | created | 1 | 1 | 0 | 0 | core.antibody.drug_conjugate (antibody_drug_conjugate.svg) |  |
 | drug-conjugated antibody — manuscript line | created | 1 | 1 | 0 | 0 | core.antibody.drug_conjugate_manuscript (antibody_drug_conjugate_manuscript.svg) |  |
@@ -1000,6 +1466,7 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | early autolysosome | created | 1 | 0 | 1 | 0 | cellarch.pathway_symbol.autophagosome_lysosome_fusion (autophagosome_lysosome_fusion.svg) |  |
 | early post-fusion autophagic compartment | created | 1 | 0 | 1 | 0 | cellarch.pathway_symbol.autophagosome_lysosome_fusion (autophagosome_lysosome_fusion.svg) |  |
 | ec50 curve | created | 1 | 1 | 0 | 0 | exp.assay_workflow.dose_response_curve (dose_response_curve.svg) |  |
+| eccentric oocyte section | created | 1 | 0 | 1 | 0 | endocrine.ovarian_follicle.eccentric_oocyte (ovarian_follicle_eccentric_oocyte.svg) |  |
 | ecm protease | created | 1 | 1 | 0 | 0 | immuno.protein.matrix_metalloproteinase (matrix_metalloproteinase.svg) |  |
 | ecm remodeling | created | 1 | 1 | 0 | 0 | immuno.pathway.ecm_remodeling (ecm_remodeling.svg) |  |
 | ecm spheroid | created | 1 | 0 | 1 | 0 | culture.model_system.hydrogel_embedded_spheroid (hydrogel_embedded_spheroid.svg) |  |
@@ -1034,6 +1501,7 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | endosomal escrt bud | created | 1 | 0 | 1 | 0 | cellarch.pathway_symbol.escrt_inward_bud (escrt_inward_bud.svg) |  |
 | endosomal invagination | created | 1 | 0 | 1 | 0 | cellarch.pathway_symbol.escrt_inward_bud (escrt_inward_bud.svg) |  |
 | endosomal recycling tubule | created | 1 | 0 | 1 | 0 | cellarch.pathway_symbol.endosomal_recycling_tubule (endosomal_recycling_tubule.svg) |  |
+| endosomal release | created | 1 | 0 | 1 | 0 | cellstress.membrane_signaling.extracellular_vesicle.endosomal_release (extracellular_vesicle_endosomal_release.svg) |  |
 | endosomal retrieval | created | 1 | 0 | 1 | 0 | cellarch.pathway_symbol.endosomal_recycling_tubule (endosomal_recycling_tubule.svg) |  |
 | endosomal sorting | created | 1 | 0 | 1 | 0 | cellarch.pathway_symbol.recycling_endosome_branched (recycling_endosome_branched.svg) |  |
 | endosome-connected sorting tubule | created | 1 | 0 | 1 | 0 | cellarch.pathway_symbol.endosomal_recycling_tubule (endosomal_recycling_tubule.svg) |  |
@@ -1043,7 +1511,6 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | endothelial | created | 1 | 1 | 0 | 0 | exp.cell.endothelial (endothelial.svg) |  |
 | endothelial cell | created | 1 | 1 | 0 | 0 | exp.cell.endothelial (endothelial.svg) |  |
 | endothelial lumen | created | 1 | 0 | 1 | 0 | culture.model_system.perfusable_microvascular_network (perfusable_microvascular_network.svg) |  |
-| endothelium | created | 1 | 1 | 0 | 0 | exp.cell.endothelial (endothelial.svg) |  |
 | engineered immune cells | created | 1 | 1 | 0 | 0 | immuno.cell.car_t_cell (car_t_cell.svg) |  |
 | engineered immune-cell receptor | created | 1 | 1 | 0 | 0 | immuno.membrane_signaling.chimeric_antigen_receptor (chimeric_antigen_receptor.svg) |  |
 | engineered receptors | created | 1 | 1 | 0 | 0 | immuno.membrane_signaling.chimeric_antigen_receptor (chimeric_antigen_receptor.svg) |  |
@@ -1062,18 +1529,22 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | eosinophil | created | 1 | 1 | 0 | 0 | exp.cell.eosinophil (eosinophil.svg) |  |
 | eosinophil cell | created | 1 | 1 | 0 | 0 | exp.cell.eosinophil (eosinophil.svg) |  |
 | eosinophilic granulocyte | created | 1 | 1 | 0 | 0 | exp.cell.eosinophil (eosinophil.svg) |  |
+| epithelial acinus closed lumen | created | 1 | 0 | 1 | 0 | tissue.epithelial_acinus.closed_lumen (epithelial_acinus_closed_lumen.svg) |  |
+| epithelial acinus section | created | 1 | 0 | 1 | 0 | tissue.epithelial_acinus.section (epithelial_acinus_section.svg) |  |
 | epithelial apical surface | created | 1 | 1 | 0 | 0 | core.cell.epithelial_apical (cell_epithelial_apical.svg) |  |
 | epithelial basement membrane | created | 1 | 1 | 0 | 0 | immuno.model.basement_membrane_segment (basement_membrane_segment.svg) |  |
 | epithelial cell apical view | created | 1 | 1 | 0 | 0 | core.cell.epithelial_apical (cell_epithelial_apical.svg) |  |
 | epithelial cell — apical view | created | 1 | 1 | 0 | 0 | core.cell.epithelial_apical (cell_epithelial_apical.svg) |  |
 | epithelial culture | created | 1 | 0 | 1 | 0 | culture.model_system.air_liquid_interface_culture (air_liquid_interface_culture.svg) |  |
 | epithelial gap | created | 1 | 0 | 1 | 0 | culture.assay_workflow.epithelial_scratch_wound (epithelial_scratch_wound.svg) |  |
+| epithelial interface | created | 1 | 0 | 1 | 0 | tissue.basement_membrane.epithelial_interface (basement_membrane_epithelial_interface.svg) |  |
 | epithelial mesenchymal transition | created | 1 | 1 | 0 | 0 | immuno.pathway.epithelial_mesenchymal_transition (epithelial_mesenchymal_transition.svg) |  |
 | epithelial monolayer | created | 1 | 1 | 0 | 0 | exp.model_system.epithelial_monolayer (epithelial_monolayer.svg) |  |
 | epithelial organoid and stromal cell co-culture | created | 1 | 0 | 1 | 0 | culture.model_system.organoid_stromal_coculture (organoid_stromal_coculture.svg) |  |
 | epithelial scratch assay | created | 1 | 0 | 1 | 0 | culture.assay_workflow.epithelial_scratch_wound (epithelial_scratch_wound.svg) |  |
 | epithelial scratch wound | created | 1 | 0 | 1 | 0 | culture.assay_workflow.epithelial_scratch_wound (epithelial_scratch_wound.svg) |  |
-| epithelial sheet | created | 1 | 1 | 0 | 0 | exp.model_system.epithelial_monolayer (epithelial_monolayer.svg) |  |
+| epithelial sheet apical | created | 1 | 0 | 1 | 0 | tissue.epithelial_sheet.apical (epithelial_sheet_apical.svg) |  |
+| epithelial sheet lateral | created | 1 | 0 | 1 | 0 | tissue.epithelial_sheet.lateral (epithelial_sheet_lateral.svg) |  |
 | epithelial tight junction | created | 1 | 0 | 1 | 0 | cellarch.membrane_signaling.tight_junction (tight_junction.svg) |  |
 | epithelial to mesenchymal transition | created | 1 | 1 | 0 | 0 | immuno.pathway.epithelial_mesenchymal_transition (epithelial_mesenchymal_transition.svg) |  |
 | epithelial-like | created | 1 | 1 | 0 | 0 | core.cell.epithelial (cell_epithelial.svg) |  |
@@ -1086,6 +1557,8 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | er mitochondrion contact site | created | 1 | 0 | 1 | 0 | cellarch.membrane_signaling.er_mitochondrion_contact_site (er_mitochondrion_contact_site.svg) |  |
 | er mitochondrion tubular contact | created | 1 | 0 | 1 | 0 | cellarch.membrane_signaling.er_mitochondrion_tubular_contact (er_mitochondrion_tubular_contact.svg) |  |
 | er network | created | 1 | 1 | 0 | 0 | core.er.rough_network (rough_er_network.svg) |  |
+| er stress upr lumenal load | created | 1 | 0 | 1 | 0 | cellstress.organelle.er_stress_upr.lumenal_load (er_stress_upr_lumenal_load.svg) |  |
+| er stress upr sensor assembly | created | 1 | 0 | 1 | 0 | cellstress.organelle.er_stress_upr.sensor_assembly (er_stress_upr_sensor_assembly.svg) |  |
 | er tether | created | 1 | 0 | 1 | 0 | cellarch.membrane_signaling.er_mitochondrion_contact_site (er_mitochondrion_contact_site.svg) |  |
 | er to golgi carrier | created | 1 | 0 | 1 | 0 | cellarch.pathway_symbol.copii_detached_carrier (copii_detached_carrier.svg) |  |
 | er tubules | created | 1 | 1 | 0 | 0 | core.er.smooth (smooth_er.svg) |  |
@@ -1105,6 +1578,7 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | eukaryotic cell cutaway | created | 1 | 1 | 0 | 0 | core.cell.generic_cutaway (cell_generic_cutaway.svg) |  |
 | ex vivo tissue | created | 1 | 1 | 0 | 0 | exp.model_system.tissue_explant (tissue_explant.svg) |  |
 | ex vivo tissue explant | created | 1 | 1 | 0 | 0 | exp.model_system.tissue_explant (tissue_explant.svg) |  |
+| example feature labels | created | 1 | 0 | 1 | 0 | analysis.volcano_plot.feature_labels (volcano_plot_feature_labels.svg) |  |
 | exchange | created | 1 | 1 | 0 | 0 | core.symbol.bidirectional_arrow (bidirectional_arrow.svg) |  |
 | excluded tumor | created | 1 | 1 | 0 | 0 | immuno.model.immune_excluded_tumor (immune_excluded_tumor.svg) |  |
 | exhausted t cell | created | 1 | 1 | 0 | 0 | immuno.cell.exhausted_t_cell (exhausted_t_cell.svg) |  |
@@ -1120,16 +1594,18 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | exportin–rangtp–cargo nuclear export | created | 1 | 0 | 1 | 0 | cellarch.pathway_symbol.exportin_cargo_nuclear_export (exportin_cargo_nuclear_export.svg) |  |
 | exposed bases | created | 1 | 1 | 0 | 0 | core.rna.strand_linear (rna_strand_linear.svg) |  |
 | exposed hydrophobic region | created | 1 | 1 | 0 | 0 | proteostasis.protein.misfolded_protein (misfolded_protein.svg) |  |
+| external view | created | 1 | 0 | 1 | 0 | tissue.epithelial_acinus.closed_lumen (epithelial_acinus_closed_lumen.svg) |  |
 | extracellular bacterial capsule | created | 1 | 0 | 1 | 0 | microbe.cell.encapsulated_bacterium (encapsulated_bacterium.svg) |  |
 | extracellular polymeric matrix | created | 1 | 0 | 1 | 0 | microbe.model_system.surface_attached_biofilm (surface_attached_biofilm.svg) |  |
 | extracellular receptor domain | created | 1 | 1 | 0 | 0 | core.receptor.extracellular_domain (receptor_extracellular_domain.svg) |  |
+| extracellular vesicle endosomal release | created | 1 | 0 | 1 | 0 | cellstress.membrane_signaling.extracellular_vesicle.endosomal_release (extracellular_vesicle_endosomal_release.svg) |  |
+| extracellular vesicle isolated | created | 1 | 0 | 1 | 0 | cellstress.membrane_signaling.extracellular_vesicle.isolated (extracellular_vesicle_isolated.svg) |  |
 | extracellular-matrix remodeling | created | 1 | 1 | 0 | 0 | immuno.pathway.ecm_remodeling (ecm_remodeling.svg) |  |
 | extravasation | created | 1 | 1 | 0 | 0 | immuno.pathway.tumor_cell_extravasation (tumor_cell_extravasation.svg) |  |
 | fab | created | 1 | 1 | 0 | 0 | core.antibody.fab_fragment (antibody_fab_fragment.svg) |  |
 | fab fragment | created | 1 | 1 | 0 | 0 | core.antibody.fab_fragment (antibody_fab_fragment.svg) |  |
 | facs machine | created | 1 | 1 | 0 | 0 | exp.lab_equipment.flow_cytometer (flow_cytometer.svg) |  |
 | falcon tube | created | 1 | 1 | 0 | 0 | core.lab.conical_tube (conical_tube.svg) |  |
-| fat cell | created | 1 | 1 | 0 | 0 | exp.cell.adipocyte (adipocyte.svg) |  |
 | fc | created | 1 | 1 | 0 | 0 | core.antibody.fc_fragment (antibody_fc_fragment.svg) |  |
 | fc fragment | created | 1 | 1 | 0 | 0 | core.antibody.fc_fragment (antibody_fc_fragment.svg) |  |
 | fc receptor binding | created | 1 | 1 | 0 | 0 | core.immune.fc_receptor_binding (immune_fc_receptor_binding.svg) |  |
@@ -1137,8 +1613,13 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | fc-mediated phagocytosis | created | 1 | 1 | 0 | 0 | immuno.pathway.antibody_dependent_cellular_phagocytosis (antibody_dependent_cellular_phagocytosis.svg) |  |
 | feedback | created | 1 | 1 | 0 | 0 | core.pathway.feedback_loop (feedback_loop.svg) |  |
 | feedback loop | created | 1 | 1 | 0 | 0 | core.pathway.feedback_loop (feedback_loop.svg) |  |
+| feedforward chain | created | 1 | 0 | 1 | 0 | neuro.neural_circuit.feedforward_chain (neural_circuit_feedforward_chain.svg) |  |
+| ferroptotic cell lipid damage | created | 1 | 0 | 1 | 0 | cellstress.cell.ferroptotic_cell.lipid_damage (ferroptotic_cell_lipid_damage.svg) |  |
+| ferroptotic cell mitochondrial detail | created | 1 | 0 | 1 | 0 | cellstress.cell.ferroptotic_cell.mitochondrial_detail (ferroptotic_cell_mitochondrial_detail.svg) |  |
 | fibroblast | created | 1 | 1 | 0 | 0 | exp.cell.fibroblast (fibroblast.svg) |  |
 | fibroblast organoid coculture | created | 1 | 0 | 1 | 0 | culture.model_system.organoid_stromal_coculture (organoid_stromal_coculture.svg) |  |
+| filopodium bundle detail | created | 1 | 0 | 1 | 0 | cellstress.cell.filopodium.bundle_detail (filopodium_bundle_detail.svg) |  |
+| filopodium whole cell | created | 1 | 0 | 1 | 0 | cellstress.cell.filopodium.whole_cell (filopodium_whole_cell.svg) |  |
 | fish model | created | 1 | 1 | 0 | 0 | core.model.zebrafish (zebrafish_model.svg) |  |
 | flagellar hook | created | 1 | 0 | 1 | 0 | microbe.membrane_signaling.bacterial_flagellar_motor (bacterial_flagellar_motor.svg) |  |
 | flagellar motor | created | 1 | 0 | 1 | 0 | microbe.membrane_signaling.bacterial_flagellar_motor (bacterial_flagellar_motor.svg) |  |
@@ -1166,7 +1647,10 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | focal adhesion — en face | created | 1 | 0 | 1 | 0 | cellarch.membrane_signaling.focal_adhesion_enface (focal_adhesion_enface.svg) |  |
 | focal-adhesion cross-section | created | 1 | 0 | 1 | 0 | cellarch.membrane_signaling.focal_adhesion (focal_adhesion.svg) |  |
 | focal-adhesion footprint | created | 1 | 0 | 1 | 0 | cellarch.membrane_signaling.focal_adhesion_enface (focal_adhesion_enface.svg) |  |
+| folded cell plates | created | 1 | 0 | 1 | 0 | endocrine.pancreatic_islet.folded_plates (pancreatic_islet_folded_plates.svg) |  |
+| folded luteal tissue | created | 1 | 0 | 1 | 0 | endocrine.corpus_luteum.folded_luteal_tissue (corpus_luteum_folded_luteal_tissue.svg) |  |
 | folding stress | created | 1 | 1 | 0 | 0 | proteostasis.protein.misfolded_protein (misfolded_protein.svg) |  |
+| follicle field | created | 1 | 0 | 1 | 0 | endocrine.thyroid_follicle.follicle_field (thyroid_follicle_follicle_field.svg) |  |
 | four-helix bundle | created | 1 | 0 | 1 | 0 | cellarch.membrane_signaling.trans_snare_complex (trans_snare_complex.svg) |  |
 | free aggregate in medium | created | 1 | 0 | 1 | 0 | culture.model_system.suspension_spheroid_culture (suspension_spheroid_culture.svg) |  |
 | free contracted-tailed phage | created | 1 | 0 | 1 | 0 | microbe.model_system.contractile_tailed_phage_contracted (contractile_tailed_phage_contracted.svg) |  |
@@ -1200,9 +1684,10 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | generic cell | created | 1 | 1 | 0 | 0 | core.cell.generic (cell_generic.svg) |  |
 | generic cytokine | created | 1 | 1 | 0 | 0 | immuno.protein.generic_cytokine (generic_cytokine.svg) |  |
 | generic eukaryotic cell | created | 1 | 1 | 0 | 0 | core.cell.generic (cell_generic.svg) |  |
+| generic immune synapse cell pair | created | 1 | 0 | 1 | 0 | tme.generic_immune_synapse.cell_pair (generic_immune_synapse_cell_pair.svg) |  |
+| generic immune synapse interface | created | 1 | 0 | 1 | 0 | tme.generic_immune_synapse.interface (generic_immune_synapse_interface.svg) |  |
 | generic kinase | created | 1 | 1 | 0 | 0 | core.protein.kinase (protein_kinase.svg) |  |
 | generic ligand | created | 1 | 1 | 0 | 0 | core.ligand.generic (generic_ligand.svg) |  |
-| glia | created | 1 | 1 | 0 | 0 | core.cell.astrocyte_like (astrocyte_like_cell.svg) |  |
 | glial cell | created | 1 | 1 | 0 | 0 | core.cell.astrocyte_like (astrocyte_like_cell.svg) |  |
 | gliomasphere | created | 1 | 1 | 0 | 0 | core.model.cell_spheroid_cluster (cell_spheroid_cluster.svg) |  |
 | goblet cell | created | 1 | 1 | 0 | 0 | exp.cell.goblet_secretory (goblet_secretory.svg) |  |
@@ -1245,6 +1730,10 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | hanging drop spheroid array | created | 1 | 0 | 1 | 0 | culture.model_system.hanging_drop_spheroid.array (hanging_drop_spheroid_array.svg) |  |
 | heat shock protein 70 | created | 1 | 1 | 0 | 0 | proteostasis.protein.hsp70_client_complex (hsp70_client_complex.svg) |  |
 | heat shock protein 90 | created | 1 | 1 | 0 | 0 | proteostasis.protein.hsp90_client_complex (hsp90_client_complex.svg) |  |
+| heatmap clustered | created | 1 | 0 | 1 | 0 | analysis.heatmap.clustered (heatmap_clustered.svg) |  |
+| heatmap matrix | created | 1 | 0 | 1 | 0 | analysis.heatmap.matrix (heatmap_matrix.svg) |  |
+| heatmap — column clustering cue | created | 1 | 0 | 1 | 0 | analysis.heatmap.clustered (heatmap_clustered.svg) |  |
+| heatmap — value matrix | created | 1 | 0 | 1 | 0 | analysis.heatmap.matrix (heatmap_matrix.svg) |  |
 | heavy chain | created | 1 | 1 | 0 | 0 | core.antibody.fc_fragment (antibody_fc_fragment.svg) |  |
 | helper t lymphocyte | created | 1 | 1 | 0 | 0 | immuno.cell.cd4_helper_t_cell (cd4_helper_t_cell.svg) |  |
 | hemichannel | created | 1 | 0 | 1 | 0 | cellarch.membrane_signaling.gap_junction (gap_junction.svg) |  |
@@ -1258,6 +1747,7 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | hnrna | created | 1 | 1 | 0 | 0 | exp.nucleic_acid.pre_mrna (pre_mrna.svg) |  |
 | homotrimer | created | 1 | 1 | 0 | 0 | core.protein.homotrimer (protein_homotrimer.svg) |  |
 | homotrimeric protein | created | 1 | 1 | 0 | 0 | core.protein.homotrimer (protein_homotrimer.svg) |  |
+| horizontal groups | created | 1 | 0 | 1 | 0 | analysis.box_plot.horizontal (box_plot_horizontal.svg) |  |
 | host derived viral envelope | created | 1 | 0 | 1 | 0 | microbe.membrane_signaling.enveloped_virus_plasma_membrane_budding (enveloped_virus_plasma_membrane_budding.svg) |  |
 | hot tumor | created | 1 | 1 | 0 | 0 | immuno.model.immune_infiltrated_tumor (immune_infiltrated_tumor.svg) |  |
 | hsc70 | created | 1 | 1 | 0 | 0 | proteostasis.protein.hsp70_client_complex (hsp70_client_complex.svg) |  |
@@ -1267,12 +1757,17 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | hsp90 | created | 1 | 1 | 0 | 0 | proteostasis.protein.hsp90_client_complex (hsp90_client_complex.svg) |  |
 | hsp90 client complex | created | 1 | 1 | 0 | 0 | proteostasis.protein.hsp90_client_complex (hsp90_client_complex.svg) |  |
 | hsp90–client complex | created | 1 | 1 | 0 | 0 | proteostasis.protein.hsp90_client_complex (hsp90_client_complex.svg) |  |
+| hub arrangement | created | 1 | 0 | 1 | 0 | analysis.network_graph.hub (network_graph_hub.svg) |  |
 | humidified incubator | created | 1 | 1 | 0 | 0 | exp.lab_equipment.co2_incubator (co2_incubator.svg) |  |
 | hybridization | created | 1 | 0 | 1 | 0 | rna.assay_workflow.in_situ_rna_puncta (in_situ_rna_puncta.svg) |  |
 | hydrogel embedded organoid budding | created | 1 | 0 | 1 | 0 | culture.model_system.hydrogel_embedded_organoid.budding (hydrogel_embedded_organoid_budding.svg) |  |
 | hydrogel embedded spheroid | created | 1 | 0 | 1 | 0 | culture.model_system.hydrogel_embedded_spheroid (hydrogel_embedded_spheroid.svg) |  |
 | hydrogel-embedded solid cell spheroid | created | 1 | 0 | 1 | 0 | culture.model_system.hydrogel_embedded_spheroid (hydrogel_embedded_spheroid.svg) |  |
 | hydrogel-embedded spheroid | created | 1 | 0 | 1 | 0 | culture.model_system.hydrogel_embedded_spheroid (hydrogel_embedded_spheroid.svg) |  |
+| hypoxia gradient perivascular | created | 1 | 0 | 1 | 0 | tme.hypoxia_gradient.perivascular (hypoxia_gradient_perivascular.svg) |  |
+| hypoxia gradient spheroid | created | 1 | 0 | 1 | 0 | tme.hypoxia_gradient.spheroid (hypoxia_gradient_spheroid.svg) |  |
+| hypoxia gradient — spheroid section | created | 1 | 0 | 1 | 0 | tme.hypoxia_gradient.spheroid (hypoxia_gradient_spheroid.svg) |  |
+| hypoxia gradient — vessel-to-tissue | created | 1 | 0 | 1 | 0 | tme.hypoxia_gradient.perivascular (hypoxia_gradient_perivascular.svg) |  |
 | hypoxic core | created | 1 | 1 | 0 | 0 | immuno.model.tumor_hypoxic_region (tumor_hypoxic_region.svg) |  |
 | ic50 curve | created | 1 | 1 | 0 | 0 | exp.assay_workflow.dose_response_curve (dose_response_curve.svg) |  |
 | idc | created | 1 | 1 | 0 | 0 | immuno.cell.immature_dendritic_cell (immature_dendritic_cell.svg) |  |
@@ -1316,6 +1811,8 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | immune pd1 pdl1 checkpoint | created | 1 | 1 | 0 | 0 | core.immune.pd1_pdl1_checkpoint (immune_pd1_pdl1_checkpoint.svg) |  |
 | immune pd1 pdl1 checkpoint manuscript | created | 1 | 1 | 0 | 0 | core.immune.pd1_pdl1_checkpoint_manuscript (immune_pd1_pdl1_checkpoint_manuscript.svg) |  |
 | immune recruitment | created | 1 | 1 | 0 | 0 | immuno.pathway.leukocyte_recruitment (leukocyte_recruitment.svg) |  |
+| immune synapse — generic — cell pair | created | 1 | 0 | 1 | 0 | tme.generic_immune_synapse.cell_pair (generic_immune_synapse_cell_pair.svg) |  |
+| immune synapse — generic — interface close-up | created | 1 | 0 | 1 | 0 | tme.generic_immune_synapse.interface (generic_immune_synapse_interface.svg) |  |
 | immune t cell | created | 1 | 1 | 0 | 0 | core.cell.t_cell (immune_t_cell.svg) |  |
 | immune t cell manuscript | created | 1 | 1 | 0 | 0 | core.cell.t_cell_manuscript (immune_t_cell_manuscript.svg) |  |
 | immune tcr engagement | created | 1 | 1 | 0 | 0 | core.immune.tcr_engagement (immune_tcr_engagement.svg) |  |
@@ -1357,12 +1854,15 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | interaction | created | 1 | 1 | 0 | 0 | core.symbol.interaction_cue (small_molecule_interaction_cue.svg) |  |
 | intercellular channel | created | 1 | 0 | 1 | 0 | cellarch.membrane_signaling.gap_junction (gap_junction.svg) |  |
 | intercellular gap-junction channel | created | 1 | 0 | 1 | 0 | cellarch.membrane_signaling.gap_junction (gap_junction.svg) |  |
+| interface close-up | created | 1 | 0 | 1 | 0 | tme.generic_immune_synapse.interface (generic_immune_synapse_interface.svg) |  |
+| interlacing cords | created | 1 | 0 | 1 | 0 | endocrine.anterior_pituitary.cords_longitudinal (anterior_pituitary_cords_longitudinal.svg) |  |
 | intermediate filament | created | 1 | 1 | 0 | 0 | exp.organelle.intermediate_filaments (intermediate_filaments.svg) |  |
 | intermediate filament adhesion | created | 1 | 0 | 1 | 0 | cellarch.membrane_signaling.desmosome (desmosome.svg) |  |
 | intermediate filament network | created | 1 | 1 | 0 | 0 | exp.organelle.intermediate_filaments (intermediate_filaments.svg) |  |
 | intermediate filaments | created | 1 | 1 | 0 | 0 | exp.organelle.intermediate_filaments (intermediate_filaments.svg) |  |
 | intermediate-filament-linked desmosome | created | 1 | 0 | 1 | 0 | cellarch.membrane_signaling.desmosome (desmosome.svg) |  |
 | intermediate-filament-linked hemidesmosome | created | 1 | 0 | 1 | 0 | cellarch.membrane_signaling.hemidesmosome (hemidesmosome.svg) |  |
+| interwoven cords | created | 1 | 0 | 1 | 0 | endocrine.parathyroid_cords.cords_longitudinal (parathyroid_cords_cords_longitudinal.svg) |  |
 | intracellular cargo transport | created | 1 | 0 | 1 | 0 | cellarch.pathway_symbol.kinesin_cargo_transport (kinesin_cargo_transport.svg) |  |
 | intracellular receptor | created | 1 | 1 | 0 | 0 | exp.membrane_signaling.nuclear_receptor (nuclear_receptor.svg) |  |
 | intracellular receptors | created | 1 | 1 | 0 | 0 | exp.membrane_signaling.nuclear_receptor (nuclear_receptor.svg) |  |
@@ -1375,11 +1875,18 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | ion | created | 1 | 1 | 0 | 0 | core.channel.ion (ion_channel.svg) |  |
 | ion channel | created | 1 | 1 | 0 | 0 | core.channel.ion (ion_channel.svg) |  |
 | isolated bacterial omv | created | 1 | 0 | 1 | 0 | microbe.membrane_signaling.released_outer_membrane_vesicle (released_outer_membrane_vesicle.svg) |  |
+| isolated sheet | created | 1 | 0 | 1 | 0 | tissue.basement_membrane.isolated_sheet (basement_membrane_isolated_sheet.svg) |  |
+| isolated vesicle | created | 1 | 0 | 1 | 0 | cellstress.membrane_signaling.extracellular_vesicle.isolated (extracellular_vesicle_isolated.svg) |  |
 | jak associated cytokine receptor | created | 1 | 1 | 0 | 0 | immuno.membrane_signaling.jak_associated_cytokine_receptor (jak_associated_cytokine_receptor.svg) |  |
 | jak stat receptor | created | 1 | 1 | 0 | 0 | immuno.membrane_signaling.jak_associated_cytokine_receptor (jak_associated_cytokine_receptor.svg) |  |
 | jak-associated cytokine receptor complex | created | 1 | 1 | 0 | 0 | immuno.membrane_signaling.jak_associated_cytokine_receptor (jak_associated_cytokine_receptor.svg) |  |
 | jak–stat receptor complex | created | 1 | 1 | 0 | 0 | immuno.membrane_signaling.jak_associated_cytokine_receptor (jak_associated_cytokine_receptor.svg) |  |
+| joined mitochondrion | created | 1 | 0 | 1 | 0 | cellstress.organelle.mitochondrial_fusion.joined (mitochondrial_fusion_joined.svg) |  |
 | junction strand | created | 1 | 0 | 1 | 0 | cellarch.membrane_signaling.tight_junction (tight_junction.svg) |  |
+| kaplan meier curve one group | created | 1 | 0 | 1 | 0 | analysis.kaplan_meier_curve.one_group (kaplan_meier_curve_one_group.svg) |  |
+| kaplan meier curve two groups | created | 1 | 0 | 1 | 0 | analysis.kaplan_meier_curve.two_groups (kaplan_meier_curve_two_groups.svg) |  |
+| kaplan–meier curve — single group | created | 1 | 0 | 1 | 0 | analysis.kaplan_meier_curve.one_group (kaplan_meier_curve_one_group.svg) |  |
+| kaplan–meier curve — two groups | created | 1 | 0 | 1 | 0 | analysis.kaplan_meier_curve.two_groups (kaplan_meier_curve_two_groups.svg) |  |
 | karyopherin | created | 1 | 0 | 1 | 0 | cellarch.pathway_symbol.importin_cargo_nuclear_import (importin_cargo_nuclear_import.svg) |  |
 | keratin | created | 1 | 0 | 1 | 0 | cellarch.membrane_signaling.desmosome (desmosome.svg) |  |
 | keratin attachment | created | 1 | 0 | 1 | 0 | cellarch.membrane_signaling.hemidesmosome (hemidesmosome.svg) |  |
@@ -1396,21 +1903,31 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | laboratory bottle | created | 1 | 1 | 0 | 0 | exp.lab_equipment.reagent_bottle (reagent_bottle.svg) |  |
 | laboratory orbital shaker | created | 1 | 1 | 0 | 0 | exp.lab_equipment.orbital_shaker (orbital_shaker.svg) |  |
 | laboratory reagent bottle | created | 1 | 1 | 0 | 0 | exp.lab_equipment.reagent_bottle (reagent_bottle.svg) |  |
+| lactate / metabolite gradient — local radial source | created | 1 | 0 | 1 | 0 | tme.lactate_metabolite_gradient.radial_source (lactate_metabolite_gradient_radial_source.svg) |  |
+| lactate / metabolite gradient — source-to-tissue | created | 1 | 0 | 1 | 0 | tme.lactate_metabolite_gradient.source_to_tissue (lactate_metabolite_gradient_source_to_tissue.svg) |  |
+| lactate metabolite gradient radial source | created | 1 | 0 | 1 | 0 | tme.lactate_metabolite_gradient.radial_source (lactate_metabolite_gradient_radial_source.svg) |  |
+| lactate metabolite gradient source to tissue | created | 1 | 0 | 1 | 0 | tme.lactate_metabolite_gradient.source_to_tissue (lactate_metabolite_gradient_source_to_tissue.svg) |  |
 | lag-3 receptor | created | 1 | 1 | 0 | 0 | immuno.membrane_signaling.lag3_receptor (lag3_receptor.svg) |  |
 | lag-3–mhc class ii checkpoint interaction | created | 1 | 1 | 0 | 0 | immuno.membrane_signaling.lag3_mhc2_checkpoint_interaction (lag3_mhc2_checkpoint_interaction.svg) |  |
 | lag3 | created | 1 | 1 | 0 | 0 | immuno.membrane_signaling.lag3_receptor (lag3_receptor.svg) |  |
 | lag3 mhc ii | created | 1 | 1 | 0 | 0 | immuno.membrane_signaling.lag3_mhc2_checkpoint_interaction (lag3_mhc2_checkpoint_interaction.svg) |  |
 | lag3 mhc2 checkpoint interaction | created | 1 | 1 | 0 | 0 | immuno.membrane_signaling.lag3_mhc2_checkpoint_interaction (lag3_mhc2_checkpoint_interaction.svg) |  |
 | lag3 receptor | created | 1 | 1 | 0 | 0 | immuno.membrane_signaling.lag3_receptor (lag3_receptor.svg) |  |
+| lamellipodium leading edge detail | created | 1 | 0 | 1 | 0 | cellstress.cell.lamellipodium.leading_edge_detail (lamellipodium_leading_edge_detail.svg) |  |
+| lamellipodium whole cell | created | 1 | 0 | 1 | 0 | cellstress.cell.lamellipodium.whole_cell (lamellipodium_whole_cell.svg) |  |
 | laminar flow cabinet | created | 1 | 1 | 0 | 0 | exp.lab_equipment.biosafety_cabinet (biosafety_cabinet.svg) |  |
 | laser scanning microscope | created | 1 | 1 | 0 | 0 | exp.lab_equipment.confocal_microscope (confocal_microscope.svg) |  |
 | laser-scanning confocal microscope | created | 1 | 1 | 0 | 0 | exp.lab_equipment.confocal_microscope (confocal_microscope.svg) |  |
 | late endosome | created | 1 | 0 | 1 | 0 | cellarch.organelle.multivesicular_endosome (multivesicular_endosome.svg) |  |
+| lateral | created | 1 | 0 | 1 | 0 | tissue.epithelial_sheet.lateral (epithelial_sheet_lateral.svg) |  |
 | leading lagging strand | created | 1 | 1 | 0 | 0 | exp.nucleic_acid.replication_fork (replication_fork.svg) |  |
+| leading-edge detail | created | 1 | 0 | 1 | 0 | cellstress.cell.lamellipodium.leading_edge_detail (lamellipodium_leading_edge_detail.svg) |  |
 | leaky tumor vessel | created | 1 | 1 | 0 | 0 | immuno.model.abnormal_tumor_microvessel (abnormal_tumor_microvessel.svg) |  |
 | lec | created | 1 | 1 | 0 | 0 | immuno.cell.lymphatic_endothelial_cell (lymphatic_endothelial_cell.svg) |  |
 | leukocyte recruitment | created | 1 | 1 | 0 | 0 | immuno.pathway.leukocyte_recruitment (leukocyte_recruitment.svg) |  |
 | leukocyte trafficking | created | 1 | 1 | 0 | 0 | immuno.pathway.leukocyte_recruitment (leukocyte_recruitment.svg) |  |
+| leydig interstitium paired tubules | created | 1 | 0 | 1 | 0 | endocrine.leydig_interstitium.paired_tubules (leydig_interstitium_paired_tubules.svg) |  |
+| leydig interstitium tubule corner | created | 1 | 0 | 1 | 0 | endocrine.leydig_interstitium.tubule_corner (leydig_interstitium_tubule_corner.svg) |  |
 | ligand activated transcription factor | created | 1 | 1 | 0 | 0 | exp.membrane_signaling.nuclear_receptor (nuclear_receptor.svg) |  |
 | ligand peptide | created | 1 | 1 | 0 | 0 | core.ligand.peptide (ligand_peptide.svg) |  |
 | ligand small molecule | created | 1 | 1 | 0 | 0 | core.ligand.small_molecule (ligand_small_molecule.svg) |  |
@@ -1428,12 +1945,16 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | liquid handling | created | 1 | 1 | 0 | 0 | core.lab.pipette (pipette.svg) |  |
 | liquid handling robot | created | 1 | 1 | 0 | 0 | exp.lab_equipment.liquid_handler (liquid_handler.svg) |  |
 | live dead assay | created | 1 | 1 | 0 | 0 | exp.assay_workflow.cell_viability_readout (cell_viability_readout.svg) |  |
+| lobule | created | 1 | 0 | 1 | 0 | tissue.adipose.lobule (adipose_lobule.svg) |  |
+| local radial source | created | 1 | 0 | 1 | 0 | tme.lactate_metabolite_gradient.radial_source (lactate_metabolite_gradient_radial_source.svg) |  |
 | localization | created | 1 | 1 | 0 | 0 | exp.pathway_symbol.localization_target (localization_target.svg) |  |
 | localization target | created | 1 | 1 | 0 | 0 | exp.pathway_symbol.localization_target (localization_target.svg) |  |
 | long noncontractile bacteriophage | created | 1 | 0 | 1 | 0 | microbe.model_system.long_noncontractile_bacteriophage (long_noncontractile_bacteriophage.svg) |  |
 | long noncontractile phage | created | 1 | 0 | 1 | 0 | microbe.model_system.long_noncontractile_bacteriophage (long_noncontractile_bacteriophage.svg) |  |
 | long noncontractile-tailed bacteriophage | created | 1 | 0 | 1 | 0 | microbe.model_system.long_noncontractile_bacteriophage (long_noncontractile_bacteriophage.svg) |  |
-| longitudinal | created | 1 | 1 | 0 | 0 | exp.pathway_symbol.time_course (time_course.svg) |  |
+| longitudinal fibers | created | 1 | 0 | 1 | 0 | tissue.skeletal_muscle.longitudinal_fibers (skeletal_muscle_longitudinal_fibers.svg) |  |
+| longitudinal internodes | created | 1 | 0 | 1 | 0 | neuro.axon_myelin.longitudinal (axon_myelin_longitudinal.svg) |  |
+| longitudinal neural lobe | created | 1 | 0 | 1 | 0 | endocrine.posterior_pituitary.longitudinal_neural_lobe (posterior_pituitary_longitudinal_neural_lobe.svg) |  |
 | longitudinal tumor burden | created | 1 | 1 | 0 | 0 | immuno.assay.tumor_volume_time_course (tumor_volume_time_course.svg) |  |
 | loop | created | 1 | 1 | 0 | 0 | core.pathway.feedback_loop (feedback_loop.svg) |  |
 | low-oxygen tumor region | created | 1 | 1 | 0 | 0 | immuno.model.tumor_hypoxic_region (tumor_hypoxic_region.svg) |  |
@@ -1441,14 +1962,15 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | lumen | created | 1 | 1 | 0 | 0 | core.lysosome.cutaway (lysosome_cutaway.svg) |  |
 | lumen-forming epithelial organoid | created | 1 | 1 | 0 | 0 | exp.model_system.organoid_lumen (organoid_lumen.svg) |  |
 | lumen-forming organoid | created | 1 | 1 | 0 | 0 | exp.model_system.organoid_lumen (organoid_lumen.svg) |  |
+| lumenal protein load | created | 1 | 0 | 1 | 0 | cellstress.organelle.er_stress_upr.lumenal_load (er_stress_upr_lumenal_load.svg) |  |
 | luminal microinjection | created | 1 | 0 | 1 | 0 | culture.assay_workflow.organoid_luminal_microinjection (organoid_luminal_microinjection.svg) |  |
 | luminescence assay | created | 1 | 1 | 0 | 0 | exp.assay_workflow.luminescence_readout (luminescence_readout.svg) |  |
 | luminescence readout | created | 1 | 1 | 0 | 0 | exp.assay_workflow.luminescence_readout (luminescence_readout.svg) |  |
-| lymphatic capillary | created | 1 | 1 | 0 | 0 | immuno.model.lymphatic_vessel_segment (lymphatic_vessel_segment.svg) |  |
+| lymphatic capillary blind end | created | 1 | 0 | 1 | 0 | tissue.lymphatic_capillary.blind_end (lymphatic_capillary_blind_end.svg) |  |
+| lymphatic capillary tissue interface | created | 1 | 0 | 1 | 0 | tissue.lymphatic_capillary.tissue_interface (lymphatic_capillary_tissue_interface.svg) |  |
 | lymphatic drainage | created | 1 | 1 | 0 | 0 | immuno.model.lymphatic_vessel_segment (lymphatic_vessel_segment.svg) |  |
 | lymphatic endothelial cell | created | 1 | 1 | 0 | 0 | immuno.cell.lymphatic_endothelial_cell (lymphatic_endothelial_cell.svg) |  |
 | lymphatic endothelium | created | 1 | 1 | 0 | 0 | immuno.cell.lymphatic_endothelial_cell (lymphatic_endothelial_cell.svg) |  |
-| lymphatic vessel | created | 1 | 1 | 0 | 0 | immuno.model.lymphatic_vessel_segment (lymphatic_vessel_segment.svg) |  |
 | lymphatic vessel segment | created | 1 | 1 | 0 | 0 | immuno.model.lymphatic_vessel_segment (lymphatic_vessel_segment.svg) |  |
 | lymphocyte activating 3 receptor | created | 1 | 1 | 0 | 0 | immuno.membrane_signaling.lag3_receptor (lag3_receptor.svg) |  |
 | lymphocyte activation gene 3 | created | 1 | 1 | 0 | 0 | immuno.membrane_signaling.lag3_receptor (lag3_receptor.svg) |  |
@@ -1459,10 +1981,15 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | lytic synapse | created | 1 | 1 | 0 | 0 | immuno.pathway.cytotoxic_immune_synapse (cytotoxic_immune_synapse.svg) |  |
 | m-mdsc | created | 1 | 1 | 0 | 0 | immuno.cell.monocytic_mdsc (monocytic_mdsc.svg) |  |
 | macrophage checkpoint | created | 1 | 1 | 0 | 0 | immuno.membrane_signaling.cd47_sirpa_checkpoint_interaction (cd47_sirpa_checkpoint_interaction.svg) |  |
+| macrophage polarization cue multiple cues | created | 1 | 0 | 1 | 0 | tme.macrophage_polarization_cue.multiple_cues (macrophage_polarization_cue_multiple_cues.svg) |  |
+| macrophage polarization cue single cue | created | 1 | 0 | 1 | 0 | tme.macrophage_polarization_cue.single_cue (macrophage_polarization_cue_single_cue.svg) |  |
+| macrophage polarization cue — multiple environmental cues | created | 1 | 0 | 1 | 0 | tme.macrophage_polarization_cue.multiple_cues (macrophage_polarization_cue_multiple_cues.svg) |  |
+| macrophage polarization cue — one cue and response range | created | 1 | 0 | 1 | 0 | tme.macrophage_polarization_cue.single_cue (macrophage_polarization_cue_single_cue.svg) |  |
 | macrophage — manuscript line | created | 1 | 1 | 0 | 0 | core.cell.macrophage_manuscript (immune_macrophage_manuscript.svg) |  |
 | mam | created | 1 | 0 | 1 | 0 | cellarch.membrane_signaling.er_mitochondrion_contact_site (er_mitochondrion_contact_site.svg) |  |
 | mast cell | created | 1 | 1 | 0 | 0 | exp.cell.mast_cell (mast_cell.svg) |  |
 | mastocyte | created | 1 | 1 | 0 | 0 | exp.cell.mast_cell (mast_cell.svg) |  |
+| matrix context | created | 1 | 0 | 1 | 0 | tme.cancer_associated_fibroblast.matrix (cancer_associated_fibroblast_matrix.svg) |  |
 | matrix embedded spheroid | created | 1 | 0 | 1 | 0 | culture.model_system.hydrogel_embedded_spheroid (hydrogel_embedded_spheroid.svg) |  |
 | matrix invasion assay | created | 1 | 0 | 1 | 0 | culture.assay_workflow.spheroid_matrix_outgrowth (spheroid_matrix_outgrowth.svg) |  |
 | matrix metalloproteinase | created | 1 | 1 | 0 | 0 | immuno.protein.matrix_metalloproteinase (matrix_metalloproteinase.svg) |  |
@@ -1471,6 +1998,9 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | mature dendritic cell | created | 1 | 1 | 0 | 0 | immuno.cell.mature_dendritic_cell (mature_dendritic_cell.svg) |  |
 | media | created | 1 | 1 | 0 | 0 | core.lab.petri_dish (petri_dish.svg) |  |
 | media bottle | created | 1 | 1 | 0 | 0 | exp.lab_equipment.reagent_bottle (reagent_bottle.svg) |  |
+| median eminence external zone field | created | 1 | 0 | 1 | 0 | endocrine.median_eminence.external_zone_field (median_eminence_external_zone_field.svg) |  |
+| median eminence external zone sagittal | created | 1 | 0 | 1 | 0 | endocrine.median_eminence.external_zone_sagittal (median_eminence_external_zone_sagittal.svg) |  |
+| medullary field | created | 1 | 0 | 1 | 0 | endocrine.adrenal_medulla.medullary_field (adrenal_medulla_medullary_field.svg) |  |
 | membrane cargo | created | 1 | 0 | 1 | 0 | cellarch.pathway_symbol.endosomal_recycling_tubule (endosomal_recycling_tubule.svg) |  |
 | membrane contact site | created | 1 | 0 | 1 | 0 | cellarch.membrane_signaling.er_mitochondrion_contact_site (er_mitochondrion_contact_site.svg) |  |
 | membrane crossing | created | 1 | 1 | 0 | 0 | core.symbol.translocation_arrow (translocation_arrow.svg) |  |
@@ -1479,15 +2009,16 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | membrane interface tissue-slice culture | created | 1 | 0 | 1 | 0 | culture.model_system.precision_cut_tissue_slice_culture.interface (precision_cut_tissue_slice_culture_interface.svg) |  |
 | membrane plane | created | 1 | 0 | 1 | 0 | cellarch.membrane_signaling.tight_junction_network (tight_junction_network.svg) |  |
 | membrane transporter | created | 1 | 1 | 0 | 0 | core.transporter.basic (membrane_transporter.svg) |  |
+| membrane-associated mlkl | created | 1 | 0 | 1 | 0 | cellstress.cell.necroptotic_cell.membrane_mlkl (necroptotic_cell_membrane_mlkl.svg) |  |
 | membrane-plane focal adhesion | created | 1 | 0 | 1 | 0 | cellarch.membrane_signaling.focal_adhesion_enface (focal_adhesion_enface.svg) |  |
 | membrane-plane gap-junction plaque | created | 1 | 0 | 1 | 0 | cellarch.membrane_signaling.gap_junction_plaque (gap_junction_plaque.svg) |  |
 | membrane-plane tight-junction network | created | 1 | 0 | 1 | 0 | cellarch.membrane_signaling.tight_junction_network (tight_junction_network.svg) |  |
 | memory t cell | created | 1 | 1 | 0 | 0 | immuno.cell.memory_t_cell (memory_t_cell.svg) |  |
 | memory t lymphocyte | created | 1 | 1 | 0 | 0 | immuno.cell.memory_t_cell (memory_t_cell.svg) |  |
-| mesh | created | 1 | 1 | 0 | 0 | immuno.model.collagen_rich_ecm.mesh (collagen_rich_ecm_mesh.svg) |  |
 | messenger rna | created | 1 | 1 | 0 | 0 | core.mrna.transcript (mrna_transcript.svg) |  |
 | metabolic cycle | created | 1 | 1 | 0 | 0 | core.pathway.metabolic_cycle (metabolic_cycle.svg) |  |
 | metabolic viability | created | 1 | 1 | 0 | 0 | exp.assay_workflow.cell_viability_readout (cell_viability_readout.svg) |  |
+| metacentric | created | 1 | 0 | 1 | 0 | cellstress.nucleic_acid.condensed_chromosome.metacentric (condensed_chromosome_metacentric.svg) |  |
 | metastasis context | created | 1 | 1 | 0 | 0 | immuno.model.micrometastatic_colony (micrometastatic_colony.svg) |  |
 | metastatic colonization | created | 1 | 1 | 0 | 0 | immuno.pathway.metastatic_seeding (metastatic_seeding.svg) |  |
 | metastatic colony formation | created | 1 | 1 | 0 | 0 | immuno.pathway.metastatic_seeding (metastatic_seeding.svg) |  |
@@ -1511,6 +2042,8 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | microfluidic cell partition | created | 1 | 0 | 1 | 0 | rna.lab_equipment.microfluidic_cell_partition (microfluidic_cell_partition.svg) |  |
 | microfluidics | created | 1 | 0 | 1 | 0 | rna.lab_equipment.microfluidic_cell_partition (microfluidic_cell_partition.svg) |  |
 | microglia | created | 1 | 1 | 0 | 0 | exp.cell.microglia_like (microglia_like.svg) |  |
+| microglia contact surveying | created | 1 | 0 | 1 | 0 | neuro.microglia_contact.surveying (microglia_contact_surveying.svg) |  |
+| microglia contact synaptic contact | created | 1 | 0 | 1 | 0 | neuro.microglia_contact.synaptic_contact (microglia_contact_synaptic_contact.svg) |  |
 | microglia like | created | 1 | 1 | 0 | 0 | exp.cell.microglia_like (microglia_like.svg) |  |
 | microglia-like cell | created | 1 | 1 | 0 | 0 | exp.cell.microglia_like (microglia_like.svg) |  |
 | microinjection needle | created | 1 | 0 | 1 | 0 | culture.assay_workflow.organoid_luminal_microinjection (organoid_luminal_microinjection.svg) |  |
@@ -1536,6 +2069,10 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | migrating malignant cell | created | 1 | 1 | 0 | 0 | exp.cell.migrating_cancer (migrating_cancer.svg) |  |
 | mirna | created | 1 | 1 | 0 | 0 | exp.nucleic_acid.mirna (mirna.svg) |  |
 | misfolded protein | created | 1 | 1 | 0 | 0 | proteostasis.protein.misfolded_protein (misfolded_protein.svg) |  |
+| mitochondrial fission constriction | created | 1 | 0 | 1 | 0 | cellstress.organelle.mitochondrial_fission.constriction (mitochondrial_fission_constriction.svg) |  |
+| mitochondrial fission daughter separation | created | 1 | 0 | 1 | 0 | cellstress.organelle.mitochondrial_fission.daughter_separation (mitochondrial_fission_daughter_separation.svg) |  |
+| mitochondrial fusion approach contact | created | 1 | 0 | 1 | 0 | cellstress.organelle.mitochondrial_fusion.approach_contact (mitochondrial_fusion_approach_contact.svg) |  |
+| mitochondrial fusion joined | created | 1 | 0 | 1 | 0 | cellstress.organelle.mitochondrial_fusion.joined (mitochondrial_fusion_joined.svg) |  |
 | mitochondrial network | created | 1 | 1 | 0 | 0 | core.mitochondrion.network (mitochondrion_network.svg) |  |
 | mitochondrion basic | created | 1 | 1 | 0 | 0 | core.mitochondrion.basic (mitochondrion_basic.svg) |  |
 | mitochondrion basic manuscript | created | 1 | 1 | 0 | 0 | core.mitochondrion.basic_manuscript (mitochondrion_basic_manuscript.svg) |  |
@@ -1545,10 +2082,12 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | mitogen | created | 1 | 1 | 0 | 0 | exp.protein.growth_factor (growth_factor.svg) |  |
 | mitosis | created | 1 | 1 | 0 | 0 | core.cell.dividing (cell_dividing.svg) |  |
 | mitotic spindle | created | 1 | 1 | 0 | 0 | exp.organelle.centrosome_spindle (centrosome_spindle.svg) |  |
+| mixed cell clusters | created | 1 | 0 | 1 | 0 | endocrine.pancreatic_islet.mixed_islet (pancreatic_islet_mixed_islet.svg) |  |
 | mixed cell culture | created | 1 | 1 | 0 | 0 | exp.model_system.coculture_dish (coculture_dish.svg) |  |
 | mixed culture | created | 1 | 1 | 0 | 0 | exp.model_system.coculture_dish (coculture_dish.svg) |  |
 | mmp | created | 1 | 1 | 0 | 0 | immuno.protein.matrix_metalloproteinase (matrix_metalloproteinase.svg) |  |
 | model system | created | 1 | 1 | 0 | 0 | core.cell.tumor_spheroid (tumor_spheroid.svg) |  |
+| modular arrangement | created | 1 | 0 | 1 | 0 | analysis.network_graph.modular (network_graph_modular.svg) |  |
 | molecular association relation | created | 1 | 1 | 0 | 0 | exp.pathway_symbol.binding_pair (binding_pair.svg) |  |
 | molecular degradation relation | created | 1 | 1 | 0 | 0 | exp.pathway_symbol.degradation (degradation.svg) |  |
 | molecular dissociation relation | created | 1 | 1 | 0 | 0 | exp.pathway_symbol.dissociation (dissociation.svg) |  |
@@ -1579,6 +2118,8 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | multichannel if | created | 1 | 1 | 0 | 0 | immuno.assay.multiplex_immunofluorescence_tissue_field (multiplex_immunofluorescence_tissue_field.svg) |  |
 | multimer | created | 1 | 1 | 0 | 0 | core.protein.multimer_complex (protein_multimer_complex.svg) |  |
 | multiple endosomal tubules | created | 1 | 0 | 1 | 0 | cellarch.pathway_symbol.recycling_endosome_branched (recycling_endosome_branched.svg) |  |
+| multiple environmental cues | created | 1 | 0 | 1 | 0 | tme.macrophage_polarization_cue.multiple_cues (macrophage_polarization_cue_multiple_cues.svg) |  |
+| multiple sheaths | created | 1 | 0 | 1 | 0 | neuro.oligodendrocyte.multiple_sheaths (oligodendrocyte_multiple_sheaths.svg) |  |
 | multiplex if | created | 1 | 1 | 0 | 0 | immuno.assay.multiplex_immunofluorescence_tissue_field (multiplex_immunofluorescence_tissue_field.svg) |  |
 | multiplex immunofluorescence | created | 1 | 1 | 0 | 0 | immuno.assay.multiplex_immunofluorescence_tissue_field (multiplex_immunofluorescence_tissue_field.svg) |  |
 | multiplex immunofluorescence tissue field | created | 1 | 1 | 0 | 0 | immuno.assay.multiplex_immunofluorescence_tissue_field (multiplex_immunofluorescence_tissue_field.svg) |  |
@@ -1587,11 +2128,11 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | multivesicular endosomal compartment | created | 1 | 0 | 1 | 0 | cellarch.organelle.multivesicular_endosome (multivesicular_endosome.svg) |  |
 | multivesicular endosome | created | 1 | 0 | 1 | 0 | cellarch.organelle.multivesicular_endosome (multivesicular_endosome.svg) |  |
 | mural cell | created | 1 | 1 | 0 | 0 | immuno.cell.pericyte (pericyte.svg) |  |
+| mushroom | created | 1 | 0 | 1 | 0 | neuro.dendritic_spine.mushroom (dendritic_spine_mushroom.svg) |  |
 | mutant peptide | created | 1 | 1 | 0 | 0 | immuno.protein.neoantigen_peptide (neoantigen_peptide.svg) |  |
 | mvb | created | 1 | 0 | 1 | 0 | cellarch.organelle.multivesicular_endosome (multivesicular_endosome.svg) |  |
-| myelinated axon | created | 1 | 1 | 0 | 0 | exp.cell.schwann_myelin (schwann_myelin.svg) |  |
 | myelinating glial cell | created | 1 | 1 | 0 | 0 | exp.cell.oligodendrocyte_like (oligodendrocyte_like.svg) |  |
-| myelinating schwann cell | created | 1 | 1 | 0 | 0 | exp.cell.schwann_myelin (schwann_myelin.svg) |  |
+| myelinating internode | created | 1 | 0 | 1 | 0 | neuro.schwann_cell.myelinating_internode (schwann_cell_myelinating_internode.svg) |  |
 | myeloid cells in tumors | created | 1 | 1 | 0 | 0 | immuno.cell.tumor_associated_macrophage (tumor_associated_macrophage.svg) |  |
 | myocyte | created | 1 | 1 | 0 | 0 | exp.cell.smooth_muscle (smooth_muscle.svg) |  |
 | myosin v | created | 1 | 0 | 1 | 0 | cellarch.pathway_symbol.myosin_va_cargo_transport (myosin_va_cargo_transport.svg) |  |
@@ -1605,6 +2146,10 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | naïve t cell | created | 1 | 1 | 0 | 0 | immuno.cell.naive_t_cell (naive_t_cell.svg) |  |
 | naïve t lymphocyte | created | 1 | 1 | 0 | 0 | immuno.cell.naive_t_cell (naive_t_cell.svg) |  |
 | necl5 | created | 1 | 1 | 0 | 0 | immuno.membrane_signaling.cd155 (cd155.svg) |  |
+| necroptotic cell lytic | created | 1 | 0 | 1 | 0 | cellstress.cell.necroptotic_cell.lytic (necroptotic_cell_lytic.svg) |  |
+| necroptotic cell membrane mlkl | created | 1 | 0 | 1 | 0 | cellstress.cell.necroptotic_cell.membrane_mlkl (necroptotic_cell_membrane_mlkl.svg) |  |
+| necrotic cell disintegrating | created | 1 | 0 | 1 | 0 | cellstress.cell.necrotic_cell.disintegrating (necrotic_cell_disintegrating.svg) |  |
+| necrotic cell swollen ruptured | created | 1 | 0 | 1 | 0 | cellstress.cell.necrotic_cell.swollen_ruptured (necrotic_cell_swollen_ruptured.svg) |  |
 | necrotic core | created | 1 | 1 | 0 | 0 | immuno.model.necrotic_tumor_region (necrotic_tumor_region.svg) |  |
 | necrotic tumor region | created | 1 | 1 | 0 | 0 | immuno.model.necrotic_tumor_region (necrotic_tumor_region.svg) |  |
 | negative regulation | created | 1 | 1 | 0 | 0 | core.symbol.inhibition_bar (inhibition_bar.svg) |  |
@@ -1618,6 +2163,15 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | neovascularization | created | 1 | 1 | 0 | 0 | immuno.model.angiogenic_vessel_sprout (angiogenic_vessel_sprout.svg) |  |
 | nes cargo | created | 1 | 0 | 1 | 0 | cellarch.pathway_symbol.exportin_cargo_nuclear_export (exportin_cargo_nuclear_export.svg) |  |
 | nes cargo nuclear export | created | 1 | 0 | 1 | 0 | cellarch.pathway_symbol.exportin_cargo_nuclear_export (exportin_cargo_nuclear_export.svg) |  |
+| nests around sinusoid | created | 1 | 0 | 1 | 0 | endocrine.adrenal_medulla.vascular_nests (adrenal_medulla_vascular_nests.svg) |  |
+| network graph hub | created | 1 | 0 | 1 | 0 | analysis.network_graph.hub (network_graph_hub.svg) |  |
+| network graph modular | created | 1 | 0 | 1 | 0 | analysis.network_graph.modular (network_graph_modular.svg) |  |
+| network graph — hub arrangement | created | 1 | 0 | 1 | 0 | analysis.network_graph.hub (network_graph_hub.svg) |  |
+| network graph — modular arrangement | created | 1 | 0 | 1 | 0 | analysis.network_graph.modular (network_graph_modular.svg) |  |
+| neural circuit convergent inputs | created | 1 | 0 | 1 | 0 | neuro.neural_circuit.convergent_inputs (neural_circuit_convergent_inputs.svg) |  |
+| neural circuit feedforward chain | created | 1 | 0 | 1 | 0 | neuro.neural_circuit.feedforward_chain (neural_circuit_feedforward_chain.svg) |  |
+| neuron astrocyte contact process network | created | 1 | 0 | 1 | 0 | neuro.neuron_astrocyte_contact.process_network (neuron_astrocyte_contact_process_network.svg) |  |
+| neuron astrocyte contact single synapse | created | 1 | 0 | 1 | 0 | neuro.neuron_astrocyte_contact.single_synapse (neuron_astrocyte_contact_single_synapse.svg) |  |
 | neuron-like cell | created | 1 | 1 | 0 | 0 | core.cell.neuron_like (cell_neuron_like.svg) |  |
 | neuroscience | created | 1 | 1 | 0 | 0 | core.cell.astrocyte_like (astrocyte_like_cell.svg) |  |
 | neutrophil — manuscript line | created | 1 | 1 | 0 | 0 | core.cell.neutrophil_manuscript (immune_neutrophil_manuscript.svg) |  |
@@ -1626,10 +2180,14 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | nk target synapse | created | 1 | 1 | 0 | 0 | immuno.pathway.cytotoxic_immune_synapse (cytotoxic_immune_synapse.svg) |  |
 | nk-mediated adcc | created | 1 | 1 | 0 | 0 | immuno.pathway.antibody_dependent_cellular_cytotoxicity (antibody_dependent_cellular_cytotoxicity.svg) |  |
 | nls cargo | created | 1 | 0 | 1 | 0 | cellarch.pathway_symbol.importin_cargo_nuclear_import (importin_cargo_nuclear_import.svg) |  |
+| nodal channel region | created | 1 | 0 | 1 | 0 | neuro.node_of_ranvier.channel_region (node_of_ranvier_channel_region.svg) |  |
+| node of ranvier channel region | created | 1 | 0 | 1 | 0 | neuro.node_of_ranvier.channel_region (node_of_ranvier_channel_region.svg) |  |
+| node of ranvier paired internodes | created | 1 | 0 | 1 | 0 | neuro.node_of_ranvier.paired_internodes (node_of_ranvier_paired_internodes.svg) |  |
 | nodes | created | 1 | 1 | 0 | 0 | core.pathway.metabolic_cycle (metabolic_cycle.svg) |  |
 | non-native protein | created | 1 | 1 | 0 | 0 | proteostasis.protein.misfolded_protein (misfolded_protein.svg) |  |
 | nonadherent spheroid culture | created | 1 | 0 | 1 | 0 | culture.model_system.suspension_spheroid_culture (suspension_spheroid_culture.svg) |  |
 | nonfibrillar aggregation | created | 1 | 1 | 0 | 0 | proteostasis.protein.amorphous_protein_aggregate (amorphous_protein_aggregate.svg) |  |
+| nonmyelinating bundle | created | 1 | 0 | 1 | 0 | neuro.schwann_cell.nonmyelinating_bundle (schwann_cell_nonmyelinating_bundle.svg) |  |
 | notch like | created | 1 | 1 | 0 | 0 | exp.membrane_signaling.notch_like (notch_like.svg) |  |
 | notch receptor | created | 1 | 1 | 0 | 0 | exp.membrane_signaling.notch_like (notch_like.svg) |  |
 | notch signaling | created | 1 | 1 | 0 | 0 | exp.membrane_signaling.notch_like (notch_like.svg) |  |
@@ -1643,8 +2201,12 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | nuclear export | created | 1 | 0 | 1 | 0 | cellarch.pathway_symbol.exportin_cargo_nuclear_export (exportin_cargo_nuclear_export.svg) |  |
 | nuclear import of receptor-bound cargo | created | 1 | 0 | 1 | 0 | cellarch.pathway_symbol.importin_cargo_nuclear_import (importin_cargo_nuclear_import.svg) |  |
 | nuclear receptor | created | 1 | 1 | 0 | 0 | exp.membrane_signaling.nuclear_receptor (nuclear_receptor.svg) |  |
+| nuclear speckle condensate detail | created | 1 | 0 | 1 | 0 | cellstress.organelle.nuclear_speckle.condensate_detail (nuclear_speckle_condensate_detail.svg) |  |
+| nuclear speckle nuclear distribution | created | 1 | 0 | 1 | 0 | cellstress.organelle.nuclear_speckle.nuclear_distribution (nuclear_speckle_nuclear_distribution.svg) |  |
 | nucleic-acid quantification | created | 1 | 1 | 0 | 0 | exp.assay_workflow.qpcr_curve (qpcr_curve.svg) |  |
 | nucleic-acid sequencing instrument | created | 1 | 1 | 0 | 0 | exp.lab_equipment.sequencer (sequencer.svg) |  |
+| nucleolus nuclear context | created | 1 | 0 | 1 | 0 | cellstress.organelle.nucleolus.nuclear_context (nucleolus_nuclear_context.svg) |  |
+| nucleolus subcompartments | created | 1 | 0 | 1 | 0 | cellstress.organelle.nucleolus.subcompartments (nucleolus_subcompartments.svg) |  |
 | nucleoporin complex | created | 1 | 1 | 0 | 0 | exp.organelle.nuclear_pore (nuclear_pore.svg) |  |
 | nucleosome | created | 1 | 1 | 0 | 0 | exp.organelle.nucleosome (nucleosome.svg) |  |
 | nucleosome core particle | created | 1 | 1 | 0 | 0 | exp.organelle.nucleosome (nucleosome.svg) |  |
@@ -1659,8 +2221,9 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | oil | created | 1 | 0 | 1 | 0 | rna.lab_equipment.microfluidic_cell_partition (microfluidic_cell_partition.svg) |  |
 | oligo(dt | created | 1 | 0 | 1 | 0 | rna.nucleic_acid.barcoded_capture_bead (barcoded_capture_bead.svg) |  |
 | oligo-barcoded rna capture bead | created | 1 | 0 | 1 | 0 | rna.nucleic_acid.barcoded_capture_bead (barcoded_capture_bead.svg) |  |
-| oligodendrocyte | created | 1 | 1 | 0 | 0 | exp.cell.oligodendrocyte_like (oligodendrocyte_like.svg) |  |
+| oligodendrocyte branching | created | 1 | 0 | 1 | 0 | neuro.oligodendrocyte.branching (oligodendrocyte_branching.svg) |  |
 | oligodendrocyte like | created | 1 | 1 | 0 | 0 | exp.cell.oligodendrocyte_like (oligodendrocyte_like.svg) |  |
+| oligodendrocyte multiple sheaths | created | 1 | 0 | 1 | 0 | neuro.oligodendrocyte.multiple_sheaths (oligodendrocyte_multiple_sheaths.svg) |  |
 | oligodendrocyte-like cell | created | 1 | 1 | 0 | 0 | exp.cell.oligodendrocyte_like (oligodendrocyte_like.svg) |  |
 | oligonucleotide | created | 1 | 0 | 1 | 0 | rna.nucleic_acid.barcoded_capture_bead (barcoded_capture_bead.svg) |  |
 | oligonucleotide-barcoded rna capture bead | created | 1 | 0 | 1 | 0 | rna.nucleic_acid.barcoded_capture_bead (barcoded_capture_bead.svg) |  |
@@ -1670,6 +2233,7 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | oncolytic virus | created | 1 | 1 | 0 | 0 | immuno.pathway.oncolytic_virus (oncolytic_virus.svg) |  |
 | oncolytic virus concept | created | 1 | 1 | 0 | 0 | immuno.pathway.oncolytic_virus (oncolytic_virus.svg) |  |
 | oncolytic virus therapy | created | 1 | 1 | 0 | 0 | immuno.pathway.oncolytic_virus (oncolytic_virus.svg) |  |
+| one cue and response range | created | 1 | 0 | 1 | 0 | tme.macrophage_polarization_cue.single_cue (macrophage_polarization_cue_single_cue.svg) |  |
 | open | created | 1 | 1 | 0 | 0 | exp.nucleic_acid.chromatin_state.open (chromatin_state_open.svg) |  |
 | open-neck escrt invagination | created | 1 | 0 | 1 | 0 | cellarch.pathway_symbol.escrt_inward_bud (escrt_inward_bud.svg) |  |
 | opposed-membrane snare complex | created | 1 | 0 | 1 | 0 | cellarch.membrane_signaling.trans_snare_complex (trans_snare_complex.svg) |  |
@@ -1691,14 +2255,23 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | outer-membrane vesicle budding | created | 1 | 0 | 1 | 0 | microbe.membrane_signaling.outer_membrane_vesicle_budding (outer_membrane_vesicle_budding.svg) |  |
 | ov | created | 1 | 1 | 0 | 0 | immuno.pathway.oncolytic_virus (oncolytic_virus.svg) |  |
 | oval nucleus | created | 1 | 1 | 0 | 0 | core.nucleus.oval_cutaway (nucleus_oval_cutaway.svg) |  |
+| ovarian follicle eccentric oocyte | created | 1 | 0 | 1 | 0 | endocrine.ovarian_follicle.eccentric_oocyte (ovarian_follicle_eccentric_oocyte.svg) |  |
+| ovarian follicle sector section | created | 1 | 0 | 1 | 0 | endocrine.ovarian_follicle.sector_section (ovarian_follicle_sector_section.svg) |  |
 | oxidation | created | 1 | 1 | 0 | 0 | core.peroxisome.basic (peroxisome.svg) |  |
 | page apparatus | created | 1 | 1 | 0 | 0 | exp.lab_equipment.gel_electrophoresis (gel_electrophoresis.svg) |  |
 | paired centrioles | created | 1 | 1 | 0 | 0 | exp.organelle.centriole_pair (centriole_pair.svg) |  |
 | paired cocci | created | 1 | 0 | 1 | 0 | microbe.cell.paired_cocci (paired_cocci.svg) |  |
 | paired end | created | 1 | 1 | 0 | 0 | exp.assay_workflow.sequencing_reads.paired_end (sequencing_reads_paired_end.svg) |  |
+| paired internodes | created | 1 | 0 | 1 | 0 | neuro.node_of_ranvier.paired_internodes (node_of_ranvier_paired_internodes.svg) |  |
+| paired tubule profiles | created | 1 | 0 | 1 | 0 | endocrine.leydig_interstitium.paired_tubules (leydig_interstitium_paired_tubules.svg) |  |
+| pancreatic islet folded plates | created | 1 | 0 | 1 | 0 | endocrine.pancreatic_islet.folded_plates (pancreatic_islet_folded_plates.svg) |  |
+| pancreatic islet mixed islet | created | 1 | 0 | 1 | 0 | endocrine.pancreatic_islet.mixed_islet (pancreatic_islet_mixed_islet.svg) |  |
 | paracellular barrier | created | 1 | 0 | 1 | 0 | cellarch.membrane_signaling.tight_junction (tight_junction.svg) |  |
 | parallel hanging drops hanging-drop spheroid culture | created | 1 | 0 | 1 | 0 | culture.model_system.hanging_drop_spheroid.array (hanging_drop_spheroid_array.svg) |  |
 | parallel microwells microwell spheroid aggregation | created | 1 | 0 | 1 | 0 | culture.model_system.microwell_spheroid_aggregation.array (microwell_spheroid_aggregation_array.svg) |  |
+| parathyroid cords cords longitudinal | created | 1 | 0 | 1 | 0 | endocrine.parathyroid_cords.cords_longitudinal (parathyroid_cords_cords_longitudinal.svg) |  |
+| parathyroid cords lobular field | created | 1 | 0 | 1 | 0 | endocrine.parathyroid_cords.lobular_field (parathyroid_cords_lobular_field.svg) |  |
+| particulate antigen | created | 1 | 0 | 1 | 0 | tme.dendritic_antigen_uptake.particulate (dendritic_antigen_uptake_particulate.svg) |  |
 | partition | created | 1 | 0 | 1 | 0 | rna.lab_equipment.microfluidic_cell_partition (microfluidic_cell_partition.svg) |  |
 | patent vessels | created | 1 | 0 | 1 | 0 | culture.model_system.perfusable_microvascular_network (perfusable_microvascular_network.svg) |  |
 | pcr amplicon | created | 1 | 1 | 0 | 0 | exp.nucleic_acid.pcr_amplicon (pcr_amplicon.svg) |  |
@@ -1736,6 +2309,8 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | phage tail sheath | created | 1 | 0 | 1 | 0 | microbe.model_system.contractile_tailed_bacteriophage (contractile_tailed_bacteriophage.svg) |  |
 | phagocytosis | created | 1 | 1 | 0 | 0 | immuno.pathway.phagocytosis (phagocytosis.svg) |  |
 | phagocytosis checkpoint | created | 1 | 1 | 0 | 0 | immuno.membrane_signaling.cd47_sirpa_checkpoint_interaction (cd47_sirpa_checkpoint_interaction.svg) |  |
+| phagolysosome bacterial cargo | created | 1 | 0 | 1 | 0 | cellstress.organelle.phagolysosome.bacterial_cargo (phagolysosome_bacterial_cargo.svg) |  |
+| phagolysosome degrading cargo | created | 1 | 0 | 1 | 0 | cellstress.organelle.phagolysosome.degrading_cargo (phagolysosome_degrading_cargo.svg) |  |
 | phagosome formation | created | 1 | 1 | 0 | 0 | immuno.pathway.phagocytosis (phagocytosis.svg) |  |
 | phosphatase | created | 1 | 1 | 0 | 0 | exp.protein.phosphatase (phosphatase.svg) |  |
 | phosphatase enzyme | created | 1 | 1 | 0 | 0 | exp.protein.phosphatase (phosphatase.svg) |  |
@@ -1744,6 +2319,9 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | phosphate removal | created | 1 | 1 | 0 | 0 | exp.pathway_symbol.dephosphorylation (dephosphorylation.svg) |  |
 | phosphate removing enzyme | created | 1 | 1 | 0 | 0 | exp.protein.phosphatase (phosphatase.svg) |  |
 | phosphorylation symbol | created | 1 | 1 | 0 | 0 | core.symbol.phosphorylation (phosphorylation_symbol.svg) |  |
+| pineal parenchyma cell groups | created | 1 | 0 | 1 | 0 | endocrine.pineal_parenchyma.cell_groups (pineal_parenchyma_cell_groups.svg) |  |
+| pineal parenchyma lobular field | created | 1 | 0 | 1 | 0 | endocrine.pineal_parenchyma.lobular_field (pineal_parenchyma_lobular_field.svg) |  |
+| pinealocyte groups | created | 1 | 0 | 1 | 0 | endocrine.pineal_parenchyma.cell_groups (pineal_parenchyma_cell_groups.svg) |  |
 | pipette | created | 1 | 1 | 0 | 0 | core.lab.pipette (pipette.svg) |  |
 | plasma cell | created | 1 | 1 | 0 | 0 | exp.cell.plasma_cell (plasma_cell.svg) |  |
 | plasma membrane | created | 1 | 1 | 0 | 0 | core.membrane.plasma_segment (plasma_membrane_segment.svg) |  |
@@ -1774,12 +2352,16 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | polypeptide ligand | created | 1 | 1 | 0 | 0 | core.ligand.peptide (ligand_peptide.svg) |  |
 | polypeptide synthesis | created | 1 | 1 | 0 | 0 | exp.nucleic_acid.translation (translation.svg) |  |
 | polyubiquitin chain | created | 1 | 1 | 0 | 0 | exp.protein.ubiquitin_chain (ubiquitin_chain.svg) |  |
+| pore-bearing cell | created | 1 | 0 | 1 | 0 | cellstress.cell.pyroptotic_cell.pore_bearing (pyroptotic_cell_pore_bearing.svg) |  |
 | pore-forming cytotoxic protein | created | 1 | 1 | 0 | 0 | immuno.protein.perforin_1 (perforin_1.svg) |  |
 | porous insert | created | 1 | 0 | 1 | 0 | culture.model_system.air_liquid_interface_culture (air_liquid_interface_culture.svg) |  |
+| portal interface field | created | 1 | 0 | 1 | 0 | endocrine.median_eminence.external_zone_field (median_eminence_external_zone_field.svg) |  |
 | positive regulation | created | 1 | 1 | 0 | 0 | core.symbol.activation_arrow (arrow_activation.svg) |  |
 | post-fusion autophagosome-lysosome compartment | created | 1 | 0 | 1 | 0 | cellarch.pathway_symbol.autophagosome_lysosome_fusion (autophagosome_lysosome_fusion.svg) |  |
 | post-fusion snare complex | created | 1 | 0 | 1 | 0 | cellarch.membrane_signaling.cis_snare_complex (cis_snare_complex.svg) |  |
 | post-translational modification | created | 1 | 1 | 0 | 0 | core.symbol.phosphorylation (phosphorylation_symbol.svg) |  |
+| posterior pituitary longitudinal neural lobe | created | 1 | 0 | 1 | 0 | endocrine.posterior_pituitary.longitudinal_neural_lobe (posterior_pituitary_longitudinal_neural_lobe.svg) |  |
+| posterior pituitary transverse neural lobe | created | 1 | 0 | 1 | 0 | endocrine.posterior_pituitary.transverse_neural_lobe (posterior_pituitary_transverse_neural_lobe.svg) |  |
 | postfusion snare | created | 1 | 0 | 1 | 0 | cellarch.membrane_signaling.cis_snare_complex (cis_snare_complex.svg) |  |
 | pre mrna | created | 1 | 1 | 0 | 0 | exp.nucleic_acid.pre_mrna (pre_mrna.svg) |  |
 | pre-fusion autophagosome-lysosome apposition | created | 1 | 0 | 1 | 0 | cellarch.pathway_symbol.autophagosome_lysosome_docking (autophagosome_lysosome_docking.svg) |  |
@@ -1792,7 +2374,10 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | precursor messenger rna | created | 1 | 1 | 0 | 0 | exp.nucleic_acid.pre_mrna (pre_mrna.svg) |  |
 | prefusion autophagosome | created | 1 | 0 | 1 | 0 | cellarch.pathway_symbol.autophagosome_lysosome_docking (autophagosome_lysosome_docking.svg) |  |
 | prf1 | created | 1 | 1 | 0 | 0 | immuno.protein.perforin_1 (perforin_1.svg) |  |
+| primary cilium bent | created | 1 | 0 | 1 | 0 | cellstress.organelle.primary_cilium.bent (primary_cilium_bent.svg) |  |
+| primary cilium straight | created | 1 | 0 | 1 | 0 | cellstress.organelle.primary_cilium.straight (primary_cilium_straight.svg) |  |
 | primary transcript | created | 1 | 1 | 0 | 0 | exp.nucleic_acid.pre_mrna (pre_mrna.svg) |  |
+| process network | created | 1 | 0 | 1 | 0 | neuro.neuron_astrocyte_contact.process_network (neuron_astrocyte_contact_process_network.svg) |  |
 | progenitor cell | created | 1 | 1 | 0 | 0 | exp.cell.stem_progenitor (stem_progenitor.svg) |  |
 | prokaryote | created | 1 | 1 | 0 | 0 | core.model.bacterium_rod (rod_bacterium_model.svg) |  |
 | promoter | created | 1 | 1 | 0 | 0 | core.gene.promoter (gene_promoter_segment.svg) |  |
@@ -1828,10 +2413,16 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | proteolytic barrel | created | 1 | 1 | 0 | 0 | exp.organelle.proteasome (proteasome.svg) |  |
 | proteolytic enzyme | created | 1 | 1 | 0 | 0 | exp.protein.protease (protease.svg) |  |
 | pseudohyphal chain | created | 1 | 0 | 1 | 0 | microbe.cell.fungal_pseudohyphal_chain (fungal_pseudohyphal_chain.svg) |  |
+| pseudotime trajectory branching | created | 1 | 0 | 1 | 0 | analysis.pseudotime_trajectory.branching (pseudotime_trajectory_branching.svg) |  |
+| pseudotime trajectory linear | created | 1 | 0 | 1 | 0 | analysis.pseudotime_trajectory.linear (pseudotime_trajectory_linear.svg) |  |
+| pseudotime trajectory — branching ordering | created | 1 | 0 | 1 | 0 | analysis.pseudotime_trajectory.branching (pseudotime_trajectory_branching.svg) |  |
+| pseudotime trajectory — continuous ordering | created | 1 | 0 | 1 | 0 | analysis.pseudotime_trajectory.linear (pseudotime_trajectory_linear.svg) |  |
 | pseudounipolar neuron | created | 1 | 1 | 0 | 0 | core.cell.neuron_pseudounipolar (cell_neuron_pseudounipolar.svg) |  |
 | pseudounipolar sensory neuron | created | 1 | 1 | 0 | 0 | core.cell.neuron_pseudounipolar (cell_neuron_pseudounipolar.svg) |  |
 | puncta | created | 1 | 0 | 1 | 0 | rna.assay_workflow.in_situ_rna_puncta (in_situ_rna_puncta.svg) |  |
 | pvr | created | 1 | 1 | 0 | 0 | immuno.membrane_signaling.cd155 (cd155.svg) |  |
+| pyroptotic cell lytic | created | 1 | 0 | 1 | 0 | cellstress.cell.pyroptotic_cell.lytic (pyroptotic_cell_lytic.svg) |  |
+| pyroptotic cell pore bearing | created | 1 | 0 | 1 | 0 | cellstress.cell.pyroptotic_cell.pore_bearing (pyroptotic_cell_pore_bearing.svg) |  |
 | q snare | created | 1 | 0 | 1 | 0 | cellarch.membrane_signaling.cis_snare_complex (cis_snare_complex.svg) |  |
 | q-snare | created | 1 | 0 | 1 | 0 | cellarch.membrane_signaling.trans_snare_complex (trans_snare_complex.svg) |  |
 | qpcr amplification curve | created | 1 | 1 | 0 | 0 | exp.assay_workflow.qpcr_curve (qpcr_curve.svg) |  |
@@ -1844,6 +2435,8 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | quiescent cell | created | 1 | 1 | 0 | 0 | exp.cell.quiescent (quiescent.svg) |  |
 | r snare | created | 1 | 0 | 1 | 0 | cellarch.membrane_signaling.cis_snare_complex (cis_snare_complex.svg) |  |
 | r-snare | created | 1 | 0 | 1 | 0 | cellarch.membrane_signaling.trans_snare_complex (trans_snare_complex.svg) |  |
+| radial luteal tissue | created | 1 | 0 | 1 | 0 | endocrine.corpus_luteum.radial_luteal_tissue (corpus_luteum_radial_luteal_tissue.svg) |  |
+| radial tissue field | created | 1 | 0 | 1 | 0 | endocrine.anterior_pituitary.cords_radial (anterior_pituitary_cords_radial.svg) |  |
 | rangtp | created | 1 | 0 | 1 | 0 | cellarch.pathway_symbol.exportin_cargo_nuclear_export (exportin_cargo_nuclear_export.svg) |  |
 | rbc | created | 1 | 1 | 0 | 0 | exp.cell.erythrocyte (erythrocyte.svg) |  |
 | reaction arrow | created | 1 | 1 | 0 | 0 | exp.pathway_symbol.conversion_arrow (conversion_arrow.svg) |  |
@@ -1851,6 +2444,7 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | real time pcr machine | created | 1 | 1 | 0 | 0 | exp.lab_equipment.qpcr_instrument (qpcr_instrument.svg) |  |
 | real time pcr result | created | 1 | 1 | 0 | 0 | exp.assay_workflow.qpcr_curve (qpcr_curve.svg) |  |
 | real-time pcr instrument | created | 1 | 1 | 0 | 0 | exp.lab_equipment.qpcr_instrument (qpcr_instrument.svg) |  |
+| receptor display | created | 1 | 0 | 1 | 0 | tme.car_nk_cell.receptor_display (car_nk_cell_receptor_display.svg) |  |
 | receptor ectodomain | created | 1 | 1 | 0 | 0 | core.receptor.extracellular_domain (receptor_extracellular_domain.svg) |  |
 | receptor extracellular domain | created | 1 | 1 | 0 | 0 | core.receptor.extracellular_domain (receptor_extracellular_domain.svg) |  |
 | receptor fragment | created | 1 | 1 | 0 | 0 | core.receptor.extracellular_domain (receptor_extracellular_domain.svg) |  |
@@ -1871,6 +2465,8 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | released bacterial outer-membrane vesicle | created | 1 | 0 | 1 | 0 | microbe.membrane_signaling.released_outer_membrane_vesicle (released_outer_membrane_vesicle.svg) |  |
 | released outer membrane vesicle | created | 1 | 0 | 1 | 0 | microbe.membrane_signaling.released_outer_membrane_vesicle (released_outer_membrane_vesicle.svg) |  |
 | replication fork | created | 1 | 1 | 0 | 0 | exp.nucleic_acid.replication_fork (replication_fork.svg) |  |
+| replication stress reversed fork | created | 1 | 0 | 1 | 0 | cellstress.nucleic_acid.replication_stress.reversed_fork (replication_stress_reversed_fork.svg) |  |
+| replication stress stalled fork | created | 1 | 0 | 1 | 0 | cellstress.nucleic_acid.replication_stress.stalled_fork (replication_stress_stalled_fork.svg) |  |
 | reporter assays | created | 1 | 1 | 0 | 0 | exp.assay_workflow.luminescence_readout (luminescence_readout.svg) |  |
 | reporter signal | created | 1 | 1 | 0 | 0 | exp.assay_workflow.luminescence_readout (luminescence_readout.svg) |  |
 | reproductive survival | created | 1 | 0 | 1 | 0 | culture.assay_workflow.clonogenic_colony_formation (clonogenic_colony_formation.svg) |  |
@@ -1884,6 +2480,7 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | retrograde transport | created | 1 | 0 | 1 | 0 | cellarch.pathway_symbol.cytoplasmic_dynein_cargo_transport (cytoplasmic_dynein_cargo_transport.svg) |  |
 | retrograde vesicle | created | 1 | 0 | 1 | 0 | cellarch.organelle.copi_coated_vesicle (copi_coated_vesicle.svg) |  |
 | reverse topology budding | created | 1 | 0 | 1 | 0 | cellarch.pathway_symbol.escrt_inward_bud (escrt_inward_bud.svg) |  |
+| reversed fork | created | 1 | 0 | 1 | 0 | cellstress.nucleic_acid.replication_stress.reversed_fork (replication_stress_reversed_fork.svg) |  |
 | ribosomal subunits | created | 1 | 1 | 0 | 0 | exp.organelle.ribosome (ribosome.svg) |  |
 | ribosome translation | created | 1 | 1 | 0 | 0 | exp.nucleic_acid.translation (translation.svg) |  |
 | ribosome-mediated translation | created | 1 | 1 | 0 | 0 | exp.nucleic_acid.translation (translation.svg) |  |
@@ -1920,6 +2517,7 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | rtk like receptor | created | 1 | 1 | 0 | 0 | core.receptor.rtk_like (rtk_like_receptor.svg) |  |
 | rtk-like receptor | created | 1 | 1 | 0 | 0 | core.receptor.rtk_like (rtk_like_receptor.svg) |  |
 | saccharomyces | created | 1 | 1 | 0 | 0 | core.model.yeast_budding (budding_yeast_model.svg) |  |
+| sagittal neurovascular section | created | 1 | 0 | 1 | 0 | endocrine.median_eminence.external_zone_sagittal (median_eminence_external_zone_sagittal.svg) |  |
 | saliva biospecimen | created | 1 | 1 | 0 | 0 | exp.clinical_sample.saliva_sample (saliva_sample.svg) |  |
 | saliva sample | created | 1 | 1 | 0 | 0 | exp.clinical_sample.saliva_sample (saliva_sample.svg) |  |
 | salivary sample | created | 1 | 1 | 0 | 0 | exp.clinical_sample.saliva_sample (saliva_sample.svg) |  |
@@ -1932,8 +2530,13 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | scaffold | created | 1 | 1 | 0 | 0 | exp.protein.scaffold (scaffold.svg) |  |
 | scaffold protein | created | 1 | 1 | 0 | 0 | exp.protein.scaffold (scaffold.svg) |  |
 | scaffolding protein | created | 1 | 1 | 0 | 0 | exp.protein.scaffold (scaffold.svg) |  |
-| schwann cell | created | 1 | 1 | 0 | 0 | exp.cell.schwann_myelin (schwann_myelin.svg) |  |
+| scatter plot single series | created | 1 | 0 | 1 | 0 | analysis.scatter_plot.single_series (scatter_plot_single_series.svg) |  |
+| scatter plot two series | created | 1 | 0 | 1 | 0 | analysis.scatter_plot.two_series (scatter_plot_two_series.svg) |  |
+| scatter plot — single series with guide | created | 1 | 0 | 1 | 0 | analysis.scatter_plot.single_series (scatter_plot_single_series.svg) |  |
+| scatter plot — two series | created | 1 | 0 | 1 | 0 | analysis.scatter_plot.two_series (scatter_plot_two_series.svg) |  |
 | schwann cell and myelin | created | 1 | 1 | 0 | 0 | exp.cell.schwann_myelin (schwann_myelin.svg) |  |
+| schwann cell myelinating internode | created | 1 | 0 | 1 | 0 | neuro.schwann_cell.myelinating_internode (schwann_cell_myelinating_internode.svg) |  |
+| schwann cell nonmyelinating bundle | created | 1 | 0 | 1 | 0 | neuro.schwann_cell.nonmyelinating_bundle (schwann_cell_nonmyelinating_bundle.svg) |  |
 | schwann myelin | created | 1 | 1 | 0 | 0 | exp.cell.schwann_myelin (schwann_myelin.svg) |  |
 | scissors | created | 1 | 1 | 0 | 0 | core.symbol.cleavage (cleavage_symbol.svg) |  |
 | scratch assay | created | 1 | 0 | 1 | 0 | culture.assay_workflow.epithelial_scratch_wound (epithelial_scratch_wound.svg) |  |
@@ -1948,13 +2551,18 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | secretory pathway | created | 1 | 1 | 0 | 0 | core.golgi.basic (golgi_apparatus.svg) |  |
 | secretory transport | created | 1 | 0 | 1 | 0 | cellarch.pathway_symbol.copii_vesicle_budding (copii_vesicle_budding.svg) |  |
 | secretory-vesicle membrane fusion | created | 1 | 1 | 0 | 0 | exp.membrane_signaling.exocytosis_fusion (exocytosis_fusion.svg) |  |
+| section | created | 1 | 0 | 1 | 0 | tissue.epithelial_acinus.section (epithelial_acinus_section.svg) |  |
+| section with coat | created | 1 | 0 | 1 | 0 | cellstress.membrane_signaling.clathrin_coated_vesicle.section (clathrin_coated_vesicle_section.svg) |  |
+| sector section | created | 1 | 0 | 1 | 0 | endocrine.ovarian_follicle.sector_section (ovarian_follicle_sector_section.svg) |  |
 | semisolid culture | created | 1 | 0 | 1 | 0 | culture.assay_workflow.soft_agar_colony (soft_agar_colony.svg) |  |
 | senescent | created | 1 | 1 | 0 | 0 | exp.cell.senescent (senescent.svg) |  |
 | senescent cell | created | 1 | 1 | 0 | 0 | exp.cell.senescent (senescent.svg) |  |
 | senescent phenotype | created | 1 | 1 | 0 | 0 | exp.cell.senescent (senescent.svg) |  |
 | sensory neuron morphology | created | 1 | 1 | 0 | 0 | core.cell.neuron_pseudounipolar (cell_neuron_pseudounipolar.svg) |  |
 | separate autophagosome-lysosome pair | created | 1 | 0 | 1 | 0 | cellarch.pathway_symbol.autophagosome_lysosome_docking (autophagosome_lysosome_docking.svg) |  |
+| separate groups | created | 1 | 0 | 1 | 0 | analysis.violin_plot.paired (violin_plot_paired.svg) |  |
 | separate side channels perfused cell–matrix culture chip | created | 1 | 0 | 1 | 0 | culture.model_system.perfused_tissue_chip.dual_channel (perfused_tissue_chip_dual_channel.svg) |  |
+| separated clusters | created | 1 | 0 | 1 | 0 | analysis.umap_scatter.clusters (umap_scatter_clusters.svg) |  |
 | septal pore | created | 1 | 0 | 1 | 0 | microbe.cell.septate_fungal_hypha (septate_fungal_hypha.svg) |  |
 | septate fungal hypha | created | 1 | 0 | 1 | 0 | microbe.cell.septate_fungal_hypha (septate_fungal_hypha.svg) |  |
 | septate fungal hypha unbranched | created | 1 | 0 | 1 | 0 | microbe.cell.septate_fungal_hypha_unbranched (septate_fungal_hypha_unbranched.svg) |  |
@@ -1979,17 +2587,27 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | signaling adaptor protein | created | 1 | 1 | 0 | 0 | exp.protein.adaptor (adaptor.svg) |  |
 | signaling platform | created | 1 | 1 | 0 | 0 | exp.protein.scaffold (scaffold.svg) |  |
 | signaling scaffold protein | created | 1 | 1 | 0 | 0 | exp.protein.scaffold (scaffold.svg) |  |
+| single adipocyte | created | 1 | 0 | 1 | 0 | tissue.adipose.single_adipocyte (adipose_single_adipocyte.svg) |  |
 | single bacterial membrane | created | 1 | 0 | 1 | 0 | microbe.membrane_signaling.gram_positive_envelope_segment (gram_positive_envelope_segment.svg) |  |
+| single bouton | created | 1 | 0 | 1 | 0 | neuro.axon_terminal.single_bouton (axon_terminal_single_bouton.svg) |  |
 | single end | created | 1 | 1 | 0 | 0 | exp.assay_workflow.sequencing_reads.single_end (sequencing_reads_single_end.svg) |  |
 | single endosomal recycling tubule | created | 1 | 0 | 1 | 0 | cellarch.pathway_symbol.endosomal_recycling_tubule (endosomal_recycling_tubule.svg) |  |
+| single follicle | created | 1 | 0 | 1 | 0 | endocrine.thyroid_follicle.single_follicle (thyroid_follicle_single_follicle.svg) |  |
+| single group | created | 1 | 0 | 1 | 0 | analysis.kaplan_meier_curve.one_group (kaplan_meier_curve_one_group.svg) |  |
+| single invagination | created | 1 | 0 | 1 | 0 | cellstress.membrane_signaling.caveola.single_invagination (caveola_single_invagination.svg) |  |
 | single pass receptor | created | 1 | 1 | 0 | 0 | core.receptor.single_pass_unliganded (receptor_single_pass_unliganded.svg) |  |
 | single protein | created | 1 | 1 | 0 | 0 | exp.protein.monomer (monomer.svg) |  |
+| single series with guide | created | 1 | 0 | 1 | 0 | analysis.scatter_plot.single_series (scatter_plot_single_series.svg) |  |
+| single synapse contact | created | 1 | 0 | 1 | 0 | neuro.neuron_astrocyte_contact.single_synapse (neuron_astrocyte_contact_single_synapse.svg) |  |
+| single tip | created | 1 | 0 | 1 | 0 | tissue.angiogenic_sprout.single_tip (angiogenic_sprout_single_tip.svg) |  |
 | single-cell rna sequencing | created | 1 | 0 | 1 | 0 | rna.lab_equipment.microfluidic_cell_partition (microfluidic_cell_partition.svg) |  |
 | single-membrane snare complex | created | 1 | 0 | 1 | 0 | cellarch.membrane_signaling.cis_snare_complex (cis_snare_complex.svg) |  |
 | single-pass receptor | created | 1 | 1 | 0 | 0 | core.receptor.membrane (membrane_receptor.svg) |  |
 | sirna | created | 1 | 1 | 0 | 0 | core.rna.sirna (sirna_duplex.svg) |  |
 | sirna duplex | created | 1 | 1 | 0 | 0 | core.rna.sirna (sirna_duplex.svg) |  |
 | six-well plate | created | 1 | 1 | 0 | 0 | core.lab.well_plate (well_plate.svg) |  |
+| skeletal muscle bundle cross section | created | 1 | 0 | 1 | 0 | tissue.skeletal_muscle.bundle_cross_section (skeletal_muscle_bundle_cross_section.svg) |  |
+| skeletal muscle longitudinal fibers | created | 1 | 0 | 1 | 0 | tissue.skeletal_muscle.longitudinal_fibers (skeletal_muscle_longitudinal_fibers.svg) |  |
 | small metastatic colony | created | 1 | 1 | 0 | 0 | immuno.model.micrometastatic_colony (micrometastatic_colony.svg) |  |
 | small molecule interaction cue | created | 1 | 1 | 0 | 0 | core.symbol.interaction_cue (small_molecule_interaction_cue.svg) |  |
 | small molecule ligand | created | 1 | 1 | 0 | 0 | core.ligand.small_molecule (ligand_small_molecule.svg) |  |
@@ -2014,11 +2632,13 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | soft-agar colony assay | created | 1 | 0 | 1 | 0 | culture.assay_workflow.soft_agar_colony (soft_agar_colony.svg) |  |
 | solid cell spheroid in suspension culture | created | 1 | 0 | 1 | 0 | culture.model_system.suspension_spheroid_culture (suspension_spheroid_culture.svg) |  |
 | solid tissue | created | 1 | 1 | 0 | 0 | core.sample.tissue_biopsy_core (tissue_biopsy_core.svg) |  |
+| soluble antigen | created | 1 | 0 | 1 | 0 | tme.dendritic_antigen_uptake.soluble (dendritic_antigen_uptake_soluble.svg) |  |
 | soluble factor gradient | created | 1 | 1 | 0 | 0 | immuno.pathway.soluble_factor_gradient (soluble_factor_gradient.svg) |  |
 | soluble-factor concentration gradient | created | 1 | 1 | 0 | 0 | immuno.pathway.soluble_factor_gradient (soluble_factor_gradient.svg) |  |
 | soluble-factor gradient | created | 1 | 1 | 0 | 0 | immuno.pathway.soluble_factor_gradient (soluble_factor_gradient.svg) |  |
 | solute | created | 1 | 1 | 0 | 0 | core.transporter.basic (membrane_transporter.svg) |  |
 | sorting tubule | created | 1 | 0 | 1 | 0 | cellarch.pathway_symbol.endosomal_recycling_tubule (endosomal_recycling_tubule.svg) |  |
+| source-to-tissue | created | 1 | 0 | 1 | 0 | tme.lactate_metabolite_gradient.source_to_tissue (lactate_metabolite_gradient_source_to_tissue.svg) |  |
 | spatial barcode | created | 1 | 0 | 1 | 0 | rna.assay_workflow.spatial_capture_array (spatial_capture_array.svg) |  |
 | spatial capture array | created | 1 | 0 | 1 | 0 | rna.assay_workflow.spatial_capture_array (spatial_capture_array.svg) |  |
 | spatial immunology | created | 1 | 1 | 0 | 0 | immuno.assay.multiplex_immunofluorescence_tissue_field (multiplex_immunofluorescence_tissue_field.svg) |  |
@@ -2032,19 +2652,24 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | spheroid matrix outgrowth | created | 1 | 0 | 1 | 0 | culture.assay_workflow.spheroid_matrix_outgrowth (spheroid_matrix_outgrowth.svg) |  |
 | spheroid matrix-outgrowth assay | created | 1 | 0 | 1 | 0 | culture.assay_workflow.spheroid_matrix_outgrowth (spheroid_matrix_outgrowth.svg) |  |
 | spheroid outgrowth | created | 1 | 0 | 1 | 0 | culture.assay_workflow.spheroid_matrix_outgrowth (spheroid_matrix_outgrowth.svg) |  |
+| spheroid penetration | created | 1 | 0 | 1 | 0 | tme.drug_penetration_gradient.spheroid (drug_penetration_gradient_spheroid.svg) |  |
+| spheroid section | created | 1 | 0 | 1 | 0 | tme.hypoxia_gradient.spheroid (hypoxia_gradient_spheroid.svg) |  |
 | spheroid suspension | created | 1 | 0 | 1 | 0 | culture.model_system.suspension_spheroid_culture (suspension_spheroid_culture.svg) |  |
 | spheroid suspension culture | created | 1 | 0 | 1 | 0 | culture.model_system.suspension_spheroid_culture (suspension_spheroid_culture.svg) |  |
 | spin | created | 1 | 1 | 0 | 0 | exp.lab_equipment.centrifuge (centrifuge.svg) |  |
 | spindle apparatus | created | 1 | 1 | 0 | 0 | exp.organelle.centrosome_spindle (centrosome_spindle.svg) |  |
+| spindle cell | created | 1 | 0 | 1 | 0 | tme.cancer_associated_fibroblast.spindle (cancer_associated_fibroblast_spindle.svg) |  |
 | spit sample | created | 1 | 1 | 0 | 0 | exp.clinical_sample.saliva_sample (saliva_sample.svg) |  |
 | spliceosome | created | 1 | 1 | 0 | 0 | exp.nucleic_acid.splicing (splicing.svg) |  |
 | splicing | created | 1 | 1 | 0 | 0 | exp.nucleic_acid.splicing (splicing.svg) |  |
+| split distribution | created | 1 | 0 | 1 | 0 | analysis.violin_plot.split (violin_plot_split.svg) |  |
 | spore core cortex coat | created | 1 | 0 | 1 | 0 | microbe.cell.bacterial_endospore (bacterial_endospore.svg) |  |
 | spore inside mother cell | created | 1 | 0 | 1 | 0 | microbe.cell.endospore_in_mother_cell (endospore_in_mother_cell.svg) |  |
 | sporulating bacterium | created | 1 | 0 | 1 | 0 | microbe.cell.endospore_in_mother_cell (endospore_in_mother_cell.svg) |  |
 | spread animal cell | created | 1 | 1 | 0 | 0 | core.cell.generic_spread (cell_generic_spread.svg) |  |
 | spread cell | created | 1 | 1 | 0 | 0 | core.cell.generic_spread (cell_generic_spread.svg) |  |
 | spread eukaryotic cell | created | 1 | 1 | 0 | 0 | core.cell.generic_spread (cell_generic_spread.svg) |  |
+| stalled fork | created | 1 | 0 | 1 | 0 | cellstress.nucleic_acid.replication_stress.stalled_fork (replication_stress_stalled_fork.svg) |  |
 | stem / progenitor cell | created | 1 | 1 | 0 | 0 | exp.cell.stem_progenitor (stem_progenitor.svg) |  |
 | stem cell | created | 1 | 1 | 0 | 0 | exp.cell.stem_progenitor (stem_progenitor.svg) |  |
 | stem loop | created | 1 | 1 | 0 | 0 | core.rna.strand (rna_strand.svg) |  |
@@ -2053,11 +2678,15 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | steroid receptor | created | 1 | 1 | 0 | 0 | exp.membrane_signaling.nuclear_receptor (nuclear_receptor.svg) |  |
 | storage granule | created | 1 | 1 | 0 | 0 | exp.organelle.secretory_granule (secretory_granule.svg) |  |
 | straight fungal hypha | created | 1 | 0 | 1 | 0 | microbe.cell.septate_fungal_hypha_unbranched (septate_fungal_hypha_unbranched.svg) |  |
+| straight projection | created | 1 | 0 | 1 | 0 | cellstress.organelle.primary_cilium.straight (primary_cilium_straight.svg) |  |
 | stress fibre attachment | created | 1 | 0 | 1 | 0 | cellarch.membrane_signaling.focal_adhesion_enface (focal_adhesion_enface.svg) |  |
+| stress-sensor assembly | created | 1 | 0 | 1 | 0 | cellstress.organelle.er_stress_upr.sensor_assembly (er_stress_upr_sensor_assembly.svg) |  |
 | stromal fibroblast | created | 1 | 1 | 0 | 0 | exp.cell.fibroblast (fibroblast.svg) |  |
 | stromal organoid model | created | 1 | 0 | 1 | 0 | culture.model_system.organoid_stromal_coculture (organoid_stromal_coculture.svg) |  |
 | subcellular localization relation | created | 1 | 1 | 0 | 0 | exp.pathway_symbol.localization_target (localization_target.svg) |  |
+| subcompartments | created | 1 | 0 | 1 | 0 | cellstress.organelle.nucleolus.subcompartments (nucleolus_subcompartments.svg) |  |
 | submerged tissue slice | created | 1 | 0 | 1 | 0 | culture.model_system.precision_cut_tissue_slice_culture (precision_cut_tissue_slice_culture.svg) |  |
+| submetacentric | created | 1 | 0 | 1 | 0 | cellstress.nucleic_acid.condensed_chromosome.submetacentric (condensed_chromosome_submetacentric.svg) |  |
 | substrate | created | 1 | 1 | 0 | 0 | core.protein.enzyme (catalytic_enzyme.svg) |  |
 | substrate binding | created | 1 | 1 | 0 | 0 | proteostasis.protein.hsp70_client_complex (hsp70_client_complex.svg) |  |
 | substrate processing | created | 1 | 1 | 0 | 0 | proteostasis.protein.proteasomal_substrate_processing (proteasomal_substrate_processing.svg) |  |
@@ -2070,7 +2699,9 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | surface-attached biofilm | created | 1 | 0 | 1 | 0 | microbe.model_system.surface_attached_biofilm (surface_attached_biofilm.svg) |  |
 | surface-attached biofilm — plan view | created | 1 | 0 | 1 | 0 | microbe.model_system.surface_attached_biofilm_plan (surface_attached_biofilm_plan.svg) |  |
 | surface-attached cell culture on microcarriers | created | 1 | 0 | 1 | 0 | culture.model_system.microcarrier_cell_culture (microcarrier_cell_culture.svg) |  |
+| surveying processes | created | 1 | 0 | 1 | 0 | neuro.microglia_contact.surveying (microglia_contact_surveying.svg) |  |
 | suspension spheroid culture | created | 1 | 0 | 1 | 0 | culture.model_system.suspension_spheroid_culture (suspension_spheroid_culture.svg) |  |
+| swollen and ruptured | created | 1 | 0 | 1 | 0 | cellstress.cell.necrotic_cell.swollen_ruptured (necrotic_cell_swollen_ruptured.svg) |  |
 | syringe | created | 1 | 1 | 0 | 0 | core.lab.syringe (syringe.svg) |  |
 | t cell — manuscript line | created | 1 | 1 | 0 | 0 | core.cell.t_cell_manuscript (immune_t_cell_manuscript.svg) |  |
 | t lymphocyte receptor | created | 1 | 1 | 0 | 0 | exp.membrane_signaling.tcr (tcr.svg) |  |
@@ -2089,19 +2720,30 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | talin | created | 1 | 0 | 1 | 0 | cellarch.membrane_signaling.focal_adhesion (focal_adhesion.svg) |  |
 | tam | created | 1 | 1 | 0 | 0 | immuno.cell.tumor_associated_macrophage (tumor_associated_macrophage.svg) |  |
 | target | created | 1 | 1 | 0 | 0 | core.symbol.interaction_cue (small_molecule_interaction_cue.svg) |  |
+| target contact | created | 1 | 0 | 1 | 0 | tme.car_nk_cell.target_contact (car_nk_cell_target_contact.svg) |  |
 | targeted payload delivery | created | 1 | 1 | 0 | 0 | immuno.pathway.adc_payload_release (adc_payload_release.svg) |  |
 | targeting | created | 1 | 1 | 0 | 0 | exp.pathway_symbol.localization_target (localization_target.svg) |  |
 | tcr peptide-mhc engagement | created | 1 | 1 | 0 | 0 | core.immune.tcr_engagement (immune_tcr_engagement.svg) |  |
 | tcr peptide-mhc engagement — manuscript line | created | 1 | 1 | 0 | 0 | core.immune.tcr_engagement_manuscript (immune_tcr_engagement_manuscript.svg) |  |
+| tertiary lymphoid structure germinal center | created | 1 | 0 | 1 | 0 | tme.tertiary_lymphoid_structure.germinal_center (tertiary_lymphoid_structure_germinal_center.svg) |  |
+| tertiary lymphoid structure primary follicle | created | 1 | 0 | 1 | 0 | tme.tertiary_lymphoid_structure.primary_follicle (tertiary_lymphoid_structure_primary_follicle.svg) |  |
+| tertiary lymphoid structure — b / t organization | created | 1 | 0 | 1 | 0 | tme.tertiary_lymphoid_structure.primary_follicle (tertiary_lymphoid_structure_primary_follicle.svg) |  |
+| tertiary lymphoid structure — with germinal-center cue | created | 1 | 0 | 1 | 0 | tme.tertiary_lymphoid_structure.germinal_center (tertiary_lymphoid_structure_germinal_center.svg) |  |
 | tetramer | created | 1 | 1 | 0 | 0 | core.protein.heterotetramer (protein_heterotetramer.svg) |  |
 | tex | created | 1 | 1 | 0 | 0 | immuno.cell.exhausted_t_cell (exhausted_t_cell.svg) |  |
 | th cell | created | 1 | 1 | 0 | 0 | immuno.cell.cd4_helper_t_cell (cd4_helper_t_cell.svg) |  |
 | thermal cycler | created | 1 | 1 | 0 | 0 | exp.lab_equipment.thermal_cycler (thermal_cycler.svg) |  |
 | thermocycler | created | 1 | 1 | 0 | 0 | exp.lab_equipment.thermal_cycler (thermal_cycler.svg) |  |
 | thick peptidoglycan | created | 1 | 0 | 1 | 0 | microbe.membrane_signaling.gram_positive_envelope_segment (gram_positive_envelope_segment.svg) |  |
+| thicker wall | created | 1 | 0 | 1 | 0 | tissue.vessel_wall.thicker_wall (vessel_wall_thicker_wall.svg) |  |
+| thin | created | 1 | 0 | 1 | 0 | neuro.dendritic_spine.thin (dendritic_spine_thin.svg) |  |
+| thinner wall | created | 1 | 0 | 1 | 0 | tissue.vessel_wall.thinner_wall (vessel_wall_thinner_wall.svg) |  |
 | three identical subunits | created | 1 | 1 | 0 | 0 | core.protein.homotrimer (protein_homotrimer.svg) |  |
 | three-dimensional culture | created | 1 | 1 | 0 | 0 | exp.model_system.organoid_lumen (organoid_lumen.svg) |  |
+| threshold overview | created | 1 | 0 | 1 | 0 | analysis.volcano_plot.overview (volcano_plot_overview.svg) |  |
 | thrombocyte | created | 1 | 1 | 0 | 0 | exp.cell.platelet (platelet.svg) |  |
+| thyroid follicle follicle field | created | 1 | 0 | 1 | 0 | endocrine.thyroid_follicle.follicle_field (thyroid_follicle_follicle_field.svg) |  |
+| thyroid follicle single follicle | created | 1 | 0 | 1 | 0 | endocrine.thyroid_follicle.single_follicle (thyroid_follicle_single_follicle.svg) |  |
 | tight junction | created | 1 | 0 | 1 | 0 | cellarch.membrane_signaling.tight_junction (tight_junction.svg) |  |
 | tight junction network | created | 1 | 0 | 1 | 0 | cellarch.membrane_signaling.tight_junction_network (tight_junction_network.svg) |  |
 | tight junction strands | created | 1 | 0 | 1 | 0 | cellarch.membrane_signaling.tight_junction_network (tight_junction_network.svg) |  |
@@ -2124,6 +2766,7 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | tissue culture flask | created | 1 | 1 | 0 | 0 | core.lab.tissue_culture_flask (tissue_culture_flask.svg) |  |
 | tissue culture hood | created | 1 | 1 | 0 | 0 | exp.lab_equipment.biosafety_cabinet (biosafety_cabinet.svg) |  |
 | tissue explant | created | 1 | 1 | 0 | 0 | exp.model_system.tissue_explant (tissue_explant.svg) |  |
+| tissue interface | created | 1 | 0 | 1 | 0 | tissue.lymphatic_capillary.tissue_interface (lymphatic_capillary_tissue_interface.svg) |  |
 | tissue mast cell | created | 1 | 1 | 0 | 0 | exp.cell.mast_cell (mast_cell.svg) |  |
 | tissue pathology | created | 1 | 1 | 0 | 0 | immuno.assay.immunohistochemistry_tissue_field (immunohistochemistry_tissue_field.svg) |  |
 | tissue preparation | created | 1 | 1 | 0 | 0 | exp.lab_equipment.cryostat (cryostat.svg) |  |
@@ -2153,6 +2796,9 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | translocation arrow | created | 1 | 1 | 0 | 0 | core.symbol.translocation_arrow (translocation_arrow.svg) |  |
 | translocation target | created | 1 | 1 | 0 | 0 | exp.pathway_symbol.localization_target (localization_target.svg) |  |
 | transporter | created | 1 | 1 | 0 | 0 | core.transporter.basic (membrane_transporter.svg) |  |
+| transverse | created | 1 | 0 | 1 | 0 | tissue.capillary.transverse (capillary_transverse.svg) |  |
+| transverse myelin ring | created | 1 | 0 | 1 | 0 | neuro.axon_myelin.transverse (axon_myelin_transverse.svg) |  |
+| transverse neural lobe | created | 1 | 0 | 1 | 0 | endocrine.posterior_pituitary.transverse_neural_lobe (posterior_pituitary_transverse_neural_lobe.svg) |  |
 | transwell culture coculture | created | 1 | 1 | 0 | 0 | exp.model_system.transwell_culture.coculture (transwell_culture_coculture.svg) |  |
 | transwell culture monoculture | created | 1 | 1 | 0 | 0 | exp.model_system.transwell_culture.monoculture (transwell_culture_monoculture.svg) |  |
 | transwell culture — coculture | created | 1 | 1 | 0 | 0 | exp.model_system.transwell_culture.coculture (transwell_culture_coculture.svg) |  |
@@ -2170,16 +2816,20 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | tubular er-mitochondrion contact | created | 1 | 0 | 1 | 0 | cellarch.membrane_signaling.er_mitochondrion_tubular_contact (er_mitochondrion_tubular_contact.svg) |  |
 | tubular mitochondrion | created | 1 | 1 | 0 | 0 | core.mitochondrion.tubular (mitochondrion_tubular.svg) |  |
 | tubule | created | 1 | 1 | 0 | 0 | core.mitochondrion.network (mitochondrion_network.svg) |  |
+| tubule junction field | created | 1 | 0 | 1 | 0 | endocrine.leydig_interstitium.tubule_corner (leydig_interstitium_tubule_corner.svg) |  |
 | tubulin network | created | 1 | 1 | 0 | 0 | exp.organelle.microtubule_network (microtubule_network.svg) |  |
 | tumor aggregate | created | 1 | 1 | 0 | 0 | exp.cell.tumor_cell_cluster (tumor_cell_cluster.svg) |  |
 | tumor angiogenesis | created | 1 | 1 | 0 | 0 | immuno.model.angiogenic_vessel_sprout (angiogenic_vessel_sprout.svg) |  |
 | tumor antigen | created | 1 | 1 | 0 | 0 | immuno.protein.tumor_associated_antigen (tumor_associated_antigen.svg) |  |
 | tumor associated antigen | created | 1 | 1 | 0 | 0 | immuno.protein.tumor_associated_antigen (tumor_associated_antigen.svg) |  |
 | tumor associated macrophage | created | 1 | 1 | 0 | 0 | immuno.cell.tumor_associated_macrophage (tumor_associated_macrophage.svg) |  |
+| tumor associated neutrophil isolated | created | 1 | 0 | 1 | 0 | tme.tumor_associated_neutrophil.isolated (tumor_associated_neutrophil_isolated.svg) |  |
+| tumor associated neutrophil tumor contact | created | 1 | 0 | 1 | 0 | tme.tumor_associated_neutrophil.tumor_contact (tumor_associated_neutrophil_tumor_contact.svg) |  |
 | tumor bearing mouse | created | 1 | 1 | 0 | 0 | exp.model_system.xenograft_mouse (xenograft_mouse.svg) |  |
 | tumor cell cluster | created | 1 | 1 | 0 | 0 | exp.cell.tumor_cell_cluster (tumor_cell_cluster.svg) |  |
 | tumor cell extravasation | created | 1 | 1 | 0 | 0 | immuno.pathway.tumor_cell_extravasation (tumor_cell_extravasation.svg) |  |
 | tumor cell intravasation | created | 1 | 1 | 0 | 0 | immuno.pathway.tumor_cell_intravasation (tumor_cell_intravasation.svg) |  |
+| tumor context | created | 1 | 0 | 1 | 0 | tme.tumor_associated_neutrophil.tumor_contact (tumor_associated_neutrophil_tumor_contact.svg) |  |
 | tumor entry into blood vessel | created | 1 | 1 | 0 | 0 | immuno.pathway.tumor_cell_intravasation (tumor_cell_intravasation.svg) |  |
 | tumor exit from vessel | created | 1 | 1 | 0 | 0 | immuno.pathway.tumor_cell_extravasation (tumor_cell_extravasation.svg) |  |
 | tumor glia | created | 1 | 1 | 0 | 0 | core.model.tumor_glia_coculture (tumor_glia_coculture.svg) |  |
@@ -2202,6 +2852,8 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | tumor volume time course | created | 1 | 1 | 0 | 0 | immuno.assay.tumor_volume_time_course (tumor_volume_time_course.svg) |  |
 | tumor-associated antigen | created | 1 | 1 | 0 | 0 | immuno.protein.tumor_associated_antigen (tumor_associated_antigen.svg) |  |
 | tumor-associated macrophage | created | 1 | 1 | 0 | 0 | immuno.cell.tumor_associated_macrophage (tumor_associated_macrophage.svg) |  |
+| tumor-associated neutrophil — isolated cell | created | 1 | 0 | 1 | 0 | tme.tumor_associated_neutrophil.isolated (tumor_associated_neutrophil_isolated.svg) |  |
+| tumor-associated neutrophil — tumor context | created | 1 | 0 | 1 | 0 | tme.tumor_associated_neutrophil.tumor_contact (tumor_associated_neutrophil_tumor_contact.svg) |  |
 | tumor-cell extravasation | created | 1 | 1 | 0 | 0 | immuno.pathway.tumor_cell_extravasation (tumor_cell_extravasation.svg) |  |
 | tumor-cell intravasation | created | 1 | 1 | 0 | 0 | immuno.pathway.tumor_cell_intravasation (tumor_cell_intravasation.svg) |  |
 | tumor-glia co-culture | created | 1 | 1 | 0 | 0 | core.model.tumor_glia_coculture (tumor_glia_coculture.svg) |  |
@@ -2210,7 +2862,10 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | tumorsphere | created | 1 | 1 | 0 | 0 | core.model.cell_spheroid_cluster (cell_spheroid_cluster.svg) |  |
 | turnover | created | 1 | 1 | 0 | 0 | exp.pathway_symbol.degradation (degradation.svg) |  |
 | two cell culture | created | 1 | 1 | 0 | 0 | exp.model_system.coculture_dish (coculture_dish.svg) |  |
+| two cells | created | 1 | 0 | 1 | 0 | analysis.cell_tracking_trajectory.two_tracks (cell_tracking_trajectory_two_tracks.svg) |  |
+| two groups | created | 1 | 0 | 1 | 0 | analysis.kaplan_meier_curve.two_groups (kaplan_meier_curve_two_groups.svg) |  |
 | two pairs of subunits | created | 1 | 1 | 0 | 0 | core.protein.heterotetramer (protein_heterotetramer.svg) |  |
+| two series | created | 1 | 0 | 1 | 0 | analysis.scatter_plot.two_series (scatter_plot_two_series.svg) |  |
 | two-dimensional culture | created | 1 | 1 | 0 | 0 | exp.model_system.epithelial_monolayer (epithelial_monolayer.svg) |  |
 | two-population co-culture | created | 1 | 1 | 0 | 0 | exp.model_system.coculture_dish (coculture_dish.svg) |  |
 | two-way relation | created | 1 | 1 | 0 | 0 | core.symbol.bidirectional_arrow (bidirectional_arrow.svg) |  |
@@ -2221,6 +2876,10 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | ubiquitin removal | created | 1 | 1 | 0 | 0 | proteostasis.protein.deubiquitinase_substrate_complex (deubiquitinase_substrate_complex.svg) |  |
 | ubiquitin transfer | created | 1 | 1 | 0 | 0 | proteostasis.protein.ring_e3_ubiquitination_complex (ring_e3_ubiquitination_complex.svg) |  |
 | ubiquitylation chain | created | 1 | 1 | 0 | 0 | exp.protein.ubiquitin_chain (ubiquitin_chain.svg) |  |
+| umap scatter clusters | created | 1 | 0 | 1 | 0 | analysis.umap_scatter.clusters (umap_scatter_clusters.svg) |  |
+| umap scatter continuum | created | 1 | 0 | 1 | 0 | analysis.umap_scatter.continuum (umap_scatter_continuum.svg) |  |
+| umap scatter — continuous state example | created | 1 | 0 | 1 | 0 | analysis.umap_scatter.continuum (umap_scatter_continuum.svg) |  |
+| umap scatter — separated clusters | created | 1 | 0 | 1 | 0 | analysis.umap_scatter.clusters (umap_scatter_clusters.svg) |  |
 | umi | created | 1 | 0 | 1 | 0 | rna.nucleic_acid.barcoded_capture_bead (barcoded_capture_bead.svg) |  |
 | unbinding | created | 1 | 1 | 0 | 0 | exp.pathway_symbol.dissociation (dissociation.svg) |  |
 | unbranched septate hypha | created | 1 | 0 | 1 | 0 | microbe.cell.septate_fungal_hypha_unbranched (septate_fungal_hypha_unbranched.svg) |  |
@@ -2237,6 +2896,7 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | urine biospecimen | created | 1 | 1 | 0 | 0 | exp.clinical_sample.urine_sample (urine_sample.svg) |  |
 | urine sample | created | 1 | 1 | 0 | 0 | exp.clinical_sample.urine_sample (urine_sample.svg) |  |
 | urine specimen | created | 1 | 1 | 0 | 0 | exp.clinical_sample.urine_sample (urine_sample.svg) |  |
+| value matrix | created | 1 | 0 | 1 | 0 | analysis.heatmap.matrix (heatmap_matrix.svg) |  |
 | vascular culture | created | 1 | 0 | 1 | 0 | culture.model_system.perfusable_microvascular_network (perfusable_microvascular_network.svg) |  |
 | vascular endothelial cell | created | 1 | 1 | 0 | 0 | exp.cell.endothelial (endothelial.svg) |  |
 | vascular invasion | created | 1 | 1 | 0 | 0 | immuno.pathway.tumor_cell_intravasation (tumor_cell_intravasation.svg) |  |
@@ -2244,24 +2904,36 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | vascular smooth muscle cell | created | 1 | 1 | 0 | 0 | exp.cell.smooth_muscle (smooth_muscle.svg) |  |
 | vascularized hydrogel | created | 1 | 0 | 1 | 0 | culture.model_system.perfusable_microvascular_network (perfusable_microvascular_network.svg) |  |
 | vertebrate model | created | 1 | 1 | 0 | 0 | core.model.zebrafish (zebrafish_model.svg) |  |
+| vertical groups | created | 1 | 0 | 1 | 0 | analysis.box_plot.vertical (box_plot_vertical.svg) |  |
 | vesicle fusion | created | 1 | 1 | 0 | 0 | exp.membrane_signaling.exocytosis_fusion (exocytosis_fusion.svg) |  |
 | vesicles and secretion | created | 1 | 1 | 0 | 0 | exp.organelle.secretory_granule (secretory_granule.svg) |  |
 | vessel sprouting | created | 1 | 1 | 0 | 0 | immuno.model.angiogenic_vessel_sprout (angiogenic_vessel_sprout.svg) |  |
+| vessel wall thicker wall | created | 1 | 0 | 1 | 0 | tissue.vessel_wall.thicker_wall (vessel_wall_thicker_wall.svg) |  |
+| vessel wall thinner wall | created | 1 | 0 | 1 | 0 | tissue.vessel_wall.thinner_wall (vessel_wall_thinner_wall.svg) |  |
 | viability assay | created | 1 | 1 | 0 | 0 | exp.assay_workflow.cell_viability_readout (cell_viability_readout.svg) |  |
 | vimentin network | created | 1 | 1 | 0 | 0 | exp.organelle.intermediate_filaments (intermediate_filaments.svg) |  |
 | vinculin | created | 1 | 0 | 1 | 0 | cellarch.membrane_signaling.focal_adhesion (focal_adhesion.svg) |  |
+| violin plot paired | created | 1 | 0 | 1 | 0 | analysis.violin_plot.paired (violin_plot_paired.svg) |  |
+| violin plot split | created | 1 | 0 | 1 | 0 | analysis.violin_plot.split (violin_plot_split.svg) |  |
+| violin plot — separate groups | created | 1 | 0 | 1 | 0 | analysis.violin_plot.paired (violin_plot_paired.svg) |  |
+| violin plot — split distribution | created | 1 | 0 | 1 | 0 | analysis.violin_plot.split (violin_plot_split.svg) |  |
 | viral budding neck | created | 1 | 0 | 1 | 0 | microbe.membrane_signaling.enveloped_virus_plasma_membrane_budding (enveloped_virus_plasma_membrane_budding.svg) |  |
 | viral envelope target membrane fusion | created | 1 | 0 | 1 | 0 | microbe.membrane_signaling.enveloped_virus_membrane_fusion (enveloped_virus_membrane_fusion.svg) |  |
 | viral fusion pore | created | 1 | 0 | 1 | 0 | microbe.membrane_signaling.enveloped_virus_membrane_fusion (enveloped_virus_membrane_fusion.svg) |  |
 | viral membrane fusion | created | 1 | 0 | 1 | 0 | microbe.membrane_signaling.enveloped_virus_membrane_fusion (enveloped_virus_membrane_fusion.svg) |  |
 | viral plasma membrane budding | created | 1 | 0 | 1 | 0 | microbe.membrane_signaling.enveloped_virus_plasma_membrane_budding (enveloped_virus_plasma_membrane_budding.svg) |  |
 | viral plasma-membrane budding | created | 1 | 0 | 1 | 0 | microbe.membrane_signaling.enveloped_virus_plasma_membrane_budding (enveloped_virus_plasma_membrane_budding.svg) |  |
+| volcano plot feature labels | created | 1 | 0 | 1 | 0 | analysis.volcano_plot.feature_labels (volcano_plot_feature_labels.svg) |  |
+| volcano plot overview | created | 1 | 0 | 1 | 0 | analysis.volcano_plot.overview (volcano_plot_overview.svg) |  |
+| volcano plot — example feature labels | created | 1 | 0 | 1 | 0 | analysis.volcano_plot.feature_labels (volcano_plot_feature_labels.svg) |  |
+| volcano plot — threshold overview | created | 1 | 0 | 1 | 0 | analysis.volcano_plot.overview (volcano_plot_overview.svg) |  |
 | vsmc | created | 1 | 1 | 0 | 0 | exp.cell.smooth_muscle (smooth_muscle.svg) |  |
 | western blot | created | 1 | 1 | 0 | 0 | exp.assay_workflow.western_blot_result (western_blot_result.svg) |  |
 | western blot imager | created | 1 | 1 | 0 | 0 | exp.lab_equipment.blot_imager (blot_imager.svg) |  |
 | western blot result | created | 1 | 1 | 0 | 0 | exp.assay_workflow.western_blot_result (western_blot_result.svg) |  |
 | western transfer | created | 1 | 1 | 0 | 0 | exp.lab_equipment.blot_transfer (blot_transfer.svg) |  |
 | white adipocyte | created | 1 | 1 | 0 | 0 | exp.cell.adipocyte (adipocyte.svg) |  |
+| with germinal-center cue | created | 1 | 0 | 1 | 0 | tme.tertiary_lymphoid_structure.germinal_center (tertiary_lymphoid_structure_germinal_center.svg) |  |
 | worm model | created | 1 | 1 | 0 | 0 | core.model.nematode (nematode_model.svg) |  |
 | wound closure | created | 1 | 0 | 1 | 0 | culture.assay_workflow.epithelial_scratch_wound (epithelial_scratch_wound.svg) |  |
 | xenograft | created | 1 | 1 | 0 | 0 | exp.model_system.xenograft_mouse (xenograft_mouse.svg) |  |
@@ -2278,6 +2950,26 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 
 | Status | Pack | Asset id | Name | Category | File | Tags |
 | --- | --- | --- | --- | --- | --- | --- |
+| draft | analysis-graphics | `analysis.box_plot.horizontal` | Box Plot — Horizontal groups | `assay-workflow` | `assets/scientific-packs/analysis-graphics/svg/box_plot_horizontal.svg` | Box Plot, Horizontal groups, box and whisker plot, boxplot, editable vector, schematic, example, template, not measured data |
+| draft | analysis-graphics | `analysis.box_plot.vertical` | Box Plot — Vertical groups | `assay-workflow` | `assets/scientific-packs/analysis-graphics/svg/box_plot_vertical.svg` | Box Plot, Vertical groups, box and whisker plot, boxplot, editable vector, schematic, example, template, not measured data |
+| draft | analysis-graphics | `analysis.cell_tracking_trajectory.single_track` | Cell Tracking Trajectory — Single cell | `assay-workflow` | `assets/scientific-packs/analysis-graphics/svg/cell_tracking_trajectory_single_track.svg` | Cell Tracking Trajectory, Single cell, cell migration track, time lapse trajectory, single cell path, editable vector, schematic, example, template, not measured data |
+| draft | analysis-graphics | `analysis.cell_tracking_trajectory.two_tracks` | Cell Tracking Trajectory — Two cells | `assay-workflow` | `assets/scientific-packs/analysis-graphics/svg/cell_tracking_trajectory_two_tracks.svg` | Cell Tracking Trajectory, Two cells, cell migration track, time lapse trajectory, single cell path, editable vector, schematic, example, template, not measured data |
+| draft | analysis-graphics | `analysis.heatmap.clustered` | Heatmap — Column clustering cue | `assay-workflow` | `assets/scientific-packs/analysis-graphics/svg/heatmap_clustered.svg` | Heatmap, Column clustering cue, expression heatmap, clustered matrix, editable vector, schematic, example, template, not measured data |
+| draft | analysis-graphics | `analysis.heatmap.matrix` | Heatmap — Value matrix | `assay-workflow` | `assets/scientific-packs/analysis-graphics/svg/heatmap_matrix.svg` | Heatmap, Value matrix, expression heatmap, clustered matrix, editable vector, schematic, example, template, not measured data |
+| draft | analysis-graphics | `analysis.kaplan_meier_curve.one_group` | Kaplan–Meier Curve — Single group | `assay-workflow` | `assets/scientific-packs/analysis-graphics/svg/kaplan_meier_curve_one_group.svg` | Kaplan–Meier Curve, Single group, KM survival curve, survival probability curve, editable vector, schematic, example, template, not measured data |
+| draft | analysis-graphics | `analysis.kaplan_meier_curve.two_groups` | Kaplan–Meier Curve — Two groups | `assay-workflow` | `assets/scientific-packs/analysis-graphics/svg/kaplan_meier_curve_two_groups.svg` | Kaplan–Meier Curve, Two groups, KM survival curve, survival probability curve, editable vector, schematic, example, template, not measured data |
+| draft | analysis-graphics | `analysis.network_graph.hub` | Network Graph — Hub arrangement | `assay-workflow` | `assets/scientific-packs/analysis-graphics/svg/network_graph_hub.svg` | Network Graph, Hub arrangement, association network, node edge graph, interaction network schematic, editable vector, schematic, example, template, not measured data |
+| draft | analysis-graphics | `analysis.network_graph.modular` | Network Graph — Modular arrangement | `assay-workflow` | `assets/scientific-packs/analysis-graphics/svg/network_graph_modular.svg` | Network Graph, Modular arrangement, association network, node edge graph, interaction network schematic, editable vector, schematic, example, template, not measured data |
+| draft | analysis-graphics | `analysis.pseudotime_trajectory.branching` | Pseudotime Trajectory — Branching ordering | `assay-workflow` | `assets/scientific-packs/analysis-graphics/svg/pseudotime_trajectory_branching.svg` | Pseudotime Trajectory, Branching ordering, cell state trajectory, inferred developmental ordering, editable vector, schematic, example, template, not measured data |
+| draft | analysis-graphics | `analysis.pseudotime_trajectory.linear` | Pseudotime Trajectory — Continuous ordering | `assay-workflow` | `assets/scientific-packs/analysis-graphics/svg/pseudotime_trajectory_linear.svg` | Pseudotime Trajectory, Continuous ordering, cell state trajectory, inferred developmental ordering, editable vector, schematic, example, template, not measured data |
+| draft | analysis-graphics | `analysis.scatter_plot.single_series` | Scatter Plot — Single series with guide | `assay-workflow` | `assets/scientific-packs/analysis-graphics/svg/scatter_plot_single_series.svg` | Scatter Plot, Single series with guide, XY scatter, bivariate point plot, editable vector, schematic, example, template, not measured data |
+| draft | analysis-graphics | `analysis.scatter_plot.two_series` | Scatter Plot — Two series | `assay-workflow` | `assets/scientific-packs/analysis-graphics/svg/scatter_plot_two_series.svg` | Scatter Plot, Two series, XY scatter, bivariate point plot, editable vector, schematic, example, template, not measured data |
+| draft | analysis-graphics | `analysis.umap_scatter.clusters` | UMAP Scatter — Separated clusters | `assay-workflow` | `assets/scientific-packs/analysis-graphics/svg/umap_scatter_clusters.svg` | UMAP Scatter, Separated clusters, UMAP embedding, uniform manifold approximation projection, editable vector, schematic, example, template, not measured data |
+| draft | analysis-graphics | `analysis.umap_scatter.continuum` | UMAP Scatter — Continuous state example | `assay-workflow` | `assets/scientific-packs/analysis-graphics/svg/umap_scatter_continuum.svg` | UMAP Scatter, Continuous state example, UMAP embedding, uniform manifold approximation projection, editable vector, schematic, example, template, not measured data |
+| draft | analysis-graphics | `analysis.violin_plot.paired` | Violin Plot — Separate groups | `assay-workflow` | `assets/scientific-packs/analysis-graphics/svg/violin_plot_paired.svg` | Violin Plot, Separate groups, violin density, split violin distribution, editable vector, schematic, example, template, not measured data |
+| draft | analysis-graphics | `analysis.violin_plot.split` | Violin Plot — Split distribution | `assay-workflow` | `assets/scientific-packs/analysis-graphics/svg/violin_plot_split.svg` | Violin Plot, Split distribution, violin density, split violin distribution, editable vector, schematic, example, template, not measured data |
+| draft | analysis-graphics | `analysis.volcano_plot.feature_labels` | Volcano Plot — Example feature labels | `assay-workflow` | `assets/scientific-packs/analysis-graphics/svg/volcano_plot_feature_labels.svg` | Volcano Plot, Example feature labels, differential expression volcano, log fold change plot, editable vector, schematic, example, template, not measured data |
+| draft | analysis-graphics | `analysis.volcano_plot.overview` | Volcano Plot — Threshold overview | `assay-workflow` | `assets/scientific-packs/analysis-graphics/svg/volcano_plot_overview.svg` | Volcano Plot, Threshold overview, differential expression volcano, log fold change plot, editable vector, schematic, example, template, not measured data |
 | draft | cell-architecture-transport | `cellarch.membrane_signaling.adherens_junction` | Adherens Junction | `membrane-signaling` | `assets/scientific-packs/cell-architecture-transport/svg/adherens_junction.svg` | adherens junction, cadherin, catenin, actin linked adhesion, cell cell adhesion, epithelial junction, cell architecture and transport |
 | draft | cell-architecture-transport | `cellarch.membrane_signaling.cis_snare_complex` | Cis-SNARE Complex | `membrane-signaling` | `assets/scientific-packs/cell-architecture-transport/svg/cis_snare_complex.svg` | cis SNARE, postfusion SNARE, SNARE recycling substrate, Q SNARE, R SNARE, cell architecture and transport |
 | draft | cell-architecture-transport | `cellarch.membrane_signaling.desmosome` | Desmosome | `membrane-signaling` | `assets/scientific-packs/cell-architecture-transport/svg/desmosome.svg` | desmosome, desmoglein, desmocollin, desmoplakin, intermediate filament adhesion, keratin, cell cell adhesion, cell architecture and transport |
@@ -2306,6 +2998,46 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | draft | cell-architecture-transport | `cellarch.pathway_symbol.kinesin_cargo_transport` | Kinesin Cargo Transport | `pathway-symbol` | `assets/scientific-packs/cell-architecture-transport/svg/kinesin_cargo_transport.svg` | kinesin cargo transport, kinesin, kinesin 1, microtubule motor, vesicle transport, intracellular cargo transport, anterograde transport, cell architecture and transport |
 | draft | cell-architecture-transport | `cellarch.pathway_symbol.myosin_va_cargo_transport` | Myosin-Va Cargo Transport | `pathway-symbol` | `assets/scientific-packs/cell-architecture-transport/svg/myosin_va_cargo_transport.svg` | myosin Va, myosin V, actin motor, actin cargo transport, vesicle transport, cell architecture and transport |
 | draft | cell-architecture-transport | `cellarch.pathway_symbol.recycling_endosome_branched` | Recycling Endosome — Branched Tubules | `pathway-symbol` | `assets/scientific-packs/cell-architecture-transport/svg/recycling_endosome_branched.svg` | branched recycling endosome, recycling tubules, multiple endosomal tubules, endosomal sorting, cell architecture and transport |
+| draft | cell-structure-stress | `cellstress.cell.anoikis.blebbing_apoptotic` | Anoikis — Schematic | `cell` | `assets/scientific-packs/cell-structure-stress/svg/anoikis_blebbing_apoptotic.svg` | anoikis, detachment induced apoptosis, matrix detachment apoptosis, anchorage dependent cell death, Detached blebbing cell, cell biology, editable vector, schematic |
+| draft | cell-structure-stress | `cellstress.cell.anoikis.detached_apoptotic` | Anoikis — Schematic | `cell` | `assets/scientific-packs/cell-structure-stress/svg/anoikis_detached_apoptotic.svg` | anoikis, detachment induced apoptosis, matrix detachment apoptosis, anchorage dependent cell death, Detached apoptotic cell, cell biology, editable vector, schematic |
+| draft | cell-structure-stress | `cellstress.cell.ferroptotic_cell.lipid_damage` | Ferroptotic Cell — Schematic | `cell` | `assets/scientific-packs/cell-structure-stress/svg/ferroptotic_cell_lipid_damage.svg` | ferroptotic cell, ferroptosis, lipid peroxidation cell death, iron dependent cell death, Cell with lipid damage, cell biology, editable vector, schematic |
+| draft | cell-structure-stress | `cellstress.cell.ferroptotic_cell.mitochondrial_detail` | Ferroptotic Cell — Schematic | `cell` | `assets/scientific-packs/cell-structure-stress/svg/ferroptotic_cell_mitochondrial_detail.svg` | ferroptotic cell, ferroptosis, lipid peroxidation cell death, iron dependent cell death, Cell with mitochondrial detail, cell biology, editable vector, schematic |
+| draft | cell-structure-stress | `cellstress.cell.filopodium.bundle_detail` | Filopodium | `cell` | `assets/scientific-packs/cell-structure-stress/svg/filopodium_bundle_detail.svg` | filopodium, slender actin protrusion, actin bundle projection, filopodia, Bundle detail, cell biology, editable vector, schematic |
+| draft | cell-structure-stress | `cellstress.cell.filopodium.whole_cell` | Filopodium | `cell` | `assets/scientific-packs/cell-structure-stress/svg/filopodium_whole_cell.svg` | filopodium, slender actin protrusion, actin bundle projection, filopodia, Whole cell, cell biology, editable vector, schematic |
+| draft | cell-structure-stress | `cellstress.cell.lamellipodium.leading_edge_detail` | Lamellipodium | `cell` | `assets/scientific-packs/cell-structure-stress/svg/lamellipodium_leading_edge_detail.svg` | lamellipodium, broad leading edge, branched actin protrusion, lamellipodia, Leading-edge detail, cell biology, editable vector, schematic |
+| draft | cell-structure-stress | `cellstress.cell.lamellipodium.whole_cell` | Lamellipodium | `cell` | `assets/scientific-packs/cell-structure-stress/svg/lamellipodium_whole_cell.svg` | lamellipodium, broad leading edge, branched actin protrusion, lamellipodia, Whole cell, cell biology, editable vector, schematic |
+| draft | cell-structure-stress | `cellstress.cell.necroptotic_cell.lytic` | Necroptotic Cell — Schematic | `cell` | `assets/scientific-packs/cell-structure-stress/svg/necroptotic_cell_lytic.svg` | necroptotic cell, necroptosis, MLKL mediated lysis, regulated necrotic cell death, Lytic cell, cell biology, editable vector, schematic |
+| draft | cell-structure-stress | `cellstress.cell.necroptotic_cell.membrane_mlkl` | Necroptotic Cell — Schematic | `cell` | `assets/scientific-packs/cell-structure-stress/svg/necroptotic_cell_membrane_mlkl.svg` | necroptotic cell, necroptosis, MLKL mediated lysis, regulated necrotic cell death, Membrane-associated MLKL, cell biology, editable vector, schematic |
+| draft | cell-structure-stress | `cellstress.cell.necrotic_cell.disintegrating` | Necrotic Cell | `cell` | `assets/scientific-packs/cell-structure-stress/svg/necrotic_cell_disintegrating.svg` | necrotic cell, lytic cell death, ruptured cell, necrosis, Disintegrating, cell biology, editable vector, schematic |
+| draft | cell-structure-stress | `cellstress.cell.necrotic_cell.swollen_ruptured` | Necrotic Cell | `cell` | `assets/scientific-packs/cell-structure-stress/svg/necrotic_cell_swollen_ruptured.svg` | necrotic cell, lytic cell death, ruptured cell, necrosis, Swollen and ruptured, cell biology, editable vector, schematic |
+| draft | cell-structure-stress | `cellstress.cell.pyroptotic_cell.lytic` | Pyroptotic Cell — Schematic | `cell` | `assets/scientific-packs/cell-structure-stress/svg/pyroptotic_cell_lytic.svg` | pyroptotic cell, pyroptosis, gasdermin mediated lysis, gasdermin pore cell death, Lytic cell, cell biology, editable vector, schematic |
+| draft | cell-structure-stress | `cellstress.cell.pyroptotic_cell.pore_bearing` | Pyroptotic Cell — Schematic | `cell` | `assets/scientific-packs/cell-structure-stress/svg/pyroptotic_cell_pore_bearing.svg` | pyroptotic cell, pyroptosis, gasdermin mediated lysis, gasdermin pore cell death, Pore-bearing cell, cell biology, editable vector, schematic |
+| draft | cell-structure-stress | `cellstress.membrane_signaling.caveola.clustered_profiles` | Caveola | `membrane-signaling` | `assets/scientific-packs/cell-structure-stress/svg/caveola_clustered_profiles.svg` | caveola, caveolar invagination, caveolin membrane pit, caveolae, Clustered profiles, cell biology, editable vector, schematic |
+| draft | cell-structure-stress | `cellstress.membrane_signaling.caveola.single_invagination` | Caveola | `membrane-signaling` | `assets/scientific-packs/cell-structure-stress/svg/caveola_single_invagination.svg` | caveola, caveolar invagination, caveolin membrane pit, caveolae, Single invagination, cell biology, editable vector, schematic |
+| draft | cell-structure-stress | `cellstress.membrane_signaling.clathrin_coated_vesicle.cage_view` | Clathrin-coated Vesicle | `membrane-signaling` | `assets/scientific-packs/cell-structure-stress/svg/clathrin_coated_vesicle_cage_view.svg` | clathrin coated vesicle, closed coated vesicle, clathrin cage vesicle, CCV, Cage view, cell biology, editable vector, schematic |
+| draft | cell-structure-stress | `cellstress.membrane_signaling.clathrin_coated_vesicle.section` | Clathrin-coated Vesicle | `membrane-signaling` | `assets/scientific-packs/cell-structure-stress/svg/clathrin_coated_vesicle_section.svg` | clathrin coated vesicle, closed coated vesicle, clathrin cage vesicle, CCV, Section with coat, cell biology, editable vector, schematic |
+| draft | cell-structure-stress | `cellstress.membrane_signaling.extracellular_vesicle.endosomal_release` | Extracellular Vesicle | `membrane-signaling` | `assets/scientific-packs/cell-structure-stress/svg/extracellular_vesicle_endosomal_release.svg` | extracellular vesicle, EV, exosome, secreted membrane vesicle, endosomal vesicle release, Endosomal release, cell biology, editable vector, schematic |
+| draft | cell-structure-stress | `cellstress.membrane_signaling.extracellular_vesicle.isolated` | Extracellular Vesicle | `membrane-signaling` | `assets/scientific-packs/cell-structure-stress/svg/extracellular_vesicle_isolated.svg` | extracellular vesicle, EV, exosome, secreted membrane vesicle, endosomal vesicle release, Isolated vesicle, cell biology, editable vector, schematic |
+| draft | cell-structure-stress | `cellstress.nucleic_acid.condensed_chromosome.metacentric` | Condensed Chromosome | `nucleic-acid` | `assets/scientific-packs/cell-structure-stress/svg/condensed_chromosome_metacentric.svg` | condensed chromosome, mitotic chromosome, replicated chromosome, sister chromatids, Metacentric, cell biology, editable vector, schematic |
+| draft | cell-structure-stress | `cellstress.nucleic_acid.condensed_chromosome.submetacentric` | Condensed Chromosome | `nucleic-acid` | `assets/scientific-packs/cell-structure-stress/svg/condensed_chromosome_submetacentric.svg` | condensed chromosome, mitotic chromosome, replicated chromosome, sister chromatids, Submetacentric, cell biology, editable vector, schematic |
+| draft | cell-structure-stress | `cellstress.nucleic_acid.dna_damage_foci.clustered` | DNA Damage Foci | `nucleic-acid` | `assets/scientific-packs/cell-structure-stress/svg/dna_damage_foci_clustered.svg` | dna damage foci, DNA damage response foci, gamma H2AX foci, 53BP1 foci, nuclear repair foci, Clustered foci, cell biology, editable vector, schematic |
+| draft | cell-structure-stress | `cellstress.nucleic_acid.dna_damage_foci.dispersed` | DNA Damage Foci | `nucleic-acid` | `assets/scientific-packs/cell-structure-stress/svg/dna_damage_foci_dispersed.svg` | dna damage foci, DNA damage response foci, gamma H2AX foci, 53BP1 foci, nuclear repair foci, Dispersed foci, cell biology, editable vector, schematic |
+| draft | cell-structure-stress | `cellstress.nucleic_acid.replication_stress.reversed_fork` | Replication Stress | `nucleic-acid` | `assets/scientific-packs/cell-structure-stress/svg/replication_stress_reversed_fork.svg` | replication stress, stalled replication fork, replication fork reversal, DNA synthesis stress, Reversed fork, cell biology, editable vector, schematic |
+| draft | cell-structure-stress | `cellstress.nucleic_acid.replication_stress.stalled_fork` | Replication Stress | `nucleic-acid` | `assets/scientific-packs/cell-structure-stress/svg/replication_stress_stalled_fork.svg` | replication stress, stalled replication fork, replication fork reversal, DNA synthesis stress, Stalled fork, cell biology, editable vector, schematic |
+| draft | cell-structure-stress | `cellstress.organelle.er_stress_upr.lumenal_load` | ER Stress / Unfolded Protein Response | `organelle` | `assets/scientific-packs/cell-structure-stress/svg/er_stress_upr_lumenal_load.svg` | er stress upr, UPR, endoplasmic reticulum stress, unfolded protein response, IRE1 stress sensor, Lumenal protein load, cell biology, editable vector, schematic |
+| draft | cell-structure-stress | `cellstress.organelle.er_stress_upr.sensor_assembly` | ER Stress / Unfolded Protein Response | `organelle` | `assets/scientific-packs/cell-structure-stress/svg/er_stress_upr_sensor_assembly.svg` | er stress upr, UPR, endoplasmic reticulum stress, unfolded protein response, IRE1 stress sensor, Stress-sensor assembly, cell biology, editable vector, schematic |
+| draft | cell-structure-stress | `cellstress.organelle.mitochondrial_fission.constriction` | Mitochondrial Fission | `organelle` | `assets/scientific-packs/cell-structure-stress/svg/mitochondrial_fission_constriction.svg` | mitochondrial fission, mitochondrial division, mitochondrion constriction, mitochondrial daughter separation, Constriction, cell biology, editable vector, schematic |
+| draft | cell-structure-stress | `cellstress.organelle.mitochondrial_fission.daughter_separation` | Mitochondrial Fission | `organelle` | `assets/scientific-packs/cell-structure-stress/svg/mitochondrial_fission_daughter_separation.svg` | mitochondrial fission, mitochondrial division, mitochondrion constriction, mitochondrial daughter separation, Daughter separation, cell biology, editable vector, schematic |
+| draft | cell-structure-stress | `cellstress.organelle.mitochondrial_fusion.approach_contact` | Mitochondrial Fusion | `organelle` | `assets/scientific-packs/cell-structure-stress/svg/mitochondrial_fusion_approach_contact.svg` | mitochondrial fusion, mitochondrial joining, mitofusin mitochondrial fusion, mitochondrial content mixing, Approach and contact, cell biology, editable vector, schematic |
+| draft | cell-structure-stress | `cellstress.organelle.mitochondrial_fusion.joined` | Mitochondrial Fusion | `organelle` | `assets/scientific-packs/cell-structure-stress/svg/mitochondrial_fusion_joined.svg` | mitochondrial fusion, mitochondrial joining, mitofusin mitochondrial fusion, mitochondrial content mixing, Joined mitochondrion, cell biology, editable vector, schematic |
+| draft | cell-structure-stress | `cellstress.organelle.nuclear_speckle.condensate_detail` | Nuclear Speckle | `organelle` | `assets/scientific-packs/cell-structure-stress/svg/nuclear_speckle_condensate_detail.svg` | nuclear speckle, splicing speckle, interchromatin granule cluster, SON SRRM2 condensate, Condensate detail, cell biology, editable vector, schematic |
+| draft | cell-structure-stress | `cellstress.organelle.nuclear_speckle.nuclear_distribution` | Nuclear Speckle | `organelle` | `assets/scientific-packs/cell-structure-stress/svg/nuclear_speckle_nuclear_distribution.svg` | nuclear speckle, splicing speckle, interchromatin granule cluster, SON SRRM2 condensate, In nucleus, cell biology, editable vector, schematic |
+| draft | cell-structure-stress | `cellstress.organelle.nucleolus.nuclear_context` | Nucleolus | `organelle` | `assets/scientific-packs/cell-structure-stress/svg/nucleolus_nuclear_context.svg` | nucleolus, ribosome biogenesis compartment, nucleolar condensate, In nucleus, cell biology, editable vector, schematic |
+| draft | cell-structure-stress | `cellstress.organelle.nucleolus.subcompartments` | Nucleolus | `organelle` | `assets/scientific-packs/cell-structure-stress/svg/nucleolus_subcompartments.svg` | nucleolus, ribosome biogenesis compartment, nucleolar condensate, Subcompartments, cell biology, editable vector, schematic |
+| draft | cell-structure-stress | `cellstress.organelle.phagolysosome.bacterial_cargo` | Phagolysosome | `organelle` | `assets/scientific-packs/cell-structure-stress/svg/phagolysosome_bacterial_cargo.svg` | phagolysosome, mature phagosome, phagocytic degradative compartment, phagosome lysosome compartment, Bacterial cargo, cell biology, editable vector, schematic |
+| draft | cell-structure-stress | `cellstress.organelle.phagolysosome.degrading_cargo` | Phagolysosome | `organelle` | `assets/scientific-packs/cell-structure-stress/svg/phagolysosome_degrading_cargo.svg` | phagolysosome, mature phagosome, phagocytic degradative compartment, phagosome lysosome compartment, Degrading cargo, cell biology, editable vector, schematic |
+| draft | cell-structure-stress | `cellstress.organelle.primary_cilium.bent` | Primary Cilium | `organelle` | `assets/scientific-packs/cell-structure-stress/svg/primary_cilium_bent.svg` | primary cilium, nonmotile cilium, single sensory cilium, ciliary projection, Bent projection, cell biology, editable vector, schematic |
+| draft | cell-structure-stress | `cellstress.organelle.primary_cilium.straight` | Primary Cilium | `organelle` | `assets/scientific-packs/cell-structure-stress/svg/primary_cilium_straight.svg` | primary cilium, nonmotile cilium, single sensory cilium, ciliary projection, Straight projection, cell biology, editable vector, schematic |
 | draft | culture-models-assays | `culture.assay_workflow.cell_exclusion_gap` | Cell-exclusion Zone Assay | `assay-workflow` | `assets/scientific-packs/culture-models-assays/svg/cell_exclusion_gap.svg` | cell exclusion assay, circular exclusion zone, barrier removal assay, culture models and functional assays |
 | draft | culture-models-assays | `culture.assay_workflow.clonogenic_colony_formation` | Adherent Clonogenic Colonies | `assay-workflow` | `assets/scientific-packs/culture-models-assays/svg/clonogenic_colony_formation.svg` | clonogenic assay, colony formation, adherent colonies, reproductive survival, clonogenic colonies, culture well, culture models and functional assays |
 | draft | culture-models-assays | `culture.assay_workflow.collagen_gel_contraction` | Cell-laden Collagen-gel Culture | `assay-workflow` | `assets/scientific-packs/culture-models-assays/svg/collagen_gel_contraction.svg` | collagen contraction, collagen gel contraction, floating collagen gel, fibroblast contractility, gel contraction assay, matrix contraction, culture models and functional assays |
@@ -2330,6 +3062,30 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | draft | culture-models-assays | `culture.model_system.precision_cut_tissue_slice_culture` | Tissue-slice Culture | `model-system` | `assets/scientific-packs/culture-models-assays/svg/precision_cut_tissue_slice_culture.svg` | tissue slice, precision cut tissue slice, organotypic slice culture, ex vivo tissue culture, submerged tissue slice, culture models and functional assays |
 | draft | culture-models-assays | `culture.model_system.precision_cut_tissue_slice_culture.interface` | Tissue-slice Culture | `model-system` | `assets/scientific-packs/culture-models-assays/svg/precision_cut_tissue_slice_culture_interface.svg` | tissue slice, precision cut tissue slice, organotypic slice culture, ex vivo tissue culture, Membrane interface Tissue-slice Culture, culture models and functional assays |
 | draft | culture-models-assays | `culture.model_system.suspension_spheroid_culture` | Spheroid Suspension Culture | `model-system` | `assets/scientific-packs/culture-models-assays/svg/suspension_spheroid_culture.svg` | spheroid suspension, nonadherent spheroid culture, free aggregate in medium, culture models and functional assays |
+| draft | endocrine-tissue | `endocrine.adrenal_cortex.concentric_zones` | Adrenal cortex | `model-system` | `assets/scientific-packs/endocrine-tissue/svg/adrenal_cortex_concentric_zones.svg` | adrenal cortex, zona glomerulosa, zona fasciculata, zona reticularis, Concentric zones, endocrine tissue, schematic |
+| draft | endocrine-tissue | `endocrine.adrenal_cortex.cortical_wedge` | Adrenal cortex | `model-system` | `assets/scientific-packs/endocrine-tissue/svg/adrenal_cortex_cortical_wedge.svg` | adrenal cortex, zona glomerulosa, zona fasciculata, zona reticularis, Cortical wedge, endocrine tissue, schematic |
+| draft | endocrine-tissue | `endocrine.adrenal_medulla.medullary_field` | Adrenal medulla | `model-system` | `assets/scientific-packs/endocrine-tissue/svg/adrenal_medulla_medullary_field.svg` | adrenal medulla, chromaffin tissue, adrenal chromaffin cells, Medullary field, endocrine tissue, schematic |
+| draft | endocrine-tissue | `endocrine.adrenal_medulla.vascular_nests` | Adrenal medulla | `model-system` | `assets/scientific-packs/endocrine-tissue/svg/adrenal_medulla_vascular_nests.svg` | adrenal medulla, chromaffin tissue, adrenal chromaffin cells, Nests around sinusoid, endocrine tissue, schematic |
+| draft | endocrine-tissue | `endocrine.anterior_pituitary.cords_longitudinal` | Anterior pituitary | `model-system` | `assets/scientific-packs/endocrine-tissue/svg/anterior_pituitary_cords_longitudinal.svg` | anterior pituitary, adenohypophysis, pars distalis, Interlacing cords, endocrine tissue, schematic |
+| draft | endocrine-tissue | `endocrine.anterior_pituitary.cords_radial` | Anterior pituitary | `model-system` | `assets/scientific-packs/endocrine-tissue/svg/anterior_pituitary_cords_radial.svg` | anterior pituitary, adenohypophysis, pars distalis, Radial tissue field, endocrine tissue, schematic |
+| draft | endocrine-tissue | `endocrine.corpus_luteum.folded_luteal_tissue` | Corpus luteum | `model-system` | `assets/scientific-packs/endocrine-tissue/svg/corpus_luteum_folded_luteal_tissue.svg` | corpus luteum, luteal tissue, luteinized follicle, Folded luteal tissue, endocrine tissue, schematic |
+| draft | endocrine-tissue | `endocrine.corpus_luteum.radial_luteal_tissue` | Corpus luteum | `model-system` | `assets/scientific-packs/endocrine-tissue/svg/corpus_luteum_radial_luteal_tissue.svg` | corpus luteum, luteal tissue, luteinized follicle, Radial luteal tissue, endocrine tissue, schematic |
+| draft | endocrine-tissue | `endocrine.leydig_interstitium.paired_tubules` | Leydig-cell interstitium | `model-system` | `assets/scientific-packs/endocrine-tissue/svg/leydig_interstitium_paired_tubules.svg` | leydig interstitium, testicular interstitium, interstitial Leydig cells, Paired tubule profiles, endocrine tissue, schematic |
+| draft | endocrine-tissue | `endocrine.leydig_interstitium.tubule_corner` | Leydig-cell interstitium | `model-system` | `assets/scientific-packs/endocrine-tissue/svg/leydig_interstitium_tubule_corner.svg` | leydig interstitium, testicular interstitium, interstitial Leydig cells, Tubule junction field, endocrine tissue, schematic |
+| draft | endocrine-tissue | `endocrine.median_eminence.external_zone_field` | Median eminence | `model-system` | `assets/scientific-packs/endocrine-tissue/svg/median_eminence_external_zone_field.svg` | median eminence, external zone of median eminence, hypophysial portal interface, Portal interface field, endocrine tissue, schematic |
+| draft | endocrine-tissue | `endocrine.median_eminence.external_zone_sagittal` | Median eminence | `model-system` | `assets/scientific-packs/endocrine-tissue/svg/median_eminence_external_zone_sagittal.svg` | median eminence, external zone of median eminence, hypophysial portal interface, Sagittal neurovascular section, endocrine tissue, schematic |
+| draft | endocrine-tissue | `endocrine.ovarian_follicle.eccentric_oocyte` | Antral ovarian follicle | `model-system` | `assets/scientific-packs/endocrine-tissue/svg/ovarian_follicle_eccentric_oocyte.svg` | ovarian follicle, antral follicle, Graafian follicle, Eccentric oocyte section, endocrine tissue, schematic |
+| draft | endocrine-tissue | `endocrine.ovarian_follicle.sector_section` | Antral ovarian follicle | `model-system` | `assets/scientific-packs/endocrine-tissue/svg/ovarian_follicle_sector_section.svg` | ovarian follicle, antral follicle, Graafian follicle, Sector section, endocrine tissue, schematic |
+| draft | endocrine-tissue | `endocrine.pancreatic_islet.folded_plates` | Pancreatic islet | `model-system` | `assets/scientific-packs/endocrine-tissue/svg/pancreatic_islet_folded_plates.svg` | pancreatic islet, islet of Langerhans, endocrine pancreas, Folded cell plates, endocrine tissue, schematic |
+| draft | endocrine-tissue | `endocrine.pancreatic_islet.mixed_islet` | Pancreatic islet | `model-system` | `assets/scientific-packs/endocrine-tissue/svg/pancreatic_islet_mixed_islet.svg` | pancreatic islet, islet of Langerhans, endocrine pancreas, Mixed cell clusters, endocrine tissue, schematic |
+| draft | endocrine-tissue | `endocrine.parathyroid_cords.cords_longitudinal` | Parathyroid parenchyma | `model-system` | `assets/scientific-packs/endocrine-tissue/svg/parathyroid_cords_cords_longitudinal.svg` | parathyroid cords, parathyroid chief cells, parathyroid tissue, Interwoven cords, endocrine tissue, schematic |
+| draft | endocrine-tissue | `endocrine.parathyroid_cords.lobular_field` | Parathyroid parenchyma | `model-system` | `assets/scientific-packs/endocrine-tissue/svg/parathyroid_cords_lobular_field.svg` | parathyroid cords, parathyroid chief cells, parathyroid tissue, Lobular field, endocrine tissue, schematic |
+| draft | endocrine-tissue | `endocrine.pineal_parenchyma.cell_groups` | Pineal parenchyma | `model-system` | `assets/scientific-packs/endocrine-tissue/svg/pineal_parenchyma_cell_groups.svg` | pineal parenchyma, pinealocytes, pineal gland tissue, Pinealocyte groups, endocrine tissue, schematic |
+| draft | endocrine-tissue | `endocrine.pineal_parenchyma.lobular_field` | Pineal parenchyma | `model-system` | `assets/scientific-packs/endocrine-tissue/svg/pineal_parenchyma_lobular_field.svg` | pineal parenchyma, pinealocytes, pineal gland tissue, Lobular field, endocrine tissue, schematic |
+| draft | endocrine-tissue | `endocrine.posterior_pituitary.longitudinal_neural_lobe` | Posterior pituitary | `model-system` | `assets/scientific-packs/endocrine-tissue/svg/posterior_pituitary_longitudinal_neural_lobe.svg` | posterior pituitary, neurohypophysis, neural lobe, Longitudinal neural lobe, endocrine tissue, schematic |
+| draft | endocrine-tissue | `endocrine.posterior_pituitary.transverse_neural_lobe` | Posterior pituitary | `model-system` | `assets/scientific-packs/endocrine-tissue/svg/posterior_pituitary_transverse_neural_lobe.svg` | posterior pituitary, neurohypophysis, neural lobe, Transverse neural lobe, endocrine tissue, schematic |
+| draft | endocrine-tissue | `endocrine.thyroid_follicle.follicle_field` | Thyroid follicle | `model-system` | `assets/scientific-packs/endocrine-tissue/svg/thyroid_follicle_follicle_field.svg` | thyroid follicle, thyroid follicles, colloid follicle, Follicle field, endocrine tissue, schematic |
+| draft | endocrine-tissue | `endocrine.thyroid_follicle.single_follicle` | Thyroid follicle | `model-system` | `assets/scientific-packs/endocrine-tissue/svg/thyroid_follicle_single_follicle.svg` | thyroid follicle, thyroid follicles, colloid follicle, Single follicle, endocrine tissue, schematic |
 | draft | microbial-biology | `microbe.cell.bacterial_endospore` | Bacterial Endospore | `cell` | `assets/scientific-packs/microbial-biology/svg/bacterial_endospore.svg` | endospore, bacterial endospore, spore core cortex coat, Bacillus-type endospore, microbial structures and interactions |
 | draft | microbial-biology | `microbe.cell.chained_cocci` | Coccoid Bacterial Arrangement — Chain | `cell` | `assets/scientific-packs/microbial-biology/svg/chained_cocci.svg` | chained cocci, coccoid chain, bacterial cell chain, microbial structures and interactions |
 | draft | microbial-biology | `microbe.cell.encapsulated_bacterium` | Encapsulated Bacterium | `cell` | `assets/scientific-packs/microbial-biology/svg/encapsulated_bacterium.svg` | bacterial capsule, encapsulated bacterium, capsular coating, extracellular bacterial capsule, microbial structures and interactions |
@@ -2354,10 +3110,70 @@ The Markdown file keeps the index readable. The adjacent `master-asset-index.jso
 | draft | microbial-biology | `microbe.model_system.short_tailed_bacteriophage` | Short-Tailed Bacteriophage | `model-system` | `assets/scientific-packs/microbial-biology/svg/short_tailed_bacteriophage.svg` | short tailed phage, short noncontractile phage, microbial structures and interactions |
 | draft | microbial-biology | `microbe.model_system.surface_attached_biofilm` | Surface-attached Biofilm | `model-system` | `assets/scientific-packs/microbial-biology/svg/surface_attached_biofilm.svg` | biofilm matrix, surface attached biofilm, bacterial biofilm, extracellular polymeric matrix, surface associated microbial community, microbial structures and interactions |
 | draft | microbial-biology | `microbe.model_system.surface_attached_biofilm_plan` | Surface-attached Biofilm — Plan View | `model-system` | `assets/scientific-packs/microbial-biology/svg/surface_attached_biofilm_plan.svg` | biofilm plan view, biofilm top view, microbial structures and interactions |
+| draft | neurobiology | `neuro.axon_myelin.longitudinal` | Myelinated axon | `cell` | `assets/scientific-packs/neurobiology/svg/axon_myelin_longitudinal.svg` | axon myelin, myelin sheath, internode, myelinated nerve fiber, Longitudinal internodes, Neurobiology, schematic |
+| draft | neurobiology | `neuro.axon_myelin.transverse` | Myelinated axon | `cell` | `assets/scientific-packs/neurobiology/svg/axon_myelin_transverse.svg` | axon myelin, myelin sheath, internode, myelinated nerve fiber, Transverse myelin ring, Neurobiology, schematic |
+| draft | neurobiology | `neuro.axon_terminal.branched_terminals` | Axon terminal | `cell` | `assets/scientific-packs/neurobiology/svg/axon_terminal_branched_terminals.svg` | axon terminal, nerve ending, presynaptic terminal, terminal bouton, Branched terminals, Neurobiology, schematic |
+| draft | neurobiology | `neuro.axon_terminal.single_bouton` | Axon terminal | `cell` | `assets/scientific-packs/neurobiology/svg/axon_terminal_single_bouton.svg` | axon terminal, nerve ending, presynaptic terminal, terminal bouton, Single bouton, Neurobiology, schematic |
+| draft | neurobiology | `neuro.chemical_synapse.bouton_spine` | Chemical synapse | `cell` | `assets/scientific-packs/neurobiology/svg/chemical_synapse_bouton_spine.svg` | chemical synapse, neuronal synapse, synaptic contact, axon-dendrite synapse, Bouton to spine, Neurobiology, schematic |
+| draft | neurobiology | `neuro.chemical_synapse.shaft_contact` | Chemical synapse | `cell` | `assets/scientific-packs/neurobiology/svg/chemical_synapse_shaft_contact.svg` | chemical synapse, neuronal synapse, synaptic contact, axon-dendrite synapse, Bouton to shaft, Neurobiology, schematic |
+| draft | neurobiology | `neuro.dendritic_spine.mushroom` | Dendritic spine | `cell` | `assets/scientific-packs/neurobiology/svg/dendritic_spine_mushroom.svg` | dendritic spine, spine head, spine neck, postsynaptic protrusion, Mushroom, Neurobiology, schematic |
+| draft | neurobiology | `neuro.dendritic_spine.thin` | Dendritic spine | `cell` | `assets/scientific-packs/neurobiology/svg/dendritic_spine_thin.svg` | dendritic spine, spine head, spine neck, postsynaptic protrusion, Thin, Neurobiology, schematic |
+| draft | neurobiology | `neuro.microglia_contact.surveying` | Microglial process contact | `cell` | `assets/scientific-packs/neurobiology/svg/microglia_contact_surveying.svg` | microglia contact, microglia-synapse contact, microglial surveillance, microglial process, Surveying processes, Neurobiology, schematic |
+| draft | neurobiology | `neuro.microglia_contact.synaptic_contact` | Microglial process contact | `cell` | `assets/scientific-packs/neurobiology/svg/microglia_contact_synaptic_contact.svg` | microglia contact, microglia-synapse contact, microglial surveillance, microglial process, Synaptic contact, Neurobiology, schematic |
+| draft | neurobiology | `neuro.neural_circuit.convergent_inputs` | Neural circuit | `cell` | `assets/scientific-packs/neurobiology/svg/neural_circuit_convergent_inputs.svg` | neural circuit, neuronal circuit, feedforward pathway, convergent input, Convergent inputs, Neurobiology, schematic |
+| draft | neurobiology | `neuro.neural_circuit.feedforward_chain` | Neural circuit | `cell` | `assets/scientific-packs/neurobiology/svg/neural_circuit_feedforward_chain.svg` | neural circuit, neuronal circuit, feedforward pathway, convergent input, Feedforward chain, Neurobiology, schematic |
+| draft | neurobiology | `neuro.neuron_astrocyte_contact.process_network` | Neuron–astrocyte contact | `cell` | `assets/scientific-packs/neurobiology/svg/neuron_astrocyte_contact_process_network.svg` | neuron astrocyte contact, tripartite synapse, perisynaptic astrocyte process, astrocyte-neuron interface, Process network, Neurobiology, schematic |
+| draft | neurobiology | `neuro.neuron_astrocyte_contact.single_synapse` | Neuron–astrocyte contact | `cell` | `assets/scientific-packs/neurobiology/svg/neuron_astrocyte_contact_single_synapse.svg` | neuron astrocyte contact, tripartite synapse, perisynaptic astrocyte process, astrocyte-neuron interface, Single synapse contact, Neurobiology, schematic |
+| draft | neurobiology | `neuro.node_of_ranvier.channel_region` | Node of Ranvier | `cell` | `assets/scientific-packs/neurobiology/svg/node_of_ranvier_channel_region.svg` | node of ranvier, node, paranode, myelin gap, Nodal channel region, Neurobiology, schematic |
+| draft | neurobiology | `neuro.node_of_ranvier.paired_internodes` | Node of Ranvier | `cell` | `assets/scientific-packs/neurobiology/svg/node_of_ranvier_paired_internodes.svg` | node of ranvier, node, paranode, myelin gap, Paired internodes, Neurobiology, schematic |
+| draft | neurobiology | `neuro.oligodendrocyte.branching` | Oligodendrocyte | `cell` | `assets/scientific-packs/neurobiology/svg/oligodendrocyte_branching.svg` | oligodendrocyte, oligodendroglia, CNS myelinating glia, Compact branching view, Neurobiology, schematic |
+| draft | neurobiology | `neuro.oligodendrocyte.multiple_sheaths` | Oligodendrocyte | `cell` | `assets/scientific-packs/neurobiology/svg/oligodendrocyte_multiple_sheaths.svg` | oligodendrocyte, oligodendroglia, CNS myelinating glia, Multiple sheaths, Neurobiology, schematic |
+| draft | neurobiology | `neuro.schwann_cell.myelinating_internode` | Schwann cell | `cell` | `assets/scientific-packs/neurobiology/svg/schwann_cell_myelinating_internode.svg` | schwann cell, peripheral glia, myelinating Schwann cell, Remak Schwann cell, Myelinating internode, Neurobiology, schematic |
+| draft | neurobiology | `neuro.schwann_cell.nonmyelinating_bundle` | Schwann cell | `cell` | `assets/scientific-packs/neurobiology/svg/schwann_cell_nonmyelinating_bundle.svg` | schwann cell, peripheral glia, myelinating Schwann cell, Remak Schwann cell, Nonmyelinating bundle, Neurobiology, schematic |
 | draft | rna-methods | `rna.assay_workflow.in_situ_rna_puncta` | Illustrative In-situ RNA Puncta Field | `assay-workflow` | `assets/scientific-packs/rna-methods/svg/in_situ_rna_puncta.svg` | RNA-FISH, smFISH, in situ, hybridization, RNA probe, puncta, RNA localization, illustrative field, RNA methods |
 | draft | rna-methods | `rna.assay_workflow.spatial_capture_array` | Tissue-associated Spatial RNA Capture Array | `assay-workflow` | `assets/scientific-packs/rna-methods/svg/spatial_capture_array.svg` | spatial transcriptomics, tissue section, capture array, spatial barcode, capture position, spatial RNA, RNA methods |
 | draft | rna-methods | `rna.lab_equipment.microfluidic_cell_partition` | Microfluidic Cell Partition | `lab-equipment` | `assets/scientific-packs/rna-methods/svg/microfluidic_cell_partition.svg` | microfluidics, droplet, partition, oil, cell suspension, single-cell RNA sequencing, scRNA-seq, RNA methods |
 | draft | rna-methods | `rna.nucleic_acid.barcoded_capture_bead` | Oligo-barcoded RNA Capture Bead | `nucleic-acid` | `assets/scientific-packs/rna-methods/svg/barcoded_capture_bead.svg` | capture bead, oligonucleotide, barcode, cell barcode, bead barcode, UMI, unique molecular identifier, poly(dT), oligo(dT), RNA methods |
+| draft | tissue-vascular | `tissue.adipose.lobule` | Adipose Tissue | `cell` | `assets/scientific-packs/tissue-vascular/svg/adipose_lobule.svg` | adipose, adipocyte, fat cell, adipose lobule, Lobule, Tissue & Vascular Organization, schematic |
+| draft | tissue-vascular | `tissue.adipose.single_adipocyte` | Adipose Tissue | `cell` | `assets/scientific-packs/tissue-vascular/svg/adipose_single_adipocyte.svg` | adipose, adipocyte, fat cell, adipose lobule, Single Adipocyte, Tissue & Vascular Organization, schematic |
+| draft | tissue-vascular | `tissue.angiogenic_sprout.branching` | Angiogenic Sprout | `model-system` | `assets/scientific-packs/tissue-vascular/svg/angiogenic_sprout_branching.svg` | angiogenic sprout, endothelial sprout, neovascular sprout, branching vessel, Branching, Tissue & Vascular Organization, schematic |
+| draft | tissue-vascular | `tissue.angiogenic_sprout.single_tip` | Angiogenic Sprout | `model-system` | `assets/scientific-packs/tissue-vascular/svg/angiogenic_sprout_single_tip.svg` | angiogenic sprout, endothelial sprout, neovascular sprout, branching vessel, Single Tip, Tissue & Vascular Organization, schematic |
+| draft | tissue-vascular | `tissue.basement_membrane.epithelial_interface` | Basement Membrane | `model-system` | `assets/scientific-packs/tissue-vascular/svg/basement_membrane_epithelial_interface.svg` | basement membrane, basal lamina, basement membrane sheet, epithelial support, Epithelial Interface, Tissue & Vascular Organization, schematic |
+| draft | tissue-vascular | `tissue.basement_membrane.isolated_sheet` | Basement Membrane | `model-system` | `assets/scientific-packs/tissue-vascular/svg/basement_membrane_isolated_sheet.svg` | basement membrane, basal lamina, basement membrane sheet, epithelial support, Isolated Sheet, Tissue & Vascular Organization, schematic |
+| draft | tissue-vascular | `tissue.capillary.longitudinal` | Capillary | `model-system` | `assets/scientific-packs/tissue-vascular/svg/capillary_longitudinal.svg` | capillary, microvessel, capillary lumen, endothelium, Longitudinal, Tissue & Vascular Organization, schematic |
+| draft | tissue-vascular | `tissue.capillary.transverse` | Capillary | `model-system` | `assets/scientific-packs/tissue-vascular/svg/capillary_transverse.svg` | capillary, microvessel, capillary lumen, endothelium, Transverse, Tissue & Vascular Organization, schematic |
+| draft | tissue-vascular | `tissue.collagen.bundle` | Collagen Matrix | `model-system` | `assets/scientific-packs/tissue-vascular/svg/collagen_bundle.svg` | collagen, collagen fibers, collagen bundle, matrix mesh, Bundle, Tissue & Vascular Organization, schematic |
+| draft | tissue-vascular | `tissue.collagen.mesh` | Collagen Matrix | `model-system` | `assets/scientific-packs/tissue-vascular/svg/collagen_mesh.svg` | collagen, collagen fibers, collagen bundle, matrix mesh, Mesh, Tissue & Vascular Organization, schematic |
+| draft | tissue-vascular | `tissue.epithelial_acinus.closed_lumen` | Epithelial Acinus | `model-system` | `assets/scientific-packs/tissue-vascular/svg/epithelial_acinus_closed_lumen.svg` | epithelial acinus, acinus, acinar lumen, glandular epithelium, External view, Tissue & Vascular Organization, schematic |
+| draft | tissue-vascular | `tissue.epithelial_acinus.section` | Epithelial Acinus | `model-system` | `assets/scientific-packs/tissue-vascular/svg/epithelial_acinus_section.svg` | epithelial acinus, acinus, acinar lumen, glandular epithelium, Section, Tissue & Vascular Organization, schematic |
+| draft | tissue-vascular | `tissue.epithelial_sheet.apical` | Epithelial Sheet | `model-system` | `assets/scientific-packs/tissue-vascular/svg/epithelial_sheet_apical.svg` | epithelial sheet, epithelial layer, monolayer, apical-basal polarity, Apical, Tissue & Vascular Organization, schematic |
+| draft | tissue-vascular | `tissue.epithelial_sheet.lateral` | Epithelial Sheet | `model-system` | `assets/scientific-packs/tissue-vascular/svg/epithelial_sheet_lateral.svg` | epithelial sheet, epithelial layer, monolayer, apical-basal polarity, Lateral, Tissue & Vascular Organization, schematic |
+| draft | tissue-vascular | `tissue.lymphatic_capillary.blind_end` | Lymphatic Capillary | `model-system` | `assets/scientific-packs/tissue-vascular/svg/lymphatic_capillary_blind_end.svg` | lymphatic capillary, initial lymphatic, lymphatic vessel, lymph uptake, Blind End, Tissue & Vascular Organization, schematic |
+| draft | tissue-vascular | `tissue.lymphatic_capillary.tissue_interface` | Lymphatic Capillary | `model-system` | `assets/scientific-packs/tissue-vascular/svg/lymphatic_capillary_tissue_interface.svg` | lymphatic capillary, initial lymphatic, lymphatic vessel, lymph uptake, Tissue Interface, Tissue & Vascular Organization, schematic |
+| draft | tissue-vascular | `tissue.skeletal_muscle.bundle_cross_section` | Skeletal Muscle | `model-system` | `assets/scientific-packs/tissue-vascular/svg/skeletal_muscle_bundle_cross_section.svg` | skeletal muscle, myofiber, muscle fiber, muscle fascicle, Bundle Cross Section, Tissue & Vascular Organization, schematic |
+| draft | tissue-vascular | `tissue.skeletal_muscle.longitudinal_fibers` | Skeletal Muscle | `model-system` | `assets/scientific-packs/tissue-vascular/svg/skeletal_muscle_longitudinal_fibers.svg` | skeletal muscle, myofiber, muscle fiber, muscle fascicle, Longitudinal Fibers, Tissue & Vascular Organization, schematic |
+| draft | tissue-vascular | `tissue.vessel_wall.thicker_wall` | Blood Vessel Wall | `model-system` | `assets/scientific-packs/tissue-vascular/svg/vessel_wall_thicker_wall.svg` | vessel wall, artery wall, vein wall, tunica, vascular layers, Thicker Wall, Tissue & Vascular Organization, schematic |
+| draft | tissue-vascular | `tissue.vessel_wall.thinner_wall` | Blood Vessel Wall | `model-system` | `assets/scientific-packs/tissue-vascular/svg/vessel_wall_thinner_wall.svg` | vessel wall, artery wall, vein wall, tunica, vascular layers, Thinner Wall, Tissue & Vascular Organization, schematic |
+| draft | tumor-microenvironment | `tme.cancer_associated_fibroblast.matrix` | Cancer-associated Fibroblast — Matrix context | `cell` | `assets/scientific-packs/tumor-microenvironment/svg/cancer_associated_fibroblast_matrix.svg` | Cancer-associated Fibroblast, Matrix context, CAF, tumor fibroblast, cancer stromal fibroblast, editable vector, schematic, tumor microenvironment |
+| draft | tumor-microenvironment | `tme.cancer_associated_fibroblast.spindle` | Cancer-associated Fibroblast — Spindle cell | `cell` | `assets/scientific-packs/tumor-microenvironment/svg/cancer_associated_fibroblast_spindle.svg` | Cancer-associated Fibroblast, Spindle cell, CAF, tumor fibroblast, cancer stromal fibroblast, editable vector, schematic, tumor microenvironment |
+| draft | tumor-microenvironment | `tme.car_nk_cell.receptor_display` | CAR-NK Cell — Receptor display | `cell` | `assets/scientific-packs/tumor-microenvironment/svg/car_nk_cell_receptor_display.svg` | CAR-NK Cell, Receptor display, chimeric antigen receptor natural killer cell, engineered NK cell, editable vector, schematic, tumor microenvironment |
+| draft | tumor-microenvironment | `tme.car_nk_cell.target_contact` | CAR-NK Cell — Target contact | `cell` | `assets/scientific-packs/tumor-microenvironment/svg/car_nk_cell_target_contact.svg` | CAR-NK Cell, Target contact, chimeric antigen receptor natural killer cell, engineered NK cell, editable vector, schematic, tumor microenvironment |
+| draft | tumor-microenvironment | `tme.dendritic_antigen_uptake.particulate` | Dendritic Cell Antigen Uptake — Particulate antigen | `assay-workflow` | `assets/scientific-packs/tumor-microenvironment/svg/dendritic_antigen_uptake_particulate.svg` | Dendritic Cell Antigen Uptake, Particulate antigen, DC antigen uptake, dendritic endocytosis, antigen capture, editable vector, schematic, tumor microenvironment |
+| draft | tumor-microenvironment | `tme.dendritic_antigen_uptake.soluble` | Dendritic Cell Antigen Uptake — Soluble antigen | `assay-workflow` | `assets/scientific-packs/tumor-microenvironment/svg/dendritic_antigen_uptake_soluble.svg` | Dendritic Cell Antigen Uptake, Soluble antigen, DC antigen uptake, dendritic endocytosis, antigen capture, editable vector, schematic, tumor microenvironment |
+| draft | tumor-microenvironment | `tme.drug_penetration_gradient.perivascular` | Drug Penetration Gradient — Vessel-to-tissue | `model-system` | `assets/scientific-packs/tumor-microenvironment/svg/drug_penetration_gradient_perivascular.svg` | Drug Penetration Gradient, Vessel-to-tissue, drug diffusion gradient, compound penetration, drug distribution, editable vector, schematic, tumor microenvironment |
+| draft | tumor-microenvironment | `tme.drug_penetration_gradient.spheroid` | Drug Penetration Gradient — Spheroid penetration | `model-system` | `assets/scientific-packs/tumor-microenvironment/svg/drug_penetration_gradient_spheroid.svg` | Drug Penetration Gradient, Spheroid penetration, drug diffusion gradient, compound penetration, drug distribution, editable vector, schematic, tumor microenvironment |
+| draft | tumor-microenvironment | `tme.generic_immune_synapse.cell_pair` | Immune Synapse — Generic — Cell pair | `membrane-signaling` | `assets/scientific-packs/tumor-microenvironment/svg/generic_immune_synapse_cell_pair.svg` | Immune Synapse — Generic, Cell pair, generic immunological synapse, immune cell contact interface, editable vector, schematic, tumor microenvironment |
+| draft | tumor-microenvironment | `tme.generic_immune_synapse.interface` | Immune Synapse — Generic — Interface close-up | `membrane-signaling` | `assets/scientific-packs/tumor-microenvironment/svg/generic_immune_synapse_interface.svg` | Immune Synapse — Generic, Interface close-up, generic immunological synapse, immune cell contact interface, editable vector, schematic, tumor microenvironment |
+| draft | tumor-microenvironment | `tme.hypoxia_gradient.perivascular` | Hypoxia Gradient — Vessel-to-tissue | `model-system` | `assets/scientific-packs/tumor-microenvironment/svg/hypoxia_gradient_perivascular.svg` | Hypoxia Gradient, Vessel-to-tissue, oxygen gradient, O2 gradient, tumor hypoxia gradient, editable vector, schematic, tumor microenvironment |
+| draft | tumor-microenvironment | `tme.hypoxia_gradient.spheroid` | Hypoxia Gradient — Spheroid section | `model-system` | `assets/scientific-packs/tumor-microenvironment/svg/hypoxia_gradient_spheroid.svg` | Hypoxia Gradient, Spheroid section, oxygen gradient, O2 gradient, tumor hypoxia gradient, editable vector, schematic, tumor microenvironment |
+| draft | tumor-microenvironment | `tme.lactate_metabolite_gradient.radial_source` | Lactate / Metabolite Gradient — Local radial source | `model-system` | `assets/scientific-packs/tumor-microenvironment/svg/lactate_metabolite_gradient_radial_source.svg` | Lactate / Metabolite Gradient, Local radial source, lactate gradient, metabolite gradient, metabolic spatial gradient, editable vector, schematic, tumor microenvironment |
+| draft | tumor-microenvironment | `tme.lactate_metabolite_gradient.source_to_tissue` | Lactate / Metabolite Gradient — Source-to-tissue | `model-system` | `assets/scientific-packs/tumor-microenvironment/svg/lactate_metabolite_gradient_source_to_tissue.svg` | Lactate / Metabolite Gradient, Source-to-tissue, lactate gradient, metabolite gradient, metabolic spatial gradient, editable vector, schematic, tumor microenvironment |
+| draft | tumor-microenvironment | `tme.macrophage_polarization_cue.multiple_cues` | Macrophage Polarization Cue — Multiple environmental cues | `membrane-signaling` | `assets/scientific-packs/tumor-microenvironment/svg/macrophage_polarization_cue_multiple_cues.svg` | Macrophage Polarization Cue, Multiple environmental cues, macrophage activation cue, macrophage state spectrum, polarizing signals, editable vector, schematic, tumor microenvironment |
+| draft | tumor-microenvironment | `tme.macrophage_polarization_cue.single_cue` | Macrophage Polarization Cue — One cue and response range | `membrane-signaling` | `assets/scientific-packs/tumor-microenvironment/svg/macrophage_polarization_cue_single_cue.svg` | Macrophage Polarization Cue, One cue and response range, macrophage activation cue, macrophage state spectrum, polarizing signals, editable vector, schematic, tumor microenvironment |
+| draft | tumor-microenvironment | `tme.tertiary_lymphoid_structure.germinal_center` | Tertiary Lymphoid Structure — With germinal-center cue | `model-system` | `assets/scientific-packs/tumor-microenvironment/svg/tertiary_lymphoid_structure_germinal_center.svg` | Tertiary Lymphoid Structure, With germinal-center cue, TLS, ectopic lymphoid structure, tertiary lymphoid tissue, editable vector, schematic, tumor microenvironment |
+| draft | tumor-microenvironment | `tme.tertiary_lymphoid_structure.primary_follicle` | Tertiary Lymphoid Structure — B/T organization | `model-system` | `assets/scientific-packs/tumor-microenvironment/svg/tertiary_lymphoid_structure_primary_follicle.svg` | Tertiary Lymphoid Structure, B/T organization, TLS, ectopic lymphoid structure, tertiary lymphoid tissue, editable vector, schematic, tumor microenvironment |
+| draft | tumor-microenvironment | `tme.tumor_associated_neutrophil.isolated` | Tumor-associated Neutrophil — Isolated cell | `cell` | `assets/scientific-packs/tumor-microenvironment/svg/tumor_associated_neutrophil_isolated.svg` | Tumor-associated Neutrophil, Isolated cell, TAN, tumor neutrophil, neutrophil tumor context, editable vector, schematic, tumor microenvironment |
+| draft | tumor-microenvironment | `tme.tumor_associated_neutrophil.tumor_contact` | Tumor-associated Neutrophil — Tumor context | `cell` | `assets/scientific-packs/tumor-microenvironment/svg/tumor_associated_neutrophil_tumor_contact.svg` | Tumor-associated Neutrophil, Tumor context, TAN, tumor neutrophil, neutrophil tumor context, editable vector, schematic, tumor microenvironment |
 | production | core-biology | `core.antibody.drug_conjugate` | Drug-Conjugated Antibody | `protein` | `assets/scientific-packs/core-biology/svg/antibody_drug_conjugate.svg` | antibody, drug conjugate, adc, payload, protein, therapy |
 | production | core-biology | `core.antibody.drug_conjugate_manuscript` | Drug-Conjugated Antibody — Manuscript Line | `protein` | `assets/scientific-packs/core-biology/svg/antibody_drug_conjugate_manuscript.svg` | antibody, drug conjugate, adc, payload, protein, therapy, thin line, manuscript |
 | production | core-biology | `core.antibody.fab_fragment` | Antibody Fab Fragment | `protein` | `assets/scientific-packs/core-biology/svg/antibody_fab_fragment.svg` | Fab fragment, antibody fragment, antigen binding, immunoglobulin |

@@ -134,6 +134,12 @@ def validate(style_dir: Path, library: Path = IMPORT.LIBRARY, *, expected_count:
         supplemental = importlib.util.module_from_spec(supplemental_spec);supplemental_spec.loader.exec_module(supplemental)
         original_supplement = supplemental.validate(style_dir, library)
         actual_files -= set(original_supplement.pop('owned_files'))
+    endocrine_supplement = None
+    if (style_dir / 'expansion-20261107/manifest.json').exists():
+        endocrine_spec = importlib.util.spec_from_file_location('endocrine_style4_supplement', ROOT/'scripts/style4_endocrine_supplement.py')
+        endocrine = importlib.util.module_from_spec(endocrine_spec); endocrine_spec.loader.exec_module(endocrine)
+        endocrine_supplement = endocrine.validate(style_dir, library)
+        actual_files -= set(endocrine_supplement.pop('owned_files'))
     if actual_files != expected_files:
         raise ValueError(f"Unexpected or missing Style 4 files: {sorted(actual_files ^ expected_files)}")
     if source_archive is not None:
@@ -146,6 +152,8 @@ def validate(style_dir: Path, library: Path = IMPORT.LIBRARY, *, expected_count:
         result["correction_overlay"] = correction
     if original_supplement:
         result["original_supplement"] = original_supplement
+    if endocrine_supplement:
+        result['endocrine_supplement'] = endocrine_supplement
     return result
 
 

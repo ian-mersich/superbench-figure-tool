@@ -1,0 +1,1788 @@
+{
+  "schema_version": "1.0.0",
+  "id": "style-4",
+  "name": "Style 4",
+  "supplement_id": "original-style4-companions.2026-11-07",
+  "asset_count": 24,
+  "preserved_supplied_collection": {
+    "file": "manifest-corrected-20261017.json",
+    "sha256": "3483b7cc452792ed896cca85e65088083b09eb4e9904fadd9bea8c5c6972a51b",
+    "asset_count": 486
+  },
+  "source_record_id": "source.style4-original-companions.2026-11-07",
+  "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-07",
+  "assets": [
+    {
+      "asset_id": "endocrine.thyroid_follicle.single_follicle",
+      "name": "Thyroid follicle",
+      "file": "svg/thyroid_follicle_single_follicle_style4.svg",
+      "sha256": "2aa7fc24c5c44478c44c07d3928334ea15125c49389e12057a74f4cbbeb6b01b",
+      "source_pack_id": "endocrine-tissue",
+      "source_asset_sha256": "4c8e18910373e51df525c3b72b956c1774b530d16c77c78770d8bf5f8d55c03b",
+      "geometry_sha256": "8c78c4335c3f06eb5fae360cde3ca1f6ca644decb1d581732a9f43073991ad68",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-07",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-07",
+      "editable_color_regions": [
+        {
+          "id": "follicular_epithelium",
+          "label": "Follicular epithelium",
+          "default": "#E9A997",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#E9A997"
+            },
+            {
+              "paint": "fill",
+              "color": "#F5C9B7"
+            }
+          ]
+        },
+        {
+          "id": "colloid",
+          "label": "Colloid",
+          "default": "#FFFFFF",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#FFFFFF"
+            }
+          ]
+        },
+        {
+          "id": "stroma",
+          "label": "Interfollicular stroma",
+          "default": "#B8D8C5",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#B8D8C5"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#344955",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#344955"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original contour and compartment geometry authored for this endocrine companion. Research informs topology only; no supplied artwork geometry is copied."
+    },
+    {
+      "asset_id": "endocrine.thyroid_follicle.follicle_field",
+      "name": "Thyroid follicle",
+      "file": "svg/thyroid_follicle_follicle_field_style4.svg",
+      "sha256": "9e4fbceef5b6ac75aeffc23aacf040cf48ac8e479535136f24ddd479d6bae935",
+      "source_pack_id": "endocrine-tissue",
+      "source_asset_sha256": "3935aef170fa6856239fbbd65b07928aab60040a6414093d9168245cef1a2503",
+      "geometry_sha256": "f88c1e95ff20d7cd4981c13cbb2bfd7cb473e6fa3605ad9c279fc7657a350364",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-07",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-07",
+      "editable_color_regions": [
+        {
+          "id": "follicular_epithelium",
+          "label": "Follicular epithelium",
+          "default": "#E9A997",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#E9A997"
+            }
+          ]
+        },
+        {
+          "id": "colloid",
+          "label": "Colloid",
+          "default": "#E9D09D",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#FFFFFF"
+            },
+            {
+              "paint": "fill",
+              "color": "#E9D09D"
+            }
+          ]
+        },
+        {
+          "id": "stroma",
+          "label": "Interfollicular stroma",
+          "default": "#B8D8C5",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#B8D8C5"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#344955",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#344955"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original contour and compartment geometry authored for this endocrine companion. Research informs topology only; no supplied artwork geometry is copied."
+    },
+    {
+      "asset_id": "endocrine.parathyroid_cords.cords_longitudinal",
+      "name": "Parathyroid parenchyma",
+      "file": "svg/parathyroid_cords_cords_longitudinal_style4.svg",
+      "sha256": "09b7f6c10e34cc3b678c7663d2bf557bd2d93c46c7ee94ada7bb3e4d41213830",
+      "source_pack_id": "endocrine-tissue",
+      "source_asset_sha256": "348d3323fb18864b015e55e608d48b802bff5375f8eaf45902420b55769ab423",
+      "geometry_sha256": "e571b4f206bd4bdbcfafbb4fed7df4eeca5e1bb018943daba603c819c5e722a0",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-07",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-07",
+      "editable_color_regions": [
+        {
+          "id": "parenchyma",
+          "label": "Parathyroid parenchyma",
+          "default": "#D59E86",
+          "paint": "both",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#E5B69E"
+            },
+            {
+              "paint": "fill",
+              "color": "#D59E86"
+            }
+          ]
+        },
+        {
+          "id": "capillary",
+          "label": "Capillary",
+          "default": "#D8867A",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#D8867A"
+            }
+          ]
+        },
+        {
+          "id": "stroma",
+          "label": "Connective stroma",
+          "default": "#B8D8C5",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#B8D8C5"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#344955",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#344955"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original contour and compartment geometry authored for this endocrine companion. Research informs topology only; no supplied artwork geometry is copied."
+    },
+    {
+      "asset_id": "endocrine.parathyroid_cords.lobular_field",
+      "name": "Parathyroid parenchyma",
+      "file": "svg/parathyroid_cords_lobular_field_style4.svg",
+      "sha256": "842af8a614c6efa18ebdca2b2df5c8b3ffa4e5235d3d8489d0e0450509b1444f",
+      "source_pack_id": "endocrine-tissue",
+      "source_asset_sha256": "b1bfc128193309bcb9c81e835ef14d40ea721900a33f968da5f452fc2b904f42",
+      "geometry_sha256": "d3a4f98166f4a5f22e6b694a833272b20009ed0d1e0b841b3c38e716ea07177f",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-07",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-07",
+      "editable_color_regions": [
+        {
+          "id": "parenchyma",
+          "label": "Parathyroid parenchyma",
+          "default": "#D59E86",
+          "paint": "both",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#E5B69E"
+            },
+            {
+              "paint": "fill",
+              "color": "#D59E86"
+            },
+            {
+              "paint": "fill",
+              "color": "#E2AA90"
+            }
+          ]
+        },
+        {
+          "id": "capillary",
+          "label": "Capillary",
+          "default": "#D8867A",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#D8867A"
+            }
+          ]
+        },
+        {
+          "id": "stroma",
+          "label": "Connective stroma",
+          "default": "#B8D8C5",
+          "paint": "both",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#B8D8C5"
+            },
+            {
+              "paint": "stroke",
+              "color": "#B8D8C5"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#344955",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#344955"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original contour and compartment geometry authored for this endocrine companion. Research informs topology only; no supplied artwork geometry is copied."
+    },
+    {
+      "asset_id": "endocrine.pancreatic_islet.mixed_islet",
+      "name": "Pancreatic islet",
+      "file": "svg/pancreatic_islet_mixed_islet_style4.svg",
+      "sha256": "69e0cb2a2f3adbb852753fefaf555fe5e0864b0d183958f7a765adb581b74ed6",
+      "source_pack_id": "endocrine-tissue",
+      "source_asset_sha256": "5a1a6a19ef04fb04652999ef9aab6c8a02fc857ebf9fdda7680ea526dc090ed5",
+      "geometry_sha256": "ff24e01e84e47585d3d9246ba4f83493f60b6c38bcb005759b8223bf3199f8a7",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-07",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-07",
+      "editable_color_regions": [
+        {
+          "id": "beta_cells",
+          "label": "β-cell population",
+          "default": "#E9B7A5",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#E9B7A5"
+            }
+          ]
+        },
+        {
+          "id": "other_endocrine",
+          "label": "Other endocrine cells",
+          "default": "#A9C5D9",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#A9C5D9"
+            }
+          ]
+        },
+        {
+          "id": "capillary",
+          "label": "Capillaries",
+          "default": "#D8867A",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#D8867A"
+            }
+          ]
+        },
+        {
+          "id": "stroma",
+          "label": "Supporting stroma",
+          "default": "#B8D8C5",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#B8D8C5"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#344955",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#344955"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original contour and compartment geometry authored for this endocrine companion. Research informs topology only; no supplied artwork geometry is copied."
+    },
+    {
+      "asset_id": "endocrine.pancreatic_islet.folded_plates",
+      "name": "Pancreatic islet",
+      "file": "svg/pancreatic_islet_folded_plates_style4.svg",
+      "sha256": "9a14e676099a0f4d4d71b93b1e93784c63fba8be52001e240c78289470fbacbc",
+      "source_pack_id": "endocrine-tissue",
+      "source_asset_sha256": "f3a6685457668e958f9ac49a44a02135959a82699fa0ff2421f51d2d2b83a8fe",
+      "geometry_sha256": "970b56af8b8b4fd2872b33bedb5e4cf83af3b720c11d2ed9493aa10193e9cc7c",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-07",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-07",
+      "editable_color_regions": [
+        {
+          "id": "beta_cells",
+          "label": "β-cell population",
+          "default": "#DFA28F",
+          "paint": "both",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#E9B7A5"
+            },
+            {
+              "paint": "fill",
+              "color": "#DFA28F"
+            }
+          ]
+        },
+        {
+          "id": "other_endocrine",
+          "label": "Other endocrine cells",
+          "default": "#A9C5D9",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#A9C5D9"
+            }
+          ]
+        },
+        {
+          "id": "capillary",
+          "label": "Capillaries",
+          "default": "#D8867A",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#D8867A"
+            }
+          ]
+        },
+        {
+          "id": "stroma",
+          "label": "Supporting stroma",
+          "default": "#B8D8C5",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#B8D8C5"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#344955",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#344955"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original contour and compartment geometry authored for this endocrine companion. Research informs topology only; no supplied artwork geometry is copied."
+    },
+    {
+      "asset_id": "endocrine.adrenal_cortex.concentric_zones",
+      "name": "Adrenal cortex",
+      "file": "svg/adrenal_cortex_concentric_zones_style4.svg",
+      "sha256": "3f329e301bb1dbe85dd13b4938dd64fe3e605ec9cf7015fded88998ced305fbb",
+      "source_pack_id": "endocrine-tissue",
+      "source_asset_sha256": "31b86ad34907136787156734130e555d48fa26663d7a3885f98039efc654cd0b",
+      "geometry_sha256": "8a0c0050402bb955fdc22a53d66a6af1b6c51896e9e2945a4504d29e42dd8333",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-07",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-07",
+      "editable_color_regions": [
+        {
+          "id": "capsule",
+          "label": "Capsule",
+          "default": "#B8D8C5",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#B8D8C5"
+            }
+          ]
+        },
+        {
+          "id": "zona_glomerulosa",
+          "label": "Zona glomerulosa",
+          "default": "#C4A256",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#D9B978"
+            },
+            {
+              "paint": "fill",
+              "color": "#C4A256"
+            }
+          ]
+        },
+        {
+          "id": "zona_fasciculata",
+          "label": "Zona fasciculata",
+          "default": "#E9B7A5",
+          "paint": "both",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#E9B7A5"
+            },
+            {
+              "paint": "stroke",
+              "color": "#D78F80"
+            }
+          ]
+        },
+        {
+          "id": "zona_reticularis",
+          "label": "Zona reticularis",
+          "default": "#A9C5D9",
+          "paint": "both",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#A9C5D9"
+            },
+            {
+              "paint": "stroke",
+              "color": "#A9C5D9"
+            }
+          ]
+        },
+        {
+          "id": "medulla",
+          "label": "Medulla",
+          "default": "#C58B9A",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#C58B9A"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#344955",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#344955"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original contour and compartment geometry authored for this endocrine companion. Research informs topology only; no supplied artwork geometry is copied."
+    },
+    {
+      "asset_id": "endocrine.adrenal_cortex.cortical_wedge",
+      "name": "Adrenal cortex",
+      "file": "svg/adrenal_cortex_cortical_wedge_style4.svg",
+      "sha256": "76451ca9f98150319df4f97e75c67dc750fa19f19715b737d0c72f2de87d8ccf",
+      "source_pack_id": "endocrine-tissue",
+      "source_asset_sha256": "eb2addc8bbf00fc759277b6dda87ce8f2465802896e7fcc5d8cf5ac4230ecf3b",
+      "geometry_sha256": "eb71f67e7b5a2ec2ea1a743013f87149305e0a5fcfb09fd2fb6708ba875367a2",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-07",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-07",
+      "editable_color_regions": [
+        {
+          "id": "capsule",
+          "label": "Capsule",
+          "default": "#B8D8C5",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#B8D8C5"
+            }
+          ]
+        },
+        {
+          "id": "zona_glomerulosa",
+          "label": "Zona glomerulosa",
+          "default": "#C4A256",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#D9B978"
+            },
+            {
+              "paint": "fill",
+              "color": "#C4A256"
+            }
+          ]
+        },
+        {
+          "id": "zona_fasciculata",
+          "label": "Zona fasciculata",
+          "default": "#E9B7A5",
+          "paint": "both",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#E9B7A5"
+            },
+            {
+              "paint": "stroke",
+              "color": "#D78F80"
+            }
+          ]
+        },
+        {
+          "id": "zona_reticularis",
+          "label": "Zona reticularis",
+          "default": "#A9C5D9",
+          "paint": "both",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#A9C5D9"
+            },
+            {
+              "paint": "stroke",
+              "color": "#7894A2"
+            }
+          ]
+        },
+        {
+          "id": "medulla",
+          "label": "Medulla",
+          "default": "#C58B9A",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#C58B9A"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#344955",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#344955"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original contour and compartment geometry authored for this endocrine companion. Research informs topology only; no supplied artwork geometry is copied."
+    },
+    {
+      "asset_id": "endocrine.adrenal_medulla.vascular_nests",
+      "name": "Adrenal medulla",
+      "file": "svg/adrenal_medulla_vascular_nests_style4.svg",
+      "sha256": "0b82627cb203068f83fed623fe7b84061302477ade9da181dd9aa02a6cbc30c0",
+      "source_pack_id": "endocrine-tissue",
+      "source_asset_sha256": "f3ddda22b5abc0b61cf6d9082d666f75e3ae2b727dd0204f18ec776455bab751",
+      "geometry_sha256": "c3790f5ada6c69b6f942589eec32fe27f694213c2f55886ec0cb5d4c455300b7",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-07",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-07",
+      "editable_color_regions": [
+        {
+          "id": "chromaffin_cells",
+          "label": "Chromaffin cells",
+          "default": "#BD7D91",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#BD7D91"
+            }
+          ]
+        },
+        {
+          "id": "supporting_cells",
+          "label": "Supporting cells",
+          "default": "#B8D8C5",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#B8D8C5"
+            }
+          ]
+        },
+        {
+          "id": "vascular_lumen",
+          "label": "Vascular lumen",
+          "default": "#F2D7CE",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#F2D7CE"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#344955",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#344955"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original contour and compartment geometry authored for this endocrine companion. Research informs topology only; no supplied artwork geometry is copied."
+    },
+    {
+      "asset_id": "endocrine.adrenal_medulla.medullary_field",
+      "name": "Adrenal medulla",
+      "file": "svg/adrenal_medulla_medullary_field_style4.svg",
+      "sha256": "ff36035f9aac7dcf58a655ee15dae0b8628162d4fb5d5f99d260cbbfe3c7b2ae",
+      "source_pack_id": "endocrine-tissue",
+      "source_asset_sha256": "328d154f55a214966fefa06a272dd019e1b9f66a6b25b5ff1ee75e1f9b769cb6",
+      "geometry_sha256": "7dcf8ada6ff18cb806ed80400a6510de13f16adf866d1ed11f9e5b01091143fa",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-07",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-07",
+      "editable_color_regions": [
+        {
+          "id": "chromaffin_cells",
+          "label": "Chromaffin cells",
+          "default": "#BD7D91",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#BD7D91"
+            }
+          ]
+        },
+        {
+          "id": "supporting_cells",
+          "label": "Supporting cells",
+          "default": "#B8D8C5",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#B8D8C5"
+            }
+          ]
+        },
+        {
+          "id": "vascular_lumen",
+          "label": "Vascular lumen",
+          "default": "#F2D7CE",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#F2D7CE"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#344955",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#344955"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original contour and compartment geometry authored for this endocrine companion. Research informs topology only; no supplied artwork geometry is copied."
+    },
+    {
+      "asset_id": "endocrine.pineal_parenchyma.cell_groups",
+      "name": "Pineal parenchyma",
+      "file": "svg/pineal_parenchyma_cell_groups_style4.svg",
+      "sha256": "b5724544c70dd4113da85391d211fcc7d2445d73ef18d9511ecb2c056ca6bd20",
+      "source_pack_id": "endocrine-tissue",
+      "source_asset_sha256": "6f0f1bbd0fdab010086e5093795210fce8611e467aed6a62e94af8c89890a1c3",
+      "geometry_sha256": "b1e8592a5e32cfb9e5f2bc2b454b22bfe4be1eec673ae6a56580efe8208a2389",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-07",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-07",
+      "editable_color_regions": [
+        {
+          "id": "pinealocytes",
+          "label": "Pinealocytes",
+          "default": "#E9B7A5",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#E9B7A5"
+            },
+            {
+              "paint": "fill",
+              "color": "#DFA28F"
+            }
+          ]
+        },
+        {
+          "id": "glial_stroma",
+          "label": "Glial stroma",
+          "default": "#A9C5D9",
+          "paint": "both",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#A9C5D9"
+            },
+            {
+              "paint": "stroke",
+              "color": "#A9C5D9"
+            }
+          ]
+        },
+        {
+          "id": "capillary",
+          "label": "Capillaries",
+          "default": "#D8867A",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#D8867A"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#344955",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#344955"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original contour and compartment geometry authored for this endocrine companion. Research informs topology only; no supplied artwork geometry is copied."
+    },
+    {
+      "asset_id": "endocrine.pineal_parenchyma.lobular_field",
+      "name": "Pineal parenchyma",
+      "file": "svg/pineal_parenchyma_lobular_field_style4.svg",
+      "sha256": "19296f033010c439d577438bb247d7aade07e785c22a5dbc5fb6ba57f3eea960",
+      "source_pack_id": "endocrine-tissue",
+      "source_asset_sha256": "f0c5a183697f5a853f9684e9ecdec6967ce739bc75a26182887fa36577afded1",
+      "geometry_sha256": "b844a450125b2bcb4c18d36d17526fa73fa10fb5a3b2c1c87ad9eacf9a1e1d28",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-07",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-07",
+      "editable_color_regions": [
+        {
+          "id": "pinealocytes",
+          "label": "Pinealocytes",
+          "default": "#E9B7A5",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#E9B7A5"
+            },
+            {
+              "paint": "fill",
+              "color": "#DFA28F"
+            }
+          ]
+        },
+        {
+          "id": "glial_stroma",
+          "label": "Glial stroma",
+          "default": "#A9C5D9",
+          "paint": "both",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#A9C5D9"
+            },
+            {
+              "paint": "stroke",
+              "color": "#A9C5D9"
+            }
+          ]
+        },
+        {
+          "id": "capillary",
+          "label": "Capillaries",
+          "default": "#D8867A",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#D8867A"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#344955",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#344955"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original contour and compartment geometry authored for this endocrine companion. Research informs topology only; no supplied artwork geometry is copied."
+    },
+    {
+      "asset_id": "endocrine.anterior_pituitary.cords_longitudinal",
+      "name": "Anterior pituitary",
+      "file": "svg/anterior_pituitary_cords_longitudinal_style4.svg",
+      "sha256": "ece05fee074f169034472c9233523eb1a24385ae8b2e2fb3f7bccaf201a01abe",
+      "source_pack_id": "endocrine-tissue",
+      "source_asset_sha256": "831a3c88e8772ce4fae59de25fe698f2c9177e5c5e713a8ec9007f22e59e63f9",
+      "geometry_sha256": "3139447db0f4cc543287f76cf60050590a2b6c8440161979776fc0b06d65cca3",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-07",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-07",
+      "editable_color_regions": [
+        {
+          "id": "gland",
+          "label": "Glandular cell cords",
+          "default": "#DDBA9B",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#DDBA9B"
+            }
+          ]
+        },
+        {
+          "id": "sinusoid",
+          "label": "Sinusoidal vascular spaces",
+          "default": "#D8EDF5",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#D8EDF5"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#3C505B",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#3C505B"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original contour and compartment geometry authored for this endocrine companion. Research informs topology only; no supplied artwork geometry is copied."
+    },
+    {
+      "asset_id": "endocrine.anterior_pituitary.cords_radial",
+      "name": "Anterior pituitary",
+      "file": "svg/anterior_pituitary_cords_radial_style4.svg",
+      "sha256": "9a8efc1b334b5aacc78bed54dcb032cd635f97d4209b2d2c040f6f14453d01bb",
+      "source_pack_id": "endocrine-tissue",
+      "source_asset_sha256": "930f7727dd154f5f18b7c1b8fef97c92c511c0e69e45b8a6444dc0c6aeb6e8f7",
+      "geometry_sha256": "a49303200674e939d9d2c4283c77bfe0c7ff3aa413247b2493cadd1109f065e2",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-07",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-07",
+      "editable_color_regions": [
+        {
+          "id": "gland",
+          "label": "Glandular cell cords",
+          "default": "#DDBA9B",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#DDBA9B"
+            }
+          ]
+        },
+        {
+          "id": "sinusoid",
+          "label": "Sinusoidal vascular spaces",
+          "default": "#D8EDF5",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#D8EDF5"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#3C505B",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#3C505B"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original contour and compartment geometry authored for this endocrine companion. Research informs topology only; no supplied artwork geometry is copied."
+    },
+    {
+      "asset_id": "endocrine.posterior_pituitary.longitudinal_neural_lobe",
+      "name": "Posterior pituitary",
+      "file": "svg/posterior_pituitary_longitudinal_neural_lobe_style4.svg",
+      "sha256": "37bba3b241db1d0601ca5ee315b79f636154f9e3fc2eef0ba778d543df024315",
+      "source_pack_id": "endocrine-tissue",
+      "source_asset_sha256": "085694edd97dbae5cd4635c7e58af6616eeb1725cf14b282953c906c7d884b33",
+      "geometry_sha256": "885c781e16564abda6e7f72a2237a38adc390c2a85887b31cf083cadb5229939",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-07",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-07",
+      "editable_color_regions": [
+        {
+          "id": "neural",
+          "label": "Neural tissue",
+          "default": "#B5A9D5",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#B5A9D5"
+            }
+          ]
+        },
+        {
+          "id": "terminal",
+          "label": "Axon terminals",
+          "default": "#E5B76C",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#E5B76C"
+            }
+          ]
+        },
+        {
+          "id": "pituicyte",
+          "label": "Pituicytes",
+          "default": "#83B7AE",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#83B7AE"
+            }
+          ]
+        },
+        {
+          "id": "sinusoid",
+          "label": "Capillary spaces",
+          "default": "#D8EDF5",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#D8EDF5"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#3C505B",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#3C505B"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original contour and compartment geometry authored for this endocrine companion. Research informs topology only; no supplied artwork geometry is copied."
+    },
+    {
+      "asset_id": "endocrine.posterior_pituitary.transverse_neural_lobe",
+      "name": "Posterior pituitary",
+      "file": "svg/posterior_pituitary_transverse_neural_lobe_style4.svg",
+      "sha256": "097814290773931c4f4ae218e7f66bbf1b20b4a0536340592e9f5021ee241944",
+      "source_pack_id": "endocrine-tissue",
+      "source_asset_sha256": "44cac30bf7e8a0d141f46ba27bd95bca6fa79da78633b7d8b9f9d02061bae084",
+      "geometry_sha256": "2011ce33e84af5ea5db12f7edc1a7065c51e28a7ecdec08c721b8ff7b7c8b461",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-07",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-07",
+      "editable_color_regions": [
+        {
+          "id": "neural",
+          "label": "Neural tissue",
+          "default": "#B5A9D5",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#B5A9D5"
+            }
+          ]
+        },
+        {
+          "id": "terminal",
+          "label": "Axon terminals",
+          "default": "#E5B76C",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#E5B76C"
+            }
+          ]
+        },
+        {
+          "id": "pituicyte",
+          "label": "Pituicytes",
+          "default": "#83B7AE",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#83B7AE"
+            }
+          ]
+        },
+        {
+          "id": "sinusoid",
+          "label": "Capillary spaces",
+          "default": "#D8EDF5",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#D8EDF5"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#3C505B",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#3C505B"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original contour and compartment geometry authored for this endocrine companion. Research informs topology only; no supplied artwork geometry is copied."
+    },
+    {
+      "asset_id": "endocrine.median_eminence.external_zone_sagittal",
+      "name": "Median eminence",
+      "file": "svg/median_eminence_external_zone_sagittal_style4.svg",
+      "sha256": "d7fecd2afc76a054a8dd0bb509778d488ecdcfb285ee62212f4926e022e68569",
+      "source_pack_id": "endocrine-tissue",
+      "source_asset_sha256": "cba77ced1195c0d9abc297e0decbe2ce8fc3e0bf2a58fc494ebce4f9712cdd8a",
+      "geometry_sha256": "f492f4df68d36a38811c5bad2916cc093878a3db8436fc77f2cd731f93164472",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-07",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-07",
+      "editable_color_regions": [
+        {
+          "id": "neural",
+          "label": "Neural tissue",
+          "default": "#B5A9D5",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#B5A9D5"
+            }
+          ]
+        },
+        {
+          "id": "terminal",
+          "label": "Neurosecretory terminal profiles",
+          "default": "#E5B76C",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#E5B76C"
+            }
+          ]
+        },
+        {
+          "id": "boundary",
+          "label": "Tanycyte-associated boundary",
+          "default": "#D3C1A0",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#D3C1A0"
+            }
+          ]
+        },
+        {
+          "id": "sinusoid",
+          "label": "Portal capillaries",
+          "default": "#D8EDF5",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#D8EDF5"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#3C505B",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#3C505B"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original contour and compartment geometry authored for this endocrine companion. Research informs topology only; no supplied artwork geometry is copied."
+    },
+    {
+      "asset_id": "endocrine.median_eminence.external_zone_field",
+      "name": "Median eminence",
+      "file": "svg/median_eminence_external_zone_field_style4.svg",
+      "sha256": "a8928ede7125a2d5290422403cd186b5fd9a80c4e9c6fb8d6692f222bb8c0f0a",
+      "source_pack_id": "endocrine-tissue",
+      "source_asset_sha256": "ac5cf649f09299cf5d16fda9cf660092bd66cdf4606f33cd3e23d1cb97b88871",
+      "geometry_sha256": "9caa6f584feccc3f783334d16c1da604c2af4f19e7062af421e2e49c809b0b2e",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-07",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-07",
+      "editable_color_regions": [
+        {
+          "id": "neural",
+          "label": "Neural tissue",
+          "default": "#B5A9D5",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#B5A9D5"
+            }
+          ]
+        },
+        {
+          "id": "terminal",
+          "label": "Neurosecretory terminal profiles",
+          "default": "#E5B76C",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#E5B76C"
+            }
+          ]
+        },
+        {
+          "id": "boundary",
+          "label": "Tanycyte-associated boundary",
+          "default": "#D3C1A0",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#D3C1A0"
+            }
+          ]
+        },
+        {
+          "id": "sinusoid",
+          "label": "Portal capillaries",
+          "default": "#D8EDF5",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#D8EDF5"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#3C505B",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#3C505B"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original contour and compartment geometry authored for this endocrine companion. Research informs topology only; no supplied artwork geometry is copied."
+    },
+    {
+      "asset_id": "endocrine.ovarian_follicle.eccentric_oocyte",
+      "name": "Antral ovarian follicle",
+      "file": "svg/ovarian_follicle_eccentric_oocyte_style4.svg",
+      "sha256": "b5498ebed9a01dfd43432571a3a464f81d0ae3a10737bba4e7358464afb36609",
+      "source_pack_id": "endocrine-tissue",
+      "source_asset_sha256": "8ecd1a62c9834cb705a0e29e350ffc2136f70898dc7bbb8849d6dfd3bff702e0",
+      "geometry_sha256": "3fbf32952038f99bcb69a072909c507ee712c0cc1d1a3c0e4a80d1d1f85c409b",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-07",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-07",
+      "editable_color_regions": [
+        {
+          "id": "theca",
+          "label": "Theca layer",
+          "default": "#9DC99F",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#9DC99F"
+            }
+          ]
+        },
+        {
+          "id": "vessel",
+          "label": "Thecal capillaries",
+          "default": "#C44D4D",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#C44D4D"
+            }
+          ]
+        },
+        {
+          "id": "granulosa",
+          "label": "Granulosa layer",
+          "default": "#D5B5D8",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#D5B5D8"
+            }
+          ]
+        },
+        {
+          "id": "antrum",
+          "label": "Antral space",
+          "default": "#E8F4F8",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#E8F4F8"
+            }
+          ]
+        },
+        {
+          "id": "oocyte",
+          "label": "Oocyte",
+          "default": "#E7B84D",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#E7B84D"
+            }
+          ]
+        },
+        {
+          "id": "zona_pellucida",
+          "label": "Zona pellucida",
+          "default": "#FFFDF7",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#FFFDF7"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#3C505B",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#3C505B"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original contour and compartment geometry authored for this endocrine companion. Research informs topology only; no supplied artwork geometry is copied."
+    },
+    {
+      "asset_id": "endocrine.ovarian_follicle.sector_section",
+      "name": "Antral ovarian follicle",
+      "file": "svg/ovarian_follicle_sector_section_style4.svg",
+      "sha256": "d7875669ff6619d31cd049d5507a657ac8e12055c88c811fb380991411b538d0",
+      "source_pack_id": "endocrine-tissue",
+      "source_asset_sha256": "471227f4c382b75526824ebe25c105eebb8c190c1a9e85b9288816b836d57bf0",
+      "geometry_sha256": "ab81102b4e5ddc4066c084b827855bad11fa2b4f5ce23804c74473a6f4730d92",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-07",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-07",
+      "editable_color_regions": [
+        {
+          "id": "theca",
+          "label": "Theca layer",
+          "default": "#9DC99F",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#9DC99F"
+            }
+          ]
+        },
+        {
+          "id": "vessel",
+          "label": "Thecal capillaries",
+          "default": "#C44D4D",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#C44D4D"
+            }
+          ]
+        },
+        {
+          "id": "granulosa",
+          "label": "Granulosa layer",
+          "default": "#D5B5D8",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#D5B5D8"
+            }
+          ]
+        },
+        {
+          "id": "antrum",
+          "label": "Antral space",
+          "default": "#E8F4F8",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#E8F4F8"
+            }
+          ]
+        },
+        {
+          "id": "oocyte",
+          "label": "Oocyte",
+          "default": "#E7B84D",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#E7B84D"
+            }
+          ]
+        },
+        {
+          "id": "zona_pellucida",
+          "label": "Zona pellucida",
+          "default": "#FFFDF7",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#FFFDF7"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#3C505B",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#3C505B"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original contour and compartment geometry authored for this endocrine companion. Research informs topology only; no supplied artwork geometry is copied."
+    },
+    {
+      "asset_id": "endocrine.corpus_luteum.folded_luteal_tissue",
+      "name": "Corpus luteum",
+      "file": "svg/corpus_luteum_folded_luteal_tissue_style4.svg",
+      "sha256": "97ec8e59ab47fc00c0e1ab66972c91aab5d5fffa60388a0fe7927d3e04495aeb",
+      "source_pack_id": "endocrine-tissue",
+      "source_asset_sha256": "3afdbb050ce90c1d348bcd15b779e16cb36018e053de2b9330984c09e579bee1",
+      "geometry_sha256": "25b11a617dcaf38227508208f62ee2aabdf4f5b6a631e845c9f1fad3b60fe75a",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-07",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-07",
+      "editable_color_regions": [
+        {
+          "id": "luteal",
+          "label": "Luteal cell cords",
+          "default": "#D9A27B",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#D9A27B"
+            }
+          ]
+        },
+        {
+          "id": "vessel",
+          "label": "Capillary network",
+          "default": "#C44D4D",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#C44D4D"
+            }
+          ]
+        },
+        {
+          "id": "antrum",
+          "label": "Central cavity",
+          "default": "#E8F4F8",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#E8F4F8"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#3C505B",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#3C505B"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original contour and compartment geometry authored for this endocrine companion. Research informs topology only; no supplied artwork geometry is copied."
+    },
+    {
+      "asset_id": "endocrine.corpus_luteum.radial_luteal_tissue",
+      "name": "Corpus luteum",
+      "file": "svg/corpus_luteum_radial_luteal_tissue_style4.svg",
+      "sha256": "bc83c173fc0aa4858e92ab010539fed531872aefded5fda42e7bd31e0e1527ea",
+      "source_pack_id": "endocrine-tissue",
+      "source_asset_sha256": "bec9c0c80d3f218957cc6d76c3042ceca789c886085d90d59c274548c908552e",
+      "geometry_sha256": "aeb7cabb126dcfcae979189ecb824d7d4ad9298d51a59c4fce88219897fe4bf9",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-07",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-07",
+      "editable_color_regions": [
+        {
+          "id": "luteal",
+          "label": "Luteal cell cords",
+          "default": "#D9A27B",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#D9A27B"
+            }
+          ]
+        },
+        {
+          "id": "vessel",
+          "label": "Capillary network",
+          "default": "#C44D4D",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#C44D4D"
+            }
+          ]
+        },
+        {
+          "id": "antrum",
+          "label": "Central cavity",
+          "default": "#E8F4F8",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#E8F4F8"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#3C505B",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#3C505B"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original contour and compartment geometry authored for this endocrine companion. Research informs topology only; no supplied artwork geometry is copied."
+    },
+    {
+      "asset_id": "endocrine.leydig_interstitium.paired_tubules",
+      "name": "Leydig-cell interstitium",
+      "file": "svg/leydig_interstitium_paired_tubules_style4.svg",
+      "sha256": "e24f2ffd6f44a7f90b6dd291921febfa55600310f00912396bd815179da9c010",
+      "source_pack_id": "endocrine-tissue",
+      "source_asset_sha256": "afb885bd968089685b6602eb7aa5a81d8ab8f94c282a90df2ee09def3ca6fd58",
+      "geometry_sha256": "174a07a8dc650060652fa4688bfbc2b8c61133bb3216f37a68e24bf669ef7f66",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-07",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-07",
+      "editable_color_regions": [
+        {
+          "id": "interstitium",
+          "label": "Interstitial cell clusters",
+          "default": "#D8C5A4",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#D8C5A4"
+            }
+          ]
+        },
+        {
+          "id": "vessel",
+          "label": "Interstitial vessel",
+          "default": "#C44D4D",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#C44D4D"
+            }
+          ]
+        },
+        {
+          "id": "tubule",
+          "label": "Seminiferous-tubule epithelium",
+          "default": "#D5B5D8",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#D5B5D8"
+            }
+          ]
+        },
+        {
+          "id": "tubule_lumen",
+          "label": "Seminiferous-tubule lumen",
+          "default": "#FFF8E8",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#FFF8E8"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#3C505B",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#3C505B"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original contour and compartment geometry authored for this endocrine companion. Research informs topology only; no supplied artwork geometry is copied."
+    },
+    {
+      "asset_id": "endocrine.leydig_interstitium.tubule_corner",
+      "name": "Leydig-cell interstitium",
+      "file": "svg/leydig_interstitium_tubule_corner_style4.svg",
+      "sha256": "20568958be2e2f7188a2d4d17705df4d55478e20e0de4074d68ef5e06e43e4cd",
+      "source_pack_id": "endocrine-tissue",
+      "source_asset_sha256": "715ce8ea49bd0d1cac74b7540c0b7fd144be48296e428459b44cb6ecca3dc35d",
+      "geometry_sha256": "f94c3d6d3ea6273b361de283d9a5af06144169386e2df832f343b3d09405fa1b",
+      "viewBox": "0 0 128 128",
+      "source_record_id": "source.style4-original-companions.2026-11-07",
+      "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-07",
+      "editable_color_regions": [
+        {
+          "id": "interstitium",
+          "label": "Interstitial cell clusters",
+          "default": "#D8C5A4",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#D8C5A4"
+            }
+          ]
+        },
+        {
+          "id": "vessel",
+          "label": "Interstitial vessel",
+          "default": "#C44D4D",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#C44D4D"
+            }
+          ]
+        },
+        {
+          "id": "tubule",
+          "label": "Seminiferous-tubule epithelium",
+          "default": "#D5B5D8",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#D5B5D8"
+            }
+          ]
+        },
+        {
+          "id": "tubule_lumen",
+          "label": "Seminiferous-tubule lumen",
+          "default": "#FFF8E8",
+          "paint": "fill",
+          "default_paints": [
+            {
+              "paint": "fill",
+              "color": "#FFF8E8"
+            }
+          ]
+        },
+        {
+          "id": "outline",
+          "label": "Structural outlines",
+          "default": "#3C505B",
+          "paint": "stroke",
+          "default_paints": [
+            {
+              "paint": "stroke",
+              "color": "#3C505B"
+            }
+          ]
+        }
+      ],
+      "authorship": "Original contour and compartment geometry authored for this endocrine companion. Research informs topology only; no supplied artwork geometry is copied."
+    }
+  ]
+}

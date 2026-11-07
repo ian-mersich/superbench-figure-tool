@@ -2,9 +2,44 @@
 
 The canonical Figure repository is `C:\Users\ianme\Desktop\Projects\superbench_figure_tool`.
 The browser site and Superbench consume one committed editor and asset collection.
-The delivered beta.26 contains 526 drawings for 398 concepts in 13 packs, four
+The delivered beta.29 contains 526 drawings for 398 concepts in 13 packs, four
 drawing styles, 20 scientific templates and three Figure layouts. Fixes belong here. Do not maintain a second editor in the
 public source checkout or backport individual fixes into the old beta.6 site.
+
+## Beta.29 delivery — 6 November 2026
+
+Beta.29 delivers the accepted [Style and drawing-preview controls](architecture/STYLE_PREVIEW_EDITING_2026_11_06.md)
+and native path-topology rendering correction. Style remains available in Simple
+and Advanced, with its tabs clear of selection titles. Drawing previews support
+palette and part-color drafts; Insert or Apply colors commits the displayed
+draft, while cancellation leaves the figure unchanged. Whole labels remain
+editable text. Producer revision `5dfb0014` contains the corrected component;
+beta.27 and beta.28 were not published.
+
+The exact package adds 155 checks, three actual Saves and 24 independently
+reviewed originals. Earlier source and package evidence remains separate and
+is reused through exact functional parity checks. The actual slim export passed
+288 Node checks, 112 Python checks, seven help/import commands and two validators.
+
+The source prerelease and browser site are published. Both public archives and
+all 1,723 deployed HTTPS payload files match the qualified artifacts. Beta.29
+is selected in the existing desktop host, with trusted beta.26 retained for
+rollback. Installed and portable workflows passed their original 60-second
+checks; earlier startup failures remain recorded. No host or MSI rebuild was
+needed.
+
+Live preview, Save and fresh-process Open evidence adds 54 passing checks.
+A separate, read-only scroll demonstration adds 26 checks and two originals:
+80 passing checks, one actual Save and eight independently reviewed originals
+in total. The original strict 54/55 run remains failed: in the edited drawing's
+minimum-size Style panel, the first color row is partly clipped at the top.
+Ordinary inner scrolling reveals it fully in both modes without resizing or
+zooming. The [publication record](PUBLIC_PUBLICATION.md) preserves that limit.
+
+This closes the synchronized delivery of the accepted Style and topology work.
+Sustained mixed-object dragging, broader selection/topology, complete scientific
+PDF fidelity and typography/export remain open. The roadmap remains the same;
+the next performance slice is sustained mixed-object dragging.
 
 ## Beta.26 delivery — 5 November 2026
 

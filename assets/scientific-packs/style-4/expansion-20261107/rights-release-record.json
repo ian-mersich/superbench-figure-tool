@@ -1,0 +1,138 @@
+{
+  "schema_id": "figureStudio.scientificStyleSupplementRights.v1",
+  "supplement_id": "original-style4-companions.2026-11-07",
+  "asset_count": 24,
+  "source_record_id": "source.style4-original-companions.2026-11-07",
+  "rights_record_id": "rights.style4-original-companions.repository-cc0.2026-11-07",
+  "license_policy": "original-vectors.cc0.repository-policy.2026-11-07",
+  "selected_public_license": "CC0-1.0",
+  "public_distribution_authorized": true,
+  "rights_basis": "repository_policy_original_output",
+  "product_release_status": "pending_quality_and_product_review",
+  "effective_date": "2026-11-07",
+  "manifest_sha256": "b1114e928a90a170a23c59acadead0463beab757787aadf049d2f4855f39ab20",
+  "license_notice_sha256": "ec221ee98cb52be01602c6d48d839e1b94ae189eacee8906d881d611cebc779b",
+  "original_construction": "Original endocrine contour, cellular compartment and neurovascular geometry authored for the finite twenty-four-drawing contribution, with the same biological meaning and semantic parts in both forms. No historical supplied or November 3 geometry, publication artwork or measured observation was incorporated.",
+  "assets": [
+    {
+      "asset_id": "endocrine.thyroid_follicle.single_follicle",
+      "sha256": "2aa7fc24c5c44478c44c07d3928334ea15125c49389e12057a74f4cbbeb6b01b",
+      "geometry_sha256": "8c78c4335c3f06eb5fae360cde3ca1f6ca644decb1d581732a9f43073991ad68"
+    },
+    {
+      "asset_id": "endocrine.thyroid_follicle.follicle_field",
+      "sha256": "9e4fbceef5b6ac75aeffc23aacf040cf48ac8e479535136f24ddd479d6bae935",
+      "geometry_sha256": "f88c1e95ff20d7cd4981c13cbb2bfd7cb473e6fa3605ad9c279fc7657a350364"
+    },
+    {
+      "asset_id": "endocrine.parathyroid_cords.cords_longitudinal",
+      "sha256": "09b7f6c10e34cc3b678c7663d2bf557bd2d93c46c7ee94ada7bb3e4d41213830",
+      "geometry_sha256": "e571b4f206bd4bdbcfafbb4fed7df4eeca5e1bb018943daba603c819c5e722a0"
+    },
+    {
+      "asset_id": "endocrine.parathyroid_cords.lobular_field",
+      "sha256": "842af8a614c6efa18ebdca2b2df5c8b3ffa4e5235d3d8489d0e0450509b1444f",
+      "geometry_sha256": "d3a4f98166f4a5f22e6b694a833272b20009ed0d1e0b841b3c38e716ea07177f"
+    },
+    {
+      "asset_id": "endocrine.pancreatic_islet.mixed_islet",
+      "sha256": "69e0cb2a2f3adbb852753fefaf555fe5e0864b0d183958f7a765adb581b74ed6",
+      "geometry_sha256": "ff24e01e84e47585d3d9246ba4f83493f60b6c38bcb005759b8223bf3199f8a7"
+    },
+    {
+      "asset_id": "endocrine.pancreatic_islet.folded_plates",
+      "sha256": "9a14e676099a0f4d4d71b93b1e93784c63fba8be52001e240c78289470fbacbc",
+      "geometry_sha256": "970b56af8b8b4fd2872b33bedb5e4cf83af3b720c11d2ed9493aa10193e9cc7c"
+    },
+    {
+      "asset_id": "endocrine.adrenal_cortex.concentric_zones",
+      "sha256": "3f329e301bb1dbe85dd13b4938dd64fe3e605ec9cf7015fded88998ced305fbb",
+      "geometry_sha256": "8a0c0050402bb955fdc22a53d66a6af1b6c51896e9e2945a4504d29e42dd8333"
+    },
+    {
+      "asset_id": "endocrine.adrenal_cortex.cortical_wedge",
+      "sha256": "76451ca9f98150319df4f97e75c67dc750fa19f19715b737d0c72f2de87d8ccf",
+      "geometry_sha256": "eb71f67e7b5a2ec2ea1a743013f87149305e0a5fcfb09fd2fb6708ba875367a2"
+    },
+    {
+      "asset_id": "endocrine.adrenal_medulla.vascular_nests",
+      "sha256": "0b82627cb203068f83fed623fe7b84061302477ade9da181dd9aa02a6cbc30c0",
+      "geometry_sha256": "c3790f5ada6c69b6f942589eec32fe27f694213c2f55886ec0cb5d4c455300b7"
+    },
+    {
+      "asset_id": "endocrine.adrenal_medulla.medullary_field",
+      "sha256": "ff36035f9aac7dcf58a655ee15dae0b8628162d4fb5d5f99d260cbbfe3c7b2ae",
+      "geometry_sha256": "7dcf8ada6ff18cb806ed80400a6510de13f16adf866d1ed11f9e5b01091143fa"
+    },
+    {
+      "asset_id": "endocrine.pineal_parenchyma.cell_groups",
+      "sha256": "b5724544c70dd4113da85391d211fcc7d2445d73ef18d9511ecb2c056ca6bd20",
+      "geometry_sha256": "b1e8592a5e32cfb9e5f2bc2b454b22bfe4be1eec673ae6a56580efe8208a2389"
+    },
+    {
+      "asset_id": "endocrine.pineal_parenchyma.lobular_field",
+      "sha256": "19296f033010c439d577438bb247d7aade07e785c22a5dbc5fb6ba57f3eea960",
+      "geometry_sha256": "b844a450125b2bcb4c18d36d17526fa73fa10fb5a3b2c1c87ad9eacf9a1e1d28"
+    },
+    {
+      "asset_id": "endocrine.anterior_pituitary.cords_longitudinal",
+      "sha256": "ece05fee074f169034472c9233523eb1a24385ae8b2e2fb3f7bccaf201a01abe",
+      "geometry_sha256": "3139447db0f4cc543287f76cf60050590a2b6c8440161979776fc0b06d65cca3"
+    },
+    {
+      "asset_id": "endocrine.anterior_pituitary.cords_radial",
+      "sha256": "9a8efc1b334b5aacc78bed54dcb032cd635f97d4209b2d2c040f6f14453d01bb",
+      "geometry_sha256": "a49303200674e939d9d2c4283c77bfe0c7ff3aa413247b2493cadd1109f065e2"
+    },
+    {
+      "asset_id": "endocrine.posterior_pituitary.longitudinal_neural_lobe",
+      "sha256": "37bba3b241db1d0601ca5ee315b79f636154f9e3fc2eef0ba778d543df024315",
+      "geometry_sha256": "885c781e16564abda6e7f72a2237a38adc390c2a85887b31cf083cadb5229939"
+    },
+    {
+      "asset_id": "endocrine.posterior_pituitary.transverse_neural_lobe",
+      "sha256": "097814290773931c4f4ae218e7f66bbf1b20b4a0536340592e9f5021ee241944",
+      "geometry_sha256": "2011ce33e84af5ea5db12f7edc1a7065c51e28a7ecdec08c721b8ff7b7c8b461"
+    },
+    {
+      "asset_id": "endocrine.median_eminence.external_zone_sagittal",
+      "sha256": "d7fecd2afc76a054a8dd0bb509778d488ecdcfb285ee62212f4926e022e68569",
+      "geometry_sha256": "f492f4df68d36a38811c5bad2916cc093878a3db8436fc77f2cd731f93164472"
+    },
+    {
+      "asset_id": "endocrine.median_eminence.external_zone_field",
+      "sha256": "a8928ede7125a2d5290422403cd186b5fd9a80c4e9c6fb8d6692f222bb8c0f0a",
+      "geometry_sha256": "9caa6f584feccc3f783334d16c1da604c2af4f19e7062af421e2e49c809b0b2e"
+    },
+    {
+      "asset_id": "endocrine.ovarian_follicle.eccentric_oocyte",
+      "sha256": "b5498ebed9a01dfd43432571a3a464f81d0ae3a10737bba4e7358464afb36609",
+      "geometry_sha256": "3fbf32952038f99bcb69a072909c507ee712c0cc1d1a3c0e4a80d1d1f85c409b"
+    },
+    {
+      "asset_id": "endocrine.ovarian_follicle.sector_section",
+      "sha256": "d7875669ff6619d31cd049d5507a657ac8e12055c88c811fb380991411b538d0",
+      "geometry_sha256": "ab81102b4e5ddc4066c084b827855bad11fa2b4f5ce23804c74473a6f4730d92"
+    },
+    {
+      "asset_id": "endocrine.corpus_luteum.folded_luteal_tissue",
+      "sha256": "97ec8e59ab47fc00c0e1ab66972c91aab5d5fffa60388a0fe7927d3e04495aeb",
+      "geometry_sha256": "25b11a617dcaf38227508208f62ee2aabdf4f5b6a631e845c9f1fad3b60fe75a"
+    },
+    {
+      "asset_id": "endocrine.corpus_luteum.radial_luteal_tissue",
+      "sha256": "bc83c173fc0aa4858e92ab010539fed531872aefded5fda42e7bd31e0e1527ea",
+      "geometry_sha256": "aeb7cabb126dcfcae979189ecb824d7d4ad9298d51a59c4fce88219897fe4bf9"
+    },
+    {
+      "asset_id": "endocrine.leydig_interstitium.paired_tubules",
+      "sha256": "e24f2ffd6f44a7f90b6dd291921febfa55600310f00912396bd815179da9c010",
+      "geometry_sha256": "174a07a8dc650060652fa4688bfbc2b8c61133bb3216f37a68e24bf669ef7f66"
+    },
+    {
+      "asset_id": "endocrine.leydig_interstitium.tubule_corner",
+      "sha256": "20568958be2e2f7188a2d4d17705df4d55478e20e0de4074d68ef5e06e43e4cd",
+      "geometry_sha256": "f94c3d6d3ea6273b361de283d9a5af06144169386e2df832f343b3d09405fa1b"
+    }
+  ]
+}

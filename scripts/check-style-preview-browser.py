@@ -67,8 +67,18 @@ async def open_fixture(case,path):
 async def show_style(case):
     if await case.frame.locator('#figureStyleToggle').get_attribute('aria-pressed')!='true':
         await case.frame.locator('#figureStyleToggle').click()
+    await case.frame.locator('[data-inspector-tab="appearance"]').click()
     if not await case.frame.locator('#figureInspectorPanel').evaluate('e=>e.classList.contains("is-floating")'):
         await case.frame.locator('[data-rail-action="float"][data-rail="right"]').click()
+
+async def prepare_figure_file_panels(case):
+    # Native document files retain artwork/view intent, not a new browser's UI
+    # preferences. Match the physical viewport before Save and before cold Open.
+    for control in ['figureLibraryToggle','figureStyleToggle']:
+        button=case.frame.locator('#'+control)
+        if await button.get_attribute('aria-pressed')=='true':await button.click()
+    await case.frame.wait_for_function('document.getElementById("figureStudioRoot").dataset.qaLayoutStable==="true"')
+    return await case.frame.locator('#viewport').evaluate('e=>e.getBoundingClientRect().toJSON()')
 
 async def preview_journey(case,pw):
     browser=case.browser;report=case.report
@@ -99,7 +109,7 @@ async def preview_journey(case,pw):
     await draft_color('#E23422')
     await case.frame.locator('#assetPreviewInsertBtn').click();await dialog.wait_for(state='hidden')
     await case.frame.wait_for_function('id=>FigureStudio.app.getObjectByIdForQa(FigureStudio.app.getSelectionStateForQa().activeObjectId)?.scientificAssetMeta?.assetId===id',arg=d.BASE)
-    await case.capture('draft-inserted.png','Candidate: Insert commits the previewed red drawing as an editable native asset with the useful Style controls; the catalog remains unchanged.')
+    await case.capture('draft-inserted.png','Candidate: Insert commits the previewed red drawing as an editable native asset with the useful Appearance controls; the catalog remains unchanged.')
     object_id=await case.frame.evaluate('FigureStudio.app.getSelectionStateForQa().activeObjectId')
     inserted=(await case.frame.evaluate(d.library.STATE,[object_id]))[0]
     case.write('inserted-native.json',inserted)
@@ -155,6 +165,69 @@ async def preview_journey(case,pw):
     case.case['syntheticControlBoundary']='Color-picker values use the maintained synthetic input boundary; Insert/Apply/Cancel/history/File actions use actual UI commands.'
 
 
+async def inspector_editing_controls(case, text_id, line_id):
+    """Use the regrouped owners, including actual transform and saved-color edits."""
+    tabs=await case.frame.locator('[data-inspector-tab]').evaluate_all('es=>es.map(e=>({view:e.dataset.inspectorTab,label:e.textContent.trim()}))')
+    case.check('Inspector has exactly Appearance, Properties and Layers',tabs==[{'view':'appearance','label':'Appearance'},{'view':'properties','label':'Properties'},{'view':'layers','label':'Layers'}],tabs)
+    old=await case.history()
+    field=case.frame.locator('#figureSimpleStyleControls input[data-context-property="opacity"]')
+    await field.fill('0.8');await field.press('Tab')
+    await case.frame.wait_for_function('id=>Math.abs(FigureStudio.app.getObjectByIdForQa(id).opacity-.8)<1e-8',arg=text_id)
+    case.check('Appearance opacity uses its existing native history owner',(await case.history())['undoDepth']==old['undoDepth']+1)
+    await case.frame.locator('[data-inspector-tab="properties"]').click()
+    field=case.frame.locator('#appearanceStructureInspector input[data-context-property="x"][data-numeric-transform-field]')
+    x=float(await field.input_value());geometry=await case.frame.evaluate('FigureStudio.app.getSelectionContextStateForQa().geometry')
+    old_left=await case.frame.evaluate('id=>FigureStudio.app.getObjectByIdForQa(id).left',text_id)
+    expected_left=old_left+(x+0.1-geometry['x'])*96
+    case.write('inspector-transform-input.json',dict(displayedX=x,rawGeometry=geometry,enteredX=x+0.1,oldLeft=old_left,expectedLeft=expected_left))
+    native_before=await case.frame.evaluate(a.MIXED_SCENE_STATE,[text_id])
+    old=await case.history();await field.fill(str(x+0.1));await field.press('Tab')
+    await case.frame.wait_for_function('([id,x])=>Math.abs(FigureStudio.app.getObjectByIdForQa(id).left-x)<.001',arg=[text_id,expected_left])
+    native_after=await case.frame.evaluate(a.MIXED_SCENE_STATE,[text_id])
+    case.write('inspector-transform-before-native.json',native_before);case.write('inspector-transform-after-native.json',native_after)
+    case.check('Properties position applies one real native transform',(await case.history())['undoDepth']==old['undoDepth']+1)
+    await case.undo();case.check('Properties transform Undo restores the complete prior native label',d.library.native.native_reconstruction_difference(native_before,await case.frame.evaluate(a.MIXED_SCENE_STATE,[text_id]))['passed'])
+    await case.undo(True);case.check('Properties transform Redo restores the complete moved native label',d.library.native.native_reconstruction_difference(native_after,await case.frame.evaluate(a.MIXED_SCENE_STATE,[text_id]))['passed'])
+    case.check('Properties has geometry and excludes Appearance fields',await field.is_visible() and not await case.frame.locator('#figureSimpleStylePanel').is_visible())
+    await case.frame.locator('[data-inspector-tab="appearance"]').click();await case.frame.locator('[data-inspector-tab="properties"]').click()
+    geometry_visibility=await case.frame.evaluate('''()=>{const body=document.querySelector('#inspectorContent').getBoundingClientRect();return ['x','y','width','height','rotation'].map(property=>{const e=document.querySelector('#appearanceStructureInspector input[data-context-property="'+property+'"][data-numeric-transform-field]'),r=e.getBoundingClientRect();return {property,rect:r.toJSON(),inside:r.width>0&&r.height>0&&r.top>=body.top-1&&r.bottom<=body.bottom+1&&r.left>=body.left-1&&r.right<=body.right+1};});}''')
+    case.write('properties-initial-geometry-visibility.json',geometry_visibility)
+    case.check('Properties initially shows complete position/dimensions/rotation inputs',all(row['inside'] for row in geometry_visibility),geometry_visibility)
+    await case.capture('inspector-properties.png','Candidate: Properties shows actual position/dimensions/rotation controls for the editable label; appearance fields belong to their separate view, while the populated scientific figure remains visible.')
+    await case.frame.locator('[data-inspector-tab="appearance"]').click()
+    await case.frame.locator('#savedColorsDisclosure > summary').click()
+    library_before=await case.frame.evaluate('FigureStudio.app.getSwatchLibraryStateForQa()')
+    await case.frame.locator('#swatchNameInput').fill('Assay blue')
+    await case.frame.locator('#swatchColorInput').evaluate('e=>{e.value="#125b8a";e.dispatchEvent(new Event("change",{bubbles:true}));}')
+    await case.frame.locator('#swatchAddForm button[type="submit"]').click()
+    await case.frame.wait_for_function('FigureStudio.app.getSwatchLibraryStateForQa().swatches.some(s=>s.name==="Assay blue")')
+    library=await case.frame.evaluate('FigureStudio.app.getSwatchLibraryStateForQa()')
+    swatch=next(s for s in library['swatches'] if s['name']=='Assay blue')
+    case.check('Saved colors remain inside Appearance and retain the existing library',library['swatchCount']==library_before['swatchCount']+1 and await case.frame.locator('[data-inspector-tab="appearance"]').get_attribute('aria-current')=='page')
+    await case.frame.locator('#swatchApplyTarget').select_option('text')
+    await case.frame.locator(f'#swatchGrid [data-swatch-apply="{swatch["id"]}"]').click()
+    await case.frame.wait_for_function('id=>FigureStudio.app.getObjectByIdForQa(id).fill.toLowerCase()==="#125b8a"',arg=text_id)
+    case.case['savedColor']=swatch;case.write('saved-colors-warm.json',await case.frame.evaluate('FigureStudio.app.getSwatchLibraryStateForQa()'))
+    await case.capture('inspector-saved-colors.png','Candidate: Saved colors is a disclosure inside Appearance; adding and applying Assay blue uses the retained document color library and leaves the scientific drawings intact.')
+    await case.frame.locator('#savedColorsDisclosure > summary').click()
+    roots=(await case.document())['project']['fabric']['objects']
+    effect_id=next((o['figureId'] for o in roots if not o.get('scientificAssetMeta') and (o.get('figureType') in ['rect','roundedRect'] or o.get('type','').lower()=='rect')),None)
+    case.check('Retained fixture includes an ordinary vector eligible for supported effects',bool(effect_id))
+    case.case['effectObjectId']=effect_id
+    await case.select(effect_id)
+    await case.frame.locator('#appearanceStructureInspector [data-appearance-section="base-appearance"] > summary').click()
+    shadow=case.frame.locator('#appearanceStructureInspector [data-appearance-effect-add="soft-shadow"]')
+    case.check('Supported effects are available in Appearance',await shadow.is_enabled())
+    before=await case.frame.evaluate(a.MIXED_SCENE_STATE,[effect_id]);old=await case.history();await shadow.click()
+    await case.frame.wait_for_function('id=>FigureStudio.app.getObjectByIdForQa(id).figureStudioAppearanceStack?.items?.some(i=>i.type==="effect"&&i.effectKind==="soft-shadow")',arg=effect_id)
+    after=await case.frame.evaluate(a.MIXED_SCENE_STATE,[effect_id]);case.write('appearance-effect-before-native.json',before);case.write('appearance-effect-after-native.json',after)
+    case.check('Supported effect uses one native history entry',(await case.history())['undoDepth']==old['undoDepth']+1)
+    await case.undo();case.check('Effect Undo restores complete native vector',d.library.native.native_reconstruction_difference(before,await case.frame.evaluate(a.MIXED_SCENE_STATE,[effect_id]))['passed'])
+    await case.undo(True);case.check('Effect Redo restores complete native vector',d.library.native.native_reconstruction_difference(after,await case.frame.evaluate(a.MIXED_SCENE_STATE,[effect_id]))['passed'])
+    await case.capture('inspector-supported-effects.png','Candidate: the retained effect controls in Appearance add a supported editable shadow to the genuine fixture rectangle, with the populated scientific figure and neighbors preserved.')
+    await case.select(text_id)
+    await case.frame.locator('#inspectorContent').evaluate('e=>e.scrollTop=0')
+
 async def mixed_journey(case,pw):
     browser=case.browser;report=case.report
     fixture=ARGS.fixture
@@ -182,7 +255,7 @@ async def mixed_journey(case,pw):
     before_width=await case.history();await field.fill('4');await field.press('Tab')
     await case.frame.wait_for_function('id=>{const o=FigureStudio.app.getObjectByIdForQa(id);return Number(o?.styleMeta?.strokeWidth??o?.strokeWidth)===4}',arg=line_id)
     case.check('Line width uses one native history entry',(await case.history())['undoDepth']==before_width['undoDepth']+1)
-    await case.capture('advanced-line-style.png','Candidate: Advanced shows the same compact floating Style surface with a clear Line width value on a genuinely drawn native line beside the scientific composition.')
+    await case.capture('advanced-line-style.png','Candidate: Advanced shows the same compact floating Inspector surface with a clear Line width value on a genuinely drawn native line beside the scientific composition.')
     existing=await case.document()
     def find_label(nodes):
      for node in nodes:
@@ -197,40 +270,55 @@ async def mixed_journey(case,pw):
     case.check('Fixture is editable native text', 'text' in text_before['type'].lower() and text_before['text']=='Editable label',text_before)
     field=case.frame.locator('#figureSimpleStyleControls input[data-context-property="fontSize"]');await field.wait_for(state='visible')
     case.check('Style exposes enabled Text size',await field.is_enabled() and 'Text size' in await field.locator('..').inner_text())
-    before_size=await case.history();await field.fill('18');await field.press('Tab')
-    await case.frame.wait_for_function('()=>document.querySelector("#figureSimpleStyleControls input[data-context-property=fontSize]")?.value==18')
+    desired_size=20 if float(await field.input_value())==18 else 18
+    case.case['textSizePoints']=desired_size
+    before_size=await case.history();await field.fill(str(desired_size));await field.press('Tab')
+    await case.frame.wait_for_function('size=>Number(document.querySelector("#figureSimpleStyleControls input[data-context-property=fontSize]")?.value)===size',arg=desired_size)
     case.check('Text size uses one native history entry',(await case.history())['undoDepth']==before_size['undoDepth']+1)
+    desired_weight='400' if str(text_before['fontWeight']) in ['700','bold'] else '700'
+    case.case['textWeight']=desired_weight
     before_bold=await case.history();bold=case.frame.locator('#figureSimpleStyleControls [data-context-action="toggle-bold"]');await bold.click()
-    await case.frame.wait_for_function('id=>["700","bold"].includes(String(FigureStudio.app.getObjectByIdForQa(id)?.fontWeight))',arg=text_id)
+    await case.frame.wait_for_function('([id,weight])=>String(FigureStudio.app.getObjectByIdForQa(id)?.fontWeight)===weight',arg=[text_id,desired_weight])
     case.check('Bold means font weight, keeps editable text, one history entry',(await case.history())['undoDepth']==before_bold['undoDepth']+1 and await case.frame.evaluate('id=>FigureStudio.app.getObjectByIdForQa(id)?.text',text_id)=='Editable label')
+    await inspector_editing_controls(case,text_id,line_id)
     await case.capture('advanced-text-style.png','Candidate: Advanced offers readable Text size and named Bold on editable text, without presenting text outline width; the mixed figure remains visible.')
     for mode in ['simple','advanced']:
      await case.frame.locator(f'[data-figure-layout-choice="{mode}"]').click()
      rect=await case.frame.locator('#figureInspectorPanel').bounding_box()
      case.case.setdefault('modeRects',{})[mode]=rect
-     case.check(mode+' keeps a visible floating Style and text controls',await case.frame.locator('#figureSimpleStyleControls input[data-context-property="fontSize"]').is_visible() and await case.frame.locator('#figureInspectorPanel').evaluate('e=>e.classList.contains("is-floating")'))
-     await case.capture(mode+'-mixed-style.png','Candidate: the populated scientific composition, native label and native line retain one compact floating Style surface in '+mode+'; lower controls scroll within the preserved user-sized panel.')
+     case.check(mode+' keeps a visible floating Inspector and text controls',await case.frame.locator('#figureSimpleStyleControls input[data-context-property="fontSize"]').is_visible() and await case.frame.locator('#figureInspectorPanel').evaluate('e=>e.classList.contains("is-floating")'))
+     await case.capture(mode+'-mixed-style.png','Candidate: the populated scientific composition, native label and native line retain one compact floating Inspector surface in '+mode+'; lower controls scroll within the preserved user-sized panel.')
     case.check('Simple/Advanced retain exact floating rect',case.case['modeRects']['simple']==case.case['modeRects']['advanced'])
-    await case.frame.locator('#figureSimpleStyleControls').evaluate('e=>e.scrollTop=e.scrollHeight')
-    case.check('Lower Style controls reachable with the single inner scroll owner',await case.frame.locator('#figureSimpleStyleControls').evaluate('e=>e.scrollHeight>e.clientHeight&&e.scrollTop>0'))
-    await case.capture('style-lower-controls.png','Candidate: scrolling inside the compact Style surface reaches lower text/order controls without cropping them or changing the floating user geometry.')
+    await case.frame.locator('#inspectorContent').evaluate('e=>e.scrollTop=e.scrollHeight')
+    case.check('Lower Appearance controls reachable with the single inner scroll owner',await case.frame.locator('#inspectorContent').evaluate('e=>e.scrollHeight>e.clientHeight&&e.scrollTop>0'))
+    await case.capture('style-lower-controls.png','Candidate: scrolling inside the compact Inspector surface reaches lower text and appearance controls without cropping them or changing the floating user geometry.')
     await case.frame.locator('[data-inspector-tab="properties"]').click()
     case.check('Properties is an optional view in the same rail',await case.frame.locator('#propertiesInspectorTab').get_attribute('aria-current')=='page' and not await case.frame.locator('#figureSimpleStylePanel').is_visible())
-    await case.frame.locator('[data-inspector-tab="style"]').click()
+    await case.frame.locator('[data-inspector-tab="appearance"]').click()
     before_switch=await case.document();hist=await case.history()
     await case.switch('presentation')
-    case.check('Slidedeck does not retain hidden Figure Style as its active formatting tab',await case.frame.evaluate('()=>!document.querySelector("#styleInspectorTab").getBoundingClientRect().width&&document.querySelector("[data-inspector-tab].active")?.dataset.inspectorTab!=="style"'))
-    await case.capture('slidedeck-return-check.png','Candidate: entering Slidedeck leaves its own formatting view available, with Figure-only Style absent; this is a navigation regression check, not deck/export acceptance.')
+    inspector=case.frame.locator('[data-deck-command="format"]')
+    case.check('Slidedeck names the same Inspector surface',await inspector.inner_text()=='Inspector')
+    if await inspector.get_attribute('aria-pressed')=='true':await inspector.click()
+    case.check('Slidedeck Inspector is genuinely closed before the Open action',await inspector.get_attribute('aria-pressed')=='false' and not await case.frame.locator('.inspector-tabs').is_visible())
+    await inspector.click()
+    case.check('Slidedeck Inspector Open is an actual visible action',await inspector.get_attribute('aria-pressed')=='true')
+    case.check('Slidedeck retains the three Inspector views',await case.frame.evaluate('()=>[...document.querySelectorAll("[data-inspector-tab]")].filter(e=>e.getBoundingClientRect().width).map(e=>e.dataset.inspectorTab).join(",")=="appearance,properties,layers"'))
+    await case.capture('slidedeck-return-check.png','Candidate: entering Slidedeck retains Appearance, Properties and Layers beside the Figure/Slidedeck views; this is a navigation regression check, not deck/export acceptance.')
     await case.switch('figure')
     after_switch=await case.document();after_hist=await case.history()
     case.write('switch-before.json',dict(document=before_switch,history=hist));case.write('switch-after.json',dict(document=after_switch,history=after_hist))
     differences=d.exact_differences(authored(before_switch),authored(after_switch));case.write('switch-differences.json',differences);case.write('switch-raw-differences.json',d.exact_differences(before_switch,after_switch))
     case.check('Figure return preserves authored mixed document and history',not differences and after_hist==hist,dict(differences=differences,historyBefore=hist,historyAfter=after_hist))
-    await case.frame.locator('[data-figure-layout-choice="simple"]').click();await case.menu_command('view','fit-screen')
+    await case.frame.locator('[data-figure-layout-choice="simple"]').click()
+    await prepare_figure_file_panels(case);await case.menu_command('view','fit-screen')
+    case.case['warmPersistenceViewport']=await case.frame.locator('#viewport').evaluate('e=>e.getBoundingClientRect().toJSON()')
     path,warm=await case.save('style-mixed-first.fsfigure');case.write('mixed-saved-warm.json',warm)
     case.case['actualSave']={'path':str(path),'bytes':path.stat().st_size,'sha256':hashlib.sha256(path.read_bytes()).hexdigest()}
     await case.context.close();case.context=None;await browser.close();browser=await pw.chromium.launch();case.browser=browser
     await case.launch();await d.library.enter_current_document_async(case.frame,kind='figure',preset='double-column',name='Cold styled mixed figure')
+    case.case['coldPreparedPersistenceViewport']=await prepare_figure_file_panels(case)
+    case.check('Warm Save and prepared cold Open use the same physical viewport',case.case['warmPersistenceViewport']==case.case['coldPreparedPersistenceViewport'],dict(warm=case.case['warmPersistenceViewport'],coldPrepared=case.case['coldPreparedPersistenceViewport']))
     await case.frame.locator('#fileMenuTrigger').click()
     async with case.page.expect_file_chooser() as chooser:await case.frame.locator('[data-menu="file"] [data-command="open-project"]').click()
     await(await chooser.value).set_files(path);await case.frame.wait_for_function("document.querySelector('#documentFileOperationStatus')?.dataset.state==='success'&&!FigureStudio.app.getBrowserSessionState().busy")
@@ -238,6 +326,9 @@ async def mixed_journey(case,pw):
     cold=await case.document();case.write('mixed-cold-document.json',cold)
     case.write('mixed-cold-differences.json',d.exact_differences(authored(warm),authored(cold)))
     case.check('Actual mixed Save/fresh browser preserves complete authored document',authored(warm)==authored(cold))
+    restored_library=await case.frame.evaluate('FigureStudio.app.getSwatchLibraryStateForQa()')
+    case.write('saved-colors-cold.json',restored_library)
+    case.check('Actual Save/fresh-process Open preserves the added named color and global link',any(s['id']==case.case['savedColor']['id'] and s['name']=='Assay blue' and s['color'].lower()=='#125b8a' for s in restored_library['swatches']) and restored_library['linkedObjectCount']>=1)
     case.check('No application errors',not report['pageErrors'] and not report['consoleErrors'],{'page':report['pageErrors'],'console':report['consoleErrors']})
 
 
@@ -308,13 +399,13 @@ async def pdf_journey(case,pw):
     case.check('Cold original PDF sources and artifact references remain exact',all(before['project'].get(k)==cold['project'].get(k) for k in ['pdfSources','artifactRefs']))
     case.check('No application errors',not report['pageErrors'] and not report['consoleErrors'])
 
-MEASURE="""()=>{const rail=document.querySelector('#figureInspectorPanel'),body=document.querySelector('#figureSimpleStyleControls'),r=rail.getBoundingClientRect(),b=body.getBoundingClientRect();
+MEASURE="""()=>{const rail=document.querySelector('#figureInspectorPanel'),body=document.querySelector('#inspectorContent'),r=rail.getBoundingClientRect(),b=body.getBoundingClientRect();
  const inside=e=>{if(!e)return false;const x=e.getBoundingClientRect();return x.width>0&&x.height>0&&x.left>=b.left-1&&x.right<=b.right+1&&x.top>=b.top-1&&x.bottom<=b.bottom+1};
  return{rail:r.toJSON(),body:b.toJSON(),scrollHeight:body.scrollHeight,clientHeight:body.clientHeight,scrollTop:body.scrollTop,
  floating:rail.classList.contains('is-floating'),withinWindow:r.left>=0&&r.top>=0&&r.right<=innerWidth&&r.bottom<=innerHeight,
  activeTab:document.querySelector('[data-inspector-tab].active')?.dataset.inspectorTab,
  paletteReachable:inside(body.querySelector('[data-asset-palette]')),firstPartReachable:inside(body.querySelector('[data-asset-color-region]')),
- lastControlReachable:inside(body.querySelector('[data-simple-order=backward]')),
+ lastControlReachable:inside(body.querySelector('#savedColorsDisclosure > summary')),
  scrollingOwners:[...rail.querySelectorAll('*')].filter(e=>e.clientHeight>0&&e.scrollHeight>e.clientHeight+1&&['auto','scroll'].includes(getComputedStyle(e).overflowY)).map(e=>e.id||e.className),
  viewport:document.querySelector('#viewport').getBoundingClientRect().toJSON(),rootOverflow:document.documentElement.scrollWidth>innerWidth};}"""
 
@@ -352,23 +443,35 @@ async def layout_journey(case,pw):
     for mode in ['simple','advanced']:
         await case.frame.locator(f'[data-figure-layout-choice="{mode}"]').click()
         await case.select(asset_id)
-        await case.frame.locator('#figureSimpleStyleControls').evaluate('e=>e.scrollTop=0')
+        await case.frame.locator('#inspectorContent').evaluate('e=>e.scrollTop=0')
         state=await case.frame.evaluate(MEASURE);case.write(mode+'-top-metrics.json',state);rects[mode]=state['rail']
-        case.check(mode+' has one contained compact Style rail',state['withinWindow'] and state['floating'] and not state['rootOverflow'] and state['activeTab']=='style' and state['scrollingOwners']==['figureSimpleStyleControls'],state)
+        case.check(mode+' has one contained compact Inspector rail',state['withinWindow'] and state['floating'] and not state['rootOverflow'] and state['activeTab']=='appearance' and state['scrollingOwners']==['inspectorContent'],state)
         case.check(mode+' shows Palette and a full part-color input without scrolling',state['paletteReachable'] and state['firstPartReachable'],state)
         case.check(mode+' keeps explicitly hidden Library closed',await case.frame.locator('#figureLibraryToggle').get_attribute('aria-pressed')=='false')
-        await case.capture(mode+'-style.png',f'{case.name}: the populated scientific figure has a closed Library and one compact floating Style panel in {mode}; drawing actions and palette are visible, and lower part colors scroll inside it.')
-        await case.frame.locator('#figureSimpleStyleControls').hover();await case.page.mouse.wheel(0,1400)
-        await case.frame.wait_for_function("document.querySelector('#figureSimpleStyleControls').scrollTop>0")
+        await case.capture(mode+'-style.png',f'{case.name}: the populated scientific figure has a closed Library and one compact floating Inspector panel in {mode}; drawing actions and palette are visible, and lower part colors scroll inside it.')
+        await case.frame.locator('#inspectorContent').hover();await case.page.mouse.wheel(0,1400)
+        await case.frame.wait_for_function("document.querySelector('#inspectorContent').scrollTop>0")
         lower=await case.frame.evaluate(MEASURE);case.write(mode+'-lower-metrics.json',lower)
         case.check(mode+' lower controls are genuinely reachable within the same scroll owner',lower['lastControlReachable'] and lower['rail']==state['rail'],lower)
         if mode=='advanced' and prefs=='saved':
-            await case.capture('lower-controls.png',f'{case.name}: scrolling inside the same compact Style panel reaches its final controls; the surrounding canvas and panel geometry stay fixed.')
+            await case.capture('lower-controls.png',f'{case.name}: scrolling inside the same compact Inspector panel reaches its final controls; the surrounding canvas and panel geometry stay fixed.')
     case.check('Simple and Advanced preserve the exact user-sized floating rectangle',rects['simple']==rects['advanced'])
     await case.frame.locator('[data-inspector-tab="properties"]').click()
     case.check('Properties uses the same rail',await case.frame.locator('#propertiesInspectorTab').get_attribute('aria-current')=='page' and not await case.frame.locator('#figureSimpleStylePanel').is_visible())
     await case.frame.locator('[data-inspector-tab="layers"]').click()
     case.check('Layers uses the same rail',await case.frame.locator('#layersInspectorTab').get_attribute('aria-current')=='page')
+    # Inspector buttons retain native keyboard behavior. Return keyboard focus
+    # to the existing canvas viewport before using its selection shortcut.
+    await case.frame.locator('#viewport').focus()
+    await case.page.keyboard.press('Escape')
+    await case.frame.wait_for_function('FigureStudio.app.getSelectionStateForQa().selectedCount===0')
+    case.check('Ordinary Escape genuinely clears the fixture selection',await case.frame.evaluate('FigureStudio.app.getSelectionStateForQa().selectedCount')==0)
+    for mode in ['simple','advanced']:
+        await case.frame.locator(f'[data-figure-layout-choice="{mode}"]').click()
+        await case.frame.locator('[data-inspector-tab="appearance"]').click()
+        case.check(mode+' keeps the saved Inspector visible with no selection',await case.frame.locator('#figureInspectorPanel').is_visible() and await case.frame.locator('#figureStyleToggle').get_attribute('aria-pressed')=='true')
+        case.check(mode+' empty selection preserves the floating rectangle',await case.frame.locator('#figureInspectorPanel').evaluate('e=>e.getBoundingClientRect().toJSON()')==rects[mode])
+    await case.capture('inspector-empty-selection.png',f'{case.name}: clearing fixture selection leaves the same Inspector open with a concise Appearance prompt and Saved colors; the populated scientific figure remains available.')
     after=await case.document();case.write('layout-document-after.json',after)
     case.check('Layout navigation preserves authored figure and history',authored(before)==authored(after) and history==await case.history())
 
@@ -376,7 +479,7 @@ async def layout_journey(case,pw):
 async def run():
     out=ARGS.output_dir.resolve();out.mkdir(parents=True,exist_ok=False)
     report=dict(status='running',scope=ARGS.journey+' source UI checks; native host, release packaging, exports and typography backends are separate',cases=[],checks=[],captures=[],pageErrors=[],consoleErrors=[],failedRequests=[],vendorResponses=[])
-    overrides=['app/app.js','app/styles.css','app/index.html','app/scientific-asset-preview.js','app/scientific-asset-color-controls.js']
+    overrides=['app/app.js','app/styles.css','app/index.html','app/scientific-asset-preview.js','app/scientific-asset-color-controls.js','app/help/figure-studio-help.json']
     report['runtimeFiles']={relative:hashlib.sha256(((ARGS.overlay/relative) if ARGS.overlay and (ARGS.overlay/relative).is_file() else ARGS.root/relative).read_bytes()).hexdigest() for relative in overrides}
     index=(ARGS.overlay/'app/index.html') if ARGS.overlay and (ARGS.overlay/'app/index.html').is_file() else ARGS.root/'app/index.html'
     references=re.findall(r'(?:src|href)="([^"]+)"',index.read_text(encoding='utf-8'))
@@ -395,8 +498,9 @@ async def run():
         async with async_playwright() as pw:
             rows=[(size,theme,prefs) for size in [(1280,800),(1440,1000),(1920,1080)] for theme in ['light','dark'] for prefs in ['fresh','saved']] if ARGS.journey=='layout' else [((1440,1000),'light','fresh')]
             for size,theme,prefs in rows:
-                browser=await pw.chromium.launch()
                 label=f'{size[0]}x{size[1]}-{theme}'+('-'+prefs if ARGS.journey=='layout' else '')
+                if ARGS.case and label!=ARGS.case:continue
+                browser=await pw.chromium.launch()
                 case=StyleCase(browser,f'http://127.0.0.1:{server.server_port}','direct',size,theme,out,report,label=label)
                 case.case['preferenceCase']=prefs
                 try:
@@ -428,10 +532,11 @@ def main():
     global ARGS
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--root',type=Path,required=True,help='Immutable editor runtime tree')
-    parser.add_argument('--overlay',type=Path,help='Optional five-file source candidate overlay')
+    parser.add_argument('--overlay',type=Path,help='Optional Inspector source candidate overlay including current Help')
     parser.add_argument('--expected-app-sha256',required=True)
     parser.add_argument('--output-dir',type=Path,required=True)
     parser.add_argument('--journey',choices=['preview','mixed','pdf','layout'],required=True)
+    parser.add_argument('--case',help='One explicit layout case, e.g. 1440x1000-light-saved; one lease per case')
     parser.add_argument('--fixture',type=Path,help='Real saved figure for mixed, PDF or layout')
     ARGS=parser.parse_args()
     if ARGS.journey!='preview' and not ARGS.fixture:parser.error('This journey requires --fixture')

@@ -10,11 +10,24 @@ const packsRoot=path.resolve(import.meta.dirname,'../assets/scientific-packs');
 const registry=JSON.parse(fs.readFileSync(path.join(packsRoot,'library.json'),'utf8'));
 const catalog=()=>registry.packs.flatMap(entry=>JSON.parse(fs.readFileSync(path.join(packsRoot,entry.path),'utf8')).assets);
 const manifest=JSON.parse(fs.readFileSync(path.join(packsRoot,'style-4/manifest.json'),'utf8'));
+const supplement=JSON.parse(fs.readFileSync(path.join(packsRoot,'style-4/original-companions.json'),'utf8'));
+const joinSupplement=(base,extra=supplement)=>({...base,assets:[...base.assets,...extra.assets]});
 const options={baseUrl:pathToFileURL(path.join(packsRoot,'style-4/manifest.json')).href,basePath:'assets/scientific-packs/style-4/'};
 
-test('Style 4 maps all 486 existing identities to supplied vectors without changing the original catalog fields',()=>{
+test('Style 4 maps 486 supplied identities plus 64 original companion identities without changing catalog fields',()=>{
  const assets=catalog(),before=structuredClone(assets);
- styles.attachVariantManifest(assets,manifest,options);
+ const suppliedIds=new Set(manifest.assets.map(row=>row.asset_id));
+ const supplementIds=new Set(supplement.assets.map(row=>row.asset_id));
+ assert.equal(suppliedIds.size,486,'preserve exact supplied Style 4 mapping coverage');
+ assert.equal(supplement.assets.length,64,'load the finite two-batch original companion aggregate');
+ assert.equal(supplementIds.size,64,'companion identities are unique');
+ assert.equal([...suppliedIds].filter(id=>supplementIds.has(id)).length,0,'supplied and companion identities do not overlap');
+ const joined=joinSupplement(manifest);
+ assert.equal(joined.assets.length,550,'runtime Style 4 mapping is the exact 486 + 64 union');
+ assert.deepEqual(new Set(joined.assets.map(row=>row.asset_id)),new Set([...suppliedIds,...supplementIds]));
+ assert.deepEqual(new Set(assets.map(asset=>asset.id)),new Set(joined.assets.map(row=>row.asset_id)),
+  'every registered source asset has one supplied or original companion mapping');
+ styles.attachVariantManifest(assets,joined,options);
  for(let i=0;i<assets.length;i++){
   const asset=assets[i];
   const {art_styles,...unchanged}=asset;
@@ -34,7 +47,7 @@ test('Style 4 maps all 486 existing identities to supplied vectors without chang
   assert.deepEqual(styles.assetForStyle(asset,'soft-color'),asset);
   for(const legacy of ['cut-paper','technical-ink']) assert.deepEqual(styles.assetForStyle(asset,legacy).editable_color_regions,styles.transformRegions(asset.editable_color_regions,legacy));
  }
- assert.equal(assets.length,486);
+ assert.equal(assets.length,550);
 });
 
 test('Incomplete, duplicate, unsafe and mismatched Style 4 mappings fail atomically',()=>{
@@ -46,12 +59,12 @@ test('Incomplete, duplicate, unsafe and mismatched Style 4 mappings fail atomica
   m=>m.assets[0].sha256='wrong',
   ...['../other.svg','/other.svg','https://example.com/x.svg','svg/x.svg?x=1','svg\\x.svg'].map(file=>m=>m.assets[0].file=file)
  ];
- for(const mutate of samples){const assets=catalog(),m=structuredClone(manifest);mutate(m);assert.throws(()=>styles.attachVariantManifest(assets,m,options));assert.ok(assets.every(a=>!a.art_styles));}
+ for(const mutate of samples){const assets=catalog(),m=structuredClone(joinSupplement(manifest));mutate(m);assert.throws(()=>styles.attachVariantManifest(assets,m,options));assert.ok(assets.every(a=>!a.art_styles));}
  assert.throws(()=>styles.assetForStyle(catalog()[0],'style-4'),/unavailable/);
 });
 
 test('Selecting Style 4 keeps shade lists and faithful reset defaults rather than recoloring the original SVG',()=>{
- const assets=catalog();styles.attachVariantManifest(assets,manifest,options);
+ const assets=catalog();styles.attachVariantManifest(assets,joinSupplement(manifest),options);
  const variant=assets.flatMap(a=>a.art_styles['style-4'].editable_color_regions).find(r=>new Set(r.default_paints.map(p=>p.color)).size>1);
  assert.ok(variant,'the supplied set includes multicolor editable regions');
  const transformed=styles.transformRegions([variant],'style-4');assert.deepEqual(transformed,[variant]);assert.notEqual(transformed[0],variant);
@@ -59,7 +72,7 @@ test('Selecting Style 4 keeps shade lists and faithful reset defaults rather tha
 });
 
 test('Supplied empty region wrappers do not advertise a part color with no visible artwork',()=>{
- const assets=catalog(),corrected=structuredClone(manifest);
+ const assets=catalog(),corrected=structuredClone(joinSupplement(manifest));
  const target=corrected.assets[0],empty=target.editable_color_regions[0];
  empty.no_rendered_paint=true;empty.default_paints=[];
  styles.attachVariantManifest(assets,corrected,options);
@@ -74,8 +87,13 @@ test('The active correction keeps all identities and uses the 243 supplied redra
  const active=registry.art_styles.find(entry=>entry.id==='style-4');
  const file=path.join(packsRoot,active.path);
  const corrected=JSON.parse(fs.readFileSync(file,'utf8'));
+ const activeSupplement=JSON.parse(fs.readFileSync(path.join(packsRoot,active.supplement.path),'utf8'));
+ assert.equal(corrected.assets.length,486,'the corrected supplied map retains all 486 historical identities');
+ assert.equal(activeSupplement.assets.length,64,'the runtime supplement contains exactly the 64 original additions');
+ const joined=joinSupplement(corrected,activeSupplement);
+ assert.equal(joined.assets.length,550);
  const assets=catalog();
- styles.attachVariantManifest(assets,corrected,{...options,baseUrl:pathToFileURL(file).href});
+ styles.attachVariantManifest(assets,joined,{...options,baseUrl:pathToFileURL(file).href});
  assert.equal(corrected.assets.filter(row=>row.file.startsWith('corrected-20261017/svg/')).length,243);
  let omitted=0;
  for(const asset of assets){

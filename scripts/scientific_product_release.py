@@ -101,6 +101,8 @@ BASELINE_PACK_IDS = frozenset({"core-biology", "core-experimental-biology", "imm
 def active_record_path(record: dict | None) -> str | None:
     if record is None:
         return None
+    if record.get("schema") == "figureStudio.scientificProductRelease.v6":
+        return ENDOCRINE_RECORD
     if record.get("schema") == "figureStudio.scientificProductRelease.v5":
         return LIBRARY_EXPANSION_RECORD
     if record.get("schema") == "figureStudio.scientificProductRelease.v4":
@@ -512,7 +514,10 @@ def project_library_predecessor_registry(registry: dict, record: dict, predecess
     return projected
 
 
-def _validate_library_expansion(root: Path, *, required: bool = False) -> dict | None:
+def _validate_library_expansion(root: Path, *, required: bool = False,
+                              inventory_override: list | None = None,
+                              registry_override: dict | None = None,
+                              scene_library_override: dict | None = None) -> dict | None:
     path = root / LIBRARY_EXPANSION_RECORD
     if not path.is_file() or path.is_symlink():
         raise ValueError("Scientific product release Library expansion: decision is missing")
@@ -527,11 +532,11 @@ def _validate_library_expansion(root: Path, *, required: bool = False) -> dict |
              canonical({"packs": predecessor["packs"], "scenes": predecessor["scenes"]}),
          "historical product approvals differ from the exact v4 predecessor")
     registry_path = root / "assets/scientific-packs/library.json"
-    registry = json.loads(registry_path.read_text(encoding="utf-8"))
+    registry = json.loads(registry_path.read_text(encoding="utf-8")) if registry_override is None else registry_override
     project_library_predecessor_registry(registry, record, predecessor)
     current = record["current"]
     need(canonical(registry) == current.get("registry_sha256"), "current exact Library registry differs")
-    inventory = asset_inventory(root)
+    inventory = asset_inventory(root) if inventory_override is None else inventory_override
     need(canonical(inventory) == current.get("asset_inventory_sha256")
          and len(inventory) == current.get("asset_file_count"), "current exact scientific asset inventory differs")
     need(current.get("library") == {"drawing_count": 526, "concept_count": 398, "pack_count": 13,
@@ -547,7 +552,8 @@ def _validate_library_expansion(root: Path, *, required: bool = False) -> dict |
          current.get("historical_style_4_manifest_sha256") and
          file_identity(root / "assets/scientific-packs/style-4/expansion-20261103/manifest.json") ==
          current.get("style_4_supplement_manifest_sha256"), "Style 4 source bindings differ")
-    scene_library = json.loads((root / "assets/scientific-scenes/library.v1.json").read_text(encoding="utf-8"))
+    scene_library = (json.loads((root / "assets/scientific-scenes/library.v1.json").read_text(encoding="utf-8"))
+                     if scene_library_override is None else scene_library_override)
     need(sorted(row["id"] for row in scene_library["scenes"]) == current.get("all_template_ids")
          and len(current.get("new_template_ids", [])) == 8
          and current.get("updated_template_ids") == ["immunoblot-assay-workflow"],
@@ -616,9 +622,159 @@ def _library_expansion_need(condition: bool, message: str) -> None:
         raise ValueError("Scientific product release Library expansion: " + message)
 
 
+ENDOCRINE_RECORD = "config/scientific-product-release-2026-11-07-endocrine.json"
+ENDOCRINE_RECORD_SHA256 = "075764f6fbb4a50a4effd5d5dcaad66d93b04ef0aaf0f7207d53d16d3437d763"
+ENDOCRINE_PREFIXES = ("assets/scientific-packs/endocrine-tissue/",
+                      "assets/scientific-packs/style-4/expansion-20261107/")
+ENDOCRINE_AGGREGATE = "assets/scientific-packs/style-4/original-companions.json"
+ENDOCRINE_TEMPLATE_IDS = frozenset({"hypothalamic-pituitary-adrenal-axis",
+    "hypothalamic-pituitary-thyroid-axis", "glucose-islet-feedback", "islet-perifusion-experiment"})
+ENDOCRINE_REPLACED_FILES = frozenset({"assets/scientific-packs/library.json",
+    "assets/scientific-scenes/library.v1.json", "assets/scientific-scenes/release-rights.v1.json"})
+
+
+def _endocrine_need(condition: bool, message: str) -> None:
+    if not condition:
+        raise ValueError("Scientific product release Endocrine expansion: " + message)
+
+
+def endocrine_predecessor(root: Path, record: dict, *, inventory_override: list | None = None) -> tuple[list, dict, dict]:
+    """Remove this finite addition and restore three exact prior JSON values."""
+    need = _endocrine_need
+    inventory = asset_inventory(root) if inventory_override is None else inventory_override
+    scene_files = {"assets/scientific-scenes/" + folder + "/" + name + suffix
+                   for name in ENDOCRINE_TEMPLATE_IDS
+                   for folder, suffix in (("scenes", ".scene.json"), ("previews", ".svg"))}
+    allowed = lambda path: path.startswith(ENDOCRINE_PREFIXES) or path == ENDOCRINE_AGGREGATE or path in scene_files
+    additions = record.get("added_asset_files", [])
+    paths = [row.get("path", "") for row in additions if isinstance(row, dict)]
+    need(bool(paths) and len(paths) == len(additions) == len(set(paths))
+         and all(allowed(path) and "\\" not in path and ":" not in path
+                 and ".." not in PurePosixPath(path).parts for path in paths), "unsafe or duplicate added file list")
+    need([row for row in inventory if allowed(row["path"])] == additions, "exact endocrine additions differ")
+    replaced = record.get("replaced_asset_files", {})
+    need(set(replaced) == ENDOCRINE_REPLACED_FILES, "predecessor replacement set differs")
+    actual = {row["path"]: row["sha256"] for row in inventory}
+    prior = {}
+    for path, binding in replaced.items():
+        need(actual.get(path) == binding.get("current_sha256"), path + ": current binding differs")
+        value = json.loads((root / path).read_text(encoding="utf-8"))
+        previous = binding["predecessor_json"]
+        projected = json.loads(json.dumps(value))
+        if path == "assets/scientific-packs/library.json":
+            projected["packs"] = [row for row in projected["packs"] if row["id"] != "endocrine-tissue"]
+            for key in ("art_styles", "art_style_notes"):
+                projected[key] = previous[key]
+        elif path == "assets/scientific-scenes/library.v1.json":
+            projected["scenes"] = [row for row in projected["scenes"] if row["id"] not in ENDOCRINE_TEMPLATE_IDS]
+            projected["version"] = previous["version"]
+        else:
+            for key, field, removed in (
+                ("source_records", "id", {"source.figure-studio-scene-expansion.2026-11-07"}),
+                ("rights_records", "id", {"rights.figure-studio-scene-expansion.repository-cc0.2026-11-07"}),
+                ("scenes", "scene_id", ENDOCRINE_TEMPLATE_IDS)):
+                projected[key] = [row for row in projected[key] if row[field] not in removed]
+            projected["product_release_pending_scene_ids"] = [name for name in projected["product_release_pending_scene_ids"]
+                                                                if name not in ENDOCRINE_TEMPLATE_IDS]
+        need(canonical(projected) == canonical(previous) == binding.get("predecessor_sha256"),
+             path + ": exact predecessor cannot be reconstructed")
+        prior[path] = previous
+    result = [dict(row) for row in inventory if row["path"] not in set(paths)]
+    for row in result:
+        if row["path"] in replaced:
+            row["sha256"] = replaced[row["path"]]["predecessor_sha256"]
+    return result, prior["assets/scientific-packs/library.json"], prior["assets/scientific-scenes/library.v1.json"]
+
+
+def _validate_endocrine(root: Path, *, required: bool = False) -> dict | None:
+    need = _endocrine_need
+    path = root / ENDOCRINE_RECORD
+    need(path.is_file() and not path.is_symlink(), "decision is missing or unsafe")
+    record = json.loads(path.read_text(encoding="utf-8"))
+    need(canonical(record) == ENDOCRINE_RECORD_SHA256, "exact decision identity mismatch")
+    need(record.get("schema") == "figureStudio.scientificProductRelease.v6"
+         and record.get("release_id") == "endocrine-expansion.2026-11-07"
+         and record.get("release_date") == "2026-11-07", "decision identity/date differs")
+    inventory = asset_inventory(root)
+    prior_inventory, prior_registry, prior_scenes = endocrine_predecessor(root, record, inventory_override=inventory)
+    predecessor = _validate_library_expansion(root, required=True, inventory_override=prior_inventory,
+        registry_override=prior_registry, scene_library_override=prior_scenes)
+    need(record.get("predecessor") == {"record": LIBRARY_EXPANSION_RECORD,
+        "sha256": LIBRARY_EXPANSION_RECORD_SHA256,
+        "asset_inventory_sha256": canonical(prior_inventory),
+        "historical_approvals_sha256": canonical({"packs": predecessor["packs"], "scenes": predecessor["scenes"]})},
+        "exact approved predecessor differs")
+    current = record.get("current", {})
+    need(current.get("library") == {"drawing_count": 550, "concept_count": 410, "pack_count": 14,
+        "scientific_template_count": 24, "layout_starter_count": 3,
+        "historical_style_4_variant_count": 486, "original_style_4_companion_count": 64}, "finite counts differ")
+    need(current.get("asset_inventory_sha256") == canonical(inventory)
+         and current.get("asset_file_count") == len(inventory), "current exact asset inventory differs")
+    registry = json.loads((root / "assets/scientific-packs/library.json").read_text(encoding="utf-8"))
+    # Concepts can occur in more than one pack; Library counts are unique IDs.
+    concepts = {asset.get("concept_id", asset["id"]) for row in registry["packs"]
+                for asset in json.loads((root / "assets/scientific-packs" / row["path"]).read_text(encoding="utf-8"))["assets"]}
+    need(canonical(registry) == current.get("registry_sha256") and len(registry["packs"]) == 14
+         and sum(row["asset_count"] for row in registry["packs"]) == 550
+         and len(concepts) == 410, "current Library registry differs")
+    need(set(record.get("packs", {})) == set(predecessor["packs"]) | {"endocrine-tissue"}
+         and all(record["packs"][key] == value for key, value in predecessor["packs"].items()), "historical pack approvals differ")
+    base = root / "assets/scientific-packs/endocrine-tissue"
+    catalog = json.loads((base / "asset-pack.json").read_text(encoding="utf-8"))
+    binding = dict(catalog_sha256=file_identity(base / "asset-pack.json"), audit_file=catalog["release_audit"]["file"],
+        audit_sha256=file_identity(base / catalog["release_audit"]["file"]), rights_records_sha256=canonical(catalog["rights_records"]),
+        rights_basis=catalog["rights_records"][0]["rights_basis"], contribution_effective_date="2026-11-07",
+        notice_sha256=file_identity(base / "LICENSE-ASSETS-CC0-1.0.md"), drawing_count=len(catalog["assets"]),
+        concept_count=catalog["concept_count"])
+    need(record["packs"].get("endocrine-tissue") == binding and binding["drawing_count"] == 24
+         and binding["concept_count"] == 12 and binding["rights_basis"] == "repository_policy_original_output",
+         "finite endocrine catalog/rights binding differs")
+    scenes = json.loads((root / "assets/scientific-scenes/library.v1.json").read_text(encoding="utf-8"))
+    need(sorted(row["id"] for row in scenes["scenes"]) == current.get("all_template_ids")
+         and len(scenes["scenes"]) == 24 and current.get("new_template_ids") == sorted(ENDOCRINE_TEMPLATE_IDS)
+         and current.get("layout_starter_ids") == predecessor["current"]["layout_starter_ids"], "finite template cohort differs")
+    need(set(record.get("scenes", {})) == set(predecessor["scenes"]) | ENDOCRINE_TEMPLATE_IDS
+         and all(record["scenes"][key] == value for key, value in predecessor["scenes"].items()), "historical scene approvals differ")
+    for name in ENDOCRINE_TEMPLATE_IDS:
+        need(record["scenes"].get(name) == dict(
+            scene_sha256=file_identity(root / ("assets/scientific-scenes/scenes/" + name + ".scene.json")),
+            preview_sha256=file_identity(root / ("assets/scientific-scenes/previews/" + name + ".svg"))), name + ": template binding differs")
+    for relative, digest in current.get("style_4_bindings", {}).items():
+        need(file_identity(root / relative) == digest, "Style 4 binding differs: " + relative)
+    need(set(current.get("style_4_bindings", {})) == {STYLE_FOUR_CORRECTION_MANIFEST,
+        "assets/scientific-packs/style-4/expansion-20261103/manifest.json",
+        "assets/scientific-packs/style-4/expansion-20261107/manifest.json", ENDOCRINE_AGGREGATE}, "finite Style 4 binding set differs")
+    authorization = record.get("user_authorization", {})
+    need(authorization.get("new_personal_attestation") is False and authorization.get("license_grants_added") is False
+         and bool(authorization.get("instruction")), "authorization or rights boundary differs")
+    acceptance = record.get("acceptance_reference", {})
+    need(acceptance.get("file") == "docs/scientific-assets/ENDOCRINE_PRODUCT_RELEASE_2026_11_07.md"
+         and file_identity(root / acceptance["file"]) == acceptance.get("sha256"), "tracked acceptance document differs")
+    decision = record.get("decision")
+    need(decision in {"pending_native_editor_acceptance", "approved_for_matching_public_web_and_superbench_packages"}, "unsupported decision")
+    if decision != "approved_for_matching_public_web_and_superbench_packages":
+        if required:
+            need(False, "native editor and independent release acceptance remain pending")
+        return None
+    review = record.get("review", {})
+    need(all(review.get(key) == "pass" for key in ("scientific_review", "independent_visual_review",
+        "native_editor_acceptance", "independent_release_review")), "scoped acceptance is incomplete")
+    evidence = review.get("evidence", [])
+    need(len(evidence) >= 6 and len({row.get("file") for row in evidence}) == len(evidence)
+         and all(row.get("file") and len(row.get("sha256", "")) == 64
+                 and all(char in "0123456789abcdef" for char in row["sha256"]) for row in evidence), "concrete review evidence required")
+    return record
+
+
 
 def validate(root: Path, *, required: bool = False) -> dict | None:
     root = Path(root)
+    if (root / ENDOCRINE_RECORD).exists():
+        return _validate_endocrine(root, required=required)
+    if any((root / prefix).exists() for prefix in ENDOCRINE_PREFIXES):
+        if required:
+            _endocrine_need(False, "decision is missing")
+        return None
     if (root / LIBRARY_EXPANSION_RECORD).exists():
         return _validate_library_expansion(root, required=required)
     if (root / STYLE_FOUR_CORRECTION_RECORD).exists():

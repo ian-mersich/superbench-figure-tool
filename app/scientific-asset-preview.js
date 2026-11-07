@@ -117,7 +117,7 @@
       els.Title.textContent = name;
       els.Image.alt = `${name} preview`;
       els.Description.textContent = String(source.description || "");
-      els.EditHint.textContent = String(callbacks.partColorHint?.() || "After insertion, select the drawing to change these parts in Style.");
+      els.EditHint.textContent = String(callbacks.partColorHint?.() || "After insertion, select the drawing to change its part colors in Inspector > Appearance.");
       const recordedLimits = Array.isArray(source.scientific_limitations)
         ? source.scientific_limitations : source.scientific_limitations ? [source.scientific_limitations] : [];
       const description = String(source.description || "").trim();

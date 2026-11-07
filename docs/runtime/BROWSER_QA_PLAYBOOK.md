@@ -6,6 +6,65 @@ job at a time through `scripts/run-owned-browser-qa.py`, with a fresh output
 directory, a bounded deadline and source hashes before and after execution.
 Require a closed supervisor with zero remaining owned processes.
 
+## Inspector surface — qualified source UI checkpoint
+
+Use `qa_artifacts/inspector-20261107/check-integrated.py` for one explicit
+desktop case per allocated browser lease. The case choices are
+`1280x800-light`, `1440x1000-light`, and `1920x1080-dark`. The controller
+serves the immutable `qa_artifacts/rc44/p` package in the frozen r35 Core host
+and routes six candidate resources: `app.js`, `index.html`, `styles.css`,
+`scientific-asset-preview.js`, `scientific-asset-color-controls.js`, and
+`help/figure-studio-help.json`. Keep the candidate frozen for the whole lease;
+the controller records the served resource hashes. This qualifies one source
+candidate case in the actual Core frame, not an installer or a release.
+
+The Figure Inspector has three views: Appearance, Properties, and Layers.
+Saved colors is a disclosure inside Appearance. Simple and Advanced share one
+Inspector surface. In compact Core, use the real View menu commands **Detach
+Inspector** and **Dock panels**: frozen host chrome hides the rail title bar,
+while the View commands remain available and invoke the existing placement
+actions. The Library begins closed and can be reopened from its toolbar.
+Figure and Slidedeck are workspace views beside document tabs; Project slides
+opens the slide browser beside the canvas.
+
+Each one-case controller run records eight full-window captures with intents
+written before capture: `unedited-simple.png`, `unedited-advanced.png`,
+`edited-simple.png`, `edited-advanced.png`, `properties.png`, `layers.png`,
+`docked-simple.png`, and `docked-advanced.png`. The mixed fixture contains
+real scientific drawings, an editable text label, and a native line. The
+controller checks the long-name drawing, populated Appearance controls,
+260×320 floating geometry within the viewport, reachable palette and first
+color input, and authored-document/history equality across Simple/Advanced.
+It also checks contained docked views and compares authored artwork/history
+before and after docking. Retain the complete metrics, captures, and each
+failed epoch. An independent reviewer must inspect the original-resolution
+full-window images; structural bounds alone do not establish readable
+hierarchy or visible controls.
+
+If a separate acceptance claim covers saved workspace restoration, allocate a
+distinct persistence case. Predeclare viewport and theme for both observations.
+Capture the warm state after an actual Figure Save, then open that saved file in
+a genuinely new browser process and capture the cold restored view before
+selection changes, Fit, zoom, serialization, or other inspection. Preserve
+the actual downloaded file and compare the authored document as well as panel
+visibility, active Inspector view, and floating rectangle. The integrated
+layout controller itself does not make a Save/Open claim.
+
+The final source passed the three actual Core cases (51 checks/24 originals),
+the mixed editing and real Save/new-process Open case (55 checks/11 originals),
+and the saved-preference case (33 checks/4 originals). Independent content and
+full-resolution visual reviews are retained with the five closed jobs under
+`qa_artifacts/inspector-20261107/`. The saved-preference test returns focus to
+`#viewport` before Escape and requires zero selected objects; an Inspector
+button retains native keyboard behavior, and an empty QA selection array does
+not clear a selection. Keep prior failed and HOLD runs separate.
+
+This is source qualification only. The coordinating chat owns combined
+integration, versioning, packaging, activation, and publication. Do not build or
+archive a package, globally activate a candidate, or treat a passing source
+case as release qualification.
+See [the Inspector architecture note](../architecture/INSPECTOR_2026_11_07.md).
+
 ## Figure Style and editable drawing previews
 
 Use `scripts/check-style-preview-browser.py` with an immutable `--root`,
@@ -23,8 +82,8 @@ Use `scripts/check-style-preview-browser.py` with an immutable `--root`,
   reachable final controls and exact floating geometry across mode changes.
 
 All journeys except `preview` require `--fixture`. Source-owner work may add
-`--overlay` for the explicit five-file App/CSS/index/preview/color-controls
-candidate over the immutable runtime. Freeze that directory and all imported
+`--overlay` for the explicit six-resource App/CSS/index/preview/color-controls/
+Help candidate over the immutable runtime. Freeze that directory and all imported
 controllers through the shared/frozen/owned wrappers below. No browser job may
 overlap a source mutation. A source overlay establishes source behavior only;
 the coordinator separately composes and qualifies a Core-hosted candidate.
